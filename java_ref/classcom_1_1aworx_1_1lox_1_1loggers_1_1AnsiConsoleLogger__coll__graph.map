@@ -1,15 +1,15 @@
 <map id="AnsiConsoleLogger" name="AnsiConsoleLogger">
-<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html" title="AnsiLogger" alt="" coords="1469,577,1556,603"/>
-<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="TextLogger" alt="" coords="1310,547,1397,574"/>
+<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html" title="AnsiLogger" alt="" coords="1469,635,1556,662"/>
+<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="TextLogger" alt="" coords="1310,606,1397,633"/>
 <area shape="rect" id="node4" href="$classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="993,122,1054,149"/>
 <area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html" title="SmartLock" alt="" coords="613,71,699,98"/>
 <area shape="rect" id="node6" href="$classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="287,71,377,98"/>
 <area shape="rect" id="node7" href="$enumcom_1_1aworx_1_1lib_1_1enums_1_1LockMode.html" title="LockMode" alt="" coords="18,25,101,51"/>
 <area shape="rect" id="node8" href="$classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="32,129,87,155"/>
 <area shape="rect" id="node10" href="$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" title="MetaInfo" alt="" coords="987,375,1060,402"/>
-<area shape="rect" id="node11" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html" title="Tokenizer" alt="" coords="617,547,695,574"/>
-<area shape="rect" id="node12" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="293,547,371,574"/>
-<area shape="rect" id="node16" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="623,497,689,523"/>
+<area shape="rect" id="node11" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html" title="Tokenizer" alt="" coords="617,606,695,633"/>
+<area shape="rect" id="node12" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="293,606,371,633"/>
+<area shape="rect" id="node16" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="623,555,689,582"/>
 <area shape="rect" id="node14" href="$classcom_1_1aworx_1_1lib_1_1time_1_1TickSpan.html" title="TickSpan" alt="" coords="617,173,695,199"/>
-<area shape="rect" id="node22" href="$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html" title="AutoSizes" alt="" coords="982,691,1065,718"/>
+<area shape="rect" id="node22" href="$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html" title="AutoSizes" alt="" coords="982,750,1065,777"/>
 </map>

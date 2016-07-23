@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 2</span>
+   &#160;<span id="projectnumber">V. 1607 R. 0</span>
    </div>
   </td>
  </tr>
@@ -107,7 +107,37 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">User Manual </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>This is the manual of the ALox Logging Ecosystem. This manual applies to all platforms and programming languages that ALox supports. By nature, the different implementations of ALox written in different programming languages, differ. Sometimes in details, sometimes differences are more than that.</p>
+<div class="textblock"><h1>Contents</h1>
+<h3>Using ALox</h3>
+<p><a class="el" href="man_intro.html">01 - About ALox</a> <br />
+ <a class="el" href="man_features_and_limitations.html">02 - Features and Limitations</a> <br />
+ <a class="el" href="man_alox_terminology.html">03 - Terminology and Key Concepts</a> <br />
+ <a class="el" href="man_logdomains.html">04 - Log Domains</a> <br />
+ <a class="el" href="man_scopes.html">05 - Scopes in ALox</a> <br />
+ <a class="el" href="man_log_once.html">06 - Lox.Once()</a> <br />
+ <a class="el" href="man_prefix_logables.html">07 - Prefix Logables</a> <br />
+ <a class="el" href="man_log_data.html">08 - Log Data (Debug Variables)</a> <br />
+ <a class="el" href="man_multi_threaded.html">09 - Multi-Threaded Processes</a> <br />
+ <a class="el" href="man_debug_and_release_logging.html">10 - Differences of Debug- and Release-Logging</a> <br />
+ <a class="el" href="man_internal_domains.html">11 - Internal Logging</a> <br />
+ <a class="el" href="man_external_configuration.html">12 - External Configuration</a> <br />
+ <a class="el" href="man_external_verbosity_configuration.html">13 - External Verbosity Configuration</a> <br />
+ <a class="el" href="man_trim_source_path.html">14 - Trimming Source File Paths and Clickable IDE Output</a> <br />
+ <a class="el" href="man_domain_substitution.html">15 - Log Domain Substitution</a> <br />
+ <a class="el" href="man_colorful_loggers.html">16 - Colorful Loggers</a> <br />
+</p>
+<h3>Reference Appendix</h3>
+<p><a class="el" href="group__GrpALoxConfigVars.html">I - Configuration Variables</a> <br />
+ <a class="el" href="man_apdx_auto_config.html">II - ALox Auto-Configuration and Orthogonality</a> <br />
+</p>
+<h3>Extending ALox</h3>
+<p><a class="el" href="man_ext_namespaces.html">A - Namespaces</a> <br />
+ <a class="el" href="man_ext_loggers.html">B - Loggers and Implementing Custom Types</a> <br />
+</p>
+<p><br />
+ </p>
+<h1>Notes</h1>
+<p>This is the manual of the ALox Logging Ecosystem. This manual applies to all platforms and programming languages that ALox supports. By nature, the different implementations of ALox written in different programming languages, differ. Sometimes in details, sometimes differences are more than that.</p>
 <p>As a matter of fact, this manual provides a more abstract and high level view on ALox. Such general understanding of the the ALox architecture and design concepts, might be important to maximize the use of ALox.</p>
 <p>If you have not worked with ALox, yet, and have not read one of the tutorials, we <b>highly recommend to walk through one of the language specific tutorials</b> found in the corresponding programming language specific documentation first. There, you also might find information on how to setup up ALox projects for the platform you are using. The language specific documentation is always reachable through the main menu of this book (above). They are:</p>
 <ul>
@@ -127,37 +157,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  As ALox is available for C++, C# and Java, the class and member names within this document may vary a little per language. Fore example, class <b>Log</b> does not provide a mirrored version of the interface of class <b>Lox</b> in C++ as it has in C# and Java versions of ALox, where this is used for pruning exactly this interface out of release code. In contrast, in C++ the macros <b>Log_xxx</b> and <b>Lox_xxx</b> are used to provide pruned and non-pruned access to methods of class Lox. Which means an underscore in C++ '_' replaces a dot '.' in Java/C#.</p>
 <p>Also, in Java, interface methods generally start with a non-capital letter, while in C# and C++ the same method starts with a capital one. Please remember, that such details are not an error in the user manual, but we have just decided not to hint to this fact all of the time.</p>
 <p>Wherever reasonable, language specific differences are named and briefly explained.</p>
-<h1>Contents</h1>
-<h3>Using ALox</h3>
-<p><a class="el" href="man_intro.html">01 - About ALox</a> <br />
- <a class="el" href="man_features_and_limitations.html">02 - Features and Limitations</a> <br />
- <a class="el" href="man_alox_terminology.html">03 - Terminology and Key Concepts</a> <br />
- <a class="el" href="man_logdomains.html">04 - Log Domains</a> <br />
- <a class="el" href="man_scopes.html">05 - Scopes in ALox</a> <br />
- <a class="el" href="man_log_once.html">06 - Lox.Once()</a> <br />
- <a class="el" href="man_prefix_logables.html">07 - Prefix Logables</a> <br />
- <a class="el" href="man_log_data.html">08 - Log Data (Debug Variables)</a> <br />
- <a class="el" href="man_multi_threaded.html">09 - Multi-Threaded Processes</a> <br />
- <a class="el" href="man_debug_and_release_logging.html">10 - Differences of Debug- and Release-Logging</a> <br />
- <a class="el" href="man_internal_domains.html">11 - Internal Logging</a> <br />
- <a class="el" href="man_external_verbosity_configuration.html">12 - External Verbosity Configuration</a> <br />
- <a class="el" href="man_trim_source_path.html">13 - Trimming Source File Paths and Clickable IDE Output</a> <br />
- <a class="el" href="man_domain_substitution.html">14 - Log Domain Substitution</a> <br />
- <a class="el" href="man_colorful_loggers.html">15 - Colorful Loggers</a> <br />
-</p>
-<h3>Reference Appendix</h3>
-<p><a class="el" href="group__GrpALoxConfigVars.html">I - Configuration Variables</a> <br />
- <a class="el" href="man_apdx_auto_config.html">II - ALox Auto-Configuration and Orthogonality</a> <br />
-</p>
-<h3>Extending ALox</h3>
-<p><a class="el" href="man_ext_namespaces.html">A - Namespaces</a> <br />
- <a class="el" href="man_ext_loggers.html">B - Loggers and Implementing Custom Types</a> <br />
- </p>
+<p><b>Documentation of ALib</b>:<br />
+ Underlying class library <b>ALib</b> does not provide a user manual. Instead, important information about the relationship of classes and their general use is found in the reference documentation of the different namespaces (Java: packages). Those are:</p>
+<ul>
+<li><b>[com::|cs::]aworx::lib</b> (<a class="elRef" doxygen="A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" href="cpp_ref/namespaceaworx_1_1lib.html">C++</a>, <a class="elRef" doxygen="A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" href="cs_ref/namespacecs_1_1aworx_1_1lib.html">C#</a>, <a class="elRef" doxygen="A-Worx/ALox/html/java_ref/java_ref.tag:java_ref/" href="java_ref/namespacecom_1_1aworx_1_1lib.html">Java</a>)</li>
+<li><b>[com::|cs::]aworx::lib::config</b> (<a class="elRef" doxygen="A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" href="cpp_ref/namespaceaworx_1_1lib_1_1config.html">C++</a>, <a class="elRef" doxygen="A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" href="cs_ref/namespacecs_1_1aworx_1_1lib_1_1config.html">C#</a>, <a class="elRef" doxygen="A-Worx/ALox/html/java_ref/java_ref.tag:java_ref/" href="java_ref/namespacecom_1_1aworx_1_1lib_1_1config.html">Java</a>)</li>
+<li><b>[com::|cs::]aworx::lib::containers</b> (<a class="elRef" doxygen="A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" href="cpp_ref/namespaceaworx_1_1lib_1_1containers.html">C++</a>, <a class="elRef" doxygen="A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" href="cs_ref/namespacecs_1_1aworx_1_1lib_1_1containers.html">C#</a>, <a class="elRef" doxygen="A-Worx/ALox/html/java_ref/java_ref.tag:java_ref/" href="java_ref/namespacecom_1_1aworx_1_1lib_1_1containers.html">Java</a>)</li>
+<li><b>[com::|cs::]aworx::lib::enums</b> (<a class="elRef" doxygen="A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" href="cpp_ref/namespaceaworx_1_1lib_1_1enums.html">C++</a>, <a class="elRef" doxygen="A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" href="cs_ref/namespacecs_1_1aworx_1_1lib_1_1enums.html">C#</a>, <a class="elRef" doxygen="A-Worx/ALox/html/java_ref/java_ref.tag:java_ref/" href="java_ref/namespacecom_1_1aworx_1_1lib_1_1enums.html">Java</a>)</li>
+<li><b>[com::|cs::]aworx::lib::strings</b> (<a class="elRef" doxygen="A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" href="cpp_ref/namespaceaworx_1_1lib_1_1strings.html">C++</a>, <a class="elRef" doxygen="A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" href="cs_ref/namespacecs_1_1aworx_1_1lib_1_1strings.html">C#</a>, <a class="elRef" doxygen="A-Worx/ALox/html/java_ref/java_ref.tag:java_ref/" href="java_ref/namespacecom_1_1aworx_1_1lib_1_1strings.html">Java</a>)</li>
+<li><b>[com::|cs::]aworx::lib::system</b> (<a class="elRef" doxygen="A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" href="cpp_ref/namespaceaworx_1_1lib_1_1system.html">C++</a>)</li>
+<li><b>[com::|cs::]aworx::lib::threads</b> (<a class="elRef" doxygen="A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" href="cpp_ref/namespaceaworx_1_1lib_1_1threads.html">C++</a>, <a class="elRef" doxygen="A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" href="cs_ref/namespacecs_1_1aworx_1_1lib_1_1threads.html">C#</a>, <a class="elRef" doxygen="A-Worx/ALox/html/java_ref/java_ref.tag:java_ref/" href="java_ref/namespacecom_1_1aworx_1_1lib_1_1threads.html">Java</a>)</li>
+<li><b>[com::|cs::]aworx::lib::time</b> (<a class="elRef" doxygen="A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" href="cpp_ref/namespaceaworx_1_1lib_1_1time.html">C++</a>, <a class="elRef" doxygen="A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" href="cs_ref/namespacecs_1_1aworx_1_1lib_1_1time.html">C#</a>, <a class="elRef" doxygen="A-Worx/ALox/html/java_ref/java_ref.tag:java_ref/" href="java_ref/namespacecom_1_1aworx_1_1lib_1_1time.html">Java</a>)</li>
+</ul>
+<p>For advanced users of ALox, reading and understanding concepts described in <b>[com::|cs::]aworx::lib::config</b> (<a class="elRef" doxygen="A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" href="cpp_ref/namespaceaworx_1_1lib_1_1config.html">C++</a>, <a class="elRef" doxygen="A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" href="cs_ref/namespacecs_1_1aworx_1_1lib_1_1config.html">C#</a>, <a class="elRef" doxygen="A-Worx/ALox/html/java_ref/java_ref.tag:java_ref/" href="java_ref/namespacecom_1_1aworx_1_1lib_1_1config.html">Java</a>) and <b>[com::|cs::]aworx::lib::strings</b> (<a class="elRef" doxygen="A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" href="cpp_ref/namespaceaworx_1_1lib_1_1strings.html">C++</a>, <a class="elRef" doxygen="A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" href="cs_ref/namespacecs_1_1aworx_1_1lib_1_1strings.html">C#</a>, <a class="elRef" doxygen="A-Worx/ALox/html/java_ref/java_ref.tag:java_ref/" href="java_ref/namespacecom_1_1aworx_1_1lib_1_1strings.html">Java</a>) is very recommended. </p>
 </div></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 20 2016 10:57:56 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 23 2016 23:18:48 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

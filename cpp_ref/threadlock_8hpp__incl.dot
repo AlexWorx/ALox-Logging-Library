@@ -75,13 +75,11 @@ digraph "threadlock.hpp"
   Node29 [label="thread.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$thread_8hpp.html"];
   Node29 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node29 -> Node30 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node30 [label="alib/strings/asprealloc.hpp",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node30 [label="map",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node29 -> Node31 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node31 [label="map",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node31 [label="mutex",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node29 -> Node32 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node32 [label="mutex",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node32 [label="condition_variable",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node29 -> Node33 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node33 [label="condition_variable",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-  Node29 -> Node34 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node34 [label="thread",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node33 [label="thread",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
 }

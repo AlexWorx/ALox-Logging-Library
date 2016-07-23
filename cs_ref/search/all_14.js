@@ -1,14 +1,8 @@
 var searchData=
 [
-  ['value',['Value',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html#a3af185df6d34594e87ac3b8dac9b6b85',1,'cs.aworx.lib.config.IniFile.Variable.Value()'],['../classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html#acc64411e4973d80d6983e983f9ce7f0e',1,'cs.aworx.lib.containers.PathMap.Value()']]],
-  ['values',['values',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html#a37671896b86a975f51e992392f49ca08',1,'cs::aworx::lox::core::textlogger::AutoSizes']]],
-  ['variable',['Variable',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html',1,'cs::aworx::lib::config::IniFile']]],
-  ['variables',['Variables',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html#ac92596745ac4d7e5a6c6e8300cabfc01',1,'cs::aworx::lib::config::IniFile::Section']]],
-  ['verbose',['Verbose',['../classcs_1_1aworx_1_1lox_1_1Log.html#aea91181dfaf6d7a76da1e0097f8222f9',1,'cs.aworx.lox.Log.Verbose(String domain, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)'],['../classcs_1_1aworx_1_1lox_1_1Log.html#a2bf45ce217e854274fabc4532a58eab3',1,'cs.aworx.lox.Log.Verbose(Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)'],['../classcs_1_1aworx_1_1lox_1_1Lox.html#a47fe738147a06f7df9c77a16cc2ebe1a',1,'cs.aworx.lox.Lox.Verbose(String domain, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)'],['../classcs_1_1aworx_1_1lox_1_1Lox.html#ae54b8d469e2c739a30bdc53f08d09981',1,'cs.aworx.lox.Lox.Verbose(Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)'],['../namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313ad4a9fa383ab700c5bdd6f31cf7df0faf',1,'cs.aworx.lox.Verbose()']]],
-  ['verbosity',['Verbosity',['../namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313',1,'cs::aworx::lox']]],
-  ['verbosityerror',['VerbosityError',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ac2ec121b83db306f8533450c888383f1',1,'cs::aworx::lox::core::textlogger::MetaInfo']]],
-  ['verbosityinfo',['VerbosityInfo',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a3fd79e6e280850a848439e486e5599c2',1,'cs::aworx::lox::core::textlogger::MetaInfo']]],
-  ['verbosityverbose',['VerbosityVerbose',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a4732c7e0541164b28a8b4bc709a19515',1,'cs::aworx::lox::core::textlogger::MetaInfo']]],
-  ['verbositywarning',['VerbosityWarning',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a5ca90f578f826e4ba0815e84264ce13b',1,'cs::aworx::lox::core::textlogger::MetaInfo']]],
-  ['version',['Version',['../classcs_1_1aworx_1_1lib_1_1ALIB.html#a811fc76ba0094b56a1ddbe6ac8d78915',1,'cs.aworx.lib.ALIB.Version()'],['../classcs_1_1aworx_1_1lox_1_1ALox.html#a811fc76ba0094b56a1ddbe6ac8d78915',1,'cs.aworx.lox.ALox.Version()']]]
+  ['unsafe',['Unsafe',['../namespacecs_1_1aworx_1_1lib_1_1enums.html#a8c800527afe0a8a6c71ae4cceda6bf9dad3d57868b6ff9839eff631d2cc8acbce',1,'cs::aworx::lib::enums']]],
+  ['url_5fend',['URL_END',['../classcs_1_1aworx_1_1lox_1_1ESC.html#ae6c49bf947cc01705f08d5996bcfed7f',1,'cs::aworx::lox::ESC']]],
+  ['url_5fstart',['URL_START',['../classcs_1_1aworx_1_1lox_1_1ESC.html#ab67c85a196edb1097933824e1d9e6185',1,'cs::aworx::lox::ESC']]],
+  ['usesstdstreams',['usesStdStreams',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a521df36fef7aa1dc1979a93cd4db2e83',1,'cs::aworx::lox::core::textlogger::TextLogger']]],
+  ['util',['Util',['../classcs_1_1aworx_1_1lib_1_1Util.html',1,'cs::aworx::lib']]]
 ];

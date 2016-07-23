@@ -10,5 +10,6 @@ var searchData=
   ['writestore',['writeStore',['../classaworx_1_1lox_1_1core_1_1ScopeDump.html#a2ac85963ae7b731f047051b4d593b58e',1,'aworx::lox::core::ScopeDump']]],
   ['writestoremap',['writeStoreMap',['../classaworx_1_1lox_1_1core_1_1ScopeDump.html#a0300c0e3bf0ca655848b1737e500a9f9',1,'aworx::lox::core::ScopeDump']]],
   ['writestoremaphelper',['writeStoreMapHelper',['../classaworx_1_1lox_1_1core_1_1ScopeDump.html#a9b273d5cd4060583f81ea934d8976d46',1,'aworx::lox::core::ScopeDump']]],
-  ['writetimediff',['writeTimeDiff',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a3e51ddb2d0d6ce33302bf0d16b1328fb',1,'aworx::lox::core::textlogger::MetaInfo']]]
+  ['writetimediff',['writeTimeDiff',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a3e51ddb2d0d6ce33302bf0d16b1328fb',1,'aworx::lox::core::textlogger::MetaInfo']]],
+  ['writeverbositiesonloggerremoval',['writeVerbositiesOnLoggerRemoval',['../classaworx_1_1lox_1_1Lox.html#a177e884c9baeadb15e900176501150fe',1,'aworx::lox::Lox']]]
 ];

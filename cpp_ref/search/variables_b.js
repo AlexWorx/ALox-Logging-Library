@@ -1,6 +1,7 @@
 var searchData=
 [
   ['magenta',['MAGENTA',['../classaworx_1_1lox_1_1ESC.html#ad7302f67367bb64d92d430db2b966744',1,'aworx::lox::ESC']]],
+  ['max_5felapsed_5ftime',['MAX_ELAPSED_TIME',['../classaworx_1_1lox_1_1ALox.html#a19b66f8b85e07bf98b672d6ff789b3b8',1,'aworx::lox::ALox']]],
   ['maxdomainpathlength',['maxDomainPathLength',['../classaworx_1_1lox_1_1Lox.html#a71f136dd9dc7e9d48c33ad54ae5d802f',1,'aworx::lox::Lox']]],
   ['maxelapsedtime',['MaxElapsedTime',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ade3c3fa6f130947ef6aa22e72a4d1efd',1,'aworx::lox::core::textlogger::MetaInfo']]],
   ['maxkeylength',['maxKeyLength',['../classaworx_1_1lox_1_1core_1_1ScopeDump.html#ace5c16296f35665a0346922cdb706cc6',1,'aworx::lox::core::ScopeDump']]],
@@ -38,7 +39,7 @@ var searchData=
   ['msgprefixwarning',['MsgPrefixWarning',['../classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html#ad9cc2acc0ffe4f4ab09344dacb4c4396',1,'aworx::lox::loggers::AnsiLogger']]],
   ['msgsuffix',['MsgSuffix',['../classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html#ac00d21fc9d9b258f5eb5df6681a47c38',1,'aworx::lox::loggers::AnsiLogger']]],
   ['multilinedelimiter',['MultiLineDelimiter',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a4b152755ce9a00713a680ee56a07112b',1,'aworx::lox::core::textlogger::TextLogger']]],
-  ['multilinedelimiterrepl',['MultiLineDelimiterRepl',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a044f3f9d4ad22b7e3b6210f0ead7307c',1,'aworx::lox::core::textlogger::TextLogger']]],
+  ['multilinedelimiterrepl',['MultiLineDelimiterRepl',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a1c310c98162c46f37a1935c70f8edb70',1,'aworx::lox::core::textlogger::TextLogger']]],
   ['multilinemsgmode',['MultiLineMsgMode',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a95ea94dee572eaac760d028ddcf3cf65',1,'aworx::lox::core::textlogger::TextLogger']]],
   ['mutex',['mutex',['../classaworx_1_1lib_1_1threads_1_1Thread.html#ac1e5f028d9196e79535292af4d31f555',1,'aworx::lib::threads::Thread::mutex()'],['../classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a925e97cfc2fb5e3b27bd06f805668a9d',1,'aworx::lib::threads::ThreadLockNR::mutex()'],['../classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a925e97cfc2fb5e3b27bd06f805668a9d',1,'aworx::lib::threads::ThreadLock::mutex()']]],
   ['mutexnotifier',['mutexNotifier',['../classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a546b08274dd279ace7093f6b6d562beb',1,'aworx::lib::threads::ThreadLock']]]

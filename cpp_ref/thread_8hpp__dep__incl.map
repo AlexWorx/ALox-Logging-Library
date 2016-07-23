@@ -1,8 +1,7 @@
 <map id="thread.hpp" name="thread.hpp">
-<area shape="rect" id="node2" href="$threadlock_8hpp.html" title="threadlock.hpp" alt="" coords="133,80,239,107"/>
-<area shape="rect" id="node3" href="$scopeinfo_8hpp.html" title="scopeinfo.hpp" alt="" coords="152,304,255,331"/>
-<area shape="rect" id="node4" href="$configuration_8hpp.html" title="configuration.hpp" alt="" coords="5,155,127,181"/>
-<area shape="rect" id="node5" href="$lox_8hpp.html" title="lox.hpp" alt="" coords="163,155,227,181"/>
-<area shape="rect" id="node6" href="$inifile_8hpp.html" title="inifile.hpp" alt="" coords="15,229,93,256"/>
-<area shape="rect" id="node7" href="$alox_8hpp.html" title="alox.hpp" alt="" coords="168,229,239,256"/>
+<area shape="rect" id="node2" href="$threadlock_8hpp.html" title="threadlock.hpp" alt="" coords="40,80,147,107"/>
+<area shape="rect" id="node3" href="$scopeinfo_8hpp.html" title="scopeinfo.hpp" alt="" coords="55,379,158,405"/>
+<area shape="rect" id="node4" href="$configuration_8hpp.html" title="configuration.hpp" alt="" coords="33,155,154,181"/>
+<area shape="rect" id="node5" href="$lox_8hpp.html" title="lox.hpp" alt="" coords="5,229,69,256"/>
+<area shape="rect" id="node6" href="$alox_8hpp.html" title="alox.hpp" alt="" coords="71,304,142,331"/>
 </map>

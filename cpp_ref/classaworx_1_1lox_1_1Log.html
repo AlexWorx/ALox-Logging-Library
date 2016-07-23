@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 2</span>
+   &#160;<span id="projectnumber">V. 1607 R. 0</span>
    </div>
   </td>
  </tr>
@@ -137,7 +137,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Collaboration diagram for Log:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lox_1_1Log__coll__graph.svg" width="2094" height="1198"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lox_1_1Log__coll__graph.svg" width="2054" height="1444"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
@@ -187,7 +187,7 @@ Public Static Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> In the case that the original ALib ConsoleReportWriter is still in place, <a class="el" href="classaworx_1_1lib_1_1Report.html#a15a55ca31cef913041443efc8a13494f">Report.PushWriter</a> is invoked to provide a ReportWriter of type <a class="el" href="classaworx_1_1lox_1_1ALoxReportWriter.html">ALoxReportWriter</a>.</p>
+<p> In the case that the original ALib ConsoleReportWriter is still in place, <a class="el" href="classaworx_1_1lib_1_1Report.html#a15a55ca31cef913041443efc8a13494f">Report::PushWriter</a> is invoked to provide a ReportWriter of type <a class="el" href="classaworx_1_1lox_1_1ALoxReportWriter.html">ALoxReportWriter</a>.</p>
 <dl class="section note"><dt>Note</dt><dd>This method is effective only in debug compilations. Usually it is invoked indirectly by using method <a class="el" href="classaworx_1_1lox_1_1Log.html#a06444d2e7a321e26fe1d4c309cb8ed49">AddDebugLogger</a>. Applications that do not use that method (e.g. because they are using release logging exclusively), should invoke this method on bootstrap providing their (release) lox. In this case, the <em>Verbosity</em> of the internal domain used by class <a class="el" href="classaworx_1_1lox_1_1ALoxReportWriter.html">ALoxReportWriter</a> has to be set for the the logger(s) in given <code>lox</code> in question.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -224,7 +224,7 @@ Public Static Methods</h2></td></tr>
 <p>Of-course, alternatively to using this method (resp. the macro), a suitable (set of) debug logger(s) can be created manually. Also, before or after using this method additional debug loggers may be created.</p>
 <p>In the current version of <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a> (future changes are likely), this method does:</p><ul>
 <li>use <a class="el" href="classaworx_1_1lox_1_1Lox.html#ae92c4ae884c3cd723deb9b5e8d27b6ac">Lox::CreateConsoleLogger</a> to create the best compatible console logger for the running platform</li>
-<li>this logger will be added to the debug <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> object with specifiying <code><a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313a902b0d55fddef6f8d651fe1035b7d4bd">Verbosity::Error</a></code> for internal domains.</li>
+<li>this logger will be added to the debug <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> object with specifying <code><a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313a902b0d55fddef6f8d651fe1035b7d4bd">Verbosity::Error</a></code> for internal domains.</li>
 <li>If under windows, a Visual Studio debug session is running, adds a <a class="el" href="classaworx_1_1lox_1_1loggers_1_1VStudioLogger.html">VStudioLogger</a> in addition to the standard console logger. This can be suppressed using configuration variable <a href="../group__GrpALoxConfigVars.html">ALOX_NO_IDE_LOGGER</a>.</li>
 </ul>
 <p>The name of the <em>Logger</em> created is <code>"DEBUG_LOGGER"</code>. It will be registered with the standard <b>Lox</b> used for debug-logging, by setting <em>Verbosities</em> </p><ul>
@@ -371,7 +371,7 @@ Public Static Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 20 2016 10:57:53 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 23 2016 23:18:45 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

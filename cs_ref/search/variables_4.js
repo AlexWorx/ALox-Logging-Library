@@ -14,12 +14,17 @@ var searchData=
   ['defaultcommentprefix',['DefaultCommentPrefix',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a4476ecda6d3ab51725c78ffc7da2ecda',1,'cs::aworx::lib::config::IniFile']]],
   ['defaultfileextension',['DefaultFileExtension',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a2eaa2333f2f0f3ee2b95eb569798ec80',1,'cs::aworx::lib::config::IniFile']]],
   ['defaultreport',['defaultReport',['../classcs_1_1aworx_1_1lib_1_1Report.html#a9088fab9d3df935215bb0bb30f7b2250',1,'cs::aworx::lib::Report']]],
+  ['defaultstringconverter',['defaultStringConverter',['../classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a3b754bcc322da1d59d62b19ba50b3a5d',1,'cs::aworx::lib::config::ConfigurationPlugin']]],
+  ['defaultvalue',['DefaultValue',['../structcs_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html#a48f7236d94560d0968b206eb2110ca8a',1,'cs.aworx.lib.config.VariableDefinition.DefaultValue()'],['../classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#ae4b47533ee1b78ad20c12f235d7ef958',1,'cs.aworx.lib.config.Variable.DefaultValue()']]],
+  ['defaultvalues',['DefaultValues',['../classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6',1,'cs::aworx::lib::config::Configuration']]],
   ['defaultwhitespaces',['DefaultWhitespaces',['../classcs_1_1aworx_1_1lib_1_1strings_1_1CString.html#a38121f199788b412de1151c43774a980',1,'cs::aworx::lib::strings::CString']]],
-  ['delim',['delim',['../classcs_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html#ab56c67e0ed9605b4078e2135f791c4ed',1,'cs.aworx.lib.strings.Tokenizer.delim()'],['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html#a68297215ac82977611f5dee2062cc910',1,'cs.aworx.lib.config.IniFile.Variable.Delim()']]],
+  ['delim',['delim',['../classcs_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html#ab56c67e0ed9605b4078e2135f791c4ed',1,'cs.aworx.lib.strings.Tokenizer.delim()'],['../classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html#a68297215ac82977611f5dee2062cc910',1,'cs.aworx.lib.config.InMemoryPlugin.Entry.Delim()'],['../structcs_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html#a68297215ac82977611f5dee2062cc910',1,'cs.aworx.lib.config.VariableDefinition.Delim()'],['../classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#a68297215ac82977611f5dee2062cc910',1,'cs.aworx.lib.config.Variable.Delim()']]],
   ['detectdateformatchanges',['detectDateFormatChanges',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ab621f55d7a1a3c04988089afeea88208',1,'cs::aworx::lox::core::textlogger::MetaInfo']]],
   ['detecttimeofdayformatchanges',['detectTimeOfDayFormatChanges',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ae2eb584a3f8074d9b14f56741ff2b628',1,'cs::aworx::lox::core::textlogger::MetaInfo']]],
   ['dictionary',['Dictionary',['../classcs_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer_1_1DynamicJsonObject.html#a0ecddbd2f0dd3f9e45aea60eb4e4fe53',1,'cs::aworx::lox::tools::json::DynamicJSONDeserializer::DynamicJsonObject']]],
+  ['domain_5fsubstitution',['DOMAIN_SUBSTITUTION',['../classcs_1_1aworx_1_1lox_1_1ALox.html#ad82a8bbcdeb79dc983df554f634c62b8',1,'cs::aworx::lox::ALox']]],
   ['domains',['domains',['../classcs_1_1aworx_1_1lox_1_1Lox.html#a9dd0eff01eb6972483137d6fc87a8c49',1,'cs::aworx::lox::Lox']]],
   ['domainsensitivity',['DomainSensitivity',['../classcs_1_1aworx_1_1lox_1_1Lox.html#ac63dd33538dff8703707b14fc6d04d52',1,'cs::aworx::lox::Lox']]],
-  ['domainsubstitutions',['domainSubstitutions',['../classcs_1_1aworx_1_1lox_1_1Lox.html#a5a21926d960c820bfe97700a6f2ddaeb',1,'cs::aworx::lox::Lox']]]
+  ['domainsubstitutions',['domainSubstitutions',['../classcs_1_1aworx_1_1lox_1_1Lox.html#a5a21926d960c820bfe97700a6f2ddaeb',1,'cs::aworx::lox::Lox']]],
+  ['dump_5fstate_5fon_5fexit',['DUMP_STATE_ON_EXIT',['../classcs_1_1aworx_1_1lox_1_1ALox.html#aa2a80347288d005664923d441b46c2ab',1,'cs::aworx::lox::ALox']]]
 ];

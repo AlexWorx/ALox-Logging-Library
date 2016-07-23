@@ -19,11 +19,13 @@ var searchData=
   ['logable',['Logable',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1PL.html#a3d56dedd09174aaf80ef55ff192d6299',1,'cs::aworx::lox::core::Domain::PL']]],
   ['logbuf',['logBuf',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a1c3b59e6dc2850f90df33ae9b4533334',1,'cs.aworx.lox.core.textlogger.TextLogger.logBuf()'],['../classcs_1_1aworx_1_1lox_1_1Lox.html#a1c3b59e6dc2850f90df33ae9b4533334',1,'cs.aworx.lox.Lox.logBuf()']]],
   ['logbuflock',['logBufLock',['../classcs_1_1aworx_1_1lox_1_1Lox.html#a115a099b1c0c5425cd37ec7b54056d01',1,'cs::aworx::lox::Lox']]],
+  ['logcallsperdomain',['LogCallsPerDomain',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html#a2eb0308f7da72022ce5a09987b3f14bf',1,'cs::aworx::lox::core::Domain::LoggerData']]],
   ['logger',['Logger',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html#a42bd749bb12fae89508e2020e2f451bf',1,'cs::aworx::lox::core::Domain::LoggerData']]],
+  ['loggeraddedsincelastdebugstate',['loggerAddedSinceLastDebugState',['../classcs_1_1aworx_1_1lox_1_1Lox.html#ae1d2d3f00029eeccb82c286b93314df0',1,'cs::aworx::lox::Lox']]],
   ['loggerverbosity',['LoggerVerbosity',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html#a312c13a4f141e167f5b82a483b9a9edd',1,'cs::aworx::lox::core::Domain::LoggerData']]],
   ['lognumbermindigits',['LogNumberMinDigits',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a72c44479ec3d128c1208b49e4b8ede08',1,'cs::aworx::lox::core::textlogger::MetaInfo']]],
   ['logobjects',['logObjects',['../classcs_1_1aworx_1_1lox_1_1Lox.html#acebf4e1770184abbc4063f3fa4a3f298',1,'cs::aworx::lox::Lox']]],
-  ['lox',['LOX',['../classcs_1_1aworx_1_1lox_1_1Log.html#a9291aece8829db000d6508daa16f67fc',1,'cs.aworx.lox.Log.LOX()'],['../classcs_1_1aworx_1_1lox_1_1ALoxReportWriter.html#aff12beb5eb706efdffb65183b87431df',1,'cs.aworx.lox.ALoxReportWriter.lox()']]],
+  ['lox',['lox',['../classcs_1_1aworx_1_1lox_1_1ALoxReportWriter.html#aff12beb5eb706efdffb65183b87431df',1,'cs.aworx.lox.ALoxReportWriter.lox()'],['../classcs_1_1aworx_1_1lox_1_1Log.html#a9291aece8829db000d6508daa16f67fc',1,'cs.aworx.lox.Log.LOX()']]],
   ['loxes',['loxes',['../classcs_1_1aworx_1_1lox_1_1ALox.html#a4d25137196004fe0c966841330055e85',1,'cs::aworx::lox::ALox']]],
   ['loxname',['loxName',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#ac67ac13e1750351191b65faaa5791a00',1,'cs::aworx::lox::core::ScopeInfo']]]
 ];

@@ -9,6 +9,7 @@ var searchData=
   ['scopestore_3c_20std_3a_3amap_3c_20aworx_3a_3alib_3a_3astrings_3a_3aastring_2c_20int_20_3e_20_2a_20_3e',['ScopeStore&lt; std::map&lt; aworx::lib::strings::AString, int &gt; * &gt;',['../classaworx_1_1lox_1_1core_1_1ScopeStore.html',1,'aworx::lox::core']]],
   ['scopestoretype',['ScopeStoreType',['../classaworx_1_1lox_1_1core_1_1ScopeStoreType.html',1,'aworx::lox::core']]],
   ['section',['Section',['../classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html',1,'aworx::lib::config::IniFile']]],
+  ['section',['Section',['../classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html',1,'aworx::lib::config::InMemoryPlugin']]],
   ['smartlock',['SmartLock',['../classaworx_1_1lib_1_1threads_1_1SmartLock.html',1,'aworx::lib::threads']]],
   ['sourcefile',['SourceFile',['../structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html',1,'aworx::lox::core::ScopeInfo']]],
   ['sourcepathtrimrule',['SourcePathTrimRule',['../structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html',1,'aworx::lox::core::ScopeInfo']]],

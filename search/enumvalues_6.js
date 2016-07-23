@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['home',['Home',['cpp_ref/classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0a8cf04a9734132302f96da8e113e80ce5',1,'aworx::lib::system::Directory']]],
-  ['homeconfig',['HomeConfig',['cpp_ref/classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0ae94961474a646742838ed46f32f89a47',1,'aworx::lib::system::Directory']]]
+  ['get',['Get',['cs_ref/namespacecs_1_1aworx_1_1lib_1_1enums.html#af6d9cc1e6686eca6e60d57d959cf57fbac55582518cba2c464f29f5bae1c68def',1,'cs::aworx::lib::enums::Get()'],['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#af6d9cc1e6686eca6e60d57d959cf57fbac55582518cba2c464f29f5bae1c68def',1,'aworx::lib::enums::Get()']]],
+  ['getcreate',['GetCreate',['cs_ref/namespacecs_1_1aworx_1_1lib_1_1enums.html#af6d9cc1e6686eca6e60d57d959cf57fba1d5c1a7fde77e84c993d6fea61f88c2a',1,'cs::aworx::lib::enums::GetCreate()'],['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#af6d9cc1e6686eca6e60d57d959cf57fba1d5c1a7fde77e84c993d6fea61f88c2a',1,'aworx::lib::enums::GetCreate()']]],
+  ['global',['Global',['cs_ref/namespacecs_1_1aworx_1_1lib_1_1enums.html#a9537c0a8df05f0a728b6e2a89c7f3a1ba4cc6684df7b4a92b1dec6fce3264fac8',1,'cs::aworx::lib::enums::Global()'],['cs_ref/namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8',1,'cs::aworx::lox::Global()'],['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#a9537c0a8df05f0a728b6e2a89c7f3a1ba4cc6684df7b4a92b1dec6fce3264fac8',1,'aworx::lib::enums::Global()'],['cpp_ref/namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8',1,'aworx::lox::Global()']]]
 ];

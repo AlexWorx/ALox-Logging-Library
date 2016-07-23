@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['responsibility',['Responsibility',['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#ab5305b978950ba3946cf79a4bccbf7af',1,'aworx::lib::enums']]],
-  ['result',['Result',['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#a28287671eaf7406afd604bd055ba4066',1,'aworx::lib::enums']]],
-  ['runtimeenvironment',['RuntimeEnvironment',['cpp_ref/classaworx_1_1lib_1_1system_1_1System.html#aeae50cdd350e3deaae33d2900b0a72f2',1,'aworx::lib::system::System']]]
+  ['phase',['Phase',['cs_ref/namespacecs_1_1aworx_1_1lib_1_1enums.html#ae1c5184dc404edf057ed537bcfddef84',1,'cs::aworx::lib::enums::Phase()'],['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#ae1c5184dc404edf057ed537bcfddef84',1,'aworx::lib::enums::Phase()']]],
+  ['propagation',['Propagation',['cs_ref/namespacecs_1_1aworx_1_1lib_1_1enums.html#aeae0c2d4659a32ef54bd221d1a3da4e6',1,'cs::aworx::lib::enums::Propagation()'],['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#aeae0c2d4659a32ef54bd221d1a3da4e6',1,'aworx::lib::enums::Propagation()']]]
 ];

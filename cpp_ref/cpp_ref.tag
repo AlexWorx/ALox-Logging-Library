@@ -59,6 +59,8 @@
     <includes id="alib_8hpp" name="alib.hpp" local="yes" imported="no">alib/alib.hpp</includes>
     <includes id="alox__symbols_8hpp" name="alox_symbols.hpp" local="yes" imported="no">internals/alox_symbols.hpp</includes>
     <includes id="alox__macros_8hpp" name="alox_macros.hpp" local="yes" imported="no">internals/alox_macros.hpp</includes>
+    <includes id="configuration_8hpp" name="configuration.hpp" local="yes" imported="no">alib/config/configuration.hpp</includes>
+    <includes id="tokenizer_8hpp" name="tokenizer.hpp" local="yes" imported="no">alib/strings/tokenizer.hpp</includes>
     <includes id="aloxtypesandenums_8hpp" name="aloxtypesandenums.hpp" local="yes" imported="no">aloxtypesandenums.hpp</includes>
     <includes id="log_8hpp" name="log.hpp" local="yes" imported="no">log.hpp</includes>
     <includes id="lox_8hpp" name="lox.hpp" local="yes" imported="no">lox.hpp</includes>
@@ -160,9 +162,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Log_LogConfig</name>
+      <name>Log_LogState</name>
       <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
-      <anchor>ga1bac07b7ec3ca3616c301f171e9e73d9</anchor>
+      <anchor>ga014d8b959e78330074b7aedad3ff747b</anchor>
       <arglist>(...)</arglist>
     </member>
     <member kind="define">
@@ -349,9 +351,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Lox_LogConfig</name>
+      <name>Lox_LogState</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
-      <anchor>ga0578fb3bfeb63ea05db9c34bc1a0d07d</anchor>
+      <anchor>ga6a3836bfb9783687112adc22e265631d</anchor>
       <arglist>(...)</arglist>
     </member>
     <member kind="define">
@@ -569,6 +571,13 @@
       <arglist>(const String &amp;src)</arglist>
     </member>
     <member kind="function">
+      <type>const String</type>
+      <name>ToString</name>
+      <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
+      <anchor>a6dc440d515fdab7ac7eb73fb984c0f14</anchor>
+      <arglist>(Verbosity verbosity)</arglist>
+    </member>
+    <member kind="function">
       <type>AString &amp;</type>
       <name>ToString</name>
       <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
@@ -588,13 +597,6 @@
       <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
       <anchor>a9f44bd15eb903fbdb8e70aee35a6267b</anchor>
       <arglist>(int priority, AString &amp;target)</arglist>
-    </member>
-    <member kind="function">
-      <type>const String</type>
-      <name>ToStringX</name>
-      <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
-      <anchor>abfd92f16f9c0e36069f30ffa03a5d96d</anchor>
-      <arglist>(Verbosity verbosity)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -974,8 +976,11 @@
     <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/config/</path>
     <filename>configuration_8hpp</filename>
     <includes id="threadlock_8hpp" name="threadlock.hpp" local="yes" imported="no">alib/threads/threadlock.hpp</includes>
+    <includes id="substring_8hpp" name="substring.hpp" local="yes" imported="no">alib/strings/substring.hpp</includes>
     <includes id="numberformat_8hpp" name="numberformat.hpp" local="yes" imported="no">alib/strings/numberformat.hpp</includes>
     <includes id="plugins_8hpp" name="plugins.hpp" local="yes" imported="no">alib/config/plugins.hpp</includes>
+    <includes id="inmemoryplugin_8hpp" name="inmemoryplugin.hpp" local="yes" imported="no">alib/config/inmemoryplugin.hpp</includes>
+    <includes id="tokenizer_8hpp" name="tokenizer.hpp" local="yes" imported="no">alib/strings/tokenizer.hpp</includes>
     <class kind="class">aworx::lib::config::Configuration</class>
     <namespace>aworx</namespace>
     <namespace>aworx::lib</namespace>
@@ -985,6 +990,13 @@
       <name>Configuration</name>
       <anchorfile>namespaceaworx.html</anchorfile>
       <anchor>a9b321d2f72b975b304aa678e20344e7a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::config::Variable</type>
+      <name>Variable</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ac401c755579f3ba09fd64599ada969cf</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -1122,6 +1134,13 @@
       <arglist></arglist>
     </member>
     <member kind="typedef">
+      <type>aworx::lib::enums::Reach</type>
+      <name>Reach</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>acb8fc4c8bd67b78e8f56e72ba65dd476</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
       <type>aworx::lib::enums::Responsibility</type>
       <name>Responsibility</name>
       <anchorfile>namespaceaworx.html</anchorfile>
@@ -1250,6 +1269,15 @@
     </member>
     <member kind="enumeration">
       <type></type>
+      <name>Reach</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1enums.html</anchorfile>
+      <anchor>a9537c0a8df05f0a728b6e2a89c7f3a1b</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="a9537c0a8df05f0a728b6e2a89c7f3a1ba4cc6684df7b4a92b1dec6fce3264fac8">Global</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="a9537c0a8df05f0a728b6e2a89c7f3a1ba509820290d57f333403f490dde7316f4">Local</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
       <name>Responsibility</name>
       <anchorfile>namespaceaworx_1_1lib_1_1enums.html</anchorfile>
       <anchor>ab5305b978950ba3946cf79a4bccbf7af</anchor>
@@ -1309,11 +1337,10 @@
     <name>inifile.hpp</name>
     <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/config/</path>
     <filename>inifile_8hpp</filename>
-    <includes id="substring_8hpp" name="substring.hpp" local="yes" imported="no">alib/strings/substring.hpp</includes>
-    <includes id="configuration_8hpp" name="configuration.hpp" local="yes" imported="no">alib/config/configuration.hpp</includes>
+    <includes id="inmemoryplugin_8hpp" name="inmemoryplugin.hpp" local="yes" imported="no">alib/config/inmemoryplugin.hpp</includes>
+    <class kind="class">aworx::lib::config::IniFile::Entry</class>
     <class kind="class">aworx::lib::config::IniFile</class>
     <class kind="class">aworx::lib::config::IniFile::Section</class>
-    <class kind="class">aworx::lib::config::IniFile::Variable</class>
     <namespace>aworx</namespace>
     <namespace>aworx::lib</namespace>
     <namespace>aworx::lib::config</namespace>
@@ -1323,6 +1350,26 @@
       <name>IniFile</name>
       <anchorfile>namespaceaworx.html</anchorfile>
       <anchor>aef31dd55ee6403c15d9ba93325d3333d</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>inmemoryplugin.hpp</name>
+    <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/config/</path>
+    <filename>inmemoryplugin_8hpp</filename>
+    <includes id="plugins_8hpp" name="plugins.hpp" local="yes" imported="no">alib/config/plugins.hpp</includes>
+    <class kind="class">aworx::lib::config::InMemoryPlugin::Entry</class>
+    <class kind="class">aworx::lib::config::InMemoryPlugin</class>
+    <class kind="class">aworx::lib::config::InMemoryPlugin::Section</class>
+    <namespace>aworx</namespace>
+    <namespace>aworx::lib</namespace>
+    <namespace>aworx::lib::config</namespace>
+    <namespace>aworx::lib::strings</namespace>
+    <member kind="typedef">
+      <type>aworx::lib::config::InMemoryPlugin</type>
+      <name>InMemoryPlugin</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a5acd1ac5b29f64268c6bd7dea9e3a3bd</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -1385,6 +1432,8 @@
     <filename>lox_8hpp</filename>
     <includes id="alox_8hpp" name="alox.hpp" local="yes" imported="no">alox/alox.hpp</includes>
     <includes id="threadlock_8hpp" name="threadlock.hpp" local="yes" imported="no">alib/threads/threadlock.hpp</includes>
+    <includes id="tokenizer_8hpp" name="tokenizer.hpp" local="yes" imported="no">alib/strings/tokenizer.hpp</includes>
+    <includes id="configuration_8hpp" name="configuration.hpp" local="yes" imported="no">alib/config/configuration.hpp</includes>
     <includes id="scopeinfo_8hpp" name="scopeinfo.hpp" local="yes" imported="no">alox/core/scopeinfo.hpp</includes>
     <includes id="logger_8hpp" name="logger.hpp" local="yes" imported="no">alox/core/logger.hpp</includes>
     <includes id="domain_8hpp" name="domain.hpp" local="yes" imported="no">alox/core/domain.hpp</includes>
@@ -1965,9 +2014,12 @@
     <name>plugins.hpp</name>
     <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/config/</path>
     <filename>plugins_8hpp</filename>
-    <class kind="class">aworx::lib::config::CommandLinePlugIn</class>
-    <class kind="class">aworx::lib::config::ConfigurationPlugIn</class>
-    <class kind="class">aworx::lib::config::EnvironmentPlugIn</class>
+    <includes id="variable_8hpp" name="variable.hpp" local="yes" imported="no">alib/config/variable.hpp</includes>
+    <includes id="substring_8hpp" name="substring.hpp" local="yes" imported="no">alib/strings/substring.hpp</includes>
+    <class kind="class">aworx::lib::config::CommandLinePlugin</class>
+    <class kind="class">aworx::lib::config::ConfigurationPlugin</class>
+    <class kind="class">aworx::lib::config::EnvironmentPlugin</class>
+    <class kind="class">aworx::lib::config::XTernalizer</class>
     <namespace>aworx</namespace>
     <namespace>aworx::lib</namespace>
     <namespace>aworx::lib::config</namespace>
@@ -2736,6 +2788,24 @@
     <namespace>aworx::lib</namespace>
   </compound>
   <compound kind="file">
+    <name>variable.hpp</name>
+    <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/config/</path>
+    <filename>variable_8hpp</filename>
+    <class kind="class">aworx::lib::config::Variable</class>
+    <class kind="struct">aworx::lib::config::VariableDefinition</class>
+    <namespace>aworx</namespace>
+    <namespace>aworx::lib</namespace>
+    <namespace>aworx::lib::config</namespace>
+    <namespace>aworx::lib::strings</namespace>
+    <member kind="typedef">
+      <type>aworx::lib::config::VariableDefinition</type>
+      <name>VariableDefinition</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a95cbf23d3488a04fcb65cf4803da540a</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
     <name>vstudiologger.hpp</name>
     <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alox/loggers/</path>
     <filename>vstudiologger_8hpp</filename>
@@ -2803,6 +2873,20 @@
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
+      <type>static ALIB_API config::VariableDefinition</type>
+      <name>HAS_CONSOLE_WINDOW</name>
+      <anchorfile>classaworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>a8029434a39388784f838538399064cda</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API config::VariableDefinition</type>
+      <name>LOCALE</name>
+      <anchorfile>classaworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>a5da54337c8429ecf59f0826dfb8341b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
       <type>static ALIB_API threads::ThreadLockNR</type>
       <name>Lock</name>
       <anchorfile>classaworx_1_1lib_1_1ALIB.html</anchorfile>
@@ -2814,6 +2898,13 @@
       <name>Revision</name>
       <anchorfile>classaworx_1_1lib_1_1ALIB.html</anchorfile>
       <anchor>a9c8cddb79a23b8e57370078da95de8ed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API config::VariableDefinition</type>
+      <name>RTE</name>
+      <anchorfile>classaworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>a38d6e22b46c1ab9073da27ab65429111</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -2831,6 +2922,13 @@
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
+      <type>static ALIB_API config::VariableDefinition</type>
+      <name>WAIT_FOR_KEY_PRESS</name>
+      <anchorfile>classaworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>a16240c3c22f871bc3d2aae28e3d4069d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
       <type>static ALIB_API bool</type>
       <name>WaitForKeyPressOnTermination</name>
       <anchorfile>classaworx_1_1lib_1_1ALIB.html</anchorfile>
@@ -2841,8 +2939,15 @@
       <type>static ALIB_API void</type>
       <name>Init</name>
       <anchorfile>classaworx_1_1lib_1_1ALIB.html</anchorfile>
-      <anchor>a368faebfbb1d770d76d5e073266a3deb</anchor>
-      <arglist>(enums::Inclusion environment=enums::Inclusion::Include, int argc=0, void **argv=nullptr, bool wArgs=false)</arglist>
+      <anchor>a53d8c6754ea7c4d7a0432cdb5f5b6371</anchor>
+      <arglist>(int argc=0, char **argv=nullptr)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static ALIB_API void</type>
+      <name>Init</name>
+      <anchorfile>classaworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>ab2f3c14a9e22c9750263a04219c23289</anchor>
+      <arglist>(int argc, wchar_t **argv)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static bool</type>
@@ -2900,6 +3005,13 @@
       <anchor>aedeffc7d23da25d52b9a50045189fe2b</anchor>
       <arglist></arglist>
     </member>
+    <member kind="function" protection="protected" static="yes">
+      <type>static void</type>
+      <name>init</name>
+      <anchorfile>classaworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>a02fd73d861ef2e4aabb38c0c9ff82947</anchor>
+      <arglist>()</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>aworx::lox::ALox</name>
@@ -2909,6 +3021,20 @@
       <name>ALibCompilationFlags</name>
       <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
       <anchor>ad73d0d3096f8469b1e8ba2f17fe9bb69</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API lib::config::VariableDefinition</type>
+      <name>AUTO_SIZES</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>ac75b561b1ba1e402193e3e0924faef2d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API lib::config::VariableDefinition</type>
+      <name>CODEPAGE</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a5c5ccb3fa25740271b2aa08c3649a0ed</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -2926,10 +3052,66 @@
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API const String &amp;</type>
+      <type>static ALIB_API String</type>
       <name>ConfigCategoryName</name>
       <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
-      <anchor>addc024f6c6dbb007e99c6becdc4d3649</anchor>
+      <anchor>affcf83e8b52935dd94b74c1a47cf7e0a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API lib::config::VariableDefinition</type>
+      <name>CONSOLE_HAS_LIGHT_BACKGROUND</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a1d7971e13ee7260d270b56b8eb6587c7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API lib::config::VariableDefinition</type>
+      <name>CONSOLE_TYPE</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a640b5e5b22311c795dc79a10a0894752</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API lib::config::VariableDefinition</type>
+      <name>DOMAIN_SUBSTITUTION</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a07488d81370e535a32592ba1dd60f76a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API lib::config::VariableDefinition</type>
+      <name>DUMP_STATE_ON_EXIT</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a9851c75124db349e8c4d73a3b35ba78f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API lib::config::VariableDefinition</type>
+      <name>FORMAT</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a331d559721eea1af356b425e5da3fc10</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API lib::config::VariableDefinition</type>
+      <name>FORMAT_DATE_TIME</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a636b90b67eb3723d0ec9c15cc52c5ff6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API lib::config::VariableDefinition</type>
+      <name>FORMAT_MULTILINE</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a6b79d64c635784979379b13a36989a42</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API lib::config::VariableDefinition</type>
+      <name>FORMAT_TIME_DIFF</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a85ec3e904f1be0c50618b570ee2fb491</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -2940,10 +3122,52 @@
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
+      <type>static ALIB_API lib::config::VariableDefinition</type>
+      <name>MAX_ELAPSED_TIME</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a19b66f8b85e07bf98b672d6ff789b3b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API lib::config::VariableDefinition</type>
+      <name>NO_IDE_LOGGER</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>ade6db5eeed258f9dacc0f28c9fd3c258</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API lib::config::VariableDefinition</type>
+      <name>PREFIXES</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a6a96bb3453197533db83cf0b00f29383</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
       <type>static ALIB_API const int</type>
       <name>Revision</name>
       <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
       <anchor>a9c8cddb79a23b8e57370078da95de8ed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API lib::config::VariableDefinition</type>
+      <name>SPTR_GLOBAL</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a60edc3b725fad56638ee3ebb6361ba16</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API lib::config::VariableDefinition</type>
+      <name>SPTR_LOX</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>ae0ab4bc15314b8fb1c27e02f409842f5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API lib::config::VariableDefinition</type>
+      <name>VERBOSITY</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>aab2d3e17d5ce98f508c9439d95d41cca</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -2964,8 +3188,15 @@
       <type>static bool</type>
       <name>Init</name>
       <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
-      <anchor>aa42e90660a7c751cd1dfd28942375f54</anchor>
-      <arglist>(lib::enums::Inclusion environment=lib::enums::Inclusion::Include, int argc=0, void **argv=nullptr, bool wArgs=false)</arglist>
+      <anchor>a4c4ba727bf8ffe104f310aca32519e36</anchor>
+      <arglist>(int argc=0, char **argv=nullptr)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>Init</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a5538a2441298bfa38b13d766239ec80d</anchor>
+      <arglist>(int argc, wchar_t **argv)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static ALOX_API Lox *</type>
@@ -3030,13 +3261,6 @@
       <anchor>a2dbf1714a573a9e1d90bd5a68c644917</anchor>
       <arglist>(int alibVersion=ALIB_VERSION_VERYFIER, int aloxVersion=ALIB_VERSION_VERYFIER, uint32_t flagsALib=ALIB_COMPATIBILITY_VERYFIER, uint32_t flagsALox=ALOX_COMPATIBILITY_VERYFIER)</arglist>
     </member>
-    <member kind="function" protection="protected" static="yes">
-      <type>static ALOX_API bool</type>
-      <name>initInternal</name>
-      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
-      <anchor>a11c523fe94ea435258a293ab80a6afed</anchor>
-      <arglist>(Inclusion environment, int argc, void **argv, bool wArgs)</arglist>
-    </member>
     <member kind="function" protection="protected">
       <type></type>
       <name>ALox</name>
@@ -3062,6 +3286,13 @@
       <anchorfile>classaworx_1_1lox_1_1ALoxReportWriter.html</anchorfile>
       <anchor>a4b218cdb1f7e96e6cd3a851cca5f7c76</anchor>
       <arglist>(Lox *lox)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~ALoxReportWriter</name>
+      <anchorfile>classaworx_1_1lox_1_1ALoxReportWriter.html</anchorfile>
+      <anchor>a8e2532c4efe550325c4ca204de83796b</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
@@ -3702,10 +3933,10 @@
       <arglist>(const TString &amp;trimChars=DefaultWhitespaces)</arglist>
     </member>
     <member kind="function">
-      <type>ALIB_API AString &amp;</type>
+      <type>ALIB_API int</type>
       <name>TrimAt</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
-      <anchor>a63f255e8769be77d70b70407e388746b</anchor>
+      <anchor>a2c7140002fec95e041770c766926dd4e</anchor>
       <arglist>(int index, const TString &amp;trimChars=DefaultWhitespaces)</arglist>
     </member>
     <member kind="function">
@@ -4052,10 +4283,10 @@
       <arglist>(const TString &amp;trimChars=DefaultWhitespaces)</arglist>
     </member>
     <member kind="function">
-      <type>ALIB_API AString &amp;</type>
+      <type>ALIB_API int</type>
       <name>TrimAt</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
-      <anchor>a63f255e8769be77d70b70407e388746b</anchor>
+      <anchor>a2c7140002fec95e041770c766926dd4e</anchor>
       <arglist>(int index, const TString &amp;trimChars=DefaultWhitespaces)</arglist>
     </member>
     <member kind="function">
@@ -4216,48 +4447,55 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>aworx::lib::config::CommandLinePlugIn</name>
-    <filename>classaworx_1_1lib_1_1config_1_1CommandLinePlugIn.html</filename>
-    <base>aworx::lib::config::ConfigurationPlugIn</base>
+    <name>aworx::lib::config::CommandLinePlugin</name>
+    <filename>classaworx_1_1lib_1_1config_1_1CommandLinePlugin.html</filename>
+    <base>aworx::lib::config::ConfigurationPlugin</base>
     <member kind="function">
       <type></type>
-      <name>CommandLinePlugIn</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1CommandLinePlugIn.html</anchorfile>
-      <anchor>ae668464b863651b97396462f7cb5f843</anchor>
-      <arglist>(int argc, void **argv=nullptr, bool wArgs=false)</arglist>
+      <name>CommandLinePlugin</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1CommandLinePlugin.html</anchorfile>
+      <anchor>a68f7a57f83d147920983ae22b0c25c16</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual</type>
-      <name>~CommandLinePlugIn</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1CommandLinePlugIn.html</anchorfile>
-      <anchor>a8adb5a21052bd527334cdf67115f1d33</anchor>
+      <name>~CommandLinePlugin</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1CommandLinePlugin.html</anchorfile>
+      <anchor>a80d93d5bdb8d3c93592edecb3c671121</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual ALIB_API bool</type>
-      <name>Get</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1CommandLinePlugIn.html</anchorfile>
-      <anchor>a4ab8705a2db7095450dbc00919e67dfc</anchor>
-      <arglist>(const String &amp;category, const String &amp;name, AString &amp;target)</arglist>
+      <name>Load</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1CommandLinePlugin.html</anchorfile>
+      <anchor>ae8f5d3a1838ab84b0aa545d8b7f880a9</anchor>
+      <arglist>(Variable &amp;variable, bool searchOnly=false) const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetArgs</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1CommandLinePlugin.html</anchorfile>
+      <anchor>a057e3f89cd11a547dbc364fb367d5357</anchor>
+      <arglist>(int argc, void **argv=nullptr, bool wArgs=false)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>int</type>
       <name>argc</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1CommandLinePlugIn.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1CommandLinePlugin.html</anchorfile>
       <anchor>ad1447518f4372828b8435ae82e48499e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>void **</type>
       <name>argv</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1CommandLinePlugIn.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1CommandLinePlugin.html</anchorfile>
       <anchor>a20ad14f3c153549ae4c9e93168bc4977</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>bool</type>
       <name>wArgs</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1CommandLinePlugIn.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1CommandLinePlugin.html</anchorfile>
       <anchor>aa12d3084f7f24b687e9495935fddb6ce</anchor>
       <arglist></arglist>
     </member>
@@ -4268,6 +4506,13 @@
     <base>aworx::lib::threads::ThreadLock</base>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
+      <name>PrioAutodetect</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a12cc396b18254ffb4e2d7b98692f2cbc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr int</type>
       <name>PrioCmdLine</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
       <anchor>a1baac67c511294bc3317b956ea196b11</anchor>
@@ -4275,9 +4520,16 @@
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
-      <name>PrioEnvVars</name>
+      <name>PrioDefault</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>aff7062a012b6acdf15fcfb20ab184975</anchor>
+      <anchor>a5854d47deb1f21be95871268fa3efa02</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr int</type>
+      <name>PrioEnvironment</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a521974ec2e990cfb266f4e83b451d578</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -4287,18 +4539,32 @@
       <anchor>ac0e213817eb829a4d7b3f1960814a781</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable">
-      <type>CommandLinePlugIn *</type>
-      <name>cmdLineCP</name>
+    <member kind="variable" static="yes">
+      <type>static constexpr int</type>
+      <name>PrioProtected</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a8b6414b86e45aeffa6e8a18857614ca6</anchor>
+      <anchor>aaadcce82539022fab50871afc106a9d1</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>EnvironmentPlugIn *</type>
-      <name>envCP</name>
+      <type>CommandLinePlugin</type>
+      <name>CmdLine</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a2a30bf55f0ff6dc49518e186c7f2dc41</anchor>
+      <anchor>ada8187fc67d8f54a46aed3bf04542e08</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>InMemoryPlugin</type>
+      <name>DefaultValues</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a64b37d856a86344c0d3c1a6d9779e6f6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>EnvironmentPlugin</type>
+      <name>Environment</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a3a317739ee132a40b625cafa2c5a8706</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -4306,6 +4572,34 @@
       <name>NumberFormat</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
       <anchor>a9bfa3473e5c94dafa94ae1339fe70a48</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>InMemoryPlugin</type>
+      <name>ProtectedValues</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a694607c106d5e636c5fc90d623c0dcef</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>TString</type>
+      <name>SubstitutionVariableDelimiters</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a822c543b34c30995bd4b8d7df220af83</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>TString</type>
+      <name>SubstitutionVariableEnd</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>af688cf13bb219d944adb4731a227451d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>TString</type>
+      <name>SubstitutionVariableStart</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>ab1b62c82d8f31bc322674109a0aaa905</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -4323,46 +4617,25 @@
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual ALIB_API</type>
+      <type>virtual</type>
       <name>~Configuration</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a09dcd47e8d29f55ef5515d6413d42d16</anchor>
+      <anchor>a080b7d97e47cd9bba370205c7c481ca2</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>ALIB_API void</type>
-      <name>AddStandardPlugIns</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a705c239bb70c153d65d12a2d1a4763ed</anchor>
-      <arglist>(enums::Inclusion environment=enums::Inclusion::Include, int argc=0, void **argv=nullptr, bool wArgs=false)</arglist>
-    </member>
-    <member kind="function">
       <type>ALIB_API int</type>
-      <name>Get</name>
+      <name>FetchFromDefault</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a49a4508b4f1b2adfa69472ac63251d70</anchor>
-      <arglist>(const String &amp;category, const String &amp;name, AString &amp;target)</arglist>
+      <anchor>ad6278a48fb2dd492fa6765092f838f44</anchor>
+      <arglist>(ConfigurationPlugin &amp;dest)</arglist>
     </member>
     <member kind="function">
-      <type>ALIB_API int</type>
-      <name>Get</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>abb044d9a7fe6ce75eb0b2f598527e298</anchor>
-      <arglist>(const String &amp;category, const String &amp;name, int32_t &amp;target)</arglist>
-    </member>
-    <member kind="function">
-      <type>ALIB_API int</type>
-      <name>Get</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a7926b4197266a7f6b97a19f2fa458427</anchor>
-      <arglist>(const String &amp;category, const String &amp;name, double &amp;target)</arglist>
-    </member>
-    <member kind="function">
-      <type>ALIB_API void</type>
+      <type>void</type>
       <name>InsertPlugin</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>ab36ebb23134231a52f92bc04c7ccaf91</anchor>
-      <arglist>(ConfigurationPlugIn *plugin, int priority)</arglist>
+      <anchor>a5d1b6c80d43cc1f1dd83e43f2c2fbe9a</anchor>
+      <arglist>(ConfigurationPlugin *plugin, int priority)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API bool</type>
@@ -4372,45 +4645,45 @@
       <arglist>(const String &amp;value)</arglist>
     </member>
     <member kind="function">
-      <type>ALIB_API bool</type>
-      <name>IsTrue</name>
+      <type>ALIB_API int</type>
+      <name>Load</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a17443adf054241c7688f6bb82f11de70</anchor>
-      <arglist>(const String &amp;category, const String &amp;name, int *pluginPriority=nullptr)</arglist>
+      <anchor>a6abcf130e83414cb45a3130e7de0aff9</anchor>
+      <arglist>(Variable &amp;variable)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API bool</type>
       <name>RemovePlugin</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>abe90d89e1bee0e148609cbe6f1be09a3</anchor>
-      <arglist>(ConfigurationPlugIn *plugin)</arglist>
+      <anchor>a0cc199ada725868041d059e7098b0ccd</anchor>
+      <arglist>(ConfigurationPlugin *plugin)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetCommandLineArgs</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a0b8d8859cf4ec741098d699081779432</anchor>
+      <arglist>(int argc=0, char **argv=nullptr)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetCommandLineArgs</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>ab18bdd6003c1535f7ae331e1064d8b42</anchor>
+      <arglist>(int argc, wchar_t **argv)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API int</type>
-      <name>Save</name>
+      <name>Store</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a54fc8d0635e60448988f6da420f4937b</anchor>
-      <arglist>(const String &amp;category, const String &amp;name, const String &amp;value, const String &amp;comments=NullString, char delim= &apos;,&apos;)</arglist>
-    </member>
-    <member kind="function">
-      <type>ALIB_API int</type>
-      <name>Save</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a423e203d6722c62b4b5f549a6d873013</anchor>
-      <arglist>(const String &amp;category, const String &amp;name, int value, const String &amp;comments=nullptr)</arglist>
-    </member>
-    <member kind="function">
-      <type>ALIB_API int</type>
-      <name>Save</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a29d1e06626b950f1362eede2a7543e64</anchor>
-      <arglist>(const String &amp;category, const String &amp;name, double value, const String &amp;comments=nullptr)</arglist>
+      <anchor>a240650c554ebeed809020762c8223845</anchor>
+      <arglist>(Variable &amp;variable, const String &amp;externalizedValue=nullptr)</arglist>
     </member>
     <member kind="typedef" protection="protected">
-      <type>std::pair&lt; int, ConfigurationPlugIn * &gt;</type>
+      <type>std::pair&lt; int, ConfigurationPlugin * &gt;</type>
       <name>PluginAndPrio</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>ae19a925ddfe98cba62d5bea6aeaba2e4</anchor>
+      <anchor>a86d6fcf668e7b9488355437e406fa456</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -4420,79 +4693,72 @@
       <anchor>a3ab0c51547c4c4232d1cc46c3024aef0</anchor>
       <arglist></arglist>
     </member>
+    <member kind="function" protection="protected">
+      <type>ALIB_API void</type>
+      <name>insertPlugin</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a91357d05e4e05a428ad283c8bb272df8</anchor>
+      <arglist>(ConfigurationPlugin *plugin, int priority)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>ALIB_API int</type>
+      <name>loadImpl</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>aa2eda8ca2ba7de479f3d0204bfbdc78d</anchor>
+      <arglist>(Variable &amp;variable, bool substitute)</arglist>
+    </member>
   </compound>
   <compound kind="class">
-    <name>aworx::lib::config::ConfigurationPlugIn</name>
-    <filename>classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</filename>
+    <name>aworx::lib::config::ConfigurationPlugin</name>
+    <filename>classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</filename>
     <member kind="variable">
-      <type>Configuration *</type>
-      <name>Parent</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>a82bf1cd3b4adcee833998d1a0642c574</anchor>
+      <type>XTernalizer *</type>
+      <name>StringConverter</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</anchorfile>
+      <anchor>a150967a58e76635889b4082537c67a2f</anchor>
       <arglist></arglist>
     </member>
-    <member kind="friend" protection="private">
-      <type>friend class</type>
-      <name>Configuration</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>a30221ddc558692a7b52598b963a74bc2</anchor>
+    <member kind="function" virtualness="pure">
+      <type>virtual ALIB_API bool</type>
+      <name>Load</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</anchorfile>
+      <anchor>a70e67cd810ebe58dcc842dbeaa715443</anchor>
+      <arglist>(Variable &amp;variable, bool searchOnly=false) const =0</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>Store</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</anchorfile>
+      <anchor>a4f2a984c2c2f6283441afc5187da6f2e</anchor>
+      <arglist>(Variable &amp;variable)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>Store</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</anchorfile>
+      <anchor>a283b076bd741a168847a799efb291b33</anchor>
+      <arglist>(Variable &amp;variable, const String &amp;externalizedValue)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>XTernalizer</type>
+      <name>defaultStringConverter</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</anchorfile>
+      <anchor>a3b754bcc322da1d59d62b19ba50b3a5d</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected">
       <type></type>
-      <name>ConfigurationPlugIn</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>a7be57a5ed92198b336f33405511cc5d4</anchor>
+      <name>ConfigurationPlugin</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</anchorfile>
+      <anchor>a1b50bf18ad3d087799d832b6d15b258e</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual</type>
-      <name>~ConfigurationPlugIn</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>acc4f693e1c9d021c6a8ca052bb151863</anchor>
+      <name>~ConfigurationPlugin</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</anchorfile>
+      <anchor>a03ff3650053c51f7cd230cb7b8b51f3c</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="pure">
-      <type>virtual ALIB_API bool</type>
-      <name>Get</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>a07c28865deadd179a3b671a720287387</anchor>
-      <arglist>(const String &amp;category, const String &amp;name, AString &amp;target)=0</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual ALIB_API bool</type>
-      <name>Get</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>a7769d0a21a18975dab583fca360ed695</anchor>
-      <arglist>(const String &amp;category, const String &amp;name, int32_t &amp;target)</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual ALIB_API bool</type>
-      <name>Get</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>af84adad9c40e4d8507d397b48c68632a</anchor>
-      <arglist>(const String &amp;category, const String &amp;name, double &amp;target)</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual ALIB_API bool</type>
-      <name>Save</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>a88428c9e1d24723bb630c1a6b906ea33</anchor>
-      <arglist>(const String &amp;category, const String &amp;name, const String &amp;value, const String &amp;comments, char delim)</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual ALIB_API bool</type>
-      <name>Save</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>a8bcdd8dea91d88e7fb3a3c4282422cba</anchor>
-      <arglist>(const String &amp;category, const String &amp;name, int value, const String &amp;comments)</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual ALIB_API bool</type>
-      <name>Save</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>aee1b1c200efc1d49b3bcffcc240a40d6</anchor>
-      <arglist>(const String &amp;category, const String &amp;name, double value, const String &amp;comments)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -4986,29 +5252,143 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>aworx::lib::config::EnvironmentPlugIn</name>
-    <filename>classaworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html</filename>
-    <base>aworx::lib::config::ConfigurationPlugIn</base>
+    <name>aworx::lib::config::IniFile::Entry</name>
+    <filename>classaworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html</filename>
+    <base>aworx::lib::config::InMemoryPlugin::Entry</base>
+    <member kind="variable">
+      <type>AString</type>
+      <name>RawValue</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html</anchorfile>
+      <anchor>a319279810337d3019a34ebd0876d09af</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type></type>
-      <name>EnvironmentPlugIn</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html</anchorfile>
-      <anchor>acbd5e02cd0e7d1fb1263beb7d734fc40</anchor>
+      <name>Entry</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html</anchorfile>
+      <anchor>abc5302970b7c9dbce8d2303596ed5746</anchor>
+      <arglist>(const String &amp;name)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~Entry</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html</anchorfile>
+      <anchor>a3dd2fcc4f5bea16effa4d6c1c04fc75d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual ALIB_API void</type>
+      <name>FromVariable</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html</anchorfile>
+      <anchor>ae3d99a1ebb2d80e6774551ec251d3d5e</anchor>
+      <arglist>(const InMemoryPlugin *parent, Variable &amp;variable)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual ALIB_API void</type>
+      <name>ToVariable</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html</anchorfile>
+      <anchor>a7cf8340e6c3619d2e76566656828d674</anchor>
+      <arglist>(const InMemoryPlugin *parent, Variable &amp;variable)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>aworx::lib::config::InMemoryPlugin::Entry</name>
+    <filename>classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</filename>
+    <member kind="variable">
+      <type>AString</type>
+      <name>Comments</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>a13a7dbf15cba4c8849fdd8044b185475</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>char</type>
+      <name>Delim</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>a68297215ac82977611f5dee2062cc910</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String16</type>
+      <name>FormatAttrAlignment</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>a6491695587581466d3a994ae5d9a11b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>FormatHints</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>a24b16c98e30ceb73c9caa7f955bce255</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String32</type>
+      <name>Name</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>ab3c68b8a64bf47454f94bde4ebb6de0b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::vector&lt; AString &gt;</type>
+      <name>Values</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>ae034b91bcff57549de332664c053c1f3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Entry</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>abc5302970b7c9dbce8d2303596ed5746</anchor>
+      <arglist>(const String &amp;name)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~Entry</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>a3dd2fcc4f5bea16effa4d6c1c04fc75d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual ALIB_API void</type>
+      <name>FromVariable</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>ae3d99a1ebb2d80e6774551ec251d3d5e</anchor>
+      <arglist>(const InMemoryPlugin *parent, Variable &amp;variable)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual ALIB_API void</type>
+      <name>ToVariable</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>a7cf8340e6c3619d2e76566656828d674</anchor>
+      <arglist>(const InMemoryPlugin *parent, Variable &amp;variable)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>aworx::lib::config::EnvironmentPlugin</name>
+    <filename>classaworx_1_1lib_1_1config_1_1EnvironmentPlugin.html</filename>
+    <base>aworx::lib::config::ConfigurationPlugin</base>
+    <member kind="function">
+      <type></type>
+      <name>EnvironmentPlugin</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1EnvironmentPlugin.html</anchorfile>
+      <anchor>a0d616ebe017e9fb0d1e37fbfbd792c0d</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual</type>
-      <name>~EnvironmentPlugIn</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html</anchorfile>
-      <anchor>ab1e9614f71def9d8570c8efdf9f13edb</anchor>
+      <name>~EnvironmentPlugin</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1EnvironmentPlugin.html</anchorfile>
+      <anchor>ae5cf95207ceff747f8ec1cc1cba5e2eb</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual ALIB_API bool</type>
-      <name>Get</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html</anchorfile>
-      <anchor>a4ab8705a2db7095450dbc00919e67dfc</anchor>
-      <arglist>(const String &amp;category, const String &amp;name, AString &amp;target)</arglist>
+      <name>Load</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1EnvironmentPlugin.html</anchorfile>
+      <anchor>ae8f5d3a1838ab84b0aa545d8b7f880a9</anchor>
+      <arglist>(Variable &amp;variable, bool searchOnly=false) const </arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -5271,7 +5651,7 @@
   <compound kind="class">
     <name>aworx::lib::config::IniFile</name>
     <filename>classaworx_1_1lib_1_1config_1_1IniFile.html</filename>
-    <base>aworx::lib::config::ConfigurationPlugIn</base>
+    <base>aworx::lib::config::InMemoryPlugin</base>
     <member kind="enumeration">
       <type></type>
       <name>Status</name>
@@ -5282,8 +5662,8 @@
       <enumvalue file="classaworx_1_1lib_1_1config_1_1IniFile.html" anchor="a67a0db04d321a74b7e7fcfd3f1a3f70bad083aedf850e5989f336e50d1a539d44">ErrorOpeningFile</enumvalue>
       <enumvalue file="classaworx_1_1lib_1_1config_1_1IniFile.html" anchor="a67a0db04d321a74b7e7fcfd3f1a3f70baa3dfa29533b3745c447fff71696df7b0">ErorWritingFile</enumvalue>
     </member>
+    <class kind="class">aworx::lib::config::IniFile::Entry</class>
     <class kind="class">aworx::lib::config::IniFile::Section</class>
-    <class kind="class">aworx::lib::config::IniFile::Variable</class>
     <member kind="variable" static="yes">
       <type>static String</type>
       <name>DefaultFileExtension</name>
@@ -5306,13 +5686,6 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>std::vector&lt; TString &gt;</type>
-      <name>EscapeSequences</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a90c6ad78caa206911f41e45552d63c6c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
       <type>AString</type>
       <name>FileComments</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
@@ -5327,6 +5700,27 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
+      <type>bool</type>
+      <name>FormatIncludeDelimInAttrAlignment</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
+      <anchor>adf4fc6544160ee73eafc6310d2085a12</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>FormatSpaceAfterDelim</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
+      <anchor>a0745166b66e5abe95006b75eeff309ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>FormatSpaceBeforeDelim</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
+      <anchor>a4bac2e411ff2f25c16dedaba0de76d3d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
       <type>Status</type>
       <name>LastStatus</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
@@ -5338,13 +5732,6 @@
       <name>LinesWithReadErrors</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
       <anchor>a40fc3347bdd13c78626393bce4f4b7af</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>std::vector&lt; Section * &gt;</type>
-      <name>Sections</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a4db383e1b52ed42586b8aaf43836c88d</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -5362,34 +5749,6 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>ALIB_API void</type>
-      <name>Clear</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual ALIB_API bool</type>
-      <name>Get</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a4ab8705a2db7095450dbc00919e67dfc</anchor>
-      <arglist>(const String &amp;category, const String &amp;name, AString &amp;target)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
-      <name>Get</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>ad4fa10eb1909dec8799f03014e90d721</anchor>
-      <arglist>(const String &amp;category, const String &amp;name, int32_t &amp;target)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
-      <name>Get</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a1401b913322c506f75e38f7227e8d146</anchor>
-      <arglist>(const String &amp;category, const String &amp;name, double &amp;target)</arglist>
-    </member>
-    <member kind="function">
       <type>ALIB_API IniFile::Status</type>
       <name>ReadFile</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
@@ -5397,39 +5756,18 @@
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual ALIB_API bool</type>
-      <name>Save</name>
+      <type>virtual ALIB_API void</type>
+      <name>Reset</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>ae35f02909be48392acc4a3632f42f5d0</anchor>
-      <arglist>(const String &amp;category, const String &amp;name, const String &amp;value, const String &amp;comments=NullString, char delim= &apos;,&apos;)</arglist>
+      <anchor>a372de693ad40b3f42839c8ec6ac845f4</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual bool</type>
-      <name>Save</name>
+      <name>Store</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a41cceca2764c0a9b1db812c7de7dcaa5</anchor>
-      <arglist>(const String &amp;category, const String &amp;name, int value, const String &amp;comments=NullString)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
-      <name>Save</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>ab807e01a98358f8446a1b51286ceb581</anchor>
-      <arglist>(const String &amp;category, const String &amp;name, double value, const String &amp;comments=NullString)</arglist>
-    </member>
-    <member kind="function">
-      <type>ALIB_API Section *</type>
-      <name>SearchOrCreateSection</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a20f7b65fe669edbac7211be4ea229f5c</anchor>
-      <arglist>(const String &amp;name, const String &amp;comments)</arglist>
-    </member>
-    <member kind="function">
-      <type>ALIB_API Section *</type>
-      <name>SearchSection</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a99d17dd20fcdc8919501c21d675f6d40</anchor>
-      <arglist>(const String &amp;name)</arglist>
+      <anchor>a4f2a984c2c2f6283441afc5187da6f2e</anchor>
+      <arglist>(Variable &amp;variable)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API IniFile::Status</type>
@@ -5438,19 +5776,12 @@
       <anchor>a73bf37055382606e309f514b0187cf43</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" protection="protected">
-      <type>ALIB_API int</type>
-      <name>addEscapeSequences</name>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual Section *</type>
+      <name>createSection</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a6aa99bb2cafe2a344a810a02587c924a</anchor>
-      <arglist>(std::ostream &amp;os, const Substring &amp;value)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>ALIB_API void</type>
-      <name>removeEscapeSequences</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>adb6f2e7ca2ef00452a7d709d4063ea3e</anchor>
-      <arglist>(strings::Substring &amp;value, AString &amp;target)</arglist>
+      <anchor>ac31ca82a48b7109f18662de9a2b43e6b</anchor>
+      <arglist>(const String &amp;name)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>ALIB_API void</type>
@@ -5458,6 +5789,76 @@
       <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
       <anchor>a8c63931fbc79dff0c0e014d63faa14d9</anchor>
       <arglist>(std::ostream &amp;os, const AString &amp;comments)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>aworx::lib::config::InMemoryPlugin</name>
+    <filename>classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html</filename>
+    <base>aworx::lib::config::ConfigurationPlugin</base>
+    <class kind="class">aworx::lib::config::InMemoryPlugin::Entry</class>
+    <class kind="class">aworx::lib::config::InMemoryPlugin::Section</class>
+    <member kind="variable">
+      <type>std::vector&lt; Section * &gt;</type>
+      <name>Sections</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>a4db383e1b52ed42586b8aaf43836c88d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>InMemoryPlugin</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>a7528a6f611e3c203586189de2d03786f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual ALIB_API</type>
+      <name>~InMemoryPlugin</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>a8eefe3405efd8f140e9fecd0f5becfec</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual ALIB_API bool</type>
+      <name>Load</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>ae8f5d3a1838ab84b0aa545d8b7f880a9</anchor>
+      <arglist>(Variable &amp;variable, bool searchOnly=false) const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual ALIB_API void</type>
+      <name>Reset</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>a372de693ad40b3f42839c8ec6ac845f4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API Section *</type>
+      <name>SearchOrCreateSection</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>af794153476c8f6aea58e0234b7f8ac89</anchor>
+      <arglist>(const String &amp;name, const String &amp;comments)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API Section *</type>
+      <name>SearchSection</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>aa48fcf25f704f6093ee2f8db158aef6f</anchor>
+      <arglist>(const String &amp;name) const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual ALIB_API bool</type>
+      <name>Store</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>af5e89a0424aac137a3b55e367958e144</anchor>
+      <arglist>(Variable &amp;variable)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual Section *</type>
+      <name>createSection</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>ac31ca82a48b7109f18662de9a2b43e6b</anchor>
+      <arglist>(const String &amp;name)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -5832,16 +6233,16 @@
     </member>
     <member kind="variable" protection="protected">
       <type>String32</type>
-      <name>name</name>
+      <name>Name</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>abb61b5a8a9b6a9b105bdcadaebd5b1ba</anchor>
+      <anchor>ab3c68b8a64bf47454f94bde4ebb6de0b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>String32</type>
-      <name>typeName</name>
+      <name>TypeName</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a7c2cc5873d633c891b5492046ece60fc</anchor>
+      <anchor>a5a295fb1c491a3a0bc84efbe8ebe28c9</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -5864,9 +6265,9 @@
     <filename>structaworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</filename>
     <member kind="variable">
       <type>int</type>
-      <name>CntLogCalls</name>
+      <name>LogCallsPerDomain</name>
       <anchorfile>structaworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</anchorfile>
-      <anchor>a2c80e5630abe5d5042ddb4b85c0c3562</anchor>
+      <anchor>a2eb0308f7da72022ce5a09987b3f14bf</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -5902,21 +6303,163 @@
     <name>aworx::lox::Lox</name>
     <filename>classaworx_1_1lox_1_1Lox.html</filename>
     <base>aworx::lib::threads::ThreadLock</base>
+    <member kind="enumvalue">
+      <name>StateInfo_Basic</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5a4f2ea67d97f96331439b0a1ca2d083db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_Version</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5a8b4ecf28d924534de013261b35207b27</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_Loggers</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5a5ab8a46c8344beef8d4109905dd51383</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_Domains</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5a0cfe61b3491148f99db83c51b9a36682</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_InternalDomains</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5a261450da2fb0377ae568ea271df75382</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_ScopeDomains</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5a69dfc3282698ee2ca226a8f49a74a448</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_DSR</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5a155fbfbb987b91a1f4b8aa8e6a577045</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_PrefixLogables</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5aee324135b4a5bd701042dbfb7cc713f1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_Once</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5abf66f34c4d811a22437439effd868cbb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_LogData</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5a325d8d794fa2bfec9142d51acaabc2b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_ThreadMappings</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5a69192c477dd713b20bf5280c4cd84e5c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_SPTR</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5a7ab954bf94dd5bd711094597ef4c8082</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_CompilationFlags</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5a312521b5e1373eba35be14d2676f7f43</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_Basic</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5a4f2ea67d97f96331439b0a1ca2d083db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_CompilationFlags</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5a312521b5e1373eba35be14d2676f7f43</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_Domains</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5a0cfe61b3491148f99db83c51b9a36682</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_DSR</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5a155fbfbb987b91a1f4b8aa8e6a577045</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_InternalDomains</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5a261450da2fb0377ae568ea271df75382</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_LogData</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5a325d8d794fa2bfec9142d51acaabc2b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_Loggers</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5a5ab8a46c8344beef8d4109905dd51383</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_Once</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5abf66f34c4d811a22437439effd868cbb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_PrefixLogables</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5aee324135b4a5bd701042dbfb7cc713f1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_ScopeDomains</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5a69dfc3282698ee2ca226a8f49a74a448</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_SPTR</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5a7ab954bf94dd5bd711094597ef4c8082</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_ThreadMappings</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5a69192c477dd713b20bf5280c4cd84e5c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>StateInfo_Version</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a99fb83031ce9923c84392b4e92f956b5a8b4ecf28d924534de013261b35207b27</anchor>
+      <arglist></arglist>
+    </member>
     <class kind="struct">aworx::lox::Lox::DomainSubstitutionRule</class>
-    <member kind="variable" static="yes">
-      <type>static constexpr int</type>
-      <name>PrioProtected</name>
-      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>aaadcce82539022fab50871afc106a9d1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static constexpr int</type>
-      <name>PrioSource</name>
-      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a49d9175b17b3c2d376e35c59615a905e</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="variable">
       <type>int</type>
       <name>CntLogCalls</name>
@@ -5984,8 +6527,8 @@
       <type>void</type>
       <name>ClearSourcePathTrimRules</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a01bb6d07bbecaacf8be4471b16889d63</anchor>
-      <arglist>(Inclusion global=Inclusion::Include, bool allowAutoRule=true)</arglist>
+      <anchor>a197f9ceb9fba85ebe74a375f0c3dc29c</anchor>
+      <arglist>(Reach reach=Reach::Global, bool allowAutoRule=true)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
@@ -6058,6 +6601,13 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
+      <type>ALOX_API void</type>
+      <name>GetState</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a34c82f0590a6c014a3ffb84009bfdb86</anchor>
+      <arglist>(AString &amp;buf, unsigned int flags=StateInfo_All)</arglist>
+    </member>
+    <member kind="function">
       <type>void</type>
       <name>If</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
@@ -6119,13 +6669,6 @@
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>a7232acc9ffe4595630e4abdaf6918ef9</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>ALOX_API void</type>
-      <name>LogConfig</name>
-      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ade5edb3b47eee24a0185ac0b7efa8c17</anchor>
-      <arglist>(const String &amp;domain, Verbosity verbosity, const String &amp;headLine)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
@@ -6334,8 +6877,8 @@
       <type>void</type>
       <name>SetSourcePathTrimRule</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a7370e8cf3cd1041f37ffc921805eb6a8</anchor>
-      <arglist>(const TString &amp;path, Inclusion includeString=Inclusion::Exclude, int trimOffset=0, Case sensitivity=Case::Ignore, Inclusion global=Inclusion::Include, const String &amp;trimReplacement=NullString, int priority=PrioSource)</arglist>
+      <anchor>a3021bf2971485a6c3c2bb0f69569c6ee</anchor>
+      <arglist>(const TString &amp;path, Inclusion includeString=Inclusion::Exclude, int trimOffset=0, Case sensitivity=Case::Ignore, const String &amp;trimReplacement=NullString, Reach reach=Reach::Global, int priority=lib::config::Configuration::PrioDefault)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
@@ -6362,15 +6905,22 @@
       <type>ALOX_API void</type>
       <name>SetVerbosity</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a31dbb9788d52da7bc7376da0a03a3730</anchor>
-      <arglist>(core::Logger *logger, Verbosity verbosity, const TString &amp;domain=TString(&quot;/&quot;), int priority=PrioSource)</arglist>
+      <anchor>a31773307b5de5914b22c5a5ea437728b</anchor>
+      <arglist>(core::Logger *logger, Verbosity verbosity, const TString &amp;domain=TString(&quot;/&quot;), int priority=lib::config::Configuration::PrioDefault)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
       <name>SetVerbosity</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ad7ea38441082c8a2f995c45e8948b0c7</anchor>
-      <arglist>(const String &amp;loggerName, Verbosity verbosity, const TString &amp;domain=TString(&quot;/&quot;), int priority=PrioSource)</arglist>
+      <anchor>a5ce7556b4c3160a84191eb7a34b01bdd</anchor>
+      <arglist>(const String &amp;loggerName, Verbosity verbosity, const TString &amp;domain=TString(&quot;/&quot;), int priority=lib::config::Configuration::PrioDefault)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API void</type>
+      <name>State</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a4390965eab4c9d0196263ecdd4248f34</anchor>
+      <arglist>(const TString &amp;domain, Verbosity verbosity, const String &amp;headLine, unsigned int flags=StateInfo_All)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -6461,6 +7011,13 @@
       <name>internalDomains</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>aa3529fb39b5e80492452d6fb4b669b4c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>loggerAddedSinceLastDebugState</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ae1d2d3f00029eeccb82c286b93314df0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -6555,6 +7112,13 @@
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
+      <type>ALOX_API void</type>
+      <name>dumpStateOnLoggerRemoval</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a8801e9bd1ba933633227c2d83339ef14</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>ALOX_API core::Domain *</type>
       <name>evaluateResultDomain</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
@@ -6572,8 +7136,8 @@
       <type>ALOX_API void</type>
       <name>getAllVerbosities</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a4054bdb8cd2fe4f7a1bd9b583fde528c</anchor>
-      <arglist>(core::Logger *logger, core::Domain *dom, TString *cfgStr, int cfgPriority)</arglist>
+      <anchor>a28ad49d8a4527349a06263fcdd486a2c</anchor>
+      <arglist>(core::Logger *logger, core::Domain *dom, Variable &amp;variable)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>ALOX_API void</type>
@@ -6586,8 +7150,8 @@
       <type>ALOX_API void</type>
       <name>getVerbosityFromConfig</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a190a949c9c2cc69040e74ef491d257c6</anchor>
-      <arglist>(core::Logger *logger, core::Domain *dom, TString *cfgStr, int cfgPriority)</arglist>
+      <anchor>a94820d7e42dec81154d350d91f04fe27</anchor>
+      <arglist>(core::Logger *logger, core::Domain *dom, Variable &amp;variable)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>ALOX_API bool</type>
@@ -6602,13 +7166,6 @@
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>abf4f36065b0fc241ec6610d58a4e267a</anchor>
       <arglist>(core::Domain *dom, Verbosity verbosity, core::Logable &amp;logable, Inclusion prefixes)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>ALOX_API void</type>
-      <name>logConfigDomainRecursive</name>
-      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ad82cd87b2f33a36a7dd4a750f0d3441f</anchor>
-      <arglist>(core::Domain &amp;domain, AString &amp;buffer)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>ALOX_API void</type>
@@ -6651,6 +7208,13 @@
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>a9c14c75a9aa3b27f5bedefebed8998f0</anchor>
       <arglist>(LogData *data, const TString &amp;key, Scope scope, int pathLevel)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>ALOX_API void</type>
+      <name>writeVerbositiesOnLoggerRemoval</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a177e884c9baeadb15e900176501150fe</anchor>
+      <arglist>(Logger *logger)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -6757,10 +7321,10 @@
     <name>aworx::lox::core::textlogger::MetaInfo</name>
     <filename>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</filename>
     <member kind="variable">
-      <type>TString</type>
+      <type>String32</type>
       <name>DateFormat</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>af2fb4c3f354b7666adac33e78e4a36a0</anchor>
+      <anchor>a1fbed1c474077f1de310990f68692ef6</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -6792,45 +7356,45 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TString</type>
+      <type>String16</type>
       <name>NoMethodInfo</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a3feb1a3fdbbde8059ca3007d9a7421d6</anchor>
+      <anchor>abd38b6803cf4301827357a54195f180c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TString</type>
+      <type>String16</type>
       <name>NoSourceFileInfo</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>af44d2da6f43116de8557910776f9b1f1</anchor>
+      <anchor>a8d08768c3fc9055cf9d17f3714ec87ff</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TString</type>
+      <type>String16</type>
       <name>TimeDiffDays</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a7b75d4c8a835d33c6dac1bd7416ed70a</anchor>
+      <anchor>aa3f98d2aa27c33f8dc7c3cf4c6b1a0d8</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TString</type>
+      <type>String16</type>
       <name>TimeDiffHours</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a9395ddf39cb846bdf260e116583203cb</anchor>
+      <anchor>a20d1d3b476a6aafeeb5e87fbfacc5e52</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TString</type>
+      <type>String16</type>
       <name>TimeDiffMicros</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a8b7385903157de774b3d44906d0f09fc</anchor>
+      <anchor>a661a09a8e1eb17581bc67aff1f132d56</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TString</type>
+      <type>String16</type>
       <name>TimeDiffMillis</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>ac3f039b4887207a47f2868449e3b1443</anchor>
+      <anchor>ad78fde89caeb4ccbe776b1d351d52413</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -6841,45 +7405,45 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TString</type>
+      <type>String16</type>
       <name>TimeDiffMins</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a068b97de0fc963964de79ccb2fde412d</anchor>
+      <anchor>a6781ce4c72ba2117380b0ee0b803e4bd</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TString</type>
+      <type>String16</type>
       <name>TimeDiffNanos</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a5466a8a9826616e5082306e7d688ccd2</anchor>
+      <anchor>a64f81ff97c47cac44c8c03890bdf62b8</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TString</type>
+      <type>String16</type>
       <name>TimeDiffNone</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a33336f57dcc0d962375b72a082cd16a2</anchor>
+      <anchor>a1e70c1adc386d8704fd62c4978a0a3d5</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TString</type>
+      <type>String16</type>
       <name>TimeDiffSecs</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a41fbed046e377a2f835b2f7e9c93c758</anchor>
+      <anchor>a12c8df15357e02da8b11708cb294cfd3</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TString</type>
+      <type>String16</type>
       <name>TimeElapsedDays</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a090fd75d30917282f140e5fcdde1fe3a</anchor>
+      <anchor>a41d26c37bd02bb24b9428af4896aa074</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TString</type>
+      <type>String16</type>
       <name>TimeOfDayFormat</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a78d44b9a457f1b8a1e175b3fe7043f8f</anchor>
+      <anchor>a84bddee7b379ee961f0d8dc745401985</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -8404,8 +8968,8 @@
       <type>ALIB_API void</type>
       <name>SetSourcePathTrimRule</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
-      <anchor>ad05ff5575f97e91669507d5f63bc4e16</anchor>
-      <arglist>(const TString &amp;path, Inclusion includeString, int trimOffset, Case sensitivity, Inclusion global, const String &amp;trimReplacement, int priority)</arglist>
+      <anchor>a7b1273c4076fe06387d7ae0f592b63b7</anchor>
+      <arglist>(const TString &amp;path, Inclusion includeString, int trimOffset, Case sensitivity, const String &amp;trimReplacement, Reach reach, int priority)</arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
       <type>static ALIB_API std::vector&lt; SourcePathTrimRule &gt;</type>
@@ -9494,27 +10058,7 @@
   <compound kind="class">
     <name>aworx::lib::config::IniFile::Section</name>
     <filename>classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</filename>
-    <member kind="variable">
-      <type>AString</type>
-      <name>Comments</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</anchorfile>
-      <anchor>a13a7dbf15cba4c8849fdd8044b185475</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String32</type>
-      <name>Name</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</anchorfile>
-      <anchor>ab3c68b8a64bf47454f94bde4ebb6de0b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>std::vector&lt; Variable * &gt;</type>
-      <name>Variables</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</anchorfile>
-      <anchor>a738ca476f47674d8516d09e15ce172de</anchor>
-      <arglist></arglist>
-    </member>
+    <base>aworx::lib::config::InMemoryPlugin::Section</base>
     <member kind="function">
       <type></type>
       <name>Section</name>
@@ -9522,26 +10066,72 @@
       <anchor>a51635002e9136e57c782638128864dbc</anchor>
       <arglist>(const String &amp;name)</arglist>
     </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual Entry *</type>
+      <name>createEntry</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</anchorfile>
+      <anchor>a17c765fa30a40c65d18b1c216479d905</anchor>
+      <arglist>(const String &amp;name)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>aworx::lib::config::InMemoryPlugin::Section</name>
+    <filename>classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</filename>
+    <member kind="variable">
+      <type>AString</type>
+      <name>Comments</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>a13a7dbf15cba4c8849fdd8044b185475</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::vector&lt; Entry * &gt;</type>
+      <name>Entries</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>ab2da73dcf9e06ea3b12ea32c71730419</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String32</type>
+      <name>Name</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>ab3c68b8a64bf47454f94bde4ebb6de0b</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type></type>
+      <name>Section</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>a51635002e9136e57c782638128864dbc</anchor>
+      <arglist>(const String &amp;name)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
       <name>~Section</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</anchorfile>
-      <anchor>ad718550e15dc3c8a9fd66717dd17e5d5</anchor>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>aa8911b591a7b9d5f2b3f0e106d77c169</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>Variable *</type>
-      <name>Get</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</anchorfile>
-      <anchor>ad6c0495f4adb84887542660894d7aac6</anchor>
+      <type>ALIB_API bool</type>
+      <name>DeleteEntry</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>a6864635ebc7570ad6f32a0eb4743b331</anchor>
       <arglist>(const String &amp;name)</arglist>
     </member>
     <member kind="function">
-      <type>Variable *</type>
-      <name>Insert</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</anchorfile>
-      <anchor>a295f81c573fa45f08d98e19a72a814a8</anchor>
-      <arglist>(const String &amp;name, const String &amp;value, const String &amp;comments=&quot;&quot;)</arglist>
+      <type>ALIB_API Entry *</type>
+      <name>GetEntry</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>a9baf82da10da0ce5319e4bab7626293e</anchor>
+      <arglist>(const String &amp;name, bool create)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual Entry *</type>
+      <name>createEntry</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>a17c765fa30a40c65d18b1c216479d905</anchor>
+      <arglist>(const String &amp;name)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -10477,24 +11067,24 @@
       <arglist>(int newLength)</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>Substring &amp;</type>
       <name>TrimStart</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>ad35eefd241e9ac52278c696d28671760</anchor>
+      <anchor>a0b77919824492d270546b8e028675fb2</anchor>
       <arglist>(const TString &amp;whiteSpaces=DefaultWhitespaces)</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>Substring &amp;</type>
       <name>TrimEnd</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a96cf750c8bd36acaa7510d08c4709567</anchor>
+      <anchor>ac817857e89b347e2eb00c57d3807ffe7</anchor>
       <arglist>(const TString &amp;whiteSpaces=DefaultWhitespaces)</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>Substring &amp;</type>
       <name>Trim</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a7ab157d58b1dcdec6b1962e2ed9580dc</anchor>
+      <anchor>a944dec553bb4a3ccb9e601d7fe7d0721</anchor>
       <arglist>(const TString &amp;whiteSpaces=DefaultWhitespaces)</arglist>
     </member>
     <member kind="function">
@@ -10543,29 +11133,29 @@
       <type>bool</type>
       <name>Consume</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a1ec4cca1d72e31dff41edbcb584a4138</anchor>
-      <arglist>(const String &amp;consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
+      <anchor>aacb17709a2b4df7ca99e9c71cc1382b0</anchor>
+      <arglist>(const String &amp;consumable, enums::Case sensitivity=enums::Case::Sensitive, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>ConsumeFromEnd</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>adccc3a479bc3abc37a8aef9322baa3c4</anchor>
-      <arglist>(const String &amp;consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
+      <anchor>a144de2ec693f58351e41da1585b18195</anchor>
+      <arglist>(const String &amp;consumable, enums::Case sensitivity=enums::Case::Sensitive, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>Consume</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a56e71c29f72b9ec95c60a4b47eb45711</anchor>
-      <arglist>(char consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
+      <anchor>a2b4b5989c29aff410afd042099923333</anchor>
+      <arglist>(char consumable, enums::Case sensitivity=enums::Case::Sensitive, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>ConsumeFromEnd</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a3f589b8c9f5e4a6deb6f29804f210e12</anchor>
-      <arglist>(char consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
+      <anchor>aa49f731a767422ccc7d6dcc28aaeba06</anchor>
+      <arglist>(char consumable, enums::Case sensitivity=enums::Case::Sensitive, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -10631,24 +11221,24 @@
       <arglist>(int newLength)</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>Substring &amp;</type>
       <name>TrimStart</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>ad35eefd241e9ac52278c696d28671760</anchor>
+      <anchor>a0b77919824492d270546b8e028675fb2</anchor>
       <arglist>(const TString &amp;whiteSpaces=DefaultWhitespaces)</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>Substring &amp;</type>
       <name>TrimEnd</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a96cf750c8bd36acaa7510d08c4709567</anchor>
+      <anchor>ac817857e89b347e2eb00c57d3807ffe7</anchor>
       <arglist>(const TString &amp;whiteSpaces=DefaultWhitespaces)</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>Substring &amp;</type>
       <name>Trim</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a7ab157d58b1dcdec6b1962e2ed9580dc</anchor>
+      <anchor>a944dec553bb4a3ccb9e601d7fe7d0721</anchor>
       <arglist>(const TString &amp;whiteSpaces=DefaultWhitespaces)</arglist>
     </member>
     <member kind="function">
@@ -10697,29 +11287,29 @@
       <type>bool</type>
       <name>Consume</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a1ec4cca1d72e31dff41edbcb584a4138</anchor>
-      <arglist>(const String &amp;consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
+      <anchor>aacb17709a2b4df7ca99e9c71cc1382b0</anchor>
+      <arglist>(const String &amp;consumable, enums::Case sensitivity=enums::Case::Sensitive, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>ConsumeFromEnd</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>adccc3a479bc3abc37a8aef9322baa3c4</anchor>
-      <arglist>(const String &amp;consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
+      <anchor>a144de2ec693f58351e41da1585b18195</anchor>
+      <arglist>(const String &amp;consumable, enums::Case sensitivity=enums::Case::Sensitive, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>Consume</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a56e71c29f72b9ec95c60a4b47eb45711</anchor>
-      <arglist>(char consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
+      <anchor>a2b4b5989c29aff410afd042099923333</anchor>
+      <arglist>(char consumable, enums::Case sensitivity=enums::Case::Sensitive, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>ConsumeFromEnd</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a3f589b8c9f5e4a6deb6f29804f210e12</anchor>
-      <arglist>(char consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
+      <anchor>aa49f731a767422ccc7d6dcc28aaeba06</anchor>
+      <arglist>(char consumable, enums::Case sensitivity=enums::Case::Sensitive, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -10936,24 +11526,24 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TString</type>
+      <type>String64</type>
       <name>FmtMultiLineMsgHeadline</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>a53efc9595ad578dfa30d7c3f79441c19</anchor>
+      <anchor>a02684b9492b7e0f1626be9f7079b4538</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TString</type>
+      <type>String16</type>
       <name>FmtMultiLinePrefix</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>ae7e21aa436fd2966ab2ce5188f3bbca2</anchor>
+      <anchor>a6a0f47a82a9e2018d42acdc864eaeb76</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TString</type>
+      <type>String16</type>
       <name>FmtMultiLineSuffix</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>a321ad7402c369b0f2249ffa764afc080</anchor>
+      <anchor>a32162368e4bed2b7fa666fd77a62a245</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -10978,10 +11568,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TString</type>
+      <type>String16</type>
       <name>MultiLineDelimiterRepl</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>a044f3f9d4ad22b7e3b6210f0ead7307c</anchor>
+      <anchor>a1c310c98162c46f37a1935c70f8edb70</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -12537,34 +13127,339 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>aworx::lib::config::IniFile::Variable</name>
-    <filename>classaworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html</filename>
+    <name>aworx::lib::config::Variable</name>
+    <filename>classaworx_1_1lib_1_1config_1_1Variable.html</filename>
+    <member kind="variable">
+      <type>String64</type>
+      <name>Category</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a8c631f86070de2671d699fc5ae45e0b2</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="variable">
       <type>AString</type>
       <name>Comments</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
       <anchor>a13a7dbf15cba4c8849fdd8044b185475</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Configuration *</type>
+      <name>Config</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a2c37015bcce40f74f397f29ea050f251</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>DefaultValue</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ae4b47533ee1b78ad20c12f235d7ef958</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>char</type>
       <name>Delim</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
       <anchor>a68297215ac82977611f5dee2062cc910</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String32</type>
-      <name>Name</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html</anchorfile>
-      <anchor>ab3c68b8a64bf47454f94bde4ebb6de0b</anchor>
+      <type>String16</type>
+      <name>FormatAttrAlignment</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a6491695587581466d3a994ae5d9a11b8</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String32</type>
-      <name>Value</name>
-      <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html</anchorfile>
-      <anchor>aaadcdd81806203a103169225c3079f43</anchor>
+      <type>int</type>
+      <name>FormatHints</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a24b16c98e30ceb73c9caa7f955bce255</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String64</type>
+      <name>Fullname</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>aa676a8229f7ae9acf266bc2baffe0206</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String64</type>
+      <name>Name</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a1364de9681c92bfc759622ad829b842d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>Priority</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a4450b0bad265ba3bd24e994f70aec802</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Variable</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ad57a167cb505659893c09faa703a8ec5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Variable</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ace9d6836b009091df57acd69e1ab55da</anchor>
+      <arglist>(const VariableDefinition &amp;definition, const StringTypes &amp;...replacements)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Variable</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a8435d49e024fb58dbfd30cd6a3c64e34</anchor>
+      <arglist>(const Variable &amp;variable)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Variable</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>aa5d114a79482eebc1fe2685122368eb4</anchor>
+      <arglist>(const String &amp;category, const String &amp;name, char delim= &apos;\0&apos;, const String &amp;comments=nullptr)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString &amp;</type>
+      <name>AddBoolean</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ac5de036e045b24423c645ad45218ae60</anchor>
+      <arglist>(bool value)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API AString &amp;</type>
+      <name>AddFloat</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a3238c2181d1317ec2c40cb02afbca05e</anchor>
+      <arglist>(double value)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API AString &amp;</type>
+      <name>AddInteger</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ac4e0cd7132918dc6ecb89b803dee2bc5</anchor>
+      <arglist>(int value)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API AString &amp;</type>
+      <name>AddString</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ad6ead064b00800e14b62c5e0d0ae6a27</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>AString &amp;</type>
+      <name>AddString</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>abe19c476c32d3dbfad87cf59585c2760</anchor>
+      <arglist>(const String &amp;value)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API void</type>
+      <name>clear</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ac8bb3912a3ce86b15842e79d0b421204</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Variable &amp;</type>
+      <name>ClearValues</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>aa62ba4657e53457817abd37b52564195</anchor>
+      <arglist>(int startIdx=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API Variable &amp;</type>
+      <name>Define</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a342e5a4af654bd6e366ed799fcf537b6</anchor>
+      <arglist>(const VariableDefinition &amp;definition, std::vector&lt; String &gt; &amp;replacements)</arglist>
+    </member>
+    <member kind="function">
+      <type>Variable &amp;</type>
+      <name>Define</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a244956837a53631148b314f5e2ea93b6</anchor>
+      <arglist>(const VariableDefinition &amp;definition, const StringTypes &amp;...replacements)</arglist>
+    </member>
+    <member kind="function">
+      <type>Variable &amp;</type>
+      <name>Define</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>acc63397b228a3b82f884d217ab90c778</anchor>
+      <arglist>(const Variable &amp;variable)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API Variable &amp;</type>
+      <name>Define</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>adb98ece09eff8ea9fdf677085dd12c08</anchor>
+      <arglist>(const String &amp;category, const String &amp;name, char delim= &apos;\0&apos;, const String &amp;comments=nullptr)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API bool</type>
+      <name>GetAttribute</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a3f215c1bb3687e602fa9518558033962</anchor>
+      <arglist>(const String &amp;attrName, strings::Substring &amp;result, char attrDelim= &apos;=&apos;)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API double</type>
+      <name>GetFloat</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>aa99de88aa99017031d1bbe994a53bdeb</anchor>
+      <arglist>(int idx=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API int</type>
+      <name>GetInteger</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a3fc25d9a650866cf46d1e2248d840f1a</anchor>
+      <arglist>(int idx=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString *</type>
+      <name>GetString</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a5fda2a3b3daa10d3a33f0403aea47635</anchor>
+      <arglist>(int idx=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API bool</type>
+      <name>IsTrue</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a1e0d6918b216f929312012d15d9175b9</anchor>
+      <arglist>(int idx=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API int</type>
+      <name>Load</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a70249c8cab0f8bbb5be6a0078056b5f2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API int</type>
+      <name>LoadFromString</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>aadeaf554261385ee81acfb056c7b358b</anchor>
+      <arglist>(const String &amp;externalizedValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API int</type>
+      <name>Protect</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a83fc66594b9d503e3d33d70a2e578342</anchor>
+      <arglist>(const String &amp;externalizedValue=nullptr)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API void</type>
+      <name>ReplaceValue</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>af95f406a6786d68890403a03c98c0113</anchor>
+      <arglist>(int idx, Variable &amp;replVariable)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>Size</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a9827f891ea982b6e8f01d9faf874efde</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API int</type>
+      <name>Store</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a7bb0a69498c973319734dc8bb1ee8849</anchor>
+      <arglist>(const String &amp;externalizedValue=nullptr)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API int</type>
+      <name>StoreDefault</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ae3db6be2bca6b99bb838b64914e149e6</anchor>
+      <arglist>(const String &amp;externalizedValue=nullptr)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>qtyValues</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ab7456aa10da95e6821c3f6499edb9ddd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>std::vector&lt; AString &gt;</type>
+      <name>values</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a082c95cffd7b5ec8f2d19f8b8ba15575</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>aworx::lib::config::VariableDefinition</name>
+    <filename>structaworx_1_1lib_1_1config_1_1VariableDefinition.html</filename>
+    <member kind="variable">
+      <type>String</type>
+      <name>Category</name>
+      <anchorfile>structaworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>ace42ec1911bd3b00414175a3e9df0a01</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String *</type>
+      <name>CategoryFallback</name>
+      <anchorfile>structaworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>ab20be38ae51ba1caec1c7493758bccef</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>Comments</name>
+      <anchorfile>structaworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>a0902946a25415a8b2b6d8a6157290cac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>DefaultValue</name>
+      <anchorfile>structaworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>a48f7236d94560d0968b206eb2110ca8a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>char</type>
+      <name>Delim</name>
+      <anchorfile>structaworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>a68297215ac82977611f5dee2062cc910</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String16</type>
+      <name>FormatAttrAlignment</name>
+      <anchorfile>structaworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>a6491695587581466d3a994ae5d9a11b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>FormatHints</name>
+      <anchorfile>structaworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>a24b16c98e30ceb73c9caa7f955bce255</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>Name</name>
+      <anchorfile>structaworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>a934fa09ba291a97f43720640e4d83f25</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -12704,6 +13599,31 @@
       <arglist>(lib::enums::Phase)</arglist>
     </member>
   </compound>
+  <compound kind="class">
+    <name>aworx::lib::config::XTernalizer</name>
+    <filename>classaworx_1_1lib_1_1config_1_1XTernalizer.html</filename>
+    <member kind="function" virtualness="virtual">
+      <type>virtual ALIB_API void</type>
+      <name>ExternalizeValue</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1XTernalizer.html</anchorfile>
+      <anchor>ac028e93dccee5716835072185c65a0af</anchor>
+      <arglist>(Substring &amp;src, AString &amp;dest, char delim)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual ALIB_API void</type>
+      <name>InternalizeValue</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1XTernalizer.html</anchorfile>
+      <anchor>a2a51acb7abba2b88df033efbcc356f92</anchor>
+      <arglist>(Substring &amp;src, AString &amp;dest)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual ALIB_API void</type>
+      <name>LoadFromString</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1XTernalizer.html</anchorfile>
+      <anchor>adeb8b4a1df5c756294f6c354b5d185e4</anchor>
+      <arglist>(Variable &amp;variable, const String &amp;src)</arglist>
+    </member>
+  </compound>
   <compound kind="namespace">
     <name>aworx</name>
     <filename>namespaceaworx.html</filename>
@@ -12829,6 +13749,13 @@
       <arglist></arglist>
     </member>
     <member kind="typedef">
+      <type>aworx::lib::config::InMemoryPlugin</type>
+      <name>InMemoryPlugin</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a5acd1ac5b29f64268c6bd7dea9e3a3bd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
       <type>aworx::lib::enums::LockMode</type>
       <name>LockMode</name>
       <anchorfile>namespaceaworx.html</anchorfile>
@@ -12910,6 +13837,13 @@
       <name>Propagation</name>
       <anchorfile>namespaceaworx.html</anchorfile>
       <anchor>a6becd7c5957b9924c08b78079a67c5b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Reach</type>
+      <name>Reach</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>acb8fc4c8bd67b78e8f56e72ba65dd476</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -13144,6 +14078,20 @@
       <arglist></arglist>
     </member>
     <member kind="typedef">
+      <type>aworx::lib::config::Variable</type>
+      <name>Variable</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ac401c755579f3ba09fd64599ada969cf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::config::VariableDefinition</type>
+      <name>VariableDefinition</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a95cbf23d3488a04fcb65cf4803da540a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
       <type>aworx::lox::Verbosity</type>
       <name>Verbosity</name>
       <anchorfile>namespaceaworx.html</anchorfile>
@@ -13229,11 +14177,16 @@
   <compound kind="namespace">
     <name>aworx::lib::config</name>
     <filename>namespaceaworx_1_1lib_1_1config.html</filename>
-    <class kind="class">aworx::lib::config::CommandLinePlugIn</class>
+    <class kind="class">aworx::lib::config::CommandLinePlugin</class>
     <class kind="class">aworx::lib::config::Configuration</class>
-    <class kind="class">aworx::lib::config::ConfigurationPlugIn</class>
-    <class kind="class">aworx::lib::config::EnvironmentPlugIn</class>
+    <class kind="class">aworx::lib::config::ConfigurationPlugin</class>
+    <class kind="class">aworx::lib::config::EnvironmentPlugin</class>
     <class kind="class">aworx::lib::config::IniFile</class>
+    <class kind="class">aworx::lib::config::InMemoryPlugin</class>
+    <class kind="class">aworx::lib::config::Variable</class>
+    <class kind="struct">aworx::lib::config::VariableDefinition</class>
+    <class kind="class">aworx::lib::config::XTernalizer</class>
+    <docanchor file="namespaceaworx_1_1lib_1_1config">cpp_alib_namespace_config_substitution</docanchor>
   </compound>
   <compound kind="namespace">
     <name>aworx::lib::containers</name>
@@ -13341,6 +14294,15 @@
       <arglist></arglist>
       <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="aeae0c2d4659a32ef54bd221d1a3da4e6a3f9823fc8c5bf8d5efbb0ad3be5f16c9">Omit</enumvalue>
       <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="aeae0c2d4659a32ef54bd221d1a3da4e6aa9857b4deb35c57d5753f94fa00a028e">ToDescendants</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>Reach</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1enums.html</anchorfile>
+      <anchor>a9537c0a8df05f0a728b6e2a89c7f3a1b</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="a9537c0a8df05f0a728b6e2a89c7f3a1ba4cc6684df7b4a92b1dec6fce3264fac8">Global</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="a9537c0a8df05f0a728b6e2a89c7f3a1ba509820290d57f333403f490dde7316f4">Local</enumvalue>
     </member>
     <member kind="enumeration">
       <type></type>
@@ -14043,6 +15005,13 @@
       <arglist>(const String &amp;src)</arglist>
     </member>
     <member kind="function">
+      <type>const String</type>
+      <name>ToString</name>
+      <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
+      <anchor>a6dc440d515fdab7ac7eb73fb984c0f14</anchor>
+      <arglist>(Verbosity verbosity)</arglist>
+    </member>
+    <member kind="function">
       <type>AString &amp;</type>
       <name>ToString</name>
       <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
@@ -14062,13 +15031,6 @@
       <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
       <anchor>a9f44bd15eb903fbdb8e70aee35a6267b</anchor>
       <arglist>(int priority, AString &amp;target)</arglist>
-    </member>
-    <member kind="function">
-      <type>const String</type>
-      <name>ToStringX</name>
-      <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
-      <anchor>abfd92f16f9c0e36069f30ffa03a5d96d</anchor>
-      <arglist>(Verbosity verbosity)</arglist>
     </member>
   </compound>
   <compound kind="namespace">
@@ -14641,9 +15603,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Log_LogConfig</name>
+      <name>Log_LogState</name>
       <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
-      <anchor>ga1bac07b7ec3ca3616c301f171e9e73d9</anchor>
+      <anchor>ga014d8b959e78330074b7aedad3ff747b</anchor>
       <arglist>(...)</arglist>
     </member>
     <member kind="define">
@@ -14814,9 +15776,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Lox_LogConfig</name>
+      <name>Lox_LogState</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
-      <anchor>ga0578fb3bfeb63ea05db9c34bc1a0d07d</anchor>
+      <anchor>ga6a3836bfb9783687112adc22e265631d</anchor>
       <arglist>(...)</arglist>
     </member>
     <member kind="define">

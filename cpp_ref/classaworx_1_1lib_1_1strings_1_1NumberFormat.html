@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 2</span>
+   &#160;<span id="projectnumber">V. 1607 R. 0</span>
    </div>
   </td>
  </tr>
@@ -149,7 +149,7 @@ Collaboration diagram for NumberFormat:</div>
 <li>Cross language/platform source compatibility (the essential motivation for having ALib)</li>
 <li>Performance optimization (C# and Java versions avoid unnecessary temporary object allocations)</li>
 </ul>
-<p>As an example, when writing float data into a configuration file, class <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> ignores the systems locale setting and writes all data using '.' as decimal separator. When reading values, both ' . ' and ' , ' are accepted. While loosing the possibility to read configuration data that uses a "thousand separator" which is generally the opposite of the decimal separator (opposite here means it is a ',' when decimal separator is a '.' and vice versa), what is gained is that floats are read without throwing exceptions regardless of the locale that was set when they were written. Therefore configuration files are consistent and readable across all software installations.</p>
+<p>As an example, when writing float data into a configuration file, class <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> ignores the systems locale setting and writes all data using '.' as decimal separator. When reading values, both ' . ' and ' , ' are accepted. While loosing the possibility to read configuration data that uses a "thousand separator" which is generally the opposite of the decimal separator (opposite here means it is a ',' when decimal separator is a '.' and vice versa), what is gained is that floats are read without throwing exceptions regardless of the locale that was set when they were written. Therefore configuration files are consistent and readable across all software installations.</p>
 <p>Instances created, have default values set, independent from the current locale setting of the system. To initialize this classes fields to reflect the current locale, invoke <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a286f8e0f3c8b0faa574522a25fbb0912">SetFromLocale()</a>.</p>
 <dl class="section note"><dt>Note</dt><dd>The method interface of this class is quite rudimentary. Therefore, it is advisable to use more user friendly classes as <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> or <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>, which provide methods that accept a configured instance of this class as parameter and do the conversion internally. </dd></dl>
 </div><table class="memberdecls">
@@ -474,7 +474,7 @@ Public Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>The default static number format object, used by various methods. It therefore acts as the global default settings of the currently running process.<br />
- Method <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a368faebfbb1d770d76d5e073266a3deb">ALIB::Init</a> invokes <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a286f8e0f3c8b0faa574522a25fbb0912">SetFromLocale()</a> on this object. </p>
+ Method <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a> invokes <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a286f8e0f3c8b0faa574522a25fbb0912">SetFromLocale()</a> on this object. </p>
 
 </div>
 </div>
@@ -518,7 +518,7 @@ Public Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 20 2016 10:57:53 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 23 2016 23:18:45 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

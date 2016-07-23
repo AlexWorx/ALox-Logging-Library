@@ -1,7 +1,7 @@
 var searchData=
 [
   ['data',['Data',['../classaworx_1_1lox_1_1core_1_1Domain.html#ae084fa950af8593b424bb0f75fba7a0f',1,'aworx::lox::core::Domain']]],
-  ['dateformat',['DateFormat',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#af2fb4c3f354b7666adac33e78e4a36a0',1,'aworx::lox::core::textlogger::MetaInfo']]],
+  ['dateformat',['DateFormat',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a1fbed1c474077f1de310990f68692ef6',1,'aworx::lox::core::textlogger::MetaInfo']]],
   ['day',['Day',['../classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html#a8f67164de537e3ec2b47e3204ddd3400',1,'aworx::lib::time::TicksCalendarTime']]],
   ['dayofweek',['DayOfWeek',['../classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html#ac3213e69636923e6b0b41a0e388f79ce',1,'aworx::lib::time::TicksCalendarTime']]],
   ['days',['Days',['../classaworx_1_1lib_1_1time_1_1TickSpan.html#a5b70bc3780a4da05fec9a52b7e4eb85b',1,'aworx::lib::time::TickSpan']]],
@@ -19,10 +19,15 @@ var searchData=
   ['defaultcommentprefix',['DefaultCommentPrefix',['../classaworx_1_1lib_1_1config_1_1IniFile.html#a4476ecda6d3ab51725c78ffc7da2ecda',1,'aworx::lib::config::IniFile']]],
   ['defaultfileextension',['DefaultFileExtension',['../classaworx_1_1lib_1_1config_1_1IniFile.html#a2eaa2333f2f0f3ee2b95eb569798ec80',1,'aworx::lib::config::IniFile']]],
   ['defaultreport',['defaultReport',['../classaworx_1_1lib_1_1Report.html#a85731ee839db2fafc226b9a8281167f4',1,'aworx::lib::Report']]],
+  ['defaultstringconverter',['defaultStringConverter',['../classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a3b754bcc322da1d59d62b19ba50b3a5d',1,'aworx::lib::config::ConfigurationPlugin']]],
+  ['defaultvalue',['DefaultValue',['../structaworx_1_1lib_1_1config_1_1VariableDefinition.html#a48f7236d94560d0968b206eb2110ca8a',1,'aworx::lib::config::VariableDefinition::DefaultValue()'],['../classaworx_1_1lib_1_1config_1_1Variable.html#ae4b47533ee1b78ad20c12f235d7ef958',1,'aworx::lib::config::Variable::DefaultValue()']]],
+  ['defaultvalues',['DefaultValues',['../classaworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6',1,'aworx::lib::config::Configuration']]],
   ['defaultwhitespaces',['DefaultWhitespaces',['../namespaceaworx.html#a5feaaf6a8fb11e8ebbb0013ec9f27b01',1,'aworx']]],
-  ['delim',['Delim',['../classaworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html#a68297215ac82977611f5dee2062cc910',1,'aworx::lib::config::IniFile::Variable::Delim()'],['../classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ab56c67e0ed9605b4078e2135f791c4ed',1,'aworx::lib::strings::Tokenizer::delim()']]],
+  ['delim',['delim',['../classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ab56c67e0ed9605b4078e2135f791c4ed',1,'aworx::lib::strings::Tokenizer::delim()'],['../classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html#a68297215ac82977611f5dee2062cc910',1,'aworx::lib::config::InMemoryPlugin::Entry::Delim()'],['../structaworx_1_1lib_1_1config_1_1VariableDefinition.html#a68297215ac82977611f5dee2062cc910',1,'aworx::lib::config::VariableDefinition::Delim()'],['../classaworx_1_1lib_1_1config_1_1Variable.html#a68297215ac82977611f5dee2062cc910',1,'aworx::lib::config::Variable::Delim()']]],
   ['directoryseparator',['DirectorySeparator',['../namespaceaworx.html#af71d56959787ac2eca9b0af4b02a7cec',1,'aworx']]],
+  ['domain_5fsubstitution',['DOMAIN_SUBSTITUTION',['../classaworx_1_1lox_1_1ALox.html#a07488d81370e535a32592ba1dd60f76a',1,'aworx::lox::ALox']]],
   ['domains',['domains',['../classaworx_1_1lox_1_1Lox.html#af7a1bb606d5ac72b03aa6cf35988405a',1,'aworx::lox::Lox']]],
   ['domainsensitivity',['DomainSensitivity',['../classaworx_1_1lox_1_1Lox.html#ac63dd33538dff8703707b14fc6d04d52',1,'aworx::lox::Lox']]],
-  ['domainsubstitutions',['domainSubstitutions',['../classaworx_1_1lox_1_1Lox.html#a7f3139c0b1ac2de972db69d485a9481e',1,'aworx::lox::Lox']]]
+  ['domainsubstitutions',['domainSubstitutions',['../classaworx_1_1lox_1_1Lox.html#a7f3139c0b1ac2de972db69d485a9481e',1,'aworx::lox::Lox']]],
+  ['dump_5fstate_5fon_5fexit',['DUMP_STATE_ON_EXIT',['../classaworx_1_1lox_1_1ALox.html#a9851c75124db349e8c4d73a3b35ba78f',1,'aworx::lox::ALox']]]
 ];

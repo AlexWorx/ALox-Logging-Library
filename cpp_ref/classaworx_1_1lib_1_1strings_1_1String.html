@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 2</span>
+   &#160;<span id="projectnumber">V. 1607 R. 0</span>
    </div>
   </td>
  </tr>
@@ -148,7 +148,7 @@ Inheritance diagram for String:</div>
  For more information on how to make String support to implicitly construct from user defined types, see namespace template function <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a7cfd45024bf9222b42febac98fdcc146">ToString</a>.</p>
 <p>This class provides compiler defined copy and move constructors and assignment operators. Once and object is constructed, methods <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a5d5ce30daece7ec96d0b70ccc5d46002">Buffer</a> and <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a6e891964a37680c01e21dedac6ffe670">Length</a> allow read access to the contents.</p>
 <p><b>Null-State</b><br />
-<a class="anchor" id="CPP_STRINGS_AS_NULLSTATE"></a>Objects of this class can be <em>nulled</em> which means that it is a difference whether they are representing an empty string or a null pointer. As objects are immutable, this is decided on construction: once an String is null, it will remain null. In other words, it makes a difference if an String is constructed using</p><ul>
+<a class="anchor" id="CPP_STRINGS_AS_NULLSTATE"></a>Objects of this class can be <em>nulled</em> which means that it is a difference whether they are representing an empty string or a null pointer. As objects are immutable, this is decided on construction: once a String is nulled, it will remain nulled. In other words, it makes a difference if an String is constructed using</p><ul>
 <li><em>String()</em>, which creates a <em>nulled</em> object, method <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a055d87b78f69c9d039b7e12ead7aa6b6">IsNull</a> will give <code>true</code>, or</li>
 <li><em>String("")</em>, which creates an empty object. Method <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a055d87b78f69c9d039b7e12ead7aa6b6">IsNull</a> will give <code>false</code> while method <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#aaef62c8761ddd1b95824fc57b1b277b5">IsEmpty</a> will give <code>true</code> </li>
 </ul>
@@ -1717,7 +1717,7 @@ Protected Fields</h2></td></tr>
 <p>The destination string will be zero terminated.</p>
 <dl class="section note"><dt>Note</dt><dd><ul>
 <li>For the reverse action, namely to convert wide characters to multi-byte characters, use class <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> with template method <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a4dbe5fba1e5c5ed69d12d57b3eb49ef7">AString::Apply</a> e.g. by using operator <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#ac243bc3f2d0f61eb45d49f488ddbcb63">AString::operator&lt;&lt;(const T&amp;)</a> with T being <em>[const] wchar_t*</em>.</li>
-<li>On Linux, it might be necessary to invoke std function <em>setlocale()</em> once, prior to using this method. This, by default, is done in <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a368faebfbb1d770d76d5e073266a3deb">ALIB::Init</a>.</li>
+<li>On Linux, it might be necessary to invoke std function <em>setlocale()</em> once, prior to using this method. This, by default, is done in <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a>.</li>
 </ul>
 </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -1805,7 +1805,7 @@ Protected Fields</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 20 2016 10:57:53 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 23 2016 23:18:45 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

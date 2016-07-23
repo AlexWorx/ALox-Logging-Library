@@ -10,6 +10,7 @@ var searchData=
   ['scopestore_3c_20hashmap_3c_20com_3a_3aaworx_3a_3alib_3a_3astrings_3a_3aastring_2c_20int_5b_5d_3e_20_3e',['ScopeStore&lt; HashMap&lt; com::aworx::lib::strings::AString, int[]&gt; &gt;',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html',1,'com::aworx::lox::core']]],
   ['scopestore_3c_20object_20_3e',['ScopeStore&lt; Object &gt;',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html',1,'com::aworx::lox::core']]],
   ['section',['Section',['../classcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html',1,'com::aworx::lib::config::IniFile']]],
+  ['section',['Section',['../classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html',1,'com::aworx::lib::config::InMemoryPlugin']]],
   ['smartlock',['SmartLock',['../classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html',1,'com::aworx::lib::threads']]],
   ['status',['Status',['../enumcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Status.html',1,'com::aworx::lib::config::IniFile']]],
   ['stringconverter',['StringConverter',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html',1,'com::aworx::lox::core::textlogger']]],

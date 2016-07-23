@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['fetchfromdefault',['FetchFromDefault',['../classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a50bc62566c58bc7c18e36a9356031355',1,'cs::aworx::lib::config::Configuration']]],
   ['fg_5freset',['FG_RESET',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a4d090538b91aeb913f57329509da9116',1,'cs::aworx::lox::ESC']]],
   ['field',['Field',['../classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a804d1f7748d98951e31c93829aeeb5fe',1,'cs::aworx::lib::strings::AString']]],
   ['fieldreference',['fieldReference',['../classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a3f9db4d35ad598af0040026b2b59afa4',1,'cs::aworx::lib::strings::AString']]],
@@ -31,8 +32,17 @@ var searchData=
   ['fmtnullobject',['FmtNullObject',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html#ac281d117b6e931783195f52f70bfa5b3',1,'cs::aworx::lox::core::textlogger::StringConverter']]],
   ['fmtunknownobject',['FmtUnknownObject',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a3051aebc3f205a04fc1196a5433d78e5',1,'cs::aworx::lox::core::textlogger::TextLogger']]],
   ['forcescientificformat',['ForceScientificFormat',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#ae4968ebb3e654b4b07f58e13d2786dae',1,'cs::aworx::lib::strings::NumberFormat']]],
-  ['format',['Format',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a5f73a9d6a9bfabaa4a33c34831006d07',1,'cs::aworx::lox::core::textlogger::MetaInfo']]],
+  ['format',['Format',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a5f73a9d6a9bfabaa4a33c34831006d07',1,'cs.aworx.lox.core.textlogger.MetaInfo.Format()'],['../classcs_1_1aworx_1_1lox_1_1ALox.html#a1373a5f581c7e737533d89eeae7d419e',1,'cs.aworx.lox.ALox.FORMAT()']]],
+  ['format_5fdate_5ftime',['FORMAT_DATE_TIME',['../classcs_1_1aworx_1_1lox_1_1ALox.html#a0830aa343a032fafff6de4ca4c9c4037',1,'cs::aworx::lox::ALox']]],
+  ['format_5fmultiline',['FORMAT_MULTILINE',['../classcs_1_1aworx_1_1lox_1_1ALox.html#a4fc7408e67c79f6fca8bd53e82356eda',1,'cs::aworx::lox::ALox']]],
+  ['format_5ftime_5fdiff',['FORMAT_TIME_DIFF',['../classcs_1_1aworx_1_1lox_1_1ALox.html#a1f402a4f2360f803bb5cb82d21616e2c',1,'cs::aworx::lox::ALox']]],
+  ['formatattralignment',['FormatAttrAlignment',['../classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html#a0ef6ae5b80559980ab700d040ea4e1ca',1,'cs.aworx.lib.config.InMemoryPlugin.Entry.FormatAttrAlignment()'],['../structcs_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html#a0ef6ae5b80559980ab700d040ea4e1ca',1,'cs.aworx.lib.config.VariableDefinition.FormatAttrAlignment()'],['../classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#a0ef6ae5b80559980ab700d040ea4e1ca',1,'cs.aworx.lib.config.Variable.FormatAttrAlignment()']]],
+  ['formathint',['FormatHint',['../classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#aebb3561ef8cb7db28ec75a25358ab5d4',1,'cs::aworx::lib::config::Variable']]],
+  ['formathints',['FormatHints',['../classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html#a6a69c4d8022c7bae3dbe22b46cbbd89a',1,'cs.aworx.lib.config.InMemoryPlugin.Entry.FormatHints()'],['../structcs_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html#a6a69c4d8022c7bae3dbe22b46cbbd89a',1,'cs.aworx.lib.config.VariableDefinition.FormatHints()'],['../classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#a9d414ea028228202e5e3d6651757c31b',1,'cs.aworx.lib.config.Variable.FormatHints()']]],
+  ['formatincludedeliminattralignment',['FormatIncludeDelimInAttrAlignment',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#adf4fc6544160ee73eafc6310d2085a12',1,'cs::aworx::lib::config::IniFile']]],
   ['formatsb',['formatSB',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a85c8d54f584a622009048d0536f6160f',1,'cs::aworx::lox::core::textlogger::MetaInfo']]],
+  ['formatspaceafterdelim',['FormatSpaceAfterDelim',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a0745166b66e5abe95006b75eeff309ca',1,'cs::aworx::lib::config::IniFile']]],
+  ['formatspacebeforedelim',['FormatSpaceBeforeDelim',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a4bac2e411ff2f25c16dedaba0de76d3d',1,'cs::aworx::lib::config::IniFile']]],
   ['fractionaldigits',['FractionalDigits',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a6c90dcda5ed7d0ecdbc8ec0aa9c76ac3',1,'cs::aworx::lib::strings::NumberFormat']]],
   ['fromdays',['FromDays',['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#a161ed9398d1cfa08d4db4ed330d98e66',1,'cs::aworx::lib::time::Ticks']]],
   ['fromhours',['FromHours',['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#a7c61485aae63d42e28e02cbb7e548824',1,'cs::aworx::lib::time::Ticks']]],
@@ -42,6 +52,8 @@ var searchData=
   ['fromnanos',['FromNanos',['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#a2ca7dc68b5aa84ca5c8cc4423e0ac7f2',1,'cs::aworx::lib::time::Ticks']]],
   ['fromseconds',['FromSeconds',['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#a16278993f4c841d6865347c7996dbd0e',1,'cs::aworx::lib::time::Ticks']]],
   ['fromstring',['FromString',['../classcs_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer.html#ae8ed5a6a4f77379a35ea093f0cdf50d5',1,'cs::aworx::lox::tools::json::DynamicJSONDeserializer']]],
+  ['fromvariable',['FromVariable',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html#a32fd2d7dcef11ab5a0de608d5ee721f5',1,'cs.aworx.lib.config.IniFile.Entry.FromVariable()'],['../classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html#ae1b848cdc153a4a2e3f5b80f9872cad3',1,'cs.aworx.lib.config.InMemoryPlugin.Entry.FromVariable()']]],
+  ['fullname',['Fullname',['../classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#a0a6355e3ba2adaedd7968141c85a257a',1,'cs::aworx::lib::config::Variable']]],
   ['fullpath',['FullPath',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a2a6c0d3ee72cd24b4333894999aadcd0',1,'cs::aworx::lox::core::Domain']]],
   ['func',['Func',['../classcs_1_1aworx_1_1lib_1_1Report_1_1Message.html#a39c230199b392ed588e57b8950add07f',1,'cs::aworx::lib::Report::Message']]]
 ];

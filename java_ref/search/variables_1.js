@@ -46,7 +46,8 @@ var searchData=
   ['ansi_5fwhite',['ANSI_WHITE',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#a400e3222fd507813de2f08afbcbbc8a5',1,'com::aworx::lox::loggers::AnsiLogger']]],
   ['ansi_5fyellow',['ANSI_YELLOW',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#ab4ec1e4491268f65475e476b1ba722af',1,'com::aworx::lox::loggers::AnsiLogger']]],
   ['ansicols',['ansiCols',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#a6df381da9b7a53520c7181cc0a4006f7',1,'com::aworx::lox::loggers::AnsiLogger']]],
-  ['args',['args',['../classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html#a7551501f7caf9b087ab3da98fbed0ce9',1,'com::aworx::lib::config::CommandLinePlugIn']]],
+  ['args',['args',['../classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html#a7551501f7caf9b087ab3da98fbed0ce9',1,'com::aworx::lib::config::CommandLinePlugin']]],
+  ['auto_5fsizes',['AUTO_SIZES',['../classcom_1_1aworx_1_1lox_1_1ALox.html#a236ae855e60b84d4cbb590d7b058fc21',1,'com::aworx::lox::ALox']]],
   ['autosave',['autoSave',['../classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a5b3964b63bd8facd8a6282509c924916',1,'com::aworx::lib::config::IniFile']]],
   ['autosizes',['autoSizes',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#aa4f19574c48ddda56b341246abd50bcd',1,'com::aworx::lox::core::textlogger::TextLogger']]]
 ];

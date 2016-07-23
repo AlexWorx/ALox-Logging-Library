@@ -5,7 +5,7 @@ var searchData=
   ['actpathmapnode',['actPathMapNode',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a8032ce6cc2fb9ea0e10b5ea89dffe5e0',1,'cs::aworx::lox::core::ScopeStore']]],
   ['actscope',['actScope',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#ab420b6d519025a485c6345895ad174ee',1,'cs::aworx::lox::core::ScopeStore']]],
   ['actthread',['actThread',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a64257a7b447d7633ab917c0096ea1f7b',1,'cs::aworx::lox::core::ScopeStore']]],
-  ['actual',['Actual',['../classcs_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html#a2eefe9530c5f2042ddfa20e26b34328b',1,'cs.aworx.lib.strings.Tokenizer.Actual()'],['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#a2e749596915ecb3f85da8a5e1f166437',1,'cs.aworx.lox.core.ScopeInfo.actual()']]],
+  ['actual',['actual',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#a2e749596915ecb3f85da8a5e1f166437',1,'cs.aworx.lox.core.ScopeInfo.actual()'],['../classcs_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html#a2eefe9530c5f2042ddfa20e26b34328b',1,'cs.aworx.lib.strings.Tokenizer.Actual()']]],
   ['actualindex',['ActualIndex',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html#acf5441aa3a2d1bcc3dfd3519d7579fee',1,'cs::aworx::lox::core::textlogger::AutoSizes']]],
   ['ansi_5fbg_5fblack',['ANSI_BG_BLACK',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#a7cc0671aebf209879c5ff0716e9b8451',1,'cs::aworx::lox::loggers::AnsiLogger']]],
   ['ansi_5fbg_5fblue',['ANSI_BG_BLUE',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#af0982be13af0a1f57414c069aee0eaaf',1,'cs::aworx::lox::loggers::AnsiLogger']]],
@@ -46,7 +46,8 @@ var searchData=
   ['ansi_5fwhite',['ANSI_WHITE',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#a7b93c5a9e56531854e7e2467a5ddc010',1,'cs::aworx::lox::loggers::AnsiLogger']]],
   ['ansi_5fyellow',['ANSI_YELLOW',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#ad0d9406fc1b59c147bf0fd9232cc34e5',1,'cs::aworx::lox::loggers::AnsiLogger']]],
   ['ansicols',['ansiCols',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#a6df381da9b7a53520c7181cc0a4006f7',1,'cs::aworx::lox::loggers::AnsiLogger']]],
-  ['args',['args',['../classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html#a7551501f7caf9b087ab3da98fbed0ce9',1,'cs::aworx::lib::config::CommandLinePlugIn']]],
+  ['args',['args',['../classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html#a7551501f7caf9b087ab3da98fbed0ce9',1,'cs::aworx::lib::config::CommandLinePlugin']]],
+  ['auto_5fsizes',['AUTO_SIZES',['../classcs_1_1aworx_1_1lox_1_1ALox.html#a236ae855e60b84d4cbb590d7b058fc21',1,'cs::aworx::lox::ALox']]],
   ['autodetecttrimablesourcepath',['AutoDetectTrimableSourcePath',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#ac69d17599ca644e4c9e9be0f42ca7361',1,'cs::aworx::lox::core::ScopeInfo']]],
   ['autosave',['AutoSave',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a297ce080be0d2d8b0f5245def3fd1b79',1,'cs::aworx::lib::config::IniFile']]],
   ['autosizes',['AutoSizes',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a411d51414c576719fbf8694e1f19fb87',1,'cs::aworx::lox::core::textlogger::TextLogger']]]

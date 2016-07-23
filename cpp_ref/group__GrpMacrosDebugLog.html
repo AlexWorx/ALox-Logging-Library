@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 2</span>
+   &#160;<span id="projectnumber">V. 1607 R. 0</span>
    </div>
   </td>
  </tr>
@@ -147,8 +147,8 @@ Macros</h2></td></tr>
 <tr class="separator:ga7a1af9531448e3c6da1027b193e3b01b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaed4877ef3a04a6eb1ec1d4fba8305d75"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosDebugLog.html#gaed4877ef3a04a6eb1ec1d4fba8305d75">Log_Info</a>(...)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>( <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga105a9f44250c23d6bb37df63aa9d9cbe">LOG_ACQUIRE</a> LOG_LOX.Info         ( __VA_ARGS__ );            <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga0d5795316ecfccc7b40b43c01bf62b0e">LOG_RELEASE</a> ) }</td></tr>
 <tr class="separator:gaed4877ef3a04a6eb1ec1d4fba8305d75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1bac07b7ec3ca3616c301f171e9e73d9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosDebugLog.html#ga1bac07b7ec3ca3616c301f171e9e73d9">Log_LogConfig</a>(...)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>( <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga105a9f44250c23d6bb37df63aa9d9cbe">LOG_ACQUIRE</a> LOG_LOX.LogConfig    ( __VA_ARGS__ );            <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga0d5795316ecfccc7b40b43c01bf62b0e">LOG_RELEASE</a> ) }</td></tr>
-<tr class="separator:ga1bac07b7ec3ca3616c301f171e9e73d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga014d8b959e78330074b7aedad3ff747b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosDebugLog.html#ga014d8b959e78330074b7aedad3ff747b">Log_LogState</a>(...)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>( <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga105a9f44250c23d6bb37df63aa9d9cbe">LOG_ACQUIRE</a> LOG_LOX.State    ( __VA_ARGS__ );            <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga0d5795316ecfccc7b40b43c01bf62b0e">LOG_RELEASE</a> ) }</td></tr>
+<tr class="separator:ga014d8b959e78330074b7aedad3ff747b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad01526d3f277fab96faf18695d25cb7e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosDebugLog.html#gad01526d3f277fab96faf18695d25cb7e">Log_MapThreadName</a>(threadName)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>( <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga105a9f44250c23d6bb37df63aa9d9cbe">LOG_ACQUIRE</a> LOG_LOX.MapThreadName( threadName );             <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga0d5795316ecfccc7b40b43c01bf62b0e">LOG_RELEASE</a> ) }</td></tr>
 <tr class="separator:gad01526d3f277fab96faf18695d25cb7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga68c8af8941a64be4f6e075ab31c6c05b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosDebugLog.html#ga68c8af8941a64be4f6e075ab31c6c05b">Log_Once</a>(...)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>( <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga105a9f44250c23d6bb37df63aa9d9cbe">LOG_ACQUIRE</a> LOG_LOX.Once         ( __VA_ARGS__ );            <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga0d5795316ecfccc7b40b43c01bf62b0e">LOG_RELEASE</a> ) }</td></tr>
@@ -229,7 +229,7 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a01bb6d07bbecaacf8be4471b16889d63">Lox::ClearSourcePathTrimRules</a> on the debug singleton of class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a>. </p>
+<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a197f9ceb9fba85ebe74a375f0c3dc29c">Lox::ClearSourcePathTrimRules</a> on the debug singleton of class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a>. </p>
 
 </div>
 </div>
@@ -332,20 +332,20 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga1bac07b7ec3ca3616c301f171e9e73d9"></a>
+<a class="anchor" id="ga014d8b959e78330074b7aedad3ff747b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Log_LogConfig</td>
+          <td class="memname">#define Log_LogState</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>( <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga105a9f44250c23d6bb37df63aa9d9cbe">LOG_ACQUIRE</a> LOG_LOX.LogConfig    ( __VA_ARGS__ );            <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga0d5795316ecfccc7b40b43c01bf62b0e">LOG_RELEASE</a> ) }</td>
+          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>( <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga105a9f44250c23d6bb37df63aa9d9cbe">LOG_ACQUIRE</a> LOG_LOX.State    ( __VA_ARGS__ );            <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga0d5795316ecfccc7b40b43c01bf62b0e">LOG_RELEASE</a> ) }</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#ade5edb3b47eee24a0185ac0b7efa8c17">Lox::LogConfig</a> on the debug singleton of class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a>. </p>
+<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a4390965eab4c9d0196263ecdd4248f34">Lox::State</a> on the debug singleton of class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a>. </p>
 
 </div>
 </div>
@@ -546,7 +546,7 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a7370e8cf3cd1041f37ffc921805eb6a8">Lox::SetSourcePathTrimRule</a> on the debug singleton of class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a>. </p>
+<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a3021bf2971485a6c3c2bb0f69569c6ee">Lox::SetSourcePathTrimRule</a> on the debug singleton of class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a>. </p>
 
 </div>
 </div>
@@ -590,7 +590,7 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes one of the overloaded methods <a class="el" href="classaworx_1_1lox_1_1Lox.html#a31dbb9788d52da7bc7376da0a03a3730">Lox::SetVerbosity</a> on the debug singleton of class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a>. </p>
+<p>Invokes one of the overloaded methods <a class="el" href="classaworx_1_1lox_1_1Lox.html#a31773307b5de5914b22c5a5ea437728b">Lox::SetVerbosity</a> on the debug singleton of class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a>. </p>
 
 </div>
 </div>
@@ -649,7 +649,7 @@ Macros</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 20 2016 10:57:53 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 23 2016 23:18:45 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

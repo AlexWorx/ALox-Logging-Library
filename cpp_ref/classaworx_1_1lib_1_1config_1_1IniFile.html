@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 2</span>
+   &#160;<span id="projectnumber">V. 1607 R. 0</span>
    </div>
   </td>
  </tr>
@@ -141,31 +141,61 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for IniFile:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1config_1_1IniFile__inherit__graph.svg" width="147" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1config_1_1IniFile__inherit__graph.svg" width="146" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for IniFile:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1config_1_1IniFile__coll__graph.svg" width="1722" height="470"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1config_1_1IniFile__coll__graph.svg" width="770" height="427"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> Specialization of abstract interface class <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html#a7be57a5ed92198b336f33405511cc5d4">ConfigurationPlugIn</a>, which reads and writes a simple configuration file consisting of key/value pairs.</p>
-<p>This class is provided for the case that no other configuration mechanism is available. For example, software that uses QT should not use this class but rather implement a <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html#a7be57a5ed92198b336f33405511cc5d4">ConfigurationPlugIn</a> which uses a QSettings object to read and store that data to.</p>
-<p>This class offers all internal fields for public access. However, in standard cases, only the interface methods of this class should be used.</p>
+<p> Specialization of class <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html#a7528a6f611e3c203586189de2d03786f">InMemoryPlugin</a>, which reads and writes a simple configuration file consisting of sections containing key/value pairs.</p>
+<p>This class is provided for the case that no other configuration mechanism is available. In general, application specific configuration mechanisms already exist in other libraries used. Those should be adopted by creating a lean interface plug-in for ALib.</p>
 <p>Some remarks on the functionality and supported format:</p><ul>
+<li>Comments<ul>
 <li>Comment lines at the beginning of the file are associated with the file and are written back. Such comment block is stopped with a single blank line.</li>
-<li>Comment lines before sections and variables are associated with the respective objects and are written back.</li>
-<li>Sections names are enclosed by brackets ('[' and ']).</li>
-<li><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html">Section</a> names can be repeated. In this case the corresponding section is continued. When the file is written, the section are merged. Otherwise the order of sections and the variables within the section is kept intact.</li>
-<li><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html">Variable</a> names and their values are separated by an equal sign ('=').</li>
-<li>Whitespace characters (' ', '\t' ) are removed at the start and end of each line and before and after the equal sign ('=').</li>
-<li>Lines that start (apart from whitespace) with either a double slash "//", a sharp sign '#' or a semicolon ';' are comment lines.</li>
+<li>Lines that start (apart from whitespace) with either a double slash <code>"//"</code>, a sharp sign <code>'#'</code> or a semicolon <code>';'</code> are comment lines.</li>
+<li>Comment lines that are added to variables in the software are using the symbol defined in filed <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a4476ecda6d3ab51725c78ffc7da2ecda">DefaultCommentPrefix</a>, which defaults to <code>'#'</code>. If this is changed in the file, such changes are preserved.</li>
+<li>Comment lines before sections and variables are associated with the respective objects and are not overwritten by comments set in the code. However, variables without comments which are overwritten in code including comments, get such comment appended.</li>
 <li>Comments can not reside in the same line together with section names or variables.</li>
-<li>Variables definitions are being continued (values are concatenated) if the line ends with a backslash ('\'). Whitespaces in continued lines are ignored but can be 'escaped'. Comment lines in-between continued lines are not recognized as such.</li>
-<li>Sequences of blank lines are reduced to one blank line, when writing the file.</li>
 <li>Commented variables receive a blank line before the comment.</li>
-<li>Commented Sections receive two blank lines before the comment. One if they are not commented. </li>
+<li>Commented Sections receive two blank lines before the comment. One if they are not commented.</li>
+</ul>
+</li>
+<li>Sections:<ul>
+<li>Sections names are enclosed by brackets <code>'</code>[' and <code>'</code>]'.</li>
+<li><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html">Section</a> names can be repeated. In this case the corresponding section is continued. When the file is written, the sections are merged. Otherwise the order of sections and the variables within the section is kept intact on writing.</li>
+</ul>
+</li>
+<li>Variables<ul>
+<li><a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> names and their values are separated by an equal sign <code>'='</code>.</li>
+<li>New variables inserted are formatted according to other variables found. E.g. the equal sign of all variables within a section are aligned on the same column.</li>
+<li>Formats of variables added or changed by the user are kept intact, as long as the software does not store a value.</li>
+</ul>
+</li>
+<li>Continued Lines:<ul>
+<li>Variables definition are being continued (values are concatenated) if the line ends with a backslash <code>'\'</code>.</li>
+<li>Comment lines in-between continued lines are recognized as such. To continue a variable after a 'continued' comment line, the comment line needs to end with a backslash <code>'\'</code>.</li>
+<li>Variables with multiple values created (or modified) in the software, are written in continued lines, with each line showing one value, ending with the variables' delimiter character and a trailing <code>'\'</code>.</li>
+<li>Comment lines within Variables defined in multiple lines are removed when a variable is written back.</li>
+</ul>
+</li>
+<li>Escaping values<ul>
+<li>Spaces <code>'</code> ' and tabulators <code>'\t'</code> are ignored at the start and end of each line and before and after the equal sign <code>'='</code>.</li>
+<li>Consequently, whitespaces at the start or end of a value either need to be escaped using <code>'\ '</code> or the whole value has to be surrounded by double quotes <code>"</code>.</li>
+<li>Values added or modified by the software that contain spaces at the start or end are surrounded by double quotes (instead of escaping them)</li>
+<li>Double quotes in values are always escaped when writing values and have to be escaped when editing the file.</li>
+<li>Values may consist of a list of double quoted values. Whitespaces between such values are ignored. Consequently, long strings may be enclosed in double quotes and continued in the next line when the line ends with a backslash <code>'\'</code>.</li>
+<li>Almost any character can be escaped. E.g <code>"\\a"</code> is read as <code>'a'</code>.</li>
+<li>On writing only non-printable characters and double quotation marks are escaped.</li>
+</ul>
+</li>
+<li>Other remarks<ul>
+<li>Sequences of blank lines are reduced to one blank line, when writing the file.</li>
+<li>Errorneous lines are ignored and not written back. Line numbers with errorneous lines are collected in field <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a40fc3347bdd13c78626393bce4f4b7af">LinesWithReadErrors</a>. </li>
+</ul>
+</li>
 </ul>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -178,9 +208,9 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Inner Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html">Section</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html">Entry</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html">Variable</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html">Section</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
@@ -190,25 +220,30 @@ Public Static Fields</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Fields</h2></td></tr>
-<tr class="memitem:a297ce080be0d2d8b0f5245def3fd1b79"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a297ce080be0d2d8b0f5245def3fd1b79">AutoSave</a> = true</td></tr>
+<tr class="memitem:a297ce080be0d2d8b0f5245def3fd1b79"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a297ce080be0d2d8b0f5245def3fd1b79">AutoSave</a> = false</td></tr>
 <tr class="separator:a297ce080be0d2d8b0f5245def3fd1b79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4476ecda6d3ab51725c78ffc7da2ecda"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a4476ecda6d3ab51725c78ffc7da2ecda">DefaultCommentPrefix</a> = &quot;# &quot;</td></tr>
 <tr class="separator:a4476ecda6d3ab51725c78ffc7da2ecda"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90c6ad78caa206911f41e45552d63c6c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a90c6ad78caa206911f41e45552d63c6c">EscapeSequences</a></td></tr>
-<tr class="separator:a90c6ad78caa206911f41e45552d63c6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83074eb05e084e3cc5d0f9f3bb78f01b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a83074eb05e084e3cc5d0f9f3bb78f01b">FileComments</a></td></tr>
 <tr class="separator:a83074eb05e084e3cc5d0f9f3bb78f01b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8bea19241a8e12acb6725e40dd6f2d74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a8bea19241a8e12acb6725e40dd6f2d74">FileName</a></td></tr>
 <tr class="separator:a8bea19241a8e12acb6725e40dd6f2d74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf4fc6544160ee73eafc6310d2085a12"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#adf4fc6544160ee73eafc6310d2085a12">FormatIncludeDelimInAttrAlignment</a> = false</td></tr>
+<tr class="separator:adf4fc6544160ee73eafc6310d2085a12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0745166b66e5abe95006b75eeff309ca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a0745166b66e5abe95006b75eeff309ca">FormatSpaceAfterDelim</a> = true</td></tr>
+<tr class="separator:a0745166b66e5abe95006b75eeff309ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bac2e411ff2f25c16dedaba0de76d3d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a4bac2e411ff2f25c16dedaba0de76d3d">FormatSpaceBeforeDelim</a> = false</td></tr>
+<tr class="separator:a4bac2e411ff2f25c16dedaba0de76d3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a828873beba46715ac28b88ef1de88ae4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a67a0db04d321a74b7e7fcfd3f1a3f70b">Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a828873beba46715ac28b88ef1de88ae4">LastStatus</a></td></tr>
 <tr class="separator:a828873beba46715ac28b88ef1de88ae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40fc3347bdd13c78626393bce4f4b7af"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a40fc3347bdd13c78626393bce4f4b7af">LinesWithReadErrors</a></td></tr>
 <tr class="separator:a40fc3347bdd13c78626393bce4f4b7af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4db383e1b52ed42586b8aaf43836c88d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html">Section</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a4db383e1b52ed42586b8aaf43836c88d">Sections</a></td></tr>
-<tr class="separator:a4db383e1b52ed42586b8aaf43836c88d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_attribs_classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn')"><img src="closed.png" alt="-"/>&#160;Public Fields inherited from <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a></td></tr>
-<tr class="memitem:a82bf1cd3b4adcee833998d1a0642c574 inherit pub_attribs_classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html#a82bf1cd3b4adcee833998d1a0642c574">Parent</a> =nullptr</td></tr>
-<tr class="separator:a82bf1cd3b4adcee833998d1a0642c574 inherit pub_attribs_classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_classaworx_1_1lib_1_1config_1_1InMemoryPlugin"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classaworx_1_1lib_1_1config_1_1InMemoryPlugin')"><img src="closed.png" alt="-"/>&#160;Public Fields inherited from <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a></td></tr>
+<tr class="memitem:a4db383e1b52ed42586b8aaf43836c88d inherit pub_attribs_classaworx_1_1lib_1_1config_1_1InMemoryPlugin"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html">Section</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html#a4db383e1b52ed42586b8aaf43836c88d">Sections</a></td></tr>
+<tr class="separator:a4db383e1b52ed42586b8aaf43836c88d inherit pub_attribs_classaworx_1_1lib_1_1config_1_1InMemoryPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_classaworx_1_1lib_1_1config_1_1ConfigurationPlugin"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classaworx_1_1lib_1_1config_1_1ConfigurationPlugin')"><img src="closed.png" alt="-"/>&#160;Public Fields inherited from <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a></td></tr>
+<tr class="memitem:a150967a58e76635889b4082537c67a2f inherit pub_attribs_classaworx_1_1lib_1_1config_1_1ConfigurationPlugin"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1config_1_1XTernalizer.html">XTernalizer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a150967a58e76635889b4082537c67a2f">StringConverter</a></td></tr>
+<tr class="separator:a150967a58e76635889b4082537c67a2f inherit pub_attribs_classaworx_1_1lib_1_1config_1_1ConfigurationPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
@@ -216,42 +251,46 @@ Public Methods</h2></td></tr>
 <tr class="separator:a941e3deeb4b8a4591a828fc06cfce59b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae196a3ba5e4598d6823ce0e77bbf75d7"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#ae196a3ba5e4598d6823ce0e77bbf75d7">~IniFile</a> ()</td></tr>
 <tr class="separator:ae196a3ba5e4598d6823ce0e77bbf75d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa71d36872f416feaa853788a7a7a7ef8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#aa71d36872f416feaa853788a7a7a7ef8">Clear</a> ()</td></tr>
-<tr class="separator:aa71d36872f416feaa853788a7a7a7ef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ab8705a2db7095450dbc00919e67dfc"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a4ab8705a2db7095450dbc00919e67dfc">Get</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;category, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;name, <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;target)</td></tr>
-<tr class="separator:a4ab8705a2db7095450dbc00919e67dfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4fa10eb1909dec8799f03014e90d721"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#ad4fa10eb1909dec8799f03014e90d721">Get</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;category, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;name, int32_t &amp;target)</td></tr>
-<tr class="separator:ad4fa10eb1909dec8799f03014e90d721"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1401b913322c506f75e38f7227e8d146"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a1401b913322c506f75e38f7227e8d146">Get</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;category, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;name, double &amp;target)</td></tr>
-<tr class="separator:a1401b913322c506f75e38f7227e8d146"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39a807ecf078c69a8437db857dd0aeaa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a67a0db04d321a74b7e7fcfd3f1a3f70b">IniFile::Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a39a807ecf078c69a8437db857dd0aeaa">ReadFile</a> ()</td></tr>
 <tr class="separator:a39a807ecf078c69a8437db857dd0aeaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae35f02909be48392acc4a3632f42f5d0"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#ae35f02909be48392acc4a3632f42f5d0">Save</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;category, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;name, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;value, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;comments=<a class="el" href="namespaceaworx.html#ab1ed6dcfbe4628dccefbdb5633b1bf01">NullString</a>, char delim= ',')</td></tr>
-<tr class="separator:ae35f02909be48392acc4a3632f42f5d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41cceca2764c0a9b1db812c7de7dcaa5"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a41cceca2764c0a9b1db812c7de7dcaa5">Save</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;category, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;name, int value, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;comments=<a class="el" href="namespaceaworx.html#ab1ed6dcfbe4628dccefbdb5633b1bf01">NullString</a>)</td></tr>
-<tr class="separator:a41cceca2764c0a9b1db812c7de7dcaa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab807e01a98358f8446a1b51286ceb581"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#ab807e01a98358f8446a1b51286ceb581">Save</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;category, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;name, double value, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;comments=<a class="el" href="namespaceaworx.html#ab1ed6dcfbe4628dccefbdb5633b1bf01">NullString</a>)</td></tr>
-<tr class="separator:ab807e01a98358f8446a1b51286ceb581"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20f7b65fe669edbac7211be4ea229f5c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html">Section</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a20f7b65fe669edbac7211be4ea229f5c">SearchOrCreateSection</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;name, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;comments)</td></tr>
-<tr class="separator:a20f7b65fe669edbac7211be4ea229f5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99d17dd20fcdc8919501c21d675f6d40"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html">Section</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a99d17dd20fcdc8919501c21d675f6d40">SearchSection</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;name)</td></tr>
-<tr class="separator:a99d17dd20fcdc8919501c21d675f6d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a372de693ad40b3f42839c8ec6ac845f4"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a372de693ad40b3f42839c8ec6ac845f4">Reset</a> ()</td></tr>
+<tr class="separator:a372de693ad40b3f42839c8ec6ac845f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f2a984c2c2f6283441afc5187da6f2e"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a4f2a984c2c2f6283441afc5187da6f2e">Store</a> (<a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> &amp;variable)</td></tr>
+<tr class="separator:a4f2a984c2c2f6283441afc5187da6f2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73bf37055382606e309f514b0187cf43"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a67a0db04d321a74b7e7fcfd3f1a3f70b">IniFile::Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a73bf37055382606e309f514b0187cf43">WriteFile</a> ()</td></tr>
 <tr class="separator:a73bf37055382606e309f514b0187cf43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classaworx_1_1lib_1_1config_1_1InMemoryPlugin"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classaworx_1_1lib_1_1config_1_1InMemoryPlugin')"><img src="closed.png" alt="-"/>&#160;Public Methods inherited from <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a></td></tr>
+<tr class="memitem:a7528a6f611e3c203586189de2d03786f inherit pub_methods_classaworx_1_1lib_1_1config_1_1InMemoryPlugin"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html#a7528a6f611e3c203586189de2d03786f">InMemoryPlugin</a> ()</td></tr>
+<tr class="separator:a7528a6f611e3c203586189de2d03786f inherit pub_methods_classaworx_1_1lib_1_1config_1_1InMemoryPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8eefe3405efd8f140e9fecd0f5becfec inherit pub_methods_classaworx_1_1lib_1_1config_1_1InMemoryPlugin"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html#a8eefe3405efd8f140e9fecd0f5becfec">~InMemoryPlugin</a> ()</td></tr>
+<tr class="separator:a8eefe3405efd8f140e9fecd0f5becfec inherit pub_methods_classaworx_1_1lib_1_1config_1_1InMemoryPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8f5d3a1838ab84b0aa545d8b7f880a9 inherit pub_methods_classaworx_1_1lib_1_1config_1_1InMemoryPlugin"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html#ae8f5d3a1838ab84b0aa545d8b7f880a9">Load</a> (<a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> &amp;variable, bool searchOnly=false) const </td></tr>
+<tr class="separator:ae8f5d3a1838ab84b0aa545d8b7f880a9 inherit pub_methods_classaworx_1_1lib_1_1config_1_1InMemoryPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af794153476c8f6aea58e0234b7f8ac89 inherit pub_methods_classaworx_1_1lib_1_1config_1_1InMemoryPlugin"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html">Section</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html#af794153476c8f6aea58e0234b7f8ac89">SearchOrCreateSection</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;name, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;comments)</td></tr>
+<tr class="separator:af794153476c8f6aea58e0234b7f8ac89 inherit pub_methods_classaworx_1_1lib_1_1config_1_1InMemoryPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa48fcf25f704f6093ee2f8db158aef6f inherit pub_methods_classaworx_1_1lib_1_1config_1_1InMemoryPlugin"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html">Section</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html#aa48fcf25f704f6093ee2f8db158aef6f">SearchSection</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;name) const </td></tr>
+<tr class="separator:aa48fcf25f704f6093ee2f8db158aef6f inherit pub_methods_classaworx_1_1lib_1_1config_1_1InMemoryPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classaworx_1_1lib_1_1config_1_1ConfigurationPlugin"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classaworx_1_1lib_1_1config_1_1ConfigurationPlugin')"><img src="closed.png" alt="-"/>&#160;Public Methods inherited from <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a></td></tr>
+<tr class="memitem:a283b076bd741a168847a799efb291b33 inherit pub_methods_classaworx_1_1lib_1_1config_1_1ConfigurationPlugin"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a283b076bd741a168847a799efb291b33">Store</a> (<a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> &amp;variable, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;externalizedValue)</td></tr>
+<tr class="separator:a283b076bd741a168847a799efb291b33 inherit pub_methods_classaworx_1_1lib_1_1config_1_1ConfigurationPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Methods</h2></td></tr>
-<tr class="memitem:a6aa99bb2cafe2a344a810a02587c924a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a6aa99bb2cafe2a344a810a02587c924a">addEscapeSequences</a> (std::ostream &amp;os, const <a class="el" href="namespaceaworx.html#aade494154da29084f1e59cfa2f83a23b">Substring</a> &amp;value)</td></tr>
-<tr class="separator:a6aa99bb2cafe2a344a810a02587c924a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb6f2e7ca2ef00452a7d709d4063ea3e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#adb6f2e7ca2ef00452a7d709d4063ea3e">removeEscapeSequences</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">strings::Substring</a> &amp;value, <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;target)</td></tr>
-<tr class="separator:adb6f2e7ca2ef00452a7d709d4063ea3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac31ca82a48b7109f18662de9a2b43e6b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html">Section</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#ac31ca82a48b7109f18662de9a2b43e6b">createSection</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;name)</td></tr>
+<tr class="separator:ac31ca82a48b7109f18662de9a2b43e6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c63931fbc79dff0c0e014d63faa14d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a8c63931fbc79dff0c0e014d63faa14d9">writeComments</a> (std::ostream &amp;os, const <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;comments)</td></tr>
 <tr class="separator:a8c63931fbc79dff0c0e014d63faa14d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_methods_classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn')"><img src="closed.png" alt="-"/>&#160;Protected Methods inherited from <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a></td></tr>
-<tr class="memitem:a7be57a5ed92198b336f33405511cc5d4 inherit pro_methods_classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html#a7be57a5ed92198b336f33405511cc5d4">ConfigurationPlugIn</a> ()</td></tr>
-<tr class="separator:a7be57a5ed92198b336f33405511cc5d4 inherit pro_methods_classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc4f693e1c9d021c6a8ca052bb151863 inherit pro_methods_classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html#acc4f693e1c9d021c6a8ca052bb151863">~ConfigurationPlugIn</a> ()</td></tr>
-<tr class="separator:acc4f693e1c9d021c6a8ca052bb151863 inherit pro_methods_classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classaworx_1_1lib_1_1config_1_1ConfigurationPlugin"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classaworx_1_1lib_1_1config_1_1ConfigurationPlugin')"><img src="closed.png" alt="-"/>&#160;Protected Methods inherited from <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a></td></tr>
+<tr class="memitem:a1b50bf18ad3d087799d832b6d15b258e inherit pro_methods_classaworx_1_1lib_1_1config_1_1ConfigurationPlugin"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a1b50bf18ad3d087799d832b6d15b258e">ConfigurationPlugin</a> ()</td></tr>
+<tr class="separator:a1b50bf18ad3d087799d832b6d15b258e inherit pro_methods_classaworx_1_1lib_1_1config_1_1ConfigurationPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03ff3650053c51f7cd230cb7b8b51f3c inherit pro_methods_classaworx_1_1lib_1_1config_1_1ConfigurationPlugin"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a03ff3650053c51f7cd230cb7b8b51f3c">~ConfigurationPlugin</a> ()</td></tr>
+<tr class="separator:a03ff3650053c51f7cd230cb7b8b51f3c inherit pro_methods_classaworx_1_1lib_1_1config_1_1ConfigurationPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_attribs_classaworx_1_1lib_1_1config_1_1ConfigurationPlugin"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classaworx_1_1lib_1_1config_1_1ConfigurationPlugin')"><img src="closed.png" alt="-"/>&#160;Protected Fields inherited from <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a></td></tr>
+<tr class="memitem:a3b754bcc322da1d59d62b19ba50b3a5d inherit pro_attribs_classaworx_1_1lib_1_1config_1_1ConfigurationPlugin"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1config_1_1XTernalizer.html">XTernalizer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a3b754bcc322da1d59d62b19ba50b3a5d">defaultStringConverter</a></td></tr>
+<tr class="separator:a3b754bcc322da1d59d62b19ba50b3a5d inherit pro_attribs_classaworx_1_1lib_1_1config_1_1ConfigurationPlugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Enumeration Documentation</h2>
 <a class="anchor" id="a67a0db04d321a74b7e7fcfd3f1a3f70b"></a>
@@ -339,7 +378,7 @@ Protected Methods</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a6aa99bb2cafe2a344a810a02587c924a"></a>
+<a class="anchor" id="ac31ca82a48b7109f18662de9a2b43e6b"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -347,213 +386,30 @@ Protected Methods</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int addEscapeSequences </td>
+          <td class="memname">virtual <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html">Section</a>* createSection </td>
           <td>(</td>
-          <td class="paramtype">std::ostream &amp;&#160;</td>
-          <td class="paramname"><em>os</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#aade494154da29084f1e59cfa2f83a23b">Substring</a> &amp;&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Converts variable value data. Replaces certain characters by escape sequences. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">os</td><td>The output stream to write to. </td></tr>
-    <tr><td class="paramname">value</td><td>The value to write </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The difference of length written and given value length. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="aa71d36872f416feaa853788a7a7a7ef8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Clear </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Clears all configuration data. </p>
-
-</div>
-</div>
-<a class="anchor" id="a4ab8705a2db7095450dbc00919e67dfc"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Get </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>category</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;&#160;</td>
-          <td class="paramname"><em>target</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<hr/>
-<p> Retrieves the string value of a configuration setting. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">category</td><td>The category of the variable. </td></tr>
-    <tr><td class="paramname">name</td><td>The name of the configuration variable to be retrieved. </td></tr>
-    <tr><td class="paramname">target</td><td>A reference to an empty AString to take the result. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><code>true</code> if variable was found within this configuration source, <code>false</code> if not. </dd></dl>
-
-<p>Implements <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html#a07c28865deadd179a3b671a720287387">ConfigurationPlugIn</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad4fa10eb1909dec8799f03014e90d721"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual bool Get </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>category</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int32_t &amp;&#160;</td>
-          <td class="paramname"><em>target</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<hr/>
-<p> Returns the int value of a configuration setting. This method invokes the default implementation <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html#a7769d0a21a18975dab583fca360ed695">ConfigurationPlugIn::Get</a>.</p>
+<p> Overrides base classes method to create a section of our type.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">category</td><td>The category of the variable. </td></tr>
-    <tr><td class="paramname">name</td><td>The name of the configuration variable to be retrieved. </td></tr>
-    <tr><td class="paramname">target</td><td>A reference to an integer variable to take the result. </td></tr>
+    <tr><td class="paramname">name</td><td>The name of the section. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><code>true</code> if variable was found within this configuration source, <code>false</code> if not. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>An object of type <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html">IniFile::Section</a>. </dd></dl>
 
-<p>Reimplemented from <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html#a7769d0a21a18975dab583fca360ed695">ConfigurationPlugIn</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1401b913322c506f75e38f7227e8d146"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual bool Get </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>category</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double &amp;&#160;</td>
-          <td class="paramname"><em>target</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<hr/>
-<p> Returns the floating point value of a configuration setting. This method invokes the default implementation <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html#af84adad9c40e4d8507d397b48c68632a">ConfigurationPlugIn::Get</a>.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">category</td><td>The category of the variable. </td></tr>
-    <tr><td class="paramname">name</td><td>The name of the configuration variable to be retrieved. </td></tr>
-    <tr><td class="paramname">target</td><td>A reference to an double variable to take the result. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><code>true</code> if variable was found within this configuration source, <code>false</code> if not. </dd></dl>
-
-<p>Reimplemented from <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html#af84adad9c40e4d8507d397b48c68632a">ConfigurationPlugIn</a>.</p>
+<p>Reimplemented from <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html#ac31ca82a48b7109f18662de9a2b43e6b">InMemoryPlugin</a>.</p>
 
 </div>
 </div>
@@ -574,7 +430,7 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="adb6f2e7ca2ef00452a7d709d4063ea3e"></a>
+<a class="anchor" id="a372de693ad40b3f42839c8ec6ac845f4"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -582,81 +438,10 @@ Protected Methods</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void removeEscapeSequences </td>
+          <td class="memname">void Reset </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">strings::Substring</a> &amp;&#160;</td>
-          <td class="paramname"><em>value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;&#160;</td>
-          <td class="paramname"><em>target</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<hr/>
-<p> Converts variable value data provided in the token and appends it to the target variable. Respects (and removes) quotation marks. Replaces certain characters by escape sequences. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>The input token. </td></tr>
-    <tr><td class="paramname">target</td><td>The AString that gets the converted result appended. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="ae35f02909be48392acc4a3632f42f5d0"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Save </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>category</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>comments</em> = <code><a class="el" href="namespaceaworx.html#ab1ed6dcfbe4628dccefbdb5633b1bf01">NullString</a></code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>delim</em> = <code>','</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -666,23 +451,13 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Writes a variable of type string to the configuration. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">category</td><td>The category of the variable. </td></tr>
-    <tr><td class="paramname">name</td><td>The name of the configuration variable to be retrieved. </td></tr>
-    <tr><td class="paramname">value</td><td>The value to write. </td></tr>
-    <tr><td class="paramname">comments</td><td>The variable comments. Will be written above the variable. Defaults to NullString. </td></tr>
-    <tr><td class="paramname">delim</td><td>This plug-in uses this character to identify variable values that are split into different lines within the INI file. Lines are continued by adding a backslash at the end. Defaults to ','.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><code>true</code> if the variable was written, <code>false</code> if not. </dd></dl>
+<p> Clears all configuration data. </p>
 
-<p>Reimplemented from <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html#a88428c9e1d24723bb630c1a6b906ea33">ConfigurationPlugIn</a>.</p>
+<p>Reimplemented from <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html#a372de693ad40b3f42839c8ec6ac845f4">InMemoryPlugin</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a41cceca2764c0a9b1db812c7de7dcaa5"></a>
+<a class="anchor" id="a4f2a984c2c2f6283441afc5187da6f2e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -690,33 +465,11 @@ Protected Methods</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool Save </td>
+          <td class="memname">virtual bool Store </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>category</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> &amp;&#160;</td>
+          <td class="paramname"><em>variable</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>comments</em> = <code><a class="el" href="namespaceaworx.html#ab1ed6dcfbe4628dccefbdb5633b1bf01">NullString</a></code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -726,138 +479,16 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Writes a variable of type integer to the configuration. This method invokes the default implementation <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html#a8bcdd8dea91d88e7fb3a3c4282422cba">ConfigurationPlugIn::Save</a>.</p>
+<p> Creates or replaces existing variable in our storage. If <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a297ce080be0d2d8b0f5245def3fd1b79">AutoSave</a> is set, the file is written</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">category</td><td>The category of the variable. </td></tr>
-    <tr><td class="paramname">name</td><td>The name of the configuration variable to be retrieved. </td></tr>
-    <tr><td class="paramname">value</td><td>The value to write. </td></tr>
-    <tr><td class="paramname">comments</td><td>The variable comments. Will be written above the variable. Defaults to NullString. </td></tr>
+    <tr><td class="paramname">variable</td><td>The variable to retrieve. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><code>true</code> if the variable was written, <code>false</code> if not. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if the variable was written, <code>false</code> if not. The latter might only happen if the variable given was illegal, e.g. empty name. </dd></dl>
 
-<p>Reimplemented from <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html#a8bcdd8dea91d88e7fb3a3c4282422cba">ConfigurationPlugIn</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab807e01a98358f8446a1b51286ceb581"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual bool Save </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>category</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>comments</em> = <code><a class="el" href="namespaceaworx.html#ab1ed6dcfbe4628dccefbdb5633b1bf01">NullString</a></code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<hr/>
-<p> Writes a variable of type double to the configuration. This method invokes the default implementation <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html#aee1b1c200efc1d49b3bcffcc240a40d6">ConfigurationPlugIn::Save</a>. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">category</td><td>The category of the variable. </td></tr>
-    <tr><td class="paramname">name</td><td>The name of the configuration variable to be retrieved. </td></tr>
-    <tr><td class="paramname">value</td><td>The value to write. </td></tr>
-    <tr><td class="paramname">comments</td><td>The variable comments. Will be written above the variable. Defaults to NullString. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><code>true</code> if the variable was written, <code>false</code> if not. </dd></dl>
-
-<p>Reimplemented from <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html#aee1b1c200efc1d49b3bcffcc240a40d6">ConfigurationPlugIn</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a20f7b65fe669edbac7211be4ea229f5c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html">IniFile::Section</a> * SearchOrCreateSection </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>comments</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Searches the <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html">Section</a> with the given name. If the section was not found, it is created. If the section is found and has no comments, then the provided comments are appended. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The name of the section to be retrieved. </td></tr>
-    <tr><td class="paramname">comments</td><td>The comment lines for the section, in the case the section is not found. If this is null, no section is created. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the section if it was found or created. nullptr otherwise. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a99d17dd20fcdc8919501c21d675f6d40"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html">IniFile::Section</a> * SearchSection </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Searches the <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html">Section</a> with the given name.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The name of the section to be retrieved. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the section if it was found, nullptr otherwise. </dd></dl>
+<p>Reimplemented from <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html#af5e89a0424aac137a3b55e367958e144">InMemoryPlugin</a>.</p>
 
 </div>
 </div>
@@ -926,11 +557,11 @@ Protected Methods</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool AutoSave = true</td>
+          <td class="memname">bool AutoSave = false</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>If this is set to <code>true</code>, any variable change will lead to writing the file immedeately by invoking <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a73bf37055382606e309f514b0187cf43">WriteFile</a> </p>
+<p>If this is set to <code>true</code>, any variable change will lead to writing the file immediately by invoking <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a73bf37055382606e309f514b0187cf43">WriteFile</a>. Defaults to false </p>
 
 </div>
 </div>
@@ -943,7 +574,7 @@ Protected Methods</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The prefix that is used for comment lines of sections or variables that have been added 'programmatically', in other words, that have not been read from the file. Comments that were read from the file preserve their prefix. Also, if comments including one of the valid prefixes are added to a variable or section 'programmatically', such prefix is preserved. </p>
+<p>The prefix that is used for comment lines of sections or variables that have been added 'in code' (variables that have not been read from the file). Comments that were read from the file preserve their prefix. If comments including one of the valid prefixes are added to a variable or section 'in code', such prefix is preserved. </p>
 
 </div>
 </div>
@@ -965,28 +596,6 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>The standard file extension used for ALib configuration files. Defaults to ".ini" </p>
-
-</div>
-</div>
-<a class="anchor" id="a90c6ad78caa206911f41e45552d63c6c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&gt; EscapeSequences</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Pairs of conversion strings. The first value, is what appears in the file (e.g. &gt;\&lt;) and the second string defines what the replacement character would be (e.g. &gt;&lt;).</p>
-<p>The vector defaults to have replacements for</p><ul>
-<li>"\n" A new line character</li>
-<li>"\r" A carriage return character</li>
-<li>"\t" A tabulator character</li>
-<li>"\\" A backslash</li>
-<li>"\/" To allow the forward slash to be at the start of a line</li>
-<li>"\#" To allow the "sharp" sign to be at the start of a line</li>
-<li>"\;" To allow the ";" to be at the start of a line </li>
-</ul>
 
 </div>
 </div>
@@ -1016,6 +625,45 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="adf4fc6544160ee73eafc6310d2085a12"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FormatIncludeDelimInAttrAlignment = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Denotes whether the spaces that are inserted when aligning attributes are located before or behind the delimiter. </p>
+
+</div>
+</div>
+<a class="anchor" id="a0745166b66e5abe95006b75eeff309ca"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FormatSpaceAfterDelim = true</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Denotes if a space should be written after a delimiter. (Applies only to single line mode of writing attributes.) </p>
+
+</div>
+</div>
+<a class="anchor" id="a4bac2e411ff2f25c16dedaba0de76d3d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FormatSpaceBeforeDelim = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Denotes if a space should be written before a delimiter. </p>
+
+</div>
+</div>
 <a class="anchor" id="a828873beba46715ac28b88ef1de88ae4"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1042,19 +690,6 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4db383e1b52ed42586b8aaf43836c88d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html">Section</a>*&gt; Sections</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The list of sections. </p>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="inifile_8hpp_source.html">inifile.hpp</a></li>
 <li>inifile.cpp</li>
@@ -1063,7 +698,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 20 2016 10:57:53 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 23 2016 23:18:45 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

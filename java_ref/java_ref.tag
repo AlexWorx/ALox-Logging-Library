@@ -11,10 +11,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static String</type>
+      <type>static AString</type>
       <name>configCategoryName</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
-      <anchor>a25cfe93aaf9615cfe8d411514c1f1499</anchor>
+      <anchor>a99bc0357098bd21444efbafe19704712</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -77,8 +77,8 @@
       <type>synchronized static void</type>
       <name>init</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
-      <anchor>a80c97a1b39e20bbf4fb85495e11b58d4</anchor>
-      <arglist>(boolean useEnv, String[] args)</arglist>
+      <anchor>afaa45c957f86a4ff5d0939a80af4d2d3</anchor>
+      <arglist>(String[] args)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static boolean</type>
@@ -215,10 +215,73 @@
     <name>com::aworx::lox::ALox</name>
     <filename>classcom_1_1aworx_1_1lox_1_1ALox.html</filename>
     <member kind="variable" static="yes">
-      <type>static String</type>
+      <type>static VariableDefinition</type>
+      <name>AUTO_SIZES</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a236ae855e60b84d4cbb590d7b058fc21</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static AString</type>
       <name>configCategoryName</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
-      <anchor>a25cfe93aaf9615cfe8d411514c1f1499</anchor>
+      <anchor>a99bc0357098bd21444efbafe19704712</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>CONSOLE_HAS_LIGHT_BACKGROUND</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>ae7aeb84503502850646b8a79b6a20f9e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>CONSOLE_TYPE</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a3aa93506b494baed80deb0f1f506c1b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>DOMAIN_SUBSTITUTION</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>ad82a8bbcdeb79dc983df554f634c62b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>DUMP_STATE_ON_EXIT</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>aa2a80347288d005664923d441b46c2ab</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>FORMAT</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a1373a5f581c7e737533d89eeae7d419e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>FORMAT_DATE_TIME</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a0830aa343a032fafff6de4ca4c9c4037</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>FORMAT_MULTILINE</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a4fc7408e67c79f6fca8bd53e82356eda</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>FORMAT_TIME_DIFF</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a1f402a4f2360f803bb5cb82d21616e2c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -229,10 +292,38 @@
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>MAX_ELAPSED_TIME</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a9ffde0f2fb68044cd9cb85ee267e9613</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>PREFIXES</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a2e6906779fe0d7857868704f8760603b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
       <type>static final int</type>
       <name>revision</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
       <anchor>a80915412cfca1d0f550c217f30d3083c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>USE_SYSTEM_OUT_PRINT</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a9091ccfcdc56cf9659b81589ea583a24</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>VERBOSITY</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>abe516e8679d9840b163f277b6520700e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -260,8 +351,8 @@
       <type>static void</type>
       <name>init</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
-      <anchor>a32b5b4fa3926a42ee9728e2ec8b46d9c</anchor>
-      <arglist>(boolean useEnv, String[] args)</arglist>
+      <anchor>a6da749cfe46018196a565f2b4bfb1f27</anchor>
+      <arglist>(String[] args)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static Verbosity</type>
@@ -777,8 +868,8 @@
       <type>void</type>
       <name>construct</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a639f4b7ca24afa81ef42e4d1a56e6f7f</anchor>
-      <arglist>(PrintStream out)</arglist>
+      <anchor>a760d31e95676f98cca93cad6ec3b4aca</anchor>
+      <arglist>(PrintStream ps)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
@@ -1030,17 +1121,17 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>AString</type>
+      <type>int</type>
       <name>trimAt</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
-      <anchor>ab20a04234ce610c0dc90105aa62f2242</anchor>
+      <anchor>a7989767cbb2d209f4281205c689f813a</anchor>
       <arglist>(int index, char[] trimChars)</arglist>
     </member>
     <member kind="function">
-      <type>AString</type>
+      <type>int</type>
       <name>trimAt</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
-      <anchor>a34e553302f5d39ec0925f79be6664c1a</anchor>
+      <anchor>a18b0b41a822a49deb5769ce1b2804e17</anchor>
       <arglist>(int index)</arglist>
     </member>
     <member kind="function">
@@ -2143,17 +2234,17 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>AString</type>
+      <type>int</type>
       <name>trimAt</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
-      <anchor>ab20a04234ce610c0dc90105aa62f2242</anchor>
+      <anchor>a7989767cbb2d209f4281205c689f813a</anchor>
       <arglist>(int index, char[] trimChars)</arglist>
     </member>
     <member kind="function">
-      <type>AString</type>
+      <type>int</type>
       <name>trimAt</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
-      <anchor>a34e553302f5d39ec0925f79be6664c1a</anchor>
+      <anchor>a18b0b41a822a49deb5769ce1b2804e17</anchor>
       <arglist>(int index)</arglist>
     </member>
     <member kind="function">
@@ -3126,27 +3217,27 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>com::aworx::lib::config::CommandLinePlugIn</name>
-    <filename>classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html</filename>
-    <base>com::aworx::lib::config::ConfigurationPlugIn</base>
-    <member kind="function">
-      <type></type>
-      <name>CommandLinePlugIn</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html</anchorfile>
-      <anchor>a125ef16aaf52510e0884c82306db8356</anchor>
-      <arglist>(String[] args)</arglist>
-    </member>
+    <name>com::aworx::lib::config::CommandLinePlugin</name>
+    <filename>classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html</filename>
+    <base>com::aworx::lib::config::ConfigurationPlugin</base>
     <member kind="function">
       <type>boolean</type>
-      <name>get</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html</anchorfile>
-      <anchor>a6ce83767b24c6d6f2149a0a71444bb22</anchor>
-      <arglist>(CharSequence category, CharSequence name, AString target)</arglist>
+      <name>load</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html</anchorfile>
+      <anchor>a638b48e94b8e7c1e6c7478365350e8cc</anchor>
+      <arglist>(Variable variable, boolean searchOnly)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setArgs</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html</anchorfile>
+      <anchor>af0a0851c9625bd35a86219607621ebd9</anchor>
+      <arglist>(String[] args)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>String[]</type>
       <name>args</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html</anchorfile>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html</anchorfile>
       <anchor>a7551501f7caf9b087ab3da98fbed0ce9</anchor>
       <arglist></arglist>
     </member>
@@ -3157,6 +3248,13 @@
     <class kind="class">com::aworx::lib::config::Configuration::PluginAndPrio</class>
     <member kind="variable" static="yes">
       <type>static final int</type>
+      <name>PRIO_AUTO_DETECT</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>ae338924437f057dc9cfeca76857eb1e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
       <name>PRIO_CMD_LINE</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
       <anchor>ac1f233d6ee7b092b2ccd53bb12a51911</anchor>
@@ -3164,9 +3262,16 @@
     </member>
     <member kind="variable" static="yes">
       <type>static final int</type>
-      <name>PRIO_ENV_VARS</name>
+      <name>PRIO_DEFAULT</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>ac51f528297704c7c6c1a965d03b8e02f</anchor>
+      <anchor>abdca3e572982b273c6edeb145cd6b92f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>PRIO_ENVIRONMENT</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a89e63a99f338bcbce6a28f9453ef83a1</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -3176,18 +3281,32 @@
       <anchor>a84df1450d5fdbfd98e7bc29bb04957ea</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable">
-      <type>CommandLinePlugIn</type>
-      <name>cmdLineCP</name>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>PRIO_PROTECTED</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>ae53e8f2a8e034448523b58c2415a1afb</anchor>
+      <anchor>acabc9e89fbc407ff2ae93b6537d6450f</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>EnvironmentPlugIn</type>
-      <name>envCP</name>
+      <type>CommandLinePlugin</type>
+      <name>cmdLine</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a3c785efa988e5dbaf9bed5a04dc86767</anchor>
+      <anchor>aa0949c7b0d9e84430dfedcb7cf260053</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>InMemoryPlugin</type>
+      <name>defaultValues</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>acd38e044ddc3f033abe3e69c51963e56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>EnvironmentPlugin</type>
+      <name>environment</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a6e379b90eb011f9df5cac51cf4e6abce</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -3195,6 +3314,34 @@
       <name>numberFormat</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
       <anchor>a0330374313c82399b6dd59c7db2acf58</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>InMemoryPlugin</type>
+      <name>protectedValues</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a95212f1d747815836b0e1ff457b2148b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>char[]</type>
+      <name>substitutionVariableDelimiters</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>ad1ab5e73641980b8737d3b0ec21b6afb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>substitutionVariableEnd</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a7f2779d58e7cae9a4c6794b8187f30b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>substitutionVariableStart</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a8a8fdf4c888794f79130f7549764292e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -3208,50 +3355,22 @@
       <type></type>
       <name>Configuration</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a68005b0337daa4b2abbeee3eceb15d99</anchor>
-      <arglist>(boolean useEnv, String[] args)</arglist>
+      <anchor>a36d123dcc42ef58da853d1eb86f12199</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>synchronized int</type>
-      <name>get</name>
+      <name>fetchFromDefault</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>ab5e7c7327d8354546217c00c3119cfaa</anchor>
-      <arglist>(CharSequence category, CharSequence name, AString target)</arglist>
-    </member>
-    <member kind="function">
-      <type>synchronized int</type>
-      <name>get</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a31103bc4e9e15fc94627355d499415d4</anchor>
-      <arglist>(CharSequence category, CharSequence name, int[] target, AString temp)</arglist>
-    </member>
-    <member kind="function">
-      <type>synchronized int</type>
-      <name>get</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a9e07d203efc2822afdf9aacdaba9e4df</anchor>
-      <arglist>(CharSequence category, CharSequence name, int[] target)</arglist>
-    </member>
-    <member kind="function">
-      <type>synchronized int</type>
-      <name>get</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>ae4062325dba49459fb8cddd35e568755</anchor>
-      <arglist>(CharSequence category, CharSequence name, double[] target, AString temp)</arglist>
-    </member>
-    <member kind="function">
-      <type>synchronized int</type>
-      <name>get</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a280da246de4750bcb1dfc8294eeaead2</anchor>
-      <arglist>(CharSequence category, CharSequence name, double[] target)</arglist>
+      <anchor>a478ec3dca6d28f5178f7cb13e4b7ce78</anchor>
+      <arglist>(ConfigurationPlugin dest)</arglist>
     </member>
     <member kind="function">
       <type>synchronized void</type>
       <name>insertPlugin</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>abc91dfb893771044af6ffc52daa83a23</anchor>
-      <arglist>(ConfigurationPlugIn plugin, int priority)</arglist>
+      <anchor>a881246b2f7a9ee09197dc97ddc9e229d</anchor>
+      <arglist>(ConfigurationPlugin plugin, int priority)</arglist>
     </member>
     <member kind="function">
       <type>boolean</type>
@@ -3261,102 +3380,46 @@
       <arglist>(AString value)</arglist>
     </member>
     <member kind="function">
-      <type>synchronized boolean</type>
-      <name>isTrue</name>
+      <type>synchronized int</type>
+      <name>load</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a0b881c9b6d07d88a226ff8d66a808917</anchor>
-      <arglist>(CharSequence category, CharSequence name, int[] pluginPriority, AString temp)</arglist>
+      <anchor>a2222e544f04bdb04117b1c9b2e4e731f</anchor>
+      <arglist>(Variable variable)</arglist>
     </member>
     <member kind="function">
-      <type>synchronized boolean</type>
-      <name>isTrue</name>
+      <type>int</type>
+      <name>loadImpl</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>ade5ede0492e50120e29d1bfb1cc23290</anchor>
-      <arglist>(CharSequence category, CharSequence name, int[] pluginPriority)</arglist>
-    </member>
-    <member kind="function">
-      <type>synchronized boolean</type>
-      <name>isTrue</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>af3ab3c7c219c98b49f6c2b247eb88c67</anchor>
-      <arglist>(CharSequence category, CharSequence name)</arglist>
-    </member>
-    <member kind="function">
-      <type>synchronized boolean</type>
-      <name>isTrue</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a3a4b1922a0958c1f6a4632432a0c3682</anchor>
-      <arglist>(CharSequence category, CharSequence name, AString temp)</arglist>
+      <anchor>aec45478c6e8d9168a45e8fcba38de649</anchor>
+      <arglist>(Variable variable, boolean substitute)</arglist>
     </member>
     <member kind="function">
       <type>synchronized boolean</type>
       <name>removePlugin</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>af2fcc91fd55d8be38ced00ec8688b3a4</anchor>
-      <arglist>(ConfigurationPlugIn plugin)</arglist>
+      <anchor>a6385670f80b62d9751bfb9fd80afb0d6</anchor>
+      <arglist>(ConfigurationPlugin plugin)</arglist>
+    </member>
+    <member kind="function">
+      <type>synchronized void</type>
+      <name>setCommandLineArgs</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>af871693f15cdcd975499e5b6d4ee7de9</anchor>
+      <arglist>(String[] args)</arglist>
     </member>
     <member kind="function">
       <type>synchronized int</type>
-      <name>save</name>
+      <name>store</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a1b7da16a860588771f2acfcb5f8f2c46</anchor>
-      <arglist>(CharSequence category, CharSequence name, CharSequence value, CharSequence comments, char delim)</arglist>
+      <anchor>a454f981ef44f6c9a569dbe13573fd275</anchor>
+      <arglist>(Variable variable, Object externalizedValue)</arglist>
     </member>
     <member kind="function">
-      <type>synchronized int</type>
-      <name>save</name>
+      <type>int</type>
+      <name>store</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>ac99c3602454d21ddad7086fdfde871d2</anchor>
-      <arglist>(CharSequence category, CharSequence name, CharSequence value, CharSequence comments)</arglist>
-    </member>
-    <member kind="function">
-      <type>synchronized int</type>
-      <name>save</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>afa9ad0e6061b9da5ec9c019a961c5cc5</anchor>
-      <arglist>(CharSequence category, CharSequence name, CharSequence value)</arglist>
-    </member>
-    <member kind="function">
-      <type>synchronized int</type>
-      <name>save</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a25f89962e25f1c5e5a75c74c3ef313a4</anchor>
-      <arglist>(CharSequence category, CharSequence name, int value, CharSequence comments, AString temp)</arglist>
-    </member>
-    <member kind="function">
-      <type>synchronized int</type>
-      <name>save</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a41109db184c3cc33ee0c4a56fd8b6893</anchor>
-      <arglist>(CharSequence category, CharSequence name, int value, CharSequence comments)</arglist>
-    </member>
-    <member kind="function">
-      <type>synchronized int</type>
-      <name>save</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a839b5a7928c663bcda976b649914e7b6</anchor>
-      <arglist>(CharSequence category, CharSequence name, int value)</arglist>
-    </member>
-    <member kind="function">
-      <type>synchronized int</type>
-      <name>save</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>acd1e98808e5018f4947252dd047fa4bc</anchor>
-      <arglist>(CharSequence category, CharSequence name, double value, CharSequence comments, AString temp)</arglist>
-    </member>
-    <member kind="function">
-      <type>synchronized int</type>
-      <name>save</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a53f84c6e5208de1496e16f95f98d98e8</anchor>
-      <arglist>(CharSequence category, CharSequence name, double value, CharSequence comments)</arglist>
-    </member>
-    <member kind="function">
-      <type>synchronized int</type>
-      <name>save</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a09c6e6f12e43831f6b7213a313c6b3e8</anchor>
-      <arglist>(CharSequence category, CharSequence name, double value)</arglist>
+      <anchor>a41a3d08fe694a0e5f72033016696be7a</anchor>
+      <arglist>(Variable variable)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>ArrayList&lt; PluginAndPrio &gt;</type>
@@ -3365,64 +3428,85 @@
       <anchor>a12e29cc98de32e97d6e851d9c7c43d6b</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>tmpConversion</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a7732bc1197cd517b4e03c9e588adc8e9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>tmpReplVarAll</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>ab40aa8182041531c1c702c4f03a298a7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>tmpReplVarCategory</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>ae4978d2aece83d84d44b45083d55dac9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>tmpReplVarName</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a2eb87ae9cf763a496a06302b5aa18ebd</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="class">
-    <name>com::aworx::lib::config::ConfigurationPlugIn</name>
-    <filename>classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</filename>
+    <name>com::aworx::lib::config::ConfigurationPlugin</name>
+    <filename>classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</filename>
     <member kind="variable">
-      <type>Configuration</type>
-      <name>parent</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>afbf0ed2c414e6b277593c2865b12f025</anchor>
+      <type>XTernalizer</type>
+      <name>stringConverter</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</anchorfile>
+      <anchor>a728fd4fd08c7736c49bf19cc2ae92397</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>abstract boolean</type>
-      <name>get</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>a4b8183994599228fed8ed1f74de20e10</anchor>
-      <arglist>(CharSequence category, CharSequence name, AString target)</arglist>
+      <name>load</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</anchorfile>
+      <anchor>afda19bd7d886e5666babdfc09f9d4e1b</anchor>
+      <arglist>(Variable variable, boolean searchOnly)</arglist>
     </member>
     <member kind="function">
       <type>boolean</type>
-      <name>get</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>adc922d1b8546402b6183b9e6ccf17664</anchor>
-      <arglist>(CharSequence category, CharSequence name, int[] target, AString temp)</arglist>
+      <name>load</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</anchorfile>
+      <anchor>af7ee1eb039d8d2fe44667ecf2e2f5db7</anchor>
+      <arglist>(Variable variable)</arglist>
     </member>
     <member kind="function">
       <type>boolean</type>
-      <name>get</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>aa19bd66508311573a892ffffe4d0465c</anchor>
-      <arglist>(CharSequence category, CharSequence name, double[] target, AString temp)</arglist>
+      <name>store</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</anchorfile>
+      <anchor>a9a29bfa1c311919ded7d4fea01094193</anchor>
+      <arglist>(Variable variable)</arglist>
     </member>
     <member kind="function">
       <type>boolean</type>
-      <name>save</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>ad7a3820df6100f1416c634e8289187bb</anchor>
-      <arglist>(CharSequence category, CharSequence name, CharSequence value, CharSequence comments, char delim)</arglist>
+      <name>store</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</anchorfile>
+      <anchor>aaeb4a5795c46a7d33e20001319238d7b</anchor>
+      <arglist>(Variable variable, Object externalizedValue)</arglist>
     </member>
-    <member kind="function">
-      <type>boolean</type>
-      <name>save</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>ae0f855005ed1e901743200c7b127c597</anchor>
-      <arglist>(CharSequence category, CharSequence name, int value, CharSequence comments, AString temp)</arglist>
-    </member>
-    <member kind="function">
-      <type>boolean</type>
-      <name>save</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>afa17f708abd45faaf64ee61cb8f88d4c</anchor>
-      <arglist>(CharSequence category, CharSequence name, double value, CharSequence comments, AString temp)</arglist>
+    <member kind="variable" protection="protected">
+      <type>XTernalizer</type>
+      <name>defaultStringConverter</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</anchorfile>
+      <anchor>a3b754bcc322da1d59d62b19ba50b3a5d</anchor>
+      <arglist></arglist>
     </member>
     <member kind="function" protection="protected">
       <type></type>
-      <name>ConfigurationPlugIn</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>a7be57a5ed92198b336f33405511cc5d4</anchor>
+      <name>ConfigurationPlugin</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</anchorfile>
+      <anchor>a1b50bf18ad3d087799d832b6d15b258e</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -4013,22 +4097,129 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>com::aworx::lib::config::EnvironmentPlugIn</name>
-    <filename>classcom_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html</filename>
-    <base>com::aworx::lib::config::ConfigurationPlugIn</base>
+    <name>com::aworx::lib::config::IniFile::Entry</name>
+    <filename>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html</filename>
+    <base>com::aworx::lib::config::InMemoryPlugin::Entry</base>
+    <member kind="variable">
+      <type>AString</type>
+      <name>rawValue</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html</anchorfile>
+      <anchor>a9705d3494183bb10ad99c8ed0fa91d94</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type></type>
-      <name>EnvironmentPlugIn</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html</anchorfile>
-      <anchor>acbd5e02cd0e7d1fb1263beb7d734fc40</anchor>
+      <name>Entry</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html</anchorfile>
+      <anchor>a30cbcba4f4f99cfeb9315f3f00411ca6</anchor>
+      <arglist>(CharSequence name)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>fromVariable</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html</anchorfile>
+      <anchor>a55ccb89af59f5ff42ddf19c21855bf3b</anchor>
+      <arglist>(InMemoryPlugin parent, Variable variable)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>toVariable</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html</anchorfile>
+      <anchor>a80d7c8b89a3e71d7ba3ab729efb45a96</anchor>
+      <arglist>(InMemoryPlugin parent, Variable variable)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>com::aworx::lib::config::InMemoryPlugin::Entry</name>
+    <filename>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</filename>
+    <member kind="variable">
+      <type>AString</type>
+      <name>comments</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>a61ad1915b74bbe1d88054839516d1873</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>char</type>
+      <name>delim</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>ab56c67e0ed9605b4078e2135f791c4ed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>FormatAttrAlignment</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>a0ef6ae5b80559980ab700d040ea4e1ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>FormatHints</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>a24b16c98e30ceb73c9caa7f955bce255</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>name</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>a854ed5ff2038053c383f709d65e69315</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>ArrayList&lt; AString &gt;</type>
+      <name>values</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>ab147133fc7d90a15ddb781a6572cae68</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Entry</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>a30cbcba4f4f99cfeb9315f3f00411ca6</anchor>
+      <arglist>(CharSequence name)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>fromVariable</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>a55ccb89af59f5ff42ddf19c21855bf3b</anchor>
+      <arglist>(InMemoryPlugin parent, Variable variable)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>toVariable</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>a80d7c8b89a3e71d7ba3ab729efb45a96</anchor>
+      <arglist>(InMemoryPlugin parent, Variable variable)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>com::aworx::lib::config::EnvironmentPlugin</name>
+    <filename>classcom_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html</filename>
+    <base>com::aworx::lib::config::ConfigurationPlugin</base>
+    <member kind="function">
+      <type></type>
+      <name>EnvironmentPlugin</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html</anchorfile>
+      <anchor>a0d616ebe017e9fb0d1e37fbfbd792c0d</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>boolean</type>
-      <name>get</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html</anchorfile>
-      <anchor>a6ce83767b24c6d6f2149a0a71444bb22</anchor>
-      <arglist>(CharSequence category, CharSequence name, AString target)</arglist>
+      <name>load</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html</anchorfile>
+      <anchor>a638b48e94b8e7c1e6c7478365350e8cc</anchor>
+      <arglist>(Variable variable, boolean searchOnly)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>tmpAS</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html</anchorfile>
+      <anchor>a43a6d226488086cf9563b431ccbe5c69</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -4259,15 +4450,15 @@
   <compound kind="class">
     <name>com::aworx::lib::config::IniFile</name>
     <filename>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html</filename>
-    <base>com::aworx::lib::config::ConfigurationPlugIn</base>
+    <base>com::aworx::lib::config::InMemoryPlugin</base>
+    <class kind="class">com::aworx::lib::config::IniFile::Entry</class>
     <class kind="class">com::aworx::lib::config::IniFile::Section</class>
     <class kind="enum">com::aworx::lib::config::IniFile::Status</class>
-    <class kind="class">com::aworx::lib::config::IniFile::Variable</class>
     <member kind="variable" static="yes">
       <type>static String</type>
-      <name>DefaultFileExtension</name>
+      <name>DEFAULT_FILE_EXTENSION</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a2eaa2333f2f0f3ee2b95eb569798ec80</anchor>
+      <anchor>ad271543eeec38150f39bc68b77a381d9</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -4285,13 +4476,6 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>ArrayList&lt; String &gt;</type>
-      <name>escapeSequences</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a1feeea4683a0d9f680f3a719ac07745f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
       <type>AString</type>
       <name>fileComments</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
@@ -4303,6 +4487,27 @@
       <name>fileName</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
       <anchor>ae6372d134a0fe65a56c8fe81f089ae59</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>boolean</type>
+      <name>formatIncludeDelimInAttrAlignment</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
+      <anchor>a4779f421af250ee9b56284da3c922009</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>boolean</type>
+      <name>formatSpaceAfterDelim</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
+      <anchor>aff0be1ff7285434dd264185e1a6c363d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>boolean</type>
+      <name>formatSpaceBeforeDelim</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
+      <anchor>a86e18d0d682de9b645171fe47e19f4f0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -4319,13 +4524,6 @@
       <anchor>adb5fc7d5dfa64923e2e6c62f3b6f3c52</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable">
-      <type>ArrayList&lt; Section &gt;</type>
-      <name>sections</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a3632625e994d88d57553e20143407f7b</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="function">
       <type></type>
       <name>IniFile</name>
@@ -4334,18 +4532,11 @@
       <arglist>(String filePathAndName)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>clear</name>
+      <type></type>
+      <name>IniFile</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>ac8bb3912a3ce86b15842e79d0b421204</anchor>
+      <anchor>aea7ed2d74f0ddb1182cea26dff360606</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>boolean</type>
-      <name>get</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a6ce83767b24c6d6f2149a0a71444bb22</anchor>
-      <arglist>(CharSequence category, CharSequence name, AString target)</arglist>
     </member>
     <member kind="function">
       <type>IniFile.Status</type>
@@ -4355,39 +4546,18 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>boolean</type>
-      <name>save</name>
+      <type>void</type>
+      <name>reset</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>ad7a3820df6100f1416c634e8289187bb</anchor>
-      <arglist>(CharSequence category, CharSequence name, CharSequence value, CharSequence comments, char delim)</arglist>
+      <anchor>ad20897c5c8bd47f5d4005989bead0e55</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>boolean</type>
-      <name>save</name>
+      <name>store</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>af4e8c1fbabeee058917a2ca572ead017</anchor>
-      <arglist>(CharSequence category, CharSequence name, CharSequence value, CharSequence comments)</arglist>
-    </member>
-    <member kind="function">
-      <type>boolean</type>
-      <name>save</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a5b0651720aa805019786770151f358c6</anchor>
-      <arglist>(CharSequence category, CharSequence name, CharSequence value)</arglist>
-    </member>
-    <member kind="function">
-      <type>Section</type>
-      <name>searchOrCreateSection</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a3fcecd3d9d47993a99229c2372bbbcae</anchor>
-      <arglist>(CharSequence name, AString comments)</arglist>
-    </member>
-    <member kind="function">
-      <type>Section</type>
-      <name>searchSection</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a9d3828b743feb8acaf0f1430d8f13bbd</anchor>
-      <arglist>(CharSequence name)</arglist>
+      <anchor>a9a29bfa1c311919ded7d4fea01094193</anchor>
+      <arglist>(Variable variable)</arglist>
     </member>
     <member kind="function">
       <type>IniFile.Status</type>
@@ -4403,19 +4573,26 @@
       <anchor>a389d30df43a408ed82b7c48feb49dc08</anchor>
       <arglist></arglist>
     </member>
-    <member kind="function" protection="protected">
-      <type>int</type>
-      <name>addEscapeSequences</name>
+    <member kind="function" protection="protected" static="yes">
+      <type>static int</type>
+      <name>getAssignmentPos</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a34d7a20270a93dbf64cf19f74d04b9d4</anchor>
-      <arglist>(BufferedWriter os, Substring value, AString temp)</arglist>
+      <anchor>ac45c46393dcc55e9cd449e96c395a26a</anchor>
+      <arglist>(AString value, String alignmentSeparator)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
-      <name>removeEscapeSequences</name>
+      <name>construct</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>aa9dcab43a5fe003feee1626c47c392a6</anchor>
-      <arglist>(Substring value, AString target)</arglist>
+      <anchor>a89c789ea69da32c577b338ccbbada373</anchor>
+      <arglist>(String filePathAndName)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>InMemoryPlugin.Section</type>
+      <name>createSection</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
+      <anchor>a473137aed44f7b1c8407b952f9c3737c</anchor>
+      <arglist>(CharSequence name)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>boolean</type>
@@ -4428,8 +4605,71 @@
       <type>void</type>
       <name>writeComments</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a6d65883ab9b731edb80237a86a6096c6</anchor>
-      <arglist>(BufferedWriter os, AString comments, Tokenizer tok)</arglist>
+      <anchor>acffe7505b6c8590cc884560a11113c7c</anchor>
+      <arglist>(BufferedWriter os, AString comments, Tokenizer tknzr)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>com::aworx::lib::config::InMemoryPlugin</name>
+    <filename>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html</filename>
+    <base>com::aworx::lib::config::ConfigurationPlugin</base>
+    <class kind="class">com::aworx::lib::config::InMemoryPlugin::Entry</class>
+    <class kind="class">com::aworx::lib::config::InMemoryPlugin::Section</class>
+    <member kind="variable">
+      <type>ArrayList&lt; Section &gt;</type>
+      <name>sections</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>a3632625e994d88d57553e20143407f7b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>InMemoryPlugin</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>a7528a6f611e3c203586189de2d03786f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>boolean</type>
+      <name>load</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>a638b48e94b8e7c1e6c7478365350e8cc</anchor>
+      <arglist>(Variable variable, boolean searchOnly)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>ad20897c5c8bd47f5d4005989bead0e55</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Section</type>
+      <name>searchOrCreateSection</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>a3fcecd3d9d47993a99229c2372bbbcae</anchor>
+      <arglist>(CharSequence name, AString comments)</arglist>
+    </member>
+    <member kind="function">
+      <type>Section</type>
+      <name>searchSection</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>a9d3828b743feb8acaf0f1430d8f13bbd</anchor>
+      <arglist>(CharSequence name)</arglist>
+    </member>
+    <member kind="function">
+      <type>boolean</type>
+      <name>store</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>a9a29bfa1c311919ded7d4fea01094193</anchor>
+      <arglist>(Variable variable)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Section</type>
+      <name>createSection</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>a77f273de4db7388fb30c0add63cc3aa7</anchor>
+      <arglist>(CharSequence name)</arglist>
     </member>
   </compound>
   <compound kind="enum">
@@ -4560,6 +4800,13 @@
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
+      <name>getState</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a961b80b60588a8d3e377009a50ff40b6</anchor>
+      <arglist>(AString buf, int flags)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
       <name>If</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
       <anchor>a6946e942d3c54a87f4c79179f00afb4a</anchor>
@@ -4585,13 +4832,6 @@
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
       <anchor>a4eec75ab8f55f6bd0c01fa82832a18de</anchor>
       <arglist>(String domain, Object logable)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>logConfig</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ad5e7f4323a20180ef047731c78421de1</anchor>
-      <arglist>(String domain, Verbosity verbosity, String headLine)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -4942,6 +5182,20 @@
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
       <anchor>a7976f23bef4ef75ab86bcad9a87d692a</anchor>
       <arglist>(String loggerName, Verbosity verbosity)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>state</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ad486233db36ceb232a9ade1a96efe641</anchor>
+      <arglist>(String domain, Verbosity verbosity, String headLine, int flags)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>state</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a228c1893ff61d2959ad9bec5713bf5f8</anchor>
+      <arglist>(String domain, Verbosity verbosity, String headLine)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -5634,9 +5888,9 @@
     <filename>classcom_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</filename>
     <member kind="variable">
       <type>int</type>
-      <name>cntLogCalls</name>
+      <name>logCallsPerDomain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</anchorfile>
-      <anchor>a898aebb032f3bceb8d879e7695f197d0</anchor>
+      <anchor>ad792570e3118aaf3e40e6591b00e5f03</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -6058,16 +6312,86 @@
     <class kind="enum">com::aworx::lox::Lox::DSRType</class>
     <member kind="variable" static="yes">
       <type>static final int</type>
-      <name>PRIO_PROTECTED</name>
+      <name>STATE_INFO_ALL</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>acabc9e89fbc407ff2ae93b6537d6450f</anchor>
+      <anchor>aff285504c7829130ed02be1fdf7a0fcd</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static final int</type>
-      <name>PRIO_SOURCE</name>
+      <name>STATE_INFO_BASIC</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ab246a325c67b7851557d4e75b071ffdb</anchor>
+      <anchor>a44fd56c2138a7b1c4b50568af668f704</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>STATE_INFO_DOMAINS</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>afcfd9897b5b7dd777b2cf91d2451d898</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>STATE_INFO_DSR</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>aca14c01adfffde47682477b0922072fa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>STATE_INFO_INTERNAL_DOMAINS</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a21fb7a492c8f32763adfb8101333e3f2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>STATE_INFO_LOG_DATA</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a0b434e66292ee56dc90c259dbdd1251a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>STATE_INFO_LOGGERS</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>aa1eaad7ce743a8ef7f55985b428078f9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>STATE_INFO_ONCE</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>aeb9a3e33db6cc0dbb240a359f4a7927a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>STATE_INFO_PREFIX_LOGABLES</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a2cd80cdeb6c83a41be129237b11fd0c0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>STATE_INFO_SCOPE_DOMAINS</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ab840df6ad227a2bff52d2fdadcd39714</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>STATE_INFO_THREAD_MAPPINGS</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ac1c9aaa6614d9e80d4d9a1ecd9090033</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>STATE_INFO_VERSION</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a23f3d655dfddcefa43354550233d157f</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -6191,6 +6515,13 @@
     </member>
     <member kind="function">
       <type>void</type>
+      <name>getState</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a7c36befb4c7cff8accbac11ffe5c5b48</anchor>
+      <arglist>(AString buf, int flags)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>If</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>a86b4fca5de0d15c769149d67d74d8bd9</anchor>
@@ -6223,13 +6554,6 @@
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>ae630c66df5c224b773988d8a8d76a892</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>logConfig</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a1a8a9b854d09ded3321e4a7577d6cda2</anchor>
-      <arglist>(String domain, Verbosity verbosity, String headLine)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -6555,6 +6879,20 @@
     </member>
     <member kind="function">
       <type>void</type>
+      <name>state</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ad0811a76c83beede4960c95ab5ca6630</anchor>
+      <arglist>(String domain, Verbosity verbosity, String headLine, int flags)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>state</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>add477cb278a4c98e54e298a3133a73d7</anchor>
+      <arglist>(String domain, Verbosity verbosity, String headLine)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>store</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>a3379a132338bd43fb84bd769dc1fd2c4</anchor>
@@ -6680,6 +7018,13 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>loggerAddedSinceLastDebugState</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ad2a2a02302b985ec2cd6d7760bb4b667</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
       <type>int</type>
       <name>maxDomainPathLength</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
@@ -6765,9 +7110,9 @@
     </member>
     <member kind="variable" protection="protected">
       <type>AString</type>
-      <name>tmpConfigValue</name>
+      <name>tmpComments</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a2313c9e8c9b7afdf186b4331ab7fbbd7</anchor>
+      <anchor>a982a94ba249ae6bc678f130090ac0a1a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -6799,6 +7144,13 @@
       <arglist>(String name, boolean doRegister)</arglist>
     </member>
     <member kind="function" protection="protected">
+      <type>void</type>
+      <name>dumpStateOnLoggerRemoval</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a8801e9bd1ba933633227c2d83339ef14</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>Domain</type>
       <name>evaluateResultDomain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
@@ -6809,8 +7161,8 @@
       <type>void</type>
       <name>getAllVerbosities</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a47d2dd08f0748552ebd6399637223df1</anchor>
-      <arglist>(Logger logger, Domain dom, AString cfgStr, int cfgPriority)</arglist>
+      <anchor>a4b6c46d0aba3036ff8a30fb53ed7c3fd</anchor>
+      <arglist>(Logger logger, Domain dom, Variable cfgResult)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
@@ -6823,8 +7175,8 @@
       <type>void</type>
       <name>getVerbosityFromConfig</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ab8cf66e80845561dcaa3183af626661d</anchor>
-      <arglist>(Logger logger, Domain dom, AString cfgStr, int cfgPriority)</arglist>
+      <anchor>a86c50ec2fa67e97d4116ddd9709f5fcd</anchor>
+      <arglist>(Logger logger, Domain dom, Variable variable)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>boolean</type>
@@ -6842,31 +7194,31 @@
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
-      <name>logConfigCollectPrefixes</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a03444bb7da0a5dede116dc2decd51238</anchor>
-      <arglist>(Domain domain, int indentSpaces, AString target)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>logConfigDomainRecursive</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a12d11e9840b1a4aa1d45d6ad02a7e6ca</anchor>
-      <arglist>(Domain domain, AString buf)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>logConfigDomsWithDiffVerb</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a38a859311f3e383f9e439d81e6eecf69</anchor>
-      <arglist>(Domain domain, int loggerNo, ArrayList&lt; Domain &gt; results)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
       <name>logInternal</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>a41785b58f7f928a11d27ff14a8fa4274</anchor>
       <arglist>(Verbosity verbosity, String subDomain, AString logable)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>logStateCollectPrefixes</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ad0f1eaeabd7bdcf8488a7ac3cc90f575</anchor>
+      <arglist>(Domain domain, int indentSpaces, AString target)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>logStateDomainRecursive</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ae635c042580bb7014c3bfdf8eca15016</anchor>
+      <arglist>(Domain domain, AString buf)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>logStateDomsWithDiffVerb</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a86e5dc8be12a91da7db939c4d79b0038</anchor>
+      <arglist>(Domain domain, int loggerNo, ArrayList&lt; Domain &gt; results)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
@@ -6881,6 +7233,20 @@
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>a6364eebeca102fe86bbf2c4afbd865f1</anchor>
       <arglist>(Object logable, Scope scope, int packageLevel, Thread thread)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>verbositySettingToVariable</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>aaebefa8f600a7080f06b6bdea6ccc11a</anchor>
+      <arglist>(Domain domain, int loggerNo, Variable variable)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>writeVerbositiesOnLoggerRemoval</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a8d6efa998ec2d3223a38d6b3fbcb3c2f</anchor>
+      <arglist>(Logger logger)</arglist>
     </member>
     <member kind="function" protection="package">
       <type>Domain</type>
@@ -7092,31 +7458,31 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String</type>
+      <type>AString</type>
       <name>verbosityError</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>ab6e4166544675a2fed05d47c7b6707f3</anchor>
+      <anchor>a0cdedbc9c86e0861d5339d21b8553ed4</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String</type>
+      <type>AString</type>
       <name>verbosityInfo</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a218a62323db198131078f60ea48fe537</anchor>
+      <anchor>aef3e8f35ddcaa066aca350932146a343</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String</type>
+      <type>AString</type>
       <name>verbosityVerbose</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a9fa3d4ab8021da100c82279eb136ba64</anchor>
+      <anchor>a0c762c85a9178d4dd603514a8f563a9a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String</type>
+      <type>AString</type>
       <name>verbosityWarning</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a8ae1dae497ee2986b38b6f4c51907560</anchor>
+      <anchor>a1f6b37c619e42d94569e48b37afa348e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -7370,19 +7736,26 @@
       <anchor>abc0c9349d06d894de0a9e0d508930cd7</anchor>
       <arglist></arglist>
     </member>
+    <member kind="function" static="yes">
+      <type>static int</type>
+      <name>integerToString</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html</anchorfile>
+      <anchor>ad2d8785215eb51ff2e6f7090eb4745c9</anchor>
+      <arglist>(long value, char[] buffer, int idx, int minDigits, int sizeHint)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static long</type>
+      <name>stringToInteger</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html</anchorfile>
+      <anchor>a6b988aaea24248903a150e5be2ce6146</anchor>
+      <arglist>(char[] buffer, int idx, int maxIdx, int[] newIdx)</arglist>
+    </member>
     <member kind="function">
       <type>int</type>
       <name>floatToString</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html</anchorfile>
       <anchor>a48f68d49384d42b4082f9bb85d84f484</anchor>
       <arglist>(double value, char[] buffer, int idx)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>integerToString</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html</anchorfile>
-      <anchor>a8c3fd6cc00aa023d84590b0936468371</anchor>
-      <arglist>(long value, char[] buffer, int idx, int minDigits, int sizeHint)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -7396,13 +7769,6 @@
       <name>stringToFloat</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html</anchorfile>
       <anchor>ab9e080d7eeac33bb05c504af04de9105</anchor>
-      <arglist>(char[] buffer, int idx, int maxIdx, int[] newIdx)</arglist>
-    </member>
-    <member kind="function">
-      <type>long</type>
-      <name>stringToInteger</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html</anchorfile>
-      <anchor>a1fba8070e3929b7e5f9073289f663474</anchor>
       <arglist>(char[] buffer, int idx, int maxIdx, int[] newIdx)</arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
@@ -7675,10 +8041,10 @@
     <name>com::aworx::lib::config::Configuration::PluginAndPrio</name>
     <filename>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PluginAndPrio.html</filename>
     <member kind="variable">
-      <type>ConfigurationPlugIn</type>
-      <name>plugIn</name>
+      <type>ConfigurationPlugin</type>
+      <name>plugin</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PluginAndPrio.html</anchorfile>
-      <anchor>a9580667a91e1962d6169a8416f0580b8</anchor>
+      <anchor>a88efadd961a8e90a3a1550f4994526cb</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -7704,6 +8070,24 @@
       <name>TO_DESCENDANTS</name>
       <anchorfile>enumcom_1_1aworx_1_1lib_1_1enums_1_1Propagation.html</anchorfile>
       <anchor>a28a2607444247b781afbecd75fee9e93</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="enum">
+    <name>com::aworx::lib::enums::Reach</name>
+    <filename>enumcom_1_1aworx_1_1lib_1_1enums_1_1Reach.html</filename>
+    <member kind="variable">
+      <type></type>
+      <name>GLOBAL</name>
+      <anchorfile>enumcom_1_1aworx_1_1lib_1_1enums_1_1Reach.html</anchorfile>
+      <anchor>a78d63915b0cc8b7545ac7e84c538896f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type></type>
+      <name>LOCAL</name>
+      <anchorfile>enumcom_1_1aworx_1_1lib_1_1enums_1_1Reach.html</anchorfile>
+      <anchor>ad9a9110964a4d3537dccd0031a2509a9</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -7962,8 +8346,8 @@
       <type>AString</type>
       <name>storeKeyToScope</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
-      <anchor>a7da3fb64fbc0aa3841ec2139fb52d539</anchor>
-      <arglist>(PathMap map)</arglist>
+      <anchor>a0e9467780271cc60d9c9c2353441bcf3</anchor>
+      <arglist>(PathMap&lt;?&gt; map)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>AString</type>
@@ -7984,62 +8368,6 @@
     <name>com::aworx::lox::core::ScopeInfo</name>
     <filename>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</filename>
     <member kind="variable">
-      <type>AString</type>
-      <name>className</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
-      <anchor>a7cc5b098bd04225b9970d6fa403f9415</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>AString</type>
-      <name>fileName</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
-      <anchor>ae6372d134a0fe65a56c8fe81f089ae59</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>lineNumber</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
-      <anchor>a44bf2f6ee91a35522c07c779325d3ef0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>AString</type>
-      <name>methodName</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
-      <anchor>adb209f246d40ce3b523787fc7776c0f3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>AString</type>
-      <name>packageName</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
-      <anchor>a436e0978ded8aef84f28e7fa3044b3b1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>Thread</type>
-      <name>thread</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
-      <anchor>ac99b75d10f465c1160242dea4544069a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>long</type>
-      <name>threadID</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
-      <anchor>a60a653746c2fc588e8da8d1a4b444bb5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>AString</type>
-      <name>threadName</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
-      <anchor>af24ba4a8a819b679d1ac18505b2fe8a0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
       <type>Ticks</type>
       <name>timeStamp</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
@@ -8054,10 +8382,66 @@
       <arglist>(String name, HashMap&lt; Long, String &gt; threadDictionary, Vector&lt; String &gt; omittablePackagePrefixes)</arglist>
     </member>
     <member kind="function">
+      <type>AString</type>
+      <name>getClassName</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a1154af71878b1f775317675ab161b0dd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>getFileName</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>ad2bd996cd3e3945bb82b0726ffa555f8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>getLineNumber</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a2d8446a629219728c74f6f70814fb9f6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
       <type>String</type>
       <name>getLoxName</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
       <anchor>afecca9bb92ebd7fc350c17c1945a7414</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>getMethodName</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a40de985f84a499f9b25fa3cf7302fd0f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>getPackageName</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a832c3f6dceab23eab5ba15beb4eb81cd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Thread</type>
+      <name>getThread</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a8344905ebc11fbe76760f3102dc25a4f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>long</type>
+      <name>getThreadID</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a73e3957c82ee0493cf6dd4bdd0eb3fa9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>getThreadName</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>ac8283fa4efb1329010daea7f554e12ff</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -8067,26 +8451,89 @@
       <anchor>a809aae882275f23217600faf8d4720b0</anchor>
       <arglist>(Thread thread)</arglist>
     </member>
-    <member kind="variable" protection="protected">
+    <member kind="variable" protection="private">
+      <type>AString</type>
+      <name>className</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a7cc5b098bd04225b9970d6fa403f9415</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>AString</type>
+      <name>fileName</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>ae6372d134a0fe65a56c8fe81f089ae59</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>boolean</type>
+      <name>lazyStackTrace</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>afef8605e4755b09825cd2004064aa07d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>lineNumber</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a44bf2f6ee91a35522c07c779325d3ef0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
       <type>String</type>
       <name>loxName</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
       <anchor>ac67ac13e1750351191b65faaa5791a00</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable" protection="protected">
+    <member kind="variable" protection="private">
+      <type>AString</type>
+      <name>methodName</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>adb209f246d40ce3b523787fc7776c0f3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
       <type>Vector&lt; String &gt;</type>
       <name>omittablePackagePrefixes</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
       <anchor>a066140f6d2db19be93bc0e9dff39c385</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable" protection="protected">
+    <member kind="variable" protection="private">
+      <type>AString</type>
+      <name>packageName</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a436e0978ded8aef84f28e7fa3044b3b1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Thread</type>
+      <name>thread</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>ac99b75d10f465c1160242dea4544069a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
       <type>HashMap&lt; Long, String &gt;</type>
       <name>threadDictionary</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
       <anchor>a28aec8792ccd6e67dd49f06d57c8a8bd</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>AString</type>
+      <name>threadName</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>af24ba4a8a819b679d1ac18505b2fe8a0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>updateStackTrace</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>ae58d18e0f34580f67c1cba1f816942f8</anchor>
+      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -9093,27 +9540,7 @@
   <compound kind="class">
     <name>com::aworx::lib::config::IniFile::Section</name>
     <filename>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</filename>
-    <member kind="variable">
-      <type>AString</type>
-      <name>comments</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</anchorfile>
-      <anchor>a61ad1915b74bbe1d88054839516d1873</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>AString</type>
-      <name>name</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</anchorfile>
-      <anchor>a854ed5ff2038053c383f709d65e69315</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>ArrayList&lt; Variable &gt;</type>
-      <name>variables</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</anchorfile>
-      <anchor>a62b7af834a1ef04afe3d5a85f1880bcc</anchor>
-      <arglist></arglist>
-    </member>
+    <base>com::aworx::lib::config::InMemoryPlugin::Section</base>
     <member kind="function">
       <type></type>
       <name>Section</name>
@@ -9121,26 +9548,79 @@
       <anchor>a9fb550de131a341941f6ef720a0c1984</anchor>
       <arglist>(CharSequence name)</arglist>
     </member>
-    <member kind="function">
-      <type>Variable</type>
-      <name>get</name>
+    <member kind="function" protection="protected">
+      <type>InMemoryPlugin.Entry</type>
+      <name>createEntry</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</anchorfile>
-      <anchor>ab0a50306d7e81c850a5e97c86b857224</anchor>
+      <anchor>a63479174c55bbb397865ce7fe77b2615</anchor>
+      <arglist>(@SuppressWarnings(&quot;hiding&quot;) CharSequence name)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>com::aworx::lib::config::InMemoryPlugin::Section</name>
+    <filename>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</filename>
+    <member kind="variable">
+      <type>AString</type>
+      <name>comments</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>a61ad1915b74bbe1d88054839516d1873</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>ArrayList&lt; Entry &gt;</type>
+      <name>entries</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>af8e3aafea9f106ab4aad6bf5786b63dc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>name</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>a854ed5ff2038053c383f709d65e69315</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Section</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>a9fb550de131a341941f6ef720a0c1984</anchor>
       <arglist>(CharSequence name)</arglist>
     </member>
     <member kind="function">
-      <type>Variable</type>
-      <name>insert</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</anchorfile>
-      <anchor>ab7b9a5e76a83cc99ab50e15f16fb96ba</anchor>
-      <arglist>(CharSequence name, CharSequence value, AString comments)</arglist>
+      <type>boolean</type>
+      <name>deleteEntry</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>a60f37dad119fb8359475ec92507976d9</anchor>
+      <arglist>(CharSequence name)</arglist>
     </member>
     <member kind="function">
+      <type>Entry</type>
+      <name>getEntry</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>ae76d011027a74c195d74e6bfb774fd0f</anchor>
+      <arglist>(CharSequence name, boolean create)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Tokenizer</type>
+      <name>tmpTknzr</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>a7dfb1c6c1142b81c139631ac9151ea8e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
       <type>Variable</type>
-      <name>insert</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</anchorfile>
-      <anchor>a2a1e5e7a9c73b17c5cb18a974aa8f5ed</anchor>
-      <arglist>(CharSequence name, CharSequence value)</arglist>
+      <name>tmpVar</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>acd69e01990e8d124b4f119d948783d5a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Entry</type>
+      <name>createEntry</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>aa000d3bfd43a69105548806bcabeeb63</anchor>
+      <arglist>(@SuppressWarnings(&quot;hiding&quot;) CharSequence name)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -9528,8 +10008,15 @@
       <type>boolean</type>
       <name>consume</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>ac9415d22f0c051c99a2ecce899e2ed12</anchor>
-      <arglist>(char consumable, Whitespaces trimBeforeConsume)</arglist>
+      <anchor>a7ea5b98549973f271339e7c26bfbcaf7</anchor>
+      <arglist>(char consumable, Case sensitivity, Whitespaces trimBeforeConsume)</arglist>
+    </member>
+    <member kind="function">
+      <type>boolean</type>
+      <name>consume</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>ab3809963ac17d9e8f127c35219e30be7</anchor>
+      <arglist>(char consumable, Case sensitivity)</arglist>
     </member>
     <member kind="function">
       <type>boolean</type>
@@ -9542,8 +10029,15 @@
       <type>boolean</type>
       <name>consumeFromEnd</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a617715e55e809041f492f1b60858375e</anchor>
-      <arglist>(char consumable, Whitespaces trimBeforeConsume)</arglist>
+      <anchor>a30ea2220185940c16ca1003023affe52</anchor>
+      <arglist>(char consumable, Case sensitivity, Whitespaces trimBeforeConsume)</arglist>
+    </member>
+    <member kind="function">
+      <type>boolean</type>
+      <name>consumeFromEnd</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a981ec1ce1d0876aeae9f37aea18bc1e3</anchor>
+      <arglist>(char consumable, Case sensitivity)</arglist>
     </member>
     <member kind="function">
       <type>boolean</type>
@@ -9556,29 +10050,43 @@
       <type>boolean</type>
       <name>consume</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>aa5b8e001936c4036ff6883c1dfcb6ab4</anchor>
-      <arglist>(String consumable, Whitespaces trimBeforeConsume)</arglist>
+      <anchor>a5eca8bc5f0ab85340de18a8070e9e778</anchor>
+      <arglist>(CharSequence consumable, Case sensitivity, Whitespaces trimBeforeConsume)</arglist>
     </member>
     <member kind="function">
       <type>boolean</type>
       <name>consume</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>ae8fad58801b54ed23be898de02d2b6d8</anchor>
-      <arglist>(String consumable)</arglist>
+      <anchor>a74b278fbf8eb2f76831f643eb77985ab</anchor>
+      <arglist>(CharSequence consumable, Case sensitivity)</arglist>
+    </member>
+    <member kind="function">
+      <type>boolean</type>
+      <name>consume</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>adccc0fd3ddb6818ada905853800cd28c</anchor>
+      <arglist>(CharSequence consumable)</arglist>
     </member>
     <member kind="function">
       <type>boolean</type>
       <name>consumeFromEnd</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a5ffdb31a8fd9043456f6cb415b9b35f9</anchor>
-      <arglist>(String consumable, Whitespaces trimBeforeConsume)</arglist>
+      <anchor>adf01ad1794846048a777703bba87d1ec</anchor>
+      <arglist>(CharSequence consumable, Case sensitivity, Whitespaces trimBeforeConsume)</arglist>
     </member>
     <member kind="function">
       <type>boolean</type>
       <name>consumeFromEnd</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a73d7abe933760d2cbf08445a361b6ea6</anchor>
-      <arglist>(String consumable)</arglist>
+      <anchor>acf6346a9c38c4e431783200c48ee3235</anchor>
+      <arglist>(CharSequence consumable, Case sensitivity)</arglist>
+    </member>
+    <member kind="function">
+      <type>boolean</type>
+      <name>consumeFromEnd</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a458d63c54a17b6a9e5c21400022a9e30</anchor>
+      <arglist>(CharSequence consumable)</arglist>
     </member>
     <member kind="function">
       <type>Substring</type>
@@ -9875,31 +10383,31 @@
       <arglist>(char[] needles, Inclusion inclusion)</arglist>
     </member>
     <member kind="function">
-      <type>boolean</type>
+      <type>Substring</type>
       <name>trimStart</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a36b6ac927581d865474ef1f6c237a093</anchor>
+      <anchor>aa417c10a7a4f7940602daa71ef78d342</anchor>
       <arglist>(char[] whiteSpaces)</arglist>
     </member>
     <member kind="function">
-      <type>boolean</type>
+      <type>Substring</type>
       <name>trimStart</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a90f43509db8fc6e3fbaeb63b2b9a0346</anchor>
+      <anchor>aa7ace83809c76a0d9a49d529d0612bfd</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>boolean</type>
+      <type>Substring</type>
       <name>trimEnd</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a40eda3fe23856f9fc427d31930cc8569</anchor>
+      <anchor>a55f379b6a82ba3dccd3fdb436cb06388</anchor>
       <arglist>(char[] whiteSpaces)</arglist>
     </member>
     <member kind="function">
-      <type>boolean</type>
+      <type>Substring</type>
       <name>trimEnd</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>ae0daafaa956d5847095a9df872a78188</anchor>
+      <anchor>af862174e7742c4846e45519b5edaf168</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -10013,6 +10521,13 @@
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
       <anchor>a49ac9531628120dc6c0c6d29f25c2cb6</anchor>
       <arglist>(int beginIndex, int endIndex)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>hashCode</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a077e18fe97323c7194e2665ffc766399</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>int[]</type>
@@ -10298,8 +10813,15 @@
       <type>boolean</type>
       <name>consume</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>ac9415d22f0c051c99a2ecce899e2ed12</anchor>
-      <arglist>(char consumable, Whitespaces trimBeforeConsume)</arglist>
+      <anchor>a7ea5b98549973f271339e7c26bfbcaf7</anchor>
+      <arglist>(char consumable, Case sensitivity, Whitespaces trimBeforeConsume)</arglist>
+    </member>
+    <member kind="function">
+      <type>boolean</type>
+      <name>consume</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>ab3809963ac17d9e8f127c35219e30be7</anchor>
+      <arglist>(char consumable, Case sensitivity)</arglist>
     </member>
     <member kind="function">
       <type>boolean</type>
@@ -10312,8 +10834,15 @@
       <type>boolean</type>
       <name>consumeFromEnd</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a617715e55e809041f492f1b60858375e</anchor>
-      <arglist>(char consumable, Whitespaces trimBeforeConsume)</arglist>
+      <anchor>a30ea2220185940c16ca1003023affe52</anchor>
+      <arglist>(char consumable, Case sensitivity, Whitespaces trimBeforeConsume)</arglist>
+    </member>
+    <member kind="function">
+      <type>boolean</type>
+      <name>consumeFromEnd</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a981ec1ce1d0876aeae9f37aea18bc1e3</anchor>
+      <arglist>(char consumable, Case sensitivity)</arglist>
     </member>
     <member kind="function">
       <type>boolean</type>
@@ -10326,29 +10855,43 @@
       <type>boolean</type>
       <name>consume</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>aa5b8e001936c4036ff6883c1dfcb6ab4</anchor>
-      <arglist>(String consumable, Whitespaces trimBeforeConsume)</arglist>
+      <anchor>a5eca8bc5f0ab85340de18a8070e9e778</anchor>
+      <arglist>(CharSequence consumable, Case sensitivity, Whitespaces trimBeforeConsume)</arglist>
     </member>
     <member kind="function">
       <type>boolean</type>
       <name>consume</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>ae8fad58801b54ed23be898de02d2b6d8</anchor>
-      <arglist>(String consumable)</arglist>
+      <anchor>a74b278fbf8eb2f76831f643eb77985ab</anchor>
+      <arglist>(CharSequence consumable, Case sensitivity)</arglist>
+    </member>
+    <member kind="function">
+      <type>boolean</type>
+      <name>consume</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>adccc0fd3ddb6818ada905853800cd28c</anchor>
+      <arglist>(CharSequence consumable)</arglist>
     </member>
     <member kind="function">
       <type>boolean</type>
       <name>consumeFromEnd</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a5ffdb31a8fd9043456f6cb415b9b35f9</anchor>
-      <arglist>(String consumable, Whitespaces trimBeforeConsume)</arglist>
+      <anchor>adf01ad1794846048a777703bba87d1ec</anchor>
+      <arglist>(CharSequence consumable, Case sensitivity, Whitespaces trimBeforeConsume)</arglist>
     </member>
     <member kind="function">
       <type>boolean</type>
       <name>consumeFromEnd</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a73d7abe933760d2cbf08445a361b6ea6</anchor>
-      <arglist>(String consumable)</arglist>
+      <anchor>acf6346a9c38c4e431783200c48ee3235</anchor>
+      <arglist>(CharSequence consumable, Case sensitivity)</arglist>
+    </member>
+    <member kind="function">
+      <type>boolean</type>
+      <name>consumeFromEnd</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a458d63c54a17b6a9e5c21400022a9e30</anchor>
+      <arglist>(CharSequence consumable)</arglist>
     </member>
     <member kind="function">
       <type>Substring</type>
@@ -10645,31 +11188,31 @@
       <arglist>(char[] needles, Inclusion inclusion)</arglist>
     </member>
     <member kind="function">
-      <type>boolean</type>
+      <type>Substring</type>
       <name>trimStart</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a36b6ac927581d865474ef1f6c237a093</anchor>
+      <anchor>aa417c10a7a4f7940602daa71ef78d342</anchor>
       <arglist>(char[] whiteSpaces)</arglist>
     </member>
     <member kind="function">
-      <type>boolean</type>
+      <type>Substring</type>
       <name>trimStart</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a90f43509db8fc6e3fbaeb63b2b9a0346</anchor>
+      <anchor>aa7ace83809c76a0d9a49d529d0612bfd</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>boolean</type>
+      <type>Substring</type>
       <name>trimEnd</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a40eda3fe23856f9fc427d31930cc8569</anchor>
+      <anchor>a55f379b6a82ba3dccd3fdb436cb06388</anchor>
       <arglist>(char[] whiteSpaces)</arglist>
     </member>
     <member kind="function">
-      <type>boolean</type>
+      <type>Substring</type>
       <name>trimEnd</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>ae0daafaa956d5847095a9df872a78188</anchor>
+      <anchor>af862174e7742c4846e45519b5edaf168</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -10783,6 +11326,13 @@
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
       <anchor>a49ac9531628120dc6c0c6d29f25c2cb6</anchor>
       <arglist>(int beginIndex, int endIndex)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>hashCode</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a077e18fe97323c7194e2665ffc766399</anchor>
+      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="enum">
@@ -11986,35 +12536,459 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>com::aworx::lib::config::IniFile::Variable</name>
-    <filename>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html</filename>
+    <name>com::aworx::lib::config::Variable</name>
+    <filename>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</filename>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>FORMAT_HINT_CUSTOM</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a85a99cc1daf524bfadaad8ef24ec52da</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>FORMAT_HINT_MULTILINE</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>aadcd7fab4e54c81adae848c5fd1cfaf7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>FORMAT_HINT_NO_DELIM_SPACES</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>abbbeda7a2a0f40129da6c536fcc397fb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>FORMAT_HINT_NONE</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>aef80d3ebf12615888f31e5b960401bbe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>category</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>af6f530773799481b0dc99e709a99a5df</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="variable">
       <type>AString</type>
       <name>comments</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html</anchorfile>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
       <anchor>a61ad1915b74bbe1d88054839516d1873</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Configuration</type>
+      <name>config</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a0910717551963df697d192900a7f4f59</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>defaultValue</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a14c64917d8c15bbb3ed70696b4c2278e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>char</type>
       <name>delim</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html</anchorfile>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
       <anchor>ab56c67e0ed9605b4078e2135f791c4ed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>formatAttrAlignment</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ab87ea34b9a16a9261e2f318a71a0d16e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>formatHints</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a248b892ccc1b85f5e6df69e9c99790c1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>fullname</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a16f536647e1da3e967f40e8c83576a1f</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>AString</type>
       <name>name</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html</anchorfile>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
       <anchor>a854ed5ff2038053c383f709d65e69315</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>AString</type>
-      <name>value</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html</anchorfile>
-      <anchor>a785249a8705cb172767579128d3e6943</anchor>
+      <type>int</type>
+      <name>priority</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>acec9ce2df15222151ad66fcb1d74eb9f</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Variable</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ad57a167cb505659893c09faa703a8ec5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Variable</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a9401e1c1c30438ff260ec0625fc1c280</anchor>
+      <arglist>(VariableDefinition definition, Object...replacements)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Variable</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a752082bfea0d9b49fcd694a17911835f</anchor>
+      <arglist>(Variable variable)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Variable</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a2d95040dd89abf1b0f7ad8b71abd5618</anchor>
+      <arglist>(CharSequence category, CharSequence name, char delim, CharSequence comments)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Variable</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a990473e68874b9312ea164ed8c8805c9</anchor>
+      <arglist>(CharSequence category, CharSequence name, char delim)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Variable</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a4f1af0f277a885f7fd7c0502c1419f6f</anchor>
+      <arglist>(CharSequence category, CharSequence name)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>addBoolean</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a4475d15b9aeb1003ed5bdeda7fa40375</anchor>
+      <arglist>(boolean value)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>addFloat</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a3f0a1be2afa66cf70a38cc85c0a676b5</anchor>
+      <arglist>(double value)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>addInteger</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a6761f2bba0b56f69fd87adc6e43494c8</anchor>
+      <arglist>(long value)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>addString</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a5f25c81db6f596b45ed781c3fdc2c7b3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>addString</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ace30822f7dcb9f914b4148c840f40b45</anchor>
+      <arglist>(Object value)</arglist>
+    </member>
+    <member kind="function">
+      <type>Variable</type>
+      <name>clearValues</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>abbcb723f7f5b313e0243ec62137cb24c</anchor>
+      <arglist>(int startIdx)</arglist>
+    </member>
+    <member kind="function">
+      <type>Variable</type>
+      <name>clearValues</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a19fb8fa788505191a2f38bf44812def4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Variable</type>
+      <name>define</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a506643e53d67f6d925a96091ccd11a8f</anchor>
+      <arglist>(VariableDefinition definition, Object...replacements)</arglist>
+    </member>
+    <member kind="function">
+      <type>Variable</type>
+      <name>define</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ac979dc117b67dfe89e2394af93675dc3</anchor>
+      <arglist>(CharSequence category, CharSequence name, char delim, CharSequence comments)</arglist>
+    </member>
+    <member kind="function">
+      <type>Variable</type>
+      <name>define</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a3762b60e2c7deab71f48a9c61e2903d2</anchor>
+      <arglist>(Variable variable)</arglist>
+    </member>
+    <member kind="function">
+      <type>Variable</type>
+      <name>define</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a209534e8f783050aae476fe976bbc327</anchor>
+      <arglist>(CharSequence category, CharSequence name, char delim)</arglist>
+    </member>
+    <member kind="function">
+      <type>Variable</type>
+      <name>define</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a4fda5e4d57bfdd133a293917b1f3bc5c</anchor>
+      <arglist>(CharSequence category, CharSequence name)</arglist>
+    </member>
+    <member kind="function">
+      <type>boolean</type>
+      <name>getAttribute</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a47beaaf988e1edc918640dd8b9f5342b</anchor>
+      <arglist>(String attrName, Substring result)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>getDouble</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a6ef0fa75fed4f4cb087d25dfdf1e572d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>getFloat</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a4fa7f982c4f04e6e56fbeac899efc4ab</anchor>
+      <arglist>(int idx)</arglist>
+    </member>
+    <member kind="function">
+      <type>long</type>
+      <name>getInteger</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>af495e2bc25687408e6a8965db57b02e9</anchor>
+      <arglist>(int idx)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>getInteger</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a1beca5011e3c9de56618c06ef575b1e2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>getString</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a7ed7993d80f56e26251114655ca4fc81</anchor>
+      <arglist>(int idx)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>getString</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>acdb2f92104eff219c9f1900f1b365f0e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>boolean</type>
+      <name>isTrue</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a7e97cd8a22f25b55419dbdbc60e9b791</anchor>
+      <arglist>(int idx)</arglist>
+    </member>
+    <member kind="function">
+      <type>boolean</type>
+      <name>isTrue</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ab95f6bb9483f6d88a71ca45985ae10d6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>load</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ab223e99bd1bae1986af774532abb06c9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>loadFromString</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>aba30e6332602cc0a9e654f4a87b11ab0</anchor>
+      <arglist>(Object externalizedValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>protect</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a98ac4bb88ba456f3a492c7dfbd299364</anchor>
+      <arglist>(Object externalizedValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>protect</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ac333eae6437cfe4c54fa3d80eb44a7ac</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ReplaceValue</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>afdac9f21277e56873549df5f6fecacd6</anchor>
+      <arglist>(int idx, Variable replVariable)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>size</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>af4b57d21919c42d55af03391f91a1c08</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>store</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a726077123e0956b4ea50be806c48bb69</anchor>
+      <arglist>(Object externalizedValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>store</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>aa3aa260f54c773dfa161df2d633bd23e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>storeDefault</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a6048c721952f08afa96982d63b4b13e3</anchor>
+      <arglist>(Object externalizedValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>storeDefault</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a9f100f55267180681b79fb08050cddc5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>qtyValues</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ab7456aa10da95e6821c3f6499edb9ddd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ArrayList&lt; AString &gt;</type>
+      <name>values</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ab147133fc7d90a15ddb781a6572cae68</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>clear</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ac8bb3912a3ce86b15842e79d0b421204</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="package">
+      <type>boolean</type>
+      <name>getAttribute</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>af9271928e3d9733fbe9daca859eb1840</anchor>
+      <arglist>(String attrName, Substring result, char attrDelim)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>com::aworx::lib::config::VariableDefinition</name>
+    <filename>classcom_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html</filename>
+    <member kind="variable">
+      <type>String</type>
+      <name>category</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>a536550816628993ec6969fd80fadf522</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>categoryFallback</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>ac6bc20f7af2bb7431c80cbe35f4ba90a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>comments</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>a446e9faba60d9d2e04048648a1057eb9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>defaultValue</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>a8a7009d98eadb866597cb3f57254b8a3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>char</type>
+      <name>delim</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>ab56c67e0ed9605b4078e2135f791c4ed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>formatAttrAlignment</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>ab87ea34b9a16a9261e2f318a71a0d16e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>formatHints</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>a248b892ccc1b85f5e6df69e9c99790c1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>name</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>a9a2326f35466e54c36c070829245c557</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>VariableDefinition</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>a57558f1c1b4c957aa4b3205f46900884</anchor>
+      <arglist>(AString categoryFallback, String category, String name, String defaultValue, char delim, String formatAttrAlignment, int formatHints, String comments)</arglist>
     </member>
   </compound>
   <compound kind="enum">
@@ -12074,6 +13048,52 @@
       <arglist></arglist>
     </member>
   </compound>
+  <compound kind="class">
+    <name>com::aworx::lib::config::XTernalizer</name>
+    <filename>classcom_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>externalizeValue</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html</anchorfile>
+      <anchor>a5e8398648cf29d4690323b2e91941a5a</anchor>
+      <arglist>(Object src, AString dest, char delim)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>internalizeValue</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html</anchorfile>
+      <anchor>a48e7384815d462ea3b8a380cc3432b92</anchor>
+      <arglist>(Substring src, AString dest)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>loadFromString</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html</anchorfile>
+      <anchor>ac01bd465bf154b9d16b016c56ab5d7b0</anchor>
+      <arglist>(Variable variable, Object src)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>tmpAS</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html</anchorfile>
+      <anchor>a43a6d226488086cf9563b431ccbe5c69</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>tmpSubs</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html</anchorfile>
+      <anchor>ae6dfbe5253596d92a6fe86bdad9b517d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>tmpSubs2</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html</anchorfile>
+      <anchor>a0cc5871949c3ec3eb9657173b2f8b8db</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
   <compound kind="namespace">
     <name>com::aworx</name>
     <filename>namespacecom_1_1aworx.html</filename>
@@ -12098,11 +13118,16 @@
   <compound kind="namespace">
     <name>com::aworx::lib::config</name>
     <filename>namespacecom_1_1aworx_1_1lib_1_1config.html</filename>
-    <class kind="class">com::aworx::lib::config::CommandLinePlugIn</class>
+    <class kind="class">com::aworx::lib::config::CommandLinePlugin</class>
     <class kind="class">com::aworx::lib::config::Configuration</class>
-    <class kind="class">com::aworx::lib::config::ConfigurationPlugIn</class>
-    <class kind="class">com::aworx::lib::config::EnvironmentPlugIn</class>
+    <class kind="class">com::aworx::lib::config::ConfigurationPlugin</class>
+    <class kind="class">com::aworx::lib::config::EnvironmentPlugin</class>
     <class kind="class">com::aworx::lib::config::IniFile</class>
+    <class kind="class">com::aworx::lib::config::InMemoryPlugin</class>
+    <class kind="class">com::aworx::lib::config::Variable</class>
+    <class kind="class">com::aworx::lib::config::VariableDefinition</class>
+    <class kind="class">com::aworx::lib::config::XTernalizer</class>
+    <docanchor file="namespacecom_1_1aworx_1_1lib_1_1config">java_alib_namespace_config_substitution</docanchor>
   </compound>
   <compound kind="namespace">
     <name>com::aworx::lib::containers</name>
@@ -12121,6 +13146,7 @@
     <class kind="enum">com::aworx::lib::enums::LockMode</class>
     <class kind="enum">com::aworx::lib::enums::Phase</class>
     <class kind="enum">com::aworx::lib::enums::Propagation</class>
+    <class kind="enum">com::aworx::lib::enums::Reach</class>
     <class kind="enum">com::aworx::lib::enums::Safeness</class>
     <class kind="enum">com::aworx::lib::enums::Switch</class>
     <class kind="enum">com::aworx::lib::enums::Whitespaces</class>

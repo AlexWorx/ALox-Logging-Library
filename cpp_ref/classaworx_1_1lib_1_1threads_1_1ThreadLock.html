@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 2</span>
+   &#160;<span id="projectnumber">V. 1607 R. 0</span>
    </div>
   </td>
  </tr>
@@ -307,6 +307,8 @@ Protected Fields</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> <a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html">Thread</a> which invokes this method gets registered as the current owner of this object, until the same thread releases the ownership invoking <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c">Release</a>. In the case that this object is already owned by another thread, the invoking thread is suspended until ownership can be gained. Multiple (nested) calls to this method are counted and the object is only released when the same number of <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c">Release()</a> calls have been made.</p>
+<dl class="section note"><dt>Note</dt><dd>In the debug-compilation of an application, this method accepts the parameters, providing informatin about the caller. In the releae version these paramters do not exist. Therefore use macro <a class="el" href="group__GrpALibMacros.html#gac17f8e410ff33bbb690c0608d12ba5d4">ALIB_DBG_SRC_INFO_PARAMS</a> to provide the paramters: <pre class="fragment">   sample.Acquire( ALIB_DBG_SRC_INFO_PARAMS );
+</pre></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">file</td><td>Caller information. Available only in debug compilations. </td></tr>
@@ -566,7 +568,7 @@ Protected Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Limit of recursions. If limit is reached or a multiple of it, an error is is passed to <a class="el" href="classaworx_1_1lib_1_1ReportWriter.html">ReportWriter</a>. Defaults is 10. </p>
+<p>Limit of recursions. If limit is reached or a multiple of it, an error is is passed to <a class="el" href="classaworx_1_1lib_1_1ReportWriter.html">ReportWriter</a>. Defaults is <code>10</code> in case of recursive instances, to <code>1</code> otherwise. Available only in debug versions of ALib. </p>
 
 </div>
 </div>
@@ -591,7 +593,7 @@ Protected Fields</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 20 2016 10:57:53 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 23 2016 23:18:45 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

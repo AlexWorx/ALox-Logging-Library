@@ -5,7 +5,7 @@
   <filterSection>
     <filterAttribute>doxygen</filterAttribute>
     <toc>
-      <section title="ALox V. 1604 R. 2" ref="index.html">
+      <section title="ALox V. 1607 R. 0" ref="index.html">
         <section title="ALox Main Page" ref="index.html" />
         <section title="FAQ" ref="faq.html" />
         <section title="Manual" ref="manual.html">
@@ -31,10 +31,11 @@
       <keyword name="09 - Multi-Threaded Processes" id="09 - Multi-Threaded Processes" ref="man_multi_threaded.html" />
       <keyword name="10 - Differences of Debug- and Release-Logging" id="10 - Differences of Debug- and Release-Logging" ref="man_debug_and_release_logging.html" />
       <keyword name="11 - Internal Logging" id="11 - Internal Logging" ref="man_internal_domains.html" />
-      <keyword name="12 - External Verbosity Configuration" id="12 - External Verbosity Configuration" ref="man_external_verbosity_configuration.html" />
-      <keyword name="13 - Trimming Source File Paths and Clickable IDE Output" id="13 - Trimming Source File Paths and Clickable IDE Output" ref="man_trim_source_path.html" />
-      <keyword name="14 - Log Domain Substitution" id="14 - Log Domain Substitution" ref="man_domain_substitution.html" />
-      <keyword name="15 - Colorful Loggers" id="15 - Colorful Loggers" ref="man_colorful_loggers.html" />
+      <keyword name="12 - External Configuration" id="12 - External Configuration" ref="man_external_configuration.html" />
+      <keyword name="13 - External Verbosity Configuration" id="13 - External Verbosity Configuration" ref="man_external_verbosity_configuration.html" />
+      <keyword name="14 - Trimming Source File Paths and Clickable IDE Output" id="14 - Trimming Source File Paths and Clickable IDE Output" ref="man_trim_source_path.html" />
+      <keyword name="15 - Log Domain Substitution" id="15 - Log Domain Substitution" ref="man_domain_substitution.html" />
+      <keyword name="16 - Colorful Loggers" id="16 - Colorful Loggers" ref="man_colorful_loggers.html" />
       <keyword name="A - Namespaces" id="A - Namespaces" ref="man_ext_namespaces.html" />
       <keyword name="B - Loggers and Implementing Custom Types" id="B - Loggers and Implementing Custom Types" ref="man_ext_loggers.html" />
       <keyword name="II -  ALox Auto-Configuration and Orthogonality" id="II -  ALox Auto-Configuration and Orthogonality" ref="man_apdx_auto_config.html" />
@@ -46,7 +47,7 @@
       <keyword name="ALIB_RTE" id="GrpALoxConfigVars::ALIB_RTE" ref="group__GrpALoxConfigVars.html#gac62abc7811e32bb6329a151fe9ba8881" />
       <keyword name="ALIB_LOCALE" id="GrpALoxConfigVars::ALIB_LOCALE" ref="group__GrpALoxConfigVars.html#ga3ba85db0d6d1aff71681e17a2cfb5b3a" />
       <keyword name="ALIB_HAS_CONSOLE_WINDOW" id="GrpALoxConfigVars::ALIB_HAS_CONSOLE_WINDOW" ref="group__GrpALoxConfigVars.html#ga0609e3155155dd75380c499571325be9" />
-      <keyword name="ALIB_WAIT_FOR_KEY_PRESS_ON_TERMINATION" id="GrpALoxConfigVars::ALIB_WAIT_FOR_KEY_PRESS_ON_TERMINATION" ref="group__GrpALoxConfigVars.html#gaac16e99e1b4bed45a52496151369cb7d" />
+      <keyword name="ALIB_WAIT_FOR_KEY_PRESS" id="GrpALoxConfigVars::ALIB_WAIT_FOR_KEY_PRESS" ref="group__GrpALoxConfigVars.html#ga8a40f5382d8a235f941b948b0fbd3727" />
       <keyword name="ALOX_USE_SYSTEM_OUT_PRINT" id="GrpALoxConfigVars::ALOX_USE_SYSTEM_OUT_PRINT" ref="group__GrpALoxConfigVars.html#gadf6b9350cbf7d941b8fae502f0724ccb" />
       <keyword name="ALOX_CONSOLE_TYPE" id="GrpALoxConfigVars::ALOX_CONSOLE_TYPE" ref="group__GrpALoxConfigVars.html#ga52268b31ecbd87a730acb741e2926477" />
       <keyword name="ALOX_CONSOLE_HAS_LIGHT_BACKGROUND" id="GrpALoxConfigVars::ALOX_CONSOLE_HAS_LIGHT_BACKGROUND" ref="group__GrpALoxConfigVars.html#ga033eedd6ce4b3a9bd337924f18690f79" />
@@ -55,11 +56,15 @@
       <keyword name="ALOX_LOGGERNAME_AUTO_SIZES" id="GrpALoxConfigVars::ALOX_LOGGERNAME_AUTO_SIZES" ref="group__GrpALoxConfigVars.html#ga0741a1d6212c64779093dc2357d0f672" />
       <keyword name="ALOX_LOGGERNAME_MAX_ELAPSED_TIME" id="GrpALoxConfigVars::ALOX_LOGGERNAME_MAX_ELAPSED_TIME" ref="group__GrpALoxConfigVars.html#gab375e0c2170c55e8638985d007a3e6db" />
       <keyword name="ALOX_LOGGERNAME_FORMAT" id="GrpALoxConfigVars::ALOX_LOGGERNAME_FORMAT" ref="group__GrpALoxConfigVars.html#ga4afceac725b2d9036373691895259c67" />
+      <keyword name="ALOX_LOGGERNAME_FORMAT_DATE_TIME" id="GrpALoxConfigVars::ALOX_LOGGERNAME_FORMAT_DATE_TIME" ref="group__GrpALoxConfigVars.html#gaad119ea1ba30c62207002497a3f8c8ec" />
+      <keyword name="ALOX_LOGGERNAME_FORMAT_TIME_DIFF" id="GrpALoxConfigVars::ALOX_LOGGERNAME_FORMAT_TIME_DIFF" ref="group__GrpALoxConfigVars.html#gaaf6362b72deb62e566a150791ab3d932" />
+      <keyword name="ALOX_LOGGERNAME_FORMAT_MULTILINE" id="GrpALoxConfigVars::ALOX_LOGGERNAME_FORMAT_MULTILINE" ref="group__GrpALoxConfigVars.html#ga27bda622e7b9f55c5125fec47dda45d3" />
       <keyword name="ALOX_LOXNAME_DOMAIN_SUBSTITUTION" id="GrpALoxConfigVars::ALOX_LOXNAME_DOMAIN_SUBSTITUTION" ref="group__GrpALoxConfigVars.html#ga33d3336fd34d7d8e0c05aaf56aa2a5fd" />
       <keyword name="ALOX_GLOBAL_SOURCE_PATH_TRIM_RULES" id="GrpALoxConfigVars::ALOX_GLOBAL_SOURCE_PATH_TRIM_RULES" ref="group__GrpALoxConfigVars.html#ga9fff149ffbfa1d599972b86ecb03aa71" />
       <keyword name="ALOX_LOXNAME_SOURCE_PATH_TRIM_RULES" id="GrpALoxConfigVars::ALOX_LOXNAME_SOURCE_PATH_TRIM_RULES" ref="group__GrpALoxConfigVars.html#ga4f3e16aa4e19916600ac66181e93b482" />
       <keyword name="ALOX_LOXNAME_LOGGERNAME_VERBOSITY" id="GrpALoxConfigVars::ALOX_LOXNAME_LOGGERNAME_VERBOSITY" ref="group__GrpALoxConfigVars.html#gabcd13580239d502881f74e45de96e46d" />
       <keyword name="ALOX_LOXNAME_PREFIXES" id="GrpALoxConfigVars::ALOX_LOXNAME_PREFIXES" ref="group__GrpALoxConfigVars.html#ga299a0d20586716e77563f08a1cb77ebb" />
+      <keyword name="ALOX_LOXNAME_DUMP_STATE_ON_EXIT" id="GrpALoxConfigVars::ALOX_LOXNAME_DUMP_STATE_ON_EXIT" ref="group__GrpALoxConfigVars.html#gafc5f4962f037b49befef9efbd79d9807" />
     </keywords>
     <files>
       <file>tabs.css</file>
@@ -98,6 +103,7 @@
       <file>man_multi_threaded.html</file>
       <file>man_debug_and_release_logging.html</file>
       <file>man_internal_domains.html</file>
+      <file>man_external_configuration.html</file>
       <file>man_external_verbosity_configuration.html</file>
       <file>man_trim_source_path.html</file>
       <file>man_domain_substitution.html</file>
@@ -315,6 +321,16 @@
       <file>inherit_graph_189.svg</file>
       <file>inherit_graph_190.svg</file>
       <file>inherit_graph_191.svg</file>
+      <file>inherit_graph_192.svg</file>
+      <file>inherit_graph_193.svg</file>
+      <file>inherit_graph_194.svg</file>
+      <file>inherit_graph_195.svg</file>
+      <file>inherit_graph_196.svg</file>
+      <file>inherit_graph_197.svg</file>
+      <file>inherit_graph_198.svg</file>
+      <file>inherit_graph_199.svg</file>
+      <file>inherit_graph_200.svg</file>
+      <file>inherit_graph_201.svg</file>
       <file>pages.html</file>
     </files>
   </filterSection>

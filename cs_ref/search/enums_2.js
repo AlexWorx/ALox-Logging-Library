@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['inclusion',['Inclusion',['../namespacecs_1_1aworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52',1,'cs::aworx::lib::enums']]]
+  ['formathint',['FormatHint',['../classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#aebb3561ef8cb7db28ec75a25358ab5d4',1,'cs::aworx::lib::config::Variable']]]
 ];

@@ -36,5 +36,5 @@ var searchData=
   ['ownable',['Ownable',['../classaworx_1_1lib_1_1Ownable.html',1,'aworx::lib']]],
   ['ownable_2ehpp',['ownable.hpp',['../ownable_8hpp.html',1,'']]],
   ['owner',['Owner',['../structaworx_1_1lib_1_1Owner.html',1,'aworx::lib']]],
-  ['owner',['owner',['../classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a6d42f8ca4a142dc8f1e48b8329b17be7',1,'aworx::lib::threads::ThreadLock::owner()'],['../structaworx_1_1lib_1_1Owner.html#a514baed722d3c59c870ad9579f7002ae',1,'aworx::lib::Owner::Owner()']]]
+  ['owner',['Owner',['../structaworx_1_1lib_1_1Owner.html#a514baed722d3c59c870ad9579f7002ae',1,'aworx::lib::Owner::Owner()'],['../classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a6d42f8ca4a142dc8f1e48b8329b17be7',1,'aworx::lib::threads::ThreadLock::owner()']]]
 ];

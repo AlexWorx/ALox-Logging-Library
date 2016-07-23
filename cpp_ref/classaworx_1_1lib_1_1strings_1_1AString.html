@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 2</span>
+   &#160;<span id="projectnumber">V. 1607 R. 0</span>
    </div>
   </td>
  </tr>
@@ -200,7 +200,7 @@ In the case that it is <em>nulled</em>, using the assignment operator will set t
 <p>Various methods that exist in the implementations of class <b>AString</b> in different programming languages versions of ALib, are missing in this C++ implementation. Here, they have been replaced by the concept of <em>applying</em> types. The following provides a list of predefined applicable types found in ALib:</p>
 <ul>
 <li>Characters (<em>char</em>) and character string <em>([const] char*)</em> types will be appended.</li>
-<li>Wide characters (<em>wchar_t</em>) and wide character strings <em>([const] wchar_t*)</em> types. They will be converted to encoded multi-byte character strings according to the currently set locale and appended. (See <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a368faebfbb1d770d76d5e073266a3deb">ALIB::Init</a> for more information about setting locale and <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a73cfa0a1eb5f3c47cb633967c8b22333">String::ToWString</a> for converting in the other direction.)</li>
+<li>Wide characters (<em>wchar_t</em>) and wide character strings <em>([const] wchar_t*)</em> types. They will be converted to encoded multi-byte character strings according to the currently set locale and appended. (See <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a> for more information about setting locale and <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a73cfa0a1eb5f3c47cb633967c8b22333">String::ToWString</a> for converting in the other direction.)</li>
 <li>Plain types <em>int32_t</em>, <em>uint32_t</em>, <em>int64_t</em>, <em>uint64_t</em>, <em>float</em> and <em>double</em>. Their value will be converted to string representations using static object <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a9c9a27c7479023730cc33644fc6c9164">NumberFormat::Global</a> and appended.</li>
 <li>Plain type <em>bool</em> appending the string literal '<code>true'</code> respectively '<code>false'</code> </li>
 <li>Class <a class="el" href="classaworx_1_1lib_1_1strings_1_1Format.html">Format</a>, with public inner classes<ul>
@@ -315,8 +315,8 @@ Public Methods</h2></td></tr>
 <tr class="separator:a4c72c80e34049aa4566be4fffe4b9251"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5902ed6d5d02134b98ac686172f34dc9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a5902ed6d5d02134b98ac686172f34dc9">Trim</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">TString</a> &amp;trimChars=<a class="el" href="namespaceaworx.html#a5feaaf6a8fb11e8ebbb0013ec9f27b01">DefaultWhitespaces</a>)</td></tr>
 <tr class="separator:a5902ed6d5d02134b98ac686172f34dc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63f255e8769be77d70b70407e388746b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a63f255e8769be77d70b70407e388746b">TrimAt</a> (int index, const <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">TString</a> &amp;trimChars=<a class="el" href="namespaceaworx.html#a5feaaf6a8fb11e8ebbb0013ec9f27b01">DefaultWhitespaces</a>)</td></tr>
-<tr class="separator:a63f255e8769be77d70b70407e388746b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c7140002fec95e041770c766926dd4e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a2c7140002fec95e041770c766926dd4e">TrimAt</a> (int index, const <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">TString</a> &amp;trimChars=<a class="el" href="namespaceaworx.html#a5feaaf6a8fb11e8ebbb0013ec9f27b01">DefaultWhitespaces</a>)</td></tr>
+<tr class="separator:a2c7140002fec95e041770c766926dd4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4aacb9ead9be86623c688267f76760cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a4aacb9ead9be86623c688267f76760cf">TrimStart</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">TString</a> &amp;trimChars=<a class="el" href="namespaceaworx.html#a5feaaf6a8fb11e8ebbb0013ec9f27b01">DefaultWhitespaces</a>)</td></tr>
 <tr class="separator:a4aacb9ead9be86623c688267f76760cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfb73aa66ba9e9ebedecd9de6ee6ed9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#abfb73aa66ba9e9ebedecd9de6ee6ed9b">TrimEnd</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">TString</a> &amp;trimChars=<a class="el" href="namespaceaworx.html#a5feaaf6a8fb11e8ebbb0013ec9f27b01">DefaultWhitespaces</a>)</td></tr>
@@ -2196,7 +2196,7 @@ This method's description may sound (and the code may look) like having quite so
 </div><div class="memdoc">
 <hr/>
 <p> All characters defined in given set are removed at the beginning and at the end of this string.</p>
-<dl class="section see"><dt>See also</dt><dd>Method <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a63f255e8769be77d70b70407e388746b">TrimAt</a> to remove whitespaces at arbitrary places in the string.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Method <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a2c7140002fec95e041770c766926dd4e">TrimAt</a> to remove whitespaces at arbitrary places in the string.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">trimChars</td><td>Pointer to a zero terminated set of characters to be omitted. Defaults to <a class="el" href="namespaceaworx.html#a5feaaf6a8fb11e8ebbb0013ec9f27b01">DefaultWhitespaces</a>. </td></tr>
@@ -2207,12 +2207,12 @@ This method's description may sound (and the code may look) like having quite so
 
 </div>
 </div>
-<a class="anchor" id="a63f255e8769be77d70b70407e388746b"></a>
+<a class="anchor" id="a2c7140002fec95e041770c766926dd4e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp; TrimAt </td>
+          <td class="memname">int TrimAt </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>index</em>, </td>
@@ -2231,15 +2231,16 @@ This method's description may sound (and the code may look) like having quite so
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> All characters defined in given set at, left of and right of the given index are removed from the string.</p>
+<p> All characters defined in given set at, left of and right of the given index are removed from the string.<br />
+ The method returns index of the first character of those characters that were behind the trimmed region. With legal <code>index</code> given, this value can only be smaller or equal to <code>index</code>. If <code>index</code> is out of bounds, the length of the string is returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">index</td><td>The index to perform the trim operation at. Has to be between zero and <em>length -1</em>. </td></tr>
+    <tr><td class="paramname">index</td><td>The index to perform the trim operation at. Has to be between zero and <em><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a6e891964a37680c01e21dedac6ffe670">Length()</a> -1</em>. </td></tr>
     <tr><td class="paramname">trimChars</td><td>Pointer to a zero terminated set of characters to be omitted. Defaults to <a class="el" href="namespaceaworx.html#a5feaaf6a8fb11e8ebbb0013ec9f27b01">DefaultWhitespaces</a>. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><code>*this</code> to allow concatenated calls. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The index of the first character of those characters that were behind the trimmed region. </dd></dl>
 
 </div>
 </div>
@@ -2266,7 +2267,7 @@ This method's description may sound (and the code may look) like having quite so
 </div><div class="memdoc">
 <hr/>
 <p> All characters defined in given set are removed at the end of this string.</p>
-<dl class="section see"><dt>See also</dt><dd>Method <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a63f255e8769be77d70b70407e388746b">TrimAt</a> to remove whitespaces at arbitrary places in the string.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Method <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a2c7140002fec95e041770c766926dd4e">TrimAt</a> to remove whitespaces at arbitrary places in the string.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">trimChars</td><td>Pointer to a zero terminated set of characters to be omitted. Defaults to <a class="el" href="namespaceaworx.html#a5feaaf6a8fb11e8ebbb0013ec9f27b01">DefaultWhitespaces</a>. </td></tr>
@@ -2300,7 +2301,7 @@ This method's description may sound (and the code may look) like having quite so
 </div><div class="memdoc">
 <hr/>
 <p> All characters defined in given set are removed at the beginning of this string.</p>
-<dl class="section see"><dt>See also</dt><dd>Method <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a63f255e8769be77d70b70407e388746b">TrimAt</a> to remove whitespaces at arbitrary places in the string.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Method <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a2c7140002fec95e041770c766926dd4e">TrimAt</a> to remove whitespaces at arbitrary places in the string.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">trimChars</td><td>Pointer to a zero terminated set of characters to be omitted. Defaults to <a class="el" href="namespaceaworx.html#a5feaaf6a8fb11e8ebbb0013ec9f27b01">DefaultWhitespaces</a>. </td></tr>
@@ -2433,7 +2434,7 @@ This method's description may sound (and the code may look) like having quite so
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 20 2016 10:57:53 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 23 2016 23:18:45 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

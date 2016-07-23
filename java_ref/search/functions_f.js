@@ -7,6 +7,7 @@ var searchData=
   ['pophaltflags',['popHaltFlags',['../classcom_1_1aworx_1_1lib_1_1Report.html#af5e3f59b7c299469be750c9556f29d83',1,'com::aworx::lib::Report']]],
   ['popwriter',['popWriter',['../classcom_1_1aworx_1_1lib_1_1Report.html#a7871ba278fd3ae0c09739a1de194dd84',1,'com::aworx::lib::Report']]],
   ['processvariable',['processVariable',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#adf6ac072abe740c98bda2cc007851b18',1,'com::aworx::lox::core::textlogger::MetaInfo']]],
+  ['protect',['protect',['../classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a98ac4bb88ba456f3a492c7dfbd299364',1,'com.aworx.lib.config.Variable.protect(Object externalizedValue)'],['../classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ac333eae6437cfe4c54fa3d80eb44a7ac',1,'com.aworx.lib.config.Variable.protect()']]],
   ['pushhaltflags',['pushHaltFlags',['../classcom_1_1aworx_1_1lib_1_1Report.html#aea2de6e616741d79b839d5f518388658',1,'com::aworx::lib::Report']]],
   ['pushwriter',['pushWriter',['../classcom_1_1aworx_1_1lib_1_1Report.html#a62143a94b68c059953ea6734fe9be0d9',1,'com::aworx::lib::Report']]]
 ];

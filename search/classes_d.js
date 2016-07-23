@@ -1,9 +1,9 @@
 var searchData=
 [
   ['tab',['Tab',['cpp_ref/classaworx_1_1lib_1_1strings_1_1Format_1_1Tab.html',1,'aworx::lib::strings::Format']]],
-  ['textfilelogger',['TextFileLogger',['java_ref/classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html',1,'com::aworx::lox::loggers']]],
-  ['textfilelogger',['TextFileLogger',['cpp_ref/classaworx_1_1lox_1_1loggers_1_1TextFileLogger.html',1,'aworx::lox::loggers']]],
   ['textfilelogger',['TextFileLogger',['cs_ref/classcs_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html',1,'cs::aworx::lox::loggers']]],
+  ['textfilelogger',['TextFileLogger',['cpp_ref/classaworx_1_1lox_1_1loggers_1_1TextFileLogger.html',1,'aworx::lox::loggers']]],
+  ['textfilelogger',['TextFileLogger',['java_ref/classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html',1,'com::aworx::lox::loggers']]],
   ['textlogger',['TextLogger',['java_ref/classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html',1,'com::aworx::lox::core::textlogger']]],
   ['textlogger',['TextLogger',['cs_ref/classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html',1,'cs::aworx::lox::core::textlogger']]],
   ['textlogger',['TextLogger',['cpp_ref/classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html',1,'aworx::lox::core::textlogger']]],
@@ -18,9 +18,9 @@ var searchData=
   ['tickscalendartime',['TicksCalendarTime',['cpp_ref/classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html',1,'aworx::lib::time']]],
   ['tickspan',['TickSpan',['java_ref/classcom_1_1aworx_1_1lib_1_1time_1_1TickSpan.html',1,'com::aworx::lib::time']]],
   ['tickspan',['TickSpan',['cpp_ref/classaworx_1_1lib_1_1time_1_1TickSpan.html',1,'aworx::lib::time']]],
-  ['tickwatch',['TickWatch',['java_ref/classcom_1_1aworx_1_1lib_1_1time_1_1TickWatch.html',1,'com::aworx::lib::time']]],
-  ['tickwatch',['TickWatch',['cpp_ref/classaworx_1_1lib_1_1time_1_1TickWatch.html',1,'aworx::lib::time']]],
   ['tickwatch',['TickWatch',['cs_ref/classcs_1_1aworx_1_1lib_1_1time_1_1TickWatch.html',1,'cs::aworx::lib::time']]],
+  ['tickwatch',['TickWatch',['cpp_ref/classaworx_1_1lib_1_1time_1_1TickWatch.html',1,'aworx::lib::time']]],
+  ['tickwatch',['TickWatch',['java_ref/classcom_1_1aworx_1_1lib_1_1time_1_1TickWatch.html',1,'com::aworx::lib::time']]],
   ['tmpliteral',['TMPLiteral',['cpp_ref/structaworx_1_1lib_1_1strings_1_1TMPLiteral.html',1,'aworx::lib::strings']]],
   ['tokenizer',['Tokenizer',['cpp_ref/classaworx_1_1lib_1_1strings_1_1Tokenizer.html',1,'aworx::lib::strings']]],
   ['tokenizer',['Tokenizer',['java_ref/classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html',1,'com::aworx::lib::strings']]],

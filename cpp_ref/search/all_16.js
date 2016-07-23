@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['wait_5ffor_5fkey_5fpress',['WAIT_FOR_KEY_PRESS',['../classaworx_1_1lib_1_1ALIB.html#a16240c3c22f871bc3d2aae28e3d4069d',1,'aworx::lib::ALIB']]],
   ['waitforkeypressontermination',['WaitForKeyPressOnTermination',['../classaworx_1_1lib_1_1ALIB.html#ada43e256e3815ef07e1fa43666e356da',1,'aworx::lib::ALIB']]],
   ['waitwarningtimelimitinmillis',['WaitWarningTimeLimitInMillis',['../classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a1a326aeefec583cbccf74ea567257e11',1,'aworx::lib::threads::ThreadLock']]],
   ['walk',['Walk',['../classaworx_1_1lox_1_1core_1_1ScopeStore.html#a262f597e568a196dcb284fb1c859c8d6',1,'aworx::lox::core::ScopeStore']]],
@@ -7,7 +8,7 @@ var searchData=
   ['walklocalobject',['walkLocalObject',['../classaworx_1_1lox_1_1core_1_1ScopeStore.html#a82821b811e042ad4ca39396346cd49e0',1,'aworx::lox::core::ScopeStore']]],
   ['walknextthreadidx',['walkNextThreadIdx',['../classaworx_1_1lox_1_1core_1_1ScopeStore.html#a9928f44e5399d356c4380ab105e48941',1,'aworx::lox::core::ScopeStore']]],
   ['walkthreadvalues',['walkThreadValues',['../classaworx_1_1lox_1_1core_1_1ScopeStore.html#abf7b7f408957d23da2c7b6fc692436cd',1,'aworx::lox::core::ScopeStore']]],
-  ['wargs',['wArgs',['../classaworx_1_1lib_1_1config_1_1CommandLinePlugIn.html#aa12d3084f7f24b687e9495935fddb6ce',1,'aworx::lib::config::CommandLinePlugIn']]],
+  ['wargs',['wArgs',['../classaworx_1_1lib_1_1config_1_1CommandLinePlugin.html#aa12d3084f7f24b687e9495935fddb6ce',1,'aworx::lib::config::CommandLinePlugin']]],
   ['warning',['Warning',['../classaworx_1_1lox_1_1Lox.html#acc935824995fd1701feb05ca9be8029d',1,'aworx::lox::Lox::Warning(const TString &amp;domain, void *logable, int type)'],['../classaworx_1_1lox_1_1Lox.html#adc0c50c09fe5044dac135fd1b72d1abc',1,'aworx::lox::Lox::Warning(void *logable, int type)'],['../classaworx_1_1lox_1_1Lox.html#afcfd60ee05c9410f38c52569303e29b1',1,'aworx::lox::Lox::Warning(const TString &amp;domain, const TString &amp;msg)'],['../classaworx_1_1lox_1_1Lox.html#afd14515586cd059d17cff59eef98be5a',1,'aworx::lox::Lox::Warning(const TString &amp;msg)'],['../namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313a0eaadb4fcb48a0a0ed7bc9868be9fbaa',1,'aworx::lox::Warning()']]],
   ['wcharbuffer',['wCharBuffer',['../classaworx_1_1lox_1_1loggers_1_1VStudioLogger.html#a91eee64289a4ad8305ad6f78e85090c9',1,'aworx::lox::loggers::VStudioLogger']]],
   ['wcharbuffersize',['wCharBufferSize',['../classaworx_1_1lox_1_1loggers_1_1VStudioLogger.html#a097dc29175f1cb3e0a307177fca6f6f0',1,'aworx::lox::loggers::VStudioLogger']]],
@@ -26,5 +27,6 @@ var searchData=
   ['writestore',['writeStore',['../classaworx_1_1lox_1_1core_1_1ScopeDump.html#a2ac85963ae7b731f047051b4d593b58e',1,'aworx::lox::core::ScopeDump']]],
   ['writestoremap',['writeStoreMap',['../classaworx_1_1lox_1_1core_1_1ScopeDump.html#a0300c0e3bf0ca655848b1737e500a9f9',1,'aworx::lox::core::ScopeDump']]],
   ['writestoremaphelper',['writeStoreMapHelper',['../classaworx_1_1lox_1_1core_1_1ScopeDump.html#a9b273d5cd4060583f81ea934d8976d46',1,'aworx::lox::core::ScopeDump']]],
-  ['writetimediff',['writeTimeDiff',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a3e51ddb2d0d6ce33302bf0d16b1328fb',1,'aworx::lox::core::textlogger::MetaInfo']]]
+  ['writetimediff',['writeTimeDiff',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a3e51ddb2d0d6ce33302bf0d16b1328fb',1,'aworx::lox::core::textlogger::MetaInfo']]],
+  ['writeverbositiesonloggerremoval',['writeVerbositiesOnLoggerRemoval',['../classaworx_1_1lox_1_1Lox.html#a177e884c9baeadb15e900176501150fe',1,'aworx::lox::Lox']]]
 ];

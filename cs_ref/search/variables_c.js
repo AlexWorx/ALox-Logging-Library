@@ -1,6 +1,7 @@
 var searchData=
 [
   ['magenta',['MAGENTA',['../classcs_1_1aworx_1_1lox_1_1ESC.html#aabdeecbbe0dc98a98b3a3b1a4fa7a29b',1,'cs::aworx::lox::ESC']]],
+  ['max_5felapsed_5ftime',['MAX_ELAPSED_TIME',['../classcs_1_1aworx_1_1lox_1_1ALox.html#a9ffde0f2fb68044cd9cb85ee267e9613',1,'cs::aworx::lox::ALox']]],
   ['maxdomainpathlength',['maxDomainPathLength',['../classcs_1_1aworx_1_1lox_1_1Lox.html#a71f136dd9dc7e9d48c33ad54ae5d802f',1,'cs::aworx::lox::Lox']]],
   ['maxelapsedtime',['MaxElapsedTime',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ade3c3fa6f130947ef6aa22e72a4d1efd',1,'cs::aworx::lox::core::textlogger::MetaInfo']]],
   ['maxkeylength',['maxKeyLength',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html#ace5c16296f35665a0346922cdb706cc6',1,'cs::aworx::lox::core::ScopeDump']]],

@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 2</span>
+   &#160;<span id="projectnumber">V. 1607 R. 0</span>
    </div>
   </td>
  </tr>
@@ -126,6 +126,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-static-attribs">Public Static Fields</a> &#124;
 <a href="#pub-attribs">Public Fields</a> &#124;
+<a href="#pub-static-methods">Public Static Methods</a> &#124;
 <a href="#pub-methods">Public Methods</a> &#124;
 <a href="#pro-static-attribs">Protected Static Fields</a> &#124;
 <a href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat-members.html">List of all members</a>  </div>
@@ -147,7 +148,7 @@ Collaboration diagram for NumberFormat:</div>
 <li>Cross language/platform source compatibility (the essential motivation for having the AWorx library)</li>
 <li>Performance optimization (C# and Java versions avoid unnecessary temporary object allocations)</li>
 </ul>
-<p>As an example, when writing float data into a configuration file, class <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> ignores the systems locale setting and writes all data using '.' as decimal separator. When reading values, both ' . ' and ' , ' are accepted. While loosing the possibility to read configuration data that uses a "thousand separator" which is generally the opposite of the decimal separator (opposite here means it is a ',' when decimal separator is a '.' and vice versa), what is gained is that floats are read without throwing exceptions regardless of the locale that was set when they were written. Therefore configuration files are consistent and readable across all software installations.</p>
+<p>As an example, when writing float data into a configuration file, class <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> ignores the systems locale setting and writes all data using '.' as decimal separator. When reading values, both ' . ' and ' , ' are accepted. While loosing the possibility to read configuration data that uses a "thousand separator" which is generally the opposite of the decimal separator (opposite here means it is a ',' when decimal separator is a '.' and vice versa), what is gained is that floats are read without throwing exceptions regardless of the locale that was set when they were written. Therefore configuration files are consistent and readable across all software installations.</p>
 <p>Instances created, have default values set, independent from the current locale setting of the system. To initialize this classes fields to reflect the current locale, invoke <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a580753200cb6d097fd91eac99a48f10c">setFromLocale()</a>.</p>
 <dl class="section note"><dt>Note</dt><dd>The method interface of this class is quite rudimentary. Therefore, it is advisable to use more user friendly classes as <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> or <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>, which provide methods that accept a configured instance of this class as parameter and do the conversion internally. </dd></dl>
 </div><table class="memberdecls">
@@ -173,18 +174,21 @@ Public Fields</h2></td></tr>
 <tr class="memitem:abc0c9349d06d894de0a9e0d508930cd7"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#abc0c9349d06d894de0a9e0d508930cd7">writeExponentPlusSign</a> = false</td></tr>
 <tr class="separator:abc0c9349d06d894de0a9e0d508930cd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Public Static Methods</h2></td></tr>
+<tr class="memitem:ad2d8785215eb51ff2e6f7090eb4745c9"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#ad2d8785215eb51ff2e6f7090eb4745c9">integerToString</a> (long value, char[] buffer, int idx, int minDigits, int sizeHint)</td></tr>
+<tr class="separator:ad2d8785215eb51ff2e6f7090eb4745c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b988aaea24248903a150e5be2ce6146"><td class="memItemLeft" align="right" valign="top">static long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a6b988aaea24248903a150e5be2ce6146">stringToInteger</a> (char[] buffer, int idx, int maxIdx, int[] newIdx)</td></tr>
+<tr class="separator:a6b988aaea24248903a150e5be2ce6146"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
 <tr class="memitem:a48f68d49384d42b4082f9bb85d84f484"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a48f68d49384d42b4082f9bb85d84f484">floatToString</a> (double value, char[] buffer, int idx)</td></tr>
 <tr class="separator:a48f68d49384d42b4082f9bb85d84f484"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c3fd6cc00aa023d84590b0936468371"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a8c3fd6cc00aa023d84590b0936468371">integerToString</a> (long value, char[] buffer, int idx, int minDigits, int sizeHint)</td></tr>
-<tr class="separator:a8c3fd6cc00aa023d84590b0936468371"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a580753200cb6d097fd91eac99a48f10c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a580753200cb6d097fd91eac99a48f10c">setFromLocale</a> ()</td></tr>
 <tr class="separator:a580753200cb6d097fd91eac99a48f10c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9e080d7eeac33bb05c504af04de9105"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#ab9e080d7eeac33bb05c504af04de9105">stringToFloat</a> (char[] buffer, int idx, int maxIdx, int[] newIdx)</td></tr>
 <tr class="separator:ab9e080d7eeac33bb05c504af04de9105"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1fba8070e3929b7e5f9073289f663474"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a1fba8070e3929b7e5f9073289f663474">stringToInteger</a> (char[] buffer, int idx, int maxIdx, int[] newIdx)</td></tr>
-<tr class="separator:a1fba8070e3929b7e5f9073289f663474"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
 Protected Static Fields</h2></td></tr>
@@ -237,12 +241,15 @@ Protected Static Fields</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a8c3fd6cc00aa023d84590b0936468371"></a>
+<a class="anchor" id="ad2d8785215eb51ff2e6f7090eb4745c9"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int integerToString </td>
+          <td class="memname">static int integerToString </td>
           <td>(</td>
           <td class="paramtype">long&#160;</td>
           <td class="paramname"><em>value</em>, </td>
@@ -277,6 +284,11 @@ Protected Static Fields</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Converts the given long value to a string representation.<br />
@@ -365,12 +377,15 @@ Protected Static Fields</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1fba8070e3929b7e5f9073289f663474"></a>
+<a class="anchor" id="a6b988aaea24248903a150e5be2ce6146"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">long stringToInteger </td>
+          <td class="memname">static long stringToInteger </td>
           <td>(</td>
           <td class="paramtype">char[]&#160;</td>
           <td class="paramname"><em>buffer</em>, </td>
@@ -399,6 +414,11 @@ Protected Static Fields</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Reads a (long) integer from the given character array starting at the given position. The output parameter is set to point to first character that is not a number. If no number is found at the given index, zero is returned and the output parameter is set to the original start index.</p>
@@ -512,7 +532,7 @@ Protected Static Fields</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>The default static number format object, used by various methods. It therefore acts as the global default settings of the currently running process.<br />
- Method <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a80c97a1b39e20bbf4fb85495e11b58d4">ALIB.init</a> invokes <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a580753200cb6d097fd91eac99a48f10c">setFromLocale()</a> on this object. </p>
+ Method <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#afaa45c957f86a4ff5d0939a80af4d2d3">ALIB.init</a> invokes <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a580753200cb6d097fd91eac99a48f10c">setFromLocale()</a> on this object. </p>
 
 </div>
 </div>
@@ -577,7 +597,7 @@ Protected Static Fields</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 20 2016 10:57:55 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 23 2016 23:18:47 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

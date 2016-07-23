@@ -6,18 +6,18 @@ digraph "Configuration"
   Node1 [label="Configuration",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
   Node9 [label="map\<thread::id, Thread *\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node12 [label="vector\<String\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-  Node15 [label="vector\<PluginAndPrio\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node18 [label="vector\<InMemoryPlugin::Section *\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node20 [label="vector\<PluginAndPrio\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node8 [label="PreallocatedString\<TCapacity\>",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html"];
-  Node1 -> Node14 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Parent" ,fontname="Helvetica"];
   Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" SubstitutionVariableStart\nSubstitutionVariableEnd\nSubstitutionVariableDelimiters" ,fontname="Helvetica"];
   Node4 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" acquirementMethodName\nacquirementSourcefile" ,fontname="Helvetica"];
   Node4 -> Node11 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" DecimalPointCharacters\nDecimalExponentSeparator" ,fontname="Helvetica"];
   Node5 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node5 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
   Node6 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" owner" ,fontname="Helvetica"];
   Node6 -> Node9 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
-  Node7 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node7 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" runnable" ,fontname="Helvetica"];
   Node8 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" name" ,fontname="Helvetica"];
   Node9 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" threadMap" ,fontname="Helvetica"];
@@ -25,11 +25,16 @@ digraph "Configuration"
   Node11 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" NumberFormat" ,fontname="Helvetica"];
   Node11 -> Node11 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Global" ,fontname="Helvetica"];
   Node12 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" TrueValues" ,fontname="Helvetica"];
-  Node13 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" envCP" ,fontname="Helvetica"];
+  Node13 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Environment" ,fontname="Helvetica"];
   Node14 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node14 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node15 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" plugins" ,fontname="Helvetica"];
-  Node16 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" cmdLineCP" ,fontname="Helvetica"];
+  Node14 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 -> Node14 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" StringConverter\ndefaultStringConverter" ,fontname="Helvetica"];
+  Node16 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" CmdLine" ,fontname="Helvetica"];
+  Node17 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" ProtectedValues\nDefaultValues" ,fontname="Helvetica"];
+  Node18 -> Node17 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Sections" ,fontname="Helvetica"];
+  Node19 -> Node18 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
+  Node20 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" plugins" ,fontname="Helvetica"];
   Node2 [label="ThreadLock",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html"];
   Node3 [label="Ownable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1Ownable.html"];
   Node4 [label="TString",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1TString.html"];
@@ -38,8 +43,11 @@ digraph "Configuration"
   Node7 [label="Runnable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1threads_1_1Runnable.html"];
   Node10 [label="thread",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class. "];
   Node11 [label="NumberFormat",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1NumberFormat.html"];
-  Node13 [label="EnvironmentPlugIn",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html"];
-  Node14 [label="ConfigurationPlugIn",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html"];
-  Node16 [label="CommandLinePlugIn",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1config_1_1CommandLinePlugIn.html"];
+  Node13 [label="EnvironmentPlugin",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1config_1_1EnvironmentPlugin.html"];
+  Node14 [label="ConfigurationPlugin",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html"];
+  Node15 [label="XTernalizer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1config_1_1XTernalizer.html"];
+  Node16 [label="CommandLinePlugin",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1config_1_1CommandLinePlugin.html"];
+  Node17 [label="InMemoryPlugin",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html"];
+  Node19 [label="Section",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html"];
 }
 

@@ -1,8 +1,7 @@
 <map id="IniFile" name="IniFile">
-<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html" title="ConfigurationPlugIn" alt="" coords="231,5,367,32"/>
-<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html" title="EnvironmentPlugIn" alt="" coords="5,124,137,151"/>
-<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html" title="CommandLinePlugIn" alt="" coords="161,124,304,151"/>
-<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html" title="Configuration" alt="" coords="249,213,347,240"/>
-<area shape="rect" id="node6" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="502,124,611,151"/>
-<area shape="rect" id="node7" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="416,5,481,32"/>
+<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html" title="InMemoryPlugin" alt="" coords="85,307,201,333"/>
+<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html" title="ConfigurationPlugin" alt="" coords="140,222,275,249"/>
+<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html" title="XTernalizer" alt="" coords="147,109,235,136"/>
+<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="5,5,71,32"/>
+<area shape="rect" id="node6" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="153,5,230,32"/>
 </map>

@@ -1,6 +1,10 @@
 <map id="Configuration" name="Configuration">
-<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html" title="ConfigurationPlugIn" alt="" coords="102,184,238,211"/>
-<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html" title="EnvironmentPlugIn" alt="" coords="5,260,137,287"/>
-<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html" title="CommandLinePlugIn" alt="" coords="188,260,331,287"/>
-<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="115,5,225,32"/>
+<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="159,5,225,32"/>
+<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html" title="EnvironmentPlugin" alt="" coords="47,307,177,333"/>
+<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html" title="XTernalizer" alt="" coords="253,109,341,136"/>
+<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html" title="ConfigurationPlugin" alt="" coords="230,222,365,249"/>
+<area shape="rect" id="node7" href="$classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html" title="InMemoryPlugin" alt="" coords="202,307,318,333"/>
+<area shape="rect" id="node8" href="$classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html" title="CommandLinePlugin" alt="" coords="342,307,485,333"/>
+<area shape="rect" id="node6" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="417,5,495,32"/>
+<area shape="rect" id="node9" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="560,307,669,333"/>
 </map>

@@ -15,7 +15,7 @@ digraph "Domain::LoggerData"
   Node6 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" TimeOfLastLog\nTimeOfCreation" ,fontname="Helvetica"];
   Node6 [label="Ticks",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1time_1_1Ticks.html"];
   Node6 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" creationTime" ,fontname="Helvetica"];
-  Node7 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" typeName\nname" ,fontname="Helvetica"];
+  Node7 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" TypeName\nName" ,fontname="Helvetica"];
   Node7 [label="PreallocatedString\l\< 32 \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html"];
   Node8 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node8 [label="AString",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1AString.html"];

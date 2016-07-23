@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['basic',['Basic',['../classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a972e73b7a882d0802a4e3a16946a2f94',1,'cs::aworx::lox::Lox']]],
   ['begin',['Begin',['../namespacecs_1_1aworx_1_1lib_1_1enums.html#ae1c5184dc404edf057ed537bcfddef84a1a06729125544cab7cee73195fc044f0',1,'cs::aworx::lib::enums']]],
   ['bg_5fblack',['BG_BLACK',['../classcs_1_1aworx_1_1lox_1_1ESC.html#ad9f97de8fc4bcd75284217f1f6a08a67',1,'cs::aworx::lox::ESC']]],
   ['bg_5fblue',['BG_BLUE',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a4fcb8a63c23e04d6e0cc62b8ecb768d4',1,'cs::aworx::lox::ESC']]],
@@ -16,5 +17,5 @@ var searchData=
   ['bold',['BOLD',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a79517c1ad930e5746fa9b41936adbea6',1,'cs::aworx::lox::ESC']]],
   ['buf',['Buf',['../classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a6a6be65c62f7ad0671d250f11c8564bf',1,'cs.aworx.lib.strings.Substring.Buf()'],['../classcs_1_1aworx_1_1lox_1_1Log.html#a853691c84a75e5f8fd4e4ef8879eca0f',1,'cs.aworx.lox.Log.Buf()'],['../classcs_1_1aworx_1_1lox_1_1Lox.html#ad7d2ebe2750e7e4b2548f73d0380f651',1,'cs.aworx.lox.Lox.Buf()']]],
   ['bufabort',['BufAbort',['../classcs_1_1aworx_1_1lox_1_1Log.html#a3d64fb6257e17b5bd2a4cfa1cba55892',1,'cs.aworx.lox.Log.BufAbort()'],['../classcs_1_1aworx_1_1lox_1_1Lox.html#a3474a54c9a6f9f6db081eddb91c078af',1,'cs.aworx.lox.Lox.BufAbort()']]],
-  ['buffer',['Buffer',['../classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#ad69b5cb760dc02917a5493fe8f9f7cb4',1,'cs.aworx.lib.strings.AString.Buffer()'],['../classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a8317b33b8c004741d95935199d964be9',1,'cs.aworx.lib.strings.AString.buffer()']]]
+  ['buffer',['buffer',['../classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a8317b33b8c004741d95935199d964be9',1,'cs.aworx.lib.strings.AString.buffer()'],['../classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#ad69b5cb760dc02917a5493fe8f9f7cb4',1,'cs.aworx.lib.strings.AString.Buffer()']]]
 ];

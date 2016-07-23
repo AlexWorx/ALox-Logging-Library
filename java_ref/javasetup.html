@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 2</span>
+   &#160;<span id="projectnumber">V. 1607 R. 0</span>
    </div>
   </td>
  </tr>
@@ -155,9 +155,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 1.2. For Eclipse Users: Link one of the following projects into your solution</h2>
 <p>To incorporate ALox into Eclipse, you will find the following ready to use projects in <em>ALOX_LIB_PATH</em>:</p>
 <ul>
-<li>Eclipse V.4.4 (Luna) project, standard (Desktop) Java with Java compiler 1.6 <pre class="fragment">  ALOXLIBPATH/build/ide.java.eclipse.luna/ALox-Java-1.6
+<li>Eclipse V.4.x (Luna, Mars, Neon) project, standard (Desktop) Java with Java compiler 1.6 <pre class="fragment">  ALOXLIBPATH/build/ide.java.eclipse/ALox-Java-1.6
 </pre></li>
-<li>Eclipse V.4.4 (Luna) project for Android development <pre class="fragment">  ALOXLIBPATH/build/ide.java.eclipse.luna/ALox-Java-Android
+<li>Eclipse V.4.x (Luna, Mars, Neon) project for Android development <pre class="fragment">  ALOXLIBPATH/build/ide.java.eclipse/ALox-Java-Android
 </pre></li>
 </ul>
 <p>If there is no appropriate predefined project available for you, skip the next section and continue reading <a class="el" href="javasetup.html#javasetup_addingsource">1.3 Alternatively: Adding source code to your project</a>.</p>
@@ -184,7 +184,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>If there is no pre-defined project provided that suits your IDE (or needs), then you might want to add the ALox source code directly to your project or to a library project that you may want to create to separate the ALox code from your code. It should be fairly easy. The Java sources found in: </p><pre class="fragment">    ALOXLIBPATH/src.java/alib
     ALOXLIBPATH/src.java/alox
 </pre><p>need to be compiled into your project.<br />
- </p><dl class="section note"><dt>Note</dt><dd>It is a good idea, to not copy the code, but to add the sources as links to their original place where you unpacked ALox. In Eclipse (Luna), linking source folders is found under "Project Properties", "Java Build Path", tab "Source" and then button "Link Source". The advantage of linking the source folders is that updating the source (e.g. with Git) updates them in your projects as well. Furthermore, if you might want to push your fixes or improvements to us using Git, the sources in the original folder need to be modified by you.</dd></dl>
+ </p><dl class="section note"><dt>Note</dt><dd>It is a good idea, to not copy the code, but to add the sources as links to their original place where you unpacked ALox. In Eclipse (Luna,Mars,Neon), linking source folders is found under "Project Properties", "Java Build Path", tab "Source" and then button "Link Source". The advantage of linking the source folders is that updating the source (e.g. with Git) updates them in your projects as well. Furthermore, if you might want to push your fixes or improvements to us using Git, the sources in the original folder need to be modified by you.</dd></dl>
 <p>For <b>Android</b>, ALox provides a dedicated logger class that supports Android LogCat outputs. Therefore, to support Android projects, this logger class has to be added to your Android project (or Android ALox library project) into your project. For Android, in addition add folder: </p><pre class="fragment">    ALOXLIBPATH/src.java/alox.android
 </pre><p>To stream ALox logging into LogCat create a logger of type <a class="el" href="classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html">AndroidLogCatLogger</a> instead of type <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html">ConsoleLogger</a> as follows:</p>
 <div class="fragment"><div class="line">Log.setVerbosity( <span class="keyword">new</span> AndroidLogCatLogger(<span class="stringliteral">&quot;LogCat&quot;</span>), Verbosity.VERBOSE );</div></div><!-- fragment --><p>Attention: The normal <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html">ConsoleLogger</a> will not produce any visible output using the Android Emulator or a debugging device.</p>
@@ -241,7 +241,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </dd></dl>
 <h2><a class="anchor" id="javasetup_pruning_proguard_config_standard"></a>
 2.3.1 ProGuard configuration for standard Java</h2>
-<p>In the distribution folder of ALox, you will find a sample project in subfolder: </p><pre class="fragment">    ALOX_LIB_PATH/build/ide.java.eclipse.luna/ALox-Java-1.6-Test
+<p>In the distribution folder of ALox, you will find a sample project in subfolder: </p><pre class="fragment">    ALOX_LIB_PATH/build/ide.java.eclipse/ALox-Java-1.6-Test
 </pre><p>Within this folder, you will find the different <em>ProGuard</em> sample configuration files:</p><ul>
 <li>For pruning just the debug logging statements and enable release logging: <pre class="fragment">  proguard-prune-alox-debug.pro
 </pre></li>
@@ -258,8 +258,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <dl class="section note"><dt>Note</dt><dd><em>ProGuard</em> supports <em>Ant Tasks</em> and <em>Gradle Tasks</em>. See the corresponding <em>ProGuard</em> documentation for details.</dd></dl>
 <p><b>That all, you are set!</b></p>
 <p>The test project distributed with ALox can be easily used to see what is happening using <em>ProGuard</em>. Go ahead as follows:</p><ul>
-<li>Add the following two projects to Eclipse (or compile them with your favorite IDE): <pre class="fragment">  ALOX_LIB_PATH/build/ide.java.eclipse.luna/ALox-Java-1.6_ (if not done, yet)
-  ALOX_LIB_PATH/build/ide.java.eclipse.luna/ALox-Java-1.6-Test
+<li>Add the following two projects to Eclipse (or compile them with your favorite IDE): <pre class="fragment">  ALOX_LIB_PATH/build/ide.java.eclipse/ALox-Java-1.6_ (if not done, yet)
+  ALOX_LIB_PATH/build/ide.java.eclipse/ALox-Java-1.6-Test
 </pre></li>
 <li>Make sure you have <em>ProGuard</em> installed (if you have Android SDK installed, you have <em>ProGuard</em>!)<br />
  It may be necessary to set the <code>PROGUARD_HOME</code> environment variable to the <em>ProGuard</em> path, e.g. <pre class="fragment">  PROGUARD_HOME=c:\\usr\\Dev\\Android\\android-sdk\\tools\\proguard
@@ -268,7 +268,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  It may be necessary to set the <code>JAVA_HOME</code> environment variable to your Java JDK or JRE, e.g. <pre class="fragment">  JAVA_HOME=C:\\Program Files\\Java\\jre6 (Windows OS)
   JAVA_HOME=/lib/jvm/java-7-openjdk/jre/  (Arch Linux)
 </pre></li>
-<li>cd into: <pre class="fragment">  ALOX_LIB_PATH/build/ide.java.eclipse.luna/ALox-Java-1.6-Test
+<li>cd into: <pre class="fragment">  ALOX_LIB_PATH/build/ide.java.eclipse/ALox-Java-1.6-Test
 </pre></li>
 <li><p class="startli">Launch </p><pre class="fragment">  ./Samples.[sh|bat]
 </pre><p class="startli">and check the un-pruned output of the test</p>
@@ -312,12 +312,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>When "exporting" your application into an APK file, ALox gets automatically pruned by <em>ProGuard</em> and the Android SDK build process.</p>
 <p>ALox provides a preconfigured sample project for Android:</p>
 <p>Add the two following two projects to Eclipse (or compile them with your favorite IDE):</p><ul>
-<li>_ALOX_LIB_PATH/build/ide.java.eclipse.luna/ALox-Java-Android (if not done, yet)</li>
-<li>_ALOX_LIB_PATH/build/ide.java.eclipse.luna/ALox-Java-Android-Test-Release-Log</li>
+<li>_ALOX_LIB_PATH/build/ide.java.eclipse/ALox-Java-Android (if not done, yet)</li>
+<li>_ALOX_LIB_PATH/build/ide.java.eclipse/ALox-Java-Android-Test-Release-Log</li>
 </ul>
 <p>You can <em>export</em> the APK file of the latter project in two variants: with release logging enabled or disabled. Modify <code>proguard-project.txt</code> accordingly and see what happens when you launch the APK on your device.</p>
 <p>Also, you might want to have a quick look this projects sample code found in:</p>
-<div class="fragment"><div class="line">ALOX_LIB_PATH/build/ide.java.eclipse.luna/ALox-Java-Android-Test-Release-Log/src/<a class="code" href="namespacecom.html">com</a>/aworx/alox_java_android_test_release_log/ALoxJavaAndroidTestReleaseLog.java</div></div><!-- fragment --><p>to get a first understanding of ALox release logging.</p>
+<div class="fragment"><div class="line">ALOX_LIB_PATH/build/ide.java.eclipse/ALox-Java-Android-Test-Release-Log/src/<a class="code" href="namespacecom.html">com</a>/aworx/alox_java_android_test_release_log/ALoxJavaAndroidTestReleaseLog.java</div></div><!-- fragment --><p>to get a first understanding of ALox release logging.</p>
 <h2><a class="anchor" id="javasetup_pruning_obfuscating"></a>
 2.4 Obfuscating the code</h2>
 <p>As mentioned already, <em>ProGuard</em> provides an optional feature to obfuscate your code. Again, this is only optional and obfuscation has benefits but also some disadvantages. In respect to ALox, obfuscation introduces one little difficulty related to all methods that work with the "caller scope". Most remarkably, most Scope Domain setting will stop working, because packages, class names and file names get mangled heavily.<br />
@@ -342,7 +342,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 20 2016 10:57:55 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 23 2016 23:18:47 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

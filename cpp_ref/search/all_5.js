@@ -2,14 +2,17 @@ var searchData=
 [
   ['eclipsecdt',['EclipseCDT',['../classaworx_1_1lib_1_1system_1_1System.html#aeae50cdd350e3deaae33d2900b0a72f2aac3b9401d30402b6f3f9c930e92eba6a',1,'aworx::lib::system::System']]],
   ['emptystring',['EmptyString',['../namespaceaworx.html#a3372961a8fb9d30455267babb4e6c26c',1,'aworx']]],
-  ['end',['End',['../namespaceaworx_1_1lib_1_1enums.html#ae1c5184dc404edf057ed537bcfddef84a87557f11575c0ad78e4e28abedc13b6e',1,'aworx::lib::enums::End()'],['../namespaceaworx_1_1lib_1_1containers.html#a493642c7093a3913fb626ebd25eb4c7d',1,'aworx::lib::containers::end()']]],
+  ['end',['end',['../namespaceaworx_1_1lib_1_1containers.html#a493642c7093a3913fb626ebd25eb4c7d',1,'aworx::lib::containers::end()'],['../namespaceaworx_1_1lib_1_1enums.html#ae1c5184dc404edf057ed537bcfddef84a87557f11575c0ad78e4e28abedc13b6e',1,'aworx::lib::enums::End()']]],
   ['endswith',['EndsWith',['../classaworx_1_1lib_1_1strings_1_1String.html#a34f943472db189e27586b5ad6df554f4',1,'aworx::lib::strings::String::EndsWith()'],['../structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html#a1d1cfd8ffb84e947f82999c682b666a7a213068b7e25d045126e9b1702fae80db',1,'aworx::lox::Lox::DomainSubstitutionRule::EndsWith()']]],
   ['ensureremainingcapacity',['EnsureRemainingCapacity',['../classaworx_1_1lib_1_1strings_1_1AString.html#afa227b35c03708d90f56d9b3280163f1',1,'aworx::lib::strings::AString']]],
-  ['entry',['Entry',['../classaworx_1_1lox_1_1Lox.html#a6c3cca935f588cd3ce14b9ea8e077a4d',1,'aworx::lox::Lox::Entry(const TString &amp;domain, Verbosity verbosity, const void *logable, int type)'],['../classaworx_1_1lox_1_1Lox.html#a8f6a598272b876b9f4bf8e3cff0a974d',1,'aworx::lox::Lox::Entry(Verbosity verbosity, const void *logable, int type)'],['../classaworx_1_1lox_1_1Lox.html#a764d843b292c608d125b17e68480d143',1,'aworx::lox::Lox::Entry(const TString &amp;domain, Verbosity verbosity, const TString &amp;msg)'],['../classaworx_1_1lox_1_1Lox.html#a7f16d440005d604207e93de5f5bcae8b',1,'aworx::lox::Lox::Entry(Verbosity verbosity, const TString &amp;msg)']]],
+  ['entries',['Entries',['../classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html#ab2da73dcf9e06ea3b12ea32c71730419',1,'aworx::lib::config::InMemoryPlugin::Section']]],
+  ['entry',['Entry',['../classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html',1,'aworx::lib::config::InMemoryPlugin']]],
+  ['entry',['Entry',['../classaworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html#abc5302970b7c9dbce8d2303596ed5746',1,'aworx::lib::config::IniFile::Entry::Entry()'],['../classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html#abc5302970b7c9dbce8d2303596ed5746',1,'aworx::lib::config::InMemoryPlugin::Entry::Entry()'],['../classaworx_1_1lox_1_1Lox.html#a6c3cca935f588cd3ce14b9ea8e077a4d',1,'aworx::lox::Lox::Entry(const TString &amp;domain, Verbosity verbosity, const void *logable, int type)'],['../classaworx_1_1lox_1_1Lox.html#a8f6a598272b876b9f4bf8e3cff0a974d',1,'aworx::lox::Lox::Entry(Verbosity verbosity, const void *logable, int type)'],['../classaworx_1_1lox_1_1Lox.html#a764d843b292c608d125b17e68480d143',1,'aworx::lox::Lox::Entry(const TString &amp;domain, Verbosity verbosity, const TString &amp;msg)'],['../classaworx_1_1lox_1_1Lox.html#a7f16d440005d604207e93de5f5bcae8b',1,'aworx::lox::Lox::Entry(Verbosity verbosity, const TString &amp;msg)']]],
+  ['entry',['Entry',['../classaworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html',1,'aworx::lib::config::IniFile']]],
   ['enums_2ehpp',['enums.hpp',['../enums_8hpp.html',1,'']]],
-  ['envcp',['envCP',['../classaworx_1_1lib_1_1config_1_1Configuration.html#a2a30bf55f0ff6dc49518e186c7f2dc41',1,'aworx::lib::config::Configuration']]],
-  ['environmentplugin',['EnvironmentPlugIn',['../classaworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html#acbd5e02cd0e7d1fb1263beb7d734fc40',1,'aworx::lib::config::EnvironmentPlugIn']]],
-  ['environmentplugin',['EnvironmentPlugIn',['../classaworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html',1,'aworx::lib::config']]],
+  ['environment',['Environment',['../classaworx_1_1lib_1_1config_1_1Configuration.html#a3a317739ee132a40b625cafa2c5a8706',1,'aworx::lib::config::Configuration']]],
+  ['environmentplugin',['EnvironmentPlugin',['../classaworx_1_1lib_1_1config_1_1EnvironmentPlugin.html#a0d616ebe017e9fb0d1e37fbfbd792c0d',1,'aworx::lib::config::EnvironmentPlugin']]],
+  ['environmentplugin',['EnvironmentPlugin',['../classaworx_1_1lib_1_1config_1_1EnvironmentPlugin.html',1,'aworx::lib::config']]],
   ['eometa',['EOMETA',['../classaworx_1_1lox_1_1ESC.html#aebb3b721c38741c6c324f5358f0f881f',1,'aworx::lox::ESC']]],
   ['equals',['Equals',['../classaworx_1_1lib_1_1strings_1_1String.html#aa30b895dcfaf0574aca843b212ee2602',1,'aworx::lib::strings::String::Equals()'],['../structaworx_1_1lox_1_1core_1_1Logable.html#a1bb22a7f33e2cce3c5abc5ced4bf4c06',1,'aworx::lox::core::Logable::Equals()']]],
   ['erorwritingfile',['ErorWritingFile',['../classaworx_1_1lib_1_1config_1_1IniFile.html#a67a0db04d321a74b7e7fcfd3f1a3f70baa3dfa29533b3745c447fff71696df7b0',1,'aworx::lib::config::IniFile']]],
@@ -17,7 +20,6 @@ var searchData=
   ['erroropeningfile',['ErrorOpeningFile',['../classaworx_1_1lib_1_1config_1_1IniFile.html#a67a0db04d321a74b7e7fcfd3f1a3f70bad083aedf850e5989f336e50d1a539d44',1,'aworx::lib::config::IniFile']]],
   ['esc',['ESC',['../classaworx_1_1lox_1_1ESC.html',1,'aworx::lox']]],
   ['esc',['ESC',['../namespaceaworx.html#a41196e8ca29644376437095a102ad9ec',1,'aworx']]],
-  ['escapesequences',['EscapeSequences',['../classaworx_1_1lib_1_1config_1_1IniFile.html#a90c6ad78caa206911f41e45552d63c6c',1,'aworx::lib::config::IniFile']]],
   ['evaluatedtempdir',['evaluatedTempDir',['../classaworx_1_1lib_1_1system_1_1Directory.html#ad0c1b40acd899ebb5f0388779ed4d1dc',1,'aworx::lib::system::Directory']]],
   ['evaluatedvartempdir',['evaluatedVarTempDir',['../classaworx_1_1lib_1_1system_1_1Directory.html#a4b09df20093589aae45a102d72bca303',1,'aworx::lib::system::Directory']]],
   ['evaluateresultdomain',['evaluateResultDomain',['../classaworx_1_1lox_1_1Lox.html#a9b58060c77090803e3cf92866bd90ce4',1,'aworx::lox::Lox']]],
@@ -26,5 +28,6 @@ var searchData=
   ['execfilename',['ExecFileName',['../classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a4261537d8a445f836cc32174e8ff0fd9',1,'aworx::lib::system::ProcessInfo']]],
   ['execfilepath',['ExecFilePath',['../classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a6e88f1772ab15c3f177dfa4deed1612b',1,'aworx::lib::system::ProcessInfo']]],
   ['exists',['Exists',['../classaworx_1_1lib_1_1system_1_1Directory.html#a348d7a37454d70c73f2b7e4106b5389a',1,'aworx::lib::system::Directory']]],
-  ['export',['Export',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html#aac883c890047d2981a5d7450a10111f9',1,'aworx::lox::core::textlogger::AutoSizes']]]
+  ['export',['Export',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html#aac883c890047d2981a5d7450a10111f9',1,'aworx::lox::core::textlogger::AutoSizes']]],
+  ['externalizevalue',['ExternalizeValue',['../classaworx_1_1lib_1_1config_1_1XTernalizer.html#ac028e93dccee5716835072185c65a0af',1,'aworx::lib::config::XTernalizer']]]
 ];

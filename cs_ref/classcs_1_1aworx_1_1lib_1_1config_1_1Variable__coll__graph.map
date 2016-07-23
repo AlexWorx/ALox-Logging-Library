@@ -1,0 +1,11 @@
+<map id="Variable" name="Variable">
+<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html" title="Configuration" alt="" coords="303,483,401,509"/>
+<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="162,5,227,32"/>
+<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html" title="EnvironmentPlugin" alt="" coords="139,379,269,405"/>
+<area shape="rect" id="node6" href="$classcs_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html" title="XTernalizer" alt="" coords="349,109,437,136"/>
+<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html" title="ConfigurationPlugin" alt="" coords="326,222,461,249"/>
+<area shape="rect" id="node8" href="$classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html" title="InMemoryPlugin" alt="" coords="294,379,410,405"/>
+<area shape="rect" id="node9" href="$classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html" title="CommandLinePlugin" alt="" coords="434,379,577,405"/>
+<area shape="rect" id="node7" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="511,5,588,32"/>
+<area shape="rect" id="node10" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="652,379,761,405"/>
+</map>

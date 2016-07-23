@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 2</span>
+   &#160;<span id="projectnumber">V. 1607 R. 0</span>
    </div>
   </td>
  </tr>
@@ -137,25 +137,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Collaboration diagram for Configuration:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration__coll__graph.svg" width="339" height="292"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration__coll__graph.svg" width="740" height="443"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> This class is supposed to be a static singleton in class <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html">ALIB</a>. It holds a list of objects of type <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a>, sorted by their priority and provides a single user interface to query configuration data from those.</p>
-<p>By default, two configuration plug-ins are set up:</p><ul>
-<li>command line parameter configuration options (Priority 400, provided in static constant field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a7782ed756910f8f9910f8eabbbaa494c">PrioCmdLine</a>).</li>
-<li>environment variable configuration options (Priority 300, provided in static constant field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a8d6d75f99cfd73825afe36e62603a950">PrioEnvVars</a>).</li>
-</ul>
-<p>An application specific instance of abstract class <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> that uses appropriate configuration techniques (INI files, registry entries, etc.) optionally completes this set. It is proposed to use a priority value of 200 (provided in static constant field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a925f0708313b8a27defb4bf7983d7dd6">PrioIniFile</a>) for custom configuration plug-ins. This way, environment variables could <em>overwrite</em> entries in configuration files and command line parameters could in turn <em>overwrite</em> environment variables.</p>
-<p>Variables are case insensitive for the built-in <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> types <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html">CommandLinePlugIn</a> and <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html">EnvironmentPlugIn</a>.</p>
-<p>It is recommended to treat variable names case insensitive within custom implementations (specializations) of class <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> as well.</p>
-<p>The interface methods of this class are implemented <em>synchronized</em>. When adding or removing plug-ins, the instance should by synchronized (locked) as well.</p>
-<p>Some method of this class accept parameters of type <em>Object</em>. In this case, the following string types are accepted:</p><ul>
-<li>String</li>
-<li>char[]</li>
-<li><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a></li>
-<li><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> </li>
-</ul>
+<p> This class primarily is used via the public static singleton instance of it, found in <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a34430993f800b3bc4571bd4b9a6d9184">ALIB.Config</a>. It holds a list of objects of type <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a>, sorted by their priority and provides a single user interface to query configuration data from those.</p>
+<p>Interface methods are implemented <em>synchronized</em>.</p>
+<p>By default, all category and variable names are case insensitive. This is at least true for the default plug-ins delivered with ALib.</p>
+<p>Variables by default can contain other variables, which are recursively substituted by this method. For more information about the (adjustable) syntax, see <a class="el" href="namespacecs_1_1aworx_1_1lib_1_1config.html#cs_alib_namespace_config_substitution">Variable Substitution</a>.</p>
+<p>See documentation of namespace <a class="el" href="namespacecs_1_1aworx_1_1lib_1_1config.html">cs::aworx::lib::config</a> for more information on ALib external configuration variables. </p>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Inner Classes</h2></td></tr>
@@ -164,241 +154,124 @@ Inner Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Fields</h2></td></tr>
-<tr class="memitem:aeab3fc98a76ae513a4527528bd9ed304"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html">CommandLinePlugIn</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#aeab3fc98a76ae513a4527528bd9ed304">CmdLineCP</a></td></tr>
-<tr class="separator:aeab3fc98a76ae513a4527528bd9ed304"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac23bef185f6fad19b5a07cef057ccc23"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html">EnvironmentPlugIn</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac23bef185f6fad19b5a07cef057ccc23">EnvCP</a></td></tr>
-<tr class="separator:ac23bef185f6fad19b5a07cef057ccc23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada8187fc67d8f54a46aed3bf04542e08"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html">CommandLinePlugin</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ada8187fc67d8f54a46aed3bf04542e08">CmdLine</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html">CommandLinePlugin</a>()</td></tr>
+<tr class="separator:ada8187fc67d8f54a46aed3bf04542e08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64b37d856a86344c0d3c1a6d9779e6f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a>()</td></tr>
+<tr class="separator:a64b37d856a86344c0d3c1a6d9779e6f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a317739ee132a40b625cafa2c5a8706"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html">EnvironmentPlugin</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a3a317739ee132a40b625cafa2c5a8706">Environment</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html">EnvironmentPlugin</a>()</td></tr>
+<tr class="separator:a3a317739ee132a40b625cafa2c5a8706"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20358334d7d6268d5c50b650ebf3e4b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a20358334d7d6268d5c50b650ebf3e4b8">NumberFormat</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>()</td></tr>
 <tr class="separator:a20358334d7d6268d5c50b650ebf3e4b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab092b4bf4ab5c2cc772271e61ea3bda4"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ab092b4bf4ab5c2cc772271e61ea3bda4">PrioAutodetect</a> = 50</td></tr>
+<tr class="separator:ab092b4bf4ab5c2cc772271e61ea3bda4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7782ed756910f8f9910f8eabbbaa494c"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a7782ed756910f8f9910f8eabbbaa494c">PrioCmdLine</a> = 400</td></tr>
 <tr class="separator:a7782ed756910f8f9910f8eabbbaa494c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d6d75f99cfd73825afe36e62603a950"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a8d6d75f99cfd73825afe36e62603a950">PrioEnvVars</a> = 300</td></tr>
-<tr class="separator:a8d6d75f99cfd73825afe36e62603a950"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad754aede889ddbfc72c4d502d0b505bd"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ad754aede889ddbfc72c4d502d0b505bd">PrioDefault</a> = 100</td></tr>
+<tr class="separator:ad754aede889ddbfc72c4d502d0b505bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab592c568f9f8728e38684af9d258a2f7"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ab592c568f9f8728e38684af9d258a2f7">PrioEnvironment</a> = 300</td></tr>
+<tr class="separator:ab592c568f9f8728e38684af9d258a2f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a925f0708313b8a27defb4bf7983d7dd6"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a925f0708313b8a27defb4bf7983d7dd6">PrioIniFile</a> = 200</td></tr>
 <tr class="separator:a925f0708313b8a27defb4bf7983d7dd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a849f8b775a1ebb6a8fbafe525f821056"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a849f8b775a1ebb6a8fbafe525f821056">PrioProtected</a> = int.MaxValue</td></tr>
+<tr class="separator:a849f8b775a1ebb6a8fbafe525f821056"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a694607c106d5e636c5fc90d623c0dcef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a694607c106d5e636c5fc90d623c0dcef">ProtectedValues</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a>()</td></tr>
+<tr class="separator:a694607c106d5e636c5fc90d623c0dcef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38db36fcacc0a41cf163aae099fcafd7"><td class="memItemLeft" align="right" valign="top">char[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a38db36fcacc0a41cf163aae099fcafd7">SubstitutionVariableDelimiters</a></td></tr>
+<tr class="separator:a38db36fcacc0a41cf163aae099fcafd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ad3378439cc377bf58fd1c9093a2b94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a5ad3378439cc377bf58fd1c9093a2b94">SubstitutionVariableEnd</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>()</td></tr>
+<tr class="separator:a5ad3378439cc377bf58fd1c9093a2b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1de3585e84c561b739f77b32dfe7757"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#aa1de3585e84c561b739f77b32dfe7757">SubstitutionVariableStart</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>(&quot;$&quot;)</td></tr>
+<tr class="separator:aa1de3585e84c561b739f77b32dfe7757"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12369eaf915d9637d932edb3268d2e55"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a12369eaf915d9637d932edb3268d2e55">TrueValues</a></td></tr>
 <tr class="separator:a12369eaf915d9637d932edb3268d2e55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
-<tr class="memitem:ac6f755b1f8e1c7532b3ebfd4f19b7c0c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac6f755b1f8e1c7532b3ebfd4f19b7c0c">Configuration</a> (bool useEnv=true, String[] args=null)</td></tr>
-<tr class="separator:ac6f755b1f8e1c7532b3ebfd4f19b7c0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ccbf58795003a2373c5a4dd9c90b3c5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a2ccbf58795003a2373c5a4dd9c90b3c5">Get</a> (Object category, Object name, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> target)</td></tr>
-<tr class="separator:a2ccbf58795003a2373c5a4dd9c90b3c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e26d8048410128ace5354ddf98845b7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a1e26d8048410128ace5354ddf98845b7">Get</a> (Object category, Object name, out int target, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> temp=null)</td></tr>
-<tr class="separator:a1e26d8048410128ace5354ddf98845b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae424d19d485faa863786709b8a05778d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ae424d19d485faa863786709b8a05778d">Get</a> (Object category, Object name, out double target, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> temp=null)</td></tr>
-<tr class="separator:ae424d19d485faa863786709b8a05778d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ccc2a92ad3cf97fb6cbcb0b7109bb57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a9ccc2a92ad3cf97fb6cbcb0b7109bb57">InsertPlugin</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> plugin, int priority)</td></tr>
-<tr class="separator:a9ccc2a92ad3cf97fb6cbcb0b7109bb57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36d123dcc42ef58da853d1eb86f12199"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a36d123dcc42ef58da853d1eb86f12199">Configuration</a> ()</td></tr>
+<tr class="separator:a36d123dcc42ef58da853d1eb86f12199"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50bc62566c58bc7c18e36a9356031355"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a50bc62566c58bc7c18e36a9356031355">FetchFromDefault</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> dest)</td></tr>
+<tr class="separator:a50bc62566c58bc7c18e36a9356031355"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae97fdf23b6cfadfe06e1d8d42c2bded7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ae97fdf23b6cfadfe06e1d8d42c2bded7">InsertPlugin</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> plugin, int priority)</td></tr>
+<tr class="separator:ae97fdf23b6cfadfe06e1d8d42c2bded7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acac4653b0703548c68814cd48a1d06af"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#acac4653b0703548c68814cd48a1d06af">IsTrue</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> value)</td></tr>
 <tr class="separator:acac4653b0703548c68814cd48a1d06af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5616332a3373010be271f04f2e92f88f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a5616332a3373010be271f04f2e92f88f">IsTrue</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> value)</td></tr>
-<tr class="separator:a5616332a3373010be271f04f2e92f88f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7436dad7e0361445d031a671d87d5f6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac7436dad7e0361445d031a671d87d5f6">IsTrue</a> (Object category, Object name, out int pluginPriority, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> temp=null)</td></tr>
-<tr class="separator:ac7436dad7e0361445d031a671d87d5f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6629a76663a353272a1a12f547241d5e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a6629a76663a353272a1a12f547241d5e">IsTrue</a> (Object category, Object name, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> temp=null)</td></tr>
-<tr class="separator:a6629a76663a353272a1a12f547241d5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab822760a99ecb38fba7f95c4d2fb700d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ab822760a99ecb38fba7f95c4d2fb700d">RemovePlugin</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> plugin)</td></tr>
-<tr class="separator:ab822760a99ecb38fba7f95c4d2fb700d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aadf37512b39dfac1dbf02e6eaaeb5109"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#aadf37512b39dfac1dbf02e6eaaeb5109">Save</a> (Object category, Object name, Object value, Object comments=null, char delim= ',')</td></tr>
-<tr class="separator:aadf37512b39dfac1dbf02e6eaaeb5109"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c397f690196e6b466e7b48d2aeedb59"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a0c397f690196e6b466e7b48d2aeedb59">Save</a> (Object category, Object name, int value, Object comments=null, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> temp=null)</td></tr>
-<tr class="separator:a0c397f690196e6b466e7b48d2aeedb59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a535866e620a6b43cdaa8fec1feae289b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a535866e620a6b43cdaa8fec1feae289b">Save</a> (Object category, Object name, double value, Object comments=null, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> temp=null)</td></tr>
-<tr class="separator:a535866e620a6b43cdaa8fec1feae289b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1028789420460defdc519039cf1d22da"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a1028789420460defdc519039cf1d22da">Load</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a> variable)</td></tr>
+<tr class="separator:a1028789420460defdc519039cf1d22da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae921a4c6145c443c40e6dbb3c41ce53f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ae921a4c6145c443c40e6dbb3c41ce53f">loadImpl</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a> variable, bool substitute)</td></tr>
+<tr class="separator:ae921a4c6145c443c40e6dbb3c41ce53f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae27c799d6218d8e6bacfcbc7c11f1869"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ae27c799d6218d8e6bacfcbc7c11f1869">RemovePlugin</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> plugin)</td></tr>
+<tr class="separator:ae27c799d6218d8e6bacfcbc7c11f1869"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d686b0221d87f9f03fd7c3f313abdc2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a5d686b0221d87f9f03fd7c3f313abdc2">SetCommandLineArgs</a> (String[] args=null)</td></tr>
+<tr class="separator:a5d686b0221d87f9f03fd7c3f313abdc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43e9764846a599ef381db65b73fd7ebc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a43e9764846a599ef381db65b73fd7ebc">Store</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a> variable, Object externalizedValue=null)</td></tr>
+<tr class="separator:a43e9764846a599ef381db65b73fd7ebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Fields</h2></td></tr>
-<tr class="memitem:ac6fa102e37cb8bd5f57802ec7f51b54a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac6fa102e37cb8bd5f57802ec7f51b54a"></a>
-List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PluginAndPrio.html">PluginAndPrio</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac6fa102e37cb8bd5f57802ec7f51b54a">plugins</a></td></tr>
-<tr class="memdesc:ac6fa102e37cb8bd5f57802ec7f51b54a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The plug-ins we have in our portfolio. <br /></td></tr>
+<tr class="memitem:ac6fa102e37cb8bd5f57802ec7f51b54a"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PluginAndPrio.html">PluginAndPrio</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac6fa102e37cb8bd5f57802ec7f51b54a">plugins</a> = new List&lt;<a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PluginAndPrio.html">PluginAndPrio</a>&gt;()</td></tr>
 <tr class="separator:ac6fa102e37cb8bd5f57802ec7f51b54a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7732bc1197cd517b4e03c9e588adc8e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a7732bc1197cd517b4e03c9e588adc8e9">tmpConversion</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>()</td></tr>
+<tr class="separator:a7732bc1197cd517b4e03c9e588adc8e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab40aa8182041531c1c702c4f03a298a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ab40aa8182041531c1c702c4f03a298a7">tmpReplVarAll</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>()</td></tr>
+<tr class="separator:ab40aa8182041531c1c702c4f03a298a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4978d2aece83d84d44b45083d55dac9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ae4978d2aece83d84d44b45083d55dac9">tmpReplVarCategory</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>()</td></tr>
+<tr class="separator:ae4978d2aece83d84d44b45083d55dac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2eb87ae9cf763a496a06302b5aa18ebd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a2eb87ae9cf763a496a06302b5aa18ebd">tmpReplVarName</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>()</td></tr>
+<tr class="separator:a2eb87ae9cf763a496a06302b5aa18ebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ac6f755b1f8e1c7532b3ebfd4f19b7c0c"></a>
+<a class="anchor" id="a36d123dcc42ef58da853d1eb86f12199"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a> </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>useEnv</em> = <code>true</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">String[]&#160;</td>
-          <td class="paramname"><em>args</em> = <code>null</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Constructs a configuration plug-in and optionally (default) creates two initial plug-ins, one that reads command line options, a second that uses the process environment as configuration source. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">useEnv</td><td>If true (default), an <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html">EnvironmentPlugIn</a> is created and attached. To specify false here, might be useful, if a customized <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> that reads environment variables will be attached. </td></tr>
-    <tr><td class="paramname">args</td><td>Parameters taken from standard C main() method (the list of command line arguments). Defautls to null. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p> Constructs a <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a>. Registers the initial plug-ins <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a>, <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ada8187fc67d8f54a46aed3bf04542e08">CmdLine</a>, <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a3a317739ee132a40b625cafa2c5a8706">Environment</a> and <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a694607c106d5e636c5fc90d623c0dcef">ProtectedValues</a>. </p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a2ccbf58795003a2373c5a4dd9c90b3c5"></a>
+<a class="anchor" id="a50bc62566c58bc7c18e36a9356031355"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Get </td>
+          <td class="memname">int FetchFromDefault </td>
           <td>(</td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>category</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a>&#160;</td>
+          <td class="paramname"><em>dest</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
-          <td class="paramname"><em>target</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Retrieves a string value from the configuration settings. This is done by asking each of the installed plug-ins. As soon as the first one returns a value for the given variable name, this value is returned. All variable names are case insensitive. </p><dl class="params"><dt>Parameters</dt><dd>
+<p> This method fetches all values from <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a> which are not present in the given plug-in <code>dest</code> and stores them in. This is useful to collect all generated default values and store them in a users' configuration file. This way, the user can identify configurable options easily.</p>
+<dl class="section note"><dt>Note</dt><dd>Applications might want to copy only a portion of the default values to not blow up a users' configuration. To achieve this, a custom method to fetch selected values has to be implemented. In this respect, this method is a very simple default and its source might be used as a jump start.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">category</td><td>The category of the variable. (AString compatible type expected.) </td></tr>
-    <tr><td class="paramname">name</td><td>The name of the configuration variable to be retrieved. (AString compatible type expected.) </td></tr>
-    <tr><td class="paramname">target</td><td>A reference to an AString to take the result. This AString will be cleared, no matter if a configuration variable was found or not.</td></tr>
+    <tr><td class="paramname">dest</td><td>The destination plug-in. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Zero if the variable was not found. Otherwise it returns the priority of the (first) plug-in that contained the variable. This way, the caller might identify from which configuration source the variable was read. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of variables fetched. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a1e26d8048410128ace5354ddf98845b7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Get </td>
-          <td>(</td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>category</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">out int&#160;</td>
-          <td class="paramname"><em>target</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
-          <td class="paramname"><em>temp</em> = <code>null</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Retrieves an integer value from the configuration settings. This is done by asking each of the installed plug-ins. As soon as the first one returns a value for the given variable name, this value is returned. All variable names are case insensitive. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">category</td><td>The category of the variable. (AString compatible type expected.) </td></tr>
-    <tr><td class="paramname">name</td><td>The name of the configuration variable to be retrieved. (AString compatible type expected.) </td></tr>
-    <tr><td class="paramname">target</td><td>A reference to an integer variable to take the result. </td></tr>
-    <tr><td class="paramname">temp</td><td>A buffer to temporarily store the value for parsing. Defaults to null. Provide a local object to gain performance when retrieving many variables in a row.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Zero if the variable was not found. Otherwise it returns the priority of the (first) plug-in that contained the variable. This way, the caller might identify from which configuration source the variable was read. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ae424d19d485faa863786709b8a05778d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Get </td>
-          <td>(</td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>category</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">out double&#160;</td>
-          <td class="paramname"><em>target</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
-          <td class="paramname"><em>temp</em> = <code>null</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Retrieves a floating point value from the configuration settings. This is done by asking each of the installed plug-ins. As soon as the first one returns a value for the given variable </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">category</td><td>The category of the variable. (AString compatible type expected.) </td></tr>
-    <tr><td class="paramname">name</td><td>The name of the configuration variable to be retrieved. (AString compatible type expected.) </td></tr>
-    <tr><td class="paramname">target</td><td>A reference to an double variable to take the result. </td></tr>
-    <tr><td class="paramname">temp</td><td>A buffer to temporarily store the value for parsing. Defaults to null. Provide a local object to gain performance when retrieving many variables in a row.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Zero if the variable was not found. Otherwise it returns the priority of the (first) plug-in that contained the variable. This way, the caller might identify from which configuration source the variable was read. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a9ccc2a92ad3cf97fb6cbcb0b7109bb57"></a>
+<a class="anchor" id="ae97fdf23b6cfadfe06e1d8d42c2bded7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void InsertPlugin </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a>&#160;</td>
           <td class="paramname"><em>plugin</em>, </td>
         </tr>
         <tr>
@@ -415,7 +288,7 @@ List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Adds the given plug-in to the list of plug-ins used to query configuration values. Higher numbers for parameter priority, prioritize this plug-in against those with lower values. Default values are provided with static constant fields <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a7782ed756910f8f9910f8eabbbaa494c">PrioCmdLine</a>, <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a8d6d75f99cfd73825afe36e62603a950">PrioEnvVars</a> and <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a925f0708313b8a27defb4bf7983d7dd6">PrioIniFile</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Adds the given plug-in to the list of plug-ins used to query configuration values. Higher numbers for parameter priority, prioritize this plug-in against those with lower values. Default values are provided with static constant fields <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a7782ed756910f8f9910f8eabbbaa494c">PrioCmdLine</a>, <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ab592c568f9f8728e38684af9d258a2f7">PrioEnvironment</a> and <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a925f0708313b8a27defb4bf7983d7dd6">PrioIniFile</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">plugin</td><td>The plug-in to insert. </td></tr>
     <tr><td class="paramname">priority</td><td>The priority of the plug-in. </td></tr>
@@ -450,58 +323,47 @@ List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_
 
 </div>
 </div>
-<a class="anchor" id="a5616332a3373010be271f04f2e92f88f"></a>
+<a class="anchor" id="a1028789420460defdc519039cf1d22da"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool IsTrue </td>
+          <td class="memname">int Load </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a>&#160;</td>
+          <td class="paramname"><em>variable</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Utility method that checks if a given value represents boolean <b>true</b>. Uses field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a12369eaf915d9637d932edb3268d2e55">TrueValues</a>. Comparisons are made case insensitive.</p>
+<p> Receives and optionally creates configuration variable.</p>
+<p>If the variable was not found and <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#ae4b47533ee1b78ad20c12f235d7ef958">Variable.DefaultValue</a> in <code>variable</code> is set, the method adds the value value to plug-in <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a> (respectively to the plug-in found at or below <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ad754aede889ddbfc72c4d502d0b505bd">PrioDefault</a>). For the conversion of the value, field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#aca2a6ae76bd8edc4dc6426ec1818154e">ConfigurationPlugin.StringConverter</a> of field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a> is used.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>The value to check</td></tr>
+    <tr><td class="paramname">variable</td><td>The variable to receive.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns <code>true</code>, if the value represents 'true', <code>false</code> if not. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The priority of the configuration plug-in that provided the result. <code>0</code> if not found, <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ad754aede889ddbfc72c4d502d0b505bd">PrioDefault</a> if either found or created in <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a>. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="ac7436dad7e0361445d031a671d87d5f6"></a>
+<a class="anchor" id="ae921a4c6145c443c40e6dbb3c41ce53f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool IsTrue </td>
+          <td class="memname">int loadImpl </td>
           <td>(</td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>category</em>, </td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a>&#160;</td>
+          <td class="paramname"><em>variable</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">out int&#160;</td>
-          <td class="paramname"><em>pluginPriority</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
-          <td class="paramname"><em>temp</em> = <code>null</code>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>substitute</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -511,70 +373,26 @@ List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Uses <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a2ccbf58795003a2373c5a4dd9c90b3c5">Get</a> to read a string value and returns true if this variable holds one of the values found in the <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a12369eaf915d9637d932edb3268d2e55">TrueValues</a> string list.</p>
+<p> Implementation of get method. No locking is performed (has to be done before invoking this method)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">category</td><td>The category of the variable. (AString compatible type expected.) </td></tr>
-    <tr><td class="paramname">name</td><td>The name of the environment variable to read (AString compatible type expected.) </td></tr>
-    <tr><td class="paramname">pluginPriority</td><td>An optional pointer to an integer. If set, the priority of the plug-in which returned the configuration value will be stored here. This way, the caller can identify if the variable was defined at all (if false was returned) or even from which configuration source the variable was read. </td></tr>
-    <tr><td class="paramname">temp</td><td>A buffer to temporarily store the value for parsing. Defaults to null. Provide a local object to gain performance when retrieving many variables in a row.</td></tr>
+    <tr><td class="paramname">variable</td><td>The variable to get. </td></tr>
+    <tr><td class="paramname">substitute</td><td>If <code>false</code>, automatic variable substitutions are suppressed.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns <code>true</code>, if the environment variable is defined and has one of the values found in field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a12369eaf915d9637d932edb3268d2e55">TrueValues</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Zero if the variable was not found. Otherwise it returns the priority of the (first) plug-in that contained the variable. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a6629a76663a353272a1a12f547241d5e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool IsTrue </td>
-          <td>(</td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>category</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
-          <td class="paramname"><em>temp</em> = <code>null</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Uses <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a2ccbf58795003a2373c5a4dd9c90b3c5">Get</a> to read a string value and returns true if this variable holds one of the values found in the <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a12369eaf915d9637d932edb3268d2e55">TrueValues</a> string list. By default, this string list contains the strings "true", "yes" and "1" (case insensitive comparison). </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">category</td><td>The category of the variable. (AString compatible type expected.) </td></tr>
-    <tr><td class="paramname">name</td><td>The name of the environment variable to read (AString compatible type expected.) </td></tr>
-    <tr><td class="paramname">temp</td><td>A buffer to temporarily store the value for parsing. Defaults to null. Provide a local object to gain performance when retrieving many variables in a row.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns true, if the environment variable is defined and has one of the values found in field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a12369eaf915d9637d932edb3268d2e55">TrueValues</a>. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ab822760a99ecb38fba7f95c4d2fb700d"></a>
+<a class="anchor" id="ae27c799d6218d8e6bacfcbc7c11f1869"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">bool RemovePlugin </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a>&#160;</td>
           <td class="paramname"><em>plugin</em></td><td>)</td>
           <td></td>
         </tr>
@@ -591,96 +409,47 @@ List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_
 
 </div>
 </div>
-<a class="anchor" id="aadf37512b39dfac1dbf02e6eaaeb5109"></a>
+<a class="anchor" id="a5d686b0221d87f9f03fd7c3f313abdc2"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Save </td>
+          <td class="memname">void SetCommandLineArgs </td>
           <td>(</td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>category</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">String[]&#160;</td>
+          <td class="paramname"><em>args</em> = <code>null</code></td><td>)</td>
           <td></td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>comments</em> = <code>null</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>delim</em> = <code>','</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Writes the string variable to the configuration. This is done by asking each of our installed plug-ins to do so. As soon as the first one returns 'true', the variable is considered written and no other plug-ins are asked. This way, the pair of variable/value is stored within the configuration type with the lowest possible priory (e.g. user configuration vs. system wide configuration). </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Sets the command line arguments for <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ada8187fc67d8f54a46aed3bf04542e08">CmdLine</a>.</p>
+<dl class="section note"><dt>Note</dt><dd>This method should be called for instances of this class after construction.<br />
+ In standard application scenarios, this method is invoked by method <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a7f8d4aeafdb18488a3759bb3b6cbffb2">ALIB.Init</a> for the static singleton found in <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a34430993f800b3bc4571bd4b9a6d9184">ALIB.Config</a>.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">category</td><td>The category of the variable. (AString compatible type expected.) </td></tr>
-    <tr><td class="paramname">name</td><td>The name of the configuration variable to be retrieved. (AString compatible type expected.) </td></tr>
-    <tr><td class="paramname">value</td><td>The value to write. </td></tr>
-    <tr><td class="paramname">comments</td><td>Comment lines that might be added in the configuration storage (plug-in implementation dependent). Optional and defaults to null. </td></tr>
-    <tr><td class="paramname">delim</td><td>This optional parameter should be provided for variables that are supposed to get long values that represent a list of delimited fields. <br />
- The use of this character is specific to a plug-ins' implementation. Defaults to '\0'.</td></tr>
+    <tr><td class="paramname">args</td><td>Parameters taken from <em>standard C#</em> method <code>main()</code> (the list of command line arguments). Defaults to null. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Zero if the variable was not written. Otherwise it returns the priority of the (first) plug-in that wrote the variable. This way, the caller might identify into which configuration source the variable was read. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a0c397f690196e6b466e7b48d2aeedb59"></a>
+<a class="anchor" id="a43e9764846a599ef381db65b73fd7ebc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Save </td>
+          <td class="memname">int Store </td>
           <td>(</td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>category</em>, </td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a>&#160;</td>
+          <td class="paramname"><em>variable</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>comments</em> = <code>null</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
-          <td class="paramname"><em>temp</em> = <code>null</code>&#160;</td>
+          <td class="paramname"><em>externalizedValue</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -690,100 +459,73 @@ List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Writes the integer variable to the configuration. This is done by asking each of our installed plug-ins to do so. As soon as the first one returns 'true', the variable is considered written and no other plug-ins are asked. This way, the pair of variable/value is stored within the configuration type with the lowest possible priory (e.g. user configuration vs. system wide configuration). </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Writes the variable to the configuration. In general, this is done by asking each of our installed plug-ins - in the order of their priority - to do so. As soon as the first plug-in returns <code>true</code>, the variable is considered written and no other plug-in is asked. This way, the variable is stored by the plug-in with the highest priority.</p>
+<p>The maximum priority to start the loop with depending on field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#a4450b0bad265ba3bd24e994f70aec802">Variable.Priority</a> of the given <code>variable</code>. The rules are as follows:</p><ul>
+<li>If the value is <code>-1</code>, which is the default value of new variables or ones that were freshly defined, then prior to storing the value, the variable is (tried to be) loaded first (without actually overwriting the values). After that, one of the next two rules apply.</li>
+<li>If the value is <code>0</code>, which indicates that a previous load operation failed, the loop starts with <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ad754aede889ddbfc72c4d502d0b505bd">PrioDefault</a> (and usually ends there, as standard configuration sets do not have plug-ins with lower priorities installed). In other words, newly created variables are stored in the in-memory plug-in <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a>. This way, they are not written to external configuration files, unless the application explicitly moves such new default values to dedicated other plug-ins (e.g. on termination).</li>
+<li>If the value is greater than <code>0</code>, the value is used as the start of the loop. This way, an already defined variable will be stored in the same plug-in as it was found (or one with a lower priority, if that plug-in does not provide writing capabilities).</li>
+</ul>
+<p>Consequently, as field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#a4450b0bad265ba3bd24e994f70aec802">Variable.Priority</a> is public, the behavior can be manipulated, by setting the field explicitly prior to invoking this method. Some frequent use cases shall be named here:</p><ul>
+<li>Setting the field to <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a849f8b775a1ebb6a8fbafe525f821056">PrioProtected</a> allows to store the variable in plug-in <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a694607c106d5e636c5fc90d623c0dcef">ProtectedValues</a>. This way, the variable gets <em>'locked'</em> in respect to external manipulation.</li>
+<li>Setting the field to <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ad754aede889ddbfc72c4d502d0b505bd">PrioDefault</a> allows to store the variable in plug-in <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a>. This way, the variable becomes just a default and does not overwrite other external values.</li>
+<li>Setting the field to a distinct priority value that names a user-specific configuration (vs. a system-wide configuration).</li>
+<li>Setting the field to <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a849f8b775a1ebb6a8fbafe525f821056">PrioProtected</a> <code>- 1</code> allows to store the variable just in the plug-in with highest possible priority, for example a user specific configuration is preferred to a system wide configuration)</li>
+<li>A variable might be related to a second one. If the priority of the second one is known, that priority might be set to possibly have both variables stored in the same plug-in.</li>
+</ul>
+<p>The method returns the priority of the configuration plug-in that the value was written to as well as storing this value in field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#a4450b0bad265ba3bd24e994f70aec802">Variable.Priority</a>. If the result is <code>0</code>, the variable was not written. This might only happen if</p><ul>
+<li>either field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a> was modified (removed or exchanged with a different plug-in that does not write the value)</li>
+<li>or if field <code>Priority</code> of the variable was set below <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ad754aede889ddbfc72c4d502d0b505bd">PrioDefault</a> and greater than <code>0</code>.</li>
+<li>The detected (!) priority was <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a849f8b775a1ebb6a8fbafe525f821056">PrioProtected</a>. In this case, obviously the application does not want to allow changes and writing the variable into a different plug-in has no effect. This way, such variables also do not appear in a users' configuration in the case that on program termination, new default values are copied there.</li>
+</ul>
+<p>Optional parameter <code>externalizedValue</code> allows to provide a string that is parsed by the storing plug-in to reset the variables' values prior to writing.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">category</td><td>The category of the variable. (AString compatible type expected.) </td></tr>
-    <tr><td class="paramname">name</td><td>The name of the configuration variable to be retrieved. (AString compatible type expected.) </td></tr>
-    <tr><td class="paramname">value</td><td>The value to write. </td></tr>
-    <tr><td class="paramname">comments</td><td>Comment lines that might be added in the configuration storage (plug-in implementation dependent). Optional and defaults to null. </td></tr>
-    <tr><td class="paramname">temp</td><td>A buffer to temporarily store the value. Defaults to null. Provide a local object to gain performance when retrieving many variables in a row.</td></tr>
+    <tr><td class="paramname">variable</td><td>The variable object. </td></tr>
+    <tr><td class="paramname">externalizedValue</td><td>Optional externalized value string. If given, the variable is set prior to writing.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Zero if the variable was not written. Otherwise it returns the priority of the (first) plug-in that wrote the variable. This way, the caller might identify into which configuration source the variable was read. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a535866e620a6b43cdaa8fec1feae289b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Save </td>
-          <td>(</td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>category</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>comments</em> = <code>null</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
-          <td class="paramname"><em>temp</em> = <code>null</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Writes the double variable to the configuration. This is done by asking each of our installed plug-ins to do so. As soon as the first one returns 'true', the variable is considered written and no other plug-ins are asked. This way, the pair of variable/value is stored within the configuration type with the lowest possible priory (e.g. user configuration vs. system wide configuration). </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">category</td><td>The category of the variable. (AString compatible type expected.) </td></tr>
-    <tr><td class="paramname">name</td><td>The name of the configuration variable to be retrieved. (AString compatible type expected.) </td></tr>
-    <tr><td class="paramname">value</td><td>The value to write. </td></tr>
-    <tr><td class="paramname">comments</td><td>Comment lines that might be added in the configuration storage (plug-in implementation dependent). Optional and defaults to null. </td></tr>
-    <tr><td class="paramname">temp</td><td>A buffer to temporarily store the value. Defaults to null. Provide a local object to gain performance when retrieving many variables in a row.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Zero if the variable was not written. Otherwise it returns the priority of the (first) plug-in that wrote the variable. This way, the caller might identify into which configuration source the variable was read. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The priority of the configuration plug-in that the value was written to. </dd></dl>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="aeab3fc98a76ae513a4527528bd9ed304"></a>
+<a class="anchor" id="ada8187fc67d8f54a46aed3bf04542e08"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html">CommandLinePlugIn</a> CmdLineCP</td>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html">CommandLinePlugin</a> CmdLine = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html">CommandLinePlugin</a>()</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The configuration plug-in for command line parameters. Created in the constructor. Provided as public field here, for flexibility. Please note: When this object is replaced by a customized one, it also has to be added to the the list of plug-ins (and any existing one has to be removed). </p>
+<p>The plug-in for command line parameters. </p>
 
 </div>
 </div>
-<a class="anchor" id="ac23bef185f6fad19b5a07cef057ccc23"></a>
+<a class="anchor" id="a64b37d856a86344c0d3c1a6d9779e6f6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html">EnvironmentPlugIn</a> EnvCP</td>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a> DefaultValues = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a>()</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The environment plug-in for evaluation of system environment variables. Created in the constructor. Provided as public field here, for flexibility. Please note: When this object is replaced by a customized one, it also has to be added to the the list of plug-ins (and any existing one has to be removed). </p>
+<p>The in-memory configuration plug-in that stores default values. </p>
+
+</div>
+</div>
+<a class="anchor" id="a3a317739ee132a40b625cafa2c5a8706"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html">EnvironmentPlugin</a> Environment = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html">EnvironmentPlugin</a>()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The plug-in for the evaluation of system environment variables. </p>
 
 </div>
 </div>
@@ -796,7 +538,41 @@ List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Number format definition used by plugins to write int and float values. </p>
+<p>Number format definition used to read and write int and float values. </p>
+
+</div>
+</div>
+<a class="anchor" id="ac6fa102e37cb8bd5f57802ec7f51b54a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PluginAndPrio.html">PluginAndPrio</a>&gt; plugins = new List&lt;<a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PluginAndPrio.html">PluginAndPrio</a>&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The plug-ins we have in our portfolio </p>
+
+</div>
+</div>
+<a class="anchor" id="ab092b4bf4ab5c2cc772271e61ea3bda4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int PrioAutodetect = 50</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Constant providing a priority which is even lower than default. This priority is not used by any standard plug-ins and currently not even anywhere in core ALib. The rational to provide it is for third party libraries that may use this value in cases where values are estimated or detected. A user of the library may then overwrite such auto-detection by setting a default value in the configuration. </p>
 
 </div>
 </div>
@@ -813,12 +589,25 @@ List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_
 
 </div>
 </div>
-<a class="anchor" id="a8d6d75f99cfd73825afe36e62603a950"></a>
+<a class="anchor" id="ad754aede889ddbfc72c4d502d0b505bd"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const int PrioEnvVars = 300</td>
+          <td class="memname">const int PrioDefault = 100</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Constant providing a low priority. This is used with <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a> </p>
+
+</div>
+</div>
+<a class="anchor" id="ab592c568f9f8728e38684af9d258a2f7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int PrioEnvironment = 300</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -836,6 +625,155 @@ List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_
       </table>
 </div><div class="memdoc">
 <p>Constant providing default priority for command-line parameters plug-in. </p>
+
+</div>
+</div>
+<a class="anchor" id="a849f8b775a1ebb6a8fbafe525f821056"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int PrioProtected = int.MaxValue</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Constant providing the highest possible priority. This is used with <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a694607c106d5e636c5fc90d623c0dcef">ProtectedValues</a> </p>
+
+</div>
+</div>
+<a class="anchor" id="a694607c106d5e636c5fc90d623c0dcef"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a> ProtectedValues = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a>()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The in-memory configuration plug-in that stores values that are not changeable by external configuration data. </p>
+
+</div>
+</div>
+<a class="anchor" id="a38db36fcacc0a41cf163aae099fcafd7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char [] SubstitutionVariableDelimiters</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= { <span class="charliteral">&#39; &#39;</span>,<span class="charliteral">&#39;$&#39;</span>,<span class="charliteral">&#39;@&#39;</span>,<span class="charliteral">&#39;,&#39;</span>,<span class="charliteral">&#39;.&#39;</span>,<span class="charliteral">&#39;;&#39;</span>,<span class="charliteral">&#39;:&#39;</span>,<span class="charliteral">&#39;\&quot;&#39;</span>,<span class="charliteral">&#39;\&#39;&#39;</span>,<span class="charliteral">&#39;+&#39;</span>,<span class="charliteral">&#39;-&#39;</span>,<span class="charliteral">&#39;*&#39;</span>,<span class="charliteral">&#39;/&#39;</span>,<span class="charliteral">&#39;\\&#39;</span>,</div><div class="line">            <span class="stringliteral">&#39;§&#39;</span>,<span class="charliteral">&#39;%&#39;</span>,<span class="charliteral">&#39;&amp;&#39;</span>,<span class="charliteral">&#39;(&#39;</span>,<span class="charliteral">&#39;)&#39;</span>,<span class="charliteral">&#39;[&#39;</span>,<span class="charliteral">&#39;]&#39;</span>,<span class="charliteral">&#39;{&#39;</span>,<span class="charliteral">&#39;}&#39;</span>,<span class="charliteral">&#39;&lt;&#39;</span>,<span class="charliteral">&#39;&gt;&#39;</span>,<span class="charliteral">&#39;=&#39;</span>,<span class="charliteral">&#39;?&#39;</span>,<span class="charliteral">&#39;\&#39;&#39;</span>,<span class="charliteral">&#39;`&#39;</span>,<span class="charliteral">&#39;~&#39;</span>,<span class="charliteral">&#39;#&#39;</span> }</div></div><!-- fragment --><p>The delimiters used to identify the end of a substitutable variable. If field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a5ad3378439cc377bf58fd1c9093a2b94">SubstitutionVariableEnd</a> is not empty, this field is ignored. Otherwise, all characters defined in this string are used to identify the end of a substitution variable. </p>
+
+</div>
+</div>
+<a class="anchor" id="a5ad3378439cc377bf58fd1c9093a2b94"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> SubstitutionVariableEnd = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The end of a substitution variables. If this field is set, then field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a38db36fcacc0a41cf163aae099fcafd7">SubstitutionVariableDelimiters</a> is ignored. If this field is null (the default) or empty, it is ignored and characters in field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a38db36fcacc0a41cf163aae099fcafd7">SubstitutionVariableDelimiters</a> are used to identify the end of the variable. </p>
+
+</div>
+</div>
+<a class="anchor" id="aa1de3585e84c561b739f77b32dfe7757"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> SubstitutionVariableStart = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>(&quot;$&quot;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The start string to identify substitution variables. Defaults to single character <code>'$'</code>. If a string is set, i.e. <code>"${"</code>, then field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a5ad3378439cc377bf58fd1c9093a2b94">SubstitutionVariableEnd</a> may be set accordingly, i.e. <code>"}"</code> </p>
+
+</div>
+</div>
+<a class="anchor" id="a7732bc1197cd517b4e03c9e588adc8e9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> tmpConversion = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>A temporary object used for conversion </p>
+
+</div>
+</div>
+<a class="anchor" id="ab40aa8182041531c1c702c4f03a298a7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> tmpReplVarAll = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>A temporary object used with variable substitution </p>
+
+</div>
+</div>
+<a class="anchor" id="ae4978d2aece83d84d44b45083d55dac9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> tmpReplVarCategory = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>A temporary object used with variable substitution </p>
+
+</div>
+</div>
+<a class="anchor" id="a2eb87ae9cf763a496a06302b5aa18ebd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> tmpReplVarName = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>A temporary object used with variable substitution </p>
 
 </div>
 </div>
@@ -860,7 +798,7 @@ List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 20 2016 10:57:54 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 23 2016 23:18:46 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

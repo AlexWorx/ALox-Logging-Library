@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 2</span>
+   &#160;<span id="projectnumber">V. 1607 R. 0</span>
    </div>
   </td>
  </tr>
@@ -246,9 +246,9 @@ Enumerations</h2></td></tr>
 <li>Warning</li>
 <li>Error (lowest level).</li>
 </ul>
-<p>A value of this set is provided to <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a> in two different ways: First, all methods of class <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html">Lox</a> that execute a log operation assign a value of this enum to the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em>. Secondly, methods <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#abd831519fc241771dd0be79fa8bc7d5c">Lox.SetVerbosity</a>, are defining the 'accepted' <em>minimal</em> <em>Verbosity</em> for a pair of <em>&lt;Logger/Log Domain&gt;</em>.</p>
+<p>A value of this set is provided to <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a> in two different ways: First, all methods of class <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html">Lox</a> that execute a log operation assign a value of this enum to the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em>. Secondly, methods <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa5e94bc8ec4e4f23c8401ebbf815c336">Lox.SetVerbosity</a>, are defining the 'accepted' <em>minimal</em> <em>Verbosity</em> for a pair of <em>&lt;Logger/Log Domain&gt;</em>.</p>
 <p>ALox, when executing a statement, checks both values against each other. A <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> is executed, when the <em>&lt;Logger/Log Domain&gt;</em> setting is set to the same or a 'higher level'. For example if a <em>&lt;Logger/Log Domain&gt;</em> setting is <b>Warning</b>, then <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Statements</em> with associated <em>Verbosity</em> <b>Warning</b> and <b>Error</b> are executed and those with <b>Info</b> and <b>Verbose</b> are suppressed.</p>
-<p>If special value <b>Off</b> is used with <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#abd831519fc241771dd0be79fa8bc7d5c">Lox.SetVerbosity</a>, all logging is switched Off for this pair of <em>&lt;Logger/Log Domain&gt;</em>.</p>
+<p>If special value <b>Off</b> is used with <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa5e94bc8ec4e4f23c8401ebbf815c336">Lox.SetVerbosity</a>, all logging is switched Off for this pair of <em>&lt;Logger/Log Domain&gt;</em>.</p>
 <p>Some of the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Statements</em> accept the parameter directly (e.g. <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a0c5d5fd659b79971751fec88e927a2dd">Lox.Entry</a>, <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a6bb283bb478fc96d04717f8767d722f7">Lox.Once</a> and <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a6d626c0840136bfdbc0e87e38f2d479c">Lox.If</a>), others inherently use the right value as their method name suggests (e.g. <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ae386987ba0c75db9f271b1f36bb73f1f">Lox.Error</a>, <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a3808da2f4940dc2ae891bf6487c72392">Lox.Warning</a>, <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ab28973053e893cbff09ae78c1c3a57be">Lox.Info</a>, <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a47fe738147a06f7df9c77a16cc2ebe1a">Lox.Verbose</a> and <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a8a25cb542264517df1cd9bf3b68529dc">Lox.Assert</a>). The latter group of methods do not support parameter <b>Off</b>.</p>
 <p>If special value <b>Off</b> is used with those <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Statements</em>, that allow to specify the <em>Verbosity</em> as a parameter, the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> is never executed This is useful if the parameter is determined at runtime, depending on the state of an application. </p>
 <table class="fieldtable">
@@ -276,7 +276,7 @@ Enumerations</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 20 2016 10:57:54 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 23 2016 23:18:46 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

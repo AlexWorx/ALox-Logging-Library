@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['left',['Left',['cs_ref/namespacecs_1_1aworx_1_1lib_1_1enums.html#acdfaca60ec19c0265bac2692d7982726a945d5e233cf7d6240f6b783b36a374ff',1,'cs::aworx::lib::enums::Left()'],['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#acdfaca60ec19c0265bac2692d7982726a945d5e233cf7d6240f6b783b36a374ff',1,'aworx::lib::enums::Left()']]],
-  ['local',['Local',['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#a9b1d8f31e178e17a8fef3a9e94bc4b2ca509820290d57f333403f490dde7316f4',1,'aworx::lib::enums']]]
+  ['keep',['Keep',['cs_ref/namespacecs_1_1aworx_1_1lib_1_1enums.html#a9345007d67faa05253932092d54d10d4a02bce93bff905887ad2233110bf9c49e',1,'cs::aworx::lib::enums::Keep()'],['cs_ref/namespacecs_1_1aworx_1_1lib_1_1enums.html#ad4a46f9fb632511f6be7c53e05f330f7a02bce93bff905887ad2233110bf9c49e',1,'cs::aworx::lib::enums::Keep()'],['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#a9345007d67faa05253932092d54d10d4a02bce93bff905887ad2233110bf9c49e',1,'aworx::lib::enums::Keep()'],['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#ad4a46f9fb632511f6be7c53e05f330f7a02bce93bff905887ad2233110bf9c49e',1,'aworx::lib::enums::Keep()']]],
+  ['keepwithsender',['KeepWithSender',['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#ab5305b978950ba3946cf79a4bccbf7afa2540530a938da82bfe62957f4aff599b',1,'aworx::lib::enums']]]
 ];

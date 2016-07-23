@@ -11,10 +11,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static String</type>
+      <type>static AString</type>
       <name>ConfigCategoryName</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
-      <anchor>affcf83e8b52935dd94b74c1a47cf7e0a</anchor>
+      <anchor>aaec7daa77dd5f01266a702e0b270216b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -43,6 +43,13 @@
       <name>Version</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
       <anchor>a811fc76ba0094b56a1ddbe6ac8d78915</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>WAIT_FOR_KEY_PRESS</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>acbf46fb79e3d8c57bb6b0a4c92bf9ea5</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -84,8 +91,8 @@
       <type>static void</type>
       <name>Init</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
-      <anchor>aa35acc025eeb16aa37ee19849a520e73</anchor>
-      <arglist>(bool useEnv=true, String[] args=null)</arglist>
+      <anchor>a7f8d4aeafdb18488a3759bb3b6cbffb2</anchor>
+      <arglist>(String[] args=null)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static bool</type>
@@ -211,10 +218,80 @@
     <name>cs::aworx::lox::ALox</name>
     <filename>classcs_1_1aworx_1_1lox_1_1ALox.html</filename>
     <member kind="variable" static="yes">
-      <type>static String</type>
+      <type>static VariableDefinition</type>
+      <name>AUTO_SIZES</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a236ae855e60b84d4cbb590d7b058fc21</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>CODEPAGE</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>aaa6410fad43752ac11e12ba65356c0ec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static AString</type>
       <name>ConfigCategoryName</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
-      <anchor>affcf83e8b52935dd94b74c1a47cf7e0a</anchor>
+      <anchor>aaec7daa77dd5f01266a702e0b270216b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>CONSOLE_HAS_LIGHT_BACKGROUND</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>ae7aeb84503502850646b8a79b6a20f9e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>CONSOLE_TYPE</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a3aa93506b494baed80deb0f1f506c1b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>DOMAIN_SUBSTITUTION</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>ad82a8bbcdeb79dc983df554f634c62b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>DUMP_STATE_ON_EXIT</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>aa2a80347288d005664923d441b46c2ab</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>FORMAT</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a1373a5f581c7e737533d89eeae7d419e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>FORMAT_DATE_TIME</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a0830aa343a032fafff6de4ca4c9c4037</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>FORMAT_MULTILINE</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a4fc7408e67c79f6fca8bd53e82356eda</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>FORMAT_TIME_DIFF</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a1f402a4f2360f803bb5cb82d21616e2c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -225,10 +302,52 @@
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>MAX_ELAPSED_TIME</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a9ffde0f2fb68044cd9cb85ee267e9613</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>NO_IDE_LOGGER</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a8d0c8f31f6989478bc241897e90b3a57</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>PREFIXES</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a2e6906779fe0d7857868704f8760603b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
       <type>static readonly int</type>
       <name>Revision</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
       <anchor>abee878df7a0627f72de2e62aa99f2969</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>SPTR_GLOBAL</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a3fb7e8864cc21a068f31954f556ec3ea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>SPTR_LOX</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>ad5f971a9daedcc188308fd51e50f13c4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static VariableDefinition</type>
+      <name>VERBOSITY</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>abe516e8679d9840b163f277b6520700e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -249,8 +368,8 @@
       <type>static void</type>
       <name>Init</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
-      <anchor>aa35acc025eeb16aa37ee19849a520e73</anchor>
-      <arglist>(bool useEnv=true, String[] args=null)</arglist>
+      <anchor>a7f8d4aeafdb18488a3759bb3b6cbffb2</anchor>
+      <arglist>(String[] args=null)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static Verbosity</type>
@@ -714,6 +833,13 @@
     <filename>classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html</filename>
     <member kind="function" static="yes">
       <type>static bool</type>
+      <name>IsNull</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a5af1844c2d0742ca9e106ba8567fa1ec</anchor>
+      <arglist>(Object o)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
       <name>IsNullOrEmpty</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>aed54c5c21ba7b689b292e15d7cee8e62</anchor>
@@ -993,10 +1119,10 @@
       <arglist>(char[] trimChars=null)</arglist>
     </member>
     <member kind="function">
-      <type>AString</type>
+      <type>int</type>
       <name>TrimAt</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
-      <anchor>aa9ae1b024361a71ce89231998fcaa4b1</anchor>
+      <anchor>ac78a24e060f1bf149b7dde1ae7ef52bd</anchor>
       <arglist>(int index, char[] trimChars=null)</arglist>
     </member>
     <member kind="function">
@@ -1812,10 +1938,10 @@
       <arglist>(char[] trimChars=null)</arglist>
     </member>
     <member kind="function">
-      <type>AString</type>
+      <type>int</type>
       <name>TrimAt</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
-      <anchor>aa9ae1b024361a71ce89231998fcaa4b1</anchor>
+      <anchor>ac78a24e060f1bf149b7dde1ae7ef52bd</anchor>
       <arglist>(int index, char[] trimChars=null)</arglist>
     </member>
     <member kind="function">
@@ -2577,27 +2703,27 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>cs::aworx::lib::config::CommandLinePlugIn</name>
-    <filename>classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html</filename>
-    <base>cs::aworx::lib::config::ConfigurationPlugIn</base>
-    <member kind="function">
-      <type></type>
-      <name>CommandLinePlugIn</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html</anchorfile>
-      <anchor>a125ef16aaf52510e0884c82306db8356</anchor>
-      <arglist>(String[] args)</arglist>
-    </member>
+    <name>cs::aworx::lib::config::CommandLinePlugin</name>
+    <filename>classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html</filename>
+    <base>cs::aworx::lib::config::ConfigurationPlugin</base>
     <member kind="function">
       <type>override bool</type>
-      <name>Get</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html</anchorfile>
-      <anchor>a6690a1cfc0650692d5de948c41724566</anchor>
-      <arglist>(Object category, Object name, AString target)</arglist>
+      <name>Load</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html</anchorfile>
+      <anchor>adf4e24c6364bcd0ba9e2d0dbc21aa5d4</anchor>
+      <arglist>(Variable variable, bool searchOnly=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetArgs</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html</anchorfile>
+      <anchor>a9b69fc54dcb0e7a49394bf4141bcbe89</anchor>
+      <arglist>(String[] args)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>String[]</type>
       <name>args</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html</anchorfile>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html</anchorfile>
       <anchor>a7551501f7caf9b087ab3da98fbed0ce9</anchor>
       <arglist></arglist>
     </member>
@@ -2607,17 +2733,24 @@
     <filename>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</filename>
     <class kind="class">cs::aworx::lib::config::Configuration::PluginAndPrio</class>
     <member kind="variable">
-      <type>CommandLinePlugIn</type>
-      <name>CmdLineCP</name>
+      <type>CommandLinePlugin</type>
+      <name>CmdLine</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>aeab3fc98a76ae513a4527528bd9ed304</anchor>
+      <anchor>ada8187fc67d8f54a46aed3bf04542e08</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>EnvironmentPlugIn</type>
-      <name>EnvCP</name>
+      <type>InMemoryPlugin</type>
+      <name>DefaultValues</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>ac23bef185f6fad19b5a07cef057ccc23</anchor>
+      <anchor>a64b37d856a86344c0d3c1a6d9779e6f6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>EnvironmentPlugin</type>
+      <name>Environment</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a3a317739ee132a40b625cafa2c5a8706</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -2629,6 +2762,13 @@
     </member>
     <member kind="variable">
       <type>const int</type>
+      <name>PrioAutodetect</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>ab092b4bf4ab5c2cc772271e61ea3bda4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>const int</type>
       <name>PrioCmdLine</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
       <anchor>a7782ed756910f8f9910f8eabbbaa494c</anchor>
@@ -2636,9 +2776,16 @@
     </member>
     <member kind="variable">
       <type>const int</type>
-      <name>PrioEnvVars</name>
+      <name>PrioDefault</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a8d6d75f99cfd73825afe36e62603a950</anchor>
+      <anchor>ad754aede889ddbfc72c4d502d0b505bd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>const int</type>
+      <name>PrioEnvironment</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>ab592c568f9f8728e38684af9d258a2f7</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -2646,6 +2793,41 @@
       <name>PrioIniFile</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
       <anchor>a925f0708313b8a27defb4bf7983d7dd6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>const int</type>
+      <name>PrioProtected</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a849f8b775a1ebb6a8fbafe525f821056</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>InMemoryPlugin</type>
+      <name>ProtectedValues</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a694607c106d5e636c5fc90d623c0dcef</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>char[]</type>
+      <name>SubstitutionVariableDelimiters</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a38db36fcacc0a41cf163aae099fcafd7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>SubstitutionVariableEnd</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a5ad3378439cc377bf58fd1c9093a2b94</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>SubstitutionVariableStart</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>aa1de3585e84c561b739f77b32dfe7757</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -2659,36 +2841,22 @@
       <type></type>
       <name>Configuration</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>ac6f755b1f8e1c7532b3ebfd4f19b7c0c</anchor>
-      <arglist>(bool useEnv=true, String[] args=null)</arglist>
+      <anchor>a36d123dcc42ef58da853d1eb86f12199</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>int</type>
-      <name>Get</name>
+      <name>FetchFromDefault</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a2ccbf58795003a2373c5a4dd9c90b3c5</anchor>
-      <arglist>(Object category, Object name, AString target)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>Get</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a1e26d8048410128ace5354ddf98845b7</anchor>
-      <arglist>(Object category, Object name, out int target, AString temp=null)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>Get</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>ae424d19d485faa863786709b8a05778d</anchor>
-      <arglist>(Object category, Object name, out double target, AString temp=null)</arglist>
+      <anchor>a50bc62566c58bc7c18e36a9356031355</anchor>
+      <arglist>(ConfigurationPlugin dest)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>InsertPlugin</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a9ccc2a92ad3cf97fb6cbcb0b7109bb57</anchor>
-      <arglist>(ConfigurationPlugIn plugin, int priority)</arglist>
+      <anchor>ae97fdf23b6cfadfe06e1d8d42c2bded7</anchor>
+      <arglist>(ConfigurationPlugin plugin, int priority)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -2698,53 +2866,39 @@
       <arglist>(AString value)</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
-      <name>IsTrue</name>
+      <type>int</type>
+      <name>Load</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a5616332a3373010be271f04f2e92f88f</anchor>
-      <arglist>(Substring value)</arglist>
+      <anchor>a1028789420460defdc519039cf1d22da</anchor>
+      <arglist>(Variable variable)</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
-      <name>IsTrue</name>
+      <type>int</type>
+      <name>loadImpl</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>ac7436dad7e0361445d031a671d87d5f6</anchor>
-      <arglist>(Object category, Object name, out int pluginPriority, AString temp=null)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>IsTrue</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a6629a76663a353272a1a12f547241d5e</anchor>
-      <arglist>(Object category, Object name, AString temp=null)</arglist>
+      <anchor>ae921a4c6145c443c40e6dbb3c41ce53f</anchor>
+      <arglist>(Variable variable, bool substitute)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>RemovePlugin</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>ab822760a99ecb38fba7f95c4d2fb700d</anchor>
-      <arglist>(ConfigurationPlugIn plugin)</arglist>
+      <anchor>ae27c799d6218d8e6bacfcbc7c11f1869</anchor>
+      <arglist>(ConfigurationPlugin plugin)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetCommandLineArgs</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a5d686b0221d87f9f03fd7c3f313abdc2</anchor>
+      <arglist>(String[] args=null)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
-      <name>Save</name>
+      <name>Store</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>aadf37512b39dfac1dbf02e6eaaeb5109</anchor>
-      <arglist>(Object category, Object name, Object value, Object comments=null, char delim= &apos;,&apos;)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>Save</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a0c397f690196e6b466e7b48d2aeedb59</anchor>
-      <arglist>(Object category, Object name, int value, Object comments=null, AString temp=null)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>Save</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a535866e620a6b43cdaa8fec1feae289b</anchor>
-      <arglist>(Object category, Object name, double value, Object comments=null, AString temp=null)</arglist>
+      <anchor>a43e9764846a599ef381db65b73fd7ebc</anchor>
+      <arglist>(Variable variable, Object externalizedValue=null)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>List&lt; PluginAndPrio &gt;</type>
@@ -2753,64 +2907,78 @@
       <anchor>ac6fa102e37cb8bd5f57802ec7f51b54a</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>tmpConversion</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a7732bc1197cd517b4e03c9e588adc8e9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>tmpReplVarAll</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>ab40aa8182041531c1c702c4f03a298a7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>tmpReplVarCategory</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>ae4978d2aece83d84d44b45083d55dac9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>tmpReplVarName</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a2eb87ae9cf763a496a06302b5aa18ebd</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="class">
-    <name>cs::aworx::lib::config::ConfigurationPlugIn</name>
-    <filename>classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</filename>
+    <name>cs::aworx::lib::config::ConfigurationPlugin</name>
+    <filename>classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</filename>
     <member kind="variable">
-      <type>Configuration</type>
-      <name>Parent</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>a85e6c010b38e463045b2393172d3fd31</anchor>
+      <type>XTernalizer</type>
+      <name>StringConverter</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</anchorfile>
+      <anchor>aca2a6ae76bd8edc4dc6426ec1818154e</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>abstract bool</type>
-      <name>Get</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>a6449cd4a5a29ee459473fbeb22d41d94</anchor>
-      <arglist>(Object category, Object name, AString target)</arglist>
+      <name>Load</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</anchorfile>
+      <anchor>a1566a4229f76b599e7ae7fc061ca0638</anchor>
+      <arglist>(Variable variable, bool searchOnly=false)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual bool</type>
-      <name>Get</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>ab7fa66b1fe91cc5afd4bf70e6a4b965b</anchor>
-      <arglist>(Object category, Object name, out int target, AString temp)</arglist>
+      <name>Store</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</anchorfile>
+      <anchor>aa20e90e513d750049f21e3c30be28161</anchor>
+      <arglist>(Variable variable)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual bool</type>
-      <name>Get</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>a5cc3608f623b8ff2ead3fbebba2f52c2</anchor>
-      <arglist>(Object category, Object name, out double target, AString temp)</arglist>
+      <name>Store</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</anchorfile>
+      <anchor>a146162fd61d4d1d991a14ce9e89c7ed9</anchor>
+      <arglist>(Variable variable, Object externalizedValue)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
-      <name>Save</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>a8d55af698304815ffd2f2487e300f48d</anchor>
-      <arglist>(Object category, Object name, Object value, Object comments, char delim)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>Save</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>a651369ef2d11e3b48c2b010f7b131dbe</anchor>
-      <arglist>(Object category, Object name, int value, Object comments, AString temp)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
-      <name>Save</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>ac98e9ab0a7ccf071d841ff5d6377ee7c</anchor>
-      <arglist>(Object category, Object name, double value, Object comments, AString temp)</arglist>
+    <member kind="variable" protection="protected">
+      <type>XTernalizer</type>
+      <name>defaultStringConverter</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</anchorfile>
+      <anchor>a3b754bcc322da1d59d62b19ba50b3a5d</anchor>
+      <arglist></arglist>
     </member>
     <member kind="function" protection="protected">
       <type></type>
-      <name>ConfigurationPlugIn</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>a7be57a5ed92198b336f33405511cc5d4</anchor>
+      <name>ConfigurationPlugin</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html</anchorfile>
+      <anchor>a1b50bf18ad3d087799d832b6d15b258e</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -3314,22 +3482,129 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>cs::aworx::lib::config::EnvironmentPlugIn</name>
-    <filename>classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html</filename>
-    <base>cs::aworx::lib::config::ConfigurationPlugIn</base>
+    <name>cs::aworx::lib::config::IniFile::Entry</name>
+    <filename>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html</filename>
+    <base>cs::aworx::lib::config::InMemoryPlugin::Entry</base>
+    <member kind="variable">
+      <type>AString</type>
+      <name>RawValue</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html</anchorfile>
+      <anchor>a319279810337d3019a34ebd0876d09af</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type></type>
-      <name>EnvironmentPlugIn</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html</anchorfile>
-      <anchor>acbd5e02cd0e7d1fb1263beb7d734fc40</anchor>
+      <name>Entry</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html</anchorfile>
+      <anchor>a3834ee57d5c242b1dd8d13058526698b</anchor>
+      <arglist>(Object name)</arglist>
+    </member>
+    <member kind="function">
+      <type>override void</type>
+      <name>FromVariable</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html</anchorfile>
+      <anchor>a32fd2d7dcef11ab5a0de608d5ee721f5</anchor>
+      <arglist>(InMemoryPlugin parent, Variable variable)</arglist>
+    </member>
+    <member kind="function">
+      <type>override void</type>
+      <name>ToVariable</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html</anchorfile>
+      <anchor>a48cc13831b6491e12a4d9400ba0a2287</anchor>
+      <arglist>(InMemoryPlugin parent, Variable variable)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cs::aworx::lib::config::InMemoryPlugin::Entry</name>
+    <filename>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</filename>
+    <member kind="variable">
+      <type>AString</type>
+      <name>Comments</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>a13a7dbf15cba4c8849fdd8044b185475</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>char</type>
+      <name>Delim</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>a68297215ac82977611f5dee2062cc910</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>FormatAttrAlignment</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>a0ef6ae5b80559980ab700d040ea4e1ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Variable.FormatHint</type>
+      <name>FormatHints</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>a6a69c4d8022c7bae3dbe22b46cbbd89a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>Name</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>a0de551a5eb98c9fa084c954655523d7b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>List&lt; AString &gt;</type>
+      <name>Values</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>a0a08eb183ac44dbbccf949ea4f52a69e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Entry</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>a3834ee57d5c242b1dd8d13058526698b</anchor>
+      <arglist>(Object name)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>FromVariable</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>ae1b848cdc153a4a2e3f5b80f9872cad3</anchor>
+      <arglist>(InMemoryPlugin parent, Variable variable)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>ToVariable</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html</anchorfile>
+      <anchor>a369409bd71022de10270941d57808a63</anchor>
+      <arglist>(InMemoryPlugin parent, Variable variable)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cs::aworx::lib::config::EnvironmentPlugin</name>
+    <filename>classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html</filename>
+    <base>cs::aworx::lib::config::ConfigurationPlugin</base>
+    <member kind="function">
+      <type></type>
+      <name>EnvironmentPlugin</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html</anchorfile>
+      <anchor>a0d616ebe017e9fb0d1e37fbfbd792c0d</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>override bool</type>
-      <name>Get</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html</anchorfile>
-      <anchor>a6690a1cfc0650692d5de948c41724566</anchor>
-      <arglist>(Object category, Object name, AString target)</arglist>
+      <name>Load</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html</anchorfile>
+      <anchor>adf4e24c6364bcd0ba9e2d0dbc21aa5d4</anchor>
+      <arglist>(Variable variable, bool searchOnly=false)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>tmpAS</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html</anchorfile>
+      <anchor>a43a6d226488086cf9563b431ccbe5c69</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -3542,7 +3817,7 @@
   <compound kind="class">
     <name>cs::aworx::lib::config::IniFile</name>
     <filename>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html</filename>
-    <base>cs::aworx::lib::config::ConfigurationPlugIn</base>
+    <base>cs::aworx::lib::config::InMemoryPlugin</base>
     <member kind="enumeration">
       <type></type>
       <name>Status</name>
@@ -3553,8 +3828,8 @@
       <enumvalue file="classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html" anchor="a67a0db04d321a74b7e7fcfd3f1a3f70bae9843112228a2d7dd433c3525dce578c">ERROR_OPENING_FILE</enumvalue>
       <enumvalue file="classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html" anchor="a67a0db04d321a74b7e7fcfd3f1a3f70ba75d3e6ea3c658980029d41d69944b163">ERROR_WRITING_FILE</enumvalue>
     </member>
+    <class kind="class">cs::aworx::lib::config::IniFile::Entry</class>
     <class kind="class">cs::aworx::lib::config::IniFile::Section</class>
-    <class kind="class">cs::aworx::lib::config::IniFile::Variable</class>
     <member kind="variable" static="yes">
       <type>static String</type>
       <name>DefaultFileExtension</name>
@@ -3577,13 +3852,6 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>List&lt; String &gt;</type>
-      <name>EscapeSequences</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>ae78db2be8b8bb16919846bf36e308ec4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
       <type>AString</type>
       <name>FileComments</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
@@ -3595,6 +3863,27 @@
       <name>FileName</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
       <anchor>a8bea19241a8e12acb6725e40dd6f2d74</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>FormatIncludeDelimInAttrAlignment</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
+      <anchor>adf4fc6544160ee73eafc6310d2085a12</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>FormatSpaceAfterDelim</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
+      <anchor>a0745166b66e5abe95006b75eeff309ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>FormatSpaceBeforeDelim</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
+      <anchor>a4bac2e411ff2f25c16dedaba0de76d3d</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -3611,33 +3900,12 @@
       <anchor>a7b1f8eca9e66b6d4df78aa76531b3bc6</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable">
-      <type>List&lt; Section &gt;</type>
-      <name>Sections</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a807ad28f27cb71f0929ecb47e6d49f4a</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="function">
       <type></type>
       <name>IniFile</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
       <anchor>a49c1c7a8b07bd2963386683a03bc7705</anchor>
       <arglist>(String filePathAndName=null)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Clear</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>override bool</type>
-      <name>Get</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a6690a1cfc0650692d5de948c41724566</anchor>
-      <arglist>(Object category, Object name, AString target)</arglist>
     </member>
     <member kind="function">
       <type>IniFile.Status</type>
@@ -3647,25 +3915,18 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
+      <type>override void</type>
+      <name>Reset</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
+      <anchor>a298cb68f7f3fb7f40595f4302af4ae25</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
       <type>override bool</type>
-      <name>Save</name>
+      <name>Store</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a032c5815976e92b8888116328aa04dd5</anchor>
-      <arglist>(Object category, Object name, Object value, Object comments=null, char delim= &apos;,&apos;)</arglist>
-    </member>
-    <member kind="function">
-      <type>Section</type>
-      <name>SearchOrCreateSection</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a92238c1ec3b8061d0ebbe405ab6cb8ad</anchor>
-      <arglist>(Object name, AString comments)</arglist>
-    </member>
-    <member kind="function">
-      <type>Section</type>
-      <name>SearchSectionX</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>aecf9e5296fcc796d1cdbda17ab4d55d3</anchor>
-      <arglist>(Object name)</arglist>
+      <anchor>a84527b991a03ce4fff656f2edec90667</anchor>
+      <arglist>(Variable variable)</arglist>
     </member>
     <member kind="function">
       <type>IniFile.Status</type>
@@ -3681,19 +3942,19 @@
       <anchor>a389d30df43a408ed82b7c48feb49dc08</anchor>
       <arglist></arglist>
     </member>
-    <member kind="function" protection="protected">
-      <type>int</type>
-      <name>addEscapeSequences</name>
+    <member kind="function" protection="protected" static="yes">
+      <type>static int</type>
+      <name>getAssignmentPos</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a39b2b60ef9b81321769cf0ef697107a0</anchor>
-      <arglist>(TextWriter os, Substring value, AString temp)</arglist>
+      <anchor>ac45c46393dcc55e9cd449e96c395a26a</anchor>
+      <arglist>(AString value, String alignmentSeparator)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>void</type>
-      <name>removeEscapeSequences</name>
+      <type>override InMemoryPlugin.Section</type>
+      <name>createSection</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>aa9dcab43a5fe003feee1626c47c392a6</anchor>
-      <arglist>(Substring value, AString target)</arglist>
+      <anchor>ac38aad32e9fac18318148955f95ff5cc</anchor>
+      <arglist>(Object name)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>bool</type>
@@ -3706,8 +3967,71 @@
       <type>void</type>
       <name>writeComments</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>a48e7f4ef21f89311069eb736d64c0455</anchor>
-      <arglist>(TextWriter os, AString comments, Tokenizer tok)</arglist>
+      <anchor>ab4be064a73eb24205c4e076bb10a8d8a</anchor>
+      <arglist>(TextWriter os, AString comments, Tokenizer tknzr)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cs::aworx::lib::config::InMemoryPlugin</name>
+    <filename>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html</filename>
+    <base>cs::aworx::lib::config::ConfigurationPlugin</base>
+    <class kind="class">cs::aworx::lib::config::InMemoryPlugin::Entry</class>
+    <class kind="class">cs::aworx::lib::config::InMemoryPlugin::Section</class>
+    <member kind="variable">
+      <type>List&lt; Section &gt;</type>
+      <name>Sections</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>a807ad28f27cb71f0929ecb47e6d49f4a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>InMemoryPlugin</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>a7528a6f611e3c203586189de2d03786f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>override bool</type>
+      <name>Load</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>adf4e24c6364bcd0ba9e2d0dbc21aa5d4</anchor>
+      <arglist>(Variable variable, bool searchOnly=false)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>Reset</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>a4c4ba0ffe635d14b93794268bd8e5995</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Section</type>
+      <name>SearchOrCreateSection</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>a92238c1ec3b8061d0ebbe405ab6cb8ad</anchor>
+      <arglist>(Object name, AString comments)</arglist>
+    </member>
+    <member kind="function">
+      <type>Section</type>
+      <name>SearchSection</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>a040589bb70b8a0d261eb36737804861d</anchor>
+      <arglist>(Object name)</arglist>
+    </member>
+    <member kind="function">
+      <type>override bool</type>
+      <name>Store</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>a84527b991a03ce4fff656f2edec90667</anchor>
+      <arglist>(Variable variable)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual Section</type>
+      <name>createSection</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html</anchorfile>
+      <anchor>a469f51a8bfb7382a5a7722e3701d1e5c</anchor>
+      <arglist>(Object name)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -3787,8 +4111,8 @@
       <type>static void</type>
       <name>ClearSourcePathTrimRules</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a320973a22d1a85189096272f8b2714c6</anchor>
-      <arglist>(Inclusion global=Inclusion.Include, bool allowAutoRule=true)</arglist>
+      <anchor>ab1b998fbee331f274d51cf409120baad</anchor>
+      <arglist>(Reach reach=Reach.Global, bool allowAutoRule=true)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -3827,6 +4151,13 @@
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
+      <name>GetState</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ad565709fecf2b3423aa83f96d5bb6a5d</anchor>
+      <arglist>(AString buf, Lox.StateInfo flags, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
       <name>If</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
       <anchor>aa3cf204f4e7eec768249c89bcd2623eb</anchor>
@@ -3852,13 +4183,6 @@
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
       <anchor>a3b547c4144b5fa689e0787263c8b7484</anchor>
       <arglist>(Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>LogConfig</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ae01c4ca7007ec2c40192bad82d28d185</anchor>
-      <arglist>(String domain, Verbosity verbosity, String headLine, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -4123,8 +4447,8 @@
       <type>static void</type>
       <name>SetSourcePathTrimRule</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ac0790533fb32fb000a8440f3f13f8098</anchor>
-      <arglist>(String path, Inclusion includeString=Inclusion.Exclude, int trimOffset=0, Case sensitivity=Case.Ignore, Inclusion global=Inclusion.Include, String trimReplacement=null, int priority=Lox.PrioSource)</arglist>
+      <anchor>a38494408861d44f66810fd8594f6277b</anchor>
+      <arglist>(String path, Inclusion includeString=Inclusion.Exclude, int trimOffset=0, Case sensitivity=Case.Ignore, Reach reach=Reach.Global, String trimReplacement=null, int priority=Configuration.PrioDefault)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -4137,15 +4461,22 @@
       <type>static void</type>
       <name>SetVerbosity</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>af8d70b58238a9e3c350eadc40ac14b5b</anchor>
-      <arglist>(Logger logger, Verbosity verbosity, String domain=&quot;/&quot;, int priority=Lox.PrioSource, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a78d1587ce3b588fff53565528d956191</anchor>
+      <arglist>(Logger logger, Verbosity verbosity, String domain=&quot;/&quot;, int priority=Configuration.PrioDefault, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>SetVerbosity</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>aec4a0d937a4032031f64d91393502684</anchor>
-      <arglist>(String loggerName, Verbosity verbosity, String domain=&quot;/&quot;, int priority=Lox.PrioSource, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a2891b63b1bd2e6d04d84523ba46bc7a0</anchor>
+      <arglist>(String loggerName, Verbosity verbosity, String domain=&quot;/&quot;, int priority=Configuration.PrioDefault, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>State</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ad1090c55ce35e39848328a6cdf8697e7</anchor>
+      <arglist>(String domain, Verbosity verbosity, String headLine, Lox.StateInfo flags=Lox.StateInfo.All, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -4305,16 +4636,16 @@
     </member>
     <member kind="variable" protection="protected">
       <type>String</type>
-      <name>name</name>
+      <name>Name</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a9a2326f35466e54c36c070829245c557</anchor>
+      <anchor>a934fa09ba291a97f43720640e4d83f25</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>String</type>
-      <name>typeName</name>
+      <name>TypeName</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>ab702590cb21a529418c7bd6439c4337a</anchor>
+      <anchor>ab7a1acc8625d9adcdc2c86de8045352f</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected">
@@ -4330,9 +4661,9 @@
     <filename>classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</filename>
     <member kind="variable">
       <type>int</type>
-      <name>CntLogCalls</name>
+      <name>LogCallsPerDomain</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</anchorfile>
-      <anchor>a2c80e5630abe5d5042ddb4b85c0c3562</anchor>
+      <anchor>a2eb0308f7da72022ce5a09987b3f14bf</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -4666,6 +4997,26 @@
     <name>cs::aworx::lox::Lox</name>
     <filename>classcs_1_1aworx_1_1lox_1_1Lox.html</filename>
     <base>cs::aworx::lib::threads::ThreadLock</base>
+    <member kind="enumeration">
+      <type></type>
+      <name>StateInfo</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>aa2916fda7c89ab56ba7645d99879df31</anchor>
+      <arglist></arglist>
+      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Lox.html" anchor="aa2916fda7c89ab56ba7645d99879df31a972e73b7a882d0802a4e3a16946a2f94">Basic</enumvalue>
+      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Lox.html" anchor="aa2916fda7c89ab56ba7645d99879df31a34b6cd75171affba6957e308dcbd92be">Version</enumvalue>
+      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Lox.html" anchor="aa2916fda7c89ab56ba7645d99879df31a96b1c552ca6ed5ee0ee3d0af174530ab">Loggers</enumvalue>
+      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Lox.html" anchor="aa2916fda7c89ab56ba7645d99879df31a78cd2c7d5422ffdb6d9545211ca49eeb">Domains</enumvalue>
+      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Lox.html" anchor="aa2916fda7c89ab56ba7645d99879df31a31113a0541f0520765177c7069ba8ca1">InternalDomains</enumvalue>
+      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Lox.html" anchor="aa2916fda7c89ab56ba7645d99879df31a068b63932226b23a03535d36d8d2eb22">ScopeDomains</enumvalue>
+      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Lox.html" anchor="aa2916fda7c89ab56ba7645d99879df31a2f83cd74c1361769a936e39b22fdc603">DSR</enumvalue>
+      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Lox.html" anchor="aa2916fda7c89ab56ba7645d99879df31a4febf3aa9c543957a624d0e01118ad99">PrefixLogables</enumvalue>
+      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Lox.html" anchor="aa2916fda7c89ab56ba7645d99879df31ae1a9dc9f23534e63de9df0d540ac1611">Once</enumvalue>
+      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Lox.html" anchor="aa2916fda7c89ab56ba7645d99879df31a8252db9108bed0cc77b9108ef2e5b215">LogData</enumvalue>
+      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Lox.html" anchor="aa2916fda7c89ab56ba7645d99879df31afb1cd41460e08ac954abd863f3e769b4">ThreadMappings</enumvalue>
+      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Lox.html" anchor="aa2916fda7c89ab56ba7645d99879df31acb272fa6b5049b35cc46afdbea004556">SPTR</enumvalue>
+      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Lox.html" anchor="aa2916fda7c89ab56ba7645d99879df31ab1c94ca2fbc3e78fc30069c8d0f01680">All</enumvalue>
+    </member>
     <class kind="class">cs::aworx::lox::Lox::DomainSubstitutionRule</class>
     <member kind="variable">
       <type>int</type>
@@ -4679,20 +5030,6 @@
       <name>DomainSensitivity</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>ac63dd33538dff8703707b14fc6d04d52</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>const int</type>
-      <name>PrioProtected</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a849f8b775a1ebb6a8fbafe525f821056</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>const int</type>
-      <name>PrioSource</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a89856c713ec12c927fa2aac115a02926</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" static="yes">
@@ -4741,8 +5078,8 @@
       <type>void</type>
       <name>ClearSourcePathTrimRules</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a563bdeaa837bf7799b7327ed874b5280</anchor>
-      <arglist>(Inclusion global=Inclusion.Include, bool allowAutoRule=true)</arglist>
+      <anchor>a25bdbffdc5f49db7612d837cb8e5c5db</anchor>
+      <arglist>(Reach reach=Reach.Global, bool allowAutoRule=true)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -4788,6 +5125,13 @@
     </member>
     <member kind="function">
       <type>void</type>
+      <name>GetState</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>abb29987d3f74eab7ef263ac1c133fc79</anchor>
+      <arglist>(AString buf, Lox.StateInfo flags, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>If</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>a6d626c0840136bfdbc0e87e38f2d479c</anchor>
@@ -4820,13 +5164,6 @@
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>a7232acc9ffe4595630e4abdaf6918ef9</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>LogConfig</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a3592a8dbdcc93787ee5dfe8ce70df118</anchor>
-      <arglist>(String domain, Verbosity verbosity, String headLine, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -5070,8 +5407,8 @@
       <type>void</type>
       <name>SetSourcePathTrimRule</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>aff67fbbedcf9a983a7732dab13e7bc63</anchor>
-      <arglist>(String path, Inclusion includeString=Inclusion.Exclude, int trimOffset=0, Case sensitivity=Case.Ignore, Inclusion global=Inclusion.Include, String trimReplacement=null, int priority=Lox.PrioSource)</arglist>
+      <anchor>a0a1cea66a564bc99c9a2d44467865611</anchor>
+      <arglist>(String path, Inclusion includeString=Inclusion.Exclude, int trimOffset=0, Case sensitivity=Case.Ignore, String trimReplacement=null, Reach reach=Reach.Global, int priority=Configuration.PrioDefault)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -5084,15 +5421,22 @@
       <type>void</type>
       <name>SetVerbosity</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>abd831519fc241771dd0be79fa8bc7d5c</anchor>
-      <arglist>(Logger logger, Verbosity verbosity, String domain=&quot;/&quot;, int priority=Lox.PrioSource, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>aa5e94bc8ec4e4f23c8401ebbf815c336</anchor>
+      <arglist>(Logger logger, Verbosity verbosity, String domain=&quot;/&quot;, int priority=Configuration.PrioDefault, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>SetVerbosity</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>afdc0abb8b39da45f5232f219a84ef05c</anchor>
-      <arglist>(String loggerName, Verbosity verbosity, String domain=&quot;/&quot;, int priority=Lox.PrioSource, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a6a40de6013862b8ebe0b5f5efdeea93e</anchor>
+      <arglist>(String loggerName, Verbosity verbosity, String domain=&quot;/&quot;, int priority=Configuration.PrioDefault, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>State</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>af7600e60bbdf55df184a206b55ee0462</anchor>
+      <arglist>(String domain, Verbosity verbosity, String headLine, StateInfo flags, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -5176,6 +5520,13 @@
       <name>logBufLock</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>a115a099b1c0c5425cd37ec7b54056d01</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>loggerAddedSinceLastDebugState</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ae1d2d3f00029eeccb82c286b93314df0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -5278,9 +5629,9 @@
     </member>
     <member kind="variable" protection="protected">
       <type>AString</type>
-      <name>tmpConfigValue</name>
+      <name>tmpComments</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a2313c9e8c9b7afdf186b4331ab7fbbd7</anchor>
+      <anchor>a982a94ba249ae6bc678f130090ac0a1a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -5305,6 +5656,13 @@
       <arglist>(Scope scope, int pathLevel, String internalDomain)</arglist>
     </member>
     <member kind="function" protection="protected">
+      <type>void</type>
+      <name>dumpStateOnLoggerRemoval</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a8801e9bd1ba933633227c2d83339ef14</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>Domain</type>
       <name>evaluateResultDomain</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
@@ -5315,8 +5673,8 @@
       <type>void</type>
       <name>getAllVerbosities</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a47d2dd08f0748552ebd6399637223df1</anchor>
-      <arglist>(Logger logger, Domain dom, AString cfgStr, int cfgPriority)</arglist>
+      <anchor>a4b6c46d0aba3036ff8a30fb53ed7c3fd</anchor>
+      <arglist>(Logger logger, Domain dom, Variable cfgResult)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
@@ -5329,8 +5687,8 @@
       <type>void</type>
       <name>getVerbosityFromConfig</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ab8cf66e80845561dcaa3183af626661d</anchor>
-      <arglist>(Logger logger, Domain dom, AString cfgStr, int cfgPriority)</arglist>
+      <anchor>a86c50ec2fa67e97d4116ddd9709f5fcd</anchor>
+      <arglist>(Logger logger, Domain dom, Variable variable)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>bool</type>
@@ -5348,31 +5706,31 @@
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
-      <name>logConfigCollectPrefixes</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a03444bb7da0a5dede116dc2decd51238</anchor>
-      <arglist>(Domain domain, int indentSpaces, AString target)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>logConfigDomainRecursive</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a12d11e9840b1a4aa1d45d6ad02a7e6ca</anchor>
-      <arglist>(Domain domain, AString buf)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>logConfigDomsWithDiffVerb</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a0982b3444ac36cd108ca6eada7a59c84</anchor>
-      <arglist>(Domain domain, int loggerNo, List&lt; Domain &gt; results)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
       <name>logInternal</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>a41785b58f7f928a11d27ff14a8fa4274</anchor>
       <arglist>(Verbosity verbosity, String subDomain, AString logable)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>logStateCollectPrefixes</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ad0f1eaeabd7bdcf8488a7ac3cc90f575</anchor>
+      <arglist>(Domain domain, int indentSpaces, AString target)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>logStateDomainRecursive</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ae635c042580bb7014c3bfdf8eca15016</anchor>
+      <arglist>(Domain domain, AString buf)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>logStateDomsWithDiffVerb</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a6aae9103dec474f0fc5d7d39fbb63e80</anchor>
+      <arglist>(Domain domain, int loggerNo, List&lt; Domain &gt; results)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
@@ -5394,6 +5752,20 @@
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>a9d5fd3a263af67cb1f267833799fe7b0</anchor>
       <arglist>(Object logable, Scope scope, int pathLevel, Thread thread, int cln, String csf, String cmn)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>verbositySettingToVariable</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>aaebefa8f600a7080f06b6bdea6ccc11a</anchor>
+      <arglist>(Domain domain, int loggerNo, Variable variable)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>writeVerbositiesOnLoggerRemoval</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a8d6efa998ec2d3223a38d6b3fbcb3c2f</anchor>
+      <arglist>(Logger logger)</arglist>
     </member>
     <member kind="function" protection="private">
       <type>Domain</type>
@@ -6088,10 +6460,10 @@
     <name>cs::aworx::lib::config::Configuration::PluginAndPrio</name>
     <filename>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PluginAndPrio.html</filename>
     <member kind="variable">
-      <type>ConfigurationPlugIn</type>
-      <name>plugIn</name>
+      <type>ConfigurationPlugin</type>
+      <name>plugin</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PluginAndPrio.html</anchorfile>
-      <anchor>a9580667a91e1962d6169a8416f0580b8</anchor>
+      <anchor>a88efadd961a8e90a3a1550f4994526cb</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -6446,8 +6818,8 @@
       <type>void</type>
       <name>SetSourcePathTrimRule</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
-      <anchor>ae109b117ac87b92be2278dc3eea53784</anchor>
-      <arglist>(String path, Inclusion includeString, int trimOffset, Case sensitivity, Inclusion global, String trimReplacement, int priority)</arglist>
+      <anchor>a7a23d7c672d27399bcb7eeed64cfc992</anchor>
+      <arglist>(String path, Inclusion includeString, int trimOffset, Case sensitivity, String trimReplacement, Reach reach, int priority)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>bool</type>
@@ -7543,29 +7915,76 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>cs::aworx::lib::config::IniFile::Section</name>
-    <filename>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</filename>
+    <name>cs::aworx::lib::config::InMemoryPlugin::Section</name>
+    <filename>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</filename>
     <member kind="variable">
       <type>AString</type>
       <name>Comments</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</anchorfile>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
       <anchor>a13a7dbf15cba4c8849fdd8044b185475</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>List&lt; Entry &gt;</type>
+      <name>Entries</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>a78532ccdae746b5ea1c754d74273b59c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>AString</type>
       <name>Name</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</anchorfile>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
       <anchor>a0de551a5eb98c9fa084c954655523d7b</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable">
-      <type>List&lt; Variable &gt;</type>
-      <name>Variables</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</anchorfile>
-      <anchor>ac92596745ac4d7e5a6c6e8300cabfc01</anchor>
+    <member kind="function">
+      <type></type>
+      <name>Section</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>ac6cf4efa287e5aba835abd2e5356178d</anchor>
+      <arglist>(Object name)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>DeleteEntry</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>a679787455dc1e3dd965deb15e63abe26</anchor>
+      <arglist>(Object name)</arglist>
+    </member>
+    <member kind="function">
+      <type>Entry</type>
+      <name>GetEntry</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>a80eb9061c606896eda2ef94c32703b77</anchor>
+      <arglist>(Object name, bool create)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Tokenizer</type>
+      <name>tmpTknzr</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>a7dfb1c6c1142b81c139631ac9151ea8e</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable" protection="protected">
+      <type>Variable</type>
+      <name>tmpVar</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>acd69e01990e8d124b4f119d948783d5a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual Entry</type>
+      <name>createEntry</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html</anchorfile>
+      <anchor>ab6a0422ef8ca352cd3b93d7b27ee4a2b</anchor>
+      <arglist>(Object name)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cs::aworx::lib::config::IniFile::Section</name>
+    <filename>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</filename>
+    <base>cs::aworx::lib::config::InMemoryPlugin::Section</base>
     <member kind="function">
       <type></type>
       <name>Section</name>
@@ -7573,19 +7992,12 @@
       <anchor>ac6cf4efa287e5aba835abd2e5356178d</anchor>
       <arglist>(Object name)</arglist>
     </member>
-    <member kind="function">
-      <type>Variable</type>
-      <name>Get</name>
+    <member kind="function" protection="protected">
+      <type>override InMemoryPlugin.Entry</type>
+      <name>createEntry</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</anchorfile>
-      <anchor>a1c36dedb7a2c8d26c63bfd6102be7f7f</anchor>
+      <anchor>ac21232466e0dc590d4bce8b674df61a0</anchor>
       <arglist>(Object name)</arglist>
-    </member>
-    <member kind="function">
-      <type>Variable</type>
-      <name>Insert</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</anchorfile>
-      <anchor>a7ea99350bd6274d3175f7c563a3d9ca8</anchor>
-      <arglist>(Object name, Object value, AString comments=null)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -7963,57 +8375,57 @@
       <type>bool</type>
       <name>Consume</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a9e919a3f0222661dcba014fe46287fda</anchor>
-      <arglist>(char consumable, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
+      <anchor>a03dca583d6478df1d8d6f76fa430ac18</anchor>
+      <arglist>(char consumable, Case sensitivity=Case.Sensitive, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>ConsumeFromEnd</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a2e9779c64504ac241e80d893b2e0ac4c</anchor>
-      <arglist>(char consumable, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
+      <anchor>aad78ec1a0281eba656fde2786f6057a5</anchor>
+      <arglist>(char consumable, Case sensitivity=Case.Sensitive, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>Consume</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>acf2311d5e1f028c132c7608e8aba3049</anchor>
-      <arglist>(String consumable, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
+      <anchor>a20870e6354b6f2bcc6d70f0e88642909</anchor>
+      <arglist>(String consumable, Case sensitivity=Case.Sensitive, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>Consume</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a5be537ec41aadc78a5e95199fd75f96b</anchor>
-      <arglist>(AString consumable, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
+      <anchor>a928feae2fcd8ade90cc42b04e2f7a502</anchor>
+      <arglist>(AString consumable, Case sensitivity=Case.Sensitive, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>Consume</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>adecaebbb89023563cbb576c8a5ac3e07</anchor>
-      <arglist>(Substring consumable, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
+      <anchor>a2f6aaa2edfca82bc3575c6c5a8a9c7f9</anchor>
+      <arglist>(Substring consumable, Case sensitivity=Case.Sensitive, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>ConsumeFromEnd</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>acdeb7805f8ff00651cfe9f7f37211f54</anchor>
-      <arglist>(String consumable, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
+      <anchor>a7328a37fb2159f143b3f52bd1cd8f297</anchor>
+      <arglist>(String consumable, Case sensitivity=Case.Sensitive, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>ConsumeFromEnd</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a2b85d5489d20e058e11640ba867df0ce</anchor>
-      <arglist>(AString consumable, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
+      <anchor>a352ba0bee834b213ca1fda0a6c561358</anchor>
+      <arglist>(AString consumable, Case sensitivity=Case.Sensitive, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>ConsumeFromEnd</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>ab281947b532d33eb6fa904199195ab1c</anchor>
-      <arglist>(Substring consumable, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
+      <anchor>a81d07103e00673fd13180b07dff7019a</anchor>
+      <arglist>(Substring consumable, Case sensitivity=Case.Sensitive, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -8219,31 +8631,31 @@
       <arglist>(Substring needle, Case sensitivity=Case.Sensitive)</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>Substring</type>
       <name>TrimStart</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>aeb962899e8c3ae888bccf9f18e93ccc6</anchor>
+      <anchor>a8fe0520128fe14ebe64e6e6333df04a4</anchor>
       <arglist>(char[] whiteSpaces)</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>Substring</type>
       <name>TrimStart</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a204342f4b8fafb65d3fe794e8d0ed8b1</anchor>
+      <anchor>a871d4b629900753a634a6cfd7c2e5d1b</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>Substring</type>
       <name>TrimEnd</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>aa5a677a0022dd7d16a55d5b8c74bbb9a</anchor>
+      <anchor>ac3a65aaf3c6109613abf373ed70a5547</anchor>
       <arglist>(char[] whiteSpaces)</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>Substring</type>
       <name>TrimEnd</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a736bfa9d9917a7ed3ff6e8de7a618c75</anchor>
+      <anchor>ada4965f970c131e44e5e2866be085b47</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -8467,57 +8879,57 @@
       <type>bool</type>
       <name>Consume</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a9e919a3f0222661dcba014fe46287fda</anchor>
-      <arglist>(char consumable, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
+      <anchor>a03dca583d6478df1d8d6f76fa430ac18</anchor>
+      <arglist>(char consumable, Case sensitivity=Case.Sensitive, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>ConsumeFromEnd</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a2e9779c64504ac241e80d893b2e0ac4c</anchor>
-      <arglist>(char consumable, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
+      <anchor>aad78ec1a0281eba656fde2786f6057a5</anchor>
+      <arglist>(char consumable, Case sensitivity=Case.Sensitive, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>Consume</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>acf2311d5e1f028c132c7608e8aba3049</anchor>
-      <arglist>(String consumable, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
+      <anchor>a20870e6354b6f2bcc6d70f0e88642909</anchor>
+      <arglist>(String consumable, Case sensitivity=Case.Sensitive, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>Consume</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a5be537ec41aadc78a5e95199fd75f96b</anchor>
-      <arglist>(AString consumable, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
+      <anchor>a928feae2fcd8ade90cc42b04e2f7a502</anchor>
+      <arglist>(AString consumable, Case sensitivity=Case.Sensitive, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>Consume</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>adecaebbb89023563cbb576c8a5ac3e07</anchor>
-      <arglist>(Substring consumable, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
+      <anchor>a2f6aaa2edfca82bc3575c6c5a8a9c7f9</anchor>
+      <arglist>(Substring consumable, Case sensitivity=Case.Sensitive, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>ConsumeFromEnd</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>acdeb7805f8ff00651cfe9f7f37211f54</anchor>
-      <arglist>(String consumable, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
+      <anchor>a7328a37fb2159f143b3f52bd1cd8f297</anchor>
+      <arglist>(String consumable, Case sensitivity=Case.Sensitive, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>ConsumeFromEnd</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a2b85d5489d20e058e11640ba867df0ce</anchor>
-      <arglist>(AString consumable, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
+      <anchor>a352ba0bee834b213ca1fda0a6c561358</anchor>
+      <arglist>(AString consumable, Case sensitivity=Case.Sensitive, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>ConsumeFromEnd</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>ab281947b532d33eb6fa904199195ab1c</anchor>
-      <arglist>(Substring consumable, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
+      <anchor>a81d07103e00673fd13180b07dff7019a</anchor>
+      <arglist>(Substring consumable, Case sensitivity=Case.Sensitive, Whitespaces trimBeforeConsume=Whitespaces.Keep)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -8723,31 +9135,31 @@
       <arglist>(Substring needle, Case sensitivity=Case.Sensitive)</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>Substring</type>
       <name>TrimStart</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>aeb962899e8c3ae888bccf9f18e93ccc6</anchor>
+      <anchor>a8fe0520128fe14ebe64e6e6333df04a4</anchor>
       <arglist>(char[] whiteSpaces)</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>Substring</type>
       <name>TrimStart</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a204342f4b8fafb65d3fe794e8d0ed8b1</anchor>
+      <anchor>a871d4b629900753a634a6cfd7c2e5d1b</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>Substring</type>
       <name>TrimEnd</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>aa5a677a0022dd7d16a55d5b8c74bbb9a</anchor>
+      <anchor>ac3a65aaf3c6109613abf373ed70a5547</anchor>
       <arglist>(char[] whiteSpaces)</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>Substring</type>
       <name>TrimEnd</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a736bfa9d9917a7ed3ff6e8de7a618c75</anchor>
+      <anchor>ada4965f970c131e44e5e2866be085b47</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -9727,34 +10139,396 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>cs::aworx::lib::config::IniFile::Variable</name>
-    <filename>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html</filename>
+    <name>cs::aworx::lib::config::Variable</name>
+    <filename>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</filename>
+    <member kind="enumeration">
+      <type></type>
+      <name>FormatHint</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>aebb3561ef8cb7db28ec75a25358ab5d4</anchor>
+      <arglist></arglist>
+      <enumvalue file="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html" anchor="aebb3561ef8cb7db28ec75a25358ab5d4a6adf97f83acf6453d4a6a4b1070f3754">None</enumvalue>
+      <enumvalue file="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html" anchor="aebb3561ef8cb7db28ec75a25358ab5d4a3440172974d6140e5d1051e68730d036">MultLine</enumvalue>
+      <enumvalue file="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html" anchor="aebb3561ef8cb7db28ec75a25358ab5d4a3308dff642c5b3a0cc5b192ba1a94958">NoDelimSpaces</enumvalue>
+      <enumvalue file="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html" anchor="aebb3561ef8cb7db28ec75a25358ab5d4a90589c47f06eb971d548591f23c285af">Custom</enumvalue>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>Category</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a43911c502d451995a697bdaaf517b91c</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="variable">
       <type>AString</type>
       <name>Comments</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html</anchorfile>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
       <anchor>a13a7dbf15cba4c8849fdd8044b185475</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Configuration</type>
+      <name>Config</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a34430993f800b3bc4571bd4b9a6d9184</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>DefaultValue</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ae4b47533ee1b78ad20c12f235d7ef958</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>char</type>
       <name>Delim</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html</anchorfile>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
       <anchor>a68297215ac82977611f5dee2062cc910</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>FormatAttrAlignment</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a0ef6ae5b80559980ab700d040ea4e1ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>FormatHint</type>
+      <name>FormatHints</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a9d414ea028228202e5e3d6651757c31b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>Fullname</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a0a6355e3ba2adaedd7968141c85a257a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>AString</type>
       <name>Name</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html</anchorfile>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
       <anchor>a0de551a5eb98c9fa084c954655523d7b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
+      <type>int</type>
+      <name>Priority</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a4450b0bad265ba3bd24e994f70aec802</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Variable</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ad57a167cb505659893c09faa703a8ec5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Variable</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a5bd979b55db63c7e5ada44a29b7a55cd</anchor>
+      <arglist>(VariableDefinition definition, params Object[] replacements)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Variable</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a752082bfea0d9b49fcd694a17911835f</anchor>
+      <arglist>(Variable variable)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Variable</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a0e4a2c3b19494820e840c30999bf7b30</anchor>
+      <arglist>(Object category, Object name, char delim= &apos;\0&apos;, Object comments=null)</arglist>
+    </member>
+    <member kind="function">
       <type>AString</type>
-      <name>Value</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html</anchorfile>
-      <anchor>a3af185df6d34594e87ac3b8dac9b6b85</anchor>
+      <name>AddBoolean</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ad208e93de1198bbc33b8c74726aa2d20</anchor>
+      <arglist>(bool value)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>AddFloat</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ac97503e1c3e5c07fc0cf7beb8fc18c1f</anchor>
+      <arglist>(double value)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>AddInteger</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>aba6f76204bc8250d02ffb16ec724505c</anchor>
+      <arglist>(long value)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>AddString</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a50102545441cfb278817f41b39a7645c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>AddString</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a30ab96b4e6a7007ffa25965e391f6b80</anchor>
+      <arglist>(Object value)</arglist>
+    </member>
+    <member kind="function">
+      <type>Variable</type>
+      <name>ClearValues</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a555d7c215a5e3b49a5a537b191e96c64</anchor>
+      <arglist>(int startIdx=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>Variable</type>
+      <name>Define</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a424c20bc31df117d22f7ae4083580606</anchor>
+      <arglist>(VariableDefinition definition, params Object[] replacements)</arglist>
+    </member>
+    <member kind="function">
+      <type>Variable</type>
+      <name>Define</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ad3b055596c4475a2cfe2e1224465ef25</anchor>
+      <arglist>(Variable variable)</arglist>
+    </member>
+    <member kind="function">
+      <type>Variable</type>
+      <name>Define</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a6c18c3d3fa924f76ed48b461d87c5747</anchor>
+      <arglist>(Object category, Object name, char delim= &apos;\0&apos;, Object comments=null)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>GetAttribute</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a545d5babe0173293ba2916d45ceb799d</anchor>
+      <arglist>(String attrName, Substring result, char attrDelim= &apos;=&apos;)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>GetFloat</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>aa99de88aa99017031d1bbe994a53bdeb</anchor>
+      <arglist>(int idx=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>long</type>
+      <name>GetInteger</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a0d6ea60eb4fab304bb8c5fd44b912705</anchor>
+      <arglist>(int idx=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>GetString</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a1f66a6208f0fea995168988662429d38</anchor>
+      <arglist>(int idx=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>IsTrue</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a1e0d6918b216f929312012d15d9175b9</anchor>
+      <arglist>(int idx=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>Load</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a70249c8cab0f8bbb5be6a0078056b5f2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>LoadFromString</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>aedd814028a7f5f7155d9cc5be5ef57cc</anchor>
+      <arglist>(Object externalizedValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>Protect</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ab1b0720c3587eb8482a133ef8761c367</anchor>
+      <arglist>(Object externalizedValue=null)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ReplaceValue</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>afdac9f21277e56873549df5f6fecacd6</anchor>
+      <arglist>(int idx, Variable replVariable)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>Size</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>af40990b9bd3d70d30e8ce7cdda1ad56f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>Store</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a6c011c0bcb9bc2ecaa852efa1c630b23</anchor>
+      <arglist>(Object externalizedValue=null)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>StoreDefault</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>a0f4482a6b18967f2408280f9292df6dd</anchor>
+      <arglist>(Object externalizedValue=null)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>qtyValues</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ab7456aa10da95e6821c3f6499edb9ddd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>List&lt; AString &gt;</type>
+      <name>values</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>aa149976101e745b673d6e850e90c5bce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>clear</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html</anchorfile>
+      <anchor>ac8bb3912a3ce86b15842e79d0b421204</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>cs::aworx::lib::config::VariableDefinition</name>
+    <filename>structcs_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html</filename>
+    <member kind="variable">
+      <type>String</type>
+      <name>Category</name>
+      <anchorfile>structcs_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>ace42ec1911bd3b00414175a3e9df0a01</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>CategoryFallback</name>
+      <anchorfile>structcs_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>ad4d7b173b550ccf19d701e323356e8ea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>Comments</name>
+      <anchorfile>structcs_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>a0902946a25415a8b2b6d8a6157290cac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>DefaultValue</name>
+      <anchorfile>structcs_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>a48f7236d94560d0968b206eb2110ca8a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>char</type>
+      <name>Delim</name>
+      <anchorfile>structcs_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>a68297215ac82977611f5dee2062cc910</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>FormatAttrAlignment</name>
+      <anchorfile>structcs_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>a0ef6ae5b80559980ab700d040ea4e1ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Variable.FormatHint</type>
+      <name>FormatHints</name>
+      <anchorfile>structcs_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>a6a69c4d8022c7bae3dbe22b46cbbd89a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>Name</name>
+      <anchorfile>structcs_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>a934fa09ba291a97f43720640e4d83f25</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>VariableDefinition</name>
+      <anchorfile>structcs_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html</anchorfile>
+      <anchor>a4f77fb4686077e5b71551e108fd6ad37</anchor>
+      <arglist>(AString categoryFallback, String category, String name, String defaultValue, char delim, String formatAttrAlignment, Variable.FormatHint formatHints, String comments)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cs::aworx::lib::config::XTernalizer</name>
+    <filename>classcs_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html</filename>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>ExternalizeValue</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html</anchorfile>
+      <anchor>abd9f7471131ebce9d0b6fa9576bcc8fe</anchor>
+      <arglist>(Object src, AString dest, char delim)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>InternalizeValue</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html</anchorfile>
+      <anchor>a3f9b15a775136e26f34a6e8341e93a5e</anchor>
+      <arglist>(Substring src, AString dest)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>LoadFromString</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html</anchorfile>
+      <anchor>a80424b2d0ed48b24fff705ea4a9f753f</anchor>
+      <arglist>(Variable variable, Object src)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>tmpAS</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html</anchorfile>
+      <anchor>a43a6d226488086cf9563b431ccbe5c69</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>tmpSubs</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html</anchorfile>
+      <anchor>ae6dfbe5253596d92a6fe86bdad9b517d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>tmpSubs2</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html</anchorfile>
+      <anchor>a0cc5871949c3ec3eb9657173b2f8b8db</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -9787,11 +10561,16 @@
   <compound kind="namespace">
     <name>cs::aworx::lib::config</name>
     <filename>namespacecs_1_1aworx_1_1lib_1_1config.html</filename>
-    <class kind="class">cs::aworx::lib::config::CommandLinePlugIn</class>
+    <class kind="class">cs::aworx::lib::config::CommandLinePlugin</class>
     <class kind="class">cs::aworx::lib::config::Configuration</class>
-    <class kind="class">cs::aworx::lib::config::ConfigurationPlugIn</class>
-    <class kind="class">cs::aworx::lib::config::EnvironmentPlugIn</class>
+    <class kind="class">cs::aworx::lib::config::ConfigurationPlugin</class>
+    <class kind="class">cs::aworx::lib::config::EnvironmentPlugin</class>
     <class kind="class">cs::aworx::lib::config::IniFile</class>
+    <class kind="class">cs::aworx::lib::config::InMemoryPlugin</class>
+    <class kind="class">cs::aworx::lib::config::Variable</class>
+    <class kind="struct">cs::aworx::lib::config::VariableDefinition</class>
+    <class kind="class">cs::aworx::lib::config::XTernalizer</class>
+    <docanchor file="namespacecs_1_1aworx_1_1lib_1_1config">cs_alib_namespace_config_substitution</docanchor>
   </compound>
   <compound kind="namespace">
     <name>cs::aworx::lib::containers</name>
@@ -9885,6 +10664,15 @@
       <arglist></arglist>
       <enumvalue file="namespacecs_1_1aworx_1_1lib_1_1enums.html" anchor="aeae0c2d4659a32ef54bd221d1a3da4e6a3f9823fc8c5bf8d5efbb0ad3be5f16c9">Omit</enumvalue>
       <enumvalue file="namespacecs_1_1aworx_1_1lib_1_1enums.html" anchor="aeae0c2d4659a32ef54bd221d1a3da4e6aa9857b4deb35c57d5753f94fa00a028e">ToDescendants</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>Reach</name>
+      <anchorfile>namespacecs_1_1aworx_1_1lib_1_1enums.html</anchorfile>
+      <anchor>a9537c0a8df05f0a728b6e2a89c7f3a1b</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespacecs_1_1aworx_1_1lib_1_1enums.html" anchor="a9537c0a8df05f0a728b6e2a89c7f3a1ba4cc6684df7b4a92b1dec6fce3264fac8">Global</enumvalue>
+      <enumvalue file="namespacecs_1_1aworx_1_1lib_1_1enums.html" anchor="a9537c0a8df05f0a728b6e2a89c7f3a1ba509820290d57f333403f490dde7316f4">Local</enumvalue>
     </member>
     <member kind="enumeration">
       <type></type>

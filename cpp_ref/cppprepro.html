@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 2</span>
+   &#160;<span id="projectnumber">V. 1607 R. 0</span>
    </div>
   </td>
  </tr>
@@ -188,7 +188,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 <p><b>Avoiding library compilation problems</b><br />
  As with other C++ libraries, some of the compilation symbols change the interface and footprint ('sizeof()') of some of the classes. Linking a code unit that was compiled with different settings for one of these symbols, can fail. Even worse: in some cases, linking still works, but a process running these code units crashes unexpectedly. Such crashes are never easy to understand and to debug. So it is advised to be careful modifying compiler symbols and make sure that those symbols whose documentation hints to the fact that they change the footprint of the code, share the same value across all compilation units and the ALox library itself.<br />
- A mechanism to detect compilation setup problems exists with method <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a6924a062cb4b36d1cffa928296525365">ALIB::VerifyCompilationFlags</a> which is called automatically when invoking <a class="el" href="classaworx_1_1lox_1_1ALox.html#aa42e90660a7c751cd1dfd28942375f54">ALox::Init</a>, which should be done explicitly on bootstrap, but which is also be done implicitly, when ALox is used (and no explicit invocation was made before).</p>
+ A mechanism to detect compilation setup problems exists with method <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a6924a062cb4b36d1cffa928296525365">ALIB::VerifyCompilationFlags</a> which is called automatically when invoking <a class="el" href="classaworx_1_1lox_1_1ALox.html#a4c4ba727bf8ffe104f310aca32519e36">ALox::Init</a>, which should be done explicitly on bootstrap, but which is also be done implicitly, when ALox is used (and no explicit invocation was made before).</p>
 <p><b>Reference guide:</b><br />
  The compilation symbols for ALox and ALib are listed here:</p><ul>
 <li><a class="el" href="group__GrpALibCompilerSymbols.html">ALib Compilation Symbols</a></li>
@@ -251,7 +251,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 20 2016 10:57:53 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 23 2016 23:18:45 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

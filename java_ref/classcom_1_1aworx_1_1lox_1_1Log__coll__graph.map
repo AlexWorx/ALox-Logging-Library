@@ -1,25 +1,25 @@
 <map id="Log" name="Log">
-<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lox_1_1LogBuf.html" title="LogBuf" alt="" coords="931,849,994,875"/>
-<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="299,798,365,825"/>
+<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lox_1_1LogBuf.html" title="LogBuf" alt="" coords="931,878,994,905"/>
+<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="299,806,365,833"/>
 <area shape="rect" id="node7" href="$classcom_1_1aworx_1_1lox_1_1Lox.html" title="Lox" alt="" coords="1159,481,1202,507"/>
 <area shape="rect" id="node18" href="$classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html" title="ScopeInfo" alt="" coords="721,525,803,551"/>
-<area shape="rect" id="node20" href="$classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html" title="Domain" alt="" coords="729,1023,795,1050"/>
-<area shape="rect" id="node26" href="$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="TextLogger" alt="" coords="1485,1363,1572,1390"/>
-<area shape="rect" id="node30" href="$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" title="MetaInfo" alt="" coords="1144,1305,1217,1331"/>
-<area shape="rect" id="node21" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="293,1154,371,1181"/>
+<area shape="rect" id="node20" href="$classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html" title="Domain" alt="" coords="729,1082,795,1109"/>
+<area shape="rect" id="node26" href="$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="TextLogger" alt="" coords="1485,1422,1572,1449"/>
+<area shape="rect" id="node30" href="$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" title="MetaInfo" alt="" coords="1144,1363,1217,1390"/>
+<area shape="rect" id="node21" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="293,1162,371,1189"/>
 <area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lox_1_1ALoxReportWriter.html" title="ALoxReportWriter" alt="" coords="1465,481,1592,507"/>
 <area shape="rect" id="node6" href="$interfacecom_1_1aworx_1_1lib_1_1ReportWriter.html" title="ReportWriter" alt="" coords="1133,430,1229,457"/>
-<area shape="rect" id="node8" href="$classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="287,1401,377,1427"/>
-<area shape="rect" id="node28" href="$classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html" title="SmartLock" alt="" coords="719,1542,805,1569"/>
-<area shape="rect" id="node9" href="$enumcom_1_1aworx_1_1lib_1_1enums_1_1LockMode.html" title="LockMode" alt="" coords="18,1387,101,1414"/>
-<area shape="rect" id="node10" href="$classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="32,1491,87,1518"/>
-<area shape="rect" id="node27" href="$classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="1150,1482,1211,1509"/>
+<area shape="rect" id="node8" href="$classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="287,1459,377,1486"/>
+<area shape="rect" id="node28" href="$classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html" title="SmartLock" alt="" coords="719,1601,805,1627"/>
+<area shape="rect" id="node9" href="$enumcom_1_1aworx_1_1lib_1_1enums_1_1LockMode.html" title="LockMode" alt="" coords="18,1446,101,1473"/>
+<area shape="rect" id="node10" href="$classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="32,1550,87,1577"/>
+<area shape="rect" id="node27" href="$classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="1150,1541,1211,1567"/>
 <area shape="rect" id="node11" href="$enumcom_1_1aworx_1_1lib_1_1enums_1_1Case.html" title="Case" alt="" coords="735,411,789,438"/>
 <area shape="rect" id="node13" href="$classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt; Object \&gt;" alt="" coords="686,755,838,782"/>
 <area shape="rect" id="node15" href="$classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt; HashMap\l\&lt; com.aworx.lib.strings.AString,\l int[]\&gt; \&gt;" alt="" coords="657,71,867,127"/>
 <area shape="rect" id="node16" href="$classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt; HashMap\l\&lt; com.aworx.lib.strings.AString,\l com.aworx.lox.LogData \&gt; \&gt;" alt="" coords="657,151,867,207"/>
 <area shape="rect" id="node17" href="$classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt; com.aworx.lib.strings.\lAString \&gt;" alt="" coords="647,232,877,273"/>
-<area shape="rect" id="node31" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html" title="Tokenizer" alt="" coords="723,1074,801,1101"/>
-<area shape="rect" id="node32" href="$classcom_1_1aworx_1_1lib_1_1time_1_1TickSpan.html" title="TickSpan" alt="" coords="723,1289,801,1315"/>
-<area shape="rect" id="node39" href="$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html" title="AutoSizes" alt="" coords="1139,1533,1222,1559"/>
+<area shape="rect" id="node31" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html" title="Tokenizer" alt="" coords="723,1133,801,1159"/>
+<area shape="rect" id="node32" href="$classcom_1_1aworx_1_1lib_1_1time_1_1TickSpan.html" title="TickSpan" alt="" coords="723,1347,801,1374"/>
+<area shape="rect" id="node39" href="$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html" title="AutoSizes" alt="" coords="1139,1591,1222,1618"/>
 </map>

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['qtcreator',['QTCreator',['cpp_ref/classaworx_1_1lib_1_1system_1_1System.html#aeae50cdd350e3deaae33d2900b0a72f2abd58134b67d16f4a15d1f36d60e2f5b0',1,'aworx::lib::system::System']]]
+  ['path',['Path',['cs_ref/namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b',1,'cs::aworx::lox::Path()'],['cpp_ref/namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b',1,'aworx::lox::Path()']]],
+  ['prefixlogables',['PrefixLogables',['cs_ref/classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a4febf3aa9c543957a624d0e01118ad99',1,'cs::aworx::lox::Lox']]]
 ];

@@ -1,23 +1,23 @@
 <map id="Log" name="Log">
-<area shape="rect" id="node25" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html" title="AutoSizes" alt="" coords="784,1062,867,1089"/>
-<area shape="rect" id="node13" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="TextLogger" alt="" coords="1185,921,1272,948"/>
-<area shape="rect" id="node5" href="$classaworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt;map\&lt;AString, LogData *\&gt; *\&gt;" alt="" coords="1096,316,1361,342"/>
-<area shape="rect" id="node17" href="$classaworx_1_1lox_1_1Lox.html" title="Lox" alt="" coords="1559,316,1601,342"/>
-<area shape="rect" id="node7" href="$classaworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt;AString *\&gt;" alt="" coords="1149,164,1308,190"/>
-<area shape="rect" id="node10" href="$classaworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt;map\&lt;AString, int\&gt; *\&gt;" alt="" coords="1118,113,1339,140"/>
-<area shape="rect" id="node11" href="$classaworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt;Logable *\&gt;" alt="" coords="1149,214,1309,241"/>
-<area shape="rect" id="node12" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="367,456,571,482"/>
-<area shape="rect" id="node14" href="$classaworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="795,662,856,689"/>
-<area shape="rect" id="node19" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" title="MetaInfo" alt="" coords="789,801,862,828"/>
-<area shape="rect" id="node20" href="$classaworx_1_1lox_1_1core_1_1ScopeInfo.html" title="ScopeInfo" alt="" coords="785,270,866,297"/>
-<area shape="rect" id="node21" href="$classaworx_1_1lox_1_1ALoxReportWriter.html" title="ALoxReportWriter" alt="" coords="1753,469,1880,496"/>
-<area shape="rect" id="node22" href="$classaworx_1_1lox_1_1core_1_1Domain.html" title="Domain" alt="" coords="972,468,1039,494"/>
-<area shape="rect" id="node15" href="$classaworx_1_1lib_1_1threads_1_1SmartLock.html" title="SmartLock" alt="" coords="426,552,511,578"/>
-<area shape="rect" id="node16" href="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="119,62,209,89"/>
-<area shape="rect" id="node18" href="$classaworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="441,688,496,714"/>
-<area shape="rect" id="node23" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="131,794,197,821"/>
-<area shape="rect" id="node24" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="5,794,69,821"/>
-<area shape="rect" id="node26" href="$classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html" title="TicksCalendarTime" alt="" coords="401,742,536,769"/>
-<area shape="rect" id="node27" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" title="ObjectConverter" alt="" coords="410,906,527,933"/>
-<area shape="rect" id="node28" href="$classaworx_1_1lib_1_1ReportWriter.html" title="ReportWriter" alt="" coords="1532,265,1628,292"/>
+<area shape="rect" id="node25" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html" title="AutoSizes" alt="" coords="744,117,827,144"/>
+<area shape="rect" id="node13" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="TextLogger" alt="" coords="1145,297,1232,324"/>
+<area shape="rect" id="node5" href="$classaworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt;map\&lt;AString, LogData *\&gt; *\&gt;" alt="" coords="1056,1207,1321,1233"/>
+<area shape="rect" id="node17" href="$classaworx_1_1lox_1_1Lox.html" title="Lox" alt="" coords="1519,1131,1561,1157"/>
+<area shape="rect" id="node7" href="$classaworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt;AString *\&gt;" alt="" coords="1109,1257,1268,1284"/>
+<area shape="rect" id="node10" href="$classaworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt;map\&lt;AString, int\&gt; *\&gt;" alt="" coords="1078,1105,1299,1132"/>
+<area shape="rect" id="node11" href="$classaworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt;Logable *\&gt;" alt="" coords="1109,1156,1269,1183"/>
+<area shape="rect" id="node12" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="327,871,531,897"/>
+<area shape="rect" id="node14" href="$classaworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="755,352,816,379"/>
+<area shape="rect" id="node19" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" title="MetaInfo" alt="" coords="749,515,822,541"/>
+<area shape="rect" id="node20" href="$classaworx_1_1lox_1_1core_1_1ScopeInfo.html" title="ScopeInfo" alt="" coords="745,1124,826,1151"/>
+<area shape="rect" id="node21" href="$classaworx_1_1lox_1_1ALoxReportWriter.html" title="ALoxReportWriter" alt="" coords="1713,867,1840,893"/>
+<area shape="rect" id="node22" href="$classaworx_1_1lox_1_1core_1_1Domain.html" title="Domain" alt="" coords="752,1073,819,1100"/>
+<area shape="rect" id="node15" href="$classaworx_1_1lib_1_1threads_1_1SmartLock.html" title="SmartLock" alt="" coords="386,329,471,356"/>
+<area shape="rect" id="node16" href="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="119,5,209,32"/>
+<area shape="rect" id="node18" href="$classaworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="401,507,456,533"/>
+<area shape="rect" id="node23" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="131,651,197,677"/>
+<area shape="rect" id="node24" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="5,1060,69,1087"/>
+<area shape="rect" id="node26" href="$classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html" title="TicksCalendarTime" alt="" coords="361,417,496,444"/>
+<area shape="rect" id="node27" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" title="ObjectConverter" alt="" coords="370,168,487,195"/>
+<area shape="rect" id="node28" href="$classaworx_1_1lib_1_1ReportWriter.html" title="ReportWriter" alt="" coords="1492,892,1588,919"/>
 </map>

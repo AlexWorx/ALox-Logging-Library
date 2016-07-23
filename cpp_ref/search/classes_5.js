@@ -1,6 +1,7 @@
 var searchData=
 [
   ['inifile',['IniFile',['../classaworx_1_1lib_1_1config_1_1IniFile.html',1,'aworx::lib::config']]],
+  ['inmemoryplugin',['InMemoryPlugin',['../classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html',1,'aworx::lib::config']]],
   ['int32',['Int32',['../classaworx_1_1lib_1_1strings_1_1Format_1_1Int32.html',1,'aworx::lib::strings::Format']]],
   ['int64',['Int64',['../classaworx_1_1lib_1_1strings_1_1Format_1_1Int64.html',1,'aworx::lib::strings::Format']]],
   ['isapplicable',['IsApplicable',['../structaworx_1_1lib_1_1strings_1_1IsApplicable.html',1,'aworx::lib::strings']]],

@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 2</span>
+   &#160;<span id="projectnumber">V. 1607 R. 0</span>
    </div>
   </td>
  </tr>
@@ -125,6 +125,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#nested-classes">Inner Classes</a> &#124;
 <a href="#pub-attribs">Public Fields</a> &#124;
 <a href="#pub-static-methods">Public Static Methods</a> &#124;
@@ -151,6 +152,29 @@ Collaboration diagram for Lox:</div>
 <div class="textblock"><hr/>
 <p> This class acts as a container for Loggers and provides a convenient interface to logging. Fore information how to use this class, checkout the <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a> tutorials and the <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a> manual. </p>
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:aa2916fda7c89ab56ba7645d99879df31"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31">StateInfo</a> { <br />
+&#160;&#160;<a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a972e73b7a882d0802a4e3a16946a2f94">Basic</a> = 1 &lt;&lt; 0, 
+<a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a34b6cd75171affba6957e308dcbd92be">Version</a> = 1 &lt;&lt; 1, 
+<a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a96b1c552ca6ed5ee0ee3d0af174530ab">Loggers</a> = 1 &lt;&lt; 2, 
+<a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a78cd2c7d5422ffdb6d9545211ca49eeb">Domains</a> = 1 &lt;&lt; 3, 
+<br />
+&#160;&#160;<a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a31113a0541f0520765177c7069ba8ca1">InternalDomains</a> = 1 &lt;&lt; 4, 
+<a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a068b63932226b23a03535d36d8d2eb22">ScopeDomains</a> = 1 &lt;&lt; 5, 
+<a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a2f83cd74c1361769a936e39b22fdc603">DSR</a> = 1 &lt;&lt; 6, 
+<a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a4febf3aa9c543957a624d0e01118ad99">PrefixLogables</a> = 1 &lt;&lt; 7, 
+<br />
+&#160;&#160;<a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31ae1a9dc9f23534e63de9df0d540ac1611">Once</a> = 1 &lt;&lt; 8, 
+<a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a8252db9108bed0cc77b9108ef2e5b215">LogData</a> = 1 &lt;&lt; 9, 
+<a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31afb1cd41460e08ac954abd863f3e769b4">ThreadMappings</a> = 1 &lt;&lt; 10, 
+<a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31acb272fa6b5049b35cc46afdbea004556">SPTR</a> = 1 &lt;&lt; 20, 
+<br />
+&#160;&#160;<b>All</b> = ~0
+<br />
+ }</td></tr>
+<tr class="separator:aa2916fda7c89ab56ba7645d99879df31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Inner Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html">DomainSubstitutionRule</a></td></tr>
@@ -162,10 +186,6 @@ Public Fields</h2></td></tr>
 <tr class="separator:a2c80e5630abe5d5042ddb4b85c0c3562"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac63dd33538dff8703707b14fc6d04d52"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#ab9aab17a5e54a8bae6915bc24db13a17">Case</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ac63dd33538dff8703707b14fc6d04d52">DomainSensitivity</a> =Case.Ignore</td></tr>
 <tr class="separator:ac63dd33538dff8703707b14fc6d04d52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a849f8b775a1ebb6a8fbafe525f821056"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a849f8b775a1ebb6a8fbafe525f821056">PrioProtected</a> = int.MaxValue</td></tr>
-<tr class="separator:a849f8b775a1ebb6a8fbafe525f821056"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89856c713ec12c927fa2aac115a02926"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a89856c713ec12c927fa2aac115a02926">PrioSource</a> = 100</td></tr>
-<tr class="separator:a89856c713ec12c927fa2aac115a02926"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock')"><img src="closed.png" alt="-"/>&#160;Public Fields inherited from <a class="el" href="classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a></td></tr>
 <tr class="memitem:a2b35011c911bf00d065eba8af27620a7 inherit pub_attribs_classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a2b35011c911bf00d065eba8af27620a7">RecursionWarningThreshold</a> =10</td></tr>
 <tr class="separator:a2b35011c911bf00d065eba8af27620a7 inherit pub_attribs_classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -189,8 +209,8 @@ Public Methods</h2></td></tr>
 <tr class="separator:ad7d2ebe2750e7e4b2548f73d0380f651"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3474a54c9a6f9f6db081eddb91c078af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a3474a54c9a6f9f6db081eddb91c078af">BufAbort</a> ()</td></tr>
 <tr class="separator:a3474a54c9a6f9f6db081eddb91c078af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a563bdeaa837bf7799b7327ed874b5280"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a563bdeaa837bf7799b7327ed874b5280">ClearSourcePathTrimRules</a> (<a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52">Inclusion</a> global=Inclusion.Include, bool allowAutoRule=true)</td></tr>
-<tr class="separator:a563bdeaa837bf7799b7327ed874b5280"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25bdbffdc5f49db7612d837cb8e5c5db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a25bdbffdc5f49db7612d837cb8e5c5db">ClearSourcePathTrimRules</a> (<a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#a9537c0a8df05f0a728b6e2a89c7f3a1b">Reach</a> reach=<a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Reach.Global</a>, bool allowAutoRule=true)</td></tr>
+<tr class="separator:a25bdbffdc5f49db7612d837cb8e5c5db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c5d5fd659b79971751fec88e927a2dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a0c5d5fd659b79971751fec88e927a2dd">Entry</a> (String domain, <a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
 <tr class="separator:a0c5d5fd659b79971751fec88e927a2dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0cae33a9cef65aeca47089ba92c83e26"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a0cae33a9cef65aeca47089ba92c83e26">Entry</a> (<a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
@@ -203,6 +223,8 @@ Public Methods</h2></td></tr>
 <tr class="separator:a9ee22f7cc87689c66373d303a9677d67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac299469a5542b6a91f0e70b28e0d1345"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ac299469a5542b6a91f0e70b28e0d1345">GetName</a> ()</td></tr>
 <tr class="separator:ac299469a5542b6a91f0e70b28e0d1345"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb29987d3f74eab7ef263ac1c133fc79"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#abb29987d3f74eab7ef263ac1c133fc79">GetState</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> buf, <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31">Lox.StateInfo</a> flags, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
+<tr class="separator:abb29987d3f74eab7ef263ac1c133fc79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d626c0840136bfdbc0e87e38f2d479c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a6d626c0840136bfdbc0e87e38f2d479c">If</a> (bool condition, String domain, <a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
 <tr class="separator:a6d626c0840136bfdbc0e87e38f2d479c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a027d046dda82ebbd3c9d8cb5a5de39cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a027d046dda82ebbd3c9d8cb5a5de39cf">If</a> (bool condition, <a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
@@ -213,8 +235,6 @@ Public Methods</h2></td></tr>
 <tr class="separator:a1d96704370f2b9bee3cf5a64f454c445"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7232acc9ffe4595630e4abdaf6918ef9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a7232acc9ffe4595630e4abdaf6918ef9">IsRegistered</a> ()</td></tr>
 <tr class="separator:a7232acc9ffe4595630e4abdaf6918ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3592a8dbdcc93787ee5dfe8ce70df118"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a3592a8dbdcc93787ee5dfe8ce70df118">LogConfig</a> (String domain, <a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, String headLine, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
-<tr class="separator:a3592a8dbdcc93787ee5dfe8ce70df118"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54e58279baec04de7972bc4a5ac4d6e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a54e58279baec04de7972bc4a5ac4d6e4">MapThreadName</a> (String threadName, int id=-1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
 <tr class="separator:a54e58279baec04de7972bc4a5ac4d6e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6bb283bb478fc96d04717f8767d722f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a6bb283bb478fc96d04717f8767d722f7">Once</a> (String domain, <a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, Object logable, String group, <a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope=<a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope.Global</a>, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
@@ -283,14 +303,16 @@ Public Methods</h2></td></tr>
 <tr class="separator:a2940060c1939219eefbcedff2168eaa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac69496baa95a957d48f1cec5c53296d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ac69496baa95a957d48f1cec5c53296d0">SetPrefix</a> (Object logable, String domain=null, <a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52">Inclusion</a> otherPLs=Inclusion.Include, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
 <tr class="separator:ac69496baa95a957d48f1cec5c53296d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff67fbbedcf9a983a7732dab13e7bc63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aff67fbbedcf9a983a7732dab13e7bc63">SetSourcePathTrimRule</a> (String path, <a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52">Inclusion</a> includeString=Inclusion.Exclude, int trimOffset=0, <a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#ab9aab17a5e54a8bae6915bc24db13a17">Case</a> sensitivity=Case.Ignore, <a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52">Inclusion</a> global=Inclusion.Include, String trimReplacement=null, int priority=<a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a89856c713ec12c927fa2aac115a02926">Lox.PrioSource</a>)</td></tr>
-<tr class="separator:aff67fbbedcf9a983a7732dab13e7bc63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a1cea66a564bc99c9a2d44467865611"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a0a1cea66a564bc99c9a2d44467865611">SetSourcePathTrimRule</a> (String path, <a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52">Inclusion</a> includeString=Inclusion.Exclude, int trimOffset=0, <a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#ab9aab17a5e54a8bae6915bc24db13a17">Case</a> sensitivity=Case.Ignore, String trimReplacement=null, <a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#a9537c0a8df05f0a728b6e2a89c7f3a1b">Reach</a> reach=<a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Reach.Global</a>, int priority=Configuration.PrioDefault)</td></tr>
+<tr class="separator:a0a1cea66a564bc99c9a2d44467865611"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9ae268e10c8a99d675ce8a1c1268f1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#af9ae268e10c8a99d675ce8a1c1268f1a">SetStartTime</a> (DateTime?startTime=null, String loggerName=null, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
 <tr class="separator:af9ae268e10c8a99d675ce8a1c1268f1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd831519fc241771dd0be79fa8bc7d5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#abd831519fc241771dd0be79fa8bc7d5c">SetVerbosity</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> logger, <a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, String domain=&quot;/&quot;, int priority=<a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a89856c713ec12c927fa2aac115a02926">Lox.PrioSource</a>, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
-<tr class="separator:abd831519fc241771dd0be79fa8bc7d5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdc0abb8b39da45f5232f219a84ef05c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#afdc0abb8b39da45f5232f219a84ef05c">SetVerbosity</a> (String loggerName, <a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, String domain=&quot;/&quot;, int priority=<a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a89856c713ec12c927fa2aac115a02926">Lox.PrioSource</a>, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
-<tr class="separator:afdc0abb8b39da45f5232f219a84ef05c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5e94bc8ec4e4f23c8401ebbf815c336"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa5e94bc8ec4e4f23c8401ebbf815c336">SetVerbosity</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> logger, <a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, String domain=&quot;/&quot;, int priority=Configuration.PrioDefault, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
+<tr class="separator:aa5e94bc8ec4e4f23c8401ebbf815c336"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a40de6013862b8ebe0b5f5efdeea93e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a6a40de6013862b8ebe0b5f5efdeea93e">SetVerbosity</a> (String loggerName, <a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, String domain=&quot;/&quot;, int priority=Configuration.PrioDefault, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
+<tr class="separator:a6a40de6013862b8ebe0b5f5efdeea93e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7600e60bbdf55df184a206b55ee0462"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#af7600e60bbdf55df184a206b55ee0462">State</a> (String domain, <a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, String headLine, <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31">StateInfo</a> flags, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
+<tr class="separator:af7600e60bbdf55df184a206b55ee0462"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43c8005008bdf5654bac8f84aae8d03b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a43c8005008bdf5654bac8f84aae8d03b">Store</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1LogData.html">LogData</a> data, String key, <a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope=<a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope.Global</a>, int pathLevel=0, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
 <tr class="separator:a43c8005008bdf5654bac8f84aae8d03b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57185c980eaa3dc97f9de3965a10fd88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a57185c980eaa3dc97f9de3965a10fd88">Store</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1LogData.html">LogData</a> data, <a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope=<a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope.Global</a>, int pathLevel=0, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
@@ -335,6 +357,8 @@ Protected Fields</h2></td></tr>
 <tr class="separator:a1c3b59e6dc2850f90df33ae9b4533334"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a115a099b1c0c5425cd37ec7b54056d01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a115a099b1c0c5425cd37ec7b54056d01">logBufLock</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a>()</td></tr>
 <tr class="separator:a115a099b1c0c5425cd37ec7b54056d01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1d2d3f00029eeccb82c286b93314df0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ae1d2d3f00029eeccb82c286b93314df0">loggerAddedSinceLastDebugState</a> =false</td></tr>
+<tr class="separator:ae1d2d3f00029eeccb82c286b93314df0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acebf4e1770184abbc4063f3fa4a3f298"><td class="memItemLeft" align="right" valign="top">List&lt; Object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#acebf4e1770184abbc4063f3fa4a3f298">logObjects</a> = new List&lt;Object&gt;()</td></tr>
 <tr class="separator:acebf4e1770184abbc4063f3fa4a3f298"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71f136dd9dc7e9d48c33ad54ae5d802f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a71f136dd9dc7e9d48c33ad54ae5d802f">maxDomainPathLength</a> = 0</td></tr>
@@ -363,11 +387,11 @@ Protected Fields</h2></td></tr>
 <tr class="separator:af17a69632804467db73cb111c6afde9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43a6d226488086cf9563b431ccbe5c69"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a43a6d226488086cf9563b431ccbe5c69">tmpAS</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>( 64 )</td></tr>
 <tr class="separator:a43a6d226488086cf9563b431ccbe5c69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2313c9e8c9b7afdf186b4331ab7fbbd7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a2313c9e8c9b7afdf186b4331ab7fbbd7">tmpConfigValue</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>()</td></tr>
-<tr class="separator:a2313c9e8c9b7afdf186b4331ab7fbbd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3586a087b92907c9c32173cecc2f78a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a3586a087b92907c9c32173cecc2f78a3">tmpSubstitutionPath</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>( 64 )</td></tr>
+<tr class="memitem:a982a94ba249ae6bc678f130090ac0a1a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a982a94ba249ae6bc678f130090ac0a1a">tmpComments</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>( 128 )</td></tr>
+<tr class="separator:a982a94ba249ae6bc678f130090ac0a1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3586a087b92907c9c32173cecc2f78a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a3586a087b92907c9c32173cecc2f78a3">tmpSubstitutionPath</a> =new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>(64)</td></tr>
 <tr class="separator:a3586a087b92907c9c32173cecc2f78a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2265ed8cb8c01d3e57fe59f77929ccb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ae2265ed8cb8c01d3e57fe59f77929ccb">tmpSubstitutionPathInternalDomains</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>( 64 )</td></tr>
+<tr class="memitem:ae2265ed8cb8c01d3e57fe59f77929ccb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ae2265ed8cb8c01d3e57fe59f77929ccb">tmpSubstitutionPathInternalDomains</a> =new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>(64)</td></tr>
 <tr class="separator:ae2265ed8cb8c01d3e57fe59f77929ccb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock')"><img src="closed.png" alt="-"/>&#160;Protected Fields inherited from <a class="el" href="classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a></td></tr>
 <tr class="memitem:a7f41e1e3070abd18f7cdfdb9a95b3d9c inherit pro_attribs_classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a7f41e1e3070abd18f7cdfdb9a95b3d9c">lockCount</a></td></tr>
@@ -385,38 +409,104 @@ Protected Fields</h2></td></tr>
 Protected Methods</h2></td></tr>
 <tr class="memitem:acf7d46373119e1daa39fd32539724938"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#acf7d46373119e1daa39fd32539724938">checkScopeInformation</a> (<a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, int pathLevel, String internalDomain)</td></tr>
 <tr class="separator:acf7d46373119e1daa39fd32539724938"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8801e9bd1ba933633227c2d83339ef14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a8801e9bd1ba933633227c2d83339ef14">dumpStateOnLoggerRemoval</a> ()</td></tr>
+<tr class="separator:a8801e9bd1ba933633227c2d83339ef14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00b9b5dedced60246e16ad39d66e2538"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a00b9b5dedced60246e16ad39d66e2538">evaluateResultDomain</a> (String domainPath)</td></tr>
 <tr class="separator:a00b9b5dedced60246e16ad39d66e2538"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47d2dd08f0748552ebd6399637223df1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a47d2dd08f0748552ebd6399637223df1">getAllVerbosities</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> logger, <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> dom, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> cfgStr, int cfgPriority)</td></tr>
-<tr class="separator:a47d2dd08f0748552ebd6399637223df1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b6c46d0aba3036ff8a30fb53ed7c3fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a4b6c46d0aba3036ff8a30fb53ed7c3fd">getAllVerbosities</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> logger, <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> dom, <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a> cfgResult)</td></tr>
+<tr class="separator:a4b6c46d0aba3036ff8a30fb53ed7c3fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae82c0be2029cb514a781abdc70832904"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ae82c0be2029cb514a781abdc70832904">getDomainPrefixFromConfig</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> dom)</td></tr>
 <tr class="separator:ae82c0be2029cb514a781abdc70832904"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8cf66e80845561dcaa3183af626661d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ab8cf66e80845561dcaa3183af626661d">getVerbosityFromConfig</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> logger, <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> dom, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> cfgStr, int cfgPriority)</td></tr>
-<tr class="separator:ab8cf66e80845561dcaa3183af626661d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86c50ec2fa67e97d4116ddd9709f5fcd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a86c50ec2fa67e97d4116ddd9709f5fcd">getVerbosityFromConfig</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> logger, <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> dom, <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a> variable)</td></tr>
+<tr class="separator:a86c50ec2fa67e97d4116ddd9709f5fcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab863574cc06556b1b5d037dd42d07099"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ab863574cc06556b1b5d037dd42d07099">isThreadReleatedScope</a> (<a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, int cln, String csf, String cmn)</td></tr>
 <tr class="separator:ab863574cc06556b1b5d037dd42d07099"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2bf47438610d8ce34fa37f81892b0150"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a2bf47438610d8ce34fa37f81892b0150">log</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> dom, <a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, Object logable, <a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52">Inclusion</a> prefixes)</td></tr>
 <tr class="separator:a2bf47438610d8ce34fa37f81892b0150"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03444bb7da0a5dede116dc2decd51238"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a03444bb7da0a5dede116dc2decd51238">logConfigCollectPrefixes</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> domain, int indentSpaces, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> target)</td></tr>
-<tr class="separator:a03444bb7da0a5dede116dc2decd51238"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12d11e9840b1a4aa1d45d6ad02a7e6ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a12d11e9840b1a4aa1d45d6ad02a7e6ca">logConfigDomainRecursive</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> domain, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> buf)</td></tr>
-<tr class="separator:a12d11e9840b1a4aa1d45d6ad02a7e6ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0982b3444ac36cd108ca6eada7a59c84"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a0982b3444ac36cd108ca6eada7a59c84">logConfigDomsWithDiffVerb</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> domain, int loggerNo, List&lt; <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> &gt; results)</td></tr>
-<tr class="separator:a0982b3444ac36cd108ca6eada7a59c84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41785b58f7f928a11d27ff14a8fa4274"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a41785b58f7f928a11d27ff14a8fa4274">logInternal</a> (<a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, String subDomain, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> logable)</td></tr>
 <tr class="separator:a41785b58f7f928a11d27ff14a8fa4274"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0f1eaeabd7bdcf8488a7ac3cc90f575"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ad0f1eaeabd7bdcf8488a7ac3cc90f575">logStateCollectPrefixes</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> domain, int indentSpaces, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> target)</td></tr>
+<tr class="separator:ad0f1eaeabd7bdcf8488a7ac3cc90f575"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae635c042580bb7014c3bfdf8eca15016"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ae635c042580bb7014c3bfdf8eca15016">logStateDomainRecursive</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> domain, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> buf)</td></tr>
+<tr class="separator:ae635c042580bb7014c3bfdf8eca15016"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6aae9103dec474f0fc5d7d39fbb63e80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a6aae9103dec474f0fc5d7d39fbb63e80">logStateDomsWithDiffVerb</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> domain, int loggerNo, List&lt; <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> &gt; results)</td></tr>
+<tr class="separator:a6aae9103dec474f0fc5d7d39fbb63e80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9869a663b366431edf267e0f4b8bb344"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a9869a663b366431edf267e0f4b8bb344">once</a> (String domain, <a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, Object logable, String group, <a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, int pathLevel, int quantity, int cln, String csf, String cmn)</td></tr>
 <tr class="separator:a9869a663b366431edf267e0f4b8bb344"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2627087e4a30fc736e8c29a601b6393b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a2627087e4a30fc736e8c29a601b6393b">setDomainImpl</a> (String scopeDomain, <a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, int pathLevel, bool removeNTRSD, Thread thread, int cln, String csf, String cmn)</td></tr>
 <tr class="separator:a2627087e4a30fc736e8c29a601b6393b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d5fd3a263af67cb1f267833799fe7b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a9d5fd3a263af67cb1f267833799fe7b0">setPrefixImpl</a> (Object logable, <a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, int pathLevel, Thread thread, int cln, String csf, String cmn)</td></tr>
 <tr class="separator:a9d5fd3a263af67cb1f267833799fe7b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaebefa8f600a7080f06b6bdea6ccc11a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aaebefa8f600a7080f06b6bdea6ccc11a">verbositySettingToVariable</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> domain, int loggerNo, <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a> variable)</td></tr>
+<tr class="separator:aaebefa8f600a7080f06b6bdea6ccc11a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d6efa998ec2d3223a38d6b3fbcb3c2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a8d6efa998ec2d3223a38d6b3fbcb3c2f">writeVerbositiesOnLoggerRemoval</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> logger)</td></tr>
+<tr class="separator:a8d6efa998ec2d3223a38d6b3fbcb3c2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Methods</h2></td></tr>
 <tr class="memitem:ae3be7b75d20b907c107c20de77069bac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ae3be7b75d20b907c107c20de77069bac">findDomain</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> domainSystem, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> domainPath)</td></tr>
 <tr class="separator:ae3be7b75d20b907c107c20de77069bac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="aa2916fda7c89ab56ba7645d99879df31"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31">StateInfo</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Denotes flags used with methods <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#abb29987d3f74eab7ef263ac1c133fc79">GetState</a> and <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#af7600e60bbdf55df184a206b55ee0462">State</a> to select different parts of the state receive. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="aa2916fda7c89ab56ba7645d99879df31a972e73b7a882d0802a4e3a16946a2f94"></a>Basic&#160;</td><td class="fielddoc">
+<p>Name and number of log calls. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="aa2916fda7c89ab56ba7645d99879df31a34b6cd75171affba6957e308dcbd92be"></a>Version&#160;</td><td class="fielddoc">
+<p>Library Version and thread safeness. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="aa2916fda7c89ab56ba7645d99879df31a96b1c552ca6ed5ee0ee3d0af174530ab"></a>Loggers&#160;</td><td class="fielddoc">
+<p>Loggers. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="aa2916fda7c89ab56ba7645d99879df31a78cd2c7d5422ffdb6d9545211ca49eeb"></a>Domains&#160;</td><td class="fielddoc">
+<p><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> domains currently registered. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="aa2916fda7c89ab56ba7645d99879df31a31113a0541f0520765177c7069ba8ca1"></a>InternalDomains&#160;</td><td class="fielddoc">
+<p>Internal domains. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="aa2916fda7c89ab56ba7645d99879df31a068b63932226b23a03535d36d8d2eb22"></a>ScopeDomains&#160;</td><td class="fielddoc">
+<p>Scope domains. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="aa2916fda7c89ab56ba7645d99879df31a2f83cd74c1361769a936e39b22fdc603"></a>DSR&#160;</td><td class="fielddoc">
+<p>Domain substitution rules. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="aa2916fda7c89ab56ba7645d99879df31a4febf3aa9c543957a624d0e01118ad99"></a>PrefixLogables&#160;</td><td class="fielddoc">
+<p>Prefix logables. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="aa2916fda7c89ab56ba7645d99879df31ae1a9dc9f23534e63de9df0d540ac1611"></a>Once&#160;</td><td class="fielddoc">
+<p><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> once counters. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="aa2916fda7c89ab56ba7645d99879df31a8252db9108bed0cc77b9108ef2e5b215"></a>LogData&#160;</td><td class="fielddoc">
+<p><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> data objects. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="aa2916fda7c89ab56ba7645d99879df31afb1cd41460e08ac954abd863f3e769b4"></a>ThreadMappings&#160;</td><td class="fielddoc">
+<p>Named threads. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="aa2916fda7c89ab56ba7645d99879df31acb272fa6b5049b35cc46afdbea004556"></a>SPTR&#160;</td><td class="fielddoc">
+<p>Source path trim rules. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="acc9b602f88cd6d950fdb225dfc1f6e41"></a>
 <div class="memitem">
@@ -445,7 +535,7 @@ Private Methods</h2></td></tr>
 <p> Constructs a new, empty <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html">Lox</a> with the given <code>name</code>. The name is immutable and all <b>Lox</b> objects registered with <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a> must be unique. The name <code>"Log"</code> is reserved for the internal default singleton used for debug-logging. In addition, name <code>"GLOBAL"</code> is not allowed.</p>
 <p>If parameter <code>register</code> is <code>true</code> (the default), static method <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html#ab56e2c69e5a62ed580b0509e63193eb5">ALox.Register</a> is invoked and the object will be retrievable with static method <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html#a43ea367a64b98d76d0f18955bf0e5a04">ALox.Get</a>. In some situations, such 'registration' may not be wanted. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>The name of the <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html">Lox</a>. Can be logged out, e.g. by setting cs::aworx::lox::textlogger::MetaInfo::Format "MetaInfo.Format" accordingly. Will be converted to upper case. </td></tr>
+    <tr><td class="paramname">name</td><td>The name of the <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html">Lox</a>. Will be converted to upper case. </td></tr>
     <tr><td class="paramname">doRegister</td><td>If <code>true</code>, this object is registered with static class <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a>. Optional and defaults to <code>true</code>. </td></tr>
   </table>
   </dd>
@@ -660,15 +750,15 @@ Private Methods</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a563bdeaa837bf7799b7327ed874b5280"></a>
+<a class="anchor" id="a25bdbffdc5f49db7612d837cb8e5c5db"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void ClearSourcePathTrimRules </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52">Inclusion</a>&#160;</td>
-          <td class="paramname"><em>global</em> = <code>Inclusion.Include</code>, </td>
+          <td class="paramtype"><a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#a9537c0a8df05f0a728b6e2a89c7f3a1b">Reach</a>&#160;</td>
+          <td class="paramname"><em>reach</em> = <code><a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Reach.Global</a></code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -684,12 +774,12 @@ Private Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Removes all local trimming rules set with <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aff67fbbedcf9a983a7732dab13e7bc63">SetSourcePathTrimRule</a>. If parameter <code>global</code> is set to <b>Inclusion.Include</b>, the global rules are cleared in addition.</p>
+<p> Removes all local trimming rules set with <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a0a1cea66a564bc99c9a2d44467865611">SetSourcePathTrimRule</a>. If parameter <code>global</code> is set to <b>Inclusion.Include</b>, the global rules are cleared in addition.</p>
 <p>Setting parameter <code>allowAutoRule</code> to <code>false</code>, allows to suppress the creation of an automatic rule based on the executables path.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a> User Manual for more information.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">global</td><td>If Inclusion.Exclude, only this instances' rules are cleared. Otherwise, the global rules are cleared as well. </td></tr>
+    <tr><td class="paramname">reach</td><td>Denotes whether only local rules are cleared or also global ones. Defaults to <b>Reach.Global</b>. </td></tr>
     <tr><td class="paramname">allowAutoRule</td><td>Determines if an auto rule should be tried to be detected next no appropriate rule is found. </td></tr>
   </table>
   </dd>
@@ -734,6 +824,31 @@ Private Methods</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The <b>TextLogger</b> chosen. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8801e9bd1ba933633227c2d83339ef14"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dumpStateOnLoggerRemoval </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Implements functionality for configuration variable <code>LOXNAME_DUMP_STATE_ON_EXIT</code>. Is called when a logger is removed. </p>
 
 </div>
 </div>
@@ -1038,7 +1153,7 @@ Private Methods</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a47d2dd08f0748552ebd6399637223df1"></a>
+<a class="anchor" id="a4b6c46d0aba3036ff8a30fb53ed7c3fd"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1060,14 +1175,8 @@ Private Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
-          <td class="paramname"><em>cfgStr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>cfgPriority</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a>&#160;</td>
+          <td class="paramname"><em>cfgResult</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1087,8 +1196,7 @@ Private Methods</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">logger</td><td>The logger to set the verbosity for. </td></tr>
     <tr><td class="paramname">dom</td><td>The domain to set the verbosity for. </td></tr>
-    <tr><td class="paramname">cfgStr</td><td>The configuration string. If not read yet, null may be given. </td></tr>
-    <tr><td class="paramname">cfgPriority</td><td>The priority of the configuration plug-in providing the variable. </td></tr>
+    <tr><td class="paramname">cfgResult</td><td>The result of the search for the variable to set verbosities from. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1195,7 +1303,63 @@ Private Methods</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab8cf66e80845561dcaa3183af626661d"></a>
+<a class="anchor" id="abb29987d3f74eab7ef263ac1c133fc79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GetState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31">Lox.StateInfo</a>&#160;</td>
+          <td class="paramname"><em>flags</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[CallerLineNumber] int&#160;</td>
+          <td class="paramname"><em>cln</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[CallerFilePath] String&#160;</td>
+          <td class="paramname"><em>csf</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[CallerMemberName] String&#160;</td>
+          <td class="paramname"><em>cmn</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> This method collects state information about this lox.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buf</td><td>The target string. </td></tr>
+    <tr><td class="paramname">flags</td><td>Flag bits that define which state information is collected.</td></tr>
+    <tr><td class="paramname">cln</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
+    <tr><td class="paramname">csf</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
+    <tr><td class="paramname">cmn</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a86c50ec2fa67e97d4116ddd9709f5fcd"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1217,14 +1381,8 @@ Private Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
-          <td class="paramname"><em>cfgStr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>cfgPriority</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a>&#160;</td>
+          <td class="paramname"><em>variable</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1247,8 +1405,7 @@ Private Methods</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">logger</td><td>The logger to set the verbosity for. </td></tr>
     <tr><td class="paramname">dom</td><td>The domain to set the verbosity for. </td></tr>
-    <tr><td class="paramname">cfgStr</td><td>The configuration string. If not read yet, null may be given. </td></tr>
-    <tr><td class="paramname">cfgPriority</td><td>The priority of the configuration plug-in providing the variable. </td></tr>
+    <tr><td class="paramname">variable</td><td>The (already read) variable to set verbosities from. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1627,212 +1784,6 @@ Private Methods</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a3592a8dbdcc93787ee5dfe8ce70df118"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void LogConfig </td>
-          <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>domain</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>&#160;</td>
-          <td class="paramname"><em>verbosity</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>headLine</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">[CallerLineNumber] int&#160;</td>
-          <td class="paramname"><em>cln</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">[CallerFilePath] String&#160;</td>
-          <td class="paramname"><em>csf</em> = <code>&quot;&quot;</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">[CallerMemberName] String&#160;</td>
-          <td class="paramname"><em>cmn</em> = <code>&quot;&quot;</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> This method logs the configuration this <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html">Lox</a> and it's encapsulated objects.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">domain</td><td>Optional <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em> which is combined with <em>Scope Domains</em> set for the <em>Scope</em> of invocation. </td></tr>
-    <tr><td class="paramname">verbosity</td><td>The verbosity. </td></tr>
-    <tr><td class="paramname">headLine</td><td>If given, a separated headline will be logged at first place. </td></tr>
-    <tr><td class="paramname">cln</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
-    <tr><td class="paramname">csf</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
-    <tr><td class="paramname">cmn</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a03444bb7da0a5dede116dc2decd51238"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void logConfigCollectPrefixes </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>&#160;</td>
-          <td class="paramname"><em>domain</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>indentSpaces</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
-          <td class="paramname"><em>target</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<hr/>
-<p> Internal method used by <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a3592a8dbdcc93787ee5dfe8ce70df118">LogConfig()</a> to recursively (DFS) log <em>Prefix Logables</em> bound to <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Domains</em></p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">domain</td><td>The actual domain to check. </td></tr>
-    <tr><td class="paramname">indentSpaces</td><td>The number of spaces to write before each line. </td></tr>
-    <tr><td class="paramname">target</td><td>The target string. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a12d11e9840b1a4aa1d45d6ad02a7e6ca"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void logConfigDomainRecursive </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>&#160;</td>
-          <td class="paramname"><em>domain</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
-          <td class="paramname"><em>buf</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<hr/>
-<p> Internal method used by <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a3592a8dbdcc93787ee5dfe8ce70df118">LogConfig()</a> to recursively log Domain instances.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">domain</td><td>The Domain instance to log out. </td></tr>
-    <tr><td class="paramname">buf</td><td>The buffer to log to. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a0982b3444ac36cd108ca6eada7a59c84"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void logConfigDomsWithDiffVerb </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>&#160;</td>
-          <td class="paramname"><em>domain</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>loggerNo</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">List&lt; <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> &gt;&#160;</td>
-          <td class="paramname"><em>results</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<hr/>
-<p> Internal method used by <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a3592a8dbdcc93787ee5dfe8ce70df118">LogConfig()</a> to recursively (DFS) collect Domains of Logger that have a different verbosity than their parent.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">domain</td><td>The actual domain to check. </td></tr>
-    <tr><td class="paramname">loggerNo</td><td>The logger to collect domains for. </td></tr>
-    <tr><td class="paramname">results</td><td>The result list. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a class="anchor" id="a41785b58f7f928a11d27ff14a8fa4274"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1877,6 +1828,149 @@ Private Methods</h2></td></tr>
     <tr><td class="paramname">verbosity</td><td>The verbosity. </td></tr>
     <tr><td class="paramname">subDomain</td><td>The sub-domain of the internal domain to log into. </td></tr>
     <tr><td class="paramname">logable</td><td>The message. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ad0f1eaeabd7bdcf8488a7ac3cc90f575"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logStateCollectPrefixes </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>&#160;</td>
+          <td class="paramname"><em>domain</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>indentSpaces</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
+          <td class="paramname"><em>target</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Internal method used by <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#af7600e60bbdf55df184a206b55ee0462">State()</a> to recursively (DFS) log <em>Prefix Logables</em> bound to <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Domains</em></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">domain</td><td>The actual domain to check. </td></tr>
+    <tr><td class="paramname">indentSpaces</td><td>The number of spaces to write before each line. </td></tr>
+    <tr><td class="paramname">target</td><td>The target string. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae635c042580bb7014c3bfdf8eca15016"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logStateDomainRecursive </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>&#160;</td>
+          <td class="paramname"><em>domain</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
+          <td class="paramname"><em>buf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Internal method used by <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#af7600e60bbdf55df184a206b55ee0462">State()</a> to recursively log Domain instances.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">domain</td><td>The Domain instance to log out. </td></tr>
+    <tr><td class="paramname">buf</td><td>The buffer to log to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a6aae9103dec474f0fc5d7d39fbb63e80"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logStateDomsWithDiffVerb </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>&#160;</td>
+          <td class="paramname"><em>domain</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>loggerNo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> &gt;&#160;</td>
+          <td class="paramname"><em>results</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Internal method used by <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#af7600e60bbdf55df184a206b55ee0462">State()</a> to recursively (DFS) collect Domains of Logger that have a different verbosity than their parent.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">domain</td><td>The actual domain to check. </td></tr>
+    <tr><td class="paramname">loggerNo</td><td>The logger to collect domains for. </td></tr>
+    <tr><td class="paramname">results</td><td>The result list. </td></tr>
   </table>
   </dd>
 </dl>
@@ -3570,7 +3664,7 @@ Private Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Removes a logger from this container. </p><dl class="section note"><dt>Note</dt><dd>To (temporarily) disable a logger without removing it, a call to <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#abd831519fc241771dd0be79fa8bc7d5c">SetVerbosity( logger, Verbosity.Off )</a> can be used.</dd></dl>
+<p> Removes a logger from this container. </p><dl class="section note"><dt>Note</dt><dd>To (temporarily) disable a logger without removing it, a call to <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa5e94bc8ec4e4f23c8401ebbf815c336">SetVerbosity( logger, Verbosity.Off )</a> can be used.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logger</td><td>The logger to be removed.</td></tr>
@@ -3625,7 +3719,7 @@ Private Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Removes a logger from this container. </p><dl class="section note"><dt>Note</dt><dd>To (temporarily) disable a logger without removing it, a call to <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#abd831519fc241771dd0be79fa8bc7d5c">SetVerbosity( logger, Verbosity.Off )</a> can be used.</dd></dl>
+<p> Removes a logger from this container. </p><dl class="section note"><dt>Note</dt><dd>To (temporarily) disable a logger without removing it, a call to <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa5e94bc8ec4e4f23c8401ebbf815c336">SetVerbosity( logger, Verbosity.Off )</a> can be used.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">logger</td><td>The logger to be removed. </td></tr>
@@ -3676,7 +3770,7 @@ Private Methods</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Removes logger named <code>loggerName</code> from this container.</p>
-<dl class="section note"><dt>Note</dt><dd>To (temporarily) disable a logger without removing it, a call to <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#abd831519fc241771dd0be79fa8bc7d5c">SetVerbosity( logger, Verbosity.Off )</a> can be used.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>To (temporarily) disable a logger without removing it, a call to <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa5e94bc8ec4e4f23c8401ebbf815c336">SetVerbosity( logger, Verbosity.Off )</a> can be used.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">loggerName</td><td>The name of the <em>Logger</em> to be removed (case insensitive).</td></tr>
@@ -3732,7 +3826,7 @@ Private Methods</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Removes logger named <code>loggerName</code> from this container.</p>
-<dl class="section note"><dt>Note</dt><dd>To (temporarily) disable a logger without removing it, a call to <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#abd831519fc241771dd0be79fa8bc7d5c">SetVerbosity( logger, Verbosity.Off )</a> can be used.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>To (temporarily) disable a logger without removing it, a call to <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa5e94bc8ec4e4f23c8401ebbf815c336">SetVerbosity( logger, Verbosity.Off )</a> can be used.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">loggerName</td><td>The name of the <em>Logger</em> to be removed (case insensitive). </td></tr>
@@ -4497,7 +4591,7 @@ Private Methods</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aff67fbbedcf9a983a7732dab13e7bc63"></a>
+<a class="anchor" id="a0a1cea66a564bc99c9a2d44467865611"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -4528,20 +4622,20 @@ Private Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52">Inclusion</a>&#160;</td>
-          <td class="paramname"><em>global</em> = <code>Inclusion.Include</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">String&#160;</td>
           <td class="paramname"><em>trimReplacement</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#a9537c0a8df05f0a728b6e2a89c7f3a1b">Reach</a>&#160;</td>
+          <td class="paramname"><em>reach</em> = <code><a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Reach.Global</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>priority</em> = <code><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a89856c713ec12c927fa2aac115a02926">Lox.PrioSource</a></code>&#160;</td>
+          <td class="paramname"><em>priority</em> = <code>Configuration.PrioDefault</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -4565,9 +4659,9 @@ Private Methods</h2></td></tr>
     <tr><td class="paramname">includeString</td><td>Determines if <code>path</code> should be included in the trimmed path or not. Optional and defaults to <b>Inclusion.Exclude</b>. </td></tr>
     <tr><td class="paramname">trimOffset</td><td>Adjusts the portion of <code>path</code> that is trimmed. Optional and defaults to 0. </td></tr>
     <tr><td class="paramname">sensitivity</td><td>Determines if the comparison of <code>path</code> with a source files' path is performed case sensitive or not. Optional and defaults to <b>Case.Ignore</b>. </td></tr>
-    <tr><td class="paramname">global</td><td>If Inclusion.Exclude, only this instance is affected. Otherwise the setting applies to all instances of class <b><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html">Lox</a></b>. Optional and defaults to <b>Inclusion.Include</b>. </td></tr>
     <tr><td class="paramname">trimReplacement</td><td>Replacement string for trimmed portion of the path. Optional and defaults to <b>NullString</b>. </td></tr>
-    <tr><td class="paramname">priority</td><td>The priority of the setting. Defaults to <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a89856c713ec12c927fa2aac115a02926">PrioSource</a>, which is a lower priority than standard plug-ins of external configuration have. </td></tr>
+    <tr><td class="paramname">reach</td><td>Denotes whether the rule is applied locally (to this <b>Lox</b> only) or applies to all instances of class <b>Lox</b>. Defaults to <b>Reach.Global</b>. </td></tr>
+    <tr><td class="paramname">priority</td><td>The priority of the setting. Defaults to <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ad754aede889ddbfc72c4d502d0b505bd">Configuration.PrioDefault</a>, which is a lower priority than standard plug-ins of external configuration have. </td></tr>
   </table>
   </dd>
 </dl>
@@ -4631,7 +4725,7 @@ Private Methods</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="abd831519fc241771dd0be79fa8bc7d5c"></a>
+<a class="anchor" id="aa5e94bc8ec4e4f23c8401ebbf815c336"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -4657,7 +4751,7 @@ Private Methods</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>priority</em> = <code><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a89856c713ec12c927fa2aac115a02926">Lox.PrioSource</a></code>, </td>
+          <td class="paramname"><em>priority</em> = <code>Configuration.PrioDefault</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -4687,11 +4781,11 @@ Private Methods</h2></td></tr>
 <hr/>
 <p> Sets the <em>Verbosity</em> of the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em> which is evaluated from parameter <code>domain</code> and applicable <em>Scope Domains</em>. The <code>verbosity</code> given, is set recursively for all sub-domains.</p>
 <p>With the first invocation of this method for a distinct <code>logger</code>, this <em>Logger</em> is registered with this <em>Lox</em>. In this case, prior to setting the given <em>Verbosity</em> for the evaluated sub-domain, the <em>Verbosity</em> for all domains is set to <b>Verbosity.Off</b>.</p>
-<p>To unregister a <em>Logger</em> with a <b><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html">Lox</a></b>, use method <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a6ff46242d1899057c8a7124527ee0521">RemoveLogger</a>. To 'disable' a <em>Logger</em>, invoke this method with parameters <code>verbosity</code> equaling to <b>Verbosity.Off</b> and <code>domain</code> to <code>"/"</code>.</p>
-<p>Optional parameter <code>priority</code> defaults to <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a89856c713ec12c927fa2aac115a02926">PrioSource</a>, which is a lower priority than those of the standard plug-ins of external configuration data. Therefore, external configuration by default 'overwrite' settings made from 'within the source code', which simply means by invoking this method.<br />
+<p>To deregister a <em>Logger</em> with a <b><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html">Lox</a></b>, use method <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a6ff46242d1899057c8a7124527ee0521">RemoveLogger</a>. To 'disable' a <em>Logger</em>, invoke this method with parameters <code>verbosity</code> equaling to <b>Verbosity.Off</b> and <code>domain</code> to <code>"/"</code>.</p>
+<p>Optional parameter <code>priority</code> defaults to <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ad754aede889ddbfc72c4d502d0b505bd">Configuration.PrioDefault</a>, which is a lower priority than those of the standard plug-ins of external configuration data. Therefore, external configuration by default 'overwrite' settings made from 'within the source code', which simply means by invoking this method.<br />
  The parameter can be provided for two main reasons:</p><ul>
 <li>To 'lock' a verbosity setting against external manipulation.</li>
-<li>to 'break' the standard mechanism that an invocation of this method sets all sub-domains recursively. If a sub-domain was set with a higher priority (e.g. <code>PrioSource + 1</code>, then this sub-domain will not be affected by future invocations of this method with standard-priority given.</li>
+<li>to 'break' the standard mechanism that an invocation of this method sets all sub-domains recursively. If a sub-domain was set with a higher priority (e.g. <code>Configuration.PrioDefault + 1</code>, then this sub-domain will not be affected by future invocations of this method with standard-priority given.</li>
 </ul>
 <dl class="section attention"><dt>Attention</dt><dd>The same as with most interface methods of this class, the given <code>domain</code> parameter is combined with <em>Scope Domains</em> set for the callers' <em>Scope</em>. In standard use cases of ALox, the <em>Verbosity</em> of a <em>Domain</em> is set using absolute domain path addressing. Therefore, it is recommended to have any domain path passed to this method starting with <code> '/'</code>, which suppresses the concatenation of <em>Scope Domains</em>.<br />
  This is why this parameter with this method defaults to <code> '/'</code>, while with other methods of this class, it defaults to an empty string.</dd>
@@ -4704,7 +4798,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
     <tr><td class="paramname">logger</td><td>The logger to be to be affected (case insensitive). </td></tr>
     <tr><td class="paramname">verbosity</td><td>The 'level of verboseness' to be set. </td></tr>
     <tr><td class="paramname">domain</td><td>The parent (start) domain to be set. The use of absolute paths starting with <code> '/'</code> are recommended. Defaults to root domain "/". </td></tr>
-    <tr><td class="paramname">priority</td><td>The priority of the setting. Defaults to <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a89856c713ec12c927fa2aac115a02926">PrioSource</a>, which is a lower priority than standard plug-ins of external configuration have.</td></tr>
+    <tr><td class="paramname">priority</td><td>The priority of the setting. Defaults to <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ad754aede889ddbfc72c4d502d0b505bd">Configuration.PrioDefault</a>.</td></tr>
     <tr><td class="paramname">cln</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
     <tr><td class="paramname">csf</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
     <tr><td class="paramname">cmn</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
@@ -4714,7 +4808,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 
 </div>
 </div>
-<a class="anchor" id="afdc0abb8b39da45f5232f219a84ef05c"></a>
+<a class="anchor" id="a6a40de6013862b8ebe0b5f5efdeea93e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -4740,7 +4834,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>priority</em> = <code><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a89856c713ec12c927fa2aac115a02926">Lox.PrioSource</a></code>, </td>
+          <td class="paramname"><em>priority</em> = <code>Configuration.PrioDefault</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -4768,14 +4862,85 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Same as <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#abd831519fc241771dd0be79fa8bc7d5c">SetVerbosity</a> but addressing the <em>Logger</em> to manipulate by its name.<br />
- This method may only be used after a <em>Logger</em> was once 'registered' with this <b>Lox</b> using <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#abd831519fc241771dd0be79fa8bc7d5c">SetVerbosity</a>.</p>
+<p> Same as <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa5e94bc8ec4e4f23c8401ebbf815c336">SetVerbosity</a> but addressing the <em>Logger</em> to manipulate by its name.<br />
+ This method may only be used after a <em>Logger</em> was once 'registered' with this <b>Lox</b> using <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa5e94bc8ec4e4f23c8401ebbf815c336">SetVerbosity</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">loggerName</td><td>The logger to be to be affected, identified by its name (case insensitive). </td></tr>
     <tr><td class="paramname">verbosity</td><td>The 'level of verboseness' to be set. </td></tr>
     <tr><td class="paramname">domain</td><td>The parent (start) domain to be set. The use of absolute paths starting with <code> '/'</code> are recommended. Defaults to root domain "/". </td></tr>
-    <tr><td class="paramname">priority</td><td>The priority of the setting. Defaults to <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a89856c713ec12c927fa2aac115a02926">PrioSource</a>, which is a lower priority than standard plug-ins of external configuration have.</td></tr>
+    <tr><td class="paramname">priority</td><td>The priority of the setting. Defaults to <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ad754aede889ddbfc72c4d502d0b505bd">Configuration.PrioDefault</a>.</td></tr>
+    <tr><td class="paramname">cln</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
+    <tr><td class="paramname">csf</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
+    <tr><td class="paramname">cmn</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="af7600e60bbdf55df184a206b55ee0462"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void State </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>domain</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>&#160;</td>
+          <td class="paramname"><em>verbosity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>headLine</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31">StateInfo</a>&#160;</td>
+          <td class="paramname"><em>flags</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[CallerLineNumber] int&#160;</td>
+          <td class="paramname"><em>cln</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[CallerFilePath] String&#160;</td>
+          <td class="paramname"><em>csf</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[CallerMemberName] String&#160;</td>
+          <td class="paramname"><em>cmn</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> This method logs the current configuration of this <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html">Lox</a> and its encapsulated objects. It uses method <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#abb29987d3f74eab7ef263ac1c133fc79">GetState</a> to assemble the logable string.</p>
+<dl class="section note"><dt>Note</dt><dd>As an alternative to (temporarily) adding an invocation of <b>Lox.State</b> to your code, <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a> provides configuration variable <a href="group__GrpALoxConfigVars.html">ALOX_LOXNAME_DUMP_STATE_ON_EXIT</a>. This allows to enable an automatic invocation of this method using external configuration data like command line parameters, environment variables or INI files.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">domain</td><td>Optional <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em> which is combined with <em>Scope Domains</em> set for the <em>Scope</em> of invocation. </td></tr>
+    <tr><td class="paramname">verbosity</td><td>The verbosity. </td></tr>
+    <tr><td class="paramname">headLine</td><td>If given, a separated headline will be logged at first place. </td></tr>
+    <tr><td class="paramname">flags</td><td>Flag bits that define which state information is logged.</td></tr>
     <tr><td class="paramname">cln</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
     <tr><td class="paramname">csf</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
     <tr><td class="paramname">cmn</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
@@ -5028,6 +5193,55 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 
 </div>
 </div>
+<a class="anchor" id="aaebefa8f600a7080f06b6bdea6ccc11a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void verbositySettingToVariable </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>&#160;</td>
+          <td class="paramname"><em>domain</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>loggerNo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a>&#160;</td>
+          <td class="paramname"><em>variable</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Helper method of <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a8801e9bd1ba933633227c2d83339ef14">dumpStateOnLoggerRemoval</a> to recursively collect domain settings. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">domain</td><td>The actual domain. </td></tr>
+    <tr><td class="paramname">loggerNo</td><td>The number of the logger </td></tr>
+    <tr><td class="paramname">variable</td><td>The AString to collect the information. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a3808da2f4940dc2ae891bf6487c72392"></a>
 <div class="memitem">
 <div class="memproto">
@@ -5127,6 +5341,37 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
     <tr><td class="paramname">cln</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
     <tr><td class="paramname">csf</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
     <tr><td class="paramname">cmn</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a8d6efa998ec2d3223a38d6b3fbcb3c2f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void writeVerbositiesOnLoggerRemoval </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a>&#160;</td>
+          <td class="paramname"><em>logger</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Implements functionality for configuration variable <code>LOXNAME_LOGGERNAME_VERBOSITY</code>. Is called when a logger is removed. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">logger</td><td>The logger to write the verbosity for. </td></tr>
   </table>
   </dd>
 </dl>
@@ -5287,6 +5532,27 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 
 </div>
 </div>
+<a class="anchor" id="ae1d2d3f00029eeccb82c286b93314df0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool loggerAddedSinceLastDebugState =false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Flag used with configuration variable LOXNAME_DUMP_STATE_ON_EXIT. </p>
+
+</div>
+</div>
 <a class="anchor" id="acebf4e1770184abbc4063f3fa4a3f298"></a>
 <div class="memitem">
 <div class="memproto">
@@ -5389,37 +5655,6 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 </table>
 </div><div class="memdoc">
 <p>Flag if a warning on circular rule detection was logged. </p>
-
-</div>
-</div>
-<a class="anchor" id="a849f8b775a1ebb6a8fbafe525f821056"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const int PrioProtected = int.MaxValue</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Constant providing the maximum value for parameter <code>priority</code> of method <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#abd831519fc241771dd0be79fa8bc7d5c">SetVerbosity</a>. A <em>Verbosity</em> set with this priority is immutable in respect to external configuration data. </p>
-
-</div>
-</div>
-<a class="anchor" id="a89856c713ec12c927fa2aac115a02926"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const int PrioSource = 100</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Constant providing default value for parameter <code>priority</code> of method <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#abd831519fc241771dd0be79fa8bc7d5c">SetVerbosity</a>. This value is defined in alignment with plug-in priority constants found in ALib class <b>Configuration</b>, namely</p><ul>
-<li><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a7782ed756910f8f9910f8eabbbaa494c">Configuration.PrioCmdLine</a> with a value of of 400,</li>
-<li><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a8d6d75f99cfd73825afe36e62603a950">Configuration.PrioEnvVars</a> with a value of 300 and</li>
-<li><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a925f0708313b8a27defb4bf7983d7dd6">Configuration.PrioIniFile</a> with a value of 200.</li>
-</ul>
-<p>Having a value of 100, source code settings by default have lowest priority. </p>
 
 </div>
 </div>
@@ -5612,7 +5847,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 
 </div>
 </div>
-<a class="anchor" id="a2313c9e8c9b7afdf186b4331ab7fbbd7"></a>
+<a class="anchor" id="a982a94ba249ae6bc678f130090ac0a1a"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -5620,7 +5855,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> tmpConfigValue = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>()</td>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> tmpComments = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>( 128 )</td>
         </tr>
       </table>
   </td>
@@ -5641,7 +5876,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> tmpSubstitutionPath = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>( 64 )</td>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> tmpSubstitutionPath =new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>(64)</td>
         </tr>
       </table>
   </td>
@@ -5662,7 +5897,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> tmpSubstitutionPathInternalDomains = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>( 64 )</td>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> tmpSubstitutionPathInternalDomains =new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>(64)</td>
         </tr>
       </table>
   </td>
@@ -5682,7 +5917,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 20 2016 10:57:54 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 23 2016 23:18:46 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

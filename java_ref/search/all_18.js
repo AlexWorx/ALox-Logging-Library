@@ -1,4 +1,27 @@
 var searchData=
 [
-  ['yellow',['YELLOW',['../classcom_1_1aworx_1_1lox_1_1ESC.html#a1d12745347903d52196d55fd897ace5d',1,'com::aworx::lox::ESC']]]
+  ['waittime',['waitTime',['../classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a5c693612d852a9e000481199e9c24f4c',1,'com::aworx::lib::threads::ThreadLock']]],
+  ['waitwarningtimelimitinmillis',['waitWarningTimeLimitInMillis',['../classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#ae5b12a96be437f82f5da54b813614ba7',1,'com::aworx::lib::threads::ThreadLock']]],
+  ['walk',['walk',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a0d4d7106dbe5db8a9b40b8cfda79b3e1',1,'com::aworx::lox::core::ScopeStore']]],
+  ['walking',['walking',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#ab7722550f3beb31970bb6f70819a71b0',1,'com::aworx::lox::core::ScopeStore']]],
+  ['walklocalobject',['walkLocalObject',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#aa335ab4366e76a5d9ce668fc4afb82ff',1,'com::aworx::lox::core::ScopeStore']]],
+  ['walknextthreadidx',['walkNextThreadIdx',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a9928f44e5399d356c4380ab105e48941',1,'com::aworx::lox::core::ScopeStore']]],
+  ['walkthreadvalues',['walkThreadValues',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a55f3760fb348e88887914ae51172f1b4',1,'com::aworx::lox::core::ScopeStore']]],
+  ['warnedonce',['warnedOnce',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#af092cd717d73525692163f7b819cfa5e',1,'com::aworx::lox::core::textlogger::MetaInfo']]],
+  ['warning',['warning',['../classcom_1_1aworx_1_1lox_1_1Log.html#a7c5244f63fd71d41e16689c7c33fe3a3',1,'com.aworx.lox.Log.warning(Object logable)'],['../classcom_1_1aworx_1_1lox_1_1Log.html#aadde5e40d71996484f5edd348a672e4d',1,'com.aworx.lox.Log.warning(String domain, Object logable)'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#a956af7789a007a7694a88fd588286485',1,'com.aworx.lox.Lox.warning(String domain, Object logable)'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#a619cf9bf0f2ebe6527809ef3dfd862cd',1,'com.aworx.lox.Lox.warning(Object logable)'],['../enumcom_1_1aworx_1_1lox_1_1Verbosity.html#a1dfc73ab73898d3f4f348d462a5d126a',1,'com.aworx.lox.Verbosity.WARNING()'],['../classcom_1_1aworx_1_1lib_1_1ALIB.html#a60ab74a54cb405f64d5e8d68a465a01b',1,'com.aworx.lib.ALIB.WARNING()']]],
+  ['white',['WHITE',['../classcom_1_1aworx_1_1lox_1_1ESC.html#a0b17837b5a89a43dd7679caab6815fa1',1,'com::aworx::lox::ESC']]],
+  ['whitespaces',['Whitespaces',['../enumcom_1_1aworx_1_1lib_1_1enums_1_1Whitespaces.html',1,'com::aworx::lib::enums']]],
+  ['whitespaces',['whitespaces',['../classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html#a770cc9eabce13d40acf8680199c8b2c2',1,'com::aworx::lib::strings::Tokenizer']]],
+  ['write',['write',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a043ad9162f01c0cd87781fc900883630',1,'com::aworx::lox::core::textlogger::MetaInfo']]],
+  ['writecomments',['writeComments',['../classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html#acffe7505b6c8590cc884560a11113c7c',1,'com::aworx::lib::config::IniFile']]],
+  ['writedomains',['writeDomains',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html#ace58c09cbe2b0f6b70148f40c356baa0',1,'com::aworx::lox::core::ScopeDump']]],
+  ['writeexponentplussign',['writeExponentPlusSign',['../classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#abc0c9349d06d894de0a9e0d508930cd7',1,'com::aworx::lib::strings::NumberFormat']]],
+  ['writefile',['writeFile',['../classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a1f8830f75dda6db1a6d64f2ea779ec36',1,'com::aworx::lib::config::IniFile']]],
+  ['writemap',['writeMap',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html#a9e6d3975872064f8fe4f2008d3e02e3a',1,'com.aworx.lox.core.ScopeDump.writeMap(ScopeStore&lt;?&gt; store)'],['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html#a69f79546013779feb3b3a8ac07b9a740',1,'com.aworx.lox.core.ScopeDump.writeMap(HashMap&lt; AString,?&gt; map, String prefix)']]],
+  ['writeprefixes',['writePrefixes',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html#a85906de5c9c2ffbf1865c432590ab0f8',1,'com::aworx::lox::core::ScopeDump']]],
+  ['writer',['writer',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#a129d01b0d5a07842418148c5becab129',1,'com::aworx::lox::loggers::ConsoleLogger']]],
+  ['writers',['writers',['../classcom_1_1aworx_1_1lib_1_1Report.html#a41e462834183af7f77ae8cedec0ccdac',1,'com::aworx::lib::Report']]],
+  ['writespaces',['writeSpaces',['../classcom_1_1aworx_1_1lib_1_1Util.html#a5eb1151dc2d2aa4216357cd9244bc2c9',1,'com.aworx.lib.Util.writeSpaces(Writer os, int qty)'],['../classcom_1_1aworx_1_1lib_1_1Util.html#a1df55aabc89ed8637f777ba1095f6eb1',1,'com.aworx.lib.Util.writeSpaces(PrintStream os, int qty)']]],
+  ['writetimediff',['writeTimeDiff',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a54b0e0ca4a269b9add4e5cb42b517e0a',1,'com::aworx::lox::core::textlogger::MetaInfo']]],
+  ['writeverbositiesonloggerremoval',['writeVerbositiesOnLoggerRemoval',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a8d6efa998ec2d3223a38d6b3fbcb3c2f',1,'com::aworx::lox::Lox']]]
 ];

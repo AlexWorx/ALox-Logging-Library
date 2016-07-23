@@ -1,9 +1,10 @@
 <map id="MemoryLogger" name="MemoryLogger">
-<area shape="rect" id="node5" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="TextLogger" alt="" coords="761,248,848,275"/>
-<area shape="rect" id="node4" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html" title="PlainTextLogger" alt="" coords="897,159,1013,185"/>
-<area shape="rect" id="node6" href="$classaworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="487,368,548,395"/>
-<area shape="rect" id="node7" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html" title="AutoSizes" alt="" coords="476,419,559,445"/>
-<area shape="rect" id="node8" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="141,129,206,156"/>
-<area shape="rect" id="node9" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" title="MetaInfo" alt="" coords="481,267,554,293"/>
-<area shape="rect" id="node10" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="5,129,69,156"/>
+<area shape="rect" id="node6" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="TextLogger" alt="" coords="992,264,1079,291"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="289,351,493,377"/>
+<area shape="rect" id="node10" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" title="MetaInfo" alt="" coords="711,599,785,625"/>
+<area shape="rect" id="node5" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html" title="PlainTextLogger" alt="" coords="1128,160,1244,187"/>
+<area shape="rect" id="node7" href="$classaworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="717,345,779,372"/>
+<area shape="rect" id="node8" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html" title="AutoSizes" alt="" coords="707,396,789,423"/>
+<area shape="rect" id="node9" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="119,167,184,193"/>
+<area shape="rect" id="node11" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="5,55,69,81"/>
 </map>
