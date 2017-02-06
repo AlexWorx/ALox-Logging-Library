@@ -1,11 +1,11 @@
 ﻿// #################################################################################################
 //  aworx::lox::core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
-#include "scopeinfo.hpp"
+#include "alib/alib.hpp"
+#include "alox/alox.hpp"
 #include <iostream>
 
 #if !defined (HPP_ALIB_CONFIG_CONFIGURATION)
@@ -41,14 +41,14 @@ int                                         ScopeInfo::DefaultCacheSize         
 
 bool                                        ScopeInfo::GlobalSPTRsReadFromConfig       = false;
 
-ScopeInfo::ScopeInfo( const TString& name, const std::map<int, String32>&  threadDictionary )
-: loxName( name )
-, threadDictionary(threadDictionary)
+ScopeInfo::ScopeInfo( const TString& pName, const std::map<int, String32>&  pThreadDictionary )
+: loxName( pName )
+, threadDictionary(pThreadDictionary)
 {
     loxName.ToUpper();
     ALIB_ASSERT_ERROR( !loxName.Equals( "GLOBAL" ), "Name \"GLOBAL\" not allowed for Lox instances" );
     cache= new SourceFile[cacheSize= DefaultCacheSize];
-    actual= &cache[0];
+    lastSourceFile= &cache[0];
 
     // read trim rules from config
     // do 2 times, 0== local list, 1== global list
@@ -83,7 +83,7 @@ ScopeInfo::ScopeInfo( const TString& name, const std::map<int, String32>&  threa
 
                 ruleTknzr.Next();
                 if( ( rule.IsPrefix= !ruleTknzr.Actual.StartsWith( "*" ) ) == false )
-                    ruleTknzr.Actual.Consume(1);
+                    ruleTknzr.Actual.ConsumeChars(1);
                 rule.Path._( ruleTknzr.Actual );
                 if ( rule.Path.CharAtEnd() == '*' )
                     rule.Path.DeleteEnd( 1 );
@@ -99,9 +99,9 @@ ScopeInfo::ScopeInfo( const TString& name, const std::map<int, String32>&  threa
                 else
                     rule.Path.SearchAndReplaceAll( "/" , "\\" );
 
-                rule.IncludeString =    lib::enums::ReadInclusion( ruleTknzr.Next() );
-                ruleTknzr.Next().ConsumeInteger( rule.TrimOffset );
-                rule.Sensitivity=       lib::enums::ReadCase( ruleTknzr.Next() );
+                rule.IncludeString =    lib::lang::ReadInclusion( ruleTknzr.Next() );
+                ruleTknzr.Next().ConsumeInt( rule.TrimOffset );
+                rule.Sensitivity=       lib::lang::ReadCase( ruleTknzr.Next() );
                 rule.TrimReplacement=   ruleTknzr.Next();
             }
         }
@@ -115,25 +115,36 @@ ScopeInfo::~ScopeInfo()
 
 
 void ScopeInfo::Set ( const TString& sourceFileName, int lineNumber, const TString& methodName,
-                      Thread* thread )
+                      Thread* pThread )
 {
-    // only the first call will store the values
-    timeStamp.Set();
-    this->thread=   thread;
-    threadName= nullptr;
+    //scopes.push( std::forward<Scope>(Scope()) );
+    actScopeDepth++;
+    ALIB_ASSERT( actScopeDepth < 8)
+    if( scopes.size() == static_cast<size_t>( actScopeDepth ) )
+        scopes.emplace_back();
+    Scope& s= scopes[static_cast<size_t>(actScopeDepth)];
+
+
+    s.timeStamp.Set();
+    s.origLine=     lineNumber;
+    s.origMethod=   methodName;
+    s.sourceFile=   lastSourceFile;
+
+    this->thread=   pThread;
+    threadName=     nullptr;
 
     // if different file than before, search file in cache
-    if ( actual->origFile.Buffer() != sourceFileName.Buffer() )
+    if ( s.sourceFile->origFile.Buffer() != sourceFileName.Buffer() )
     {
         int           oldestIdx= -1;
-        uint_fast64_t oldestTime= ++cacheRun;
+        uint64_t  oldestTime= ++cacheRun;
 
-        actual= nullptr;
+        s.sourceFile= nullptr;
         for( int i= 0; i< cacheSize; i++ )
         {
             if ( cache[i].origFile.Buffer() == sourceFileName.Buffer() )
             {
-                actual= &cache[i];
+                s.sourceFile= &cache[i];
                 break;
             }
 
@@ -145,15 +156,17 @@ void ScopeInfo::Set ( const TString& sourceFileName, int lineNumber, const TStri
         }
 
         // not found? Use the oldest
-        if ( actual == nullptr )
-            (actual= &cache[oldestIdx])->Set( sourceFileName );
+        if ( s.sourceFile == nullptr )
+        {
+            s.sourceFile= &cache[oldestIdx];
+            s.sourceFile->Clear();
+            s.sourceFile->origFile= sourceFileName;
+        }
 
         // mark as used
-        actual->timeStamp= cacheRun;
+        s.sourceFile->timeStamp= cacheRun;
     }
 
-    this->origLine=    lineNumber;
-    this->origMethod=  methodName;
 }
 
 void  ScopeInfo::SetSourcePathTrimRule( const TString&  path,
@@ -166,7 +179,7 @@ void  ScopeInfo::SetSourcePathTrimRule( const TString&  path,
 {
     // clear cache to have lazy variables reset with the next invocation
     for ( int i= 0; i< cacheSize; i++ )
-        cache[i].Set( nullptr );
+        cache[i].Clear();
 
     // clear command
     if ( trimOffset == 999999 )
@@ -181,7 +194,7 @@ void  ScopeInfo::SetSourcePathTrimRule( const TString&  path,
         return;
     }
 
-    // choosel local or global list
+    // choose local or global list
     std::vector<SourcePathTrimRule>* trimInfoList=
                    reach == Reach::Global  ? &GlobalSPTRs
                                            : &LocalSPTRs;
@@ -225,7 +238,8 @@ void ScopeInfo::trimPath()
 {
     bool trimmed= false;
 
-    int idx= getPathLength();
+    SourceFile* actual= scopes[static_cast<size_t>(actScopeDepth)].sourceFile;
+    integer idx= getPathLength();
     if( idx < 0 )
     {
         actual->trimmedPath= "";
@@ -237,7 +251,7 @@ void ScopeInfo::trimPath()
     // do 2 times, 0== local list, 1== global list
     for( int trimInfoNo= 0; trimInfoNo < 2 ; trimInfoNo++ )
     {
-        // choosel local or global list
+        // choose local or global list
         std::vector<SourcePathTrimRule>* trimInfoList=
                    trimInfoNo == 0   ? &LocalSPTRs
                                      : &GlobalSPTRs;
@@ -251,7 +265,7 @@ void ScopeInfo::trimPath()
                 idx= actual->trimmedPath.IndexOfSubstring( ti.Path, 0, ti.Sensitivity );
             if ( idx >= 0 )
             {
-                int startIdx= idx + ( ti.IncludeString == Inclusion::Include ? ti.Path.Length() : 0 ) + ti.TrimOffset;
+                integer startIdx= idx + ( ti.IncludeString == Inclusion::Include ? ti.Path.Length() : 0 ) + ti.TrimOffset;
                 actual->trimmedPath=        String( actual->trimmedPath.Buffer(), startIdx, actual->trimmedPath.Length() - startIdx );
                 actual->trimmedPathPrefix=  ti.TrimReplacement;
 
@@ -277,8 +291,8 @@ void ScopeInfo::trimPath()
         Directory::CurrentDirectory( currentDir );
 
         // Get the prefix that is the same in both paths
-        int i= 0;
-        int maxIdx= currentDir.Length();
+        integer i= 0;
+        integer maxIdx= currentDir.Length();
         if ( maxIdx > actual->trimmedPath.Length() )
             maxIdx= actual->trimmedPath.Length();
 

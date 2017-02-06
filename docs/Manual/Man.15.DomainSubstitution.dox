@@ -1,21 +1,19 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /**
 \page man_domain_substitution  15 - Log Domain Substitution
 
-
 \~Comment ####################################################################################### \~
-<br>
 # 1. Introduction # {#man_domain_substitution_intro}
 
-<em>Domain Substitution</em> is a concept of ALox that allows to manipulate the effective domain of <em>Log Statements</em> without changing
+<em>Domain Substitution</em> is a concept of \b %ALox that allows to manipulate the effective domain of <em>Log Statements</em> without changing
 neither these statements nor the <em>Scope Domains</em> that apply to them. Therefore, <em>Domain Substitution</em> is useful when
-those changes can not be performed (e.g. because the corresponding ALox code is residing in
+those changes can not be performed (e.g. because the corresponding \b %ALox code is residing in
 a library) or because a temporary "redirect" of certain domains is wanted.
 
 As with <em>Scope Domain</em> settings, the concept of <em>Domain Substitution</em> in general should not be 'overused'. Otherwise, things
@@ -41,7 +39,7 @@ The rules are set and removed with method
 
 If for any reason, all rules should be deleted at once, invoke method \b %Lox.SetDomainSubstitutionRule
 with providing a nulled or empty string for \p domainPath. There is no explicit other method
-for clearing the rules given, because the designers of ALox do not see a use case for doing this.
+for clearing the rules given, because the designers of \b %ALox do not see a use case for doing this.
 
 
 \~Comment ####################################################################################### \~
@@ -53,10 +51,10 @@ configuration files (or command line, etc.) are applied first.
 Rules might influence each other, hide each oder or even be circular. When setting the rules,
 ALox does not check for such (sometimes wanted) dependencies of the rules. It might happen,
 that a rule that was defined earlier than a different one, would be effective only after
-the second rule was applied. Therefore, ALox repeats the application of all rules
+the second rule was applied. Therefore, \b %ALox repeats the application of all rules
 as long as at least one of the rules matched. Because of the possibility of having circular
 dependencies, a maximum amount of ten loops is performed.
-After that, ALox stops processing <em>Domain Substitution</em> and writes a <em>Log Statement</em> of \e %Verbosity.Error to the
+After that, \b %ALox stops processing <em>Domain Substitution</em> and writes a <em>Log Statement</em> of \e %Verbosity.Error to the
 internal domain. The error message is only issued once. However the flag is reset
 when all rules are cleared (by providing a nulled string value for parameter \p domainPath
 of method
@@ -76,14 +74,14 @@ loop is necessary very seldom.
 Setting <em>Domain Substitution Rules</em> <em>'from within the source code'</em> is easy and straightforward. However, when
 working in a team such changes might not be appreciated by other team members. In this and
 other situations it is advisable to retrieve <em>Domain Substitution Rules</em> from external configuration data, command-line
-parameters or other sources at run-time.
+parameters or other sources at runtime.
 
-For <em>Domain Substitution Rules</em> and also other configuration data, ALox leverages the configuration facility provided
-by underlying utility library ALib.
+For <em>Domain Substitution Rules</em> and also other configuration data, \b %ALox leverages the configuration facility provided
+by underlying utility library \b %ALib.
 
 \note
- For general information on ALox configuration variables consult \ref GrpALoxConfigVars.<br>
- For information on how to pass configuration data from custom sources to ALox, refer to
+ For general information on \b %ALox configuration variables consult \ref GrpALoxConfigVars.<br>
+ For information on how to pass configuration data from custom sources to \b %ALox, refer to
  namespace documentation
  <b>%aworx::lib::config</b>
     ([C++] (@ref      #aworx::lib::config),
@@ -114,7 +112,7 @@ would receive the two rules specified.
 \~Comment ####################################################################################### \~
 ## 3.2 Preventing The Use Of External Configuration ## {#man_domain_substitution_config_prevent}
 
-Sometimes it might be wanted that <em>Domain Substitution Rules</em> are not manipulatable externally. A reason could be that
+Sometimes it might be wanted that <em>Domain Substitution Rules</em> are not manipulable externally. A reason could be that
 by the nature of these rules, unauthorized users are enabled to change the <em>Log Domains</em> and hence
 also to change their \e Verbosity, which otherwise can be prevented for protection
 (see \ref man_external_verbosity_configuration).

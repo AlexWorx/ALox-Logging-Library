@@ -1,8 +1,8 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -16,14 +16,12 @@
 
 // then, set include guard
 #ifndef HPP_ALIB_SYSTEM_PROCESSINFO
-#if !defined( IS_DOXYGEN_PARSER)
+//! @cond NO_DOX
 #define HPP_ALIB_SYSTEM_PROCESSINFO 1
-#endif
+//! @endcond NO_DOX
 
-namespace aworx {
-namespace           lib {
-namespace                   system {
-
+namespace aworx { namespace lib { namespace system
+{
 /** ************************************************************************************************
  *  This class represents process information
  **************************************************************************************************/
@@ -37,34 +35,34 @@ class ProcessInfo
          *  of #Current.   */
         ALIB_API static ProcessInfo    current;
 
+    public:
+        /** The process id as AString.  */
+        uinteger    PID;
+
+        /** The command line which invoked this process.      */
+        AString     CmdLine;
+
+        /** The name of the process.<br> Under GNU/Linux this is read from /proc/nnn/stat and may
+         *  differ from #ExecFileName. Under Windows OS, it is he same as field #ExecFileName.  */
+        AString     Name;
+
+        /** The path of the executable (if available to us)   */
+        AString     ExecFilePath;
+
+        /** The file name of the executable (excluding #ExecFilePath). Under GNU/Linux,
+         *  if we have no access to read that value, field #ExecFilePath will be empty
+         *  while this field is filled with #Name.
+         */
+        AString     ExecFileName;
+
     // #############################################################################################
     // Fields under unix like OS
     // #############################################################################################
-    #if defined( __unix__ )
+    #if defined( __unix__ )  || defined(DOX_PARSER)
         friend class Environment;
 
-        public:
-            /** The process id as AString.  */
-            String16    PID;
-
-            /** The parent's process id as AString. (Unix like OS only.)   */
-            String16    PPID;
-
-            /** The name of the process.<br> Under GNU/Linux this is read from /proc/nnn/stat and may
-             *  differ from #ExecFileName. Under Windows OS, it is he same as field #ExecFileName.  */
-            AString     Name;
-
-            /** The path of the executable (if available to us)   */
-            AString     ExecFilePath;
-
-            /** The file name of the executable (excluding #ExecFilePath). Under GNU/Linux,
-             *  if we have no access to read that value, field #ExecFilePath will be empty
-             *  while this field is filled with #Name.
-             */
-            AString     ExecFileName;
-
-            /** The command line which invoked this process.      */
-            AString     CmdLine;
+            /** The parent's process id as AString. (Unix like OS / Mac OS only.)   */
+            uinteger    PPID;
 
             /** The contents of /proc/PID/stat file. (Unix like OS only.)   */
             AString     Stat;
@@ -73,29 +71,27 @@ class ProcessInfo
             AString     StatState;
 
             /** The process group field (4) within \ref Stat. (Unix like OS only.)   */
-            AString     statPGRP;
+            AString     StatPGRP;
+    #endif
+
+    // #############################################################################################
+    // Fields under Mac OS
+    // #############################################################################################
+    #if defined( __APPLE__ )
+            uinteger    PPID;
     #endif
 
     // #############################################################################################
     // Fields under Windows OS
     // #############################################################################################
-    #if defined( _WIN32 )
+    #if defined( _WIN32 ) || defined(DOX_PARSER)
         public:
-            String16    PID;            // fields already doxed above
-            AString     CmdLine;
-            AString     Name;
-            AString     ExecFilePath;
-            AString     ExecFileName;
 
              /** For console processes, this is the title displayed in the title bar. (Windows OS only.) */
             AString     ConsoleTitle;
 
     #endif
 
-    // we must not work with #elif here, as doxygen would not document the else part
-    #if !defined( __unix__ ) && !defined( _WIN32 )
-        #pragma message ("Unknown Platform in file: " __FILE__ )
-    #endif
 
     // #############################################################################################
     // Protected methods
@@ -111,10 +107,10 @@ class ProcessInfo
             /** ************************************************************************************
              * Reads a field from the data found in /proc/PID/stat.
              *  @param fieldNo  The field number to read
-             *  @param result   The variable to store the result in
+             *  @param target   The variable to store the result in
              *  @returns \c true if successful.
              **************************************************************************************/
-            bool        getStatField( int fieldNo, AString& result );
+            bool        getStatField( int fieldNo, AString& target );
         #endif
 
         /** ************************************************************************************
@@ -125,40 +121,42 @@ class ProcessInfo
          *
          * @return \c true on success, \c false otherwise.
          **************************************************************************************/
-        ALIB_API bool          get( const String& PID  );
+        ALIB_API bool          get( uinteger PID  );
 
     // #############################################################################################
     // Interface
     // #############################################################################################
     public:
-        #if defined( __unix__ )
+        #if defined( __unix__ ) || defined(__APPLE__)
             /** ************************************************************************************
              * Constructor that initializes this instance according to the process information
              * received from the system.
              *
-             * \note This method is implemented for Unix like OS only.
-             *       On other platforms, only information about the current process can be received
-             *       using static method #Current.
+             * \note
+             *   This method is implemented for Unix like OS (incl. Mac OS) only.
+             *   On Windows OS, only information about the current process can be received
+             *   using static method #Current.
              *
-             * @param PID          The ID of the process information is requested on as string.
+             * @param processID    The ID of the process information is requested on.
              *                     If a nulled string is provided, the current process is addressed.
              ***************************************************************************************/
-                                   ProcessInfo( const String& PID  ) { get( PID ); }
+                                   ProcessInfo( uinteger processID  ) { get( processID ); }
 
             /** ************************************************************************************
              * Fills the fields of this instance according to the process information received from
              * the system.
              *
-             * \note This method is implemented for Unix like OS only.
-             *       On other platforms, only information about the current process can be received
-             *       using static method #Current.
+             * \note
+             *   This method is implemented for Unix like OS (incl. Mac OS) only.
+             *   On Windows OS, only information about the current process can be received
+             *   using static method #Current.
              *
-             * @param PID  The ID of the process information is requested on.
-             *             If a nulled string is provided, the current process is addressed.
+             * @param processID  The ID of the process information is requested on.
+             *                   If a nulled string is provided, the current process is addressed.
              *
              * @return \c true on success, \c false otherwise.
              **************************************************************************************/
-            ALIB_API bool          Get( const String& PID  ) { return get( PID ); }
+            ALIB_API bool          Get( uinteger processID  ) { return get( processID ); }
         #endif
 
         /** ****************************************************************************************

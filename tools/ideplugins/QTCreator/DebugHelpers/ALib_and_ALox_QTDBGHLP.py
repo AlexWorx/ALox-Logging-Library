@@ -1,11 +1,36 @@
-####################################################################################################
-#  QTCreator Debug Helper python scripts for classes of ALib and ALox
-#
-#  (c) 2015-2016 A-Worx GmbH, Germany
-#  Published under MIT License (Open Source License, see LICENSE.txt)
-#
-#  For further information, see http://doc.qt.io/qtcreator/creator-debugging-helpers.html
-####################################################################################################
+'''#################################################################################################
+  QTCreator Debug Helper python scripts for classes of ALib and ALox
+
+  (c) 2015-2016 A-Worx GmbH, Germany
+  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
+
+  Note:
+    QTCreator extends the "pretty printers" implementation suggested by gdb
+
+        https://sourceware.org/gdb/onlinedocs/gdb/Writing-a-Pretty_002dPrinter.html
+
+    with an own target format. The documentation is rather short and found here:
+        http://doc.qt.io/qtcreator/creator-debugging-helpers.html
+    but for python geeks, this should be understandable.
+
+    While standard 'gdb'-style pretty printers are usable (we failed, however to do so),
+    ALib/ALox provides both: versions: 'pure' gdb and QTCreator-style.
+
+    This script implements the QTCreator style version.
+
+  Installation:
+    As of QTCreator Version 4.0.3, installation is as follows:
+    In dialog "Tools->Options->Debugger", put into field "Extra Debugging Helpers"
+    the full path and name of this script. That's it!
+
+  Types supported so far:
+    - String, TString, AString, StringLiteral, Tokenizer
+    - Directory
+    - Ticks
+    - Thread, ThreadLock, ThreadLockNR,
+    - Logger, Domain
+
+#################################################################################################'''
 
 ############################ imports #############################
 import string
@@ -36,7 +61,7 @@ def removeNamespace(identifier):
     actIdx= removeNamespaceHelper( identifier, actIdx,          "time" )
     actIdx= removeNamespaceHelper( identifier, actIdx,          "config" )
     actIdx= removeNamespaceHelper( identifier, actIdx,      "lox" )
-    actIdx= removeNamespaceHelper( identifier, actIdx,          "core" )
+    actIdx= removeNamespaceHelper( identifier, actIdx,          "lang" )
     actIdx= removeNamespaceHelper( identifier, actIdx,          "loggers" )
     actIdx= removeNamespaceHelper( identifier, actIdx,          "Log" )  #For Enums in class Log
 
@@ -192,7 +217,7 @@ def qdump__aworx__lib__strings__PreallocatedString(d, value):
 #----- StringLiteral  ------
 def qdump__aworx__lib__strings__StringLiteral(d, value):
     try:
-        d.putValue( "Lit<" + str(value["length"]) + r">: \"" + getASString( d, value ) + r"\"" )
+        d.putValue( "SLiteral<" + str(value["length"]) + r">: \"" + getASString( d, value ) + r"\"" )
 
     except:
         d.putValue("<ASPreAlloc DBGHelper Exception>")
@@ -209,7 +234,7 @@ def qdump__aworx__lib__strings__StringLiteral(d, value):
 def qdump__aworx__lib__strings__Tokenizer(d, value):
 
     try:
-        d.putValue( r"Actual: \"" + getASString( d, value["Actual"] ) + r"\" Rest: \"" + getASString( d, value["Rest"] ) + r"\"" )
+        d.putValue( r"Actual=\"" + getASString( d, value["Actual"] ) + r"\" Rest=\"" + getASString( d, value["Rest"] ) + r"\"" )
 
     except:
         d.putValue("<Tokenizer DBGHelper Exception>")
@@ -238,7 +263,7 @@ def qdump__aworx__lib__system__Directory(d, value):
         d.putPlainChildren(value)
     return
 
-############################ ALIB System #############################
+############################ ALIB Time #############################
 
 #----- Ticks  ------
 def qdump__aworx__lib__time__Ticks(d, value):
@@ -457,7 +482,7 @@ def qdump__aworx__lox__core__Domain(d, value):
 def qdump__aworx__lox__core__Domain__LoggerData(d, value):
     dhResult = "<"  + VerbosityHelper( value["LoggerVerbosity"] )
     dhResult+= ", " + getLoggerDescription(d, value["Logger"])
-    dhResult+= ">[" + str(value["CntLogCalls"]) + "]"
+    dhResult+= ">[" + str(value["LogCallsPerDomain"]) + "]"
 
     d.putValue( dhResult )
 
@@ -466,30 +491,6 @@ def qdump__aworx__lox__core__Domain__LoggerData(d, value):
     if d.isExpanded():
         d.putPlainChildren(value)
 
-#----- LogData ------
-def qdump__aworx__lox__LogData(d, value):
-    result= "<"
-
-    type=                            value["Type"]
-    if type != 0:
-        result+= "Type=" + str(type) + ", "
-
-    result+= str(                    value["IntegerValue"] ) + ", "
-    result+= r"\"" + getASString( d, value["StringValue" ] ) + r"\", "
-
-    objectValue=                     value["ObjectValue"]
-    if objectValue != 0:
-        result+= str(objectValue)
-    else:
-        result+= "nullptr"
-    result+= ">"
-
-    d.putValue( result )
-
-    #----- expands normal object ----
-    d.putNumChild(1)
-    if d.isExpanded():
-        d.putPlainChildren(value)
 
 
 

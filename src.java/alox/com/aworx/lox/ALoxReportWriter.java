@@ -1,14 +1,14 @@
 // #################################################################################################
 //  com.aworx.lox - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package com.aworx.lox;
 
-import com.aworx.lib.Report;
-import com.aworx.lib.ReportWriter;
-import com.aworx.lib.enums.Phase;
+import com.aworx.lib.lang.Phase;
+import com.aworx.lib.lang.Report;
+import com.aworx.lib.lang.ReportWriter;
 
 /** ************************************************************************************************
  * The \b %ReportWriter for ALib when using ALox. An instance of this class is
@@ -25,9 +25,9 @@ public class ALoxReportWriter implements ReportWriter
      * Constructs an \b %ALoxReportWriter.
      * @param lox    The \b Lox to report to.
      **********************************************************************************************/
-    public ALoxReportWriter ( Lox lox ) 
+    public ALoxReportWriter ( Lox lox )
     {
-        this.lox= lox; 
+        this.lox= lox;
         lox.verbose( ALoxReportWriter.logDomain(), "ALoxReportWriter set" );
     }
 
@@ -55,13 +55,13 @@ public class ALoxReportWriter implements ReportWriter
                                       Verbosity.VERBOSE,
                    report.contents );
     }
-    
+
     /** ********************************************************************************************
      * Returns the domain used to write reports.
      * @return The report log domain.
      **********************************************************************************************/
-     public static String logDomain() 
+     public static String logDomain()
      {
-        return ALox.INTERNAL_DOMAINS + "REPORT"; 
+        return ALox.INTERNAL_DOMAINS + "REPORT";
      }
 }

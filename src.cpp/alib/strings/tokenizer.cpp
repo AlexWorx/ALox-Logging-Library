@@ -1,11 +1,9 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
-
 #include "alib/alib.hpp"
 
 #if !defined (HPP_ALIB_STRINGS_TOKENIZER)
@@ -25,12 +23,10 @@
 
 using namespace std;
 
-namespace aworx {
-namespace           lib {
-namespace                   strings {
+namespace aworx { namespace lib { namespace strings
+{
 
-
-Substring&    Tokenizer::Next( enums::Whitespaces trimming, char newDelim )
+Substring&    Tokenizer::Next( lang::Whitespaces trimming, char newDelim )
 {
     if ( Rest.IsNull() )
     {
@@ -44,7 +40,7 @@ Substring&    Tokenizer::Next( enums::Whitespaces trimming, char newDelim )
 
     do
     {
-        int nextDelimiter= Rest.IndexOf( delim );
+        integer nextDelimiter= Rest.IndexOf( delim );
 
         if ( nextDelimiter >= 0 )
         {
@@ -58,10 +54,10 @@ Substring&    Tokenizer::Next( enums::Whitespaces trimming, char newDelim )
         }
 
         // trim
-        if ( trimming == enums::Whitespaces::Trim )
+        if ( trimming == lang::Whitespaces::Trim )
             Actual.Trim( Whitespaces );
     }
-    while( skipEmptyTokens && Actual.IsEmpty() && Rest.IsNotNull() );
+    while( skipEmpty && Actual.IsEmpty() && Rest.IsNotNull() );
 
     return Actual;
 }

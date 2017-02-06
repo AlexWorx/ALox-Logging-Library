@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox.tools - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 using System;
@@ -30,7 +30,7 @@ using cs.aworx.lox.core;
  *  This is the C# namespace for classes that provide tools and extensions to the
  *  <em>%ALox Logging Library</em>.
  *
- *  Developed by A-Worx GmbH and published under the MIT license.
+ *  Developed by A-Worx GmbH and published under Boost Software License.
  **************************************************************************************************/
 namespace cs.aworx.lox.tools {
 
@@ -174,7 +174,8 @@ public class LogTools
                     #endif
 
                 // log it using the static Log interface
-                lox.Entry( domain, verbosity, toolBuf, cln,csf,cmn);
+                Object[] logables= {toolBuf};
+                lox.Entry( domain, verbosity, logables, cln,csf,cmn);
 
             } finally { Lock.Release(); }
         #endif
@@ -267,8 +268,8 @@ public class LogTools
                     instMain( o, maxRecursion, headline );
 
                     // log it using the static Log interface
-                    lox.Entry ( domain, verbosity, toolBuf, cln,csf,cmn );
-
+                    Object[] logables= {toolBuf};
+                    lox.Entry( domain, verbosity, logables, cln,csf,cmn);
                 #else
                     lox.Entry ( domain, verbosity, "LoxTools.Instance(): Reflection not supported on this platform. ToString(): ", cln,csf,cmn );
                     lox.Entry ( domain, verbosity, ( "  " + (o == null ? "null" : o.ToString())), cln,csf,cmn );
@@ -339,8 +340,8 @@ public class LogTools
                         #endif
 
                     // log it using the static Log interface
-                    lox.Entry ( domain, verbosity, toolBuf, cln,csf,cmn );
-
+                    Object[] logables= {toolBuf};
+                    lox.Entry( domain, verbosity, logables, cln,csf,cmn);
 
                 } finally { Lock.Release(); }
             #endif
@@ -410,9 +411,8 @@ public class LogTools
                         #endif
 
                     // log it using the static Log interface
-                    lox.Entry ( domain, verbosity, toolBuf, cln,csf,cmn );
-
-
+                    Object[] logables= {toolBuf};
+                    lox.Entry( domain, verbosity, logables, cln,csf,cmn);
                 } finally { Lock.Release(); }
             #endif
         }

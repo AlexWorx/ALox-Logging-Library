@@ -1,8 +1,8 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /**
@@ -26,11 +26,11 @@ The following information is found here:
 
   \note
   As of ALox version 1604, with the introduction of static class \b %ALox, the term "ALox" in the reference
-  documentation is oftenly erroneously linked to this class. This will be fixed in a next release.
+  documentation is often erroneously linked to this class. This will be fixed in a next release.
 <p>
 
 
-## IDE / Built System Setup ##
+## IDE / Build System Setup ##
 The C# Version has been developed and tested on the operating systems
 - GNU/Linux (using Mono)
 - Windows 7, 8

@@ -1,8 +1,8 @@
 // #################################################################################################
 //  Unit Tests - AWorx Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package ut_alox;
 
@@ -20,7 +20,7 @@ public class UT_dox_reference_manual extends AWorxUnitTesting
 static void docSampleESC()
 {
 //! [DOC_SAMPLES_ALOX_ESC]
-Log.info( "The result is " + ESC.RED + "42" );
+Log.info( "The result is: ", ESC.RED, 42  );
 //! [DOC_SAMPLES_ALOX_ESC]
 }
 
@@ -32,7 +32,7 @@ Log.info( "The result is " + ESC.RED + "42" );
     public void UT_Doc_Samples()
     {
         UT_INIT();
-        
+
         docSampleESC();
     }
 }

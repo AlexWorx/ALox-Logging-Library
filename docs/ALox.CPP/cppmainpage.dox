@@ -1,45 +1,13 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-
-
-// The following defines are purely symbols passed to the compiler. Therefore, their definitions
-// do not appear in the source code (just their use). This is why we have to "define" them here
-// to be known by doxygen. (yes, this is a little funny)
-
-#define ALIB_GTEST_ON
-#define ALIB_QTCREATOR_ON
-#define ALIB_VSTUDIO_ON
-#define ALIB_ECLIPSE_CDT_ON
-
-#define ALIB_DEBUG_ON
-#define ALIB_DEBUG_OFF
-#define ALIB_AVOID_ANALYZER_WARNINGS
-#define ALIB_AVOID_ANALYZER_WARNINGS_ON
-#define ALIB_AVOID_ANALYZER_WARNINGS_OFF
-#define ALIB_DEBUG_STRINGS_ON
-#define ALIB_DEBUG_STRINGS_OFF
-#define ALIB_FEAT_THREADS_ON
-#define ALIB_FEAT_THREADS_OFF
-
-#define ALOX_DLL_EXPORTS
-#define ALIB_DLL_EXPORTS
-#define ALOX_DBG_LOG_ON
-#define ALOX_DBG_LOG_OFF
-#define ALOX_REL_LOG_ON
-#define ALOX_REL_LOG_OFF
-#define ALOX_REL_LOG_CI
-#define ALOX_DBG_LOG_CI_ON
-#define ALOX_DBG_LOG_CI_OFF
-#define ALOX_REL_LOG_CI_ON
-#define ALOX_REL_LOG_CI_OFF
-
 
 /**
 \page cppmainpage    C++ Reference
+
 
 
 # Welcome to ALox for C++! #
@@ -63,15 +31,24 @@ The following information is found in the C++ sub pages:
 
   \note
   As of ALox version 1604, with the introduction of static class \b %ALox, the term "ALox" in the reference
-  documentation is oftenly erroneously linked to this class. This will be fixed in a next release.
+  documentation is often erroneously linked to this class. This will be fixed in a next release.
 <p>
 
 
-## IDE / Built System Setup ##
+## IDE / Build System Setup ##
 The C++ Version got tested on the following platform combinations:
-- CMake 3.6.0 on GNU/Linux (Arch Linux), with GNU Compiler Collection 6.1.1
-- QT Creator V. 4.0.3 on GNU/Linux (Arch Linux), with GNU Compiler Collection 6.1.1
-- Visual Studio 2015 Update 2 on Microsoft Windows 10
+- GNU/Linux (Arch Linux)
+    - GNU Compiler Collection 6.3
+    - clang compiler 3.9
+    - CMake 3.7
+    - CLion 2016.3
+    - QT Creator V. 4.2
+
+- Windows 10
+    - Visual Studio 2015 Update 2
+
+- macOS Sierra (V.10.12)
+    - CLion 2016.3
 
 Check out \ref cppsetup for details of how to compile and use ALox in your C++ environment.
 
@@ -83,24 +60,22 @@ Such information is provided here: \ref cppprepro_macros  "C++ Macros"
 
 ## ALib ##
 
-ALox builds on ALib. ALib is a general C++ utility library (like many others). It is still quite
-young and fresh and has only some few topics touched. But we can really recommend to have a
-closer look at the
-\ref aworx::lib::strings "string classes" of the C++ version. What makes them quite unique is their
-use of <em> C++ template meta programming</em> which allows to implicitly pass 'any' kind of string
-object to methods that accept a parameter of type "const aworx::String&". This is really, really
-handy!
+\b %ALox builds on \b %ALib which is a general utility library available in C++, C# and Java language
+variants.
+Next to the provision of basic system and language related functionality, the motivation for
+creating \b %ALib (in contrast to using some existing 3rd party library) is to have  a similar interface
+and a certain level of source code compatibility between the different language versions of \b %ALox.
+
+\b %ALib is bundled with \b ALox and currently not released as a separate project. An exclamation
+to this bundled release are the so called <b>ALib Modules</b>. They are provided for C++ only and each
+provide a subset of \b %ALib. Fore more information, refer to the \ref aworx::lib "ALib Documentation".
 
 ## Organization of code ##
 
-In the class lists of this documentation, besides ALox you will find a few classes that we
-call the "A-Worx Library" classes or just ALib. They reside in the namespace:
-- #aworx
+\b %ALib classes are found in namespace
+- #aworx::lib
 
-Next to the provision of basic functionality, the motivation for creating util classes is to
-provide a similar interface to basic functionality of ALox across languages and platforms.
-In other word, the utility functions help ALox code to be very much alike across different
-languages and platforms.
+and sub namespaces.
 
 ALox itself consist of three namespaces.
 The main classes that the user of ALox interfaces with reside in:

@@ -1,10 +1,10 @@
 // #################################################################################################
 //  aworx - Unit Tests
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alox/alox.hpp"
 
 
 
@@ -17,18 +17,15 @@
 #include <sstream>
 #include <algorithm>
 
-
 // Windows.h might bring in max/min macros
 #if defined( max )
     #undef max
     #undef min
 #endif
 
-// For code compatibility with ALox Java/C++
-#define _NC _<false>
-
 using namespace std;
 using namespace aworx;
+
 
 
 namespace ut_aworx {
@@ -159,33 +156,33 @@ UT_METHOD( CharAt)
         UT_EQ('e',      subs.CharAtEnd ()            );
         UT_EQ('a',      subs.CharAtStart<false>()    );
         UT_EQ('e',      subs.CharAtEnd <false>()     );
-        UT_EQ('a',      subs.Consume()               );
-        UT_EQ('e',      subs.ConsumeFromEnd()        );
-        UT_EQ('d',      subs.ConsumeFromEnd()        );
-        UT_EQ('b',      subs.Consume()               );
-        UT_EQ('c',      subs.Consume()               );
-        UT_EQ('\0',     subs.Consume()               );
-        UT_EQ('\0',     subs.Consume()               );
-        UT_EQ('\0',     subs.ConsumeFromEnd()        );
-        UT_EQ('\0',     subs.ConsumeFromEnd()        );
+        UT_EQ('a',      subs.ConsumeChar()               );
+        UT_EQ('e',      subs.ConsumeCharFromEnd()        );
+        UT_EQ('d',      subs.ConsumeCharFromEnd()        );
+        UT_EQ('b',      subs.ConsumeChar()               );
+        UT_EQ('c',      subs.ConsumeChar()               );
+        UT_EQ('\0',     subs.ConsumeChar()               );
+        UT_EQ('\0',     subs.ConsumeChar()               );
+        UT_EQ('\0',     subs.ConsumeCharFromEnd()        );
+        UT_EQ('\0',     subs.ConsumeCharFromEnd()        );
     }
 
     // Delete first
     {
         Substring subs("1234567890");
-        subs.Consume<false>        (2)     ;UT_TRUE( strncmp( subs.Buffer(), "34567890" , subs.Length() )==0 );
-        subs.ConsumeFromEnd <false>(3)     ;UT_TRUE( strncmp( subs.Buffer(), "34567"    , subs.Length() )==0 );
-        subs.Consume               (2)     ;UT_TRUE( strncmp( subs.Buffer(), "567890"   , subs.Length() )==0 );
-        subs.ConsumeFromEnd        (3)     ;UT_TRUE( strncmp( subs.Buffer(), "34"       , subs.Length() )==0 );
-        subs.Consume<false>        (0)     ;UT_TRUE( strncmp( subs.Buffer(), "34"       , subs.Length() )==0 );
-        subs.ConsumeFromEnd <false>(0)     ;UT_TRUE( strncmp( subs.Buffer(), "34"       , subs.Length() )==0 );
-        subs.Consume               (0)     ;UT_TRUE( strncmp( subs.Buffer(), "34"       , subs.Length() )==0 );
-        subs.ConsumeFromEnd        (0)     ;UT_TRUE( strncmp( subs.Buffer(), "34"       , subs.Length() )==0 );
-        subs.Consume               (-2)    ;UT_TRUE( strncmp( subs.Buffer(), "34"       , subs.Length() )==0 );
-        subs.ConsumeFromEnd        (-2)    ;UT_TRUE( strncmp( subs.Buffer(), "34"       , subs.Length() )==0 );
-        subs.Consume               (20)    ;UT_EQ  ( 0 , subs.Length() );
+        subs.ConsumeChars<false>        (2)     ;UT_TRUE( strncmp( subs.Buffer(), "34567890" , static_cast<size_t>( subs.Length() ) )==0 );
+        subs.ConsumeCharsFromEnd <false>(3)     ;UT_TRUE( strncmp( subs.Buffer(), "34567"    , static_cast<size_t>( subs.Length() ) )==0 );
+        subs.ConsumeChars               (2)     ;UT_TRUE( strncmp( subs.Buffer(), "567890"   , static_cast<size_t>( subs.Length() ) )==0 );
+        subs.ConsumeCharsFromEnd        (3)     ;UT_TRUE( strncmp( subs.Buffer(), "34"       , static_cast<size_t>( subs.Length() ) )==0 );
+        subs.ConsumeChars<false>        (0)     ;UT_TRUE( strncmp( subs.Buffer(), "34"       , static_cast<size_t>( subs.Length() ) )==0 );
+        subs.ConsumeCharsFromEnd <false>(0)     ;UT_TRUE( strncmp( subs.Buffer(), "34"       , static_cast<size_t>( subs.Length() ) )==0 );
+        subs.ConsumeChars               (0)     ;UT_TRUE( strncmp( subs.Buffer(), "34"       , static_cast<size_t>( subs.Length() ) )==0 );
+        subs.ConsumeCharsFromEnd        (0)     ;UT_TRUE( strncmp( subs.Buffer(), "34"       , static_cast<size_t>( subs.Length() ) )==0 );
+        subs.ConsumeChars               (-2)    ;UT_TRUE( strncmp( subs.Buffer(), "34"       , static_cast<size_t>( subs.Length() ) )==0 );
+        subs.ConsumeCharsFromEnd        (-2)    ;UT_TRUE( strncmp( subs.Buffer(), "34"       , static_cast<size_t>( subs.Length() ) )==0 );
+        subs.ConsumeChars               (20)    ;UT_EQ  ( 0, subs.Length() );
         subs= "1234567890";
-        subs.ConsumeFromEnd        (20)    ;UT_EQ  ( 0 , subs.Length() );
+        subs.ConsumeCharsFromEnd        (20)    ;UT_EQ  ( 0, subs.Length() );
     }
 
 }
@@ -194,45 +191,46 @@ UT_METHOD( ConsumeNumbers )
 {
     UT_INIT();
 
-    // ConsumeInteger()
+    // ConsumeDecimal()
     {
         Substring subs;
         int result;
-                                   UT_EQ( false,  subs.ConsumeInteger( result                ) );   UT_EQ(       0,  result );
-        subs= ""                 ; UT_EQ( false,  subs.ConsumeInteger( result                ) );   UT_EQ(       0,  result );
-        subs= "  ABC"            ; UT_EQ( false,  subs.ConsumeInteger( result                ) );   UT_EQ(       0,  result );
-        subs= "  12345"          ; UT_EQ( true ,  subs.ConsumeInteger( result                ) );   UT_EQ(   12345,  result );
-        subs= "  12 45"          ; UT_EQ( true ,  subs.ConsumeInteger( result                ) );   UT_EQ(      12,  result );
-                                   UT_EQ( true ,  subs.ConsumeInteger( result                ) );   UT_EQ(      45,  result );
+                                   UT_EQ( false,  subs.ConsumeInt( result      ) );   UT_EQ(       0,  result );
+        subs= ""                 ; UT_EQ( false,  subs.ConsumeInt( result      ) );   UT_EQ(       0,  result );
+        subs= "  ABC"            ; UT_EQ( false,  subs.ConsumeInt( result      ) );   UT_EQ(       0,  result );
+        subs= "  12345"          ; UT_EQ( true ,  subs.ConsumeInt( result      ) );   UT_EQ(   12345,  result );
+        subs= "  12 45"          ; UT_EQ( true ,  subs.ConsumeInt( result      ) );   UT_EQ(      12,  result );
+                                   UT_EQ( true ,  subs.ConsumeInt( result      ) );   UT_EQ(      45,  result );
 
-        subs= " 42 ; 7 ; 6 "     ; UT_EQ( true ,  subs.ConsumeInteger( result                ) );   UT_EQ(      42,  result );
-                                   UT_EQ( false,  subs.ConsumeInteger( result                ) );   UT_EQ(       0,  result );
-                                   UT_EQ( false,  subs.ConsumeInteger( result                ) );   UT_EQ(       0,  result );
-
-        subs= " 42 ; 7 ; 6 "     ; UT_EQ( true ,  subs.ConsumeInteger( result, " ;"          ) );   UT_EQ(      42,  result );
-                                   UT_EQ( true ,  subs.ConsumeInteger( result, " ;"          ) );   UT_EQ(       7,  result );
-                                   UT_EQ( true ,  subs.ConsumeInteger( result, " ;"          ) );   UT_EQ(       6,  result );
-                                   UT_EQ( false,  subs.ConsumeInteger( result, " ;"          ) );   UT_EQ(       0,  result );
-                                   UT_EQ( false,  subs.ConsumeInteger( result, " ;"          ) );   UT_EQ(       0,  result );
+        subs= " 42 ; 7 ; 6 "     ; UT_EQ( true ,  subs.ConsumeInt( result      ) );   UT_EQ(      42,  result );
+                                   UT_EQ( false,  subs.ConsumeInt( result      ) );   UT_EQ(       0,  result );
+                                   UT_EQ( false,  subs.ConsumeInt( result      ) );   UT_EQ(       0,  result );
+        NumberFormat nf;    nf.Whitespaces= " ;";
+        subs= " 42 ; 7 ; 6 "     ; UT_EQ( true ,  subs.ConsumeInt( result, &nf ) );   UT_EQ(      42,  result );
+                                   UT_EQ( true ,  subs.ConsumeInt( result, &nf ) );   UT_EQ(       7,  result );
+                                   UT_EQ( true ,  subs.ConsumeInt( result, &nf ) );   UT_EQ(       6,  result );
+                                   UT_EQ( false,  subs.ConsumeInt( result, &nf ) );   UT_EQ(       0,  result );
+                                   UT_EQ( false,  subs.ConsumeInt( result, &nf ) );   UT_EQ(       0,  result );
     }
 
     // ConsumeFloat()
     {
         Substring subs;
         double result;
-                                   UT_EQ( false,  subs.ConsumeFloat  ( result                ) );   UT_EQ(      0.,  result );
-        subs= ""                 ; UT_EQ( false,  subs.ConsumeFloat  ( result                ) );   UT_EQ(      0.,  result );
-        subs= "  ABC"            ; UT_EQ( false,  subs.ConsumeFloat  ( result                ) );   UT_EQ(      0.,  result );
-        subs= "  12345"          ; UT_EQ( true ,  subs.ConsumeFloat  ( result                ) );   UT_EQ(  12345.,  result );
-        subs= " 12.45 "          ; UT_EQ( true ,  subs.ConsumeFloat  ( result                ) );   UT_EQ(  12.45,   result );
-        subs= "  12 45"          ; UT_EQ( true ,  subs.ConsumeFloat  ( result                ) );   UT_EQ(     12.,  result );
-                                   UT_EQ( true ,  subs.ConsumeFloat  ( result                ) );   UT_EQ(     45.,  result );
+                                   UT_EQ( false,  subs.ConsumeFloat  ( result      ) );   UT_EQ(      0.,  result );
+        subs= ""                 ; UT_EQ( false,  subs.ConsumeFloat  ( result      ) );   UT_EQ(      0.,  result );
+        subs= "  ABC"            ; UT_EQ( false,  subs.ConsumeFloat  ( result      ) );   UT_EQ(      0.,  result );
+        subs= "  12345"          ; UT_EQ( true ,  subs.ConsumeFloat  ( result      ) );   UT_EQ(  12345.,  result );
+        subs= " 12.45 "          ; UT_EQ( true ,  subs.ConsumeFloat  ( result      ) );   UT_EQ(  12.45,   result );
+        subs= "  12 45"          ; UT_EQ( true ,  subs.ConsumeFloat  ( result      ) );   UT_EQ(     12.,  result );
+                                   UT_EQ( true ,  subs.ConsumeFloat  ( result      ) );   UT_EQ(     45.,  result );
 
-        subs= " 42.3 ; 0.7 ; 6 " ; UT_EQ( true ,  subs.ConsumeFloat  ( result, nullptr, " ;" ) );   UT_EQ(    42.3,  result );
-                                   UT_EQ( true ,  subs.ConsumeFloat  ( result, nullptr, " ;" ) );   UT_EQ(     0.7,  result );
-                                   UT_EQ( true ,  subs.ConsumeFloat  ( result, nullptr, " ;" ) );   UT_EQ(      6.,  result );
-                                   UT_EQ( false,  subs.ConsumeFloat  ( result, nullptr, " ;" ) );   UT_EQ(      0.,  result );
-                                   UT_EQ( false,  subs.ConsumeFloat  ( result, nullptr, " ;" ) );   UT_EQ(      0.,  result );
+        NumberFormat nf;    nf.Whitespaces= " ;";
+        subs= " 42.3 ; 0.7 ; 6 " ; UT_EQ( true ,  subs.ConsumeFloat  ( result, &nf ) );   UT_EQ(    42.3,  result );
+                                   UT_EQ( true ,  subs.ConsumeFloat  ( result, &nf ) );   UT_EQ(     0.7,  result );
+                                   UT_EQ( true ,  subs.ConsumeFloat  ( result, &nf ) );   UT_EQ(      6.,  result );
+                                   UT_EQ( false,  subs.ConsumeFloat  ( result, &nf ) );   UT_EQ(      0.,  result );
+                                   UT_EQ( false,  subs.ConsumeFloat  ( result, &nf ) );   UT_EQ(      0.,  result );
     }
 }
 
@@ -246,52 +244,52 @@ UT_METHOD( Consume )
     {
         Substring s;
         Substring r("oldval");
-        UT_EQ(  '\0',      s.Consume       ( )         );
-        UT_EQ(  0,         s.Consume       (  0  , &r) ); UT_TRUE(r.IsNull());
-        UT_EQ(  0,         s.Consume       (  5  , &r) ); UT_TRUE(r.IsNull());
-        UT_EQ(  false,     s.Consume       ( 'a' )     );
-        UT_EQ(  false,     s.Consume       ( "word" )  );
-        UT_EQ(  '\0',      s.ConsumeFromEnd( )         );
-        UT_EQ(  0,         s.ConsumeFromEnd(  0  )     );
-        UT_EQ(  0,         s.ConsumeFromEnd(  5  )     );
-        UT_EQ(  false,     s.ConsumeFromEnd( 'a' )     );
-        UT_EQ(  false,     s.ConsumeFromEnd( "word" )  );
+        UT_EQ(  '\0',      s.ConsumeChar        ( )         );
+        UT_EQ(  0,     s.ConsumeChars       (  0  , &r) ); UT_TRUE(r.IsNull());
+        UT_EQ(  0,    s.ConsumeChars       (  5  , &r) ); UT_TRUE(r.IsNull());
+        UT_EQ(  false,     s.ConsumeChar        ( 'a' )     );
+        UT_EQ(  false,     s.ConsumeString      ( "word" )  );
+        UT_EQ(  '\0',      s.ConsumeCharFromEnd ( )         );
+        UT_EQ(  0,    s.ConsumeCharsFromEnd(  0  )     );
+        UT_EQ(  0,    s.ConsumeCharsFromEnd(  5  )     );
+        UT_EQ(  false,     s.ConsumeCharFromEnd ( 'a' )     );
+        UT_EQ(  false,     s.ConsumeStringFromEnd      ( "word" )  );
     }
 
     // empty substring
     {
         Substring s("");
         Substring r("oldval");
-        UT_EQ(  '\0',      s.Consume       ( )         );
-        UT_EQ(  0,         s.Consume       (  0   ,&r) ); UT_TRUE( r.IsNotNull()); UT_TRUE(r.IsEmpty());
-        UT_EQ(  0,         s.Consume       (  5   ,&r) ); UT_TRUE( r.IsNotNull()); UT_TRUE(r.IsEmpty());
-        UT_EQ(  false,     s.Consume       ( 'a' )     );
-        UT_EQ(  false,     s.Consume       ( "word" )  );
-        UT_EQ(  '\0',      s.ConsumeFromEnd( )         );
-        UT_EQ(  0,         s.ConsumeFromEnd(  0  )     );
-        UT_EQ(  0,         s.ConsumeFromEnd(  5  )     );
-        UT_EQ(  false,     s.ConsumeFromEnd( 'a' )     );
-        UT_EQ(  false,     s.ConsumeFromEnd( "word" )  );
+        UT_EQ(  '\0',      s.ConsumeChar        ( )         );
+        UT_EQ(  0,    s.ConsumeChars       (  0   ,&r) ); UT_TRUE( r.IsNotNull()); UT_TRUE(r.IsEmpty());
+        UT_EQ(  0,    s.ConsumeChars       (  5   ,&r) ); UT_TRUE( r.IsNotNull()); UT_TRUE(r.IsEmpty());
+        UT_EQ(  false,     s.ConsumeChar        ( 'a' )     );
+        UT_EQ(  false,     s.ConsumeString      ( "word" )  );
+        UT_EQ(  '\0',      s.ConsumeCharFromEnd ( )         );
+        UT_EQ(  0,    s.ConsumeCharsFromEnd(  0  )     );
+        UT_EQ(  0,    s.ConsumeCharsFromEnd(  5  )     );
+        UT_EQ(  false,     s.ConsumeCharFromEnd ( 'a' )     );
+        UT_EQ(  false,     s.ConsumeStringFromEnd      ( "word" )  );
     }
 
     // substring of length 1
     {
         Substring s;
         Substring r("oldval");
-        s= "a"; UT_EQ(  'a',       s.Consume       ( )         ); UT_EQ( 0, s.Length() );
-        s= "a"; UT_EQ(  1,         s.Consume       (  0  )     ); UT_EQ( 1, s.Length() );
-        s= "a"; UT_EQ(  0,         s.Consume       (  1  , &r) ); UT_EQ( 0, s.Length() ); UT_TRUE(r.Equals("a"));
-        s= "a"; UT_EQ(  0,         s.Consume       (  5  , &r) ); UT_EQ( 0, s.Length() ); UT_TRUE(r.Equals("a"));
-        s= "a"; UT_EQ(  true,      s.Consume       ( 'a' )     ); UT_EQ( 0, s.Length() );
-        s= "a"; UT_EQ(  false,     s.Consume       ( 'b' )     ); UT_EQ( 1, s.Length() );
-        s= "a"; UT_EQ(  false,     s.Consume       ( "word" )  ); UT_EQ( 1, s.Length() );
-        s= "a"; UT_EQ(  'a',       s.ConsumeFromEnd( )         ); UT_EQ( 0, s.Length() );
-        s= "a"; UT_EQ(  1,         s.ConsumeFromEnd(  0  )     ); UT_EQ( 1, s.Length() );
-        s= "a"; UT_EQ(  0,         s.ConsumeFromEnd(  1  )     ); UT_EQ( 0, s.Length() );
-        s= "a"; UT_EQ(  0,         s.ConsumeFromEnd(  5  )     ); UT_EQ( 0, s.Length() );
-        s= "a"; UT_EQ(  true,      s.ConsumeFromEnd( 'a' )     ); UT_EQ( 0, s.Length() );
-        s= "a"; UT_EQ(  false,     s.ConsumeFromEnd( 'b' )     ); UT_EQ( 1, s.Length() );
-        s= "a"; UT_EQ(  false,     s.ConsumeFromEnd( "word" )  ); UT_EQ( 1, s.Length() );
+        s= "a"; UT_EQ(  'a',       s.ConsumeChar        ( )         ); UT_EQ( 0,s.Length() );
+        s= "a"; UT_EQ(  1,    s.ConsumeChars       (  0  )     ); UT_EQ( 1,s.Length() );
+        s= "a"; UT_EQ(  0,    s.ConsumeChars       (  1  , &r) ); UT_EQ( 0,s.Length() ); UT_TRUE(r.Equals("a"));
+        s= "a"; UT_EQ(  0,    s.ConsumeChars       (  5  , &r) ); UT_EQ( 0,s.Length() ); UT_TRUE(r.Equals("a"));
+        s= "a"; UT_EQ(  true,      s.ConsumeChar        ( 'a' )     ); UT_EQ( 0,s.Length() );
+        s= "a"; UT_EQ(  false,     s.ConsumeChar        ( 'b' )     ); UT_EQ( 1,s.Length() );
+        s= "a"; UT_EQ(  false,     s.ConsumeString      ( "word" )  ); UT_EQ( 1,s.Length() );
+        s= "a"; UT_EQ(  'a',       s.ConsumeCharFromEnd ( )         ); UT_EQ( 0,s.Length() );
+        s= "a"; UT_EQ(  1,    s.ConsumeCharsFromEnd(  0  )     ); UT_EQ( 1,s.Length() );
+        s= "a"; UT_EQ(  0,    s.ConsumeCharsFromEnd(  1  )     ); UT_EQ( 0,s.Length() );
+        s= "a"; UT_EQ(  0,    s.ConsumeCharsFromEnd(  5  )     ); UT_EQ( 0,s.Length() );
+        s= "a"; UT_EQ(  true,      s.ConsumeCharFromEnd ( 'a' )     ); UT_EQ( 0,s.Length() );
+        s= "a"; UT_EQ(  false,     s.ConsumeCharFromEnd ( 'b' )     ); UT_EQ( 1,s.Length() );
+        s= "a"; UT_EQ(  false,     s.ConsumeStringFromEnd      ( "word" )  ); UT_EQ( 1,s.Length() );
     }
 
     // substring of length 2
@@ -299,80 +297,228 @@ UT_METHOD( Consume )
         Substring s;
         Substring r("oldval");
 
-        s= "ab"; UT_EQ(  'a',       s.Consume       ( )         ); UT_EQ( 1, s.Length() );
-                 UT_EQ(  'b',       s.Consume       ( )         ); UT_EQ( 0, s.Length() );
-        s= "ab"; UT_EQ(  'b',       s.ConsumeFromEnd( )         ); UT_EQ( 1, s.Length() );
-                 UT_EQ(  'a',       s.ConsumeFromEnd( )         ); UT_EQ( 0, s.Length() );
+        s= "ab"; UT_EQ(  'a',       s.ConsumeChar       ( )         ); UT_EQ( 1,s.Length() );
+                 UT_EQ(  'b',       s.ConsumeChar       ( )         ); UT_EQ( 0,s.Length() );
+        s= "ab"; UT_EQ(  'b',       s.ConsumeCharFromEnd( )         ); UT_EQ( 1,s.Length() );
+                 UT_EQ(  'a',       s.ConsumeCharFromEnd( )         ); UT_EQ( 0,s.Length() );
 
-        s= "ab"; UT_EQ(  2,         s.Consume       (  0  ,&r)  ); UT_EQ( 2, s.Length() ); UT_TRUE(r.IsNotNull()); UT_TRUE(r.IsEmpty());
-        s= "ab"; UT_EQ(  1,         s.Consume       (  1  ,&r)  ); UT_EQ( 1, s.Length() ); UT_TRUE(r.Equals("a" ));
-        s= "ab"; UT_EQ(  0,         s.Consume       (  2  ,&r)  ); UT_EQ( 0, s.Length() ); UT_TRUE(r.Equals("ab"));
-        s= "ab"; UT_EQ(  0,         s.Consume       (  3  ,&r)  ); UT_EQ( 0, s.Length() ); UT_TRUE(r.Equals("ab"));
-        s= "ab"; UT_EQ(  2,         s.ConsumeFromEnd(  0  ,&r)  ); UT_EQ( 2, s.Length() ); UT_TRUE(r.IsNotNull()); UT_TRUE(r.IsEmpty());
-        s= "ab"; UT_EQ(  1,         s.ConsumeFromEnd(  1  ,&r)  ); UT_EQ( 1, s.Length() ); UT_TRUE(r.Equals("b" ));
-        s= "ab"; UT_EQ(  0,         s.ConsumeFromEnd(  2  ,&r)  ); UT_EQ( 0, s.Length() ); UT_TRUE(r.Equals("ab"));
-        s= "ab"; UT_EQ(  0,         s.ConsumeFromEnd(  3  ,&r)  ); UT_EQ( 0, s.Length() ); UT_TRUE(r.Equals("ab"));
+        s= "ab"; UT_EQ(  2,    s.ConsumeChars       (  0  ,&r)  ); UT_EQ( 2,s.Length() ); UT_TRUE(r.IsNotNull()); UT_TRUE(r.IsEmpty());
+        s= "ab"; UT_EQ(  1,    s.ConsumeChars       (  1  ,&r)  ); UT_EQ( 1,s.Length() ); UT_TRUE(r.Equals("a" ));
+        s= "ab"; UT_EQ(  0,    s.ConsumeChars       (  2  ,&r)  ); UT_EQ( 0,s.Length() ); UT_TRUE(r.Equals("ab"));
+        s= "ab"; UT_EQ(  0,    s.ConsumeChars       (  3  ,&r)  ); UT_EQ( 0,s.Length() ); UT_TRUE(r.Equals("ab"));
+        s= "ab"; UT_EQ(  2,    s.ConsumeCharsFromEnd(  0  ,&r)  ); UT_EQ( 2,s.Length() ); UT_TRUE(r.IsNotNull()); UT_TRUE(r.IsEmpty());
+        s= "ab"; UT_EQ(  1,    s.ConsumeCharsFromEnd(  1  ,&r)  ); UT_EQ( 1,s.Length() ); UT_TRUE(r.Equals("b" ));
+        s= "ab"; UT_EQ(  0,    s.ConsumeCharsFromEnd(  2  ,&r)  ); UT_EQ( 0,s.Length() ); UT_TRUE(r.Equals("ab"));
+        s= "ab"; UT_EQ(  0,    s.ConsumeCharsFromEnd(  3  ,&r)  ); UT_EQ( 0,s.Length() ); UT_TRUE(r.Equals("ab"));
 
-        s= "ab"; UT_EQ(  false,     s.Consume       ( 'b' )     ); UT_EQ( 2, s.Length() );
-                 UT_EQ(  true,      s.Consume       ( 'a' )     ); UT_EQ( 1, s.Length() );
-                 UT_EQ(  true,      s.Consume       ( 'b' )     ); UT_EQ( 0, s.Length() );
-                 UT_EQ(  false,     s.Consume       ( 'a' )     ); UT_EQ( 0, s.Length() );
-                 UT_EQ(  false,     s.Consume       ( 'b' )     ); UT_EQ( 0, s.Length() );
-        s= "ab"; UT_EQ(  false,     s.ConsumeFromEnd( 'a' )     ); UT_EQ( 2, s.Length() );
-                 UT_EQ(  true,      s.ConsumeFromEnd( 'b' )     ); UT_EQ( 1, s.Length() );
-                 UT_EQ(  true,      s.ConsumeFromEnd( 'a' )     ); UT_EQ( 0, s.Length() );
-                 UT_EQ(  false,     s.ConsumeFromEnd( 'b' )     ); UT_EQ( 0, s.Length() );
-                 UT_EQ(  false,     s.ConsumeFromEnd( 'a' )     ); UT_EQ( 0, s.Length() );
+        s= "ab"; UT_EQ(  false,     s.ConsumeChar       ( 'b' )     ); UT_EQ( 2,s.Length() );
+                 UT_EQ(  true,      s.ConsumeChar       ( 'a' )     ); UT_EQ( 1,s.Length() );
+                 UT_EQ(  true,      s.ConsumeChar       ( 'b' )     ); UT_EQ( 0,s.Length() );
+                 UT_EQ(  false,     s.ConsumeChar       ( 'a' )     ); UT_EQ( 0,s.Length() );
+                 UT_EQ(  false,     s.ConsumeChar       ( 'b' )     ); UT_EQ( 0,s.Length() );
+        s= "ab"; UT_EQ(  false,     s.ConsumeCharFromEnd( 'a' )     ); UT_EQ( 2,s.Length() );
+                 UT_EQ(  true,      s.ConsumeCharFromEnd( 'b' )     ); UT_EQ( 1,s.Length() );
+                 UT_EQ(  true,      s.ConsumeCharFromEnd( 'a' )     ); UT_EQ( 0,s.Length() );
+                 UT_EQ(  false,     s.ConsumeCharFromEnd( 'b' )     ); UT_EQ( 0,s.Length() );
+                 UT_EQ(  false,     s.ConsumeCharFromEnd( 'a' )     ); UT_EQ( 0,s.Length() );
 
-        s= "ab"; UT_EQ(  false,     s.Consume       ( "word" )  ); UT_EQ( 2, s.Length() );
-        s= "ab"; UT_EQ(  false,     s.Consume       ( "AB"   )  ); UT_EQ( 2, s.Length() );
-        s= "ab"; UT_EQ(  true,      s.Consume       ( "ab"   )  ); UT_EQ( 0, s.Length() );
-        s= "ab"; UT_EQ(  false,     s.ConsumeFromEnd( "word" )  ); UT_EQ( 2, s.Length() );
-        s= "ab"; UT_EQ(  false,     s.ConsumeFromEnd( "AB"   )  ); UT_EQ( 2, s.Length() );
-        s= "ab"; UT_EQ(  true,      s.ConsumeFromEnd( "ab"   )  ); UT_EQ( 0, s.Length() );
+        s= "ab"; UT_EQ(  false,     s.ConsumeString     ( "word" )  ); UT_EQ( 2,s.Length() );
+        s= "ab"; UT_EQ(  false,     s.ConsumeString     ( "AB"   )  ); UT_EQ( 2,s.Length() );
+        s= "ab"; UT_EQ(  true,      s.ConsumeString     ( "ab"   )  ); UT_EQ( 0,s.Length() );
+        s= "ab"; UT_EQ(  false,     s.ConsumeStringFromEnd     ( "word" )  ); UT_EQ( 2,s.Length() );
+        s= "ab"; UT_EQ(  false,     s.ConsumeStringFromEnd     ( "AB"   )  ); UT_EQ( 2,s.Length() );
+        s= "ab"; UT_EQ(  true,      s.ConsumeStringFromEnd     ( "ab"   )  ); UT_EQ( 0,s.Length() );
     }
 
     // 3 words
     {
         Substring s("word1 word2 word3");
 
-        UT_EQ(  'w',       s.Consume       ( )         );
-        UT_EQ(  'o',       s.Consume       ( )         );
-        UT_EQ(  'r',       s.Consume       ( )         );
-        UT_EQ(  'd',       s.Consume       ( )         );
-        UT_EQ(  '1',       s.Consume       ( )         );
+        UT_EQ(  'w',       s.ConsumeChar   ( )         );
+        UT_EQ(  'o',       s.ConsumeChar   ( )         );
+        UT_EQ(  'r',       s.ConsumeChar   ( )         );
+        UT_EQ(  'd',       s.ConsumeChar   ( )         );
+        UT_EQ(  '1',       s.ConsumeChar   ( )         );
 
-        UT_EQ(  false    , s.Consume       ('w'                         )   );
-        UT_EQ(  true     , s.Consume       ('w'     ,Case::Sensitive, Whitespaces::Trim )   );
-        UT_EQ(  true     , s.Consume       ('o'     ,Case::Sensitive, Whitespaces::Trim )   );
-        UT_EQ(  false    , s.Consume       ('o'     ,Case::Sensitive, Whitespaces::Trim )   );
-        UT_EQ(  true     , s.Consume       ('r'     ,Case::Sensitive, Whitespaces::Trim )   );
-        UT_EQ(  false    , s.Consume       ("D2"    ,Case::Sensitive, Whitespaces::Trim )   );
-        UT_EQ(  false    , s.Consume       ("D2"                        )   );
-        UT_EQ(  true     , s.Consume       ("d2"                        )   );
+        UT_EQ(  false    , s.ConsumeChar   ('w'                         )   );
+        UT_EQ(  true     , s.ConsumeChar   ('w'     ,Case::Sensitive, Whitespaces::Trim )   );
+        UT_EQ(  true     , s.ConsumeChar   ('o'     ,Case::Sensitive, Whitespaces::Trim )   );
+        UT_EQ(  false    , s.ConsumeChar   ('o'     ,Case::Sensitive, Whitespaces::Trim )   );
+        UT_EQ(  true     , s.ConsumeChar   ('r'     ,Case::Sensitive, Whitespaces::Trim )   );
+        UT_EQ(  false    , s.ConsumeString ("D2"    ,Case::Sensitive, Whitespaces::Trim )   );
+        UT_EQ(  false    , s.ConsumeString ("D2"                        )   );
+        UT_EQ(  true     , s.ConsumeString ("d2"                        )   );
 
-        UT_EQ(  2        , s.Consume       ( 4 )   );
+        UT_EQ(  2   , s.ConsumeChars  ( 4 )   );
         UT_EQ(  "d3"     , s );
 
         s= "word1 word2 word3";
 
-        UT_EQ(  '3',       s.ConsumeFromEnd( )         );
-        UT_EQ(  'd',       s.ConsumeFromEnd( )         );
-        UT_EQ(  'r',       s.ConsumeFromEnd( )         );
-        UT_EQ(  'o',       s.ConsumeFromEnd( )         );
-        UT_EQ(  'w',       s.ConsumeFromEnd( )         );
+        UT_EQ(  '3',       s.ConsumeCharFromEnd( )         );
+        UT_EQ(  'd',       s.ConsumeCharFromEnd( )         );
+        UT_EQ(  'r',       s.ConsumeCharFromEnd( )         );
+        UT_EQ(  'o',       s.ConsumeCharFromEnd( )         );
+        UT_EQ(  'w',       s.ConsumeCharFromEnd( )         );
 
-        UT_EQ(  false    , s.ConsumeFromEnd('2'                         )   );
-        UT_EQ(  true     , s.ConsumeFromEnd('2'     ,Case::Sensitive, Whitespaces::Trim )   );
-        UT_EQ(  true     , s.ConsumeFromEnd('d'     ,Case::Sensitive, Whitespaces::Trim )   );
-        UT_EQ(  false    , s.ConsumeFromEnd('d'     ,Case::Sensitive, Whitespaces::Trim )   );
-        UT_EQ(  true     , s.ConsumeFromEnd('r'     ,Case::Sensitive, Whitespaces::Trim )   );
-        UT_EQ(  false    , s.ConsumeFromEnd("WO"    ,Case::Sensitive, Whitespaces::Trim )   );
-        UT_EQ(  false    , s.ConsumeFromEnd("WO"                        )   );
-        UT_EQ(  true     , s.ConsumeFromEnd("wo"                        )   );
+        UT_EQ(  false    , s.ConsumeCharFromEnd('2'                         )   );
+        UT_EQ(  true     , s.ConsumeCharFromEnd('2'     ,Case::Sensitive, Whitespaces::Trim )   );
+        UT_EQ(  true     , s.ConsumeCharFromEnd('d'     ,Case::Sensitive, Whitespaces::Trim )   );
+        UT_EQ(  false    , s.ConsumeCharFromEnd('d'     ,Case::Sensitive, Whitespaces::Trim )   );
+        UT_EQ(  true     , s.ConsumeCharFromEnd('r'     ,Case::Sensitive, Whitespaces::Trim )   );
+        UT_EQ(  false    , s.ConsumeStringFromEnd     ("WO"    ,Case::Sensitive, Whitespaces::Trim )   );
+        UT_EQ(  false    , s.ConsumeStringFromEnd     ("WO"                        )   );
+        UT_EQ(  true     , s.ConsumeStringFromEnd     ("wo"                        )   );
 
-        UT_EQ(  2        , s.ConsumeFromEnd( 4 )   );
+        UT_EQ(  2   , s.ConsumeCharsFromEnd( 4 )   );
         UT_EQ(  "wo"     , s );
+    }
+
+    {
+        Substring subs("1234567890");
+        UT_EQ( 0, subs.ConsumePartOf("abc") );
+        UT_EQ( 0, subs.ConsumePartOf("abc", 2) );
+        UT_EQ( 0, subs.ConsumePartOf("abc", 5) );
+        UT_EQ( 0, subs.ConsumePartOf("125", 5) );       UT_EQ( "1234567890", subs );
+        UT_EQ( 0, subs.ConsumePartOf("125", 3) );       UT_EQ( "1234567890", subs );
+        UT_EQ( 2, subs.ConsumePartOf("125", 2) );       UT_EQ(   "34567890", subs );
+        UT_EQ( 0, subs.ConsumePartOf("125")    );       UT_EQ(   "34567890", subs );
+        UT_EQ( 2, subs.ConsumePartOf("34" )    );       UT_EQ(     "567890", subs );
+        UT_EQ( 1, subs.ConsumePartOf("59" )    );       UT_EQ(      "67890", subs );
+        UT_EQ( 3, subs.ConsumePartOf("678", 2 ));       UT_EQ(         "90", subs );
+        UT_EQ( 2, subs.ConsumePartOf("90"     ));       UT_EQ(           "", subs );
+        UT_EQ( 0, subs.ConsumePartOf("90"     ));       UT_EQ(           "", subs );
+        UT_EQ( 0, subs.ConsumePartOf(""       ));       UT_EQ(           "", subs );
+    }
+
+    {
+        Substring subs("abcdef");
+        UT_EQ( 0, subs.ConsumePartOf("ABC")                      );
+        UT_EQ( 0, subs.ConsumePartOf("aBC", 2)                   );
+        UT_EQ( 0, subs.ConsumePartOf("aBC", 5, Case::Ignore)     );
+        UT_EQ( 0, subs.ConsumePartOf("aBX", 3, Case::Ignore)     );       UT_EQ( "abcdef", subs );
+        UT_EQ( 0, subs.ConsumePartOf("aBX", 2, Case::Sensitive)  );       UT_EQ( "abcdef", subs );
+        UT_EQ( 2, subs.ConsumePartOf("aBX", 2, Case::Ignore)     );       UT_EQ(   "cdef", subs );
+        UT_EQ( 0, subs.ConsumePartOf("CXX", 2, Case::Ignore)     );       UT_EQ(   "cdef", subs );
+        UT_EQ( 1, subs.ConsumePartOf("CXX", 1, Case::Ignore)     );       UT_EQ(    "def", subs );
+        UT_EQ( 3, subs.ConsumePartOf("def", 2, Case::Ignore)     );       UT_EQ(       "", subs );
+        UT_EQ( 0, subs.ConsumePartOf("def", 2, Case::Ignore)     );       UT_EQ(       "", subs );
+        UT_EQ( 0, subs.ConsumePartOf("",    2, Case::Ignore)     );       UT_EQ(       "", subs );
+        UT_EQ( 0, subs.ConsumePartOf("",    0, Case::Ignore)     );       UT_EQ(       "", subs );
+    }
+
+
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//--- Tokenizer
+//--------------------------------------------------------------------------------------------------
+void tokenizerTest( const char* inputString, AString& res, char delim, char newDelim,
+                    Whitespaces trim, int inpStart= -1, int inpEnd= -1  )
+{
+    Substring inp( inputString );
+    if ( inpStart < 0 )  inpStart= 0;
+    if ( inpEnd   < 0 )  inpEnd=   static_cast<int>(inp.Length() - 1);
+    inp.Set( inp, inpStart, inpEnd-inpStart +1 );
+
+    res.Clear();
+
+    Tokenizer tknzr( inp, delim );
+
+    while( tknzr.HasNext() )
+    {
+        res._( tknzr.Next(trim) );
+        res._( newDelim );
+    }
+
+}
+
+UT_METHOD( Tokenize )
+{
+    UT_INIT();
+
+    AString as;
+    AString res;
+
+    // tokenizing empty string
+    as.Clear()._( "" );
+    res.Clear();
+    {
+        Tokenizer tknzr( as, ',' );  UT_EQ( true,  tknzr.HasNext() );
+        res._( tknzr.Next() );                UT_EQ( "", res );
+    }
+
+    // tokenizing no delim
+    as.Clear()._( "abc" );
+    res.Clear();
+    {
+        Tokenizer tknzr( as, ',' );           UT_EQ( true,  tknzr.HasNext() );
+        res._( tknzr.Next() );                UT_EQ( "abc", res );
+    }
+
+    // tokenizing
+    {
+        tokenizerTest( "abc",                   res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( res, "abc@"                );
+        tokenizerTest( "a,bc",                  res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( res, "a@bc@"               );
+        tokenizerTest( "a,bc",                  res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( res, "a@bc@"               );
+        tokenizerTest( ",",                     res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( res, "@@"                  );
+        tokenizerTest( ",,",                    res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( res, "@@@"                 );
+        tokenizerTest( "a,b,c,,",               res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( res, "a@b@c@@@"            );
+        tokenizerTest( "a,b,c",                 res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( res, "a@b@c@"              );
+        tokenizerTest( ",a,b,c",                res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( res, "@a@b@c@"             );
+        tokenizerTest( "123567",                res, ',', '@',   Whitespaces::Trim,   2,   2 );   UT_EQ( res, "3@"                  );
+        tokenizerTest( "123567",                res, ',', '@',   Whitespaces::Trim,   2,   1 );   UT_EQ( res, "@"                   );
+        tokenizerTest( "  abc , def , ghe ",    res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( res, "abc@def@ghe@"        );
+        tokenizerTest( "abc , def,ghe,",        res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( res, "abc@def@ghe@@"       );
+        tokenizerTest( "  abc , def , ghe ",    res, ',', '@',   Whitespaces::Keep,  -1,  -1 );   UT_EQ( res, "  abc @ def @ ghe @" );
+        tokenizerTest( "abc , def,ghe,",        res, ',', '@',   Whitespaces::Keep,  -1,  -1 );   UT_EQ( res, "abc @ def@ghe@@"     );
+    }
+
+    // tokenizing with different delimiters
+    {
+        as.Clear()._( "1,5;3@4" );
+        Tokenizer tknzr(as, ',');
+        res= tknzr.Next();                            UT_EQ( "1",   res );  UT_EQ( true,  tknzr.HasNext() );
+        res= tknzr.Next( Whitespaces::Trim, ';' );    UT_EQ( "5",   res );  UT_EQ( true,  tknzr.HasNext() );
+        res= tknzr.Next( Whitespaces::Trim, '@' );    UT_EQ( "3",   res );  UT_EQ( true,  tknzr.HasNext() );
+        res= tknzr.Next( Whitespaces::Trim, '-' );    UT_EQ( "4",   res );  UT_EQ( false, tknzr.HasNext() );
+    }
+
+    // tokenizing with different delimiters
+    {
+        as.Clear()._( "abc, 5;\t3;;; 4  " );
+        Tokenizer tknzr(as,',');
+        res= tknzr.Next();                          UT_EQ( "abc", res );  UT_EQ( true,  tknzr.HasNext() );
+        res= tknzr.Next( Whitespaces::Trim, ';' );  UT_EQ( "5",   res );  UT_EQ( true,  tknzr.HasNext() );
+        res= tknzr.Next();                          UT_EQ( "3",   res );  UT_EQ( true,  tknzr.HasNext() );
+        res= tknzr.Next();                          UT_EQ( "",    res );  UT_EQ( true,  tknzr.HasNext() );
+        res= tknzr.GetRest();                       UT_EQ( "; 4", res );  UT_EQ( false, tknzr.HasNext() );
+    }
+
+    // sub-tokens
+    {
+        as.Clear()._( "1,2;3 , 4;5,;," );
+        Tokenizer tknzr(as, ';');
+
+        Tokenizer tknzr2( tknzr.Next(), ',');
+        res= tknzr2.Next(); UT_EQ( "1", res );  UT_TRUE(  tknzr2.HasNext() );
+        res= tknzr2.Next(); UT_EQ( "2", res );  UT_TRUE( !tknzr2.HasNext() );
+        UT_TRUE( tknzr.HasNext() );
+
+        tknzr2.Set( tknzr.Next(), ',');
+        res= tknzr2.Next(); UT_EQ( "3", res );  UT_TRUE(  tknzr2.HasNext() );
+        res= tknzr2.Next(); UT_EQ( "4", res );  UT_TRUE( !tknzr2.HasNext() );
+        UT_TRUE( tknzr.HasNext() );
+
+        tknzr2.Set( tknzr.Next(), ',');
+        res= tknzr2.Next(); UT_EQ( "5", res );  UT_TRUE(  tknzr2.HasNext() );
+        res= tknzr2.Next(); UT_EQ( "",  res );  UT_TRUE( !tknzr2.HasNext() );
+        UT_TRUE( tknzr.HasNext() );
+
+        tknzr2.Set( tknzr.Next(), ',');
+        res= tknzr2.Next(); UT_EQ( "", res );  UT_TRUE(  tknzr2.HasNext() );
+        res= tknzr2.Next(); UT_EQ( "", res );  UT_TRUE( !tknzr2.HasNext() );
+        UT_TRUE( !tknzr.HasNext() );
     }
 }
 

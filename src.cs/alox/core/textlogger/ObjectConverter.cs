@@ -1,8 +1,8 @@
 // #################################################################################################
 //  cs.aworx.lox.core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using cs.aworx.lib.strings;
 
@@ -21,51 +21,65 @@ namespace cs.aworx.lox.core.textlogger
 {
 
 /** ************************************************************************************************
- * This abstract class represents a plug-in for the TextLogger class which converts a given Object
- * into its textual representation.
- * \see StringConverter for further information.
+ * This abstract class represents a plug-in for the TextLogger class which converts the list
+ * of logables into a textual representation.
+ * \see StandardConverter for further information.
  **************************************************************************************************/
 public abstract class ObjectConverter
 {
     /** ********************************************************************************************
      * The conversion method.
-     * @param o        The object to convert.
-     * @param target   An AString that takes the result.
-     * @return \c true, if the object was converted successfully, \c false otherwise.
+     * @param target     An AString that takes the result.
+     * @param logables   The objects to convert.
      **********************************************************************************************/
-    abstract public  bool ConvertObject( Object o, AString target );
+    abstract public void ConvertObjects(AString target, List<Object> logables);
 } // class
 
 
 /** ************************************************************************************************
  * Implements the interface
- * \ref cs::aworx::lox::core::textlogger::ObjectConverter "ObjectConverter".
- * With ALox leveraging the underlying
- * \ref cs::aworx::lib::strings "ALib string class-family", various standard string types are supported
- * with this converter.
+ * \ref cs::aworx::lox::core::textlogger::ObjectConverter "ObjectConverter". Class
+ * \ref cs::aworx::lox::core::textlogger::TextLogger      "TextLogger" creates an instance of this
+ * type in the moment no other (custom) type was set prior to the first log statement.
  *
- * For null values a predefined string is returned.
- * All other Object types are converted by invoking their \b ToString() method.
+ * This implementation uses
+ * two specialisations of class
+ * \ref cs::aworx::lib::strings::Formatter "Formatter" to format the given logables to a textual
+ * representation. The formatters (and their sequence!) are:
+ *
+ * 1. \ref cs::aworx::lib::strings::FormatterPythonStyle "FormatterPythonStyle"
+ * 2. \ref cs::aworx::lib::strings::FormatterJavaStyle   "FormatterJavaStyle"
+ *
+ * This way, standard text logging supports format strings in Python style as well as in Java style.
  **************************************************************************************************/
-public class StringConverter : ObjectConverter
+public class StandardConverter : ObjectConverter
 {
-     /// Used to convert null values to string representation.
-    public           String                FmtNullObject                        ="<null>";
+    /** Formatter to process python style format strings. Used as the first (main) formatter. */
+    public FormatterPythonStyle                 FormatterPS;
+
+    /** Formatter to process Java style format strings. Attached to #FormatterPS as second
+     *  format option.*/
+    public FormatterJavaStyle                   FormatterJS;
+
+    /** ****************************************************************************************
+     * Constructor.
+     ******************************************************************************************/
+    public StandardConverter()
+    {
+        FormatterPS     = new FormatterPythonStyle();
+        FormatterJS     = new FormatterJavaStyle();
+        FormatterPS.Next= FormatterJS;
+    }
 
     /** ********************************************************************************************
      * The conversion method.
-     * @param o        The object to convert.
-     * @param target   An AString that takes the result.
-     * @return \c true, if the object was converted successfully, \c false otherwise.
+     * Passes \p target and \p logables to #FormatterPS.
+     * @param target     An AString that takes the result.
+     * @param logables   The objects to convert.
      **********************************************************************************************/
-    public override bool ConvertObject( Object o, AString target )
+    public override void ConvertObjects( AString target, List<Object>  logables )
     {
-        // copy the string into our internal Buffer (or reassign if AString given)
-             if ( o == null )       target._( FmtNullObject ); // <null>
-        else                        target._( o )  ;           // let AString do the conversion
-
-        // we always return true
-        return true;
+        FormatterPS.FormatList( target, logables );
     }
 }
 

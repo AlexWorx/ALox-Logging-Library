@@ -1,13 +1,14 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 using System;
+using System.Linq;
 using System.Text;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 
 namespace cs.aworx.lib.strings  {
 
@@ -176,21 +177,75 @@ public class Substring
         }
 
         /** ****************************************************************************************
-         *  Sets the substring to represent a region of the given \b %AString.
+         * Sets the substring to represent a region of the given \b %AString.
          *
-         *  @param src     The AString to work on.
-         *  @param start   The start index of the substring within the given \e AString.
-         *  @param length  The number of characters to include from the given \e AString.
-         *                 If negative, length of the provided \e src is used.
-         *                 Defaults to -1.
+         * @param src     The AString to work on.
+         * @param start   The start index of the substring within the given \e AString.
+         * @param length  The number of characters to include from the given \e AString.
+         *                If negative, length of the provided \e src is used.
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
-        public Substring   Set( AString src, int start =0, int length =-1 )
+        public Substring   Set( AString src, int start, int length )
         {
+            if ( src == null || src.IsNull() )
+            {
+                SetNull();
+                return this;
+            }
+
             if( length < 0 )
                 length= src.Length();
             CString.AdjustRegion( src.Length(), ref start, ref length );
-            return Set( src.Buffer(), start, length );
+            Buf=    src.Buffer();
+            Start=  start;
+            End=    start + length -1;
+            return this;
+        }
+
+        /** ****************************************************************************************
+         * Sets the substring to represent a region of the given \b %AString.
+         *
+         * @param src     The AString to work on.
+         * @param start   The start index of the substring within the given \e AString.
+         *                Defaults to \c 0.
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public Substring   Set( AString src, int start )
+        {
+            if ( src == null || src.IsNull() )
+            {
+                SetNull();
+                return this;
+            }
+
+            if( start < 0 )
+                start= 0;
+            int length= int.MaxValue;
+            CString.AdjustRegion( src.Length(), ref start, ref length );
+            Buf=    src.Buffer();
+            Start=  start;
+            End=    start + length -1;
+            return this;
+        }
+
+        /** ****************************************************************************************
+         * Sets the substring to represent the given \b %AString.
+         *
+         * @param src     The AString to work on.
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public Substring   Set( AString src )
+        {
+            if ( src == null || src.IsNull() )
+            {
+                SetNull();
+                return this;
+            }
+
+            Buf=    src.Buffer();
+            Start=  0;
+            End=    src.Length() - 1;
+            return this;
         }
 
         /** ****************************************************************************************
@@ -318,7 +373,7 @@ public class Substring
          * @return The character at the start of the represented region.
          *         If this %Substring empty or nulled, '\0' is returned.
          ******************************************************************************************/
-        public char   Consume()
+        public char   ConsumeChar()
         {
             hash= 0;
             return IsEmpty() ?  '\0'
@@ -330,11 +385,63 @@ public class Substring
          * @return The character at the start of the represented region.
          *         If this %Substring empty or nulled, '\0' is returned.
          ******************************************************************************************/
-        public char   ConsumeFromEnd ()
+        public char   ConsumeCharFromEnd ()
         {
             hash= 0;
             return IsEmpty() ?  '\0'
                              :  Buf[End--];
+        }
+
+        /** ****************************************************************************************
+         * Checks if this object starts with the given character \p consumable. If it does, this
+         * character is cut from this object.
+         *
+         * @param consumable        The consumable character
+         * @param sensitivity       The sensitivity of the comparison.
+         * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
+         *                          consume operation. Defaults to \b Whitespaces.Keep.
+         * @return \c true, if this object was starting with \p consumable and consequently the
+         *         string was cut by one.
+         ******************************************************************************************/
+        public bool   ConsumeChar( char         consumable,
+                                   Case         sensitivity         = Case.Sensitive,
+                                   Whitespaces  trimBeforeConsume   = Whitespaces.Keep )
+        {
+            if ( trimBeforeConsume == Whitespaces.Trim )
+                TrimStart();
+
+            if (    ( sensitivity == Case.Sensitive &&              CharAtStart()  !=              consumable  )
+                 || ( sensitivity == Case.Ignore    && Char.ToUpper(CharAtStart()) != Char.ToUpper(consumable) ) )
+                return false;
+            Start++;
+            hash= 0;
+            return true;
+        }
+
+        /** ****************************************************************************************
+         * Checks if this object ends with the given character \p consumable. If it does, this
+         * character is cut from the end of object.
+         *
+         * @param consumable The consumable character
+         * @param sensitivity       The sensitivity of the comparison.
+         * @param trimBeforeConsume Determines if the string should be (right-) trimmed before the
+         *                          consume operation. Defaults to \b Whitespaces.Keep.
+         * @return \c true, if this object was starting with \p consumable and consequently the
+         *         string was cut by one.
+         ******************************************************************************************/
+        public bool   ConsumeCharFromEnd( char         consumable,
+                                          Case         sensitivity         = Case.Sensitive,
+                                          Whitespaces  trimBeforeConsume   = Whitespaces.Keep )
+        {
+            if ( trimBeforeConsume == Whitespaces.Trim )
+                TrimEnd();
+
+            if (    ( sensitivity == Case.Sensitive &&              CharAtEnd()  !=              consumable  )
+                 || ( sensitivity == Case.Ignore    && Char.ToUpper(CharAtEnd()) != Char.ToUpper(consumable) ) )
+                return false;
+            End--;
+            hash= 0;
+            return true;
         }
 
         /** ****************************************************************************************
@@ -350,7 +457,7 @@ public class Substring
          *
          * @return The new length of the substring.
          ******************************************************************************************/
-        public int        Consume( int regionLength,  Substring target= null )
+        public int  ConsumeChars( int regionLength,  Substring target= null )
         {
             if ( regionLength < 0 )
             {
@@ -382,7 +489,7 @@ public class Substring
          *
          * @return The new length of the substring.
          ******************************************************************************************/
-        public int        ConsumeFromEnd( int regionLength,  Substring target= null )
+        public int     ConsumeCharsFromEnd( int regionLength,  Substring target= null )
         {
             if ( regionLength < 0 )
             {
@@ -402,70 +509,18 @@ public class Substring
         }
 
         /** ****************************************************************************************
-         * Checks if this object starts with the given character \p consumable. If it does, this
-         * character is cut from this object.
-         *
-         * @param consumable        The consumable character
-         * @param sensitivity       The sensitivity of the comparison.
-         * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
-         *                          consume operation. Defaults to \c Whitespaces.Keep.
-         * @return \c true, if this object was starting with \p consumable and consequently the
-         *         string was cut by one.
-         ******************************************************************************************/
-        public bool        Consume( char         consumable,  
-                                    Case         sensitivity         = Case.Sensitive, 
-                                    Whitespaces  trimBeforeConsume   = Whitespaces.Keep )
-        {
-            if ( trimBeforeConsume == Whitespaces.Trim )
-                TrimStart();
-
-            if (    ( sensitivity == Case.Sensitive &&              CharAtStart()  !=              consumable  )
-                 || ( sensitivity == Case.Ignore    && Char.ToUpper(CharAtStart()) != Char.ToUpper(consumable) ) )
-                return false;
-            Start++;
-            hash= 0;
-            return true;
-        }
-
-        /** ****************************************************************************************
-         * Checks if this object ends with the given character \p consumable. If it does, this
-         * character is cut from the end of object.
-         *
-         * @param consumable The consumable character
-         * @param sensitivity       The sensitivity of the comparison.
-         * @param trimBeforeConsume Determines if the string should be (right-) trimmed before the
-         *                          consume operation. Defaults to \c Whitespaces.Keep.
-         * @return \c true, if this object was starting with \p consumable and consequently the
-         *         string was cut by one.
-         ******************************************************************************************/
-        public bool        ConsumeFromEnd( char         consumable, 
-                                           Case         sensitivity         = Case.Sensitive, 
-                                           Whitespaces  trimBeforeConsume   = Whitespaces.Keep )
-        {
-            if ( trimBeforeConsume == Whitespaces.Trim )
-                TrimEnd();
-
-            if (    ( sensitivity == Case.Sensitive &&              CharAtEnd()  !=              consumable  )
-                 || ( sensitivity == Case.Ignore    && Char.ToUpper(CharAtEnd()) != Char.ToUpper(consumable) ) )
-                return false;
-            End--;
-            hash= 0;
-            return true;
-        }
-
-        /** ****************************************************************************************
          * Checks if this object starts with the given string \p consumable. If it does, this
          * string is cut from this object.
          *
          * @param consumable        The consumable string
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
-         *                          consume operation. Defaults to \c Whitespaces.Keep.
+         *                          consume operation. Defaults to \b Whitespaces.Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
-        public bool        Consume( String       consumable,
-                                    Case         sensitivity         = Case.Sensitive, 
+        public bool  ConsumeString( String       consumable,
+                                    Case         sensitivity         = Case.Sensitive,
                                     Whitespaces  trimBeforeConsume   = Whitespaces.Keep )
         {
             if ( trimBeforeConsume == Whitespaces.Trim )
@@ -474,7 +529,7 @@ public class Substring
             if ( !StartsWith( consumable, sensitivity) )
                 return false;
 
-            Consume( consumable.Length );
+            Start+= consumable.Length;
 
             return true;
         }
@@ -486,12 +541,12 @@ public class Substring
          * @param consumable        The consumable string
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
-         *                          consume operation. Defaults to \c Whitespaces.Keep.
+         *                          consume operation. Defaults to \b Whitespaces.Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
-        public bool        Consume( AString      consumable,  
-                                    Case         sensitivity         = Case.Sensitive, 
+        public bool  ConsumeString( AString      consumable,
+                                    Case         sensitivity         = Case.Sensitive,
                                     Whitespaces  trimBeforeConsume   = Whitespaces.Keep )
         {
             if ( trimBeforeConsume == Whitespaces.Trim )
@@ -500,7 +555,7 @@ public class Substring
             if ( !StartsWith( consumable, sensitivity ) )
                 return false;
 
-            Consume( consumable.Length() );
+            Start+= consumable.Length();
 
             return true;
         }
@@ -512,12 +567,12 @@ public class Substring
          * @param consumable        The consumable string
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
-         *                          consume operation. Defaults to \c Whitespaces.Keep.
+         *                          consume operation. Defaults to \b Whitespaces.Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
-        public bool        Consume( Substring    consumable,
-                                    Case         sensitivity         = Case.Sensitive, 
+        public bool  ConsumeString( Substring    consumable,
+                                    Case         sensitivity         = Case.Sensitive,
                                     Whitespaces  trimBeforeConsume   = Whitespaces.Keep )
         {
             if ( trimBeforeConsume == Whitespaces.Trim )
@@ -526,7 +581,7 @@ public class Substring
             if ( !StartsWith( consumable, sensitivity ) )
                 return false;
 
-            Consume( consumable.Length() );
+            Start+= consumable.Length();
 
             return true;
         }
@@ -538,12 +593,12 @@ public class Substring
          * @param consumable        The consumable string
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (right-) trimmed before the
-         *                          consume operation. Defaults to \c Whitespaces.Keep.
+         *                          consume operation. Defaults to \b Whitespaces.Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
-        public bool        ConsumeFromEnd( String       consumable,  
-                                           Case         sensitivity         = Case.Sensitive, 
+        public bool  ConsumeStringFromEnd( String       consumable,
+                                           Case         sensitivity         = Case.Sensitive,
                                            Whitespaces  trimBeforeConsume   = Whitespaces.Keep )
         {
             if ( trimBeforeConsume == Whitespaces.Trim )
@@ -551,7 +606,8 @@ public class Substring
 
             if ( !EndsWith( consumable, sensitivity ) )
                 return false;
-            ConsumeFromEnd( consumable.Length );
+
+            End-= consumable.Length;
             return true;
         }
 
@@ -562,12 +618,12 @@ public class Substring
          * @param consumable        The consumable string
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (right-) trimmed before the
-         *                          consume operation. Defaults to \c Whitespaces.Keep.
+         *                          consume operation. Defaults to \b Whitespaces.Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
-        public bool        ConsumeFromEnd( AString      consumable,  
-                                           Case         sensitivity         = Case.Sensitive, 
+        public bool  ConsumeStringFromEnd( AString      consumable,
+                                           Case         sensitivity         = Case.Sensitive,
                                            Whitespaces  trimBeforeConsume   = Whitespaces.Keep )
         {
             if ( trimBeforeConsume == Whitespaces.Trim )
@@ -575,7 +631,8 @@ public class Substring
 
             if ( !EndsWith( consumable, sensitivity ) )
                 return false;
-            ConsumeFromEnd( consumable.Length() );
+
+            End-= consumable.Length();
             return true;
         }
 
@@ -586,12 +643,12 @@ public class Substring
          * @param consumable        The consumable string
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (right-) trimmed before the
-         *                          consume operation. Defaults to \c Whitespaces.Keep.
+         *                          consume operation. Defaults to \b Whitespaces.Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
-        public bool        ConsumeFromEnd( Substring    consumable,  
-                                           Case         sensitivity         = Case.Sensitive, 
+        public bool  ConsumeStringFromEnd( Substring    consumable,
+                                           Case         sensitivity         = Case.Sensitive,
                                            Whitespaces  trimBeforeConsume   = Whitespaces.Keep )
         {
             if ( trimBeforeConsume == Whitespaces.Trim )
@@ -599,39 +656,133 @@ public class Substring
 
             if ( !EndsWith( consumable, sensitivity ) )
                 return false;
-            ConsumeFromEnd( consumable.Length() );
+
+            End-= consumable.Length();
             return true;
         }
 
         /** ****************************************************************************************
-         * Reads a 64-Bit integer from this object. If successful, the front of this
-         * \b %Substring is cut to point to first character that is not belonging to the number.
-         * If no number is found, \c false is returned and this object does not change.
+         * Consumes a minimum of \p minChars of string \c consumable from the start of this
+         * substring. If the minimum characters could not be found, nothing is consumed, otherwise
+         * as much as possible.<br>
+         * This method is useful for example to read commands from a string that may be
+         * abbreviated.
          *
-         * Leading whitespace characters are ignored. However, if after leading whitespaces no
-         * number is found, then also these whitespaces remain.
-         *
-         * \note
-         *   If this \b %Substring spans several float values which are separated by
-         *   whitespaces, concatenated calls to this method will read one by one,
-         *   without the need of further trimming or
-         *   \ref cs::aworx::lib::strings::Tokenizer "'tokenizing'").
-         *   Therefore, by providing the parameter \p whitespaces, it is possible to
-         *   easily read several numbers which are separated by user defined characters.
+         * @param consumable        The consumable string.
+         * @param minChars          The minimum amount of characters to consume.
+         *                          Optional and defaults to \c 1
+         * @param sensitivity       The sensitivity of the comparison.
+         *                          Defaults to \b Case.Sensitive.
+         * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
+         *                          first character consume operation.
+         *                          Defaults to \b Whitespaces.Keep.
+         * @return The amount of characters consumed.
+         ******************************************************************************************/
+        public int     ConsumePartOf( String           consumable,
+                                      int              minChars           = 1,
+                                      lang.Case        sensitivity        = lang.Case.Sensitive,
+                                      lang.Whitespaces trimBeforeConsume  = lang.Whitespaces.Keep )
+        {
+            if ( trimBeforeConsume == lang.Whitespaces.Trim )
+                TrimStart();
+
+            if ( minChars == 0 || minChars > consumable.Length )
+                return 0;
+
+            int diff= IndexOfFirstDifference( consumable, sensitivity, 0 );
+            if( diff < minChars )
+                return 0;
+            ConsumeChars( diff );
+            return diff;
+        }
+
+        /** ****************************************************************************************
+         * Consumes all characters \c '0' to \c '9' at the start of this object and stores the
+         * number value they represent in \p result.
+         * <br>Unlike with #ConsumeInt or #ConsumeDec, no sign, whitespaces or group characters are
+         * consumed.
          *
          * @param[out] result  A reference to the result value.
-         * @param whitespaces  White space characters used to trim the substring at the front
-         *                     before reading the value.
-         *                     Defaults to
-         *                     \ref cs::aworx::lib::strings::CString::DefaultWhitespaces "CString.DefaultWhitespaces".
          *
-         * @return  \c true if an integer was found, \c false otherwise.
+         * @return  \c true if a number was consumed, \c false otherwise.
          ******************************************************************************************/
-        public bool    ConsumeInteger( out int result, char[] whitespaces = null )
+        public bool    ConsumeDecDigits( out ulong result )
+        {
+            int newStart= Start;
+            result= NumberFormat.ParseDecDigits( Buf, ref newStart, End );
+            if( newStart == Start )
+                return false;
+
+            Start= newStart;
+            return true;
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #ConsumeDecDigits(out ulong)
+         * accepting an \p int value.
+         *
+         * @param[out] result  A reference to the result value.
+         * @return  \c true if a number was consumed, \c false otherwise.
+         ******************************************************************************************/
+        public bool    ConsumeDecDigits( out int result )
+        {
+            int newStart= Start;
+            result= (int) NumberFormat.ParseDecDigits( Buf, ref newStart, End );
+            if( newStart == Start )
+                return false;
+
+            Start= newStart;
+            return true;
+        }
+
+        /** ****************************************************************************************
+         * Parses a long integer value in decimal, binary, hexadecimal or octal format from
+         * the string by invoking method
+         * \ref cs::aworx::lib::strings::NumberFormat::ParseInt "NumberFormat.ParseInt"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
+         *
+         * For more information on number conversion, see class
+         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat".
+         *
+         * @param[out] result  A reference to the result value.
+         * @param numberFormat Defines the input format.
+         *                     Optional and defaults to \c null.
+         *
+         * @return  \c true if a number was consumed, \c false otherwise.
+         ******************************************************************************************/
+        public bool    ConsumeInt( out long result, NumberFormat numberFormat= null )
+        {
+            if ( numberFormat == null )
+                numberFormat= NumberFormat.Computational;
+
+            int newStart= Start;
+            result= numberFormat.ParseInt( Buf, ref newStart, End );
+
+            if( newStart == Start )
+                return false;
+
+            Start= newStart;
+            return true;
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #ConsumeInt(out long,NumberFormat =)
+         * accepting an \p int value.
+         *
+         * @param[out] result  A reference to the result value.
+         * @param numberFormat Defines the input format.
+         *                     Optional and defaults to \c null.
+         *
+         * @return  \c true if a number was consumed, \c false otherwise.
+         ******************************************************************************************/
+        public bool    ConsumeInt( out int result, NumberFormat numberFormat= null )
         {
             result= 0;
             long lResult;
-            if( ConsumeLong( out lResult, whitespaces ) )
+            if( ConsumeInt( out lResult, numberFormat ) )
             {
                 result= (int) lResult;
                 return true;
@@ -640,114 +791,262 @@ public class Substring
         }
 
         /** ****************************************************************************************
-         * Reads a 64-Bit integer from this object. If successful, the front of this
-         * \b %Substring is cut to point to first character that is not belonging to the number.
-         * If no number is found, \c false is returned and this object does not change.
+         * Reads an unsigned 64-bit integer in standard decimal format at the given position
+         * from this %AString. This is done, by invoking
+         * \ref cs::aworx::lib::strings::NumberFormat::ParseDec "NumberFormat.ParseDec"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
          *
-         * Leading whitespace characters are ignored. However, if after leading whitespaces no
-         * number is found, then also these whitespaces remain.
+         * Sign literals \c '-' or \c '+' are \b not accepted and parsing will fail.
+         * For reading signed integer values, see methods #ConsumeInt, for floating point numbers
+         * #ConsumeFloat.
          *
-         * \note
-         *   If this \b %Substring spans several float values which are separated by
-         *   whitespaces, concatenated calls to this method will read one by one,
-         *   without the need of further trimming or
-         *   \ref cs::aworx::lib::strings::Tokenizer "'tokenizing'").
-         *   Therefore, by providing the parameter \p whitespaces, it is possible to
-         *   easily read several numbers which are separated by user defined characters.
+         * For more information on number conversion, see class
+         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat".
          *
          * @param[out] result  A reference to the result value.
-         * @param whitespaces  White space characters used to trim the substring at the front
-         *                     before reading the value.
-         *                     Defaults to
-         *                     \ref cs::aworx::lib::strings::CString::DefaultWhitespaces "CString.DefaultWhitespaces".
+         * @param numberFormat Defines the input format.
+         *                     Optional and defaults to \c null.
          *
-         * @return  \c true if an integer was found, \c false otherwise.
+         * @return  \c true if a number was consumed, \c false otherwise.
          ******************************************************************************************/
-        public bool    ConsumeLong( out long result, char[] whitespaces= null )
+        public bool    ConsumeDec( out ulong result, NumberFormat numberFormat= null )
+        {
+            if ( numberFormat == null )
+                numberFormat= NumberFormat.Computational;
+
+            int newStart= Start;
+            result= numberFormat.ParseDec( Buf, ref newStart, End );
+
+            if( newStart == Start )
+                return false;
+
+            Start= newStart;
+            return true;
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #ConsumeDec(out ulong,NumberFormat =)
+         * accepting an \p uint value.
+         *
+         * @param[out] result  A reference to the result value.
+         * @param numberFormat Defines the input format.
+         *                     Optional and defaults to \c null.
+         *
+         * @return  \c true if a number was consumed, \c false otherwise.
+         ******************************************************************************************/
+        public bool    ConsumeDec( out uint result, NumberFormat numberFormat= null )
         {
             result= 0;
-            if( IsEmpty() )
-                return false;
-            if ( whitespaces == null )
-                whitespaces= CString.DefaultWhitespaces;
-
-             int origStart= Start;
-             int origEnd=   End;
-             TrimStart( whitespaces );
-             int  trimStart= Start;
-             int  idx=       trimStart;
-             result=    NumberFormat.Global.StringToInteger( Buf, ref idx, End );
-
-            if( idx != trimStart )
+            ulong lResult;
+            if( ConsumeDec( out lResult, numberFormat ) )
             {
-                Start= idx;
+                result= (uint) lResult;
                 return true;
             }
-
-            Start= origStart;
-            End=   origEnd;
             return false;
         }
 
         /** ****************************************************************************************
-         * Reads a floating point number from this object. If successful, the front of
-         * this \b %Substring is cut to point to first character that is not belonging to the
-         * floating point number.
-         * If no number is found, \c false is returned and this object does not change.
+         * Reads an unsigned 64-bit integer in binary format at the given position
+         * from this \b %AString. This is done, by invoking
+         * \ref cs::aworx::lib::strings::NumberFormat::ParseBin "NumberFormat.ParseBin"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
          *
-         * Leading whitespace characters are ignored. However, if after leading whitespaces no
-         * number is found, then also these whitespaces remain.
-         *
-         * \note
-         *   If this \b %Substring spans several float values which are separated by
-         *   whitespaces, concatenated calls to this method will read one by one,
-         *   without the need of further trimming or
-         *   \ref cs::aworx::lib::strings::Tokenizer "'tokenizing'").
-         *   Therefore, by providing the parameter \p whitespaces, it is possible to
-         *   easily read several numbers which are separated by user defined characters.
-         *
-         *  See class \ref cs::aworx::lib::strings::NumberFormat "NumberFormat"
-         *  for more information about conversion methods of floating point values in ALib.
-         *  If no object of this type is provided with optional parameter \p numberFormat,
-         *  the static default object found in
-         *  \ref cs::aworx::lib::strings::NumberFormat::Global "NumberFormat.Global"
-         *  is used.
+         * For more information on number conversion, see class
+         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat".
          *
          * @param[out] result  A reference to the result value.
-         * @param numberFormat The object performing the conversion and defines the output format.
+         * @param numberFormat Defines the input format.
          *                     Optional and defaults to \c null.
-         * @param whitespaces  White space characters used to trim the substring at the front
-         *                     before reading the value.
-         *                     Defaults to  \ref CString.DefaultWhitespaces
          *
-         * @return  \c true if a number was found and, \c false otherwise.
+         * @return  \c true if a number was consumed, \c false otherwise.
          ******************************************************************************************/
-        public bool ConsumeFloat( out double result, NumberFormat numberFormat = null, char[] whitespaces = null )
+        public bool    ConsumeBin( out ulong result, NumberFormat numberFormat= null )
         {
-            result= 0.0;
-            if( IsEmpty() )
+            if ( numberFormat == null )
+                numberFormat= NumberFormat.Computational;
+
+            int newStart= Start;
+            result= numberFormat.ParseBin( Buf, ref newStart, End );
+
+            if( newStart == Start )
                 return false;
-            if ( whitespaces  == null )   whitespaces=  CString.DefaultWhitespaces;
-            if ( numberFormat == null )   numberFormat= NumberFormat.Global;
 
-            int origStart= Start;
-            int origEnd=   End;
-            TrimStart( whitespaces );
-            int    trimStart= Start;
-            int    idx=       trimStart;
-            result=    ( numberFormat != null ? numberFormat
-                                              : NumberFormat.Global )
-                           .StringToFloat( Buf, ref idx, End );
+            Start= newStart;
+            return true;
+        }
 
-            if( idx != trimStart )
+        /** ****************************************************************************************
+         * Overloaded version of #ConsumeBin(out ulong,NumberFormat =)
+         * accepting an \p uint value.
+         *
+         * @param[out] result  A reference to the result value.
+         * @param numberFormat Defines the input format.
+         *                     Optional and defaults to \c null.
+         *
+         * @return  \c true if a number was consumed, \c false otherwise.
+         ******************************************************************************************/
+        public bool    ConsumeBin( out uint result, NumberFormat numberFormat= null )
+        {
+            result= 0;
+            ulong lResult;
+            if( ConsumeBin( out lResult, numberFormat ) )
             {
-                Start= idx;
+                result= (uint) lResult;
                 return true;
             }
-
-            Start= origStart;
-            End=   origEnd;
             return false;
+        }
+
+        /** ****************************************************************************************
+         * Reads an unsigned 64-bit integer in hexadecimal format at the given position
+         * from this \b %AString. This is done, by invoking
+         * \ref cs::aworx::lib::strings::NumberFormat::ParseHex "NumberFormat.ParseHex"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
+         *
+         * For more information on number conversion, see class
+         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat".
+         *
+         * @param[out] result  A reference to the result value.
+         * @param numberFormat Defines the input format.
+         *                     Optional and defaults to \c null.
+         *
+         * @return  \c true if a number was consumed, \c false otherwise.
+         ******************************************************************************************/
+        public bool    ConsumeHex( out ulong result, NumberFormat numberFormat= null )
+        {
+            if ( numberFormat == null )
+                numberFormat= NumberFormat.Computational;
+
+            int newStart= Start;
+            result= numberFormat.ParseHex( Buf, ref newStart, End );
+
+            if( newStart == Start )
+                return false;
+
+            Start= newStart;
+            return true;
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #ConsumeHex(out ulong,NumberFormat =)
+         * accepting an \p uint value.
+         *
+         * @param[out] result  A reference to the result value.
+         * @param numberFormat Defines the input format.
+         *                     Optional and defaults to \c null.
+         *
+         * @return  \c true if a number was consumed, \c false otherwise.
+         ******************************************************************************************/
+        public bool    ConsumeHex( out uint result, NumberFormat numberFormat= null )
+        {
+            result= 0;
+            ulong lResult;
+            if( ConsumeHex( out lResult, numberFormat ) )
+            {
+                result= (uint) lResult;
+                return true;
+            }
+            return false;
+        }
+
+        /** ****************************************************************************************
+         * Reads an unsigned 64-bit integer in octal format at the given position
+         * from this \b %AString. This is done, by invoking
+         * \ref cs::aworx::lib::strings::NumberFormat::ParseOct "NumberFormat.ParseOct"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
+         *
+         * For more information on number conversion, see class
+         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat".
+         *
+         * @param[out] result  A reference to the result value.
+         * @param numberFormat Defines the input format.
+         *                     Optional and defaults to \c null.
+         *
+         * @return  \c true if a number was consumed, \c false otherwise.
+         ******************************************************************************************/
+        public bool    ConsumeOct( out ulong result, NumberFormat numberFormat= null )
+        {
+            if ( numberFormat == null )
+                numberFormat= NumberFormat.Computational;
+
+            int newStart= Start;
+            result= numberFormat.ParseOct( Buf, ref newStart, End );
+
+            if( newStart == Start )
+                return false;
+
+            Start= newStart;
+            return true;
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #ConsumeOct(out ulong,NumberFormat =)
+         * accepting an \p uint value.
+         *
+         * @param[out] result  A reference to the result value.
+         * @param numberFormat Defines the input format.
+         *                     Optional and defaults to \c null.
+         *
+         * @return  \c true if a number was consumed, \c false otherwise.
+         ******************************************************************************************/
+        public bool    ConsumeOct( out uint result, NumberFormat numberFormat= null )
+        {
+            result= 0;
+            ulong lResult;
+            if( ConsumeOct( out lResult, numberFormat ) )
+            {
+                result= (uint) lResult;
+                return true;
+            }
+            return false;
+        }
+
+        /** ****************************************************************************************
+         * Reads a floating point number at the given position from this \b %AString.
+         * This is done, by invoking
+         * \ref cs::aworx::lib::strings::NumberFormat::ParseFloat "NumberFormat.ParseFloat"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * which is configured to 'international' settings (not using the locale) and therefore
+         * also not parsing grouping characters.
+         *
+         * For more information on parsing options for floating point numbers and number
+         * conversion in general, see class
+         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat".
+         *
+         * @param[out] result  A reference to the result value.
+         * @param numberFormat Defines the input format.
+         *                     Optional and defaults to \c null.
+         *
+         * @return  \c true if a number was consumed, \c false otherwise.
+         ******************************************************************************************/
+        public bool ConsumeFloat( out double result, NumberFormat numberFormat = null )
+        {
+            if ( numberFormat == null )
+                numberFormat= NumberFormat.Computational;
+
+            int newStart= Start;
+            result= numberFormat.ParseFloat( Buf, ref newStart, End );
+
+            if( newStart == Start )
+                return false;
+
+            Start= newStart;
+            return true;
         }
 
         /** ****************************************************************************************
@@ -780,7 +1079,7 @@ public class Substring
         /** ****************************************************************************************
          * @return Searches the given character.
          * @param needle        The character to search.
-         * @param startIdx      The index to start the search at. Optional and defaults to 0.
+         * @param startIdx      The index to start the search at. Optional and defaults to \c 0.
          * @return  The index of the character within this substring, -1 if the character is not
          *          found.
          ******************************************************************************************/
@@ -807,7 +1106,7 @@ public class Substring
          * Search the given \e String in this.
          *
          * @param needle       The String to search.
-         * @param startIdx     The index to start the search at. Optional and defaults to 0.
+         * @param startIdx     The index to start the search at. Optional and defaults to \c 0.
          * @param sensitivity  Case sensitivity of the comparison.
          *                     Optional and defaults to Case.Sensitive.
          * @return    -1 if the \e String is not found. Otherwise the index of first occurrence.
@@ -825,9 +1124,9 @@ public class Substring
          * Search the given \b %AString in the this.
          *
          * @param needle       The String to search.
-         * @param startIdx     The index to start the search at. Optional and defaults to 0.
-         * @param sensitivity  If true, the compare is case insensitive. Optional and defaults to
-         *                             false.
+         * @param startIdx     The index to start the search at. Optional and defaults to \c 0.
+         * @param sensitivity  If \c true, the compare is case insensitive. Optional and defaults to
+         *                     \c false.
          * @return    -1 if the string is not found. Otherwise the index of first occurrence.
          ******************************************************************************************/
         public int IndexOf( AString needle, int startIdx= 0, Case sensitivity= Case.Sensitive  )
@@ -838,8 +1137,6 @@ public class Substring
             int idx= needle != null
                 ? CString.IndexOfString( needle.Buffer(), 0, needle.Length(), Buf, Start + startIdx, length - startIdx, sensitivity )
                 : CString.IndexOfString( null,            0, 0,               Buf, Start + startIdx, length - startIdx, sensitivity );
-            if ( idx < 0)
-                return -1;
             return  idx < 0 ?  -1 : idx - Start;
         }
 
@@ -847,9 +1144,9 @@ public class Substring
          * Search the given \b %Substring in the this.
          *
          * @param needle       The string to search.
-         * @param startIdx     The index to start the search at. Optional and defaults to 0.
-         * @param sensitivity  If true, the compare is case insensitive. Optional and defaults to
-         *                             false.
+         * @param startIdx     The index to start the search at. Optional and defaults to \c 0.
+         * @param sensitivity  If \c true, the compare is case insensitive. Optional and defaults to
+         *                     \c false.
          * @return    -1 if the string is not found. Otherwise the index of first occurrence.
          ******************************************************************************************/
         public int IndexOf( Substring needle, int startIdx= 0, Case sensitivity= Case.Sensitive  )
@@ -860,9 +1157,25 @@ public class Substring
             int idx= needle != null
                 ? CString.IndexOfString( needle.Buf, needle.Start, needle.Length(), Buf, Start + startIdx, length - startIdx, sensitivity )
                 : CString.IndexOfString( null,       0,            0,               Buf, Start + startIdx, length - startIdx, sensitivity );
-            if ( idx < 0)
-                return -1;
             return  idx < 0 ?  -1 : idx - Start;
+        }
+
+        /** ****************************************************************************************
+         * Searches the first difference with given string.
+         *
+         * @param needle       The String to search.
+         * @param sensitivity  Case sensitivity of the comparison.
+         *                     Optional and defaults to \b Case.Sensitive.
+         * @param startIdx     The index to start the search at. Optional and defaults to \c 0.
+         * @return    -1 if the \e String is not found. Otherwise the index of first occurrence.
+         ******************************************************************************************/
+        public int IndexOfFirstDifference( String needle, Case sensitivity= Case.Sensitive, int startIdx= 0  )
+        {
+            int length= Length();
+            if      ( startIdx < 0 )                startIdx= 0;
+            else if ( startIdx >= length )          return 0;
+
+            return  CString.IndexOfFirstDifference( Buf, Start + startIdx, length - startIdx, needle, sensitivity );
         }
 
         /** ****************************************************************************************
@@ -890,10 +1203,7 @@ public class Substring
             if ( startIdx >= Length() ) return   -1;
 
             int idx= CString.IndexOfAnyInRegion( Buf, Start + startIdx, Length() - startIdx, needles, inclusion );
-            if ( idx < 0)
-                return -1;
-            return idx - Start;
-
+            return idx < 0  ?  -1  :  idx - Start;
         }
 
         /** ****************************************************************************************
@@ -919,9 +1229,7 @@ public class Substring
             if ( startIdx < 0         ) return -1;
             if ( startIdx >= Length() ) startIdx=  Length() - 1;
             int idx=  CString.LastIndexOfAny( Buf, Start, startIdx + 1, needles, inclusion );
-            if ( idx < 0)
-                return -1;
-            return idx - Start;
+            return idx < 0  ?  -1  :  idx - Start;
         }
 
     /** ############################################################################################
@@ -1293,7 +1601,7 @@ public class Substring
                 return ContainsAt( ca, 0, Length(), 0, sensitivity );
             }
 
-            ALIB.WARNING( "Unknown object type." );
+            ALIB_DBG.WARNING( "Unknown object type." );
 
             return false;
         }
@@ -1418,7 +1726,7 @@ public class Substring
         }
 
         /** ****************************************************************************************
-         * Invokes #TrimStart(char[]) providing default parameter
+         * Invokes #TrimStart(char[] whiteSpaces) providing default parameter
          * \ref cs::aworx::lib::strings::CString::DefaultWhitespaces "CString.DefaultWhitespaces".
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
@@ -1445,7 +1753,7 @@ public class Substring
         }
 
         /** ****************************************************************************************
-         * Invokes #TrimEnd(char[]) providing default parameter
+         * Invokes #TrimEnd(char[] whiteSpaces) providing default parameter
          * \ref cs::aworx::lib::strings::CString::DefaultWhitespaces "CString.DefaultWhitespaces".
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
@@ -1466,7 +1774,7 @@ public class Substring
         }
 
         /** ****************************************************************************************
-         * Invokes #Trim(char[]) providing default parameter
+         * Invokes #Trim(char[] whiteSpaces) providing default parameter
          * \ref cs::aworx::lib::strings::CString::DefaultWhitespaces "CString.DefaultWhitespaces".
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/

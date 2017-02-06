@@ -1,17 +1,17 @@
 // #################################################################################################
 //  Unit Tests - AWorx Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package ut_alox;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 
+
 import org.junit.Test;
 
-import com.aworx.lib.ALIB;
 import com.aworx.lib.config.Configuration;
 import com.aworx.lib.config.IniFile;
 import com.aworx.lib.config.Variable;
@@ -26,10 +26,11 @@ import ut_com_aworx.AWorxUnitTesting;
 
 public class UT_alox_domains extends AWorxUnitTesting
 {
-    void LOG_CHECK( String dom, String exp, MemoryLogger ml, Lox lox )
+    static void LOG_CHECK( String dom, String exp, MemoryLogger ml, Lox lox )
     {
         ml.memoryLog._(); ml.autoSizes.reset();
-        lox.info( dom, "" );
+        Object[] logables= { "" };
+        lox.entry( dom, Verbosity.INFO, logables );
         UT_EQ( exp , ml.memoryLog );
     }
 
@@ -61,7 +62,7 @@ public class UT_alox_domains extends AWorxUnitTesting
         LOG_CHECK( ","       , "</#>"             , ml,Log.LOX);
         LOG_CHECK( "-"       , "</->"             , ml,Log.LOX);
         LOG_CHECK( "_"       , "</_>"             , ml,Log.LOX);
-        LOG_CHECK( "@"       , "</@>"             , ml,Log.LOX);
+        LOG_CHECK( "@"       , "</#>"             , ml,Log.LOX);
         LOG_CHECK( "."       , "</>"              , ml,Log.LOX);
         LOG_CHECK( ".."      , "</>"              , ml,Log.LOX);
         LOG_CHECK( "CU.."    , "</CU##>"          , ml,Log.LOX);
@@ -117,6 +118,7 @@ public class UT_alox_domains extends AWorxUnitTesting
     {
         UT_INIT();
         Log.addDebugLogger();
+        Log.debugLogger.metaInfo.format._()._( utWriter.logger.metaInfo.format );
         MemoryLogger ml= new MemoryLogger();
 
         Log.setVerbosity ( ml, Verbosity.VERBOSE );
@@ -196,13 +198,13 @@ public class UT_alox_domains extends AWorxUnitTesting
 
         Log.setDomainSubstitutionRule( "*/ABC*"     , "DEF"      );   LOG_CHECK( "ABC"  , "</DEF>"                 , ml,Log.LOX);
         Log.setDomainSubstitutionRule( "*EF*"       , "ZZZ"      );   LOG_CHECK( "ABC"  , "</DZZZ>"                , ml,Log.LOX);
-        Log.setDomainSubstitutionRule( "*Z*"        , "@@"       );   LOG_CHECK( "ABC"  , "</D@@@@@@>"             , ml,Log.LOX);
+        Log.setDomainSubstitutionRule( "*Z*"        , "EE"       );   LOG_CHECK( "ABC"  , "</DEEEEEE>"             , ml,Log.LOX);
 
-        Log.setDomainSubstitutionRule( "*/q*"       , "v"        );   LOG_CHECK( "Q"    , "</v>"                   , ml,Log.LOX);
+        Log.setDomainSubstitutionRule( "*/Q*"       , "V"        );   LOG_CHECK( "Q"    , "</V>"                   , ml,Log.LOX);
 
 
         // delete all rules
-        Log.setDomainSubstitutionRule( null        , null       );   LOG_CHECK( "/_/abc", "</_/abc>"              , ml,Log.LOX);
+        Log.setDomainSubstitutionRule( null        , null       );   LOG_CHECK( "/_/ABC", "</_/ABC>"              , ml,Log.LOX);
                                                                      LOG_CHECK( "Q"     , "</Q>"                  , ml,Log.LOX);
                                                                      LOG_CHECK( "ABC"   , "</ABC>"                , ml,Log.LOX);
 
@@ -245,7 +247,7 @@ public class UT_alox_domains extends AWorxUnitTesting
         iniFile.readFile();
 
         // add to config
-        ALIB.config.insertPlugin( iniFile, Configuration.PRIO_INI_FILE );
+        Configuration.Default.insertPlugin( iniFile, Configuration.PRIO_INI_FILE );
 
         // create lox, loggers
         Lox myLox= new Lox( "MyLox" ); // name will be upper case
@@ -261,7 +263,7 @@ public class UT_alox_domains extends AWorxUnitTesting
 
         //Log.state( "", Verbosity.INFO, "Configuration now is:" );
 
-        ALIB.config.removePlugin( iniFile );
+        Configuration.Default.removePlugin( iniFile );
         myLox.removeLogger( ml );
         myLox.removeLogger( "CONSOLE" );
     }
@@ -293,7 +295,7 @@ public class UT_alox_domains extends AWorxUnitTesting
                           +  "*SUBSTR*   = Info       ;"
                           +  "/OVERWRITE = Info       ;"
                         );
-            ALIB.config.insertPlugin( iniFile, Configuration.PRIO_INI_FILE );
+            Configuration.Default.insertPlugin( iniFile, Configuration.PRIO_INI_FILE );
 
 
             // test
@@ -390,7 +392,7 @@ public class UT_alox_domains extends AWorxUnitTesting
 
             //lox.state( "", Verbosity.INFO, "Configuration now is:" );
 
-            ALIB.config.removePlugin( iniFile );
+            Configuration.Default.removePlugin( iniFile );
             lox.removeLogger( ml );
             lox.removeLogger( "CONSOLE" );
         }

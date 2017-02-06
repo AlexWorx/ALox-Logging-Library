@@ -1,8 +1,8 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /**
@@ -11,7 +11,7 @@
 
 The ALox
 <b>tutorials</b>
-([C++] (@ref cpptutorial),
+([C++](@ref cpptutorial),
 [C#]  (@ref cstutorial),
 [Java](@ref javatutorial)) and most sample code provide information about <em>debug logging</em>.
 The main goal of this chapter is to explain how to implement <em>release logging</em>. This might be
@@ -52,7 +52,7 @@ Now, with <em>debug logging</em>, there are some specialties that do not apply i
 2. For being able to
    \b prune
      ([C++] (@ref cppprepro_macros),
-      [C#]  (@ref cspruning) and
+      [C#]  (@ref cspruning),
       [Java](@ref javasetup_pruning))
    <em>debug logging</em> statements from the code, the interface
    to this dedicated \b %Lox singleton is slightly different than just using the interface of
@@ -75,7 +75,7 @@ Now, with <em>debug logging</em>, there are some specialties that do not apply i
    <b>Tutorial: Hello ALox</b>
     ([C++](@ref cpptutorial),
     [C#]  (@ref cstutorial),
-    [Java](@ref javatutorial))..
+    [Java](@ref javatutorial)).
 
 
 ## Release Logging ##
@@ -90,7 +90,7 @@ identify how release logging differs and derive a guideline on how to implement 
     (In more complex scenarios two or even more of such objects might be created
    and used for different use cases of <em>release logging</em>.)<br>
    It has to be assured that each code
-   entity that should be enabled perform <em>release logging</em> on this \b Lox object has propper
+   entity that should be enabled perform <em>release logging</em> on this \b Lox object has proper
    access to it.
 
 2. One or more objects of (abstract) type
@@ -196,11 +196,11 @@ tailored to the complex case itself.
 
 
 ### Using ALox and Libraries ###
-Using ALox with libraries, is basically the same as using ALox in a single code entity. However,
+Using \b %ALox with libraries, is basically the same as using \b %ALox in a single code entity. However,
 we recommend the following principles:
 - For <em>release  logging</em>, a library should provide an initialization method that receives a reference
   to the dedicated release-Lox instance it is supposed to log into. If such object is not
-  provided (which means the library is not duly initialized), the library should use ALox
+  provided (which means the library is not duly initialized), the library should use \b %ALox
   <em>debug logging</em> to notify that.
 - A library should not create and set any \e %Loggers by itself. The creation of \e %Loggers should
   generally be controlled by the main source entity of a process.
@@ -215,13 +215,13 @@ we recommend the following principles:
 
 
 ### The ALib Report Writer ###
-ALib, the utility library that ALox builds on, provides a concept for writing reports. This
-mechanism is used to report problems in debug-versions of ALib and optionally of software using
+ALib, the utility library that \b %ALox builds on, provides a concept for writing reports. This
+mechanism is used to report problems in debug-versions of \b %ALib and optionally of software using
 ALib. With class
 <b>%ALoxReportWriter</b>
 ([C++](@ref      #aworx::lox::ALoxReportWriter),
 [C#]  (@ref  #cs::aworx::lox::ALoxReportWriter),
-[Java](@ref #com::aworx::lox::ALoxReportWriter)), %ALox implements such mechanism to direct ALib
+[Java](@ref #com::aworx::lox::ALoxReportWriter)), \b %ALox implements such mechanism to direct \b %ALib
 reports to an %ALox \e %Logger. This is all transparently set up and destructed with methods
 <b>%Log.AddDebugLogger</b>
   ([C++](@ref      #aworx::lox::Log::AddDebugLogger),
@@ -247,15 +247,15 @@ It is important to set the verbosity of the (internal) domain provided with meth
 <b>ALoxReportWriter.LogDomain</b>
 ([C++](@ref      #aworx::lox::ALoxReportWriter.LogDomain()),
 [C#]  (@ref  #cs::aworx::lox::ALoxReportWriter.LogDomain()),
-[Java](@ref #com::aworx::lox::ALoxReportWriter.logDomain())), to a proper \e Verbosity, to
+[Java](@ref #com::aworx::lox::ALoxReportWriter.logDomain())), to a proper level, to
 enable the logging of any reports.
 
-A demonstration of how to do this is found in the ALox release logging sample code (language specific).
+A demonstration of how to do this is found in the \b %ALox release logging sample code (language specific).
 
 \note
-  ALox for C++ does not provide a corresponding preprocessor macro.
+  <b>ALox for C++</b> does not provide a corresponding preprocessor macro.
   Instead, macro \b Log_Prune (not \b %Lox_Prune!) should be used to perform the
-  the invocation of \b %Log::AddALibReportWriter and %Log::RemoveALibReportWriter in debug builds.
+  the invocation of \b %Log::AddALibReportWriter and \b %Log::RemoveALibReportWriter in debug builds.
   The following code samples a proper bootstrap:
   \snippet "ut_dox_manual.cpp"     DOX_ALOX_INSTALL_REPORT_WRITER
   Upon termination, such report writer is to be removed as sampled here:

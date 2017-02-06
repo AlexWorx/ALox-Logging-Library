@@ -1,12 +1,12 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alib/alib.hpp"
 #include "alib/config/configuration.hpp"
-#include "alib/system/system.hpp"
+#include "alib/system/environment.hpp"
 
 
 #if !defined(_STDIO_H) && !defined(_INC_STDIO)
@@ -15,10 +15,8 @@
 
 using namespace std;
 
-namespace aworx {
-namespace           lib {
-namespace                   config {
-
+namespace aworx { namespace lib { namespace config
+{
 // #################################################################################################
 // XTernalizer
 // #################################################################################################
@@ -31,16 +29,22 @@ void XTernalizer::InternalizeValue( Substring& src, AString& dest )
 
     while( src.IsNotEmpty() )
     {
-        char c= src.Consume<false>();
+        char c= src.ConsumeChar<false>();
 
         if( lastWasSlash )
         {
             lastWasSlash= false;
             char escChr= c == '\\' ? '\\' :
+                         c == '"'  ? '"'  :
                          c == 'n'  ? '\n' :
                          c == 'r'  ? '\r' :
                          c == 't'  ? '\t' :
-                         c == '"'  ? '"'  : c;
+                         c == 'a'  ? '\a' :
+                         c == 'b'  ? '\b' :
+                         c == 'v'  ? '\v' :
+                         c == 'f'  ? '\f' :
+                         c == 'e'  ? '\033' :
+                         c;
 
             dest._<false>(escChr);
             continue;
@@ -83,16 +87,21 @@ void XTernalizer::ExternalizeValue( Substring& src, AString& dest, char delim )
 
     while( src.IsNotEmpty() )
     {
-        char c= src.Consume();
+        char c= src.ConsumeChar();
 
         switch(c)
         {
-            case '\\' : dest._<false>("\\\\"); break;
-            case '\r' : dest._<false>("\\r" ); break;
-            case '\n' : dest._<false>("\\n" ); break;
-            case '\t' : dest._<false>("\\t" ); break;
-            case '"'  : dest._<false>("\\\""); break;
-            default   : dest._<false>(c);      break;
+            case '\\'   : dest._<false>("\\\\"); break;
+            case '"'    : dest._<false>("\\\""); break;
+            case '\r'   : dest._<false>("\\r" ); break;
+            case '\n'   : dest._<false>("\\n" ); break;
+            case '\t'   : dest._<false>("\\t" ); break;
+            case '\a'   : dest._<false>("\\a" ); break;
+            case '\b'   : dest._<false>("\\b" ); break;
+            case '\v'   : dest._<false>("\\v" ); break;
+            case '\f'   : dest._<false>("\\f" ); break;
+            case '\033' : dest._<false>("\\e" ); break;
+            default     : dest._<false>(c);      break;
         }
     }
 
@@ -103,7 +112,7 @@ void XTernalizer::ExternalizeValue( Substring& src, AString& dest, char delim )
 void XTernalizer::LoadFromString( Variable& variable, const String& value )
 {
     variable.ClearValues();
-    AString* varValue= &variable.AddString();
+    AString* varValue= &variable.Add();
     Substring src( value );
 
     if( variable.Delim == '\0' )
@@ -115,7 +124,7 @@ void XTernalizer::LoadFromString( Variable& variable, const String& value )
     // tokenize
     bool inQuote=      false;
     bool lastWasSlash= false;
-    int  idx=          0;
+    integer idx=          0;
     while( idx < src.Length()  )
     {
         char c= src.CharAt<false>( idx++ );
@@ -142,8 +151,8 @@ void XTernalizer::LoadFromString( Variable& variable, const String& value )
         {
             Substring tok( src, 0, idx - 1 );
             InternalizeValue( tok, *varValue );
-            varValue= &variable.AddString();
-            src.Consume( idx );
+            varValue= &variable.Add();
+            src.ConsumeChars( idx );
             src.TrimStart();
             idx= 0;
         }
@@ -164,34 +173,33 @@ bool  CommandLinePlugin::Load( Variable& variable, bool searchOnly )  const
     // assemble option name as CATEGORY_NAME
     String4K   wcharConverter;
 
-    for ( int i= 1; i < argc ; i++ )
+    for ( int i= 1; i < argCount ; i++ )
     {
         // create substring on actual variable (trim if somebody would work with quotation marks...)
         Substring actVar;
         if (!wArgs)
-            (actVar= ( ((char**) argv)[i] )).Trim();
+            (actVar= (reinterpret_cast<char**>(argVector) [i] )).Trim();
         else
         {
             // convert wide characters
-            wcharConverter.Clear()._(  ((wchar_t**) argv)[i]  );
+            wcharConverter.Clear()._(  (reinterpret_cast<wchar_t**>(argVector))[i]  );
             (actVar= wcharConverter ).Trim();
         }
 
         // request '-' and allow a second '-'
-        if ( !actVar.Consume('-') )
+        if ( !actVar.ConsumeChar('-') )
             continue;
-        actVar.Consume('-');
-        if ( actVar.StartsWith( variable.Fullname, enums::Case::Ignore ) )
+        actVar.ConsumeChar('-');
+        if ( actVar.ConsumeString( variable.Fullname, lang::Case::Ignore ) )
         {
-            actVar.Consume<false>( variable.Fullname.Length() );
             if ( actVar.IsEmpty() )
             {
                 if ( !searchOnly )
-                    variable.AddString();
+                    variable.Add();
                 return true;
             }
 
-            if ( actVar.Consume( Whitespaces::Trim ) == '='  )
+            if ( actVar.ConsumeChar( Whitespaces::Trim ) == '='  )
             {
                 if ( !searchOnly )
                     StringConverter->LoadFromString( variable, actVar.Trim() );
@@ -215,7 +223,7 @@ bool  EnvironmentPlugin::Load( Variable& variable, bool searchOnly )  const
 {
     String256 value;
     ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( value,  ReplaceExternalBuffer );
-    System::GetVariable( variable.Fullname, value, enums::CurrentData::Keep );
+    system::GetEnvironmentVariable( variable.Fullname, value, lang::CurrentData::Keep );
     if ( value.IsEmpty() )
         return false;
 

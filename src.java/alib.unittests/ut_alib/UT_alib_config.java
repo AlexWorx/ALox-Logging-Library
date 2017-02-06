@@ -1,8 +1,8 @@
 // #################################################################################################
 //  Unit Tests - AWorx Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package ut_alib;
 import java.io.BufferedWriter;
@@ -10,7 +10,6 @@ import java.io.FileWriter;
 
 import org.junit.Test;
 
-import com.aworx.lib.ALIB;
 import com.aworx.lib.config.Configuration;
 import com.aworx.lib.config.InMemoryPlugin;
 import com.aworx.lib.config.IniFile;
@@ -32,7 +31,7 @@ public class UT_alib_config extends AWorxUnitTesting
 public void CommandLineArgs()
 {
     UT_INIT();
-    
+
     String[] args=
     {
         "-SingleHyphen=12",
@@ -72,7 +71,7 @@ public void CommandLineArgs()
 public void IniFile()
 {
     UT_INIT();
-    
+
     // write sample config file
     //UT_PRINT(""); UT_PRINT( "### Configuration with IniFile ###" );
     String iniFileContents=
@@ -147,7 +146,7 @@ public void IniFile()
 
     // check some values
     Variable var= new Variable();
-    
+
     iniFile.load( var.define("",    "CUBA"        ) );   UT_EQ( "a country",      var.getString() );
     iniFile.load( var.define("",    "cUbA"        ) );   UT_EQ( "a country",      var.getString() );
     iniFile.load( var.define("",    "SIZE"        ) );   UT_EQ( "25",             var.getString() );
@@ -169,18 +168,18 @@ public void IniFile()
 
     // add it to ALIB config
     ALox.init( null );
-    ALIB.config.insertPlugin( iniFile, Configuration.PRIO_INI_FILE );
-    ALIB.config.load( var.define( "",               "CUBA"              ) );   UT_EQ( "a country"  , var.getString() );
-    ALIB.config.load( var.define( "",               "cUbA"              ) );   UT_EQ( "a country"  , var.getString() );
-    ALIB.config.load( var.define( "",               "SIZE"              ) );   UT_EQ( "25"         , var.getString() );
-    ALIB.config.load( var.define( "",               "concat"            ) );   UT_EQ( 11 , var.size());
+    Configuration.Default.insertPlugin( iniFile, Configuration.PRIO_INI_FILE );
+    Configuration.Default.load( var.define( "",               "CUBA"              ) );   UT_EQ( "a country"  , var.getString() );
+    Configuration.Default.load( var.define( "",               "cUbA"              ) );   UT_EQ( "a country"  , var.getString() );
+    Configuration.Default.load( var.define( "",               "SIZE"              ) );   UT_EQ( "25"         , var.getString() );
+    Configuration.Default.load( var.define( "",               "concat"            ) );   UT_EQ( 11 , var.size());
                                                                              UT_EQ( "start =5",  var.getString(0) );
                                                                              UT_EQ( "end   =32", var.getString(1) );
-    ALIB.config.load( var.define( "Great Section",  "SectionVar"        ) );   UT_EQ( "5"          , var.getString() );
-    ALIB.config.load( var.define( "2nd Section",    "SectionVar"        ) );   UT_EQ( "6"          , var.getString() );
-    ALIB.config.load( var.define( "Great Section",  "SECTION_CONTINUED" ) );   UT_EQ( "yEs"        , var.getString() );
-    ALIB.config.load( var.define( "Great Section",  "Tricky"            ) );   UT_EQ( "backslash\\", var.getString() );
-    ALIB.config.load( var.define( "Great Section",  "SECTION_CONTINUED" ) );   UT_TRUE( var.isTrue() );
+    Configuration.Default.load( var.define( "Great Section",  "SectionVar"        ) );   UT_EQ( "5"          , var.getString() );
+    Configuration.Default.load( var.define( "2nd Section",    "SectionVar"        ) );   UT_EQ( "6"          , var.getString() );
+    Configuration.Default.load( var.define( "Great Section",  "SECTION_CONTINUED" ) );   UT_EQ( "yEs"        , var.getString() );
+    Configuration.Default.load( var.define( "Great Section",  "Tricky"            ) );   UT_EQ( "backslash\\", var.getString() );
+    Configuration.Default.load( var.define( "Great Section",  "SECTION_CONTINUED" ) );   UT_TRUE( var.isTrue() );
 
 
     // check if environment variable "home" overwrites INI file
@@ -194,27 +193,27 @@ public void IniFile()
     // change a value and write a new one
     var.define( "New Section",  "newvar");
     var.priority= Configuration.PRIO_INI_FILE;
-    UT_EQ( Configuration.PRIO_INI_FILE, ALIB.config.store( var, "new" ) );
-    ALIB.config.load  ( var.define("New Section",  "newvar") );  UT_EQ( "new",   var.getString() );
+    UT_EQ( Configuration.PRIO_INI_FILE, Configuration.Default.store( var, "new" ) );
+    Configuration.Default.load  ( var.define("New Section",  "newvar") );  UT_EQ( "new",   var.getString() );
 
     var.define( "", "newvar");
     var.priority= Configuration.PRIO_INI_FILE;
-    UT_EQ( Configuration.PRIO_INI_FILE, ALIB.config.store( var, "aworx") );
-    ALIB.config.load  ( var.define("",             "newvar") );  UT_EQ( "aworx", var.getString() );
+    UT_EQ( Configuration.PRIO_INI_FILE, Configuration.Default.store( var, "aworx") );
+    Configuration.Default.load  ( var.define("",             "newvar") );  UT_EQ( "aworx", var.getString() );
 
 
     var.define( "",   "newvarList", ',');
-    var.addString("val1=5");
-    var.addString("val2=10");
-    var.addString("val3=hello");
+    var.add("val1=5");
+    var.add("val2=10");
+    var.add("val3=hello");
     var.priority= Configuration.PRIO_INI_FILE;
-    UT_EQ( Configuration.PRIO_INI_FILE, ALIB.config.store(var) );
-    ALIB.config.load (  var.define( "",  "newvarList")   );
+    UT_EQ( Configuration.PRIO_INI_FILE, Configuration.Default.store(var) );
+    Configuration.Default.load (  var.define( "",  "newvarList")   );
 
 
     var.define( "",   "commented", ',', "2lines");
     var.priority= Configuration.PRIO_INI_FILE;
-    UT_EQ( Configuration.PRIO_INI_FILE, ALIB.config.store( var, "this is c-line 1 \nand this line 2" ) );
+    UT_EQ( Configuration.PRIO_INI_FILE, Configuration.Default.store( var, "this is c-line 1 \nand this line 2" ) );
 
 
     // write the file
@@ -229,15 +228,13 @@ public void IniFile()
     UT_TRUE( (IniFile.Status.OK == readBack.lastStatus) );
 
     {
-        AString msg= new AString();
         Substring orig= new Substring();
         Substring back= new Substring();
         for ( InMemoryPlugin.Section section : iniFile.sections )
         {
             for ( InMemoryPlugin.Entry entry : section.entries )
             {
-                msg.clear()._( "Reading variable " ).field()._( section.name )._( '/' )._( entry.name );
-                UT_PRINT( msg );
+                UT_PRINT( "Reading variable {!Q}/{!Q}", section.name, entry.name );
 
 
                 char delim= '\0';
@@ -254,7 +251,7 @@ public void IniFile()
                     int idx= var.getString(i).indexOf('=');
                     if( idx < 0 )
                     {
-                        UT_EQ( var.getString(i), varBack.getString(i) );            
+                        UT_EQ( var.getString(i), varBack.getString(i) );
                     }
                     else
                     {
@@ -275,14 +272,14 @@ public void IniFile()
     readBack.load ( var.define( "",             "newvar") );   UT_EQ( "aworx", var.getString() );
 
 
-    ALIB.config.removePlugin( iniFile );
+    Configuration.Default.removePlugin( iniFile );
 
 
-    ALIB.config.insertPlugin( readBack, Configuration.PRIO_INI_FILE );
-    ALIB.config.load ( var.define( "New Section",  "newvar") );   UT_EQ( "new"   , var.getString() );
-    ALIB.config.load ( var.define( "",             "newvar") );   UT_EQ( "aworx" , var.getString() );
+    Configuration.Default.insertPlugin( readBack, Configuration.PRIO_INI_FILE );
+    Configuration.Default.load ( var.define( "New Section",  "newvar") );   UT_EQ( "new"   , var.getString() );
+    Configuration.Default.load ( var.define( "",             "newvar") );   UT_EQ( "aworx" , var.getString() );
 
-    ALIB.config.removePlugin( readBack );
+    Configuration.Default.removePlugin( readBack );
 }
 
 /** ********************************************************************************************
@@ -319,11 +316,11 @@ public void ConfigDefaultAndProtected()
     // set default, something else
     cfg.defaultValues.store( var.define( "TEST", "VAR2"), "this is var 2" );
     UT_EQ( Configuration.PRIO_DEFAULT,     cfg.load  ( var.define( "TEST",      "VAR2"     ) ) );   UT_EQ( "this is var 2"      ,var.getString() );
-    
+
     // set and remove an entry using plugin interface
     var.define( "TEST", "Remove" );     UT_EQ( 0, var.size() );     UT_EQ( -1                           ,var.priority );
     cfg.defaultValues.load( var );      UT_EQ( 0, var.size() );     UT_EQ( -1                           ,var.priority );
-    var.addString("To be deleted");     UT_EQ( 1, var.size() );     UT_EQ( -1                           ,var.priority );
+    var.add("To be deleted");     UT_EQ( 1, var.size() );     UT_EQ( -1                           ,var.priority );
     cfg.defaultValues.store( var );     UT_EQ( 1, var.size() );     UT_EQ( -1                           ,var.priority );
     var.define( "TEST", "Remove" );     UT_EQ( 0, var.size() );     UT_EQ( -1                           ,var.priority );
     cfg.defaultValues.load( var );      UT_EQ( 1, var.size() );     UT_EQ( -1                           ,var.priority );
@@ -331,11 +328,11 @@ public void ConfigDefaultAndProtected()
     cfg.defaultValues.store( var );     UT_EQ( 0, var.size() );     UT_EQ( -1                           ,var.priority );
     var.define( "TEST", "Remove" );     UT_EQ( 0, var.size() );     UT_EQ( -1                           ,var.priority );
     cfg.defaultValues.load( var );      UT_EQ( 0, var.size() );     UT_EQ( -1                           ,var.priority );
-                                                                                                                      
+
     // set and remove an entry using configuration interface
     cfg              .load ( var );     UT_EQ( 0, var.size() );     UT_EQ(  0                           ,var.priority );
     cfg              .store( var );     UT_EQ( 0, var.size() );     UT_EQ(  0                           ,var.priority );
-    var.addString("To be deleted");     UT_EQ( 1, var.size() );     UT_EQ(  0                           ,var.priority );
+    var.add("To be deleted");     UT_EQ( 1, var.size() );     UT_EQ(  0                           ,var.priority );
     cfg              .store( var );     UT_EQ( 1, var.size() );     UT_EQ( Configuration.PRIO_DEFAULT   ,var.priority );
     var.define( "TEST", "Remove" );     UT_EQ( 0, var.size() );     UT_EQ( -1                           ,var.priority );
     cfg              .load ( var );     UT_EQ( 1, var.size() );     UT_EQ( Configuration.PRIO_DEFAULT   ,var.priority );
@@ -351,14 +348,14 @@ public void ConfigDefaultAndProtected()
     var.storeDefault( "def par");       UT_EQ( "def par",   var.getString() );  UT_EQ( Configuration.PRIO_DEFAULT   ,var.priority );
 
     var.clearValues();
-    var.addString( "def var" );
+    var.add( "def var" );
     var.storeDefault();                 UT_EQ( "def var",   var.getString() );  UT_EQ( Configuration.PRIO_DEFAULT   ,var.priority );
 
     var.clearValues();
     var.storeDefault();                 UT_EQ( "Default",   var.getString() );  UT_EQ( Configuration.PRIO_DEFAULT   ,var.priority );
 
     var.clearValues();
-    var.addString( "def var" );
+    var.add( "def var" );
     var.protect();                      UT_EQ( "def var",   var.getString() );  UT_EQ( Configuration.PRIO_PROTECTED ,var.priority );
     var.protect("prot par");            UT_EQ( "prot par",  var.getString() );  UT_EQ( Configuration.PRIO_PROTECTED ,var.priority );
     var.clearValues();
@@ -369,7 +366,7 @@ public void ConfigDefaultAndProtected()
     var.load();                         UT_EQ( "Default",   var.getString() );  UT_EQ( Configuration.PRIO_DEFAULT   ,var.priority );
 
 }
-    
+
 /** ********************************************************************************************
  * ConfigReplacementVariables
  **********************************************************************************************/
@@ -428,7 +425,7 @@ public void ConfigReplacementVariables()
 
     // custom variable definitions
     cfg.protectedValues.store( var.define("Rep", "CUST"     ), "cf"           );
-                                                            
+
     cfg.protectedValues.store( var.define("TEST", "VARIABLE"), ">>$REP_CUST<<"); cfg.load( var.define("TEST",  "VARIABLE") );   UT_EQ( ">>cf<<"                          ,var.getString()   );
 
     cfg.substitutionVariableStart._()._( "${" );

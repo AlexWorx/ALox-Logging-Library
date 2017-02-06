@@ -1,8 +1,8 @@
-Current documentation is found 
+Current documentation is found online at:
 
-    online at: http://alexworx.github.io/ALox-Logging-Library/
+   http://alexworx.github.io/ALox-Logging-Library/
 
 Important:
-  To successfully create the documentation, the unit tests have 
+  To successfully create the documentation, the unit tests have
   to be run upfront to generate input files.
 

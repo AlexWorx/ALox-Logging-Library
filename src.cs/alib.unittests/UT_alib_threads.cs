@@ -1,20 +1,20 @@
 ﻿// #################################################################################################
 //  cs.aworx.unittests - AWorx Util
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
 using System.Threading;
 using cs.aworx.lib.threads;
 using cs.aworx.lib.time;
 using ut_cs_aworx;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     using NUnit.Framework;
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 #endif
 
@@ -25,18 +25,18 @@ using cs.aworx.lox.loggers;
 
 namespace ut_cs_aworx_lib
 {
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [TestFixture ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestClass]
     #endif
     public class CS_ThreadLock    : AWorxUnitTesting
     {
-        #if ALIB_MONO_DEVELOP
+        #if ALIB_NUNIT
             [Test ()]
         #endif
-        #if ALIB_VSTUDIO
+        #if ALIB_IDE_VSTUDIO
             [TestMethod]
             #if !WINDOWS_PHONE
                 [TestCategory("CS_ThreadLock")]
@@ -61,7 +61,7 @@ namespace ut_cs_aworx_lib
             aLock.Acquire();                                UT_TRUE (  aLock.ToString().StartsWith("Locked")   );
             aLock.Acquire();                                UT_TRUE (  aLock.ToString().StartsWith("Locked")   );
             aLock.Release();                                UT_TRUE (  aLock.ToString().StartsWith("Locked")   );
-                                                                                                    
+
             aLock.Acquire();                                UT_TRUE (  aLock.ToString().StartsWith("Locked")   );
             aLock.Release();                                UT_TRUE (  aLock.ToString().StartsWith("Locked")   );
             aLock.Release();                                UT_TRUE (  aLock.ToString().StartsWith("Unlocked") );
@@ -114,10 +114,10 @@ namespace ut_cs_aworx_lib
             Report.GetDefault().PopHaltFlags();
         }
 
-        #if ALIB_MONO_DEVELOP
+        #if ALIB_NUNIT
             [Test ()]
         #endif
-        #if ALIB_VSTUDIO
+        #if ALIB_IDE_VSTUDIO
             [TestMethod]
             #if !WINDOWS_PHONE
                 [TestCategory("CS_ThreadLock")]
@@ -170,10 +170,10 @@ namespace ut_cs_aworx_lib
 
 
     #if ALOX_DBG_LOG
-        #if ALIB_MONO_DEVELOP
+        #if ALIB_NUNIT
             [Test ()]
         #endif
-        #if ALIB_VSTUDIO
+        #if ALIB_IDE_VSTUDIO
             [TestMethod]
             #if !WINDOWS_PHONE
                 [TestCategory("CS_ThreadLock")]
@@ -184,7 +184,7 @@ namespace ut_cs_aworx_lib
             UT_INIT();
 
             Report.GetDefault().PushHaltFlags( false, false );
-            
+
                 // SmartLock with null-users
                 {
                                                                                                                                                   utWriter.lox.CntLogCalls= 0;
@@ -197,7 +197,7 @@ namespace ut_cs_aworx_lib
                     sl.RemoveAcquirer( null );          UT_TRUE( sl.GetSafeness() == Safeness.Unsafe );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
                     sl.RemoveAcquirer( null );          UT_TRUE( sl.GetSafeness() == Safeness.Unsafe );  UT_TRUE( utWriter.lox.CntLogCalls== 1 ); utWriter.lox.CntLogCalls= 0;
                 }
-            
+
                 // SmartLock with threadlocks
                 {
                     ThreadLock tl1 = new ThreadLock();
@@ -213,7 +213,7 @@ namespace ut_cs_aworx_lib
                     sl.RemoveAcquirer( tl1 );          UT_TRUE( sl.GetSafeness() == Safeness.Unsafe );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
                     sl.RemoveAcquirer( tl1 );          UT_TRUE( sl.GetSafeness() == Safeness.Unsafe );  UT_TRUE( utWriter.lox.CntLogCalls== 1 ); utWriter.lox.CntLogCalls= 0;
                 }
-            
+
                 // mixed
                 {
                     ThreadLock tl1 = new ThreadLock();
@@ -245,10 +245,10 @@ namespace ut_cs_aworx_lib
         }
     #endif
 
-        #if ALIB_MONO_DEVELOP
+        #if ALIB_NUNIT
             [Test ()]
         #endif
-        #if ALIB_VSTUDIO
+        #if ALIB_IDE_VSTUDIO
             [TestMethod]
             #if !WINDOWS_PHONE
                 [TestCategory("CS_ThreadLock")]
@@ -293,10 +293,10 @@ namespace ut_cs_aworx_lib
 
         }
 
-        #if ALIB_MONO_DEVELOP
+        #if ALIB_NUNIT
             [Test ()]
         #endif
-        #if ALIB_VSTUDIO
+        #if ALIB_IDE_VSTUDIO
             [TestMethod]
             #if !WINDOWS_PHONE
                 [TestCategory("CS_ThreadLock")]

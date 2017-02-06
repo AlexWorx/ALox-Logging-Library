@@ -1,10 +1,10 @@
 // #################################################################################################
 //  aworx - Unit Tests
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alox/alox.hpp"
 
 
 #define TESTCLASSNAME       CPP_ALib__Dox
@@ -13,8 +13,14 @@
 #include <sstream>
 
 
-std::stringstream testOutputStream;
+namespace std
+{
+    extern std::stringstream testOutputStream;
+}
 #define cout testOutputStream
+
+void PrintResult();
+void documentationSample();
 
 //! [DOX_ALIB_ASTRING_FORMAT]
 #include "alib/alib.hpp"
@@ -45,7 +51,7 @@ void PrintResult()
 // SAMPLE code of class documentation
 //##################################################################################################
 
-void docmentationSample()
+void documentationSample()
 {
 {
 //! [DOX_ALIB_ASTRING_NULLED]
@@ -104,7 +110,7 @@ UT_CLASS()
         UT_INIT();
 
         UT_PRINT("*** Documentation Sample +**")
-        docmentationSample();
+        documentationSample();
         PrintResult();
         ut.WriteResultFile( "DOX_ALIB_ASTRING_FORMAT.txt", testOutputStream.str(), "//! [OUTPUT]" );
 
@@ -112,4 +118,4 @@ UT_CLASS()
 
 UT_CLASS_END
 
-}; //namespace
+}; //namespace ut_aworx

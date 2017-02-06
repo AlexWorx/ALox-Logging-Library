@@ -1,8 +1,8 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -16,9 +16,9 @@
 
 // then, set include guard
 #ifndef HPP_ALIB_CONFIG_INI_FILE
-#if !defined( IS_DOXYGEN_PARSER)
+//! @cond NO_DOX
 #define HPP_ALIB_CONFIG_INI_FILE 1
-#endif
+//! @endcond NO_DOX
 
 
 // #################################################################################################
@@ -30,15 +30,13 @@
 
 
 // #################################################################################################
-// forwards
+// forward declarations
 // #################################################################################################
 namespace aworx { namespace lib { namespace strings { class Substring; } } }
 
 
-namespace aworx {
-namespace           lib {
-namespace                   config {
-
+namespace aworx { namespace lib { namespace config
+{
 /** ************************************************************************************************
  * Specialization of class #InMemoryPlugin, which reads and writes a simple configuration file
  * consisting of sections containing key/value pairs.
@@ -88,7 +86,7 @@ namespace                   config {
  *     is written back.
  *
  * - Escaping values
- *   - Spaces \c ' ' and tabulators \c '\\t' are ignored at the start and end of each line and before
+ *   - Spaces <c>' '</c> and tabulators \c '\\t' are ignored at the start and end of each line and before
  *     and after the equal sign \c '='.
  *   - Consequently, whitespaces at the start or end of a value either need to be escaped
  *     using <c>'\\ '</c> or the whole value has to be surrounded by double quotes \c ".
@@ -99,12 +97,12 @@ namespace                   config {
  *   - Values may consist of a list of double quoted values. Whitespaces between such
  *     values are ignored. Consequently, long strings may be enclosed in double quotes
  *     and continued in the next line when the line ends with a backslash \c '\\'.
- *   - Almost any character can be escaped. E.g \c "\\a" is read as \c 'a'.
+ *   - Almost any character can be escaped. E.g \c "\a" is read as \c 'a'.
  *   - On writing only non-printable characters and double quotation marks are escaped.
  *
  * - Other remarks
  *   - Sequences of blank lines are reduced to one blank line, when writing the file.
- *   - Errorneous lines are ignored and not written back. Line numbers with errorneous lines
+ *   - Erroneous lines are ignored and not written back. Line numbers with erroneous lines
  *     are collected in field #LinesWithReadErrors.
  **************************************************************************************************/
  class IniFile : public InMemoryPlugin
@@ -125,7 +123,7 @@ namespace                   config {
             ErrorOpeningFile,
 
             /** An error occurred writing the file .*/
-            ErorWritingFile
+            ErrorWritingFile
         };
 
     // #############################################################################################

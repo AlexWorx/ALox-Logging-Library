@@ -25,4 +25,3 @@
 
 # Pruning ALox debug logging (release logging stays in)
 -assumenosideeffects class com.aworx.lox.Log 	{ <methods>; <fields>; }
--assumenosideeffects class com.aworx.lox.LogBuf { <methods>; <fields>; }

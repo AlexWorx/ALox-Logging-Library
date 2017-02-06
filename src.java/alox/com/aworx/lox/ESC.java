@@ -1,8 +1,8 @@
 // #################################################################################################
 //  com.aworx.lox.core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package com.aworx.lox;
 
@@ -22,7 +22,14 @@ import com.aworx.lib.strings.AString;
  * The name of the class was intentionally chosen to be short, because the escape codes
  * defined with this class will be concatenated to log strings like that:
  *
- *  \snippet "UT_dox_reference_manual.java"     DOC_SAMPLES_ALOX_ESC
+ * \snippet "UT_dox_reference_manual.java"     DOC_SAMPLES_ALOX_ESC
+ *
+ * \note
+ *   With the introduction of own, ALox-specific escape codes, software that uses ALox becomes
+ *   independent from any underlying, platform-specific sequences. For example, ALox is not relying
+ *   on ANSI color codes, which are not supported by colorful Windows consoles. Instead, on each
+ *   platform, dedicated Loggers will perform the translation of ALox codes to platform-specific
+ *   ones.
  **************************************************************************************************/
 public class ESC
 {
@@ -36,7 +43,7 @@ public class ESC
     public static final String  WHITE       = "\033c7";  ///< Select white color for foreground.
     public static final String  GRAY        = "\033c8";  ///< Select gray color for foreground.
     public static final String  FG_RESET    = "\033c9";  ///< Select std color for foreground.
-                                                
+
     public static final String  BG_RED      = "\033C0";  ///< Select red color for background.
     public static final String  BG_GREEN    = "\033C1";  ///< Select green color for background.
     public static final String  BG_YELLOW   = "\033C2";  ///< Select yellow color for background.
@@ -47,25 +54,25 @@ public class ESC
     public static final String  BG_WHITE    = "\033C7";  ///< Select blue color for background.
     public static final String  BG_GRAY     = "\033C8";  ///< Select gray color for background.
     public static final String  BG_RESET    = "\033C9";  ///< Select std color for background.
-                                                
+
     public static final String  BOLD        = "\033sB";  ///< Select bold font style.
     public static final String  ITALICS     = "\033sI";  ///< Select italics font style.
     public static final String  STYLE_RESET = "\033sr";  ///< Select standard font style.
-                                                
+
     public static final String  RESET       = "\033sa";  ///< Reset color and style.
-                                                
+
     public static final String  URL_START   = "\033lS";  ///< Mark the start of an URL.
     public static final String  URL_END     = "\033lE";  ///< Mark the end of an URL.
-    
+
     public static final String  TAB         = "\033t0";  ///< Go to next tab. Usually, text loggers
                                                          ///< will increase the tab position automatically.
     public static final String  EOMETA      = "\033A0";  ///< End of meta information in log string
-                                                         
-    /** ************************************************************************************************
+
+    /** ********************************************************************************************
      * Replaces ESC codes in a string reversely to "ESC.XXX".
      * @param target   The string to replace in.
      * @param startIdx The index to start searching for ESC codes.
-     **************************************************************************************************/
+     **********************************************************************************************/
     public static void replaceToReadable( AString target, int startIdx )
     {
         while( (startIdx= target.indexOf( '\033', startIdx ) ) >= 0 )
@@ -73,9 +80,9 @@ public class ESC
             String val= "{ESC.";
             char c=  target.charAt( startIdx + 1 );
             char c2= target.charAt( startIdx + 2 );
-    
+
             String code= "ERROR";
-    
+
             // colors
             if( c == 'c' || c == 'C' )
             {
@@ -95,9 +102,9 @@ public class ESC
                     case 9:  code= "RESET"   ; break;
                     default: code= "COL_ERR"; break;
                 }
-    
+
             }
-    
+
             // styles
             else if( c == 's' )
             {
@@ -110,7 +117,7 @@ public class ESC
                     default:  code= "STYLE_ERR"    ; break;
                 }
             }
-    
+
             // styles
             else if( c == 'l' )
             {
@@ -121,11 +128,11 @@ public class ESC
                     default:  code= "URL_ERR"      ; break;
                 }
             }
-    
+
             // others
             else if( c == 'l' && c2 == '0' )    code= "TAB";
             else if( c == 'A' && c2 == '0' )    code= "EOMETA";
-    
+
             // Replace
             val+= code + '}';
             target.replaceSubstring( val, startIdx, 3 );

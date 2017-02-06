@@ -1,16 +1,15 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 package com.aworx.lib.config;
 
 import java.util.ArrayList;
 
-import com.aworx.lib.ALIB;
-import com.aworx.lib.enums.Case;
+import com.aworx.lib.lang.Case;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.Tokenizer;
 
@@ -30,7 +29,7 @@ import com.aworx.lib.strings.Tokenizer;
  * For this reason, it divides the set of variables into sections (according to the category),
  * allows comment strings for variables and sections, and virtualizes the some key methods to
  * allow descendants to take specific actions.
- * 
+ *
  * This class offers important internal fields and types for public access (bauhaus code style).
  * However, in standard cases, only the interface methods of this class should be used.
  **************************************************************************************************/
@@ -69,7 +68,7 @@ public class InMemoryPlugin extends ConfigurationPlugin
              */
             public void toVariable( InMemoryPlugin parent, Variable variable )
             {
-                ALIB.ASSERT( delim != '\0' || values.size() <= 1);
+                com.aworx.lib.ALIB_DBG.ASSERT( delim != '\0' || values.size() <= 1);
                 if ( delim != '\0' )
                     variable.delim= delim;
                 if ( FormatHints != 0 )
@@ -79,7 +78,7 @@ public class InMemoryPlugin extends ConfigurationPlugin
 
                 variable.comments._()._( comments );
                 for( AString val : values )
-                    variable.addString( val );
+                    variable.add( val );
             }
 
             /**
@@ -144,7 +143,7 @@ public class InMemoryPlugin extends ConfigurationPlugin
             {
                 if ( name.length() == 0 )
                 {
-                    ALIB.WARNING( "Empty variable name given" );
+                    com.aworx.lib.ALIB_DBG.WARNING( "Empty variable name given" );
                     return null;
                 }
 
@@ -227,7 +226,7 @@ public class InMemoryPlugin extends ConfigurationPlugin
         @Override
         public boolean  load( Variable variable, boolean searchOnly )
         {
-            ALIB.ASSERT_WARNING( variable.name.isNotEmpty(), "Empty name given" );
+            com.aworx.lib.ALIB_DBG.ASSERT_WARNING( variable.name.isNotEmpty(), "Empty name given" );
 
             Section    section;
             Entry      entry=  null;

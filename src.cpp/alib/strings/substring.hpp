@@ -1,42 +1,23 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
-// check for alib.hpp already there but not us
-#if !defined (HPP_ALIB)
-    #error "include \"alib/alib.hpp\" before including this header"
-#endif
-#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_STRINGS_SUBSTRING)
-    #error "Header already included"
-#endif
-
-// Due to our blocker above, this include will never be executed. But having it, allows IDEs
-// (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_ALIB)
-    #include "alib/alib.hpp"
-#endif
-
-// then, set include guard
+// include guard
 #ifndef HPP_ALIB_STRINGS_SUBSTRING
-#if !defined( IS_DOXYGEN_PARSER)
-    #define HPP_ALIB_STRINGS_SUBSTRING 1
+#define HPP_ALIB_STRINGS_SUBSTRING 1
+
+// to preserve the right order, we are not includable directly from outside.
+#if !defined(HPP_ALIB_STRINGS_STRING)
+    #error "include 'alib/alib.hpp' or 'alib/alib_strings.hpp' before including this header"
 #endif
 
-// conditional expression is constant for using our constant template parameters to select
-// checking vs. non-checking method versions
-#if defined(_MSC_VER)
-    #pragma warning( push )
-    #pragma warning( disable : 4127 )
-#endif
 
-namespace aworx {
-namespace           lib {
-namespace                   strings {
-
+namespace aworx { namespace lib { namespace strings
+{
 // #################################################################################################
 // Forward declarations
 // #################################################################################################
@@ -67,7 +48,7 @@ class Tokenizer;
  * object of this type is destructed (or just is not used any more).
  *
  * Objects of this class can be reused by freshly initializing them using of method
- * #Set(const String&) and #Set(const String&,int,int).
+ * #Set(const String&) and #Set(const String&,integer,integer).
  *
  *<p>
  * \note To generate \b %Substring objects which are separated by a delimiter character within a
@@ -119,7 +100,7 @@ class Substring : public String
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        Substring&  Set( const String& src, int regionStart, int regionLength= CString::MaxLen )
+        Substring&  Set( const String& src, integer regionStart, integer regionLength= CString::MaxLen )
         {
             if (TCheck)
                 src.AdjustRegion( regionStart, regionLength );
@@ -181,13 +162,14 @@ class Substring : public String
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        void        SetLength( int newLength )
+        void        SetLength( integer newLength )
         {
             ALIB_STRING_DBG_CHK(this)
 
             if ( TCheck )
             {
-                ALIB_WARN_ONCE_IF_NOT( newLength <= length, "Length increase requested", *this, SetLengthLonger );
+                ALIB_WARN_ONCE_IF_NOT( *this, SetLengthLonger, newLength <= length,
+                                       "Length increase requested"                      );
                 ALIB_ASSERT_ERROR(     newLength >= 0,      "Negative length" );
 
                 if ( newLength >= 0 && newLength < length )
@@ -215,12 +197,12 @@ class Substring : public String
         {
             if ( length > 0 )
             {
-                int idx= CString::IndexOfAny(              buffer,
-                                                           length,
-                                               whiteSpaces.Buffer(),
-                                               whiteSpaces.Length(),
-                                               enums::Inclusion::Exclude
-                                             );
+                integer idx= CString::IndexOfAny(              buffer,
+                                                                 length,
+                                                     whiteSpaces.Buffer(),
+                                                     whiteSpaces.Length(),
+                                                     lang::Inclusion::Exclude
+                                                   );
                 if(  idx < 0 )
                     idx= length;
                 buffer+= idx;
@@ -245,7 +227,7 @@ class Substring : public String
                                                                  length - 1,
                                                      whiteSpaces.Buffer(),
                                                      whiteSpaces.Length(),
-                                                     enums::Inclusion::Exclude
+                                                     lang::Inclusion::Exclude
                                                     ) + 1;
             }
             return *this;
@@ -279,17 +261,17 @@ class Substring : public String
          *                 performed.
          *
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
-         *                          consume operation. Defaults to \c Whitespaces::Keep.
+         *                          consume operation. Defaults to \b Whitespaces::Keep.
          * @return The character at the start of the represented region.
          *         If this \b %Substring is empty or \e nulled, '\0' is returned.
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        char        Consume(enums::Whitespaces trimBeforeConsume= enums::Whitespaces::Keep)
+        char        ConsumeChar(lang::Whitespaces trimBeforeConsume= lang::Whitespaces::Keep)
         {
             if ( TCheck )
             {
-                if ( trimBeforeConsume == enums::Whitespaces::Trim )
+                if ( trimBeforeConsume == lang::Whitespaces::Trim )
                     TrimStart();
                 if( IsEmpty() )
                     return '\0';
@@ -297,12 +279,66 @@ class Substring : public String
             else
             {
                 ALIB_ASSERT_ERROR( !IsEmpty(), "NC: empty string" );
-                if ( trimBeforeConsume == enums::Whitespaces::Trim )
+                if ( trimBeforeConsume == lang::Whitespaces::Trim )
                     TrimStart();
             }
 
             length--;
             return *buffer++;
+        }
+
+        /** ****************************************************************************************
+         * Checks if this object starts with the given character \p consumable. If it does, this
+         * character is cut from this object.
+         *
+         * @param consumable        The consumable character
+         * @param sensitivity       The sensitivity of the comparison.
+         * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
+         *                          consume operation. Defaults to \b Whitespaces::Keep.
+         * @return \c true, if this object was starting with \p consumable and consequently the
+         *         string was cut by one.
+         ******************************************************************************************/
+        inline
+        bool        ConsumeChar( char              consumable,
+                                 lang::Case        sensitivity=       lang::Case::Sensitive,
+                                 lang::Whitespaces trimBeforeConsume= lang::Whitespaces::Keep )
+
+        {
+            if ( trimBeforeConsume == lang::Whitespaces::Trim )
+                TrimStart();
+
+            if (    ( sensitivity == lang::Case::Sensitive &&         CharAtStart()  !=         consumable  )
+                 || ( sensitivity == lang::Case::Ignore    && toupper(CharAtStart()) != toupper(consumable) ) )
+                return false;
+            buffer++;
+            length--;
+            return true;
+        }
+
+        /** ****************************************************************************************
+         * Checks if this object ends with the given character \p consumable. If it does, this
+         * character is cut from the end of object.
+         *
+         * @param consumable        The consumable character
+         * @param sensitivity       The sensitivity of the comparison.
+         * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
+         *                          consume operation. Defaults to \b Whitespaces::Keep.
+         * @return \c true, if this object was starting with \p consumable and consequently the
+         *         string was cut by one.
+         ******************************************************************************************/
+        inline
+        bool        ConsumeCharFromEnd( char               consumable,
+                                        lang::Case        sensitivity=       lang::Case::Sensitive,
+                                        lang::Whitespaces trimBeforeConsume= lang::Whitespaces::Keep )
+        {
+            if ( trimBeforeConsume == lang::Whitespaces::Trim )
+                TrimEnd();
+
+            if (    ( sensitivity == lang::Case::Sensitive &&         CharAtEnd()  !=         consumable  )
+                 || ( sensitivity == lang::Case::Ignore    && toupper(CharAtEnd()) != toupper(consumable) ) )
+                return false;
+            length--;
+            return true;
         }
 
         /** ****************************************************************************************
@@ -313,17 +349,17 @@ class Substring : public String
          *                 performed.
          *
          * @param trimBeforeConsume Determines if the string should be (right-) trimmed before the
-         *                          consume operation. Defaults to \c Whitespaces::Keep.
+         *                          consume operation. Defaults to \b Whitespaces::Keep.
          * @return The character at the start of the represented region.
          *         If this \b %Substring is empty or \e nulled, '\0' is returned.
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        char        ConsumeFromEnd(enums::Whitespaces trimBeforeConsume= enums::Whitespaces::Keep)
+        char        ConsumeCharFromEnd(lang::Whitespaces trimBeforeConsume= lang::Whitespaces::Keep)
         {
             if ( TCheck )
             {
-                if ( trimBeforeConsume == enums::Whitespaces::Trim )
+                if ( trimBeforeConsume == lang::Whitespaces::Trim )
                     TrimEnd();
                 if( IsEmpty() )
                     return '\0';
@@ -331,7 +367,7 @@ class Substring : public String
             else
             {
                 ALIB_ASSERT_ERROR( !IsEmpty(), "NC: empty string" );
-                if ( trimBeforeConsume == enums::Whitespaces::Trim )
+                if ( trimBeforeConsume == lang::Whitespaces::Trim )
                     TrimEnd();
             }
             return *(buffer + --length );
@@ -356,7 +392,7 @@ class Substring : public String
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int        Consume( int regionLength, Substring* target= nullptr )
+        integer  ConsumeChars( integer regionLength, Substring* target= nullptr )
         {
             if ( TCheck )
             {
@@ -383,8 +419,6 @@ class Substring : public String
             return length;
         }
 
-
-
         /** ****************************************************************************************
          * Cuts the given number of characters from the end of the Substring and optionally
          * places the portion that was cut in parameter \p target (if provided).<br>
@@ -404,7 +438,7 @@ class Substring : public String
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int        ConsumeFromEnd( int regionLength, Substring* target= nullptr )
+        integer   ConsumeCharsFromEnd( integer regionLength, Substring* target= nullptr )
         {
             if ( TCheck )
             {
@@ -455,12 +489,12 @@ class Substring : public String
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int        Consume( int                regionLength,
-                            AString&           target,
-                            int                separatorWidth   =0,
-                            enums::CurrentData targetData       =enums::CurrentData::Clear)
+        integer ConsumeChars( integer            regionLength,
+                               AString&            target,
+                               integer            separatorWidth   =0,
+                               lang::CurrentData  targetData       =lang::CurrentData::Clear)
         {
-            if ( targetData == enums::CurrentData::Clear  )
+            if ( targetData == lang::CurrentData::Clear  )
                 target.Clear();
 
             if ( TCheck )
@@ -510,12 +544,12 @@ class Substring : public String
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int        ConsumeFromEnd(  int                regionLength,
-                                    AString&           target,
-                                    int                separatorWidth   =0,
-                                    enums::CurrentData targetData       =enums::CurrentData::Clear)
+        integer ConsumeCharsFromEnd( integer            regionLength,
+                                      AString&            target,
+                                      integer            separatorWidth   =0,
+                                      lang::CurrentData  targetData       =lang::CurrentData::Clear)
         {
-            if ( targetData == enums::CurrentData::Clear  )
+            if ( targetData == lang::CurrentData::Clear  )
                 target.Clear();
 
             if ( TCheck )
@@ -545,26 +579,25 @@ class Substring : public String
          * @param consumable        The consumable string.
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
-         *                          consume operation. Defaults to \c Whitespaces::Keep.
+         *                          consume operation. Defaults to \b Whitespaces::Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
         inline
-        bool        Consume( const String&      consumable,
-                             enums::Case        sensitivity=       enums::Case::Sensitive,
-                             enums::Whitespaces trimBeforeConsume= enums::Whitespaces::Keep )
+        bool        ConsumeString( const String&     consumable,
+                                   lang::Case        sensitivity=       lang::Case::Sensitive,
+                                   lang::Whitespaces trimBeforeConsume= lang::Whitespaces::Keep )
         {
-            if ( trimBeforeConsume == enums::Whitespaces::Trim )
+            if ( trimBeforeConsume == lang::Whitespaces::Trim )
                 TrimStart();
 
             if ( !StartsWith( consumable, sensitivity ) )
                 return false;
 
-            Consume<false>( consumable.Length() );
-
+            buffer+= consumable.Length();
+            length-= consumable.Length();
             return true;
         }
-
 
         /** ****************************************************************************************
          * Checks if this object ends with the given string \p consumable. If it does, this
@@ -573,172 +606,240 @@ class Substring : public String
          * @param consumable        The consumable string
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
-         *                          consume operation. Defaults to \c Whitespaces::Keep.
+         *                          consume operation. Defaults to \b Whitespaces::Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
         inline
-        bool        ConsumeFromEnd( const String&      consumable,
-                                    enums::Case        sensitivity=       enums::Case::Sensitive,
-                                    enums::Whitespaces trimBeforeConsume= enums::Whitespaces::Keep )
+        bool        ConsumeStringFromEnd( const String&      consumable,
+                                   lang::Case        sensitivity=       lang::Case::Sensitive,
+                                   lang::Whitespaces trimBeforeConsume= lang::Whitespaces::Keep )
         {
-            if ( trimBeforeConsume == enums::Whitespaces::Trim )
+            if ( trimBeforeConsume == lang::Whitespaces::Trim )
                 TrimEnd();
 
             if ( !EndsWith( consumable, sensitivity ) )
                 return false;
-            ConsumeFromEnd<false>( consumable.Length() );
+            length-= consumable.Length();
             return true;
         }
 
         /** ****************************************************************************************
-         * Checks if this object starts with the given character \p consumable. If it does, this
-         * character is cut from this object.
+         * Consumes a minimum of \p minChars of string \c consumable from the start of this
+         * substring. If the minimum characters could not be found, nothing is consumed, otherwise
+         * as much as possible.<br>
+         * This method is useful for example to read commands from a string that may be
+         * abbreviated.
          *
-         * @param consumable        The consumable character
+         * @param consumable        The consumable string.
+         * @param minChars          The minimum amount of characters to consume.
+         *                          Optional and defaults to \c 1
          * @param sensitivity       The sensitivity of the comparison.
+         *                          Defaults to \b Case::Sensitive.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
-         *                          consume operation. Defaults to \c Whitespaces::Keep.
-         * @return \c true, if this object was starting with \p consumable and consequently the
-         *         string was cut by one.
+         *                          first character consume operation.
+         *                          Defaults to \b Whitespaces::Keep.
+         * @return The amount of characters consumed.
          ******************************************************************************************/
-        inline
-        bool        Consume( char               consumable,
-                             enums::Case        sensitivity=       enums::Case::Sensitive,
-                             enums::Whitespaces trimBeforeConsume= enums::Whitespaces::Keep )
-
-        {
-            if ( trimBeforeConsume == enums::Whitespaces::Trim )
-                TrimStart();
-
-            if (    ( sensitivity == enums::Case::Sensitive &&         CharAtStart()  !=         consumable  )
-                 || ( sensitivity == enums::Case::Ignore    && toupper(CharAtStart()) != toupper(consumable) ) )
-                return false;
-            buffer++;
-            length--;
-            return true;
-        }
+        ALIB_API
+        integer    ConsumePartOf(  const String&     consumable,
+                                   int               minChars           = 1,
+                                   lang::Case        sensitivity        = lang::Case::Sensitive,
+                                   lang::Whitespaces trimBeforeConsume  = lang::Whitespaces::Keep );
 
         /** ****************************************************************************************
-         * Checks if this object ends with the given character \p consumable. If it does, this
-         * character is cut from the end of object.
+         * Consumes all characters \c '0' to \c '9' at the start of this object and stores the
+         * value they represent in \p result.
+         * <br>Unlike with #ConsumeInt or #ConsumeDec, no sign, whitespaces or group characters are
+         * consumed.
          *
-         * @param consumable        The consumable character
-         * @param sensitivity       The sensitivity of the comparison.
-         * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
-         *                          consume operation. Defaults to \c Whitespaces::Keep.
-         * @return \c true, if this object was starting with \p consumable and consequently the
-         *         string was cut by one.
+         * @param [out] result    A reference to the result value.
+         * @tparam    TInteger    The output type.
+         *                        Must be statically castable from \b uint64_t.
+         *
+         * @return  \c true if a number was found and consumed, \c false otherwise.
          ******************************************************************************************/
+        template<typename TInteger>
         inline
-        bool        ConsumeFromEnd( char               consumable,
-                                    enums::Case        sensitivity=       enums::Case::Sensitive,
-                                    enums::Whitespaces trimBeforeConsume= enums::Whitespaces::Keep )
+        bool     ConsumeDecDigits( TInteger& result )
         {
-            if ( trimBeforeConsume == enums::Whitespaces::Trim )
-                TrimEnd();
-
-            if (    ( sensitivity == enums::Case::Sensitive &&         CharAtEnd()  !=         consumable  )
-                 || ( sensitivity == enums::Case::Ignore    && toupper(CharAtEnd()) != toupper(consumable) ) )
-                return false;
-            length--;
-            return true;
-        }
-
-
-        /** ****************************************************************************************
-         * Reads a 32-Bit integer from this object. If successful, the front of this
-         * \b %Substring is cut to point to first character that is not not belonging to the number.
-         * If no number is found, \c false is returned and this object does not change.
-         *
-         * Leading whitespace characters are ignored. However, if after leading whitespaces no
-         * number is found, then also these whitespaces remain.
-         *
-         * \note If this \b %Substring spans several integer values which are separated by
-         *       whitespaces, concatenated calls to this method will read one by one, without
-         *       further trimming or tokenizing
-         *       (see \ref aworx::lib::strings::Tokenizer "Tokenizer").
-         *       Therefore, by providing the parameter \p whiteSpaces, it is possible to
-         *       easily read several numbers which are separated by user defined characters.
-         *
-         * @param whitespaces  The whitespaces used to trim the substring at the front before
-         *                     reading the value.
-         *                     Defaults to  \ref aworx::DefaultWhitespaces
-         * @param[out] result  A reference to the result value.
-         *
-         * @return  \c true if an integer was found and, \c false otherwise.
-         ******************************************************************************************/
-        bool     ConsumeInteger( int32_t& result, const TString& whitespaces = DefaultWhitespaces )
-        {
-            int64_t result64;
-            bool    returnValue= ConsumeLong( result64, whitespaces );
-            result= (int32_t) result64;
+            uint64_t resultImpl;
+            bool    returnValue= consumeDecDigitsImpl( resultImpl );
+            result= static_cast<TInteger>( resultImpl );
             return  returnValue;
         }
 
         /** ****************************************************************************************
-         * Reads a 64-Bit integer from this object. If successful, the front of this
-         * \b %Substring is cut to point to first character that is not not belonging to the number.
-         * If no number is found, \c false is returned and this object does not change.
+         * Consumes an integer value in decimal, binary, hexadecimal or octal format from
+         * the string by invoking method
+         * \ref aworx::lib::strings::NumberFormat::ParseInt "NumberFormat::ParseInt"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c nullptr. This denotes static singleton
+         * \ref aworx::lib::strings::NumberFormat::Computational "NumberFormat::Computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
          *
-         * Leading whitespace characters are ignored. However, if after leading whitespaces no
-         * number is found, then also these whitespaces remain.
+         * For more information on number conversion, see class
+         * \ref aworx::lib::strings::NumberFormat "NumberFormat".
          *
-         * \note
-         *   If this \b %Substring spans several float values which are separated by
-         *   whitespaces, concatenated calls to this method will read one by one,
-         *   without the need of further trimming or
-         *   \ref aworx::lib::strings::Tokenizer "'tokenizing'").
-         *   Therefore, by providing the parameter \p whitespaces, it is possible to
-         *   easily read several numbers which are separated by user defined characters.
+         * @param [out] result    A reference to the result value.
+         * @param numberFormat    The number format to use. Defaults to \c nullptr.
+         * @tparam    TInteger    The output type.
+         *                        Must be statically castable from \b uint64_t.
          *
-         * @param[out] result  A reference to the result value.
-         * @param whitespaces  White space characters used to trim the substring at the front
-         *                     before reading the value.
-         *                     Defaults to  \ref aworx::DefaultWhitespaces
-         *
-         * @return  \c true if an integer was found and, \c false otherwise.
+         * @return  \c true if a number was found and consumed, \c false otherwise.
          ******************************************************************************************/
-        ALIB_API
-        bool   ConsumeLong( int64_t& result, const TString& whitespaces =DefaultWhitespaces );
+        template<typename TInteger>
+        inline
+        bool   ConsumeInt( TInteger& result, NumberFormat* numberFormat= nullptr )
+        {
+            int64_t resultImpl;
+            bool    returnValue= consumeIntImpl( resultImpl, numberFormat );
+            result= static_cast<TInteger>( resultImpl );
+            return  returnValue;
+        }
 
         /** ****************************************************************************************
-         * Reads a floating point number from this object. If successful, the front of
-         * this \b %Substring is cut to point to first character that is not belonging to the
-         * floating point number.
-         * If no number is found, \c false is returned and this object does not change.
+         * Consumes an unsigned integer in standard decimal format
+         * from the start of this %AString. This is done, by invoking
+         * \ref aworx::lib::strings::NumberFormat::ParseDec "NumberFormat::ParseDec"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c nullptr. This denotes static singleton
+         * \ref aworx::lib::strings::NumberFormat::Computational "NumberFormat::Computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
          *
-         * Leading whitespace characters are ignored. However, if after leading whitespaces no
-         * number is found, then also these whitespaces remain.
+         * Sign literals \c '-' or \c '+' are \b not accepted and parsing will fail.
+         * For reading signed integer values, see methods #ConsumeInt, for floating point numbers
+         * #ConsumeFloat.
          *
-         * \note
-         *   If this \b %Substring spans several float values which are separated by
-         *   whitespaces, concatenated calls to this method will read one by one,
-         *   without the need of further trimming or
-         *   \ref aworx::lib::strings::Tokenizer "'tokenizing'").
-         *   Therefore, by providing the parameter \p whitespaces, it is possible to
-         *   easily read several numbers which are separated by user defined characters.
+         * For more information on number conversion, see class
+         * \ref aworx::lib::strings::NumberFormat "NumberFormat".
          *
-         *  See class \ref aworx::lib::strings::NumberFormat "NumberFormat"
-         *  for more information about conversion methods of floating point values in ALib.
-         *  If no object of this type is provided with optional parameter \p numberFormat,
-         *  the static default object found in
-         *  \ref aworx::lib::strings::NumberFormat::Global "NumberFormat::Global"
-         *  is used.
+         * @param [out] result    A reference to the result value.
+         * @param numberFormat    The number format to use. Defaults to \c nullptr.
+         * @tparam    TInteger    The output type.
+         *                        Must be statically castable from \b uint64_t.
          *
-         * @param[out] result  A reference to the result value.
-         * @param numberFormat The object performing the conversion and defines the output format.
-         *                     Optional and defaults to nullptr.
-         * @param whitespaces  White space characters used to trim the substring at the front
-         *                     before reading the value.
-         *                     Defaults to  \ref aworx::DefaultWhitespaces
+         * @return  \c true if a number was found and consumed, \c false otherwise.
+         ******************************************************************************************/
+        template<typename TInteger>
+        inline
+        bool   ConsumeDec( TInteger& result, NumberFormat* numberFormat= nullptr )
+        {
+            uint64_t resultImpl;
+            bool     returnValue= consumeDecImpl( resultImpl, numberFormat );
+            result=  static_cast<TInteger>( resultImpl );
+            return   returnValue;
+        }
+
+        /** ****************************************************************************************
+         * Consumes an unsigned integer in binary format at the given position
+         * from the start of this string. This is done, by invoking
+         * \ref aworx::lib::strings::NumberFormat::ParseBin "NumberFormat::ParseBin"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c nullptr. This denotes static singleton
+         * \ref aworx::lib::strings::NumberFormat::Computational "NumberFormat::Computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
          *
-         * @return  \c true if a number was found and, \c false otherwise.
+         * For more information on number conversion, see class
+         * \ref aworx::lib::strings::NumberFormat "NumberFormat".
+         *
+         * @param [out] result    A reference to the result value.
+         * @param numberFormat    The number format to use. Defaults to \c nullptr.
+         * @tparam    TInteger    The output type.
+         *                        Must be statically castable from \b uint64_t.
+         *
+         * @return  \c true if a number was found and consumed, \c false otherwise.
+         ******************************************************************************************/
+        template<typename TInteger>
+        inline
+        bool   ConsumeBin( TInteger& result, NumberFormat* numberFormat= nullptr )
+        {
+            uint64_t resultImpl;
+            bool     returnValue= consumeBinImpl( resultImpl, numberFormat );
+            result=  static_cast<TInteger>( resultImpl );
+            return   returnValue;
+        }
+
+        /** ****************************************************************************************
+         * Consumes an unsigned integer in hexadecimal format at the given position
+         * from the start of this string. This is done, by invoking
+         * \ref aworx::lib::strings::NumberFormat::ParseHex "NumberFormat::ParseHex"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c nullptr. This denotes static singleton
+         * \ref aworx::lib::strings::NumberFormat::Computational "NumberFormat::Computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
+         *
+         * For more information on number conversion, see class
+         * \ref aworx::lib::strings::NumberFormat "NumberFormat".
+         *
+         * @param [out] result    A reference to the result value.
+         * @param numberFormat    The number format to use. Defaults to \c nullptr.
+         * @tparam    TInteger    The output type.
+         *                        Must be statically castable from \b uint64_t.
+         *
+         * @return  \c true if a number was found and consumed, \c false otherwise.
+         ******************************************************************************************/
+        template<typename TInteger>
+        inline
+        bool   ConsumeHex( TInteger& result, NumberFormat* numberFormat= nullptr )
+        {
+            uint64_t resultImpl;
+            bool     returnValue= consumeHexImpl( resultImpl, numberFormat );
+            result=  static_cast<TInteger>( resultImpl );
+            return   returnValue;
+        }
+
+        /** ****************************************************************************************
+         * Consumes an unsigned integer in octal format at the given position
+         * from the start of this string. This is done, by invoking
+         * \ref aworx::lib::strings::NumberFormat::ParseOct "NumberFormat::ParseOct"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c nullptr. This denotes static singleton
+         * \ref aworx::lib::strings::NumberFormat::Computational "NumberFormat::Computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
+         *
+         * For more information on number conversion, see class
+         * \ref aworx::lib::strings::NumberFormat "NumberFormat".
+         *
+         * @param [out] result    A reference to the result value.
+         * @param numberFormat    The number format to use. Defaults to \c nullptr.
+         * @tparam    TInteger    The output type.
+         *                        Must be statically castable from \b uint64_t.
+         *
+         * @return  \c true if a number was found and consumed, \c false otherwise.
+         ******************************************************************************************/
+        template<typename TInteger>
+        inline
+        bool   ConsumeOct( TInteger& result, NumberFormat* numberFormat= nullptr )
+        {
+            uint64_t resultImpl;
+            bool     returnValue= consumeOctImpl( resultImpl, numberFormat );
+            result=  static_cast<TInteger>( resultImpl );
+            return   returnValue;
+        }
+
+        /** ****************************************************************************************
+         * Consumes a floating point number at the given position from the start of this string.
+         * This is done, by invoking
+         * \ref aworx::lib::strings::NumberFormat::ParseFloat "NumberFormat::ParseFloat"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c nullptr. This denotes static singleton
+         * \ref aworx::lib::strings::NumberFormat::Computational "NumberFormat::Computational"
+         * which is configured to 'international' settings (not using the locale) and therefore
+         * also not parsing grouping characters.
+         *
+         * For more information on parsing options for floating point numbers and number
+         * conversion in general, see class
+         * \ref aworx::lib::strings::NumberFormat "NumberFormat".
+         *
+         * @param [out] result    A reference to the result value.
+         * @param numberFormat    The number format to use. Defaults to \c nullptr.
+         *
+         * @return  \c true if a number was found and consumed, \c false otherwise.
          ******************************************************************************************/
         ALIB_API
         bool  ConsumeFloat( double&         result,
-                            NumberFormat*   numberFormat     =nullptr,
-                            const TString   whitespaces      =DefaultWhitespaces   );
+                            NumberFormat*   numberFormat     =nullptr   );
 
 
         /** ****************************************************************************************
@@ -762,7 +863,7 @@ class Substring : public String
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        Substring& Split( int position, Substring& target, int separatorWidth  =0, bool trim= false )
+        Substring& Split( integer position, Substring& target, integer separatorWidth  =0, bool trim= false )
 
         {
             if ( TCheck )
@@ -777,7 +878,7 @@ class Substring : public String
                                    "NC: position + separator width out of bounds" )
             }
 
-            target.Set( this, position + separatorWidth, length - position - separatorWidth );
+            target.Set( *this, position + separatorWidth, length - position - separatorWidth );
             length= position;
             if( trim )
             {
@@ -786,6 +887,65 @@ class Substring : public String
             }
             return *this;
         }
+
+    //##############################################################################################
+    // Protected Methods
+    //##############################################################################################
+    protected:
+        /** ****************************************************************************************
+         * Implementation for #ConsumeDecDigits.
+         *
+         * @param [out] result    A reference to the result value.
+         * @return  \c true if a number was found and consumed, \c false otherwise.
+         ******************************************************************************************/
+        ALIB_API  bool   consumeDecDigitsImpl( uint64_t& result );
+
+        /** ****************************************************************************************
+         * Implementation for #ConsumeInt.
+         *
+         * @param [out] result    A reference to the result value.
+         * @param numberFormat    The number format to use.
+         * @return  \c true if a number was found and consumed, \c false otherwise.
+         ******************************************************************************************/
+        ALIB_API  bool   consumeIntImpl( int64_t& result, NumberFormat* numberFormat );
+
+        /** ****************************************************************************************
+         * Implementation for #ConsumeDec.
+         *
+         * @param [out] result    A reference to the result value.
+         * @param numberFormat    The number format to use.
+         * @return  \c true if a number was found and consumed, \c false otherwise.
+         ******************************************************************************************/
+        ALIB_API  bool   consumeDecImpl( uint64_t& result, NumberFormat* numberFormat );
+
+        /** ****************************************************************************************
+         * Implementation for #ConsumeBin.
+         *
+         * @param [out] result    A reference to the result value.
+         * @param numberFormat    The number format to use.
+         * @return  \c true if a number was found and consumed, \c false otherwise.
+         ******************************************************************************************/
+        ALIB_API  bool   consumeBinImpl( uint64_t& result, NumberFormat* numberFormat );
+
+        /** ****************************************************************************************
+         * Implementation for #ConsumeHex.
+         *
+         * @param [out] result    A reference to the result value.
+         * @param numberFormat    The number format to use.
+         * @return  \c true if a number was found and consumed, \c false otherwise.
+         ******************************************************************************************/
+        ALIB_API  bool   consumeHexImpl( uint64_t& result, NumberFormat* numberFormat );
+
+        /** ****************************************************************************************
+         * Implementation for #ConsumeOct.
+         *
+         * @param [out] result    A reference to the result value.
+         * @param numberFormat    The number format to use.
+         * @return  \c true if a number was found and consumed, \c false otherwise.
+         ******************************************************************************************/
+        ALIB_API  bool   consumeOctImpl( uint64_t& result, NumberFormat* numberFormat );
+
+
 
 }; // class Substring
 
@@ -796,9 +956,6 @@ using     Substring =    lib::strings::Substring;
 
 } // namespace aworx
 
-#if defined(_MSC_VER)
-    #pragma warning( pop )
-#endif
 #endif // HPP_ALIB_STRINGS_SUBSTRING
 
 

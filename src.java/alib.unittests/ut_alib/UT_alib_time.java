@@ -1,8 +1,8 @@
 // #################################################################################################
 //  Unit Tests - AWorx Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package ut_alib;
 import java.util.*;
@@ -26,9 +26,6 @@ public class UT_alib_time  extends AWorxUnitTesting
     public void Basics()
     {
         UT_INIT();
-        
-        Log.setDomain( "Basics", Scope.METHOD );
-        Log.info( "\n### TicksBasics ###" );
 
         // check times
         {
@@ -70,7 +67,7 @@ public class UT_alib_time  extends AWorxUnitTesting
         // check internal frequency
         {
             double freq= Ticks.internalFrequency();
-            Log.info( "Ticks InternalFrequency:   " + freq );
+            UT_PRINT( "Ticks InternalFrequency:   " + freq );
             UT_TRUE ( freq >= 1000000.0 );
         }
 
@@ -78,10 +75,10 @@ public class UT_alib_time  extends AWorxUnitTesting
         {
             Ticks creationTimeDiff=  new Ticks();
             creationTimeDiff.sub( Ticks.creationTime() );
-            Log.info( "Tick library creation was: " + creationTimeDiff.inNanos  () + "ns ago" );
-            Log.info( "Tick library creation was: " + creationTimeDiff.inMicros () + "µs ago" );
-            Log.info( "Tick library creation was: " + creationTimeDiff.inMillis () + "ms ago" );
-            Log.info( "Tick library creation was: " + creationTimeDiff.inSeconds() + "s ago"  );
+            UT_PRINT( "Tick library creation was: " + creationTimeDiff.inNanos  () + "ns ago" );
+            UT_PRINT( "Tick library creation was: " + creationTimeDiff.inMicros () + "µs ago" );
+            UT_PRINT( "Tick library creation was: " + creationTimeDiff.inMillis () + "ms ago" );
+            UT_PRINT( "Tick library creation was: " + creationTimeDiff.inSeconds() + "s ago"  );
             UT_TRUE ( creationTimeDiff.inNanos  () > 100  ); // It should really take 100 nanoseconds to get here!
             UT_TRUE ( creationTimeDiff.inSeconds() < 3600 ); // these test will probably not last an hour
         }
@@ -92,7 +89,7 @@ public class UT_alib_time  extends AWorxUnitTesting
                 ALIB.sleepMillis( 30 );
             Ticks sleepTime= new Ticks();
             sleepTime.sub( start );
-            Log.info( "Tick diff after 100ms sleep: " + sleepTime.inMillis() +" ms" );
+            UT_PRINT( "Tick diff after 100ms sleep: " + sleepTime.inMillis() +" ms" );
             UT_TRUE ( sleepTime.inMillis() > 28 );
             UT_TRUE ( sleepTime.inMillis() < 150 ); // should work even on heavily loaded machines
         }
@@ -103,10 +100,7 @@ public class UT_alib_time  extends AWorxUnitTesting
     public void SpeedTest()
     {
         UT_INIT();
-        
-        Log.setDomain( "SpeedTest", Scope.METHOD );
 
-        Log.info(  "\n### TicksSpeedTest ###" );
         for (int runs= 0; runs < 5; runs ++ )
         {
             int aLotOf= 100;
@@ -117,7 +111,7 @@ public class UT_alib_time  extends AWorxUnitTesting
 
             long nanos= tkMeasure.age().inNanos();
             long averageNanos= nanos/ aLotOf ;
-            Log.info(   "Doing " + aLotOf + " Ticks.set() calls took " + nanos + " ns. This is an average of " + averageNanos + " nanoseconds per call" );
+            UT_PRINT(   "Doing " + aLotOf + " Ticks.set() calls took " + nanos + " ns. This is an average of " + averageNanos + " nanoseconds per call" );
             UT_TRUE ( averageNanos < 500 ); // should work even on heavily loaded machines
         }
     }
@@ -129,8 +123,6 @@ public class UT_alib_time  extends AWorxUnitTesting
     public void DateTimeConversion()
     {
         UT_INIT();
-        
-        Log.setDomain( "DtTmConv", Scope.METHOD );
 
         Ticks ticksNow= new Ticks();
 
@@ -178,26 +170,26 @@ public class UT_alib_time  extends AWorxUnitTesting
 
 
 
-        Log.info( "Java Date conversion:    ");
-        Log.info( "Today: is:         "     +  ( (new Date()).toString() ) );
-        Log.info( "Today: is:         "     +  ( ticksNow.inJavaDate( null ).toString() ) );
-        Log.info( "Today: is:         "     +  (  ( new Date          ( millisEpochNow)             ).toString() ) );
-        Log.info( "Today: is:         "     +  ( ticksNowFromEpoch.inJavaDate( null ).toString() ) );
-        Log.info( "+1d, 2h,3m,4s:     "     +  ( tomorrow.inJavaDate( null ).toString() ) );
-        Log.info( "5.1.70 3:51:00:    "     +  ( ticks5_1_70_3_51.inJavaDate( null ).toString() ) );
-        Log.info( "5.1.71 3:51:00:    "     +  ( ticks5_1_71_3_51.inJavaDate( null ).toString() ) );
-        Log.info( "14.5.69 8:30:00:   "     +  ( ticks_14_05_69_8_30.inJavaDate( null ).toString() ) );
+        UT_PRINT( "Java Date conversion:    ");
+        UT_PRINT( "Today: is:         "     +  ( (new Date()).toString() ) );
+        UT_PRINT( "Today: is:         "     +  ( ticksNow.inJavaDate( null ).toString() ) );
+        UT_PRINT( "Today: is:         "     +  (  ( new Date          ( millisEpochNow)             ).toString() ) );
+        UT_PRINT( "Today: is:         "     +  ( ticksNowFromEpoch.inJavaDate( null ).toString() ) );
+        UT_PRINT( "+1d, 2h,3m,4s:     "     +  ( tomorrow.inJavaDate( null ).toString() ) );
+        UT_PRINT( "5.1.70 3:51:00:    "     +  ( ticks5_1_70_3_51.inJavaDate( null ).toString() ) );
+        UT_PRINT( "5.1.71 3:51:00:    "     +  ( ticks5_1_71_3_51.inJavaDate( null ).toString() ) );
+        UT_PRINT( "14.5.69 8:30:00:   "     +  ( ticks_14_05_69_8_30.inJavaDate( null ).toString() ) );
 
         GregorianCalendar cal= new GregorianCalendar();
-        Log.info( "Java Calendar conversion:    ");
-        Log.info( "Today: is:         "    +  ( ticksNow.inJavaCalendar( null ).getTime().toString() ) );
+        UT_PRINT( "Java Calendar conversion:    ");
+        UT_PRINT( "Today: is:         "    +  ( ticksNow.inJavaCalendar( null ).getTime().toString() ) );
         cal.setTimeInMillis( millisEpochNow );
-        Log.info( "Today: is:         "    +  (  cal                                              .toString() ) );
-        Log.info( "Today: is:         "    +  ( ticksNowFromEpoch.inJavaCalendar( null ).getTime().toString() ) );
-        Log.info( "+1d, 2h,3m,4s:     "    +  ( tomorrow.inJavaCalendar( null ).getTime().toString() ) );
-        Log.info( "5.1.70 3:51:00:    "    +  ( ticks5_1_70_3_51.inJavaCalendar( null ).getTime().toString() ) );
-        Log.info( "5.1.71 3:51:00:    "    +  ( ticks5_1_71_3_51.inJavaCalendar( null ).getTime().toString() ) );
-        Log.info( "14.5.69 8:30:00:   "    +  ( ticks_14_05_69_8_30.inJavaCalendar( null ).getTime().toString() ) );
+        UT_PRINT( "Today: is:         "    +  (  cal                                              .toString() ) );
+        UT_PRINT( "Today: is:         "    +  ( ticksNowFromEpoch.inJavaCalendar( null ).getTime().toString() ) );
+        UT_PRINT( "+1d, 2h,3m,4s:     "    +  ( tomorrow.inJavaCalendar( null ).getTime().toString() ) );
+        UT_PRINT( "5.1.70 3:51:00:    "    +  ( ticks5_1_70_3_51.inJavaCalendar( null ).getTime().toString() ) );
+        UT_PRINT( "5.1.71 3:51:00:    "    +  ( ticks5_1_71_3_51.inJavaCalendar( null ).getTime().toString() ) );
+        UT_PRINT( "14.5.69 8:30:00:   "    +  ( ticks_14_05_69_8_30.inJavaCalendar( null ).getTime().toString() ) );
     }
 
 
@@ -206,8 +198,6 @@ public class UT_alib_time  extends AWorxUnitTesting
     public void Ages()
     {
         UT_INIT();
-        
-        Log.setDomain( "Ages", Scope.METHOD );
 
         TickWatch tt= new TickWatch();
 
@@ -221,9 +211,9 @@ public class UT_alib_time  extends AWorxUnitTesting
             long ttAverageInMicros=   tt.getAverage().inMicros();
             long ttAverageInMillis=   tt.getAverage().inMillis();
 
-            Log.info( "Ticks minimum measurement nanos:    "    + ttAverageInNanos        );
-            Log.info( "Ticks minimum measurement micros:   "    + ttAverageInMicros     );
-            Log.info( "Ticks minimum measurement millis:   "    + ttAverageInMillis        );
+            UT_PRINT( "Ticks minimum measurement nanos:    "    + ttAverageInNanos        );
+            UT_PRINT( "Ticks minimum measurement micros:   "    + ttAverageInMicros     );
+            UT_PRINT( "Ticks minimum measurement millis:   "    + ttAverageInMillis        );
             UT_TRUE( ttAverageInNanos < 5000    );
             UT_TRUE ( ttAverageInMicros ==    0    );
             UT_TRUE ( ttAverageInMillis ==    0    );
@@ -238,7 +228,7 @@ public class UT_alib_time  extends AWorxUnitTesting
                 tt.sample();
             }
             Ticks avg= tt.getAverage();
-            Log.info(  "100 probes of 1 ns of sleep leads to average sleep time of " + avg.inNanos() + " ns");
+            UT_PRINT(  "100 probes of 1 ns of sleep leads to average sleep time of " + avg.inNanos() + " ns");
         }
 
         // sleep two times 20 ms and probe it to an average
@@ -257,9 +247,9 @@ public class UT_alib_time  extends AWorxUnitTesting
             long    cnt=    tt.getSampleCnt();
             long    avg=    tt.getAverage().inMillis();
             double  hertz=  tt.getAverage().inHertz(1);
-            Log.info(  "Ticks sum is " + tt.getCumulated().inMillis() + " after " + cnt + " times 20 ms sleep" );
-            Log.info(  "  average is: "    + avg + " ms" );
-            Log.info(  "  in Hertz:   "    + hertz );
+            UT_PRINT(  "Ticks sum is " + tt.getCumulated().inMillis() + " after " + cnt + " times 20 ms sleep" );
+            UT_PRINT(  "  average is: "    + avg + " ms" );
+            UT_PRINT(  "  in Hertz:   "    + hertz );
             UT_TRUE  ( hertz < 53 );
             UT_TRUE  ( hertz > 40 ); // should work even on heavily loaded machines
             UT_TRUE  ( 2 == cnt );
@@ -284,10 +274,8 @@ public class UT_alib_time  extends AWorxUnitTesting
     public void MeasureIncreasingDoublingLoop()
     {
         UT_INIT();
-        
-        Log.setDomain( "Measure", Scope.METHOD );
 
-        Log.info( "This test shows quite nicely, how the just in time compiler steps in when we are looping heavily!" );
+        UT_PRINT( "This test shows quite nicely, how the just in time compiler steps in when we are looping heavily!" );
 
         String testString= "-------------------------------------------------------------------------------------------#";
         AString testAString= new AString( testString );
@@ -314,11 +302,8 @@ public class UT_alib_time  extends AWorxUnitTesting
 
 
             if ( nonOptimizableUsedResultValue > -1 ) // this is always true, just for the sake that the compiler does not optimize the whole code!
-                Log.info(  Log.buf()._( "Search loops " )        .field()._(       qtyLoops )             .field( 6 )
-                                    ._( ":  time needed: " )     .field()._( (int)   sSample.inNanos() )  .field( 8 )
-                                    ._(  " / "  )                .field()._( (int) aSample.inNanos() )    .field( 6 )
-                                    ._( "   Ratio String/AString: " )    ._( ((double) sSample.raw()) / ((double) aSample.raw()) )
-                        );
+                UT_PRINT(  "Search loops {:7,}:  time needed: {:10,} / {:10,}. Ratio String/AString: {:>%7.2}",
+                            qtyLoops, sSample.inNanos(), (int) aSample.inNanos(), ((double) sSample.raw()) / ((double) aSample.raw()) );
         }
     }
 

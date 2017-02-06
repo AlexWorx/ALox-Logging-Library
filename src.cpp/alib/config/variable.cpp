@@ -1,10 +1,10 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alib/alib.hpp"
 
 #if !defined (HPP_ALIB_CONFIG_CONFIGURATION)
     #include "alib/config/configuration.hpp"
@@ -22,10 +22,8 @@
 
 using namespace std;
 
-namespace aworx {
-namespace           lib {
-namespace                   config {
-
+namespace aworx { namespace lib { namespace config
+{
 
 void    Variable::clear()
 {
@@ -111,7 +109,7 @@ void Variable::ReplaceValue( int idx, Variable& replVariable )
 {
     if( idx < 0 || idx >= qtyValues )
     {
-        ALIB_WARNING_S512( "Index out of range: " << idx << " ( 0 - " << qtyValues << " allowed)." );
+        ALIB_WARNING( "Index out of range: ", idx  );
         return;
     }
 
@@ -122,7 +120,7 @@ void Variable::ReplaceValue( int idx, Variable& replVariable )
         return;
     }
 
-    values[idx]._()._( replVariable.GetString(0) );
+    values[static_cast<size_t>(idx)]._()._( replVariable.GetString(0) );
     for( int i= 1 ; i < replSize; i++ )
     {
         values.insert( values.begin() + idx + i, AString( replVariable.GetString(i) ) );
@@ -130,75 +128,65 @@ void Variable::ReplaceValue( int idx, Variable& replVariable )
     }
 }
 
-AString&    Variable::AddString()
+AString&    Variable::Add()
 {
-    int actIdx= qtyValues;
+    size_t actIdx= static_cast<size_t>(qtyValues);
     qtyValues++;
-    if( actIdx < (int) values.size() )
+    if( actIdx < values.size() )
         return values[actIdx].Clear();
 
     values.insert( values.end(), AString() );
     return values[actIdx];
 }
 
-AString&    Variable::AddInteger( int value )
-{
-    return AddString()._( value );
-}
-
-AString&    Variable::AddFloat( double value )
-{
-    return AddString()._( Format::Double( value, &ALIB::Config.NumberFormat ) );
-}
 
 
-
-bool        Variable::IsTrue   (int idx) { return  idx < qtyValues ? Config->IsTrue( GetString(idx) )                             : false; }
-int         Variable::GetInteger   (int idx) { return  idx < qtyValues ? GetString(idx)->ToInt()                                      : 0;     }
-double      Variable::GetFloat(int idx) { return  idx < qtyValues ? GetString(idx)->ToFloat( 0, nullptr, &Config->NumberFormat ) : 0.0;   }
+bool        Variable::IsTrue    (int idx) { return  idx < qtyValues ? Config->IsTrue( GetString (idx) )                   : false; }
+integer     Variable::GetInteger(int idx) { return  idx < qtyValues ? static_cast<integer>(GetString(idx)->ParseInt())    : 0;     }
+double      Variable::GetFloat  (int idx) { return  idx < qtyValues ? GetString(idx)->ParseFloat( Config ? &Config->NumberFormat : &NumberFormat::Global ) : 0.0;   }
 
 
 
 // #################################################################################################
-// convenience methods using ALIB::Config singelton
+// convenience methods using Configuration::Default singleton
 // #################################################################################################
 int  Variable::Load()
 {
-    return ALIB::Config.Load( *this );
+    return Configuration::Default.Load( *this );
 }
 
 int  Variable::Store( const String& externalizedValue )
 {
-    return ALIB::Config.Store( *this, externalizedValue );
+    return Configuration::Default.Store( *this, externalizedValue );
 }
 
 int  Variable::StoreDefault( const String& externalizedValue )
 {
     if ( externalizedValue.IsNotNull() )
-        ALIB::Config.DefaultValues.StringConverter->LoadFromString( *this, externalizedValue );
+        Configuration::Default.DefaultValues.StringConverter->LoadFromString( *this, externalizedValue );
 
     if ( Size() == 0 && DefaultValue.IsNotNull() )
-        ALIB::Config.DefaultValues.StringConverter->LoadFromString( *this, DefaultValue );
+        Configuration::Default.DefaultValues.StringConverter->LoadFromString( *this, DefaultValue );
 
     Priority= Configuration::PrioDefault;
-    return ALIB::Config.Store( *this, NullString );
+    return Configuration::Default.Store( *this, NullString );
 }
 
 int  Variable::Protect( const String& externalizedValue )
 {
     if ( externalizedValue.IsNotNull() )
-        ALIB::Config.DefaultValues.StringConverter->LoadFromString( *this, externalizedValue );
+        Configuration::Default.DefaultValues.StringConverter->LoadFromString( *this, externalizedValue );
 
     if ( Size() == 0 && DefaultValue.IsNotNull() )
-        ALIB::Config.DefaultValues.StringConverter->LoadFromString( *this, DefaultValue );
+        Configuration::Default.DefaultValues.StringConverter->LoadFromString( *this, DefaultValue );
 
     Priority= Configuration::PrioProtected;
-    return ALIB::Config.Store( *this, NullString );
+    return Configuration::Default.Store( *this, NullString );
 }
 
 int  Variable::LoadFromString( const String& externalizedValue )
 {
-    ALIB::Config.DefaultValues.StringConverter->LoadFromString( *this, externalizedValue );
+    Configuration::Default.DefaultValues.StringConverter->LoadFromString( *this, externalizedValue );
     return Size();
 }
 
@@ -207,8 +195,8 @@ bool Variable::GetAttribute( const String& attrName, Substring& result, char att
     for ( int i= 0; i< Size(); i++ )
     {
         result.Set( GetString(i ) );
-        if (    result.Consume( attrName,  enums::Case::Ignore, enums::Whitespaces::Trim )
-             && result.Consume( attrDelim, enums::Case::Ignore, enums::Whitespaces::Trim ) )
+        if (    result.ConsumeString ( attrName,  lang::Case::Ignore, lang::Whitespaces::Trim )
+             && result.ConsumeChar   ( attrDelim, lang::Case::Ignore, lang::Whitespaces::Trim ) )
         {
             result.Trim();
             return true;

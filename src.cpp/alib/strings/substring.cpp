@@ -1,11 +1,9 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
-
 #include "alib/alib.hpp"
 
 #if !defined (HPP_ALIB_STRINGS_SUBSTRING)
@@ -29,67 +27,128 @@
 
 using namespace std;
 
-namespace aworx {
-namespace           lib {
-namespace                   strings {
-
-
-
-// #################################################################################################
-// Substring
-// #################################################################################################
-bool   Substring::ConsumeLong( int64_t& result, const TString& whitespaces )
+namespace aworx { namespace lib { namespace strings
 {
-    if (length <= 0 )
+
+bool   Substring::consumeDecDigitsImpl( uint64_t& result )
+{
+    integer idx= 0;
+    result=  NumberFormat::ParseDecDigits( *this, idx );
+    if( idx > 0 )
     {
-        result= 0;
-        return false;
+        ConsumeChars<false>( idx );
+        return true;
     }
-
-    const char* origBuffer= buffer;
-    int         origLength= length;
-    int         idx=        0;
-
-    TrimStart( whitespaces );
-    result=    NumberFormat::Global.StringToInteger( *this, idx );
-
-    if ( idx == 0 )
-    {
-        buffer=  origBuffer;
-        length=  origLength;
-        return false;
-    }
-    buffer+=  idx;
-    length-=  idx;
-    return true;
+    return false;
 }
 
-bool    Substring::ConsumeFloat( double&          result,
-                                 NumberFormat*    numberFormat,
-                                 const TString    whitespaces    )
+bool   Substring::consumeIntImpl( int64_t& result, NumberFormat* numberFormat )
 {
-    if (length <= 0 )
-    {
-        result= 0;
-        return  0.0;
-    }
+    if ( numberFormat == nullptr )
+        numberFormat= &NumberFormat::Computational;
 
-    const char* origBuffer= buffer;
-    int         origLength= length;
-    int         idx=        0;
-    TrimStart( whitespaces );
-    result=    ( numberFormat != nullptr ? numberFormat
-                                         : &NumberFormat::Global )  -> StringToFloat( *this, idx );
-
-    if ( idx == 0 )
+    integer idx= 0;
+    result=  numberFormat->ParseInt( *this, idx );
+    if( idx > 0 )
     {
-        buffer=  origBuffer;
-        length=  origLength;
-        return false;
+        ConsumeChars<false>( idx );
+        return true;
     }
-    buffer+=  idx;
-    length-=  idx;
-    return true;
+    return false;
+}
+
+bool   Substring::consumeDecImpl( uint64_t& result, NumberFormat* numberFormat )
+{
+    if ( numberFormat == nullptr )
+        numberFormat= &NumberFormat::Computational;
+
+    integer idx= 0;
+    result=  numberFormat->ParseDec( *this, idx );
+    if( idx > 0 )
+    {
+        ConsumeChars<false>( idx );
+        return true;
+    }
+    return false;
+}
+
+bool   Substring::consumeBinImpl( uint64_t& result, NumberFormat* numberFormat )
+{
+    if ( numberFormat == nullptr )
+        numberFormat= &NumberFormat::Computational;
+
+    integer idx= 0;
+    result=  numberFormat->ParseBin( *this, idx );
+    if( idx > 0 )
+    {
+        ConsumeChars<false>( idx );
+        return true;
+    }
+    return false;
+}
+
+bool   Substring::consumeHexImpl( uint64_t& result, NumberFormat* numberFormat )
+{
+    if ( numberFormat == nullptr )
+        numberFormat= &NumberFormat::Computational;
+
+    integer idx= 0;
+    result=  numberFormat->ParseHex( *this, idx );
+    if( idx > 0 )
+    {
+        ConsumeChars<false>( idx );
+        return true;
+    }
+    return false;
+}
+
+bool   Substring::consumeOctImpl( uint64_t& result, NumberFormat* numberFormat )
+{
+    if ( numberFormat == nullptr )
+        numberFormat= &NumberFormat::Computational;
+
+    integer idx= 0;
+    result=  numberFormat->ParseOct( *this, idx );
+    if( idx > 0 )
+    {
+        ConsumeChars<false>( idx );
+        return true;
+    }
+    return false;
+}
+
+bool   Substring::ConsumeFloat( double&          result,
+                                NumberFormat*    numberFormat   )
+{
+    if ( numberFormat == nullptr )
+        numberFormat= &NumberFormat::Computational;
+
+    integer idx= 0;
+    result=  numberFormat->ParseFloat( *this, idx );
+    if( idx > 0 )
+    {
+        ConsumeChars<false>( idx );
+        return true;
+    }
+    return false;
+}
+
+integer  Substring::ConsumePartOf(  const String&     consumable,
+                                    int               minChars,
+                                    lang::Case        sensitivity,
+                                    lang::Whitespaces trimBeforeConsume )
+{
+    if ( trimBeforeConsume == lang::Whitespaces::Trim )
+        TrimStart();
+
+    if ( minChars == 0 || minChars > consumable.Length() )
+        return 0;
+
+    integer diff= IndexOfFirstDifference( consumable, sensitivity );
+    if( diff < static_cast<integer>( minChars ) )
+        return 0;
+    ConsumeChars( diff );
+    return diff;
 }
 
 

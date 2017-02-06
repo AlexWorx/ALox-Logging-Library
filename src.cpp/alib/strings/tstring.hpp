@@ -1,25 +1,19 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
+// include guard
+#ifndef HPP_ALIB_STRINGS_TSTRING
+#define HPP_ALIB_STRINGS_TSTRING 1
+
 // to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_ALIB) || defined(HPP_ALIB_STRINGS_ASTERMINATABLE)
-    #error "include alib/alib.hpp instead of this header"
+#if !defined(ALIB_PROPER_INCLUSION)
+    #error "include 'alib/alib.hpp' or 'alib/alib_strings.hpp' instead of this header"
 #endif
-
-// Due to our blocker above, this include will never be executed. But having it, allows IDEs
-// (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_ALIB)
-    #include "alib/alib.hpp"
-#endif
-
-// then, set include guard
-#ifndef HPP_ALIB_STRINGS_ASTERMINATABLE
-#define HPP_ALIB_STRINGS_ASTERMINATABLE 1
 
 
 // conditional expression is constant for using our constant template parameters to select
@@ -39,7 +33,7 @@
  * @{ \def  ALIB_STRING_DBG_UNTERMINATE
  * This macro serves for debugging the development (and potentially the use) of
  * derived classes, eg. class \ref aworx::lib::strings::AString "AString".
- * It is active only when compiler symbol \ref ALIB_DEBUG_STRINGS is set. When active,
+ * It is active only when compiler symbol \ref ALIB_DEBUG_STRINGS is \c true. When active,
  * whenever the contents of an %AString instance is modified, the buffer is explicitly
  * "unterminated" by writing a value of '\\1' at the termination position and the state is
  * stored in field
@@ -49,7 +43,7 @@
  * it will hint to buffers that may not be used with this class.
  *
  * The macro is active when conditional compilation symbol \ref ALIB_DEBUG_STRINGS_ON is set.
- * In case \b ALIB_DEBUG_STRINGS_ON it is not set, but macro \ref ALIB_AVOID_ANALYZER_WARNINGS_ON
+ * In case \b ALIB_DEBUG_STRINGS_ON it is not set, but symbol \ref ALIB_AVOID_ANALYZER_WARNINGS_ON
  * is, still the string is un-terminated, but no checks are are performed.
  * @}
  *
@@ -57,17 +51,17 @@
 
 // do not indent this, for the sake of doxygen formatting
 //--- debug mode ---
-#if defined(ALIB_DEBUG_STRINGS)
+#if ALIB_DEBUG_STRINGS
 
     #define  ALIB_STRING_DBG_UNTERMINATE( astring, offset )              \
     {                                                                    \
         if ( (astring).Buffer() != nullptr )                             \
             (astring).VBuffer()[ (astring).Length()  + offset ]= '\1';   \
-        ((TString&)(astring)).debugIsTerminated= 0;                      \
+        static_cast<TString&>(astring).debugIsTerminated= 0;                      \
     }
 
 //--- suppress analyzer warnings by writing the value ---
-#elif  defined(ALIB_AVOID_ANALYZER_WARNINGS)
+#elif  ALIB_AVOID_ANALYZER_WARNINGS
 
     #define  ALIB_STRING_DBG_UNTERMINATE( astring, offset )              \
     {                                                                    \
@@ -83,9 +77,13 @@
 #endif
 
 
-namespace aworx {
-namespace           lib {
-namespace                   strings {
+namespace aworx { namespace lib { namespace strings
+{
+// #################################################################################################
+// forward declarations
+// #################################################################################################
+class String;
+class NumberFormat;
 
 /** ************************************************************************************************
  * Template (meta programming) struct to determine if an arbitrary string type is terminatable or
@@ -93,8 +91,8 @@ namespace                   strings {
  * The 'default implementation' inherits from std::false_type
  *
  * For all user defined string types (from an ALib perspective external types), which
- * - implement  template functions
- *   \ref aworx::lib::strings::ToString(const TString) "ToString(const TString)"
+ * - implement template stuct
+ *   \ref aworx::lib::strings::T_String "T_String"
  *   to be able to serve as a string argument for implicit construction of class
  *   \ref aworx::lib::strings::String "String"
  * - and which do not provide a terminated buffer in that <em>ToString</em> method
@@ -105,8 +103,8 @@ namespace                   strings {
  * has to be provided.
  *
  * When this is done, the capacity for the termination character '\0' has to be available
- * in the buffer that is passed in function
- * \ref aworx::lib::strings::ToString(const TString) "ToString( const TString )".
+ * in the buffer that is passed in method
+ * \ref aworx::lib::strings::T_String::Buffer "T_String::Buffer".
  * In other words, their buffer needs to be writable and at least one character longer than
  * their content length.
  *
@@ -117,7 +115,7 @@ namespace                   strings {
  *  returns <em>std::string::c_str()</em>. This way, the string returned is well terminated and
  *  there is no need to partially specialize this struct for type <em>std::string</em>.
  **************************************************************************************************/
-template<typename Type> struct  IsTerminatable : public std::false_type { };
+template<typename Type> struct  T_IsTerminatable : public std::false_type { };
 
 
 /** ************************************************************************************************
@@ -132,8 +130,8 @@ template<typename Type> struct  IsTerminatable : public std::false_type { };
  * <b>Implicit construction</b><p>
  * This class hides its parents' constructors and re-implements the template meta
  * programming based "all-for-one" constructor
- * \ref aworx::lib::strings::String::String(const  T&) "String(const  T&)" by introducing
- * \ref aworx::lib::strings::TString::TString(const  T&) "TString(const  T&)".
+ * \ref aworx::lib::strings::String::String(const TStringLike&) "String(const TStringLike&)" by introducing
+ * \ref aworx::lib::strings::TString::TString(const TTerminatable&) "TString(const TTerminatable&)".
  *
  * As it is not possible to implement compile time assertions for the save provision of
  * terminatable types (without taking serious restrictions into account), this constructor
@@ -145,7 +143,7 @@ template<typename Type> struct  IsTerminatable : public std::false_type { };
  *
  * The second check is done only if the first did not apply and is performed using partially
  * implemented template struct
- * \ref aworx::lib::strings::IsTerminatable "ISTerminatable". Consult this struct for information
+ * \ref aworx::lib::strings::T_IsTerminatable "T_IsTerminatable". Consult this struct for information
  * about how to enable external (user defined) string types to be used as parameters to implicitly
  * construct objects of this class.
  *
@@ -154,7 +152,7 @@ template<typename Type> struct  IsTerminatable : public std::false_type { };
  *   objects of type <em>std::strings</em> or ALib's \b %AString,
  *   are well suited to implicitly construct respectively directly serve as objects of this class,
  *   objects of type
- *   \ref aworx::lib::strings::String "String" itself and espcially of type
+ *   \ref aworx::lib::strings::String "String" itself and especially of type
  *   \ref aworx::lib::strings::Substring "Substring" are not.
  *   Therefore the latter are accepted only if they are terminated already.
  *   But obviously, this is especially unlikely for objects of type
@@ -203,10 +201,10 @@ class TString : public String
      * @name Debug methods
      ##@{ ########################################################################################*/
     public:
-    #if defined(ALIB_DEBUG_STRINGS)
+    #if ALIB_DEBUG_STRINGS
         /** ****************************************************************************************
          * Validates this instance. This method is available only if \ref ALIB_DEBUG_STRINGS
-         * is defined. Invocations to this method should be performed using macro
+         * is \c true. Invocations to this method should be performed using macro
          * \ref ALIB_STRING_DBG_CHK.
          ******************************************************************************************/
          void            _dbgCheck()   const;
@@ -214,7 +212,7 @@ class TString : public String
         /**
          * This field serves for debugging the development (and potentially the use) of
          * derived classes, eg. class \ref aworx::lib::strings::AString "AString".
-         * It is available only when compiler symbol \ref ALIB_DEBUG_STRINGS is set. When active,
+         * It is available only when compiler symbol \ref ALIB_DEBUG_STRINGS is \c true. When active,
          * whenever the contents of an \b %AString instance is modified, the buffer is explicitly
          * "unterminated" by writing a value of '\\1' at the termination position and the state is
          * stored in this field .<br>
@@ -243,7 +241,7 @@ class TString : public String
          ******************************************************************************************/
         constexpr
         inline
-        TString( const char* buffer, int contentLength )
+        TString( const char* buffer, integer contentLength )
         : String( buffer, contentLength )
         {}
 
@@ -261,31 +259,31 @@ class TString : public String
 
         /** ****************************************************************************************
          * This constructor overloads the powerful templated constructor
-         * \ref aworx::lib::strings::String::String(const T&) "String::String(const T&)".
+         * \ref aworx::lib::strings::String::String(const TStringLike&) "String::String(const TStringLike&)".
          * In addition to invoking that, it is asserted that the given value is terminated or
-         * type T is terminatable. For more information see this classes' general description.
+         * type \p TTerminatable is terminatable. For more information see this classes' general
+         * description.
          *
          * @param src  The string to represent by this object.
          ******************************************************************************************/
-        template <typename T>
+        template <typename TTerminatable>
         inline
-        TString(const  T& src )
+        TString(const  TTerminatable& src )
         : String(src)
         {
-            ALIB_ASSERT_ERROR(      IsTerminatable  < typename std::remove_cv
-                                                        < typename std::remove_pointer<T>::type>::type>::value
-                                    ||  IsNull()
-                                    ||  buffer[length] == '\0'
-                                  ,"Error unterminated and unterminatable object given" );
+            ALIB_ASSERT_ERROR(    T_IsTerminatable  < typename std::remove_cv
+                                                    < typename std::remove_pointer<TTerminatable>::type>::type>::value
+                              ||  IsNull()
+                              ||  buffer[length] == '\0'
+                              ,"Error unterminated and non-terminatable string buffer given." );
         }
-
 
     /** ############################################################################################
      * @name General Interface
      ##@{ ########################################################################################*/
     public:
         /** ****************************************************************************************
-         * Reads a character at a given index.<br> Overwrites
+         * Reads a character at a given index.<br> Overrides
          * \ref aworx::lib::strings::String::operator[] "String::operator[]" to change the debug assertion
          * to allow inclusion of the termination character.
          *
@@ -297,7 +295,7 @@ class TString : public String
          * @returns If the character contained at index \p op.
          ******************************************************************************************/
          inline
-         char    operator[] (int  op) const
+         char    operator[] (integer  op) const
          {
             ALIB_ASSERT_ERROR( op >= 0  && op <= length , "Index out of bounds" );
             return buffer[op];
@@ -309,7 +307,7 @@ class TString : public String
          * (precisely into <em>buffer[ length ]</em>).
          *
          * \note
-         *   When compiler symbol \ref ALIB_DEBUG_STRINGS is set, the state of debug field
+         *   When compiler symbol \ref ALIB_DEBUG_STRINGS is \c true, the state of debug field
          *   #debugIsTerminated gets set to '1'.
          *
          *  \see #ToCString, #operator const char*().
@@ -317,8 +315,7 @@ class TString : public String
         inline
         void Terminate()    const
         {
-            ALIB_ASSERT_ERROR(  buffer != nullptr
-                                  ,"Can't terminated nulled object." );
+            ALIB_ASSERT_ERROR(  buffer != nullptr ,"Can't terminated nulled object." );
 
             // Note:
             // The following read may cause memory tools to detect access to unitialized memory.
@@ -331,15 +328,15 @@ class TString : public String
             //   }
             //
             // (Tested with valgrind version 3.11)
-            // See project folder "tools" for a complete valgrind supression file for ALib.
+            // See project folder "tools" for a complete valgrind suppression file for ALib.
 
             if (buffer[ length ] != '\0' )
             {
                 vbuffer[ length ]= '\0';
 
-                #if defined(ALIB_DEBUG_STRINGS)
+                #if ALIB_DEBUG_STRINGS
                     // cast to non-const...hey its for good 8-)
-                    ((TString*)this)->debugIsTerminated= 1;
+                    const_cast<TString*>(this)->debugIsTerminated= 1;
                 #endif
             }
         }
@@ -352,7 +349,7 @@ class TString : public String
         using String::IndexOf;
 
         /** ****************************************************************************************
-         *  Search the given terminatable string in this object.
+         * Search the given terminatable string in this object.
          *
          * \note
          *   Parameter \p needle is required to be terminated or terminatable, the same as this
@@ -366,7 +363,7 @@ class TString : public String
          *                     If \c <false\> is added to the method name, no parameter checks are
          *                     performed and the needle must not be empty.
          * @param needle       The String to search for.
-         * @param startIdx     The index to start the search at. Optional and defaults to 0.
+         * @param startIdx     The index to start the search at. Optional and defaults to \c 0.
          * @param sensitivity  Case sensitivity of the comparison.
          *                     Optional and defaults to Case::Sensitive.
          *
@@ -374,9 +371,9 @@ class TString : public String
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int    IndexOf( const TString&  needle,
-                              int              startIdx= 0,
-                              enums::Case      sensitivity=  enums::Case::Sensitive )
+        integer    IndexOf( const TString&   needle,
+                             integer        startIdx= 0,
+                             lang::Case      sensitivity=  lang::Case::Sensitive )
         const
         {
             if (TCheck)
@@ -387,29 +384,25 @@ class TString : public String
             }
             else
             {
-                #if defined(ALIB_DEBUG)
-                    if (    startIdx < 0
-                         || startIdx >= length
-                         || needle.Length() == 0    )
-                        dbgAStringAlibError( "Non checking and illegal parameters" );
-                #endif
+                ALIB_ASSERT_ERROR( startIdx >= 0 && startIdx < length && needle.Length() != 0,
+                                   "Non checking and illegal parameters" );
             }
 
 
-            #if defined (__GLIBCXX__)
-                const char* foundAt= sensitivity == enums::Case::Sensitive
+            #if defined (__GLIBCXX__) || defined(__APPLE__)
+                const char* foundAt= sensitivity == lang::Case::Sensitive
                      ? strstr    ( ToCString() + startIdx, needle.ToCString() )
                      : strcasestr( ToCString() + startIdx, needle.ToCString() );
-                return  foundAt != nullptr ?  foundAt - buffer  :   -1;
+                return  foundAt != nullptr ? foundAt - buffer  :   -1;
             #else
-                if ( sensitivity == enums::Case::Sensitive )
+                if ( sensitivity == lang::Case::Sensitive )
                 {
                     const char* foundAt=  strstr( ToCString() + startIdx, needle.ToCString() );
                     return  foundAt != nullptr ?  (int) (foundAt - buffer)  :   -1;
                 }
                 else
                     // there is no strcasestr in windows, we use the slower String version, non-checking
-                    return IndexOfSubstring<false>( needle, startIdx , enums::Case::Ignore );
+                    return IndexOfSubstring<false>( needle, startIdx , lang::Case::Ignore );
             #endif
         }
 
@@ -447,7 +440,7 @@ class TString : public String
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int            IndexOfAny( const TString& needles, enums::Inclusion inclusion, int startIdx= 0 )
+        integer  IndexOfAny( const TString& needles, lang::Inclusion inclusion, integer startIdx= 0 )
         const
         {
             if (TCheck)
@@ -457,24 +450,20 @@ class TString : public String
             }
             else
             {
-                #if defined(ALIB_DEBUG)
-                    if (    startIdx < 0
-                         || startIdx >= length
-                         || needles.Length() == 0    )
-                        dbgAStringAlibError( "Non checking and illegal parameters" );
-                #endif
+                ALIB_ASSERT_ERROR( startIdx >= 0 && startIdx < length && needles.Length() != 0,
+                                   "Non checking and illegal parameters" );
             }
 
 
-            if ( inclusion == enums::Inclusion::Include )
+            if ( inclusion == lang::Inclusion::Include )
             {
                 const char* res=  std::strpbrk( ToCString() + startIdx, needles.ToCString() );
-                return  res == nullptr ? -1 : (int) (res - buffer);
+                return  res == nullptr ? -1 : res  - buffer;
             }
             else
             {
                 const char* haystack= ToCString() + startIdx;
-                int idx= (int) std::strspn ( haystack, needles.ToCString() );
+                integer idx=  static_cast<integer>(std::strspn ( haystack, needles.ToCString() ) ) ;
                 return *( haystack + idx ) == '\0' ? -1 : startIdx + idx;
             }
         }
@@ -528,122 +517,536 @@ class TString : public String
         }
 
         /** ****************************************************************************************
-         * Reads a 64-bit integer from this object at the given position.
-         * The output parameter is set to point to the first character that is not a number.
-         * If no number is found at the given index, zero is returned and the output parameter is
-         * set to the original start index.
-         *
-         * Leading whitespace characters are ignored. However, if after leading whitespaces no
-         * numbers were found, then the output parameter is set to the original start index.
-         * This way, the optionally provided index can be used to check if parsing succeeded.
-         *
-         * \note For converting non-zero terminated strings, see class
-         *       \ref aworx::lib::strings::Substring "Substring".
+         * Parses an integer value consisting of characters \c '0' to \c '9' from this string.
+         * <br>Unlike with #ParseInt or #ParseDec, no sign, whitespaces or group characters are
+         * accepted.
          *
          * @param startIdx     The start index from where the integer value is tried to be parsed.
-         *                     Optional and defaults to 0.
+         *                     Optional and defaults to \c 0.
          * @param[out] newIdx  Optional output variable that will point to the first character
          *                     in this string after the float number that was parsed.
          *                     If parsing fails, it will be set to the value of parameter startIdx.
          *                     Therefore, this parameter can be used to check if a value was found.
-         * @param whitespaces  White space characters used to trim the substring at the front
-         *                     before reading the value.
-         *                     Defaults to nullptr, which causes the method to use
-         *                     \ref aworx::DefaultWhitespaces.
          *
          * @return  The parsed value. In addition, the parameter \p newIdx is set to point
          *          to the first character behind any found integer number.
          ******************************************************************************************/
         ALIB_API
-        int64_t        ToLong( int startIdx =0, int* newIdx= nullptr,
-                               const TString* whitespaces =nullptr ) const;
+        uint64_t  ParseDecDigits( integer startIdx =0, integer* newIdx= nullptr ) const;
+
 
         /** ****************************************************************************************
-         * Reads a 32-bit integer from this object at the given position.
-         * The output parameter is set to point to the first character that is not a number.
-         * If no number is found at the given index, zero is returned and the output parameter is
-         * set to the original start index.
+         * Parses an integer value in decimal, binary, hexadecimal or octal format from
+         * the string by invoking method
+         * \ref aworx::lib::strings::NumberFormat::ParseInt "NumberFormat::ParseInt"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c nullptr. This denotes static singleton
+         * \ref aworx::lib::strings::NumberFormat::Computational "NumberFormat::Computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
          *
-         * Leading whitespace characters are ignored. However, if after leading whitespaces no
-         * numbers were found, then the output parameter is set to the original start index.
-         * This way, the optionally provided index can be used to check if parsing succeeded.
+         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
+         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * read.
          *
-         * \note For converting non-zero terminated strings, see class
-         *       \ref aworx::lib::strings::Substring "Substring".
+         * For more information on number conversion, see class
+         * \ref aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * have a corresponding implementation within class \b %AString.
          *
-         * @param startIdx     The start index from where the integer value is tried to be parsed.
-         *                     Optional and defaults to 0.
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c nullptr.
          * @param[out] newIdx  Optional output variable that will point to the first
-         *                     character in this string after the float number that was parsed.
-         *                     If parsing fails, it will be set to the value of parameter startIdx.
-         * @param whitespaces  White space characters used to trim the substring at the front
-         *                     before reading the value.
-         *                     Defaults to nullptr, which causes the method to use
-         *                     \ref aworx::DefaultWhitespaces.
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        ALIB_API
+        int64_t  ParseInt( integer startIdx =0, NumberFormat* numberFormat= nullptr,
+                               integer* newIdx= nullptr ) const;
+
+        /** ****************************************************************************************
+         * Overloaded version of #ParseInt(int =,NumberFormat* =,int* =) providing default values
+         * for omitted parameters.
          *
-         * @return  The parsed value. In addition, the output parameter \p newIdx is set to point
-         *          to the first character behind any found integer number.
+         * @param numberFormat The format definition. Defaults to \c nullptr.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
          ******************************************************************************************/
         inline
-        int32_t        ToInt( int  startIdx= 0,  int* newIdx= nullptr,
-                              const TString*   whitespaces = nullptr  ) const
+        int64_t  ParseInt( NumberFormat* numberFormat, integer* newIdx= nullptr ) const
         {
-            return (int32_t) ToLong( startIdx, newIdx, whitespaces );
+            return ParseInt( 0, numberFormat, newIdx );
         }
 
         /** ****************************************************************************************
-         * Reads a floating point value from this object at the given position using the
-         * class \ref aworx::lib::strings::NumberFormat "NumberFormat".
-         * If no object of this type is provided with optional parameter \p numberFormat,
-         * the static default object found in
-         * \ref aworx::lib::strings::NumberFormat::Global "NumberFormat::Global"
-         * is used.
+         * Overloaded version of #ParseInt(int =,NumberFormat* =,int* =) providing default values
+         * for omitted parameters.
          *
-         * Leading whitespace characters as defined in optional parameter \p whitespaces, are
-         * ignored.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        inline
+        int64_t  ParseInt( integer* newIdx ) const
+        {
+            return ParseInt( 0, nullptr, newIdx );
+        }
+
+
+        /** ****************************************************************************************
+         * Overloaded version of #ParseInt(int =,NumberFormat* =,int* =) providing default values
+         * for omitted parameters.
          *
-         * The optional output parameter \p newIdx is set to point to the first character that does
-         * not belong to the number. If no number is found at the given index (respectively at
-         * the first non-whitespace character at or after the given index), zero is returned and
-         * the output parameter is set to the original start index.
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        inline
+        int64_t  ParseInt( integer startIdx, integer* newIdx ) const
+        {
+            return ParseInt( startIdx, nullptr, newIdx );
+        }
+
+        /** ****************************************************************************************
+         * Reads an unsigned 64-bit integer in standard decimal format at the given position
+         * from this %AString. This is done, by invoking
+         * \ref aworx::lib::strings::NumberFormat::ParseDec "NumberFormat::ParseDec"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c nullptr. This denotes static singleton
+         * \ref aworx::lib::strings::NumberFormat::Computational "NumberFormat::Computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
          *
-         * \note For converting non-zero terminated strings, see class
-         *       \ref aworx::lib::strings::Substring "Substring".
+         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
+         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * read.
          *
-         * @param startIdx     The start index from where the float value is tried to be read.
-         *                     Defaults to 0.
-         * @param[out] newIdx  Optional output variable that will point to the first character
-         *                     after the float number that was parsed.
-         *                     If parsing fails, it will be set to the value of parameter startIdx.
-         *                     Therefore, this parameter can be used to check if a value was found.
-         * @param numberFormat The object performing the conversion and defines the output format.
-         *                     Optional and defaults to nullptr.
-         * @param whitespaces  White space characters used to trim the substring at the front
-         *                     before reading the value.
-         *                     Defaults to nullptr, which causes the method to use
-         *                     \ref aworx::DefaultWhitespaces.
+         * Sign literals \c '-' or \c '+' are \b not accepted and parsing will fail.
+         * For reading signed integer values, see methods #ParseInt, for floating point numbers
+         * #ParseFloat.
          *
-         * @return  The parsed value. In addition, on success, the output parameter \p newIdx is set
-         *          to point to the first character behind any found float number.
+         * For more information on number conversion, see class
+         * \ref aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * have a corresponding implementation within class \b %AString.
+         *
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c nullptr.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
          ******************************************************************************************/
         ALIB_API
-        double         ToFloat( int             startIdx        =0,
-                                int*            newIdx          =nullptr,
-                                NumberFormat*   numberFormat    =nullptr,
-                                const TString*  whitespaces     =nullptr    )   const;
+        uint64_t  ParseDec( integer startIdx =0, NumberFormat* numberFormat= nullptr,
+                            integer* newIdx= nullptr ) const;
+
+        /** ****************************************************************************************
+         * Overloaded version of #ParseDec(int =,NumberFormat* =,int* =) providing default values
+         * for omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c nullptr.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        inline
+        uint64_t  ParseDec( NumberFormat* numberFormat, integer* newIdx= nullptr ) const
+        {
+            return ParseDec( 0, numberFormat, newIdx );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #ParseDec(int =,NumberFormat* =,int* =) providing default values
+         * for omitted parameters.
+         *
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        inline
+        uint64_t  ParseDec( integer* newIdx ) const
+        {
+            return ParseDec( 0, nullptr, newIdx );
+        }
+
+
+        /** ****************************************************************************************
+         * Overloaded version of #ParseDec(int =,NumberFormat* =,int* =) providing default values
+         * for omitted parameters.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        inline
+        uint64_t  ParseDec( integer startIdx, integer* newIdx ) const
+        {
+            return ParseDec( startIdx, nullptr, newIdx );
+        }
+
+        /** ****************************************************************************************
+         * Reads an unsigned 64-bit integer in binary format at the given position
+         * from this \b %AString. This is done, by invoking
+         * \ref aworx::lib::strings::NumberFormat::ParseBin "NumberFormat::ParseBin"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c nullptr. This denotes static singleton
+         * \ref aworx::lib::strings::NumberFormat::Computational "NumberFormat::Computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
+         *
+         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
+         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * read.
+         *
+         * For more information on number conversion, see class
+         * \ref aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * have a corresponding implementation within class \b %AString.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c nullptr.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        ALIB_API
+        uint64_t  ParseBin( integer startIdx =0, NumberFormat* numberFormat= nullptr,
+                                integer* newIdx= nullptr ) const;
+
+
+        /** ****************************************************************************************
+         * Overloaded version of #ParseBin(int =,NumberFormat* =,int* =) providing default values
+         * for omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c nullptr.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        inline
+        uint64_t  ParseBin( NumberFormat* numberFormat, integer* newIdx= nullptr ) const
+        {
+            return ParseBin( 0, numberFormat, newIdx );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #ParseBin(int =,NumberFormat* =,int* =) providing default values
+         * for omitted parameters.
+         *
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        inline
+        uint64_t  ParseBin( integer* newIdx ) const
+        {
+            return ParseBin( 0, nullptr, newIdx );
+        }
+
+
+        /** ****************************************************************************************
+         * Overloaded version of #ParseBin(int =,NumberFormat* =,int* =) providing default values
+         * for omitted parameters.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        inline
+        uint64_t  ParseBin( integer startIdx, integer* newIdx ) const
+        {
+            return ParseBin( startIdx, nullptr, newIdx );
+        }
+
+        /** ****************************************************************************************
+         * Reads an unsigned 64-bit integer in hexadecimal format at the given position
+         * from this \b %AString. This is done, by invoking
+         * \ref aworx::lib::strings::NumberFormat::ParseHex "NumberFormat::ParseHex"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c nullptr. This denotes static singleton
+         * \ref aworx::lib::strings::NumberFormat::Computational "NumberFormat::Computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
+         *
+         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
+         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * read.
+         *
+         * For more information on number conversion, see class
+         * \ref aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * have a corresponding implementation within class \b %AString.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c nullptr.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        ALIB_API
+        uint64_t  ParseHex( integer startIdx =0, NumberFormat* numberFormat= nullptr,
+                            integer* newIdx= nullptr ) const;
+
+
+        /** ****************************************************************************************
+         * Overloaded version of #ParseHex(int =,NumberFormat* =,int* =) providing default values
+         * for omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c nullptr.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        inline
+        uint64_t  ParseHex( NumberFormat* numberFormat, integer* newIdx= nullptr ) const
+        {
+            return ParseHex( 0, numberFormat, newIdx );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #ParseHex(int =,NumberFormat* =,int* =) providing default values
+         * for omitted parameters.
+         *
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        inline
+        uint64_t  ParseHex( integer* newIdx ) const
+        {
+            return ParseHex( 0, nullptr, newIdx );
+        }
+
+
+        /** ****************************************************************************************
+         * Overloaded version of #ParseHex(int =,NumberFormat* =,int* =) providing default values
+         * for omitted parameters.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        inline
+        uint64_t  ParseHex( integer startIdx, integer* newIdx ) const
+        {
+            return ParseHex( startIdx, nullptr, newIdx );
+        }
+
+        /** ****************************************************************************************
+         * Reads an unsigned 64-bit integer in octal format at the given position
+         * from this \b %AString. This is done, by invoking
+         * \ref aworx::lib::strings::NumberFormat::ParseOct "NumberFormat::ParseOct"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c nullptr. This denotes static singleton
+         * \ref aworx::lib::strings::NumberFormat::Computational "NumberFormat::Computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
+         *
+         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
+         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * read.
+         *
+         * For more information on number conversion, see class
+         * \ref aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * have a corresponding implementation within class \b %AString.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c nullptr.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        ALIB_API
+        uint64_t  ParseOct( integer startIdx =0, NumberFormat* numberFormat= nullptr,
+                            integer* newIdx= nullptr ) const;
+
+
+        /** ****************************************************************************************
+         * Overloaded version of #ParseOct(int =,NumberFormat* =,int* =) providing default values
+         * for omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c nullptr.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        inline
+        uint64_t  ParseOct( NumberFormat* numberFormat, integer* newIdx= nullptr ) const
+        {
+            return ParseOct( 0, numberFormat, newIdx );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #ParseOct(int =,NumberFormat* =,int* =) providing default values
+         * for omitted parameters.
+         *
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        inline
+        uint64_t  ParseOct( integer* newIdx ) const
+        {
+            return ParseOct( 0, nullptr, newIdx );
+        }
+
+
+        /** ****************************************************************************************
+         * Overloaded version of #ParseOct(int =,NumberFormat* =,int* =) providing default values
+         * for omitted parameters.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        inline
+        uint64_t  ParseOct( integer startIdx, integer* newIdx ) const
+        {
+            return ParseOct( startIdx, nullptr, newIdx );
+        }
+
+        /** ****************************************************************************************
+         * Reads a floating point number at the given position from this \b %AString.
+         * This is done, by invoking
+         * \ref aworx::lib::strings::NumberFormat::ParseFloat "NumberFormat::ParseFloat"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c nullptr. This denotes static singleton
+         * \ref aworx::lib::strings::NumberFormat::Computational "NumberFormat::Computational"
+         * which is configured to 'international' settings (not using the locale) and therefore
+         * also not parsing grouping characters.
+         *
+         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
+         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * read.
+         *
+         * For more information on parsing options for floating point numbers and number
+         * conversion in general, see class
+         * \ref aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * have a corresponding implementation within class \b %AString.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c nullptr.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        ALIB_API
+        double   ParseFloat( integer startIdx =0, NumberFormat* numberFormat= nullptr,
+                             integer* newIdx= nullptr ) const;
+
+        /** ****************************************************************************************
+         * Overloaded version of #ParseFloat(int =,NumberFormat* =,int* =) providing default values
+         * for omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c nullptr.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        inline
+        double  ParseFloat( NumberFormat* numberFormat, integer* newIdx= nullptr ) const
+        {
+            return ParseFloat( 0, numberFormat, newIdx );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #ParseFloat(int =,NumberFormat* =,int* =) providing default values
+         * for omitted parameters.
+         *
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        inline
+        double  ParseFloat( integer* newIdx ) const
+        {
+            return ParseFloat( 0, nullptr, newIdx );
+        }
+
+
+        /** ****************************************************************************************
+         * Overloaded version of #ParseFloat(int =,NumberFormat* =,int* =) providing default values
+         * for omitted parameters.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        inline
+        double  ParseFloat( integer startIdx, integer* newIdx ) const
+        {
+            return ParseFloat( startIdx, nullptr, newIdx );
+        }
 
 }; // class TString
-
-
 
 }} // namespace lib::strings
 
 /** Type alias name in namespace #aworx. */
-using     TString   =       aworx::lib::strings::TString;
+using     TString              =       aworx::lib::strings::TString;
 
 } // namespace aworx
 
 #if defined(_MSC_VER)
     #pragma warning( pop )
 #endif
-#endif // HPP_ALIB_STRINGS_ASTERMINATABLE
+#endif // HPP_ALIB_STRINGS_TSTRING

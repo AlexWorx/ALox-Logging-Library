@@ -1,13 +1,13 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 package com.aworx.lib.strings;
 
-import com.aworx.lib.enums.Whitespaces;
+import com.aworx.lib.lang.Whitespaces;
 
 
 /** ************************************************************************************************
@@ -46,7 +46,7 @@ import com.aworx.lib.enums.Whitespaces;
  *  The following code sample shows how to tokenize a string, including using one nested
  *  tokenizer:
  *
- *  \snippet "UT_alib_strings_Tokenizer.java"     DOC_SAMPLES_ALIB_LIB_STRING_TOKEN
+ *  \snippet "UT_alib_strings_Substring.java"     DOC_SAMPLES_ALIB_LIB_STRING_TOKEN
  *
  *  The output will be:
  *
@@ -98,7 +98,7 @@ public class Tokenizer
          *  Constructs a tokenizer to work on a given cstring.
          *
          * @param  src             The string to be tokenized.
-         * @param  delim           The delimiter that separates the tokens. Can be changed with 
+         * @param  delim           The delimiter that separates the tokens. Can be changed with
          *                         every next token.
          * @param  skipEmptyTokens If \c true, empty tokens are omitted.
          *                         Optional and defaults to \c false.
@@ -125,7 +125,7 @@ public class Tokenizer
          *  \ref com::aworx::lib::strings::AString "AString".
          *
          * @param  src             The string to be tokenized.
-         * @param  delim           The delimiter that separates the tokens. Can be changed with 
+         * @param  delim           The delimiter that separates the tokens. Can be changed with
          *                         every next token.
          * @param  skipEmptyTokens If \c true, empty tokens are omitted.
          *                         Optional and defaults to \c false.
@@ -153,7 +153,7 @@ public class Tokenizer
          *  \ref com::aworx::lib::strings::Substring "Substring".
          *
          * @param  src             The string to be tokenized.
-         * @param  delim           The delimiter that separates the tokens. Can be changed with 
+         * @param  delim           The delimiter that separates the tokens. Can be changed with
          *                         every next token.
          * @param  skipEmptyTokens If \c true, empty tokens are omitted.
          *                         Optional and defaults to \c false.
@@ -162,7 +162,7 @@ public class Tokenizer
         {
             set( src, delim, skipEmptyTokens );
         }
-        
+
         /** ****************************************************************************************
          *  Constructs a tokenizer to work on a given
          *  \ref com::aworx::lib::strings::Substring "Substring".
@@ -241,7 +241,7 @@ public class Tokenizer
          *  Constructs a tokenizer to work on a given Substring.
          *
          * @param  substring       The substring to use as the source for the tokens.
-         * @param  delim           The delimiter that separates the tokens. Can be changed with 
+         * @param  delim           The delimiter that separates the tokens. Can be changed with
          *                         every next token.
          * @param  skipEmptyTokens If \c true, empty tokens are omitted.
          *                         Optional and defaults to \c false.
@@ -278,7 +278,7 @@ public class Tokenizer
          *
          *  @param trimming  Determines if the token is trimmed in respect to the white space
          *                   characters defined in field #whitespaces.
-         *                   Defaults to \c Whitespaces.TRIM.
+         *                   Defaults to \b Whitespaces.TRIM.
          *  @param newDelim  The delimiter separates the tokens. Defaults to 0, which keeps the
          *                   current delimiter intact.
          *                   A new delimiter can be provided for every next token.
@@ -301,7 +301,7 @@ public class Tokenizer
                 // set buf, start and find end
                 actual.buf=   rest.buf;
                 actual.start= rest.start;
-    
+
                 int nextDelimiter= rest.indexOf( delim );
                 if ( nextDelimiter >= 0 )
                 {
@@ -313,14 +313,14 @@ public class Tokenizer
                     actual.end=  rest.end;
                     rest.setNull();
                 }
-    
-    
+
+
                 // trim
                 if ( trimming == Whitespaces.TRIM )
                     actual.trim( whitespaces );
             }
             while( skipEmptyTokens && actual.isEmpty() && rest.isNotNull() );
-            
+
             return actual;
         }
 
@@ -336,12 +336,12 @@ public class Tokenizer
          *
          *  @param trimming  Determines if the token is trimmed in respect to the white space
          *                   characters defined in field #whitespaces.
-         *                   Defaults to \c Whitespaces.TRIM.
+         *                   Defaults to \b Whitespaces.TRIM.
          * @return true if a next token was available, false if not.
          ******************************************************************************************/
-        public Substring  next( Whitespaces trimming )  
-        { 
-            return next( trimming, '\0'); 
+        public Substring  next( Whitespaces trimming )
+        {
+            return next( trimming, '\0');
         }
 
         /** ****************************************************************************************
@@ -355,9 +355,9 @@ public class Tokenizer
          * For clarification, see the explanation and sample code in this classes documentation.
          * @return true if a next token was available, false if not.
          ******************************************************************************************/
-        public Substring  next()                        
-        { 
-            return next( Whitespaces.TRIM, '\0'); 
+        public Substring  next()
+        {
+            return next( Whitespaces.TRIM, '\0');
         }
 
         /** ****************************************************************************************
@@ -366,7 +366,7 @@ public class Tokenizer
          * After this call #hasNext will return false and #next will return a nulled Substring.
          *  @param trimming  Determines if the token is trimmed in respect to the white space
          *                   characters defined in field #whitespaces.
-         *                   Defaults to \c Whitespaces.TRIM.
+         *                   Defaults to \b Whitespaces.TRIM.
          * @return The rest of the original source string, which was not returned by #next(), yet.
          ******************************************************************************************/
         public Substring  getRest( Whitespaces trimming )
@@ -385,9 +385,9 @@ public class Tokenizer
          * After this call #hasNext will return false and #next will return a nulled Substring.
          * @return The rest of the original source string, which was not returned by #next(), yet.
          ******************************************************************************************/
-        public Substring  getRest()       
-        { 
-            return getRest( Whitespaces.TRIM ); 
+        public Substring  getRest()
+        {
+            return getRest( Whitespaces.TRIM );
         }
 
         /** ****************************************************************************************
@@ -395,9 +395,9 @@ public class Tokenizer
          * Substring which is not nulled.
          * @return true if a next token is available.
          ******************************************************************************************/
-        public boolean    hasNext()       
-        { 
-            return rest.isNotNull() && ( !skipEmptyTokens || rest.isNotEmpty() ); 
+        public boolean    hasNext()
+        {
+            return rest.isNotNull() && ( !skipEmptyTokens || rest.isNotEmpty() );
         }
 
 

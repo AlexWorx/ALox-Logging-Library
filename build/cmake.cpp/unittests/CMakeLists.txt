@@ -1,8 +1,8 @@
 # #################################################################################################
 #  CMakeLists.txt - ALox Logging Library
 #
-#  (c) 2015 A-Worx GmbH, Germany
-#  Published under MIT License (Open Source License, see LICENSE.txt)
+#  Copyright 2015 A-Worx GmbH, Germany
+#  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 #
 #  How to use:
 #   1. Enter subdirectory 'debug'   and invoke:  `cmake ..`
@@ -10,6 +10,21 @@
 #   3. Invoke `make` within any of these directories.
 #   More information is found in ALox documentation.
 # #################################################################################################
+
+# -------------------------------------------------------------------------------------------------
+# Prior to setting CMake project
+# -------------------------------------------------------------------------------------------------
+
+    ### uncomment to force a certain compiler (delete temporary output folder on change)
+
+    #set(CMAKE_C_COMPILER    "/usr/bin/clang")
+    #set(CMAKE_CXX_COMPILER  "/usr/bin/clang++")
+
+    #set(CMAKE_C_COMPILER    "/usr/bin/gcc")
+    #set(CMAKE_CXX_COMPILER  "/usr/bin/g++")
+
+    ### uncomment to force cotire on clean cmake built
+    #set( ALIB_CMAKE_COTIRE_DEFAULT   "On" )
 
 # -------------------------------------------------------------------------------------------------
 # General
@@ -26,34 +41,26 @@
 ## include ALox base cmake file
 ## -------------------------------------------------------------------------------------------------
 
-    #-- optional compilation symbols (ALib/ALox features).
-    #-- uncomment to set (the opposite value is their default, therefore commenting the lines switches them)
-    #set( ALIB_DEBUG_GLIB                "On"  )
-    #set( ALIB_AVOID_ANALYZER_WARNINGS   "On"  )
-    #set( ALIB_DEBUG_STRINGS             "On"  )
-    #set( ALIB_FEAT_THREADS              "Off" ) // disabling this does not work with gtest projects
-    #set( ALOX_DBG_LOG                   "Off" )
-    #set( ALOX_DBG_LOG_CI                "Off" )
-    #set( ALOX_REL_LOG                   "Off" )
-    #set( ALOX_REL_LOG_CI                "On"  )
+    include( ../../../build/cmake.cpp/ALox.cmake )
 
 
+# --------------------------------------------------------------------------------------------------
+# set cache variables
+# --------------------------------------------------------------------------------------------------
+    set( ALIB_GTEST                 "On"                                                CACHE STRING
+         "If true, unit tests are compiled for gtest library."   )
 
-    #-- enable coverage compilation. Use script 'coverage-lcov.sh' after running the tests to create
-    #-- coverage information
-    #set( AWORX_COVERAGE_COMPILE "On" )
-
-    set ( ALOX_BASE_DIR   "../../.."  )
-    include( ${ALOX_BASE_DIR}/build/cmake.cpp/ALox_Base.cmake )
 
 # -------------------------------------------------------------------------------------------------
 # source code definitions
 # -------------------------------------------------------------------------------------------------
 
+    # ALib unit tests
     set (              ALIB_UTESTS_SRC_DIR  ${ALIB_BASE_DIR}/src.cpp/alib.unittests  )
     file( GLOB_RECURSE ALIB_UTESTS_INCS     ${ALIB_UTESTS_SRC_DIR}/*.h*              )
     file( GLOB_RECURSE ALIB_UTESTS_SRCS     ${ALIB_UTESTS_SRC_DIR}/*.cpp             )
 
+    # ALox unit tests
     set (              ALOX_UTESTS_SRC_DIR  ${ALOX_BASE_DIR}/src.cpp/alox.unittests  )
     file( GLOB_RECURSE ALOX_UTESTS_INCS     ${ALOX_UTESTS_SRC_DIR}/*.h*              )
     file( GLOB_RECURSE ALOX_UTESTS_SRCS     ${ALOX_UTESTS_SRC_DIR}/*.cpp             )
@@ -62,19 +69,73 @@
 ## find libraries
 ## -------------------------------------------------------------------------------------------------
 
-    # Download (if not yet) and extract gtest/gmock
-    set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/.")
-    include( ../DownloadOnceAndAddAsSourceProject.cmake )
-    DownloadOnceAndAddAsSourceProject( gtest
-                                       "https://googletest.googlecode.com/files/gtest-1.7.0.zip"
-                                       "${CMAKE_CURRENT_SOURCE_DIR}/gtest-1.7.0.zip"           )
-    DownloadOnceAndAddAsSourceProject( gmock
-                                       "https://googlemock.googlecode.com/files/gmock-1.7.0.zip"
-                                       "${CMAKE_CURRENT_SOURCE_DIR}/gmock-1.7.0.zip"           )
+    if ( ${ALIB_GTEST} )
+        # GTest
+        # For Google Test, we first download CMake tool "Crascit/DownloadProject" that allows
+        # downloading and integrating projects 8-)
+        if( NOT EXISTS  ${CMAKE_CURRENT_SOURCE_DIR}/DownloadProject.cmake )
+            message( STATUS "Downloading 'DownloadProject.cmake' from github" )
+            file( DOWNLOAD
+                  "https://raw.githubusercontent.com/Crascit/DownloadProject/master/DownloadProject.cmake"
+                  "${CMAKE_CURRENT_SOURCE_DIR}/DownloadProject.cmake" )
+            file( DOWNLOAD
+                  "https://raw.githubusercontent.com/Crascit/DownloadProject/master/DownloadProject.CMakeLists.cmake.in"
+                  "${CMAKE_CURRENT_SOURCE_DIR}/DownloadProject.CMakeLists.cmake.in" )
+        endif()
+
+        if( NOT EXISTS  ${CMAKE_CURRENT_SOURCE_DIR}/DownloadProject.cmake )
+            message( "Error downloading 'DownloadProject.cmake'")
+        endif()
+
+        # ...now we use the download tool on gtest
+        include(DownloadProject.cmake)
+
+        if (CMAKE_VERSION VERSION_LESS 3.2)
+            set(UPDATE_DISCONNECTED_IF_AVAILABLE "")
+        else()
+            set(UPDATE_DISCONNECTED_IF_AVAILABLE "UPDATE_DISCONNECTED 1")
+        endif()
+
+        download_project(PROJ                googletest
+                         GIT_REPOSITORY      https://github.com/google/googletest.git
+                         GIT_TAG             master
+                         ${UPDATE_DISCONNECTED_IF_AVAILABLE}                               )
+
+        # Prevent GoogleTest from overriding our compiler/linker options
+        # when building with Visual Studio
+        set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+
+        add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
+
+        # When using CMake 2.8.11 or later, header path dependencies
+        # are automatically added to the gtest and gmock targets.
+        # For earlier CMake versions, we have to explicitly add the
+        # required directories to the header search path ourselves.
+        if (CMAKE_VERSION VERSION_LESS 2.8.11)
+            include_directories("${gtest_SOURCE_DIR}/include"
+                                "${gmock_SOURCE_DIR}/include")
+        endif()
+
+
+    endif()
 
     # QT
     find_package(Qt5Core)
     find_package(Qt5Widgets)
+
+    # multithreading
+    if ( NOT ${ALIB_FEAT_THREADS} )
+        if ( ${ALIB_GTEST} )
+
+        find_package(Threads)
+
+        # we hack this into the existing alib variable...
+        set( ALIB_EXTERNAL_LIBS ${ALIB_EXTERNAL_LIBS}         ${CMAKE_THREAD_LIBS_INIT} )
+
+        endif()
+    endif()
+
+
 
 # -------------------------------------------------------------------------------------------------
 # Target
@@ -89,19 +150,22 @@
 
     target_compile_definitions( ALib_ALox_UT    PRIVATE  ${ALIB_COMPILER_SYMBOLS}
                                                          ${ALOX_COMPILER_SYMBOLS}           )
-    target_compile_definitions( ALib_ALox_UT    PRIVATE  "ALIB_GTEST_ON"                    )
 
     set_target_properties     ( ALib_ALox_UT    PROPERTIES  LINK_FLAGS   ${AWORX_LINK_FLAGS})
 
-
     target_include_directories( ALib_ALox_UT    PRIVATE   ${ALIB_UTESTS_SRC_DIR}
-                                                          ${ALOX_UTESTS_SRC_DIR}
-                                                          ${gtest_source_dir}/include       )
+                                                          ${ALOX_UTESTS_SRC_DIR}            )
 
     target_link_libraries     ( ALib_ALox_UT    ${ALIB_EXTERNAL_LIBS}
                                                 ${ALOX_EXTERNAL_LIBS}
-                                                ALox_StaticLib
-                                                libgtest                                    )
+                                                ALox_StaticLib                              )
+
+    if ( ${ALIB_GTEST} )
+        target_compile_definitions( ALib_ALox_UT PRIVATE  "ALIB_GTEST_ON"                    )
+        target_include_directories( ALib_ALox_UT    PRIVATE   ${gtest_source_dir}/include    )
+        target_link_libraries     ( ALib_ALox_UT gtest                                       )
+    endif()
+
 
     if ( Qt5Core_FOUND )
         target_include_directories( ALib_ALox_UT PRIVATE      ${Qt5Core_INCLUDE_DIRS}       )
@@ -115,24 +179,25 @@
         target_link_libraries     ( ALib_ALox_UT              ${Qt5Widgets_LIBRARIES}       )
     endif()
 
-
 # -------------------------------------------------------------------------------------------------
 # Precompiled headers with 'cotire' CMake script.
-#    More Info at: https://github.com/sakra/cotire/
-#
-# Note:
-#   To disable, just comment (enable) the whole section below. By default, this is disabled
-#   when publishing the project, because cotire adds potential complexity. E.g. somtimes a
-#   make clean does not seem to work if CMake files were changed. In this case, the whole build
-#   folder needs to be deleted.
+# For more Info see 'ALox.cmake' which downloads the script and the cotire website at
+# https://github.com/sakra/cotire/
 # -------------------------------------------------------------------------------------------------
+if ( ${ALIB_CMAKE_COTIRE} )
 
-#    include(${ALIB_BASE_DIR}/build/cmake.cpp/cotire.cmake)
-#
-#    set_target_properties( ALib_ALox_UT  PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT
-#                                          "${ALIB_SRC_DIR}/alib/stdafx_alib.h" )
-#
-#    cotire               ( ALib_ALox_UT )
+    # use multiple processor cores
+    set_target_properties( ALib_ALox_UT    PROPERTIES COTIRE_UNITY_SOURCE_MAXIMUM_NUMBER_OF_INCLUDES "-j" )
+
+    # header for precomp is "alib/alib.hpp"
+    set_target_properties( ALib_ALox_UT    PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT  "${ALIB_SRC_DIR}/alib/alib.hpp" )
+
+    #set some other cotire specific settings
+    set_source_files_properties( ${ALIB_SRC_DIR}/alox.unittests/ut_alox_log_scopes.cpp   PROPERTIES COTIRE_EXCLUDED "1"  )
+    set_target_properties      ( ALib_ALox_UT PROPERTIES   COTIRE_UNITY_SOURCE_POST_UNDEFS "LOX_LOX;TESTCLASSNAME;cout" )
+
+    # add cotire to project
+    cotire               ( ALib_ALox_UT )
 
 
     #--- dump cotire properties ---
@@ -147,6 +212,7 @@
     # message(STATUS "${_dumppname} precompiled header: ${_precompiledHeader}")
     # message(STATUS "${_dumppname} unity target:       ${_unityTargetName}")
 
+endif()
 
 # -------------------------------------------------------------------------------------------------
 # End

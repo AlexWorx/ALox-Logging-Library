@@ -1,24 +1,24 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 package com.aworx.lib.strings;
 
-import com.aworx.lib.enums.Case;
-import com.aworx.lib.enums.Inclusion;
+import com.aworx.lib.lang.Case;
+import com.aworx.lib.lang.Inclusion;
 
 
-/** ****************************************************************************************
+/** ************************************************************************************************
  *  This inner class of AString provides static methods working with character arrays.
- ******************************************************************************************/
+ **************************************************************************************************/
 public class CString
 {
-    // #########################################################################################
+    // #############################################################################################
     //  NEW_LINE_CHARS, DEFAULT_WHITESPACES
-    // #########################################################################################
+    // #############################################################################################
 
         /** The system depended new line character codes retrieved statically (once) using
             "System.getProperty("line.separator");" */
@@ -35,9 +35,9 @@ public class CString
         /**   An empty String singleton */
         public static final     String        EMPTY                                            = "";
 
-    // #########################################################################################
+    // #############################################################################################
     //  helpers
-    // #########################################################################################
+    // #############################################################################################
 
         /** ****************************************************************************************
          * Checks if a given CharSequence is empty or has a length of zero.
@@ -95,9 +95,9 @@ public class CString
 
 
 
-    // #########################################################################################
+    // #############################################################################################
     //  contains at
-    // #########################################################################################
+    // #############################################################################################
 
         /** ****************************************************************************************
          * Checks if a region of a \e char[] is located at the given position of another \e char[].
@@ -203,9 +203,9 @@ public class CString
         }
 
 
-    // #########################################################################################
+    // #############################################################################################
     //  compareTo
-    // #########################################################################################
+    // #############################################################################################
 
         /** ****************************************************************************************
          * Compares a given region of a CharSequence with a in a \e char[].<br>
@@ -264,9 +264,9 @@ public class CString
             }
         }
 
-    // #########################################################################################
+    // #############################################################################################
     //  IndexOf
-    // #########################################################################################
+    // #############################################################################################
 
     /** ****************************************************************************************
      *  Static method that searches a character in a region of a character array.
@@ -280,7 +280,7 @@ public class CString
      *
      * @return The index of the first matching character found.
      *         If nothing is found, -1 is returned.
-     ******************************************************************************************/
+     **********************************************************************************************/
     public
     static int     indexOf( char needle, char[] haystack, int regionStart, int regionLength )
     {
@@ -315,7 +315,7 @@ public class CString
         return -1;
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      *  Static method that searches a character in a character array,
      *  starting at a given index to the end of the array.
      *
@@ -326,14 +326,14 @@ public class CString
      *
      * @return The index of the first matching character found.
      *         If nothing is found, -1 is returned.
-     ******************************************************************************************/
+     **********************************************************************************************/
     public
     static int     indexOf( char needle, char[] haystack, int regionStart )
     {
         return CString.indexOf(  needle, haystack, regionStart, Integer.MAX_VALUE );
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      *  Static method that searches a character in a character array.
      *
      * @param needle          The character to be searched for.
@@ -341,7 +341,7 @@ public class CString
      *
      * @return The index of the first matching character found.
      *         If nothing is found, -1 is returned.
-     ******************************************************************************************/
+     **********************************************************************************************/
     public
     static int     indexOf( char needle, char[] haystack )
     {
@@ -349,7 +349,7 @@ public class CString
     }
 
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Searches a \e CharSequence in a region of a character array.
      *
      * @param needle          The CharSequence to search.
@@ -363,7 +363,7 @@ public class CString
      *
      * @return  \e -1 if the String is not found. Otherwise the index of first occurrence relative
      *          to \p haystackStart.
-     ******************************************************************************************/
+     **********************************************************************************************/
     public static int indexOfString( CharSequence needle,
                                      char[] haystack, int haystackStart, int haystackLength,
                                      Case sensitivity )
@@ -421,7 +421,53 @@ public class CString
 
 
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
+     * Static method that returns the index of the first character which not equal
+     * within two strings.
+     *
+     * @param haystack        Character array that is searched in.
+     * @param haystackStart   The start of the region within haystack.
+     * @param haystackLength  The length of the region within haystack.
+     * @param needle          The string to be searched for.
+     * @param sensitivity     The sensitivity to the case of characters of the operation.
+     * @return  The index within \p needle with the first difference.
+     **********************************************************************************************/
+    public static int indexOfFirstDifference(  char[]        haystack,
+                                               int           haystackStart,
+                                               int           haystackLength,
+                                               CharSequence  needle,
+                                               Case          sensitivity                 )
+    {
+        int needleLength= needle.length();
+
+        int haystackEnd= haystackStart + haystackLength;
+        int idxH= haystackStart;
+        int idxN=  0;
+
+        if ( sensitivity == Case.SENSITIVE )
+        {
+            while (   idxH < haystackEnd
+                   && idxN < needleLength
+                   && haystack[idxH] == needle.charAt(idxN) )
+            {
+                idxH++;
+                idxN++;
+            }
+        }
+        else
+        {
+            while(    idxH < haystackEnd
+                   && idxN < needleLength
+                   && Character.toLowerCase(haystack[idxH]) == Character.toLowerCase(needle.charAt(idxN) ) )
+            {
+                idxH++;
+                idxN++;
+            }
+        }
+        return idxN;
+    }
+
+    /** ********************************************************************************************
      * Static method that returns the index of the first character which is included
      * (alternatively not included) in a given set of characters.
      *
@@ -439,7 +485,7 @@ public class CString
      * @return The index (relative to the start of the region) of the first character found
      *         which is included, respectively not included, in the given set of characters.
      *         If nothing is found, -1 is returned.
-     ******************************************************************************************/
+     **********************************************************************************************/
     public
     static int     indexOfAnyInRegion( char[]    haystack, int regionStart, int regionLength,
                                        char[]    needles,  Inclusion inclusion                   )
@@ -477,7 +523,7 @@ public class CString
         return -1;
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Static method that returns the index of the first character which is included
      * (alternatively not included) in a given set of characters.
      * The search starts at the end of the region and continues towards its start.
@@ -492,7 +538,7 @@ public class CString
      *
      * @return The index relative to the start of the region.
      *         If the search was not successful, then regionStart -1 is returned;
-     ******************************************************************************************/
+     **********************************************************************************************/
     public
     static int     lastIndexOfAny( char[]    haystack, int regionStart, int regionLength,
                                    char[]    needles,  Inclusion inclusion                   )
@@ -529,15 +575,15 @@ public class CString
         return regionStart - 1;
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Search a string within another starting at a given position.
      *
      * @param haystack  The CharSequence to search in.
      * @param needle    The CharSequence to search for.
-     * @param startIdx  The index to start the search at. Optional and defaults to 0.
+     * @param startIdx  The index to start the search at. Optional and defaults to \c 0.
      *
      * @return  -1 if the String is not found. Otherwise the index of first occurrence.
-     ******************************************************************************************/
+     **********************************************************************************************/
     public static int indexOfIgnoreCase( CharSequence haystack, CharSequence needle, int startIdx )
     {
         // check s1
@@ -575,24 +621,24 @@ public class CString
         return -1;
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Search the given String in the Buffer.
      *
      * @param haystack  The CharSequence to search in.
      * @param needle    The CharSequence to search for.
      *
      * @return  -1 if the String is not found. Otherwise the index of first occurrence.
-     ******************************************************************************************/
+     **********************************************************************************************/
     public static int indexOfIgnoreCase( CharSequence haystack, CharSequence needle )
     {
         return CString.indexOfIgnoreCase( haystack, needle, 0);
     }
 
-    // #########################################################################################
+    // #############################################################################################
     // starts/endsWith
-    // #########################################################################################
+    // #############################################################################################
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Static utility function to check if a string starts with another string with case
      * insensitive compare. Using this function avoids to create two converted (lowered)
      * temporary strings.
@@ -601,7 +647,7 @@ public class CString
      * @param needle    The CharSequence to search for.
      *
      * @return  true, if given string s starts with given string prefix, false otherwise.
-     ******************************************************************************************/
+     **********************************************************************************************/
     @SuppressWarnings ("null")
     public static boolean startsWithIgnoreCase( CharSequence haystack, CharSequence needle )
     {
@@ -628,7 +674,7 @@ public class CString
         return true;
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Static utility function to check if a string ends with another string with case
      * insensitive compare. Using this function avoids to create two converted (lowered)
      * temporary strings.
@@ -637,7 +683,7 @@ public class CString
      * @param needle    The CharSequence to search for.
      *
      * @return  true, if given string s ends with given string prefix, false otherwise.
-     ******************************************************************************************/
+     **********************************************************************************************/
     @SuppressWarnings ("null")
     public static boolean endsWithIgnoreCase    ( CharSequence haystack, CharSequence needle )
     {

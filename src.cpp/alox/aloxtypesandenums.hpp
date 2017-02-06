@@ -1,18 +1,19 @@
 ﻿// #################################################################################################
 //  aworx::lox - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-/** @file */ //<- needed for Doxygen include
+
+// needed for Doxygen include
+/** @file */
 
 #ifndef HPP_ALOX_TYPES_AND_ENUMS
 #define HPP_ALOX_TYPES_AND_ENUMS 1
 
 
 
-namespace aworx {
-namespace       lox {
+namespace aworx { namespace lox {
 
 /** ************************************************************************************************
  * This enum is used in %ALox to control the 'verbosity' or 'verboseness' of the log output.
@@ -82,7 +83,7 @@ enum class Verbosity
 
     /**
      * Statements with this value associated are never logged (useful if \e %Verbosity is
-     * evaluated at run-time). <em>%Log Domains</em> with this setting do not execute any
+     * evaluated at runtime). <em>%Log Domains</em> with this setting do not execute any
      * <em>Log Statement</em>.
      */
     Off
@@ -187,68 +188,6 @@ AString& ToString( Scope scope, int pathLevel, AString& target );
 
 
 /** ************************************************************************************************
- * Data objects used with
- * \ref aworx::lox::Lox::Store      "Lox::Store" and
- * \ref aworx::lox::Lox::Retrieve   "Lox::Retrieve".
- **************************************************************************************************/
-struct LogData
-{
-    /** C++ specific: may be used for indentifying derived types. Same as all other fields,
-        not futher used by ALox */
-    int         Type                            =   0;
-
-    /** A string value*/
-    AString     StringValue;
-
-    /** An integer value */
-    int         IntegerValue;
-
-    /** Any type of data */
-    void*       ObjectValue;
-
-    /** Constructs a data object.
-     *  @param s    String data to store.
-     *  @param i    Integer value to store.
-     *  @param o    Object to store.          */
-    LogData( const aworx::String& s, int i, void* o= nullptr)   { StringValue= s; IntegerValue= i; ObjectValue= o; }
-
-    /** Constructs a data object
-     *  @param s    String data to store.
-     *  @param o    Object to store.          */
-    LogData( const aworx::String& s,        void* o= nullptr)   { StringValue= s; IntegerValue= 0; ObjectValue= o; }
-
-    /** Constructs a data object.
-     *  @param i    Integer value to store.
-     *  @param o    Object to store.          */
-    LogData(                         int i, void* o= nullptr)   {                 IntegerValue= i; ObjectValue= o; }
-
-    /** Constructs a data object.
-     * This constructor is not available under MSC compilation due to ambiguous overloading.
-     * With MSC, an parameterless constructor is provided instead (for technical reasons
-     * not shown in this documentation).
-     *  @param o    Object to store.
-     */
-    #if !defined ( _MSC_VER ) || defined( IS_DOXYGEN_PARSER)
-        LogData(                            void* o= nullptr)   {                 IntegerValue= 0; ObjectValue= o; }
-    #else
-        LogData(                                            )   {                 IntegerValue= 0; ObjectValue= nullptr; }
-    #endif
-
-    /** Virtual Destructor.
-     * Objects of this type will be created by the user, but destructed by the Lox */
-    virtual ~LogData()                                         {}
-
-    /** ************************************************************************************************
-     * Provides a string representation of a LogData object
-     * @param target  The target string.
-     * @returns The \p target, with string representation of the provided Scope value
-     *          appended
-     **************************************************************************************************/
-    ALOX_API
-    AString& ToString( AString& target );
-};
-
-/** ************************************************************************************************
  * This class defines "escape sequences" that influence the formatting of log output.
  * Specific implementations of class
  * \ref aworx::lox::core::Logger "Logger"
@@ -263,7 +202,14 @@ struct LogData
  * defined with this class will be concatenated to log strings like that:
  *
  * \snippet "ut_dox_manual.cpp"     DOX_ALOX_ESC
- **************************************************************************************************/
+ *
+ * \note
+ *   With the introduction of own, ALox-specific escape codes, software that uses ALox becomes
+ *   independent from any underlying, platform-specific sequences. For example, ALox is not relying
+ *   on ANSI color codes, which are not supported by colorful Windows consoles. Instead, on each
+ *   platform, dedicated Loggers will perform the translation of ALox codes to platform-specific
+ *   ones.
+**************************************************************************************************/
 class ESC
 {
     public:
@@ -342,13 +288,13 @@ class ESC
 
     #endif
 
-    /** ************************************************************************************************
+    /** ********************************************************************************************
      * Replaces ESC codes in a string reversely to "ESC::XXX".
      * @param target   The string to replace in.
      * @param startIdx The index to start searching for ESC codes.
-     **************************************************************************************************/
+     **********************************************************************************************/
     ALOX_API
-    static void ReplaceToReadable( AString& target, int startIdx );
+    static void ReplaceToReadable( AString& target, integer startIdx );
 };
 
 } // namespace lox
@@ -361,9 +307,6 @@ using     Verbosity=     aworx::lox::Verbosity;
 
 /** Type alias name in namespace #aworx. */
 using     Scope=         aworx::lox::Scope;
-
-/** Type alias name in namespace #aworx. */
-using     LogData=       aworx::lox::LogData;
 
 }  // namespace aworx
 #endif // HPP_ALOX_TYPES_AND_ENUMS

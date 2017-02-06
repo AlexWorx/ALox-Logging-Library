@@ -1,17 +1,16 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 package com.aworx.lib.config;
 
 import java.util.ArrayList;
 
-import com.aworx.lib.ALIB;
-import com.aworx.lib.enums.Case;
-import com.aworx.lib.enums.Whitespaces;
+import com.aworx.lib.lang.Case;
+import com.aworx.lib.lang.Whitespaces;
 import com.aworx.lib.strings.*;
 
 /** ************************************************************************************************
@@ -69,7 +68,7 @@ import com.aworx.lib.strings.*;
  *   made by a code unit.
  * - Using the interface methods #load,#store, #storeDefault and #protect found in this class
  *   itself which are provided for convenience. Those simply invoke the interface of the static global singleton
- *   \ref com::aworx::lib::ALIB::config "ALIB.config".
+ *   \ref com::aworx::lib::config::Configuration::Default "Configuration.Default".
  *
  * Using the interface of this class itself is the most convenient way of loading and storing
  * variables, setting default values or protecting variables.
@@ -320,7 +319,7 @@ public class Variable
                 fullname._( category )._( '_' );
             fullname._( name );
 
-            ALIB.ASSERT_WARNING(  name.isNotEmpty(), "Empty variable name given" );
+            com.aworx.lib.ALIB_DBG.ASSERT_WARNING(  name.isNotEmpty(), "Empty variable name given" );
 
             return this;
         }
@@ -452,7 +451,7 @@ public class Variable
          * Adds an empty value to the end of the list of values.
          * @return A reference to the string which can be manipulated to set the value.
          ******************************************************************************************/
-        public AString    addString()
+        public AString add()
         {
             int actIdx= qtyValues;
             qtyValues++;
@@ -469,55 +468,27 @@ public class Variable
          * @param  value  The value to set.
          * @return A reference to the string which can be further manipulated to set the value.
          ******************************************************************************************/
-        public AString    addString( Object value )
+        public AString add(Object value )
         {
-            return addString()._( value );
+            return add()._( value );
         }
 
-
-        /** ****************************************************************************************
-         * Adds the given long integer value to the end of the list of values.
-         * If a different format is desired (minimum digits, etc.), then
-         * #addString() is to be used and conversion done proprietarily.
-         *
-         * @param  value  The value to set.
-         * @return A reference to the string representing the integer value.
-         ******************************************************************************************/
-        public AString    addInteger( long value )
-        {
-            return addString()._( value );
-        }
-
-        /** ****************************************************************************************
-         * Adds the given double value to the end of the list of values.
-         * Formatting is done using field \c numberFormat of field #config, respectively, if this is
-         * not set, the static singleton
-         * \ref com::aworx::lib::ALIB::config "ALIB.config". If a different format is desired,
-         * #addString() is to be used and conversion done proprietarily.
-         *
-         * @param  value  The value to set.
-         * @return A reference to the string representing the double value.
-         ******************************************************************************************/
-        public AString    addFloat( double value )
-        {
-            return addString()._( value, config != null ? config.numberFormat : null );
-        }
 
         /** ****************************************************************************************
          * Adds the given boolean value to the end of the list of values.
          * For \c true values string \b "true" is set, otherwise \b "false".
          * \note
          *  Other, depending on the variable semantics, more user friendly values may be set using
-         *  the string interface #addString.
+         *  the string interface #add.
          *  String values recognized for boolean variables are defined in
          * \ref com::aworx::lib::config::Configuration::trueValues   "Configuration.trueValues".
          *
          * @param  value  The value to set.
          * @return A reference to the string representing the boolean value.
          ******************************************************************************************/
-        public AString    addBoolean( boolean value )
+        public AString    add( boolean value )
         {
-            return addString()._( value ? "true" : "false" );
+            return add()._( value ? "true" : "false" );
         }
 
         /** ****************************************************************************************
@@ -530,7 +501,7 @@ public class Variable
         {
             if( idx < 0 || idx >= qtyValues )
             {
-                ALIB.WARNING( "Index out of range: " + idx + " ( 0 - " + qtyValues + " allowed)." );
+                com.aworx.lib.ALIB_DBG.WARNING( "Index out of range: " + idx + " ( 0 - " + qtyValues + " allowed)." );
                 return;
             }
 
@@ -593,7 +564,7 @@ public class Variable
          ******************************************************************************************/
         public long            getInteger( int idx )
         {
-            return idx < qtyValues  ? getString( idx ).toLong()
+            return idx < qtyValues  ? getString( idx ).parseInt()
                                     : 0;
         }
 
@@ -602,10 +573,10 @@ public class Variable
          * If no value is set \c 0 is returned.
          * @return The value at \p idx interpreted as an integer value.
          ******************************************************************************************/
-        public int             getInteger()
+        public long            getInteger()
         {
-            return qtyValues != 0   ? getString( 0 ).toInt()
-                                    : 0;
+            return qtyValues != 0   ? getString( 0 ).parseInt()
+                                    : 0L;
         }
 
         /** ****************************************************************************************
@@ -613,14 +584,14 @@ public class Variable
          * If the index is invalid, \c 0.0 is returned.
          * Parsing is done using field \c numberFormat of field #config, respectively, if this is
          * not set, the static singleton
-         * \ref com::aworx::lib::ALIB::config "ALIB.config" is used.
+         * \ref com::aworx::lib::config::Configuration::Default "Configuration.Default" is used.
          *
          * @param  idx  The index of the value to be retrieved.  Defaults to \c 0.
          * @return The value at \p idx interpreted as a double value.
          ******************************************************************************************/
         public double          getFloat(int idx)
         {
-            return idx < qtyValues  ?   getString( idx ).toFloat( 0, null, (config != null ? config : ALIB.config).numberFormat )
+            return idx < qtyValues  ?   getString( idx ).parseFloat( (config != null ? config : Configuration.Default).numberFormat )
                                     :   0.0;
         }
 
@@ -629,14 +600,14 @@ public class Variable
          * If no value is defined, \c 0.0 is returned.
          * Parsing is done using field \c numberFormat of field #config, respectively, if this is
          * not set, the static singleton
-         * \ref com::aworx::lib::ALIB::config "ALIB.config" is used.
+         * \ref com::aworx::lib::config::Configuration::Default "Configuration.Default" is used.
          *
          *
          * @return The value at \p idx interpreted as a double value.
          ******************************************************************************************/
         public double          getDouble()
         {
-            return qtyValues != 0   ?   getString( 0 ).toFloat( 0, null, (config != null ? config : ALIB.config).numberFormat )
+            return qtyValues != 0   ?   getString( 0 ).parseFloat( (config != null ? config : Configuration.Default).numberFormat )
                                     :   0.0;
         }
 
@@ -644,7 +615,7 @@ public class Variable
          * Returns \c true if the value at the given \p idx represents a boolean 'true'.
          * Evaluation is done using field #config, respectively if this is not set, the static
          * singleton
-         * \ref com::aworx::lib::ALIB::config "ALIB.config".
+         * \ref com::aworx::lib::config::Configuration::Default "Configuration.Default".
          *
          * If the index is invalid, \c false is returned.
          *
@@ -653,7 +624,7 @@ public class Variable
          ******************************************************************************************/
         public boolean         isTrue(int idx)
         {
-            return idx < qtyValues  ? (config != null ? config : ALIB.config).isTrue( getString( idx ) )
+            return idx < qtyValues  ? (config != null ? config : Configuration.Default).isTrue( getString( idx ) )
                                     : false;
         }
 
@@ -661,7 +632,7 @@ public class Variable
          * Returns \c true if the first value represents a boolean 'true'.
          * Evaluation is done using field #config, respectively if this is not set, the static
          * singleton
-         * \ref com::aworx::lib::ALIB::config "ALIB.config".
+         * \ref com::aworx::lib::config::Configuration::Default "Configuration.Default".
          *
          * If no value is set \c false is returned.
          *
@@ -669,7 +640,7 @@ public class Variable
          ******************************************************************************************/
         public boolean         isTrue()
         {
-            return qtyValues != 0   ? (config != null ? config : ALIB.config).isTrue( getString( 0 ) )
+            return qtyValues != 0   ? (config != null ? config : Configuration.Default).isTrue( getString( 0 ) )
                                     : false;
         }
 
@@ -688,8 +659,8 @@ public class Variable
             for ( int i= 0; i< size(); i++ )
             {
                 result.set( getString(i ) );
-                if (    result.consume( attrName,  Case.IGNORE, Whitespaces.TRIM )
-                     && result.consume( attrDelim, Case.IGNORE, Whitespaces.TRIM ) )
+                if (    result.consumeString( attrName,  Case.IGNORE, Whitespaces.TRIM )
+                     && result.consumeChar  ( attrDelim, Case.IGNORE, Whitespaces.TRIM ) )
                 {
                     result.trim();
                     return true;
@@ -712,23 +683,23 @@ public class Variable
 
         /** ****************************************************************************************
          * Convenience method that loads the values of a variable from the static singleton
-         * \ref com::aworx::lib::ALIB::config                "ALIB.config", using method
-         * \ref com::aworx::lib::config::Configuration::load "Configuration.load".
+         * \ref com::aworx::lib::config::Configuration::Default "Configuration.Default", using method
+         * \ref com::aworx::lib::config::Configuration::load    "Configuration.load".
          *
          * @returns The priority of the configuration plug-in that provided the result.
          *          \c 0 if not found,
          *          \ref com::aworx::lib::config::Configuration::PRIO_DEFAULT  "Configuration.PRIO_DEFAULT"
          *          if either found or created in
-         *          \ref com::aworx::lib::config::Configuration::defaultValues "ALIB.config.defaultValues"
+         *          \ref com::aworx::lib::config::Configuration::defaultValues "Configuration.Default.defaultValues"
          ******************************************************************************************/
         public int     load()
         {
-            return ALIB.config.load( this );
+            return Configuration.Default.load( this );
         }
 
         /** ****************************************************************************************
          * Convenience method that stores the values of a variable using the static singleton
-         * \ref com::aworx::lib::ALIB::config "ALIB.config", and method
+         * \ref com::aworx::lib::config::Configuration::Default "Configuration.Default", and method
          * \ref com::aworx::lib::config::Configuration::store "Configuration.store".
          *
          * Optional parameter \p externalizedValue allows to provide a string that is parsed
@@ -737,31 +708,31 @@ public class Variable
          * @param externalizedValue     Optional externalized value string. If given, the variable
          *
          * @returns The result of
-         *          \ref com::aworx::lib::config::Configuration::store "ALIB.config.store(this)".
+         *          \ref com::aworx::lib::config::Configuration::store "Configuration.Default.store(this)".
          ******************************************************************************************/
         public int     store( Object externalizedValue )
         {
-            return ALIB.config.store( this, externalizedValue );
+            return Configuration.Default.store( this, externalizedValue );
         }
 
         /** ****************************************************************************************
          * Convenience method that stores the values of a variable using the static singleton
-         * \ref com::aworx::lib::ALIB::config "ALIB.config", and method
+         * \ref com::aworx::lib::config::Configuration::Default "Configuration.Default", and method
          * \ref com::aworx::lib::config::Configuration::store "Configuration.store".
          *
          * @returns The result of
-         *          \ref com::aworx::lib::config::Configuration::store "ALIB.config.store(this)".
+         *          \ref com::aworx::lib::config::Configuration::store "Configuration.Default.store(this)".
          ******************************************************************************************/
         public int     store()
         {
-            return ALIB.config.store( this, null );
+            return Configuration.Default.store( this, null );
         }
 
         /** ****************************************************************************************
          * Convenience method that stores the variable with priority
          * \ref com::aworx::lib::config::Configuration::PRIO_DEFAULT "Configuration.PRIO_DEFAULT"
          * using the static singleton \b %Configuration object found in
-         * \ref com::aworx::lib::ALIB::config "ALIB.config".
+         * \ref com::aworx::lib::config::Configuration::Default "Configuration.Default".
          *
          * The variable value is determined as follows:
          * - If optional parameter \p externalizedValue is provided and not \e nulled, the values
@@ -776,25 +747,25 @@ public class Variable
          * @param externalizedValue     Optional externalized value string. If given, the variable
          *                              is set prior to writing.
          * @returns The result of
-         *          \ref com::aworx::lib::config::Configuration::store "ALIB.Config.store(this)".
+         *          \ref com::aworx::lib::config::Configuration::store "Configuration.Default.store(this)".
          ******************************************************************************************/
         public int     storeDefault( Object externalizedValue )
         {
             if(     externalizedValue != null
                 && ( !(externalizedValue instanceof AString) || ((AString) externalizedValue).isNotNull() ) )
-                ALIB.config.defaultValues.stringConverter.loadFromString( this, externalizedValue );
+                Configuration.Default.defaultValues.stringConverter.loadFromString( this, externalizedValue );
 
             if ( size() == 0 && defaultValue.isNotNull() )
-                ALIB.config.defaultValues.stringConverter.loadFromString( this, defaultValue );
+                Configuration.Default.defaultValues.stringConverter.loadFromString( this, defaultValue );
 
             priority= Configuration.PRIO_DEFAULT;
-            return ALIB.config.store( this, null );
+            return Configuration.Default.store( this, null );
         }
 
         /** ****************************************************************************************
          * Overloaded version providing default value \c null for parameter \p externalizedValue.
          * @returns The result of
-         *          \ref com::aworx::lib::config::Configuration::store "ALIB.Config.store(this)".
+         *          \ref com::aworx::lib::config::Configuration::store "Configuration.Default.store(this)".
          ******************************************************************************************/
         public int     storeDefault()
         {
@@ -806,7 +777,7 @@ public class Variable
          * Convenience method that stores the variable with priority
          * \ref com::aworx::lib::config::Configuration::PRIO_PROTECTED "Configuration.PRIO_PROTECTED"
          * using the static singleton \b %Configuration object found in
-         * \ref com::aworx::lib::ALIB::config "ALIB.config".
+         * \ref com::aworx::lib::config::Configuration::Default "Configuration.Default".
          *
          * The variable value is determined as follows:
          * - If optional parameter \p externalizedValue is provided and not \e nulled, the values
@@ -820,25 +791,25 @@ public class Variable
          * @param externalizedValue     Optional externalized value string. If given, the variable
          *                              is set prior to writing.
          * @returns The result of
-         *          \ref com::aworx::lib::config::Configuration::store "ALIB.Config.store(this)".
+         *          \ref com::aworx::lib::config::Configuration::store "Configuration.Default.store(this)".
          ******************************************************************************************/
         public int     protect( Object externalizedValue )
         {
             if(     externalizedValue != null
                 && ( !(externalizedValue instanceof AString) || ((AString) externalizedValue).isNotNull() ) )
-                ALIB.config.defaultValues.stringConverter.loadFromString( this, externalizedValue );
+                Configuration.Default.defaultValues.stringConverter.loadFromString( this, externalizedValue );
 
             if ( size() == 0 && defaultValue.isNotNull() )
-                ALIB.config.defaultValues.stringConverter.loadFromString( this, defaultValue );
+                Configuration.Default.defaultValues.stringConverter.loadFromString( this, defaultValue );
 
             priority= Configuration.PRIO_PROTECTED;
-            return ALIB.config.store( this, null );
+            return Configuration.Default.store( this, null );
         }
 
         /** ****************************************************************************************
          * Overloaded version providing default value \c null for parameter \p externalizedValue.
          * @returns The result of
-         *          \ref com::aworx::lib::config::Configuration::store "ALIB.Config.store(this)".
+         *          \ref com::aworx::lib::config::Configuration::store "Configuration.Default.store(this)".
          ******************************************************************************************/
         public int     protect()
         {
@@ -855,7 +826,7 @@ public class Variable
          * of default plug-in
          * \ref com::aworx::lib::config::Configuration::defaultValues "Configuration.defaultValues"
          * of static singleton
-         * \ref com::aworx::lib::ALIB::config "ALIB.config" is used.
+         * \ref com::aworx::lib::config::Configuration::Default "Configuration.Default" is used.
          *
          * @param externalizedValue     The new value to write.
          *
@@ -863,7 +834,7 @@ public class Variable
          ******************************************************************************************/
         public int   loadFromString( Object externalizedValue )
         {
-            ALIB.config.defaultValues.stringConverter.loadFromString( this, externalizedValue );
+            Configuration.Default.defaultValues.stringConverter.loadFromString( this, externalizedValue );
             return size();
         }
 

@@ -1,8 +1,8 @@
 // #################################################################################################
 //  com.aworx.alox_java_android_test_release_log  - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package com.aworx.alox_java_android_test_release_log;
 
@@ -60,7 +60,7 @@ public class ALoxJavaAndroidTestReleaseLog extends Activity
 
         // also, the exception stack trace should be not too easy to read. Proguard provides a tool "retrace"...
         lox.info( "RelLog", "Logging exceptions: " );
-        LogTools.exception( "/RelLog", Verbosity.ERROR, 
+        LogTools.exception( "/RelLog", Verbosity.ERROR,
                             new Exception("This is not a real Exception", new Exception("...unreal inner")),
                             " Logging instance 'this':", lox );
 

@@ -1,10 +1,10 @@
 // #################################################################################################
 //  aworx - Unit Tests
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alox/alox.hpp"
 
 
 #define TESTCLASSNAME       CPP_ALib__Dox
@@ -12,7 +12,6 @@
 #include <iostream>
 #include <sstream>
 
-#include "alib/alib.hpp"
 
 // get support for  ostream operator<<() on String objects
 #include "alib/compatibility/std_iostream.hpp"
@@ -27,28 +26,32 @@ using namespace aworx;
 // SAMPLE code of Non-Checking method variants
 //##################################################################################################
 
+void parse( aworx::Substring line );
 //! [DOX_ALIB_STRINGS_NONCHECKING_1]
 void parse( aworx::Substring line )
 {
     // object 'line' is of type aworx::Substring
     aworx::TString startWord= "<start>";
-    int idx= line.IndexOfSubstring( startWord );
+    integer idx= line.IndexOfSubstring( startWord );
     if( idx > 0 )
-        line.Consume( idx + startWord.Length() );
+        line.ConsumeChars( idx + startWord.Length() );
     //...
     //...
 //! [DOX_ALIB_STRINGS_NONCHECKING_1]
 }
 
+void sample22( aworx::Substring line );
 void sample22( aworx::Substring line )
 {
     aworx::TString startWord= "<start>";
-    int idx= line.IndexOfSubstring( startWord );
+    integer idx= line.IndexOfSubstring( startWord );
 //! [DOX_ALIB_STRINGS_NONCHECKING_2]
     if( idx > 0 )
-        line.Consume<false>( idx + startWord.Length() ); // No check for length of object 'line'
+        line.ConsumeChars<false>( idx + startWord.Length() ); // No check for length of object 'line'
 //! [DOX_ALIB_STRINGS_NONCHECKING_2]
 }
+
+void TakeStrings( const aworx::String& s1, const aworx::AString& s2, const aworx::String64 s3 );
 
 //! [DOX_ALIB_STRINGS_AS_PARAMETERS_1]
 void TakeStrings( const aworx::String& s1, const aworx::AString& s2, const aworx::String64 s3 )
@@ -59,6 +62,7 @@ void TakeStrings( const aworx::String& s1, const aworx::AString& s2, const aworx
     (void) s3;
 }
 
+void InvokeTakeStrings();
 void InvokeTakeStrings()
 {
 /*
@@ -68,6 +72,7 @@ TakeStrings( "Str1", "Str2", "Str3" );          // Error, AString not implicitly
 */
 }
 
+void InvokeTakeStrings2();
 void InvokeTakeStrings2()
 {
 //! [DOX_ALIB_STRINGS_AS_PARAMETERS_3]
@@ -84,7 +89,8 @@ class MyClass
 //! [DOX_ALIB_STRINGS_ASPREALLOC_MEMBER]
 
 
-void ASLiteral1()
+void StringLiteral1();
+void StringLiteral1()
 {
 //! [DOX_ALIB_STRINGS_LITERAL_1]
 aworx::SLiteral<3> litA= "123";
@@ -96,7 +102,8 @@ aworx::SLiteral<1> litC= "x";
 (void)litC;
 }
 
-aworx::AString ASLiteral2()
+aworx::AString StringLiteral2();
+aworx::AString StringLiteral2()
 {
 //! [DOX_ALIB_STRINGS_LITERAL_2]
 char carr[4] {"123"};
@@ -116,13 +123,6 @@ return as;
 
 
 
-
-// Windows.h might bring in max/min macros
-#if defined( max )
-    #undef max
-    #undef min
-#endif
-
 namespace ut_aworx {
 
 UT_CLASS()
@@ -135,7 +135,7 @@ UT_CLASS()
         UT_PRINT("*** Documentation Sample +**")
 
         InvokeTakeStrings2();
-        UT_EQ( "123456" , ASLiteral2() );
+        UT_EQ( "123456" , StringLiteral2() );
 //        UT_RESULT_FILE( "DOX_ALIB_ASTRING_FORMAT.txt", testOutputStream.str() );
 
     }

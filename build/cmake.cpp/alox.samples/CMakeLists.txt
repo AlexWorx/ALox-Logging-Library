@@ -1,8 +1,8 @@
 # #################################################################################################
 #  CMakeLists.txt - ALox Samples
 #
-#  (c) 2015 A-Worx GmbH, Germany
-#  Published under MIT License (Open Source License, see LICENSE.txt)
+#  Copyright 2017 A-Worx GmbH, Germany
+#  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 #
 #  How to use:
 #   1. Enter subdirectory 'debug'   and invoke:  `cmake ..`
@@ -10,6 +10,21 @@
 #   3. Invoke `make` within any of these directories.
 #   More information is found in ALox documentation.
 # #################################################################################################
+
+# -------------------------------------------------------------------------------------------------
+# Prior to setting CMake project
+# -------------------------------------------------------------------------------------------------
+
+    ### uncomment to force a certain compiler (delete temporary output folder on change)
+    #set(CMAKE_C_COMPILER    "/usr/bin/clang")
+    #set(CMAKE_CXX_COMPILER  "/usr/bin/clang++")
+
+    #set(CMAKE_C_COMPILER    "/usr/bin/gcc")
+    #set(CMAKE_CXX_COMPILER  "/usr/bin/g++")
+
+    ### uncomment to force cotire on clean cmake built
+    #set( ALIB_CMAKE_COTIRE_DEFAULT   "On" )
+
 
 # -------------------------------------------------------------------------------------------------
 # General
@@ -27,19 +42,7 @@
 ## -------------------------------------------------------------------------------------------------
 
 #! [DOXYGEN_CMAKE_INCLUDE]
-    #-- optional compilation symbols (ALib/ALox features).
-    #-- uncomment to set (the opposite value is their default, therefore commenting the lines switches them)
-    #set( ALIB_DEBUG_GLIB                "On"  )
-    #set( ALIB_AVOID_ANALYZER_WARNINGS   "On"  )
-    #set( ALIB_DEBUG_STRINGS             "On"  )
-    #set( ALIB_FEAT_THREADS              "Off" )
-    #set( ALOX_DBG_LOG                   "Off" )
-    #set( ALOX_DBG_LOG_CI                "Off"  )
-    #set( ALOX_REL_LOG                   "Off" )
-    #set( ALOX_REL_LOG_CI                "On"  )
-
-    set ( ALOX_BASE_DIR   "../../.."  )
-    include( ${ALOX_BASE_DIR}/build/cmake.cpp/ALox_Base.cmake )
+    include( ../../../build/cmake.cpp/ALox.cmake )
 #! [DOXYGEN_CMAKE_INCLUDE]
 
 # -------------------------------------------------------------------------------------------------
@@ -57,10 +60,33 @@
     set_target_properties     ( ALoxSamples   PROPERTIES  COMPILE_FLAGS ${AWORX_COMPILE_FLAGS})
     set_target_properties     ( ALoxSamples   PROPERTIES  LINK_FLAGS    ${AWORX_LINK_FLAGS}   )
 
-    target_link_libraries     ( ALoxSamples   ALox_StaticLib
+    target_link_libraries     ( ALoxSamples   ALox_SharedLib
                                               ${ALIB_EXTERNAL_LIBS}
                                               ${ALOX_EXTERNAL_LIBS}   )
 #! [DOXYGEN_CMAKE_SAMPLE_TARGET]
+
+# -------------------------------------------------------------------------------------------------
+# Precompiled headers with 'cotire' CMake script.
+# For more Info see 'ALox.cmake' which downloads the script and the cotire website at
+# https://github.com/sakra/cotire/
+# -------------------------------------------------------------------------------------------------
+    if( ${ALIB_CMAKE_COTIRE} )
+        set_target_properties( ALoxSamples     PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT   "${ALIB_SRC_DIR}/alib/alib.hpp" )
+        cotire( ALoxSamples )
+    endif()
+
+    #--- dump cotire properties ---
+    #set ( _dumppname "ALoxSamples" )
+    #get_target_property( _unitySource        ${_dumppname}    COTIRE_CXX_UNITY_SOURCE      )
+    #get_target_property( _prefixHeader       ${_dumppname}    COTIRE_CXX_PREFIX_HEADER     )
+    #get_target_property( _precompiledHeader  ${_dumppname}    COTIRE_CXX_PRECOMPILED_HEADER)
+    #get_target_property( _unityTargetName    ${_dumppname}    COTIRE_UNITY_TARGET_NAME     )
+
+    # message(STATUS "${_dumppname} unity source:       ${_unitySource}")
+    # message(STATUS "${_dumppname} prefix header:      ${_prefixHeader}")
+    # message(STATUS "${_dumppname} precompiled header: ${_precompiledHeader}")
+    # message(STATUS "${_dumppname} unity target:       ${_unityTargetName}")
+
 
 # -------------------------------------------------------------------------------------------------
 # End

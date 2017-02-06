@@ -1,22 +1,29 @@
 // #################################################################################################
 //  aworx - Unit Tests
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alox/alox.hpp"
 
 
 #define TESTCLASSNAME       CPP_ALib__Dox
 
 
 //--------------------------------------------------------------------------------------------------
-//--- DOCUMENTATION SAMPLEs
+//--- DOCUMENTATION SAMPLES
 //--------------------------------------------------------------------------------------------------
 #include <iostream>
 #include <sstream>
-namespace std { stringstream testOutputStream1; }
+
+namespace std
+{
+    extern stringstream testOutputStream1; // declaration (needed when clang warnings are on)
+    stringstream testOutputStream1;
+}
 #define cout testOutputStream1
+
+void MyFunction();
 
 
 //! [DOX_ALIB_TOAS]
@@ -46,44 +53,22 @@ namespace myns
         public:
             inline     bool         IsNulled   () const { return false; }
             constexpr  const char*  GetMyBuffer() const { return               theString;   }
-            inline     int          GetMyLength() const { return (int) strlen( theString ); }
+            inline     size_t       GetMyLength() const { return strlen( theString ); }
     };
 
 }
 
 //
-// Partial template method implementation (has to be declared in namespace aworx::lib::strings)
-// Use "constexpr" when possible, otherwise "inline"
+// Template struct specialization (has to be made in namespace aworx::lib::strings)
 //
 namespace aworx { namespace lib { namespace strings {
 
-    // specialize ToStringDefined, to enable static_assert in String construction to success for MyString class
-    template<> struct              ToStringDefined <const myns::MyString&> : public std::true_type {};
-
-    // the two implementations of ToString. One for providing the buffer, one for the length
-    template<> inline  const char* ToString        <const myns::MyString&>( const myns::MyString& src )
+    // specialize T_String struct for String creation
+    template<> struct T_String <myns::MyString> : public std::true_type
     {
-        return  src.GetMyBuffer();
-    }
-
-    template<> inline  int         ToString        <const myns::MyString&>( const myns::MyString& src )
-    {
-        return  src.GetMyLength();
-    }
-
-    // to be capable of also using MyString for append operations with class AString, we
-    // do a similar partial template method implementation for AString.
-    // (These two usually go together)
-    template<> struct              IsApplicable<const myns::MyString&> : public std::true_type {};
-    template<> inline  int         ApplyTo( AString& target, const myns::MyString& src )
-    {
-        if ( src.IsNulled() )
-            return -1;
-
-        target.Append<false>( src.GetMyBuffer(), src.GetMyLength() );
-
-        return src.GetMyLength();
-    }
+        static inline const char* Buffer( const myns::MyString& src )  { return  src.GetMyBuffer();  }
+        static inline integer    Length( const myns::MyString& src )  { return  static_cast<integer>( src.GetMyLength() );  }
+    };
 
 }}} // namespace aworx::lib::strings
 
@@ -91,6 +76,7 @@ namespace aworx { namespace lib { namespace strings {
 // Defining a test method that takes a const reference to String
 //
 
+void Print( const aworx::String& text );
 void Print( const aworx::String& text )
 {
     std::cout << "Print: " << text << std::endl;
@@ -119,18 +105,16 @@ void MyFunction()
     // ...this also works with pointers
     Print( &myString );
 
-    // Now, as we have also implemented "IsApplicable" and "ApplyTo" for MyString, we can easily
-    // append them to objects of class AString
-    aworx::AString as;
-    as._(myString);
-    as << myString;
-    as << &myString; // again, works with pointers
+    // Method AString::Apply also checks for struct T_String, hence we can apply MyString objects
+    // to objects of class AString!
+    aworx::AString as(myString);
+    as                 << "<- constructor,   ";
+    as <<  myString    << "<- applied as reference,    ";
+    as << &myString    << "<- applied as pointer";         // again, works with pointers
+    Print( as );
 }
 //! [DOX_ALIB_TOAS]
 #undef cout
-namespace std { stringstream testOutputStream2; }
-#define cout testOutputStream2
-#undef HPP_ALIB_COMPATIBILITY_STD_IOSTREAM // be
 
 //----------- Now to the unit tests -------------
 #include "alib.unittests/aworx_unittests.hpp"

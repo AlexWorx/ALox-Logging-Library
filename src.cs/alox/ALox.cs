@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 using System.Diagnostics;
@@ -13,10 +13,11 @@ using cs.aworx.lox.core;
 using cs.aworx.lox.loggers;
 using cs.aworx.lox.core.textlogger;
 using cs.aworx.lib.strings;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 using System.Threading;
 using System.Collections.Generic;
 using cs.aworx.lib.config;
+using cs.aworx.lib.threads;
 
 namespace cs.aworx.lox {
 
@@ -125,7 +126,7 @@ public static class ALox
          * Besides this version number, field #Revision indicates if this is a revised version
          * of a former release.
          */
-        public static readonly int                   Version                                  =1607;
+        public static readonly int                   Version                                  =1702;
 
         /**
          * The revision number of this release. Each ALox #Version is initially released as
@@ -250,14 +251,15 @@ public static class ALox
         );
 
         /** Configuration variable definition */
-        public static          VariableDefinition           CONSOLE_HAS_LIGHT_BACKGROUND = new VariableDefinition(
-            ConfigCategoryName,   null,     "CONSOLE_HAS_LIGHT_BACKGROUND",
+        public static          VariableDefinition           CONSOLE_LIGHT_COLORS = new VariableDefinition(
+            ConfigCategoryName,   null,     "CONSOLE_LIGHT_COLORS",
             "",
             '\0', null, Variable.FormatHint.None,
-             "Evaluated by colorful loggers that dispose about light and dark colors. Those\n"        +
-             "adjust their foreground color accordingly. If not given, under Windows OS the right\n"  +
-             "value is detected. Otherwise the value defaults to false. In some occasions, the\n"     +
-             "(detected or set) runtime environment might also indicate a default value."
+            "Evaluated by colorful loggers that dispose about light and dark colors. Those may\n"        +
+            "adjust their foreground and background color accordingly. If not given, under Windows OS\n" +
+            "the right value is detected. Otherwise the value defaults to \"foreground\". In some\n"     +
+            "occasions, the (detected or set) runtime environment might also indicate a different\n"     +
+            "default value. Possible values are 'foreground', 'background' and 'never'."
         );
 
 
@@ -265,10 +267,9 @@ public static class ALox
         public static          VariableDefinition           FORMAT = new VariableDefinition(
             ConfigCategoryName,   null,     "%1_FORMAT",
 
-            null, // default value must stay null, because 2 variables are requested. If was given here,
-                  // the second is never tried!
+            null,
 
-            ',', null, Variable.FormatHint.None,
+            ',', null, Variable.FormatHint.MultLine,
              "Meta info format of text logger \"%1\", including signatures for verbosity strings.\n"       +
              "   Format: ALOX_<LOGGERNAME>_FORMAT = [\"]format[\"] [, Error [, Warning [, Info [, Verbose ]]]]"
         );
@@ -277,8 +278,7 @@ public static class ALox
         public static          VariableDefinition           FORMAT_DATE_TIME = new VariableDefinition(
             ConfigCategoryName,   null,     "%1_FORMAT_DATE_TIME",
 
-            null, // default value must stay null, because 2 variables are requested. If was given here,
-                  // the second is never tried!
+            null,
 
             ',', null, Variable.FormatHint.None,
              "Meta info date and time format of text logger \"%1\".\n"              +
@@ -289,8 +289,7 @@ public static class ALox
         public static          VariableDefinition           FORMAT_TIME_DIFF = new VariableDefinition(
             ConfigCategoryName,   null,     "%1_FORMAT_TIME_DIFF",
 
-            null, // default value must stay null, because 2 variables are requested. If was given here,
-                  // the second is never tried!
+            null,
 
             ',', null, Variable.FormatHint.None,
              "Meta info time difference entities of text logger \"%1\".\n"                                        +
@@ -302,13 +301,23 @@ public static class ALox
         public static          VariableDefinition           FORMAT_MULTILINE = new VariableDefinition(
             ConfigCategoryName,   null,     "%1_FORMAT_MULTILINE",
 
-            null, // default value must stay null, because 2 variables are requested. If was given here,
-                  // the second is never tried!
+            null,
 
             ',', null, Variable.FormatHint.None,
              "Multi-line format of text logger \"%1\".\n"                                                           +
              "   Format: MultiLineMsgMode [, FmtMultiLineMsgHeadline [, FmtMultiLinePrefix [, FmtMultiLineSuffix\n" +
              "           [, MultiLineDelimiter [, MultiLineDelimiterRepl ]]]]]"
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           REPLACEMENTS     = new VariableDefinition(
+            ConfigCategoryName,   null,     "%1_REPLACEMENTS",
+
+            null,
+
+            ',', null, Variable.FormatHint.None,
+            "Pairs of search and replacement strings for text logger \"%1\".\n"  +
+            "   Format: search, replacement [, search, replacement] [,...]"
         );
 
 
@@ -397,29 +406,26 @@ public static class ALox
          *                  Optional and defaults to \b %Create.Never.
          * @return The \b Lox found, \c null in case of failure.
          ******************************************************************************************/
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public static
         Lox      Get( String name, Create create= Create.Never )
         {
-            try { ALIB.Lock.Acquire();
+            // search
+            name= name.ToUpper();
+            foreach( Lox it in loxes )
+                if( it.GetName().Equals( name ) )
+                    return it;
 
-                // search
-                name= name.ToUpper();
-                foreach( Lox it in loxes )
-                    if( it.GetName().Equals( name ) )
-                        return it;
+            // create?
+            if ( create == Create.IfNotExistent )
+            {
+                Lox newLox= new Lox( name, false );
+                loxes.Add( newLox );
+                return newLox;
+            }
 
-                // create?
-                if ( create == Create.IfNotExistent )
-                {
-                    Lox newLox= new Lox( name, false );
-                    loxes.Add( newLox );
-                    return newLox;
-                }
-
-                // not found
-                return null;
-
-            } finally { ALIB.Lock.Release(); }
+            // not found
+            return null;
         }
 
         /** ****************************************************************************************
@@ -429,7 +435,7 @@ public static class ALox
          * No two objects with the same name must be registered. If this is done, the latter
          * will not be registered and not be found by #Get. In debug-compilations, an ALib
          * error report is written (by default raises 'assert') if a name is registered twice.<br>
-         * Note that name comparisson is performed case <b>in</b>-sensitive.
+         * Note that name comparison is performed case <b>in</b>-sensitive.
          *
          * If debug-logging is enabled (depends on compilation symbols) and used, the singleton
          * of type \% Lox provided for debug-logging is registered. This uses the name \c "Log"
@@ -441,42 +447,39 @@ public static class ALox
          * @param operation If \b %ContainerOp.Remove, the given \p Lox is deregistered.
          *                  Defaults to \b %ContainerOp.Insert.
          ******************************************************************************************/
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public static
         void     Register( Lox lox, ContainerOp operation )
         {
-            try { ALIB.Lock.Acquire();
+            // check
+            if ( lox == null )
+            {
+                ALIB_DBG.ERROR( "null given" );
+                return;
+            }
 
-                // check
-                if ( lox == null )
+            // remove
+            if( operation == ContainerOp.Remove )
+            {
+                if ( !loxes.Remove( lox ) )
                 {
-                    ALIB.ERROR( "null given" );
-                    return;
+                    ALIB_DBG.WARNING(  "A lox named \"" + lox.GetName()
+                                + "\" could not be found for removal." );
                 }
+            }
 
-                // remove
-                if( operation == ContainerOp.Remove )
-                {
-                    if ( !loxes.Remove( lox ) )
+            // insert
+            else
+            {
+                foreach( Lox it in loxes )
+                    if( it.GetName().Equals( lox.GetName( ) ) )
                     {
-                        ALIB.WARNING(  "A lox named \"" + lox.GetName()
-                                    + "\" could not be found for removal." );
+                        ALIB_DBG.ERROR(   "A lox named \"" + lox.GetName()
+                                    + "\" was already registered. Registration ignored" );
+                        return;
                     }
-                }
-
-                // insert
-                else
-                {
-                    foreach( Lox it in loxes )
-                        if( it.GetName().Equals( lox.GetName( ) ) )
-                        {
-                            ALIB.ERROR(   "A lox named \"" + lox.GetName()
-                                        + "\" was already registered. Registration ignored" );
-                            return;
-                        }
-                    loxes.Add( lox );
-                }
-
-            } finally { ALIB.Lock.Release(); }
+                loxes.Add( lox );
+            }
         }
 
         /** ****************************************************************************************
@@ -524,7 +527,7 @@ public class    ALoxReportWriter : ReportWriter
     public ALoxReportWriter ( Lox lox )
     {
         this.lox= lox;
-        lox.Verbose( ALoxReportWriter.LogDomain(), "ALoxReportWriter set" );
+        lox.Entry( ALoxReportWriter.LogDomain(), Verbosity.Verbose,  new Object[] {"ALoxReportWriter set"} );
     }
 
     /** ****************************************************************************************

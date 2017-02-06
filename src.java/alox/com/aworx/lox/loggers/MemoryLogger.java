@@ -1,12 +1,12 @@
 // #################################################################################################
 //  com.aworx.lox.loggers - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package com.aworx.lox.loggers;
 
-import com.aworx.lib.enums.Phase;
+import com.aworx.lib.lang.Phase;
 import com.aworx.lib.strings.AString;
 import com.aworx.lox.core.textlogger.PlainTextLogger;
 
@@ -62,7 +62,7 @@ public class MemoryLogger extends PlainTextLogger
      * @param phase  Indicates the beginning or end of a log operation.
      * @return Always returns true.
      **********************************************************************************************/
-    @Override 
+    @Override
     protected boolean notifyLogOp( Phase phase )
     {
         // append new line if buffer has already lines stored
@@ -79,7 +79,7 @@ public class MemoryLogger extends PlainTextLogger
      * @param length   The length of the portion in \p buffer to write out.
      * @return Always returns true.
      **********************************************************************************************/
-    @Override 
+    @Override
     protected boolean logSubstring( AString buffer, int start, int length )
     {
         memoryLog._NC( buffer, start, length );

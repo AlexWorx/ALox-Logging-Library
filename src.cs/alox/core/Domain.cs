@@ -1,15 +1,15 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox.core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 using System;
 using System.Collections.Generic;
 using cs.aworx.lib;
 using cs.aworx.lib.strings;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 
 
 
@@ -194,7 +194,7 @@ public class Domain
         if ( GetLoggerNo( logger.GetName() ) >= 0 )
             return -1;
 
-        // now this and all childs
+        // now this and all children
         addLoggerRecursive( logger );
         return Data.Count - 1;
     }
@@ -213,7 +213,7 @@ public class Domain
             return;
         }
 
-        // now this and all childs
+        // now this and all children
         removeLoggerRecursive( loggerNo );
     }
 
@@ -230,7 +230,7 @@ public class Domain
     /** ****************************************************************************************
      * Searches and returns the \e Logger given by name.
      * @param loggerName  The logger to search.
-     * @return The the \e Logger found corresponding to given name.
+     * @return The \e Logger found corresponding to given name.
      *         If the \e Logger does not exist, null is returned.
      ******************************************************************************************/
     public Logger  GetLogger( String loggerName )
@@ -245,11 +245,11 @@ public class Domain
     /** ****************************************************************************************
      * Returns logger of given number.
      * @param no  The number of the \e Logger to return.
-     * @return The the \e Logger found with number \p no.
+     * @return The \e Logger found with number \p no.
      ******************************************************************************************/
     public Logger  GetLogger( int no )
     {
-        ALIB.ASSERT_ERROR( no >= 0 && no < (int) Data.Count, "Internal error: Illegal Logger Number" );
+        ALIB_DBG.ASSERT_ERROR( no >= 0 && no < (int) Data.Count, "Internal error: Illegal Logger Number" );
         return Data[no].Logger;
     }
 
@@ -376,14 +376,13 @@ public class Domain
      * from this domain.
      *
      * @param       domainPathAS  Path and domain to search.
-     * @param       sensitivity   Denotes if domain name search is treated case sensitive or not.
      * @param       maxCreate     The maximum number of sub domains that are created if not
      *                            found at the end of the path.
      * @param[out]  wasCreated    Output parameter that is set \c true if domain was not found
      *                            and hence created.
      * @return The domain found or created.
      **********************************************************************************************/
-    public Domain Find( AString domainPathAS, Case sensitivity, int maxCreate, ref bool wasCreated )
+    public Domain Find( AString domainPathAS, int maxCreate, ref bool wasCreated )
     {
         Substring domainPath= tSubstring;
         domainPath.Set( domainPathAS );
@@ -394,7 +393,7 @@ public class Domain
         int lenBeforeTrim= domainPath.Length();
 
         // if string is empty (resp. contains only separator characters), return ourselves
-        while ( domainPath.Consume( Separator ) )
+        while ( domainPath.ConsumeChar( Separator ) )
             ;
         if( domainPath.IsEmpty() )
         {
@@ -410,7 +409,7 @@ public class Domain
         }
 
         // call find
-        return startDomain.findRecursive( domainPath, sensitivity, maxCreate, ref wasCreated );
+        return startDomain.findRecursive( domainPath, maxCreate, ref wasCreated );
     }
 
     /** ****************************************************************************************
@@ -444,21 +443,19 @@ public class Domain
          * Internal, recursive helper of #Find.
          *
          * @param       domainPath  Path to search.
-         * @param       sensitivity Denotes if domain name search is treated case sensitive or not.
          * @param       maxCreate   The maximum number of sub domains that are created if not
          *                          found at the end of the path.
          * @param[out]  wasCreated  Output parameter that is set \c true if domain was not found
          *                          and hence created.
          * @return The domain found or created.
          ******************************************************************************************/
-        protected Domain findRecursive( Substring domainPath, Case sensitivity,
-                                        int maxCreate, ref bool wasCreated          )
+        protected Domain findRecursive( Substring domainPath, int maxCreate, ref bool wasCreated          )
         {
             //--- get act sub-name and rest of path
-            domainPath.Consume( Separator );
+            domainPath.ConsumeChar( Separator );
             int endSubName= domainPath.IndexOf( Separator );
 
-            ALIB.ASSERT_ERROR( endSubName != 0, "Internal Error" );
+            ALIB_DBG.ASSERT_ERROR( endSubName != 0, "Internal Error" );
 
             // find end of actual domain name and save rest
             Substring restOfDomainPath= tSubstring2;
@@ -487,7 +484,7 @@ public class Domain
                 {
                     for( i= 0; i< SubDomains.Count; i++ )
                     {
-                        int comparison=   SubDomains[i].Name.CompareTo( domainPath, sensitivity );
+                        int comparison=   SubDomains[i].Name.CompareTo( domainPath, Case.Sensitive );
                         if( comparison >= 0 )
                         {
                             if ( comparison == 0 )
@@ -509,12 +506,11 @@ public class Domain
                         for( int cp= 0; cp< domainPath.Length() ; ++cp )
                         {
                             char c= domainPath.CharAt(cp);
-                            if (     c <  '-' || c > 'z'
-                                  || c == '<' || c == '>'
-                                  || c == '[' || c == ']'
-                                  || c == '=' || c == '?' || c == ';' || c == ':'
-                                  || c == '\\'|| c == '\''|| c == '.' || c == ','
-                               )
+                            if (!(    ( c >= '0' && c <= '9' )
+                                   || ( c >= 'A' && c <= 'Z' )
+                                   || c == '-'
+                                   || c == '_'
+                            ))
                             {
                                 illegalCharacterFound= true;
                                 domainPath.Buf[domainPath.Start + cp]= '#';
@@ -542,7 +538,7 @@ public class Domain
             if ( restOfDomainPath.IsNotEmpty() )
             {
                 domainPath.Set( restOfDomainPath );
-                return subDomain.findRecursive( domainPath, sensitivity, maxCreate, ref wasCreated );
+                return subDomain.findRecursive( domainPath, maxCreate, ref wasCreated );
             }
 
             // that's it
@@ -558,7 +554,7 @@ public class Domain
             // add data here
             Data.Add( new LoggerData( logger ) );
 
-            // add to all childs
+            // add to all children
             foreach( Domain subDomain in SubDomains )
                 subDomain.addLoggerRecursive( logger );
         }

@@ -2,11 +2,10 @@
 //  Unit Tests - ALox Logging Library
 //  (Unit Tests to create tutorial sample code and output)
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
-#include "alib/alib.hpp"
+#include "alox/alox.hpp"
 #include "alib/config/inmemoryplugin.hpp"
 #include "alib/compatibility/std_string.hpp"
 #include "alox/loggers/memorylogger.hpp"
@@ -29,6 +28,8 @@ using namespace aworx;
 namespace ut_alox {
 
 // used with unit test Log_ScopeInfoCacheTest
+void ScopeInfoCacheTest6();
+void ScopeInfoCacheTest1();
 void ScopeInfoCacheTest6() { Log_Info("Test Method 6"); }
 void ScopeInfoCacheTest1() { Log_Info("Test Method 1"); }
 extern void ScopeInfoCacheTest2();
@@ -38,6 +39,7 @@ extern void ScopeInfoCacheTest5();
 extern void ScopeInfoCacheTest6();
 extern void ScopeInfoCacheTest7();
 
+void check_MemLogStartsWith( const aworx::TString& exp, AWorxUnitTesting& ut, MemoryLogger& memlog, bool doLog );
 void check_MemLogStartsWith( const aworx::TString& exp, AWorxUnitTesting& ut, MemoryLogger& memlog, bool doLog= true )
 {
     if (doLog)
@@ -45,18 +47,27 @@ void check_MemLogStartsWith( const aworx::TString& exp, AWorxUnitTesting& ut, Me
 
     if( DirectorySeparator == '/' )
     {
-        UT_TRUE( memlog.MemoryLog.StartsWith( exp, Case::Ignore ) );
+        if( !memlog.MemoryLog.StartsWith( exp, Case::Ignore ) )
+        {
+            UT_PRINT( "Expected start: {} Given: {}", exp, memlog.MemoryLog );
+            UT_TRUE( false );
+        }
     }
     else
     {
         String256 expCorrected( exp );
         expCorrected.SearchAndReplaceAll( "/", "\\"  );
-        UT_TRUE( memlog.MemoryLog.StartsWith( expCorrected, Case::Ignore ) );
+        if( !memlog.MemoryLog.StartsWith( expCorrected, Case::Ignore ) )
+        {
+            UT_PRINT( "Expected start: {} Given: {}", expCorrected, memlog.MemoryLog );
+            UT_TRUE( false );
+        }
     }
 
     memlog.MemoryLog.Clear();
 }
 
+void check_MemLogContains( const aworx::TString& exp, AWorxUnitTesting& ut, MemoryLogger& memlog, bool doLog );
 void check_MemLogContains( const aworx::TString& exp, AWorxUnitTesting& ut, MemoryLogger& memlog, bool doLog= true )
 {
     if (doLog)
@@ -78,12 +89,12 @@ void check_MemLogContains( const aworx::TString& exp, AWorxUnitTesting& ut, Memo
 
 class TThread : public Thread
 {
-    public: TThread( const String& name, int cntLoops, int sleepMicros )
-            : Thread( name )
+    public: TThread( const String& pname, int pcntLoops, int psleepMicros )
+            : Thread( pname )
             {
-                this->cntLoops=     cntLoops;
-                this->sleepMicros=  sleepMicros;
-                this->name= name;
+                this->cntLoops=     pcntLoops;
+                this->sleepMicros=  psleepMicros;
+                this->name=         pname;
             }
     String32 name;
     int cntLoops;
@@ -107,14 +118,15 @@ class TThread : public Thread
 
 // with GTEST macros it all gets wild. Fix the method name
 #undef  ALIB_SRC_INFO_PARAMS
-#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, aworxTestName
-
+#if ALIB_DEBUG
+    #define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, UT_GET_TEST_NAME
+#endif
 UT_CLASS()
 
 /** ********************************************************************************************
  * AddLogger
  **********************************************************************************************/
-#if defined (ALOX_DBG_LOG)
+#if ALOX_DBG_LOG
 UT_METHOD(AddLogger)
 {
     UT_INIT();
@@ -133,6 +145,10 @@ UT_METHOD(AddLogger)
         Log_SetVerbosity( &mem2,     Verbosity::Info ); UT_EQ( checkVal+= 1, checkCnt.CntLogs );
         Log_SetVerbosity( "XYZ",     Verbosity::Info ); UT_EQ( checkVal+= 1, checkCnt.CntLogs );
 
+        // get unknown
+        Log_GetLogger( result, "XYZ" );                 UT_EQ( checkVal+= 1, checkCnt.CntLogs );
+        Log_Prune( (void) result );
+
         Log_RemoveLogger( &mem2     );                  UT_EQ( checkVal+= 1, checkCnt.CntLogs );
         Log_RemoveLogger( &mem1     );                  UT_EQ( checkVal+= 0, checkCnt.CntLogs );
         Log_RemoveLogger( &mem1     );                  UT_EQ( checkVal+= 1, checkCnt.CntLogs );
@@ -148,67 +164,69 @@ UT_METHOD(AddLogger)
 
         Lox lox("ReleaseLox");
 
-        UT_TRUE( ((ThreadLock*) Log::DebugLogger)->GetSafeness() == Safeness::Unsafe );
+        UT_TRUE( Log::DebugLogger->GetSafeness() == Safeness::Unsafe );
 
-        lox.SetScopeInfo(ALIB_SRC_INFO_PARAMS);
+        lox.Acquire(ALIB_SRC_INFO_PARAMS);
             lox.SetVerbosity( Log::DebugLogger , Verbosity::Verbose );
         lox.Release();
 
-        UT_TRUE( ((ThreadLock*) Log::DebugLogger)->GetSafeness() == Safeness::Safe   );
+        UT_TRUE( Log::DebugLogger->GetSafeness() == Safeness::Safe   );
 
-        lox.SetScopeInfo(ALIB_SRC_INFO_PARAMS);
+        lox.Acquire(ALIB_SRC_INFO_PARAMS);
             lox.RemoveLogger( Log::DebugLogger );
         lox.Release();
 
-        UT_TRUE( ((ThreadLock*) Log::DebugLogger)->GetSafeness() == Safeness::Unsafe );
+        UT_TRUE( Log::DebugLogger->GetSafeness() == Safeness::Unsafe );
 
         Log_RemoveDebugLogger();
     }
 
     // two release loxes
+    #if ALOX_REL_LOG
     {
         Lox lox1("Lox1");
         Lox lox2("Lox2");
         TextLogger*  cl= Lox::CreateConsoleLogger();
 
-        UT_TRUE( ((ThreadLock*) cl)->GetSafeness() == Safeness::Unsafe );
+        UT_TRUE( cl->GetSafeness() == Safeness::Unsafe );
 
         #undef  LOX_LOX
         #define LOX_LOX lox1
         Lox_SetVerbosity( cl, Verbosity::Verbose );
 
-        UT_TRUE( ((ThreadLock*) cl)->GetSafeness() == Safeness::Unsafe );
+        UT_TRUE( cl->GetSafeness() == Safeness::Unsafe );
 
         #undef  LOX_LOX
         #define LOX_LOX lox2
         Lox_SetVerbosity( cl, Verbosity::Verbose );
 
 
-        UT_TRUE( ((ThreadLock*) cl)->GetSafeness() == Safeness::Safe  );
+        UT_TRUE( cl->GetSafeness() == Safeness::Safe  );
 
         #undef  LOX_LOX
         #define LOX_LOX lox1
         Lox_RemoveLogger( cl );
 
-        UT_TRUE( ((ThreadLock*) cl)->GetSafeness() == Safeness::Unsafe );
+        UT_TRUE( cl->GetSafeness() == Safeness::Unsafe );
 
 
         #undef  LOX_LOX
         #define LOX_LOX lox2
         Lox_RemoveLogger( cl );
 
-        UT_TRUE( ((ThreadLock*) cl)->GetSafeness() == Safeness::Unsafe );
+        UT_TRUE( cl->GetSafeness() == Safeness::Unsafe );
 
 
         delete cl;
     }
+    #endif
 }
 #endif
 
 /** ********************************************************************************************
  * Log_LogLevelSetting
  **********************************************************************************************/
-#if defined( ALOX_DBG_LOG ) && defined(ALOX_DBG_LOG_CI)
+#if ALOX_DBG_LOG && ALOX_DBG_LOG_CI
 UT_METHOD(Log_LogLevelSetting)
 {
     UT_INIT();
@@ -286,7 +304,7 @@ UT_METHOD(Log_LogLevelSetting)
 /** ********************************************************************************************
  * Log_SimpleScopeDomain
  **********************************************************************************************/
-#if defined( ALOX_DBG_LOG_CI )
+#if ALOX_DBG_LOG_CI
 UT_METHOD(Log_SimpleScopeDomain)
 {
     UT_INIT();
@@ -298,8 +316,8 @@ UT_METHOD(Log_SimpleScopeDomain)
         Log_SetDomain( "REPLACED",  Scope::Method );
         Log_SetDomain( "DFLT",      Scope::Method );
 
-        string testOK=  "This line has to appear";
-        string testERR= "This line must not appear";
+        String testOK=  "This line has to appear";
+        String testERR= "This line must not appear";
 
         // Test Verbosity setting
         Log_SetVerbosity( Log::DebugLogger,    Verbosity::Warning, "" );
@@ -342,7 +360,7 @@ UT_METHOD(Log_SimpleScopeDomain)
         cntLL= testML->CntLogs;    Log_Error  ( "/DFLT/WARN",   testOK  );    UT_EQ( 1, testML->CntLogs - cntLL );
         cntLL= testML->CntLogs;    Log_Error  ( "/DFLT/ERR",    testOK  );    UT_EQ( 1, testML->CntLogs - cntLL );
 
-        // log without leading "/" on domain (of course, this is quite an error of using ALox)
+        // log without leading "/" on domain (of-course, this is quite an error of using ALox)
         cntLL= testML->CntLogs;    Log_Verbose( "DFLT",         testERR );    UT_EQ( 0, testML->CntLogs - cntLL );
         cntLL= testML->CntLogs;    Log_Verbose( "DFLT/ERR",     testERR );    UT_EQ( 0, testML->CntLogs - cntLL );
         cntLL= testML->CntLogs;    Log_Verbose( "DFLT/WARN",    testERR );    UT_EQ( 0, testML->CntLogs - cntLL );
@@ -417,7 +435,7 @@ UT_METHOD(Log_Threads)
 /** ********************************************************************************************
  * Log_TestAssertAndIf
  **********************************************************************************************/
-#if defined (ALOX_DBG_LOG)
+#if ALOX_DBG_LOG
 UT_METHOD(Log_TestAssertAndIf)
 {
     UT_INIT();
@@ -454,7 +472,7 @@ UT_METHOD(Log_TestAssertAndIf)
 /** ********************************************************************************************
  * Log_ScopeInfoCacheTest
  **********************************************************************************************/
-#if defined (ALOX_DBG_LOG_CI)
+#if ALOX_DBG_LOG_CI
 UT_METHOD(Log_ScopeInfoCacheTest)
 {
     UT_INIT();
@@ -488,7 +506,7 @@ UT_METHOD(Log_ScopeInfoCacheTest)
 /** ********************************************************************************************
  * Log_SetSourcePathTrimRuleTest
  **********************************************************************************************/
-#if defined (ALOX_DBG_LOG_CI)
+#if ALOX_DBG_LOG_CI
 UT_METHOD(Log_SetSourcePathTrimRuleTest)
 {
     UT_INIT();
@@ -506,7 +524,7 @@ UT_METHOD(Log_SetSourcePathTrimRuleTest)
         Log_Prune( memLogger.MemoryLog._();   )
 
     #else
-        #if !defined(ALOX_UNITTESTS_QMAKE_BUILD)
+        #if !defined(ALOX_UNITTESTS_QMAKE_BUILD) && defined(__unix__)
             check_MemLogStartsWith( "/home"               , ut, memLogger );
         #endif
     #endif
@@ -553,7 +571,7 @@ UT_METHOD(Log_SetSourcePathTrimRuleTest)
     Log_SetSourcePathTrimRule( "*/SRC.Cpp/", Inclusion::Exclude, 0, Case::Sensitive, nullptr, Reach::Local );
 
     #if !defined(_WIN32)
-        #if !defined(ALOX_UNITTESTS_QMAKE_BUILD)
+        #if !defined(ALOX_UNITTESTS_QMAKE_BUILD) && defined(__unix__)
             check_MemLogStartsWith( "/home"               , ut, memLogger );
         #endif
     #else
@@ -568,7 +586,7 @@ UT_METHOD(Log_SetSourcePathTrimRuleTest)
 /** ********************************************************************************************
  * Log_SetSourcePathTrimRuleExternal
  **********************************************************************************************/
-#if defined (ALOX_REL_LOG) && defined (ALOX_REL_LOG_CI)
+#if ALOX_REL_LOG && ALOX_REL_LOG_CI
 UT_METHOD(Log_SetSourcePathTrimRuleExternal)
 {
     UT_INIT();
@@ -586,7 +604,7 @@ UT_METHOD(Log_SetSourcePathTrimRuleExternal)
 
             // test
             Lox lox("T_LOX", false);
-            lox.SetScopeInfo(ALIB_SRC_INFO_PARAMS);
+            lox.Acquire(ALIB_SRC_INFO_PARAMS);
 
                 Logger* consoleLogger= Lox::CreateConsoleLogger("CONSOLE");
                 lox.SetVerbosity( "CONSOLE" , Verbosity::Verbose );
@@ -613,7 +631,7 @@ UT_METHOD(Log_SetSourcePathTrimRuleExternal)
 
         // local rule
         clearLox.ClearSourcePathTrimRules( Reach::Global, false );
-        ALIB::Config.DefaultValues.Reset();
+        Configuration::Default.DefaultValues.Reset();
         {
             // store default values
             Variable var;
@@ -626,7 +644,7 @@ UT_METHOD(Log_SetSourcePathTrimRuleExternal)
 
             // test
             Lox lox("T_LOX", false);
-            lox.SetScopeInfo(ALIB_SRC_INFO_PARAMS);
+            lox.Acquire(ALIB_SRC_INFO_PARAMS);
 
                 Logger* consoleLogger= Lox::CreateConsoleLogger("CONSOLE");
                 lox.SetVerbosity( "CONSOLE" , Verbosity::Verbose );
@@ -645,7 +663,7 @@ UT_METHOD(Log_SetSourcePathTrimRuleExternal)
         }
 
         clearLox.ClearSourcePathTrimRules( Reach::Global, false );
-        ALIB::Config.DefaultValues.Reset();
+        Configuration::Default.DefaultValues.Reset();
         {
             // create iniFile
             InMemoryPlugin iniFile;
@@ -653,7 +671,7 @@ UT_METHOD(Log_SetSourcePathTrimRuleExternal)
             iniFile.Store( var.Define( ALox::ConfigCategoryName, "TESTML_FORMAT" ),  "%Sp" );
             iniFile.Store( var.Define( ALox::ConfigCategoryName, "T_LOX_SOURCE_PATH_TRIM_RULES",';'),
                            "*alox.u, excl, 2, sens" );
-            ALIB::Config.InsertPlugin(&iniFile, Configuration::PrioIniFile);
+            Configuration::Default.InsertPlugin(&iniFile, Configuration::PrioIniFile);
 
             // test
             Lox lox("T_LOX", false);
@@ -679,12 +697,12 @@ UT_METHOD(Log_SetSourcePathTrimRuleExternal)
             Lox_RemoveLogger( &ml );
             Lox_RemoveLogger( "CONSOLE" );
             delete consoleLogger;
-            ALIB::Config.RemovePlugin(&iniFile);
+            Configuration::Default.RemovePlugin(&iniFile);
         }
 
         // ignore case
         clearLox.ClearSourcePathTrimRules( Reach::Global, false );
-        ALIB::Config.DefaultValues.Reset();
+        Configuration::Default.DefaultValues.Reset();
         {
             // store default values
             Variable var;
@@ -695,7 +713,7 @@ UT_METHOD(Log_SetSourcePathTrimRuleExternal)
 
             // test
             Lox lox("T_LOX", false);
-            lox.SetScopeInfo(ALIB_SRC_INFO_PARAMS);
+            lox.Acquire(ALIB_SRC_INFO_PARAMS);
 
                 Logger* consoleLogger= Lox::CreateConsoleLogger("CONSOLE");
                 lox.SetVerbosity( "CONSOLE" , Verbosity::Verbose );
@@ -714,7 +732,7 @@ UT_METHOD(Log_SetSourcePathTrimRuleExternal)
         }
 
         clearLox.ClearSourcePathTrimRules( Reach::Global, false );
-        ALIB::Config.DefaultValues.Reset();
+        Configuration::Default.DefaultValues.Reset();
         {
             // store default values
             Variable var;
@@ -724,7 +742,7 @@ UT_METHOD(Log_SetSourcePathTrimRuleExternal)
 
             // test
             Lox lox("T_LOX", false);
-            lox.SetScopeInfo(ALIB_SRC_INFO_PARAMS);
+            lox.Acquire(ALIB_SRC_INFO_PARAMS);
 
                 Logger* consoleLogger= Lox::CreateConsoleLogger("CONSOLE");
                 lox.SetVerbosity( "CONSOLE" , Verbosity::Verbose );
@@ -746,6 +764,38 @@ UT_METHOD(Log_SetSourcePathTrimRuleExternal)
         }
 }
 #endif
+
+/** ********************************************************************************************
+ * Log_MultipleLogables
+ **********************************************************************************************/
+UT_METHOD(Log_MultipleLogables)
+{
+    UT_INIT();
+
+    Log_AddDebugLogger();
+    Log_Prune( MemoryLogger memLogger;  )
+    Log_Prune( memLogger.MetaInfo->Format=  "";   )
+    Log_SetVerbosity  ( Log::DebugLogger, Verbosity::Verbose, "BOXES" );
+    Log_SetVerbosity  ( &memLogger      , Verbosity::Verbose, "BOXES" );
+
+    Log_Info ( "BOXES", "Test" );
+    Log_Prune( check_MemLogStartsWith( "Test"     , ut, memLogger );  )
+
+    Log_Info ( "BOXES", Boxes("Hello {}", "World" ) );
+    Log_Prune( check_MemLogStartsWith( "Hello World"     , ut, memLogger ); )
+
+    Log_Once( "BOXES", Verbosity::Info, Boxes("Just {}!", "once" ), "GroupBoxes" );
+
+    Log_Prune( check_MemLogStartsWith( "Just once!"     , ut, memLogger ) );
+
+
+//! [DOX_ALOX_LOX_ONCE]
+Log_Once( Boxes("One - {} - {}!", "two", 3 ) );
+//! [DOX_ALOX_LOX_ONCE]
+
+    Log_RemoveLogger( &memLogger );
+}
+
 
 /** ********************************************************************************************
  * Log_ChangeStartTime
@@ -803,10 +853,10 @@ UT_METHOD(Log_GetState)
     Log_Once( "Will we see this in the config?" );
     Log_Once( "Will we see this in the config?", "ONCEKEY", Scope::Filename );
 
-    Log_Store( new LogData( "MyData 1" ), Scope::Method );
-    Log_Store( new LogData( "MyData 2" ), "DataKey", Scope::Method );
-    Log_Store( new LogData( 3          ), "DataKey", Scope::Filename );
-    Log_Store( new LogData( 4, this    ), "DataKey", Scope::ThreadOuter );
+    Log_Store("MyData 1" ,            Scope::Method );
+    Log_Store("MyData 2" , "DataKey", Scope::Method );
+    Log_Store(3          , "DataKey", Scope::Filename );
+    Log_Store(4          , "DataKey", Scope::ThreadOuter );
 
     Log_SetPrefix( "TPre: "  , Scope::ThreadOuter );
     Log_SetPrefix( "MPre: "  , Scope::Method );
@@ -831,7 +881,7 @@ UT_METHOD(Log_GetState)
 /** ********************************************************************************************
  * Log_DumpStateOnExit
  **********************************************************************************************/
-#if defined (ALOX_DBG_LOG)
+#if ALOX_DBG_LOG
 
 UT_METHOD(Log_DumpStateOnExit)
 {

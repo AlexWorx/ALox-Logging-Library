@@ -1,19 +1,20 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 using System.Runtime.CompilerServices;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
 using System.Globalization;
 using System.Threading;
 using cs.aworx.lib;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 using cs.aworx.lib.config;
 using cs.aworx.lib.time;
 using cs.aworx.lib.strings;
@@ -24,7 +25,7 @@ using cs.aworx.lox.core.textlogger;
 
 /** ************************************************************************************************
  * This is the C++ namespace for code of the <em>%ALox Logging Library</em>.
- * Developed by A-Worx GmbH and published under the MIT license.
+ * Developed by A-Worx GmbH and published under Boost Software License.
  **************************************************************************************************/
 namespace cs.aworx.lox {
 
@@ -45,14 +46,6 @@ public class Lox : ThreadLock
          * disabled <em>Log Domain</em> and those suppressed by the optional log condition parameter.
          */
         public    int                           CntLogCalls                                      =0;
-
-        /**
-         * Denotes if <em>Log Domains</em> are searched ignoring the letter case or being sensitive
-         * about it.<br>
-         * Defaults to \p Case::Ignore.
-         */
-        public    Case                          DomainSensitivity                      =Case.Ignore;
-
 
         /**
          * Denotes flags used with methods #GetState and #State to select different parts
@@ -102,7 +95,7 @@ public class Lox : ThreadLock
         protected ScopeStore<AString>                       scopeDomains;
 
         /** Log Data */
-        protected ScopeStore<Dictionary<AString, LogData>>  scopeLogData;
+        protected ScopeStore<Dictionary<AString, Object>>  scopeLogData;
 
         /** Log once counters */
         protected ScopeStore<Dictionary<AString, int[]>>    scopeLogOnce;
@@ -115,12 +108,6 @@ public class Lox : ThreadLock
 
         /** The resulting domain name for internal logs. */
         protected AString                       resDomainInternal               = new AString( 32 );
-
-        /** An AString singleton. Can be acquired, using buf() */
-        protected AString                       logBuf                         = new AString( 128 );
-
-        /** A locker for the log buffer singleton */
-        protected ThreadLock                    logBufLock                       = new ThreadLock();
 
         /** Used for tabular output of logger lists */
         protected int                           maxLoggerNameLength                             = 0;
@@ -136,7 +123,7 @@ public class Lox : ThreadLock
         protected readonly String               noKeyHashKey                                  = "$";
 
         /** The list of collected log objects which is passed to the \e Loggers  */
-        protected List<Object>                  logObjects                     = new List<Object>();
+        protected List<Object>                  tmpLogables                    = new List<Object>();
 
         /** A temporary AString, following the "create once and reuse" design pattern. */
         protected AString                       intMsg                         = new AString( 256 );
@@ -230,7 +217,7 @@ public class Lox : ThreadLock
         protected AString                       tmpSubstitutionPathInternalDomains =new AString(64);
 
     #else
-        public enum StateInfo 
+        public enum StateInfo
         {
               All   = ~0
         }
@@ -263,12 +250,11 @@ public class Lox : ThreadLock
             // set recursion warning of log buffer lock to 1. Warnings are logged if recursively
             // acquired more than once
             #if ALOX_DBG_LOG || ALOX_REL_LOG
-                logBufLock.RecursionWarningThreshold= 1;
 
                 scopeInfo=      new ScopeInfo( name, threadDictionary );
                 scopeDomains=   new ScopeStore<AString                     >( scopeInfo, false );
                 scopePrefixes=  new ScopeStore<Object                      >( scopeInfo, false );
-                scopeLogData=   new ScopeStore<Dictionary<AString, LogData>>( scopeInfo, true  );
+                scopeLogData=   new ScopeStore<Dictionary<AString, Object>>( scopeInfo, true  );
                 scopeLogOnce=   new ScopeStore<Dictionary<AString, int[]>  >( scopeInfo, true  );
 
 
@@ -283,7 +269,7 @@ public class Lox : ThreadLock
                 foreach ( String it in internalDomainList )
                 {
                     resDomainInternal._()._NC( it );
-                    internalDomains.Find( resDomainInternal, Case.Sensitive, 1, ref wasCreated );
+                    internalDomains.Find( resDomainInternal, 1, ref wasCreated );
                 }
 
                 maxDomainPathLength= ALox.InternalDomains.Length + 3;
@@ -309,12 +295,43 @@ public class Lox : ThreadLock
                         else
                         {
                             // using alib warning here as we can't do internal logging in the constructor
-                            ALIB.WARNING( "Syntax error in variable \"" + variable.Fullname + "\"." );
+                            ALIB_DBG.WARNING( "Syntax error in variable \"" + variable.Fullname + "\"." );
                         }
                     }
                 }
             #endif
         }
+
+
+    // #############################################################################################
+    // Overrides
+    // #############################################################################################
+    /** ********************************************************************************************
+     * Acquires the lock and stores scope information
+     * @param cln Caller info, compiler generated and passed to here.
+     * @param csf Caller info, compiler generated and passed to here.
+     * @param cmn Caller info, compiler generated and passed to here.
+     **********************************************************************************************/
+    override
+    public void Acquire(int cln, String csf, String cmn )
+    {
+        #if ALOX_DBG_LOG || ALOX_REL_LOG
+            base.Acquire( cln, csf, cmn );
+            scopeInfo.Set( cln, csf, cmn, owner );
+        #endif
+    }
+
+    /** ********************************************************************************************
+     * Releases latest scope information and the lock
+     **********************************************************************************************/
+    override
+    public void Release()
+    {
+        #if ALOX_DBG_LOG || ALOX_REL_LOG
+            scopeInfo.Release();
+            base.Release();
+        #endif
+    }
 
     // #############################################################################################
     // Interface
@@ -351,48 +368,6 @@ public class Lox : ThreadLock
                 return false;
             #endif
         }
-
-
-    /** ********************************************************************************************
-     * Returns an AString singleton, that can be reused for all basic log calls. Textual messages
-     * that are assembled from out of strings, numbers and other data, can be efficiently built
-     * by reusing this singleton.
-     * Whenever this method is called, the returned AString object gets "locked" by a corresponding
-     * ThreadLock object. Therefore it has to be used as a message within one of the log methods of
-     * this class
-     * (error(), warning(), info(), verbose(), if(), once() or entry())
-     * or it has to be
-     * explicitly released using BufAbort().
-     * If this is not done, the object does not get released and parallel threads using this
-     * method would block! So, do not use Buf() for other reasons than for creating log messages
-     * and be sure to release it "in time".
-     *
-     * @return The static AString singleton.
-     **********************************************************************************************/
-    public AString    Buf()
-    {
-        #if ALOX_DBG_LOG || ALOX_REL_LOG
-            logBufLock.Acquire();
-            logBuf.Clear();
-            return logBuf;
-        #else
-            return  null;
-        #endif
-    }
-
-    /** ********************************************************************************************
-     * Use this method when you want to abort a log call that you "started" with acquiring the
-     * internal AString singleton acquired using method Buf(). Use BufAbort() only if you did
-     * not use the acquired buffer as a parameter of a log method, because this internally
-     * releases the buf already.
-     **********************************************************************************************/
-    [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public void        BufAbort()
-    {
-        #if ALOX_DBG_LOG || ALOX_REL_LOG
-            logBufLock.Release();
-        #endif
-    }
 
     /** ****************************************************************************************
      * Adds \p path to an internal list of substrings that are used to trim the path of
@@ -438,7 +413,7 @@ public class Lox : ThreadLock
      *                        path or not.
      *                        Optional and defaults to \b %Inclusion.Exclude.
      * @param trimOffset      Adjusts the portion of \p path that is trimmed.
-     *                        Optional and defaults to 0.
+     *                        Optional and defaults to \c 0.
      * @param sensitivity     Determines if the comparison of \p path with a source
      *                        files' path is performed case sensitive or not.
      *                        Optional and defaults to \b Case.Ignore.
@@ -451,6 +426,10 @@ public class Lox : ThreadLock
      *                        \ref cs::aworx::lib::config::Configuration::PrioDefault "Configuration.PrioDefault",
      *                        which is a lower priority than standard plug-ins of external
      *                        configuration have.
+     *
+     * @param cln (Optional) Caller info, compiler generated. Please omit.
+     * @param csf (Optional) Caller info, compiler generated. Please omit.
+     * @param cmn (Optional) Caller info, compiler generated. Please omit.
      ******************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
     public void      SetSourcePathTrimRule( String    path,
@@ -459,10 +438,11 @@ public class Lox : ThreadLock
                                             Case      sensitivity       = Case.Ignore,
                                             String    trimReplacement   = null,
                                             Reach     reach             = Reach.Global,
-                                            int       priority          = Configuration.PrioDefault    )
+                                            int       priority          = Configuration.PrioDefault,
+            [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-        try { Acquire();
+        try { Acquire(cln,csf,cmn);
 
             scopeInfo.SetSourcePathTrimRule( path, includeString, trimOffset, sensitivity,
                                              trimReplacement, reach, priority );
@@ -485,12 +465,17 @@ public class Lox : ThreadLock
      *                      Defaults to \b %Reach.Global.
      * @param allowAutoRule Determines if an auto rule should be tried to be detected next
      *                      no appropriate rule is found.
+     *
+     * @param cln (Optional) Caller info, compiler generated. Please omit.
+     * @param csf (Optional) Caller info, compiler generated. Please omit.
+     * @param cmn (Optional) Caller info, compiler generated. Please omit.
      ******************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public void   ClearSourcePathTrimRules( Reach reach= Reach.Global, bool allowAutoRule= true )
+    public void   ClearSourcePathTrimRules( Reach reach= Reach.Global, bool allowAutoRule= true,
+            [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-        try { Acquire();
+        try { Acquire(cln,csf,cmn);
             scopeInfo.SetSourcePathTrimRule( null, allowAutoRule ? Inclusion.Include
                                                                  : Inclusion.Exclude,
                                              999999, // code for clearing
@@ -501,67 +486,50 @@ public class Lox : ThreadLock
 
 
     /** ************************************************************************************
-     * This method creates an adequate/default console logger. 'Adequate' here means that
-     * this function tries to detect what might be the best choice for the environment
-     * that the ALox based process is running in.
-     * This method is due to changes with the evolution of future ALox versions and
-     * should be considered as a convenience method to shorten the bootstrap code needed
-     * to use ALox.
-     *
-     * The current C# implementation takes the following approach:
-     *
-     * - check if configuration variable
-     *   [ALOX_CONSOLE_TYPE](../group__GrpALoxConfigVars.html) is set. This variable's
-     *   setting takes priority and if set, the according logger is created.
-     * - check whether a console window is attached to the current process.
-     *   If not, then a plain text logger is chosen (class
-     *   \ref cs::aworx::lox::loggers::ConsoleLogger "ConsoleLogger").
-     * - Otherwise, on Unix like OS, class
-     *   \ref cs::aworx::lox::loggers::AnsiConsoleLogger "AnsiConsoleLogger" is chosen,
-     *   while on windows systems class
-     *   \ref cs::aworx::lox::loggers::ColorConsoleLogger "ColorConsoleLogger"
-     *   takes preference.
-     *
-     * For further information check out the source code.
+     * This static method creates a console logger. To decide which logger type to choose,
+     * configuration variable [ALOX_CONSOLE_TYPE](../group__GrpALoxConfigVars.html) is checked.
+     * If this variable is not set, then the decision is made as follows:
+     * - On GNU/Linux OS, a
+     *   \ref cs::aworx::lox::loggers::AnsiConsoleLogger "AnsiConsoleLogger" is chosen.
+     * - On Windows OS, if a console window is attached, type
+     *   \ref cs::aworx::lox::loggers::ColorConsoleLogger "ColorConsoleLogger" is chosen. If
+     *   no console is attached to the process, instead a
+     *   \ref cs::aworx::lox::loggers::ConsoleLogger "ConsoleLogger" is returned.
      *
      * @param name (Optional) The name of the \e Logger.
      *             Defaults to null, which implies standard logger names defined
      *             in the \e Logger sub-classes.
      * @return The \b TextLogger chosen.
      **************************************************************************************/
-    public static TextLogger CreateConsoleLogger( String name= null )
+    public static TextLogger CreateConsoleLogger(String name = null)
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
+            //--- first: check environment "ALOX_DBG_CONSOLE_TYPE". They have precedence ---
+            Variable variable= new Variable(ALox.CONSOLE_TYPE);
+            variable.Load();
+            AString val= variable.GetString().Trim();
 
-        //--- first: check environment "ALOX_DBG_CONSOLE_TYPE". They have precedence ---
-        Variable variable= new Variable(ALox.CONSOLE_TYPE);
-        variable.Load();
-        AString val= variable.GetString().Trim();
+            if( val.Equals( "PLAIN",    Case.Ignore ) )   return new ConsoleLogger     ( name );
+            if( val.Equals( "ANSI",     Case.Ignore ) )   return new AnsiConsoleLogger ( name );
+            if( val.Equals( "WINDOWS",  Case.Ignore ) )   return new ColorConsoleLogger( name );
 
-        if (    val.IsEmpty()
-             || val.Equals( "DEFAULT",  Case.Ignore )
-             || val.Equals( "PLAIN",    Case.Ignore ) )   return new ConsoleLogger     ( name );
-        if(     val.Equals( "ANSI",     Case.Ignore ) )   return new AnsiConsoleLogger ( name );
-        if(     val.Equals( "WINDOWS",  Case.Ignore ) )   return new ColorConsoleLogger( name );
+            ALIB_DBG.ASSERT_WARNING( val.IsEmpty() || val.Equals( "DEFAULT",  Case.Ignore ),
+                                    "Unrecognized value in config variable \"" + variable.Fullname
+                                   + "\"= " + variable.GetString() );
 
-        ALIB.WARNING( "Unrecognized value in config variable \"" + variable.Fullname
-                       + "\"= " + variable.GetString() );
+            //--- second: check debug environment
+            // .... this is not implemented in C#, yet ...
 
-        //--- second: check debug environment
-        // .... this is not implemented in C#, yet ...
-
-        // not detected: in windows, we choose ColorConsoleLogger, in Unix ANSI
-        if( ALIB.SysInfo_HasConsoleWindow )
-            return  ALIB.SysInfo_IsWindowsOS()  ? (TextLogger) new ColorConsoleLogger( name )
-                                                : (TextLogger) new AnsiConsoleLogger ( name );
-        // default
-        return new ConsoleLogger( name );
-
+            // not detected: in windows, we choose ColorConsoleLogger, in Unix ANSI
+            if( !ALIB.IsWindowsOS() )
+                return new AnsiConsoleLogger ( name );
+            else
+                return  ALIB.HasConsoleWindow  ? (TextLogger) new ColorConsoleLogger( name )
+                                               : (TextLogger) new ConsoleLogger ( name );
         #else
             return null;
         #endif
     }
-
 
     /** ********************************************************************************************
      * Retrieves an instance of a Logger by its name. This might be useful when access to a
@@ -578,7 +546,7 @@ public class Lox : ThreadLock
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            try { Acquire();
+            try { Acquire(cln,csf,cmn);
 
                 // search logger
                 Logger logger;
@@ -586,8 +554,6 @@ public class Lox : ThreadLock
                 if ( (logger= internalDomains.GetLogger( loggerName ) ) != null )    return logger;
 
                 // not found
-                scopeInfo.Set( cln,csf,cmn, owner );
-
                 logInternal( Verbosity.Warning, "LGR", intMsg._()
                     ._NC("No logger named \"")._NC( loggerName )._NC( "\" found.") );
                 return null;
@@ -607,9 +573,9 @@ public class Lox : ThreadLock
     #if ALOX_DBG_LOG || ALOX_REL_LOG
     protected void verbositySettingToVariable( Domain domain, int loggerNo, Variable variable )
     {
-        variable.AddString()._( domain.FullPath )
-                            ._('=')
-                            ._( domain.GetVerbosity( loggerNo ).ToString() );
+        variable.Add()._( domain.FullPath )
+                      ._('=')
+                      ._( domain.GetVerbosity( loggerNo ).ToString() );
 
         // loop over all sub domains (recursion)
         foreach( Domain subDomain in domain.SubDomains )
@@ -634,7 +600,7 @@ public class Lox : ThreadLock
         if ( variable.Size() == 0 )
             return;
         Substring firstArg= new Substring( variable.GetString() );
-        if ( !firstArg.Consume( "writeback", Case.Ignore, Whitespaces.Trim ) )
+        if ( !firstArg.ConsumeString( "writeback", Case.Ignore, Whitespaces.Trim ) )
             return;
 
         // optionally read a destination variable name
@@ -756,14 +722,14 @@ public class Lox : ThreadLock
             else if( tok.Equals( "All"             , Case.Ignore ) )  flags|= (int) Lox.StateInfo.All             ;
 
             // domain and verbosity
-            else if( tok.Consume( "domain", Case.Ignore, Whitespaces.Trim ) )
+            else if( tok.ConsumeString( "domain", Case.Ignore, Whitespaces.Trim ) )
             {
-                if( tok.Consume( '=', Case.Sensitive, Whitespaces.Trim ) )
+                if( tok.ConsumeChar( '=', Case.Sensitive, Whitespaces.Trim ) )
                     domain= tok.Trim().ToString();
             }
-            else if( tok.Consume( "verbosity", Case.Ignore, Whitespaces.Trim ) )
+            else if( tok.ConsumeString( "verbosity", Case.Ignore, Whitespaces.Trim ) )
             {
-                if( tok.Consume( '=', Case.Sensitive, Whitespaces.Trim ) )
+                if( tok.ConsumeChar( '=', Case.Sensitive, Whitespaces.Trim ) )
                     verbosity= ALox.ReadVerbosity( tok.Trim() );
             }
 
@@ -825,7 +791,7 @@ public class Lox : ThreadLock
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            try { Acquire();
+            try { Acquire(cln,csf,cmn);
 
                 int noMainDom=  domains        .GetLoggerNo( logger );
                 int noIntDom=   internalDomains.GetLoggerNo( logger );
@@ -847,8 +813,6 @@ public class Lox : ThreadLock
                 }
 
                 // not found
-                scopeInfo.Set( cln,csf,cmn, owner );
-
                 logInternal( Verbosity.Warning, "LGR", intMsg._()
                     ._("Logger \"")._( logger)._NC("\" not found. Nothing removed."));
 
@@ -900,9 +864,7 @@ public class Lox : ThreadLock
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            try { Acquire();
-                scopeInfo.Set( cln,csf,cmn, owner );
-
+            try { Acquire(cln,csf,cmn);
 
                 int noMainDom=  domains        .GetLoggerNo( loggerName );
                 int noIntDom=   internalDomains.GetLoggerNo( loggerName );
@@ -1001,10 +963,7 @@ public class Lox : ThreadLock
     [CallerLineNumber] int cln=0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-        try { Acquire();
-
-            // initialize scope information
-            scopeInfo.Set( cln,csf,cmn, owner );
+        try { Acquire(cln,csf,cmn);
 
             // check
             if ( logger == null )
@@ -1128,9 +1087,7 @@ public class Lox : ThreadLock
     [CallerLineNumber] int cln=0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-        try { Acquire();
-
-            scopeInfo.Set( cln,csf,cmn, owner );
+        try { Acquire(cln,csf,cmn);
 
             // get domain
             Domain dom= evaluateResultDomain( domain );
@@ -1149,7 +1106,7 @@ public class Lox : ThreadLock
                     SetVerbosity( otherTree.GetLogger( no ), Verbosity.Off,
                                   actualTree.FullPath.ToString(), Configuration.PrioDefault    ,cln,csf,cmn );
                     no= dom.GetLoggerNo( loggerName );
-                    ALIB.ASSERT( no >= 0 );
+                    ALIB_DBG.ASSERT( no >= 0 );
                 }
                 else
                 {
@@ -1248,7 +1205,7 @@ public class Lox : ThreadLock
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            if ( !isThreadReleatedScope( scope, cln,csf,cmn) )
+            if ( !isThreadRelatedScope( scope, cln,csf,cmn) )
                 return;
 
             setDomainImpl( scopeDomain, scope, 0, false, thread, cln,csf,cmn );
@@ -1287,12 +1244,9 @@ public class Lox : ThreadLock
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-        try { Acquire();
-            if ( !isThreadReleatedScope( scope, cln,csf,cmn) )
+        try { Acquire(cln,csf,cmn);
+            if ( !isThreadRelatedScope( scope, cln,csf,cmn) )
                 return;
-
-            // initialize scope information
-            scopeInfo.Set( cln,csf,cmn, owner );
 
             // check
             if ( String.IsNullOrEmpty( scopeDomain ) )
@@ -1318,7 +1272,7 @@ public class Lox : ThreadLock
      * account.<br>
      *
      * <b>Wildcards</b><br>
-     * Parameter \p domainPath supports \b 'wildcard' character <c> '*'</c> at the its beginning
+     * Parameter \p domainPath supports \b 'wildcard' character <c> '*'</c> at its beginning
      * and at its end (or both). This allows to have four types of rules:
      * - Exact match
      * - Prefix match (\c * at the end of \p domainPath)
@@ -1362,7 +1316,7 @@ public class Lox : ThreadLock
      * variables. Any prioritized \e 'internal' setting of \e Verbosities this way could be
      * circumvented!
      *
-     * For more information consult the ALox user manual.
+     * For more information consult the [ALox User Manual](../man_domain_substitution.html).
      *
      * @param domainPath  The path to search. Has to start with either  <c> '/'</c> or <c> '*'</c>.
      * @param replacement The replacement path.
@@ -1375,10 +1329,8 @@ public class Lox : ThreadLock
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-        try { Acquire();
+        try { Acquire(cln,csf,cmn);
 
-            // initialize scope information
-            scopeInfo.Set( cln,csf,cmn, owner );
             intMsg._();
 
             // check null param: clears all rules
@@ -1447,17 +1399,26 @@ public class Lox : ThreadLock
 
 
     /** ****************************************************************************************
-     * The given \p logable becomes a <em>Prefix Logable</em> provided to loggers with log statements
-     * executed within the given \p scope.
+     * The given \p prefix becomes a <em>Prefix Logable</em> provided to loggers with each log
+     * statement executed within the given \p scope.
      * The list of objects received by a logger is sorted from outer scope to inner scope.
-     * The logable of the <em>Log Statement</em> itself, is the last in the list, except one or
-     * more <em>Prefix Logables</em> of \e %Scope.ThreadInner are set. Those are (similar to how this
-     * \e %Scope is handled with <em>%Scope Domains</em>) are appended to the end of the list.
+     * The logable of the <em>%Log Statement</em> itself, is the last in the list, except one or
+     * more <em>Prefix Logables</em> of \e %Scope.ThreadInner are set. Those are (similar to how
+     * this \e %Scope is used with <em>%Scope Domains</em>) appended to the end of the
+     * list.
      *
      * To remove a previously set <em>Prefix Logable</em>, \c null has to be passed with
      * parameter \p logable.
      * For \e %Scope.ThreadOuter and \e %Scope.ThreadInner, passing \c null
      * removes the most recently added <em>Prefix Logable</em>.
+     *
+     *<p>
+     * \note
+     *   Unlike other methods of this class which accept more than one logable, this
+     *   method and its overloaded variants accept only one (the prefix).
+     *   To supply several objects to be prefix logables at once, those may be passed as an
+     *   Object[] like shown in the following sample:
+     *   \snippet "UT_alox_scopes.cs"      DOX_ALOX_LOX_SETPREFIX
      *
      *<p>
      * \note
@@ -1531,7 +1492,7 @@ public class Lox : ThreadLock
      *   The default value of parameter \p domain is \c "" which addresses the domain evaluated
      *   for the current scope.
      *
-     * @param logable     The <em>Prefix Logable</em> to set.
+     * @param prefix      The <em>Prefix Logable</em> to set.
      * @param domain      The domain path. Defaults to \c null, resulting in
      *                    evaluated <em>Scope Domain</em> path.
      * @param otherPLs    If set to \c Inclusion.Exclude, scope-related <em>Prefix Logables</em>
@@ -1543,25 +1504,22 @@ public class Lox : ThreadLock
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      ******************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public void        SetPrefix( Object logable, String domain =null,
+    public void        SetPrefix( Object prefix, String domain =null,
                                   Inclusion otherPLs =Inclusion.Include,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-        try { Acquire();
-
-            // initialize scope information
-            scopeInfo.Set( cln,csf,cmn, owner );
+        try { Acquire(cln,csf,cmn);
 
             // we consider empty strings as unset command, so we set them to null
-            if( logable != null )
+            if( prefix != null )
             {
-                Type type= logable.GetType();
-                if (    ( type == typeof( AString ) && ((AString) logable).IsNull() )
-                     || ( type == typeof( String  ) && ((String)  logable).Length == 0 )
+                Type type= prefix.GetType();
+                if (    ( type == typeof( AString ) && ((AString) prefix).IsNull() )
+                     || ( type == typeof( String  ) && ((String)  prefix).Length == 0 )
                    )
 
-                    logable= null;
+                    prefix= null;
             }
 
             Domain dom= evaluateResultDomain( domain );
@@ -1569,10 +1527,10 @@ public class Lox : ThreadLock
             Verbosity intLogVerbosity= Verbosity.Info;
             intMsg._();
 
-            if ( logable != null )
+            if ( prefix != null )
             {
-                dom.PrefixLogables.Add( new Domain.PL( logable, otherPLs ) );
-                intMsg._("Object \"")._NC(logable)._NC( "\" added as prefix logable for" );
+                dom.PrefixLogables.Add( new Domain.PL( prefix, otherPLs ) );
+                intMsg._("Object \"")._NC(prefix)._NC( "\" added as prefix logable for" );
             }
             else
             {
@@ -1621,10 +1579,7 @@ public class Lox : ThreadLock
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-        try { Acquire();
-
-            // initialize scope information
-            scopeInfo.Set( cln,csf,cmn, owner );
+        try { Acquire(cln,csf,cmn);
 
             // check if start time was set
             Ticks time= new Ticks( 0L );
@@ -1671,7 +1626,7 @@ public class Lox : ThreadLock
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            try { Acquire();
+            try { Acquire(cln,csf,cmn);
 
                 // get current thread id
                 String origThreadName= null;
@@ -1686,9 +1641,6 @@ public class Lox : ThreadLock
                 threadDictionary[id]= threadName;
 
                 // log info on this
-                // initialize scope information
-                scopeInfo.Set( cln,csf,cmn, owner );
-
                 intMsg.Clear()._NC("Mapped thread ID ")
                               ._(id)._NC(" to \"")._NC(threadName)._NC("\".");
                 if ( !String.IsNullOrEmpty( origThreadName )  )
@@ -1700,9 +1652,8 @@ public class Lox : ThreadLock
     }
 
     /** ****************************************************************************************
-     * Stores ALox <em>Log Data</em>, an object of base type
-     * \ref cs::aworx::lox::LogData "LogData" which can afterwards be retrieved by invoking
-     * #Retrieve. Using the optional \p key and \p scope offer various possibilities to reference
+     * Stores an object which can afterwards be retrieved by invoking #Retrieve.
+     * Optional parameters \p key and \p scope offer various possibilities to reference
      * this data later.<br>
      *
      * To remove data from the store, pass \c null with parameter \p data.
@@ -1731,15 +1682,13 @@ public class Lox : ThreadLock
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      ******************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public void Store( LogData  data,                 String    key,
+    public void Store( Object  data,                 String    key,
                        Scope    scope= Scope.Global , int       pathLevel= 0,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
             try { Acquire(cln, csf, cmn );
 
-            // store scope info
-            scopeInfo.Set( cln,csf,cmn, owner );
             intMsg._();
 
             // We need a key. If none is given, we use a constant one indicating that storage is
@@ -1751,15 +1700,15 @@ public class Lox : ThreadLock
 
             // get the store
             scopeLogData.InitAccess( scope, pathLevel, null );
-            Dictionary<AString, LogData> map= (Dictionary<AString, LogData>) scopeLogData.Get();
+            Dictionary<AString, Object> map= (Dictionary<AString, Object>) scopeLogData.Get();
             if( map == null && data != null )
             {
-                map= new Dictionary<AString, LogData>();
+                map= new Dictionary<AString, Object>();
                 scopeLogData.Store(map );
             }
 
             // create map entry
-            LogData previous= null;
+            Object previous= null;
             if ( map != null )
                 map.TryGetValue( aKey, out previous );
 
@@ -1807,7 +1756,7 @@ public class Lox : ThreadLock
 
     /** ****************************************************************************************
      * Overloaded version of
-     * Store(LogData*,const TString&,Scope,int) "Store" which omits parameter \p key.
+     * #Store(Object,const String,Scope,int, int,String,String) "Store" which omits parameter \p key.
      *
      * @param data      The data object to store.
      *                  If \c null, currently stored data will be removed.
@@ -1821,7 +1770,7 @@ public class Lox : ThreadLock
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      ******************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public void Store( LogData  data,
+    public void Store( Object  data,
                        Scope scope= Scope.Global , int  pathLevel= 0,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
@@ -1831,9 +1780,8 @@ public class Lox : ThreadLock
     }
 
     /** ****************************************************************************************
-     * Retrieves ALox <em>Log Data</em>, an object of base type
-     * \ref cs::aworx::lox::LogData "LogData" which can be stored by invoking
-     * #Store. Using the optional \p key and \p scope offer various possibilities to reference
+     * Retrieves an object which was previously stored with method #Store.
+     * Optional parameters \p key and \p scope offer various possibilities to reference
      * such objects.<br>
      *
      * \note If no <em>Log Data</em> object is found, an empty object is stored and returned.
@@ -1854,20 +1802,17 @@ public class Lox : ThreadLock
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
-     * @return The \b LogData object, \c null if nothing was found.
+     * @return The \b Object object, \c null if nothing was found.
      ******************************************************************************************/
-    public LogData  Retrieve( String key, Scope scope= Scope.Global,  int pathLevel= 0,
+    public Object  Retrieve( String key, Scope scope= Scope.Global,  int pathLevel= 0,
 
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-        try { Acquire();
-
-            // store scope info
-            scopeInfo.Set( cln,csf,cmn, owner );
+        try { Acquire(cln,csf,cmn);
 
             // get the data (create if not found)
-            LogData returnValue= null;
+            Object returnValue= null;
             scopeLogData.InitAccess( scope, pathLevel, null );
             bool keyWasEmtpy= false;
             for( int i= 0; i < 2 ; i++ )
@@ -1878,12 +1823,12 @@ public class Lox : ThreadLock
                 if ( (keyWasEmtpy= tmpAS.IsEmpty()) )
                     tmpAS._( noKeyHashKey );
 
-                Dictionary<AString, LogData> map= (Dictionary<AString, LogData>) scopeLogData.Get();
+                Dictionary<AString, Object> map= (Dictionary<AString, Object>) scopeLogData.Get();
                 if( map != null )
                     map.TryGetValue( tmpAS, out returnValue );
 
                 if( returnValue == null )
-                    Store( new LogData(), key, scope, pathLevel,  cln,csf,cmn);
+                    Store( new Object(), key, scope, pathLevel,  cln,csf,cmn);
                 else
                     break;
             }
@@ -1920,9 +1865,9 @@ public class Lox : ThreadLock
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
-     * @return The \b LogData object, \c null if nothing was found.
+     * @return The \b Object object, \c null if nothing was found.
      ******************************************************************************************/
-    public LogData  Retrieve( Scope scope= Scope.Global, int pathLevel= 0,
+    public Object  Retrieve( Scope scope= Scope.Global, int pathLevel= 0,
 
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
@@ -1965,14 +1910,14 @@ public class Lox : ThreadLock
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            try { Acquire();
+            try { Acquire(cln,csf,cmn);
 
-                scopeInfo.Set( cln,csf,cmn, owner );
                 AString buf=        new AString( 2048 );
                 if ( !String.IsNullOrEmpty(headLine) )
                     buf._NC( headLine ).NewLine();
                 GetState( buf, flags );
-                Entry( domain, verbosity, buf, cln,csf,cmn );
+                Object[] logables= {buf};
+                Entry( domain, verbosity, logables, cln,csf,cmn );
 
             } finally { Release(); }
         #endif
@@ -1993,7 +1938,7 @@ public class Lox : ThreadLock
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            try { Acquire();
+            try { Acquire(cln, csf, cmn);
 
                 ScopeDump scopeDump= new ScopeDump( threadDictionary, noKeyHashKey, buf );
 
@@ -2176,7 +2121,7 @@ public class Lox : ThreadLock
                             buf._NC( "    Last log time: "     )._NC(  tSB ).NewLine();
 
                             domsWithDiffVerb.Clear();
-                            logStateDomsWithDiffVerb( domTree, loggerNo, domsWithDiffVerb);
+                            logStateDomainsWithDiffVerb( domTree, loggerNo, domsWithDiffVerb);
                             foreach ( Domain dom in domsWithDiffVerb )
                             {
                                 buf._NC( "    " )
@@ -2278,14 +2223,14 @@ public class Lox : ThreadLock
      * @param loggerNo    The logger to collect domains for.
      * @param results     The result list.
      **********************************************************************************************/
-    protected void logStateDomsWithDiffVerb( Domain domain, int loggerNo, List<Domain> results )
+    protected void logStateDomainsWithDiffVerb( Domain domain, int loggerNo, List<Domain> results )
     {
         if (    domain.Parent == null
             ||  domain.Parent.GetVerbosity(loggerNo) != domain.GetVerbosity(loggerNo) )
             results.Add( domain );
 
         foreach( Domain it in domain.SubDomains )
-            logStateDomsWithDiffVerb( it, loggerNo, results );
+            logStateDomainsWithDiffVerb( it, loggerNo, results );
     }
     #endif
 
@@ -2297,20 +2242,30 @@ public class Lox : ThreadLock
     /** ********************************************************************************************
      * Logs a \e Logable with the given \e %Verbosity.
      *
+     * This method is usually \b not used directly. Instead, methods
+     * #Info, #Verbose, #Warning and #Error provide simpler interfaces which take a
+     * single logables that are collected in an array and then passed to this methods.<br>
+     * Note that the other methods accept an "external" list of boxes as a parameter as well. This
+     * means that also with these methods it is allowed to collect the logables in an user-specific
+     * \c Object[] first and later pass them to the methods.
+     *
+     * Hence, the use of this method is recommended only if the verbosity of a log statement
+     * is is evaluated only at runtime.
+     *
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The verbosity.
-     * @param logable   The object to log.
+     * @param logables  The objects to log.
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public  void Entry( String domain, Verbosity verbosity, Object logable,
+    public  void Entry( String domain, Verbosity verbosity, Object[] logables,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-        try { Acquire();
+        try { Acquire(cln,csf,cmn);
 
             #if ALOX_DBG_LOG
                 // auto-initialization of ALox
@@ -2326,188 +2281,415 @@ public class Lox : ThreadLock
             if ( domains.CountLoggers() == 0 )
                 return;
 
-            scopeInfo.Set( cln,csf,cmn, owner );
-
-            log( evaluateResultDomain( domain ), verbosity, logable, Inclusion.Include );
-
-            // release lock if logable was our internal log buffer singleton
-            if ( logable == logBuf )
-                logBufLock.Release();
+            log( evaluateResultDomain( domain ), verbosity, logables, Inclusion.Include );
 
        } finally { Release(); }
        #endif
     }
 
     /** ********************************************************************************************
-     * Overloaded version of #Entry, defaulting parameter \p domain to a nulled string.
+     * Logs a list of optional \e Logables with the given \e %Verbosity.
      *
-     * @param verbosity     The verbosity.
-     * @param logable       The object to log.
+     * If more than one \e Logable is given and the first one is of string type and comprises a
+     * valid domain name, then this first argument is interpreted as a the domain name!
+     * Valid domain names are strings that consists only of characters of the following set:
+     * - upper case letters,
+     * - numbers,
+     * - hyphen (\c '-') and
+     * - underscore (\c '_').
+     *
+     * If a first \e Logable could be misinterpreted as being a domain name, an empty string
+     * (the "neutral" domain) has to be added as a first argument. Alternatively, a character
+     * which is illegal in respect to domain names could be added to the first argument,
+     * for example a simple space at the end of an output string.
+     *
+     * \note
+     *   This method allows a consistent interface of overloaded methods \b %Info, \b Error,
+     *   etc, without introducing a separate version which excepts a then mandatory domain
+     *   parameter.
+     *   The little drawback of the auto detection is the possibility of ambiguous invocations.
+     *
+     * In the C# Version of ALox, the number of logables that might be directly passed
+     * to this method (respectively to methods #Info, #Verbose, etc.) is limited to \b four.
+     * The reason is of technical nature: In the C# we can not work with variadic argument
+     * lists, as the end of the argument list, the "hidden" parameters that collect caller
+     * information and which are provided by the compiler have to follow. This disallows the use
+     * of the elipse "..." pattern. <br>
+     * If more than those four objects should be logged, then these objects need to be
+     * embedded in an object array when invoking the method. The following sample demonstrates
+     * this:
+     * \snippet "UT_alox_lox.cs"      DOX_ALOX_LOX_MULTIPLE_PARAMS
+     *
+     * This way, an arbitrary amount of objects may be passed. Each parameter that represents
+     * a logable is allowed to be of type \c Object[].
+     *
+     * @param verbosity        The verbosity.
+     * @param logableOrDomain  The first logable or the domain path.
+     * @param optLog2          Optional logable
+     *                         (or the first logable if \p logableOrDomain was the domain).
+     * @param optLog3          Optional logable.
+     * @param optLog4          Optional logable.
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public void Entry( Verbosity       verbosity,
-                      Object          logable,
+    public void EntryDetectDomain( Verbosity  verbosity,
+                                   Object     logableOrDomain,
+                                   Object     optLog2= null,
+                                   Object     optLog3= null,
+                                   Object     optLog4= null,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            Entry( null, verbosity, logable, cln,csf,cmn );
+            Object[] logables;
+
+            if( optLog2 != null )
+            {
+                String firstArg= null;
+                     if ( logableOrDomain is String  ) firstArg= (String)  logableOrDomain;
+                else if ( logableOrDomain is AString ) firstArg= ((AString)  logableOrDomain).ToString();
+
+                bool illegalCharacterFound= false;
+                if( firstArg != null )
+                {
+                    ALIB_DBG.ASSERT_ERROR( !firstArg.StartsWith(ALox.InternalDomains),
+                                       "Method EntryDetectDomain should not be used with internal domains"  );
+
+                    for( int i= 0; i< firstArg.Length ; ++i )
+                    {
+                        char c= firstArg[i];
+                        if (!(    ( c >= '0' && c <= '9' )
+                               || ( c >= 'A' && c <= 'Z' )
+                               || c == '-'
+                               || c == '_'
+                               || c == '/'
+                               || c == '.'
+                        ))
+                        {
+                            illegalCharacterFound= true;
+                            break;
+                        }
+                    }
+                }
+
+                if ( !illegalCharacterFound )
+                {
+                         if( optLog4 != null ) logables= new Object[] { optLog2, optLog3, optLog4 };
+                    else if( optLog3 != null ) logables= new Object[] { optLog2, optLog3 };
+                    else                       logables= new Object[] { optLog2 };
+
+                    Entry( firstArg, verbosity, logables, cln,csf,cmn );
+                    return;
+                }
+
+            }
+
+                 if( optLog4 != null ) logables= new Object[] { logableOrDomain, optLog2, optLog3, optLog4 };
+            else if( optLog3 != null ) logables= new Object[] { logableOrDomain, optLog2, optLog3 };
+            else if( optLog2 != null ) logables= new Object[] { logableOrDomain, optLog2 };
+            else                       logables= new Object[] { logableOrDomain };
+            Entry( null, verbosity, logables, cln,csf,cmn );
+
         #endif
     }
 
     /** ********************************************************************************************
-     * Logs a \e Logable using \ref Verbosity::Verbose.
+     * Logs the given \e Logables using \ref Verbosity::Verbose.
      *
-     * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-     *                  set for the \e %Scope of invocation.
-     * @param logable   The object to log.
+     * The first object provided may be a domain name. All values are passed to
+     * #EntryDetectDomain. See documentation of this method for information on how to avoid
+     * ambiguities in respect to domain names.
+     *
+     * If one of the arguments (or a single argument given) is of type \c Object[], then the
+     * contents of this list is inserted into the list of logables.
+     * This allows to collect logables prior to invoking the method.
+     * In the C# version, where flexibility of parameter passing is limited due to the use of
+     * compiler-inserted parameters, parameters of type \c Object[] can also be used to
+     * provide more than four logables.
+     *
+     * @param logableOrDomain  The first logable or the domain path.
+     * @param optLog2          Optional logable
+     *                         (or the first logable if \p logableOrDomain was the domain).
+     * @param optLog3          Optional logable.
+     * @param optLog4          Optional logable.
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public  void Verbose( String domain, Object logable,
+    public  void Verbose( Object   logableOrDomain,
+                          Object   optLog2= null,
+                          Object   optLog3= null,
+                          Object   optLog4= null,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            Entry( domain, Verbosity.Verbose, logable, cln,csf,cmn );
+            EntryDetectDomain( Verbosity.Verbose,
+                               logableOrDomain, optLog2, optLog3, optLog4,
+                               cln,csf,cmn );
         #endif
     }
 
     /** ********************************************************************************************
-     * Overloaded version of #Verbose, defaulting parameter \p domain to a nulled string.
+     * Logs the given \e Logables using \ref Verbosity::Info.
      *
-     * @param logable   The object to log.
+     * The first object provided may be a domain name. All values are passed to
+     * #EntryDetectDomain. See documentation of this method for information on how to avoid
+     * ambiguities in respect to domain names.
+     *
+     * If one of the arguments (or a single argument given) is of type \c Object[], then the
+     * contents of this list is inserted into the list of logables.
+     * This allows to collect logables prior to invoking the method.
+     * In the C# version, where flexibility of parameter passing is limited due to the use of
+     * compiler-inserted parameters, parameters of type \c Object[] can also be used to
+     * provide more than four logables.
+     *
+     * @param logableOrDomain  The first logable or the domain path.
+     * @param optLog2          Optional logable
+     *                         (or the first logable if \p logableOrDomain was the domain).
+     * @param optLog3          Optional logable.
+     * @param optLog4          Optional logable.
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public  void Verbose( Object logable,
+    public  void Info(   Object    logableOrDomain,
+                         Object    optLog2= null,
+                         Object    optLog3= null,
+                         Object    optLog4= null,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            Entry( null, Verbosity.Verbose, logable, cln,csf,cmn );
+            EntryDetectDomain( Verbosity.Info,
+                               logableOrDomain, optLog2, optLog3, optLog4,
+                               cln,csf,cmn );
         #endif
     }
 
+
     /** ********************************************************************************************
-     * Logs a \e Logable using \ref Verbosity::Info.
+     * Logs the given \e Logables using \ref Verbosity::Warning.
      *
-     * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-     *                  set for the \e %Scope of invocation.
-     * @param logable   The object to log.
+     * The first object provided may be a domain name. All values are passed to
+     * #EntryDetectDomain. See documentation of this method for information on how to avoid
+     * ambiguities in respect to domain names.
+     *
+     * If one of the arguments (or a single argument given) is of type \c Object[], then the
+     * contents of this list is inserted into the list of logables.
+     * This allows to collect logables prior to invoking the method.
+     * In the C# version, where flexibility of parameter passing is limited due to the use of
+     * compiler-inserted parameters, parameters of type \c Object[] can also be used to
+     * provide more than four logables.
+     *
+     * @param logableOrDomain  The first logable or the domain path.
+     * @param optLog2          Optional logable
+     *                         (or the first logable if \p logableOrDomain was the domain).
+     * @param optLog3          Optional logable.
+     * @param optLog4          Optional logable.
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public  void Info( String domain, Object logable,
+    public  void Warning( Object   logableOrDomain,
+                          Object   optLog2= null,
+                          Object   optLog3= null,
+                          Object   optLog4= null,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            Entry( domain, Verbosity.Info, logable, cln,csf,cmn );
+            EntryDetectDomain( Verbosity.Warning,
+                               logableOrDomain, optLog2, optLog3, optLog4,
+                               cln,csf,cmn );
         #endif
     }
 
+
     /** ********************************************************************************************
-     * Overloaded version of #Info, defaulting parameter \p domain to a nulled string.
+     * Logs the given \e Logables using \ref Verbosity::Error.
      *
-     * @param logable   The object to log.
+     * The first object provided may be a domain name. All values are passed to
+     * #EntryDetectDomain. See documentation of this method for information on how to avoid
+     * ambiguities in respect to domain names.
+     *
+     * If one of the arguments (or a single argument given) is of type \c Object[], then the
+     * contents of this list is inserted into the list of logables.
+     * This allows to collect logables prior to invoking the method.
+     * In the C# version, where flexibility of parameter passing is limited due to the use of
+     * compiler-inserted parameters, parameters of type \c Object[] can also be used to
+     * provide more than four logables.
+     *
+     * @param logableOrDomain  The first logable or the domain path.
+     * @param optLog2          Optional logable
+     *                         (or the first logable if \p logableOrDomain was the domain).
+     * @param optLog3          Optional logable.
+     * @param optLog4          Optional logable.
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public  void Info( Object logable,
+    public  void Error(   Object   logableOrDomain,
+                          Object   optLog2= null,
+                          Object   optLog3= null,
+                          Object   optLog4= null,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            Entry(  null, Verbosity.Info, logable, cln,csf,cmn );
+            EntryDetectDomain( Verbosity.Error,
+                               logableOrDomain, optLog2, optLog3, optLog4,
+                               cln,csf,cmn );
         #endif
     }
 
     /** ********************************************************************************************
-     * Logs a \e Logable using \ref Verbosity::Warning.
+     * Logs given logables only if the parameter \p condition is not \c true.
+     * If executed, \ref Verbosity.Error is used.
      *
-     * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-     *                  set for the \e %Scope of invocation.
-     * @param logable   The object to log.
+     * The first object provided may be a domain name. All values are passed to
+     * #EntryDetectDomain. See documentation of this method for information on how to avoid
+     * ambiguities in respect to domain names.
+     *
+     * If one of the arguments (or a single argument given) is of type \c Object[], then the
+     * contents of this list is inserted into the list of logables.
+     * This allows to collect logables prior to invoking the method.
+     * In the C# version, where flexibility of parameter passing is limited due to the use of
+     * compiler-inserted parameters, parameters of type \c Object[] can also be used to
+     * provide more than four logables.
+     *
+     * @param condition If \c false, the <em>Log Statement</em> is executed.
+     * @param logableOrDomain  The first logable or the domain path.
+     * @param optLog2          Optional logable
+     *                         (or the first logable if \p logableOrDomain was the domain).
+     * @param optLog3          Optional logable.
+     * @param optLog4          Optional logable.
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public  void Warning( String domain, Object logable,
+    public  void Assert(  bool     condition,
+                          Object   logableOrDomain,
+                          Object   optLog2= null,
+                          Object   optLog3= null,
+                          Object   optLog4= null,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            Entry( domain, Verbosity.Warning, logable, cln,csf,cmn );
+            if ( !condition )
+            {
+                EntryDetectDomain( Verbosity.Error,
+                                   logableOrDomain, optLog2, optLog3, optLog4,
+                                   cln,csf,cmn );
+            }
+            else
+                CntLogCalls++;
         #endif
     }
 
     /** ********************************************************************************************
-     * Overloaded version of #Warning, defaulting parameter \p domain to a nulled string.
+     * Logs a list of \e Logables only if the parameter \p condition is \c true.
      *
-     * @param logable   The object to log.
+     * If one of the arguments (or a single argument given) is of type \c Object[], then the
+     * contents of this list is inserted into the list of logables.
+     * This allows to collect logables prior to invoking the method.
+     * In the C# version, where flexibility of parameter passing is limited due to the use of
+     * compiler-inserted parameters, parameters of type \c Object[] can also be used to
+     * provide more than four logables.
+     *
+     * \see Method #Assert.
+     *
+     * @param condition  If \c false, the <em>Log Statement</em> is executed.
+     * @param domain     Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
+     *                   set for the \e %Scope of invocation.
+     * @param verbosity  The verbosity.
+     * @param firstLog   The first logable.
+     * @param optLog2    Optional logable.
+     * @param optLog3    Optional logable.
+     * @param optLog4    Optional logable.
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public  void Warning( Object logable,
+    public  void If( bool   condition, String domain, Verbosity verbosity,
+                     Object firstLog,
+                     Object optLog2= null,
+                     Object optLog3= null,
+                     Object optLog4= null,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            Entry( null, Verbosity.Warning, logable, cln,csf,cmn );
+            if ( condition )
+            {
+                Object[] logables;
+                     if( optLog4 != null ) logables= new Object[] { firstLog, optLog2, optLog3, optLog4 };
+                else if( optLog3 != null ) logables= new Object[] { firstLog, optLog2, optLog3 };
+                else if( optLog2 != null ) logables= new Object[] { firstLog, optLog2 };
+                else                       logables= new Object[] { firstLog };
+
+                Entry( domain, Verbosity.Error, logables, cln,csf,cmn );
+            }
+            else
+                CntLogCalls++;
         #endif
     }
 
     /** ********************************************************************************************
-     * Logs a \e Logable using \ref Verbosity.Error.
+     * Logs a list of \e Logables only if the parameter \p condition is \c true.<br>
+     * This overloaded version omits parameter \p domain.
      *
-     * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-     *                  set for the \e %Scope of invocation.
-     * @param logable   The object to log.
+     * The first \e logable provided may be a domain name. All values are passed to
+     * #EntryDetectDomain. See documentation of this method for information on how to avoid
+     * ambiguities in respect to domain names.
+     *
+     * If one of the arguments (or a single argument given) is of type \c Object[], then the
+     * contents of this list is inserted into the list of logables.
+     * This allows to collect logables prior to invoking the method.
+     * In the C# version, where flexibility of parameter passing is limited due to the use of
+     * compiler-inserted parameters, parameters of type \c Object[] can also be used to
+     * provide more than four logables.
+     *
+     * \see Method #Assert.
+     *
+     * @param condition  If \c false, the <em>Log Statement</em> is executed.
+     * @param verbosity  The verbosity.
+     * @param firstLog   The first logable or the domain path.
+     * @param optLog2    Optional logable
+     * @param optLog3    Optional logable.
+     * @param optLog3    Optional logable.
+     * @param optLog4    Optional logable.
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public  void Error( String domain, Object logable,
+    public  void If( bool   condition, Verbosity verbosity,
+                     Object firstLog,
+                     Object optLog2= null,
+                     Object optLog3= null,
+                     Object optLog4= null,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            Entry( domain, Verbosity.Error, logable, cln,csf,cmn );
+            if ( condition )
+                EntryDetectDomain( Verbosity.Error, firstLog, optLog2, optLog3, optLog4, cln,csf,cmn );
+            else
+                CntLogCalls++;
         #endif
     }
 
-    /** ********************************************************************************************
-     * Overloaded version of #Error, defaulting parameter \p domain to a nulled string.
-     *
-     * @param logable   The object to log.
-     * @param cln (Optional) Caller info, compiler generated. Please omit.
-     * @param csf (Optional) Caller info, compiler generated. Please omit.
-     * @param cmn (Optional) Caller info, compiler generated. Please omit.
-     **********************************************************************************************/
-    [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public  void Error( Object logable,
-    [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
-    {
-        #if ALOX_DBG_LOG || ALOX_REL_LOG
-            Entry( null, Verbosity.Error, logable, cln,csf,cmn );
-        #endif
-    }
+
 
     /** ********************************************************************************************
-     * Logs a \e Logable once, up to \p quantity times or every n-th time.
+     * Logs given \e logables once, up to \p quantity times or every n-th time.
      * In its simplest overloaded version, the counter is bound to the source code line, hence,
      * only the first execution of this exact <em>Log Statement</em> is executed.
      *
-     * Using parameter \p group, a set of <em>Log Statements</em> that share the same group key, can be
-     * grouped and of such set, only the one which is first executed actually logs.<br>
+     * Using parameter \p group, a set of <em>Log Statements</em> that share the same group key,
+     * can be grouped and of such set, only the one which is first executed actually logs.<br>
      * Alternatively, when \p key is omitted (or null or empty), but a
      * \ref cs::aworx::lox::Scope "Scope" is given with parameter \p scope, then the
      * counter is associated with the scope.<br>
@@ -2536,13 +2718,25 @@ public class Lox : ThreadLock
      * instead n-times. E.g, if \p quantity is \c -5, the first statement is executed and afterwards
      * every fifth invocation.
      *
-     * \note C# autoboxes parameter values of type 'int', which leads to ambiguous statements.
-     *       This is why all %Once methods are doubled with a String-type parameter \p logable.
+     * \note
+     *   Unlike other methods of this class which accept more than one logable, this
+     *   method and its overloaded variants accept only one object. To supply several objects
+     *   at once, an \c Object[] may be passed with parameter \p logables, like in the
+     *   following sample:
+     *   \snippet "UT_alox_lox.cs"      DOX_ALOX_LOX_ONCE
+     *
+     *<p>
+     *<p>
+     * \note
+     *   C# autoboxes parameter values of type 'int', which leads to ambiguous statements.
+     *   This is why all %Once methods are doubled with a String-type parameter \p logable
+     *   to avoid ambiguities when a simple string is to be logged. Unfortunately, this leads
+     *   to a large amount of overloaded versions.
      *
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The object to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
@@ -2562,14 +2756,14 @@ public class Lox : ThreadLock
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public void Once( String domain, Verbosity verbosity, Object logable,
+    public void Once( String domain, Verbosity verbosity, Object logables,
                       String group,
                       Scope scope= Scope.Global , int pathLevel= 0,
                       int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( domain, verbosity, logable, group, scope, pathLevel, quantity,   cln,csf,cmn );
+            once( domain, verbosity, logables, group, scope, pathLevel, quantity,   cln,csf,cmn );
         #endif
     }
 
@@ -2577,7 +2771,7 @@ public class Lox : ThreadLock
      * Overloaded version of \ref Once.
      *
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The object to log..
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
@@ -2596,14 +2790,14 @@ public class Lox : ThreadLock
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public void Once(                        Verbosity verbosity, Object logable,
+    public void Once(                        Verbosity verbosity, Object logables,
                       String group,
                       Scope scope, int pathLevel= 0,
                       int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, verbosity, logable, group, scope, pathLevel, quantity,   cln,csf,cmn );
+            once( null, verbosity, logables, group, scope, pathLevel, quantity,   cln,csf,cmn );
         #endif
     }
 
@@ -2611,7 +2805,7 @@ public class Lox : ThreadLock
      * Overloaded version of \ref Once.
      *
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The object to log..
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
@@ -2626,13 +2820,13 @@ public class Lox : ThreadLock
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public void Once(                        Verbosity verbosity, Object logable,
+    public void Once(                        Verbosity verbosity, Object logables,
                       String group,
                       int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, verbosity, logable, group, Scope.Global, 0, quantity ,   cln,csf,cmn );
+            once( null, verbosity, logables, group, Scope.Global, 0, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -2640,7 +2834,7 @@ public class Lox : ThreadLock
      * Overloaded version of \ref Once.
      *
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The object to log..
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -2649,19 +2843,19 @@ public class Lox : ThreadLock
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public void Once(                        Verbosity verbosity, Object logable,
+    public void Once(                        Verbosity verbosity, Object logables,
                       int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, verbosity, logable, null, Scope.Global, 0, quantity ,   cln,csf,cmn );
+            once( null, verbosity, logables, null, Scope.Global, 0, quantity ,   cln,csf,cmn );
         #endif
     }
 
     /** ********************************************************************************************
      * Overloaded version of \ref Once.
      *
-     * @param logable   The object to log..
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
@@ -2680,14 +2874,14 @@ public class Lox : ThreadLock
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public void Once(                                          Object logable,
+    public void Once(                                          Object logables,
                       String group,
                       Scope scope, int pathLevel= 0,
                       int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, Verbosity.Info, logable, group, scope, pathLevel, quantity ,   cln,csf,cmn );
+            once( null, Verbosity.Info, logables, group, scope, pathLevel, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -2697,7 +2891,7 @@ public class Lox : ThreadLock
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The object to log..
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param pathLevel Used only if parameter \p scope equals
      *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
@@ -2710,13 +2904,13 @@ public class Lox : ThreadLock
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public void Once( String domain, Verbosity verbosity, Object logable,
+    public void Once( String domain, Verbosity verbosity, Object logables,
                       Scope scope= Scope.Global , int pathLevel= 0,
                       int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( domain, verbosity, logable, null, scope, pathLevel, quantity ,   cln,csf,cmn );
+            once( domain, verbosity, logables, null, scope, pathLevel, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -2724,7 +2918,7 @@ public class Lox : ThreadLock
      * Overloaded version of \ref Once.
      *
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The object to log..
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param pathLevel Used only if parameter \p scope equals
      *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
@@ -2737,20 +2931,20 @@ public class Lox : ThreadLock
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public void Once(                        Verbosity verbosity, Object logable,
+    public void Once(                        Verbosity verbosity, Object logables,
                       Scope scope, int pathLevel= 0,
                       int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, verbosity, logable, null, scope, pathLevel, quantity ,   cln,csf,cmn );
+            once( null, verbosity, logables, null, scope, pathLevel, quantity ,   cln,csf,cmn );
         #endif
     }
 
     /** ********************************************************************************************
      * Overloaded version of \ref Once.
      *
-     * @param logable   The object to log..
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param pathLevel Used only if parameter \p scope equals
      *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
@@ -2763,20 +2957,20 @@ public class Lox : ThreadLock
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public void Once(                                          Object logable,
+    public void Once(                                          Object logables,
                       Scope scope, int pathLevel= 0,
                       int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, Verbosity.Info, logable, null, scope, pathLevel, quantity ,   cln,csf,cmn );
+            once( null, Verbosity.Info, logables, null, scope, pathLevel, quantity ,   cln,csf,cmn );
         #endif
     }
 
     /** ********************************************************************************************
      * Overloaded version of \ref Once.
      *
-     * @param logable   The object to log..
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -2785,19 +2979,19 @@ public class Lox : ThreadLock
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public void Once(                                          Object logable,
+    public void Once(                                          Object logables,
                       int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, Verbosity.Info, logable, null, Scope.Global, 0, quantity ,   cln,csf,cmn );
+            once( null, Verbosity.Info, logables, null, Scope.Global, 0, quantity ,   cln,csf,cmn );
         #endif
     }
 
     /** ********************************************************************************************
      * Overloaded version of \ref Once.
      *
-     * @param logable   The object to log..
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
@@ -2812,20 +3006,17 @@ public class Lox : ThreadLock
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public void Once(                                          Object logable,
+    public void Once(                                          Object logables,
                       String group, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, Verbosity.Info, logable, group, Scope.Global, 0, quantity ,   cln,csf,cmn );
+            once( null, Verbosity.Info, logables, group, Scope.Global, 0, quantity ,   cln,csf,cmn );
         #endif
     }
 
     /** ********************************************************************************************
      * Overloaded version of \ref Once.
-     *
-     * \note C# autoboxes parameter values of type 'int', which leads to ambiguous statements.
-     *       This is why all %Once methods are doubled with a String-type parameter \p logable.
      *
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
@@ -3105,122 +3296,6 @@ public class Lox : ThreadLock
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
             once( null, Verbosity.Info, logable, group, Scope.Global, 0, quantity ,   cln,csf,cmn );
-        #endif
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable only if the parameter \p condition is not \c true.
-     * If executed, \ref Verbosity.Error is used.
-     *
-     * @param condition If \c false, the <em>Log Statement</em> is executed.
-     * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-     *                  set for the \e %Scope of invocation.
-     * @param logable   The object to log.
-     * @param cln (Optional) Caller info, compiler generated. Please omit.
-     * @param csf (Optional) Caller info, compiler generated. Please omit.
-     * @param cmn (Optional) Caller info, compiler generated. Please omit.
-     **********************************************************************************************/
-    [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public  void Assert( bool condition, String domain, Object logable,
-    [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
-    {
-        #if ALOX_DBG_LOG || ALOX_REL_LOG
-            if ( !condition )
-                Entry( domain, Verbosity.Error, logable, cln,csf,cmn );
-            else
-            {
-                CntLogCalls++;
-                if ( logable == logBuf )
-                    logBufLock.Release();
-            }
-
-        #endif
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable only if the parameter \p condition is not \c true.
-     * If executed, \ref Verbosity.Error is used.
-     *
-     * This overloaded version omits parameter \p domain.
-     *
-     * @param condition If \c false, the <em>Log Statement</em> is executed.
-     * @param logable   The object to log.
-     * @param cln (Optional) Caller info, compiler generated. Please omit.
-     * @param csf (Optional) Caller info, compiler generated. Please omit.
-     * @param cmn (Optional) Caller info, compiler generated. Please omit.
-     **********************************************************************************************/
-    [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public  void Assert( bool condition, Object logable,
-    [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
-    {
-        #if ALOX_DBG_LOG || ALOX_REL_LOG
-            if ( !condition )
-                Entry( null, Verbosity.Error, logable, cln,csf,cmn );
-            else
-            {
-                CntLogCalls++;
-                if ( logable == logBuf )
-                    logBufLock.Release();
-            }
-        #endif
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable only if the parameter \p condition is \c true.
-     *
-     * \see Method #Assert.
-     *
-     * @param condition If \c false, the <em>Log Statement</em> is executed.
-     * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-     *                  set for the \e %Scope of invocation.
-     * @param verbosity The verbosity.
-     * @param logable   The object to log.
-     * @param cln (Optional) Caller info, compiler generated. Please omit.
-     * @param csf (Optional) Caller info, compiler generated. Please omit.
-     * @param cmn (Optional) Caller info, compiler generated. Please omit.
-     **********************************************************************************************/
-    [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public  void If( bool condition, String domain, Verbosity verbosity, Object logable,
-    [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
-    {
-        #if ALOX_DBG_LOG || ALOX_REL_LOG
-            if ( condition )
-                Entry( domain, verbosity, logable, cln,csf,cmn );
-            else
-            {
-                CntLogCalls++;
-                if ( logable == logBuf )
-                    logBufLock.Release();
-            }
-        #endif
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable only if the parameter \p condition is \c true.
-     * This overloaded version omits parameter \p domain.
-     *
-     * \see Method #Assert.
-     *
-     * @param condition If \c false, the <em>Log Statement</em> is executed.
-     * @param verbosity The verbosity.
-     * @param logable   The object to log.
-     * @param cln (Optional) Caller info, compiler generated. Please omit.
-     * @param csf (Optional) Caller info, compiler generated. Please omit.
-     * @param cmn (Optional) Caller info, compiler generated. Please omit.
-     **********************************************************************************************/
-    [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public  void If( bool condition, Verbosity verbosity, Object logable,
-    [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
-    {
-        #if ALOX_DBG_LOG || ALOX_REL_LOG
-            if ( condition )
-                Entry( null, verbosity, logable, cln,csf,cmn );
-            else
-            {
-                CntLogCalls++;
-                if ( logable == logBuf )
-                    logBufLock.Release();
-            }
         #endif
     }
 
@@ -3294,7 +3369,7 @@ public class Lox : ThreadLock
                 for(;;)
                 {
                     bool wasCreated= false;
-                    dom= domainSystem.Find( domainPath, DomainSensitivity, 1, ref wasCreated );
+                    dom= domainSystem.Find( domainPath, 1, ref wasCreated );
 
                     if ( wasCreated )
                     {
@@ -3358,7 +3433,7 @@ public class Lox : ThreadLock
                                 case DomainSubstitutionRule.Type.StartsWith:
                                     if( substPath.IsEmpty() )
                                     {
-                                        if ( dom.FullPath.StartsWith( rule.Search, DomainSensitivity ) )
+                                        if ( dom.FullPath.StartsWith( rule.Search, Case.Sensitive ) )
                                         {
                                             substPath._( rule.Replacement )._( dom.FullPath, rule.Search.Length() );
                                             substituted= true;
@@ -3367,7 +3442,7 @@ public class Lox : ThreadLock
                                     }
                                     else
                                     {
-                                        if ( substPath.StartsWith( rule.Search, DomainSensitivity ) )
+                                        if ( substPath.StartsWith( rule.Search, Case.Sensitive ) )
                                         {
                                             substPath.ReplaceSubstring( rule.Replacement, 0, rule.Search.Length()  );
                                             substituted= true;
@@ -3379,7 +3454,7 @@ public class Lox : ThreadLock
                                 case DomainSubstitutionRule.Type.EndsWith:
                                     if( substPath.IsEmpty() )
                                     {
-                                        if ( dom.FullPath.EndsWith( rule.Search, DomainSensitivity ) )
+                                        if ( dom.FullPath.EndsWith( rule.Search, Case.Sensitive ) )
                                         {
                                             substPath._( dom.FullPath, 0, dom.FullPath.Length() - rule.Search.Length() )._( rule.Replacement );
                                             substituted= true;
@@ -3388,7 +3463,7 @@ public class Lox : ThreadLock
                                     }
                                     else
                                     {
-                                        if ( substPath.EndsWith( rule.Search, DomainSensitivity ) )
+                                        if ( substPath.EndsWith( rule.Search, Case.Sensitive ) )
                                         {
                                             substPath.DeleteEnd( rule.Search.Length() )._( rule.Replacement );
                                             substituted= true;
@@ -3401,7 +3476,7 @@ public class Lox : ThreadLock
                                 case DomainSubstitutionRule.Type.Substring:
                                     if( substPath.IsEmpty() )
                                     {
-                                        int idx= dom.FullPath.IndexOf( rule.Search, 0, DomainSensitivity );
+                                        int idx= dom.FullPath.IndexOf( rule.Search, 0, Case.Sensitive );
                                         if ( idx >= 0 )
                                         {
                                             substPath._( dom.FullPath, 0, idx )._( rule.Replacement)._( dom.FullPath, idx + rule.Search.Length() );
@@ -3411,7 +3486,7 @@ public class Lox : ThreadLock
                                     }
                                     else
                                     {
-                                        int idx= substPath.IndexOf( rule.Search, 0, DomainSensitivity );
+                                        int idx= substPath.IndexOf( rule.Search, 0, Case.Sensitive );
                                         if ( idx >= 0 )
                                         {
                                             substPath.ReplaceSubstring( rule.Replacement, idx, rule.Search.Length()  );
@@ -3475,6 +3550,25 @@ public class Lox : ThreadLock
             }
         }
 
+
+        /** ****************************************************************************************
+         * Simple helper method that inserts a logable at the front of #tmpLogables.
+         * If the logable is an object array, each object will be inserted.
+         *
+         * @param logable   The logable or array of logables.
+         ******************************************************************************************/
+        protected void insertLogables( Object logable )
+        {
+            if ( logable is Object[] )
+            {
+                Object[] logableArray= (Object[]) logable;
+                for (int i= logableArray.Length - 1 ; i >= 0 ; --i )
+                    tmpLogables.Insert( 0, logableArray[i] );
+            }
+            else
+                tmpLogables.Insert( 0, logable );
+        }
+
         /** ****************************************************************************************
          * This method is looping over the \e Loggers, checking their verbosity against the given
          * one, and, if they match, invoke the log method of the \e Logger.
@@ -3482,44 +3576,48 @@ public class Lox : ThreadLock
          * collected from the scope store.
          * @param dom       The domain to log on
          * @param verbosity The verbosity.
-         * @param logable   The object to log.
+         * @param logables  The objects to log.
          * @param prefixes  Denotes if prefixes should be included or not.
          ******************************************************************************************/
-        protected void log( Domain dom, Verbosity verbosity, Object logable, Inclusion prefixes )
+        protected void log( Domain dom, Verbosity verbosity, Object[] logables, Inclusion prefixes )
         {
-            // OK, this is a little crude, but the simplest solution: As class ScopeStore sees
-            // null objects as nothing and won't return them in a walk, we replace null by
-            // an object (we choose the store itself) and fix this in the loop back to null
-            if ( logable == null )
-                logable= scopePrefixes;
-
             dom.CntLogCalls++;
-            logObjects.Clear();
+            tmpLogables.Clear();
             for ( int i= 0; i < dom.CountLoggers() ; i++ )
                 if( dom.IsActive( i, verbosity ) )
                 {
                     // lazily collect objects once
-                    if ( logObjects.Count == 0 )
+                    if ( tmpLogables.Count == 0 )
                     {
-                        scopePrefixes.InitWalk( Scope.ThreadInner, logable );
+                        // OK, this is a little crude, but the simplest solution: As class ScopeStore sees
+                        // null objects as nothing and won't return them in a walk, we replace null by
+                        // an object (ourselves) and fix this in the loop back to null
+                        scopePrefixes.InitWalk( Scope.ThreadInner, logables != null ? (Object) logables : (Object) this );
                         Object next;
                         while( (next= scopePrefixes.Walk() ) != null )
                         {
-                            if ( prefixes == Inclusion.Include || next == logable)
-                                logObjects.Insert( 0, next != scopePrefixes ? next : null );
+                            if ( next == logables )
+                                for( int l= logables.Length -1 ; l >= 0; --l )
+                                    insertLogables( logables[l] );
+
+                            else if (    next != this                    // see comment above
+                                      && prefixes == Inclusion.Include ) // this is false for internal domains (only domain specific logables are added there)
+                                insertLogables( next );
 
                             // was this the actual? then insert domain-associated logables now
                             bool excludeOthers= false;
-                            if( next == logable )
+                            if( next == logables || next == this )
                             {
-                                int qtyThreadInner= logObjects.Count -1;
+                                int qtyThreadInner= tmpLogables.Count -1;
                                 Domain pflDom= dom;
                                 while ( pflDom != null )
                                 {
                                     for( int ii= pflDom.PrefixLogables.Count -1 ; ii >= 0 ; ii-- )
                                     {
                                         Domain.PL pl= pflDom.PrefixLogables[ii];
-                                        logObjects.Insert( 0,  pl.Logable );
+
+                                        insertLogables( pl.Logable );
+
                                         if ( pl.IncludeOtherPLs == Inclusion.Exclude )
                                         {
                                             excludeOthers= true;
@@ -3534,7 +3632,7 @@ public class Lox : ThreadLock
                                 if (excludeOthers)
                                 {
                                     for ( int ii= 0; ii < qtyThreadInner ; ii++ )
-                                        logObjects.RemoveAt( logObjects.Count - 1 );
+                                        tmpLogables.RemoveAt( tmpLogables.Count - 1 );
                                     break;
                                 }
                             }
@@ -3544,7 +3642,7 @@ public class Lox : ThreadLock
                     Logger logger= dom.GetLogger(i);
                     logger.Acquire();
                         logger.CntLogs++;
-                        logger.Log( dom, verbosity, logObjects, scopeInfo );
+                        logger.Log( dom, verbosity, tmpLogables, scopeInfo );
                         logger.TimeOfLastLog.Set();
                     logger.Release();
                 }
@@ -3561,7 +3659,7 @@ public class Lox : ThreadLock
         protected  void logInternal( Verbosity verbosity, String subDomain, AString logable )
         {
             log( findDomain( internalDomains, resDomainInternal._()._NC( subDomain ) ),
-                 verbosity, logable, Inclusion.Exclude );
+                verbosity, new object[] {logable}, Inclusion.Exclude );
         }
 
     /** ********************************************************************************************
@@ -3587,9 +3685,7 @@ public class Lox : ThreadLock
     {
         //note: the public class interface assures that \p removeNTRSD (named thread-related
         //      scope domain) only evaluates true for thread related scopes
-        try { Acquire();
-
-            scopeInfo.Set( cln,csf,cmn, owner );
+        try { Acquire(cln,csf,cmn);
 
             if( !checkScopeInformation( scope, pathLevel, "DMN" ) )
                 return;
@@ -3682,16 +3778,10 @@ public class Lox : ThreadLock
     protected void setPrefixImpl( Object  logable, Scope scope, int pathLevel, Thread thread,
                                   int cln,String csf,String cmn )
     {
-        try { Acquire();
-
-            scopeInfo.Set( cln,csf,cmn, owner );
+        try { Acquire(cln,csf,cmn);
 
             if( !checkScopeInformation( scope, pathLevel, "PFX" ) )
                 return;
-
-            // check if the LogBuf singleton of static class Log was used
-            if( logable == logBuf )
-                logable= logBuf.ToString();
 
             // store new prefix for this scope (and get current)
             Object previousLogable;
@@ -3750,7 +3840,7 @@ public class Lox : ThreadLock
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      * @return \c true if \p scope is thread-related, \c false else.
      **********************************************************************************************/
-    protected bool isThreadReleatedScope( Scope scope, int cln,String csf,String cmn )
+    protected bool isThreadRelatedScope( Scope scope, int cln,String csf,String cmn )
     {
         if (    scope == Scope.ThreadOuter
              || scope == Scope.ThreadInner )
@@ -3762,7 +3852,7 @@ public class Lox : ThreadLock
         ALox.ToString(scope, 0, intMsg); intMsg._( '.' );
         logInternal( Verbosity.Error, "DMN", intMsg );
 
-        ALIB.ERROR( "Illegal parameter, only Scope.ThreadOuter and Scope.ThreadInner allowed.",
+        ALIB_DBG.ERROR( "Illegal parameter, only Scope.ThreadOuter and Scope.ThreadInner allowed.",
                     cln,csf,cmn );
 
         return false;
@@ -3824,9 +3914,7 @@ public class Lox : ThreadLock
                          int cln,String csf,String cmn )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-        try { Acquire();
-
-            scopeInfo.Set( cln,csf,cmn, owner );
+        try { Acquire(cln,csf,cmn);
 
             // We need a group. If none is given, there are two options:
             tmpAS._()._(group);
@@ -3865,7 +3953,8 @@ public class Lox : ThreadLock
                     qty[0]++;
 
                     // do the log
-                    Entry( domain, verbosity, logable, cln,csf,cmn );
+                    Object[] logables= {logable};
+                    Entry( domain, verbosity, logables, cln,csf,cmn );
 
                     // log info if this was the last time
                     if( qty[0] == quantity )
@@ -3895,22 +3984,15 @@ public class Lox : ThreadLock
                         logInternal( Verbosity.Info, "", intMsg );
                     }
                 }
-                else
-                {
-                    if ( logable == logBuf )
-                        logBufLock.Release();
-                }
             }
 
             // log Nth
             else
             {
                 if ( qty[0]++ % -quantity == 0 )
-                    Entry( domain, verbosity, logable, cln,csf,cmn );
-                else
                 {
-                    if ( logable == logBuf )
-                        logBufLock.Release();
+                    Object[] logables= {logable};
+                    Entry( domain, verbosity, logables, cln,csf,cmn );
                 }
             }
 
@@ -3945,7 +4027,7 @@ public class Lox : ThreadLock
             verbosityTknzr.Set( variable.GetString( varNo ), '=' );
 
             domainStr.Set( verbosityTknzr.Next() );
-            if ( domainStr.StartsWith( "INTERNAL_DOMAINS", DomainSensitivity ) )
+            if ( domainStr.StartsWith( "INTERNAL_DOMAINS", Case.Ignore ) )
             {
                 domainStrBuf._()._( domainStr.Buf, domainStr.Start + 16, domainStr.Length() -16 );
                 while ( domainStrBuf.CharAtStart() == '/' )
@@ -3959,12 +4041,12 @@ public class Lox : ThreadLock
                 continue;
 
             int searchMode= 0;
-            if ( domainStr.Consume       ( '*' ) )    searchMode+= 2;
-            if ( domainStr.ConsumeFromEnd( '*' ) )    searchMode+= 1;
-            if(     ( searchMode == 0 && dom.FullPath.Equals          ( domainStr,    DomainSensitivity )     )
-                ||  ( searchMode == 1 && dom.FullPath.StartsWith      ( domainStr,    DomainSensitivity )     )
-                ||  ( searchMode == 2 && dom.FullPath.EndsWith        ( domainStr,    DomainSensitivity )     )
-                ||  ( searchMode == 3 && dom.FullPath.IndexOf         ( domainStr, 0, DomainSensitivity ) >=0 )
+            if ( domainStr.ConsumeChar       ( '*' ) )    searchMode+= 2;
+            if ( domainStr.ConsumeCharFromEnd( '*' ) )    searchMode+= 1;
+            if(     ( searchMode == 0 && dom.FullPath.Equals          ( domainStr,    Case.Ignore )     )
+                ||  ( searchMode == 1 && dom.FullPath.StartsWith      ( domainStr,    Case.Ignore )     )
+                ||  ( searchMode == 2 && dom.FullPath.EndsWith        ( domainStr,    Case.Ignore )     )
+                ||  ( searchMode == 3 && dom.FullPath.IndexOf         ( domainStr, 0, Case.Ignore ) >=0 )
                 )
             {
                 Verbosity verbosity= ALox.ReadVerbosity( verbosityStr);
@@ -4004,7 +4086,7 @@ public class Lox : ThreadLock
             prefixTok.Set( variable.GetString( varNo ), '=' );
 
             domainStr.Set( prefixTok.Next() );
-            if ( domainStr.StartsWith( "INTERNAL_DOMAINS", DomainSensitivity ) )
+            if ( domainStr.StartsWith( "INTERNAL_DOMAINS", Case.Ignore ) )
             {
                 domainStrBuf._()._( domainStr.Buf, domainStr.Start + 16, domainStr.Length() -16 );
                 while ( domainStrBuf.CharAtStart() == '/' )
@@ -4017,8 +4099,8 @@ public class Lox : ThreadLock
             prefixStr.Set( prefixTokInner.Next() );
             if ( prefixStr.IsEmpty() )
                 continue;
-            if ( prefixStr.Consume( '\"' ) )
-                prefixStr.ConsumeFromEnd( '\"' );
+            if ( prefixStr.ConsumeChar( '\"' ) )
+                prefixStr.ConsumeCharFromEnd( '\"' );
 
             Inclusion otherPLs= Inclusion.Include;
             prefixTokInner.Next();
@@ -4026,12 +4108,12 @@ public class Lox : ThreadLock
                 otherPLs= ALIB.ReadInclusion( prefixTokInner.Actual  );
 
             int searchMode= 0;
-            if ( domainStr.Consume       ( '*' ) )    searchMode+= 2;
-            if ( domainStr.ConsumeFromEnd( '*' ) )    searchMode+= 1;
-            if(     ( searchMode == 0 && dom.FullPath.Equals          ( domainStr,    DomainSensitivity )     )
-                ||  ( searchMode == 1 && dom.FullPath.StartsWith      ( domainStr,    DomainSensitivity )     )
-                ||  ( searchMode == 2 && dom.FullPath.EndsWith        ( domainStr,    DomainSensitivity )     )
-                ||  ( searchMode == 3 && dom.FullPath.IndexOf         ( domainStr, 0, DomainSensitivity ) >=0 )
+            if ( domainStr.ConsumeChar       ( '*' ) )    searchMode+= 2;
+            if ( domainStr.ConsumeCharFromEnd( '*' ) )    searchMode+= 1;
+            if(     ( searchMode == 0 && dom.FullPath.Equals          ( domainStr,    Case.Ignore )     )
+                ||  ( searchMode == 1 && dom.FullPath.StartsWith      ( domainStr,    Case.Ignore )     )
+                ||  ( searchMode == 2 && dom.FullPath.EndsWith        ( domainStr,    Case.Ignore )     )
+                ||  ( searchMode == 3 && dom.FullPath.IndexOf         ( domainStr, 0, Case.Ignore ) >=0 )
                 )
             {
                 dom.PrefixLogables.Add( new Domain.PL( new AString( prefixStr ), otherPLs ) );

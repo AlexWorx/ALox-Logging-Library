@@ -1,8 +1,8 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /**
@@ -11,15 +11,15 @@
 
 \tableofcontents
 
-In C++ and C#, ALox collects information about the source file name and this information
+In C++ and C#, \b %ALox collects information about the source file name and this information
 by default includes the full file path.
-This chapter is addressing ALox for C++ and ALox for C# users only.
+This chapter is addressing <b>ALox for C++</b> and <b>ALox for C#</b> users only.
 
 \note
-  In Java, the \e Scope information that ALox collects does not include information about
+  In Java, the \e Scope information that \b %ALox collects does not include information about
   the path of source files. Luckily, IDEs (e.g. Eclipse) nevertheless are able to open
   the right source file when clicking on the meta information automatically collected
-  by ALox.
+  by \b %ALox.
 
 To collect the path information, in C++ the preprocessor macro \c \_\_FILE\_\_ is used
 when invoking <em>Log Statements</em>.
@@ -27,7 +27,8 @@ In C#, some mechanics of namespace \c System.Runtime.CompilerServices are levera
 
 The source file name and path information received is used in two ways:
 - To determine the \e Scope of a <em>Log Statement</em>.
-  ALox uses this to implement a variety of nice features like <em>Scope Domains</em>, <em>Prefix Logables</em>, $LO or <em>Log Data</em>.
+  \b %ALox uses this to implement a variety of nice features like <em>Scope Domains</em>,
+  <em>Prefix Logables</em>, <em>Log.Once</em> or <em>Log Data</em>.
 
 - For logging out such information and provide the context of a <em>Log Statement</em>.
   If an IDE supports it this may make log output 'clickable'.
@@ -49,14 +50,14 @@ the path only once (at bootstrap) and forget about it. All instances of \b Lox w
 \~Comment ####################################################################################### \~
 ## 1.1 Automatic Detection of Trim Rules ##  {#man_trim_source_path_set_automatic}
 ALox tries to detect trimable portions of a source path automatically.
-For that, ALox compares the actual path name of the executable of the currently running
+For that, \b %ALox compares the actual path name of the executable of the currently running
 process with the path of a source file. The prefix both have in common is identified as trimable.
 
 As an example, imagine a process' file name including the path is:
 
         /home/lisa/bin/myapp(.exe)
 
-When ALox finds a source file residing in:
+When \b %ALox finds a source file residing in:
 
         /home/lisa/dev/myapp/src/ui/dialog.cpp
 
@@ -75,20 +76,20 @@ or alternatively:
 
         src/ui/dialog.cpp
 
-Before we learn how we can configure ALox to trim the path like this, let us first better understand
-\b when ALox performs the automatic detection described above:
+Before we learn how we can configure \b %ALox to trim the path like this, let us first better understand
+when \b %ALox performs the automatic detection described above:
 
-- ALox tries to detect a rule for trimming only <b>once per Lox</b>:<br>
-  The reason for this is simply performance. We rather want ALox to be fast instead of trying to detect
+- \b %ALox tries to detect a rule for trimming only <b>once per Lox</b>:<br>
+  The reason for this is simply performance. We rather want \b %ALox to be fast instead of trying to detect
   trim rules with every <em>Log Statement</em>. However, if different subsets of the source code resides in
   different paths, the path detected becomes random: It depends on the fact which source logs first!
   And even worse: if no match was found with that first file, no second try is performed.
 
-- More precisely, ALox does its one-time detection exactly in the moment a first source file is
+- More precisely, \b %ALox does its one-time detection exactly in the moment a first source file is
   using a \b Lox and the path of this file was \e not processed by an explicitly provided
   <em>Source Path Trim Rule</em>.
 
-- If ALox finds a rule, such rule is stored in the list dedicated to the \b Lox that found it,
+- If \b %ALox finds a rule, such rule is stored in the list dedicated to the \b Lox that found it,
   not in the global list applicable for all \b Lox instances. This is why the one-time detection
   is a one-time detecthion <em>per %Lox</em>.
 
@@ -100,7 +101,7 @@ When things become more complex, it is advisable to add <em>Source Path Trim Rul
 
 \~Comment ####################################################################################### \~
 ## 1.2 Programmatical Provision of Trim Rules ##  {#man_trim_source_path_set_programmatical}
-A user of ALox may use method
+A user of \b %ALox may use method
 <b>%Lox.SetSourcePathTrimRule</b>
 ([C++] (@ref      #aworx::lox::Lox::SetSourcePathTrimRule),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetSourcePathTrimRule)), to add <em>Source Path Trim Rules</em>
@@ -119,10 +120,10 @@ Now, for a programmatically setting, Lisa invokes
 
 \snippet "UT_dox_manual.cs"        Man_TRIM_SOURCE_PATH
 
-as the very first statement before using ALox. The first parameter tells ALox which string
+as the very first statement before using \b %ALox. The first parameter tells \b %ALox which string
 to search. A leading wildcard character <c>'*'</c>, indicates that the path is a substring
 of the file paths identified (no trailing <c>'*'</c> is needed). The second, optional parameter
-tells ALox to include the given substring in the trimming. In other words, the substring will
+tells \b %ALox to include the given substring in the trimming. In other words, the substring will
 be excluded from the trimmed path. In other words: it means "the given portion of the path is
 included in the trimming action!
 
@@ -170,14 +171,14 @@ a source path, no further attempts for trimming are performed.
 Setting <em>Source Path Trim Rules</em> <em>'from within the source code'</em> is easy and straightforward. However, when
 working in a team such changes might not be appreciated by other team members. In this and
 other situations it is advisable to retrieve <em>Source Path Trim Rule</em> from external configuration data, command-line
-parameters or other sources at run-time.
+parameters or other sources at runtime.
 
-For <em>Source Path Trim Rules</em> and also other configuration data, ALox leverages the configuration facility provided
-by underlying utility library ALib.
+For <em>Source Path Trim Rules</em> and also other configuration data, \b %ALox leverages the configuration facility provided
+by underlying utility library \b %ALib.
 
 \note
- For general information on ALox configuration variables consult \ref GrpALoxConfigVars.<br>
- For information on how to pass configuration data from custom sources to ALox, refer to
+ For general information on \b %ALox configuration variables consult \ref GrpALoxConfigVars.<br>
+ For information on how to pass configuration data from custom sources to \b %ALox, refer to
  namespace documentation
  <b>%aworx::lib::config</b>
     ([C++] (@ref      #aworx::lib::config),
@@ -208,14 +209,14 @@ As an example, an INI file of an application might have the following sub-sectio
 
 \snippet "UT_alox_lox.cs"        Man_SourcePathTrimming
 
-This would install two rules. Note that values of paramters 2 and 4, which in the method
+This would install two rules. Note that values of parameters 2 and 4, which in the method
 declaration carry enum types
 <b>%Inclusion</b>
-([C++] (@ref      #aworx::lib::enums::Inclusion),
- [C#]  (@ref  #cs::aworx::lib::enums::Inclusion)) and
+([C++] (@ref      #aworx::lib::lang::Inclusion),
+ [C#]  (@ref  #cs::aworx::lib::lang::Inclusion)) and
 <b>%Case</b>
-([C++] (@ref      #aworx::lib::enums::Case),
- [C#]  (@ref  #cs::aworx::lib::enums::Case)), in the INI file are expressed by boolean values
+([C++] (@ref      #aworx::lib::lang::Case),
+ [C#]  (@ref  #cs::aworx::lib::lang::Case)), in the INI file are expressed by boolean values
 as follows:
 
 - \c %Inclusion::Include == \c true, \c %Inclusion::Exclude == \c false
@@ -229,7 +230,7 @@ as follows:
 Different trim rules might be redundant or even contradict each other. Therefore the rules
 are equipped with a priority. Rules with higher priority are applied first.
 Once a rule matches, no further rule is applied.
-The priority is an integer value and is lent from the ALib system for external configuration
+The priority is an integer value and is lent from the \b %ALib system for external configuration
 variables. It is are set as follows:
 - In the case that a rule is read from an external configuration
   variable, the priority value is set to the priority value of the configuration plug-in that
@@ -259,7 +260,7 @@ It allows the user to give the rule set in the source code the highest priority 
 to protect the rule from external manipulation.
 
 \note
-    For general information about accessing external configuration data with ALib see documentation
+    For general information about accessing external configuration data with \b %ALib see documentation
     of namespace
     <b>[cs.]%aworx.lib.config</b>
       ([C++] (@ref      #aworx::lib::config),
@@ -285,17 +286,17 @@ external configuration variables, you can use method
 Besides rules set programmatically or using configuration variables, if exists, also the auto-generated
 rule is displayed.
 \note
-    As an alternative to (temporarily) adding an invocation of <b>%Lox.State</b> to your code,
-    ALox provides configuration variable [ALOX_LOXNAME_DUMP_STATE_ON_EXIT](group__GrpALoxConfigVars.html).
-    This allows to enable an automatic dump of the state using a command line parameter or
-    other external configuration sources.
+  As an alternative to (temporarily) adding an invocation of <b>%Lox.State</b> to your code,
+  \b %ALox provides configuration variable [ALOX_LOXNAME_DUMP_STATE_ON_EXIT](group__GrpALoxConfigVars.html).
+  This allows to enable an automatic dump of the state using a command line parameter or
+  other external configuration sources.
 
 
 
 \~Comment ####################################################################################### \~
 ## 1.6 Removing Trim Rules ##  {#man_trim_source_path_set_remove}
 
-In very special situations (e.g. ALox uses it for unit testing) method
+In very special situations (e.g. \b %ALox uses it for unit testing) method
 <b>%Lox.ClearSourcePathTrimRules</b>
 ([C++] (@ref      #aworx::lox::Lox::ClearSourcePathTrimRules),
  [C#]  (@ref  #cs::aworx::lox::Lox::ClearSourcePathTrimRules)), can be used to clear the
@@ -308,7 +309,7 @@ rules of a \b %Lox instance, optionally including all global rules.
     \b %Lox.
 
 # 2. Considerations in respect to Scope Functionality #  {#man_trim_source_path_scope}
-The benefits of having ALox using reduced length source file paths in consideration to \e Scopes
+The benefits of having \b %ALox using reduced length source file paths in consideration to \e Scopes
 is in respect to performance. All data associated with language-related \e Scopes is stored and
 retrieved in hash-tables with keys containing the source path.<br>
 Furthermore, the output of method
@@ -318,7 +319,7 @@ Furthermore, the output of method
 paths.
 
 It is also important to consider that when using \e Scope.Path, especially in combination with
-optional parameter \p pathLevel which addresses parent directories of source directories,
+optional parameter \p pathLevel, which addresses parent directories of source directories,
 the source path must not be trimmed more than such use suggests. When the files are sorted
 in nested directories according to the nested namespace structure implemented in the files,
 then the directory prior to the tree of namespace directories should be included in the trimmed path.
@@ -331,10 +332,10 @@ then the directory prior to the tree of namespace directories should be included
   This section is about textual logging with the use of \e Loggers derived from class
   <b>%TextLogger</b>
     ([C++] (@ref      #aworx::lox::core::textlogger::TextLogger),
-     [C#]  (@ref  #cs::aworx::lox::core::textlogger::TextLogger)), provided with ALox. For other
+     [C#]  (@ref  #cs::aworx::lox::core::textlogger::TextLogger)), provided with \b %ALox. For other
   \e Loggers, other considerations might apply.
 
-Due to the rich meta information that ALox provides, the log output lines quickly become quite wide.
+Due to the rich meta information that \b %ALox provides, the log output lines quickly become quite wide.
 Therefore, trimming the path of source files in the log output to a level that still allows to
 distinguish all files properly, can help a lot to reduce such width.
 
@@ -347,16 +348,21 @@ For the source path, two format parameters exists:
 - <b>%SP</b>: Provides the full path name
 - <b>%Sp</b>: Provides the trimmed path name
 
-By default, the trimmed name is used. Directly from the log-output you can observe how trimming
-is performed by ALox and whether there is the need to add a trimming rule explicitly.
+Directly from the log-output you can observe how trimming
+is performed by \b %ALox and whether there is the need to add a trimming rule explicitly.
 
 However, those IDEs which recognize certain patterns and allow to automatically link these patterns
-with the source file in their editor, normally need to see the full path name.
-To adjust ALox to your IDE, you might have to play around a little. If your IDE supports clickable
+with the source file in their editor, sometimes need to see the full path name or a certain part
+of it.
+To adjust \b %ALox to your IDE, you might have to play around a little. If your IDE supports clickable
 output lines, you might want to change the format of the meta info to match the pattern that your
 IDE requires.
 
-In addition, certain build systems/compilers might not provide the absolute path information
+\note
+  In documentation page \ref cppsetup and \ref cssetup, detailed instructions for selected
+  platforms and IDEs are given.
+
+Certain build systems/compilers might not provide the absolute path information
 in certain situations. In contrast, they might provide source directories in relative addressing
 in respect to a project file. This is at least true for C++. If then the IDE does not recognize
 the right origin of a relative path, this path needs correction to be absolute.
@@ -368,36 +374,11 @@ for what is cut by a rule. (This replacement string can of-course also be set us
 the configuration variables described in \ref man_trim_source_path_set_config.)
 Sometimes it might be needed to "fiddle around" with the options of the trim rules and the
 format of the \b %TextLogger output, until finally your IDE recognizes the source information
-correctly. But once succeeded, it proofs being worth the time!
+correctly. But once succeeded, it proofs being worth the effort!
+
 
 When you are sure, that your IDE does not support the links to the editor, then you're unfortunate
 and your way to go is displaying a (best possible) trimmed path, to reduce overall log output width.
-
-\~Comment ####################################################################################### \~
-## 3.1. Best practices with different IDEs ##  {#man_trim_source_path_set_bestpractice}
-
-The following list is our guess and experience. Information presented might be wrong or incomplete.<br>
-If you have experiences and solutions for your personal IDE, please contact us and share your
-information with us so that we can extend the list below.
-
-
-### 3.1.1 QTCreator ###  {#man_trim_source_path_set_bestpractice_qtcreator}
-  See \ref cppsetup_qtcreator_clickable for information on how to configure ALox for
-  [QT Creator](http://doc.qt.io/qtcreator/) rightfully.
-
-### 3.1.2 Microsoft Visual Studio ###  {#man_trim_source_path_set_bestpractice_vstudio}
-
-Current (V. 2015)
-[Microsoft Visual Studio](https://www.visualstudio.com/)y
-detects clickable output messages only in the
-debug-output window. This means, only when you run your software in debug mode, the output
-in the IDE which is created by special \e Logger type
-- For C++: \ref     aworx::lox::loggers::VStudioLogger "VStudioLogger"
-- For C#:  \ref cs::aworx::lox::loggers::CLRDebuggerLogger "CLRDebuggerLogger"
-
-is clickable. By default, ALox therefore automatically creates these \e Logger types, in the moment it is
-launched within that IDE. But only in debug mode (F5), unfortunately not in 'run mode' (CTRL-F5)!
-
 
 --------------------------------------------------------------------
 <center>Next chapter: \ref man_domain_substitution </center> <center> \ref manual "Back to index" </center>

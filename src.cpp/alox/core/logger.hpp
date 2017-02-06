@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  aworx::lox::core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -25,8 +25,7 @@
 #endif
 
 
-namespace aworx {
-namespace       lox {
+namespace aworx { namespace lox {
 /** ************************************************************************************************
  * This is the C++ namespace for internal main classes and other things belonging to
  * the <em>%ALox Logging Library</em>.<p>
@@ -34,72 +33,13 @@ namespace       lox {
  * library. However, if extending ALox, e.g. by implementing new custom <em>loggers</em>, things
  * found here provide an important foundation.
  *
- * Developed by A-Worx GmbH and published under the MIT license.
+ * Developed by A-Worx GmbH and published under Boost Software License.
  **************************************************************************************************/
-namespace           core{
-
-// forwards
-class Domain;
-
-
-/** ************************************************************************************************
- * A simple pair of void* and type information, constituting a logable object.
- * Used only internally, not exposed to the user interface.
- **************************************************************************************************/
-struct Logable
+namespace core
 {
-    int           Type;   ///< The type of the object. \c 0 and negative values reserved for ALox
-    const void*   Object; ///< The pointer to the object
 
-    /**
-     * Default constructor.
-     * @param type    Type of the object.
-     * @param object  The logable object.
-     */
-    Logable( int type, const void* object) : Type(type), Object(object) {}
-
-    /**
-     * Compares two objects by pointer comparison, in case of type 0 by string comparison.
-     * @param comp  The object to compare
-     * @return \c true if this and \p comp are equal, \c false otherwise.
-     */
-    bool Equals( const Logable& comp )
-    {
-        return        Type == comp.Type
-                && (     ( Type != 0 &&  Object == comp.Object )
-                      || ( Type == 0 && (   (    Object == nullptr && comp.Object == nullptr )
-                                              || ( ((const TString*) Object)->Equals( (const TString*) comp.Object)
-                                            )
-                                        )
-                         )
-                  );
-    }
-
-    /**
-     * Writes a string representation of this object to the given AString.
-     * @param target The target
-     * @return The target to allow concatenated operations
-     */
-    AString& ToString( AString& target )
-    {
-        if ( Type == 0 ||  Type == -1 )
-        {
-            int idx= target.Length();
-            target._('\"')._( (const TString*) Object) ._('\"');
-            ESC::ReplaceToReadable( target, idx );
-        }
-        else
-            target._( "<object of type " )._(Type)._('>');
-        return target;
-    }
-
-};
-
-/**
- * A list of logables as provided to method
- * \ref aworx::lox::core::Logger::Log "Logger::Log".
- */
-using Logables= std::vector<core::Logable*>;
+// forward declarations
+class Domain;
 
 
 /** ************************************************************************************************
@@ -109,7 +49,7 @@ using Logables= std::vector<core::Logable*>;
  * The class is abstract. To implement an own log stream, derive a new Logger class and implement
  * the abstract method #Log.
  **************************************************************************************************/
-class Logger : public aworx::SmartLock
+class Logger : public lib::threads::SmartLock
 {
     // #############################################################################################
     // Internal fields
@@ -168,7 +108,7 @@ class Logger : public aworx::SmartLock
          * @param logables  The list of objects to log.
          * @param scope     Information about the scope of the <em>Log Statement</em>..
          ******************************************************************************************/
-        virtual void   Log( Domain& dom, Verbosity verbosity, Logables& logables, ScopeInfo& scope) =0;
+        virtual void   Log( Domain& dom, Verbosity verbosity, Boxes& logables, ScopeInfo& scope) =0;
 
     // #############################################################################################
     // Constructor/Destructor
@@ -204,7 +144,7 @@ class Logger : public aworx::SmartLock
          *  Destructs a logger
          ******************************************************************************************/
     public:
-        virtual  ~Logger() {};
+        virtual  ~Logger() {}
 
     // #############################################################################################
     // Interface
@@ -220,7 +160,7 @@ class Logger : public aworx::SmartLock
 
         /** ****************************************************************************************
          * Returns the constant type name of this logger. The type name is defined by the class
-         * and hence provides a sort of run-time type information.
+         * and hence provides a sort of runtime type information.
          * @return The loggers type name.
          ******************************************************************************************/
         inline
@@ -229,7 +169,7 @@ class Logger : public aworx::SmartLock
 
 }; // class Logger
 
-}} // namespace lox::core
+}} // namespace lox::utils
 
 /** Type alias name in namespace #aworx. */
 using     Logger=       aworx::lox::core::Logger;
@@ -238,33 +178,58 @@ using     Logger=       aworx::lox::core::Logger;
 
 
 
-namespace aworx {
-namespace       lib {
-namespace             strings{
+namespace aworx { namespace lib { namespace strings
+{
+// We are faking all template specializations of namespace strings for doxygen into namespace
+// strings::applyto to keep the documentation of namespace string clean!
+#if defined(DOX_PARSER)
+namespace thirdparty {
+/**
+ * Template type and function specializations found here allow to apply types of logging library
+ * \b %ALox to be "applicable" to <b>ALib Strings</b>.
+ *
+ * \attention
+ *   This is a non-existing namespace, exclusively defined for the
+ *   [documentation parser](http://www.stack.nl/~dimitri/doxygen).
+ *   All types and functions described in this namespace are residing in namespace
+ *   #aworx::lib::strings (just as they have to in respect to C++ rules).
+ *   This documentation is moved here to keep the original namespace documentation clean.
+ */
+namespace alox {
+
+#endif
 
     /** ********************************************************************************************
-     * Specialization of TMP 'function' (struct)
-     * \ref aworx::lib::strings::IsApplicable "IsApplicable" for type \b std::string.
+     * Specialization of TMP struct
+     * \ref aworx::lib::strings::T_Apply "T_Apply" for type \b %Logger.
      **********************************************************************************************/
-    template<>   struct               IsApplicable<const lox::core::Logger&>   : public std::true_type {};
-
-    /** ********************************************************************************************
-     * Specialization of template method
-     * \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type \b std::string.
-     * See \ref aworx::lib::strings::ApplyTo "ApplyTo" for more information.
-     * @param  target The AString to append \p src to.
-     * @param  logger The logger to apply.
-     * @return The length of the given string \p src which was appended to \p target.
-     **********************************************************************************************/
-    template<>   inline   int         ApplyTo <const lox::core::Logger&>( AString& target, const lox::core::Logger& logger )
+    template<> struct T_Apply<lox::core::Logger>  : public std::true_type
     {
-        int origTargetLength= target.Length();
-        target << logger.GetName();
-        if ( !logger.GetName().Equals( logger.GetTypeName() ) )
-            target << " (" << logger.GetTypeName() << ")";
 
-        return (int) target.Length() - origTargetLength;
-    }
+        /** ****************************************************************************************
+         * Writes the name of the logger. In case the type name is different, it will be append
+         * in braces.
+         *
+         * See template struct\ref aworx::lib::strings::T_Apply "T_Apply" for more information.
+         *
+         * @param  target The AString to append \p src to.
+         * @param  logger The logger to apply.
+         * @return The length of the given string \p src which was appended to \p target.
+         ******************************************************************************************/
+        static inline integer  Apply( AString& target, const lox::core::Logger& logger )
+        {
+            integer origTargetLength= target.Length();
+            target << logger.GetName();
+            if ( !logger.GetName().Equals( logger.GetTypeName() ) )
+                target << " (" << logger.GetTypeName() << ")";
+
+            return target.Length() - origTargetLength;
+        }
+    };
+
+#if defined(DOX_PARSER)
+}}
+#endif
 }}} // namespace aworx::lib::strings
 
 

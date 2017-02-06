@@ -1,8 +1,8 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 
@@ -10,9 +10,8 @@ package com.aworx.lib.threads;
 
 import java.util.ArrayList;
 
-import com.aworx.lib.ALIB;
-import com.aworx.lib.enums.LockMode;
-import com.aworx.lib.enums.Safeness;
+import com.aworx.lib.lang.LockMode;
+import com.aworx.lib.lang.Safeness;
 
 
 /** ************************************************************************************************
@@ -76,11 +75,12 @@ public class SmartLock extends  ThreadLock
         public int   addAcquirer( ThreadLock newAcquirer )
         {
             int count= -1;
-            boolean errAllreadyAdded=      true;
+            boolean errAlreadyAdded=      true;
             boolean errHasToBeRecursive=   false;
             int     errWasAcquired=        0;
 
-            try { ALIB.lock.acquire();
+            synchronized(this)
+            {
 
                 count= acquirers.size();
 
@@ -88,13 +88,13 @@ public class SmartLock extends  ThreadLock
                 if (     newAcquirer == null
                      ||  acquirers.indexOf( newAcquirer ) < 0 )
                 {
-                    errAllreadyAdded= false;
+                    errAlreadyAdded= false;
                     errWasAcquired=   dbgCountAcquirements(null) == 0 ? 0 : 1;
 
                     // switch on?
                     if( acquirers.size() == 1 )
                     {
-                        errAllreadyAdded= false;
+                        errAlreadyAdded= false;
                         ThreadLock firstAcquirer= acquirers.get(0);
 
                         // non-anonymous acquirer?
@@ -130,12 +130,12 @@ public class SmartLock extends  ThreadLock
                     else
                         acquirers.add( newAcquirer );
                 }
-            } finally { ALIB.lock.release(); }
+            }
 
-            ALIB.ASSERT_ERROR( !errAllreadyAdded,    "Acquirer already registered." );
-            ALIB.ASSERT_ERROR( !errHasToBeRecursive, "Acquireres need to be in recursive mode " );
-            ALIB.ASSERT_ERROR( errWasAcquired != 1,  "Already aquired. Hint: Acquirer[0] must not acquire this before adding itself!" );
-            ALIB.ASSERT_ERROR( errWasAcquired != 2,  "Aquired and acquirer[0] anonymous. Misuse of SmartLock!" );
+            com.aworx.lib.ALIB_DBG.ASSERT_ERROR( !errAlreadyAdded,    "Acquirer already registered." );
+            com.aworx.lib.ALIB_DBG.ASSERT_ERROR( !errHasToBeRecursive, "Acquireres need to be in recursive mode " );
+            com.aworx.lib.ALIB_DBG.ASSERT_ERROR( errWasAcquired != 1,  "Already acquired. Hint: Acquirer[0] must not acquire this before adding itself!" );
+            com.aworx.lib.ALIB_DBG.ASSERT_ERROR( errWasAcquired != 2,  "Acquired and acquirer[0] anonymous. Misuse of SmartLock!" );
 
             return count;
         }
@@ -151,7 +151,8 @@ public class SmartLock extends  ThreadLock
             boolean errNotFound=    true;
             boolean errWasAcquired= false;
 
-            try { ALIB.lock.acquire();
+            synchronized(this)
+            {
 
                 errWasAcquired= dbgCountAcquirements(null) != 0;
 
@@ -184,10 +185,10 @@ public class SmartLock extends  ThreadLock
 
                count= acquirers.size();
 
-            } finally { ALIB.lock.release(); }
+            }
 
-            ALIB.ASSERT_ERROR( !errNotFound,    "Acquirer not found." );
-            ALIB.ASSERT_ERROR( !errWasAcquired, "Aquired on release. Hint: Acquirers must acquire only when acquired themselves!" );
+            com.aworx.lib.ALIB_DBG.ASSERT_ERROR( !errNotFound,    "Acquirer not found." );
+            com.aworx.lib.ALIB_DBG.ASSERT_ERROR( !errWasAcquired, "Acquired on release. Hint: Acquirers must acquire only when acquired themselves!" );
             return count;
         }
 

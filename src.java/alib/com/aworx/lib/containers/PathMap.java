@@ -1,8 +1,8 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 
@@ -23,23 +23,23 @@ import com.aworx.lib.strings.Substring;
 /** ************************************************************************************************
  * This class implements a map suitable for keys that are hierarchically organized.
  * While the class works with any type of keys, it is efficient only if keys are rather
- * long and similar to each other. 
+ * long and similar to each other.
  * Each portion of any key inserted is stored only once.
  *
  * \note
  *   This class is not considered as complete and final in the current version of %ALib.
  *   The functionality currently is restricted to the needs of %ALox logging library.
  **************************************************************************************************/
-public class PathMap<StoreT> implements Iterable<PathMap<StoreT>> 
+public class PathMap<StoreT> implements Iterable<PathMap<StoreT>>
 {
     // #############################################################################################
     // Public fields
     // #############################################################################################
         /** Our parent, if empty, we are root. Attention: The parent might not be identical to
-         *  the object that lists us in its #childs vector. This is true, when an associated
+         *  the object that lists us in its #children vector. This is true, when an associated
          *  value is not to be used in the parent.
          */
-        public PathMap<StoreT>                        parent; 
+        public PathMap<StoreT>                        parent;
 
         /** The portion of the path represented */
         public AString                                path                          = new AString();
@@ -48,7 +48,7 @@ public class PathMap<StoreT> implements Iterable<PathMap<StoreT>>
         public StoreT                                 value                                  = null;
 
         /** A list of children. */
-        public ArrayList<PathMap<StoreT>>             childs     = new ArrayList<PathMap<StoreT>>();
+        public ArrayList<PathMap<StoreT>>             children     = new ArrayList<PathMap<StoreT>>();
 
     // #############################################################################################
     // Public interface
@@ -76,7 +76,7 @@ public class PathMap<StoreT> implements Iterable<PathMap<StoreT>>
          ******************************************************************************************/
         public void clear()
         {
-            childs.clear();
+            children.clear();
             value=  null;
         }
 
@@ -119,7 +119,7 @@ public class PathMap<StoreT> implements Iterable<PathMap<StoreT>>
             {
                 public PathMap<StoreT>      node;       ///< A node to remember.
                 public int                  childNo;    ///< The current child of the node.
-    
+
                 /** Constructor
                  *  @param node     The node to store.
                  *  @param childNo  The current child within \p node.
@@ -130,57 +130,57 @@ public class PathMap<StoreT> implements Iterable<PathMap<StoreT>>
                     this.childNo=   childNo;
                 }
             }
-    
+
 
             /** A stack holding the recursive list of child maps and the  idx of their current child */
-            Deque<NodeAndChild>  nodesAndChilds  = null;
+            Deque<NodeAndChild>  nodesAndChildren  = null;
 
-            /** Constructor 
+            /** Constructor
              * @param initialNode The node to start the iteration on.
-             */ 
+             */
             public MyIterator( PathMap<StoreT> initialNode )
             {
-                nodesAndChilds= new LinkedList<NodeAndChild>();
-                nodesAndChilds.push( new NodeAndChild( initialNode, -2) );
+                nodesAndChildren= new LinkedList<NodeAndChild>();
+                nodesAndChildren.push( new NodeAndChild( initialNode, -2) );
                 forward();
             }
 
             /** Implementation of iterator interface
              * @return \c true if a next element is available, \c false else */
             @Override
-            public boolean hasNext() 
+            public boolean hasNext()
             {
-                return nodesAndChilds.size() != 0;
+                return nodesAndChildren.size() != 0;
             }
 
             /** Implementation of iterator interface
              * @return \c The next element */
             @Override
-            public PathMap<StoreT> next() 
+            public PathMap<StoreT> next()
             {
-                 PathMap<StoreT> returnValue= nodesAndChilds.peek().node;
+                 PathMap<StoreT> returnValue= nodesAndChildren.peek().node;
                  forward();
                  return returnValue;
             }
 
             /** Implementation of iterator interface. */
-            void forward() 
+            void forward()
             {
-                while(nodesAndChilds.size() > 0 )
+                while(nodesAndChildren.size() > 0 )
                 {
-                    NodeAndChild top= nodesAndChilds.peek();
+                    NodeAndChild top= nodesAndChildren.peek();
                     top.childNo++;
-    
-                    if ( top.childNo >= nodesAndChilds.peek().node.childs.size() )
+
+                    if ( top.childNo >= nodesAndChildren.peek().node.children.size() )
                     {
-                        nodesAndChilds.pop();
+                        nodesAndChildren.pop();
                         continue;
                     }
                     else if ( top.childNo >= 0 )
                     {
-                        nodesAndChilds.push( top= new NodeAndChild( top.node.childs.get(top.childNo), -1 ) );
+                        nodesAndChildren.push( top= new NodeAndChild( top.node.children.get(top.childNo), -1 ) );
                     }
-    
+
                     if ( top.node.value != null  )
                         return;
                 }
@@ -188,7 +188,7 @@ public class PathMap<StoreT> implements Iterable<PathMap<StoreT>>
 
             /** Not supported for this iterator. Throws \c UnsupportedOperationException. */
             @Override
-            public void remove() 
+            public void remove()
             {
                 throw new UnsupportedOperationException();
             }
@@ -200,12 +200,12 @@ public class PathMap<StoreT> implements Iterable<PathMap<StoreT>>
          ******************************************************************************************/
         @Override public Iterator<PathMap<StoreT>> iterator()
         {
-            return new MyIterator( this ); 
+            return new MyIterator( this );
         }
     // #############################################################################################
     // Protected interface
     // #############################################################################################
-    
+
         /** ****************************************************************************************
          * Gets a node. If not existent and parameter \p create is \c true, the node is created.
          * @param   key        The key to the stored value.
@@ -215,7 +215,7 @@ public class PathMap<StoreT> implements Iterable<PathMap<StoreT>>
          ******************************************************************************************/
         protected PathMap<StoreT>    get    ( Substring  key,  boolean create, AString separators )
         {
-            // find the index of the match length and consume these characters from the key
+            // find the index of the match length and consumeChar these characters from the key
             int idx= 0;
             int pLen= path.length();
             if ( pLen > 0 )
@@ -227,7 +227,7 @@ public class PathMap<StoreT> implements Iterable<PathMap<StoreT>>
                 while( idx < cmpLen && kBuf[ key.start + idx] == pBuf[idx] )
                     idx++;
 
-                key.consume( idx );
+                key.consumeChars( idx );
             }
 
             // all of 'our' path characters matched
@@ -238,7 +238,7 @@ public class PathMap<StoreT> implements Iterable<PathMap<StoreT>>
                     return this;
 
                 // return matching child
-                for ( PathMap<StoreT> child : childs )
+                for ( PathMap<StoreT> child : children )
                 {
                     if( key.charAtStart() == child.path.charAtStart() )
                     {
@@ -254,7 +254,7 @@ public class PathMap<StoreT> implements Iterable<PathMap<StoreT>>
                     PathMap<StoreT> newChild= null;
                     newChild= new PathMap<StoreT>( this );
                     newChild.path._( key );
-                    childs.add( newChild );
+                    children.add( newChild );
                     return newChild;
                 }
             }
@@ -267,19 +267,19 @@ public class PathMap<StoreT> implements Iterable<PathMap<StoreT>>
             // just a part of us matched
             else if ( create )
             {
-                // create new child receiving our old path (rest), our value and childs
+                // create new child receiving our old path (rest), our value and children
                 PathMap<StoreT> child1= new PathMap<StoreT>( this );
                 child1.path._( path, idx );
 
-                ArrayList<PathMap<StoreT>> tempList= child1.childs;
-                for( PathMap<StoreT> child : childs )
+                ArrayList<PathMap<StoreT>> tempList= child1.children;
+                for( PathMap<StoreT> child : children )
                     child.parent= child1;
-                child1.childs= childs;   
-                childs= tempList;
+                child1.children= children;
+                children= tempList;
 
                 child1.value=  value;
-                childs.clear();
-                childs.add( child1 );
+                children.clear();
+                children.add( child1 );
 
                 // cut my path and clear my value
                 path.setLength_NC( idx );
@@ -291,7 +291,7 @@ public class PathMap<StoreT> implements Iterable<PathMap<StoreT>>
                     PathMap<StoreT> child2= new PathMap<StoreT>( this );
                     child2.path._( key );
 
-                    childs.add( child2 );
+                    children.add( child2 );
                     return child2;
                 }
 

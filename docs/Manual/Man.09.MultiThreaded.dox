@@ -1,8 +1,8 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /**
@@ -15,24 +15,24 @@ What does "logging" have to do with multi-threaded applications? Quite a bit, as
 in this chapter.
 
 As a prerequisite the differences of accessing thread information with the different language
-incarnations of ALox, namely
+incarnations of \b %ALox, namely
 [ALox for C++](cpp_ref/cppmainpage.html),
 [ALox for C#](cs_ref/csmainpage.html) and
 [ALox for Java](java_ref/javamainpage.html) should be highlighted.
 
 C# and Java provide thread management with their standard library, which simplifies
 things a lot. Any "native" 3rd party thread library which might be used by C# and Java
-applications are surely not compatible with the thread features of ALox, but there are only
+applications are surely not compatible with the thread features of \b %ALox, but there are only
 a few around and those are quite seldom.
 
-In contrast to, that things are not so standardized in C++. But as ALox is using C++ 11 as a minimum
-version, there is now some great support found in namespace \c std, which simplifies things a lot.
-ALib, the utility library that ALox is built upon, has a design goal to align the three languages
-wherever possible and reasonable. In respect to thread management, ALib for C++ adds a very
+In contrast to that, things are not so standardized in C++. But as \b %ALox is using C++ 11 as a minimum
+version, there is now some good start of support found in namespace \c std.
+\b %ALib, the utility library that \b %ALox is built upon, has a design goal to align the three languages
+wherever possible and reasonable. In respect to thread management, <b>%ALib for C++</b> adds a very
 <b>thin layer</b>
   ([C++] (@ref      #aworx::lib::threads),
    [C#]  (@ref  #cs::aworx::lib::threads),
-   [Java](@ref #com::aworx::lib::threads)) over what C++ namespace \c std provides, which mostly
+   [Java](@ref #com::aworx::lib::threads)) over what C++ namespace \c std provides, which mostly is
 learned from thread-classes found in Java. But this is really thin, just a "wrapper" you could say.
 Roughly it works as follows:
 - classes \b %Thread and \b %Runnable exist which have a similar interface to their Java-based
@@ -42,14 +42,14 @@ Roughly it works as follows:
   the current thread. If no corresponding \b %Thread instance is found in the aforementioned
   static list of threads, then a new object is created, added to the list and returned.
 
-As a consequence, ALox detects all those threads rightfully that are detected by
+As a consequence, \b %ALox detects all those threads rightfully that are detected by
 <b>std::this_thread::get_id()</b>. In general this works with all major combinations of modern
 operating systems, C++ 11 libraries and thread libraries. Should threads not be detected, check
 out whether the thread library you are using is compatible with thread tools found C++ 11 library \c "std".
 The other way round: if you are using a threading library that creates threads that are detected
-by C++ 11 library \c "std", then you can use ALox thread features without any further action.
+by C++ 11 library \c "std", then you can use \b %ALox thread features without any further action.
 If not, you should consider either to switch your library to something that is compatible with
-this modern standard, or use the thread classes provided with ALib (if you use ALox, you have
+this modern standard, or use the thread classes provided with \b %ALib (if you use \b %ALox, you have
 ALib available). But the latter is a quite simplified limited piece of art - enough for simple
 applications, but not more!
 
@@ -87,9 +87,9 @@ A sample for using this method is given in the tutorial chapter
 \~Comment ####################################################################################### \~
 # 3. Thread-Related Scopes # {#man_multi_threaded_scopes}
 
-With the fundamental concept of having \e %Scopes in ALox, and in particular with the fact
-that ALox "interweaves" so called \b %Scope.ThreadInner and \b %Scope.ThreadOuter with other
-language-related scopes (e.g. \b %Scope.Method) and the global \e Scope, ALox supports much more
+With the fundamental concept of having \e %Scopes in \b %ALox, and in particular with the fact
+that \b %ALox "interweaves" so called \b %Scope.ThreadInner and \b %Scope.ThreadOuter with other
+language-related scopes (e.g. \b %Scope.Method) and the global \e Scope, \b %ALox supports much more
 of multi-threaded applications than just mapping new names to threads!
 
 This is a complex topic and there is a whole bunch of chapters we have to refer you to:
@@ -103,10 +103,10 @@ To name just a few "applications" of the features described in the chapters abov
 - Execute a <em>Log Statement</em> only if executed (or just not executed) by a certain thread.
 - Separate <em>Log Statement</em> depending on the thread they are executed by and control the \e Verbosity
   independently from each other. By mixing thread-related <em>Scope Domain</em> other <em>Scope Domain</em> with each other
-  a user of ALox is enabled fine-tune the log output very granular, even for logging code that
+  a user of \b %ALox is enabled fine-tune the log output very granular, even for logging code that
   he/she has no access to
 - Execute <em>Log Statement</em> once per thread.
-- Assign prefix strings (respetively arbitrary \e Logables) to each <em>Log Statement</em> executed by a certain thread.
+- Assign prefix strings (respectively arbitrary \e Logables) to each <em>Log Statement</em> executed by a certain thread.
 - Store and retrieve named <em>Log Domain</em> objects (debug-information) associated with threads.
 
 

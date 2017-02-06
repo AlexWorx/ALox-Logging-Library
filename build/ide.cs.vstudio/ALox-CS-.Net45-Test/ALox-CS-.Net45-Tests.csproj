@@ -35,7 +35,7 @@
     <BaseIntermediateOutputPath>..\..\_builds_\ide.cs.vstudio\</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
     <OutputPath>..\..\_builds_\ide.cs.vstudio\ALox-CS-.Net45-DLL-Tests\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;ALIB_VSTUDIO;ALOX_DBG_LOG;</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;ALIB_IDE_VSTUDIO;ALOX_DBG_LOG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -46,7 +46,7 @@
     <BaseIntermediateOutputPath>..\..\_builds_\ide.cs.vstudio\</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
     <OutputPath>..\..\_builds_\ide.cs.vstudio\ALox-CS-.Net45-DLL-Tests\Release\</OutputPath>
-    <DefineConstants>TRACE;ALIB_VSTUDIO;ALOX_REL_LOG;</DefineConstants>
+    <DefineConstants>TRACE;ALIB_IDE_VSTUDIO;ALOX_REL_LOG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -71,11 +71,11 @@
     <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_strings_AStringAndSubstring.cs">
       <Link>ut.AWorx.Lib\UT_alib_strings_AStringAndSubstring.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_strings_Format.cs">
+      <Link>ut.AWorx.Lib\UT_alib_strings_Format.cs</Link>
+    </Compile>
     <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_strings_Substring.cs">
       <Link>ut.AWorx.Lib\UT_alib_strings_Substring.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_strings_Tokenizer.cs">
-      <Link>ut.AWorx.Lib\UT_alib_strings_Tokenizer.cs</Link>
     </Compile>
     <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_threads.cs">
       <Link>ut.AWorx.Lib\UT_alib_threads.cs</Link>

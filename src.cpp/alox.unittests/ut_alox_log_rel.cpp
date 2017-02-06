@@ -2,10 +2,10 @@
 //  Unit Tests - ALox Logging Library
 //  (Unit Tests to create tutorial sample code and output)
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alox/alox.hpp"
 
 #include "alox/alox_console_loggers.hpp"
 #include "alox/loggers/memorylogger.hpp"
@@ -28,10 +28,11 @@ using namespace aworx;
 namespace ut_alox {
 
 // used with unit test Log_ScopeInfoCacheTest
+void ScopeInfoCacheTest3();
 void ScopeInfoCacheTest3() { Log_Info("Test Method 3"); }
 
 
-#if defined (ALOX_REL_LOG)
+#if ALOX_REL_LOG
 
 #define LOX_LOX lox
 
@@ -41,7 +42,7 @@ void ScopeInfoCacheTest3() { Log_Info("Test Method 3"); }
 
 // with GTEST macros it all gets wild. Fix the method name
 #undef  ALIB_SRC_INFO_PARAMS
-#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, aworxTestName
+#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, UT_GET_TEST_NAME
 
 UT_CLASS()
 
@@ -129,7 +130,7 @@ UT_METHOD(Lox_TestVerbositySetting)
 /** ********************************************************************************************
  * Lox_TestScopeDomain
  **********************************************************************************************/
-#if defined(ALOX_REL_LOG_CI)
+#if ALOX_REL_LOG_CI
     UT_METHOD(Lox_TestScopeDomain)
     {
         UT_INIT();
@@ -186,7 +187,7 @@ UT_METHOD(Lox_TestVerbositySetting)
         cntLL= ml.CntLogs;    Lox_Error   ( "/DFLT/WARN",   testOK  );    UT_EQ( 1, ml.CntLogs - cntLL );
         cntLL= ml.CntLogs;    Lox_Error   ( "/DFLT/ERR",    testOK  );    UT_EQ( 1, ml.CntLogs - cntLL );
 
-        // log without leading "/" on domain (of course, this is quite an error of using ALox
+        // log without leading "/" on domain (of-course, this is quite an error of using ALox
         cntLL= ml.CntLogs;    Lox_Verbose ( "DFLT",         testERR );    UT_EQ( 0, ml.CntLogs - cntLL );
         cntLL= ml.CntLogs;    Lox_Verbose ( "DFLT/ERR",     testERR );    UT_EQ( 0, ml.CntLogs - cntLL );
         cntLL= ml.CntLogs;    Lox_Verbose ( "DFLT/WARN",    testERR );    UT_EQ( 0, ml.CntLogs - cntLL );
@@ -291,7 +292,7 @@ UT_METHOD(Lox_ChangeStartTime)
 
 UT_CLASS_END
 
-#endif // defined (ALOX_REL_LOG)
+#endif // ALOX_REL_LOG
 
 } // namespace
 

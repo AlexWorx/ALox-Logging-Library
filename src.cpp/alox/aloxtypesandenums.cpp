@@ -1,10 +1,10 @@
 ﻿// #################################################################################################
 //  aworx::lox::core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alib/alib.hpp"
 
 #if !defined (HPP_ALOX)
     #include "alox/alox.hpp"
@@ -28,11 +28,14 @@ const String ToString( Verbosity verbosity )
 {
     switch( verbosity )
     {
-                    CASE_RETURN( Verbosity, Off      )
-                    CASE_RETURN( Verbosity, Verbose  )
-                    CASE_RETURN( Verbosity, Info     )
-                    CASE_RETURN( Verbosity, Warning  )
-          default:  CASE_RETURN( Verbosity, Error    )
+        CASE_RETURN( Verbosity, Off      )
+        CASE_RETURN( Verbosity, Verbose  )
+        CASE_RETURN( Verbosity, Info     )
+        CASE_RETURN( Verbosity, Warning  )
+        #if !defined(__clang__)
+            default:
+        #endif
+        CASE_RETURN( Verbosity, Error    )
     }
 }
 
@@ -51,17 +54,17 @@ AString& ToStringPriority( int priority, AString& target )
     if ( priority == Configuration::PrioCmdLine   )  return target._( "CmdLine  " );
     if ( priority == Configuration::PrioEnvironment   )  return target._( "EnvVars  " );
     if ( priority == Configuration::PrioIniFile   )  return target._( "IniFile  " );
-    String64 numStr;  numStr._( Format::Int32( priority, 1 ) );
+    String64 numStr;  numStr._( Format( priority, 1 ) );
     return target._( Format::Field( numStr, 9, Alignment::Left ) );
 }
 
 
 Verbosity ReadVerbosity( const String& src )
 {
-    int idx= src.IndexOfAny( DefaultWhitespaces, Inclusion::Exclude );
+    integer idx= src.IndexOfAny( DefaultWhitespaces, Inclusion::Exclude );
     if ( idx >= 0 )
     {
-        int c= tolower( src[idx] );
+        integer c= tolower( src[idx] );
         if ( c == 'v' ) return Verbosity::Verbose;
         if ( c == 'i' ) return Verbosity::Info;
         if ( c == 'w' ) return Verbosity::Warning;
@@ -83,24 +86,6 @@ AString& ToString( Scope scope, int pathLevel, AString& target )
         case Scope::Method:         { target._("Method");       break; }
         case Scope::ThreadInner:    { target._("ThreadInner");  break; }
     }
-    return target;
-}
-
-
-// #################################################################################################
-// LogData
-// #################################################################################################
-AString& LogData::ToString( AString& target )
-{
-    target._( '[' );
-    if ( Type != 0)
-        target._<false>( "Type: " )._<false>( Type )._<false>( ',' );
-    target._( '\"' )._( StringValue )._<false>( "\"," );
-    target._<false>( IntegerValue );
-    if ( ObjectValue != nullptr )
-        target._<false>( ",<object>" );
-    target._<false>( ']' );
-
     return target;
 }
 
@@ -181,7 +166,7 @@ constexpr SLiteral<3>  ESC::TAB          ;
 constexpr SLiteral<3>  ESC::EOMETA       ;
 #endif
 
-void ESC::ReplaceToReadable( AString& target, int startIdx )
+void ESC::ReplaceToReadable( AString& target, integer startIdx )
 {
     while( (startIdx= target.IndexOf( '\033', startIdx ) ) >= 0 )
     {
@@ -238,7 +223,7 @@ void ESC::ReplaceToReadable( AString& target, int startIdx )
         }
 
         // others
-        else if( c == 'l' && c2 == '0' )    code= "TAB";
+        else if( c == 't' && c2 == '0' )    code= "TAB";
         else if( c == 'A' && c2 == '0' )    code= "EOMETA";
 
         // Replace

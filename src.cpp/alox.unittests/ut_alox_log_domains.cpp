@@ -2,10 +2,10 @@
 //  Unit Tests - ALox Logging Library
 //  (Unit Tests to create tutorial sample code and output)
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alox/alox.hpp"
 #include "alib/compatibility/std_string.hpp"
 
 #include "alox/alox_console_loggers.hpp"
@@ -36,18 +36,20 @@ using namespace aworx::lox::core::textlogger;
 namespace ut_alox {
 
 // used with unit test Log_ScopeInfoCacheTest
+void ScopeInfoCacheTest2();
 void ScopeInfoCacheTest2() { Log_Info("Test Method 2"); }
 
-
+#if ALIB_DEBUG
 #define LOG_CHECK( d, s, ml,lox )    {                  \
         ml.MemoryLog._();                               \
         ml.AutoSizes.Reset();                           \
-        lox.SetScopeInfo(ALIB_SRC_INFO_PARAMS);         \
-        lox.Info( d, "" );                              \
+        lox.Acquire(ALIB_SRC_INFO_PARAMS);              \
+        Boxes argument("");                             \
+        lox.Entry( d, Verbosity::Info, argument );      \
         lox.Release();                                  \
         UT_EQ(s, ml .MemoryLog);                        \
-        }                                               \
-
+        }
+#endif
 
 
 /** ********************************************************************************************
@@ -56,7 +58,7 @@ void ScopeInfoCacheTest2() { Log_Info("Test Method 2"); }
 
 // with GTEST macros it all gets wild. Fix the method name
 #undef  ALIB_SRC_INFO_PARAMS
-#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, aworxTestName
+#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, UT_GET_TEST_NAME
 
 UT_CLASS()
 
@@ -65,7 +67,7 @@ UT_CLASS()
 /** ********************************************************************************************
  * Lox_IllegalDomainNames
  **********************************************************************************************/
-#if defined (ALOX_DBG_LOG_CI)
+#if ALOX_DBG_LOG_CI
 UT_METHOD(Lox_IllegalDomainNames)
 {
     UT_INIT();
@@ -87,7 +89,7 @@ UT_METHOD(Lox_IllegalDomainNames)
     LOG_CHECK( ","       , "</#>"             , ml,lox);
     LOG_CHECK( "-"       , "</->"             , ml,lox);
     LOG_CHECK( "_"       , "</_>"             , ml,lox);
-    LOG_CHECK( "@"       , "</@>"             , ml,lox);
+    LOG_CHECK( "@"       , "</#>"             , ml,lox);
     LOG_CHECK( "."       , "</>"              , ml,lox);
     LOG_CHECK( ".."      , "</>"              , ml,lox);
     LOG_CHECK( "CU.."    , "</CU##>"          , ml,lox);
@@ -109,7 +111,7 @@ UT_METHOD(Lox_IllegalDomainNames)
 /** ********************************************************************************************
  * Lox_DomainsRelative
  **********************************************************************************************/
-#if defined (ALOX_REL_LOG_CI)
+#if ALOX_REL_LOG_CI
 UT_METHOD(Lox_DomainsRelative)
 {
     UT_INIT();
@@ -138,7 +140,7 @@ UT_METHOD(Lox_DomainsRelative)
 /** ********************************************************************************************
  * Log_DomainSubstitutions
  **********************************************************************************************/
-#if defined (ALOX_DBG_LOG)
+#if ALOX_DBG_LOG
 
 UT_METHOD(Log_DomainSubstitutions)
 {
@@ -195,7 +197,7 @@ UT_METHOD(Log_DomainSubstitutions)
     Log_SetDomainSubstitutionRule( nullptr     , nullptr    );
 
     // prefix match
-    #if defined(ALOX_DBG_LOG_CI)
+    #if ALOX_DBG_LOG_CI
         Log_SetDomainSubstitutionRule( nullptr     , nullptr    );
         Log_SetDomainSubstitutionRule( "/LOC*"       , "X"       );   LOG_CHECK( "LOC"  , "</X>"                   , ml,lox);
         Log_SetDomainSubstitutionRule( "/LOC*"       , ""        );   LOG_CHECK( "LOC"  , "</LOC>"                 , ml,lox);
@@ -226,16 +228,16 @@ UT_METHOD(Log_DomainSubstitutions)
     // substring rule
     Log_SetDomainSubstitutionRule( "*/ABC*"      , "DEF"      );   LOG_CHECK( "ABC"  , "</DEF>"                 , ml,lox);
     Log_SetDomainSubstitutionRule( "*EF*"        , "ZZZ"      );   LOG_CHECK( "ABC"  , "</DZZZ>"                , ml,lox);
-    Log_SetDomainSubstitutionRule( "*Z*"         , "@@"       );   LOG_CHECK( "ABC"  , "</D@@@@@@>"             , ml,lox);
+    Log_SetDomainSubstitutionRule( "*Z*"         , "EE"       );   LOG_CHECK( "ABC"  , "</DEEEEEE>"             , ml,lox);
 
-    Log_SetDomainSubstitutionRule( "*/q*"        , "v"        );   LOG_CHECK( "Q"    , "</v>"                   , ml,lox);
+    Log_SetDomainSubstitutionRule( "*/Q*"        , "V"        );   LOG_CHECK( "Q"    , "</V>"                   , ml,lox);
 
-                                                                   LOG_CHECK( "/_/abc", "</_D@@@@@@>"           , ml,lox);
+                                                                   LOG_CHECK( "/_/ABC", "</_DEEEEEE>"           , ml,lox);
 
     // delete all rules
-    Log_SetDomainSubstitutionRule( nullptr     , nullptr    );   LOG_CHECK( "/_/abc", "</_/abc>"              , ml,lox);
-                                                        LOG_CHECK( "Q"     , "</Q>"                  , ml,lox);
-                                                        LOG_CHECK( "ABC"   , "</ABC>"                , ml,lox);
+    Log_SetDomainSubstitutionRule( nullptr     , nullptr    );   LOG_CHECK( "/_/abc", "</_/###>"              , ml,lox);
+                                                                 LOG_CHECK( "Q"     , "</Q>"                  , ml,lox);
+                                                                 LOG_CHECK( "ABC"   , "</ABC>"                , ml,lox);
 
     //Log_LogState( "", Verbosity::Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
@@ -246,7 +248,7 @@ UT_METHOD(Log_DomainSubstitutions)
 /** ********************************************************************************************
  * Log_DomainSubstitutions_IniFile
  **********************************************************************************************/
-#if defined (ALOX_DBG_LOG)
+#if ALOX_DBG_LOG
 
 UT_METHOD(Log_DomainSubstitutions_IniFile)
 {
@@ -278,11 +280,11 @@ UT_METHOD(Log_DomainSubstitutions_IniFile)
     UT_TRUE( (IniFile::Status::Ok == iniFile.LastStatus) );
 
     // add to config
-    ALIB::Config.InsertPlugin( &iniFile, Configuration::PrioIniFile );
+    Configuration::Default.InsertPlugin( &iniFile, Configuration::PrioIniFile );
 
     // create lox, loggers
     Lox myLox( "MyLox" ); // name will be upper case
-    myLox.SetScopeInfo(ALIB_SRC_INFO_PARAMS);
+    myLox.Acquire(ALIB_SRC_INFO_PARAMS);
 
         Logger* consoleLogger= Lox::CreateConsoleLogger("CONSOLE");
         myLox.SetVerbosity( "CONSOLE" , Verbosity::Verbose );
@@ -301,14 +303,14 @@ UT_METHOD(Log_DomainSubstitutions_IniFile)
         myLox.RemoveLogger( "CONSOLE" );
         delete consoleLogger;
     myLox.Release();
-    ALIB::Config.RemovePlugin( &iniFile );
+    Configuration::Default.RemovePlugin( &iniFile );
 }
 #endif
 
 /** ********************************************************************************************
  * Log_Domain_IniFile
  **********************************************************************************************/
-#if defined (ALOX_REL_LOG)
+#if ALOX_REL_LOG
 
 UT_METHOD(Log_Domain_IniFile)
 {
@@ -332,12 +334,12 @@ UT_METHOD(Log_Domain_IniFile)
                          "*SUBSTR*   = Info       ;"
                          "/OVERWRITE = Info       ;"
                     );
-        ALIB::Config.InsertPlugin( &iniFile, Configuration::PrioIniFile );
+        Configuration::Default.InsertPlugin( &iniFile, Configuration::PrioIniFile );
 
 
         // test
         Lox lox("T_LOX", false);
-        lox.SetScopeInfo(ALIB_SRC_INFO_PARAMS);
+        lox.Acquire(ALIB_SRC_INFO_PARAMS);
             Logger* consoleLogger= Lox::CreateConsoleLogger("CONSOLE");
 
             lox.SetVerbosity( consoleLogger, Verbosity::Verbose, "CONSOLE" );
@@ -433,7 +435,7 @@ UT_METHOD(Log_Domain_IniFile)
 
             //lox.State( "/CONSOLE", Verbosity::Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
-            ALIB::Config.RemovePlugin( &iniFile );
+            Configuration::Default.RemovePlugin( &iniFile );
             lox.RemoveLogger( &ml );
             lox.RemoveLogger( "CONSOLE" );
             delete consoleLogger;

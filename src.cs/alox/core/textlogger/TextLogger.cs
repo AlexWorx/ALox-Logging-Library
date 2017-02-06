@@ -2,8 +2,8 @@
 // #################################################################################################
 //  cs.aworx.lox.core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 using System;
@@ -13,7 +13,7 @@ using System.Text;
 
 using cs.aworx.lib;
 using cs.aworx.lib.strings;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 using cs.aworx.lib.threads;
 using cs.aworx.lib.config;
 using cs.aworx.lox;
@@ -83,15 +83,16 @@ public abstract class TextLogger : Logger
     // #############################################################################################
 
     /**
-     * A list of helper objects to get textual representation of logable objects.<br>
-     * To extend TextLogger to support logging custom objects, custom converters can
-     * be appended. Also, the default may be removed and deleted.<br>
-     * In the destructor of this class, all object converters (still attached) will be deleted.
+     * A helper object to get textual representation of logable objects.
+     * If no converter is set when this logger is used, a converter of type
+     * \ref cs::aworx::lox::core::textlogger::StandardConverter "StandardConverter" is created and used.
+     * In the destructor of this class, the current object converter will be deleted.
      *
-     * When converting an object, all object converts listed here are invoked in
-     * <b> reverse order</b> until a first reports a successful conversion.
+     * To extend class \b %TextLogger to support logging custom objects, custom converters can
+     * set. The preferred alternative is however, to make custom types be formattable
+     * by formatter classes used with \b %StandardConverter.
      */
-    public    List<ObjectConverter>     ObjectConverters               =new List<ObjectConverter>();
+    public    ObjectConverter          Converter;
 
     /**
      * A helper object to format log objects into textual representations. This class incorporates
@@ -136,8 +137,10 @@ public abstract class TextLogger : Logger
     public    int                       MultiLineMsgMode                                         =2;
 
     /**
-     * This is the string interpreted as line delimiter within log messages. If null, CR, LF or CRLF
-     * are used. Important: Set to empty string, to stop any multi line processing of TextLogger, even the replacements.
+     * This is the string interpreted as line delimiter within log messages. If \e nulled, then
+     * <c>'\\n'</c>, <c>'\\r'</c> or <c>'\\r\\n'</c> is recognized.<br>
+     * Important: Can be set to an empty string, to stop any multi line processing of
+     * \b %TextLogger, even the replacements of the delimiter character.
      */
     public    String                    MultiLineDelimiter                                    =null;
 
@@ -163,10 +166,6 @@ public abstract class TextLogger : Logger
      */
     public    String                    FmtMultiLineSuffix                                    =null;
 
-    /** Used to return an error message in the case the object could not be converted. */
-    public    String                    FmtUnknownObject               ="<unknown object type '%'>";
-
-
     // #############################################################################################
     // Constructor
     // #############################################################################################
@@ -181,7 +180,7 @@ public abstract class TextLogger : Logger
         : base ( name, typeName )
     {
         this.usesStdStreams= usesStdStreams;
-        ObjectConverters.Add( new StringConverter() );
+        Converter= new StandardConverter();
     }
 
     // #############################################################################################
@@ -201,9 +200,11 @@ public abstract class TextLogger : Logger
             // register with ALIB lockers (if not done yet)
             if ( usesStdStreams )
             {
-                ALIB.Lock.Acquire();
-                    int  stdStreamLockRegistrationCounter= this.stdStreamLockRegistrationCounter++;
-                ALIB.Lock.Release();
+                int  stdStreamLockRegistrationCounter;
+                lock(this)
+                {
+                    stdStreamLockRegistrationCounter= this.stdStreamLockRegistrationCounter++;
+                }
                 if ( stdStreamLockRegistrationCounter == 0 )
                     ALIB.StdOutputStreamsLock.AddAcquirer( this );
             }
@@ -222,7 +223,7 @@ public abstract class TextLogger : Logger
                 if ( variable.GetAttribute( "limit", attrValue ) )
                 {
                     long maxMax;
-                    attrValue.ConsumeLong( out maxMax );
+                    attrValue.ConsumeInt( out maxMax );
                     if ( maxInSecs > maxMax )
                         maxInSecs= maxMax;
                 }
@@ -230,18 +231,18 @@ public abstract class TextLogger : Logger
             }
 
             // Variable  <name>_FORMAT / <typeName>_FORMAT:
-            ALIB.ASSERT_WARNING( ALox.FORMAT.DefaultValue == null,
+            ALIB_DBG.ASSERT_WARNING( ALox.FORMAT.DefaultValue == null,
                                  "Default value of variable FORMAT should be kept null" );
             if(    0 ==  variable.Define( ALox.FORMAT, GetName()     ).Load()
                 && 0 ==  variable.Define( ALox.FORMAT, GetTypeName() ).Load() )
             {
                 // no variable created, yet. Let's create a 'personal' one on our name
                 variable.Define( ALox.FORMAT, GetName() );
-                variable.AddString( MetaInfo.Format            );
-                variable.AddString( MetaInfo.VerbosityError    );
-                variable.AddString( MetaInfo.VerbosityWarning  );
-                variable.AddString( MetaInfo.VerbosityInfo     );
-                variable.AddString( MetaInfo.VerbosityVerbose  );
+                variable.Add( MetaInfo.Format            );
+                variable.Add( MetaInfo.VerbosityError    );
+                variable.Add( MetaInfo.VerbosityWarning  );
+                variable.Add( MetaInfo.VerbosityInfo     );
+                variable.Add( MetaInfo.VerbosityVerbose  );
                 variable.Store();
             }
             else
@@ -252,18 +253,18 @@ public abstract class TextLogger : Logger
                 if( variable.Size() >= 4 ) MetaInfo.VerbosityInfo   = variable.GetString(3).ToString();
                 if( variable.Size() >= 5 ) MetaInfo.VerbosityVerbose= variable.GetString(4).ToString();
             }
-        
+
             // Variable  <name>_FORMAT_DATE_TIME / <typeName>_FORMAT_DATE_TIME:
-            ALIB.ASSERT_WARNING( ALox.FORMAT_DATE_TIME.DefaultValue == null,
+            ALIB_DBG.ASSERT_WARNING( ALox.FORMAT_DATE_TIME.DefaultValue == null,
                                  "Default value of variable FORMAT_DATE_TIME should be kept null" );
             if(    0 ==  variable.Define( ALox.FORMAT_DATE_TIME, GetName()     ).Load()
                 && 0 ==  variable.Define( ALox.FORMAT_DATE_TIME, GetTypeName() ).Load() )
             {
                 // no variable created, yet. Let's create a 'personal' one on our name
                 variable.Define( ALox.FORMAT_DATE_TIME, GetName() );
-                variable.AddString( MetaInfo.DateFormat        );
-                variable.AddString( MetaInfo.TimeOfDayFormat   );
-                variable.AddString( MetaInfo.TimeElapsedDays   );
+                variable.Add( MetaInfo.DateFormat        );
+                variable.Add( MetaInfo.TimeOfDayFormat   );
+                variable.Add( MetaInfo.TimeElapsedDays   );
                 variable.Store();
             }
             else
@@ -272,24 +273,24 @@ public abstract class TextLogger : Logger
                 if( variable.Size() >= 2 ) MetaInfo.TimeOfDayFormat = variable.GetString(1).ToString();
                 if( variable.Size() >= 3 ) MetaInfo.TimeElapsedDays = variable.GetString(2).ToString();
             }
-        
+
             // Variable  <name>FORMAT_TIME_DIFF / <typeName>FORMAT_TIME_DIFF:
-            ALIB.ASSERT_WARNING( ALox.FORMAT_TIME_DIFF.DefaultValue == null,
+            ALIB_DBG.ASSERT_WARNING( ALox.FORMAT_TIME_DIFF.DefaultValue == null,
                                  "Default value of variable FORMAT_TIME_DIFF should be kept null" );
             if(    0 ==  variable.Define( ALox.FORMAT_TIME_DIFF, GetName()     ).Load()
                 && 0 ==  variable.Define( ALox.FORMAT_TIME_DIFF, GetTypeName() ).Load() )
             {
                 // no variable created, yet. Let's create a 'personal' one on our name
                 variable.Define( ALox.FORMAT_TIME_DIFF, GetName() );
-                variable.AddInteger   ( MetaInfo.TimeDiffMinimum);
-                variable.AddString( MetaInfo.TimeDiffNone   );
-                variable.AddString( MetaInfo.TimeDiffNanos  );
-                variable.AddString( MetaInfo.TimeDiffMicros );
-                variable.AddString( MetaInfo.TimeDiffMillis );
-                variable.AddString( MetaInfo.TimeDiffSecs   );
-                variable.AddString( MetaInfo.TimeDiffMins   );
-                variable.AddString( MetaInfo.TimeDiffHours  );
-                variable.AddString( MetaInfo.TimeDiffDays   );
+                variable.Add( MetaInfo.TimeDiffMinimum);
+                variable.Add( MetaInfo.TimeDiffNone   );
+                variable.Add( MetaInfo.TimeDiffNanos  );
+                variable.Add( MetaInfo.TimeDiffMicros );
+                variable.Add( MetaInfo.TimeDiffMillis );
+                variable.Add( MetaInfo.TimeDiffSecs   );
+                variable.Add( MetaInfo.TimeDiffMins   );
+                variable.Add( MetaInfo.TimeDiffHours  );
+                variable.Add( MetaInfo.TimeDiffDays   );
                 variable.Store();
             }
             else
@@ -306,17 +307,17 @@ public abstract class TextLogger : Logger
             }
 
             // Variable  <name>FORMAT_MULTILINE / <typeName>FORMAT_MULTILINE:
-            ALIB.ASSERT_WARNING( ALox.FORMAT_MULTILINE.DefaultValue == null,
+            ALIB_DBG.ASSERT_WARNING( ALox.FORMAT_MULTILINE.DefaultValue == null,
                                  "Default value of variable FORMAT_MULTILINE should be kept null" );
             if(    0 ==  variable.Define( ALox.FORMAT_MULTILINE, GetName()     ).Load()
                 && 0 ==  variable.Define( ALox.FORMAT_MULTILINE, GetTypeName() ).Load() )
             {
                 // no variable created, yet. Let's create a 'personal' one on our name
                 variable.Define( ALox.FORMAT_MULTILINE, GetName() );
-                variable.AddInteger( MultiLineMsgMode );
-                variable.AddString ( FmtMultiLineMsgHeadline   );
-                variable.AddString ( FmtMultiLinePrefix  );
-                variable.AddString ( FmtMultiLineSuffix );
+                variable.Add( MultiLineMsgMode );
+                variable.Add ( FmtMultiLineMsgHeadline   );
+                variable.Add ( FmtMultiLinePrefix  );
+                variable.Add ( FmtMultiLineSuffix );
                 variable.Store();
             }
             else
@@ -331,6 +332,21 @@ public abstract class TextLogger : Logger
                                                 MultiLineDelimiter= variable.GetString(4).ToString();
                                            }
                 if( variable.Size() >= 6 ) MultiLineDelimiterRepl = variable.GetString(5).ToString();
+            }
+
+            // Variable  <name>FORMAT_REPLACEMENTS / <typeName>FORMAT_REPLACEMENTS:
+            ALIB_DBG.ASSERT_WARNING( ALox.REPLACEMENTS.DefaultValue == null,
+                                 "Default value of variable FORMAT_MULTILINE should be kept null" );
+            if(    0 !=  variable.Define( ALox.REPLACEMENTS, GetName()     ).Load()
+                || 0 !=  variable.Define( ALox.REPLACEMENTS, GetTypeName() ).Load() )
+            {
+                for( int i= 0; i< variable.Size() / 2 ; i++ )
+                {
+                    AString searchString=  variable.GetString(i * 2);
+                    AString replaceString= variable.GetString(i * 2 + 1);
+                    if( searchString != null  && replaceString != null )
+                        SetReplacement( searchString.ToString(), replaceString.ToString() );
+                }
             }
 
             // call parents' implementation
@@ -348,10 +364,11 @@ public abstract class TextLogger : Logger
             // d-register with ALIB lockers (if not done yet)
             if ( usesStdStreams )
             {
-                ALIB.Lock.Acquire();
-                    int  stdStreamLockRegistrationCounter= --this.stdStreamLockRegistrationCounter;
-                ALIB.Lock.Release();
-
+                int  stdStreamLockRegistrationCounter;
+                lock(this)
+                {
+                    stdStreamLockRegistrationCounter= --this.stdStreamLockRegistrationCounter;
+                }
                 if ( stdStreamLockRegistrationCounter == 0 )
                     ALIB.StdOutputStreamsLock.RemoveAcquirer( this );
             }
@@ -360,13 +377,13 @@ public abstract class TextLogger : Logger
 
             // export autosizes to configuration
             variable.Define( ALox.AUTO_SIZES, GetName() );
-            AutoSizes.Export( variable.AddString() );
+            AutoSizes.Export( variable.Add() );
             variable.Store();
 
             // export "max elapsed time" to configuration
             variable.Define( ALox.MAX_ELAPSED_TIME, GetName() );
             AString destVal=  variable.Load() != 0  ?  variable.GetString()
-                                                    :  variable.AddString();
+                                                    :  variable.Add();
             destVal._()._( MetaInfo.MaxElapsedTime.InSeconds() );
             variable.Store();
 
@@ -380,7 +397,7 @@ public abstract class TextLogger : Logger
 
         /** ****************************************************************************************
          * Adds the given pair of replacement strings. If searched string already exists, the
-         * current replacement string gets replaced. If the replacement string equals 'null'
+         * current replacement string gets replaced. If the replacement string is \c null,
          * nothing is set and a previously set replacement definition becomes unset.
          *
          * @param searched    The string to be searched.
@@ -429,7 +446,7 @@ public abstract class TextLogger : Logger
     // #############################################################################################
 
         /** ****************************************************************************************
-         * This abstract method introduced by this class "replaces" the the abstract method #Log
+         * This abstract method introduced by this class "replaces" the abstract method #Log
          * of parent class Logger which this class implements. In other words, descendants of this
          * class need to overwrite this method instead of \b %Do. This class %TextLogger is
          * responsible for generating meta information, doing text replacements, handle multi-line
@@ -496,20 +513,10 @@ public abstract class TextLogger : Logger
             logBuf._( ESC.EOMETA );
 
             // convert msg object into an AString representation
-            msgBuf._();
-            foreach( Object logable in logables )
-            {
-                int i;
-                for( i= ObjectConverters.Count - 1; i >= 0 ; i-- )
-                    if ( ObjectConverters[i].ConvertObject( logable, msgBuf ) )
-                        break;
-                if ( i == -1 )
-                {
-                    AString msg= new AString( FmtUnknownObject );
-                    msg.SearchAndReplace( "%", "" + logable.GetType().ToString() );
-                    msgBuf._NC( msg );
-                }
-            }
+            if ( Converter == null )
+                Converter= new StandardConverter();
+            Converter.ConvertObjects( msgBuf._(), logables );
+
 
             // replace strings in message
             for ( int i= 0; i < replacements.Count ; i+=2 )

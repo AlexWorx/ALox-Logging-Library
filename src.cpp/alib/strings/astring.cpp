@@ -1,43 +1,43 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
-
 #include "alib/alib.hpp"
-
 
 using namespace std;
 
-namespace aworx {
-namespace           lib {
-namespace                   strings {
-
+namespace aworx { namespace lib { namespace strings
+{
 // #################################################################################################
 //  globals
 // #################################################################################################
 
+//! @cond NO_DOX
+ALIB_DEBUG_CODE( void appendErrorToAString( AString& target ) { target._("T_Apply<Unknown Type>");} )
+//! @endcond NO_DOX
+
 // *************************************************************************************************
 // AString::_dbgCheck()
 // *************************************************************************************************
-#if defined(ALIB_DEBUG_STRINGS) && !defined( IS_DOXYGEN_PARSER )
+//! @cond NO_DOX
+#if ALIB_DEBUG_STRINGS
 
-    #if !defined(ALIB_DEBUG)
+    #if !ALIB_DEBUG
         #pragma message "Compiler symbol ALIB_DEBUG_STRINGS_ON set, while ALIB_DEBUG is off. Is this really wanted?"
     #endif
 
     void AString::_dbgCheck() const
     {
         TString::_dbgCheck();
-        int capacity= Capacity();
+        integer cap= Capacity();
 
         ALIB_ASSERT_ERROR(      buffer != nullptr
                                 ||  length  == 0
                                 ,"No buffer but length != 0" );
 
-        ALIB_ASSERT_ERROR(      capacity      == 0
+        ALIB_ASSERT_ERROR(      cap      == 0
                                 ||  debugIsTerminated != 0
                                 ||  buffer[length]   == '\1'
                                 ,"Not terminated but dbg-terminator char '\\1' not present" );
@@ -46,27 +46,28 @@ namespace                   strings {
                                 ||  length <= debugLastAllocRequest
                                 ,"Error: Previous allocation request was too short"         );
 
-        ALIB_ASSERT_ERROR(      length <= capacity
+        ALIB_ASSERT_ERROR(      length <= cap
                                 ,"Error: Length greater than allocation size"               );
 
         if( buffer && debugBufferWithMagicBytePadding )
         {
-            for (int aworx_astring_dbg_i= -16 ; aworx_astring_dbg_i < 0 ; aworx_astring_dbg_i++)
+            for (integer aworx_astring_dbg_i= -16 ; aworx_astring_dbg_i < 0 ; aworx_astring_dbg_i++)
                 if ( buffer[aworx_astring_dbg_i] != 2 )
                 {
-                    ALIB_ERROR_S512( "Magic byte not found at start (buffer[" << aworx_astring_dbg_i << "])." );
+                    ALIB_ERROR( "Magic byte not found at start of buffer." );
                     break;
                 }
-            for (int aworx_astring_dbg_i= 1 ; aworx_astring_dbg_i <= 16 ; aworx_astring_dbg_i++)
-                if ( buffer[ capacity + aworx_astring_dbg_i] != 3 )
+            for (integer aworx_astring_dbg_i= 1 ; aworx_astring_dbg_i <= 16 ; aworx_astring_dbg_i++)
+                if ( buffer[ cap + aworx_astring_dbg_i] != 3 )
                 {
-                    ALIB_ERROR_S512( "Magic byte not found at end (buffer[" << capacity + aworx_astring_dbg_i << "])." );
+                    ALIB_ERROR( "Magic byte not found at end of buffer." );
                     break;
                 }
         }
     }
 
 #endif
+//! @endcond NO_DOX
 
 
 
@@ -74,7 +75,7 @@ namespace                   strings {
 // Allocation
 // ####################################################################################################
 
-void AString::SetBuffer( int newCapacity )
+void AString::SetBuffer( integer newCapacity )
 {
     ALIB_STRING_DBG_CHK(this)
 
@@ -84,15 +85,15 @@ void AString::SetBuffer( int newCapacity )
     if ( capacity >= 0 && capacity == newCapacity )
         return;
 
-    #if defined(ALIB_DEBUG_STRINGS)
-        debugLastAllocRequest= newSize;
+    #if ALIB_DEBUG_STRINGS
+        debugLastAllocRequest= newCapacity;
     #endif
 
     // set uninitialized
     if ( newCapacity == 0 )
     {
         if ( capacity > 0 )
-            #if !defined(ALIB_DEBUG_STRINGS)
+            #if !ALIB_DEBUG_STRINGS
                 delete[] buffer;
             #else
                 delete[] (buffer - (debugBufferWithMagicBytePadding ? 16 : 0) );
@@ -104,29 +105,28 @@ void AString::SetBuffer( int newCapacity )
         return;
     }
 
-    ALIB_WARN_ONCE_IF( capacity < 0,
-                      "AString::SetAllocation(): replacing an external buffer. This may not be wanted.",
-                      *this, ReplaceExternalBuffer )
+    ALIB_WARN_ONCE_IF( *this, ReplaceExternalBuffer, capacity < 0,
+                      "AString::SetAllocation(): replacing an external buffer. This may not be wanted." )
 
     // create new Buffer
-    #if !defined(ALIB_DEBUG_STRINGS)
+    #if !ALIB_DEBUG_STRINGS
         char* newBuffer=    new char[ newCapacity  + 1 ];
     #else
         // add 16 bytes of padding at start/end
-        char* newBuffer=    new char[ newSize  + 1 + 32 ] + 16;
+        char* newBuffer=    new char[ newCapacity  + 1 + 32 ] + 16;
 
         // write 2 to start, 3 to end (0= termination byte, 1= untermination byte )
-        memset( newBuffer - 16,          (char) 2, 16 );
-        memset( newBuffer + newSize + 1, (char) 3, 16 );
+        memset( newBuffer - 16,              2, 16 );
+        memset( newBuffer + newCapacity + 1, 3, 16 );
     #endif
 
     // if we had a buffer before
     if ( capacity != 0 )
     {
         // copy data and delete old buffer
-        memcpy( newBuffer, buffer, min( length + 1, newCapacity + 1) );
+        memcpy( newBuffer, buffer, static_cast<size_t>(min( length + 1, newCapacity + 1)) );
         if ( capacity > 0 )
-          #if !defined(ALIB_DEBUG_STRINGS)
+          #if !ALIB_DEBUG_STRINGS
             delete[] buffer;
           #else
             delete[] (buffer - (debugBufferWithMagicBytePadding ? 16 : 0) );
@@ -144,14 +144,14 @@ void AString::SetBuffer( int newCapacity )
         length= capacity;
 
     ALIB_STRING_DBG_UNTERMINATE(*this, 0)
-    #if defined(ALIB_DEBUG_STRINGS)
+    #if ALIB_DEBUG_STRINGS
         debugBufferWithMagicBytePadding= true;
     #endif
 }
 
 
 
-void AString::SetBuffer( char* extBuffer, int extBufferSize, int extLength,
+void AString::SetBuffer( char* extBuffer, integer extBufferSize, integer extLength,
                          Responsibility responsibility  )
 {
     ALIB_ASSERT_ERROR(       !(extBufferSize == 0 && extBuffer != nullptr)
@@ -160,13 +160,13 @@ void AString::SetBuffer( char* extBuffer, int extBufferSize, int extLength,
 
     // delete any existing
     if ( capacity > 0 )
-        #if !defined(ALIB_DEBUG_STRINGS)
+        #if !ALIB_DEBUG_STRINGS
             delete[] buffer;
         #else
             delete[] (buffer - (debugBufferWithMagicBytePadding ? 16 : 0) );
         #endif
 
-    #if defined(ALIB_DEBUG_STRINGS)
+    #if ALIB_DEBUG_STRINGS
         debugBufferWithMagicBytePadding= false;
     #endif
 
@@ -177,7 +177,7 @@ void AString::SetBuffer( char* extBuffer, int extBufferSize, int extLength,
         extBuffer= nullptr;
     }
 
-    // nullbuffer?
+    // null buffer?
     if ( (buffer= extBuffer) == nullptr )
     {
         capacity=
@@ -204,7 +204,7 @@ void AString::SetBuffer( char* extBuffer, int extBufferSize, int extLength,
 // #################################################################################################
 // Append wchar_t strings
 // #################################################################################################
-AString& AString::Append( const wchar_t* src, int srcLength )
+AString& AString::Append( const wchar_t* src, integer srcLength )
 {
     ALIB_STRING_DBG_CHK( this )
 
@@ -223,15 +223,15 @@ AString& AString::Append( const wchar_t* src, int srcLength )
     }
 
     //--------- __GLIBCXX__ Version ---------
-    #if defined (__GLIBCXX__)
+    #if defined (__GLIBCXX__) || defined(__APPLE__)
 
-        int maxConversionSize= MB_CUR_MAX * srcLength;
+        integer maxConversionSize= static_cast<integer>(MB_CUR_MAX) * srcLength;
         mbstate_t ps;
         EnsureRemainingCapacity( maxConversionSize );
         memset( &ps, 0, sizeof(mbstate_t) );
         const wchar_t* srcp= src;
-        size_t conversionSize= wcsnrtombs( vbuffer + length, &srcp, srcLength, maxConversionSize,  &ps);
-        if ( conversionSize == (size_t) -1 )
+        size_t conversionSize= wcsnrtombs( vbuffer + length, &srcp, static_cast<size_t>(srcLength), static_cast<size_t>(maxConversionSize),  &ps);
+        if ( conversionSize == static_cast<size_t>( -1 ) )
         {
             ALIB_WARNING( "Cannot convert WCS to MBCS." );
             return *this;
@@ -243,7 +243,7 @@ AString& AString::Append( const wchar_t* src, int srcLength )
             return *this;
         }
 
-        SetLength<false>( length + conversionSize );
+        SetLength<false>( length + static_cast<integer>(conversionSize) );
         return *this;
 
     //--------- Windows Version ---------
@@ -253,7 +253,10 @@ AString& AString::Append( const wchar_t* src, int srcLength )
         EnsureRemainingCapacity( srcLength * 2 );
         for(;;)
         {
-            int conversionSize= WideCharToMultiByte( CP_UTF8, NULL, src, srcLength,  vbuffer + length, Capacity() - length , NULL, NULL );
+            int conversionSize= WideCharToMultiByte( CP_UTF8, NULL,
+                                                     src, static_cast<int>( srcLength),
+                                                     vbuffer + length, static_cast<int>( Capacity() - length ),
+                                                     NULL, NULL );
             if ( conversionSize > 0 )
             {
                 SetLength<false>( length + conversionSize );
@@ -269,13 +272,13 @@ AString& AString::Append( const wchar_t* src, int srcLength )
             }
 
             // quit on other errors
-            ALIB_WARNING_S512(
-                     "AString: Cannot convert wide character string to UTF-8. (Error: "
-                      << ( error == ERROR_INVALID_FLAGS          ? "ERROR_INVALID_FLAGS."
+            ALIB_WARNING(
+                     "AString: Cannot convert wide character string to UTF-8. Error: ",
+                        ( error == ERROR_INVALID_FLAGS          ? "ERROR_INVALID_FLAGS."
                         :  error == ERROR_INVALID_PARAMETER      ? "ERROR_INVALID_PARAMETER"
                         :  error == ERROR_NO_UNICODE_TRANSLATION ? "ERROR_NO_UNICODE_TRANSLATION"
                                                                  : (String32()._( error )).ToCString())
-                    << ')'   )
+                    )
 
             return *this;
         }
@@ -287,29 +290,81 @@ AString& AString::Append( const wchar_t* src, int srcLength )
 }
 
 
+#if ALIB_SIZEOF_WCHAR_T == 4
+
+    AString& AString::Append( const char16_t* src, integer srcLength )
+    {
+        // already checked, but who knows..
+        static_assert( sizeof(char16_t) != sizeof(wchar_t), "Error: Mismatch in code selection symbols." );
+
+        // if possible, use a local buffer of fixed size
+        wchar_t stackBuffer[2048];
+        wchar_t* buffer;
+        buffer= ( srcLength > 2048 ) ?  new wchar_t[srcLength]
+                                     :  reinterpret_cast<wchar_t*>( &stackBuffer );
+
+        // copy data and invoke wchar_t version
+        for(integer i= 0; i < srcLength; ++i )
+            buffer[ i ]= src[i];
+        Append( buffer, srcLength );
 
 
+        if( srcLength > 2048 )
+            delete buffer;
+
+        return *this;
+    }
+
+#else
+
+    AString& AString::Append( const char32_t* src, integer srcLength )
+    {
+        // already checked, but who knows..
+        static_assert( sizeof(char32_t) != sizeof(wchar_t), "Error: Mismatch in code selection symbols." );
+
+        // if possible, use a local buffer of fixed size
+        wchar_t stackBuffer[2048];
+        wchar_t* buffer;
+        buffer= ( srcLength > 2048 ) ?  new wchar_t[srcLength]
+                                     :  reinterpret_cast<wchar_t*>( &stackBuffer );
+
+        // copy data and invoke wchar_t version
+        for(integer i= 0; i < srcLength; ++i )
+            buffer[ i ]= static_cast<wchar_t>( src[i] );
+        Append( buffer, srcLength );
+
+
+        if( srcLength > 2048 )
+            delete buffer;
+
+        return *this;
+    }
+
+#endif
 // #############################################################################################
 // Trim
 // #############################################################################################
 
-int AString::TrimAt( int index, const TString& trimChars )
+integer AString::TrimAt( integer idx, const TString& trimChars )
 {
-    if ( index < 0 || index >= length || trimChars.IsEmpty() )
+    if ( idx < 0 )
+         return 0;
+    if ( idx >= length )
          return length;
 
-    int regionStart= LastIndexOfAny<false>( trimChars, Inclusion::Exclude, index ) + 1;
-    int idx=         IndexOfAny    <false>( trimChars, Inclusion::Exclude, index );
-    int regionEnd=   idx >=0 ? idx
-                             : length;
-    int regionLength= regionEnd - regionStart;
-    if ( regionLength > 0 )
-    {
-        Delete<false>( regionStart, regionLength );
-        return regionStart;
-    }
+    integer regionStart=  LastIndexOfAny<false>( trimChars, Inclusion::Exclude, idx ) + 1;
+    if (regionStart < 0 )
+        regionStart= 0;
 
-    return index;
+    integer regionEnd=    IndexOfAny    <false>( trimChars, Inclusion::Exclude, idx );
+    if (regionEnd < 0 )
+        regionEnd= length;
+
+    integer regionLength= regionEnd - regionStart;
+    if ( regionLength > 0 )
+        Delete<false>( regionStart, regionLength );
+
+    return regionStart;
 }
 
 AString& AString::Trim( const TString& trimChars )
@@ -319,7 +374,7 @@ AString& AString::Trim( const TString& trimChars )
         return *this;
 
     // trim end
-    int idx= LastIndexOfAny<false>( trimChars, Inclusion::Exclude, length - 1 ) + 1;
+    integer idx= LastIndexOfAny<false>( trimChars, Inclusion::Exclude, length - 1 ) + 1;
     if ( (length= idx) > 0 )
     {
         // trim front
@@ -336,11 +391,11 @@ AString& AString::Trim( const TString& trimChars )
 // #################################################################################################
 //  Replace()
 // #################################################################################################
-int AString::SearchAndReplace(  const TString&  needle,
-                                const String&   replacement,
-                                int             startIdx,
-                                int             maxReplacements,
-                                Case            sensitivity        )
+integer AString::SearchAndReplace(  const TString&  needle,
+                                  const String&   replacement,
+                                  integer           startIdx,
+                                  integer        maxReplacements,
+                                  Case            sensitivity        )
 {
     ALIB_STRING_DBG_CHK(this)
 
@@ -348,21 +403,20 @@ int AString::SearchAndReplace(  const TString&  needle,
     if ( needle.IsEmpty() )
         return 0;
 
-    int nLen=    needle.Length();
-    int rLen=    replacement.Length();
-    int lenDiff= rLen - nLen;
+    integer nLen=    needle.Length();
+    integer rLen=    replacement.Length();
+    integer lenDiff= rLen - nLen;
 
     // terminate needle
     needle.Terminate();
 
     // replacement loop
-    int cntReplacements=    0;
-    int idx= -1;
+    integer cntReplacements=    0;
     while ( cntReplacements < maxReplacements && startIdx < length)
     {
         // search  next occurrence
-
-        if ( ( idx= IndexOf<false>( needle, startIdx, sensitivity ) ) < 0 )
+        integer    idx= IndexOf<false>( needle, startIdx, sensitivity );
+        if ( idx < 0 )
             break;
 
         // copy rest up or down
@@ -373,14 +427,14 @@ int AString::SearchAndReplace(  const TString&  needle,
 
             memmove( vbuffer + idx + nLen + lenDiff,
                      vbuffer + idx + nLen,
-                     length  - idx - nLen );
+                     static_cast<size_t>(length  - idx - nLen) );
             length+= lenDiff;
             Terminate();
         }
 
         // fill replacement in
         if( rLen > 0 )
-            memcpy( vbuffer + idx, replacement.Buffer(), rLen );
+            memcpy( vbuffer + idx, replacement.Buffer(), static_cast<size_t>(rLen) );
 
         // set start index to first character behind current replacement
         startIdx= idx+ rLen;
@@ -393,5 +447,44 @@ int AString::SearchAndReplace(  const TString&  needle,
     return cntReplacements;
 }
 
+} // aworx::lib[::strings]
 
-}}}// namespace aworx::lib::strings
+#if ALIB_DEBUG
+    namespace debug {
+
+    AString&  RemoveALibNamespaces( AString& target, bool remove )
+    {
+        if( remove )
+        {
+            target.SearchAndReplace("aworx::lib::lang::"               , "" );
+            target.SearchAndReplace("aworx::lib::boxing::ftypes::"     , "" );
+            target.SearchAndReplace("aworx::lib::boxing::"             , "" );
+            target.SearchAndReplace("aworx::lib::strings::boxing::"    , "" );
+            target.SearchAndReplace("aworx::lib::strings::"            , "" );
+            target.SearchAndReplace("aworx::lib::threads::"            , "" );
+            target.SearchAndReplace("aworx::lib::config::"             , "" );
+            target.SearchAndReplace("aworx::lib::time::"               , "" );
+            target.SearchAndReplace("aworx::lib::containers::"         , "" );
+
+            ALIB_ASSERT_ERROR( target.IndexOf("aworx::lib") < 0,
+                               "Not all namespaces were fetched"    );
+
+            target.SearchAndReplace("aworx::lox::"                     , "" );
+        }
+        return target;
+    }
+
+    #if ALIB_FEAT_SINGLETON_MAPPED
+        int GetSingletons( strings::AString& target )
+        {
+            auto types= GetSingletons();
+            for( auto it : types )
+                target << it.first <<  " = 0x" << Format::Hex(reinterpret_cast<uint64_t>(it.second) ) << NewLine;
+
+            return static_cast<int>( types.size() );
+        }
+    #endif
+    }
+#endif
+
+}}// namespace [aworx::lib]

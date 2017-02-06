@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  cs.aworx.unittests - AWorx Util
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
 using System.Globalization;
@@ -10,13 +10,13 @@ using cs.aworx.lox;
 using cs.aworx.lox.loggers;
 using cs.aworx.lib.strings;
 using ut_cs_aworx;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     using NUnit.Framework;
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 #endif
 
@@ -26,10 +26,10 @@ using cs.aworx.lib;
 
 namespace ut_cs_aworx_lib
 {
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [TestFixture ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestClass]
     #endif
     public class CS_Strings_AStringAndSubstring  : AWorxUnitTesting
@@ -207,10 +207,10 @@ namespace ut_cs_aworx_lib
             UT_EQ( expectedIgnoreCase , haystackSubstring.ContainsAt( (Substring) null      , pos, Case.Ignore    ) );
         }
     }
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_Strings")]
@@ -288,10 +288,10 @@ namespace ut_cs_aworx_lib
         UT_EQ( expectedResult, haystackSubstring.IndexOf( needle, startPos ) );
     }
 
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_Strings")]
@@ -332,6 +332,42 @@ namespace ut_cs_aworx_lib
             tIndexOfChar( "abcd abcd",  'd',   8   ,   8 );
             tIndexOfChar( "abcd abcd",  'd',   9   ,  -1 );
         }
+
+
+        // IndexOfFirstDifference
+        {
+            Substring substr= new Substring("abcdef");
+            UT_EQ( 6, substr.IndexOfFirstDifference("abcdef") );
+            UT_EQ( 5, substr.IndexOfFirstDifference("abcde") );
+            UT_EQ( 6, substr.IndexOfFirstDifference("abcdefg") );
+
+            UT_EQ( 0, substr.IndexOfFirstDifference("123") );
+            UT_EQ( 0, substr.IndexOfFirstDifference("123", Case.Ignore   ) );
+            UT_EQ( 0, substr.IndexOfFirstDifference("123", Case.Ignore, 2) );
+
+            UT_EQ( 3, substr.IndexOfFirstDifference("abc") );
+            UT_EQ( 3, substr.IndexOfFirstDifference("abc", Case.Ignore   ) );
+            UT_EQ( 0, substr.IndexOfFirstDifference("abc", Case.Ignore, 1) );
+            UT_EQ( 0, substr.IndexOfFirstDifference( "bc", Case.Ignore, 0) );
+            UT_EQ( 2, substr.IndexOfFirstDifference( "bc", Case.Ignore, 1) );
+            UT_EQ( 1, substr.IndexOfFirstDifference( "bd", Case.Ignore, 1) );
+
+
+            UT_EQ( 3, substr.IndexOfFirstDifference("ABC", Case.Ignore   ) );
+            UT_EQ( 0, substr.IndexOfFirstDifference("ABC", Case.Ignore, 1) );
+            UT_EQ( 0, substr.IndexOfFirstDifference( "BC", Case.Ignore, 0) );
+            UT_EQ( 2, substr.IndexOfFirstDifference( "BC", Case.Ignore, 1) );
+            UT_EQ( 1, substr.IndexOfFirstDifference( "BD", Case.Ignore, 1) );
+
+
+            UT_EQ( 0, substr.IndexOfFirstDifference("ABC") );
+            UT_EQ( 0, substr.IndexOfFirstDifference("ABC", Case.Sensitive   ) );
+            UT_EQ( 0, substr.IndexOfFirstDifference("ABC", Case.Sensitive, 1) );
+            UT_EQ( 0, substr.IndexOfFirstDifference( "BC", Case.Sensitive, 0) );
+            UT_EQ( 0, substr.IndexOfFirstDifference( "BC", Case.Sensitive, 1) );
+            UT_EQ( 0, substr.IndexOfFirstDifference( "BD", Case.Sensitive, 1) );
+        }
+
     }
 
 
@@ -378,10 +414,10 @@ namespace ut_cs_aworx_lib
 
     }
 
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_Strings")]
@@ -474,10 +510,10 @@ namespace ut_cs_aworx_lib
         }
     }
 
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_Strings")]

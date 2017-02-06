@@ -2,7 +2,7 @@
 #  QMake 'pro' file - ALox Samples
 #
 #  (c) 2016 A-Worx GmbH, Germany
-#  Published under MIT License (Open Source License, see LICENSE.txt)
+#  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 # #################################################################################################
 
 TEMPLATE=       app
@@ -36,18 +36,22 @@ INCLUDEPATH+=   $$ALIB_BASE_DIR
 
 SOURCES+=   ../../../../src.cpp/alib.unittests/aworx_unittests.cpp                          \
             ../../../../src.cpp/alib.unittests/aworx_unittests.hpp                          \
+            ../../../../src.cpp/alib.unittests/ut_alib_boxing.cpp                           \
             ../../../../src.cpp/alib.unittests/ut_alib_compatiblity_qt.cpp                  \
+            ../../../../src.cpp/alib.unittests/ut_alib_compatiblity_std.cpp                 \
             ../../../../src.cpp/alib.unittests/ut_alib_config.cpp                           \
+            ../../../../src.cpp/alib.unittests/ut_alib_strings.cpp                          \
             ../../../../src.cpp/alib.unittests/ut_alib_strings_astring.cpp                  \
-            ../../../../src.cpp/alib.unittests/ut_alib_strings_basic.cpp                    \
-            ../../../../src.cpp/alib.unittests/ut_alib_strings_numberformat.cpp             \
             ../../../../src.cpp/alib.unittests/ut_alib_strings_substring.cpp                \
-            ../../../../src.cpp/alib.unittests/ut_alib_strings_tokenizer.cpp                \
+            ../../../../src.cpp/alib.unittests/ut_alib_strings_format.cpp                   \
             ../../../../src.cpp/alib.unittests/ut_alib_system.cpp                           \
             ../../../../src.cpp/alib.unittests/ut_alib_threads.cpp                          \
             ../../../../src.cpp/alib.unittests/ut_alib_time.cpp                             \
             ../../../../src.cpp/alib.unittests/docsamples/DOX_ALIB_APPLYTO.cpp              \
             ../../../../src.cpp/alib.unittests/docsamples/DOX_ALIB_ASTRING.cpp              \
+            ../../../../src.cpp/alib.unittests/docsamples/DOX_ALIB_BOXING.cpp               \
+            ../../../../src.cpp/alib.unittests/docsamples/DOX_ALIB_LANG_SINGLETON.cpp       \
+            ../../../../src.cpp/alib.unittests/docsamples/DOX_ALIB_LANG.cpp                 \
             ../../../../src.cpp/alib.unittests/docsamples/DOX_ALIB_STRINGS.cpp              \
             ../../../../src.cpp/alib.unittests/docsamples/DOX_ALIB_TOAS.cpp                 \
             ../../../../src.cpp/alib.unittests/docsamples/DOX_ALIB_TOKENIZER.cpp            \
@@ -55,12 +59,12 @@ SOURCES+=   ../../../../src.cpp/alib.unittests/aworx_unittests.cpp              
                                                                                             \
             ../../../../src.cpp/alox.unittests/gtest_main.cpp                               \
             ../../../../src.cpp/alox.unittests/ut_alox_log_domains.cpp                      \
-            ../../../../src.cpp/alox.unittests/ut_alox_logger.cpp                           \
             ../../../../src.cpp/alox.unittests/ut_alox_log_rel.cpp                          \
             ../../../../src.cpp/alox.unittests/ut_alox_log_scopes.cpp                       \
             ../../../../src.cpp/alox.unittests/ut_alox_log_scopes_helper.cpp                \
             ../../../../src.cpp/alox.unittests/ut_alox_log_scopes_helper_sub2.cpp           \
             ../../../../src.cpp/alox.unittests/ut_alox_log_scopes.hpp                       \
+            ../../../../src.cpp/alox.unittests/ut_alox_logger.cpp                           \
             ../../../../src.cpp/alox.unittests/ut_alox_lox.cpp                              \
             ../../../../src.cpp/alox.unittests/ut_dox_manual.cpp                            \
             ../../../../src.cpp/alox.unittests/ut_dox_tutorial.cpp                          \

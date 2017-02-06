@@ -1,15 +1,15 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 using System;
 using System.Text;
 using cs.aworx.lib.strings;
 using cs.aworx.lib.time;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 
 /** ************************************************************************************************
  *  This namespace of the A-Worx Library provides classes for character string operations
@@ -210,7 +210,7 @@ public class AString
          *  - The string represented by this instance is copied to the new buffer.
          *    If this is larger than the new buffer size, the string is cut at the end to fit.
          *  - If the desired new size is 0, then the currently allocated buffer will be released.
-         *    In this case method #Buffer will  still return an empty constant character array 
+         *    In this case method #Buffer will  still return an empty constant character array
          *    (using an internal singleton) but method #IsNull will return true.
          *
          *  \note Any methods of this class that extend the length of the string represented, will
@@ -332,7 +332,7 @@ public class AString
          ******************************************************************************************/
         public    int         SetLength( int newLength )
         {
-            ALIB.ASSERT_WARNING( newLength <= length, "Increase requested" );
+            ALIB_DBG.ASSERT_WARNING( newLength <= length, "Increase requested" );
 
             if ( newLength < length )
             {
@@ -355,7 +355,7 @@ public class AString
          ******************************************************************************************/
         public    void        SetLength_NC( int newLength )
         {
-            ALIB.ASSERT_ERROR( newLength >= 0 && newLength <= length, "Index out of range" );
+            ALIB_DBG.ASSERT_ERROR( newLength >= 0 && newLength <= length, "Index out of range" );
             length= newLength;
             hash=   0;
         }
@@ -721,7 +721,7 @@ public class AString
          ******************************************************************************************/
         public    AString     Delete_NC( int regionStart, int regionLength )
         {
-            ALIB.ASSERT_ERROR(     regionStart  >= 0
+            ALIB_DBG.ASSERT_ERROR(     regionStart  >= 0
                                     &&  regionStart  <= length
                                     &&  regionLength >= 0,
                                     "Parameter assertion" );
@@ -768,7 +768,7 @@ public class AString
          ******************************************************************************************/
         public AString     DeleteStart_NC( int regionLength  )
         {
-            ALIB.ASSERT_ERROR(  regionLength >=0 && regionLength <= length, "Region length out of range" );
+            ALIB_DBG.ASSERT_ERROR(  regionLength >=0 && regionLength <= length, "Region length out of range" );
             Array.Copy( buffer, regionLength, buffer, 0, length - regionLength  );
             length-= regionLength;
             return this;
@@ -806,7 +806,7 @@ public class AString
          ******************************************************************************************/
         public AString       DeleteEnd_NC( int regionLength  )
         {
-            ALIB.ASSERT_ERROR(  regionLength >=0 && regionLength <= length, "Region length out of range" );
+            ALIB_DBG.ASSERT_ERROR(  regionLength >=0 && regionLength <= length, "Region length out of range" );
             length-= regionLength;
             return this;
         }
@@ -846,33 +846,34 @@ public class AString
          * trimmed region. With legal \p index given, this value can only be smaller or equal to
          * \p index. If \p index is out of bounds, the length of the string is returned.
          *
-         * @param index       The index to perform the trim operation at. Has to be between zero
+         * @param idx         The index to perform the trim operation at. Has to be between zero
          *                    and <em>Length() -1</em>.
          * @param trimChars   Pointer to a zero terminated set of characters to be omitted.
          *                    Defaults to \ref CString.DefaultWhitespaces.
          * @return  The index of the first character of those characters that were behind the
          *          trimmed region.
          ******************************************************************************************/
-        public int  TrimAt( int index, char[] trimChars= null )
+        public int  TrimAt( int idx, char[] trimChars= null )
         {
-            if ( index < 0 || index >= length)
+            if ( idx < 0 )
+                 return 0;
+            if ( idx >= length )
                  return length;
 
             if ( trimChars == null )
                 trimChars= CString.DefaultWhitespaces;
 
-            int regionStart=    CString.LastIndexOfAny    ( buffer, 0, index + 1,          trimChars, Inclusion.Exclude ) + 1;
-            int regionEnd=      CString.IndexOfAnyInRegion( buffer, index, length - index, trimChars, Inclusion.Exclude );
+            int regionStart=    CString.LastIndexOfAny    ( buffer, 0, idx + 1,          trimChars, Inclusion.Exclude ) + 1;
+            if (regionStart < 0 )
+                regionStart= 0;
+            int regionEnd=      CString.IndexOfAnyInRegion( buffer, idx, length - idx, trimChars, Inclusion.Exclude );
             if (regionEnd < 0 )
                 regionEnd= length;
 
             int regionLength= regionEnd - regionStart;
             if ( regionLength > 0 )
-            {
                 Delete_NC( regionStart, regionLength );
-                return regionStart;
-            }
-            return index;
+            return regionStart;
         }
 
         /** ****************************************************************************************
@@ -1603,13 +1604,13 @@ public class AString
         {
             get
             {
-                ALIB.ASSERT_ERROR( idx >= 0 && idx <  length, "Index out of bounds" );
+                ALIB_DBG.ASSERT_ERROR( idx >= 0 && idx <  length, "Index out of bounds" );
                 return  ( idx >= 0 && idx <  length ) ?  buffer[idx]
                                                       : '\0';
             }
             set
             {
-                ALIB.ASSERT_ERROR( idx >= 0 && idx <  length, "Index out of bounds" );
+                ALIB_DBG.ASSERT_ERROR( idx >= 0 && idx <  length, "Index out of bounds" );
                 if      ( idx >= 0 && idx <  length )
                             buffer[idx]= value;
             }
@@ -1639,7 +1640,7 @@ public class AString
          ******************************************************************************************/
         public char        CharAt_NC( int idx )
         {
-            ALIB.ASSERT_ERROR(  idx >= 0 && idx < length, "Index out of range" );
+            ALIB_DBG.ASSERT_ERROR(  idx >= 0 && idx < length, "Index out of range" );
             return  buffer[idx];
         }
 
@@ -1667,7 +1668,7 @@ public class AString
          ******************************************************************************************/
         public void        SetCharAt_NC( int idx, char c )
         {
-            ALIB.ASSERT_ERROR(  idx >= 0 && idx < length, "Index out of range" );
+            ALIB_DBG.ASSERT_ERROR(  idx >= 0 && idx < length, "Index out of range" );
             buffer[idx]= c;
         }
 
@@ -1693,7 +1694,7 @@ public class AString
          ******************************************************************************************/
         public char        CharAtStart_NC()
         {
-            ALIB.ASSERT_ERROR(  length > 0, "Empy AString" );
+            ALIB_DBG.ASSERT_ERROR(  length > 0, "Empty AString" );
             return  buffer[0];
         }
 
@@ -1718,7 +1719,7 @@ public class AString
          ******************************************************************************************/
         public char        CharAtEnd_NC()
         {
-            ALIB.ASSERT_ERROR(  length > 0, "Empy AString" );
+            ALIB_DBG.ASSERT_ERROR(  length > 0, "Empty AString" );
             return  buffer[length - 1];
         }
 
@@ -1854,7 +1855,7 @@ public class AString
             // adjust source and compare regions
             int cmpLength= needle.Length;
             CString.AdjustRegion( cmpLength, ref needleRegionStart, ref needleRegionLength );
-            CString.AdjustRegion(    length, ref              regionStart, ref              regionLength );
+            CString.AdjustRegion(    length, ref       regionStart, ref       regionLength );
 
             return CString.CompareTo( needle,  needleRegionStart, needleRegionLength,
                                       buffer,        regionStart,       regionLength,
@@ -2185,7 +2186,7 @@ public class AString
                 return ContainsAt( ca, 0, length, 0, sensitivity );
             }
 
-            ALIB.WARNING( "Unknown object type." );
+            ALIB_DBG.WARNING( "Unknown object type." );
 
             return false;
         }
@@ -2201,7 +2202,7 @@ public class AString
          * Search the given \e String in this.
          *
          * @param needle       The String to search.
-         * @param startIdx     The index to start the search at. Optional and defaults to 0.
+         * @param startIdx     The index to start the search at. Optional and defaults to \c 0.
          * @param sensitivity          Case sensitivity of the comparison.
          *                             Optional and defaults to Case.Sensitive.
          * @return    -1 if the String is not found. Otherwise the index of first occurrence.
@@ -2217,7 +2218,7 @@ public class AString
          * Search the given \b %AString in the this.
          *
          * @param needle       The string to search.
-         * @param startIdx     The index to start the search at. Optional and defaults to 0.
+         * @param startIdx     The index to start the search at. Optional and defaults to \c 0.
          * @param sensitivity   If true, the compare is case insensitive. Optional and defaults to
          *                             false.
          * @return    -1 if the String is not found. Otherwise the index of first occurrence.
@@ -2235,7 +2236,7 @@ public class AString
          * Search the given \b %Substring in the this.
          *
          * @param needle       The string to search.
-         * @param startIdx     The index to start the search at. Optional and defaults to 0.
+         * @param startIdx     The index to start the search at. Optional and defaults to \c 0.
          * @param sensitivity   If true, the compare is case insensitive. Optional and defaults to
          *                             false.
          * @return    -1 if the String is not found. Otherwise the index of first occurrence.
@@ -2253,7 +2254,7 @@ public class AString
          * Search the given character in the buffer.
          *
          * @param needle        The character to search.
-         * @param startIdx  The index to start the search at. Optional and defaults to 0.
+         * @param startIdx  The index to start the search at. Optional and defaults to \c 0.
          *
          * @return    -1 if the character is not found. Otherwise the index of first occurrence.
          ******************************************************************************************/
@@ -2303,7 +2304,7 @@ public class AString
         }
 
         /** ****************************************************************************************
-         * Searches a character starting backwards from the end or a given start index.
+         * Searches a character backwards starting at the end or at given start index.
          *
          * @param needle       The character to search for.
          * @param startIndex   The index in this to start searching the character.
@@ -2570,6 +2571,160 @@ public class AString
             return this;
         }
 
+        /** ****************************************************************************************
+         * Escapes non-printable characters in the given region, or converts such escaped characters
+         * to their ASCII values.<br>
+         * If the new region length is needed to be known, it can be calculated as the sum of
+         * the old region length and the difference of the string before and after the operation.
+         *
+         * @param escape        \b Switch::On escapes ascii characters (the default),
+         *                      \b Switch::Off converts  escaped strings to ascii codes.
+         * @param regionStart   The start of the region to convert.
+         * @param regionLength  The length of the region to convert.
+         * @return \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString Escape( Switch escape= Switch.On, int regionStart= 0, int regionLength= int.MaxValue )
+        {
+           if( CString.AdjustRegion(length, ref regionStart, ref regionLength) )
+               return this;
+
+            int regionEnd= regionStart+ regionLength;
+
+            //
+            // To escape sequences
+            //
+            if (escape == Switch.On)
+            {
+                for( int idx= regionStart; idx < regionEnd ; ++idx )
+                {
+                    char c= buffer[idx];
+
+                    char resultChar= '\0';
+                    switch(c)
+                    {
+                        case '\\' : resultChar= '\\'; break;
+                        case '\r' : resultChar= 'r' ; break;
+                        case '\n' : resultChar= 'n' ; break;
+                        case '\t' : resultChar= 't' ; break;
+                        case '\a' : resultChar= 'a' ; break;
+                        case '\b' : resultChar= 'b' ; break;
+                        case '\v' : resultChar= 'v' ; break;
+                        case '\f' : resultChar= 'f' ; break;
+                     // case '\e' : resultChar= 'e' ; break; Not C++ standard
+                        case '"'  : resultChar= '"' ; break;
+
+                        default   :                   break;
+                    }
+
+                    if( resultChar != '\0')
+                    {
+                        InsertChars( ' ', 1, idx);
+                        buffer[idx++]= '\\';
+                        buffer[idx]= resultChar;
+                        regionEnd++;
+                    }
+                    else
+                    {
+                        if (c < 32  )
+                        {
+                            InsertChars(' ', 3, idx);
+                            buffer[idx++]= '\\';
+                            buffer[idx++]= '0';
+                            var oct= c >> 3;
+                            buffer[idx++]=  (char) ( '0' + oct );
+                                 oct=       (char) ( c & 7 );
+                            buffer[idx]  =  (char) ( '0' + oct );
+
+                            regionEnd+=3;
+                        }
+                        else
+                        if ( c >126 )
+                        {
+                            InsertChars(' ', 3, idx);
+                            buffer[idx++]= '\\';
+                            buffer[idx++]= 'x';
+                            var nibble= c >> 4;
+                            buffer[idx++]= (char) ( (nibble <10 ? '0' : 'A' -10) + nibble );
+                                nibble=    (char) ( c & 15 );
+                            buffer[idx]  = (char) ( (nibble <10 ? '0' : 'A' -10) + nibble );
+
+                            regionEnd+=3;
+                        }
+                    }
+                }
+            }
+
+            //
+            // Un-escape escape sequences
+            //
+            else
+            {
+                regionEnd--; // we can go 1 over it!
+                for( int idx= regionStart; idx < regionEnd ; ++idx )
+                {
+                    char c= buffer[idx];
+                    if( c != '\\' )
+                        continue;
+                    c= buffer[idx + 1];
+
+                    char resultChar= '\0';
+                    switch(c)
+                    {
+                        case '\\' : resultChar= '\\' ; break;
+                        case 'r'  : resultChar= '\r' ; tabReference= idx + 1; break;
+                        case 'n'  : resultChar= '\n' ; tabReference= idx + 1; break;
+                        case 't'  : resultChar= '\t' ; break;
+                        case 'a'  : resultChar= '\a' ; break;
+                        case 'b'  : resultChar= '\b' ; break;
+                        case 'v'  : resultChar= '\v' ; break;
+                        case 'f'  : resultChar= '\f' ; break;
+                     // case 'e'  : resultChar= '\e' ; break; Not C++ standard
+                        case '"'  : resultChar= '"' ; break;
+
+                        default   :                   break;
+                    }
+
+                    if( resultChar != '\0')
+                    {
+                        Delete( idx, 1);
+                        buffer[idx]= resultChar;
+                        regionEnd--;
+                    }
+                    else
+                    {
+                        if (c == '0' && idx + 2 < regionEnd )
+                        {
+                            buffer[idx]= (char) (   (buffer[idx + 2] - '0' ) *8
+                                                  + (buffer[idx + 3] - '0' ))        ;
+                            Delete( idx + 1, 3);
+                            regionEnd-=3;
+                        }
+                        else
+                        if (c == 'x' && idx + 2 < regionEnd )
+                        {
+                            c= buffer[idx+2];
+                                 if( c>='0' && c<= '9') c-= '0';
+                            else if( c>='a' && c<= 'f') c-= (char) ( 'a' - 10 );
+                            else if( c>='A' && c<= 'F') c-= (char) ( 'A' - 10 );
+                            char nc= c;
+                            c= buffer[idx + 3];
+                                 if( c>='0' && c<= '9') c-= '0';
+                            else if( c>='a' && c<= 'f') c-= (char) ( 'a' - 10 );
+                            else if( c>='A' && c<= 'F') c-= (char) ( 'A' - 10 );
+
+                            buffer[idx]= (char) ( (nc << 4) + c );
+                            Delete( idx+1, 3);
+                            regionEnd-=3;
+                        }
+                    }
+                }
+            }
+
+
+            return this;
+        }
+
+
     /** @} */
 
 
@@ -2578,195 +2733,393 @@ public class AString
      ##@{ ########################################################################################*/
 
         /** ********************************************************************************************
-         *  Convert and append the given 32-Bit integer value.
+         * Format and append a signed 32-Bit integer value.
          *
-         * @param value        The integer value to append.
-         * @param minDigits    The minimum number of digits to append.
-         *                     If given value has less digits, '0' characters are prepended.
-         *                     The given value is cut to the range 1..20 (max digits of an unsigned
-         *                     64 bitinteger, which is the largest integer processed
-         *                     in overloaded methods).<br>
-         *                     Optional and defaults to 1.
+         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * the static singleton found in
+         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational".
+         * To generate output better readable for humans, provide
+         * \ref cs::aworx::lib::strings::NumberFormat::Global "NumberFormat.Global", or a
+         * customized object of that type.
          *
+         * See \ref cs::aworx::lib::strings::NumberFormat "NumberFormat"
+         * for more information on formatting options.
+         *
+         * @param value         The value to append.
+         * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
+         *                      specified in field
+         *                      \ref cs::aworx::lib::strings::NumberFormat::DecMinimumFieldWidth "NumberFormat.DecMinimumFieldWidth".
+         * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
          **********************************************************************************************/
-        public AString _( int value, int minDigits= 1 )
+        public AString _( int value, int overrideWidth= 0, NumberFormat numberFormat= null )
         {
-            // flag us dirty (as we will be manipulated)
             hash= 0;
 
-            if ( minDigits > 20 )
-                minDigits= 20;
-            int maxDigits= 10;
-            if ( maxDigits < minDigits )
-                maxDigits= minDigits;
+            if( numberFormat == null)
+                numberFormat= NumberFormat.Computational;
 
-            // big enough?
-            if ( buffer.Length < length +  maxDigits + 1 )
-                EnsureRemainingCapacity(  maxDigits + 1 );
+            EnsureRemainingCapacity( 28 );
 
-            bool isNegative= (value < 0);
-            if (isNegative)
-                buffer[length++]= '-';
+            length= numberFormat.WriteDecSigned( value, buffer, length, overrideWidth );
 
-            length= NumberFormat.Global.IntegerToString(  isNegative  ?  (ulong)  -((long) value)
-                                                                      :  (ulong)           value ,
-                                                           buffer, length,
-                                                           minDigits,
-                                                           maxDigits );
+            ALIB_DBG.ASSERT( length <= Capacity() );
 
-
-            ALIB.ASSERT( length <= Capacity() );
-
-            // return me for concatenated operations
-            return this;
-        }
-
-        /** ********************************************************************************************
-         *  Convert and append the given 32-Bit unsigned integer value.
-         *
-         * @param value        The integer value to append.
-         * @param minDigits    The minimum number of digits to append.
-         *                     If given value has less digits, '0' characters are prepended.
-         *                     The given value is cut to the range 1..20 (max digits of an unsigned
-         *                     64 bitinteger, which is the largest integer processed
-         *                     in overloaded methods).<br>
-         *                     Optional and defaults to 1.
-         *
-         * @return  \c this to allow concatenated calls.
-         **********************************************************************************************/
-        public AString _( uint value, int minDigits= 1 )
-        {
-            // flag us dirty (as we will be manipulated)
-            hash= 0;
-
-            if ( minDigits > 20 )
-                minDigits= 20;
-            int maxDigits= 10;
-            if ( maxDigits < minDigits )
-                maxDigits= minDigits;
-
-            // big enough?
-            if ( buffer.Length < length + maxDigits )
-                EnsureRemainingCapacity( maxDigits );
-
-            length= NumberFormat.Global.IntegerToString(  (ulong) value, buffer, length, minDigits, maxDigits );
-
-            ALIB.ASSERT( length <= Capacity() );
-
-            // return me for concatenated operations
-            return this;
-        }
-
-        /** ********************************************************************************************
-         *  Convert and append the given 64-Bit integer value.
-         *
-         * @param value        The integer value to append.
-         * @param minDigits    The minimum number of digits to append.
-         *                     If given value has less digits, '0' characters are prepended.
-         *                     The given value is cut to the range 1..20 (max digits of an unsigned
-         *                     64 bitinteger, which is the largest integer processed
-         *                     in overloaded methods).<br>
-         *                     Optional and defaults to 1.
-         *
-         * @return  \c this to allow concatenated calls.
-         **********************************************************************************************/
-        public AString _( long value, int minDigits= 1 )
-        {
-            // flag us dirty (as we will be manipulated)
-            hash= 0;
-
-            if ( minDigits > 20 )
-                minDigits= 20;
-            int maxDigits= 19;
-            if ( maxDigits < minDigits )
-                maxDigits= minDigits;
-
-            // big enough?
-            if ( buffer.Length < length + maxDigits + 1 )
-                EnsureRemainingCapacity( maxDigits + 1 );
-
-            bool isNegative= (value < 0);
-            if (isNegative)
-                buffer[length++]= '-';
-
-            length= NumberFormat.Global.IntegerToString(  isNegative  ?   (ulong) -value
-                                                                      :   (ulong)  value,
-                                                          buffer, length,
-                                                          minDigits,
-                                                          maxDigits);
-
-            ALIB.ASSERT( length <= Capacity() );
-
-            // return me for concatenated operations
-            return this;
-        }
-
-        /** ********************************************************************************************
-         *  Convert and append the given 64-Bit unsigned integer value.
-         *
-         * @param value        The integer value to append.
-         * @param minDigits    The minimum number of digits to append.
-         *                     If given value has less digits, '0' characters are prepended.
-         *                     The given value is cut to the range 1..20 (max digits of an unsigned
-         *                     64 bitinteger, which is the largest integer processed
-         *                     in overloaded methods).<br>
-         *                     Optional and defaults to 1.
-         *
-         * @return  \c this to allow concatenated calls.
-         **********************************************************************************************/
-        public AString _( ulong value, int minDigits= 1 )
-        {
-            // flag us dirty (as we will be manipulated)
-            hash= 0;
-
-            if ( minDigits > 20 )
-                minDigits= 20;
-            int maxDigits= 20;
-
-            // big enough?
-            if ( buffer.Length < length + maxDigits + 1 )
-                EnsureRemainingCapacity( maxDigits + 1 );
-
-            length= NumberFormat.Global.IntegerToString( value, buffer, length, minDigits, maxDigits );
-
-            ALIB.ASSERT( length <= Capacity() );
-
-            // return me for concatenated operations
             return this;
         }
 
         /** ****************************************************************************************
-         *  Appends a double value as string representation.
-         *  The conversion is performed by an object of class
-         *  \ref cs::aworx::lib::strings::NumberFormat "NumberFormat".
-         *  If no object of this type is provided with optional parameter \p numberFormat,
-         *  the static default object found in
-         *  \ref cs::aworx::lib::strings::NumberFormat::Global "NumberFormat.Global" is used.
+         * Overloaded version of #_(int,int,NumberFormat) which provides default parameter(s).
          *
-         * @param value        The double value to append.
-         * @param numberFormat The object performing the conversion and defines the output format.
-         *                     Optional and defaults to null.
-         *
-         * @return    \c this to allow concatenated calls.
+         * @param value         The value to append.
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
-        public AString _( double value, NumberFormat numberFormat= null )
+        public AString _( int value, NumberFormat numberFormat )
         {
-           // flag us dirty (as we will be manipulated)
-           hash= 0;
+            return _( value, 0, numberFormat );
+        }
 
-           if ( numberFormat == null )
-                numberFormat= NumberFormat.Global;
+        /** ********************************************************************************************
+         * Format and append an unsigned 32-Bit integer value.
+         *
+         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * the static singleton found in
+         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational".
+         * To generate output better readable for humans, provide
+         * \ref cs::aworx::lib::strings::NumberFormat::Global "NumberFormat.Global", or a
+         * customized object of that type.
+         *
+         * See \ref cs::aworx::lib::strings::NumberFormat "NumberFormat"
+         * for more information on formatting options.
+         *
+         * @param value         The value to append.
+         * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
+         *                      specified in field
+         *                      \ref cs::aworx::lib::strings::NumberFormat::DecMinimumFieldWidth "NumberFormat.DecMinimumFieldWidth".
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         **********************************************************************************************/
+        public AString _( uint value, int overrideWidth= 0, NumberFormat numberFormat= null )
+        {
+            hash= 0;
 
-            // big enough? 32= 2 x 15 + '.' + '-'
-            if ( buffer.Length < length + 32 )
-                EnsureRemainingCapacity( 32 );
+            if( numberFormat == null)
+                numberFormat= NumberFormat.Computational;
 
-            length= numberFormat.FloatToString( value, buffer, length );
+            EnsureRemainingCapacity( 28 );
 
-            ALIB.ASSERT( length <= Capacity() );
+            length= numberFormat.WriteDecUnsigned( value, buffer, length, overrideWidth );
+
+            ALIB_DBG.ASSERT( length <= Capacity() );
+
             return this;
         }
+
+        /** ****************************************************************************************
+         * Overloaded version of #_(uint,int,NumberFormat) which provides default parameter(s).
+         *
+         * @param value         The value to append.
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _( uint value, NumberFormat numberFormat )
+        {
+            return _( value, 0, numberFormat );
+        }
+
+
+        /** ********************************************************************************************
+         * Format and append a signed 64-Bit integer value.
+         *
+         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * the static singleton found in
+         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational".
+         * To generate output better readable for humans, provide
+         * \ref cs::aworx::lib::strings::NumberFormat::Global "NumberFormat.Global", or a
+         * customized object of that type.
+         *
+         * See \ref cs::aworx::lib::strings::NumberFormat "NumberFormat"
+         * for more information on formatting options.
+         *
+         * @param value         The value to append.
+         * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
+         *                      specified in field
+         *                      \ref cs::aworx::lib::strings::NumberFormat::DecMinimumFieldWidth "NumberFormat.DecMinimumFieldWidth".
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         **********************************************************************************************/
+        public AString _( long value, int overrideWidth= 0, NumberFormat numberFormat= null )
+        {
+            hash= 0;
+
+            if( numberFormat == null)
+                numberFormat= NumberFormat.Computational;
+
+            EnsureRemainingCapacity( 28 );
+
+            length= numberFormat.WriteDecSigned( value, buffer, length, overrideWidth );
+
+            ALIB_DBG.ASSERT( length <= Capacity() );
+
+            return this;
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #_(long,int,NumberFormat) which provides default parameter(s).
+         *
+         * @param value         The value to append.
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _( long value, NumberFormat numberFormat )
+        {
+            return _( value, 0, numberFormat );
+        }
+
+        /** ********************************************************************************************
+         * Format and append an unsigned 64-Bit integer value.
+         *
+         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * the static singleton found in
+         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational".
+         * To generate output better readable for humans, provide
+         * \ref cs::aworx::lib::strings::NumberFormat::Global "NumberFormat.Global", or a
+         * customized object of that type.
+         *
+         * See \ref cs::aworx::lib::strings::NumberFormat "NumberFormat"
+         * for more information on formatting options.
+         *
+         * @param value         The value to append.
+         * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
+         *                      specified in field
+         *                      \ref cs::aworx::lib::strings::NumberFormat::DecMinimumFieldWidth "NumberFormat.DecMinimumFieldWidth".
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         **********************************************************************************************/
+        public AString _( ulong value, int overrideWidth= 0, NumberFormat numberFormat= null )
+        {
+            hash= 0;
+
+            if( numberFormat == null)
+                numberFormat= NumberFormat.Computational;
+
+            EnsureRemainingCapacity( 28 );
+
+            length= numberFormat.WriteDecUnsigned( value, buffer, length, overrideWidth );
+
+            ALIB_DBG.ASSERT( length <= Capacity() );
+
+            return this;
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #_(ulong,int,NumberFormat) which provides default parameter(s).
+         *
+         * @param value         The value to append.
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _( ulong value, NumberFormat numberFormat )
+        {
+            return _( value, 0, numberFormat );
+        }
+
+        /** ********************************************************************************************
+         * Append a unsigned 64-Bit integer value in binary format.
+         *
+         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * the static singleton found in
+         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational".
+         * To generate output better readable for humans, provide
+         * \ref cs::aworx::lib::strings::NumberFormat::Global "NumberFormat.Global", or a
+         * customized object of that type.
+         *
+         * See \ref cs::aworx::lib::strings::NumberFormat "NumberFormat"
+         * for more information on formatting options.
+         *
+         * @param value         The value to append.
+         * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
+         *                      specified in field
+         *                      \ref cs::aworx::lib::strings::NumberFormat::BinFieldWidth "NumberFormat.BinFieldWidth".
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         **********************************************************************************************/
+        public AString _Bin( ulong value, int overrideWidth= 0,  NumberFormat numberFormat= null )
+        {
+            hash= 0;
+
+            if( numberFormat == null)
+                numberFormat= NumberFormat.Computational;
+
+            EnsureRemainingCapacity( 80 );
+
+            length= numberFormat.WriteBin( value, buffer, length, overrideWidth );
+
+            ALIB_DBG.ASSERT( length <= Capacity() );
+
+            return this;
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #_Bin(ulong,int,NumberFormat) which provides default parameter(s).
+         *
+         * @param value         The value to append.
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _Bin( ulong value, NumberFormat numberFormat )
+        {
+            return _Bin( value, 0, numberFormat );
+        }
+
+
+        /** ********************************************************************************************
+         * Append a unsigned 64-Bit integer value in hexadecimal format.
+         *
+         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * the static singleton found in
+         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational".
+         * To generate output better readable for humans, provide
+         * \ref cs::aworx::lib::strings::NumberFormat::Global "NumberFormat.Global", or a
+         * customized object of that type.
+         *
+         * See \ref cs::aworx::lib::strings::NumberFormat "NumberFormat"
+         * for more information on formatting options.
+         *
+         * @param value         The value to append.
+         * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
+         *                      specified in field
+         *                      \ref cs::aworx::lib::strings::NumberFormat::HexFieldWidth "NumberFormat.HexFieldWidth".
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         **********************************************************************************************/
+        public AString _Hex( ulong value, int overrideWidth= 0,  NumberFormat numberFormat= null )
+        {
+            hash= 0;
+
+            if( numberFormat == null)
+                numberFormat= NumberFormat.Computational;
+
+            EnsureRemainingCapacity( 80 );
+
+            length= numberFormat.WriteHex( value, buffer, length, overrideWidth );
+
+            ALIB_DBG.ASSERT( length <= Capacity() );
+
+            return this;
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #_Hex(ulong,int,NumberFormat) which provides default parameter(s).
+         *
+         * @param value         The value to append.
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _Hex( ulong value, NumberFormat numberFormat )
+        {
+            return _Hex( value, 0, numberFormat );
+        }
+
+
+        /** ********************************************************************************************
+         * Append a unsigned 64-Bit integer value in octal format.
+         *
+         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * the static singleton found in
+         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational".
+         * To generate output better readable for humans, provide
+         * \ref cs::aworx::lib::strings::NumberFormat::Global "NumberFormat.Global", or a
+         * customized object of that type.
+         *
+         * See \ref cs::aworx::lib::strings::NumberFormat "NumberFormat"
+         * for more information on formatting options.
+         *
+         * @param value         The value to append.
+         * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
+         *                      specified in field
+         *                      \ref cs::aworx::lib::strings::NumberFormat::OctFieldWidth "NumberFormat.OctFieldWidth".
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         **********************************************************************************************/
+        public AString _Oct( ulong value, int overrideWidth= 0,  NumberFormat numberFormat= null )
+        {
+            hash= 0;
+
+            if( numberFormat == null)
+                numberFormat= NumberFormat.Computational;
+
+            EnsureRemainingCapacity( 80 );
+
+            length= numberFormat.WriteOct( value, buffer, length, overrideWidth );
+
+            ALIB_DBG.ASSERT( length <= Capacity() );
+
+            return this;
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #_Oct(ulong,int,NumberFormat) which provides default parameter(s).
+         *
+         * @param value         The value to append.
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _Oct( ulong value, NumberFormat numberFormat )
+        {
+            return _Oct( value, 0, numberFormat );
+        }
+
+
+        /** ****************************************************************************************
+         * Formats and appends a double floating point value.
+         *
+         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * the static singleton found in
+         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational".
+         * To generate output better readable for humans, provide
+         * \ref cs::aworx::lib::strings::NumberFormat::Global "NumberFormat.Global", or a
+         * customized object of that type.
+         *
+         * See \ref cs::aworx::lib::strings::NumberFormat "NumberFormat"
+         * for more information on formatting options.
+         *
+         * @param value         The value to append.
+         * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
+         *                      specified in field
+         *                      \ref cs::aworx::lib::strings::NumberFormat::IntegralPartMinimumWidth "NumberFormat.IntegralPartMinimumWidth".
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _( double value, int overrideWidth =0 , NumberFormat numberFormat = null )
+        {
+            hash= 0;
+
+            if( numberFormat == null)
+                numberFormat= NumberFormat.Computational;
+
+            EnsureRemainingCapacity( 48 ); // 2x15 + '.' + ',' + sign + fear
+
+            length= numberFormat.WriteFloat( value, buffer, length, overrideWidth );
+
+            ALIB_DBG.ASSERT( length <= Capacity() );
+
+            return this;
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #_(double,int,NumberFormat) which provides default parameter(s).
+         *
+         * @param value         The value to append.
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _( double value, NumberFormat numberFormat )
+        {
+            return _( value, 0, numberFormat );
+        }
+
 
         /** ****************************************************************************************
          * Creates a String containing a copy of the contents of this AString.
@@ -2840,172 +3193,745 @@ public class AString
         }
 
         /** ****************************************************************************************
-         * Reads a 32-Bit integer from the %AString at the given position.
-         * The given output parameter is set to point to first character that is not a number.
-         * If no number is found at the given index, zero is returned and the output parameter is
-         * set to the original start index.
-         *
-         * Leading whitespace characters are ignored. However, if after leading whitespaces no
-         * numbers were found, then the output parameter is set to the original start index.
-         * This way, the optionally provided index can be used to check if parsing succeeded.
+         * Parses an integer value consisting of characters \c '0' to \c '9' from this string.
+         * <br>Unlike with #ParseInt or #ParseDec, no sign, whitespaces or group characters are
+         * accepted.
          *
          * @param startIdx     The start index from where the integer value is tried to be parsed.
-         *                     Optional and defaults to 0.
+         *                     Optional and defaults to \c 0.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the float number that was parsed.
          *                     If parsing fails, it will be set to the value of parameter startIdx.
-         * @param whitespaces  White space characters used to trim the substring at the front
-         *                     before reading the value.
-         *                     Defaults to \c null, which causes the method to use
-         *                     \ref CString.DefaultWhitespaces.
          *
          * @return  The parsed value. In addition, the input/output parameter idx is set to point
          *          to the first character behind any found integer number.
          ******************************************************************************************/
-        public int ToInt( int startIdx, out int newIdx, char[] whitespaces =null )
+        public ulong ParseDecDigits( int startIdx, out int newIdx )
         {
-            return (int) ToLong( startIdx, out newIdx, whitespaces );
+            newIdx= startIdx;
+            return NumberFormat.ParseDecDigits( buffer, ref newIdx, length-1 );
         }
 
         /** ****************************************************************************************
-         * Reads a 32-Bit integer from the %AString at the given position.
-         * If no number is found at the given index, zero is returned.
-         * Leading whitespace characters are ignored.
+         * Parses a long integer value in decimal, binary, hexadecimal or octal format from
+         * the string by invoking method
+         * \ref cs::aworx::lib::strings::NumberFormat::ParseInt "NumberFormat.ParseInt"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
          *
-         * @param startIdx The start index from where the long value is tried to be parsed.
-         *                 Optional and defaults to 0.
+         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
+         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * read.
          *
-         * @return The parsed value.
-         ******************************************************************************************/
-        public int ToInt( int startIdx= 0 )
-        {
-            return (int) ToLong( startIdx );
-        }
-
-        /** ****************************************************************************************
-         * Reads a 64-Bit integer from the %AString at the given position.
-         * The given output parameter is set to point to first character that is not a number.
-         * If no number is found at the given index, zero is returned and the output parameter is
-         * set to the original start index.
+         * For more information on number conversion, see class
+         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * have a corresponding implementation within class \b %AString.
          *
-         * Leading whitespace characters are ignored. However, if after leading whitespaces no
-         * numbers were found, then the output parameter is set to the original start index.
-         * This way, the optionally provided index can be used to check if parsing succeeded.
          *
-         * @param startIdx     The start index from where the integer value is tried to be parsed.
-         *                     Optional and defaults to 0.
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
          * @param[out] newIdx  Optional output variable that will point to the first
-         *                     character in this string after the float number that was parsed.
-         *                     If parsing fails, it will be set to the value of parameter startIdx.
-         * @param whitespaces  White space characters used to trim the substring at the front
-         *                     before reading the value.
-         *                     Defaults to \c null, which causes the method to use
-         *                     \ref CString.DefaultWhitespaces.
-         *
-         * @return  The parsed value. In addition, the input/output parameter idx is set to point
-         *          to the first character behind any found integer number.
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
          ******************************************************************************************/
-        public long ToLong( int startIdx, out int newIdx, char[] whitespaces =null )
+        public long ParseInt( int startIdx, NumberFormat numberFormat, out int newIdx  )
         {
             newIdx= startIdx;
-            if ( (startIdx= IndexOfAny( whitespaces != null ? whitespaces : CString.DefaultWhitespaces,
-                                        Inclusion.Exclude, startIdx )) == -1 )
-                return 0;
-
-            int oldIdx=  startIdx;
-            long retval= NumberFormat.Global.StringToInteger( buffer, ref startIdx, length-1 );
-            if ( oldIdx != startIdx )
-                newIdx= startIdx;
-
-            return retval;
-        }
-
-        /** ****************************************************************************************
-         * Reads a 64-Bit integer from the %AString at the given position.
-         * If no number is found at the given index, zero is returned.
-         * Leading whitespace characters are ignored.
-         *
-         * @param startIdx The start index from where the long value is tried to be parsed.
-         *                 Optional and defaults to 0.
-         *
-         * @return The parsed value.
-         ******************************************************************************************/
-        public long ToLong( int startIdx= 0 )
-        {
-            // skip whitespaces
-            if ( (startIdx= IndexOfAny( CString.DefaultWhitespaces, Inclusion.Exclude, startIdx )) == -1 )
-                return 0;
-
-            return  NumberFormat.Global.StringToInteger( buffer, ref startIdx, length-1 );
-        }
-
-        /** ****************************************************************************************
-         * Reads a floating point value from this object at the given position using the
-         * class com::aworx::lib::strings::NumberFormat "NumberFormat".
-         * If no object of this type is provided with optional parameter \p numberFormat,
-         * the static default object found in
-         * \ref cs::aworx::lib::strings::NumberFormat::Global "NumberFormat.Global"
-         * is used.
-         *
-         * Leading whitespace characters as defined in optional parameter \p whitespaces, are
-         * ignored.
-         *
-         * The optional output parameter \p newIdx is set to point to the first character that does
-         * not belong to the number. If no number is found at the given index (respectively at
-         * the first non-whitespace character at or after the given index), zero is returned and
-         * the output parameter is set to the original start index.
-         *
-         * @param startIdx     The start index from where the float value is tried to be read.
-         *                     Defaults to 0.
-         * @param[out] newIdx  Optional output variable that will point to the first character
-         *                     after the float number that was parsed.
-         *                     If parsing fails, it will be set to the value of parameter startIdx.
-         *                     Therefore, this parameter can be used to check if a value was found.
-         * @param numberFormat The object performing the conversion and defines the output format.
-         *                     Optional and defaults to \c null.
-         * @param whitespaces  White space characters used to trim the substring at the front
-         *                     before reading the value.
-         *                     Defaults to \c null, which causes the method to use
-         *                     \ref CString.DefaultWhitespaces.
-         *
-         * @return  The parsed value. In addition, the output parameter \p newIdx is set to point
-         *          to the first character behind any found float number.
-         ******************************************************************************************/
-        public double ToFloat( int startIdx,out int newIdx, NumberFormat  numberFormat= null, char[] whitespaces =null )
-        {
-            // initialize output variable newIdx
-            newIdx= startIdx;
-            if ( whitespaces  == null )    whitespaces= CString.DefaultWhitespaces;
-            if ( numberFormat == null )    numberFormat= NumberFormat.Global;
-
-            // get index, read whitespaces and store start index after white spaces
-            if ( (startIdx= IndexOfAny( whitespaces, Inclusion.Exclude, startIdx ) ) == -1 )
-                return 0;
-
-            int oldIdx= startIdx;
-            double retval=  numberFormat.StringToFloat( buffer, ref startIdx, length-1 );
-            if ( oldIdx != startIdx )
-                newIdx= startIdx;
-
-            return retval;
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseInt( buffer, ref newIdx, length - 1 );
         }
 
         /** ****************************************************************************************
          * Overloaded version of
-         * \ref ToFloat(int,out int,NumberFormat,char[]) "ToFloat" providing default values for
+         * \ref ParseInt(int,NumberFormat,out int) "ParseInt" providing default values for
          * omitted parameters.
          *
-         * @param startIdx  The start index from where the float value is tried to be read.
-         *                  Defaults to 0.
-         *
-         * @return  The parsed value.
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return The parsed value.
          ******************************************************************************************/
-        public double ToFloat( int startIdx= 0 )
+        public long ParseInt( int startIdx = 0, NumberFormat numberFormat = null )
         {
-            int dummy;
-            return ToFloat( startIdx, out dummy );
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseInt( buffer, ref startIdx, length - 1 );
         }
 
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseInt(int,NumberFormat,out int) "ParseInt" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public long ParseInt( int startIdx, out int newIdx  )
+        {
+            newIdx= startIdx;
+            return  NumberFormat.Computational.ParseInt( buffer, ref newIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseInt(int,NumberFormat,out int) "ParseInt" providing default values for
+         * omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the input/output parameter idx is set to point
+         *          to the first character behind any found integer number.
+         ******************************************************************************************/
+        public long ParseInt( NumberFormat numberFormat,  out int newIdx  )
+        {
+            newIdx= 0;
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseInt( buffer, ref newIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseInt(int,NumberFormat,out int) "ParseInt" providing default values for
+         * omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public long ParseInt( NumberFormat numberFormat )
+        {
+            int dummy= 0;
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseInt( buffer, ref dummy, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseInt(int,NumberFormat,out int) "ParseInt" providing default values for
+         * omitted parameters.
+         *
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the input/output parameter idx is set to point
+         *          to the first character behind any found integer number.
+         ******************************************************************************************/
+        public long ParseInt( out int newIdx  )
+        {
+            newIdx= 0;
+            return NumberFormat.Computational.ParseInt( buffer, ref newIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Reads an unsigned 64-bit integer in standard decimal format at the given position
+         * from this %AString. This is done, by invoking
+         * \ref cs::aworx::lib::strings::NumberFormat::ParseDec "NumberFormat.ParseDec"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
+         *
+         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
+         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * read.
+         *
+         * Sign literals \c '-' or \c '+' are \b not accepted and parsing will fail.
+         * For reading signed integer values, see methods #ParseInt, for floating point numbers
+         * #ParseFloat.
+         *
+         * For more information on number conversion, see class
+         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * have a corresponding implementation within class \b %AString.
+         *
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public ulong ParseDec( int startIdx, NumberFormat numberFormat, out int newIdx  )
+        {
+            newIdx= startIdx;
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseDec( buffer, ref newIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseDec(int,NumberFormat,out int) "ParseDec" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return The parsed value.
+         ******************************************************************************************/
+        public ulong ParseDec( int startIdx = 0, NumberFormat numberFormat = null )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseDec( buffer, ref startIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseDec(int,NumberFormat,out int) "ParseDec" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public ulong ParseDec( int startIdx, out int newIdx  )
+        {
+            newIdx= startIdx;
+            return  NumberFormat.Computational.ParseDec( buffer, ref newIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseDec(int,NumberFormat,out int) "ParseDec" providing default values for
+         * omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the input/output parameter idx is set to point
+         *          to the first character behind any found integer number.
+         ******************************************************************************************/
+        public ulong ParseDec( NumberFormat numberFormat,  out int newIdx  )
+        {
+            newIdx= 0;
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseDec( buffer, ref newIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseDec(int,NumberFormat,out int) "ParseDec" providing default values for
+         * omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public ulong ParseDec( NumberFormat numberFormat )
+        {
+            int dummy= 0;
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseDec( buffer, ref dummy, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseDec(int,NumberFormat,out int) "ParseDec" providing default values for
+         * omitted parameters.
+         *
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the input/output parameter idx is set to point
+         *          to the first character behind any found integer number.
+         ******************************************************************************************/
+        public ulong ParseDec( out int newIdx  )
+        {
+            newIdx= 0;
+            return NumberFormat.Computational.ParseDec( buffer, ref newIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Reads an unsigned 64-bit integer in binary format at the given position
+         * from this \b %AString. This is done, by invoking
+         * \ref cs::aworx::lib::strings::NumberFormat::ParseBin "NumberFormat.ParseBin"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
+         *
+         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
+         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * read.
+         *
+         * For more information on number conversion, see class
+         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * have a corresponding implementation within class \b %AString.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public ulong ParseBin( int startIdx, NumberFormat numberFormat, out int newIdx  )
+        {
+            newIdx= startIdx;
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseBin( buffer, ref newIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseBin(int,NumberFormat,out int) "ParseBin" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return The parsed value.
+         ******************************************************************************************/
+        public ulong ParseBin( int startIdx = 0, NumberFormat numberFormat = null )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseBin( buffer, ref startIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseBin(int,NumberFormat,out int) "ParseBin" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public ulong ParseBin( int startIdx, out int newIdx  )
+        {
+            newIdx= startIdx;
+            return  NumberFormat.Computational.ParseBin( buffer, ref newIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseBin(int,NumberFormat,out int) "ParseBin" providing default values for
+         * omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the input/output parameter idx is set to point
+         *          to the first character behind any found integer number.
+         ******************************************************************************************/
+        public ulong ParseBin( NumberFormat numberFormat,  out int newIdx  )
+        {
+            newIdx= 0;
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseBin( buffer, ref newIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseBin(int,NumberFormat,out int) "ParseBin" providing default values for
+         * omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public ulong ParseBin( NumberFormat numberFormat )
+        {
+            int dummy= 0;
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseBin( buffer, ref dummy, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseBin(int,NumberFormat,out int) "ParseBin" providing default values for
+         * omitted parameters.
+         *
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the input/output parameter idx is set to point
+         *          to the first character behind any found integer number.
+         ******************************************************************************************/
+        public ulong ParseBin( out int newIdx  )
+        {
+            newIdx= 0;
+            return NumberFormat.Computational.ParseBin( buffer, ref newIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Reads an unsigned 64-bit integer in hexadecimal format at the given position
+         * from this \b %AString. This is done, by invoking
+         * \ref cs::aworx::lib::strings::NumberFormat::ParseHex "NumberFormat.ParseHex"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
+         *
+         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
+         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * read.
+         *
+         * For more information on number conversion, see class
+         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * have a corresponding implementation within class \b %AString.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public ulong ParseHex( int startIdx, NumberFormat numberFormat, out int newIdx  )
+        {
+            newIdx= startIdx;
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseHex( buffer, ref newIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseHex(int,NumberFormat,out int) "ParseHex" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return The parsed value.
+         ******************************************************************************************/
+        public ulong ParseHex( int startIdx = 0, NumberFormat numberFormat = null )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseHex( buffer, ref startIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseHex(int,NumberFormat,out int) "ParseHex" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public ulong ParseHex( int startIdx, out int newIdx  )
+        {
+            newIdx= startIdx;
+            return  NumberFormat.Computational.ParseHex( buffer, ref newIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseHex(int,NumberFormat,out int) "ParseHex" providing default values for
+         * omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the input/output parameter idx is set to point
+         *          to the first character behind any found integer number.
+         ******************************************************************************************/
+        public ulong ParseHex( NumberFormat numberFormat,  out int newIdx  )
+        {
+            newIdx= 0;
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseHex( buffer, ref newIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseHex(int,NumberFormat,out int) "ParseHex" providing default values for
+         * omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public ulong ParseHex( NumberFormat numberFormat )
+        {
+            int dummy= 0;
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseHex( buffer, ref dummy, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseHex(int,NumberFormat,out int) "ParseHex" providing default values for
+         * omitted parameters.
+         *
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the input/output parameter idx is set to point
+         *          to the first character behind any found integer number.
+         ******************************************************************************************/
+        public ulong ParseHex( out int newIdx  )
+        {
+            newIdx= 0;
+            return NumberFormat.Computational.ParseHex( buffer, ref newIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Reads an unsigned 64-bit integer in octal format at the given position
+         * from this \b %AString. This is done, by invoking
+         * \ref cs::aworx::lib::strings::NumberFormat::ParseOct "NumberFormat.ParseOct"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
+         *
+         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
+         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * read.
+         *
+         * For more information on number conversion, see class
+         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * have a corresponding implementation within class \b %AString.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public ulong ParseOct( int startIdx, NumberFormat numberFormat, out int newIdx  )
+        {
+            newIdx= startIdx;
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseOct( buffer, ref newIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseOct(int,NumberFormat,out int) "ParseOct" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return The parsed value.
+         ******************************************************************************************/
+        public ulong ParseOct( int startIdx = 0, NumberFormat numberFormat = null )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseOct( buffer, ref startIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseOct(int,NumberFormat,out int) "ParseOct" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public ulong ParseOct( int startIdx, out int newIdx  )
+        {
+            newIdx= startIdx;
+            return  NumberFormat.Computational.ParseOct( buffer, ref newIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseOct(int,NumberFormat,out int) "ParseOct" providing default values for
+         * omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the input/output parameter idx is set to point
+         *          to the first character behind any found integer number.
+         ******************************************************************************************/
+        public ulong ParseOct( NumberFormat numberFormat,  out int newIdx  )
+        {
+            newIdx= 0;
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseOct( buffer, ref newIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseOct(int,NumberFormat,out int) "ParseOct" providing default values for
+         * omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public ulong ParseOct( NumberFormat numberFormat )
+        {
+            int dummy= 0;
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseOct( buffer, ref dummy, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseOct(int,NumberFormat,out int) "ParseOct" providing default values for
+         * omitted parameters.
+         *
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the input/output parameter idx is set to point
+         *          to the first character behind any found integer number.
+         ******************************************************************************************/
+        public ulong ParseOct( out int newIdx )
+        {
+            newIdx= 0;
+            return NumberFormat.Computational.ParseOct( buffer, ref newIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Reads a floating point number at the given position from this \b %AString.
+         * This is done, by invoking
+         * \ref cs::aworx::lib::strings::NumberFormat::ParseFloat "NumberFormat.ParseFloat"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * which is configured to 'international' settings (not using the locale) and therefore
+         * also not parsing grouping characters.
+         *
+         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
+         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * read.
+         *
+         * For more information on parsing options for floating point numbers and number
+         * conversion in general, see class
+         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * have a corresponding implementation within class \b %AString.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public double ParseFloat( int startIdx, NumberFormat numberFormat, out int newIdx  )
+        {
+            newIdx= startIdx;
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseFloat( buffer, ref newIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseFloat(int,NumberFormat,out int) "ParseFloat" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return The parsed value.
+         ******************************************************************************************/
+        public double ParseFloat( int startIdx = 0, NumberFormat numberFormat = null )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseFloat( buffer, ref startIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseFloat(int,NumberFormat,out int) "ParseFloat" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public double ParseFloat( int startIdx, out int newIdx  )
+        {
+            newIdx= startIdx;
+            return  NumberFormat.Computational.ParseFloat( buffer, ref newIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseFloat(int,NumberFormat,out int) "ParseFloat" providing default values for
+         * omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the input/output parameter idx is set to point
+         *          to the first character behind any found integer number.
+         ******************************************************************************************/
+        public double ParseFloat( NumberFormat numberFormat,  out int newIdx  )
+        {
+            newIdx= 0;
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseFloat( buffer, ref newIdx, length - 1 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseFloat(int,NumberFormat,out int) "ParseFloat" providing default values for
+         * omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public double ParseFloat( NumberFormat numberFormat )
+        {
+            int dummy= 0;
+            return ( numberFormat != null ? numberFormat
+                                          : NumberFormat.Computational ).ParseFloat( buffer, ref dummy, length - 1 );
+        }
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref ParseFloat(int,NumberFormat,out int) "ParseFloat" providing default values for
+         * omitted parameters.
+         *
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the input/output parameter idx is set to point
+         *          to the first character behind any found integer number.
+         ******************************************************************************************/
+        public double ParseFloat( out int newIdx  )
+        {
+            newIdx= 0;
+            return NumberFormat.Computational.ParseFloat( buffer, ref newIdx, length - 1 );
+        }
 
     /** @} */
 
@@ -3042,10 +3968,10 @@ public class AString
          *
          * @return \c true if given AString is \c null or has a length of \c 0.
          ******************************************************************************************/
-        public static bool IsNullOrEmpty( AString ms ) 
+        public static bool IsNullOrEmpty( AString ms )
         {
-            return     ms        == null 
-                    || ms.length == 0    ;    
+            return     ms        == null
+                    || ms.length == 0    ;
         }
 
         /** ****************************************************************************************
@@ -3058,11 +3984,11 @@ public class AString
          ******************************************************************************************/
         public static bool IsNull ( Object o )
         {
-            return  (    ( o is AString   && ( (AString)   o ).IsNull() ) 
-                      || ( o is Substring && ( (Substring) o ).IsNull() ) 
+            return  (    ( o is AString   && ( (AString)   o ).IsNull() )
+                      || ( o is Substring && ( (Substring) o ).IsNull() )
                       || o == null
                     );
-        }        
+        }
 
 
     // #############################################################################################

@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox.unittests - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
 using System.Threading;
@@ -11,10 +11,10 @@ using cs.aworx.lox.core.textlogger;
 using cs.aworx.lib.strings;
 using ut_cs_aworx;
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     using NUnit.Framework;
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 #endif
 
@@ -31,10 +31,10 @@ using System.Collections.Generic;
 
 namespace ut_cs_aworx_lox
 {
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [TestFixture ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestClass]
     #endif
     public class CS_ALox_release   : AWorxUnitTesting
@@ -45,10 +45,10 @@ namespace ut_cs_aworx_lox
     /** ********************************************************************************************
      * Lox_LogLevelSetting
      **********************************************************************************************/
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]

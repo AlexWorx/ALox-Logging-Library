@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  aworx::lox - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -22,17 +22,20 @@
 #endif
 
 
-namespace aworx {
-namespace       lox {
+namespace aworx { namespace lox
+{
 
 
-// forwards
+// forward declarations
 class Lox;
-namespace  core   {
-                     class Logger;
-                     namespace  textlogger  {class TextLogger; }
-                  }
-
+namespace core
+{
+    class Logger;
+    namespace textlogger
+    {
+        class TextLogger;
+    }
+}
 
 /** ************************************************************************************************
  * Holds static objects used for standard debug logging and provides an interface to
@@ -40,12 +43,12 @@ namespace  core   {
  *
  * \note:
  *   In C# and Java, this class is the interface class for debug logging which gets pruned,
- *   and mimics the the functionality of class \ref aworx::lox::Lox "Lox".
+ *   and mimics the functionality of class \ref aworx::lox::Lox "Lox".
  *   In C++, there is no need to double functionality of \b Lox here.
  **************************************************************************************************/
 class Log
 {
-    #if defined(ALOX_DBG_LOG)
+    #if ALOX_DBG_LOG
 
     // #############################################################################################
     // Public fields
@@ -59,9 +62,9 @@ class Log
         ALOX_API static core::textlogger::TextLogger*   IDELogger;
 
         /**  The ALib ReportWriter. This will be created and registered in method
-         *   \ref aworx::lox::Log::AddDebugLogger "Log::AddDebugLogger" and removed and deleted in
+         *   \ref aworx::lox::Log::AddDebugLogger    "Log::AddDebugLogger" and removed and deleted in
          *   \ref aworx::lox::Log::RemoveDebugLogger "Log::RemoveDebugLogger" in the case that
-         * the original ALib ConsoleReportWriter is in place.
+         * the original ALib \b ReportWriterStdIO is in place.
          */
         static ALoxReportWriter*                        DebugReportWriter;
 
@@ -116,8 +119,8 @@ class Log
         ALOX_API static void      RemoveDebugLogger( Lox* lox );
 
         /** ****************************************************************************************
-         * In the case that the original ALib ConsoleReportWriter is still in place,
-         * \ref aworx::lib::Report::PushWriter "Report::PushWriter" is invoked to provide a
+         * In the case that the original ALib \b ReportWriterStdIO is still in place,
+         * \ref aworx::lib::lang::Report::PushWriter "Report::PushWriter" is invoked to provide a
          * ReportWriter of type
          * \ref aworx::lox::ALoxReportWriter "ALoxReportWriter".
          *

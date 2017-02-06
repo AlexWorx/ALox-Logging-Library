@@ -1,8 +1,8 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /**
@@ -12,27 +12,28 @@ Well, it seems like a miracle that C++ compilers are written in C++ and looking 
 scenes it is really fine piece of <em>software art</em> when you really start bootstrapping
 such a system from scratch!
 
-Well, with ALox it was much more simple: We implemented ALox and when this was done, we just
-added ALox Log lines into ALox code. Easy!
+Well, with \b %ALox it was much more simple: We implemented \b %ALox and when this was done, we just
+added \b %ALox Log lines into \b %ALox code. Easy!
 
-So, this chapter explains how these internal domains are organized and how an ALox user can
+So, this chapter explains how these internal logs are organized and how an \b %ALox user can
 work with them. A first introduction to this is given in the language-specific tutorials,
 chapter
 <b>ALox Configuration Information and Internal Log Messages</b>
-( \ref tutcpp_config "C++",
- \ref   tutcs_config "C#",
+(\ref tutcpp_config "C++",
+ \ref  tutcs_config "C#",
  \ref tutjava_config "Java").
 
 \~Comment ####################################################################################### \~
 # 1. The Internal Domain Tree # {#man_internal_domains_tree}
-<em>Log Domains</em> are hierarchically organized in ALox. All <em>Log Domains</em> together constitute a "tree of <em>Log Domains</em>".
-Class <b>Lox</b>
+<em>Log Domains</em> are hierarchically organized in \b %ALox. All <em>Log Domains</em> together
+constitute a tree of <em>Log Domains</em>. Class
+<b>Lox</b>
 ([C++] (@ref      #aworx::lox::Lox),
  [C#]  (@ref  #cs::aworx::lox::Lox),
  [Java](@ref #com::aworx::lox::Lox)) maintains the tree, inserts <em>Log Domains</em> 'on the fly' and
 manages the \e Verbosity on a per <em>Log Domain</em> and \e %Logger basis.
 
-For internal <em>Log Statement</em>, ALox uses a second, separate domain tree. The separation is made to keep the
+For internal <em>Log Statements</em>, \b %ALox uses a second, separate domain tree. The separation is made to keep the
 main tree of <em>Log Domains</em> 'free' for custom domains. If this was different, then setting the root domain
 as in the following sample:
 
@@ -55,24 +56,24 @@ is a simple string \c "$/". Therefore, the code:
 is equivalent to the previous line.
 
 \note Of-course it is advised to use the static field instead of 'hard-coding' \c "$/" to
-      be compatible with future versions of ALox (...or at least get a compiler error if this
+      be compatible with future versions of \b %ALox (...or at least get a compiler error if this
       would be changed to something different than a string code.).
 
-This piece of information is all you need to control \e Verbosity of ALox internal messages.
+This piece of information is all you need to control \e Verbosity of \b %ALox internal messages.
 
-Please note, that method
+Please Note that method
 <b>%Log.AddDebugLogger</b>
   ([C++](@ref      aworx::lox::Log::AddDebugLogger),
   [C#]  (@ref  cs::aworx::lox::Log::AddDebugLogger),
   [Java](@ref com::aworx::lox::Log::addDebugLogger)) sets the \e %Verbosity.Warning for
-the internal domain. This way, when using ALox, your debug-logger will show you errors
-and warnings if something goes wrong inside of ALox (e.g. when you pass wrong parameters
-to ALox, etc.).
+the internal domain. This way, when using \b %ALox, your debug-logger will show you errors
+and warnings if something goes wrong inside of \b %ALox (e.g. when you pass wrong parameters
+to \b %ALox, etc.).
 
 \~Comment ####################################################################################### \~
 # 2. Sub-Domains used by ALox # {#man_internal_domains_sub}
 
-For different topics, ALox uses different sub-domains for its internal logging. As usual,
+For different topics, \b %ALox uses different sub-domains for its internal logging. As usual,
 this allows to control the \e Verbosity of the internal log output more granular then by setting
 the internal root domain \c "$/". For example, if a software uses wrong <em>Log Domains</em> evaluated from a more
 complex configuration of <em>Scope Domains</em>, then, to investigate into the problem,
@@ -82,7 +83,7 @@ suppressing other internal messages:
 \snippet "UT_dox_manual.cs"        Man_InternalDomains___3
 
 
-The list of sub-domains used by ALox is given in the following table:
+The list of sub-domains used by \b %ALox is given in the following table:
 
 Sub-Domain | Description
 - - - - - -| - - - - - - - - - - - - - - - - - - -
@@ -94,10 +95,6 @@ LGD        | Used with storing and retrieving <em>Log Data</em> objects.
 VAR        | Used when parsing and processing external variables.
 
 
-
-
-\~Comment
-
 \~Comment ####################################################################################### \~
 # 3. External Use of Internal Domains # {#man_internal_domains_external}
 
@@ -106,24 +103,24 @@ It is not 'forbidden' to have custom <em>Log Statements</em> using the internal 
 \snippet "UT_dox_manual.cs"        Man_InternalDomains_ext___3
 
 Of-course it is advisable to do so only if there are good reasons for that.
-There is one occasion where this is already, by default done. ALox builds on underlying utility library
+There is one occasion where this is already, by default done. \b %ALox builds on underlying utility library
 <b>%ALib</b>
   ([C++](@ref      aworx::lib),
   [C#]  (@ref  cs::aworx::lib),
-  [Java](@ref com::aworx::lib)). ALib does not 'know' ALox (it is just too low level to 'know')
+  [Java](@ref com::aworx::lib)). \b %ALib does not 'know' \b %ALox (it is just too low level to 'know')
 and hence uses an own way to have at least a minimum, fundamental way to communicate problems
-to the outer world. This communication is implemented using ALib classes
+to the outer world. This communication is implemented using \b %ALib classes
 <b>%Report</b>
-  ([C++](@ref      aworx::lib::Report),
-  [C#]  (@ref  cs::aworx::lib::Report),
-  [Java](@ref com::aworx::lib::Report)) and
+  ([C++](@ref      aworx::lib::lang::Report),
+  [C#]  (@ref  cs::aworx::lib::lang::Report),
+  [Java](@ref com::aworx::lib::lang::Report)) and
 <b>%ReportWriter</b>
-  ([C++](@ref      aworx::lib::ReportWriter),
-  [C#]  (@ref  cs::aworx::lib::ReportWriter),
-  [Java](@ref com::aworx::lib::ReportWriter)).
+  ([C++](@ref      aworx::lib::lang::ReportWriter),
+  [C#]  (@ref  cs::aworx::lib::lang::ReportWriter),
+  [Java](@ref com::aworx::lib::lang::ReportWriter)).
 These classes together implement a pattern of having a 'pluggable' object that handles report
-messages. The whole concept is mainly used in debug versions of ALib to report assertions caused
-by wrong parameters or other faulty use of ALib classes.
+messages. The whole concept is mainly used in debug versions of \b %ALib to report assertions caused
+by wrong parameters or other faulty use of \b %ALib classes.
 
 Now, method
 <b>%Log.AddDebugLogger</b>
@@ -131,16 +128,16 @@ Now, method
   [C#]  (@ref  cs::aworx::lox::Log::AddDebugLogger),
   [Java](@ref com::aworx::lox::Log::addDebugLogger)) not only creates a (or more) \e %Logger
 and attaches it to the \e Lox singleton used for debug-logging, it also creates a
-custom \b %ReportWriter and plugs it to ALib! The type of this \b %ReportWriter is
+custom \b %ReportWriter and plugs it to \b %ALib! The type of this \b %ReportWriter is
 <b>%ALoxReportWriter</b>
   ([C++](@ref      aworx::lox::ALoxReportWriter),
   [C#]  (@ref  cs::aworx::lox::ALoxReportWriter),
-  [Java](@ref com::aworx::lox::ALoxReportWriter)). This class is forwarding ALib reports
+  [Java](@ref com::aworx::lox::ALoxReportWriter)). This class is forwarding \b %ALib reports
 to the debug \b %Lox singleton using internal domain <c>'$/REPORT'</c>.
 
-This all makes a lot of sense, because this way, internal ALib reports are directed to the
-same domain tree as internal ALox logging! When enabling internal log messages of ALox for
-a \e %Logger, then also ALib reports are received.
+This all makes a lot of sense, because this way, internal \b %ALib reports are directed to the
+same domain tree as internal \b %ALox logging! When enabling internal log messages of \b %ALox for
+a \e %Logger, then also reports are received.
 
 
 \~Comment ####################################################################################### \~
@@ -159,11 +156,12 @@ As an alternative to internal logging, method
   [C#]  (@ref  #cs::aworx::lox::Lox::State),
   [Java](@ref #com::aworx::lox::Lox::state)) provides an actual snapshot of all (or selected)
 settings made for a \b %Lox and its \e %Loggers attached.
-Depending on the situation, each way to disclose what is going on inside ALox might help
+Depending on the situation, each way to disclose what is going on inside \b %ALox might help
 when something is irritating. As an alternative to (temporarily) adding an invocation of
-<b>%Lox.State</b> to your code, ALox provides configuration variable
+<b>%Lox.State</b> to your code, \b %ALox provides configuration variable
 [ALOX_LOXNAME_DUMP_STATE_ON_EXIT](group__GrpALoxConfigVars.html). This allows to enable an automatic
-dump of the state using a command line parameter or other external configuration sources.
+dump of the state using a command line parameter or other external configuration variable sources.
+
 --------------------------------------------------------------------
 <center>Next chapter: \ref man_external_configuration </center> <center> \ref manual "Back to index" </center>
 */

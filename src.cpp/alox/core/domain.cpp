@@ -1,11 +1,12 @@
 ﻿// #################################################################################################
 //  aworx::lox::core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
-#include "domain.hpp"
+#include "alib/alib.hpp"
+
+#include "alox/alox.hpp"
 
 #if !defined (HPP_ALIB_STRINGS_SUBSTRING)
     #include "alib/strings/substring.hpp"
@@ -41,7 +42,7 @@ Domain::Domain( Domain* parent, const String& name )
     Name=           name;
 
     SubDomains.reserve(3);
-    Data      .reserve( parent == nullptr ? (size_t) 2 : parent->Data.size() );
+    Data      .reserve( parent == nullptr ? static_cast<size_t>( 2 ) :  parent->Data.size() );
 
     // if we have a parent, we inherit all loggers' verbosities
     if( parent != nullptr )
@@ -66,14 +67,13 @@ Domain::~Domain()
     for ( Domain* sub : SubDomains )
         delete sub;
     for ( auto& it : PrefixLogables )
-        if ( it.first.Type == 0 )
-            delete (AString*) it.first.Object;
+        delete  it.first;
 }
 
 // #################################################################################################
 // Methods
 // #################################################################################################
-Domain* Domain::Find( Substring domainPath, Case sensitivity, int maxCreate, bool* wasCreated )
+Domain* Domain::Find( Substring domainPath, int maxCreate, bool* wasCreated )
 {
     // set optional output parameter as default to false
     bool dummy;
@@ -81,10 +81,10 @@ Domain* Domain::Find( Substring domainPath, Case sensitivity, int maxCreate, boo
         wasCreated= &dummy;
     *wasCreated= false;
 
-    int lenBeforeTrim= domainPath.Length();
+    integer lenBeforeTrim= domainPath.Length();
 
     // if string is empty (resp. contains only separator characters), return ourselves
-    while ( domainPath.Consume( Domain::Separator() ) )
+    while ( domainPath.ConsumeChar( Domain::Separator() ) )
         ;
     if( domainPath.IsEmpty() )
     {
@@ -100,14 +100,14 @@ Domain* Domain::Find( Substring domainPath, Case sensitivity, int maxCreate, boo
     }
 
     // call find
-    return startDomain->findRecursive( domainPath, sensitivity, maxCreate, wasCreated );
+    return startDomain->findRecursive( domainPath, maxCreate, wasCreated );
 }
 
-Domain* Domain::findRecursive( Substring& domainPath, Case sensitivity, int maxCreate, bool* wasCreated )
+Domain* Domain::findRecursive( Substring& domainPath, int maxCreate, bool* wasCreated )
 {
     //--- get act sub-name and rest of path
-    domainPath.Consume( Domain::Separator() );
-    int endSubName= domainPath.IndexOf( Domain::Separator() );
+    domainPath.ConsumeChar( Domain::Separator() );
+    integer endSubName= domainPath.IndexOf( Domain::Separator() );
 
     ALIB_ASSERT_ERROR( endSubName != 0, "Internal Error" );
 
@@ -138,7 +138,7 @@ Domain* Domain::findRecursive( Substring& domainPath, Case sensitivity, int maxC
             subDomainIt=  SubDomains.begin();
             while ( subDomainIt != SubDomains.end() )
             {
-                int comparison= (*subDomainIt)->Name.CompareTo<false>( domainPath, sensitivity );
+                int comparison= (*subDomainIt)->Name.CompareTo<false>( domainPath, Case::Sensitive );
 
                 if( comparison >= 0 )
                 {
@@ -161,17 +161,16 @@ Domain* Domain::findRecursive( Substring& domainPath, Case sensitivity, int maxC
                 bool illegalCharacterFound= false;
                 for( int i= 0; i< domainPath.Length() ; ++i )
                 {
-                    char c= (int) domainPath[i];
-                    if (     c <  '-' || c > 'z'
-                          || c == '<' || c == '>'
-                          || c == '[' || c == ']'
-                          || c == '=' || c == '?' || c == ';' || c == ':'
-                          || c == '\\'|| c == '\''|| c == '.' || c == ','
-                       )
+                    char c= domainPath[i];
+                    if (!(    isdigit( c )
+                           || ( c >= 'A' && c <= 'Z' )
+                           || c == '-'
+                           || c == '_'
+                    ))
                     {
                         illegalCharacterFound= true;
-                        // ohdear: modifying const buffer...but this is definitely from an AString!
-                        *(char*) (domainPath.Buffer() + i)= '#';
+                        // oh dear: modifying const buffer...but this is definitely from an AString!
+                        *const_cast<char*>( domainPath.Buffer() + i)= '#';
                     }
                 }
 
@@ -194,14 +193,14 @@ Domain* Domain::findRecursive( Substring& domainPath, Case sensitivity, int maxC
 
     // recursion?
     return  restOfDomainPath.IsNotEmpty()
-            ? subDomain->findRecursive( restOfDomainPath, sensitivity, maxCreate, wasCreated )
+            ? subDomain->findRecursive( restOfDomainPath, maxCreate, wasCreated )
             : subDomain;
 }
 
 void Domain::ToString( AString& tAString )
 {
     tAString << FullPath;
-    tAString._('[')._( Format::Int32( CntLogCalls,3 ) )._("] ");
+    tAString._('[')._( Format( CntLogCalls,3 ) )._("] ");
 
     // get verbosities
     tAString._(" { ");
@@ -210,7 +209,7 @@ void Domain::ToString( AString& tAString )
             LoggerData& ld= Data[i];
             tAString._(i!=0 ? ", " : "" )
                     ._('(')
-                        ._('[')._( Format::Int32(ld.LogCallsPerDomain, 3) )._( "], " );
+                        ._('[')._( Format(ld.LogCallsPerDomain, 3) )._( "], " );
                         aworx::lox::ToString( ld.LoggerVerbosity, ld.Priority, tAString )
                     ._( ')' );
         }

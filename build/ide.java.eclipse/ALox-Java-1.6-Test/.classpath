@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/ALox-Java-1.6"/>
-	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="java.alib.unittests"/>
+	<classpathentry kind="src" path="alox.samples"/>
 	<classpathentry kind="src" path="java.alox.unittests"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>

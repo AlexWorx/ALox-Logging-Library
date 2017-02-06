@@ -1,8 +1,8 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 package com.aworx.lib.config;
@@ -31,8 +31,9 @@ import com.aworx.lib.strings.Substring;
  * - "Externalizing" a value:
  *   - Value is surrounded by quotes if it starts or ends with spaces or if it includes
  *     the delimiter token.
- *   - A few characters are escaped using \c '\\', for example \c '\\n', \c '\\r', \c '\\t' and also
- *    the double quotation marks \c ".
+ *   - A few characters are escaped using \c '\\'. Those are
+ *     \c \\n, \c \\r, \c \\t , \c \\a, \c \\b, \c \\v, \c \\f, \c \\e and also
+ *     the double quotation marks \c \\" and the backslash itself (\c \\\\).
  *
  * - "Internalizing" a value:
  *   - If (non-escaped) quote \c " characters are found, those are removed and whitespaces
@@ -64,7 +65,7 @@ public class XTernalizer
     public  void    loadFromString( Variable variable, Object src )
     {
         variable.clearValues();
-        AString varValue= variable.addString();
+        AString varValue= variable.add();
 
         Substring subs= null;
         if( src instanceof Substring)
@@ -117,8 +118,8 @@ public class XTernalizer
             {
                 tmpSubs2.set( subs, 0, idx - 1 );
                 internalizeValue( tmpSubs2, varValue );
-                varValue= variable.addString();
-                subs.consume( idx );
+                varValue= variable.add();
+                subs.consumeChars( idx );
                 subs.trimStart();
                 idx= 0;
             }
@@ -155,16 +156,22 @@ public class XTernalizer
 
         while( src.isNotEmpty() )
         {
-            char c= src.consume();
+            char c= src.consumeChar();
 
             if( lastWasSlash )
             {
                 lastWasSlash= false;
                 char escChr= c == '\\' ? '\\' :
-                             c == 'n'  ? '\n' :
+                             c == '"'  ? '"'  :
                              c == 'r'  ? '\r' :
+                             c == 'n'  ? '\n' :
                              c == 't'  ? '\t' :
-                             c == '"'  ? '"'  : c;
+                             c == 'a'  ? '\007' :
+                             c == 'b'  ? '\b' :
+                             c == 'v'  ? '\013' :
+                             c == 'f'  ? '\f' :
+                             c == 'e'  ? '\033' :
+                             c;
 
                 dest._(escChr);
                 continue;
@@ -199,12 +206,7 @@ public class XTernalizer
 
 
     /** ********************************************************************************************
-     * Converts the given \p src string to an external representation. In particular, the following
-     * rules apply:
-     *   - \p src is surrounded by quotes if it starts or ends with spaces or if it includes
-     *     the delimiter character \p delim.
-     *   - A few characters are escaped using \c '\\', for example \c '\\n', \c '\\r', \c '\\t'
-     *     and also the double quotation marks \c ".
+     * Converts the given \p src string to an external representation.
      *
      * @param  src      The source string
      * @param  dest     The destination string
@@ -236,15 +238,21 @@ public class XTernalizer
 
         while( subs.isNotEmpty() )
         {
-            char c= subs.consume();
+            char c= subs.consumeChar();
 
             switch(c)
             {
-                case '\\' : dest._NC("\\\\"); break;
-                case '\r' : dest._NC("\\r" ); break;
-                case '\n' : dest._NC("\\n" ); break;
-                case '\t' : dest._NC("\\t" ); break;
-                case '"'  : dest._NC("\\\""); break;
+                case '\\'   : dest._NC("\\\\"); break;
+                case '"'    : dest._NC("\\\""); break;
+                case '\r'   : dest._NC("\\r" ); break;
+                case '\n'   : dest._NC("\\n" ); break;
+                case '\t'   : dest._NC("\\t" ); break;
+                case '\007' : dest._NC("\\a" ); break;
+                case '\b'   : dest._NC("\\b" ); break;
+                case '\013' : dest._NC("\\v" ); break;
+                case '\f'   : dest._NC("\\f" ); break;
+                case '\033' : dest._NC("\\e" ); break;
+
                 default   : dest._(c);        break;
             }
         }

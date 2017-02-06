@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany( "A-Worx GmbH" )]
 [assembly: AssemblyProduct( "ALox_CS_NET45_DLL" )]
-[assembly: AssemblyCopyright( "Written 2013-2016 by A-Worx GmbH, MIT License" )]
+[assembly: AssemblyCopyright( "Copyright 2013-2017 by A-Worx GmbH, published under Boost Software License" )]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -30,5 +30,5 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
-[assembly: AssemblyVersion( "1607.0" )]
-[assembly: AssemblyFileVersion( "1607.0" )]
+[assembly: AssemblyVersion( "1702.0" )]
+[assembly: AssemblyFileVersion( "1702.0" )]

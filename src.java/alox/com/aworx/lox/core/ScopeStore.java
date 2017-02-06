@@ -1,8 +1,8 @@
 // #####################################################################oggeg############################
 //  com.aworx.lox.core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package com.aworx.lox.core;
 
@@ -275,7 +275,7 @@ public class ScopeStore<T>
         actThread=          thread;
         lazyLanguageNode=   true;
     }
-    
+
     // #############################################################################################
     // Internals
     // #############################################################################################
@@ -313,7 +313,7 @@ public class ScopeStore<T>
                 actPathMapNode= languageStore.Get( languageKeySubstr.set(languageKey), create, separators );
                 return;
             }
-            
+
             languageKey._( separators.charAt_NC(1) );
 
 

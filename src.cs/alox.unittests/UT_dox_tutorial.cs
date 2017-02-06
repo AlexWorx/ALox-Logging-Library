@@ -2,8 +2,8 @@
 //  cs.aworx.lox.unittests - ALox Logging Library
 //  (Unit Tests to create tutorial sample code and output)
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
 using System.IO;
@@ -11,23 +11,24 @@ using System.Threading;
 using System.Xml.Linq;
 using ut_cs_aworx;
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     using NUnit.Framework;
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 #endif
 
 
 //! [Tut_using_statement]
 using cs.aworx.lib;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 using cs.aworx.lib.strings;
 using cs.aworx.lox;
 using cs.aworx.lox.core.textlogger;
 using cs.aworx.lox.loggers;
 using cs.aworx.lox.tools;
 //! [Tut_using_statement]
+
 
 namespace ut_cs_aworx_lox
 {
@@ -100,13 +101,13 @@ class FileIO
         Log.SetDomain( "READ", Scope.Method );
         Log.Info( "Reading " + fileName );
 
-        int fileVersion= 0;
+        String fileVersion;
         //...
         //...
         // Identified file version
-        fileVersion= 42;
+        fileVersion= "3.1";
 
-        Log.Store( new LogData( fileVersion ), "FILE_VERSION" );
+        Log.Store( fileVersion , "FILE_VERSION" );
 
         //...
         //...
@@ -123,10 +124,10 @@ class FileIO
 #if ALOX_DBG_LOG
 
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     [TestFixture ()]
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     [TestClass]
 #endif
 
@@ -148,10 +149,10 @@ public class CS_Tutorial   : AWorxUnitTesting
         #endif
     }
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     [Test ()]
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     [TestMethod]
     #if !WINDOWS_PHONE
         [TestCategory("CS_Tutorial")]
@@ -165,10 +166,10 @@ public void Tut_Hello_ALox_Minimum()
 }
 
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     [Test ()]
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     [TestMethod]
     #if !WINDOWS_PHONE
         [TestCategory("CS_Tutorial")]
@@ -196,10 +197,10 @@ public void Tut_Hello_ALox()
     #endif
 }
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     [Test ()]
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     [TestMethod]
     #if !WINDOWS_PHONE
         [TestCategory("CS_Tutorial")]
@@ -255,10 +256,10 @@ public void Tut_Verbosity()
 }
 
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     [Test ()]
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     [TestMethod]
     #if !WINDOWS_PHONE
         [TestCategory("CS_Tutorial")]
@@ -312,10 +313,10 @@ public void Tut_Domains()
     Log.RemoveLogger( tutLog );
 }
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     [Test ()]
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     [TestMethod]
     #if !WINDOWS_PHONE
         [TestCategory("CS_Tutorial")]
@@ -361,10 +362,10 @@ public void Tut_HierDom()
     Log.RemoveLogger( tutLog );
 }
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     [Test ()]
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     [TestMethod]
     #if !WINDOWS_PHONE
         [TestCategory("CS_Tutorial")]
@@ -475,10 +476,10 @@ public void Tut_ScopeDomains()
     Log.RemoveLogger( tutLog );
 }
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     [Test ()]
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     [TestMethod]
     #if !WINDOWS_PHONE
         [TestCategory("CS_Tutorial")]
@@ -548,10 +549,10 @@ public void Tut_ConditionalLogging()
 
 private void process(int i) {}
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     [Test ()]
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     [TestMethod]
     #if !WINDOWS_PHONE
         [TestCategory("CS_Tutorial")]
@@ -594,10 +595,10 @@ public void Tut_Instance()
 #endif
 }
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     [Test ()]
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     [TestMethod]
     #if !WINDOWS_PHONE
         [TestCategory("CS_Tutorial")]
@@ -625,10 +626,10 @@ public void Tut_Exception()
 #endif
 }
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     [Test ()]
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     [TestMethod]
     #if !WINDOWS_PHONE
         [TestCategory("CS_Tutorial")]
@@ -658,10 +659,10 @@ public void Tut_XML()
 #endif
 }
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     [Test ()]
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     [TestMethod]
     #if !WINDOWS_PHONE
         [TestCategory("CS_Tutorial")]
@@ -702,10 +703,10 @@ public void Tut_LogState()
     Log.Once( "Will we see this in the config?" );
     Log.Once( "Will we see this in the config?", "ONCEKEY", Scope.Filename );
 
-    Log.Store( new LogData("MyData 1"), Scope.Method );
-    Log.Store( new LogData("MyData 2"), "DataKey", Scope.Method );
-    Log.Store( new LogData("MyData 3"), "DataKey", Scope.Filename );
-    Log.Store( new LogData("MyData 4"), "DataKey", Scope.ThreadOuter );
+    Log.Store( "MyData 1",            Scope.Method );
+    Log.Store( "MyData 2", "DataKey", Scope.Method );
+    Log.Store( "MyData 3", "DataKey", Scope.Filename );
+    Log.Store( "MyData 4", "DataKey", Scope.ThreadOuter );
 
     Log.SetPrefix( "TPre: "  , Scope.ThreadOuter );
     Log.SetPrefix( "MPre: "  , Scope.Method );
@@ -727,10 +728,10 @@ public void Tut_LogState()
 }
 
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     [Test ()]
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     [TestMethod]
     #if !WINDOWS_PHONE
         [TestCategory("CS_Tutorial")]
@@ -773,10 +774,10 @@ public void Tut_LogInternalDomains()
     Log.Once( "Will we see this in the config?" );
     Log.Once( "Will we see this in the config?", "ONCEKEY", Scope.Filename );
 
-    Log.Store( new LogData("MyData 1"), Scope.Method );
-    Log.Store( new LogData("MyData 2"), "DataKey", Scope.Method );
-    Log.Store( new LogData("MyData 3"), "DataKey", Scope.Filename );
-    Log.Store( new LogData("MyData 4"), "DataKey", Scope.ThreadOuter );
+    Log.Store( "MyData 1",            Scope.Method );
+    Log.Store( "MyData 2", "DataKey", Scope.Method );
+    Log.Store( "MyData 3", "DataKey", Scope.Filename );
+    Log.Store( "MyData 4", "DataKey", Scope.ThreadOuter );
 
     Log.SetPrefix( "TPre: "  , Scope.ThreadOuter );
     Log.SetPrefix( "MPre: "  , Scope.Method );
@@ -797,83 +798,12 @@ public void Tut_LogInternalDomains()
 
 
 /** ************************************************************************************************
-* Tut_UsingLogBuffer
-**************************************************************************************************/
-#if ALIB_MONO_DEVELOP
+ * Tut_LogData
+ **************************************************************************************************/
+#if ALIB_NUNIT
     [Test ()]
 #endif
-#if ALIB_VSTUDIO
-    [TestMethod]
-    #if !WINDOWS_PHONE
-        [TestCategory("CS_Tutorial")]
-    #endif
-#endif
-public void Tut_UsingLogBuffer()
-{
-#if ALOX_DBG_LOG || ALOX_REL_LOG
-    UT_INIT();
-    Log.SetVerbosity( tutLog= new MemoryLogger( "Tutlog" ), Verbosity.Verbose );
-
-    //! [Tut_UsingLogBuffer1]
-    //  Create logger and register domain LOGBUF
-    Log.AddDebugLogger();
-    Log.SetDomain( "LOGBUF", Scope.Method );
-
-    //  Let's do some logging using the internal buffer singleton;
-    Log.Info( Log.Buf()._( "Hello Buf!. This is only one string. Not useful to use the buf, however..." ) );
-    Log.Info( Log.Buf()._( "This is a 5-digtit rep of 42: " )._( 42, 5 ) );
-    Log.Info( Log.Buf()._( "***All upper case and stars replaced by dollar signs ***" )
-                       .ToUpper()
-                       .SearchAndReplaceAll( "*", "$" )
-            );
-    //! [Tut_UsingLogBuffer1]
-
-    //! [Tut_UsingLogBuffer2]
-    // using the log buf outside of the <em>Log Statement</em>
-    #if ALOX_DBG_LOG
-
-        AString logBuf= Log.Buf();
-        logBuf._( "Lets see if school math is correct: " );
-        int a= 4;
-        int b= 2;
-        if( a/b == 3)
-        {
-            // shout it out loud!
-            logBuf._( "They taught me wrong in school!" );
-            Log.Error( logBuf );
-        }
-        else
-        {
-            // we better say nothing
-            Log.BufAbort();
-        }
-
-    #endif
-    //! [Tut_UsingLogBuffer2]
-
-    Report.GetDefault().PushHaltFlags( false, false );
-
-    //! [Tut_UsingLogBuffer3]
-    // causing trouble
-    Log.Info( "Let's create an internal error by accessing the buffer twice:" );
-    Log.Buf();
-    Log.Buf();
-    //! [Tut_UsingLogBuffer3]
-
-    Report.GetDefault().PopHaltFlags();
-
-    tutLog.MemoryLog.SearchAndReplace( "Tutlog", "CONSOLE" );
-    SaveTutorialOutput( "Tut_UsingLogBuffer.txt", tutLog.MemoryLog );
-#endif
-}
-
-/** ************************************************************************************************
-* Tut_LogData
-**************************************************************************************************/
-#if ALIB_MONO_DEVELOP
-    [Test ()]
-#endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     [TestMethod]
     #if !WINDOWS_PHONE
         [TestCategory("CS_Tutorial")]
@@ -889,7 +819,7 @@ public void Tut_LogData()
 
     // access without prior setting
     {
-        Log.Info( "Working on file version " + Log.Retrieve( "FILE_VERSION" ).IntegerValue );
+        Log.Info( "Working on file version {!Q}", Log.Retrieve( "FILE_VERSION" ) );
         SaveTutorialOutput( "Tut_LogData2.txt", tutLog.MemoryLog );
         tutLog.MemoryLog.Clear();
     }
@@ -898,10 +828,88 @@ public void Tut_LogData()
     fileIo.Read( "myfile.dat" );
 
     //! [Tut_LogData_2]
-    Log.Info( "Working on file version " + Log.Retrieve( "FILE_VERSION" ).IntegerValue );
+    Log.Info( "Working on file version {!Q}", Log.Retrieve( "FILE_VERSION" ) );
     //! [Tut_LogData_2]
 
     SaveTutorialOutput( "Tut_LogData.txt", tutLog.MemoryLog );
+
+    Log.RemoveDebugLogger();
+    Log.RemoveLogger( "MEMORY" );
+}
+
+/** ************************************************************************************************
+ * Tut_Format
+ **************************************************************************************************/
+#if ALIB_NUNIT
+    [Test ()]
+#endif
+#if ALIB_IDE_VSTUDIO
+    [TestMethod]
+    #if !WINDOWS_PHONE
+        [TestCategory("CS_Tutorial")]
+    #endif
+#endif
+public void Tut_Format()
+{
+    UT_INIT();
+
+    Log.AddDebugLogger();
+    Log.SetVerbosity( tutLog= new MemoryLogger( "Tutlog" ), Verbosity.Verbose );
+
+    Log.SetVerbosity( Log.DebugLogger, Verbosity.Verbose, ALox.InternalDomains );
+
+
+    //! [Tut_Format_1]
+    Log.Info( "Value=", 5 );
+    //! [Tut_Format_1]
+    SaveTutorialOutput( "Tut_Format_1.txt", tutLog.MemoryLog );
+
+
+    //! [Tut_Format_P]
+    Log.Info( "Value={}", 5 );
+    //! [Tut_Format_P]
+
+    //! [Tut_Format_J]
+    Log.Info( "Value=%s", 5 );
+    //! [Tut_Format_J]
+
+
+    //! [Tut_Format_Multi]
+    Log.Info( "One-", "Two-", "Three" );
+    Log.Info( "{}-{}-{}", "One", "Two", "Three" );
+    Log.Info( "{}-{}-"  , "One", "Two", "Three" );
+    Log.Info( new Object[] { "{}-"  , "One", "{}-", "Two", "{}", "Three" } );
+    //! [Tut_Format_Multi]
+
+    tutLog.MemoryLog.Clear();
+    //! [Tut_Format_Mix]
+    Log.Info( new Object[] { "Python Style: {!s}","PS", " - ", "Java Style: \"%s\"", "JS" } );
+    //! [Tut_Format_Mix]
+    SaveTutorialOutput( "Tut_Format_Mix.txt", tutLog.MemoryLog );
+
+    tutLog.MemoryLog.Clear();
+    //! [Tut_Format_Sample_1]
+    Log.Info( ">{:<10}<" , "left" );
+    Log.Info( ">{:>10}<" , "right" );
+    Log.Info( ">{:^10}<" , "center" );
+    Log.Info( ">{:10.3}<", 12.3456789 );
+
+    Log.Info( "Tab:{!Tab12}", "Stop" );
+
+    Log.Info( "Auto Tab:{!ATab}", "Stop" );
+    Log.Info( "Auto Tab XXX:{!ATab}", "Stop" );
+    Log.Info( "Auto Tab:{!ATab}", "Stop" );
+
+    Log.Info( "A quoted {!Q} string", "Placeholder" );
+    Log.Info( "A quoted {!Q} number", 395 );
+
+    Log.Info( "Upper {0!Q!up} and lower {0!Q!lo} conversion", "CaSe" );
+
+    Log.Info( "Hex: {:#x}. With group chars: {0:x,}", 0x11FF22EE );
+    Log.Info( "Oct: {:#o}. With group chars: {0:o,}", 012345670 );
+    Log.Info( "Bin: {:#b}. With group chars: {0:b,}", 145 );
+    //! [Tut_Format_Sample_1]
+    SaveTutorialOutput( "Tut_Format_Sample_1.txt", tutLog.MemoryLog );
 
     Log.RemoveDebugLogger();
     Log.RemoveLogger( "MEMORY" );

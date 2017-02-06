@@ -1,12 +1,10 @@
 // #################################################################################################
 //  aworx - Unit Tests
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
-
-#include "alib/alib.hpp"
+#include "alox/alox.hpp"
 
 #if !defined (HPP_ALIB_CONFIG_INI_FILE)
     #include "alib/config/inifile.hpp"
@@ -55,7 +53,7 @@ UT_METHOD(ConfigCommandLineArgs)
     };
 
     Configuration cfg;
-    cfg.SetCommandLineArgs( 9, (char**) args );
+    cfg.SetCommandLineArgs( 9, const_cast<char**>( args ) );
 
     Variable var;
     UT_EQ( Configuration::PrioCmdLine,    cfg.Load   ( var.Define( "",      "SingleHyphen" )) );   UT_EQ( "12",            var.GetString()       );
@@ -68,7 +66,8 @@ UT_METHOD(ConfigCommandLineArgs)
     UT_EQ( Configuration::PrioCmdLine,    cfg.Load   ( var.Define( "",      "integer"      )) );   UT_EQ( 42,              var.GetInteger()    );
     UT_EQ( 0,                             cfg.Load   ( var.Define( "",      "notexistent"  )) );   UT_EQ( 0,               var.GetInteger()    );
     UT_EQ( Configuration::PrioCmdLine,    cfg.Load   ( var.Define( "",      "integer"      )) );   UT_EQ( 42,              var.GetInteger()    );
-    UT_EQ( Configuration::PrioCmdLine,    cfg.Load   ( var.Define( "",      "double"       )) );   UT_EQ( 3.14,            var.GetFloat() );
+    UT_EQ( Configuration::PrioCmdLine,    cfg.Load   ( var.Define( "",      "double"       )) );
+    UT_EQ( 3.14,            var.GetFloat() );
     UT_EQ( 0,                             cfg.Load   ( var.Define( "",      "notexistent"  )) );   UT_EQ( 0.0,             var.GetFloat() );
     UT_EQ( Configuration::PrioCmdLine,    cfg.Load   ( var.Define( "",      "double"       )) );   UT_EQ( 3.14,            var.GetFloat() );
     UT_EQ( Configuration::PrioCmdLine,    cfg.Load   ( var.Define( "ALIB",  "test"         )) );   UT_EQ( "passed",        var.GetString()       );
@@ -93,7 +92,7 @@ UT_METHOD(ConfigCommandLineArgsWChar)
     };
 
     Configuration cfg;
-    cfg.SetCommandLineArgs( 9, (wchar_t**) args );
+    cfg.SetCommandLineArgs( 9, const_cast<wchar_t**>( args ) );
 
     Variable var;
     UT_EQ( Configuration::PrioCmdLine,    cfg.Load   ( var.Define( "",      "SingleHyphen" )) );   UT_EQ( "12",            var.GetString()       );
@@ -219,18 +218,18 @@ UT_METHOD(ConfigIniFiles)
 
 
     // add it to ALIB config
-    ALIB::Config.InsertPlugin( &iniFile, Configuration::PrioIniFile );
-    ALIB::Config.Load( var.Define( "",               "CUBA"              ) );   UT_EQ( "a country"  , var.GetString() );
-    ALIB::Config.Load( var.Define( "",               "cUbA"              ) );   UT_EQ( "a country"  , var.GetString() );
-    ALIB::Config.Load( var.Define( "",               "SIZE"              ) );   UT_EQ( "25"         , var.GetString() );
-    ALIB::Config.Load( var.Define( "",               "concat", ','       ) );   UT_EQ( 11 , var.Size());
+    Configuration::Default.InsertPlugin( &iniFile, Configuration::PrioIniFile );
+    Configuration::Default.Load( var.Define( "",               "CUBA"              ) );   UT_EQ( "a country"  , var.GetString() );
+    Configuration::Default.Load( var.Define( "",               "cUbA"              ) );   UT_EQ( "a country"  , var.GetString() );
+    Configuration::Default.Load( var.Define( "",               "SIZE"              ) );   UT_EQ( "25"         , var.GetString() );
+    Configuration::Default.Load( var.Define( "",               "concat", ','       ) );   UT_EQ( 11 , var.Size());
                                                                                 UT_EQ( "start =5"   , var.GetString(0) );
                                                                                 UT_EQ( "end   =32"  , var.GetString(1) );
-    ALIB::Config.Load( var.Define( "Great Section",  "SectionVar"        ) );   UT_EQ( "5"          , var.GetString() );
-    ALIB::Config.Load( var.Define( "2nd Section",    "SectionVar"        ) );   UT_EQ( "6"          , var.GetString() );
-    ALIB::Config.Load( var.Define( "Great Section",  "SECTION_CONTINUED" ) );   UT_EQ( "yEs"        , var.GetString() );
-    ALIB::Config.Load( var.Define( "Great Section",  "Tricky"            ) );   UT_EQ( "backslash\\", var.GetString() );
-    ALIB::Config.Load( var.Define( "Great Section",  "SECTION_CONTINUED" ) );   UT_TRUE( var.IsTrue() );
+    Configuration::Default.Load( var.Define( "Great Section",  "SectionVar"        ) );   UT_EQ( "5"          , var.GetString() );
+    Configuration::Default.Load( var.Define( "2nd Section",    "SectionVar"        ) );   UT_EQ( "6"          , var.GetString() );
+    Configuration::Default.Load( var.Define( "Great Section",  "SECTION_CONTINUED" ) );   UT_EQ( "yEs"        , var.GetString() );
+    Configuration::Default.Load( var.Define( "Great Section",  "Tricky"            ) );   UT_EQ( "backslash\\", var.GetString() );
+    Configuration::Default.Load( var.Define( "Great Section",  "SECTION_CONTINUED" ) );   UT_TRUE( var.IsTrue() );
 
 
     // check if environment variable "home" overwrites INI file
@@ -238,11 +237,11 @@ UT_METHOD(ConfigIniFiles)
     #if defined(_WIN32)
         HOME_ENV_NAME= "HOmepATH";
     #else
-        HOME_ENV_NAME= "HomE";
+        HOME_ENV_NAME= "HOME";
     #endif
 
     Variable vIniFile;   iniFile.Load( vIniFile.Define( "", HOME_ENV_NAME) );                 UT_EQ( "overwritten_by_environment", vIniFile.GetString() );
-    ALIB::Config.Load  ( var.Define("", HOME_ENV_NAME) ); UT_EQ( Configuration::PrioEnvironment, var.Priority );
+    Configuration::Default.Load  ( var.Define("", HOME_ENV_NAME) ); UT_EQ( Configuration::PrioEnvironment, var.Priority );
     UT_TRUE( var.GetString()->IsNotEmpty() );
     UT_TRUE( !vIniFile.GetString()->Equals( var.GetString() ) );
 
@@ -251,27 +250,27 @@ UT_METHOD(ConfigIniFiles)
     var.Define( "New Section",  "newvar");
     var.Priority= Configuration::PrioIniFile;
 
-    UT_EQ( Configuration::PrioIniFile, ALIB::Config.Store( var, "new" ) );
-    ALIB::Config.Load  ( var.Define("New Section",  "newvar") );  UT_EQ( "new",   var.GetString() );
+    UT_EQ( Configuration::PrioIniFile, Configuration::Default.Store( var, "new" ) );
+    Configuration::Default.Load  ( var.Define("New Section",  "newvar") );  UT_EQ( "new",   var.GetString() );
 
     var.Define( "",             "newvar");
     var.Priority= Configuration::PrioIniFile;
-    UT_EQ( Configuration::PrioIniFile, ALIB::Config.Store( var, "aworx") );
-    ALIB::Config.Load  ( var.Define("",             "newvar") );  UT_EQ( "aworx", var.GetString() );
+    UT_EQ( Configuration::PrioIniFile, Configuration::Default.Store( var, "aworx") );
+    Configuration::Default.Load  ( var.Define("",             "newvar") );  UT_EQ( "aworx", var.GetString() );
 
 
     var.Define( "",   "newvarList", ',');
-    var.AddString("val1=5");
-    var.AddString("val2=10");
-    var.AddString("val3=hello");
+    var.Add("val1=5");
+    var.Add("val2=10");
+    var.Add("val3=hello");
     var.Priority= Configuration::PrioIniFile;
-    UT_EQ( Configuration::PrioIniFile, ALIB::Config.Store(var) );
-    ALIB::Config.Load (  var.Define( "",  "newvarList")   );
+    UT_EQ( Configuration::PrioIniFile, Configuration::Default.Store(var) );
+    Configuration::Default.Load (  var.Define( "",  "newvarList")   );
 
 
     var.Define( "",   "commented", ',', "2lines");
     var.Priority= Configuration::PrioIniFile;
-    UT_EQ( Configuration::PrioIniFile, ALIB::Config.Store(  var, "this is c-line 1 \nand this line 2" ) );
+    UT_EQ( Configuration::PrioIniFile, Configuration::Default.Store(  var, "this is c-line 1 \nand this line 2" ) );
 
 
     // write the file
@@ -306,14 +305,14 @@ UT_METHOD(ConfigIniFiles)
                 UT_EQ( var.Size(), varBack.Size() );
                 for ( int i= 0; i< var.Size(); i++ )
                 {
-                    int idx= var.GetString(i)->IndexOf('=');
+                    integer idx= var.GetString(i)->IndexOf('=');
                     if( idx < 0 )
                     {
                         UT_EQ( *var.GetString(i), *varBack.GetString(i) );
                     }
                     else
                     {
-                        int idxBack= varBack.GetString(i)->IndexOf('=');
+                        integer idxBack= varBack.GetString(i)->IndexOf('=');
                         Substring orig( var    .GetString(i), 0, idx     );
                         Substring back( varBack.GetString(i), 0, idxBack );
                         UT_EQ( orig.Trim(), back.Trim() );
@@ -330,14 +329,14 @@ UT_METHOD(ConfigIniFiles)
     readBack.Load ( var.Define( "",             "newvar" ) );   UT_EQ( "aworx"  , var.GetString() );
 
 
-    ALIB::Config.RemovePlugin( &iniFile );
+    Configuration::Default.RemovePlugin( &iniFile );
 
 
-    ALIB::Config.InsertPlugin( &readBack, Configuration::PrioIniFile );
-    ALIB::Config.Load( var.Define( "New Section",  "newvar"  ) );   UT_EQ( "new"        ,var.GetString() );
-    ALIB::Config.Load( var.Define( "",             "newvar"  ) );   UT_EQ( "aworx"      ,var.GetString() );
+    Configuration::Default.InsertPlugin( &readBack, Configuration::PrioIniFile );
+    Configuration::Default.Load( var.Define( "New Section",  "newvar"  ) );   UT_EQ( "new"        ,var.GetString() );
+    Configuration::Default.Load( var.Define( "",             "newvar"  ) );   UT_EQ( "aworx"      ,var.GetString() );
 
-    ALIB::Config.RemovePlugin( &readBack );
+    Configuration::Default.RemovePlugin( &readBack );
 }
 
 /** ********************************************************************************************
@@ -355,28 +354,28 @@ UT_METHOD(ConfigDefaultAndProtected)
     };
 
     Configuration cfg;
-    cfg.SetCommandLineArgs( 2, (wchar_t**) args );
+    cfg.SetCommandLineArgs( 2, const_cast<wchar_t**>( args ) );
     Variable var;
 
     // command line
     UT_EQ( Configuration::PrioCmdLine,    cfg.Load  ( var.Define( "TEST",      "VARIABLE" ) ) );   UT_EQ( "fromCommandLine"    ,var.GetString() );
 
     // set default, does not overwrite
-    var.Define( "TEST", "VARIABLE");  var.AddString("not overwriting");   cfg.DefaultValues.Store( var );
+    var.Define( "TEST", "VARIABLE");  var.Add("not overwriting");   cfg.DefaultValues.Store( var );
     UT_EQ( Configuration::PrioCmdLine,    cfg.Load  ( var.Define( "TEST",      "VARIABLE" ) ) );   UT_EQ( "fromCommandLine"    ,var.GetString() );
 
     // set protected, overwrites command line
-    var.Define( "TEST", "VARIABLE");  var.AddString("does overwrite");   cfg.ProtectedValues.Store( var );
+    var.Define( "TEST", "VARIABLE");  var.Add("does overwrite");   cfg.ProtectedValues.Store( var );
     UT_EQ( Configuration::PrioProtected,  cfg.Load  ( var.Define( "TEST",      "VARIABLE" ) ) );   UT_EQ( "does overwrite"     ,var.GetString() );
 
     // set default, something else
-    var.Define( "TEST", "VAR2");      var.AddString("this is var 2");   cfg.DefaultValues.Store( var );
+    var.Define( "TEST", "VAR2");      var.Add("this is var 2");   cfg.DefaultValues.Store( var );
     UT_EQ( Configuration::PrioDefault,    cfg.Load  ( var.Define( "TEST",      "VAR2"     ) ) );   UT_EQ( "this is var 2"      ,var.GetString() );
 
     // set and remove an entry using plugin interface
     var.Define( "TEST", "Remove" );     UT_EQ( 0, var.Size() );     UT_EQ( -1                           ,var.Priority );
     cfg.DefaultValues.Load( var );      UT_EQ( 0, var.Size() );     UT_EQ( -1                           ,var.Priority );
-    var.AddString("To be deleted");     UT_EQ( 1, var.Size() );     UT_EQ( -1                           ,var.Priority );
+    var.Add("To be deleted");           UT_EQ( 1, var.Size() );     UT_EQ( -1                           ,var.Priority );
     cfg.DefaultValues.Store( var );     UT_EQ( 1, var.Size() );     UT_EQ( -1                           ,var.Priority );
     var.Define( "TEST", "Remove" );     UT_EQ( 0, var.Size() );     UT_EQ( -1                           ,var.Priority );
     cfg.DefaultValues.Load( var );      UT_EQ( 1, var.Size() );     UT_EQ( -1                           ,var.Priority );
@@ -388,7 +387,7 @@ UT_METHOD(ConfigDefaultAndProtected)
     // set and remove an entry using configuration interface
     cfg              .Load ( var );     UT_EQ( 0, var.Size() );     UT_EQ(  0                           ,var.Priority );
     cfg              .Store( var );     UT_EQ( 0, var.Size() );     UT_EQ(  0                           ,var.Priority );
-    var.AddString("To be deleted");     UT_EQ( 1, var.Size() );     UT_EQ(  0                           ,var.Priority );
+    var.Add("To be deleted");           UT_EQ( 1, var.Size() );     UT_EQ(  0                           ,var.Priority );
     cfg              .Store( var );     UT_EQ( 1, var.Size() );     UT_EQ( Configuration::PrioDefault   ,var.Priority );
     var.Define( "TEST", "Remove" );     UT_EQ( 0, var.Size() );     UT_EQ( -1                           ,var.Priority );
     cfg              .Load ( var );     UT_EQ( 1, var.Size() );     UT_EQ( Configuration::PrioDefault   ,var.Priority );
@@ -404,14 +403,14 @@ UT_METHOD(ConfigDefaultAndProtected)
     var.StoreDefault( "def par");       UT_EQ( "def par",   var.GetString() );  UT_EQ( Configuration::PrioDefault   ,var.Priority );
 
     var.ClearValues();
-    var.AddString( "def var" );
+    var.Add( "def var" );
     var.StoreDefault();                 UT_EQ( "def var",   var.GetString() );  UT_EQ( Configuration::PrioDefault   ,var.Priority );
 
     var.ClearValues();
     var.StoreDefault();                 UT_EQ( "Default",   var.GetString() );  UT_EQ( Configuration::PrioDefault   ,var.Priority );
 
     var.ClearValues();
-    var.AddString( "def var" );
+    var.Add( "def var" );
     var.Protect();                      UT_EQ( "def var",   var.GetString() );  UT_EQ( Configuration::PrioProtected ,var.Priority );
     var.Protect("prot par");            UT_EQ( "prot par",  var.GetString() );  UT_EQ( Configuration::PrioProtected ,var.Priority );
     var.ClearValues();
@@ -438,7 +437,7 @@ UT_METHOD(ConfigReplacementVariables)
     };
 
     Configuration cfg;
-    cfg.SetCommandLineArgs( 3, (wchar_t**) args );
+    cfg.SetCommandLineArgs( 3, const_cast<wchar_t**>( args ) );
     Variable var;
 
     // replacements from command line plugin

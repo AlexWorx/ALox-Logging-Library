@@ -1,15 +1,14 @@
 // #################################################################################################
 //  com.aworx.lox.loggers - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package com.aworx.lox.core.textlogger;
 
-import com.aworx.lib.ALIB;
-import com.aworx.lib.Util;
-import com.aworx.lib.enums.Phase;
+import com.aworx.lib.lang.Phase;
 import com.aworx.lib.strings.AString;
+import com.aworx.lib.strings.Spaces;
 import com.aworx.lox.Verbosity;
 import com.aworx.lox.core.Domain;
 import com.aworx.lox.core.ScopeInfo;
@@ -136,7 +135,7 @@ public abstract class PlainTextLogger extends TextLogger
 
                         if ( tabStop > column )
                         {
-                            AString spaces= Util.getSpaces();
+                            AString spaces= Spaces.get();
                             int spacesLength= spaces.length();
                             int qty= tabStop - column;
                             while ( qty > 0 )
@@ -164,7 +163,7 @@ public abstract class PlainTextLogger extends TextLogger
 
             } // write loop
 
-            ALIB.ASSERT_WARNING( start == msgLength, "Loop error when pruning ESC codes" );
+            com.aworx.lib.ALIB_DBG.ASSERT_WARNING( start == msgLength, "Loop error when pruning ESC codes" );
         }
 
         notifyLogOp( Phase.END );

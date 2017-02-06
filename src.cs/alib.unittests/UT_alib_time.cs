@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  cs.aworx.unittests - AWorx Util
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
 using System.Threading;
@@ -10,10 +10,10 @@ using cs.aworx.lib.time;
 using cs.aworx.lib.strings;
 using ut_cs_aworx;
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     using NUnit.Framework;
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 #endif
 
@@ -24,18 +24,18 @@ using cs.aworx.lox.loggers;
 
 namespace ut_cs_aworx_lib
 {
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [TestFixture ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestClass]
     #endif
     public class CS_Ticks    : AWorxUnitTesting
     {
-        #if ALIB_MONO_DEVELOP
+        #if ALIB_NUNIT
             [Test ()]
         #endif
-        #if ALIB_VSTUDIO
+        #if ALIB_IDE_VSTUDIO
             [TestMethod]
             #if !WINDOWS_PHONE
                 [TestCategory("CS_Ticks")]
@@ -119,10 +119,10 @@ namespace ut_cs_aworx_lib
             }
         }
 
-        #if ALIB_MONO_DEVELOP
+        #if ALIB_NUNIT
             [Test ()]
         #endif
-        #if ALIB_VSTUDIO
+        #if ALIB_IDE_VSTUDIO
             [TestMethod]
             #if !WINDOWS_PHONE
                 [TestCategory("CS_Ticks")]
@@ -153,10 +153,10 @@ namespace ut_cs_aworx_lib
         }
 
 
-        #if ALIB_MONO_DEVELOP
+        #if ALIB_NUNIT
             [Test ()]
         #endif
-        #if ALIB_VSTUDIO
+        #if ALIB_IDE_VSTUDIO
             [TestMethod]
             #if !WINDOWS_PHONE
                 [TestCategory("CS_Ticks")]
@@ -219,10 +219,10 @@ namespace ut_cs_aworx_lib
             Log.Info( "5.1.71 3:51:00:   "    +  ( ticks5_1_71_3_51                 .InDotNetDateTime().ToString() ) );
         }
 
-        #if ALIB_MONO_DEVELOP
+        #if ALIB_NUNIT
             [Test ()]
         #endif
-        #if ALIB_VSTUDIO
+        #if ALIB_IDE_VSTUDIO
             [TestMethod]
             #if !WINDOWS_PHONE
                 [TestCategory("CS_Ticks")]
@@ -309,10 +309,10 @@ namespace ut_cs_aworx_lib
             }
         }
 
-        #if ALIB_MONO_DEVELOP
+        #if ALIB_NUNIT
             [Test ()]
         #endif
-        #if ALIB_VSTUDIO
+        #if ALIB_IDE_VSTUDIO
             [TestMethod]
             #if !WINDOWS_PHONE
                 [TestCategory("CS_Ticks")]
@@ -352,13 +352,8 @@ namespace ut_cs_aworx_lib
                         nonOptimizableUsedResultValue+= testAString.IndexOf( '#' );
                 Ticks aSample= ttAString.Sample();
 
-
-                if ( nonOptimizableUsedResultValue > -1 ) // this is always true, just for the sake that the compiler does not optimize the whole code!
-                    Log.Info(  Log.Buf()._( "Search loops " )     .Field()._( qtyLoops.ToString() )       .Field( 6 )
-                                        ._( ":  time needed: " )  .Field()._( (int)    sSample.InNanos() ).Field( 8 )
-                                        ._(  " / "  )             .Field()._( (int)    aSample.InNanos() ).Field( 8 )
-                                        ._( "   Ratio String/AString: " ) ._( ((double) sSample.Raw()) / ((double) aSample.Raw()) )
-                            );
+                Log.Info( new Object[] {  "Search loops {:6}:  time needed: {:8} / {:8}.   Ratio String/AString: {:%.2}",
+                                qtyLoops,sSample.InNanos(), aSample.InNanos(), ( ((double) sSample.Raw()) / ((double) aSample.Raw()) )  }  );
             }
 
         }

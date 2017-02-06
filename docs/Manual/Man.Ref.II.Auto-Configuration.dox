@@ -1,8 +1,8 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /**
@@ -117,10 +117,11 @@ source plug-ins ( see namespace
   [C#]  (@ref  cs::aworx::lib::config::ConfigurationPlugin),
   [Java](@ref com::aworx::lib::config::ConfigurationPlugin))) have to be added to public
 static field
-<b>%ALIB.Config</b>
-  ([C++](@ref      aworx::lib::ALIB::Config),
-  [C#]  (@ref  cs::aworx::lib::ALIB::Config),
-  [Java](@ref com::aworx::lib::ALIB::config))) prior to invoking \b %ALox.Init - especially
+  <b>%Configuration.Default</b>
+   ([C++] (@ref      #aworx::lib::config::Configuration::Default),
+    [C#]  (@ref  #cs::aworx::lib::config::Configuration::Default),
+    [Java](@ref #com::aworx::lib::config::Configuration::Default))
+prior to invoking \b %ALox.Init - especially
 in the case that configuration variables read by the initialization methods and defned in
 these custom sources should be taken into account.
 

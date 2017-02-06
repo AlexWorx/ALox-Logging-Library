@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  aworx::lox::core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -26,10 +26,8 @@
 #include "scopestore.hpp"
 
 
-namespace aworx {
-namespace       lox {
-namespace           core{
-
+namespace aworx { namespace lox { namespace core
+{
 /** ************************************************************************************************
  * This class is an internal helper to export current scope values.
  * It was extracted from class \b %Lox to keep that class clean from this somehow 'cluttered' code.
@@ -47,16 +45,16 @@ class ScopeDump
     // #############################################################################################
     protected:
         /** The target to write to */
-        AString&                        target;
+        AString&                        targetBuffer;
 
         /** String to identify global keys. */
-        const TString                   noKeyHashKey;
+        const TString                   noKey;
 
         /** The maximum length of a key. Adjusts (increases) over lifecycle. */
-        int                             maxKeyLength;
+        integer                        maximumKeyLength;
 
         /** User-defined threads names. */
-        ScopeInfo::ThreadDictionary&    threadDictionary;
+        ScopeInfo::ThreadDictionary&    threadDict;
 
     // #############################################################################################
     // Public interface
@@ -72,10 +70,10 @@ class ScopeDump
          ******************************************************************************************/
         ScopeDump( ScopeInfo::ThreadDictionary& threadDictionary, const TString noKeyHashKey,
                    AString& target, int maxKeyLength= 10 )
-        : target(target)
-        , noKeyHashKey(noKeyHashKey)
-        , maxKeyLength(maxKeyLength)
-        , threadDictionary(threadDictionary)
+        : targetBuffer(target)
+        , noKey(noKeyHashKey)
+        , maximumKeyLength(maxKeyLength)
+        , threadDict(threadDictionary)
         {
         }
 
@@ -112,7 +110,7 @@ class ScopeDump
          ******************************************************************************************/
         template<typename T>
         ALOX_API
-        int writeStoreMapHelper( std::map<AString, T>& map, const TString& prefix );
+        integer writeStoreMapHelper( std::map<AString, T>& map, const TString& prefix );
 
         /** ****************************************************************************************
          * Helper method to write thread information.
@@ -132,6 +130,16 @@ class ScopeDump
         AString& storeKeyToScope( const lib::containers::PathMap<T>& map );
 
 }; // ScopeDump
+
+
+//! @cond NO_DOX
+// needed to suppress pedantic warnings with clang
+extern template   int ScopeDump::writeStore   ( ScopeStore<AString*                >* store, int indentSpaces );
+extern template   int ScopeDump::writeStore   ( ScopeStore<Box*                    >* store, int indentSpaces );
+extern template   int ScopeDump::writeStoreMap( ScopeStore<std::map<AString, int>* >* store );
+extern template   int ScopeDump::writeStoreMap( ScopeStore<std::map<AString, Box>* >* store );
+//! @endcond NO_DOX
+
 
 }}} // namespace aworx::lox::core
 

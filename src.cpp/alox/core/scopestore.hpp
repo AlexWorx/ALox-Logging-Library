@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  aworx::lox::core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -22,10 +22,8 @@
 
 namespace aworx { namespace lib { namespace containers{ template<typename StoreT> class PathMap; }}}
 
-namespace aworx {
-namespace       lox {
-namespace           core{
-
+namespace aworx { namespace lox { namespace core
+{
 
 /** ************************************************************************************************
  * Static axiomatic methods on value types stored in class \b ScopeStore.
@@ -37,16 +35,16 @@ class ScopeStoreType
     public:
 
     /** ********************************************************************************************
-     * Static method to retrieve a value representing null for the template type.
+     * Static method to retrieve a value representing 'null' for the template type.
      * @return The value representing null.
      **********************************************************************************************/
     ALOX_API
     static StoreT NullValue();
 
     /** ********************************************************************************************
-     * Returns true if the value is representing null.
-     * @param value  The object to test for null.
-     * @returns \c true if the value is representing null, \c false otherwise.
+     * Returns true if the value is representing 'null'.
+     * @param value  The object to test for 'null'.
+     * @returns \c true if the value is representing 'null', \c false otherwise.
      **********************************************************************************************/
     ALOX_API
     static bool IsNull( StoreT value );
@@ -192,7 +190,7 @@ class ScopeStore
 
         /** ****************************************************************************************
          * Retrieves the value for the given scope.
-         *                   If Thread::NullThreadId is given, the ID from \p scopeInfo is used.
+         * If Thread::NullThreadId is given, the ID from \p scopeInfo is used.
          * @return Returns the current value stored.
          ******************************************************************************************/
         StoreT Get      ()
@@ -209,7 +207,7 @@ class ScopeStore
          *                         and before Scope::Method
          ******************************************************************************************/
         ALOX_API
-        void InitWalk( Scope startScope, StoreT localObject  );
+        void InitWalk( Scope startScope, const StoreT localObject  );
 
         /** ****************************************************************************************
          * Searches value in the actual scope. While not found, moves walk state to next outer
@@ -241,7 +239,60 @@ class ScopeStore
 
 }; // ScopeStore
 
-}}} // namespace aworx::lox::core
+
+//! @cond NO_DOX
+// needed to suppress pedantic warnings with clang
+#if !defined(_MSC_VER)
+extern template                                ScopeStore<AString*>                    ::ScopeStore      (ScopeInfo&, bool);
+extern template                                ScopeStore<AString*>                    ::~ScopeStore     ();
+extern template   void                         ScopeStore<AString*>                    ::Clear           ();
+extern template   void                         ScopeStore<AString*>                    ::InitWalk        (Scope,AString*);
+extern template   AString*                     ScopeStore<AString*>                    ::Walk            ();
+extern template   void                         ScopeStore<AString*>                    ::InitAccess      (Scope,int,int);
+extern template   void                         ScopeStore<AString*>                    ::getPathMapNode  (bool);
+extern template   AString*                     ScopeStore<AString*>                    ::access          (int,AString*);
+extern template                                ScopeStore<Box*>                        ::ScopeStore      (ScopeInfo&, bool);
+extern template                                ScopeStore<Box*>                        ::~ScopeStore     ();
+extern template   void                         ScopeStore<Box*>                        ::Clear           ();
+extern template   void                         ScopeStore<Box*>                        ::InitWalk        (Scope,Box*);
+extern template   Box*                         ScopeStore<Box*>                        ::Walk            ();
+extern template   void                         ScopeStore<Box*>                        ::InitAccess      (Scope,int,int);
+extern template   void                         ScopeStore<Box*>                        ::getPathMapNode  (bool);
+extern template   Box*                         ScopeStore<Box*>                        ::access          (int,Box*);
+extern template                                ScopeStore<std::map<AString, int>*>     ::ScopeStore      (ScopeInfo&, bool);
+extern template                                ScopeStore<std::map<AString, int>*>     ::~ScopeStore     ();
+extern template   void                         ScopeStore<std::map<AString, int>*>     ::Clear           ();
+extern template   void                         ScopeStore<std::map<AString, int>*>     ::InitWalk        (Scope,std::map<AString, int>*);
+extern template   std::map<AString, int>*      ScopeStore<std::map<AString, int>*>     ::Walk            ();
+extern template   void                         ScopeStore<std::map<AString, int>*>     ::InitAccess      (Scope,int,int);
+extern template   void                         ScopeStore<std::map<AString, int>*>     ::getPathMapNode  (bool);
+extern template   std::map<AString, int>*      ScopeStore<std::map<AString, int>*>     ::access          (int,std::map<AString, int>*);
+extern template                                ScopeStore<std::map<AString, Box>*>::ScopeStore      (ScopeInfo&, bool);
+extern template                                ScopeStore<std::map<AString, Box>*>::~ScopeStore     ();
+extern template   void                         ScopeStore<std::map<AString, Box>*>::Clear           ();
+extern template   void                         ScopeStore<std::map<AString, Box>*>::InitWalk        (Scope,std::map<AString, Box>*);
+extern template   std::map<AString, Box>* ScopeStore<std::map<AString, Box>*>::Walk            ();
+extern template   void                         ScopeStore<std::map<AString, Box>*>::InitAccess      (Scope,int,int);
+extern template   void                         ScopeStore<std::map<AString, Box>*>::getPathMapNode  (bool);
+extern template   std::map<AString, Box>* ScopeStore<std::map<AString, Box>*>::access          (int,std::map<AString, Box>*);
+#endif
+
+template<> inline bool                         ScopeStoreType<AString*>                    ::AreEqual    ( AString* first, AString* second )                                         { return first->Equals( second );   }
+template<> inline bool                         ScopeStoreType<AString*>                    ::IsNull      ( AString* value )                                                          { return value == nullptr;          }
+template<> inline AString*                     ScopeStoreType<AString*>                    ::NullValue   ()                                                                          { return nullptr;                   }
+template<> inline bool                         ScopeStoreType<Box*>                        ::AreEqual    ( Box* first, Box* second )                                                 { return first->Invoke<IEquals, bool>(second);    }
+template<> inline bool                         ScopeStoreType<Box*>                        ::IsNull      ( Box* value )                                                              { return value == nullptr;          }
+template<> inline Box*                         ScopeStoreType<Box*>                        ::NullValue   ()                                                                          { return nullptr;                   }
+template<> inline bool                         ScopeStoreType<std::map<AString, int>*>     ::AreEqual    ( std::map<AString, int>* first, std::map<AString, int>* second )           { return first == second;  }
+template<> inline bool                         ScopeStoreType<std::map<AString, int>*>     ::IsNull      ( std::map<AString, int>* value )                                           { return value == nullptr; }
+template<> inline std::map<AString, int>*      ScopeStoreType<std::map<AString, int>*>     ::NullValue   ()                                                                          { return nullptr;          }
+template<> inline bool                         ScopeStoreType<std::map<AString, Box>*>::AreEqual    ( std::map<AString, Box>* first, std::map<AString, Box>* second ) { return first == second;  }
+template<> inline bool                         ScopeStoreType<std::map<AString, Box>*>::IsNull      ( std::map<AString, Box>* value )                                      { return value == nullptr; }
+template<> inline std::map<AString, Box>* ScopeStoreType<std::map<AString, Box>*>::NullValue   ()                                                                          { return nullptr;          }
+//! @endcond NO_DOX
+
+
+}}} // namespace aworx::lox::utils
 
 
 

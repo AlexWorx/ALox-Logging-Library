@@ -1,34 +1,27 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-/**@file*///<- needed for Doxygen include of the using statements at the end of the file
 
-// to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_ALIB) || defined(HPP_ALIB_STRINGS_PREALLOCATEDSTRING)
-    #error "include alib/alib.hpp instead of this header"
-#endif
+// needed for Doxygen include of the using statements at the end of the file
+/**@file*/
 
-// Due to our blocker above, this include will never be executed. But having it, allows IDEs
-// (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_ALIB)
-    #include "alib/alib.hpp"
-#endif
-
-// then, set include guard
+// include guard
 #ifndef HPP_ALIB_STRINGS_PREALLOCATEDSTRING
 #define HPP_ALIB_STRINGS_PREALLOCATEDSTRING 1
 
+// to preserve the right order, we are not includable directly from outside.
+#if !defined(ALIB_PROPER_INCLUSION)
+    #error "include 'alib/alib.hpp' or 'alib/alib_strings.hpp' instead of this header"
+#endif
 
 // #################################################################################################
-// forwards
+// forward declarations
 // #################################################################################################
-namespace aworx {
-namespace           lib {
-namespace                   strings {
-
+namespace aworx { namespace lib { namespace strings
+{
 
 /** ************************************************************************************************
  * A simple class template specializing
@@ -46,7 +39,7 @@ namespace                   strings {
  *
  * In debug compilations of ALib, parent class #AString optionally raises an one-time warning
  * (using
- * \ref aworx::lib::Report::DoReport "Report::DoReport") if an external buffer is replaced by a
+ * \ref aworx::lib::lang::Report::DoReport "Report::DoReport") if an external buffer is replaced by a
  * new (heap) allocation. (From an \b %AString perspective, this classes' internal buffer is an
  * external one). For more information,  see
  * \ref aworx::lib::strings::AString::SetBuffer "AString::SetBuffer".<p>
@@ -65,7 +58,7 @@ namespace                   strings {
  *
  * @tparam TCapacity The capacity of the buffer allocated inside the class with member #preAllocBuf.
  **************************************************************************************************/
-template <int TCapacity>
+template <integer TCapacity>
 class PreallocatedString : public AString
 {
     // #############################################################################################
@@ -85,7 +78,12 @@ class PreallocatedString : public AString
         constexpr
         PreallocatedString()
         : AString( preAllocBuf, TCapacity )
-        , preAllocBuf {""}  // MSC 2015 wants that, but generates no code with "" as init value
+        #if defined(_MSC_VER)
+            , preAllocBuf {""}  // MSC 2015 wants that, but generates no code with "" as init value
+        #else
+            , preAllocBuf {}
+        #endif
+
         {
         }
 
@@ -116,9 +114,8 @@ class PreallocatedString : public AString
                 return;
             }
 
-            ALIB_WARN_ONCE_IF_NOT( false,
-                             "Replacing preallocated buffer on move construction.",
-                             *this, ReplaceExternalBuffer );
+            ALIB_WARN_ONCE_IF_NOT( *this, ReplaceExternalBuffer, false,
+                                  "Replacing preallocated buffer on move construction." );
 
             // copy values
             buffer=     move.buffer;
@@ -129,7 +126,7 @@ class PreallocatedString : public AString
             move.capacity=   0;
 
             // in debug mode, more copying and more destructor prevention is needed
-            #if defined(ALIB_DEBUG_STRINGS)
+            #if ALIB_DEBUG_STRINGS
                 debugLastAllocRequest=           move.debugLastAllocRequest;
                 debugIsTerminated=               move.debugIsTerminated;
                 debugBufferWithMagicBytePadding= move.debugBufferWithMagicBytePadding;
@@ -153,8 +150,8 @@ class PreallocatedString : public AString
                 return;
             }
 
-            ALIB_WARN_ONCE( "Replacing preallocated buffer on move construction.",
-                            *this, ReplaceExternalBuffer );
+            ALIB_WARN_ONCE( *this, ReplaceExternalBuffer,
+                            "Replacing preallocated buffer on move construction."    );
 
             // copy values
             buffer=     move.buffer;
@@ -165,7 +162,7 @@ class PreallocatedString : public AString
             move.capacity=   0;
 
             // in debug mode, more copying and more destructor prevention is needed
-            #if defined(ALIB_DEBUG_STRINGS)
+            #if ALIB_DEBUG_STRINGS
                 debugLastAllocRequest=           move.debugLastAllocRequest;
                 debugIsTerminated=               move.debugIsTerminated;
                 debugBufferWithMagicBytePadding= move.debugBufferWithMagicBytePadding;
@@ -199,7 +196,7 @@ class PreallocatedString : public AString
          * @param regionLength The length of the region in \p src to append.
          *                     Defaults to CString::MaxLen.
          ******************************************************************************************/
-        PreallocatedString(const String& src, int regionStart, int regionLength= CString::MaxLen )
+        PreallocatedString(const String& src, integer regionStart, integer regionLength= CString::MaxLen )
         : AString( preAllocBuf, TCapacity )
         {
             if ( src.IsNotNull() )
@@ -228,7 +225,7 @@ class PreallocatedString : public AString
                 return *this;
             }
             Clear();
-            return (PreallocatedString<TCapacity>&) Append<false>( copy.Buffer(), copy.Length() );
+            return static_cast<PreallocatedString<TCapacity>&>( Append<false>( copy.Buffer(), copy.Length() ) );
         }
 
         using AString::operator=;
@@ -238,20 +235,20 @@ class PreallocatedString : public AString
 // Namespace methods
 // #################################################################################################
     /** ********************************************************************************************
-     * Partial specialization of struct <em>IsTerminatable</em> which is designed to test objects of
+     * Partial specialization of struct <em>T_IsTerminatable</em> which is designed to test objects of
      * arbitrary type if it is allowed in the case that they are not terminated,
      * to write termination character '\0' into their character buffer at the first position after
      * their last character.
      * This implementation inherits from std::true_type for all sizes of type
      * PreallocatedString<TCapacity> as they always reserve one character in their buffers' capacity.
      **********************************************************************************************/
-    template<const int TCapacity>   struct  IsTerminatable<PreallocatedString<TCapacity>>   : public std::true_type { };
+    template<const integer TCapacity>   struct  T_IsTerminatable<PreallocatedString<TCapacity>>   : public std::true_type { };
 
 }} // namespace lib::strings
 
 
 /** Type alias name in namespace #aworx. */
-template<int TCapacity>
+template<aworx::lib::lang::integer TCapacity>
 using PAString      =       aworx::lib::strings::PreallocatedString<TCapacity>;
 
 /// Type alias name for \ref aworx::lib::strings::PreallocatedString "PreallocatedString<8>".

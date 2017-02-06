@@ -3,7 +3,7 @@
 #  ALox - A-Worx Logging Library
 #
 #  (c) 2013-2016 A-Worx GmbH, Germany
-#  Published under MIT License (Open Source License, see LICENSE.txt)
+#  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 #
 #  Supression file for valgrind. Include this file to your valgrind session using command line
 #  option

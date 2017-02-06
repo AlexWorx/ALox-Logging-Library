@@ -16,6 +16,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>alox.samples</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/src.java/alox.samples</locationURI>
+		</link>
+		<link>
 			<name>java.alib.unittests</name>
 			<type>2</type>
 			<locationURI>PARENT-3-PROJECT_LOC/src.java/alib.unittests</locationURI>

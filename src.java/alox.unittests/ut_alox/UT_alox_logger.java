@@ -1,15 +1,15 @@
 // #################################################################################################
 //  Unit Tests - AWorx Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package ut_alox;
 
 import org.junit.Test;
 
 import com.aworx.lib.config.Variable;
-import com.aworx.lib.enums.ContainerOp;
+import com.aworx.lib.lang.ContainerOp;
 import com.aworx.lib.strings.AString;
 import com.aworx.lox.ALox;
 import com.aworx.lox.ESC;
@@ -18,7 +18,6 @@ import com.aworx.lox.Lox;
 import com.aworx.lox.Scope;
 import com.aworx.lox.Verbosity;
 import com.aworx.lox.core.textlogger.MetaInfo;
-import com.aworx.lox.core.textlogger.StringConverter;
 import com.aworx.lox.loggers.AnsiConsoleLogger;
 import com.aworx.lox.loggers.MemoryLogger;
 
@@ -28,66 +27,8 @@ import ut_com_aworx.AWorxUnitTesting;
 class MyType
 {/* empty type */}
 
-class MyObjectConverter implements com.aworx.lox.core.textlogger.ObjectConverter
-{
-    @Override
-    public  boolean convertObject( Object o, AString result )
-    {
-        if ( o == null )
-        {
-            result._( "MyObjectConverter: null" );
-            return true;
-        }
-
-        if ( o instanceof MyType )
-        {
-            result._( "my type" );
-            return true;
-        }
-
-        return false;
-    }
-}
 public class UT_alox_logger extends AWorxUnitTesting
 {
-
-    /** ********************************************************************************************
-     *   Log_ObjectConverter
-     **********************************************************************************************/
-    @SuppressWarnings("static-method")
-    @Test
-    public void Log_ObjectConverter()
-    {
-        UT_INIT();
-    
-        Log.addDebugLogger();
-    
-        Log.setDomain( "OBJECT_CONV",       Scope.METHOD );
-        MemoryLogger ml= new MemoryLogger();
-        ml.metaInfo.format._();
-        Log.setVerbosity( ml, Verbosity.VERBOSE );
-    
-        StringConverter mainConverter= (StringConverter) ml.objectConverters.get( 0 );
-        
-        // test without my converter
-        MyType mytype= new MyType();
-        Log.info( "Test" ); UT_TRUE( ml.memoryLog.indexOf( "Test" ) >= 0 );                          ml.memoryLog._();
-        Log.info( null   ); UT_TRUE( ml.memoryLog.indexOf( mainConverter.fmtNullObject ) >= 0 );     ml.memoryLog._();
-        Log.info( mytype ); UT_EQ  ( mytype.toString(), ml.memoryLog );                              ml.memoryLog._();
-        Log.info( null   ); UT_EQ  ( mainConverter.fmtNullObject, ml.memoryLog );                    ml.memoryLog._();
-    
-        // test without my converter
-                     ml.objectConverters.add( new MyObjectConverter() );
-        Log.debugLogger.objectConverters.add( new MyObjectConverter() );
-        Log.info( "Test" ); UT_TRUE( ml.memoryLog.indexOf( "Test" ) >= 0 );                          ml.memoryLog._();
-        Log.info( null   ); UT_EQ  ( "MyObjectConverter: null" , ml.memoryLog );                     ml.memoryLog._();
-        Log.info( mytype ); UT_EQ  ( "my type"                 , ml.memoryLog );                     ml.memoryLog._();
-    
-        // cleanup
-        Log.removeLogger( ml );
-        Log.removeDebugLogger();
-    }
-
     /** ********************************************************************************************
      *     Log_ColorsAndStyles
      **********************************************************************************************/
@@ -96,7 +37,7 @@ public class UT_alox_logger extends AWorxUnitTesting
     public void Log_ColorsAndStyles()
     {
         UT_INIT();
-        
+
         Log.setDomain( "COLORS", Scope.METHOD );
         MemoryLogger ml= new MemoryLogger();
         Log.setVerbosity( ml , Verbosity.VERBOSE, "COLORS");
@@ -160,9 +101,11 @@ public class UT_alox_logger extends AWorxUnitTesting
 
         AnsiConsoleLogger acl= (AnsiConsoleLogger) Log.getLogger( "ANSI_CONSOLE" );
         if ( acl!=null )
-            acl.isBackgroundLight= !acl.isBackgroundLight;
-        ml.memoryLog.clear();
-        Log.info( "Same rev.:  "
+        {
+            int useLightColors= acl.useLightColors;
+            acl.useLightColors= acl.useLightColors == 1 ? 2 : 1;
+            ml.memoryLog.clear();
+            Log.info( "Same rev.:  "
                                 + ">>>" + ESC.RED     + ESC.BG_RED     + "RED"        + ESC.RESET + "<<<"
                                 + ">>>" + ESC.GREEN   + ESC.BG_GREEN   + "GREEN"      + ESC.RESET + "<<<"
                                 + ">>>" + ESC.BLUE    + ESC.BG_BLUE    + "BLUE"       + ESC.RESET + "<<<"
@@ -173,8 +116,8 @@ public class UT_alox_logger extends AWorxUnitTesting
                                 + ">>>" + ESC.WHITE   + ESC.BG_WHITE   + "WHITE"      + ESC.RESET + "<<<"
                                 + ">>>" + ESC.BLACK   + ESC.BG_BLACK   + "BLACK"      + ESC.RESET + "<<<"
                                 );
-        if ( acl!=null )
-            acl.isBackgroundLight= !acl.isBackgroundLight;
+            acl.useLightColors= useLightColors;
+        }
 
 
         UT_TRUE( ml.memoryLog.indexOf("\033") < 0 );
@@ -261,44 +204,45 @@ public class UT_alox_logger extends AWorxUnitTesting
                                     );
 
         UT_TRUE( ml.memoryLog.indexOf("\033") < 0 );
-        
+
         Log.removeLogger( ml );
-        
+
     }
-    
+
     /** ********************************************************************************************
     * Log_TextLogger_FormatConfig
     **********************************************************************************************/
+    static
     void testFormatConfig( String testFormat,
                            String expFmt,
                            String expFmtError   ,
                            String expFmtWarning ,
                            String expFmtInfo    ,
-                           String expFmtVerbose 
+                           String expFmtVerbose
                          )
     {
         Variable var= new Variable();
         var.define(ALox.configCategoryName, "TESTML_FORMAT", ',').store( testFormat  );
-        Lox lox= new Lox("TEST");   
+        Lox lox= new Lox("TEST");
         MemoryLogger ml= new MemoryLogger("TESTML");
         lox.setVerbosity( ml, Verbosity.INFO );
         lox.removeLogger( ml );
         ALox.register( lox, ContainerOp.REMOVE );
-    
+
                                      UT_EQ( expFmt       , ml.metaInfo.format );
         if( expFmtError  != null ) { UT_EQ( expFmtError  , ml.metaInfo.verbosityError   ); }
         if( expFmtWarning!= null ) { UT_EQ( expFmtWarning, ml.metaInfo.verbosityWarning ); }
         if( expFmtInfo   != null ) { UT_EQ( expFmtInfo   , ml.metaInfo.verbosityInfo    ); }
         if( expFmtVerbose!= null ) { UT_EQ( expFmtVerbose, ml.metaInfo.verbosityVerbose ); }
     }
-    
-    
+
+
     @SuppressWarnings("static-method")
     @Test
     public void Log_TextLogger_FormatConfig()
     {
         UT_INIT();
-        
+
         testFormatConfig( "Test"                                , "Test", null,null,null,null     );
         testFormatConfig( "\"Test"                              , "Test", null,null,null,null     );
         testFormatConfig( "\"Test\""                            , "Test", null,null,null,null     );
@@ -308,8 +252,8 @@ public class UT_alox_logger extends AWorxUnitTesting
         testFormatConfig( "\" Test, a\" ,b, \"c\",d  "          , " Test, a","b","c", "d",null    );
         testFormatConfig( "\" Test, a\" ,b, \"c,d\"  "          , " Test, a","b","c,d",null,null  );
     }
-    
-    
+
+
     /** ********************************************************************************************
      *     Log_TextLoggerTimeDiff
      **********************************************************************************************/
@@ -432,8 +376,8 @@ public class UT_alox_logger extends AWorxUnitTesting
         Log.setDomain( "FMT", Scope.METHOD );
 
         Log.info( "This is the default ConsoleLogger log line" );
-        com.aworx.lox.core.textlogger.AutoSizes backup= Log.debugLogger.autoSizes;
-        Log.debugLogger.autoSizes= new com.aworx.lox.core.textlogger.AutoSizes();
+        com.aworx.lib.strings.AutoSizes backup= Log.debugLogger.autoSizes;
+        Log.debugLogger.autoSizes= new com.aworx.lib.strings.AutoSizes();
 
         AString  lf;
         lf= new AString( "(%SF) %SP.%SL.%SM():%A3[%D][%TD][%TC +%TL][%tN]%V[%D]<%#>: ");    Log.debugLogger.metaInfo.format= lf;    Log.info( "LineFormat set to= \"" + lf + "\"" );
@@ -470,11 +414,13 @@ public class UT_alox_logger extends AWorxUnitTesting
         testML.autoSizes.reset();
         Log.info("");
         UT_TRUE( testML.memoryLog.equals( "1@") );
-        
+
 
         Log.debugLogger.metaInfo.format._()._( "%P" );
                  testML.metaInfo.format._()._( "%P" );
-        testML.memoryLog.clear(); testML.autoSizes.reset(); Log.info("");  UT_EQ( "RemoteTestRunner" , testML.memoryLog );
+        testML.memoryLog.clear(); testML.autoSizes.reset(); Log.info("");  UT_TRUE(    testML.memoryLog.equals("RemoteTestRunner")    // eclipse
+                                                                                    || testML.memoryLog.equals("AppMain"         )    // intellij
+                                                                                  );
 
         Log.debugLogger.metaInfo.format._()._( "%LX" );
                  testML.metaInfo.format._()._( "%LX" );

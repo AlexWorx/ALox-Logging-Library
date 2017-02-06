@@ -1,15 +1,14 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /**
 \page man_log_once 06 - Lox.Once()
 
 \tableofcontents
-
 
 \~Comment ####################################################################################### \~
 # 1. Introduction #  {#man_logonce_intro}
@@ -221,9 +220,29 @@ a little more. Just for example:
 It is up to the reader of this manual and user of ALox to adopt his/her own use cases to this
 list.
 
+\~Comment ####################################################################################### \~
+# 5. Passing Multiple Logables To Lox.Once#  {#man_logonce_multiple_logables}
+Unlike other methods of class \b %Lox that comprise <em>Log Statements</em> which accept an
+arbitrary amount of logables, method \b %Once and its overloaded variants accept only one object.
+This restriction is caused by the otherwise complicated set of parameters and overloads of this
+method. There is an easy way out!
+
+To supply more than one \e Logable, in C++ a container of type \ref aworx::lib::boxing::Boxes "Boxes"
+may be passed with parameter \p logables:
+
+\snippet "ut_alox_lox.cpp"      DOX_ALOX_LOX_ONCE
+
+In C# and Java versions, a simple \c Object[] can be created on the fly. For C# this looks as follows:
+
+\snippet "UT_alox_lox.cs"       DOX_ALOX_LOX_ONCE
+
+and the very same in JAVA:
+
+\snippet "UT_alox_lox.java"     DOX_ALOX_LOX_ONCE
+
 
 \~Comment ####################################################################################### \~
-# 5. Wrap-Up #  {#man_logonce_wrapup}
+# 6. Wrap-Up #  {#man_logonce_wrapup}
 
 Some combinations of \e Scope 'levels' and using \e Groups probably do not make too much sense.
 For example: Grouping different \b LogOnce statements together within \e %Scope.Method? Well, you rather

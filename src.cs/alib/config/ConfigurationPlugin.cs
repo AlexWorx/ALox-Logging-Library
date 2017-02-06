@@ -1,14 +1,14 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 using System;
 using System.Text;
 using cs.aworx.lib.strings;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 
 namespace cs.aworx.lib.config  {
 
@@ -36,8 +36,9 @@ namespace cs.aworx.lib.config  {
  * - "Externalizing" a value:
  *   - Value is surrounded by quotes if it starts or ends with spaces or if it includes
  *     the delimiter token.
- *   - A few characters are escaped using \c '\\', for example \c '\\n', \c '\\r', \c '\\t' and also
- *    the double quotation marks \c ".
+ *   - A few characters are escaped using \c '\\'. Those are
+ *     \c \\n, \c \\r, \c \\t , \c \\a, \c \\b, \c \\v, \c \\f, \c \\e and also
+ *     the double quotation marks \c \\" and the backslash itself (\c \\\\).
  *
  * - "Internalizing" a value:
  *   - If (non-escaped) quote \c " characters are found, those are removed and whitespaces
@@ -70,7 +71,7 @@ public class XTernalizer
     void    LoadFromString( Variable variable, Object src )
     {
         variable.ClearValues();
-        AString varValue= variable.AddString();
+        AString varValue= variable.Add();
 
         Substring subs= null;
         if( src is Substring)
@@ -117,8 +118,8 @@ public class XTernalizer
             {
                 tmpSubs2.Set( subs, 0, idx - 1 );
                 InternalizeValue( tmpSubs2, varValue );
-                varValue= variable.AddString();
-                subs.Consume( idx );
+                varValue= variable.Add();
+                subs.ConsumeChars( idx );
                 subs.TrimStart();
                 idx= 0;
             }
@@ -155,16 +156,22 @@ public class XTernalizer
 
         while( src.IsNotEmpty() )
         {
-            char c= src.Consume();
+            char c= src.ConsumeChar();
 
             if( lastWasSlash )
             {
                 lastWasSlash= false;
-                char escChr= c == '\\' ? '\\' :
-                             c == 'n'  ? '\n' :
+                char escChr= c == '"'  ? '"'  :
+                             c == '\\' ? '\\' :
                              c == 'r'  ? '\r' :
+                             c == 'n'  ? '\n' :
                              c == 't'  ? '\t' :
-                             c == '"'  ? '"'  : c;
+                             c == 'a'  ? '\a' :
+                             c == 'b'  ? '\b' :
+                             c == 'v'  ? '\v' :
+                             c == 'f'  ? '\f' :
+                             c == 'e'  ? '\x001B' :
+                             c;
 
                 dest._(escChr);
                 continue;
@@ -199,12 +206,7 @@ public class XTernalizer
 
 
     /** ********************************************************************************************
-     * Converts the given \p src string to an external representation. In particular, the following
-     * rules apply:
-     *   - \p src is surrounded by quotes if it starts or ends with spaces or if it includes
-     *     the delimiter character \p delim.
-     *   - A few characters are escaped using \c '\\', for example \c '\\n', \c '\\r', \c '\\t'
-     *     and also the double quotation marks \c ".
+     * Converts the given \p src string to an external representation.
      *
      * @param  src      The source string
      * @param  dest     The destination string
@@ -237,15 +239,20 @@ public class XTernalizer
 
         while( subs.IsNotEmpty() )
         {
-            char c= subs.Consume();
+            char c= subs.ConsumeChar();
 
             switch(c)
             {
+                case '"'  : dest._NC("\\\""); break;
                 case '\\' : dest._NC("\\\\"); break;
                 case '\r' : dest._NC("\\r" ); break;
                 case '\n' : dest._NC("\\n" ); break;
                 case '\t' : dest._NC("\\t" ); break;
-                case '"'  : dest._NC("\\\""); break;
+                case '\a' : dest._NC("\\a" ); break;
+                case '\b' : dest._NC("\\b" ); break;
+                case '\v' : dest._NC("\\v" ); break;
+                case '\f' : dest._NC("\\f" ); break;
+                case '\x001B' : dest._NC("\\e" ); break;
                 default   : dest._(c);        break;
             }
         }
@@ -377,9 +384,8 @@ public class CommandLinePlugin : ConfigurationPlugin
      * \ref cs::aworx::lib::config::Configuration::SetCommandLineArgs "Configuration.SetCommandLineArgs".
      *
      *\note In standard application scenarios, this method is invoked by method
-     *      \ref cs::aworx::lib::ALIB::Init "ALIB.Init" for the singleton of this class found
-     *      in class \b %Configuration, which in turn is found as a singleton in
-     *      \ref cs::aworx::lib::ALIB::Config "ALIB.Config".
+     *      \ref cs::aworx::lib::ALIB::Init "ALIB.Init" for the singleton of this class found in
+     *      \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default".
      *
      * @param args    Parameters taken from <em>standard C#</em> method \c main()
      *                (the list of command line arguments).
@@ -407,9 +413,9 @@ public class CommandLinePlugin : ConfigurationPlugin
         {
             // remove whitespaces (if somebody would work with quotation marks...)
             // and request '-' and allow a second '-'
-            if ( !actVar.Set( args[i] ).Trim().Consume('-') )
+            if ( !actVar.Set( args[i] ).Trim().ConsumeChar('-') )
                 continue;
-            actVar.Consume( '-' );
+            actVar.ConsumeChar( '-' );
 
             if ( variable.Fullname.CompareTo( args[i], Case.Ignore, actVar.Start, optionLength, 0, optionLength ) == 0)
             {
@@ -418,11 +424,11 @@ public class CommandLinePlugin : ConfigurationPlugin
                 if ( actVar.IsEmpty() )
                 {
                     if ( !searchOnly )
-                        variable.AddString();
+                        variable.Add();
                     return true;
                 }
 
-                if ( actVar.Consume( '=', Case.Sensitive, Whitespaces.Trim ) )
+                if ( actVar.ConsumeChar( '=', Case.Sensitive, Whitespaces.Trim ) )
                 {
                     if ( !searchOnly )
                     {

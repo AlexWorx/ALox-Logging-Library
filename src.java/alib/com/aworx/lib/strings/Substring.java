@@ -1,16 +1,15 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 package com.aworx.lib.strings;
 
-import com.aworx.lib.ALIB;
-import com.aworx.lib.enums.Case;
-import com.aworx.lib.enums.Inclusion;
-import com.aworx.lib.enums.Whitespaces;
+import com.aworx.lib.lang.Case;
+import com.aworx.lib.lang.Inclusion;
+import com.aworx.lib.lang.Whitespaces;
 
 /** ************************************************************************************************
  *  This class is used for defining a region (sub-string) on an existing character array which
@@ -62,13 +61,20 @@ public class Substring implements CharSequence
     // Public fields
     // #############################################################################################
         /**  The character array we work on. */
-        public  char[]        buf;
+        public      char[]          buf;
 
         /**  Start marker within buf */
-        public int            start;
+        public      int             start;
 
         /**  End marker within buf (points to the last character) */
-        public int            end;
+        public      int             end;
+
+        /**  Used as second return value with method various consumeChar methods. */
+        public      long            consumedLong;
+
+        /**  Used as second return value with method #consumeFloat. */
+        public      double          consumedFloat;
+
 
     /** ############################################################################################
      * @name Constructors
@@ -199,7 +205,6 @@ public class Substring implements CharSequence
      * @name Set data
      ##@{ ########################################################################################*/
 
-
         /** ****************************************************************************************
          *  Sets the substring to represent a region of the given \b %Substring.
          *
@@ -279,7 +284,20 @@ public class Substring implements CharSequence
          ******************************************************************************************/
         public Substring set( AString src, int regionStart )
         {
-            return set( src.buffer(), regionStart, Integer.MAX_VALUE );
+            if ( src == null || src.isNull() )
+            {
+                setNull();
+                return this;
+            }
+
+            if( regionStart < 0 )
+                regionStart= 0;
+            int regionLength= Integer.MAX_VALUE;
+            CString.adjustRegion( src.length(), regionStart, regionLength, _adjustedRegion );
+            buf=    src.buffer();
+            start=  _adjustedRegion[0];
+            end=    _adjustedRegion[1] + start - 1;
+            return this;
         }
 
         /** ****************************************************************************************
@@ -290,7 +308,16 @@ public class Substring implements CharSequence
          ******************************************************************************************/
         public Substring set( AString src )
         {
-            return set( src, 0, Integer.MAX_VALUE );
+            if ( src == null || src.isNull() )
+            {
+                setNull();
+                return this;
+            }
+
+            buf=    src.buffer();
+            start=  0;
+            end=    src.length() - 1;
+            return  this;
         }
 
         /** ****************************************************************************************
@@ -462,7 +489,7 @@ public class Substring implements CharSequence
          * @return The character at the start of the represented region.
          *         If this %Substring empty or nulled, '\0' is returned.
          ******************************************************************************************/
-        public char    consume()
+        public char consumeChar()
         {
               return isEmpty() ?  '\0'
                                :  buf[start++];
@@ -473,7 +500,7 @@ public class Substring implements CharSequence
          * @return The character at the start of the represented region.
          *         If this %Substring empty or nulled, '\0' is returned.
          ******************************************************************************************/
-        public char    consumeFromEnd ()
+        public char consumeCharFromEnd()
         {
               return isEmpty() ?  '\0'
                                :  buf[end--];
@@ -492,7 +519,7 @@ public class Substring implements CharSequence
          *
          * @return The new length of the substring.
          ******************************************************************************************/
-        public int        consume( int regionLength, Substring target )
+        public int consumeChars(int regionLength, Substring target )
         {
             if ( regionLength < 0 )
             {
@@ -519,9 +546,9 @@ public class Substring implements CharSequence
          *
          * @return The new length of the substring.
          ******************************************************************************************/
-        public int        consume( int regionLength )
+        public int consumeChars(int regionLength )
         {
-            return consume( regionLength, null );
+            return consumeChars( regionLength, null );
         }
 
         /** ****************************************************************************************
@@ -537,7 +564,7 @@ public class Substring implements CharSequence
          *
          * @return The new length of the substring.
          ******************************************************************************************/
-        public int        consumeFromEnd( int regionLength, Substring target  )
+        public int consumeCharFromEnd(int regionLength, Substring target  )
         {
             if ( regionLength < 0 )
             {
@@ -565,9 +592,9 @@ public class Substring implements CharSequence
          *
          * @return The new length of the substring.
          ******************************************************************************************/
-        public int        consumeFromEnd( int regionLength )
+        public int consumeCharFromEnd(int regionLength )
         {
-            return consumeFromEnd( regionLength, null );
+            return consumeCharFromEnd( regionLength, null );
         }
 
 
@@ -578,13 +605,13 @@ public class Substring implements CharSequence
          * @param consumable        The consumable character
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
-         *                          consume operation. Defaults to \c Whitespaces.KEEP.
+         *                          consume operation. Defaults to \b Whitespaces.KEEP.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut by one.
          ******************************************************************************************/
-        public boolean     consume( char        consumable, 
-                                    Case        sensitivity,
-                                    Whitespaces trimBeforeConsume )
+        public boolean consumeChar(char        consumable,
+                                   Case        sensitivity,
+                                   Whitespaces trimBeforeConsume )
         {
             if ( trimBeforeConsume == Whitespaces.TRIM )
                 trimStart();
@@ -592,37 +619,37 @@ public class Substring implements CharSequence
             if (    ( sensitivity == Case.SENSITIVE &&                       charAtStart()  !=                       consumable  )
                  || ( sensitivity == Case.IGNORE    && Character.toUpperCase(charAtStart()) != Character.toUpperCase(consumable) ) )
                 return false;
-                
+
             start++;
             return true;
         }
 
         /** ****************************************************************************************
-         * Overloaded version of original method 
-         * providing default parameter \p trimBeforeConsume with value \c Whitespaces.KEEP.
+         * Overloaded version of original method
+         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP.
          *
          * @param consumable        The consumable character
          * @param sensitivity       The sensitivity of the comparison.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut by one.
          ******************************************************************************************/
-        public boolean     consume( char consumable, Case sensitivity )
+        public boolean consumeChar(char consumable, Case sensitivity )
         {
-            return consume( consumable, sensitivity, Whitespaces.KEEP );
+            return consumeChar( consumable, sensitivity, Whitespaces.KEEP );
         }
 
         /** ****************************************************************************************
-         * Overloaded version of original method 
-         * providing default parameter \p trimBeforeConsume with value \c Whitespaces.KEEP
-         * and default parameter \p sensitivity with value \c Case.SENSITIVE. 
+         * Overloaded version of original method
+         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP
+         * and default parameter \p sensitivity with value \c Case.SENSITIVE.
          *
          * @param consumable        The consumable character
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut by one.
          ******************************************************************************************/
-        public boolean     consume( char consumable  )
+        public boolean consumeChar(char consumable  )
         {
-            return consume( consumable, Case.SENSITIVE, Whitespaces.KEEP );
+            return consumeChar( consumable, Case.SENSITIVE, Whitespaces.KEEP );
         }
 
 
@@ -633,13 +660,13 @@ public class Substring implements CharSequence
          * @param consumable The consumable character
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (right-) trimmed before the
-         *                          consume operation. Defaults to \c Whitespaces.KEEP.
+         *                          consume operation. Defaults to \b Whitespaces.KEEP.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut by one.
          ******************************************************************************************/
-        public boolean     consumeFromEnd( char        consumable,  
-                                           Case        sensitivity,
-                                           Whitespaces trimBeforeConsume )
+        public boolean consumeCharFromEnd(char        consumable,
+                                          Case        sensitivity,
+                                          Whitespaces trimBeforeConsume )
         {
             if ( trimBeforeConsume == Whitespaces.TRIM )
                 trimEnd();
@@ -653,31 +680,31 @@ public class Substring implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Overloaded version of original method 
-         * providing default parameter \p trimBeforeConsume with value \c Whitespaces.KEEP.
+         * Overloaded version of original method
+         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP.
          *
          * @param consumable    The consumable character
          * @param sensitivity   The sensitivity of the comparison.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut by one.
          ******************************************************************************************/
-        public boolean     consumeFromEnd( char consumable, Case sensitivity ) 
+        public boolean consumeCharFromEnd(char consumable, Case sensitivity )
         {
-            return consumeFromEnd( consumable, sensitivity, Whitespaces.KEEP );
+            return consumeCharFromEnd( consumable, sensitivity, Whitespaces.KEEP );
         }
 
         /** ****************************************************************************************
-         * Overloaded version of original method 
-         * providing default parameter \p trimBeforeConsume with value \c Whitespaces.KEEP
-         * and default parameter \p sensitivity with value \c Case.SENSITIVE. 
+         * Overloaded version of original method
+         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP
+         * and default parameter \p sensitivity with value \c Case.SENSITIVE.
          *
          * @param consumable The consumable character
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut by one.
          ******************************************************************************************/
-        public boolean     consumeFromEnd( char consumable )
+        public boolean consumeCharFromEnd(char consumable )
         {
-            return consumeFromEnd( consumable, Case.SENSITIVE, Whitespaces.KEEP );
+            return consumeCharFromEnd( consumable, Case.SENSITIVE, Whitespaces.KEEP );
         }
 
         /** ****************************************************************************************
@@ -687,13 +714,13 @@ public class Substring implements CharSequence
          * @param consumable        The consumable string
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
-         *                          consume operation. Defaults to \c Whitespaces.KEEP.
+         *                          consume operation. Defaults to \b Whitespaces.KEEP.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
-        public boolean     consume( CharSequence consumable, 
-                                    Case        sensitivity,
-                                    Whitespaces trimBeforeConsume )
+        public boolean consumeString(CharSequence consumable,
+                                     Case        sensitivity,
+                                     Whitespaces trimBeforeConsume )
         {
             if ( trimBeforeConsume == Whitespaces.TRIM )
                 trimStart();
@@ -701,36 +728,36 @@ public class Substring implements CharSequence
             if ( !startsWith( consumable ) )
                 return false;
 
-            consume( consumable.length() );
+            start+= consumable.length();
 
             return true;
         }
         /** ****************************************************************************************
-         * Overloaded version of original method 
-         * providing default parameter \p trimBeforeConsume with value \c Whitespaces.KEEP.
+         * Overloaded version of original method
+         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP.
          *
          * @param consumable        The consumable string
          * @param sensitivity       The sensitivity of the comparison.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
-        public boolean     consume( CharSequence consumable, Case sensitivity )
+        public boolean consumeString(CharSequence consumable, Case sensitivity )
         {
-            return consume( consumable, sensitivity, Whitespaces.KEEP );
+            return consumeString( consumable, sensitivity, Whitespaces.KEEP );
         }
 
         /** ****************************************************************************************
-         * Overloaded version of original method 
-         * providing default parameter \p trimBeforeConsume with value \c Whitespaces.KEEP
-         * and default parameter \p sensitivity with value \c Case.SENSITIVE. 
+         * Overloaded version of original method
+         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP
+         * and default parameter \p sensitivity with value \c Case.SENSITIVE.
          *
          * @param consumable        The consumable string
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
-        public boolean     consume( CharSequence consumable )
+        public boolean consumeString(CharSequence consumable )
         {
-            return consume( consumable, Case.SENSITIVE, Whitespaces.KEEP );
+            return consumeString( consumable, Case.SENSITIVE, Whitespaces.KEEP );
         }
 
         /** ****************************************************************************************
@@ -740,48 +767,130 @@ public class Substring implements CharSequence
          * @param consumable        The consumable string
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (right-) trimmed before the
-         *                          consume operation. Defaults to \c Whitespaces.KEEP.
+         *                          consume operation. Defaults to \b Whitespaces.KEEP.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
-        public boolean     consumeFromEnd( CharSequence consumable, 
-                                           Case         sensitivity,
-                                           Whitespaces  trimBeforeConsume )
+        public boolean consumeStringFromEnd(CharSequence consumable,
+                                            Case         sensitivity,
+                                            Whitespaces  trimBeforeConsume )
         {
             if ( trimBeforeConsume == Whitespaces.TRIM )
                 trimEnd();
 
             if ( !endsWith( consumable ) )
                 return false;
-            consumeFromEnd( consumable.length() );
+
+            end-= consumable.length();
             return true;
         }
         /** ****************************************************************************************
-         * Overloaded version of original method 
-         * providing default parameter \p trimBeforeConsume with value \c Whitespaces.KEEP.
+         * Overloaded version of original method
+         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP.
          *
          * @param consumable        The consumable string
          * @param sensitivity       The sensitivity of the comparison.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
-        public boolean     consumeFromEnd( CharSequence consumable, Case sensitivity )
+        public boolean consumeStringFromEnd(CharSequence consumable, Case sensitivity )
         {
-            return consumeFromEnd( consumable, sensitivity, Whitespaces.KEEP );
+            return consumeStringFromEnd( consumable, sensitivity, Whitespaces.KEEP );
         }
 
         /** ****************************************************************************************
-         * Overloaded version of original method 
-         * providing default parameter \p trimBeforeConsume with value \c Whitespaces.KEEP
-         * and default parameter \p sensitivity with value \c Case.SENSITIVE. 
+         * Overloaded version of original method
+         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP
+         * and default parameter \p sensitivity with value \c Case.SENSITIVE.
          *
          * @param consumable        The consumable string
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
-        public boolean     consumeFromEnd( CharSequence consumable )
+        public boolean consumeStringFromEnd(CharSequence consumable )
         {
-            return consumeFromEnd( consumable, Case.SENSITIVE, Whitespaces.KEEP );
+            return consumeStringFromEnd( consumable, Case.SENSITIVE, Whitespaces.KEEP );
+        }
+
+        /** ****************************************************************************************
+         * Consumes a minimum of \p minChars of string \c consumable from the start of this
+         * substring. If the minimum characters could not be found, nothing is consumed, otherwise
+         * as much as possible.<br>
+         * This method is useful for example to read commands from a string that may be
+         * abbreviated.
+         *
+         * @param consumable        The consumable string.
+         * @param minChars          The minimum amount of characters to consume.
+         *                          Optional and defaults to \c 1
+         * @param sensitivity       The sensitivity of the comparison.
+         *                          Defaults to \b Case.SENSITIVE.
+         * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
+         *                          first character consume operation.
+         *                          Defaults to \b Whitespaces.KEEP.
+         * @return The amount of characters consumed.
+         ******************************************************************************************/
+        public int consumePartOf(String           consumable,
+                                 int              minChars,
+                                 Case             sensitivity,
+                                 Whitespaces      trimBeforeConsume )
+        {
+            if ( trimBeforeConsume == Whitespaces.TRIM )
+                trimStart();
+
+            if ( minChars == 0 || minChars > consumable.length() )
+                return 0;
+
+            int diff= indexOfFirstDifference( consumable, sensitivity, 0 );
+            if( diff < minChars )
+                return 0;
+            consumeChars( diff );
+            return diff;
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of original method
+         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP.
+         *
+         * @param consumable        The consumable string.
+         * @param minChars          The minimum amount of characters to consume.
+         *                          Optional and defaults to \c 1
+         * @param sensitivity       The sensitivity of the comparison.
+         * @return The amount of characters consumed.
+         ******************************************************************************************/
+        public int consumePartOf(String       consumable,
+                                 int          minChars,
+                                 Case         sensitivity  )
+        {
+            return consumePartOf( consumable, minChars, sensitivity, Whitespaces.KEEP );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of original method
+         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP and
+         * \p sensitivity with value \b Case.Sensitive.
+         *
+         * @param consumable        The consumable string.
+         * @param minChars          The minimum amount of characters to consume.
+         *                          Optional and defaults to \c 1
+         * @return The amount of characters consumed.
+         ******************************************************************************************/
+        public int consumePartOf(String           consumable,
+                                 int              minChars     )
+        {
+            return consumePartOf( consumable, minChars, Case.SENSITIVE, Whitespaces.KEEP );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of original method
+         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP,
+         * \p sensitivity with value \b Case.Sensitive and \p minChars with value \c 1.
+         *
+         * @param consumable        The consumable string.
+         * @return The amount of characters consumed.
+         ******************************************************************************************/
+        public int consumePartOf(String           consumable   )
+        {
+            return consumePartOf( consumable, 1, Case.SENSITIVE, Whitespaces.KEEP );
         }
 
         /** ****************************************************************************************
@@ -1412,7 +1521,7 @@ public class Substring implements CharSequence
          * Search the given String in the buffer starting at a given position.
          *
          * @param needle        The CharSequence to search.
-         * @param startIdx      The index to start the search at. Optional and defaults to 0.
+         * @param startIdx      The index to start the search at. Optional and defaults to \c 0.
          * @param sensitivity   Case sensitivity of the operation.
          *                      Optional and defaults to Case.Sensitive.
          *
@@ -1431,7 +1540,7 @@ public class Substring implements CharSequence
          * Search a CharSequence in the buffer.
          *
          * @param cs            The CharSequence to search.
-         * @param startIdx      The index to start the search at. Optional and defaults to 0.
+         * @param startIdx      The index to start the search at. Optional and defaults to \c 0.
          *
          * @return  -1 if the String is not found. Otherwise the index of first occurrence.
          ******************************************************************************************/
@@ -1453,10 +1562,55 @@ public class Substring implements CharSequence
         }
 
         /** ****************************************************************************************
+         * Searches the first difference with given string.
+         *
+         * @param needle       The String to search.
+         * @param sensitivity  Case sensitivity of the comparison.
+         *                     Optional and defaults to \b Case.SENSITIVE.
+         * @param startIdx     The index to start the search at.
+         *                     Optional and defaults to \c 0.
+         * @return    -1 if the \e String is not found. Otherwise the index of first occurrence.
+         ******************************************************************************************/
+        public int indexOfFirstDifference(CharSequence needle, Case sensitivity, int startIdx  )
+        {
+            int length= length();
+            if      ( startIdx < 0 )                startIdx= 0;
+            else if ( startIdx >= length )          return 0;
+
+            return  CString.indexOfFirstDifference( buf, start + startIdx, length - startIdx, needle, sensitivity );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version providing default paramter \p startIdx with value \c 0.
+         *
+         * @param needle       The String to search.
+         * @param sensitivity  Case sensitivity of the comparison.
+         *                     Optional and defaults to \b Case.SENSITIVE.
+         * @return    -1 if the \e String is not found. Otherwise the index of first occurrence.
+         ******************************************************************************************/
+        public int indexOfFirstDifference(CharSequence needle, Case sensitivity  )
+        {
+            return  indexOfFirstDifference( needle, sensitivity, 0 );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version providing default paramter \p startIdx with value \c 0 and
+         * \p sensitivity with value \b Case.SENSITIVE.
+         *
+         * @param needle       The String to search.
+         * @return    -1 if the \e String is not found. Otherwise the index of first occurrence.
+         ******************************************************************************************/
+        public int indexOfFirstDifference(CharSequence needle   )
+        {
+            return  indexOfFirstDifference( needle, Case.SENSITIVE, 0 );
+        }
+
+
+        /** ****************************************************************************************
          * Search a character in the buffer.
          *
          * @param needle        The character to search.
-         * @param startIdx      The index to start the search at. Optional and defaults to 0.
+         * @param startIdx      The index to start the search at. Optional and defaults to \c 0.
          *
          * @return  -1 if the character is not found. Otherwise the index of first occurrence.
          ******************************************************************************************/
@@ -1518,9 +1672,7 @@ public class Substring implements CharSequence
             if ( startIdx >= length ) return   -1;
 
             int idx= CString.indexOfAnyInRegion( buf, start + startIdx, length - startIdx, needles, inclusion );
-            if ( idx < 0)
-                return -1;
-            return idx - start;
+            return idx < 0 ? -1  : idx - start;
         }
 
         /** ****************************************************************************************
@@ -1547,7 +1699,7 @@ public class Substring implements CharSequence
          * Returns the index of the first character which is included, respectively <em>not</em>
          * included in a given set of characters.
          * The search starts at the given index and goes backward.
-         * For forward search, see #indexOfAny(char[], Inclusion, int).
+         * For forward search, see \ref indexOfAny(char[] p, Inclusion, int) "indexOfAny".
          *
          * @param needles    Characters to be searched for.
          * @param inclusion  Denotes whether the search returns the first index that holds a value
@@ -1567,9 +1719,7 @@ public class Substring implements CharSequence
             if ( startIdx < 0       ) return -1;
             if ( startIdx >= length ) startIdx=  length - 1;
             int idx= CString.lastIndexOfAny( buf, start, startIdx + 1, needles, inclusion );
-            if ( idx < 0)
-                return -1;
-            return idx - start;
+            return idx < 0 ? -1  : idx - start;
 
         }
 
@@ -1577,7 +1727,7 @@ public class Substring implements CharSequence
          * Returns the index of the first character which is included, respectively <em>not</em>
          * included in a given set of characters.
          * The search starts at the end and goes backward.
-         * For forward search, see #indexOfAny(char[], Inclusion, int).
+         * For forward search, see \ref indexOfAny(char[] p, Inclusion, int) "indexOfAny".
          *
          * @param needles    Characters to be searched for.
          * @param inclusion  Denotes whether the search returns the first index that holds a value
@@ -1619,7 +1769,7 @@ public class Substring implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Invokes #trimStart(char[]) providing default parameter
+         * Invokes #trimStart(char[] whiteSpaces) providing default parameter
          * \ref com::aworx::lib::strings::CString::DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
@@ -1642,7 +1792,7 @@ public class Substring implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Invokes #trimEnd(char[]) providing default parameter
+         * Invokes #trimEnd(char[] whiteSpaces) providing default parameter
          * \ref com::aworx::lib::strings::CString::DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
@@ -1663,7 +1813,7 @@ public class Substring implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Invokes #trim(char[]) providing default parameter
+         * Invokes #trim(char[] whiteSpaces) providing default parameter
          * \ref com::aworx::lib::strings::CString::DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
@@ -1744,169 +1894,291 @@ public class Substring implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Reads a 64-bit integer from the %Substring. If successful, this objects' field #start is
-         * increased to point to first character that is not a number.
-         * If no number is found, zero is returned and the field #start is
-         * not increased.
+         * Consumes all characters \c '0' to \c '9' at the start of this object and stores the
+         * number value they represent in #consumedLong.
+         * <br>Unlike with #consumeInt or #consumeDec, no sign, whitespaces or group characters are
+         * consumed.
          *
-         * Leading whitespace characters are ignored. However, if after leading Whitespaces no
-         * numbers were found, then the field #start is not changed. This way, the field start can
-         * be used to check if a value was parsed successfully.
-         *
-         * \note If this %Substring spans several integer values which are separated by
-         *       Whitespaces, concatenated calls to this method will read one by one, without
-         *       further trimming or tokenizing
-         *       (see \ref com::aworx::lib::strings::Tokenizer "Tokenizer").
-         *       Therefore, by providing the parameter \p whiteSpaces, it is possible to
-         *       easily read several numbers which are separated by user defined characters.
-         *
-         * @param whiteSpaces  White space characters used to trim the substring at the front,
-         *                     before reading the value. Defaults to
-         *                     \ref com::aworx::lib::strings::CString::DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
-         * @return  The parsed value.
+         * @return  \c true if an integer was found, \c false otherwise.
          ******************************************************************************************/
-        public long     toLong( char[] whiteSpaces )
+        public boolean    consumeDecDigits()
         {
-             if( isEmpty() )
-                return 0;
+            consumedLong= NumberFormat.parseDecDigits( buf, start, end, _adjustedRegion );
+            if( _adjustedRegion[0] == start )
+                return false;
 
-             int  origStart= start;
-             trimStart(whiteSpaces);
-             int  trimStart= start;
-             long result=   NumberFormat.stringToInteger( buf, trimStart, end, _adjustedRegion );
-
-             start= _adjustedRegion[0] == trimStart ? origStart
-                                                    : _adjustedRegion[0];
-             return result;
+            start= _adjustedRegion[0];
+            return true;
         }
 
         /** ****************************************************************************************
-         * Invokes #toLong(char[]) providing default parameter
-         * \ref com::aworx::lib::strings::CString::DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES"
-         * @return  The parsed value.
+         * Consumes a long integer value in decimal, binary, hexadecimal or octal format from
+         * the start of the string by invoking method
+         * \ref com::aworx::lib::strings::NumberFormat::parseInt "NumberFormat.parseInt"
+         * on the given \p numberFormat instance.<br>
+         Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * which is configured to 'international' settings (not using the locale) and therefore
+         * also not parsing grouping characters.
+         *
+         * @param numberFormat Defines the input format. Optional and defaults to \c null.
+         *
+         * @return  \c true if an integer was found, \c false otherwise.
          ******************************************************************************************/
-        public long     toLong()
+        public boolean    consumeInt( NumberFormat numberFormat )
         {
-            return toLong( CString.DEFAULT_WHITESPACES );
+            if ( numberFormat == null )
+                numberFormat= NumberFormat.computational;
+
+            consumedLong= numberFormat.parseInt( buf, start, end, _adjustedRegion );
+            if( _adjustedRegion[0] == start )
+                return false;
+
+            start= _adjustedRegion[0];
+            return true;
         }
 
         /** ****************************************************************************************
-         * Reads a 32-bit integer from the %Substring. If successful, this objects' field #start is
-         * increased to point to first character that is not a number.
-         * If no number is found, zero is returned and the field #start is
-         * not increased.
+         * Overloaded version of #consumeInt(NumberFormat) providing default value \c null for
+         * parameter \p numberFormat (which selects gloabl object
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational").
          *
-         * Leading whitespace characters are ignored. However, if after leading Whitespaces no
-         * numbers were found, then the field #start is not changed. This way, the field start can
-         * be used to check if a value was parsed successfully.
-         *
-         * \note If this %Substring spans several integer values which are separated by
-         *       Whitespaces, concatenated calls to this method will read one by one, without
-         *       further trimming or tokenizing
-         *       (see \ref com::aworx::lib::strings::Tokenizer "Tokenizer").
-         *       Therefore, by providing the parameter \p whiteSpaces, it is possible to
-         *       easily read several numbers which are separated by user defined characters.
-         *
-         * @param whiteSpaces  White space characters used to trim the substring at the front,
-         *                     before reading the value. Defaults to
-         *                     \ref com::aworx::lib::strings::CString::DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
-         * @return  The parsed value.
+         * @return  \c true if an value could be parsed, \c false otherwise.
          ******************************************************************************************/
-        public int     toInt( char[] whiteSpaces )
+        public boolean    consumeInt()
         {
-            return (int) toLong( whiteSpaces );
+            return consumeInt( null );
         }
 
         /** ****************************************************************************************
-         * Invokes #toInt(char[]) providing default parameter
-         * \ref com::aworx::lib::strings::CString::DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES"
-         * @return  The parsed value.
+         * Consumes an unsigned 64-bit integer in standard decimal format at the given position
+         * from the start of this string. This is done, by invoking
+         * \ref com::aworx::lib::strings::NumberFormat::parseDec "NumberFormat.parseDec"
+         * on the given \p numberFormat instance.<br>
+         Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
+         *
+         * Sign literals \c '-' or \c '+' are \b not accepted and parsing will fail.
+         * For reading signed integer values, see methods #consumeInt, for floating point numbers
+         * #consumeFloat.
+         *
+         * For more information on number conversion, see class
+         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat".
+         *
+         * \note Because Java does not support unsigned integer, the value to read is limited to
+         *       <c>Long.MAX_VALUE</c> in this language implementation of ALib.
+         *
+         *
+         * @param numberFormat Defines the input format. Optional and defaults to \c null.
+         *
+         * @return  \c true if an integer was found, \c false otherwise.
          ******************************************************************************************/
-        public int     toInt()
+        public boolean    consumeDec( NumberFormat numberFormat )
         {
-            return (int) toLong( CString.DEFAULT_WHITESPACES );
+            if ( numberFormat == null )
+                numberFormat= NumberFormat.computational;
+
+            consumedLong= numberFormat.parseDec( buf, start, end, _adjustedRegion );
+            if( _adjustedRegion[0] == start )
+                return false;
+
+            start= _adjustedRegion[0];
+            return true;
         }
 
         /** ****************************************************************************************
-         * Reads a floating point number from the %Substring. If successful, this objects
-         * field #start is increased to point to first character that is not belonging to the
-         * floating point.
-         * If no number is found, zero is returned and the field #start is not increased.
+         * Overloaded version of #consumeDec(NumberFormat) providing default value \c null for
+         * parameter \p numberFormat (which selects gloabl object
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational").
          *
-         * Leading whitespace characters are ignored. However, if after leading whitespaces no
-         * numbers were found, then the field #start is not changed. This way, the field start can
-         * be used to check if a value was parsed successfully.
-         *
-         * \note If this %Substring spans several float values which are separated by
-         *       whitespaces, concatenated calls to this method will read one by one, without
-         *       further trimming or tokenizing
-         *       (see \ref com::aworx::lib::strings::Tokenizer "Tokenizer").
-         *       Therefore, by providing the parameter \p whiteSpaces, it is possible to
-         *       easily read several numbers which are separated by user defined characters.
-         *
-         *  See class \ref com::aworx::lib::strings::NumberFormat "NumberFormat"
-         *  for more information about conversion methods of floating point values in the AWorx
-         *  library.
-         *
-         *  If no object of this type is provided with optional parameter \p numberFormat,
-         *  the static default object found in
-         *  \ref com::aworx::lib::strings::NumberFormat::global "NumberFormat.global"
-         *  is used.
-         *
-         * @param whiteSpaces  White space characters used to trim the substring at the front,
-         *                     before reading the value. Defaults to
-         *                     \ref com::aworx::lib::strings::CString::DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
-         * @param numberFormat The object performing the conversion and defines the output format.
-         *                     Optional and defaults to \c null.
-         *
-         * @return  The parsed value.
+         * @return  \c true if an value could be parsed, \c false otherwise.
          ******************************************************************************************/
-        public double  toFloat( char[] whiteSpaces, NumberFormat numberFormat )
+        public boolean    consumeDec()
         {
-             if( isEmpty() )
-                return 0;
-
-             int    origStart= start;
-             trimStart(whiteSpaces);
-             int    trimStart= start;
-             double result=    ( numberFormat != null ? numberFormat
-                                                      : NumberFormat.global )
-                               .stringToFloat( buf, trimStart, end, _adjustedRegion );
-
-             start= _adjustedRegion[0] == trimStart ? origStart
-                                                    : _adjustedRegion[0];
-             return result;
+            return consumeDec( null );
         }
 
         /** ****************************************************************************************
-         * Reads a floating point number from the %Substring.
+         * Consumes an unsigned 64-bit integer in binary format at the given position
+         * from this string. This is done, by invoking
+         * \ref com::aworx::lib::strings::NumberFormat::parseBin "NumberFormat.parseBin"
+         * on the given \p numberFormat instance.<br>
+         Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
          *
-         *  This is an overloaded method providing optional default parameters. See
-         *  \ref toFloat(char[], NumberFormat) for a complete description, optional parameters
-         *  and their default values.
+         * For more information on number conversion, see class
+         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat".
          *
-         * @param whiteSpaces  White space characters used to trim the substring at the front,
-         *                     before reading the value. Defaults to
-         *                     \ref com::aworx::lib::strings::CString::DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
-         * @return  The parsed value.
+         * \note Although Java does not support unsigned integer, the value that is read with this
+         *       method is correct in respect to the bits set in the signed value returned.
+         *       In other words, if the most significant bit (#64), is set, the return value is
+         *       negative.
+         *
+         * @param numberFormat Defines the input format. Optional and defaults to \c null.
+         *
+         * @return  \c true if an integer was found, \c false otherwise.
          ******************************************************************************************/
-        public double toFloat(char[] whiteSpaces )
+        public boolean    consumeBin( NumberFormat numberFormat )
         {
-            return toFloat( whiteSpaces, NumberFormat.global );
+            if ( numberFormat == null )
+                numberFormat= NumberFormat.computational;
+
+            consumedLong= numberFormat.parseBin( buf, start, end, _adjustedRegion );
+            if( _adjustedRegion[0] == start )
+                return false;
+
+            start= _adjustedRegion[0];
+            return true;
         }
 
         /** ****************************************************************************************
-         * Reads a floating point number from the %Substring.
+         * Overloaded version of #consumeBin(NumberFormat) providing default value \c null for
+         * parameter \p numberFormat (which selects gloabl object
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational").
          *
-         *  This is an overloaded method providing optional default parameters. See
-         *  \ref toFloat(char[], NumberFormat) for a complete description, optional parameters
-         *  and their default values.
-         *
-         * @return  The parsed value.
+         * @return  \c true if an value could be parsed, \c false otherwise.
          ******************************************************************************************/
-        public double toFloat( )
+        public boolean    consumeBin()
         {
-            return toFloat( CString.DEFAULT_WHITESPACES, NumberFormat.global );
+            return consumeBin( null );
+        }
+
+        /** ****************************************************************************************
+         * Reads an unsigned 64-bit integer in hexadecimal format at the given position
+         * from this \b %AString. This is done, by invoking
+         * \ref com::aworx::lib::strings::NumberFormat::parseHex "NumberFormat.parseHex"
+         * on the given \p numberFormat instance.<br>
+         Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
+         *
+         * For more information on number conversion, see class
+         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat".
+         *
+         * \note Although Java does not support unsigned integer, the value that is read with this
+         *       method is correct in respect to the bits set in the signed value returned.
+         *       In other words, if the most significant bit (#64), is set, the return value is
+         *       negative. For this, 16 hexadecimal digits need to be read and the first of
+         *       them needs to be greater or equal to \b 0x8.
+         *
+         * @param numberFormat Defines the input format. Optional and defaults to \c null.
+         *
+         * @return  \c true if an integer was found, \c false otherwise.
+         ******************************************************************************************/
+        public boolean    consumeHex( NumberFormat numberFormat )
+        {
+            if ( numberFormat == null )
+                numberFormat= NumberFormat.computational;
+
+            consumedLong= numberFormat.parseHex( buf, start, end, _adjustedRegion );
+            if( _adjustedRegion[0] == start )
+                return false;
+
+            start= _adjustedRegion[0];
+            return true;
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #consumeHex(NumberFormat) providing default value \c null for
+         * parameter \p numberFormat (which selects gloabl object
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational").
+         *
+         * @return  \c true if an value could be parsed, \c false otherwise.
+         ******************************************************************************************/
+        public boolean    consumeHex()
+        {
+            return consumeHex( null );
+        }
+
+        /** ****************************************************************************************
+         * Consumes an unsigned 64-bit integer in octal format at the given position
+         * from this string. This is done, by invoking
+         * \ref com::aworx::lib::strings::NumberFormat::parseOct "NumberFormat.parseOct"
+         * on the given \p numberFormat instance.<br>
+         Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
+         *
+         * For more information on number conversion, see class
+         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat".
+         *
+         * \note Although Java does not support unsigned integer, the value that is read with this
+         *       method is correct in respect to the bits set in the signed value returned.
+         *       In other words, if the most significant bit (#64), is set, the return value is
+         *       negative. For this, 22 octal digits need to be read with the first being \c 1.
+         *
+         * @param numberFormat Defines the input format. Optional and defaults to \c null.
+         *
+         * @return  \c true if an integer was found, \c false otherwise.
+         ******************************************************************************************/
+        public boolean    consumeOct( NumberFormat numberFormat )
+        {
+            if ( numberFormat == null )
+                numberFormat= NumberFormat.computational;
+
+            consumedLong= numberFormat.parseOct( buf, start, end, _adjustedRegion );
+            if( _adjustedRegion[0] == start )
+                return false;
+
+            start= _adjustedRegion[0];
+            return true;
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #consumeOct(NumberFormat) providing default value \c null for
+         * parameter \p numberFormat (which selects gloabl object
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational").
+         *
+         * @return  \c true if an value could be parsed, \c false otherwise.
+         ******************************************************************************************/
+        public boolean    consumeOct()
+        {
+            return consumeOct( null );
+        }
+
+        /** ****************************************************************************************
+         * Consumes a floating point number at the given position from this \b %AString.
+         * This is done, by invoking
+         * \ref com::aworx::lib::strings::NumberFormat::parseFloat "NumberFormat.parseFloat"
+         * on the given \p numberFormat instance.<br>
+         Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * which is configured to 'international' settings (not using the locale) and therefore
+         * also not parsing - grouping characters.
+         *
+         * For more information on parsing options for floating point numbers and number
+         * conversion in general, see class
+         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat".
+         *
+         * @param numberFormat Defines the input format. Optional and defaults to \c null.
+         *
+         * @return  \c true if a number was found and, \c false otherwise.
+         ******************************************************************************************/
+        public boolean consumeFloat( NumberFormat numberFormat )
+        {
+            if ( numberFormat == null )
+                numberFormat= NumberFormat.computational;
+
+            consumedFloat= numberFormat.parseFloat( buf, start, end, _adjustedRegion );
+            if( _adjustedRegion[0] == start )
+                return false;
+
+            start= _adjustedRegion[0];
+            return true;
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #consumeFloat(NumberFormat) providing default value \c null for
+         * parameter \p numberFormat (which selects gloabl object
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational").
+         *
+         * @return  \c true if an value could be parsed, \c false otherwise.
+         ******************************************************************************************/
+        public boolean    consumeFloat()
+        {
+            return consumeFloat( null );
         }
 
     /** ############################################################################################
@@ -1929,7 +2201,7 @@ public class Substring implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Reports an ALib error (using \ref com::aworx::lib::ReportWriter "ReportWriter") and
+         * Reports an ALib error (using \ref com::aworx::lib::lang::ReportWriter "ReportWriter") and
          * returns null. The reason for this behavior is to disallow the usage of AString within
          * (system) methods that create sub sequences.
          * This would be in contrast to the design goal of AString.
@@ -1942,16 +2214,16 @@ public class Substring implements CharSequence
         @Override public CharSequence subSequence(int beginIndex, int endIndex)
         {
             // this function should never be used
-            ALIB.ERROR( "Substring.subSequence() called. This is not supported" );
+            com.aworx.lib.ALIB_DBG.ERROR( "Substring.subSequence() called. This is not supported" );
             return null;
         }
 
         /** ****************************************************************************************
-         * Standard Java Object hashCode method. 
+         * Standard Java Object hashCode method.
          *
          * @return  Result of parents' \b %hashCode.
          ******************************************************************************************/
-        @Override 
+        @Override
         public int hashCode()
         {
             return super.hashCode();

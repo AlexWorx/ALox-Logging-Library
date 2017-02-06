@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox.loggers - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
 using System.Runtime.CompilerServices;
@@ -10,7 +10,7 @@ using cs.aworx.lox.core.textlogger;
 using cs.aworx.lib;
 using cs.aworx.lox.core;
 using cs.aworx.lib.strings;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 
 namespace cs.aworx.lox.core.textlogger
 {
@@ -141,7 +141,7 @@ public abstract class PlainTextLogger : TextLogger
 
                     if ( tabStop > column )
                     {
-                        AString spaces= Util.GetSpaces();
+                        AString spaces= Spaces.Get();
                         int spacesLength= spaces.Length();
                         int qty= tabStop - column;
                         while ( qty > 0 )
@@ -169,7 +169,7 @@ public abstract class PlainTextLogger : TextLogger
 
         } // write loop
 
-        ALIB.ASSERT_WARNING( start == msgLength, "Loop error when pruning ESC codes" );
+        ALIB_DBG.ASSERT_WARNING( start == msgLength, "Loop error when pruning ESC codes" );
         notifyLogOp( Phase.End);
     }
 

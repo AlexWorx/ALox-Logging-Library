@@ -1,8 +1,8 @@
 // #################################################################################################
 //  com.aworx.lox - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package com.aworx.lox;
 
@@ -12,10 +12,10 @@ import com.aworx.lib.ALIB;
 import com.aworx.lib.config.Configuration;
 import com.aworx.lib.config.Variable;
 import com.aworx.lib.config.VariableDefinition;
-import com.aworx.lib.enums.Alignment;
-import com.aworx.lib.enums.ContainerOp;
-import com.aworx.lib.enums.Create;
-import com.aworx.lib.enums.Inclusion;
+import com.aworx.lib.lang.Alignment;
+import com.aworx.lib.lang.ContainerOp;
+import com.aworx.lib.lang.Create;
+import com.aworx.lib.lang.Inclusion;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.CString;
 import com.aworx.lib.strings.Substring;
@@ -108,7 +108,7 @@ public abstract class ALox
          * Besides this version number, field #revision indicates if this is a revised version
          * of a former release.
          */
-        public static final int         version                                               =1607;
+        public static final int         version                                               =1702;
 
         /**
          * The revision number of this release. Each ALox #version is initially released as
@@ -134,7 +134,7 @@ public abstract class ALox
             '\0', null, Variable.FORMAT_HINT_NONE,
             "Influences the type of console logger to be created by method\n"         +
             "Lox.CreateConsoleLogger which is also used by Log.AddDebugLogger\n"    +
-            "Possible values are: default, plain, ansi, windows, noqtcreator"
+            "Possible values are: default, plain, ansi, windows"
             );
 
         /** Configuration variable definition */
@@ -193,12 +193,15 @@ public abstract class ALox
         );
 
         /** Configuration variable definition */
-        public static          VariableDefinition           CONSOLE_HAS_LIGHT_BACKGROUND = new VariableDefinition(
-            configCategoryName,   null,     "CONSOLE_HAS_LIGHT_BACKGROUND",
+        public static          VariableDefinition           CONSOLE_LIGHT_COLORS = new VariableDefinition(
+            configCategoryName,   null,     "CONSOLE_LIGHT_COLORS",
             "",
             '\0', null, Variable.FORMAT_HINT_NONE,
-             "Evaluated by colorful loggers that dispose about light and dark colors. Those\n"        +
-             "adjust their foreground color accordingly. Defaults to false."
+            "Evaluated by colorful loggers that dispose about light and dark colors. Those may\n"         +
+            "adjust their foreground and background color accordingly. If not given, under Windows OS\n"  +
+            "the right value is detected. Otherwise the value defaults to \"foreground\". In some\n"      +
+            "occasions, the (detected or set) runtime environment might also indicate a different\n"      +
+            "default value.  Possible values are 'foreground', 'background' and 'never'."
         );
 
         /** Configuration variable definition */
@@ -215,8 +218,7 @@ public abstract class ALox
         public static          VariableDefinition           FORMAT = new VariableDefinition(
             configCategoryName,   null,     "%1_FORMAT",
 
-            null, // default value must stay null, because 2 variables are requested. If was given here,
-                  // the second is never tried!
+            null,
 
             ',', null, Variable.FORMAT_HINT_MULTILINE,
              "Meta info format of text logger \"%1\", including signatures for verbosity strings.\n"       +
@@ -227,8 +229,7 @@ public abstract class ALox
         public static          VariableDefinition           FORMAT_DATE_TIME = new VariableDefinition(
             configCategoryName,   null,     "%1_FORMAT_DATE_TIME",
 
-            null, // default value must stay null, because 2 variables are requested. If was given here,
-                  // the second is never tried!
+            null,
 
             ',', null, Variable.FORMAT_HINT_NONE,
              "Meta info date and time format of text logger \"%1\".\n"              +
@@ -239,8 +240,7 @@ public abstract class ALox
         public static          VariableDefinition           FORMAT_TIME_DIFF = new VariableDefinition(
             configCategoryName,   null,     "%1_FORMAT_TIME_DIFF",
 
-            null, // default value must stay null, because 2 variables are requested. If was given here,
-                  // the second is never tried!
+            null,
 
             ',', null, Variable.FORMAT_HINT_NONE,
              "Meta info time difference entities of text logger \"%1\".\n"                                        +
@@ -252,13 +252,24 @@ public abstract class ALox
         public static          VariableDefinition           FORMAT_MULTILINE = new VariableDefinition(
             configCategoryName,   null,     "%1_FORMAT_MULTILINE",
 
-            null, // default value must stay null, because 2 variables are requested. If was given here,
-                  // the second is never tried!
+            null,
 
             ',', null, Variable.FORMAT_HINT_NONE,
              "Multi-line format of text logger \"%1\".\n"                                                           +
              "   Format: MultiLineMsgMode [, FmtMultiLineMsgHeadline [, FmtMultiLinePrefix [, FmtMultiLineSuffix\n" +
              "           [, MultiLineDelimiter [, MultiLineDelimiterRepl ]]]]]"
+        );
+
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           REPLACEMENTS     = new VariableDefinition(
+            configCategoryName,   null,     "%1_REPLACEMENTS",
+
+            null,
+
+            ',', null, Variable.FORMAT_HINT_NONE,
+            "Pairs of search and replacement strings for text logger \"%1\".\n"  +
+            "   Format: search, replacement [, search, replacement] [,...]"
         );
 
 
@@ -349,27 +360,24 @@ public abstract class ALox
          * @return The \b Lox found, \c null in case of failure.
          ******************************************************************************************/
         public static
+        synchronized
         Lox      get( String name, Create create )
         {
-            try { ALIB.lock.acquire();
+            // search
+            for( Lox it : loxes )
+                if( it.getName().equalsIgnoreCase( name ) )
+                    return it;
 
-                // search
-                for( Lox it : loxes )
-                    if( it.getName().equalsIgnoreCase( name ) )
-                        return it;
+            // create?
+            if ( create == Create.IF_NOT_EXISTENT )
+            {
+                Lox newLox= new Lox( name, false );
+                loxes.add( newLox );
+                return newLox;
+            }
 
-                // create?
-                if ( create == Create.IF_NOT_EXISTENT )
-                {
-                    Lox newLox= new Lox( name, false );
-                    loxes.add( newLox );
-                    return newLox;
-                }
-
-                // not found
-                return null;
-
-            } finally { ALIB.lock.release(); }
+            // not found
+            return null;
         }
 
         /** ****************************************************************************************
@@ -392,7 +400,7 @@ public abstract class ALox
          * No two objects with the same name must be registered. If this is done, the latter
          * will not be registered and not be found by #get. In debug-compilations, an ALib
          * error report is written (by default raises 'assert') if a name is registered twice.<br>
-         * Note that name comparisson is performed case <b>in</b>-sensitive.
+         * Note that name comparison is performed case <b>in</b>-sensitive.
          *
          * If debug-logging is enabled (depends on compilation symbols) and used, the singleton
          * of type \% Lox provided for debug-logging is registered. This uses the name \c "Log"
@@ -405,42 +413,39 @@ public abstract class ALox
          *                  Defaults to \b %ContainerOp.INSERT.
          ******************************************************************************************/
         public static
+        synchronized
         void     register( Lox lox, ContainerOp operation )
         {
-            try { ALIB.lock.acquire();
+            // check
+            if ( lox == null )
+            {
+                com.aworx.lib.ALIB_DBG.ERROR( "null given" );
+                return;
+            }
 
-                // check
-                if ( lox == null )
+            // remove
+            if( operation == ContainerOp.REMOVE )
+            {
+                if ( !loxes.remove( lox ) )
                 {
-                    ALIB.ERROR( "null given" );
-                    return;
+                    com.aworx.lib.ALIB_DBG.WARNING(  "A lox named \"" + lox.getName()
+                                + "\" could not be found for removal." );
                 }
+            }
 
-                // remove
-                if( operation == ContainerOp.REMOVE )
-                {
-                    if ( !loxes.remove( lox ) )
+            // insert
+            else
+            {
+                for( Lox it : loxes )
+                    if( it.getName().equals( lox.getName() ) )
                     {
-                        ALIB.WARNING(  "A lox named \"" + lox.getName()
-                                    + "\" could not be found for removal." );
+                        com.aworx.lib.ALIB_DBG.ERROR(   "A lox named \"" + lox.getName()
+                                    + "\" was already registered. Registration ignored" );
+                        return;
                     }
-                }
 
-                // insert
-                else
-                {
-                    for( Lox it : loxes )
-                        if( it.getName().equals( lox.getName() ) )
-                        {
-                            ALIB.ERROR(   "A lox named \"" + lox.getName()
-                                        + "\" was already registered. Registration ignored" );
-                            return;
-                        }
-
-                    loxes.add( lox );
-                }
-
-            } finally { ALIB.lock.release(); }
+                loxes.add( lox );
+            }
         }
 
         /** ****************************************************************************************

@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  aworx::lox::loggers - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -24,15 +24,15 @@
 #endif
 
 
-namespace aworx {
-namespace       lox {
+namespace aworx { namespace lox
+{
 /** ************************************************************************************************
  * This is the C++ namespace for the implementation of <em>logger classes</em> that are provided
  * by default with <em>%ALox Logging Library</em>.
  *
- * Developed by A-Worx GmbH and published under the MIT license.
+ * Developed by A-Worx GmbH and published under Boost Software License.
  **************************************************************************************************/
-namespace           loggers{
+namespace loggers{
 
 /** ************************************************************************************************
  * A logger that logs all messages to the standard output <em>cout</em>.
@@ -73,7 +73,7 @@ class ConsoleLogger : public aworx::lox::core::textlogger::PlainTextLogger
          * @return Always returns true.
          ******************************************************************************************/
         ALIB_API
-        virtual bool notifyLogOp( lib::enums::Phase phase );
+        virtual bool notifyLogOp( lib::lang::Phase phase );
 
         /** ****************************************************************************************
          * Writes the given region of the given AString to the console.
@@ -84,13 +84,13 @@ class ConsoleLogger : public aworx::lox::core::textlogger::PlainTextLogger
          * @return The number of characters written, -1 on error.
          ******************************************************************************************/
         ALIB_API
-        virtual int logSubstring( const AString& buffer, int start, int length );
+        virtual integer logSubstring( const AString& buffer, integer start, integer length );
 
 
         /** ****************************************************************************************
          *  Empty implementation, not needed for this class
          ******************************************************************************************/
-        virtual void notifyMultiLineOp( lib::enums::Phase )    {}
+        virtual void notifyMultiLineOp( lib::lang::Phase )    {}
 
 }; // class ConsoleLogger
 

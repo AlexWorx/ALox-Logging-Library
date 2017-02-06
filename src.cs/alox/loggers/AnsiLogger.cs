@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox.loggers - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 using System;
@@ -11,7 +11,7 @@ using cs.aworx.lox.core.textlogger;
 using cs.aworx.lib;
 using cs.aworx.lib.strings;
 using cs.aworx.lox.core;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 using cs.aworx.lib.config;
 
 
@@ -28,10 +28,12 @@ namespace cs.aworx.lox.loggers    {
  *  can be set.
  *  ANSI escape sequences are also available in various IDE output windows.
  *
- *  Foreground and background colors are set to be either light/dark or dark/light. This improves
- *  the readability of log output a lot. However, the right setting for this is dependent on
- *  the color scheme of final output device (window). To manipulate the right setting, see field
- *  #IsBackgroundLight.
+ * Foreground and background colors can be set to be either light/dark or dark/light. This improves
+ * the readability of log output a lot and even allows to read if foreground and background colors
+ * are the same (they then still differ). However, the right setting for this is dependent on
+ * the color scheme of the final output device (window). To manipulate the right setting, see field
+ * #UseLightColors and also configuration variable
+ * [ALOX_CONSOLE_LIGHT_COLORS](../group__GrpALoxConfigVars.html).
  *
  *  In the constructor, a default format string and some other definitions in member
  *  \ref MetaInfo get set to include ANSI Escape Sequences. Of-course, these publicly
@@ -132,38 +134,32 @@ public class AnsiLogger : TextLogger
     // #############################################################################################
 
         /**
-         * Forground and background colors chosen by AnsiLogger differ in their intensity to increase
-         * the overall readablity by increasing the contrast.
-         * If the background color of an ANSI console window is dark, then the background colors of
-         * colored log output should be darker colors than the forground colors and vice versa.
+         * Foreground and background colors chosen by this class might differ in their intensity.
+         * This increases the overall readability by increasing the contrast.
+         * If the background color of a console window is dark, then the background colors of
+         * colored log output should be darker colors than the foreground colors - and vice versa.
          *
-         * If this field is false, foreground colors will be light colors and background colors dark.
-         * If true, the opposite is chosen.
+         * Depending on the setting of this field, ALox
+         * \ref cs::aworx::lox::ESC "escape codes" for colors are translated to normal ANSI colors or
+         * lighter ones:
+         * - If this field is \c 0, light colors are never used.
+         * - If this field is \c 1, foreground colors will be light colors and background colors
+         *   dark. This is the default.
+         * - If \c 2, the opposite of \c 1 is chosen: background colors will be light colors and
+         *   foreground colors dark.
          *
-         * Defaults to false.
-         *
-         * Configuration variable [ALOX_CONSOLE_HAS_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html)
-         * is evaluated within the constructor of this class, to allow to modifying this flag at
-         * runtime.
+         * The configuration variable [ALOX_CONSOLE_LIGHT_COLORS](../group__GrpALoxConfigVars.html)
+         * allows to externally modify this flag. It is read once within the constructor .
          */
-        public      bool                        IsBackgroundLight;
+        public      int                         UseLightColors;
+
+        /** Flag that indicates if config variable was found to set #UseLightColors */
+        public      bool                        UseLightColorsSetFromOutside;
 
         /**
          * The TextWriter provided in the constructor.
          */
         protected   System.IO.TextWriter        textWriter;
-
-        /** Characters  placed at the beginning of a log line with \e Verbosity 'Error'.*/
-        public      String                      MsgPrefixError;
-
-        /** Characters  placed at the beginning of a log line with \e Verbosity 'Warning'.*/
-        public      String                      MsgPrefixWarning;
-
-        /** Characters  placed at the beginning of a log line with \e Verbosity 'Info'.*/
-        public      String                      MsgPrefixInfo            = "";
-
-        /** Characters  placed at the beginning of a log line with \e Verbosity 'Verbose'.*/
-        public      String                      MsgPrefixVerbose;
 
         /** Characters  placed at the end of each line (e.g. used to reset colors and styles).*/
         public      String                      MsgSuffix               = ANSI_RESET;
@@ -188,35 +184,51 @@ public class AnsiLogger : TextLogger
         {
             this.textWriter= textWriter;
 
-            // evaluate environment variable "ALOX_CONSOLE_HAS_LIGHT_BACKGROUND"
-            Variable variable= new Variable( ALox.CONSOLE_HAS_LIGHT_BACKGROUND );
-            variable.Load();
-            if ( variable.Size() > 0 )
-                IsBackgroundLight=  variable.IsTrue();
-            else
+            // evaluate environment variable "ALOX_CONSOLE_LIGHT_COLORS"
+            UseLightColors= -1;
+            Variable variable= new Variable( ALox.CONSOLE_LIGHT_COLORS );
+            if ( variable.Load() > 0 && variable.Size() > 0)
             {
-                // on ANSI terminals we can only guess. Our guess is: console windows have dark background
-                IsBackgroundLight= false;
+                Substring p= new Substring(variable.GetString());
+                if(p.Trim().IsNotEmpty())
+                {
+                         if( p.ConsumePartOf( "foreground", 1, Case.Ignore ) > 0)  UseLightColors=  1;
+                    else if( p.ConsumePartOf( "background", 1, Case.Ignore ) > 0)  UseLightColors=  2;
+                    else if( p.ConsumePartOf( "never"     , 1, Case.Ignore ) > 0)  UseLightColors=  0;
+                    else
+                    {
+                        ALIB_DBG.WARNING( "Unknown value specified in variable: " + variable.Fullname
+                                      +" = " + variable.GetString() +'.' );
+                    }
+                }
             }
 
-            // remove verbosity information and colorize the whole line
+            UseLightColorsSetFromOutside= (UseLightColors >= 0);
+
+            if( !UseLightColorsSetFromOutside )
+            {
+                // default: dark background, hence use light color on foreground
+                UseLightColors= 1;
+
+            }
+
+            // move verbosity information to the end to colorize the whole line
             MetaInfo.Format.SearchAndReplace( "]%V[", "][" );
-            if ( IsBackgroundLight )
+            MetaInfo.Format._( "%V" );
+            if ( UseLightColors == 1 )
             {
-                MsgPrefixError           = ANSI_RED;
-                MsgPrefixWarning         = ANSI_BLUE;
-                MsgPrefixVerbose         = ANSI_GRAY;
+                MetaInfo.VerbosityError           = ANSI_LIGHT_RED;
+                MetaInfo.VerbosityWarning         = ANSI_LIGHT_BLUE;
+                MetaInfo.VerbosityInfo            = "";
+                MetaInfo.VerbosityVerbose         = ANSI_LIGHT_GRAY;
             }
             else
             {
-                MsgPrefixError           = ANSI_LIGHT_RED;
-                MsgPrefixWarning         = ANSI_LIGHT_BLUE;
-                MsgPrefixVerbose         = ANSI_LIGHT_GRAY;
+                MetaInfo.VerbosityError           = ANSI_RED;
+                MetaInfo.VerbosityWarning         = ANSI_BLUE;
+                MetaInfo.VerbosityInfo            = "";
+                MetaInfo.VerbosityVerbose         = ANSI_GRAY;
             }
-
-            // set source file background to gray
-            AString ansiBGGray= new AString( ESC.BG_GRAY ); ansiBGGray._( "%SF(%SL):" )._( ANSI_BG_STD_COL );
-            MetaInfo.Format.SearchAndReplace( "%SF(%SL):", ansiBGGray.ToString() );
         }
 
     // #############################################################################################
@@ -257,7 +269,7 @@ public class AnsiLogger : TextLogger
 
                 if ( idx < 0 ) // unknown ANSI Code
                 {
-                    ALIB.WARNING( "Unknown ANSI ESC Code " );
+                    ALIB_DBG.WARNING( "Unknown ANSI ESC Code " );
                     textWriter.Write( actual.Buf, actual.Start, actual.Length() );
                     continue;
                 }
@@ -283,7 +295,7 @@ public class AnsiLogger : TextLogger
                 break;
 
             // found an ESC sequence
-            char c= rest.Consume();
+            char c= rest.ConsumeChar();
 
             // Colors
             bool isForeGround=  true;
@@ -291,15 +303,16 @@ public class AnsiLogger : TextLogger
             {
                 isForeGround=  c== 'c';
 
-                c= rest.Consume();
+                c= rest.ConsumeChar();
                 int colNo= c - '0';
-                ALIB.ASSERT_WARNING( colNo >=0 && colNo <=9, "Unknown ESC-c code" );
+                ALIB_DBG.ASSERT_WARNING( colNo >=0 && colNo <=9, "Unknown ESC-c code" );
 
                 // add bg
                 colNo+=  isForeGround ? 0 : 10;
 
                 // add light
-                colNo+=  (isForeGround ? !IsBackgroundLight : IsBackgroundLight )  ? 20 : 0;
+                if( UseLightColors != 0 && ( (UseLightColors == 1) == isForeGround ) )
+                    colNo+= 20;
 
                 textWriter.Write( ansiCols[ colNo ] );
 
@@ -308,54 +321,36 @@ public class AnsiLogger : TextLogger
             // Styles
             else if ( c == 's' )
             {
-                // bold/italics style not supported in Windows console
-
-                // reset all
-                if ( rest.Consume() == 'a' )
-                {
-                    textWriter.Write( ANSI_RESET );
-                }
+                c=  rest.ConsumeChar();
+                textWriter.Write(   c == 'B' ? ANSI_BOLD
+                                  : c == 'I' ? ANSI_ITALICS
+                                  :            ANSI_RESET    );
             }
 
             // auto tab / end of meta
             else if ( c == 't' || c == 'A')
             {
-                bool endOfMeta= c == 'A';
-                c=  rest.Consume();
+                c=  rest.ConsumeChar();
                 int extraSpace=  c >= '0' && c <= '9' ? (int)  ( c - '0' )
                                                       : (int)  ( c - 'A' ) + 10;
 
                 int tabStop= AutoSizes.Next( column, extraSpace );
 
-                Util.WriteSpaces( textWriter, tabStop - column );
+                Spaces.Write( textWriter, tabStop - column );
                 column= tabStop;
-
-                if ( endOfMeta )
-                {
-                    String msgPrefix;
-                    switch ( verbosity )
-                    {
-                        case lox.Verbosity.Verbose:   msgPrefix= MsgPrefixVerbose;     break;
-                        case lox.Verbosity.Info:      msgPrefix= MsgPrefixInfo;        break;
-                        case lox.Verbosity.Warning:   msgPrefix= MsgPrefixWarning;     break;
-                        case lox.Verbosity.Error:     msgPrefix= MsgPrefixError;       break;
-                        default:                  msgPrefix= "";                   break;
-                    }
-                    textWriter.Write( msgPrefix );
-                }
             }
 
             // Link (we just colorize links here)
             else if ( c == 'l' )
             {
-                textWriter.Write( rest.Consume() == 'S'
-                                       ?  ( IsBackgroundLight ? ANSI_LIGHT_BLUE : ANSI_LIGHT_BLUE )
+                textWriter.Write( rest.ConsumeChar() == 'S'
+                                       ?  ( UseLightColors == 1 ? ANSI_LIGHT_BLUE : ANSI_BLUE )
                                        :  ANSI_STD_COL                             );
             }
 
             else
             {
-                ALIB.WARNING( "Unknown ESC code" );
+                ALIB_DBG.WARNING( "Unknown ESC code" );
             }
 
         } // write loop
@@ -420,23 +415,6 @@ public class AnsiConsoleLogger : AnsiLogger
     public AnsiConsoleLogger( String name= null )
     : base( Console.Out, true, name, "ANSI_CONSOLE" )
     {
-        // evaluate environment variable "ALOX_CONSOLE_HAS_LIGHT_BACKGROUND"
-        Variable variable= new Variable( ALox.CONSOLE_HAS_LIGHT_BACKGROUND );
-        variable.Load();
-        if ( variable.Size() > 0 )
-            IsBackgroundLight=  variable.IsTrue();
-        else
-        {
-            ConsoleColor fgCol= Console.ForegroundColor;
-            IsBackgroundLight=      fgCol == ConsoleColor.Black
-                                ||  fgCol == ConsoleColor.DarkBlue
-                                ||  fgCol == ConsoleColor.DarkCyan
-                                ||  fgCol == ConsoleColor.DarkGray
-                                ||  fgCol == ConsoleColor.DarkGreen
-                                ||  fgCol == ConsoleColor.DarkMagenta
-                                ||  fgCol == ConsoleColor.DarkRed
-                                ||  fgCol == ConsoleColor.DarkYellow   ;
-        }
     }
 
     #endif // ALOX_DBG_LOG || ALOX_REL_LOG

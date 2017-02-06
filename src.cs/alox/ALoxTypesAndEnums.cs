@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox.loggers - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 
@@ -81,7 +81,7 @@ public enum Verbosity
 
     /**
      * Statements with this value associated are never logged (useful if \e %Verbosity is
-     * evaluated at run-time). <em>%Log Domains</em> with this setting do not execute any
+     * evaluated at runtime). <em>%Log Domains</em> with this setting do not execute any
      * <em>Log Statement</em>.
      */
     Off
@@ -129,63 +129,6 @@ public enum Scope
 }
 
 /** ************************************************************************************************
- * Data objects used with
- * \ref cs::aworx::lox::Lox::Store      "Lox.Store" and
- * \ref cs::aworx::lox::Lox::Retrieve   "Lox.Retrieve".
- **************************************************************************************************/
-public class LogData
-{
-    /** A string value*/
-    public AString     StringValue= new AString();
-
-    /** An integer value */
-    public int         IntegerValue;
-
-    /** Any type of data */
-    public Object      ObjectValue;
-
-    /** Constructs a data object
-     *  @param s    String data to store. Defaults to null.
-     *  @param i    Integer value to store. Defaults to 0.
-     *  @param o    Object to store. Defaults to null.    */
-    public LogData( Object s=null, int i= 0, Object o= null)   { StringValue._(s); IntegerValue= i; ObjectValue= o; }
-
-    /** Constructs a data object
-     *  @param i    Integer value to store.
-     *  @param o    Object to store.          */
-    public LogData(                int i   , Object o= null)   {                   IntegerValue= i; ObjectValue= o; }
-
-    /** ****************************************************************************************
-     *  Provides a string representation of a this object.
-     *  @param target  The target AString.
-     *  @returns The \p target, with string representation of the provided Scope value
-     *           appended
-     ******************************************************************************************/
-    public AString ToString( AString target )
-    {
-        target._( '[' );
-        target._( '\"' )._( StringValue )._( "\"," );
-        target._( IntegerValue );
-        if ( ObjectValue != null )
-            target._NC( ",<object>" );
-        target._( ']' );
-
-        return target;
-    }
-
-    /** ****************************************************************************************
-     * This is for debugging purposes and for configuration output.
-     * E.g. this enables the \e Monodevelop IDE to display object descriptions in the debugger.
-     * @returns A human readable string representation of this object.
-     ******************************************************************************************/
-    public override String ToString()
-    {
-        return ToString( new AString() ).ToString();
-    }
-}
-
-
-/** ************************************************************************************************
  * This class defines "escape sequences" that influence the formatting of log output.
  * Specific implementations of class
  * \ref cs::aworx::lox::core::Logger "Logger"
@@ -201,11 +144,18 @@ public class LogData
  *
  *  \snippet "UT_dox_reference_manual.cs"     DOC_SAMPLES_ALOX_ESC
  *
- * Note: to use the shortcut <em>ESC::XYZ</em> like this, you have to place an using statement in
+ * Note: to use the shortcut <em>ESC.XYZ</em> like this, you have to place an using statement in
  * your source code file:
  *
  *  \snippet "UT_dox_reference_manual.cs"     DOC_SAMPLES_ALOX_ESC_USING
- **************************************************************************************************/
+ *
+ * \note
+ *   With the introduction of own, ALox-specific escape codes, software that uses ALox becomes
+ *   independent from any underlying, platform-specific sequences. For example, ALox is not relying
+ *   on ANSI color codes, which are not supported by colorful Windows consoles. Instead, on each
+ *   platform, dedicated Loggers will perform the translation of ALox codes to platform-specific
+ *   ones.
+**************************************************************************************************/
 public class ESC
 {
     public static readonly String  RED         = "\x001Bc0";  ///< Select red color for foreground.
@@ -243,11 +193,11 @@ public class ESC
                                                               ///< will increase the tab position automatically.
     public static readonly String  EOMETA      = "\x001BA0";  ///< End of meta information in log string
 
-    /** ************************************************************************************************
+    /** ********************************************************************************************
      * Replaces ESC codes in a string reversely to "ESC.XXX".
      * @param target   The string to replace in.
      * @param startIdx The index to start searching for ESC codes.
-     **************************************************************************************************/
+     **********************************************************************************************/
     public static void ReplaceToReadable( AString target, int startIdx )
     {
         while( (startIdx= target.IndexOf( '\x001B', startIdx ) ) >= 0 )

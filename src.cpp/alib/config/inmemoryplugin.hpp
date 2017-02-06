@@ -1,8 +1,8 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -16,9 +16,9 @@
 
 // then, set include guard
 #ifndef HPP_ALIB_CONFIG_INMEMORY_PLUGIN
-#if !defined( IS_DOXYGEN_PARSER)
+//! @cond NO_DOX
 #define HPP_ALIB_CONFIG_INMEMORY_PLUGIN 1
-#endif
+//! @endcond NO_DOX
 
 
 // #################################################################################################
@@ -35,15 +35,13 @@
 
 
 // #################################################################################################
-// forwards
+// forward declarations
 // #################################################################################################
 namespace aworx { namespace lib { namespace strings { class Substring; } } }
 
 
-namespace aworx {
-namespace           lib {
-namespace                   config {
-
+namespace aworx { namespace lib { namespace config
+{
 /** ************************************************************************************************
  * Specialization of abstract interface class #ConfigurationPlugin, which holds
  * configuration variables in memory. Instances of this class are used to create two plug-ins
@@ -58,7 +56,7 @@ namespace                   config {
  * This class in addition acts as the parent of class
  * \ref aworx::lib::config::IniFile "IniFile" and potentially other (custom) classes.
  * For this reason, it divides the set of variables into sections (according to the category),
- * allows comment strings for variables and sections, and virtualizes the some key methods to
+ * allows comment strings for variables and sections, and virtualizes some key methods to
  * allow descendants to take specific actions.
  *
  * This class offers important internal fields and types for public access (bauhaus code style).
@@ -91,7 +89,7 @@ namespace                   config {
                  */
                 Entry( const String& name )
                 {
-                    ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( Name,  ReplaceExternalBuffer);
+                    ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( Name,  ReplaceExternalBuffer );
                     Name._( name );
                 }
                 /** Destructor */
@@ -191,7 +189,7 @@ namespace                   config {
         /** ****************************************************************************************
          * Constructor.
          ******************************************************************************************/
-        inline        InMemoryPlugin() { Reset(); };
+        inline        InMemoryPlugin() { Reset(); }
 
         /** ****************************************************************************************
          * Virtual Destructor.
@@ -221,12 +219,12 @@ namespace                   config {
         Section*        SearchSection( const String& name)  const;
 
         /** ****************************************************************************************
-         * Searches the \ref aworx::lib::config::InMemoryPlugin::Section "Section" with the given name.
-         * If the section was not found, it is created.
+         * Searches the \ref aworx::lib::config::InMemoryPlugin::Section "Section" with the given
+         * name. If the section was not found, it is created.
          * If the section is found and has no comments, then the provided comments are appended.
          * @param name      The name of the section to be retrieved.
          * @param comments  The comment lines for the section, in the case the section is not
-         *                  found. If this is null, no section is created.
+         *                  found. If this is nulled, no section is created.
          * @return Returns the section if it was found or created. nullptr otherwise.
          ******************************************************************************************/
         ALIB_API

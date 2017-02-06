@@ -2,10 +2,10 @@
 //  Unit Tests - ALox Logging Library
 //  (Unit Tests to create tutorial sample code and output)
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alox/alox.hpp"
 #include "alib/compatibility/std_string.hpp"
 
 #include "alox/alox_console_loggers.hpp"
@@ -40,8 +40,15 @@ using namespace aworx::lox::core::textlogger;
 namespace ut_alox {
 
 // used with unit test Log_ScopeInfoCacheTest
+void ScopeInfoCacheTest4();
 void ScopeInfoCacheTest4() { Log_Info("Test Method 4"); }
 
+void LSD()      ;
+void LSD_A()    ;
+void LSD_A_B()  ;
+void LSD2_A_B() ;
+void LSD2_A()   ;
+void LSD2()     ;
 void LSD()      {  Log_SetDomain( "LSD",  Scope::Method );    Log_Info( "" );    }
 void LSD_A()    {  Log_SetDomain( "A",    Scope::Method );    Log_Info( "" );    }
 void LSD_A_B()  {  Log_SetDomain( "B",    Scope::Method );    Log_Info( "" );    }
@@ -50,9 +57,10 @@ void LSD2_A()   {  Log_SetDomain( "A2",   Scope::Method );    Log_Info( "" );   
 void LSD2()     {  Log_SetDomain( "LSD2", Scope::Method );    Log_Info( "" );    }
 
 
-#if defined (ALOX_DBG_LOG)
+#if ALOX_DBG_LOG
     extern void Log_ScopeDomains_Helper();
     extern void Log_ScopeDomains_Helper2();
+    void Log_ScopeDomains_Helper2B();
     void Log_ScopeDomains_Helper2B()
     {
         Log_Info("");
@@ -81,28 +89,28 @@ void LSD2()     {  Log_SetDomain( "LSD2", Scope::Method );    Log_Info( "" );   
     {
         public:
         AWorxUnitTesting& ut;
-        StoreDataTestThread( AWorxUnitTesting& ut ) :ut(ut) {}
+        StoreDataTestThread( AWorxUnitTesting& pUT ) :ut(pUT) {}
         virtual void Run()
         {
 
-            Log_Store( new LogData( "2nd Thread Data"        ),             Scope::ThreadOuter   );
-            Log_Store( new LogData( "2nd Thread Data, keyed" ),   "mykey",  Scope::ThreadOuter   );
+            Log_Store( "2nd Thread Data"       ,             Scope::ThreadOuter   );
+            Log_Store( "2nd Thread Data, keyed",   "mykey",  Scope::ThreadOuter   );
 
-            { Log_Retrieve( data,           Scope::ThreadOuter ); UT_EQ( "2nd Thread Data"        , data->StringValue ); }
-            { Log_Retrieve( data,  "mykey", Scope::ThreadOuter ); UT_EQ( "2nd Thread Data, keyed" , data->StringValue ); }
+            { Log_Retrieve( data,           Scope::ThreadOuter ); UT_EQ( "2nd Thread Data"        , data.Unbox<String>() ); }
+            { Log_Retrieve( data,  "mykey", Scope::ThreadOuter ); UT_EQ( "2nd Thread Data, keyed" , data.Unbox<String>() ); }
         }
     };
 
 #endif
 
-#if defined (ALOX_REL_LOG)
+#if ALOX_REL_LOG
     extern void Lox_ScopeDomains_Helper( Lox& lox );
 
     class DomainTestThreadRL : public Thread
     {
         public:
         Lox* lox;
-        DomainTestThreadRL( Lox* lox ) { this->lox= lox; }
+        DomainTestThreadRL( Lox* pLox ) { this->lox= pLox; }
         virtual void Run()
         {
             #define LOX_LOX (*lox)
@@ -120,7 +128,7 @@ void LSD2()     {  Log_SetDomain( "LSD2", Scope::Method );    Log_Info( "" );   
 
 // with GTEST macros it all gets wild. Fix the method name
 #undef  ALIB_SRC_INFO_PARAMS
-#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, aworxTestName
+#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, UT_GET_TEST_NAME
 
 UT_CLASS()
 
@@ -128,7 +136,7 @@ UT_CLASS()
 /** ********************************************************************************************
  * Log_LineFormat
  **********************************************************************************************/
-#if defined (ALOX_DBG_LOG)
+#if ALOX_DBG_LOG
 UT_METHOD(Log_LineFormat)
 {
     UT_INIT();
@@ -158,7 +166,7 @@ UT_METHOD(Log_LineFormat)
     lf= "[%D]: ";                                                  Log::DebugLogger->MetaInfo->Format= lf;    Log_Info( String128("LineFormat set to= \"") << lf << '\"' );
     lf= "";                                                        Log::DebugLogger->MetaInfo->Format= lf;    Log_Info( String128("LineFormat set to= \"") << lf << '\"' );
 
-    #if defined( ALOX_DBG_LOG )
+    #if ALOX_DBG_LOG
         Log::DebugLogger->MetaInfo->Format= "%TD@";
         testML->MetaInfo->Format= "%TD@";
         const char* df;
@@ -182,7 +190,9 @@ UT_METHOD(Log_LineFormat)
         Log::DebugLogger->MetaInfo->Format=
         testML->MetaInfo->Format=               "%P";
         #if defined( _WIN32 )
-            testML->MemoryLog.Clear();  testML->AutoSizes.Reset(); Log_Info("");     UT_EQ( "te.processhost.managed.exe", testML->MemoryLog );
+            testML->MemoryLog.Clear();  testML->AutoSizes.Reset(); Log_Info("");     UT_TRUE(    testML->MemoryLog.Equals("te.processhost.managed.exe")
+                                                                                              || testML->MemoryLog.Equals("vstest.executionengine.exe")
+                                                                                              || testML->MemoryLog.Equals("vstest.executionengine.x86.exe"));
         #else
             testML->MemoryLog.Clear();  testML->AutoSizes.Reset(); Log_Info("");     UT_TRUE(       testML->MemoryLog.Equals( "ALib_ALox_UT")
                                                                                                 ||  testML->MemoryLog.StartsWith( "QTC_ALox_UnitTe" )  // QMake project
@@ -209,7 +219,7 @@ UT_METHOD(Log_LineFormat)
 /** ********************************************************************************************
  * Log_Prefix
  **********************************************************************************************/
-#if defined (ALOX_DBG_LOG_CI)
+#if ALOX_DBG_LOG_CI
 #define PFXCHECK( s, ml )        {                      \
         Log_Info( "*msg*" );                            \
         UT_EQ(s, ml .MemoryLog); ml .MemoryLog._();     \
@@ -218,6 +228,7 @@ UT_METHOD(Log_LineFormat)
 UT_METHOD(Log_Prefix)
 {
     UT_INIT();
+    aworx::lib::boxing::InitStdString();
 
     // we have to clear  all trim rules and set a new one to have a longer path
     Log_ClearSourcePathTrimRules(Reach::Global, false );
@@ -232,6 +243,11 @@ UT_METHOD(Log_Prefix)
 
     Log_SetDomain( "/PREFIX", Scope::Method );
 
+//! [DOX_ALOX_LOX_SETPREFIX]
+Boxes prefixes("One, ", "two, ", 3 );
+Log_SetPrefix( prefixes,  Scope::Global   );
+//! [DOX_ALOX_LOX_SETPREFIX]
+PFXCHECK( "One, two, 3*msg*"    ,ml );
 
     // src scopes
     Log_SetPrefix( "REPLACE:",    Scope::Global   );  PFXCHECK( "REPLACE:*msg*"          ,ml );
@@ -245,19 +261,37 @@ UT_METHOD(Log_Prefix)
     Log_SetPrefix( nullptr,       Scope::Method   );  PFXCHECK( "FILE:*msg*"             ,ml );
     Log_SetPrefix( "METHOD:",     Scope::Method   );  PFXCHECK( "FILE:METHOD:*msg*"      ,ml );
 
-    // remove with empty string and external prefix ASTrings (C++ only)
+    // remove with empty string
     Log_SetPrefix( "",            Scope::Method   );  PFXCHECK( "FILE:*msg*"             ,ml );
+
+    // external prefix AStrings (C++ only)
     AString extPL("Ext:");
-    Log_SetPrefix( extPL,Scope::Method   );           PFXCHECK( "FILE:Ext:*msg*"         ,ml );
+    Log_SetPrefix( extPL,         Scope::Method   );  PFXCHECK( "FILE:Ext:*msg*"         ,ml );
     extPL= "CHANGED:";                                PFXCHECK( "FILE:Ext:*msg*"         ,ml );
-    Log_SetPrefix( &extPL, -1, Scope::Method   );     PFXCHECK( "FILE:CHANGED:*msg*"     ,ml );
+
+    Log_SetPrefix( BoxedAs<AString>(extPL),
+                                  Scope::Method   );  PFXCHECK( "FILE:CHANGED:*msg*"     ,ml );
     extPL= "Ext2:";                                   PFXCHECK( "FILE:Ext2:*msg*"        ,ml );
-    Log_SetPrefix( "METHOD:",     Scope::Method   );  PFXCHECK( "FILE:METHOD:*msg*"                 ,ml );
-    Log_SetPrefix( "METHOD:",     Scope::Method   );  PFXCHECK( "FILE:METHOD:*msg*"                 ,ml );
+
+
+    // external prefix AStrings (C++ only)
+    std::string extPL2("STDSTR:");
+    Log_SetPrefix( extPL2,         Scope::Method   );  PFXCHECK( "FILE:STDSTR:*msg*"   ,ml );
+    extPL2= "CHANGED:";                                PFXCHECK( "FILE:STDSTR:*msg*"   ,ml );
+
+    Log_SetPrefix( BoxedAs<std::string>(extPL2),
+                                  Scope::Method   );  PFXCHECK( "FILE:CHANGED:*msg*"     ,ml );
+    extPL2= "Ext2:";                                   PFXCHECK( "FILE:Ext2:*msg*"        ,ml );
+
+
+    // back to internal mode
+    Log_SetPrefix( "METHOD:",     Scope::Method   );  PFXCHECK( "FILE:METHOD:*msg*"      ,ml );
+
 
     // domain related
     Log_SetPrefix( "DOM1:" );                         PFXCHECK( "FILE:METHOD:DOM1:*msg*"            ,ml );
-    Log_SetPrefix( "DOM2:" );                         PFXCHECK( "FILE:METHOD:DOM1:DOM2:*msg*"       ,ml );
+    Boxes domPfx("DO", "M2:" ); // set two logables at once!
+    Log_SetPrefix( domPfx );                          PFXCHECK( "FILE:METHOD:DOM1:DOM2:*msg*"       ,ml );
     Log_SetPrefix( "DOM3:" );                         PFXCHECK( "FILE:METHOD:DOM1:DOM2:DOM3:*msg*"  ,ml );
     Log_SetPrefix( ""      );                         PFXCHECK( "FILE:METHOD:DOM1:DOM2:*msg*"       ,ml );
     Log_SetPrefix( ""      );                         PFXCHECK( "FILE:METHOD:DOM1:*msg*"            ,ml );
@@ -311,7 +345,7 @@ UT_METHOD(Log_Prefix)
     Log_SetPrefix( nullptr ,Scope::Method      );  PFXCHECK( "*msg*:TI"                     ,ml );
     Log_SetPrefix( nullptr ,Scope::ThreadInner );  PFXCHECK( "*msg*"                        ,ml );
 
-    // check if breaking dom-releated, removes all thread inner correctly
+    // check if breaking dom-related, removes all thread inner correctly
     Log_SetPrefix( ":TI"   ,Scope::ThreadInner );     PFXCHECK( "*msg*:TI"                  ,ml );
     Log_SetPrefix( "DOM1:", "", Inclusion::Include ); PFXCHECK( "DOM1:*msg*:TI"             ,ml );
     Log_SetPrefix( "DOMX:", "", Inclusion::Exclude ); PFXCHECK( "DOMX:*msg*"                ,ml );
@@ -326,7 +360,7 @@ UT_METHOD(Log_Prefix)
 /** ********************************************************************************************
  * Log_ScopeDomains
  **********************************************************************************************/
-#if defined (ALOX_DBG_LOG_CI)
+#if ALOX_DBG_LOG_CI
 #define DDCHECK( d, s, ml )        {Log_Info( d, "" );      UT_EQ(s, ml .MemoryLog); ml .MemoryLog._(); ml .AutoSizes.Reset();}
 
 
@@ -444,15 +478,16 @@ UT_METHOD(Log_ScopeDomains)
 
 
     // second thread
-
-    DomainTestThread thread;
-    Log_SetDomain( "THIS_THREAD",   Scope::ThreadOuter );
-    Log_SetDomain( "OTHER_THREAD",  Scope::ThreadOuter, &thread );
-    thread.Start();
-    while( thread.IsAlive() )
-        ALIB::SleepMillis(1);
-                           UT_EQ( "@/OTHER_THREAD/DTT#", ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
-    Log_Info( "ME", "" );  UT_EQ( "@/THIS_THREAD/ME#"  , ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
+    #if ALIB_FEAT_THREADS
+        DomainTestThread thread;
+        Log_SetDomain( "THIS_THREAD",   Scope::ThreadOuter );
+        Log_SetDomain( "OTHER_THREAD",  Scope::ThreadOuter, &thread );
+        thread.Start();
+        while( thread.IsAlive() )
+            ALIB::SleepMillis(1);
+                               UT_EQ( "@/OTHER_THREAD/DTT#", ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
+        Log_Info( "ME", "" );  UT_EQ( "@/THIS_THREAD/ME#"  , ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
+    #endif
 
     //Log_LogState( "", Verbosity::Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
@@ -463,11 +498,11 @@ UT_METHOD(Log_ScopeDomains)
 /** ********************************************************************************************
  * Lox_ScopeDomains
  **********************************************************************************************/
-#if defined (ALOX_REL_LOG)
+#if ALOX_REL_LOG
 #define LOX_LOX lox
 #define DDCHECK_RL( d, s, ml )        {Lox_Info( d, "" );      UT_EQ(s, ml .MemoryLog); ml .MemoryLog._(); ml .AutoSizes.Reset();}
 
-#if defined( ALOX_REL_LOG_CI )
+#if ALOX_REL_LOG_CI
     #define CICHECK_RL( d, s, ml )    DDCHECK_RL(d,s,ml)
 #else
     #define CICHECK_RL( d, s, ml )    {Lox_Info( d, "" );                               ml .MemoryLog._(); ml .AutoSizes.Reset();}
@@ -523,7 +558,7 @@ UT_METHOD(Lox_ScopeDomains)
 
     Lox_SetDomain( "GLOBAL",     Scope::Global   );  CICHECK_RL( "","@/GLOBAL/PO2/PO1/PATH/FILE/METHOD#"  , ml );
 
-    #if defined( ALOX_REL_LOG_CI )
+    #if ALOX_REL_LOG_CI
         Lox_ScopeDomains_Helper   ( lox ); UT_EQ( "@/GLOBAL/PO2/PO1/PATH/HFILE/HMETHOD#", ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
         Lox_ScopeDomains_HPPHelper( lox ); UT_EQ( "@/GLOBAL/PO2/PO1/PATH/FILE#",          ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
 
@@ -572,15 +607,16 @@ UT_METHOD(Lox_ScopeDomains)
 
 
     // second thread
-    DomainTestThreadRL thread( &lox );
-    Lox_SetDomain( "THIS_THREAD",   Scope::ThreadOuter );
-    Lox_SetDomain( "OTHER_THREAD",  Scope::ThreadOuter, &thread );
-    thread.Start();
-    while( thread.IsAlive() )
-        ALIB::SleepMillis(1);
-                           UT_EQ( "@/OTHER_THREAD/DTT#", ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
-    Lox_Info( "ME", "" );  UT_EQ( "@/THIS_THREAD/ME#"  , ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
-
+    #if ALIB_FEAT_THREADS
+        DomainTestThreadRL thread( &lox );
+        Lox_SetDomain( "THIS_THREAD",   Scope::ThreadOuter );
+        Lox_SetDomain( "OTHER_THREAD",  Scope::ThreadOuter, &thread );
+        thread.Start();
+        while( thread.IsAlive() )
+            ALIB::SleepMillis(1);
+                               UT_EQ( "@/OTHER_THREAD/DTT#", ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
+        Lox_Info( "ME", "" );  UT_EQ( "@/THIS_THREAD/ME#"  , ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
+    #endif
 
     // cleanup
     Lox_RemoveLogger( &ml );
@@ -594,7 +630,7 @@ UT_METHOD(Lox_ScopeDomains)
 /** ********************************************************************************************
  * Log_Once_Test
  **********************************************************************************************/
-#if defined (ALOX_DBG_LOG)
+#if ALOX_DBG_LOG
 
 
 // restore original macro used by ALox
@@ -608,7 +644,7 @@ void logOnceMethod()
 
 // with GTEST macros it all gets wild. Fix the method name
 #undef  ALIB_SRC_INFO_PARAMS
-#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, aworxTestName
+#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, UT_GET_TEST_NAME
 
 UT_METHOD(Log_Once_Test)
 {
@@ -622,7 +658,7 @@ UT_METHOD(Log_Once_Test)
     Log_SetDomain( "ONCE", Scope::Global );
 
     //-------------------- associated to scope method-----------------
-    #if defined (ALOX_DBG_LOG_CI)
+    #if ALOX_DBG_LOG_CI
         for (int i= 0; i < 5 ; i++ )
             Log_Once( Verbosity::Info, "Once(Scope) 1x", Scope::Method );
         Log_Once( Verbosity::Info, "Once(Scope) 1x", Scope::Method );
@@ -642,28 +678,30 @@ UT_METHOD(Log_Once_Test)
     #endif
 
     //-------------------- associated to scope thread -----------------
-    Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - main thread", Scope::ThreadOuter, 0, 2 );
-    UT_EQ( 1, ml.CntLogs ); ml.CntLogs= 0;
-    LogOnceTestThread thread;
-    thread.Start();
-    while( thread.IsAlive() )
-        ALIB::SleepMicros(1);
-    UT_EQ( 2, ml.CntLogs ); ml.CntLogs= 0;
-    Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - main thread", Scope::ThreadOuter, 0, 2 );
-    UT_EQ( 1, ml.CntLogs ); ml.CntLogs= 0;
-    Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - main thread", Scope::ThreadOuter, 0, 2 );
-    UT_EQ( 0, ml.CntLogs ); ml.CntLogs= 0;
-    Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - main thread", Scope::ThreadOuter, 0, 2 );
-    UT_EQ( 0, ml.CntLogs ); ml.CntLogs= 0;
+    #if ALIB_FEAT_THREADS
+        Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - main thread", Scope::ThreadOuter, 0, 2 );
+        UT_EQ( 1, ml.CntLogs ); ml.CntLogs= 0;
+        LogOnceTestThread thread;
+        thread.Start();
+        while( thread.IsAlive() )
+            ALIB::SleepMicros(1);
+        UT_EQ( 2, ml.CntLogs ); ml.CntLogs= 0;
+        Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - main thread", Scope::ThreadOuter, 0, 2 );
+        UT_EQ( 1, ml.CntLogs ); ml.CntLogs= 0;
+        Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - main thread", Scope::ThreadOuter, 0, 2 );
+        UT_EQ( 0, ml.CntLogs ); ml.CntLogs= 0;
+        Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - main thread", Scope::ThreadOuter, 0, 2 );
+        UT_EQ( 0, ml.CntLogs ); ml.CntLogs= 0;
 
-    // different group
-    Log_Once( Verbosity::Info, "Once(key, Scope::ThreadOuter) 2x - main thread", "group", Scope::ThreadOuter, 0, 1 );
-    UT_EQ( 1, ml.CntLogs ); ml.CntLogs= 0;
-    Log_Once( Verbosity::Info, "Once(key, Scope::ThreadOuter) 2x - main thread", "group", Scope::ThreadOuter, 0, 1 );
-    UT_EQ( 0, ml.CntLogs ); ml.CntLogs= 0;
+        // different group
+        Log_Once( Verbosity::Info, "Once(key, Scope::ThreadOuter) 2x - main thread", "group", Scope::ThreadOuter, 0, 1 );
+        UT_EQ( 1, ml.CntLogs ); ml.CntLogs= 0;
+        Log_Once( Verbosity::Info, "Once(key, Scope::ThreadOuter) 2x - main thread", "group", Scope::ThreadOuter, 0, 1 );
+        UT_EQ( 0, ml.CntLogs ); ml.CntLogs= 0;
+    #endif
 
     //-------------------- associated to line  -----------------
-    #if defined (ALOX_DBG_LOG_CI)
+    #if ALOX_DBG_LOG_CI
         for (int i= 0; i < 5 ; i++ )
             Log_Once( Verbosity::Info, "Once(line) 1x" );
         UT_EQ( 1, ml.CntLogs ); ml.CntLogs= 0;
@@ -725,7 +763,7 @@ UT_METHOD(Log_Once_Test)
     UT_EQ( 0, ml.CntLogs ); ml.CntLogs= 0;
 
     //-------------------- Log every Nth -----------------
-    #if defined (ALOX_DBG_LOG_CI)
+    #if ALOX_DBG_LOG_CI
         for (int i= 0; i < 10 ; i++ )
             Log_Once( Verbosity::Info, "Every 2nd ", -2 );
         UT_EQ( 5, ml.CntLogs ); ml.CntLogs= 0;
@@ -734,6 +772,7 @@ UT_METHOD(Log_Once_Test)
             Log_Once( Verbosity::Info, "Every 3rd ", -3 );
         UT_EQ( 4, ml.CntLogs ); ml.CntLogs= 0;
     #endif
+
 
     //Log_LogState( "", Verbosity::Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
@@ -744,107 +783,91 @@ UT_METHOD(Log_Once_Test)
 /** ********************************************************************************************
  * Log_Store_Test
  **********************************************************************************************/
-#if defined (ALOX_DBG_LOG)
+#if ALOX_DBG_LOG
 UT_METHOD(Log_Store_Test)
 {
     UT_INIT();
-
-    // LogData Constructors
-    {
-        LogData* ld;
-        ld= new LogData(              ); UT_EQ( nullptr, ld->StringValue ); UT_EQ( 0, ld->IntegerValue ); UT_TRUE( ld->ObjectValue == nullptr);   delete ld;
-        #if !defined ( _MSC_VER )  // we are missing this constructor with MS compiler
-            ld= new LogData(          this); UT_EQ( nullptr, ld->StringValue ); UT_EQ( 0, ld->IntegerValue ); UT_TRUE( ld->ObjectValue == this   );   delete ld;
-        #endif
-        ld= new LogData(       3      ); UT_EQ( nullptr, ld->StringValue ); UT_EQ( 3, ld->IntegerValue ); UT_TRUE( ld->ObjectValue == nullptr);   delete ld;
-        ld= new LogData(       3, this); UT_EQ( nullptr, ld->StringValue ); UT_EQ( 3, ld->IntegerValue ); UT_TRUE( ld->ObjectValue == this   );   delete ld;
-        ld= new LogData("ABC"         ); UT_EQ(   "ABC", ld->StringValue ); UT_EQ( 0, ld->IntegerValue ); UT_TRUE( ld->ObjectValue == nullptr);   delete ld;
-        ld= new LogData("ABC",    this); UT_EQ(   "ABC", ld->StringValue ); UT_EQ( 0, ld->IntegerValue ); UT_TRUE( ld->ObjectValue == this   );   delete ld;
-        ld= new LogData("ABC", 3      ); UT_EQ(   "ABC", ld->StringValue ); UT_EQ( 3, ld->IntegerValue ); UT_TRUE( ld->ObjectValue == nullptr);   delete ld;
-        ld= new LogData("ABC", 3, this); UT_EQ(   "ABC", ld->StringValue ); UT_EQ( 3, ld->IntegerValue ); UT_TRUE( ld->ObjectValue == this   );   delete ld;
-    }
 
     Log_AddDebugLogger();
     Log_SetVerbosity( Log::DebugLogger, Verbosity::Verbose, ALox::InternalDomains );
     Log_SetDomain( "STORE", Scope::Method );
 
     // without key
-    Log_Store( nullptr,                          Scope::Global         );
-    Log_Store( new LogData( "Replaced"     ),    Scope::Global         );
-    Log_Store( nullptr,                          Scope::Global         );
-    Log_Store( nullptr,                          Scope::Global         );
-    Log_Store( new LogData( "Replaced"     ),    Scope::Global         );
-    Log_Store( new LogData( "Global"       ),    Scope::Global         );
-    Log_Store( new LogData( "Replaced"     ),    Scope::ThreadOuter    );
-    Log_Store( new LogData( "ThreadOuter"  ),    Scope::ThreadOuter    );
+    Log_Store( nullptr       ,    Scope::Global         );
+    Log_Store( "Replaced"    ,    Scope::Global         );
+    Log_Store( nullptr       ,    Scope::Global         );
+    Log_Store( "Replaced"    ,    Scope::Global         );
+    Log_Store( "Global"      ,    Scope::Global         );
+    Log_Store( "Replaced"    ,    Scope::ThreadOuter    );
+    Log_Store( "ThreadOuter" ,    Scope::ThreadOuter    );
 
-#if defined (ALOX_DBG_LOG_CI)
-    Log_Store( new LogData( "Replaced"     ),    Scope::Path,    1     );
-    Log_Store( new LogData( "Path1"        ),    Scope::Path,    1     );
-    Log_Store( new LogData( "Replaced"     ),    Scope::Path           );
-    Log_Store( new LogData( "Path"         ),    Scope::Path           );
-    Log_Store( new LogData( "Replaced"     ),    Scope::Filename       );
-    Log_Store( new LogData( "FileName"     ),    Scope::Filename       );
-    Log_Store( new LogData( "Replaced"     ),    Scope::Method         );
-    Log_Store( new LogData( "Method"       ),    Scope::Method         );
-    Log_Store( new LogData( "Replaced"     ),    Scope::ThreadInner    );
+#if ALOX_DBG_LOG_CI
+    Log_Store( "Replaced"    ,    Scope::Path,    1     );
+    Log_Store( "Path1"       ,    Scope::Path,    1     );
+    Log_Store( "Replaced"    ,    Scope::Path           );
+    Log_Store( "Path"        ,    Scope::Path           );
+    Log_Store( "Replaced"    ,    Scope::Filename       );
+    Log_Store( "FileName"    ,    Scope::Filename       );
+    Log_Store( "Replaced"    ,    Scope::Method         );
+    Log_Store( "Method"      ,    Scope::Method         );
+    Log_Store( "Replaced"    ,    Scope::ThreadInner    );
 #endif
 
-    Log_Store( new LogData( "ThreadInner"  ),    Scope::ThreadInner    );
+    Log_Store( "ThreadInner" ,    Scope::ThreadInner    );
 
-    { Log_Retrieve( data,  Scope::Global       ); UT_EQ( "Global"        , data->StringValue ); }
-    { Log_Retrieve( data,  Scope::ThreadOuter  ); UT_EQ( "ThreadOuter"   , data->StringValue ); }
+    { Log_Retrieve( data,  Scope::Global       ); UT_EQ( "Global"        , data.Unbox<String>() ); }
+    { Log_Retrieve( data,  Scope::ThreadOuter  ); UT_EQ( "ThreadOuter"   , data.Unbox<String>() ); }
 
-#if defined (ALOX_DBG_LOG_CI)
-    { Log_Retrieve( data,  Scope::Path,    1   ); UT_EQ( "Path1"         , data->StringValue ); }
-    { Log_Retrieve( data,  Scope::Path         ); UT_EQ( "Path"          , data->StringValue ); }
-    { Log_Retrieve( data,  Scope::Filename     ); UT_EQ( "FileName"      , data->StringValue ); }
-    { Log_Retrieve( data,  Scope::Method       ); UT_EQ( "Method"        , data->StringValue ); }
+#if ALOX_DBG_LOG_CI
+    { Log_Retrieve( data,  Scope::Path,    1   ); UT_EQ( "Path1"         , data.Unbox<String>() ); }
+    { Log_Retrieve( data,  Scope::Path         ); UT_EQ( "Path"          , data.Unbox<String>() ); }
+    { Log_Retrieve( data,  Scope::Filename     ); UT_EQ( "FileName"      , data.Unbox<String>() ); }
+    { Log_Retrieve( data,  Scope::Method       ); UT_EQ( "Method"        , data.Unbox<String>() ); }
 #endif
 
-    { Log_Retrieve( data,  Scope::ThreadInner  ); UT_EQ( "ThreadInner"   , data->StringValue ); }
+    { Log_Retrieve( data,  Scope::ThreadInner  ); UT_EQ( "ThreadInner"   , data.Unbox<String>() ); }
 
     // wit key
-    Log_Store( new LogData( "Replaced"     ),   "mykey",  Scope::Global         );
-    Log_Store( new LogData( "Global"       ),   "mykey",  Scope::Global         );
-    Log_Store( new LogData( "Replaced"     ),   "mykey",  Scope::ThreadOuter    );
-    Log_Store( new LogData( "ThreadOuter"  ),   "mykey",  Scope::ThreadOuter    );
-#if defined (ALOX_DBG_LOG_CI)
-    Log_Store( new LogData( "Replaced"     ),   "mykey",  Scope::Path,    1     );
-    Log_Store( new LogData( "Path1"        ),   "mykey",  Scope::Path,    1     );
-    Log_Store( new LogData( "Replaced"     ),   "mykey",  Scope::Path           );
-    Log_Store( new LogData( "Path"         ),   "mykey",  Scope::Path           );
-    Log_Store( new LogData( "Replaced"     ),   "mykey",  Scope::Filename       );
-    Log_Store( new LogData( "FileName"     ),   "mykey",  Scope::Filename       );
-    Log_Store( new LogData( "Replaced"     ),   "mykey",  Scope::Method         );
-    Log_Store( new LogData( "Method"       ),   "mykey",  Scope::Method         );
+    Log_Store( "Replaced"     ,   "mykey",  Scope::Global         );
+    Log_Store( "Global"       ,   "mykey",  Scope::Global         );
+    Log_Store( "Replaced"     ,   "mykey",  Scope::ThreadOuter    );
+    Log_Store( "ThreadOuter"  ,   "mykey",  Scope::ThreadOuter    );
+#if ALOX_DBG_LOG_CI
+    Log_Store( "Replaced"     ,   "mykey",  Scope::Path,    1     );
+    Log_Store( "Path1"        ,   "mykey",  Scope::Path,    1     );
+    Log_Store( "Replaced"     ,   "mykey",  Scope::Path           );
+    Log_Store( "Path"         ,   "mykey",  Scope::Path           );
+    Log_Store( "Replaced"     ,   "mykey",  Scope::Filename       );
+    Log_Store( "FileName"     ,   "mykey",  Scope::Filename       );
+    Log_Store( "Replaced"     ,   "mykey",  Scope::Method         );
+    Log_Store( "Method"       ,   "mykey",  Scope::Method         );
 #endif
-    Log_Store( new LogData( "Replaced"     ),   "mykey",  Scope::ThreadInner    );
-    Log_Store( new LogData( "ThreadInner"  ),   "mykey",  Scope::ThreadInner    );
+    Log_Store( "Replaced"     ,   "mykey",  Scope::ThreadInner    );
+    Log_Store( "ThreadInner"  ,   "mykey",  Scope::ThreadInner    );
 
 
-    { Log_Retrieve( data,  "mykey", Scope::Global       ); UT_EQ( "Global"        , data->StringValue ); }
-    { Log_Retrieve( data,  "mykey", Scope::ThreadOuter  ); UT_EQ( "ThreadOuter"   , data->StringValue ); }
-#if defined (ALOX_DBG_LOG_CI)
-    { Log_Retrieve( data,  "mykey", Scope::Path,    1   ); UT_EQ( "Path1"         , data->StringValue ); }
-    { Log_Retrieve( data,  "mykey", Scope::Path         ); UT_EQ( "Path"          , data->StringValue ); }
-    { Log_Retrieve( data,  "mykey", Scope::Filename     ); UT_EQ( "FileName"      , data->StringValue ); }
-    { Log_Retrieve( data,  "mykey", Scope::Method       ); UT_EQ( "Method"        , data->StringValue ); }
+    { Log_Retrieve( data,  "mykey", Scope::Global       ); UT_EQ( "Global"        , data.Unbox<String>() ); }
+    { Log_Retrieve( data,  "mykey", Scope::ThreadOuter  ); UT_EQ( "ThreadOuter"   , data.Unbox<String>() ); }
+#if ALOX_DBG_LOG_CI
+    { Log_Retrieve( data,  "mykey", Scope::Path,    1   ); UT_EQ( "Path1"         , data.Unbox<String>() ); }
+    { Log_Retrieve( data,  "mykey", Scope::Path         ); UT_EQ( "Path"          , data.Unbox<String>() ); }
+    { Log_Retrieve( data,  "mykey", Scope::Filename     ); UT_EQ( "FileName"      , data.Unbox<String>() ); }
+    { Log_Retrieve( data,  "mykey", Scope::Method       ); UT_EQ( "Method"        , data.Unbox<String>() ); }
 #endif
-    { Log_Retrieve( data,  "mykey", Scope::ThreadInner  ); UT_EQ( "ThreadInner"   , data->StringValue ); }
+    { Log_Retrieve( data,  "mykey", Scope::ThreadInner  ); UT_EQ( "ThreadInner"   , data.Unbox<String>() ); }
 
 
     // threaded
-    Log_Store( new LogData( "Main Thread Data"        ),             Scope::ThreadOuter   );
-    Log_Store( new LogData( "Main Thread Data, keyed" ),   "mykey",  Scope::ThreadOuter   );
+    Log_Store( "Main Thread Data"        ,             Scope::ThreadOuter   );
+    Log_Store( "Main Thread Data, keyed" ,   "mykey",  Scope::ThreadOuter   );
 
     StoreDataTestThread thread(ut);
     thread.Start();
     while( thread.IsAlive() )
         ALIB::SleepMicros(1);
 
-    { Log_Retrieve( data,           Scope::ThreadOuter ); UT_EQ( "Main Thread Data"         , data->StringValue ); }
-    { Log_Retrieve( data,  "mykey", Scope::ThreadOuter ); UT_EQ( "Main Thread Data, keyed"  , data->StringValue ); }
+    { Log_Retrieve( data,           Scope::ThreadOuter ); UT_EQ( "Main Thread Data"         , data.Unbox<String>() ); }
+    { Log_Retrieve( data,  "mykey", Scope::ThreadOuter ); UT_EQ( "Main Thread Data, keyed"  , data.Unbox<String>() ); }
 
     //Log_LogState( "", Verbosity::Info, "Configuration now is:" );
 

@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  aworx::lox::core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -15,7 +15,6 @@
 #ifndef HPP_ALOX_CORE_DOMAIN
 #define HPP_ALOX_CORE_DOMAIN 1
 
-
 // #################################################################################################
 // includes
 // #################################################################################################
@@ -24,9 +23,14 @@
 #endif
 
 
-namespace aworx {
-namespace       lox {
-namespace           core{
+namespace aworx { namespace lox
+{
+
+class PrefixLogable;
+
+namespace core
+{
+
 
 /** ************************************************************************************************
  * Objects of this class represent a <em>Log Domain</em> of ALox. This class is internally used by
@@ -68,10 +72,10 @@ class Domain
     // #############################################################################################
     public:
 
-        /** The name of the domain. For root domains, this is null. */
+        /** The name of the domain. For root domains, this is nulled. */
         String32                            Name;
 
-        /** The parent domain. For root domains, this is null. */
+        /** The parent domain. For root domains, this is \c nullptr. */
         Domain*                             Parent;
 
         /** A list of sub domains. */
@@ -93,7 +97,7 @@ class Domain
         int                                 CntLogCalls                                          =0;
 
         /** <em>Prefix Logables</em> associated with this domain. */
-        std::vector<std::pair<Logable, Inclusion>>   PrefixLogables;
+        std::vector<std::pair<PrefixLogable*, Inclusion>>   PrefixLogables;
 
         /** Flag to which is set when verbosity configuration data was read. */
         bool                                ConfigurationRead                                =false;
@@ -111,8 +115,8 @@ class Domain
 
         /** ****************************************************************************************
          * Constructor
-         * @param parent    The parent domain. For root domains, this is null.
-         * @param name      The name of the domain. For root domains, this is null.
+         * @param parent    The parent domain. For root domains, this is \c nullptr.
+         * @param name      The name of the domain. For root domains, this is nulled.
          ******************************************************************************************/
         ALOX_API
         Domain( Domain* parent,  const String& name );
@@ -154,9 +158,9 @@ class Domain
             if ( GetLoggerNo( logger->GetName() ) >= 0 )
                 return -1;
 
-            // now this and all childs
+            // now this and all children
             addLoggerRecursive( logger );
-            return ((int) Data.size()) - 1;
+            return static_cast<int>(Data.size()) - 1;
         }
 
         /** ****************************************************************************************
@@ -174,7 +178,7 @@ class Domain
                 return;
             }
 
-            // now this and all childs
+            // now this and all children
             removeLoggerRecursive( loggerNo );
         }
 
@@ -186,13 +190,13 @@ class Domain
         inline
         int  CountLoggers()
         {
-            return (int) Data.size();
+            return static_cast<int>( Data.size() );
         }
 
         /** ****************************************************************************************
          * Searches and returns the \e Logger given by name.
          * @param loggerName  The logger to search.
-         * @return The the \e Logger found corresponding to given name.
+         * @return The \e Logger found corresponding to given name.
          *         If the \e Logger does not exist, nullptr is returned.
          ******************************************************************************************/
         inline
@@ -207,13 +211,13 @@ class Domain
         /** ****************************************************************************************
          * Returns logger of given number.
          * @param no  The number of the \e Logger to return.
-         * @return The the \e Logger found with number \p no.
+         * @return The \e Logger found with number \p no.
          ******************************************************************************************/
         inline
         core::Logger*  GetLogger( int no )
         {
-            ALIB_ASSERT_ERROR( no >= 0 && no < (int) Data.size(), "Internal error: Illegal Logger Number" )
-            return Data[no].Logger;
+            ALIB_ASSERT_ERROR( no < static_cast<int>(Data.size()), "Internal error: Illegal Logger Number" )
+            return Data[static_cast<size_t>(no)].Logger;
         }
 
         /** ****************************************************************************************
@@ -227,7 +231,7 @@ class Domain
         {
             for ( size_t i= 0; i < Data.size() ; i++  )
                 if ( loggerName.Equals( Data[i].Logger->GetName(), Case::Ignore ) )
-                    return (int) i;
+                    return static_cast<int>( i );
             return -1;
         }
 
@@ -241,7 +245,7 @@ class Domain
         {
             for ( size_t i= 0; i < Data.size() ; i++  )
                 if ( logger == Data[i].Logger )
-                    return (int) i;
+                    return static_cast<int>( i );
             return -1;
         }
 
@@ -258,7 +262,7 @@ class Domain
         inline
         Verbosity SetVerbosity( int loggerNo, Verbosity verbosity, int priority )
         {
-            LoggerData& ld= Data[loggerNo];
+            LoggerData& ld= Data[static_cast<size_t>(loggerNo)];
             if( priority >= ld.Priority )
             {
                 ld.Priority=        priority;
@@ -278,7 +282,7 @@ class Domain
         inline
         Verbosity GetVerbosity( int loggerNo )
         {
-            return Data[loggerNo].LoggerVerbosity;
+            return Data[static_cast<size_t>(loggerNo)].LoggerVerbosity;
         }
 
         /** ****************************************************************************************
@@ -289,7 +293,7 @@ class Domain
         inline
         int       GetPriority( int loggerNo )
         {
-            return Data[loggerNo].Priority;
+            return Data[static_cast<size_t>(loggerNo)].Priority;
         }
 
 
@@ -301,7 +305,7 @@ class Domain
         inline
         int       GetCount( int loggerNo )
         {
-            return Data[loggerNo].LogCallsPerDomain;
+            return Data[static_cast<size_t>(loggerNo)].LogCallsPerDomain;
         }
 
         /** ****************************************************************************************
@@ -332,7 +336,7 @@ class Domain
                      ||   domain == Verbosity::Verbose )
               )
             {
-                Data[loggerNo].LogCallsPerDomain++;
+                Data[static_cast<size_t>(loggerNo)].LogCallsPerDomain++;
                 return true;
             }
 
@@ -347,7 +351,6 @@ class Domain
          * from this domain.
          *
          * @param       domainPath  Path and domain to search.
-         * @param       sensitivity Denotes if domain name search is treated case sensitive or not.
          * @param       maxCreate   The maximum number of sub domains that are created if not
          *                          found at the end of the path.
          * @param[out]  wasCreated  Output parameter that is set \c true if domain was not found
@@ -355,14 +358,12 @@ class Domain
          * @return The domain found or created.
          ******************************************************************************************/
         ALOX_API
-        Domain*   Find( Substring domainPath, Case sensitivity, int maxCreate,
-                        bool* wasCreated );
+        Domain*   Find( Substring domainPath, int maxCreate, bool* wasCreated );
 
 
         /** ****************************************************************************************
-         * This is for debugging purposes and for configuration output.
-         * @param target The target string to write information about us into.
-         * @returns A human readable string representation of this object.
+         * Creates a string representation of this object.
+         * @param target The target string.
          ******************************************************************************************/
         void      ToString( AString& target );
 
@@ -374,15 +375,13 @@ class Domain
          * Internal, recursive helper of #Find.
          *
          * @param       domainPath  Path to search.
-         * @param       sensitivity Denotes if domain name search is treated case sensitive or not.
          * @param       maxCreate   The maximum number of sub domains that are created if not
          *                          found at the end of the path.
          * @param[out]  wasCreated  Output parameter that is set \c true if domain was not found
          *                          and hence created. If \c nullptr, it is ignored.
          * @return The domain found or created.
          ******************************************************************************************/
-        Domain*     findRecursive( Substring&  domainPath, Case sensitivity, int maxCreate,
-                                   bool* wasCreated );
+        Domain*     findRecursive( Substring&  domainPath, int maxCreate, bool* wasCreated );
 
         /** ****************************************************************************************
          * Internal, recursive helper of #AddLogger.
@@ -410,6 +409,6 @@ class Domain
 
 }; // Domain
 
-}}} // namespace aworx::lox::core
+}}} // namespace aworx::lox::utils
 
 #endif // HPP_ALOX_CORE_DOMAIN

@@ -1,14 +1,14 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
 using System.Text;
 using System.Threading;
 using cs.aworx.lib.time;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 
 /** ************************************************************************************************
  *  This namespace of the A-Worx Library holds classes that are providing an interface into
@@ -19,6 +19,7 @@ using cs.aworx.lib.enums;
  *  the C# Version of the AWorx Library.
  **************************************************************************************************/
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 
 namespace cs.aworx.lib.threads  {
@@ -57,7 +58,7 @@ public class SmartLock :  ThreadLock
     // #############################################################################################
 
         /**  The list of acquirers.  */
-        protected List<ThreadLock>             acquirers    = new List<ThreadLock>();
+        protected List<ThreadLock>             acquirers                    =new List<ThreadLock>();
 
     // #############################################################################################
     // Constructors
@@ -80,80 +81,78 @@ public class SmartLock :  ThreadLock
          * @param newAcquirer The acquirer to add.
          * @return The new number of \e acquirers set.
          ******************************************************************************************/
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public virtual int AddAcquirer( ThreadLock newAcquirer )
         {
             int count= -1;
             #if DEBUG
-                bool errAllreadyAdded=      true;
+                bool errAlreadyAdded=      true;
                 bool errHasToBeRecursive=   false;
                 int  errWasAcquired=        0;
             #endif
 
-            try { ALIB.Lock.Acquire();
+            count= acquirers.Count;
 
-                count= acquirers.Count;
+            // check doubly added
+            if (     newAcquirer == null
+                 ||  acquirers.IndexOf( newAcquirer ) < 0 )
+            {
+                #if DEBUG
+                    errAlreadyAdded= false;
+                    errWasAcquired=  DbgCountAcquirements() == 0 ? 0 : 1;
+                #endif
 
-                // check doubly added
-                if (     newAcquirer == null
-                     ||  acquirers.IndexOf( newAcquirer ) < 0 )
+                // switch on?
+                if( acquirers.Count == 1 )
                 {
                     #if DEBUG
-                        errAllreadyAdded= false;
-                        errWasAcquired=  DbgCountAcquirements() == 0 ? 0 : 1;
+                        errAlreadyAdded= false;
                     #endif
+                    ThreadLock firstAcquirer= acquirers[0];
 
-                    // switch on?
-                    if( acquirers.Count == 1 )
+                    // non-anonymous acquirer?
+                    if ( firstAcquirer != null )
                     {
+                        if( firstAcquirer.GetMode() == LockMode.Recursive )
+                        {
+                            firstAcquirer.Acquire();
+                                SetSafeness( Safeness.Safe );
+                                acquirers.Add( newAcquirer );
+                                count++;
+                            firstAcquirer.Release();
+                        }
                         #if DEBUG
-                            errAllreadyAdded= false;
-                        #endif
-                        ThreadLock firstAcquirer= acquirers[0];
-
-                        // non-anonymous acquirer?
-                        if ( firstAcquirer != null )
-                        {
-                            if( firstAcquirer.GetMode() == LockMode.Recursive )
-                            {
-                                firstAcquirer.Acquire();
-                                    SetSafeness( Safeness.Safe );
-                                    acquirers.Add( newAcquirer );
-                                    count++;
-                                firstAcquirer.Release();
-                            }
-                            #if DEBUG
-                            else
-                                errHasToBeRecursive= false;
-                            #endif
-
-                        }
-                        // critical section: our first acquirer is anonymous. As documented in class,
-                        // this must happen only in situations, when we are sure, that we are safe, e.g. still
-                        // single threaded execution of process bootstrap.
                         else
-                        {
-                            // If this assert happens, its only good luck: we detected a misuse. But it should
-                            // be very seldom to be detected this way :-/
-                            #if DEBUG
-                                if ( errWasAcquired == 1 )
-                                    errWasAcquired= 2;
-                            #endif
+                            errHasToBeRecursive= false;
+                        #endif
 
-                            SetSafeness( Safeness.Safe );
-                            acquirers.Add( newAcquirer );
-                            count++;
-                        }
                     }
+                    // critical section: our first acquirer is anonymous. As documented in class,
+                    // this must happen only in situations, when we are sure, that we are safe, e.g. still
+                    // single threaded execution of process bootstrap.
                     else
+                    {
+                        // If this assert happens, its only good luck: we detected a misuse. But it should
+                        // be very seldom to be detected this way :-/
+                        #if DEBUG
+                            if ( errWasAcquired == 1 )
+                                errWasAcquired= 2;
+                        #endif
+
+                        SetSafeness( Safeness.Safe );
                         acquirers.Add( newAcquirer );
+                        count++;
+                    }
                 }
-            } finally { ALIB.Lock.Release(); }
+                else
+                    acquirers.Add( newAcquirer );
+            }
 
             #if DEBUG
-                ALIB.ASSERT_ERROR( !errAllreadyAdded,    "Acquirer already registered." );
-                ALIB.ASSERT_ERROR( !errHasToBeRecursive, "Acquireres need to be in recursive mode " );
-                ALIB.ASSERT_ERROR( errWasAcquired != 1,  "Already aquired. Hint: Acquirer[0] must not acquire this before adding itself!" );
-                ALIB.ASSERT_ERROR( errWasAcquired != 2,  "Aquired and acquirer[0] anonymous. Misuse of SmartLock!" );
+                ALIB_DBG.ASSERT_ERROR( !errAlreadyAdded,    "Acquirer already registered." );
+                ALIB_DBG.ASSERT_ERROR( !errHasToBeRecursive, "Acquireres need to be in recursive mode " );
+                ALIB_DBG.ASSERT_ERROR( errWasAcquired != 1,  "Already acquired. Hint: Acquirer[0] must not acquire this before adding itself!" );
+                ALIB_DBG.ASSERT_ERROR( errWasAcquired != 2,  "Acquired and acquirer[0] anonymous. Misuse of SmartLock!" );
             #endif
 
             return count;
@@ -164,51 +163,48 @@ public class SmartLock :  ThreadLock
          * @param acquirerToRemove The acquirer to remove.
          * @return The new number of \e acquirers set.
          ******************************************************************************************/
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public virtual int RemoveAcquirer( ThreadLock acquirerToRemove )
         {
             int  count= 0;
             bool errNotFound=    true;
             bool errWasAcquired= false;
 
-            try { ALIB.Lock.Acquire();
+            #if DEBUG
+                errWasAcquired=  DbgCountAcquirements() != 0;
+            #endif
 
-                #if DEBUG
-                    errWasAcquired=  DbgCountAcquirements() != 0;
-                #endif
+            // search acquirer
+            if( acquirers.IndexOf( acquirerToRemove ) >= 0 )
+            {
+                errNotFound= false;
 
-                // search acquirer
-                if( acquirers.IndexOf( acquirerToRemove ) >= 0 )
+                // switch off?
+                if( acquirers.Count == 2 )
                 {
-                    errNotFound= false;
+                    ThreadLock acquirer1=  acquirers[0];
+                    ThreadLock acquirer2=  acquirers[1];
+                    if( acquirer1== acquirerToRemove ) acquirer1= null;
+                    if( acquirer2== acquirerToRemove ) acquirer2= null;
 
-                    // switch off?
-                    if( acquirers.Count == 2 )
-                    {
-                        ThreadLock acquirer1=  acquirers[0];
-                        ThreadLock acquirer2=  acquirers[1];
-                        if( acquirer1== acquirerToRemove ) acquirer1= null;
-                        if( acquirer2== acquirerToRemove ) acquirer2= null;
-
-                        // Aquire acquirers in their order of appearance
-                        if ( acquirer1 != null ) acquirer1.Acquire();
-                          if ( acquirer2 != null ) acquirer2.Acquire();
-                            SetSafeness( Safeness.Unsafe );
-                            acquirers.Remove( acquirerToRemove );
-                          if ( acquirer2 != null ) acquirer2.Release();
-                        if ( acquirer1 != null ) acquirer1.Release();
-                    }
-
-                    // just remove acquirer, keep mode
-                    else
+                    // Acquire acquirers in their order of appearance
+                    if ( acquirer1 != null ) acquirer1.Acquire();
+                      if ( acquirer2 != null ) acquirer2.Acquire();
+                        SetSafeness( Safeness.Unsafe );
                         acquirers.Remove( acquirerToRemove );
+                      if ( acquirer2 != null ) acquirer2.Release();
+                    if ( acquirer1 != null ) acquirer1.Release();
                 }
 
-                count= acquirers.Count;
+                // just remove acquirer, keep mode
+                else
+                    acquirers.Remove( acquirerToRemove );
+            }
 
-            } finally { ALIB.Lock.Release(); }
+            count= acquirers.Count;
 
-            ALIB.ASSERT_ERROR( !errNotFound,    "Acquirer not found." );
-            ALIB.ASSERT_ERROR( !errWasAcquired, "Aquired on release. Hint: Acquirers must acquire only when acquired themselves!" );
+            ALIB_DBG.ASSERT_ERROR( !errNotFound,    "Acquirer not found." );
+            ALIB_DBG.ASSERT_ERROR( !errWasAcquired, "Acquired on release. Hint: Acquirers must acquire only when acquired themselves!" );
             return count;
         }
 

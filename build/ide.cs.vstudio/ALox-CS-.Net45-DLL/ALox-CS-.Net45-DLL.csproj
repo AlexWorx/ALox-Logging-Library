@@ -19,7 +19,7 @@
     <BaseIntermediateOutputPath>..\..\_builds_\ide.cs.vstudio\</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
     <OutputPath>..\..\_builds_\ide.cs.vstudio\ALox-CS-.Net45-DLL\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;ALIB_VSTUDIO;ALOX_DBG_LOG</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;ALIB_IDE_VSTUDIO;ALOX_DBG_LOG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -31,7 +31,7 @@
     <BaseIntermediateOutputPath>..\..\_builds_\ide.cs.vstudio\</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
     <OutputPath>..\..\_builds_\ide.cs.vstudio\ALox-CS-.Net45-DLL\Release\</OutputPath>
-    <DefineConstants>TRACE;ALIB_VSTUDIO</DefineConstants>
+    <DefineConstants>TRACE;ALIB_IDE_VSTUDIO</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -45,6 +45,9 @@
   <ItemGroup>
     <Compile Include="..\..\..\src.cs\alib\ALib.cs">
       <Link>ALib\ALib.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\ALIB_DBG.cs">
+      <Link>ALib\ALIB_DBG.cs</Link>
     </Compile>
     <Compile Include="..\..\..\src.cs\alib\config\Configuration.cs">
       <Link>ALib\config\Configuration.cs</Link>
@@ -64,29 +67,50 @@
     <Compile Include="..\..\..\src.cs\alib\containers\PathMap.cs">
       <Link>ALib\containers\PathMap.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alib\Enums.cs">
-      <Link>ALib\Enums.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib\lang\Enums.cs">
+      <Link>ALib\lang\Enums.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alib\Report.cs">
-      <Link>ALib\Report.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib\lang\Report.cs">
+      <Link>ALib\lang\Report.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alib\ReportWriter.cs">
-      <Link>ALib\ReportWriter.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib\lang\ReportWriter.cs">
+      <Link>ALib\lang\ReportWriter.cs</Link>
     </Compile>
     <Compile Include="..\..\..\src.cs\alib\strings\AString.cs">
       <Link>ALib\strings\AString.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\src.cs\alib\strings\AutoSizes.cs">
+      <Link>ALib\strings\AutoSizes.cs</Link>
+    </Compile>
     <Compile Include="..\..\..\src.cs\alib\strings\CString.cs">
       <Link>ALib\strings\CString.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\src.cs\alib\strings\Formatter.cs">
+      <Link>ALib\strings\Formatter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\strings\FormatterJavaStyle.cs">
+      <Link>ALib\strings\FormatterJavaStyle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\strings\FormatterPythonStyle.cs">
+      <Link>ALib\strings\FormatterPythonStyle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\strings\FormatterStdImpl.cs">
+      <Link>ALib\strings\FormatterStdImpl.cs</Link>
+    </Compile>
     <Compile Include="..\..\..\src.cs\alib\strings\NumberFormat.cs">
       <Link>ALib\strings\NumberFormat.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\strings\Spaces.cs">
+      <Link>ALib\strings\Spaces.cs</Link>
     </Compile>
     <Compile Include="..\..\..\src.cs\alib\strings\Substring.cs">
       <Link>ALib\strings\Substring.cs</Link>
     </Compile>
     <Compile Include="..\..\..\src.cs\alib\strings\Tokenizer.cs">
       <Link>ALib\strings\Tokenizer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\system\ProcessInfo.cs">
+      <Link>ALib\system\ProcessInfo.cs</Link>
     </Compile>
     <Compile Include="..\..\..\src.cs\alib\threads\SmartLock.cs">
       <Link>ALib\threads\SmartLock.cs</Link>
@@ -96,9 +120,6 @@
     </Compile>
     <Compile Include="..\..\..\src.cs\alib\time\Ticks.cs">
       <Link>ALib\time\Ticks.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src.cs\alib\Util.cs">
-      <Link>ALib\Util.cs</Link>
     </Compile>
     <Compile Include="..\..\..\src.cs\alox\ALox.cs">
       <Link>ALox\ALox.cs</Link>
@@ -120,9 +141,6 @@
     </Compile>
     <Compile Include="..\..\..\src.cs\alox\core\ScopeStore.cs">
       <Link>ALox\core\ScopeStore.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src.cs\alox\core\textlogger\AutoSizes.cs">
-      <Link>ALox\core\textlogger\AutoSizes.cs</Link>
     </Compile>
     <Compile Include="..\..\..\src.cs\alox\core\textlogger\MetaInfo.cs">
       <Link>ALox\core\textlogger\MetaInfo.cs</Link>

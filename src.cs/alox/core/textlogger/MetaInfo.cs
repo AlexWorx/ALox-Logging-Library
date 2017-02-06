@@ -1,12 +1,13 @@
 // #################################################################################################
 //  cs.aworx.lox.core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using cs.aworx.lib.strings;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 using cs.aworx.lib.time;
+using cs.aworx.lib.system;
 
 #if (ALOX_DBG_LOG || ALOX_REL_LOG)
 
@@ -74,8 +75,8 @@ public class MetaInfo
          * \code "%Sp/%SF(%SL):%A5%SM() %A5[%TC +%TL][%tN]%V[%D]%A1(%#): " \endcode
          *
          */
-        public            AString           Format 
-                        = new AString( "%Sp/%SF(%SL):%A5%SM() %A5[%TC +%TL][%tN]%V[%D]%A1(%#): " );
+        public            AString           Format
+                        = new AString( "%SF(%SL):%A5%SM() %A5[%TC +%TL][%tN]%V[%D]%A1(%#): " );
 
         /** The replacement for variable \c %%V in field #Format if \e Verbosity is \c Error */
         public            String            VerbosityError                              = "[ERR]";
@@ -178,7 +179,7 @@ public class MetaInfo
         protected        Ticks             elapsedTime                                =new Ticks(0);
 
         /** Helper flag that indicates if a format warning report was already issued */
-        protected        bool               warnedOnce                                      = false;
+        protected        bool              warnedOnce                                       = false;
 
     /** ********************************************************************************************
      *  Parses the #Format string and logs meta information into the log buffer. For each
@@ -246,14 +247,14 @@ public class MetaInfo
     {
         // process commands
         char c2;
-        switch ( variable.Consume() )
+        switch ( variable.ConsumeChar() )
         {
             // scope info
             case 'S':
             {
                     // read sub command
                 AString val;
-                switch( c2= variable.Consume() )
+                switch( c2= variable.ConsumeChar() )
                 {
                     case 'P':   // SP: full path
                     {
@@ -311,7 +312,7 @@ public class MetaInfo
                         if( !warnedOnce )
                         {
                             warnedOnce= true;
-                            ALIB.WARNING( "Unknown format variable '%S" + c2 + "\' (only one warning)" );
+                            ALIB_DBG.WARNING( "Unknown format variable '%S" + c2 + "\' (only one warning)" );
                         }
                         dest._( "%ERROR" );
                         return 0;
@@ -325,7 +326,7 @@ public class MetaInfo
             case 'T':
             {
                 // read sub command
-                c2= variable.Consume();
+                c2= variable.ConsumeChar();
 
                 // %TD: Date
                 if ( c2 == 'D' )
@@ -421,7 +422,7 @@ public class MetaInfo
                     if( !warnedOnce )
                     {
                         warnedOnce= true;
-                        ALIB.WARNING( "Unknown format variable '%T" + c2 + "\' (only one warning)" );
+                        ALIB_DBG.WARNING( "Unknown format variable '%T" + c2 + "\' (only one warning)" );
                     }
                     dest._( "%ERROR" );
                 }
@@ -432,7 +433,7 @@ public class MetaInfo
             // thread name / ID
             case 't':
             {
-                c2= variable.Consume();
+                c2= variable.ConsumeChar();
 
                 if ( c2 == 'N' )
                 {
@@ -452,7 +453,7 @@ public class MetaInfo
                     if( !warnedOnce )
                     {
                         warnedOnce= true;
-                        ALIB.WARNING( "Unknown format variable '%t" + c2 + "\' (only one warning)" );
+                        ALIB_DBG.WARNING( "Unknown format variable '%t" + c2 + "\' (only one warning)" );
                     }
                     dest._( "%ERROR" );
                 }
@@ -461,7 +462,7 @@ public class MetaInfo
 
             case 'L':
             {
-                c2= variable.Consume();
+                c2= variable.ConsumeChar();
                      if ( c2 == 'G' )     dest._NC( logger.GetName() );
                 else if ( c2 == 'X' )     dest._NC( scope.GetLoxName() );
                 else
@@ -469,7 +470,7 @@ public class MetaInfo
                     if( !warnedOnce )
                     {
                         warnedOnce= true;
-                        ALIB.WARNING( "Unknown format variable '%L" + c2 + "\' (only one warning)" );
+                        ALIB_DBG.WARNING( "Unknown format variable '%L" + c2 + "\' (only one warning)" );
                     }
                     dest._( "%ERROR" );
                     return 0;
@@ -479,14 +480,14 @@ public class MetaInfo
 
             case 'P':
             {
-                dest._NC( Util.GetProcessName() );
+                dest._NC( ProcessInfo.GetCurrentProcessName() );
                 return 0;
             }
 
             case 'V':   dest._ (    verbosity == Verbosity.Error    ? VerbosityError
                                   : verbosity == Verbosity.Warning  ? VerbosityWarning
                                   : verbosity == Verbosity.Info     ? VerbosityInfo
-                                  :                               VerbosityVerbose    );
+                                  :                                   VerbosityVerbose    );
                         return 0;
 
             case 'D':
@@ -502,8 +503,8 @@ public class MetaInfo
             case 'A':
             {
                 // read extra space from format string
-                int oldStart=    variable.Start;
-                int extraSpace;  variable.ConsumeInteger( out extraSpace );
+                int     oldStart=    variable.Start;
+                int     extraSpace;  variable.ConsumeDecDigits( out extraSpace );
                 if ( oldStart == variable.Start )
                     extraSpace=         1;
 
@@ -521,7 +522,7 @@ public class MetaInfo
                 if( !warnedOnce )
                 {
                     warnedOnce= true;
-                    ALIB.WARNING( "Unknown format variable \'" + variable.Buf[variable.Start - 1] + "\'" );
+                    ALIB_DBG.WARNING( "Unknown format variable \'" + variable.Buf[variable.Start - 1] + "\'" );
                 }
                 dest._( "%ERROR" );
             }

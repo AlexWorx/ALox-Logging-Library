@@ -1,21 +1,21 @@
 // #################################################################################################
 //  com.aworx.lox.loggers - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /** ************************************************************************************************
  *  This is the Java package for the implementation of <em>logger classes</em> that are provided
  *  by default with <em>%ALox Logging Library</em>.<p>
- *  Developed by A-Worx GmbH and published under the MIT license.
+ *  Developed by A-Worx GmbH and published under Boost Software License.
  **************************************************************************************************/
 package com.aworx.lox.loggers;
 
 import java.io.PrintWriter;
 
 import com.aworx.lib.config.Variable;
-import com.aworx.lib.enums.Phase;
+import com.aworx.lib.lang.Phase;
 import com.aworx.lib.strings.AString;
 import com.aworx.lox.ALox;
 import com.aworx.lox.core.textlogger.PlainTextLogger;

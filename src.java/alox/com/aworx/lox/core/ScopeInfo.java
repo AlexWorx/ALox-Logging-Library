@@ -1,8 +1,8 @@
 // ##############int###################################################################################
 //  com.aworx.lox.core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package com.aworx.lox.core;
 
@@ -41,7 +41,7 @@ public class ScopeInfo
 
         /** Name and path of the source code file the log call is placed in. */
         private   AString                 threadName                  = new AString(32);
-        
+
         /** Flag that indicates whether stack trace information was retrieved already (false) or not
          *  (true). */
         private   boolean                 lazyStackTrace              = true;
@@ -90,18 +90,26 @@ public class ScopeInfo
             this.omittablePackagePrefixes=  omittablePackagePrefixes;
         }
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          * Stores parameters and sets actual time stamp.
          * @param thread The thread executing a log statement. If \c null, it will be
          *               determined if needed.
-         **********************************************************************************************/
-        public void set ( Thread thread )
+         ******************************************************************************************/
+        public void set( Thread thread )
         {
             timeStamp.set();
 
             this.thread= thread;
             threadName.clear();
 
+            lazyStackTrace= true;
+        }
+
+        /** ****************************************************************************************
+         * Releases latest scope information.
+         ******************************************************************************************/
+        public void release ()
+        {
             lazyStackTrace= true;
         }
 
@@ -113,32 +121,32 @@ public class ScopeInfo
         {
             return loxName;
         }
-        
+
         /** ****************************************************************************************
-         * Receives the ID of the thread executing the scope. 
-         * @return The name of the thread. 
+         * Receives the ID of the thread executing the scope.
+         * @return The name of the thread.
          ******************************************************************************************/
         public Thread getThread()
         {
             if ( thread == null )
                 thread= Thread.currentThread();
-            
+
             return thread;
         }
-        
+
         /** ****************************************************************************************
-         * Receives the ID of the thread executing the scope. 
-         * @return The name of the thread. 
+         * Receives the ID of the thread executing the scope.
+         * @return The name of the thread.
          ******************************************************************************************/
         public long getThreadID()
         {
             return getThread().getId();
         }
-        
+
         /** ****************************************************************************************
          * Receives the name of the thread executing the scope. If a mapping exists, the mapped
          * name is returned
-         * @return The name of the thread. 
+         * @return The name of the thread.
          ******************************************************************************************/
         public AString getThreadName()
         {
@@ -156,29 +164,29 @@ public class ScopeInfo
             }
             return threadName;
         }
-        
+
         /** Receives the callees package name.
          *  @return The callees package name.*/
         public AString  getPackageName()    { updateStackTrace();   return packageName;  }
-        
+
         /** Receives the callees method name.
          *  @return The callees method name.*/
         public AString  getMethodName()     { updateStackTrace();   return methodName;  }
-        
+
         /** Receives the callees file name.
          *  @return The callees file name.*/
         public AString  getFileName()       { updateStackTrace();   return fileName;  }
-        
+
         /** Receives the callees class name.
          *  @return The callees class name.*/
         public AString  getClassName()      { updateStackTrace();   return className;  }
-        
+
         /** Receives the callees line number.
          *  @return The callees line number.*/
         public int      getLineNumber()     { updateStackTrace();   return lineNumber;  }
-        
-        
-        
+
+
+
     // #############################################################################################
     // internals
     // #############################################################################################
@@ -190,7 +198,7 @@ public class ScopeInfo
             if( !lazyStackTrace )
                 return;
             lazyStackTrace= false;
-        
+
             packageName._();
             className  ._();
             methodName ._();
@@ -224,8 +232,8 @@ public class ScopeInfo
                     packageName.clear()._NC( teClassName, 0,           dotPos      );
                     dotPos++;
                     className  .clear()._NC( teClassName, dotPos, teClassName.length() - dotPos  );
-                    methodName .clear()._   ( te.getMethodName() );
-                    fileName   .clear()._   ( te.getFileName() );
+                    methodName .clear()._  ( te.getMethodName() );
+                    fileName   .clear()._  ( te.getFileName() );
                     lineNumber= te.getLineNumber();
 
                     return;
@@ -239,5 +247,5 @@ public class ScopeInfo
             fileName   ._("(#err filename)");
             lineNumber= 0;
         }
-        
+
 }

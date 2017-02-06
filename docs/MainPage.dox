@@ -1,27 +1,27 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
+
 /**
-\mainpage    ALox Main Page
+\mainpage    Overview
 
 \tableofcontents
 
-\section mainpage_overview        Overview
+\section mainpage_overview   What is ALox?
 
 
-ALox is a small and efficient software library that provides an ecosystem to support structured and
-organized log output.
+ALox is a software library that provides an ecosystem to support structured and organized log output.
 
-ALox is available as
+ALox has three language incarnations:
 - [ALox for C++ 11](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/cppmainpage.html),
 - [ALox for C#](http://alexworx.github.io/ALox-Logging-Library/cs_ref/csmainpage.html) and
 - [ALox for Java](http://alexworx.github.io/ALox-Logging-Library/java_ref/javamainpage.html).
 
-To reach this goal, ALox is featured by **ALib**, which is a basic utility library that among other
+To reach this goal, \b %ALox is featured by **ALib**, which is a basic utility library that among other
 goals provides <em>\"source-compatible\"</em> types for the three languages.
 (See ALib for
 [C++](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/namespaceaworx_1_1lib.html),
@@ -30,17 +30,17 @@ goals provides <em>\"source-compatible\"</em> types for the three languages.
 
 ALox attempts to make logging as easy and lightweight as possible. We want you to **stop adding
 temporary debug output lines** into your code. Instead, write (with less effort!) short, nice
-and readable *ALox statements* that live in your code as if they were comment lines. Let ALox do
+and readable *ALox statements* that live in your code as if they were comment lines. Let \b %ALox do
 the rest: Add meta information to the output, format the output, filter output based on \e Verbosity
-and based on your current topic of interest (<em>'Log Domain'</em>). Finally, get it all *pruned* out of your
-release executable, same as your source comments.
+and based on your current topic of interest (what we call <em>'Log Domain'</em>).
+Finally, get it all *pruned* out of your release executable, same as your source comments.
 
-On the other end of the list, ALox  enables **release logging** for productive applications
+On the other end of the list, \b %ALox  enables **release logging** for productive applications
 to collect mission critical **metrics from the field**.
 
-This is **Version 1607**, which primliminarily extends ALib and ALox in the area of external configuration
-variables.
-In other versioning schemes, this would have been version \b 2.1.
+This is **Version 1702**, which builds on new C++ feature <b>%ALib Boxing</b> and this way comes
+with a new logging interface based on format strings in all supported languages of \b %ALox.
+
 We are optimistic that the simple [Bauhaus Style](\ref faq_bauhaus) architecture of the library allows you
 to easily use it and even to extend it with logging features you need.
 
@@ -49,13 +49,13 @@ We would be happy to receive your feedback and feature requests.
 
 \section mainpage_features        Features and Limitations
 
-To get an overview about what ALox offers, read \ref man_features_and_limitations.
+To get an overview about what \b %ALox offers, read \ref man_features_and_limitations.
 
 
 \section mainpage_documentation   Documentation
 
 ALox comes with a detailed [User Manual](manual.html) for in-depth information on various topics.
-This manual is <em>"programming language agnostic"</em>.
+This manual is <b>programming language agnostic</b>.
 
 Language specific documentation is given with:
 - The <b>Tutorials</b>
@@ -67,8 +67,27 @@ Language specific documentation is given with:
   ([C++] ( cpp_ref/annotated.html ),
    [C#]  (  cs_ref/annotated.html ),
    [Java](java_ref/annotated.html ))
-<p>
-All created with marvelous [Doxygen](http://www.stack.nl/~dimitri/doxygen/)!
+
+- The <b>IDE/Build System Setup</b>
+  ([C++] ( cpp_ref/cppsetup.html  ),
+   [C#]  (  cs_ref/cssetup.html   ),
+   [Java](java_ref/javasetup.html ))
+
+
+\note
+  If the main menu option \c Home is selected (on the top of this page), the search box
+  on the right side of that menu searches in all three language specific reference documentation sets.
+
+\note
+  If one of the language specific versions is selected the main menu, then the search box
+  finds resutls exclusively from the reference documentation of the selected language.
+
+All documentation is created with marvelous [Doxygen](http://www.stack.nl/~dimitri/doxygen/)!
+
+\note
+  Some links in the general search (on this page) are broken. For example selecting header files
+  from the search results provides a broken link. This is technical problem we currently can not
+  resolve.
 
 
 \section mainpage_faq            FAQ
@@ -83,48 +102,86 @@ A version history is provided in the \ref changelog.
 If you want to contribute by adding functionality or repairing bugs, please use
 Github standard procedures.
 For other types of contribution or questions, please contact <b>alox at a-worx dotcom</b>.
-\note We would be especially happy to find support for creating a 4th version of ALib and ALox,
+\note We would be especially happy to find support for creating a 4th version of \b %ALib and \b %ALox,
       supporting the Apple/iOS language [Swift](https://developer.apple.com/swift)!
 
 
 \section mainpage_copyright        Copyright
 
 ALox is open source software, can be [downloaded at Github](http://github.com/AlexWorx/ALox-Logging-Library)
-and sources are published under the MIT License:
+and sources are published under Boost Software License:
 
 \verbatim
-  The MIT License (MIT)
-  Copyright (c) 2013-2016 A-Worx GmbH
+  Boost Software License - Version 1.0 - August 17th, 2003
 
-  Permission is hereby granted, free of charge, to any person obtaining a copy of
-  this software and associated documentation files (the "Software"), to deal in the
-  Software without restriction, including without limitation the rights to use, copy,
-  modify, merge, publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so, subject to the
-  following conditions:
+  Permission is hereby granted, free of charge, to any person or organization
+  obtaining a copy of the software and accompanying documentation covered by
+  this license (the "Software") to use, reproduce, display, distribute,
+  execute, and transmit the Software, and to prepare derivative works of the
+  Software, and to permit third-parties to whom the Software is furnished to
+  do so, all subject to the following:
 
-  The above copyright notice and this permission notice shall be included in all
-  copies or substantial portions of the Software.
+  The copyright notices in the Software and this entire statement, including
+  the above license grant, this restriction and the following disclaimer,
+  must be included in all copies of the Software, in whole or in part, and
+  all derivative works of the Software, unless such copies or derivative
+  works are solely in the form of machine-executable object code generated by
+  a source language processor.
 
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-  INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
-  PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT
+  SHALL THE COPYRIGHT HOLDERS OR ANYONE DISTRIBUTING THE SOFTWARE BE LIABLE
+  FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE,
+  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+  DEALINGS IN THE SOFTWARE.
 \endverbatim
 
 
 \section mainpage_thanks        Thanks
 
-Our thanks go to all supporters to that help realizing this project, and to things we are
-heavily using here, especially:
+Our thanks go to all supporters to that did and do help realizing this project, especially:
 
 - To a bunch of good friends giving ideas, motivation and for being brave enough to continuously test our early releases.
+- To just all of these millions of supporters of *free software*, including
+  - The [GNU/Linux](https://gnu.org) community,
+  - The [Eclipse Foundation](https://eclipse.org/donate/),
+  - The [LLVM/Clang](http://llvm.org/) project,
+  - The developers of [Mono](http://www.mono-project.com/) and [MonoDevelop](http://www.monodevelop.com/),
+  - Oracle for providing [Java](http://www.java.com),
+  - The [QT Creator](http://doc.qt.io/qtcreator) team,
+  - Microsoft for providing [Visual Studio Community Edition](https://www.visualstudio.com/vs/community/) project,
+  - Mr. Lafortune to provide [ProGuard](http://http://proguard.sourceforge.net),
+
+- To [JetBrains](www.jetbrains.com) for the supporting of \b %ALox development by providing a free
+  [Open Source License](https://www.jetbrains.com/buy/opensource/)
+  of their absolutely superb set of IDEs.
 - To Mr. van Heesch for providing [Doxygen](http://www.stack.nl/~dimitri/doxygen/) software.
-- To Mr. Lafortune to provide [ProGuard](http://http://proguard.sourceforge.net).
-- To the [Eclipse Foundation](http://eclipse.org/donate/), GNU/Linux community... just all other of
-  these millions of supporters of *free software*.
 - Special thanks also to C. Darwin, who created life on earth hundreds of millions of years ago,
   but unfortunately passed away in 1882!
+
+
+\section mainpage_alternatives        Alternatives
+
+The following alternatives to **ALox** may be worth mentioning:
+
+<b>For C++:</b>
+- [boost.Log](http://www.boost.org/doc/libs/1_55_0/libs/log/doc/html/index.html)
+- [Google glog](https://github.com/google/glog)
+- [Pantheios](http://www.pantheios.org/)
+- [log4cplus](https://sourceforge.net/p/log4cplus/wiki/Home/)
+- [log4cpp](http://log4cpp.sourceforge.net/)
+
+<b>For C#:</b>
+- [Apache Log4net](https://logging.apache.org/log4net/)
+- [nlog](http://nlog-project.org/)
+- CSharp-Source.Net provides an [extensive list](http://csharp-source.net/open-source/logging) of further alternatives.
+
+<b>For Java:</b>
+- [built-in java.util.logging](https://docs.oracle.com/javase/7/docs/api/java/util/logging/package-summary.html)
+- [Apache Log4j](https://logging.apache.org/log4)
+- Java-Source.Net provides an [extensive list](http://java-source.net/open-source/logging) of further alternatives.
+
+
 */
+

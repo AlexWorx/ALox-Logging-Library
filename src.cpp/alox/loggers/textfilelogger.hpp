@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  aworx::lox::loggers - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -24,10 +24,8 @@
 #endif
 
 
-namespace aworx {
-namespace       lox {
-namespace           loggers{
-
+namespace aworx { namespace lox { namespace loggers
+{
 /** ************************************************************************************************
  * This is a very simple file logger for textual log outputs. The file name string provided
  * in the constructor is not verified.
@@ -103,7 +101,7 @@ class TextFileLogger : public aworx::lox::core::textlogger::PlainTextLogger
          * @return Always returns true.
          ******************************************************************************************/
         ALIB_API
-        virtual bool notifyLogOp( lib::enums::Phase phase );
+        virtual bool notifyLogOp( lib::lang::Phase phase );
 
         /** ****************************************************************************************
          * Writes the given region of the given AString to the console.
@@ -114,7 +112,7 @@ class TextFileLogger : public aworx::lox::core::textlogger::PlainTextLogger
          * @return The number of characters written, -1 on error.
          ******************************************************************************************/
         ALIB_API
-        virtual int logSubstring( const AString& buffer, int start, int length );
+        virtual integer logSubstring( const AString& buffer, integer start, integer length );
 
 
         /** ****************************************************************************************
@@ -122,7 +120,7 @@ class TextFileLogger : public aworx::lox::core::textlogger::PlainTextLogger
          * @param phase  Indicates the beginning or end of a multi-line operation.
          ******************************************************************************************/
         ALIB_API
-        virtual void notifyMultiLineOp (lib::enums::Phase phase );
+        virtual void notifyMultiLineOp (lib::lang::Phase phase );
 
 }; // class TextFileLogger
 

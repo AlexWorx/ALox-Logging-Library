@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../src.java/alib.unittests">
+      <sourceFolder url="file://$MODULE_DIR$/../../src.java/alib.unittests/ut_com_aworx" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src.java/alib.unittests/ut_alib" isTestSource="true" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../src.java/alox.unittests">
+      <sourceFolder url="file://$MODULE_DIR$/../../src.java/alox.unittests/ut_alox" isTestSource="true" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="library" name="junit:junit-dep:4.10" level="project" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="ALox" exported="" />
+    <orderEntry type="module" module-name="ALib" exported="" />
+  </component>
+</module>

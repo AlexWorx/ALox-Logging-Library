@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  aworx::lox::core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -15,7 +15,6 @@
 #ifndef HPP_ALOX_CORE_TEXTLOGGER_TEXTLOGGER
 #define HPP_ALOX_CORE_TEXTLOGGER_TEXTLOGGER 1
 
-
 // #################################################################################################
 // includes
 // #################################################################################################
@@ -23,26 +22,35 @@
     #include "alox/core/logger.hpp"
 #endif
 
+#if !defined (HPP_ALIB_TIME_CALENDARTIME)
+    #include "alib/time/calendartime.hpp"
+#endif
+
+#if !defined (HPP_ALIB_STRINGS_FORMATTER_JAVASTYLE)
+    #include "alib/strings/formatterjavastyle.hpp"
+#endif
+
+#if !defined (HPP_ALIB_STRINGS_FORMATTER_PYTHONSTYLE)
+    #include "alib/strings/formatterpythonstyle.hpp"
+#endif
+
 
 // #################################################################################################
-// forwards
+// forward declarations
 // #################################################################################################
-namespace aworx { namespace lib { namespace strings { class Substring; } } }
+namespace aworx { namespace lib { namespace strings { class Substring; class Formatter; } } }
 
-namespace aworx {
-namespace           lox {
-namespace                   core{
+namespace aworx { namespace lox { namespace core {
 /** ************************************************************************************************
  * This namespaces defines class \b TextLogger and its helpers.
  **************************************************************************************************/
-namespace                           textlogger{
-
-
+namespace textlogger
+{
 
 /** ************************************************************************************************
- * This abstract class represents a plug-in for the TextLogger class which converts a given Object
- * into its textual representation.
- * \see StringConverter for further information.
+ * This abstract class represents a plug-in for the TextLogger class which converts the list
+ * of logables into a textual representation.
+ * \see StandardConverter for further information.
  **************************************************************************************************/
 class ObjectConverter
 {
@@ -50,154 +58,63 @@ class ObjectConverter
         /** ****************************************************************************************
          * Destructs an object of this class.
          ******************************************************************************************/
-        virtual        ~ObjectConverter() {};
+        virtual        ~ObjectConverter() {}
 
         /** ****************************************************************************************
          * The conversion method.
-         * @param logable   The object to convert.
-         * @param target    An AString that takes the result.
-         *
-         * @return \c true, if the object was converted successfully, \c false otherwise.
+         * @param target     An AString that takes the result.
+         * @param logables   The objects to convert.
          ******************************************************************************************/
-        virtual bool    ConvertObject( const Logable& logable, AString& target )                = 0;
+        virtual void    ConvertObjects( AString& target, Boxes& logables )                       =0;
+
 };
 
 /** ************************************************************************************************
  * Implements the interface
- * \ref aworx::lox::core::textlogger::ObjectConverter "ObjectConverter".
- * With ALox leveraging the underlying
- * \ref aworx::lib::strings "ALib string class-family", various standard string types are supported
- * with this converter.
+ * \ref aworx::lox::core::textlogger::ObjectConverter "ObjectConverter". Class
+ * \ref aworx::lox::core::textlogger::TextLogger "TextLogger" creates an instance of this type in
+ * the moment no other (custom) type was set prior to the first log statement.
  *
- * While other ALox implementations, like ALox for C# or ALox for Java use the 'runtime type
- * information' feature of their underlying programming language to identify any object type,
- * this is not possible in standard C++. Therefore, all logging objects in ALox for C++ have
- * to be accompanied with a type information. This is implemented as a simple integer and
- * the value \b '0' is reserved for \b TStrings.
+ * This implementation uses
+ * two specialisations of class
+ * \ref aworx::lib::strings::Formatter "Formatter" to format the given logables to a textual
+ * representation. The formatters (and their sequence!) are:
  *
- * All other types are extension types, which are not part of core ALox and user specific types.
+ * 1. \ref aworx::lib::strings::FormatterPythonStyle "FormatterPythonStyle"
+ * 2. \ref aworx::lib::strings::FormatterJavaStyle   "FormatterJavaStyle"
  *
- * It is recommended to use positive values for user specific types.
- * Negative IDs are reserved for future ALox types and extensions.
+ * This way, standard text logging supports format strings in Python style as well as in Java style.
  **************************************************************************************************/
-class StringConverter : public ObjectConverter
+class StandardConverter : public ObjectConverter
 {
     public:
-        /** Used to convert null values to string representation. */
-        TString          FmtNullObject                  ="ALox message object (type=0) is nullptr.";
+        /** Formatter to process python style format strings. Used as the first (main) formatter. */
+        lib::strings::FormatterPythonStyle    FormatterPS;
+
+        /** Formatter to process Java style format strings. Attached to #FormatterPS as second
+         *  format option.*/
+        lib::strings::FormatterJavaStyle      FormatterJS;
 
     public:
+
         /** ****************************************************************************************
-         * Constructs an object of this class.
+         * Constructor.
          ******************************************************************************************/
-         ALOX_API       StringConverter();
+        ALOX_API        StandardConverter();
+
         /** ****************************************************************************************
-         * Destructs an object of this class.
+         * Virtual destructor.
          ******************************************************************************************/
-        virtual        ~StringConverter() {};
+        virtual        ~StandardConverter();
 
         /** ****************************************************************************************
          * The conversion method.
-         * @param logable   The object to convert.
-         * @param target    An AString that takes the result.
-         *
-         * @return \c true, if the object was converted successfully, \c false otherwise.
+         * Passes \p target and \p logables to #FormatterPS.
+         * @param target     An AString that takes the result.
+         * @param logables   The objects to convert.
          ******************************************************************************************/
         ALOX_API
-        virtual bool    ConvertObject( const Logable& logable, AString& target );
-};
-
-/** ************************************************************************************************
- * Auto sizes are used for tabulator positions and field sizes that expand automatically when they
- * are exceeded. This way, any next line will have that new, expanded tabs and field sizes set
- * leading to a nicely formatted, but still flexible, minimized width of output.
- *
- * To preserve the information across <em>sessions</em>, this class provides methods to transform
- * it's information from and to string representations which can be stored in configuration files.
- *
- * All values are doubly stored: once for the session and once for the last imported values.
- * Those values that were imported are used for getting the actual size. However, those that are
- * stored for the session are the ones that would have been created if there was no import done.
- * This leads to the fact that the session values may be smaller than the actual (imported) ones.
- * This mechanism, in combination with the fact that on importing it can be decided if the session
- * is newly started or not, allows the values to shrink again over different sessions.
- **************************************************************************************************/
-class AutoSizes
-{
-    // #############################################################################################
-    // Protected fields
-    // #############################################################################################
-    protected:
-        /** The current sizes                                */
-        std::vector<int>                values;
-
-        /** The sizes measured in this session. These are the ones that will be received in method
-         *  #Export                                         */
-        std::vector<int>                sessionValues;
-
-    // #############################################################################################
-    // Public fields
-    // #############################################################################################
-    public:
-        /**  The actual index requested by #Next. This is reset to 0 with every invocation of
-         *   #Start. */
-        int                             ActualIndex;
-
-    // #############################################################################################
-    // Interface
-    // #############################################################################################
-    public:
-        /** ****************************************************************************************
-         * Resets the whole object. All values get deleted.
-         ******************************************************************************************/
-        inline
-        void        Reset ()                      {   values.clear(); sessionValues.clear();       }
-
-        /** ****************************************************************************************
-         * Initializes a new query sequence, which is a series of invocations of method #Next.
-         ******************************************************************************************/
-        inline
-        void        Start ()                      {   ActualIndex=   0; }
-
-        /** ****************************************************************************************
-         * Returns the next auto value stored, respectively, if the given requested size is higher,
-         * then stores and returns the requested size. The given extra growth is added to the
-         * requested size if the currently stored value is unequal to 0. In other words, the extra
-         * size is added only with the second growth and each subsequent one.
-         *
-         * @param requestedSize   The minimum size that is requested.
-         * @param extraGrowth     Added to the new size if the requested size is greater than
-         *                        the stored size and if the stored size does not equal 0.
-         *
-         * @return The (new) size of the auto field.
-         ******************************************************************************************/
-        ALOX_API
-        int         Next  ( int requestedSize, int extraGrowth );
-
-        /** ****************************************************************************************
-         * Imports values from the given
-         * \ref aworx::lib::strings::String "String" by parsing it. The numbers in the string have
-         * to be separated by ' ' characters (space).
-         *
-         * @param source    The \b %String that is parsed for the numbers
-         * @param session   If \c CurrentData::Clear, which is the default, the current values
-         *                  are taken from the last session stored and the sessions data is set to 0.
-         *                  If \c CurrentData::Keep, both, current values and
-         *                  session values are taken from the string.
-         ******************************************************************************************/
-        ALOX_API
-        void        Import( const String& source, lib::enums::CurrentData session= lib::enums::CurrentData::Clear );
-
-        /** ****************************************************************************************
-         * Exports the current session values by converting the stored numbers to a string
-         * representation and appending them to the given
-         * \ref aworx::lib::strings::AString "AString" object.
-         * The numbers in the string will be separated by ' ' characters (space).
-         *
-         * @param target       The \b %AString to receive the our values
-         ******************************************************************************************/
-        ALOX_API
-        void        Export( AString& target );
+        virtual void    ConvertObjects( AString& target, Boxes& logables );
 };
 
 
@@ -259,19 +176,15 @@ class MetaInfo
          */
 
 
-        #if defined(ALOX_DBG_LOG_CI) || defined(ALOX_REL_LOG_CI)
-            #if !defined(_WIN32)
-                AString Format { "%Sp/%SF(%SL):%A5%SM() %A5[%TC +%TL][%tN]%V[%D]%A1(%#): "};
-            #else
-                AString Format {"%Sp\\%SF(%SL):%A5%SM() %A5[%TC +%TL][%tN]%V[%D]%A1(%#): "};
-            #endif
+        #if ALOX_DBG_LOG_CI || ALOX_REL_LOG_CI
+            AString Format { "%SF:%SL:%A3%SM %A3[%TC +%TL][%tN]%V[%D]%A1#%#: "};
         #else
-            AString Format {"[%TC +%TL][%tN]%V[%D]%A1(%#): "};
+            AString Format {"[%TC +%TL][%tN]%V[%D]%A1#%#: "};
         #endif
 
         /**
          *  If \c true, an one-time warning (using
-         *  \ref aworx::lib::Report::DoReport "Report::DoReport")
+         *  \ref aworx::lib::lang::Report::DoReport "Report::DoReport")
          *  will be issued if the format string is illegal.
          *
          *  \note This field can not be accessed directly (For technical reasons, it is
@@ -282,10 +195,10 @@ class MetaInfo
          *
          *        where \p myinstance is a reference to the object in question).
          */
-        #if defined(IS_DOXYGEN_PARSER)
+        #if defined(DOX_PARSER)
             bool                              FormatWarning= true;
         #else
-            ALIB_WARN_ONCE_PER_INSTANCE_DECL( FormatWarning, true );
+            ALIB_WARN_ONCE_PER_INSTANCE_DECL( FormatWarning, true )
         #endif
 
 
@@ -313,7 +226,7 @@ class MetaInfo
         String16   TimeElapsedDays          =" Days ";
 
         /** Minimum time difference to log in nanoseconds.  Below that #TimeDiffNone is written. */
-        long       TimeDiffMinimum          =1000L;
+        int64_t    TimeDiffMinimum          =1000L;
 
         /** Output for time difference if below reasonable (measurable) minimum defined in #TimeDiffMinimum. */
         String16   TimeDiffNone             ="---   ";
@@ -445,7 +358,7 @@ class MetaInfo
          * @param diffNanos    The time difference to write in nanoseconds.
          ******************************************************************************************/
         ALOX_API
-        virtual void writeTimeDiff( AString& buffer, int_fast64_t diffNanos );
+        virtual void writeTimeDiff( AString& buffer, int64_t diffNanos );
 }; // class
 
 
@@ -495,15 +408,16 @@ class TextLogger : public Logger
     // #############################################################################################
     public:
         /**
-         * A list of helper objects to get textual representation of logable objects.<br>
-         * To extend TextLogger to support logging custom objects, custom converters can
-         * be appended. Also, the default may be removed and deleted.<br>
-         * In the destructor of this class, all object converters (still attached) will be deleted.
+         * A helper object to get textual representation of logable objects.
+         * If no converter is set when this logger is used, a converter of type
+         * \ref aworx::lox::core::textlogger::StandardConverter "StandardConverter" is created and used.
+         * In the destructor of this class, the current object converter will be deleted.
          *
-         * When converting an object, all object converts listed here are invoked in
-         * <b> reverse order</b> until a first reports a successful conversion.
+         * To extend class \b %TextLogger to support logging custom objects, custom converters can
+         * set. The preferred alternative is however, to make custom types be formattable
+         * by formatter classes used with \b %StandardConverter.
          */
-        std::vector<ObjectConverter*>   ObjectConverters;
+        ObjectConverter*                Converter                                        = nullptr;
 
         /**
          * A helper object to format log objects into textual representations. This class incorporates
@@ -525,7 +439,7 @@ class TextLogger : public Logger
          * when the \b %TextLogger that we belong to is attached to a \b %Lox and written back
          * on removal.
          */
-        textlogger::AutoSizes           AutoSizes;
+        lib::strings::AutoSizes         AutoSizes;
 
         /**
          * Determines if multi line messages should be split into different log lines. Possible
@@ -550,9 +464,10 @@ class TextLogger : public Logger
         int                             MultiLineMsgMode                                         =2;
 
         /**
-         * This is the string interpreted as line delimiter within log messages. If \e nulled
-         * (the default), CR, LF or CRLF are used. Important: Set to empty string, to stop
-         * any multi line processing of TextLogger, even the replacements.
+         * This is the string interpreted as line delimiter within log messages. If \e nulled, then
+         * <c>'\\n'</c>, <c>'\\r'</c> or <c>'\\r\\n'</c> is recognized.<br>
+         * Important: Can be set to an empty string, to stop any multi line processing of
+         * \b %TextLogger, even the replacements of the delimiter character.
          */
         AString                         MultiLineDelimiter;
 
@@ -585,9 +500,6 @@ class TextLogger : public Logger
          */
         String16                        FmtMultiLineSuffix                                      ="";
 
-        /** Used to return an error message in the case the object could not be converted. */
-        TString                         FmtUnknownObject                 ="<unknown object type %>";
-
     // #############################################################################################
     // protected Constructor/ public destructor
     // #############################################################################################
@@ -596,13 +508,13 @@ class TextLogger : public Logger
          * Constructs a TextLogger.
          * Reads the format variable for the meta information from the configuration. The
          * variable name is created from the \e Logger name and the suffix <c>'_FORMAT'</c>
-         * @param name            The name of the \e Logger.
+         * @param pName            The name of the \e Logger.
          * @param typeName        The type of the \e Logger.
-         * @param usesStdStreams  Denotes whether this logger writes to the
+         * @param pUsesStdStreams  Denotes whether this logger writes to the
          *                        <em>standard output streams</em>.
          ******************************************************************************************/
-        ALOX_API explicit TextLogger( const String& name, const String& typeName,
-                                      bool  usesStdStreams );
+        ALOX_API explicit TextLogger( const String& pName, const String& typeName,
+                                      bool  pUsesStdStreams );
 
         /** ****************************************************************************************
          *  Destructs a TextLogger.
@@ -640,9 +552,9 @@ class TextLogger : public Logger
     // #############################################################################################
     protected:
         /** ****************************************************************************************
-         *  This abstract method introduced by this class "replaces" the the abstract method #Log
+         *  This abstract method introduced by this class "replaces" the abstract method #Log
          *  of parent class Logger which this class implements. In other words, descendants of this
-         *  class need to overwrite this method instead of \b %Do. This class %TextLogger is
+         *  class need to override this method instead of \b %Do. This class %TextLogger is
          *  responsible for generating meta information, doing text replacements, handle multi-line
          *  messages, etc. and provides the textual representation of the whole log contents
          *  to descendants using this method.
@@ -670,7 +582,7 @@ class TextLogger : public Logger
          *
          * @param phase  Indicates the beginning or end of a multi-line operation.
          ******************************************************************************************/
-        virtual void notifyMultiLineOp (lib::enums::Phase phase)     =0;
+        virtual void notifyMultiLineOp (lib::lang::Phase phase)     =0;
 
     // #############################################################################################
     // Abstract method implementations
@@ -693,7 +605,7 @@ class TextLogger : public Logger
          * @param scope     Information about the scope of the <em>Log Statement</em>..
          ******************************************************************************************/
         ALOX_API
-        virtual void Log( Domain& domain, Verbosity verbosity, Logables& logables, ScopeInfo& scope);
+        virtual void Log( Domain& domain, Verbosity verbosity, Boxes& logables, ScopeInfo& scope);
 
     // #############################################################################################
     // Public interface
@@ -701,7 +613,7 @@ class TextLogger : public Logger
     public:
         /** ****************************************************************************************
          * Adds the given pair of replacement strings. If searched string already exists, the
-         * current replacement string gets replaced. If the replacement string equals 'nullptr'
+         * current replacement string gets replaced. If the replacement string is \c nullptr,
          * nothing is set and a previously set replacement definition becomes unset.
          * @param searched    The string to be searched.
          * @param replacement The replacement string. If this equals 'nullptr' a previously set

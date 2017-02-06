@@ -2,10 +2,10 @@
 //  Unit Tests - ALox Logging Library
 //  (Unit Tests to create tutorial sample code and output)
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alox/alox.hpp"
 #include "alib/compatibility/std_string.hpp"
 #include "alib/compatibility/std_iostream.hpp"
 
@@ -37,7 +37,7 @@ void docSampleESC()
 {
 
 //! [DOX_ALOX_ESC]
-Log_Info( String32( "The result is ") << ESC::RED << "42" )
+Log_Info( "The result is: ", ESC::RED, 42 )
  //! [DOX_ALOX_ESC]
 }
 
@@ -58,18 +58,22 @@ UT_METHOD( ALoxDocSamples )
 void docSampleInstallReportWriter()
 {
 Log_Prune( Lox lox("RELEASE");               )
-Log_Prune( Logger* myReleaseLogger= nullptr; )
+Log_Prune( Lox_Prune( Logger* myReleaseLogger= nullptr; ) )
 
-#define LOX_LOX lox
+#if ALOX_DBG_LOG
+    #define LOX_LOX lox
+#endif
 
 //! [DOX_ALOX_INSTALL_REPORT_WRITER]
 Log_Prune( Log::AddALibReportWriter( &LOX_LOX ); )
-Log_Prune( Lox_SetVerbosity( myReleaseLogger, Verbosity::Verbose, lox::ALoxReportWriter::LogDomain() ); )
+Log_Prune( Lox_SetVerbosity( myReleaseLogger, Verbosity::Info, lox::ALoxReportWriter::LogDomain() ); )
 //! [DOX_ALOX_INSTALL_REPORT_WRITER]
 
 //! [DOX_ALOX_INSTALL_REPORT_WRITER_2]
 Log_Prune( Log::RemoveALibReportWriter() );
 //! [DOX_ALOX_INSTALL_REPORT_WRITER_2]
+
+
 
 }
 

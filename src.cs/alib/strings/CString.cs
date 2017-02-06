@@ -1,27 +1,27 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 using System;
 using System.Text;
 using cs.aworx.lib.strings;
 using cs.aworx.lib.time;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 
 namespace cs.aworx.lib.strings  {
 
 
-/** ****************************************************************************************
+/** ************************************************************************************************
  *  Provides static methods working with character arrays.
- ******************************************************************************************/
+ **************************************************************************************************/
 public class CString
 {
-    // #########################################################################################
+    // #############################################################################################
     //  Static fields
-    // #########################################################################################
+    // #############################################################################################
 
     /** The system depended new line character codes retrieved statically (once) using
      *  "Environment.NewLine;"  */
@@ -32,16 +32,16 @@ public class CString
      *  in this class.  */
     public static readonly char[]       DefaultWhitespaces                = {' ','\r','\n','\t' };
 
-    /** A singleton that references a zero-length character array. 
+    /** A singleton that references a zero-length character array.
      *  May be used to avoid object allocation.  */
     public readonly static char[]       NullBuffer                        = new char[0];
 
 
-    // #########################################################################################
+    // #############################################################################################
     //  String helpers
-    // #########################################################################################
+    // #############################################################################################
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Static method that adjusts a given region to fit into the range [0 .. referenceLength].
      *
      * @param referenceLength   Length of the string that the given region will be adjusted to.
@@ -49,7 +49,7 @@ public class CString
      * @param regionLength      [in,out] The length of the region to be adjusted.
      *
      * @return True if adjusted range is empty.
-     ******************************************************************************************/
+     **********************************************************************************************/
     public static bool AdjustRegion( int referenceLength, ref int regionStart, ref int regionLength )
     {
         // if start exceeds string, set to empty range at the end of the string and return true
@@ -79,34 +79,34 @@ public class CString
     }
 
 
-    // #########################################################################################
+    // #############################################################################################
     //  Compare/ContainsAt
-    // #########################################################################################
+    // #############################################################################################
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Compares a region of a \e String with another region in a \e char[].<br>
      * No parameter checks are performed. Null and empty checks and proper region bounds
-     * have to be provided (this is a helper method for other compareTo methods). 
+     * have to be provided (this is a helper method for other compareTo methods).
      *
      * @param needle         A \e String that is compared to this.
-     * @param needleStart    The start of the substring within \p needle. 
+     * @param needleStart    The start of the substring within \p needle.
      * @param needleLength   The length of the substring within \p needle.
      * @param haystack       The character buffer that is to compared.
      * @param haystackStart  The start of the substring within \p haystack.
-     * @param haystackLength The length of the substring within \p haystack. 
+     * @param haystackLength The length of the substring within \p haystack.
      * @param sensitivity    Case sensitivity of the operation.
      *
      * @return
-     *  -  0 if \p haystack and \p needle are \e null or if both have a length of 0 or if 
+     *  -  0 if \p haystack and \p needle are \e null or if both have a length of 0 or if
      *     both  share the same content.
-     *  - <0 if \p haystack is \e nulled and \p needle is not or if \p haystack is smaller 
+     *  - <0 if \p haystack is \e nulled and \p needle is not or if \p haystack is smaller
      *    than \p needle.
      *  - >0 if \p haystack is not \e nulled but \p needle is or if \p haystack is greater
      *    than \p needle.
-     ******************************************************************************************/
+     **********************************************************************************************/
     static
-    public int CompareTo(   String needle,      int    needleStart,  int   needleLength,     
-                            char[] haystack,    int  haystackStart,  int haystackLength,    
+    public int CompareTo(   String needle,      int    needleStart,  int   needleLength,
+                            char[] haystack,    int  haystackStart,  int haystackLength,
                             Case   sensitivity   )
     {
         // compare loop
@@ -140,30 +140,30 @@ public class CString
         }
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Compares two regions of two \e char[].<br>
      * No parameter checks are performed. Null and empty checks and proper region bounds
-     * have to be provided (this is a helper method for other compareTo methods). 
+     * have to be provided (this is a helper method for other compareTo methods).
      *
      * @param needle         A \e char[] that is compared to this.
-     * @param needleStart    The start of the substring within \p needle. 
+     * @param needleStart    The start of the substring within \p needle.
      * @param needleLength   The length of the substring within \p needle.
      * @param haystack       The \e char[] that is to compared.
      * @param haystackStart  The start of the substring within \p haystack.
-     * @param haystackLength The length of the substring within \p haystack. 
+     * @param haystackLength The length of the substring within \p haystack.
      * @param sensitivity    Case sensitivity of the operation.
      *
      * @return
-     *  -  0 if \p haystack and \p needle are \e null or if both have a length of 0 or if 
+     *  -  0 if \p haystack and \p needle are \e null or if both have a length of 0 or if
      *     both  share the same content.
-     *  - <0 if \p haystack is \e nulled and \p needle is not or if \p haystack is smaller 
+     *  - <0 if \p haystack is \e nulled and \p needle is not or if \p haystack is smaller
      *    than \p needle.
      *  - >0 if \p haystack is not \e nulled but \p needle is or if \p haystack is greater
      *    than \p needle.
-     ******************************************************************************************/
+     **********************************************************************************************/
     static
-    public int CompareTo(   char[] needle,      int    needleStart,  int   needleLength,     
-                            char[] haystack,    int  haystackStart,  int haystackLength,    
+    public int CompareTo(   char[] needle,      int    needleStart,  int   needleLength,
+                            char[] haystack,    int  haystackStart,  int haystackLength,
                             Case   sensitivity   )
     {
         // compare loop
@@ -197,23 +197,23 @@ public class CString
         }
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Checks if a region of a \e char[] is located at the given position of another \e char[].
      * @param needle          The character array containing the needle.
      * @param needleStart     The index of the start of the needle within the character array.
      * @param needleLength    The length of the needle within the character array.
      * @param haystack        The character array to look in for the needle.
      * @param haystackPos     The position to look at in \p haystack.
-     * @param haystackLimit   The length of the \p haystack (may be equal or less than 
+     * @param haystackLimit   The length of the \p haystack (may be equal or less than
      *                        haystack.Length).
      * @param sensitivity     Case sensitivity of the comparison.
      *                        Optional and defaults to Case.Sensitive.
      *
      * @return  \c true if the needle is found at the given position. \c false otherwise.
-     ******************************************************************************************/
+     **********************************************************************************************/
     static
     public bool ContainsAt( char[] needle,    int needleStart, int needleLength,
-                            char[] haystack,  int haystackPos, int haystackLimit, 
+                            char[] haystack,  int haystackPos, int haystackLimit,
                             Case sensitivity= Case.Sensitive )
     {
         int cmpEnd=     haystackPos + needleLength;
@@ -247,21 +247,21 @@ public class CString
     }
 
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Checks if the given \e String is located at the given position in a \e char[].
      *
      * @param needle          The character array containing the needle.
      * @param haystack        The character array to look in for the needle.
      * @param haystackPos     The position to look at in \p haystack.
-     * @param haystackLimit   The length of the  \p haystack (may be equal or less than 
+     * @param haystackLimit   The length of the  \p haystack (may be equal or less than
      *                        haystack.Length.
      * @param sensitivity     Case sensitivity of the comparison.
      *                        Optional and defaults to Case.Sensitive.
      * @return  \c true if the needle is found at the given position. \c false otherwise.
-     ******************************************************************************************/
+     **********************************************************************************************/
     static
-    public bool ContainsAt( String needle,                             
-                            char[] haystack,  int haystackPos, int haystackLimit, 
+    public bool ContainsAt( String needle,
+                            char[] haystack,  int haystackPos, int haystackLimit,
                             Case sensitivity= Case.Sensitive )
     {
         // check null argument or length 0
@@ -296,11 +296,11 @@ public class CString
 
 
 
-    // #########################################################################################
+    // #############################################################################################
     //  IndexOf
-    // #########################################################################################
+    // #############################################################################################
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      *  Static method that searches a character in a region of a character array.
      *
      * @param haystack        Character array that is searched in.
@@ -313,7 +313,7 @@ public class CString
      * @return The index of the first character found
      *         which is included, respectively not included, in the given set of characters.
      *         If nothing is found, -1 is returned.
-     ******************************************************************************************/
+     **********************************************************************************************/
     public
     static int     IndexOf( char[] haystack, char needle, int regionStart= 0, int regionLength= int.MaxValue )
     {
@@ -332,21 +332,21 @@ public class CString
         return -1;
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Search the given String in a region of a character array.
      *
      * @param needle          The string to be searched for.
      * @param haystack        Character array that is searched in.
      * @param haystackStart   The start of the region within haystack.
      * @param haystackLength  The length of the region within haystack.
-     * @param sensitivity     The sensitivity to the case of characters of the operation. 
-     * @return  \e -1 if the String is not found. Otherwise the index of first occurrence 
+     * @param sensitivity     The sensitivity to the case of characters of the operation.
+     * @return  \e -1 if the String is not found. Otherwise the index of first occurrence
      *          relative to \p haystackStart.
-     ******************************************************************************************/
-    public static int IndexOfString(  String        needle, 
+     **********************************************************************************************/
+    public static int IndexOfString(  String        needle,
                                       char[]        haystack,
                                       int           haystackStart,
-                                      int           haystackLength, 
+                                      int           haystackLength,
                                       Case          sensitivity                 )
     {
         // checks
@@ -359,13 +359,13 @@ public class CString
         int hayStackEnd= haystackStart + haystackLength;
         if ( sensitivity == Case.Sensitive )
         {
-            char firstChar= needle[ 0 ];     
+            char firstChar= needle[ 0 ];
             while ( haystackStart + needleLength <= hayStackEnd )
             {
                 if ( haystack[ haystackStart ] == firstChar )
                 {
                     int  cmpLen= 1;
-                    while (     cmpLen != needleLength 
+                    while (     cmpLen != needleLength
                             &&  haystack[ haystackStart + cmpLen ] == needle[cmpLen] )
                         cmpLen++;
                     if ( cmpLen == needleLength )
@@ -384,7 +384,7 @@ public class CString
                 if ( Char.ToLower( haystack[ haystackStart ] ) == firstChar )
                 {
                     int  cmpLen= 1;
-                    while (     cmpLen != needleLength 
+                    while (     cmpLen != needleLength
                             &&  Char.ToLower(haystack[ haystackStart + cmpLen ])  == Char.ToLower( needle[cmpLen] ) )
                         cmpLen++;
                     if ( cmpLen == needleLength )
@@ -399,7 +399,7 @@ public class CString
         return -1;
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Search the given AString in a region of a character array.
      *
      * @param needle          The string to be searched for.
@@ -408,13 +408,13 @@ public class CString
      * @param haystack        Character array that is searched in.
      * @param haystackStart   The start of the region within haystack.
      * @param haystackLength  The length of the region within haystack.
-     * @param sensitivity     The sensitivity to the case of characters of the operation. 
-     * @return  \e -1 if the String is not found. Otherwise the index of first occurrence 
+     * @param sensitivity     The sensitivity to the case of characters of the operation.
+     * @return  \e -1 if the String is not found. Otherwise the index of first occurrence
      *          relative to \p haystackStart.
-     ******************************************************************************************/
+     **********************************************************************************************/
     public static int IndexOfString(  char[]        needle,
                                       int           needleStart,
-                                      int           needleLength,  
+                                      int           needleLength,
                                       char[]        haystack,
                                       int           haystackStart,
                                       int           haystackLength,
@@ -428,14 +428,14 @@ public class CString
         int hayStackEnd= haystackStart + haystackLength;
         if ( sensitivity == Case.Sensitive )
         {
-            char firstChar= needle[ needleStart ];     
+            char firstChar= needle[ needleStart ];
             while ( haystackStart + needleLength <= hayStackEnd )
             {
                 if ( haystack[ haystackStart ] == firstChar )
                 {
                     int  cmpLen= 1;
-                    while (     cmpLen != needleLength 
-                            &&      haystack[ haystackStart + cmpLen ] 
+                    while (     cmpLen != needleLength
+                            &&      haystack[ haystackStart + cmpLen ]
                                 ==  needle  [ needleStart   + cmpLen]  )
                         cmpLen++;
                     if ( cmpLen == needleLength )
@@ -454,8 +454,8 @@ public class CString
                 if ( Char.ToLower( haystack[ haystackStart ] ) == firstChar )
                 {
                     int  cmpLen= 1;
-                    while (     cmpLen != needleLength 
-                            &&      Char.ToLower( haystack[ haystackStart + cmpLen ] )  
+                    while (     cmpLen != needleLength
+                            &&      Char.ToLower( haystack[ haystackStart + cmpLen ] )
                                 ==  Char.ToLower(   needle[ needleStart   + cmpLen ] ) )
                         cmpLen++;
                     if ( cmpLen == needleLength )
@@ -470,7 +470,53 @@ public class CString
         return -1;
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
+     * Static method that returns the index of the first character which not equal
+     * within two strings.
+     *
+     * @param haystack        Character array that is searched in.
+     * @param haystackStart   The start of the region within haystack.
+     * @param haystackLength  The length of the region within haystack.
+     * @param needle          The string to be searched for.
+     * @param sensitivity     The sensitivity to the case of characters of the operation.
+     * @return  The index within \p needle with the first difference.
+     **********************************************************************************************/
+    public static int IndexOfFirstDifference(  char[]        haystack,
+                                               int           haystackStart,
+                                               int           haystackLength,
+                                               String        needle,
+                                               Case          sensitivity                 )
+    {
+        int needleLength= needle.Length;
+
+        int haystackEnd= haystackStart + haystackLength;
+        int idxH= haystackStart;
+        int idxN=  0;
+
+        if ( sensitivity == Case.Sensitive )
+        {
+            while (   idxH < haystackEnd
+                   && idxN < needleLength
+                   && haystack[idxH] == needle[idxN])
+            {
+                idxH++;
+                idxN++;
+            }
+        }
+        else
+        {
+            while (   idxH < haystackEnd
+                   && idxN < needleLength
+                   && Char.ToLower( haystack[idxH] ) == Char.ToLower( needle[idxN] ) )
+            {
+                idxH++;
+                idxN++;
+            }
+        }
+        return idxN;
+    }
+
+    /** ********************************************************************************************
      * Static method that returns the index of the first character which is included
      * (alternatively not included) in a given set of characters.
      *
@@ -488,11 +534,11 @@ public class CString
      * @return The index (relative to the start of the region) of the first character found
      *         which is included, respectively not included, in the given set of characters.
      *         If nothing is found, -1 is returned.
-     ******************************************************************************************/
+     **********************************************************************************************/
     public
     static int     IndexOfAnyInRegion( char[]    haystack,
                                        int       regionStart, int   regionLength,
-                                       char[]    needles,     
+                                       char[]    needles,
                                        Inclusion inclusion                                   )
     {
         int     nbLen=  needles.Length;
@@ -529,7 +575,7 @@ public class CString
         return -1;
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Static method that returns the index of the first character which is included
      * (alternatively not included) in a given set of characters.
      * The search starts at the end of the region and continues towards its start.
@@ -544,11 +590,11 @@ public class CString
      *
      * @return The index relative to the start of the region.
      *         If the search was not successful, then regionStart -1 is returned;
-     ******************************************************************************************/
+     **********************************************************************************************/
     public
     static int     LastIndexOfAny( char[]    haystack,
                                    int       regionStart, int   regionLength,
-                                   char[]    needles,     
+                                   char[]    needles,
                                    Inclusion inclusion                         )
     {
         int     nbLen=  needles.Length;

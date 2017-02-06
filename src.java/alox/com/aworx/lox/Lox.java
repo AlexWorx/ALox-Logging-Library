@@ -1,13 +1,13 @@
 // #################################################################################################
 //  com.aworx.lox - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /** ************************************************************************************************
  *  This is the Java package for code of the <em>%ALox Logging Library</em>.
- *  Developed by A-Worx GmbH and published under the MIT license.
+ *  Developed by A-Worx GmbH and published under Boost Software License.
  **************************************************************************************************/
 package com.aworx.lox;
 
@@ -22,11 +22,11 @@ import java.util.Vector;
 import com.aworx.lib.ALIB;
 import com.aworx.lib.config.Configuration;
 import com.aworx.lib.config.Variable;
-import com.aworx.lib.enums.Alignment;
-import com.aworx.lib.enums.Case;
-import com.aworx.lib.enums.ContainerOp;
-import com.aworx.lib.enums.Inclusion;
-import com.aworx.lib.enums.Whitespaces;
+import com.aworx.lib.lang.Alignment;
+import com.aworx.lib.lang.Case;
+import com.aworx.lib.lang.ContainerOp;
+import com.aworx.lib.lang.Inclusion;
+import com.aworx.lib.lang.Whitespaces;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.CString;
 import com.aworx.lib.strings.Substring;
@@ -66,13 +66,6 @@ public class Lox extends ThreadLock
          */
         public Vector<String>       omittablePackagePrefixes;
 
-        /**
-         * Denotes if <em>Log Domains</em> are searched ignoring the letter case or being sensitive
-         * about it.<br>
-         * Defaults to \p Case::IGNORE.
-         */
-        public Case                 domainSensitivity                                 = Case.IGNORE;
-
         public final static int STATE_INFO_BASIC             = 1 <<  0; ///< Name and number of log calls
         public final static int STATE_INFO_VERSION           = 1 <<  1; ///< Library Version and thread safeness
         public final static int STATE_INFO_LOGGERS           = 1 <<  2; ///< Loggers
@@ -108,7 +101,7 @@ public class Lox extends ThreadLock
     protected ScopeStore<AString>                   scopeDomains;
 
     /** Log Data */
-    protected ScopeStore<HashMap<AString, LogData>> scopeLogData;
+    protected ScopeStore<HashMap<AString, Object>>  scopeLogData;
 
     /** Log once counters */
     protected ScopeStore<HashMap<AString, int[]>>   scopeLogOnce;
@@ -130,12 +123,6 @@ public class Lox extends ThreadLock
 
     /** The resulting domain name for internal logs. */
     protected AString               resDomainInternal                           = new AString( 32 );
-
-    /** An AString singleton. Can be acquired, using buf() */
-    protected AString               logBuf                                     = new AString( 128 );
-
-    /** A locker for the log buffer singleton */
-    protected ThreadLock            logBufLock                                   = new ThreadLock();
 
     /** A temporary AString, following the "create once and reuse" design pattern. */
     protected AString               intMsg                                     = new AString( 256 );
@@ -242,10 +229,33 @@ public class Lox extends ThreadLock
 
 
     // #############################################################################################
+    // Overrides
+    // #############################################################################################
+    /** ********************************************************************************************
+     * Acquires the lock and stores scope information
+     **********************************************************************************************/
+    @Override
+    public void acquire()
+    {
+        super.acquire();
+        scopeInfo.set( owner );
+    }
+
+    /** ********************************************************************************************
+     * Releases latest scope information and the lock
+     **********************************************************************************************/
+    @Override
+    public void release()
+    {
+        scopeInfo.release();
+        super.release();
+    }
+
+    // #############################################################################################
     // Constructors
     // #############################################################################################
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Constructs a new, empty Lox with the given \p name.
      * The name is immutable and all \b %Lox objects registered with ALox must be unique.
      * Lower case letters in the name are converted to upper case.
@@ -261,36 +271,32 @@ public class Lox extends ThreadLock
      * @param doRegister If \c true, this object is registered with static class
      *                   \ref com::aworx::lox::ALox "ALox".
      *                   Optional and defaults to \c true.
-     ******************************************************************************************/
+     **********************************************************************************************/
     public Lox( String name, boolean doRegister )
     {
         construct( name, doRegister );
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Overloaded constructor providing value \c true for parameter \p doRegister.
      * @param name       The name of the Lox. Will be converted to upper case.
-     ******************************************************************************************/
+     **********************************************************************************************/
     public Lox( String name )
     {
         construct( name, true );
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Protected constructor helper method
      * @param name       The name of the Lox. Will be converted to upper case.
      * @param doRegister If \c true, this object is registered with static class
      *                   \ref com::aworx::lox::ALox "ALox".
      *                   Optional and defaults to \c true.
-     ******************************************************************************************/
+     **********************************************************************************************/
     protected void construct( String name, boolean doRegister )
     {
         // uncomment this for debugging deadlocks
         // createOwnerStackTrace= true;
-
-        // set recursion warning of log buffer lock to 1. Warnings are logged if recursively
-        // acquired more than once
-        logBufLock.recursionWarningThreshold= 1;
 
         // set packages that might be omitted
         omittablePackagePrefixes= new Vector<String>();
@@ -299,10 +305,10 @@ public class Lox extends ThreadLock
 
         // create scope info
         scopeInfo=      new ScopeInfo( name,  threadDictionary, omittablePackagePrefixes );
-        scopeDomains=   new ScopeStore<AString                  >( scopeInfo, false );
-        scopeLogData=   new ScopeStore<HashMap<AString, LogData>>( scopeInfo, true  );
-        scopeLogOnce=   new ScopeStore<HashMap<AString, int[]>  >( scopeInfo, true  );
-        scopePrefixes=  new ScopeStore<Object                   >( scopeInfo, false );
+        scopeDomains=   new ScopeStore<AString                 >( scopeInfo, false );
+        scopeLogData=   new ScopeStore<HashMap<AString, Object>>( scopeInfo, true  );
+        scopeLogOnce=   new ScopeStore<HashMap<AString, int[]> >( scopeInfo, true  );
+        scopePrefixes=  new ScopeStore<Object                  >( scopeInfo, false );
 
 
         // create domain trees
@@ -317,7 +323,7 @@ public class Lox extends ThreadLock
         for ( String it : internalDomainList )
         {
             resDomainInternal._()._( it );
-            internalDomains.find( resDomainInternal, Case.SENSITIVE, 1, booleanOutputParam );
+            internalDomains.find( resDomainInternal, 1, booleanOutputParam );
         }
         maxDomainPathLength= ALox.INTERNAL_DOMAINS.length() + 3;
 
@@ -342,7 +348,7 @@ public class Lox extends ThreadLock
                 else
                 {
                     // using alib warning here as we can't do internal logging in the constructor
-                    ALIB.WARNING( "Syntax error in variable \"" + variable.fullname + "\"." );
+                    com.aworx.lib.ALIB_DBG.WARNING( "Syntax error in variable \"" + variable.fullname + "\"." );
                 }
             }
         }
@@ -370,36 +376,6 @@ public class Lox extends ThreadLock
      **********************************************************************************************/
     public boolean   isRegistered()                 { return ALox.get( getName() ) == this;        }
 
-    /** ********************************************************************************************
-     * Returns an AString singleton, similar to the LogBuf singleton returned by Log.buf().
-     * Whenever this method is called, the returned AString object has to be used as a message
-     * within one of the log methods of this class
-     * (error(), warning(), info(), verbose(), if(), once() or entry()) .
-     * If this is not done, the object does not get released and parallel threads using
-     * it would block! So, do not use buf() for other reasons than for creating log messages and
-     * be sure to re-acquire the AString object by calling this method again prior to the next
-     * log call.
-     *
-     * @return the static AString singleton.
-     **********************************************************************************************/
-    public AString buf()
-    {
-        logBufLock.acquire();
-        logBuf.clear();
-        return logBuf;
-    }
-
-    /** ********************************************************************************************
-     *  Use this method when you want to abort a log call that you "started" with acquiring the
-     *  internal AString singleton acquired using method buf(). Use bufAbort() only if you did not
-     *  use the acquired buffer as a parameter of a log method, because this internally releases the
-     *  buf already.
-     **********************************************************************************************/
-    public void bufAbort()
-    {
-        logBufLock.release();
-    }
-
     /** ************************************************************************************
      *  This static method creates an adequate/default console logger.
      *  Currently, there is no detection mechanism implemented in the Java implementation
@@ -422,23 +398,21 @@ public class Lox extends ThreadLock
         variable.load();
         AString val= variable.getString().trim();
 
-        if (    val.isEmpty()
-             || val.equals( "DEFAULT", Case.IGNORE )
-             || val.equals( "PLAIN",   Case.IGNORE ) ) return new ConsoleLogger    ( name );
-        if (    val.equals( "ANSI" ,   Case.IGNORE ) ) return new AnsiConsoleLogger( name );
+        if ( val.equals( "PLAIN",   Case.IGNORE ) ) return new ConsoleLogger    ( name );
+        if ( val.equals( "ANSI" ,   Case.IGNORE ) ) return new AnsiConsoleLogger( name );
 
-        ALIB.WARNING( "Unrecognized value in config variable \"" + variable.fullname
-                       + "\"= " + variable.getString() );
+        com.aworx.lib.ALIB_DBG.ASSERT_WARNING( val.isEmpty() || val.equals( "DEFAULT", Case.IGNORE ),
+                             "Unrecognized value in config variable \"" + variable.fullname
+                            + "\"= " + variable.getString() );
 
-        //--- in JAVA, we currently have no detection.
-        return new ConsoleLogger( name );
+        return new AnsiConsoleLogger( name );
     }
 
-    /** ************************************************************************************
+    /** ********************************************************************************************
      * Overloaded method providing default parameter \c null.
      *
      *  @return      The TextLogger that was chosen.
-     **************************************************************************************/
+     **********************************************************************************************/
     public static TextLogger createConsoleLogger()
     {
         return createConsoleLogger( null );
@@ -460,22 +434,22 @@ public class Lox extends ThreadLock
             if ((logger=         domains.getLogger( loggerName )) != null) return logger;
             if ((logger= internalDomains.getLogger( loggerName )) != null) return logger;
 
-            // not found
+              // not found
             logInternal( Verbosity.WARNING, "LGR", intMsg._()._( "No logger named \"" )._( loggerName )._( "\" found." ) );
             return null;
 
         } finally { release(); }
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Helper method of #dumpStateOnLoggerRemoval to recursively collect domain settings.
      * @param domain    The actual domain.
      * @param loggerNo  The number of the logger
      * @param variable  The AString to collect the information.
-     ******************************************************************************************/
+     **********************************************************************************************/
     protected void verbositySettingToVariable( Domain domain, int loggerNo, Variable variable )
     {
-        variable.addString()._( domain.fullPath )
+        variable.add()._( domain.fullPath )
                             ._('=')
                             ._( domain.getVerbosity( loggerNo ).toString() );
 
@@ -484,11 +458,11 @@ public class Lox extends ThreadLock
             verbositySettingToVariable( subDomain, loggerNo, variable );
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Implements functionality for configuration variable \c LOXNAME_LOGGERNAME_VERBOSITY.
      * Is called when a logger is removed.
      * @param logger      The logger to write the verbosity for.
-     ******************************************************************************************/
+     **********************************************************************************************/
     protected void  writeVerbositiesOnLoggerRemoval( Logger logger )
     {
         // When writing back we will use this priority as the maximum to write. This way, if this was
@@ -501,7 +475,7 @@ public class Lox extends ThreadLock
         if ( variable.size() == 0 )
             return;
         Substring firstArg= new Substring( variable.getString() );
-        if ( !firstArg.consume( "writeback", Case.IGNORE, Whitespaces.TRIM ) )
+        if ( !firstArg.consumeString( "writeback", Case.IGNORE, Whitespaces.TRIM ) )
             return;
 
         // optionally read a destination variable name
@@ -578,10 +552,10 @@ public class Lox extends ThreadLock
         logInternal( Verbosity.VERBOSE, "VAR", intMsg );
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Implements functionality for configuration variable \c LOXNAME_DUMP_STATE_ON_EXIT.
      * Is called when a logger is removed.
-     ******************************************************************************************/
+     **********************************************************************************************/
     protected void dumpStateOnLoggerRemoval()
     {
         if( !loggerAddedSinceLastDebugState )
@@ -620,14 +594,14 @@ public class Lox extends ThreadLock
             else if( tok.equals( "All"             , Case.IGNORE ) )  flags|=  Lox.STATE_INFO_ALL             ;
 
             // domain and verbosity
-            else if( tok.consume( "domain", Case.IGNORE, Whitespaces.TRIM ) )
+            else if( tok.consumeString( "domain", Case.IGNORE, Whitespaces.TRIM ) )
             {
-                if( tok.consume( '=', Case.SENSITIVE, Whitespaces.TRIM ) )
+                if( tok.consumeChar( '=', Case.SENSITIVE, Whitespaces.TRIM ) )
                     domain= tok.trim().toString();
             }
-            else if( tok.consume( "verbosity", Case.IGNORE, Whitespaces.TRIM ) )
+            else if( tok.consumeString( "verbosity", Case.IGNORE, Whitespaces.TRIM ) )
             {
-                if( tok.consume( '=', Case.SENSITIVE, Whitespaces.TRIM ) )
+                if( tok.consumeChar( '=', Case.SENSITIVE, Whitespaces.TRIM ) )
                     verbosity= ALox.readVerbosity( tok.trim() );
             }
 
@@ -703,9 +677,6 @@ public class Lox extends ThreadLock
     {
         try
         { acquire();
-
-            scopeInfo.set( owner );
-
             int noMainDom=  domains        .getLoggerNo( loggerName );
             int noIntDom=   internalDomains.getLoggerNo( loggerName );
 
@@ -799,9 +770,6 @@ public class Lox extends ThreadLock
     public void setVerbosity(Logger logger, Verbosity verbosity, String domain, int priority )
     {
         try { acquire();
-
-            // initialize scope information
-            scopeInfo.set( owner );
 
             // check
             if (logger == null)
@@ -945,8 +913,6 @@ public class Lox extends ThreadLock
     {
         try { acquire();
 
-            scopeInfo.set( owner );
-
             // this might create the (path of) domain(s) and set the \e Loggers' verbosity like their first parent's
             Domain dom= evaluateResultDomain( domain );
 
@@ -964,7 +930,7 @@ public class Lox extends ThreadLock
                     setVerbosity( otherTree.getLogger( no ),      Verbosity.OFF,
                                   actualTree.fullPath.toString(), Configuration.PRIO_DEFAULT      );
                     no= dom.getLoggerNo( loggerName );
-                    ALIB.ASSERT( no >= 0 );
+                    com.aworx.lib.ALIB_DBG.ASSERT( no >= 0 );
                 }
                 else
                 {
@@ -1073,7 +1039,7 @@ public class Lox extends ThreadLock
         setDomainImpl( scopeDomain, scope, 0, false, null );
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * This overloaded version of
      * \ref setDomain( String, Scope, int) "setDomain"
      * is applicable only for \e %Scope.THREAD_OUTER and \e %Scope.THREAD_INNER and allows to
@@ -1087,14 +1053,14 @@ public class Lox extends ThreadLock
      * @param scope       Either \e %Scope.THREAD_OUTER or \e %Scope.THREAD_INNER. With other values,
      *                    an internal error is logged.
      * @param thread      The thread to set/unset a thread-related Scope Domains for.
-     ******************************************************************************************/
+     **********************************************************************************************/
     public void setDomain(String scopeDomain, Scope scope, Thread thread)
     {
-        if (!isThreadReleatedScope( scope )) return;
+        if (!isThreadRelatedScope( scope )) return;
         setDomainImpl( scopeDomain, scope, 0, false, thread );
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * This method is used to remove an <em>explicitly given</em> domain path from the list
      * of domain paths set for \e %Scope.THREAD_OUTER and \e %Scope.THREAD_INNER.
      *
@@ -1116,14 +1082,12 @@ public class Lox extends ThreadLock
      *                    an internal error is logged.
      * @param thread      The thread to set/unset a thread-related Scope Domains for.
      *                    Defaults to the current thread.
-     ******************************************************************************************/
+     **********************************************************************************************/
     public void removeThreadDomain(String scopeDomain, Scope scope, Thread thread)
     {
         try { acquire();
 
-            scopeInfo.set( owner );
-
-            if (!isThreadReleatedScope( scope )) return;
+            if (!isThreadRelatedScope( scope )) return;
 
             if (CString.isNullOrEmpty( scopeDomain ))
             {
@@ -1139,26 +1103,26 @@ public class Lox extends ThreadLock
         } finally { release(); }
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Overload version providing default value for parameter \p thread.
      *
      * @param scopeDomain The domain path to register.
      * @param scope       Either \e %Scope.THREAD_OUTER and \e %Scope.THREAD_INNER. With other values,
      *                    an internal error is logged.
-     ******************************************************************************************/
+     **********************************************************************************************/
     public void removeThreadDomain(String scopeDomain, Scope scope)
     {
         removeThreadDomain( scopeDomain, scope, null );
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Adds a <em>Domain Substitution Rule</em>.
      * <em>Domain Substitution</em> is performed as a last step when evaluating the domain path of a <em>Log Statement</em>,
      * taking <em>Scope Domains</em> and the optional parameter \p domain of the statement into
      * account.<br>
      *
      * <b>Wildcards</b><br>
-     * Parameter \p domainPath supports \b 'wildcard' character <c> '*'</c> at the its beginning
+     * Parameter \p domainPath supports \b 'wildcard' character <c> '*'</c> at its beginning
      * and at its end (or both). This allows to have four types of rules:
      * - Exact match
      * - Prefix match (\c * at the end of \p domainPath)
@@ -1202,17 +1166,15 @@ public class Lox extends ThreadLock
      * variables. Any prioritized \e 'internal' setting of \e Verbosities this way could be
      * circumvented!
      *
-     * For more information consult the ALox user manual.
+     * For more information consult the [ALox User Manual](../man_domain_substitution.html).
      *
      * @param domainPath  The path to search. Has to start with either  <c> '/'</c> or <c> '*'</c>.
      * @param replacement The replacement path.
-     ******************************************************************************************/
+     **********************************************************************************************/
     public void   setDomainSubstitutionRule( String domainPath, String replacement )
     {
         try { acquire();
 
-            // initialize scope information
-            scopeInfo.set( owner );
             intMsg._();
 
             // check null param: clears all rules
@@ -1279,18 +1241,27 @@ public class Lox extends ThreadLock
         } finally { release(); }
     }
 
-    /** ****************************************************************************************
-     * The given \p logable becomes a <em>Prefix Logable</em> provided to loggers with log statements
-     * executed within the given \p scope.
+    /** ********************************************************************************************
+     * The given \p prefix becomes a <em>Prefix Logable</em> provided to loggers with each log
+     * statement executed within the given \p scope.
      * The list of objects received by a logger is sorted from outer scope to inner scope.
-     * The logable of the <em>Log Statement</em> itself, is the last in the list, except one or
-     * more <em>Prefix Logables</em> of \e %Scope.THREAD_INNER are set. Those are (similar to how this
-     * \e %Scope is handled with <em>%Scope Domains</em>) are appended to the end of the list.
+     * The logable of the <em>%Log Statement</em> itself, is the last in the list, except one or
+     * more <em>Prefix Logables</em> of \e %Scope.ThreadInner are set. Those are (similar to how
+     * this \e %Scope is used with <em>%Scope Domains</em>) appended to the end of the
+     * list.
      *
      * To remove a previously set <em>Prefix Logable</em>, \c null has to be passed with
      * parameter \p logable.
      * For \e %Scope.THREAD_OUTER and \e %Scope.THREAD_INNER, passing \c null
      * removes the most recently added <em>Prefix Logable</em>.
+     *
+     *<p>
+     * \note
+     *   Unlike other methods of this class which accept more than one logable, this
+     *   method and its overloaded variants accept only one (the prefix).
+     *   To supply several objects to be prefix logables at once, those may be passed as an
+     *   Object[] like shown in the following sample:
+     *   \snippet "UT_alox_scopes.java"      DOX_ALOX_LOX_SETPREFIX
      *
      *<p>
      * \note
@@ -1302,33 +1273,33 @@ public class Lox extends ThreadLock
      *   <em>Prefix Logables</em> is very useful. Just the name does not fit so well anymore.
      *   Think of 'SetContext' and <em>Context Objects</em> instead.
      *
-     * @param logable      The <em>Prefix Logable</em> to set.
+     * @param prefix       The <em>Prefix Logable(s)</em> to set.
      * @param scope        The scope that should the given \p logable be registered for.
      *                     Available Scope definitions are platform/language dependent.
      * @param packageLevel Used only with
      *                     \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE".
      *                     Cuts the given number of package parts (separated with '.') from the end
      *                     of the packages. Optional and defaults to \c 0.
-     ******************************************************************************************/
-    public void        setPrefix( Object logable, Scope scope, int packageLevel  )
+     **********************************************************************************************/
+    public void        setPrefix( Object prefix, Scope scope, int packageLevel  )
     {
-        setPrefixImpl( logable, scope, packageLevel, null );
+        setPrefixImpl( prefix, scope, packageLevel, null );
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Overloaded version of \ref setPrefix(Object,Scope,int) "setPrefix" providing value \c 0
      * as default for parameter \p packageLevel.
      *
-     * @param logable     The <em>Prefix Logable</em> to set.
-     * @param scope       The scope that should the given \p logable be registered for.
-     *                    Available Scope definitions are platform/language dependent.
-     ******************************************************************************************/
-    public void        setPrefix( Object logable, Scope scope  )
+     * @param prefix  The <em>Prefix Logable(s)</em> to set.
+     * @param scope   The scope that should the given \p logable be registered for.
+     *                Available Scope definitions are platform/language dependent.
+     **********************************************************************************************/
+    public void        setPrefix( Object prefix, Scope scope  )
     {
-        setPrefixImpl( logable, scope, 0, null );
+        setPrefixImpl( prefix, scope, 0, null );
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * This overloaded version of
      * \ref setPrefix(Object,Scope,int) "setPrefix" is applicable only for
      * \e %Scope.THREAD_OUTER and \e %Scope.THREAD_INNER and allows to specify the thread that
@@ -1337,20 +1308,21 @@ public class Lox extends ThreadLock
      * If \p logable is \c null, the most recently added <em>Prefix Logable</em>
      * is removed.
      *
-     * @param logable     The <em>Prefix Logable</em> to set.
-     * @param scope       Either \e %Scope.THREAD_OUTER or \e %Scope.THREAD_INNER. With other values,
-     *                    an internal error is logged.
-     * @param thread      The thread to set/unset a thread-related <em>Prefix Logable</em> for.
-     ******************************************************************************************/
-    public void        setPrefix( Object logable, Scope scope, Thread thread )
+     * @param prefix  The <em>Prefix Logable(s)</em> to set.
+     * @param scope   Either \e %Scope.THREAD_OUTER or \e %Scope.THREAD_INNER. With other
+     *                values, an internal error is logged.
+     * @param thread  The thread to set/unset a thread-related <em>Prefix Logable</em> for.
+     **********************************************************************************************/
+    public void        setPrefix( Object prefix, Scope scope, Thread thread )
     {
-        setPrefixImpl( logable, scope, 0, thread );
+        setPrefixImpl( prefix, scope, 0, thread );
     }
 
-    /** ****************************************************************************************
-     * The given \p logable becomes a <em>Prefix Logable</em> associated to the given <em>Log Domain</em>.
-     * <em>Prefix Logables</em> associated with the <em>Log Domain</em> are added to the list of \e Logables right
-     * before the main \e Logable of the <em>Log Statement</em> itself.
+    /** ********************************************************************************************
+     * The given \p logable becomes a <em>Prefix Logable</em> associated to the given
+     * <em>Log Domain</em>.  <em>Prefix Logables</em> associated with the <em>Log Domain</em> are
+     * added to the list of \e Logables right before the main \e Logable of the
+     * <em>Log Statement</em> itself.
      * Multiple <em>Prefix Logables</em> can be added per <em>Log Domain</em>.
      *
      * To remove the most recently added <em>Prefix Logable</em> associated with a <em>Log Domain</em>,
@@ -1364,27 +1336,33 @@ public class Lox extends ThreadLock
      *   The default value of parameter \p domain is \c "" which addresses the domain evaluated
      *   for the current scope.
      *
-     * @param logable     The <em>Prefix Logable</em> to set.
-     * @param domain      The domain path. Defaults to \c null, resulting in
-     *                    evaluated <em>Scope Domain</em> path.
-     * @param otherPLs    If set to \c Inclusion.Exclude, scope-related <em>Prefix Logables</em>
-     *                    are ignored and only domain-related <em>Prefix Logables</em> are passed to
-     *                    the \e Loggers.
-     *                    Defaults to \c Inclusion.Include.
-     ******************************************************************************************/
-    public void        setPrefix( Object logable, String domain, Inclusion otherPLs )
+     * <p>
+     * \note
+     *   Unlike other methods of this class which accept more than one logable, this
+     *   method and its overloaded variants accept only one (the prefix).
+     *   To supply several objects to be prefix logables at once, those may be passed as an
+     *   Object[] like shown in the following sample:
+     *   \snippet "UT_alox_scopes.java"      DOX_ALOX_LOX_SETPREFIX
+     *
+     * @param prefix     The <em>Prefix Logable(s)</em> to set.
+     * @param domain     The domain path. Defaults to \c null, resulting in
+     *                   evaluated <em>Scope Domain</em> path.
+     * @param otherPLs   If set to \c Inclusion.Exclude, scope-related <em>Prefix Logables</em>
+     *                   are ignored and only domain-related <em>Prefix Logables</em> are passed to
+     *                   the \e Loggers.
+     *                   Defaults to \c Inclusion.Include.
+     **********************************************************************************************/
+    public void        setPrefix( Object prefix, String domain, Inclusion otherPLs )
     {
         try { acquire();
 
-            scopeInfo.set( owner );
-
             // we consider empty strings as unset command, so we set them to null
-            if( logable != null )
+            if( prefix != null )
             {
-                if (    (( logable instanceof AString ) && ((AString) logable).isNull() )
-                     || (( logable instanceof String  ) && ((String)  logable).length() == 0 )
+                if (    (( prefix instanceof AString ) && ((AString) prefix).isNull() )
+                     || (( prefix instanceof String  ) && ((String)  prefix).length() == 0 )
                    )
-                    logable= null;
+                    prefix= null;
             }
 
             Domain dom= evaluateResultDomain( domain );
@@ -1392,10 +1370,10 @@ public class Lox extends ThreadLock
             Verbosity intLogVerbosity= Verbosity.INFO;
             intMsg._();
 
-            if ( logable != null )
+            if ( prefix != null )
             {
-                dom.prefixLogables.add( dom.new PL( logable, otherPLs ) );
-                intMsg._( "Object \"" )._( logable )._( "\" added as prefix logable for" );
+                dom.prefixLogables.add( dom.new PL( prefix, otherPLs ) );
+                intMsg._( "Object \"" )._( prefix )._( "\" added as prefix logable for" );
             }
             else
             {
@@ -1421,26 +1399,26 @@ public class Lox extends ThreadLock
 
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Overloaded version of #setPrefix providing
      * default value \c Inclusion.INCLUDE for parameter \p otherPLs.
      *
-     * @param logable     The <em>Prefix Logable</em> to set.
+     * @param logable     The <em>Prefix Logable(s)</em> to set.
      * @param domain      The domain path. Defaults to \c null, resulting in
      *                    evaluated <em>Scope Domain</em> path.
-     ******************************************************************************************/
+     **********************************************************************************************/
     public void        setPrefix( Object logable, String domain )
     {
         setPrefix( logable, domain, Inclusion.INCLUDE );
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Overloaded version of #setPrefix providing
      * default value \c Inclusion.INCLUDE for parameter \p otherPLs and
      * default value \c null for parameter \p domain.
      *
-     * @param logable     The <em>Prefix Logable</em> to set.
-     ******************************************************************************************/
+     * @param logable     The <em>Prefix Logable(s)</em> to set.
+     **********************************************************************************************/
     public void        setPrefix( Object logable )
     {
         setPrefix( logable, null, Inclusion.INCLUDE );
@@ -1464,8 +1442,6 @@ public class Lox extends ThreadLock
     public void setStartTime(Date startTime, String loggerName)
     {
         try { acquire();
-
-            scopeInfo.set( owner );
 
             // check if start time was set
             Ticks time= new Ticks( 0L );
@@ -1543,7 +1519,6 @@ public class Lox extends ThreadLock
             threadDictionary.put( new Long( id ), threadName );
 
             // log info on this
-            scopeInfo.set( owner );
             intMsg.clear()._( "Mapped thread ID " )._( (int) id )._( " to \"" )._( threadName )._( "\"." );
             if (!CString.isNullOrEmpty( origThreadName )) intMsg._( " Original thread name: \"" )._( origThreadName )._( "\"." );
             logInternal( Verbosity.INFO, "THR", intMsg );
@@ -1563,9 +1538,8 @@ public class Lox extends ThreadLock
     }
 
     /** ****************************************************************************************
-     * Stores ALox <em>Log Data</em>, an object of base type
-     * \ref com::aworx::lox::LogData "LogData" which can afterwards be retrieved by invoking
-     * #retrieve. Using the optional \p key and \p scope offer various possibilities to reference
+     * Stores an object which can afterwards be retrieved by invoking #retrieve.
+     * Optional parameters \p key and \p scope offer various possibilities to reference
      * this data later.<br>
      *
      * To remove data from the store, pass \c null with parameter \p data.
@@ -1588,12 +1562,11 @@ public class Lox extends ThreadLock
      * @param pkgLevel  Used only if parameter \p scope equals
      *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
-     ******************************************************************************************/
-    public void store( LogData data, String key, Scope scope, int pkgLevel )
+     **********************************************************************************************/
+    public void store( Object data, String key, Scope scope, int pkgLevel )
     {
         try { acquire();
 
-            scopeInfo.set( owner );
             intMsg._();
 
             // We need a key. If none is given, we use a constant one indicating that storage is
@@ -1605,17 +1578,17 @@ public class Lox extends ThreadLock
 
             // get the store
             scopeLogData.InitAccess( scope, pkgLevel, null );
-            HashMap<AString, LogData> map= scopeLogData.get();
+            HashMap<AString, Object> map= scopeLogData.get();
 
             // create map entry
             if ( data != null )
             {
                 if( map == null )
                 {
-                    map= new HashMap<AString, LogData>();
+                    map= new HashMap<AString, Object>();
                     scopeLogData.store( map );
                 }
-                LogData previous= map.get( aKey );
+                Object previous= map.get( aKey );
 
                 map.put( aKey, data );
 
@@ -1655,7 +1628,7 @@ public class Lox extends ThreadLock
         } finally { release(); }
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Overloaded version of #store providing default parameters.
      *
      * @param data      The data object to store.
@@ -1665,13 +1638,13 @@ public class Lox extends ThreadLock
      *                  provided. If omitted and \p scope is Scope.GLOBAL, then the
      *                  data is unique to the \e Lox.
      * @param scope     The \e %Scope that the data is bound to.
-     ******************************************************************************************/
-    public void store( LogData data, String key, Scope scope )
+     **********************************************************************************************/
+    public void store( Object data, String key, Scope scope )
     {
         store( data, key, scope, 0 );
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Overloaded version of #store providing default parameters.
      *
      * @param data      The data object to store.
@@ -1680,24 +1653,24 @@ public class Lox extends ThreadLock
      *                  If omitted (or empty or \c null), the data is bound to the \e %Scope
      *                  provided. If omitted and \p scope is Scope.GLOBAL, then the
      *                  data is unique to the \e Lox.
-     ******************************************************************************************/
-    public void store( LogData data, String key )
+     **********************************************************************************************/
+    public void store( Object data, String key )
     {
         store( data, key, Scope.GLOBAL, 0 );
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Overloaded version of #store providing default parameters.
      *
      * @param data      The data object to store.
      *                  If \c null, currently stored data will be removed.
-     ******************************************************************************************/
-    public void store( LogData data )
+     **********************************************************************************************/
+    public void store( Object data )
     {
         store( data, null, Scope.GLOBAL, 0 );
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Overloaded version of #store providing default parameters.
      * @param data      The data object to store.
      *                  If \c null, currently stored data will be removed.
@@ -1705,28 +1678,27 @@ public class Lox extends ThreadLock
      * @param pkgLevel  Used only if parameter \p scope equals
      *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
-     ******************************************************************************************/
-    public void store( LogData  data, Scope scope, int  pkgLevel )
+     **********************************************************************************************/
+    public void store( Object  data, Scope scope, int  pkgLevel )
     {
         store( data, null, scope, pkgLevel );
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Overloaded version of #store providing default parameters.
      * @param data      The data object to store.
      *                  If \c null, currently stored data will be removed.
      * @param scope     The \e %Scope that the data is bound to.
-     ******************************************************************************************/
-    public void store( LogData  data, Scope scope )
+     **********************************************************************************************/
+    public void store( Object  data, Scope scope )
     {
         store( data, null, scope, 0 );
     }
 
 
-    /** ****************************************************************************************
-     * Retrieves ALox <em>Log Data</em>, an object of base type
-     * \ref com::aworx::lox::LogData "LogData" which can be stored by invoking
-     * #store. Using the optional \p key and \p scope offer various possibilities to reference
+    /** ********************************************************************************************
+     * Retrieves an object which was previously stored by invoking using #store.
+     * Optional parameters \p key and \p scope offer various possibilities to reference
      * such objects.<br>
      *
      * \note If no <em>Log Data</em> object is found, an empty object is stored and returned.
@@ -1743,17 +1715,15 @@ public class Lox extends ThreadLock
      * @param pkgLevel  Used only if parameter \p scope equals
      *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
-     * @return The \b LogData object, \c null if nothing was found.
-     ******************************************************************************************/
-    public LogData  retrieve( String key, Scope scope,  int pkgLevel )
+     * @return The object, \c null if nothing was found.
+     **********************************************************************************************/
+    public Object  retrieve( String key, Scope scope,  int pkgLevel )
     {
         try { acquire();
 
-            scopeInfo.set( owner );
-
             // get the data (create if not found)
             scopeLogData.InitAccess( scope, pkgLevel, null );
-            LogData returnValue= null;
+            Object returnValue= null;
             boolean keyWasEmtpy= false;
             for( int i= 0; i < 2 ; i++ )
             {
@@ -1763,12 +1733,12 @@ public class Lox extends ThreadLock
                 if ( (keyWasEmtpy= tmpAS.isEmpty()) == true )
                     tmpAS._( noKeyHashKey );
 
-                HashMap<AString, LogData> map= scopeLogData.get();
+                HashMap<AString, Object> map= scopeLogData.get();
                 if( map != null )
                     returnValue= map.get( tmpAS );
 
                 if( returnValue == null )
-                    store( new LogData(), key, scope, pkgLevel );
+                    store( new Object(), key, scope, pkgLevel );
                 else
                     break;
             }
@@ -1788,7 +1758,7 @@ public class Lox extends ThreadLock
         } finally { release(); }
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Overloaded version of #retrieve which omits parameters.
      *
      * @param key       The optional key to the data.
@@ -1796,60 +1766,60 @@ public class Lox extends ThreadLock
      *                  provided. If omitted and \p scope is Scope.GLOBAL, then the
      *                  data is unique to the \e Lox.
      * @param scope     The \e %Scope that the data is bound to.
-     * @return The \b LogData object, \c null if nothing was found.
-     ******************************************************************************************/
-    public LogData  retrieve( String key, Scope scope )
+     * @return The object, \c null if nothing was found.
+     **********************************************************************************************/
+    public Object  retrieve( String key, Scope scope )
     {
         return retrieve( key, scope, 0 );
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Overloaded version of #retrieve which omits parameters.
      *
      * @param key       The optional key to the data.
      *                  If omitted (or empty or \c null), the data is bound to the \e %Scope
      *                  provided. If omitted and \p scope is Scope.GLOBAL, then the
      *                  data is unique to the \e Lox.
-     * @return The \b LogData object, \c null if nothing was found.
-     ******************************************************************************************/
-    public LogData  retrieve( String key )
+     * @return The object, \c null if nothing was found.
+     **********************************************************************************************/
+    public Object  retrieve( String key )
     {
         return retrieve( key, Scope.GLOBAL, 0 );
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Overloaded version of #retrieve which omits parameters.
      *
-     * @return The \b LogData object, \c null if nothing was found.
-     ******************************************************************************************/
-    public LogData  retrieve()
+     * @return The object, \c null if nothing was found.
+     **********************************************************************************************/
+    public Object  retrieve()
     {
         return retrieve( null, Scope.GLOBAL, 0 );
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Overloaded version of #retrieve which omits parameters.
      *
      * @param scope     The \e %Scope that the data is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
      *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
-     * @return The \b LogData object, \c null if nothing was found.
-     ******************************************************************************************/
-    public LogData  retrieve( Scope scope, int pkgLevel )
+     * @return The object, \c null if nothing was found.
+     **********************************************************************************************/
+    public Object  retrieve( Scope scope, int pkgLevel )
     {
-            return retrieve( null, scope, pkgLevel);
+        return retrieve( null, scope, pkgLevel);
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Overloaded version of #retrieve which omits parameters.
      *
      * @param scope     The \e %Scope that the data is bound to.
-     * @return The \b LogData object, \c null if nothing was found.
-     ******************************************************************************************/
-    public LogData  retrieve( Scope scope )
+     * @return The object, \c null if nothing was found.
+     **********************************************************************************************/
+    public Object  retrieve( Scope scope )
     {
-            return retrieve( null, scope, 0 );
+        return retrieve( null, scope, 0 );
     }
 
     /** ********************************************************************************************
@@ -1898,7 +1868,7 @@ public class Lox extends ThreadLock
     }
 
     /** ********************************************************************************************
-     * This method collects state information about this lox in a formated multi-line AString.
+     * This method collects state information about this lox in a formatted multi-line AString.
      * Parameter \p flags is a bit field with bits defined in constants of class \b %Lox
      * prefixed with \b "STATE_INFO_", e.g. \c %STATE_INFO_LOGGERS.
      *
@@ -2056,7 +2026,7 @@ public class Lox extends ThreadLock
                            .newLine();
 
                         domsWithDiffVerb.clear();
-                        logStateDomsWithDiffVerb( domTree, loggerNo, domsWithDiffVerb);
+                        logStateDomainsWithDiffVerb( domTree, loggerNo, domsWithDiffVerb);
                         for ( Domain dom : domsWithDiffVerb )
                         {
                             buf._NC( "    " )
@@ -2154,14 +2124,14 @@ public class Lox extends ThreadLock
      * @param loggerNo    The logger to collect domains for.
      * @param results     The result list.
      **********************************************************************************************/
-    protected void logStateDomsWithDiffVerb( Domain domain, int loggerNo, ArrayList<Domain> results )
+    protected void logStateDomainsWithDiffVerb( Domain domain, int loggerNo, ArrayList<Domain> results )
     {
         if (    domain.parent == null
             ||  domain.parent.getVerbosity(loggerNo) != domain.getVerbosity(loggerNo) )
             results.add( domain );
 
         for( Domain it : domain.subDomains )
-            logStateDomsWithDiffVerb( it, loggerNo, results );
+            logStateDomainsWithDiffVerb( it, loggerNo, results );
     }
 
 
@@ -2170,14 +2140,20 @@ public class Lox extends ThreadLock
     // #############################################################################################
 
     /** ********************************************************************************************
-     * Logs a \e Logable with the given \e %Verbosity.
+     * Logs a list of \e Logables using the given \e %Verbosity.
+     *
+     * This method is usually \b not used directly. Instead, methods
+     * #info, #verbose, #warning and #error provide simpler interfaces.
+     *
+     * Hence, the use of this method is recommended only if the verbosity of a log statement
+     * is is evaluated only at runtime.
      *
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The verbosity.
-     * @param logable   The object to log.
+     * @param logables  The objects to log.
      **********************************************************************************************/
-    public void entry( String domain, Verbosity verbosity, Object logable )
+    public void entry( String domain, Verbosity verbosity, Object... logables )
     {
         try { acquire();
 
@@ -2187,141 +2163,253 @@ public class Lox extends ThreadLock
             // auto-initialization of debug loggers
             if (domains.countLoggers() == 0 && this == Log.LOX) Log.addDebugLogger( this );
 
-
             cntLogCalls++;
             if ( domains.countLoggers() == 0 )
                 return;
-            scopeInfo.set( owner );
-            log( evaluateResultDomain( domain ), verbosity, logable, Inclusion.INCLUDE );
-
-            // release lock if logable was our internal log buffer singleton
-            if (logable == logBuf) logBufLock.release();
-
+            log( evaluateResultDomain( domain ), verbosity, logables, Inclusion.INCLUDE );
         }
         finally  { release(); }
     }
 
     /** ********************************************************************************************
-     * Overloaded version of #entry, defaulting parameter \p domain to a nulled string.
+     * Logs a list of \e Logables with the given \e %Verbosity.
      *
+     * If more than one \e Logable is given and the first one is of string type and comprises a
+     * valid domain name, then this first argument is interpreted as a the domain name!
+     * Valid domain names are strings that consists only of characters of the following set:
+     * - upper case letters,
+     * - numbers,
+     * - hyphen (\c '-') and
+     * - underscore (\c '_').
+     *
+     * If a first \e Logable could be misinterpreted as being a domain name, an empty string
+     * (the "neutral" domain) has to be added as a first argument. Alternatively, a character
+     * which is illegal in respect to domain names could be added to the first argument,
+     * for example a simple space at the end of an output string.
+     *
+     * \note
+     *   This method allows a consistent interface of overloaded methods \b %Info, \b Error,
+     *   etc, without introducing a separate version which excepts a then mandatory domain
+     *   parameter.
+     *   The little drawback of the auto detection is the possibility of ambiguous invocations.
+     *
+     * @param verbosity   The verbosity.
+     * @param logables    The logables with optionally a detectable domain name as a
+     *                    first argument.
+     **********************************************************************************************/
+    public void entryDetectDomain( Verbosity  verbosity, Object... logables )
+    {
+        if( logables.length > 1 )
+        {
+            if( logables[0] instanceof CharSequence )
+            {
+                CharSequence firstArg= (CharSequence) logables[0];
+
+                boolean illegalCharacterFound= false;
+                for( int i= 0; i< firstArg.length() ; ++i )
+                {
+                    char c= firstArg.charAt(i);
+                    if (!(    ( c >= '0' && c <= '9' )
+                           || ( c >= 'A' && c <= 'Z' )
+                           || c == '-'
+                           || c == '_'
+                           || c == '/'
+                           || c == '.'
+                    ))
+                    {
+                        illegalCharacterFound= true;
+                        break;
+                    }
+                }
+
+                if ( illegalCharacterFound )
+                {
+                    entry( null, verbosity, logables );
+                    return;
+                }
+
+                Object[] newLogables= new Object[ logables.length - 1 ];
+                for(int i= 0; i < newLogables.length; i++ )
+                    newLogables[i]= logables[i + 1];
+                entry( firstArg instanceof String ? ((String) firstArg) : firstArg.toString() , verbosity, newLogables );
+                return;
+            }
+        }
+
+        entry( null, verbosity, logables );
+    }
+
+    /** ********************************************************************************************
+     * Logs a list of \e Logables using \ref Verbosity::VERBOSE "Verbosity.VERBOSE".
+     *
+     * The first \e logable provided may be a domain name. All values are passed to
+     * #entryDetectDomain. See documentation of this method for information on how to avoid
+     * ambiguities in respect to domain names.
+     *
+     * If one of the arguments (or a single argument given) is of type \c Object[], then the
+     * contents of this list is inserted into the list of logables.
+     * This allows to collect logables prior to invoking the method.
+     * In the C# version, where flexibility of parameter passing is limited due to the use of
+     * compiler-inserted parameters, parameters of type \c Object[] can also be used to
+     * provide more than four logables.
+     *
+     * @param logables  The list of \e Logables, optionally including a domain name at the start.
+     **********************************************************************************************/
+    public void verbose( Object... logables )
+    {
+        entryDetectDomain( Verbosity.VERBOSE, logables );
+    }
+
+    /** ********************************************************************************************
+     * Logs a list of \e Logables using \ref Verbosity::INFO "Verbosity.INFO".
+     *
+     * The first \e logable provided may be a domain name. All values are passed to
+     * #entryDetectDomain. See documentation of this method for information on how to avoid
+     * ambiguities in respect to domain names.
+     *
+     * If one of the arguments (or a single argument given) is of type \c Object[], then the
+     * contents of this list is inserted into the list of logables.
+     * This allows to collect logables prior to invoking the method.
+     * In the C# version, where flexibility of parameter passing is limited due to the use of
+     * compiler-inserted parameters, parameters of type \c Object[] can also be used to
+     * provide more than four logables.
+     *
+     * @param logables  The list of \e Logables, optionally including a domain name at the start.
+     **********************************************************************************************/
+    public void info( Object... logables )
+    {
+        entryDetectDomain( Verbosity.INFO, logables );
+    }
+
+    /** ********************************************************************************************
+     * Logs a list of \e Logables using \ref Verbosity::WARNING "Verbosity.WARNING".
+     *
+     * The first \e logable provided may be a domain name. All values are passed to
+     * #entryDetectDomain. See documentation of this method for information on how to avoid
+     * ambiguities in respect to domain names.
+     *
+     * If one of the arguments (or a single argument given) is of type \c Object[], then the
+     * contents of this list is inserted into the list of logables.
+     * This allows to collect logables prior to invoking the method.
+     * In the C# version, where flexibility of parameter passing is limited due to the use of
+     * compiler-inserted parameters, parameters of type \c Object[] can also be used to
+     * provide more than four logables.
+     *
+     * @param logables  The list of \e Logables, optionally including a domain name at the start.
+     **********************************************************************************************/
+    public void warning( Object... logables )
+    {
+        entryDetectDomain( Verbosity.WARNING, logables );
+    }
+
+    /** ********************************************************************************************
+     * Logs a list of \e Logables using \ref Verbosity::ERROR "Verbosity.ERROR".
+     *
+     * The first \e logable provided may be a domain name. All values are passed to
+     * #entryDetectDomain. See documentation of this method for information on how to avoid
+     * ambiguities in respect to domain names.
+     *
+     * If one of the arguments (or a single argument given) is of type \c Object[], then the
+     * contents of this list is inserted into the list of logables.
+     * This allows to collect logables prior to invoking the method.
+     * In the C# version, where flexibility of parameter passing is limited due to the use of
+     * compiler-inserted parameters, parameters of type \c Object[] can also be used to
+     * provide more than four logables.
+     *
+     * @param logables  The list of \e Logables, optionally including a domain name at the start.
+     **********************************************************************************************/
+    public void error( Object... logables )
+    {
+        entryDetectDomain( Verbosity.ERROR, logables );
+    }
+
+
+    /** ********************************************************************************************
+     * Logs a list of \e Logables only if parameter \p condition is not \c true.
+     *
+     * If executed, \ref Verbosity.ERROR is used.
+     *
+     * The first \e logable provided may be a domain name. All values are passed to
+     * #entryDetectDomain. See documentation of this method for information on how to avoid
+     * ambiguities in respect to domain names.
+     *
+     * If one of the arguments (or a single argument given) is of type \c Object[], then the
+     * contents of this list is inserted into the list of logables.
+     * This allows to collect logables prior to invoking the method.
+     * In the C# version, where flexibility of parameter passing is limited due to the use of
+     * compiler-inserted parameters, parameters of type \c Object[] can also be used to
+     * provide more than four logables.
+     *
+     * \note This Method's name starts with capital letter, as <c>'assert'</c> is a Java keyword.
+     *
+     * @param condition If \c false, the <em>Log Statement</em> is executed.
+     * @param logables  The list of \e Logables, optionally including a domain name at the start.
+     **********************************************************************************************/
+    public void Assert( boolean condition, Object... logables )
+    {
+        if (!condition)
+            entryDetectDomain( Verbosity.ERROR, logables );
+        else
+            cntLogCalls++;
+    }
+
+    /** ********************************************************************************************
+     * Logs a list of \e Logables only if the parameter \p condition is \c true.
+     *
+     * If one of the arguments (or a single argument given) is of type \c Object[], then the
+     * contents of this list is inserted into the list of logables.
+     * This allows to collect logables prior to invoking the method.
+     * In the C# version, where flexibility of parameter passing is limited due to the use of
+     * compiler-inserted parameters, parameters of type \c Object[] can also be used to
+     * provide more than four logables.
+     *
+     * \note This Method's name starts with capital letter, as <c>'if'</c> is a Java keyword.
+     *
+     * @param condition If \c false, the <em>Log Statement</em> is executed.
+     * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
+     *                  set for the \e %Scope of invocation.
      * @param verbosity The verbosity.
-     * @param logable   The object to log.
+     * @param logables  The objects to log.
      **********************************************************************************************/
-    public void entry(Verbosity verbosity, Object logable)
+    public void If( boolean condition, String domain, Verbosity verbosity, Object... logables )
     {
-        entry( null, verbosity, logable );
+        if (condition)
+            entry( domain, verbosity, logables );
+        else
+            cntLogCalls++;
     }
 
     /** ********************************************************************************************
-     * Logs a \e Logable with
-     * \ref Verbosity::VERBOSE "Verbosity.VERBOSE".
+     * Logs a list of \e Logables only if the parameter \p condition is \c true.
+     * This overloaded version omits parameter \p domain.
      *
-     * This overloaded version does not offer a domain parameter but relies on a
-     * Scope Domain set for the scope.
+     * The first \e logable provided may be a domain name. All values are passed to
+     * #entryDetectDomain. See documentation of this method for information on how to avoid
+     * ambiguities in respect to domain names.
      *
-     * @param logable   The object to log.
+     * If one of the arguments (or a single argument given) is of type \c Object[], then the
+     * contents of this list is inserted into the list of logables.
+     * This allows to collect logables prior to invoking the method.
+     * In the C# version, where flexibility of parameter passing is limited due to the use of
+     * compiler-inserted parameters, parameters of type \c Object[] can also be used to
+     * provide more than four logables.
+     *
+     * \note This Method's name starts with capital letter, as <c>'if'</c> is a Java keyword.
+     *
+     * @param condition If \c false, the <em>Log Statement</em> is executed.
+     * @param verbosity The verbosity.
+     * @param logables  The objects to log.
      **********************************************************************************************/
-    public void verbose(Object logable)
+    public void If( boolean condition, Verbosity verbosity, Object... logables )
     {
-        entry( null, Verbosity.VERBOSE, logable );
+        if (condition)
+            entryDetectDomain( verbosity, logables );
+        else
+            cntLogCalls++;
     }
 
     /** ********************************************************************************************
-     * Logs a \e Logable with
-     * \ref Verbosity::VERBOSE "Verbosity.VERBOSE".
-     *
-     * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-     *                  set for the \e %Scope of invocation.
-     * @param logable   The object to log.
-     **********************************************************************************************/
-    public void verbose(String domain, Object logable)
-    {
-        entry( domain, Verbosity.VERBOSE, logable );
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable with
-     * \ref Verbosity::INFO "Verbosity.INFO".
-     *
-     * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-     *                  set for the \e %Scope of invocation.
-     * @param logable   The message to log.
-     **********************************************************************************************/
-    public void info(String domain, Object logable)
-    {
-        entry( domain, Verbosity.INFO, logable );
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable with
-     * \ref Verbosity::INFO "Verbosity.INFO".
-     *
-     * This overloaded version does not offer a domain parameter but relies on a
-     * Scope Domain set for the scope.
-     *
-     * @param logable   The object to log.
-     **********************************************************************************************/
-    public void info(Object logable)
-    {
-        entry( null, Verbosity.INFO, logable );
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable with
-     * \ref Verbosity::WARNING "Verbosity.WARNING".
-     *
-     * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-     *                  set for the \e %Scope of invocation.
-     * @param logable   The message to log.
-     **********************************************************************************************/
-    public void warning(String domain, Object logable)
-    {
-        entry( domain, Verbosity.WARNING, logable );
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable with
-     * \ref Verbosity::WARNING "Verbosity.WARNING".
-     *
-     * This overloaded version does not offer a domain parameter but relies on a
-     * Scope Domain set for the scope.
-     *
-     * @param logable   The object to log.
-     **********************************************************************************************/
-    public void warning(Object logable)
-    {
-        entry( null, Verbosity.WARNING, logable );
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable with
-     * \ref Verbosity.ERROR "Verbosity.ERROR".
-     *
-     * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-     *                  set for the \e %Scope of invocation.
-     * @param logable   The object to log.
-     **********************************************************************************************/
-    public void error(String domain, Object logable)
-    {
-        entry( domain, Verbosity.ERROR, logable );
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable with
-     * \ref Verbosity.ERROR "Verbosity.ERROR".
-     *
-     * This overloaded version does not offer a domain parameter but relies on a
-     * Scope Domain set for the scope.
-     *
-     * @param logable   The object to log.
-     **********************************************************************************************/
-    public void error(Object logable)
-    {
-        entry( null, Verbosity.ERROR, logable );
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable once, up to \p quantity times or every n-th time.
+     * Logs given \e logables once, up to \p quantity times or every n-th time.
      * In its simplest overloaded version, the counter is bound to the source code line, hence,
      * only the first execution of this exact <em>Log Statement</em> is executed.
      *
@@ -2352,6 +2440,15 @@ public class Lox extends ThreadLock
      * - %Log only the first n statements of a group of statements executed by a specific thread.
      *
      * \note
+     *   Unlike other methods of this class which accept more than one logable, this
+     *   method and its overloaded variants accept only one object. To supply several objects
+     *   at once, an \c Object[] may be passed with parameter \p logables, like in the
+     *   following sample:
+     *   \snippet "UT_alox_lox.java"      DOX_ALOX_LOX_ONCE
+     *
+     *<p>
+     *<p>
+     * \note
      *   Due to the limitations of the Java language to dissolve ambiguities when invoking
      *   overloaded methods, most of the overloads provided await parameters
      *   \p domain and \p verbosity at the start. This is in difference to ALox for C++ and C#,
@@ -2378,7 +2475,7 @@ public class Lox extends ThreadLock
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The object to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
@@ -2393,11 +2490,9 @@ public class Lox extends ThreadLock
      *                  this defaults to \c 1.
      *                  If negative, the first and every "-quantity-th" statement is executed.
      **********************************************************************************************/
-    public void once(String domain, Verbosity verbosity, Object logable, String group, Scope scope, int pkgLevel, int quantity)
+    public void once(String domain, Verbosity verbosity, Object logables, String group, Scope scope, int pkgLevel, int quantity)
     {
         try { acquire();
-
-            scopeInfo.set( owner );
 
             // We need a group. If none is given, there are two options:
             tmpAS._()._( group );
@@ -2436,7 +2531,7 @@ public class Lox extends ThreadLock
                     qty[0]++;
 
                     // do the log
-                    entry( domain, verbosity, logable );
+                    entry( domain, verbosity, logables );
 
                     // log info if this was the last time
                     if (qty[0] == quantity)
@@ -2464,18 +2559,12 @@ public class Lox extends ThreadLock
                         logInternal( Verbosity.INFO, "", intMsg );
                     }
                 }
-                else
-                    // release lock if logable was our internal log buffer singleton
-                    if (logable == logBuf) logBufLock.release();
             }
             // log Nth
             else
             {
                 if ( qty[0]++ % -quantity == 0 )
-                    entry( domain, verbosity, logable );
-                else
-                    // release lock if logable was our internal log buffer singleton
-                    if (logable == logBuf) logBufLock.release();
+                    entry( domain, verbosity, logables );
             }
 
         } finally { release(); }
@@ -2487,7 +2576,7 @@ public class Lox extends ThreadLock
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The object to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
@@ -2499,9 +2588,9 @@ public class Lox extends ThreadLock
      *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      **********************************************************************************************/
-    public void once(String domain, Verbosity verbosity, Object logable, String group, Scope scope, int pkgLevel)
+    public void once(String domain, Verbosity verbosity, Object logables, String group, Scope scope, int pkgLevel)
     {
-        once( domain, verbosity, logable, group, scope, pkgLevel, 1 );
+        once( domain, verbosity, logables, group, scope, pkgLevel, 1 );
     }
 
     /** ********************************************************************************************
@@ -2510,7 +2599,7 @@ public class Lox extends ThreadLock
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The object to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
@@ -2519,9 +2608,9 @@ public class Lox extends ThreadLock
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
      **********************************************************************************************/
-    public void once(String domain, Verbosity verbosity, Object logable, String group, Scope scope )
+    public void once(String domain, Verbosity verbosity, Object logables, String group, Scope scope )
     {
-        once( domain, verbosity, logable, group, scope, 0, 1 );
+        once( domain, verbosity, logables, group, scope, 0, 1 );
     }
 
     /** ********************************************************************************************
@@ -2530,7 +2619,7 @@ public class Lox extends ThreadLock
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The object to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
@@ -2538,9 +2627,9 @@ public class Lox extends ThreadLock
      *                  provided. If omitted and \p scope is Scope::Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      **********************************************************************************************/
-    public void once(String domain, Verbosity verbosity, Object logable, String group )
+    public void once(String domain, Verbosity verbosity, Object logables, String group )
     {
-        once( domain, verbosity, logable, group, Scope.GLOBAL, 0, 1 );
+        once( domain, verbosity, logables, group, Scope.GLOBAL, 0, 1 );
     }
 
     /** ********************************************************************************************
@@ -2549,7 +2638,7 @@ public class Lox extends ThreadLock
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The object to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
@@ -2559,9 +2648,9 @@ public class Lox extends ThreadLock
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      **********************************************************************************************/
-    public void once(String domain, Verbosity verbosity, Object logable, String group, int quantity )
+    public void once(String domain, Verbosity verbosity, Object logables, String group, int quantity )
     {
-        once( domain, verbosity, logable, group, Scope.GLOBAL, 0, quantity );
+        once( domain, verbosity, logables, group, Scope.GLOBAL, 0, quantity );
     }
 
     /** ********************************************************************************************
@@ -2570,7 +2659,7 @@ public class Lox extends ThreadLock
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The string message to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
      *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
@@ -2578,9 +2667,9 @@ public class Lox extends ThreadLock
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      **********************************************************************************************/
-    public void once(String domain, Verbosity verbosity, Object logable, Scope scope, int pkgLevel, int quantity)
+    public void once(String domain, Verbosity verbosity, Object logables, Scope scope, int pkgLevel, int quantity)
     {
-        once( domain, verbosity, logable, null, scope, pkgLevel, quantity );
+        once( domain, verbosity, logables, null, scope, pkgLevel, quantity );
     }
 
     /** ********************************************************************************************
@@ -2589,15 +2678,15 @@ public class Lox extends ThreadLock
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The string message to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
      *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      **********************************************************************************************/
-    public void once(String domain, Verbosity verbosity, Object logable, Scope scope, int pkgLevel)
+    public void once(String domain, Verbosity verbosity, Object logables, Scope scope, int pkgLevel)
     {
-        once( domain, verbosity, logable, null, scope, pkgLevel, 1 );
+        once( domain, verbosity, logables, null, scope, pkgLevel, 1 );
     }
 
     /** ********************************************************************************************
@@ -2606,12 +2695,12 @@ public class Lox extends ThreadLock
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The string message to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param scope     The \e %Scope that the group or counter is bound to.
      **********************************************************************************************/
-    public void once(String domain, Verbosity verbosity, Object logable, Scope scope)
+    public void once(String domain, Verbosity verbosity, Object logables, Scope scope)
     {
-        once( domain, verbosity, logable, null, scope, 0, 1 );
+        once( domain, verbosity, logables, null, scope, 0, 1 );
     }
 
     /** ********************************************************************************************
@@ -2620,11 +2709,11 @@ public class Lox extends ThreadLock
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The string message to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      **********************************************************************************************/
-    public void once(String domain, Verbosity verbosity, Object logable  )
+    public void once(String domain, Verbosity verbosity, Object logables  )
     {
-        once( domain, verbosity, logable, null, Scope.GLOBAL, 0, 1 );
+        once( domain, verbosity, logables, null, Scope.GLOBAL, 0, 1 );
     }
 
     /** ********************************************************************************************
@@ -2633,41 +2722,41 @@ public class Lox extends ThreadLock
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The string message to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      **********************************************************************************************/
-    public void once(String domain, Verbosity verbosity, Object logable, int quantity  )
+    public void once(String domain, Verbosity verbosity, Object logables, int quantity  )
     {
-        once( domain, verbosity, logable, null, Scope.GLOBAL, 0, quantity );
+        once( domain, verbosity, logables, null, Scope.GLOBAL, 0, quantity );
     }
 
     /** ********************************************************************************************
      * Overloaded version of \ref once.
      *
-     * @param logable   The string message to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      **********************************************************************************************/
-    public void once( Object logable)
+    public void once( Object logables)
     {
-        once( null, Verbosity.INFO, logable, null, Scope.GLOBAL, 0, 1 );
+        once( null, Verbosity.INFO, logables, null, Scope.GLOBAL, 0, 1 );
     }
 
     /** ********************************************************************************************
      * Overloaded version of \ref once.
      *
-     * @param logable   The string message to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      **********************************************************************************************/
-    public void once( Object logable, int quantity)
+    public void once( Object logables, int quantity)
     {
-        once( null, Verbosity.INFO, logable, null, Scope.GLOBAL, 0, quantity );
+        once( null, Verbosity.INFO, logables, null, Scope.GLOBAL, 0, quantity );
     }
 
     /** ********************************************************************************************
      * Overloaded version of \ref once.
      *
-     * @param logable   The string message to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      * @param group     The optional name of the statement group . If used, all statements that
@@ -2677,15 +2766,15 @@ public class Lox extends ThreadLock
      *                  provided. If omitted and \p scope is Scope::Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
     **********************************************************************************************/
-    public void once( Object logable, int quantity, String group  )
+    public void once( Object logables, int quantity, String group  )
     {
-        once( null, Verbosity.INFO, logable, group, Scope.GLOBAL, 0, quantity );
+        once( null, Verbosity.INFO, logables, group, Scope.GLOBAL, 0, quantity );
     }
 
     /** ********************************************************************************************
      * Overloaded version of \ref once.
      *
-     * @param logable   The string message to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      * @param scope     The \e %Scope that the group or counter is bound to.
@@ -2693,120 +2782,24 @@ public class Lox extends ThreadLock
      *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
     **********************************************************************************************/
-    public void once( Object logable, int quantity, Scope scope, int pkgLevel  )
+    public void once( Object logables, int quantity, Scope scope, int pkgLevel  )
     {
-        once( null, Verbosity.INFO, logable, null, scope, pkgLevel, quantity );
+        once( null, Verbosity.INFO, logables, null, scope, pkgLevel, quantity );
     }
 
     /** ********************************************************************************************
      * Overloaded version of \ref once.
      *
-     * @param logable   The string message to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      * @param scope     The \e %Scope that the group or counter is bound to.
     **********************************************************************************************/
-    public void once( Object logable, int quantity, Scope scope  )
+    public void once( Object logables, int quantity, Scope scope  )
     {
-        once( null, Verbosity.INFO, logable, null, scope, 0, quantity );
+        once( null, Verbosity.INFO, logables, null, scope, 0, quantity );
     }
 
-
-    /** ********************************************************************************************
-     * Logs a \e Logable only if the parameter \p condition is not \c true.
-     * If executed, \ref Verbosity.ERROR is used.
-     *
-     * \note This Method's name starts with capital letter, as <c>'assert'</c> is a Java keyword.
-     *
-     * @param condition If \c false, the <em>Log Statement</em> is executed.
-     * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-     *                  set for the \e %Scope of invocation.
-     * @param logable   The object to log.
-     **********************************************************************************************/
-    public void Assert(boolean condition, String domain, Object logable)
-    {
-        if (!condition)
-            entry( domain, Verbosity.ERROR, logable );
-        else
-        {
-            cntLogCalls++;
-            if (logable == logBuf)
-                logBufLock.release();
-        }
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable only if the parameter \p condition is not \c true.
-     * If executed, \ref Verbosity.ERROR is used.
-     *
-     * This overloaded version omits parameter \p domain.
-     *
-     * \note This Method's name starts with capital letter, as <c>'assert'</c> is a Java keyword.
-     *
-     * @param condition If \c false, the <em>Log Statement</em> is executed.
-     * @param logable   The object to log.
-     **********************************************************************************************/
-    public void Assert(boolean condition, Object logable)
-    {
-        if (!condition)
-            entry( null, Verbosity.ERROR, logable );
-        else
-        {
-            cntLogCalls++;
-            if (logable == logBuf)
-                logBufLock.release();
-        }
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable only if the parameter \p condition is \c true.
-     * This overloaded version omits parameter \p domain.
-     *
-     * \note This Method's name starts with capital letter, as <c>'assert'</c> is a Java keyword.
-     *
-     * \see Method #Assert.
-     *
-     * @param condition If \c false, the <em>Log Statement</em> is executed.
-     * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-     *                  set for the \e %Scope of invocation.
-     * @param verbosity The verbosity.
-     * @param logable   The object to log.
-     **********************************************************************************************/
-    public void If(boolean condition, String domain, Verbosity verbosity, Object logable)
-    {
-        if (condition)
-            entry( domain, verbosity, logable );
-        else
-        {
-            cntLogCalls++;
-            if (logable == logBuf)
-                logBufLock.release();
-        }
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable only if the parameter \p condition is \c true.
-     * This overloaded version omits parameter \p domain.
-     *
-     * \note This Method's name starts with capital letter, as <c>'if'</c> is a Java keyword.
-     *
-     * \see Method #Assert.
-     *
-     * @param condition If \c false, the <em>Log Statement</em> is executed.
-     * @param verbosity The verbosity.
-     * @param logable   The object to log.
-     **********************************************************************************************/
-    public void If(boolean condition, Verbosity verbosity, Object logable)
-    {
-        if (condition)
-            entry( null, verbosity, logable );
-        else
-        {
-            cntLogCalls++;
-            if (logable == logBuf)
-                logBufLock.release();
-        }
-    }
 
     // #############################################################################################
     // internals
@@ -2825,7 +2818,7 @@ public class Lox extends ThreadLock
      *                   \ref com::aworx::lox::core::Domain::PATH_SEPARATOR "Domain.PATH_SEPARATOR",
      *                   no Scope Domains are applied.
      * @return The resulting \ref com::aworx::lox::core::Domain "Domain".
-     ******************************************************************************************/
+     **********************************************************************************************/
     protected Domain evaluateResultDomain(String domainPath)
     {
         // 0. internal domain tree?
@@ -2853,13 +2846,13 @@ public class Lox extends ThreadLock
         return findDomain( domains, resDomain );
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Invokes \b Find on the given domain and logs internal message when the domain was
      * not known before.
      * @param domainSystem The domain system. Either the standard or the internal one.
      * @param domainPath   The domain path.
      * @return The resulting \ref com::aworx::lox::core::Domain "Domain".
-     ******************************************************************************************/
+     **********************************************************************************************/
     @SuppressWarnings ("null")
     Domain findDomain(Domain domainSystem, AString domainPath)
     {
@@ -2874,7 +2867,7 @@ public class Lox extends ThreadLock
             Domain dom= null;
             for(;;)
             {
-                dom= domainSystem.find( domainPath, domainSensitivity, 1, booleanOutputParam );
+                dom= domainSystem.find( domainPath, 1, booleanOutputParam );
                 boolean wasCreated= booleanOutputParam[0];
                 if ( wasCreated )
                 {
@@ -2940,7 +2933,7 @@ public class Lox extends ThreadLock
                             case STARTS_WITH:
                                 if( substPath.isEmpty() )
                                 {
-                                    if ( dom.fullPath.startsWith( rule.search, domainSensitivity ) )
+                                    if ( dom.fullPath.startsWith( rule.search, Case.SENSITIVE ) )
                                     {
                                         substPath._( rule.replacement )._( dom.fullPath, rule.search.length() );
                                         substituted= true;
@@ -2949,7 +2942,7 @@ public class Lox extends ThreadLock
                                 }
                                 else
                                 {
-                                    if ( substPath.startsWith( rule.search, domainSensitivity ) )
+                                    if ( substPath.startsWith( rule.search, Case.SENSITIVE ) )
                                     {
                                         substPath.replaceSubstring( rule.replacement, 0, rule.search.length()  );
                                         substituted= true;
@@ -2962,7 +2955,7 @@ public class Lox extends ThreadLock
                             case ENDS_WIDTH:
                                 if( substPath.isEmpty() )
                                 {
-                                    if ( dom.fullPath.endsWith( rule.search, domainSensitivity ) )
+                                    if ( dom.fullPath.endsWith( rule.search, Case.SENSITIVE ) )
                                     {
                                         substPath._( dom.fullPath, 0, dom.fullPath.length() - rule.search.length() )._( rule.replacement );
                                         substituted= true;
@@ -2971,7 +2964,7 @@ public class Lox extends ThreadLock
                                 }
                                 else
                                 {
-                                    if ( substPath.endsWith( rule.search, domainSensitivity ) )
+                                    if ( substPath.endsWith( rule.search, Case.SENSITIVE ) )
                                     {
                                         substPath.deleteEnd( rule.search.length() )._( rule.replacement );
                                         substituted= true;
@@ -2983,7 +2976,7 @@ public class Lox extends ThreadLock
                             case SUBSTRING:
                                 if( substPath.isEmpty() )
                                 {
-                                    int idx= dom.fullPath.indexOf( rule.search, 0, domainSensitivity );
+                                    int idx= dom.fullPath.indexOf( rule.search, 0, Case.SENSITIVE );
                                     if ( idx >= 0 )
                                     {
                                         substPath._( dom.fullPath, 0, idx )._( rule.replacement)._( dom.fullPath, idx + rule.search.length() );
@@ -2993,7 +2986,7 @@ public class Lox extends ThreadLock
                                 }
                                 else
                                 {
-                                    int idx= substPath.indexOf( rule.search, 0, domainSensitivity );
+                                    int idx= substPath.indexOf( rule.search, 0, Case.SENSITIVE );
                                     if ( idx >= 0 )
                                     {
                                         substPath.replaceSubstring( rule.replacement, idx, rule.search.length()  );
@@ -3059,24 +3052,36 @@ public class Lox extends ThreadLock
 
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
+     * Simple helper method that inserts a logable at the front of #tmpLogables.
+     * If the logable is an object array, each object will be inserted.
+     *
+     * @param logable   The logable or array of logables.
+     **********************************************************************************************/
+    protected void insertLogables( Object logable )
+    {
+        if ( logable instanceof Object[] )
+        {
+            Object[] logableArray= (Object[]) logable;
+            for (int i= logableArray.length - 1 ; i >= 0 ; --i )
+                tmpLogables.add( 0, logableArray[i] );
+        }
+        else
+            tmpLogables.add( 0, logable );
+    }
+
+    /** ********************************************************************************************
      * This method is looping over the \e Loggers, checking their verbosity against the given
      * one, and, if they match, invoke the log method of the \e Logger.
      * With the first logger identified to be active, the <em>Prefix Objects</em> get
      * collected from the scope store.
      * @param dom       The domain to log on
      * @param verbosity The verbosity.
-     * @param logable   The object to log.
+     * @param logables  The objects to log.
      * @param prefixes  Denotes if prefixes should be included or not.
-     ******************************************************************************************/
-    protected void log( Domain dom, Verbosity verbosity, Object logable, Inclusion prefixes )
+     **********************************************************************************************/
+    protected void log( Domain dom, Verbosity verbosity, Object[] logables, Inclusion prefixes )
     {
-        // OK, this is a little crude, but the simplest solution: As class ScopeStore sees
-        // null objects as nothing and won't return them in a walk, we replace null by
-        // an object (we choose the store itself) and fix this in the loop back to null
-        if ( logable == null )
-            logable= scopePrefixes;
-
         dom.cntLogCalls++;
         tmpLogables.clear();
         for ( int i= 0; i < dom.countLoggers() ; i++ )
@@ -3085,16 +3090,24 @@ public class Lox extends ThreadLock
                 // lazily collect objects once
                 if ( tmpLogables.size() == 0 )
                 {
-                    scopePrefixes.initWalk( Scope.THREAD_INNER, logable );
+                    // OK, this is a little crude, but the simplest solution: As class ScopeStore sees
+                    // null objects as nothing and won't return them in a walk, we replace null by
+                    // an object (ourselves) and fix this in the loop back to null
+                    scopePrefixes.initWalk( Scope.THREAD_INNER, logables != null ? (Object) logables : (Object) this );
                     Object next;
                     while( (next= scopePrefixes.walk() ) != null )
                     {
-                        if ( prefixes == Inclusion.INCLUDE || next == logable)
-                            tmpLogables.add( 0, next != scopePrefixes ? next : null );
+                        if ( next == logables )
+                            for( int l= logables.length -1 ; l >= 0; --l )
+                                insertLogables( logables[l] );
+
+                        else if (    next != this                    // see comment above
+                                  && prefixes == Inclusion.INCLUDE ) // this is false for internal domains (only domain specific logables are added there)
+                            insertLogables( next );
 
                         // was this the actual? then insert domain-associated logables now
                         boolean excludeOthers= false;
-                        if( next == logable )
+                        if( next == logables || next == this )
                         {
                             int qtyThreadInner= tmpLogables.size() -1;
                             Domain pflDom= dom;
@@ -3103,7 +3116,7 @@ public class Lox extends ThreadLock
                                 for( int ii= pflDom.prefixLogables.size() -1 ; ii >= 0 ; ii-- )
                                 {
                                     Domain.PL pl= pflDom.prefixLogables.get(ii);
-                                    tmpLogables.add( 0,  pl.logable );
+                                    insertLogables( pl.logable );
                                     if ( pl.includeOtherPLs == Inclusion.EXCLUDE )
                                     {
                                         excludeOthers= true;
@@ -3134,18 +3147,18 @@ public class Lox extends ThreadLock
             }
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Logs an internal error message using the internal domain tree as defined in
      * \ref com::aworx::lox::ALox::INTERNAL_DOMAINS "ALox.INTERNAL_DOMAINS".
      *
      * @param verbosity The verbosity.
      * @param subDomain The sub-domain of the internal domain to log into.
      * @param logable   The message.
-     ******************************************************************************************/
-    protected void logInternal(Verbosity verbosity, String subDomain, AString logable)
+     **********************************************************************************************/
+    protected  void logInternal( Verbosity verbosity, String subDomain, AString logable )
     {
-        log( findDomain( internalDomains, resDomainInternal._()._( subDomain ) ),
-             verbosity, logable, Inclusion.EXCLUDE );
+        log( findDomain( internalDomains, resDomainInternal._()._NC( subDomain ) ),
+            verbosity, new Object[] {logable}, Inclusion.EXCLUDE );
     }
 
     /** ********************************************************************************************
@@ -3166,8 +3179,6 @@ public class Lox extends ThreadLock
         //note: the public class interface assures that \p removeNTRSD (named thread-related
         //      scope domain) only evaluates true for thread related scopes
         try { acquire();
-
-            scopeInfo.set( owner );
 
             boolean newValueIsNotEmpty= scopeDomain != null && scopeDomain.length() > 0;
 
@@ -3237,10 +3248,10 @@ public class Lox extends ThreadLock
         finally  { release(); }
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Implementation of the interface method fetching all possible parameters.
      *
-     * @param logable      The <em>Prefix Logable</em> to set.
+     * @param prefix       The <em>Prefix Logable(s)</em> to set.
      * @param scope        The scope that the given \p logable should be registered for.
      *                     Available Scope definitions are platform/language dependent.
      * @param packageLevel Used only with
@@ -3249,16 +3260,15 @@ public class Lox extends ThreadLock
      *                     of the packages. Optional and defaults to \c 0.
      * @param thread       The thread to set/unset a thread-related <em>Prefix Logable</em> for.
      **********************************************************************************************/
-    protected void setPrefixImpl( Object  logable, Scope scope, int packageLevel, Thread thread )
+    protected void setPrefixImpl( Object  prefix, Scope scope, int packageLevel, Thread thread )
     {
         try { acquire();
-            scopeInfo.set( owner );
 
             // store new prefix for this scope (and get current)
             Object previousLogable;
             scopePrefixes.InitAccess( scope, packageLevel, thread );
-            if ( logable != null )
-                previousLogable= scopePrefixes.store ( logable );
+            if ( prefix != null )
+                previousLogable= scopePrefixes.store ( prefix );
             else
                 previousLogable= scopePrefixes.remove( null );
 
@@ -3267,15 +3277,15 @@ public class Lox extends ThreadLock
             intMsg._()._( "Object ");
             Verbosity intMsgVerbosity= Verbosity.INFO;
 
-            if ( logable != null )
+            if ( prefix != null )
             {
-                intMsg._( '\"' )._(logable)._( '\"' )
+                intMsg._( '\"' )._(prefix)._( '\"' )
                       ._( " set as prefix logable for "); ALox.toString(scope, packageLevel, intMsg); intMsg._( '.') ;
 
                 if ( previousLogable  != null )
                 {
-                    if (     ( logable instanceof String  && previousLogable instanceof String && logable.equals( previousLogable ))
-                         ||   logable == previousLogable )
+                    if (     ( prefix instanceof String  && previousLogable instanceof String && prefix.equals( previousLogable ))
+                         ||   prefix == previousLogable )
                     {
                         intMsg._( " (Same as before.)" );
                         intMsgVerbosity= Verbosity.VERBOSE;
@@ -3310,7 +3320,7 @@ public class Lox extends ThreadLock
      * @param scope     The scope that is to be checked.
      * @return \c true if \p scope is thread-related, \c false else.
      **********************************************************************************************/
-    protected boolean isThreadReleatedScope(Scope scope)
+    protected boolean isThreadRelatedScope(Scope scope)
     {
         if (scope == Scope.THREAD_INNER || scope == Scope.THREAD_OUTER) return true;
 
@@ -3319,12 +3329,12 @@ public class Lox extends ThreadLock
         intMsg._( '.' );
         logInternal( Verbosity.ERROR, "DMN", intMsg );
 
-        ALIB.ERROR( "Illegal parameter, only Scope.THREAD_OUTER and Scope.THREAD_INNER allowed." );
+        com.aworx.lib.ALIB_DBG.ERROR( "Illegal parameter, only Scope.THREAD_OUTER and Scope.THREAD_INNER allowed." );
 
         return false;
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Reads the verbosity for the given logger and domain from the ALib configuration system.
      * This internal method is used in two occasions:
      * - when a new logger is added: recursively for all existing domains (\p configStr is
@@ -3334,7 +3344,7 @@ public class Lox extends ThreadLock
      * @param logger      The logger to set the verbosity for.
      * @param dom         The domain to set the verbosity for.
      * @param variable    The (already read) variable to set verbosities from.
-     ******************************************************************************************/
+     **********************************************************************************************/
     protected void  getVerbosityFromConfig( Logger  logger, Domain  dom, Variable variable )
     {
         // get logger number. It may happen that the logger is not existent in this domain tree.
@@ -3350,7 +3360,7 @@ public class Lox extends ThreadLock
             verbosityTknzr.set( variable.getString( varNo ), '=' );
 
             domainStr.set( verbosityTknzr.next() );
-            if ( domainStr.startsWith( "INTERNAL_DOMAINS", domainSensitivity ) )
+            if ( domainStr.startsWith( "INTERNAL_DOMAINS", Case.IGNORE ) )
             {
                 domainStrBuf._()._( domainStr.buf, domainStr.start + 16, domainStr.length() -16 );
                 while ( domainStrBuf.charAtStart() == '/' )
@@ -3364,12 +3374,12 @@ public class Lox extends ThreadLock
                 continue;
 
             int searchMode= 0;
-            if ( domainStr.consume       ( '*' ) )    searchMode+= 2;
-            if ( domainStr.consumeFromEnd( '*' ) )    searchMode+= 1;
-            if(     ( searchMode == 0 && dom.fullPath.equals          ( domainStr,    domainSensitivity )     )
-                ||  ( searchMode == 1 && dom.fullPath.startsWith      ( domainStr,    domainSensitivity )     )
-                ||  ( searchMode == 2 && dom.fullPath.endsWith        ( domainStr,    domainSensitivity )     )
-                ||  ( searchMode == 3 && dom.fullPath.indexOf         ( domainStr, 0, domainSensitivity ) >=0 )
+            if ( domainStr.consumeChar( '*' ) )    searchMode+= 2;
+            if ( domainStr.consumeCharFromEnd( '*' ) )    searchMode+= 1;
+            if(     ( searchMode == 0 && dom.fullPath.equals          ( domainStr,    Case.IGNORE )     )
+                ||  ( searchMode == 1 && dom.fullPath.startsWith      ( domainStr,    Case.IGNORE )     )
+                ||  ( searchMode == 2 && dom.fullPath.endsWith        ( domainStr,    Case.IGNORE )     )
+                ||  ( searchMode == 3 && dom.fullPath.indexOf         ( domainStr, 0, Case.IGNORE ) >=0 )
                 )
             {
                 Verbosity verbosity= ALox.readVerbosity( verbosityStr );
@@ -3387,12 +3397,12 @@ public class Lox extends ThreadLock
         }
     }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Reads a prefix string from the ALib configuration system.
      * This internal method is used when a new domain is created,
      *
      * @param dom         The domain to set the verbosity for.
-     ******************************************************************************************/
+     **********************************************************************************************/
     protected void  getDomainPrefixFromConfig( Domain  dom )
     {
         Variable variable= new Variable( ALox.PREFIXES, getName());
@@ -3409,7 +3419,7 @@ public class Lox extends ThreadLock
             prefixTok.set( variable.getString( varNo ), '=' );
 
             domainStr.set( prefixTok.next() );
-            if ( domainStr.startsWith( "INTERNAL_DOMAINS", domainSensitivity ) )
+            if ( domainStr.startsWith( "INTERNAL_DOMAINS", Case.IGNORE ) )
             {
                 domainStrBuf._()._( domainStr.buf, domainStr.start + 16, domainStr.length() -16 );
                 while ( domainStrBuf.charAtStart() == '/' )
@@ -3422,8 +3432,8 @@ public class Lox extends ThreadLock
             prefixStr.set( prefixTokInner.next() );
             if ( prefixStr.isEmpty() )
                 continue;
-            if ( prefixStr.consume( '\"' ) )
-                prefixStr.consumeFromEnd( '\"' );
+            if ( prefixStr.consumeChar( '\"' ) )
+                prefixStr.consumeCharFromEnd( '\"' );
 
             Inclusion otherPLs= Inclusion.INCLUDE;
             prefixTokInner.next();
@@ -3431,12 +3441,12 @@ public class Lox extends ThreadLock
                 otherPLs= ALIB.readInclusion( prefixTokInner.actual  );
 
             int searchMode= 0;
-            if ( domainStr.consume       ( '*' ) )    searchMode+= 2;
-            if ( domainStr.consumeFromEnd( '*' ) )    searchMode+= 1;
-            if(     ( searchMode == 0 && dom.fullPath.equals          ( domainStr,    domainSensitivity )     )
-                ||  ( searchMode == 1 && dom.fullPath.startsWith      ( domainStr,    domainSensitivity )     )
-                ||  ( searchMode == 2 && dom.fullPath.endsWith        ( domainStr,    domainSensitivity )     )
-                ||  ( searchMode == 3 && dom.fullPath.indexOf         ( domainStr, 0, domainSensitivity ) >=0 )
+            if ( domainStr.consumeChar( '*' ) )    searchMode+= 2;
+            if ( domainStr.consumeCharFromEnd( '*' ) )    searchMode+= 1;
+            if(     ( searchMode == 0 && dom.fullPath.equals          ( domainStr,    Case.IGNORE )     )
+                ||  ( searchMode == 1 && dom.fullPath.startsWith      ( domainStr,    Case.IGNORE )     )
+                ||  ( searchMode == 2 && dom.fullPath.endsWith        ( domainStr,    Case.IGNORE )     )
+                ||  ( searchMode == 3 && dom.fullPath.indexOf         ( domainStr, 0, Case.IGNORE ) >=0 )
                 )
             {
                 dom.prefixLogables.add( dom.new PL( new AString( prefixStr ), otherPLs ) );
@@ -3452,7 +3462,7 @@ public class Lox extends ThreadLock
     }
 
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Reads the verbosity for the given logger and domain from the ALib configuration system.
      * This internal method is used when a new logger is added.
      * Walks recursively for all existing domains.
@@ -3460,7 +3470,7 @@ public class Lox extends ThreadLock
      * @param logger      The logger to set the verbosity for.
      * @param dom         The domain to set the verbosity for.
      * @param cfgResult   The result of the search for the variable to set verbosities from.
-     ******************************************************************************************/
+     **********************************************************************************************/
     protected void getAllVerbosities      ( Logger  logger,  Domain  dom,  Variable cfgResult )
     {
         // get verbosity for us

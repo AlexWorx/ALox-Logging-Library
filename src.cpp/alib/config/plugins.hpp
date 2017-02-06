@@ -1,8 +1,8 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -16,9 +16,9 @@
 
 // then, set include guard
 #ifndef HPP_ALIB_CONFIG_PLUGINS
-#if !defined( IS_DOXYGEN_PARSER)
+//! @cond NO_DOX
 #define HPP_ALIB_CONFIG_PLUGINS 1
-#endif
+//! @endcond NO_DOX
 
 
 #if !defined (HPP_ALIB_CONFIG_VARIABLE)
@@ -29,10 +29,8 @@
     #include "alib/strings/substring.hpp"
 #endif
 
-namespace aworx {
-namespace           lib {
-
-namespace                   config {
+namespace aworx { namespace lib { namespace config
+{
 
 
 // #################################################################################################
@@ -59,8 +57,9 @@ namespace                   config {
  * - "Externalizing" a value:
  *   - Value is surrounded by quotes if it starts or ends with spaces or if it includes
  *     the delimiter token.
- *   - A few characters are escaped using \c '\\', for example \c '\\n', \c '\\r', \c '\\t' and also
- *    the double quotation marks \c ".
+ *   - A few characters are escaped using \c '\\'. Those are
+ *     \c \\n, \c \\r, \c \\t , \c \\a, \c \\b, \c \\v, \c \\f, \c \\e and also
+ *     the double quotation marks \c \\" and the backslash itself (\c \\\\).
  *
  * - "Internalizing" a value:
  *   - If (non-escaped) quote \c " characters are found, those are removed and whitespaces
@@ -76,6 +75,11 @@ namespace                   config {
 class XTernalizer
 {
     public:
+
+    /** ****************************************************************************************
+     * Virtual destructor
+     *****************************************************************************************/
+    virtual ~XTernalizer()  {}
 
     /** ********************************************************************************************
      * Parses values found in string \p src and adds them to \p variable.
@@ -107,12 +111,7 @@ class XTernalizer
     void InternalizeValue( Substring& src, AString& dest );
 
     /** ********************************************************************************************
-     * Converts the given \p src string to an external representation. In particular, the following
-     * rules apply:
-     *   - \p src is surrounded by quotes if it starts or ends with spaces or if it includes
-     *     the delimiter character \p delim.
-     *   - A few characters are escaped using \c '\\', for example \c '\\n', \c '\\r', \c '\\t'
-     *     and also the double quotation marks \c ".
+     * Converts the given \p src string to an external representation.
      *
      * @param  src      The source string
      * @param  dest     The destination string
@@ -240,16 +239,16 @@ class ConfigurationPlugin
 class CommandLinePlugin : public ConfigurationPlugin
 {
     protected:
-        int         argc;  ///< the number of command line arguments
-        void**      argv;  ///< the list of command line arguments
-        bool        wArgs; ///< determines if argv is of type '<em>wchar_t **</em>'
-                           ///< or '<em>char **</em>'
+        int         argCount;   ///< the number of command line arguments
+        void**      argVector;  ///< the list of command line arguments
+        bool        wArgs;      ///< determines if argv is of type '<em>wchar_t **</em>'
+                                ///< or '<em>char **</em>'
 
     public:
 
         /** ****************************************************************************************
          * Constructor. After creation, method #SetArgs should be called to equip this instance
-         * with the command line agruments.
+         * with the command line arguments.
          ******************************************************************************************/
                  CommandLinePlugin() {}
 
@@ -264,26 +263,25 @@ class CommandLinePlugin : public ConfigurationPlugin
          * \ref aworx::lib::config::Configuration::SetCommandLineArgs "Configuration::SetCommandLineArgs".
          *
          *\note In standard application scenarios, this method is invoked by method
-         *      \ref aworx::lib::ALIB::Init "ALIB::Init" for the singleton of this class found
-         *      in class \b %Configuration, which in turn is found as a singleton in
-         *      \ref aworx::lib::ALIB::Config "ALIB::Config".
+         *      \ref aworx::lib::ALIB::Init "ALIB::Init" for the singleton
+         *      \ref aworx::lib::config::Configuration::Default "Configuration::Default".
          *
          *\note On the Windows platform, the Microsoft compiler provides the global variables
          *      <em>__argc</em> and <em>__argv</em> (respectively <em>__wargv</em> for wide
          *      character binaries. These variables a can be used if this method is invoked
          *      outside of the <em>main()</em> method.
          *
-         * @param argc    The number of arguments in argv
-         * @param argv    The list of command line arguments.
-         * @param wArgs   If \c true, parameter argv is of type '*<em>wchar_t **</em>', otherwise
-         *                of type '<em>char **</em>'.
-         *                Defaults to \c false.
+         * @param argc          The number of arguments in argv
+         * @param argv          The list of command line arguments.
+         * @param areWideChar   If \c true, parameter \p argv is of type '*<em>wchar_t **</em>',
+         *                      otherwise of type '<em>char **</em>'.
+         *                      Defaults to \c false.
          ******************************************************************************************/
-        void SetArgs( int argc, void** argv= nullptr, bool wArgs= false )
+        void SetArgs( int argc, void** argv= nullptr, bool areWideChar= false )
         {
-            this->argc=     argc;
-            this->argv=     argv;
-            this->wArgs=    wArgs;
+            this->argCount=     argc;
+            this->argVector=    argv;
+            this->wArgs=        areWideChar;
         }
 
         /** ****************************************************************************************

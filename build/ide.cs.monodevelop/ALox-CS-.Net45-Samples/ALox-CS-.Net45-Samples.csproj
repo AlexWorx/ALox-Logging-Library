@@ -11,6 +11,7 @@
     <AssemblyName>ALox-CS-.Net45-Samples</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <ReleaseVersion>1.3</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -19,17 +20,17 @@
     <BaseIntermediateOutputPath>..\..\_builds_\ide.cs.monodevelop\</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
     <OutputPath>..\..\_builds_\ide.cs.monodevelop\ALox-CS-.Net45-SimpleTest\bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;ALIB_MONO_DEVELOP;ALOX_DBG_LOG;ALOX_REL_LOG</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;ALIB_IDE_MONODEVELOP;ALOX_DBG_LOG;ALOX_REL_LOG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Externalconsole>true</Externalconsole>
+    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
     <BaseIntermediateOutputPath>..\..\_builds_\ide.cs.monodevelop\</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
     <OutputPath>..\..\_builds_\ide.cs.monodevelop\ALox-CS-.Net45-SimpleTest\bin\Release\</OutputPath>
-    <DefineConstants>TRACE;ALIB_MONO_DEVELOP;ALOX_REL_LOG</DefineConstants>
+    <DefineConstants>TRACE;ALIB_IDE_MONODEVELOP;ALOX_REL_LOG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>

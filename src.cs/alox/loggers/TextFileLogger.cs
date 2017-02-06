@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox.loggers - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
 using System.IO;
@@ -14,16 +14,16 @@ using cs.aworx.lox.core.textlogger;
 using cs.aworx.lox.tools;
 using cs.aworx.lox.core;
 using cs.aworx.lib.strings;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 
 
 namespace cs.aworx.lox.loggers    {
 
 /** ************************************************************************************************
  * This is a very simple file logger for textual log outputs. The file name string provided
- * in the constructor is not verified. 
- * The fileName may be changed any time by simply setting the public member #FileName 
- * without the need of any other interaction other than acquiring the \c Lox that this logger is 
+ * in the constructor is not verified.
+ * The fileName may be changed any time by simply setting the public member #FileName
+ * without the need of any other interaction other than acquiring the \c Lox that this logger is
  * attached to.
  **************************************************************************************************/
 public class TextFileLogger : PlainTextLogger
@@ -85,7 +85,7 @@ public class TextFileLogger : PlainTextLogger
      * Closes the file.
      **********************************************************************************************/
     protected void closeFile()
-    {   
+    {
         if( hasIoError )
             return;
 

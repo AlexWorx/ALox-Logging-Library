@@ -1,10 +1,10 @@
 ﻿// #################################################################################################
 //  aworx::lox::core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alib/alib.hpp"
 #if !defined (HPP_ALIB_STRINGS_TOKENIZER)
     #include "alib/strings/tokenizer.hpp"
 #endif
@@ -18,16 +18,13 @@
 #endif
 
 #include "alox/core/textlogger/plaintextlogger.hpp"
-#include "alib/core/util.hpp"
+#include "alib/strings/spaces.hpp"
 
 
 using namespace std;
 using namespace aworx;
 using namespace aworx::lox::core;
 using namespace aworx::lox::core::textlogger;
-
-// For code compatibility with ALox Java/C++
-#define _NC _<false>
 
 void PlainTextLogger::logText( Domain&          ,   Verbosity  ,
                                AString&      msg,
@@ -37,10 +34,10 @@ void PlainTextLogger::logText( Domain&          ,   Verbosity  ,
         return;
 
     // loop over message, print the parts between the escape sequences
-    int         msgLength=  msg.Length();
-    int         start=      0;
-    int         end;
-    int         column=     0;
+    integer         msgLength=  msg.Length();
+    integer         start=      0;
+    integer         end;
+    integer         column=     0;
     while( start < msgLength )
     {
         bool foundESC=  true;
@@ -53,7 +50,7 @@ void PlainTextLogger::logText( Domain&          ,   Verbosity  ,
 
         if( end > start )
         {
-            int logWidth= logSubstring( msg,  start, end - start );
+            integer logWidth= logSubstring( msg,  start, end - start );
             if ( logWidth < 0 )
                 return;
             column+= logWidth;
@@ -69,19 +66,19 @@ void PlainTextLogger::logText( Domain&          ,   Verbosity  ,
             {
                 end++;
                 c=  msg[end++];
-                int extraSpace=  c >= '0' && c <= '9' ? (int)  ( c - '0' )
-                                                      : (int)  ( c - 'A' ) + 10;
+                int extraSpace=  c >= '0' && c <= '9' ?   c - '0'
+                                                      :   c - 'A'  + 10;
 
                 int tabStop= AutoSizes.Next( column, extraSpace );
 
                 if ( tabStop > column )
                 {
-                    const AString& spaces= lib::Util::GetSpaces();
-                    int spacesLength= spaces.Length();
-                    int qty= tabStop - column;
+                    const AString& spaces= lib::strings::Spaces::Get();
+                    integer spacesLength= spaces.Length();
+                    integer qty= tabStop - column;
                     while ( qty > 0 )
                     {
-                        int size= qty < spacesLength ? qty : spacesLength;
+                        integer size= qty < spacesLength ? qty : spacesLength;
                         if( logSubstring( spaces, 0, size ) < 0 )
                             return;
                         qty-= size;

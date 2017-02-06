@@ -1,17 +1,14 @@
 ﻿// #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /**
-\page manual    User Manual
+\page manual    Contents
 
-
-# Contents #
-
-### Using ALox ###
+## Using ALox ##
 
 \ref man_intro                            <br>
 \ref man_features_and_limitations         <br>
@@ -30,11 +27,11 @@
 \ref man_domain_substitution              <br>
 \ref man_colorful_loggers                 <br>
 
-### Reference Appendix ###
+## Reference Appendix ##
 \ref GrpALoxConfigVars                    <br>
 \ref man_apdx_auto_config                 <br>
 
-### Extending ALox ###
+## Extending ALox ##
 \ref man_ext_namespaces                   <br>
 \ref man_ext_loggers                      <br>
 
@@ -52,7 +49,7 @@ written in different programming languages, differ. Sometimes in details, someti
 are more than that.
 
 As a matter of fact, this manual provides a more abstract and high level view on ALox.
-Such general understanding of the the ALox architecture and design concepts, might
+Such general understanding of the ALox architecture and design concepts, might
 be important to maximize the use of ALox.
 
 If you have not worked with ALox, yet, and have not read one of the tutorials, we <b>highly recommend to
@@ -112,10 +109,10 @@ of the different namespaces (Java: packages). Those are:
  ([C++] (@ref      #aworx::lib::containers),
   [C#]  (@ref  #cs::aworx::lib::containers),
   [Java](@ref #com::aworx::lib::containers))
-- <b>[com::|cs::]%aworx::lib::enums</b>
- ([C++] (@ref      #aworx::lib::enums),
-  [C#]  (@ref  #cs::aworx::lib::enums),
-  [Java](@ref #com::aworx::lib::enums))
+- <b>[com::|cs::]%aworx::lib::lang</b>
+ ([C++] (@ref      #aworx::lib::lang),
+  [C#]  (@ref  #cs::aworx::lib::lang),
+  [Java](@ref #com::aworx::lib::lang))
 - <b>[com::|cs::]%aworx::lib::strings</b>
  ([C++] (@ref      #aworx::lib::strings),
   [C#]  (@ref  #cs::aworx::lib::strings),

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../src.java/alib">
+      <sourceFolder url="file://$MODULE_DIR$/../../src.java/alib" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src.java/alib/com" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src.java/alib/com/aworx" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src.java/alib/com/aworx/lib" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src.java/alib/com/aworx/lib/config" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src.java/alib/com/aworx/lib/containers" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src.java/alib/com/aworx/lib/lang" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src.java/alib/com/aworx/lib/strings" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src.java/alib/com/aworx/lib/threads" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src.java/alib/com/aworx/lib/time" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

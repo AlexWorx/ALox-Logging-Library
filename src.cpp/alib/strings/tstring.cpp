@@ -1,10 +1,10 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alib/alib.hpp"
 
 
 #if !defined (HPP_ALIB_STRINGS_SUBSTRING)
@@ -25,10 +25,6 @@
 #if !defined (_GLIBCXX_CSTDLIB)  && !defined(_CSTDLIB_)
     #include <cstdlib>
 #endif
-#if !defined (_MATH_H)           && !defined(_INC_MATH)
-    #include <math.h>
-#endif
-
 #if !defined (_GLIBCXX_IOSTREAM ) && !defined(_IOSTREAM_)
     #include <iostream>
 #endif
@@ -36,18 +32,17 @@
 using namespace std;
 
 
-namespace aworx {
-namespace           lib {
-namespace                   strings {
-
+namespace aworx { namespace lib { namespace strings
+{
 
 
 // *************************************************************************************************
 // String::_dbgCheck()
 // *************************************************************************************************
-#if defined(ALIB_DEBUG_STRINGS) && !defined( IS_DOXYGEN_PARSER )
+//! @cond NO_DOX
+#if ALIB_DEBUG_STRINGS
 
-    #if !defined(ALIB_DEBUG)
+    #if !ALIB_DEBUG
         #pragma message "Compiler symbol ALIB_DEBUG_STRINGS_ON set, while ALIB_DEBUG is off. Is this really wanted?"
     #endif
 
@@ -60,71 +55,140 @@ namespace                   strings {
                                 ||  buffer[length] == '\0'
                                 ,"Terminated but terminator char '\\0' not present"         );
     }
-
 #endif
+//! @endcond NO_DOX
 
-
-
-int64_t    TString::ToLong( int  startIdx, int* newIdx, const TString* whitespaces )
+uint64_t    TString::ParseDecDigits( integer  startIdx, integer* newIdx )
 const
 {
-    // initialize output variable newIdx
-    if ( newIdx != nullptr )
-        *newIdx= startIdx;
+    // we need an index pointer reference. So if none was given in parameter newIdx
+    // then we just use parameter startIdx!
+    integer* indexPointer;
+    if ( newIdx == nullptr )
+        indexPointer= &startIdx;
+    else
+    {
+        indexPointer=  newIdx;
+        *indexPointer= startIdx;
+    }
 
-    if ( startIdx < 0 || startIdx >= length )
-        return 0;
-
-    // get index, read whitespaces and store start index after white spaces
-    if( whitespaces == nullptr )
-        whitespaces= &DefaultWhitespaces;
-    if ( ( startIdx= IndexOfAny<false>( *whitespaces, Inclusion::Exclude, startIdx ) ) == -1 )
-        return 0;
-
-    int oldIdx= startIdx;
-
-    int64_t retval= NumberFormat::Global.StringToInteger( this, startIdx );
-
-    // was an index pointer given? If yes, we move it
-    if ( newIdx != nullptr && oldIdx != startIdx )
-        *newIdx= startIdx;
-
-    return retval;
+    return NumberFormat::ParseDecDigits( *this, *indexPointer );
 }
 
-double    TString::ToFloat(  int              startIdx,
-                             int*             newIdx,
-                             NumberFormat*    numberFormat,
-                             const TString*   whitespaces        )
+
+int64_t    TString::ParseInt( integer  startIdx, NumberFormat* numberFormat, integer* newIdx )
 const
 {
-    // initialize output variable newIdx
-    if ( newIdx != nullptr )
-        *newIdx= startIdx;
+    // we need an index pointer reference. So if none was given in parameter newIdx
+    // then we just use parameter startIdx!
+    integer* indexPointer;
+    if ( newIdx == nullptr )
+        indexPointer= &startIdx;
+    else
+    {
+        indexPointer=  newIdx;
+        *indexPointer= startIdx;
+    }
 
-    if ( startIdx < 0 || startIdx >= length )
-        return 0;
-
-    if ( numberFormat == nullptr )
-        numberFormat= &NumberFormat::Global;
-
-    // get index, read whitespaces and store start index after white spaces
-    if( whitespaces == nullptr )
-        whitespaces= &DefaultWhitespaces;
-    if ( ( startIdx= IndexOfAny<false>( whitespaces, Inclusion::Exclude, startIdx ) ) == -1 )
-        return 0;
-
-    int oldIdx= startIdx;
-    double retval= numberFormat->StringToFloat( this, startIdx );
-
-    // was an index pointer given? If yes, we move it
-    if ( newIdx != nullptr && oldIdx != startIdx )
-        *newIdx= startIdx;
-
-    return retval;
-
+    return (numberFormat == nullptr ? &NumberFormat::Computational
+                                    : numberFormat )
+           ->ParseInt( *this, *indexPointer );
 }
 
+uint64_t    TString::ParseDec( integer  startIdx, NumberFormat* numberFormat, integer* newIdx )
+const
+{
+    // we need an index pointer reference. So if none was given in parameter newIdx
+    // then we just use parameter startIdx!
+    integer* indexPointer;
+    if ( newIdx == nullptr )
+        indexPointer= &startIdx;
+    else
+    {
+        indexPointer=  newIdx;
+        *indexPointer= startIdx;
+    }
+
+    return (numberFormat == nullptr ? &NumberFormat::Computational
+                                    : numberFormat )
+           ->ParseDec( *this, *indexPointer );
+}
+
+uint64_t    TString::ParseBin( integer startIdx, NumberFormat* numberFormat, integer* newIdx  )
+const
+{
+    // we need an index pointer reference. So if none was given in parameter newIdx
+    // then we just use parameter startIdx!
+    integer* indexPointer;
+    if ( newIdx == nullptr )
+        indexPointer= &startIdx;
+    else
+    {
+        indexPointer=  newIdx;
+        *indexPointer= startIdx;
+    }
+
+    return (numberFormat == nullptr ? &NumberFormat::Computational
+                                    : numberFormat )
+           ->ParseBin( *this, *indexPointer );
+}
+
+uint64_t    TString::ParseHex( integer startIdx, NumberFormat* numberFormat, integer* newIdx  )
+const
+{
+    // we need an index pointer reference. So if none was given in parameter newIdx
+    // then we just use parameter startIdx!
+    integer* indexPointer;
+    if ( newIdx == nullptr )
+        indexPointer= &startIdx;
+    else
+    {
+        indexPointer=  newIdx;
+        *indexPointer= startIdx;
+    }
+
+    return (numberFormat == nullptr ? &NumberFormat::Computational
+                                    : numberFormat )
+           ->ParseHex( *this, *indexPointer );
+}
+
+uint64_t    TString::ParseOct( integer startIdx, NumberFormat* numberFormat, integer* newIdx  )
+const
+{
+    // we need an index pointer reference. So if none was given in parameter newIdx
+    // then we just use parameter startIdx!
+    integer* indexPointer;
+    if ( newIdx == nullptr )
+        indexPointer= &startIdx;
+    else
+    {
+        indexPointer=  newIdx;
+        *indexPointer= startIdx;
+    }
+
+    return (numberFormat == nullptr ? &NumberFormat::Computational
+                                    : numberFormat )
+           ->ParseOct( *this, *indexPointer );
+}
+
+double    TString::ParseFloat( integer startIdx, NumberFormat* numberFormat, integer* newIdx )
+const
+{
+    // we need an index pointer reference. So if none was given in parameter newIdx
+    // then we just use parameter startIdx!
+    integer* indexPointer;
+    if ( newIdx == nullptr )
+        indexPointer= &startIdx;
+    else
+    {
+        indexPointer=  newIdx;
+        *indexPointer= startIdx;
+    }
+
+    return (numberFormat == nullptr ? &NumberFormat::Computational
+                                    : numberFormat )
+           ->ParseFloat( *this, *indexPointer );
+}
 
 
 

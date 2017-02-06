@@ -1,8 +1,8 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /**
@@ -58,6 +58,19 @@ Or, as another example, we could consider a \e Logger that sends alert Emails to
 Of-course, Emails should be sent only for very special events, e.g. when something really severe happens.
 You may collect these severe errors in a special domain "/ADMIN" (real-time administration errors)
 and exclusively activate this domain for this Email-sending \e Logger.
+
+\~Comment ####################################################################################### \~
+## 1.1 Allowed Characters ## {#man_logdomains_chars_allowed}
+
+Domain names may only consist of the following characters:
+- Upper case letters \c 'A' to \c 'Z'
+- Numbers \c '0' to \c '9'
+- Hyphen (\c '-') and underscore (\c '_')
+
+If one of this characters is used, ALox replaces this character with \c # (which, as stated above
+is otherwise equally not allowed) without further notice (no internal log statement is given).
+As a result, the provision of illegal domain names \c "ABCa$)" or \c "ABC<=>" will result in
+the same domain name \c "ABC###".
 
 
 \~Comment ####################################################################################### \~
@@ -158,7 +171,7 @@ of *Scope Domains*.
 
 <em>Scope Domains</em> are set using method
 <b>%Lox.SetDomain</b>
-([C++] (@ref      #aworx::lox::Lox::SetDomain(const TString&, Scope, int)),
+([C++] (@ref      #aworx::lox::Lox::SetDomain(const String&, Scope, int)),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
  [Java](@ref #com::aworx::lox::Lox::setDomain)). This method,
 along with parameter \p scopeDomain, requires a parameter of type
@@ -170,8 +183,8 @@ domain path should default to.
 
 
 Such \e Scope is assembled of two parts: one part that is taken from the source code information
-that ALox collects at compile-time (in Java done at run-time) with each <em>Log Statement</em>. The other part
-is related to <b>the thread that is executing the <em>Log Statement</em></b>, hence is evaluated at run-time.
+that ALox collects at compile-time (in Java done at runtime) with each <em>Log Statement</em>. The other part
+is related to <b>the thread that is executing the <em>Log Statement</em></b>, hence is evaluated at runtime.
 
 \attention
   For this chapter, explaining the benefit of being able to assign <em>Scope Domains</em> to \e Scopes, we are
@@ -185,7 +198,7 @@ We start really simple and look at
  [Java](@ref #com::aworx::lox::Scope::METHOD)) which denotes that the <em>Scope Domain</em>
 given with method
 <b>%Lox.SetDomain</b>
-([C++] (@ref      #aworx::lox::Lox::SetDomain(const TString&, Scope, int)),
+([C++] (@ref      #aworx::lox::Lox::SetDomain(const String&, Scope, int)),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
  [Java](@ref #com::aworx::lox::Lox::setDomain)) should apply to all <em>Log Statements</em>
 of the current method. Here is a sample:
@@ -408,7 +421,7 @@ each \e Verbosity setting.
 
 Apart from lifting the always recursive \e Verbosity setting, the main motivation for introducing
 this concept resulted from the general need to prioritize conflicting settings which may come
-from different sources. Therefore, if non-recursive settings are needed for any reason,
+from different sources of configuration data. Therefore, if non-recursive settings are needed for any reason,
 refer to chapter \ref man_external_verbosity_configuration for explanations about how to achieve this.
 
 \~Comment ####################################################################################### \~
@@ -425,35 +438,9 @@ next chapter (\ref man_scopes) when all about \e Scopes is explained - including
 case that justifies absolute <em>Log Domain</em> paths!
 
 
-\~Comment ####################################################################################### \~
-## 6.4 Illegal Domain Names and Case Sensitivity## {#man_logdomains_chars_allowed}
-
-Not all printable characters are allowed for domain names. The exact definition of allowed
-characters is:
-- All characters between
-  ASCII code 46 (Hex 0x2E, char <c>'0'</c>) and
-  ASCII code 122 (Hex 0x7A, char <c>'z'</c>),
-- excluding characters \c < \c > \c [ \c ] \c . \c ,  \c = \c ? \c ; \c : \c \\ and <c>'</c>.
-
-Of-course the domain path separator \c / is 'implicitly' not allowed in a domain name. The use
-of it splits a domain into two.
-If one of this characters is used, ALox replaces this character with \c # (which, as stated above
-is equally not allowed) without further notice (no internal log statement is given).
-As a result, the provision of illegal domain names \c "$%&" or \c "<=>" will result in
-the same domain name \c "###".
-
-By default, ALox treats domain names case \b insensitive. This can be controlled by switching
-public flag
-<b>%Lox.DomainSensitivity</b>
-([C++] (@ref      #aworx::lox::Lox::DomainSensitivity),
- [C#]  (@ref  #cs::aworx::lox::Lox::DomainSensitivity),
- [Java](@ref #com::aworx::lox::Lox::domainSensitivity)), which is not recommended to do. The standard
-is to always provide domain names in capital letters. If this rule is applied, the sensitivity setting
-is worthless anyhow.
-
 
 \~Comment ####################################################################################### \~
-## 6.5 ALox Internal Log Domains ## {#man_logdomains_internal}
+## 6.4 ALox Internal Log Domains ## {#man_logdomains_internal}
 
 ALox uses 'itself' to log information about its use. This is helpful e.g. to observe where
 and when a <em>Log Domain</em> is used for the first time or where and when a \e Verbosity

@@ -1,10 +1,10 @@
 ﻿// #################################################################################################
 //  aworx::lox - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alib/alib.hpp"
 
 #if !defined (HPP_ALOX)
     #include "alox/alox.hpp"
@@ -12,10 +12,6 @@
 
 #if !defined (HPP_ALIB_CONFIG_CONFIGURATION)
     #include "alib/config/configuration.hpp"
-#endif
-
-#if !defined (HPP_ALIB_SYSTEM_SYSTEM)
-    #include "alib/system/system.hpp"
 #endif
 
 #if !defined ( HPP_ALOX_CONSOLE_LOGGER )
@@ -31,7 +27,7 @@ namespace aworx {
 // #################################################################################################
 // Static fields
 // #################################################################################################
-#if defined(ALOX_DBG_LOG)
+#if ALOX_DBG_LOG
     ALoxReportWriter*   Log::DebugReportWriter   = nullptr;
 #endif
 
@@ -49,7 +45,7 @@ namespace aworx {
 // #################################################################################################
 // Auto detection of DEBUG environment
 // #################################################################################################
-#if defined(ALOX_DBG_LOG)
+#if ALOX_DBG_LOG
 
     TextLogger*   Log::DebugLogger= nullptr;
     TextLogger*   Log::IDELogger  = nullptr;
@@ -64,8 +60,8 @@ namespace aworx {
         }
 
         // add a VStudio logger if this a VStudio debug session
-        #if defined(ALIB_VSTUDIO) &&  defined(ALIB_DEBUG)
-            if( System::IsDebuggerPresent() )
+        #if defined(_WIN32) && ALIB_DEBUG
+            if( ALIB::IsDebuggerPresent() )
             {
                 Variable variable( ALox::NO_IDE_LOGGER );
                 if( variable.Load() == 0 || ! variable.IsTrue() )
@@ -107,7 +103,7 @@ namespace aworx {
             DebugLogger= nullptr;
         }
 
-        #if defined(ALIB_VSTUDIO) && defined(ALIB_DEBUG)
+        #if defined(_WIN32) && ALIB_DEBUG
             if ( IDELogger != nullptr )
             {
                 lox->RemoveLogger( IDELogger );
@@ -123,15 +119,15 @@ namespace aworx {
 // #################################################################################################
 // ALib Report Writer installation
 // #################################################################################################
-#if defined(ALOX_DBG_LOG)
+#if ALOX_DBG_LOG
 
     void Log::AddALibReportWriter( Lox* lox )
     {
         ALIB_ASSERT_WARNING( DebugReportWriter == nullptr, "Log::AddReportWriter(): ALoxReportWriter already created." );
 
         // replace ALibs' ReportWriter by an ALox ReportWriter
-        if ( lib::Report::GetDefault().PeekWriter() == &lib::ConsoleReportWriter::Singleton  )
-            lib::Report::GetDefault().PushWriter( DebugReportWriter= new ALoxReportWriter( lox ) );
+        if ( lib::lang::Report::GetDefault().PeekWriter() == lib::lang::ReportWriterStdIO::GetSingleton()  )
+            lib::lang::Report::GetDefault().PushWriter( DebugReportWriter= new ALoxReportWriter( lox ) );
     }
 
     void Log::RemoveALibReportWriter()
@@ -139,7 +135,7 @@ namespace aworx {
         // replace the report writer (if we replaced it before)
         if ( DebugReportWriter != nullptr )
         {
-            lib::Report::GetDefault().PopWriter( DebugReportWriter );
+            lib::lang::Report::GetDefault().PopWriter( DebugReportWriter );
             delete DebugReportWriter;
             DebugReportWriter=  nullptr;
         }

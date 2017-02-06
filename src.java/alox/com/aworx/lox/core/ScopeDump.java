@@ -1,8 +1,8 @@
 // #####################################################################oggeg############################
 //  com.aworx.lox.core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package com.aworx.lox.core;
 
@@ -10,11 +10,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.aworx.lib.ALIB;
 import com.aworx.lib.containers.PathMap;
-import com.aworx.lib.enums.Alignment;
+import com.aworx.lib.lang.Alignment;
 import com.aworx.lib.strings.AString;
-import com.aworx.lox.LogData;
 
 /** ************************************************************************************************
  * This class is an internal helper to export current scope values.
@@ -113,7 +111,7 @@ public class ScopeDump
             {
                 if ( thread.getValue().size() == 0 )
                     continue;
-                ALIB.ASSERT( thread.getValue().size() == 1 );
+                com.aworx.lib.ALIB_DBG.ASSERT( thread.getValue().size() == 1 );
                 if( firstEntry ) firstEntry= false; else   target.newLine();
                 target._NC("  Scope.THREAD_OUTER ");  storeThreadToScope( thread.getKey() )._( ':' ).newLine();
                 cnt+= thread.getValue().get( 0 ).size();
@@ -133,7 +131,7 @@ public class ScopeDump
             {
                 if ( thread.getValue().size() == 0 )
                     continue;
-                ALIB.ASSERT( thread.getValue().size() == 1 );
+                com.aworx.lib.ALIB_DBG.ASSERT( thread.getValue().size() == 1 );
                 if( firstEntry ) firstEntry= false; else   target.newLine();
                 target._NC("  Scope.THREAD_INNER ");  storeThreadToScope( thread.getKey() )._( ':' ).newLine();
                 cnt+= thread.getValue().get( 0 ).size();
@@ -267,7 +265,7 @@ public class ScopeDump
             String threadName= threadDictionary.get( new Long( id ) );
             if ( threadName != null )
                 return target._("[Thread=\"")._(threadName)._("\"]");
-                
+
             return target._("[ThreadID=")._(id)._(']');
         }
 
@@ -350,7 +348,7 @@ public class ScopeDump
                 if (o instanceof int[])
                     target._( ((int[]) o)[0] );
                 else
-                    ((LogData)o).toString( target );
+                    target._( o );
 
 
                 target.newLine();

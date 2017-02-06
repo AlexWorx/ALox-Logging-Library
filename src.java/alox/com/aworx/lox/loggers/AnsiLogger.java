@@ -1,65 +1,66 @@
 // #################################################################################################
 //  com.aworx.lox.loggers - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 package com.aworx.lox.loggers;
 
 import java.io.PrintStream;
 
-import com.aworx.lib.ALIB;
-import com.aworx.lib.Util;
 import com.aworx.lib.config.Variable;
-import com.aworx.lib.enums.Phase;
-import com.aworx.lib.enums.Whitespaces;
+import com.aworx.lib.lang.Case;
+import com.aworx.lib.lang.Phase;
+import com.aworx.lib.lang.Whitespaces;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.Substring;
 import com.aworx.lib.strings.Tokenizer;
+import com.aworx.lib.strings.Spaces;
 import com.aworx.lox.ALox;
-import com.aworx.lox.ESC;
 import com.aworx.lox.Verbosity;
 import com.aworx.lox.core.Domain;
 import com.aworx.lox.core.ScopeInfo;
 import com.aworx.lox.core.textlogger.TextLogger;
 
 /** ************************************************************************************************
- *  A logger that logs all messages to the <em>PrintStream</em> instance provided in the constructor.
- *  The name of the \e Logger defaults to "ANSI_LOGGER".
+ * A logger that logs all messages to the <em>PrintStream</em> instance provided in the constructor.
+ * The name of the \e Logger defaults to "ANSI_LOGGER".
  *
- *  ALox text logger escape sequences (see class \ref com::aworx::lox::ESC "ESC")
- *  are translated to ANSI escape sequences.
- *  Support for ANSI escape sequences (also referred to as <em>VT100 terminal emulation</em>)
- *  is available on most unix terminal windows. Besides text colors, bold and italics font style
- *  can be set.
- *  ANSI escape sequences are also available in various IDE output windows.
+ * ALox text logger escape sequences (see class \ref com::aworx::lox::ESC "ESC")
+ * are translated to ANSI escape sequences.
+ * Support for ANSI escape sequences (also referred to as <em>VT100 terminal emulation</em>)
+ * is available on most unix terminal windows. Besides text colors, bold and italics font style
+ * can be set.
+ * ANSI escape sequences are also available in various IDE output windows.
  *
- *  Foreground and background colors are set to be either light/dark or dark/light. This improves
- *  the readability of log output a lot. However, the right setting for this is dependent on
- *  the color scheme of final output device (window). To manipulate the right setting, see field
- *  #isBackgroundLight.
+ * Foreground and background colors can be set to be either light/dark or dark/light. This improves
+ * the readability of log output a lot and even allows to read if foreground and background colors
+ * are the same (they then still differ). However, the right setting for this is dependent on
+ * the color scheme of the final output device (window). To manipulate the right setting, see field
+ * #useLightColors and also configuration variable
+ * [ALOX_CONSOLE_LIGHT_COLORS](../group__GrpALoxConfigVars.html).
  *
- *  In the constructor, a default format string and some other definitions in member
- *  \ref metaInfo get set to include ANSI Escape Sequences. Of-course, these publicly
- *  accessible format attributes can be customized after creation.
+ * In the constructor, a default format string and some other definitions in member
+ * \ref metaInfo get set to include ANSI Escape Sequences. Of-course, these publicly
+ * accessible format attributes can be customized after creation.
  *
- *  There is not 100% match between the ANSI sequences and the definitions in
- *  \ref com::aworx::lox::ESC "ESC".
- *  For example ESC does not provide all ANSI colors and no blinking. On the other hand,
- *  ANSI does not allow to reset the style without resetting the colors.
- *  Of-course, it is no problem to log other ANSI codes directly into an \b %AnsiLogger.
- *  In this case, other Loggers that might be attached to the same Lox and that do not
- *  support ANSI must be equipped with corresponding replacement information.
- *  In other words: To support the same log output into different loggers, it is
- *  recommended to use \ref com::aworx::lox::ESC "ESC"  sequences instead of
- *  directly using ANSI codes.
+ * There is not 100% match between the ANSI sequences and the definitions in
+ * \ref com::aworx::lox::ESC "ESC".
+ * For example ESC does not provide all ANSI colors and no blinking. On the other hand,
+ * ANSI does not allow to reset the style without resetting the colors.
+ * Of-course, it is no problem to log other ANSI codes directly into an \b %AnsiLogger.
+ * In this case, other Loggers that might be attached to the same Lox and that do not
+ * support ANSI must be equipped with corresponding replacement information.
+ * In other words: To support the same log output into different loggers, it is
+ * recommended to use \ref com::aworx::lox::ESC "ESC"  sequences instead of
+ * directly using ANSI codes.
  *
- *  The ANSI codes used by this class are exposed through a list of fields.
- *  They might be useful for manipulating the attributes of the \ref metaInfo
- *  member, which of-course might contain native ANSI sequences.
- *  (In contrast to the log messages themselves, this meta information is specific to a logger
- *  instance and this way it does not need to be replaced in other loggers).
+ * The ANSI codes used by this class are exposed through a list of fields.
+ * They might be useful for manipulating the attributes of the \ref metaInfo
+ * member, which of-course might contain native ANSI sequences.
+ * (In contrast to the log messages themselves, this meta information is specific to a logger
+ * instance and this way it does not need to be replaced in other loggers).
  **************************************************************************************************/
 public class AnsiLogger extends TextLogger
 {
@@ -129,38 +130,29 @@ public class AnsiLogger extends TextLogger
     // #############################################################################################
 
         /**
-         * Forground and background colors chosen by AnsiLogger differ in their intensity to
-         * increase the overall readablity by increasing the contrast.
-         * If the background color of an ANSI console window is dark, then the background colors of
-         * colored log output should be darker colors than the forground colors and vice versa.
+         * Foreground and background colors chosen by this class might differ in their intensity.
+         * This increases the overall readability by increasing the contrast.
+         * If the background color of a console window is dark, then the background colors of
+         * colored log output should be darker colors than the foreground colors - and vice versa.
          *
-         * If this field is false, foreground colors will be light colors and background colors
-         * dark. If true, the opposite is chosen.
+         * Depending on the setting of this field, ALox
+         * \ref com::aworx::lox::ESC "escape codes" for colors are translated to normal ANSI colors or
+         * lighter ones:
+         * - If this field is \c 0, light colors are never used.
+         * - If this field is \c 1, foreground colors will be light colors and background colors
+         *   dark. This is the default.
+         * - If \c 2, the opposite of \c 1 is chosen: background colors will be light colors and
+         *   foreground colors dark.
          *
-         * Defaults to false.
-         *
-         * Configuration variable [ALOX_CONSOLE_HAS_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html)
-         * is evaluated within the constructor of this class, to allow to modifying this flag at
-         * runtime.
+         * The configuration variable [ALOX_CONSOLE_LIGHT_COLORS](../group__GrpALoxConfigVars.html)
+         * allows to externally modify this flag. It is read once within the constructor .
          */
-        public      boolean                 isBackgroundLight;
+        public      int                     useLightColors;
 
         /**
          * The PrintStream provided in the constructor.
          */
         protected   PrintStream             out;
-
-        /** Characters  placed at the beginning of a log line with \e Verbosity 'ERROR'.*/
-        public      String                  msgPrefixError;
-
-        /** Characters  placed at the beginning of a log line with \e Verbosity 'WARNING'.*/
-        public      String                  msgPrefixWarning;
-
-        /** Characters  placed at the beginning of a log line with \e Verbosity 'INFO'.*/
-        public      String                  msgPrefixInfo           = "";
-
-        /** Characters  placed at the beginning of a log line with \e Verbosity 'VERBOSE'.*/
-        public      String                  msgPrefixVerbose;
 
         /** Characters  placed at the end of each line (e.g. used to reset colors and styles).*/
         public      String                  msgSuffix               = ANSI_RESET;
@@ -218,40 +210,48 @@ public class AnsiLogger extends TextLogger
     {
         this.out= ps;
 
-        // evaluate environment variable "ALOX_CONSOLE_HAS_LIGHT_BACKGROUND"
-        Variable variable= new Variable( ALox.CONSOLE_HAS_LIGHT_BACKGROUND );
-        variable.load();
-        if ( variable.size() > 0 )
-            isBackgroundLight=  variable.isTrue();
-        else
+        // evaluate environment variable "ALOX_CONSOLE_LIGHT_COLORS"
+        useLightColors= -1;
+        Variable variable= new Variable( ALox.CONSOLE_LIGHT_COLORS );
+        if ( variable.load() > 0 && variable.size() > 0)
         {
-            // on ANSI terminals we can only guess. Our guess is: console windows have dark background :-)
-            isBackgroundLight= false; // more detection to come in future versions
+            Substring p= new Substring(variable.getString());
+            if(p.trim().isNotEmpty())
+            {
+                     if( p.consumePartOf( "foreground", 1, Case.IGNORE ) > 0)  useLightColors=  1;
+                else if( p.consumePartOf( "background", 1, Case.IGNORE ) > 0)  useLightColors=  2;
+                else if( p.consumePartOf( "never"     , 1, Case.IGNORE ) > 0)  useLightColors=  0;
+                else
+                {
+                    com.aworx.lib.ALIB_DBG.WARNING( "Unknown value specified in variable: " + variable.fullname
+                                  +" = " + variable.getString() +'.' );
+                }
+            }
         }
 
-        //--- modify the default format attributes of the MetaInfo support colors ---
 
-        // remove verbosity information and colorize the whole line
+
+        if( useLightColors < 0 )
+        {
+            // default: dark background, hence use light color on foreground
+            useLightColors= 1;
+        }
+
+        // move verbosity information to the end to colorize the whole line
         metaInfo.format.searchAndReplace( "]%V[", "][" );
-
-        if ( isBackgroundLight )
+        metaInfo.format._( "%V" );
+        if ( useLightColors == 1 )
         {
-            msgPrefixError           = ANSI_RED;
-            msgPrefixWarning         = ANSI_BLUE;
-            msgPrefixVerbose         = ANSI_GRAY;
+            metaInfo.verbosityError           = ANSI_LIGHT_RED;
+            metaInfo.verbosityWarning         = ANSI_LIGHT_BLUE;
+            metaInfo.verbosityVerbose         = ANSI_LIGHT_GRAY;
         }
         else
         {
-            msgPrefixError           = ANSI_LIGHT_RED;
-            msgPrefixWarning         = ANSI_LIGHT_BLUE;
-            msgPrefixVerbose         = ANSI_LIGHT_GRAY;
+            metaInfo.verbosityError           = ANSI_RED;
+            metaInfo.verbosityWarning         = ANSI_BLUE;
+            metaInfo.verbosityVerbose         = ANSI_GRAY;
         }
-
-        // set source file background to gray
-        AString ansiBGGray= new AString( ESC.BG_GRAY );
-                ansiBGGray._      ( "%SF(%SL):" )
-                          ._      ( ANSI_BG_STD_COL );
-        metaInfo.format.searchAndReplace( "%SF(%SL):", ansiBGGray.toString() );
     }
 
     /** ********************************************************************************************
@@ -289,7 +289,7 @@ public class AnsiLogger extends TextLogger
                 int idx= rest.indexOf( 'm' );
                 if ( idx < 0 ) // unknown ANSI Code
                 {
-                    ALIB.WARNING( "Unknown ANSI ESC Code " );
+                    com.aworx.lib.ALIB_DBG.WARNING( "Unknown ANSI ESC Code " );
                     for (int i= actual.start; i <= actual.end; i++ )
                         out.print( buf[i] );
 
@@ -319,7 +319,7 @@ public class AnsiLogger extends TextLogger
                 break;
 
             // found an ESC sequence
-            char c= rest.consume();
+            char c= rest.consumeChar();
 
             // Colors
             boolean isForeGround=  true;
@@ -327,15 +327,16 @@ public class AnsiLogger extends TextLogger
             {
                 isForeGround=  c== 'c';
 
-                c= rest.consume();
+                c= rest.consumeChar();
                 int colNo= c - '0';
-                ALIB.ASSERT_WARNING( colNo >=0 && colNo <=9, "Unknown ESC-c code" );
+                com.aworx.lib.ALIB_DBG.ASSERT_WARNING( colNo >=0 && colNo <=9, "Unknown ESC-c code" );
 
                 // add bg
                 colNo+=  isForeGround ? 0 : 10;
 
                 // add light
-                colNo+=  (isForeGround ? !isBackgroundLight : isBackgroundLight )  ? 20 : 0;
+                if( useLightColors != 0 && ( (useLightColors == 1) == isForeGround ) )
+                    colNo+= 20;
 
                 out.print( ansiCols[ colNo ] );
 
@@ -345,54 +346,35 @@ public class AnsiLogger extends TextLogger
             // Styles
             else if ( c == 's' )
             {
-                // bold/italics style not supported in Windows console
-
-                // reset all
-                if ( rest.consume() == 'a' )
-                {
-                    out.print( ANSI_RESET );
-                }
+                c=  rest.consumeChar();
+                out.print(   c == 'B' ? ANSI_BOLD
+                           : c == 'I' ? ANSI_ITALICS
+                           :            ANSI_RESET    );
             }
 
             // auto tab / end of meta
             else if ( c == 't' || c == 'A')
             {
-                boolean endOfMeta= c == 'A';
-                c=  rest.consume();
+                c=  rest.consumeChar();
                 int extraSpace=  c >= '0' && c <= '9' ? ( c - '0' )
                                                       : ( c - 'A' ) + 10;
 
                 int tabStop= autoSizes.next( column, extraSpace );
-                Util.writeSpaces( out, tabStop - column );
+                Spaces.write( out, tabStop - column );
                 column= tabStop;
-
-                if ( endOfMeta )
-                {
-                    String msgPrefix;
-                    switch ( verbosity )
-                    {
-                        case VERBOSE:   msgPrefix= msgPrefixVerbose;     break;
-                        case INFO:      msgPrefix= msgPrefixInfo;        break;
-                        case WARNING:   msgPrefix= msgPrefixWarning;     break;
-                        case ERROR:     msgPrefix= msgPrefixError;       break;
-                        default:        msgPrefix= "";                   break;
-                    }
-                    out.print( msgPrefix );
-                }
-
             }
 
             // Link (we just colorize links here)
             else if ( c == 'l' )
             {
-                out.print( rest.consume() == 'S'
-                                       ?  ( isBackgroundLight ? ANSI_LIGHT_BLUE : ANSI_LIGHT_BLUE )
+                out.print( rest.consumeChar() == 'S'
+                                       ?  ( useLightColors == 1 ? ANSI_LIGHT_BLUE : ANSI_BLUE )
                                        :  ANSI_STD_COL                             );
             }
 
             else
             {
-                ALIB.WARNING( "Unknown ESC code" );
+                com.aworx.lib.ALIB_DBG.WARNING( "Unknown ESC code" );
             }
 
         } // write loop

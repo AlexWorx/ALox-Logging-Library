@@ -1,14 +1,10 @@
 ﻿// #################################################################################################
 //  aworx::lox::loggers - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
-
-#if !defined (HPP_ALIB)
-    #include "alib/alib.hpp"
-#endif
+#include "alib/alib.hpp"
 
 #if !defined(HPP_ALIB_CONFIG_CONFIGURATION)
     #include "alib/config/configuration.hpp"
@@ -19,20 +15,15 @@
 #if !defined(HPP_ALIB_COMPATIBILITY_STD_IOSTREAM)
     #include "alib/compatibility/std_iostream.hpp"
 #endif
-#if !defined(HPP_ALIB_SYSTEM_SYSTEM)
-    #include "alib/system/system.hpp"
-#endif
-#if !defined(HPP_ALIB_UTIL)
-    #include "alib/core/util.hpp"
+#if !defined(HPP_ALIB_STRINGS_SPACES)
+    #include "alib/strings/spaces.hpp"
 #endif
 
 using namespace std;
 using namespace aworx::lox::core;
 
-namespace aworx {
-namespace       lox {
-namespace           loggers{
-
+namespace aworx { namespace lox { namespace loggers
+{
 // #################################################################################################
 // ANSI Escape Codes
 // #################################################################################################
@@ -136,63 +127,55 @@ constexpr SLiteral<4>   AnsiLogger::ANSI_RESET           ;
 // #################################################################################################
 // Constructor/Destructor
 // #################################################################################################
-AnsiLogger::AnsiLogger( std::basic_ostream<char>* oStream, bool usesStdStreams,
+AnsiLogger::AnsiLogger( std::basic_ostream<char>* pOStream, bool usesStdStreams,
                         const String&  name, const String&  typeName  )
 :    TextLogger( name, typeName, usesStdStreams )
-,    oStream( oStream )
+,    oStream( pOStream )
 {
-    // evaluate environment variable "ALOX_CONSOLE_HAS_LIGHT_BACKGROUND"
-    Variable variable( ALox::CONSOLE_HAS_LIGHT_BACKGROUND );
-    variable.Load();
-    if ( variable.Size() > 0 )
-        IsBackgroundLight=  variable.IsTrue();
-    else
+    // evaluate environment variable "ALOX_CONSOLE_LIGHT_COLORS"
+    UseLightColors= -1;
+    Variable variable( ALox::CONSOLE_LIGHT_COLORS );
+    if ( variable.Load() && variable.Size() > 0)
     {
-        // default: dark background
-        IsBackgroundLight= false;
+        Substring p= *variable.GetString();
+        if(p.Trim().IsNotEmpty())
+        {
+                 if( p.ConsumePartOf( "foreground", 1, Case::Ignore ) > 0)  UseLightColors=  1;
+            else if( p.ConsumePartOf( "background", 1, Case::Ignore ) > 0)  UseLightColors=  2;
+            else if( p.ConsumePartOf( "never"     , 1, Case::Ignore ) > 0)  UseLightColors=  0;
+            else
+            {
+                ALIB_WARNING( "Unknown value specified in variable: {} = '{}'.",
+                              variable.Fullname, variable.GetString() );
+            }
+        }
+    }
 
-        // some IDEs have light background output panels
-        auto RTE= System::RTE();
-        if (      RTE == System::RuntimeEnvironment::QTCreator
-              ||  RTE == System::RuntimeEnvironment::EclipseCDT )
-              IsBackgroundLight= true;
+    if( UseLightColors < 0 )
+    {
+        // default: dark background, hence use light color on foreground
+        UseLightColors= 1;
     }
 
     //--- modify the default format attributes of the MetaInfo support colors ---
 
-    // remove verbosity information and colorize the whole line
+        // move verbosity information to the end to colorize the whole line
     ALIB_ASSERT_RESULT_NOT_EQUALS( MetaInfo->Format.SearchAndReplace( "]%V[", "][" ), 0);
-    if ( IsBackgroundLight )
+    MetaInfo->Format._("%V");
+    if ( UseLightColors == 1 )
     {
-        MsgPrefixError           = ANSI_RED;
-        MsgPrefixWarning         = ANSI_BLUE;
-        MsgPrefixVerbose         = ANSI_GRAY;
+        MetaInfo->VerbosityError           = ANSI_LIGHT_RED;
+        MetaInfo->VerbosityWarning         = ANSI_LIGHT_BLUE;
+        MetaInfo->VerbosityInfo            = "";
+        MetaInfo->VerbosityVerbose         = ANSI_LIGHT_GRAY;
     }
     else
     {
-        MsgPrefixError           = ANSI_LIGHT_RED;
-        MsgPrefixWarning         = ANSI_LIGHT_BLUE;
-        MsgPrefixVerbose         = ANSI_LIGHT_GRAY;
+        MetaInfo->VerbosityError           = ANSI_RED;
+        MetaInfo->VerbosityWarning         = ANSI_BLUE;
+        MetaInfo->VerbosityInfo            = "";
+        MetaInfo->VerbosityVerbose         = ANSI_GRAY;
     }
-
-
-    // set source file background to gray.
-    // Note: We are using the ESC gray here, because only at runtime
-    //       it is decided if this will be light or dark gray.
-    TString colorize= "%SF(%SL):";
-    int idx= MetaInfo->Format.IndexOf( colorize );
-    if (idx >= 0 )
-    {
-        MetaInfo->Format.InsertAt( ESC::BG_GRAY,      idx );
-        MetaInfo->Format.InsertAt( ANSI_BG_STD_COL,   idx + 3 + colorize.Length() );
-    }
-
-    MetaInfo->NoSourceFileInfo= NoSourceFileInfo._<false>( ANSI_BG_CYAN)
-                                                ._<false>( MetaInfo->NoSourceFileInfo )
-                                                ._<false>( ANSI_BG_STD_COL );
-    MetaInfo->NoMethodInfo=     NoMethodInfo    ._<false>( ANSI_BG_CYAN)
-                                                ._<false>( MetaInfo->NoMethodInfo )
-                                                ._<false>( ANSI_BG_STD_COL );
 }
 
 AnsiLogger::~AnsiLogger()
@@ -204,12 +187,12 @@ AnsiLogger::~AnsiLogger()
 // #################################################################################################
 
 
-void AnsiLogger::logText( core::Domain&      ,    Verbosity  verbosity,
+void AnsiLogger::logText( core::Domain&      ,    Verbosity         ,
                           AString&        msg,
                           ScopeInfo&         ,    int                )
 {
     // loop over message, print the parts between the escape sequences
-    int column= 0;
+    integer column= 0;
     Tokenizer msgParts( msg, '\x1B' );
     Substring& actual= msgParts.Actual;
     Substring& rest=   msgParts.Rest;
@@ -221,7 +204,7 @@ void AnsiLogger::logText( core::Domain&      ,    Verbosity  verbosity,
         if ( rest.CharAtStart() == '[' )
         {
             // read the 'm'
-            int idx= rest.IndexOf( 'm' );
+            integer idx= rest.IndexOf( 'm' );
             if ( idx < 0 ) // unknown ANSI Code
             {
                 ALIB_WARNING( "Unknown ANSI ESC Code " );
@@ -229,11 +212,11 @@ void AnsiLogger::logText( core::Domain&      ,    Verbosity  verbosity,
                 continue;
             }
 
-            int wCharLength= lib::strings::CString::LengthWhenConvertedToWChar( actual.Buffer(), actual.Length() );
+            integer wCharLength= lib::strings::CString::LengthWhenConvertedToWChar( actual.Buffer(), actual.Length() );
             column+= wCharLength >= 0 ? wCharLength : actual.Length();
 
             actual.SetLength<false>( actual.Length() + idx + 2 );
-            rest.Consume<false>( idx  + 1 );
+            rest.ConsumeChars<false>( idx  + 1 );
 
             oStream->write( actual.Buffer(), actual.Length() );
 
@@ -251,15 +234,14 @@ void AnsiLogger::logText( core::Domain&      ,    Verbosity  verbosity,
             break;
 
         // found an ESC sequence
-        char c= rest.Consume();
+        char c= rest.ConsumeChar();
 
         // Colors
-        bool isForeGround=  true;
         if( c == 'C' || c == 'c' )
         {
-            isForeGround=  c== 'c';
+            bool isForeGround=  ( c== 'c' );
 
-            c= rest.Consume();
+            c= rest.ConsumeChar();
             int colNo= c - '0';
             ALIB_ASSERT_WARNING( colNo >=0 && colNo <=9, "AnsiLogger: Unknown ESC-c code" );
 
@@ -267,10 +249,12 @@ void AnsiLogger::logText( core::Domain&      ,    Verbosity  verbosity,
             colNo+=  isForeGround ? 0 : 10;
 
             // add light
-            colNo+=  (isForeGround ? !IsBackgroundLight : IsBackgroundLight )  ? 20 : 0;
+            if( UseLightColors && ( (UseLightColors == 1) == isForeGround ) )
+                colNo+= 20;
+
 
             String ansiCol;
-            switch( colNo)
+            switch( colNo )
             {
                 case  0: ansiCol= AnsiLogger::ANSI_RED              ; break;
                 case  1: ansiCol= AnsiLogger::ANSI_GREEN            ; break;
@@ -315,7 +299,7 @@ void AnsiLogger::logText( core::Domain&      ,    Verbosity  verbosity,
                 case 37: ansiCol= AnsiLogger::ANSI_BG_WHITE         ; break;
                 case 38: ansiCol= AnsiLogger::ANSI_BG_LIGHT_GRAY    ; break;
                 case 39: ansiCol= AnsiLogger::ANSI_BG_STD_COL       ; break;
-                default: ALIB_ASSERT("Error in ANSI Code")
+                default: ALIB_ERROR("Error in ANSI Code")
                          ansiCol= "";
                          break;
             }
@@ -326,58 +310,46 @@ void AnsiLogger::logText( core::Domain&      ,    Verbosity  verbosity,
         // Styles
         else if ( c == 's' )
         {
-            // bold/italics style not supported in Windows console
-
-            // reset all
-            if ( rest.Consume() == 'a' )
-                oStream << ANSI_RESET;
+            c=  rest.ConsumeChar();
+                 if( c== 'B' ) oStream << ANSI_BOLD;
+            else if( c== 'I' ) oStream << ANSI_ITALICS;
+            else               oStream << ANSI_RESET;
         }
 
         // auto tab / end of meta
         else if ( c == 't' || c == 'A' )
         {
-            bool endOfMeta= c == 'A';
-            c=  rest.Consume();
-            int extraSpace=  c >= '0' && c <= '9' ? (int) ( c - '0' )
-                                                  : (int) ( c - 'A' ) + 10;
+            c=  rest.ConsumeChar();
+            int extraSpace=  c >= '0' && c <= '9' ? ( c - '0' )
+                                                  : ( c - 'A' ) + 10;
 
             // tab stop (write spaces using a growing buffer)
-            int tabStop= AutoSizes.Next( column, extraSpace );
-            int qtySpaces= tabStop - column;
+            integer tabStop= AutoSizes.Next( column, extraSpace );
+            integer qtySpaces= tabStop - column;
             if( qtySpaces > 0 )
             {
-                lib::Util::WriteSpaces( cout, qtySpaces );
+                Spaces::Write( cout, qtySpaces );
                 column+= qtySpaces;
             }
 
-            if ( endOfMeta )
-            {
-                String msgPrefix;
-                switch ( verbosity )
-                {
-                    case Verbosity::Verbose:   msgPrefix= MsgPrefixVerbose;     break;
-                    case Verbosity::Info:      msgPrefix= MsgPrefixInfo;        break;
-                    case Verbosity::Warning:   msgPrefix= MsgPrefixWarning;     break;
-                    case Verbosity::Error:     msgPrefix= MsgPrefixError;       break;
-                    default: msgPrefix= nullptr;
-                }
-                oStream << msgPrefix;
-            }
         }
 
         // Link (we just colorize links here)
         else if ( c == 'l' )
         {
-            if ( rest.Consume() == 'S' )
-                oStream << ( IsBackgroundLight ? ANSI_LIGHT_BLUE : ANSI_LIGHT_BLUE );
+            if ( rest.ConsumeChar() == 'S' )
+            {
+                if (UseLightColors == 1 ) oStream << ANSI_LIGHT_BLUE;
+                else                      oStream << ANSI_BLUE;
+            }
             else
                 oStream << ANSI_STD_COL;
         }
 
         else
         {
-            rest.Consume();
-            ALIB_WARNING_S512( "Unknown ESC code '" << c << '\'')
+            rest.ConsumeChar();
+            ALIB_WARNING( "Unknown ESC code '{}'.", c )
         }
 
     } // write loop

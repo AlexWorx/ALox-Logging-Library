@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  ALox Samples
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,7 @@ using cs.aworx.lox.loggers;
 using cs.aworx.lox.tools;
 using cs.aworx;
 using cs.aworx.lib.strings;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 using cs.aworx.lox.core.textlogger;
 using cs.aworx.lib.config;
 
@@ -33,11 +33,10 @@ class AloxSamples
     {
         // first attach INI file to config system...
         IniFile iniFile= new IniFile();
-        ALIB.Config.InsertPlugin( iniFile, Configuration.PrioIniFile );
+        Configuration.Default.InsertPlugin( iniFile, Configuration.PrioIniFile );
 
         // .. then initialize ALox Logging Library
         ALox.Init( args );
-
         //...
 //! [DOXYGEN_CREATE_INIFILE]
 
@@ -47,13 +46,13 @@ class AloxSamples
             "##################################################################################################\n" +
             "# ALox Samples INI file (created when running ALox Samples)\n"                                        +
             "#\n"                                                                                                  +
-            "# (c) 2013-2016 A-Worx GmbH, Germany\n"                                                               +
-            "# Published under MIT License (Open Source License, see LICENSE.txt)\n"                               +
+            "# Copyright 2013-2017 A-Worx GmbH, Germany\n"                                                               +
+            "# Published under 'Boost Software License' (a free software license, see LICENSE.txt)\n"                               +
             "##################################################################################################\n"
             );
         }
 
-        // Suppress setting "writeback" as default verbosities. We need to do this as this main()
+        // Suppress setting "writeback" for verbosities. We need to do this as this main()
         // method invokes a list of independent samples. Those would now read from the INI file wrong
         // values written in other sample methods and thus the samples would not work any more
         // (because INI file settings overrules settings in the code)
@@ -64,56 +63,50 @@ class AloxSamples
         var.Define( "ALOX", "RELEASELOX_MEMORY_VERBOSITY" ).Store( "" );
         var.Define( "ALOX", "LOG_TEXTFILE_VERBOSITY"      ).Store( "" );
 
-        // do some release logging tests.
         Console.WriteLine( "PRINT: Debug logging:" );
             AloxSamples.DebugLogging();
-        ALoxSampleReset();
+        ALox.Reset();
 
-        // do some release logging tests.
         Console.WriteLine( "PRINT: Release logging:" );
             AloxSamples.ReleaseLogging();
-        ALoxSampleReset();
+        ALox.Reset();
 
-        // do some performance tests.
         Console.WriteLine( "PRINT: Performance test (debug logging):" );
            AloxSamples.PerformanceTest();
-        ALoxSampleReset();
+        ALox.Reset();
 
-        // do some performance tests.
         Console.WriteLine( "PRINT: Performance test (release logging):" );
            AloxSamples.PerformanceTestRL();
-        ALoxSampleReset();
+        ALox.Reset();
 
-        // test class TextFileLogger
         Console.WriteLine( "PRINT: test class TextFileLogger:" );
             AloxSamples.TextFileLogger();
-        ALoxSampleReset();
+        ALox.Reset();
 
-        // test class terminal test (colors and styles)
-        Console.WriteLine( "PRINT: Colors (depending on detected terminal):" );
+        Console.WriteLine( "PRINT: Use the predefined formatters:" );
+            AloxSamples.Formatting();
+        ALox.Reset();
+
+        Console.WriteLine( "PRINT: Colors (depending on terminal):" );
             AloxSamples.ColorTest();
-        ALoxSampleReset();
+        ALox.Reset();
+
+        Console.WriteLine( "PRINT: ALib Reports" );
+            AloxSamples.SampleALibReport();
+        ALox.Reset();
 
         Console.WriteLine( "PRINT: Thats it!" );
 
-        // sample ALib report facility through ALox
-        AloxSamples.SampleALibReport();
 
 //! [DOXYGEN_REMOVE_INIFILE]
         //...
-        ALIB.Config.RemovePlugin( iniFile );
-        ALIB.Config.FetchFromDefault( iniFile );
+        Configuration.Default.RemovePlugin( iniFile );
+        Configuration.Default.FetchFromDefault( iniFile );
         iniFile.WriteFile();
 
         ALIB.TerminationCleanUp();
     }
 //! [DOXYGEN_REMOVE_INIFILE]
-
-    static void ALoxSampleReset()
-    {
-        Log.Reset();
-        Log.SetSourcePathTrimRule( "*/src.cs/", Inclusion.Include );
-    }
 
     public static void DebugLogging()
     {
@@ -153,12 +146,11 @@ class AloxSamples
         MemoryLogger ml= new MemoryLogger();
 
         Log.SetVerbosity( Log.DebugLogger, Verbosity.Off );
-        Log.SetVerbosity( Log.DebugLogger, Verbosity.Verbose, "/CON" );
-        Log.SetVerbosity( ml,              Verbosity.Verbose, "/MEM" );
+        Log.SetVerbosity( Log.DebugLogger, Verbosity.Info   , "/CON", Configuration.PrioProtected );
+        Log.SetVerbosity( ml,              Verbosity.Verbose, "/MEM", Configuration.PrioProtected );
 
         Log.Info( "/CON", "Logging simple info lines into a memory logger" );
 
-        AString  msgBuf=  new AString( );
         long     fastest= long.MaxValue;
         Ticks    timer=     new Ticks();
         int      qtyLines=    100;
@@ -175,24 +167,25 @@ class AloxSamples
             timer.Set();
                 for ( int ii= 0 ; ii < qtyLines ; ii++ )
                 {
-                    Log.Info( "/MEM", "Test Line" );
-                    if( i== 0 && ii == 0) Console.WriteLine( ml.MemoryLog.ToString() );
+                    Log.Info( "/MEM", "Test Line ", i );
+                    if( i== 0 && ii == 0) Log.Info( "/CON", "Sample Output:\\n{}", ml.MemoryLog );
                 }
             long t= timer.Age().Raw();
 
             if ( fastest > t )
             {
                 fastest= t;
-                Log.Info( "/CON", msgBuf.Clear()._( "Pass " )._( i, 3)._( " is new fastest:  ")
-                        ._( (int) (new Ticks( fastest)).InMicros(), 0)._( " micros per ")._(qtyLines)._(" logs.") );
+                Log.Verbose( "/CON",
+                             new Object[] { "Pass {:03} is new fastest: {:4} micros per {} logs.",
+                                             i, (int) (new Ticks( fastest)).InMicros(),  qtyLines} );
             }
         }
 
         double microsPerLog=  ( (double) (new Ticks(fastest)).InMicros() ) / qtyLines;
         int    logsPerSecond= (int)( 1000000.0 / microsPerLog);
-        Log.Info( "/CON", msgBuf._()._( "  " )._( ESC.MAGENTA )._( "Fastest Debug Logging: " )
-                                            ._( microsPerLog  )._( " micros per log (resp " )
-                                            ._( logsPerSecond )._( " logs per second) " ) );
+        Log.Info( "/CON",
+                  new Object[] {  ESC.MAGENTA, "  Fastest debug logging: {} micros per log (resp. {:,} logs per second) ",
+                                  microsPerLog, logsPerSecond } );
 
         Log.RemoveDebugLogger();
     }
@@ -205,13 +198,12 @@ class AloxSamples
         MemoryLogger ml       = new MemoryLogger();
 
 
-        lox.SetVerbosity( relLogger, Verbosity.Verbose, "/CON" );
-        lox.SetVerbosity( ml       , Verbosity.Verbose, "/MEM" );
+        lox.SetVerbosity( relLogger, Verbosity.Info   , "/CON", Configuration.PrioProtected );
+        lox.SetVerbosity( ml       , Verbosity.Verbose, "/MEM", Configuration.PrioProtected );
 
 
         lox.Info( "/CON", "Logging simple info lines into a memory logger" );
 
-        AString  msgBuf=  new AString( );
         long     fastest= long.MaxValue;
         Ticks    timer=     new Ticks();
         int      qtyLines=   100;
@@ -228,25 +220,26 @@ class AloxSamples
             timer.Set();
                 for ( int ii= 0 ; ii < qtyLines ; ii++ )
                 {
-                    lox.Info( "/MEM", "Test Line" );
-                    if( i== 0 && ii == 0) Console.WriteLine( ml.MemoryLog.ToString() );
+                    lox.Info( "/MEM", "Test Line ", i );
+                    if( i== 0 && ii == 0) lox.Info( "/CON", "Sample Output:\\n{}", ml.MemoryLog );
+
                 }
             long t= timer.Age().Raw();
 
             if ( fastest > t )
             {
                 fastest= t;
-                lox.Info( "/CON", msgBuf.Clear()._( "Pass " )._( i, 3)._( " is new fastest:  ")
-                                       ._( (int) (new Ticks( fastest)).InMicros(), 0)
-                                       ._( " micros per ")._(qtyLines)._(" logs.") );
+                lox.Verbose( "/CON",
+                             new Object[] { "Pass {:03} is new fastest: {:4} micros per {} logs.",
+                                            i, (int) (new Ticks( fastest)).InMicros(),  qtyLines} );
             }
         }
 
         double microsPerLog=  ( (double) (new Ticks(fastest)).InMicros() ) / qtyLines;
         int    logsPerSecond= (int)( 1000000.0 / microsPerLog);
-        lox.Info( "/CON", msgBuf._()._( "  " )._( ESC.MAGENTA )._( "Fastest Release Logging: " )
-                                    ._( microsPerLog  )._( " micros per log (resp " )
-                                    ._( logsPerSecond )._( " logs per second) " ) );
+        lox.Info( "/CON",
+                  new Object[] {  ESC.MAGENTA, "  Fastest release logging: {} micros per log (resp. {:,} logs per second) ",
+                                  microsPerLog, logsPerSecond } );
 
         lox.RemoveLogger( ml );
         lox.RemoveLogger( relLogger );
@@ -272,23 +265,29 @@ class AloxSamples
         Log.Info   ( "Multiline part 1...\n....part 2" );
     }
 
+    public static void Formatting()
+    {
+        Log.Info("Python-Style Format: {}, {:08.3}, *{:^12}*", "Hello", 12.3456789, "Centered" );
+        Log.Info("Java-Style Format:   %s, %08.3f, *%^12s*"  , "Hello", 12.3456789, "Centered" );
+
+        Log.Info("We can mix styles: {}-Style", "Python", " and %s-Style in one log statement", "Java" );
+        Log.Info("But mixing must not be done within one format string: {} %s", "Right", "Wrong" );
+    }
+
     public static void ColorTest()
     {
         Log.AddDebugLogger();
         Log.SetDomain( "/COLORS", Scope.Method );
 
-        Log.Info(      "Hello ALox, this debug logging" );
-        Log.Verbose(   "Some verbose log output" );
-        Log.Warning(   "A warning" );
-        Log.Error(     "An error" );
-
-        Log.Info( "Playing with colors. Depending on the test environment, the colors might "
-                    +  "be visible or not" );
-        Log.Info( "In the memory logger, all color/style codes have to disappear (by default)" );
+        Log.Info   ( "Let us do some color test. First, lets see if different verbosities have different colors:" );
         Log.Verbose( "A verbose message" );
         Log.Info   ( "An info message" );
         Log.Warning( "A warning message" );
         Log.Error  ( "An error message" );
+
+        Log.Info( "Playing with colors. Depending on the test environment, the colors might "
+                    +  "be visible or not" );
+        Log.Info( "In the memory logger, all color/style codes have to disappear (by default)" );
 
         Log.Info(    "FG Colors:  "
                             + ">>>" + ESC.RED     + "RED"        + ESC.FG_RESET + "<<<"
@@ -327,81 +326,11 @@ class AloxSamples
                             + ">>>" + ESC.BLACK   + ESC.BG_BLACK   + "BLACK"      + ESC.RESET + "<<<"
                             );
 
-        #if ALOX_DBG_LOG
-            AnsiConsoleLogger   acl= (AnsiConsoleLogger)    Log.GetLogger( "ANSI_CONSOLE" );
-            ColorConsoleLogger  ccl= (ColorConsoleLogger)   Log.GetLogger( "COLORCONSOLE" );
-            if ( acl!=null )        acl.IsBackgroundLight= !acl.IsBackgroundLight;
-            if ( ccl!=null )        ccl.IsBackgroundLight= !ccl.IsBackgroundLight;
-        #endif
-
-        Log.Info( "Same rev.:  "
-                                + ">>>" + ESC.RED     + ESC.BG_RED     + "RED"        + ESC.RESET + "<<<"
-                                + ">>>" + ESC.GREEN   + ESC.BG_GREEN   + "GREEN"      + ESC.RESET + "<<<"
-                                + ">>>" + ESC.BLUE    + ESC.BG_BLUE    + "BLUE"       + ESC.RESET + "<<<"
-                                + ">>>" + ESC.CYAN    + ESC.BG_CYAN    + "CYAN"       + ESC.RESET + "<<<"
-                                + ">>>" + ESC.MAGENTA + ESC.BG_MAGENTA + "MAGENTA"    + ESC.RESET + "<<<"
-                                + ">>>" + ESC.YELLOW  + ESC.BG_YELLOW  + "YELLOW"     + ESC.RESET + "<<<"
-                                + ">>>" + ESC.GRAY    + ESC.BG_GRAY    + "GRAY"       + ESC.RESET + "<<<"
-                                + ">>>" + ESC.WHITE   + ESC.BG_WHITE   + "WHITE"      + ESC.RESET + "<<<"
-                                + ">>>" + ESC.BLACK   + ESC.BG_BLACK   + "BLACK"      + ESC.RESET + "<<<"
-                                );
-        #if ALOX_DBG_LOG
-            if ( acl!=null )        acl.IsBackgroundLight= !acl.IsBackgroundLight;
-            if ( ccl!=null )        ccl.IsBackgroundLight= !ccl.IsBackgroundLight;
-        #endif
-
-
-        Log.Info(    "Reset FG/BG: "
-                            + ESC.BG_RED     + "BG RED"
-                            + ESC.GREEN      + "FG REEN"
-                            + ESC.FG_RESET   + "FG Reset"
-                            + ESC.BG_RESET   + "BG Reset"
-                            );
-
-        Log.Info(    "Reset FG/BG: "
-                            + ESC.BG_RED     + "BG RED"
-                            + ESC.GREEN      + "FG REEN"
-                            + ESC.BG_RESET   + "BG Reset"
-                            + ESC.FG_RESET   + "FG Reset"
-                            );
-
-        Log.Info(    "Reset FG/BG: "
-                            + ESC.BG_RED     + "BG RED"
-                            + ESC.GREEN      + "FG REEN"
-                            + ESC.RESET      + "All Reset"
-                            );
-
         Log.Info(    "Styles: "
                             + ">>>" + ESC.BOLD     + "Bold"          + ESC.STYLE_RESET + "<<<"
                             + ">>>" + ESC.ITALICS  + "Italics"       + ESC.STYLE_RESET  + "<<<"
                             + ">>>" + ESC.BOLD
                             + ">>>" + ESC.ITALICS  + "Bold/Italics"   + ESC.STYLE_RESET  + "<<<"
-                            );
-
-        Log.Info(    "Reset Style/FG/BG: "
-                            + ESC.BOLD        + "Bold"
-                            + ESC.BG_RED      + "BG RED"
-                            + ESC.GREEN       + "FG REEN"
-                            + ESC.BG_RESET    + "BG Reset"
-                            + ESC.FG_RESET    + "FG Reset"
-                            + ESC.STYLE_RESET + "Style Reset"
-                            );
-
-        Log.Info(    "Reset Style/FG/BG: "
-                            + ESC.BOLD        + "Bold"
-                            + ESC.BG_RED      + "BG RED"
-                            + ESC.GREEN       + "FG REEN"
-                            + ESC.RESET       + "Reset All"
-                            );
-
-        Log.Info(    "Reset Style/FG/BG: "
-                            + ESC.BOLD        + "Bold"
-                            + ESC.BG_RED      + "BG RED"
-                            + ESC.GREEN       + "FG REEN"
-                            + ESC.STYLE_RESET + "Style Reset"
-                            + ESC.BG_RESET    + "BG Reset"
-                            + ESC.FG_RESET    + "FG Reset"
-                            + "   +< This does not work on ANSI terminals: Styl reset, resets ALL here"
                             );
 
         Log.Info(    "An URL: "
@@ -423,8 +352,8 @@ class AloxSamples
                   + "create 3 Messages:"  );
 
             Report.GetDefault().PushHaltFlags( false, false );
-                ALIB.ERROR(   "This is an error report!" );
-                ALIB.WARNING( "And this is a warning!"   );
+                ALIB_DBG.ERROR(   "This is an error report!" );
+                ALIB_DBG.WARNING( "And this is a warning! ({})", "With Parameter"   );
                 AString illegalAccess= new AString(10);
                 illegalAccess._("1234");
                 illegalAccess.SetCharAt_NC(5, '5');
@@ -432,9 +361,9 @@ class AloxSamples
 
 
             Log.SetVerbosity( Log.DebugLogger, Verbosity.Verbose, ALox.InternalDomains );
-            ALIB.REPORT( 2,   "This is an ALib Report. Types other than '0' and '1' are user defined.\n"
-                            + "Verbosity of ALox.InternalDomains has to be increased to see them when using"
-                            + " ALoxReportWriter." );
+            ALIB_DBG.REPORT( 2,   "This is an ALib Report. Types other than '0' and '1' are user defined.\n"
+                                + "Verbosity of ALox.InternalDomains has to be increased to see them when using"
+                                + " ALoxReportWriter." );
 
 
         Log.Info(   "Note the domain prefix '" + ALox.InternalDomains.ToString() + "'. This addresses "

@@ -2,7 +2,7 @@
 #  QMake 'pro' file - ALox Samples
 #
 #  (c) 2016 A-Worx GmbH, Germany
-#  Published under MIT License (Open Source License, see LICENSE.txt)
+#  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 # #################################################################################################
 
 TEMPLATE = app

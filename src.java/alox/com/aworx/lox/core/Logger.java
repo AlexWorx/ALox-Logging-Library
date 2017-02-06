@@ -1,8 +1,8 @@
 // #################################################################################################
 //  com.aworx.lox.core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /** ************************************************************************************************
@@ -11,7 +11,7 @@
  *  Types and interfaces found in this namespace are not designed for access by users of the
  *  library. However, if extending ALox, e.g. by implementing new custom <em>loggers</em>, things
  *  found here provide an important foundation.<p>
- *  Developed by A-Worx GmbH and published under the MIT license.
+ *  Developed by A-Worx GmbH and published under Boost Software License.
  **************************************************************************************************/
 package com.aworx.lox.core;
 
@@ -93,9 +93,9 @@ public abstract class Logger extends SmartLock
          * Constructs a logger.
          *
          * @param name     The name of the \e Logger. If empty, it defaults to the type name.
-         *                 Will be converted to upper case. 
+         *                 Will be converted to upper case.
          * @param typeName The type of the \e Logger.
-         *                 Will be converted to upper case. 
+         *                 Will be converted to upper case.
          ******************************************************************************************/
         protected Logger( String name, String typeName )
         {
@@ -116,7 +116,7 @@ public abstract class Logger extends SmartLock
 
         /** ****************************************************************************************
          * Returns the constant type name of this logger. The type name is defined by the class
-         * and hence provides a sort of run-time type information.
+         * and hence provides a sort of runtime type information.
          * @return The loggers type name.
          ******************************************************************************************/
         public String getTypeName()  {     return typeName;  }

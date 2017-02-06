@@ -1,20 +1,25 @@
 // #################################################################################################
 //  aworx - Unit Tests
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
-// This helper header defines some preprocessor macros, so that GTest and MSVC Unit Tests can
-// live in the same cpp file.
-// Before including this header, the prepro variable "TESTCLASSNAME" has to be defined
-
-#include "alib/stdafx_alib.h"
+#include "alox/alox.hpp"
 #include "alib/strings/substring.hpp"
 #include "alib/system/directory.hpp"
 #include "alib/compatibility/std_iostream.hpp"
 
 #include "aworx_unittests.hpp"
+
+#if defined(__clang__)
+    #pragma message "Clang Compiler"
+#elif defined(__GNUC__)
+    #pragma message "GNU Compiler"
+#elif defined(_MSC_VER)
+    #pragma message ("MS Compiler")
+#endif
+
 
 using namespace std;
 using namespace aworx;
@@ -23,19 +28,13 @@ using namespace aworx::lox::core;
 namespace ut_aworx {
 
 
+
 // #################################################################################################
 // Fields
 // #################################################################################################
-#if defined(_MSC_VER)
-    #pragma warning( push )
-    #pragma warning( disable : 4592 )
-#endif
 String128 AWorxUnitTesting::LastAutoSizes;
 AString   AWorxUnitTesting::GeneratedSamplesDir;
 String    AWorxUnitTesting::GeneratedSamplesSearchDir= "docs/ALox.CPP/";
-#if defined(_MSC_VER)
-    #pragma warning( pop )
-#endif
 
 // #################################################################################################
 // Constructors/destructor
@@ -43,22 +42,26 @@ String    AWorxUnitTesting::GeneratedSamplesSearchDir= "docs/ALox.CPP/";
 AWorxUnitTesting::AWorxUnitTesting( const TString& domain, const TString& testName)
 : lox( "UTLox", false )
 {
-    this->domain=       domain;
-    this->actTestName=  testName;
+    this->Domain=       domain;
+    this->ActTestName=  testName;
 
     Log_SetSourcePathTrimRule( "*/src.cpp/", Inclusion::Include );
 
-    #if defined ( ALIB_VSTUDIO )
+    #if !ALIB_GTEST
         utl= new UTVStudioLogger();
-    #else
-//! [IDESetupGuide_ADD_ABSOLUTE_PATH]
-        utl= Lox::CreateConsoleLogger();
-
-        // if QTCreator with QMake was detected, then use absolute paths
-        if( utl->MetaInfo->Format.IndexOf( "   Loc:" ) >= 0  )
+    #elif defined(ALOX_UNITTESTS_QMAKE_BUILD)
         {
+            utl= new ConsoleLogger();
+
+            // if QTCreator/ QMake was detected, then use absolute paths
+            utl->MetaInfo->Format= "   Loc: [%SP/%SF(%SL)]:%A3%SM %A3{%TC +%TL}{%tN}{%D}%A1#%#: ";
+            utl->MetaInfo->VerbosityError=   "{ERR}";
+            utl->MetaInfo->VerbosityWarning= "{WRN}";
+            utl->MetaInfo->VerbosityInfo=    "     ";
+            utl->MetaInfo->VerbosityVerbose= "{***}";
+
             Directory moduleName( Directory::SpecialFolder::Module );
-            int idx= moduleName.Path.IndexOf( "/ALox/" );
+            integer idx= moduleName.Path.IndexOf( "/ALox/" );
             if ( idx > 0 )
             {
                 moduleName.Path.SetLength( idx + 5 );
@@ -66,8 +69,12 @@ AWorxUnitTesting::AWorxUnitTesting( const TString& domain, const TString& testNa
                 lox.SetSourcePathTrimRule( "*/src.cpp/", Inclusion::Exclude, 0, Case::Ignore, moduleName.Path,
                                            Reach::Global  );
             }
+
+            utl->SetReplacement( "[", "{" );
+            utl->SetReplacement( "]", "}" );
         }
-//! [IDESetupGuide_ADD_ABSOLUTE_PATH]
+    #else
+        utl= Lox::CreateConsoleLogger();
     #endif
 
     if ( LastAutoSizes.IsNotEmpty() )
@@ -75,19 +82,19 @@ AWorxUnitTesting::AWorxUnitTesting( const TString& domain, const TString& testNa
         utl->AutoSizes.Import( LastAutoSizes, CurrentData::Keep );
     }
 
-    lox.SetScopeInfo(ALIB_SRC_INFO_PARAMS);
+    lox.Acquire(ALIB_SRC_INFO_PARAMS);
         lox.SetVerbosity( utl, Verbosity::Verbose, domain);
         lox.SetVerbosity( utl, Verbosity::Warning, ALox::InternalDomains );
+        lox.SetVerbosity( utl, Verbosity::Info,    String64() << ALox::InternalDomains << "UT_REPORT" );
         lox.SetPrefix( ESC::BG_GRAY, "/" );
     lox.Release();
 
-    lib::Report::GetDefault().PushWriter( this );
-
+    lib::lang::Report::GetDefault().PushWriter( this );
 }
 
 AWorxUnitTesting::~AWorxUnitTesting()
 {
-    lox.SetScopeInfo(ALIB_SRC_INFO_PARAMS);
+    lox.Acquire(ALIB_SRC_INFO_PARAMS);
         lox.RemoveLogger( utl );
     lox.Release();
 
@@ -97,14 +104,14 @@ AWorxUnitTesting::~AWorxUnitTesting()
     // clean debug lox and ALox
     Log_Prune( ALox::Reset() );
 
-    ALIB::Config.DefaultValues  .Reset();
-    ALIB::Config.ProtectedValues.Reset();
+    Configuration::Default.DefaultValues  .Reset();
+    Configuration::Default.ProtectedValues.Reset();
 
-    // check if ALib smartlock for std I/O was released properly
-    this->EQ (__FILE__, __LINE__, actTestName,     0, ALIB::StdOutputStreamsLock.CntAcquirers() );
-    this->EQ (__FILE__, __LINE__, actTestName,     0, ((ThreadLock&)ALIB::StdOutputStreamsLock).DbgCountAcquirements() );
+    // check if ALib SmartLock for std I/O was released properly
+    this->EQ (__FILE__, __LINE__, 0, ALIB::StdOutputStreamsLock.CntAcquirers() );
+    this->EQ (__FILE__, __LINE__, 0, ALIB::StdOutputStreamsLock.DbgCountAcquirements() );
 
-    lib::Report::GetDefault().PopWriter( this );
+    lib::lang::Report::GetDefault().PopWriter( this );
     delete utl;
 }
 
@@ -112,32 +119,23 @@ AWorxUnitTesting::~AWorxUnitTesting()
 // #################################################################################################
 // Print
 // #################################################################################################
-void AWorxUnitTesting::Print( const String& file, int line, const String&, Verbosity verbosity, const TString& msg  )
+
+void AWorxUnitTesting::Failed( const String& file, int line, const Box& exp, const Box& given )
 {
-    lox.SetScopeInfo(file, line, actTestName);
-
-        lox.Entry( domain, verbosity, msg );
-
-    lox.Release();
-}
-
-void AWorxUnitTesting::Failed( const String& file, int line, const String& func,  AString& msg )
-{
-    msg.InsertAt( "UT Failure: Expected: ", 0 );
-    Print( file, line, func, aworx::Verbosity::Error, msg );
+    Print( file, line, aworx::Verbosity::Error, "UT Failure: Expected: {!Q}, given: {!Q}.", exp, given );
     assert(!AssertOnFailure);
 }
 
 void AWorxUnitTesting::WriteResultFile(const String& name, const String& outputRaw, const String& doxyTag )
 {
     AString output(outputRaw);
-    int start= 0;
+    integer start= 0;
     for(;;)
     {
         start= output.IndexOf( "/home", start );
         if ( start < 0 )
             break;
-        int end= output.IndexOf( "/ALox", start );
+        integer end= output.IndexOf( "/ALox", start );
         ALIB_ASSERT_ERROR( end >0 && end - start < 25, "Error pruning home directory" );
         if (end < 0 )
             end= output.Length();
@@ -181,21 +179,21 @@ void AWorxUnitTesting::WriteResultFile(const String& name, const String& outputR
 // #################################################################################################
 // Error/Warning
 // #################################################################################################
-void AWorxUnitTesting::Report  ( const lib::Report::Message& msg )
+void AWorxUnitTesting::Report  ( const lib::lang::Report::Message& msg )
 {
-        lox.SetScopeInfo(msg.File, msg.Line, msg.Func);
+        lox.Acquire(msg.File, msg.Line, msg.Func);
 
             lox.Entry( String16() << ALox::InternalDomains << "UT_REPORT",
                        msg.Type == 0 ? Verbosity::Error    :
                        msg.Type == 1 ? Verbosity::Warning  :
                        msg.Type == 2 ? Verbosity::Info     :
                                        Verbosity::Verbose,
-                       msg.Contents                                          );
+                       msg                                                        );
 
         lox.Release();
 }
 
-#if defined ( ALIB_VSTUDIO )
+#if !ALIB_GTEST
 
     UTVStudioLogger::UTVStudioLogger()
     : MemoryLogger( "VSTUDIO_UNITTEST_CONSOLE" )
@@ -256,39 +254,39 @@ void AWorxUnitTesting::Report  ( const lib::Report::Message& msg )
 // EQ
 // #################################################################################################
 
-#if defined( ALIB_GTEST )
-    void AWorxUnitTesting::EQ( const TString& file, int line, const TString& func, int32_t        exp, int32_t         i )        { if (i!=exp)                          Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given."); EXPECT_EQ   ( exp, i            ); }
-    void AWorxUnitTesting::EQ( const TString& file, int line, const TString& func, uint32_t       exp, uint32_t        i )        { if (i!=exp)                          Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given."); EXPECT_EQ   ( exp, i            ); }
-    void AWorxUnitTesting::EQ( const TString& file, int line, const TString& func, int64_t        exp, int64_t         i )        { if (i!=exp)                          Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given."); EXPECT_EQ   ( exp, i            ); }
-    void AWorxUnitTesting::EQ( const TString& file, int line, const TString& func, uint64_t       exp, uint64_t        i )        { if (i!=exp)                          Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given."); EXPECT_EQ   ( exp, i            ); }
-    void AWorxUnitTesting::EQ( const TString& file, int line, const TString& func, int32_t        exp, int32_t  i, int32_t   p )  { if ((i < exp ? exp-i : i-exp) > p)   Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given."); EXPECT_NEAR ( exp, i, p         ); }
-    void AWorxUnitTesting::EQ( const TString& file, int line, const TString& func, uint32_t       exp, uint32_t i, uint32_t  p )  { if ((i < exp ? exp-i : i-exp) > p)   Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given."); EXPECT_NEAR ( exp, i, p         ); }
-    void AWorxUnitTesting::EQ( const TString& file, int line, const TString& func, int64_t        exp, int64_t  i, int64_t   p )  { if ((i < exp ? exp-i : i-exp) > p)   Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given."); EXPECT_NEAR ( exp, i, p         ); }
-    void AWorxUnitTesting::EQ( const TString& file, int line, const TString& func, uint64_t       exp, uint64_t i, uint64_t  p )  { if ((i < exp ? exp-i : i-exp) > p)   Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given."); EXPECT_NEAR ( exp, i, p         ); }
-    void AWorxUnitTesting::EQ( const TString& file, int line, const TString& func, double         exp, double          d )        { if (d!=exp)                          Failed(file,line,func,String128("\"") << exp << "\", \"" << d << "\" given."); EXPECT_EQ   ( exp, d            ); }
-    void AWorxUnitTesting::EQ( const TString& file, int line, const TString& func, const String&  exp, const String&   s )        { if (!exp.Equals(s))                  Failed(file,line,func,String128("\"") << exp << "\", \"" << s << "\" given."); EXPECT_TRUE ( exp.Equals(s)     ); }
-    void AWorxUnitTesting::EQ( const TString& file, int line, const TString& func, const wchar_t* exp, const wchar_t*  s )        { if (wcscmp(exp,s)!=0)                Failed(file,line,func,String128("\"") << exp << "\", \"" << s << "\" given."); EXPECT_STREQ( exp, s            ); }
-    void AWorxUnitTesting::EQ( const TString& file, int line, const TString& func, double    exp, double d,   double   p )        { if ((d < exp ? exp-d : d-exp) > p)   Failed(file,line,func,String128("\"") << exp << "\", \"" << d << "\" given."); EXPECT_NEAR ( exp, d, p         ); }
+#if ALIB_GTEST
+    void AWorxUnitTesting::eQImpl ( const TString& file, int line,  int64_t       exp,  int64_t i )                          { if (i!=exp)                          Failed(file,line,exp,i); EXPECT_EQ   ( exp, i        ); }
+    void AWorxUnitTesting::eQImpl ( const TString& file, int line, uint64_t       exp, uint64_t i )                          { if (i!=exp)                          Failed(file,line,exp,i); EXPECT_EQ   ( exp, i        ); }
 
-    void AWorxUnitTesting::ISTRUE ( const TString& file, int line, const TString& func, bool cond )                               { if (  !cond )                        Failed(file,line,func,String128() << "true"                                     ); EXPECT_TRUE ( cond              ); }
-    void AWorxUnitTesting::ISFALSE( const TString& file, int line, const TString& func, bool cond )                               { if (  cond )                         Failed(file,line,func,String128() << "false"                                    ); EXPECT_FALSE( cond              ); }
+    void AWorxUnitTesting::EQ     ( const TString& file, int line,  int32_t       exp,  int32_t i,  int32_t p )              { if ((i < exp ? exp-i : i-exp) > p)   Failed(file,line,exp,i); EXPECT_NEAR ( exp, i, p     ); }
+    void AWorxUnitTesting::EQ     ( const TString& file, int line, uint32_t       exp, uint32_t i, uint32_t p )              { if ((i < exp ? exp-i : i-exp) > p)   Failed(file,line,exp,i); EXPECT_NEAR ( exp, i, p     ); }
+    void AWorxUnitTesting::EQ     ( const TString& file, int line,  int64_t       exp,  int64_t i,  int64_t p )              { if ((i < exp ? exp-i : i-exp) > p)   Failed(file,line,exp,i); EXPECT_NEAR ( exp, i, p     ); }
+    void AWorxUnitTesting::EQ     ( const TString& file, int line, uint64_t       exp, uint64_t i, uint64_t p )              { if ((i < exp ? exp-i : i-exp) > p)   Failed(file,line,exp,i); EXPECT_NEAR ( exp, i, p     ); }
+    void AWorxUnitTesting::EQ     ( const TString& file, int line, double         exp, double    d )                         { double p= 0.00000000000001; if ((d < exp ? exp-d : d-exp) > p)
+                                                                                                                                                                    Failed(file,line,exp,d); EXPECT_NEAR ( exp, d, p     ); }
+    void AWorxUnitTesting::EQ     ( const TString& file, int line, const String&  exp, const String&   s )                   { if (!exp.Equals(s))                  Failed(file,line,exp,s); EXPECT_TRUE ( exp.Equals(s) ); }
+    void AWorxUnitTesting::EQ     ( const TString& file, int line, const wchar_t* exp, const wchar_t*  s )                   { if (wcscmp(exp,s)!=0)                Failed(file,line,exp,s); EXPECT_STREQ( exp, s        ); }
+    void AWorxUnitTesting::EQ     ( const TString& file, int line, double         exp, double d,   double   p )              { if ((d < exp ? exp-d : d-exp) > p)   Failed(file,line,exp,d); EXPECT_NEAR ( exp, d, p     ); }
 
-#elif defined ( ALIB_VSTUDIO )
-    void AWorxUnitTesting::EQ     ( const TString& file, int line, const TString& func, int32_t        i, int32_t         exp )  { if (i!=exp)                                              Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given.");    Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual( exp, i ); }
-    void AWorxUnitTesting::EQ     ( const TString& file, int line, const TString& func, uint32_t       i, uint32_t        exp )  { if (i!=exp)                                              Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given.");    Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual( exp, i ); }
-    void AWorxUnitTesting::EQ     ( const TString& file, int line, const TString& func, int64_t        i, int64_t         exp )  { bool c= i!=exp;                                   if(!c) Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given.");    Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual( exp, i, NULL, NULL ); }
-    void AWorxUnitTesting::EQ     ( const TString& file, int line, const TString& func, uint64_t       i, uint64_t        exp )  { bool c= i!=exp;                                   if(!c) Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given.");    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
-    void AWorxUnitTesting::EQ     ( const TString& file, int line, const TString& func, int32_t  i, int32_t  exp, int32_t   p )  { bool c= (i < exp ? exp-i : i-exp) <= p;           if(!c) Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given.");    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
-    void AWorxUnitTesting::EQ     ( const TString& file, int line, const TString& func, uint32_t i, uint32_t exp, uint32_t  p )  { bool c= (i < exp ? exp-i : i-exp) <= p;           if(!c) Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given.");    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
-    void AWorxUnitTesting::EQ     ( const TString& file, int line, const TString& func, int64_t  i, int64_t  exp, int64_t   p )  { bool c= (i < exp ? exp-i : i-exp) <= p;           if(!c) Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given.");    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
-    void AWorxUnitTesting::EQ     ( const TString& file, int line, const TString& func, uint64_t i, uint64_t exp, uint64_t  p )  { bool c= (i < exp ? exp-i : i-exp) <= p;           if(!c) Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given.");    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
-    void AWorxUnitTesting::EQ     ( const TString& file, int line, const TString& func, double         d, double          exp )  { if (d!=exp)                                              Failed(file,line,func,String128("\"") << exp << "\", \"" << d << "\" given.");    Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual( exp, d ); }
-    void AWorxUnitTesting::EQ     ( const TString& file, int line, const TString& func, const String&  s, const String&   exp )  { if (!exp.Equals(s))                                      Failed(file,line,func,String128("\"") << exp << "\", \"" << s << "\" given.");    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( exp.Equals(s) ); }
-    void AWorxUnitTesting::EQ     ( const TString& file, int line, const TString& func, double  d,   double  exp,    double  p)  { bool c= (d < exp ? exp-d : d-exp) <= p;           if(!c) Failed(file,line,func,String128("\"") << exp << "\", \"" << d << "\" given.");    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
-    void AWorxUnitTesting::EQ     ( const TString& file, int line, const TString& func, const wchar_t* s, const wchar_t*  exp )  { bool c= wcscmp( s, exp                      )==0; if(!c) Failed(file,line,func,String128() << "UT Failure: Differences in wchar string."); Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
+    void AWorxUnitTesting::ISTRUE ( const TString& file, int line, bool cond )                                               {                        if (!cond )   Failed(file,line, true , false ); EXPECT_TRUE ( cond ); }
+    void AWorxUnitTesting::ISFALSE( const TString& file, int line, bool cond )                                               {                        if (cond )    Failed(file,line, false, true  ); EXPECT_FALSE( cond ); }
 
-    void AWorxUnitTesting::ISTRUE ( const TString& file, int line, const TString& func, bool c )                                 {                                                   if(!c) Failed(file,line,func,String128() << "true"                                 );    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
-    void AWorxUnitTesting::ISFALSE( const TString& file, int line, const TString& func, bool c )                                 {                                                   if( c) Failed(file,line,func,String128() << "false"                                );    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsFalse ( c      ); }
+#elif defined(_WIN32)
+    void AWorxUnitTesting::eQImpl ( const TString& file, int line,  int64_t       exp,  int64_t v )                          { bool c= v==exp;                           if(!c) Failed(file,line,exp,v);    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
+    void AWorxUnitTesting::eQImpl ( const TString& file, int line, uint64_t       exp, uint64_t v )                          { bool c= v==exp;                           if(!c) Failed(file,line,exp,v);    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
+
+    void AWorxUnitTesting::EQ     ( const TString& file, int line,  int32_t       exp,  int32_t v,  int32_t p )              { bool c= (v < exp ? exp-v : v-exp) <= p;   if(!c) Failed(file,line,exp,v);    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
+    void AWorxUnitTesting::EQ     ( const TString& file, int line, uint32_t       exp, uint32_t v, uint32_t p )              { bool c= (v < exp ? exp-v : v-exp) <= p;   if(!c) Failed(file,line,exp,v);    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
+    void AWorxUnitTesting::EQ     ( const TString& file, int line,  int64_t       exp,  int64_t v,  int64_t p )              { bool c= (v < exp ? exp-v : v-exp) <= p;   if(!c) Failed(file,line,exp,v);    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
+    void AWorxUnitTesting::EQ     ( const TString& file, int line, uint64_t       exp, uint64_t v, uint64_t p )              { bool c= (v < exp ? exp-v : v-exp) <= p;   if(!c) Failed(file,line,exp,v);    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
+
+    void AWorxUnitTesting::EQ     ( const TString& file, int line, double         exp, double          v )                   { if (v!=exp)                                      Failed(file,line,exp,v);    Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual( exp, v ); }
+    void AWorxUnitTesting::EQ     ( const TString& file, int line, const String&  exp, const String&   v )                   { if (!exp.Equals(v))                              Failed(file,line,exp,v);    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( exp.Equals(v) ); }
+    void AWorxUnitTesting::EQ     ( const TString& file, int line, double         exp, double          v,    double  p)      { bool c= (v < exp ? exp-v : v-exp) <= p;   if(!c) Failed(file,line,exp,v);    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
+    void AWorxUnitTesting::EQ     ( const TString& file, int line, const wchar_t* exp, const wchar_t*  v )                   { bool c= wcscmp( v, exp )==0;              if(!c) Failed(file,line,"","Differences in wchar string."); Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
+
+    void AWorxUnitTesting::ISTRUE ( const TString& file, int line, bool c )                                                  {                                           if(!c) Failed(file,line,true ,false);Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
+    void AWorxUnitTesting::ISFALSE( const TString& file, int line, bool c )                                                  {                                           if( c) Failed(file,line,false,true );Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsFalse ( c      ); }
 
 #else
     #pragma message ("Unknown Testing platform in: " __FILE__ )
@@ -298,7 +296,7 @@ void AWorxUnitTesting::Report  ( const lib::Report::Message& msg )
 }//namespace
 
 
-#if defined ( ALIB_VSTUDIO )
+#if !ALIB_GTEST
 namespace Microsoft {  namespace VisualStudio {   namespace CppUnitTestFramework     {
             template<> std::wstring ToString<int64_t>(const int64_t& t)
             {

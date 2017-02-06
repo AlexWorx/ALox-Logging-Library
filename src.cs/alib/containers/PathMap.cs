@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using cs.aworx.lib.strings;
 using System.Collections.Generic;
@@ -19,8 +19,8 @@ namespace cs.aworx.lib.containers  {
 /** ************************************************************************************************
  * This class implements a map suitable for keys that are hierarchically organized.
  * While the class works with any type of keys, it is efficient only if keys are rather
- * long and similar to each other. 
- * Each portion of any key inserted is stored only once. 
+ * long and similar to each other.
+ * Each portion of any key inserted is stored only once.
  *
  * \note
  *   This class is not considered as complete and final in the current version of %ALib.
@@ -32,7 +32,7 @@ public class PathMap<StoreT>
     // Public fields
     // #############################################################################################
         /** Our parent, if empty, we are root. Attention: The parent might not be identical to
-         *  the object that lists us in its #Childs vector. This is true, when an associated
+         *  the object that lists us in its #Children vector. This is true, when an associated
          *  value is not to be used in the parent.
          */
         public PathMap<StoreT>                        Parent;
@@ -44,7 +44,7 @@ public class PathMap<StoreT>
         public StoreT                                 Value                       = default(StoreT);
 
         /** A list of children. */
-        public List<PathMap<StoreT>>                  Childs          = new List<PathMap<StoreT>>();
+        public List<PathMap<StoreT>>                  Children          = new List<PathMap<StoreT>>();
 
     // #############################################################################################
     // Public interface
@@ -64,7 +64,7 @@ public class PathMap<StoreT>
          ******************************************************************************************/
         public void Clear()
         {
-            Childs.Clear();
+            Children.Clear();
             Value=  default(StoreT);
         }
 
@@ -118,24 +118,24 @@ public class PathMap<StoreT>
          * Enumerator using a DFS strategy.
          * @return <b>Yield returns</b> the list of nodes.
          ******************************************************************************************/
-        public IEnumerator<PathMap<StoreT>> GetEnumerator() 
+        public IEnumerator<PathMap<StoreT>> GetEnumerator()
         {
-            Stack<NodeAndChild>  nodesAndChilds  =new Stack<NodeAndChild>();
-            nodesAndChilds.Push( new NodeAndChild( this, -2) );
+            Stack<NodeAndChild>  nodesAndChildren  =new Stack<NodeAndChild>();
+            nodesAndChildren.Push( new NodeAndChild( this, -2) );
 
-            while(nodesAndChilds.Count > 0 )
+            while(nodesAndChildren.Count > 0 )
             {
-                NodeAndChild top= nodesAndChilds.Peek();
+                NodeAndChild top= nodesAndChildren.Peek();
                 top.childNo++;
 
-                if ( top.childNo >= nodesAndChilds.Peek().node.Childs.Count )
+                if ( top.childNo >= nodesAndChildren.Peek().node.Children.Count )
                 {
-                    nodesAndChilds.Pop();
+                    nodesAndChildren.Pop();
                     continue;
                 }
                 else if ( top.childNo >= 0 )
                 {
-                    nodesAndChilds.Push( top= new NodeAndChild( top.node.Childs[top.childNo], -1 ) );
+                    nodesAndChildren.Push( top= new NodeAndChild( top.node.Children[top.childNo], -1 ) );
                 }
 
 
@@ -147,7 +147,7 @@ public class PathMap<StoreT>
     // #############################################################################################
     // Protected interface
     // #############################################################################################
-    
+
         /** ****************************************************************************************
          * Gets a node. If not existent and parameter \p create is \c true, the node is created.
          * @param   key        The key to the stored value.
@@ -168,7 +168,7 @@ public class PathMap<StoreT>
                 while( idx < cmpLen && kBuf[ key.Start + idx] == pBuf[idx] )
                     idx++;
 
-                key.Consume( idx );
+                key.ConsumeChars( idx );
             }
 
             // all of 'our' path characters matched
@@ -179,7 +179,7 @@ public class PathMap<StoreT>
                     return this;
 
                 // return matching child
-                foreach ( PathMap<StoreT> child in Childs )
+                foreach ( PathMap<StoreT> child in Children )
                 {
                     if( key.CharAtStart() == child.Path.CharAtStart() )
                     {
@@ -195,7 +195,7 @@ public class PathMap<StoreT>
                     PathMap<StoreT> newChild= null;
                     newChild= new PathMap<StoreT>( this );
                     newChild.Path._( key );
-                    Childs.Add( newChild );
+                    Children.Add( newChild );
                     return newChild;
                 }
             }
@@ -208,19 +208,19 @@ public class PathMap<StoreT>
             // just a part of us matched
             else if ( create )
             {
-                // create new child receiving our old path (rest), our value and childs
+                // create new child receiving our old path (rest), our value and children
                 PathMap<StoreT> child1= new PathMap<StoreT>( this );
                 child1.Path._( Path, idx );
 
-                List<PathMap<StoreT>> tempList= child1.Childs;
-                foreach( PathMap<StoreT> child in Childs )
+                List<PathMap<StoreT>> tempList= child1.Children;
+                foreach( PathMap<StoreT> child in Children )
                     child.Parent= child1;
-                child1.Childs= Childs;   
-                Childs= tempList;
+                child1.Children= Children;
+                Children= tempList;
 
                 child1.Value=  Value;
-                Childs.Clear();
-                Childs.Add( child1 );
+                Children.Clear();
+                Children.Add( child1 );
 
                 // cut my path and clear my value
                 Path.SetLength_NC( idx );
@@ -232,7 +232,7 @@ public class PathMap<StoreT>
                     PathMap<StoreT> child2= new PathMap<StoreT>( this );
                     child2.Path._( key );
 
-                    Childs.Add( child2 );
+                    Children.Add( child2 );
                     return child2;
                 }
 

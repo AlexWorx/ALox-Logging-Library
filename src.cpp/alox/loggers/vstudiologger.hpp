@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  aworx::lox::loggers - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -15,7 +15,7 @@
 #ifndef HPP_ALOX_VSTUDIO_LOGGER
 #define HPP_ALOX_VSTUDIO_LOGGER 1
 
-#if defined(ALIB_VSTUDIO) && defined(ALIB_DEBUG)
+#if defined(_WIN32) && ALIB_DEBUG
 
 
 // #################################################################################################
@@ -26,10 +26,8 @@
 #endif
 
 
-namespace aworx {
-namespace       lox {
-namespace           loggers{
-
+namespace aworx { namespace lox { namespace loggers
+{
 /** ************************************************************************************************
  *  A logger that logs to the Visual Studio output pane using <em>OutputDebugString()</em>.
  *  The name of the \e Logger defaults to "VSTUDIO_CONSOLE".
@@ -90,7 +88,7 @@ class VStudioLogger : public aworx::lox::core::textlogger::PlainTextLogger
          * @return Always returns true.
          ******************************************************************************************/
         ALIB_API
-        virtual bool notifyLogOp(lib::enums::Phase phase);
+        virtual bool notifyLogOp(lib::lang::Phase phase);
 
         /** ****************************************************************************************
          * Write the given region of the given AString to the destination buffer.
@@ -101,14 +99,14 @@ class VStudioLogger : public aworx::lox::core::textlogger::PlainTextLogger
          * @return The number of characters written, -1 on error.
          ******************************************************************************************/
         ALIB_API
-        virtual int logSubstring( const AString& buffer, int start, int length );
+        virtual integer logSubstring( const AString& buffer, integer start, integer length );
 
 
         /** ****************************************************************************************
          *  Empty implementation, not needed for this class
          ******************************************************************************************/
         ALOX_API
-        virtual void notifyMultiLineOp ( lib::enums::Phase )    {  }
+        virtual void notifyMultiLineOp ( lib::lang::Phase )    {  }
 
 
 }; // class VStudioLogger
@@ -122,7 +120,7 @@ using     VStudioLogger=           aworx::lox::loggers::VStudioLogger;
 }  // namespace aworx
 
 
-#endif //defined(ALIB_VSTUDIO) &&  defined(ALIB_DEBUG)
+#endif // ALIB_IDE_VSTUDIO &&  ALIB_DEBUG
 
 #endif // HPP_ALOX_VSTUDIO_LOGGER
 

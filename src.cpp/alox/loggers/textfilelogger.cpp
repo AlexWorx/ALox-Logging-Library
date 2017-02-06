@@ -1,14 +1,10 @@
 ﻿// #################################################################################################
 //  aworx::lox::loggers - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
-
-#if !defined (HPP_ALIB)
-    #include "alib/alib.hpp"
-#endif
+#include "alib/alib.hpp"
 
 #include "alib/config/configuration.hpp"
 #include "alib/compatibility/std_iostream.hpp"
@@ -24,7 +20,7 @@ void TextFileLogger::openFile()
     os= new ofstream( FileName.ToCString(), ios::app );
     if ( !os->is_open() )
     {
-        ALIB_WARNING( String512() <<  "Could not open file: \"" << FileName << '\"');
+        ALIB_WARNING( "Could not open file: '{}'.", FileName);
         delete os;  os= nullptr;
         hasIoError= true;
         return;
@@ -69,7 +65,7 @@ bool TextFileLogger::notifyLogOp( Phase phase )
     return !hasIoError;
 }
 
-int TextFileLogger::logSubstring( const AString& buffer, int start, int length )
+integer TextFileLogger::logSubstring( const AString& buffer, integer start, integer length )
 {
     if (!hasIoError)
         *os << String( buffer, start, length );

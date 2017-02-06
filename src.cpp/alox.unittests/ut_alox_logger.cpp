@@ -2,10 +2,12 @@
 //  Unit Tests - ALox Logging Library
 //  (Unit Tests to create tutorial sample code and output)
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alox/alox.hpp"
+
+#if ALOX_DBG_LOG
 
 #include "alox/alox_console_loggers.hpp"
 #include "alox/loggers/memorylogger.hpp"
@@ -23,6 +25,7 @@
 #include <string>
 #include <vector>
 
+
 #define TESTCLASSNAME       CPP_ALox_Logger
 #include "alib.unittests/aworx_unittests.hpp"
 
@@ -35,77 +38,16 @@ using namespace aworx;
 namespace ut_alox {
 
 
-#if defined(ALOX_DBG_LOG)
-
-class MyObjectConverter : public lox::core::textlogger::ObjectConverter
-{
-    bool ConvertObject( const lox::core::Logable& logable, AString& result )
-    {
-        if ( logable.Type == 0 )
-        {
-            if ( logable.Object != nullptr && ((const TString*) logable.Object )->IsNotNull() )
-                result._( "MyObjectConverter: " )._((const TString*) logable.Object );
-            else
-                result._( "MyObjectConverter: null" );
-            return true;
-        }
-
-        if ( logable.Type == 10 )
-        {
-            result._( "my type" );
-            return true;
-        }
-
-        return false;
-    }
-};
-
-
 
 /** ********************************************************************************************
 * UT_CLASS
 **********************************************************************************************/
 // with GTEST macros it all gets wild. Fix the method name
 #undef  ALIB_SRC_INFO_PARAMS
-#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, aworxTestName
+#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, UT_GET_TEST_NAME
 
 UT_CLASS()
 
-
-/** ********************************************************************************************
-* Log_ObjectConverter
-**********************************************************************************************/
-UT_METHOD(Log_TextLogger_ObjectConverter)
-{
-    UT_INIT();
-
-    Log_AddDebugLogger();
-
-    Log_SetDomain( "OBJECT_CONV",       Scope::Method );
-    MemoryLogger ml;
-    ml.MetaInfo->Format._();
-    Log_SetVerbosity( &ml, Verbosity::Verbose );
-
-    lox::core::textlogger::StringConverter* mainConverter= (lox::core::textlogger::StringConverter*) ml.ObjectConverters[0];
-
-    // test without my converter
-    Log_Info( "Test" );      UT_TRUE( ml.MemoryLog.IndexOfSubstring( "Test" ) >= 0 );                                              ml.MemoryLog._();
-    Log_Info( nullptr );     UT_TRUE( ml.MemoryLog.IndexOfSubstring( mainConverter->FmtNullObject ) >= 0 );               ml.MemoryLog._();
-    Log_Info( this,    10 ); UT_TRUE( ml.MemoryLog.CompareTo( ml.FmtUnknownObject, Case::Sensitive, 0, 10, 0, 10) == 0 );   ml.MemoryLog._();
-    Log_Info( nullptr, 10 ); UT_TRUE( ml.MemoryLog.CompareTo( ml.FmtUnknownObject, Case::Sensitive, 0, 10, 0, 10) == 0 );   ml.MemoryLog._();
-
-    // test without my converter
-                   ml.ObjectConverters.emplace_back( new MyObjectConverter() );
-    Log::DebugLogger->ObjectConverters.emplace_back( new MyObjectConverter() );
-    Log_Info( "Test" );      UT_TRUE( ml.MemoryLog.IndexOfSubstring( "Test" ) >= 0 );                                               ml.MemoryLog._();
-    Log_Info( nullptr );     UT_EQ  ( "MyObjectConverter: null" , ml.MemoryLog );                                            ml.MemoryLog._();
-    Log_Info( this,    10 ); UT_EQ  ( "my type"                 , ml.MemoryLog );                                            ml.MemoryLog._();
-    Log_Info( nullptr, 10 ); UT_EQ  ( "my type"                 , ml.MemoryLog );                                            ml.MemoryLog._();
-
-    // cleanup
-    Log_RemoveLogger( &ml )
-    Log_RemoveDebugLogger()
-}
 
 /** ********************************************************************************************
  * Log_Replacements
@@ -167,7 +109,7 @@ UT_METHOD(Log_Multiline)
     Log_Info( "" );
     Log_Info( "-------- ML Mode = 0 (single line) with delimiter set to \"\" (stops multi line processing) --------" );
     Log_LogState( "MLine", Verbosity::Info, "Our Log configuration is:" );
-    Log::DebugLogger->MultiLineDelimiter= (const char*) nullptr; // reset
+    Log::DebugLogger->MultiLineDelimiter= static_cast<const char*>(nullptr); // reset
 
     Log::DebugLogger->MultiLineMsgMode= 1;
     Log_Info( "" );
@@ -195,7 +137,7 @@ UT_METHOD(Log_Multiline)
 * Log_ColorsAndStyles.
 **********************************************************************************************/
 
-#if defined( ALOX_DBG_LOG ) && defined(ALOX_DBG_LOG_CI)
+#if ALOX_DBG_LOG && ALOX_DBG_LOG_CI
 UT_METHOD(Log_ColorsAndStyles)
 {
     UT_INIT();
@@ -214,7 +156,7 @@ UT_METHOD(Log_ColorsAndStyles)
     Log_Info   ( "An info message" );
     Log_Warning( "A warning message" );
     Log_Error  ( "An error message" );
-    int mlPos= testML->MemoryLog.IndexOf("/COLORS" );
+    integer mlPos= testML->MemoryLog.IndexOf("/COLORS" );
     UT_TRUE( mlPos > 0 );
     mlPos+= 8;
 
@@ -260,11 +202,11 @@ UT_METHOD(Log_ColorsAndStyles)
                             << ">>>" << ESC::BLACK   << ESC::BG_BLACK   << "BLACK"      << ESC::RESET << "<<<"
                             );
 
-    Log_GetLogger( acl, "ANSI_CONSOLE" );
-    Log_Prune( if ( acl != nullptr )  ((AnsiConsoleLogger*)    acl) ->IsBackgroundLight= !((AnsiConsoleLogger*)    acl) ->IsBackgroundLight; )
+    Log_GetLogger( acl, "DEBUG_LOGGER" );
+    Log_Prune( int oldVal1= 0; if ( acl != nullptr && acl->GetTypeName() == "ANSI_CONSOLE")  { oldVal1= static_cast<AnsiConsoleLogger*>(acl)->UseLightColors; static_cast<AnsiConsoleLogger*>(acl)->UseLightColors= static_cast<AnsiConsoleLogger*>(acl)->UseLightColors == 1 ? 2 : 1; } )
     #if defined(_WIN32 )
     Log_GetLogger( wcl, "WINDOWS_CONSOLE" );
-    Log_Prune( if ( wcl != nullptr )  ((WindowsConsoleLogger*) wcl) ->IsBackgroundLight= !((WindowsConsoleLogger*) wcl) ->IsBackgroundLight; )
+    Log_Prune( int oldVal2= 0; if ( wcl != nullptr ) { oldVal2= ((WindowsConsoleLogger*) wcl)->UseLightColors; ((WindowsConsoleLogger*) wcl)->UseLightColors= !((WindowsConsoleLogger*) wcl)->UseLightColors== 1 ? 2:1; })
     #endif
 
     Log_Info(    String256("Same rev.:  ")
@@ -278,9 +220,9 @@ UT_METHOD(Log_ColorsAndStyles)
                             << ">>>" << ESC::WHITE   << ESC::BG_WHITE   << "WHITE"      << ESC::RESET << "<<<"
                             << ">>>" << ESC::BLACK   << ESC::BG_BLACK   << "BLACK"      << ESC::RESET << "<<<"
                             );
-    Log_Prune( if ( acl != nullptr )  ((AnsiConsoleLogger*)    acl) ->IsBackgroundLight= !((AnsiConsoleLogger*)    acl) ->IsBackgroundLight; )
+    Log_Prune( if ( acl != nullptr && acl->GetTypeName() == "ANSI_CONSOLE")  static_cast<AnsiConsoleLogger*>(acl) ->UseLightColors= oldVal1; )
     #if defined(_WIN32 )
-    Log_Prune( if ( wcl != nullptr )  ((WindowsConsoleLogger*) wcl) ->IsBackgroundLight= !((WindowsConsoleLogger*) wcl) ->IsBackgroundLight; )
+    Log_Prune( if ( wcl != nullptr )  ((WindowsConsoleLogger*) wcl) ->UseLightColors= oldVal2; )
     #endif
 
     Log_Verbose( testML->MemoryLog.ToCString() + mlPos );
@@ -313,9 +255,9 @@ UT_METHOD(Log_ColorsAndStyles)
 
     Log_Info(    String256("Styles: ")
                                 << ">>>" << ESC::BOLD     << "Bold"          << ESC::STYLE_RESET << "<<<"
-                                << ">>>" << ESC::ITALICS  << "Italics"       << ESC::STYLE_RESET  << "<<<"
+                                << ">>>" << ESC::ITALICS  << "Italics"       << ESC::STYLE_RESET << "<<<"
                                 << ">>>" << ESC::BOLD
-                                << ">>>" << ESC::ITALICS  << "Bold/Italics"   << ESC::STYLE_RESET  << "<<<  Styles do not work in Windows consoles"
+                                << ">>>" << ESC::ITALICS  << "Bold/Italics"  << ESC::STYLE_RESET << "<<<  Styles do not work in Windows consoles"
                                 );
     Log_Verbose( testML->MemoryLog.ToCString() + mlPos );
     UT_TRUE( testML->MemoryLog.IndexOf('\033') < 0 ); testML->MemoryLog.Clear();
@@ -363,49 +305,49 @@ UT_METHOD(Log_ColorsAndStyles)
     Log_RemoveLogger( testML );
     Log_Prune( delete testML; );
 }
-#endif // defined( ALOX_REL_LOG_CI )
+#endif // ALOX_REL_LOG_CI
 
 /** ********************************************************************************************
 * Log_TextLogger_RegisterStdStreamLocks.
 **********************************************************************************************/
-#if defined( ALOX_DBG_LOG )
+#if ALOX_DBG_LOG
 UT_METHOD(Log_TextLogger_RegisterStdStreamLocks)
 {
     UT_INIT(); // This already registers the uint test logger. Therefore, the console lock in ALib
                // is occupied once already, but not in Safe mode, yet
-                                UT_TRUE( ((ThreadLock&)ALIB::StdOutputStreamsLock).GetSafeness() == Safeness::Unsafe );
+                                UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Unsafe );
     Log_AddDebugLogger();
-    UT_TRUE( ((ThreadLock&)ALIB::StdOutputStreamsLock).GetSafeness() == Safeness::Safe );
-    Log_RemoveDebugLogger();    UT_TRUE( ((ThreadLock&)ALIB::StdOutputStreamsLock).GetSafeness() == Safeness::Unsafe );
-    Log_AddDebugLogger();       UT_TRUE( ((ThreadLock&)ALIB::StdOutputStreamsLock).GetSafeness() == Safeness::Safe );
+    UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe );
+    Log_RemoveDebugLogger();    UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Unsafe );
+    Log_AddDebugLogger();       UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe );
 
-    #if defined( ALOX_REL_LOG )
+    #if ALOX_REL_LOG
         #define LOX_LOX lox
         Lox lox("ReleaseLox");
 
         // a memory logger must not change anything!
-        Lox_SetVerbosity( Log::DebugLogger, Verbosity::Verbose );  UT_TRUE( ((ThreadLock&)ALIB::StdOutputStreamsLock).GetSafeness() == Safeness::Safe   );
+        Lox_SetVerbosity( Log::DebugLogger, Verbosity::Verbose );  UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
         MemoryLogger ml;
-        Lox_SetVerbosity( &ml,              Verbosity::Verbose );  UT_TRUE( ((ThreadLock&)ALIB::StdOutputStreamsLock).GetSafeness() == Safeness::Safe   );
-        Lox_RemoveLogger( Log::DebugLogger);               UT_TRUE( ((ThreadLock&)ALIB::StdOutputStreamsLock).GetSafeness() == Safeness::Safe   );
-        Log_RemoveDebugLogger();                           UT_TRUE( ((ThreadLock&)ALIB::StdOutputStreamsLock).GetSafeness() == Safeness::Unsafe );
-        Lox_RemoveLogger( &ml )           ;                UT_TRUE( ((ThreadLock&)ALIB::StdOutputStreamsLock).GetSafeness() == Safeness::Unsafe );
+        Lox_SetVerbosity( &ml,              Verbosity::Verbose );  UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
+        Lox_RemoveLogger( Log::DebugLogger);               UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
+        Log_RemoveDebugLogger();                           UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Unsafe );
+        Lox_RemoveLogger( &ml )           ;                UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Unsafe );
 
 
         // while a console logger does
-        Log_AddDebugLogger();                              UT_TRUE( ((ThreadLock&)ALIB::StdOutputStreamsLock).GetSafeness() == Safeness::Safe   );
-        Lox_SetVerbosity( Log::DebugLogger, Verbosity::Verbose );  UT_TRUE( ((ThreadLock&)ALIB::StdOutputStreamsLock).GetSafeness() == Safeness::Safe   );
+        Log_AddDebugLogger();                              UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
+        Lox_SetVerbosity( Log::DebugLogger, Verbosity::Verbose );  UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
         ConsoleLogger cl;
-        Lox_SetVerbosity( &cl,              Verbosity::Verbose );  UT_TRUE( ((ThreadLock&)ALIB::StdOutputStreamsLock).GetSafeness() == Safeness::Safe   );
-        Log_SetVerbosity( &cl,              Verbosity::Verbose );  UT_TRUE( ((ThreadLock&)ALIB::StdOutputStreamsLock).GetSafeness() == Safeness::Safe   );
+        Lox_SetVerbosity( &cl,              Verbosity::Verbose );  UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
+        Log_SetVerbosity( &cl,              Verbosity::Verbose );  UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
 
-        Lox_RemoveLogger( Log::DebugLogger);               UT_TRUE( ((ThreadLock&)ALIB::StdOutputStreamsLock).GetSafeness() == Safeness::Safe   );
-        Log_RemoveLogger( &cl)                             UT_TRUE( ((ThreadLock&)ALIB::StdOutputStreamsLock).GetSafeness() == Safeness::Safe   );
-        Lox_RemoveLogger( &cl );                           UT_TRUE( ((ThreadLock&)ALIB::StdOutputStreamsLock).GetSafeness() == Safeness::Safe );
+        Lox_RemoveLogger( Log::DebugLogger);               UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
+        Log_RemoveLogger( &cl)                             UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
+        Lox_RemoveLogger( &cl );                           UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe );
      #endif
-     Log_RemoveDebugLogger();                              UT_TRUE( ((ThreadLock&)ALIB::StdOutputStreamsLock).GetSafeness() == Safeness::Unsafe   );
+     Log_RemoveDebugLogger();                              UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Unsafe   );
 }
-#endif // defined( ALOX_DBG_LOG )
+#endif // ALOX_DBG_LOG
 
 /** ********************************************************************************************
 * Log_TextLogger_FormatConfig
@@ -423,7 +365,7 @@ void testFormatConfig( AWorxUnitTesting& ut, const String& testFormat,
     MemoryLogger ml("TESTML");
 
     Lox lox("T", false );
-    lox.SetScopeInfo( "ut_alox_logger.cpp", 425, "testFormatConfig" );
+    lox.Acquire( "ut_alox_logger.cpp", 425, "testFormatConfig" );
     lox.SetVerbosity( &ml, Verbosity::Info );
 
                                       UT_EQ( expFmt       , ml.MetaInfo->Format );
@@ -462,8 +404,8 @@ UT_METHOD(Log_TextLoggerTimeDiff)
 {
     UT_INIT();
 
-    TestMetaInfo t;
-    t.TimeDiffMinimum= 0;
+    TestMetaInfo mi;
+    mi.TimeDiffMinimum= 0;
     AString ms;
     int64_t diff;
     int64_t micros=     1000L;
@@ -474,95 +416,96 @@ UT_METHOD(Log_TextLoggerTimeDiff)
     int64_t days=          24 * hours;
 
 
-    t.TimeDiffMinimum= 0;
-    diff= 0;                            ms.Clear(); t.t( ms, diff );
-    UT_EQ( String16( "000" )._( t.TimeDiffNanos    ),   ms );
-    diff= 15;                           ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "015"  )._( t.TimeDiffNanos    ),    ms );
-    diff= 99;                           ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "099"  )._( t.TimeDiffNanos    ),    ms );
-    diff= 600;                          ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "600"  )._( t.TimeDiffNanos    ),    ms );
-    diff= 999;                          ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "999"  )._( t.TimeDiffNanos    ),    ms );
-    diff= 1000;                         ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "001"  )._( t.TimeDiffMicros   ),    ms );
-    t.TimeDiffMinimum= 700;
-    diff= 600;                          ms.Clear(); t.t( ms, diff ); UT_EQ( String16(          )._( t.TimeDiffNone     ),    ms );
-    diff= 700;                          ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "700"  )._( t.TimeDiffNanos    ),    ms );
-    diff= 999;                          ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "999"  )._( t.TimeDiffNanos    ),    ms );
-    t.TimeDiffMinimum= 1000;
-    diff= 1000;                         ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "001"  )._( t.TimeDiffMicros   ),    ms );
-    diff= 15 * micros;                  ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "015"  )._( t.TimeDiffMicros   ),    ms );
-    diff= 99 * micros;                  ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "099"  )._( t.TimeDiffMicros   ),    ms );
-    diff= 600* micros;                  ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "600"  )._( t.TimeDiffMicros   ),    ms );
-    diff= 999* micros;                  ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "999"  )._( t.TimeDiffMicros   ),    ms );
-    diff= 1   * millis;                 ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "001"  )._( t.TimeDiffMillis   ),    ms );
-    diff= 999 * millis;                 ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "999"  )._( t.TimeDiffMillis   ),    ms );
-    diff= 1   * secs;                   ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "1.00" )._( t.TimeDiffSecs     ),    ms );
+    mi.TimeDiffMinimum= 0;
+    diff= 0;                            ms.Clear(); mi.t( ms, diff );
+    UT_EQ( String16( "000" )._( mi.TimeDiffNanos    ),   ms );
+    diff= 15;                           ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "015"  )._( mi.TimeDiffNanos    ),    ms );
+    diff= 99;                           ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "099"  )._( mi.TimeDiffNanos    ),    ms );
+    diff= 600;                          ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "600"  )._( mi.TimeDiffNanos    ),    ms );
+    diff= 999;                          ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "999"  )._( mi.TimeDiffNanos    ),    ms );
+    diff= 1000;                         ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "001"  )._( mi.TimeDiffMicros   ),    ms );
+    mi.TimeDiffMinimum= 700;
+    diff= 600;                          ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(          )._( mi.TimeDiffNone     ),    ms );
+    diff= 700;                          ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "700"  )._( mi.TimeDiffNanos    ),    ms );
+    diff= 999;                          ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "999"  )._( mi.TimeDiffNanos    ),    ms );
+    mi.TimeDiffMinimum= 1000;
+    diff= 1000;                         ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "001"  )._( mi.TimeDiffMicros   ),    ms );
+    diff= 15 * micros;                  ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "015"  )._( mi.TimeDiffMicros   ),    ms );
+    diff= 99 * micros;                  ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "099"  )._( mi.TimeDiffMicros   ),    ms );
+    diff= 600* micros;                  ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "600"  )._( mi.TimeDiffMicros   ),    ms );
+    diff= 999* micros;                  ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "999"  )._( mi.TimeDiffMicros   ),    ms );
+    diff= 1   * millis;                 ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "001"  )._( mi.TimeDiffMillis   ),    ms );
+    diff= 999 * millis;                 ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "999"  )._( mi.TimeDiffMillis   ),    ms );
+    diff= 1   * secs;                   ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "1.00" )._( mi.TimeDiffSecs     ),    ms );
 
-    diff= 2   * secs + 344 * millis;    ms.Clear(); t.t( ms, diff );
-    UT_EQ( String16(  "2.34" )._( t.TimeDiffSecs     ),    ms );
+    diff= 2   * secs + 344 * millis;    ms.Clear(); mi.t( ms, diff );
+    UT_EQ( String16(  "2.34" )._( mi.TimeDiffSecs     ),    ms );
 
-    diff= 3   * secs + 345 * millis;    ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "3.35" )._( t.TimeDiffSecs     ),    ms );
-    diff= 9   * secs + 994 * millis;    ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "9.99" )._( t.TimeDiffSecs     ),    ms );
-    diff= 9   * secs + 995 * millis;    ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "10.0" )._( t.TimeDiffSecs     ),    ms );
-    diff= 9   * secs + 999 * millis;    ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "10.0" )._( t.TimeDiffSecs     ),    ms );
-    diff= 10  * secs + 940 * millis;    ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "10.9" )._( t.TimeDiffSecs     ),    ms );
-    diff= 10  * secs + 950 * millis;    ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "11.0" )._( t.TimeDiffSecs     ),    ms );
+    diff= 3   * secs + 345 * millis;    ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "3.35" )._( mi.TimeDiffSecs     ),    ms );
+    diff= 9   * secs + 994 * millis;    ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "9.99" )._( mi.TimeDiffSecs     ),    ms );
+    diff= 9   * secs + 995 * millis;    ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "10.0" )._( mi.TimeDiffSecs     ),    ms );
+    diff= 9   * secs + 999 * millis;    ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "10.0" )._( mi.TimeDiffSecs     ),    ms );
+    diff= 10  * secs + 940 * millis;    ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "10.9" )._( mi.TimeDiffSecs     ),    ms );
+    diff= 10  * secs + 950 * millis;    ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "11.0" )._( mi.TimeDiffSecs     ),    ms );
 
-    diff= 99  * secs + 900 * millis;    ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "99.9" )._( t.TimeDiffSecs     ),    ms );
-    diff= 99  * secs + 949 * millis;    ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "99.9" )._( t.TimeDiffSecs     ),    ms );
+    diff= 99  * secs + 900 * millis;    ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "99.9" )._( mi.TimeDiffSecs     ),    ms );
+    diff= 99  * secs + 949 * millis;    ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "99.9" )._( mi.TimeDiffSecs     ),    ms );
 
 
-    diff= 2  * mins + 0 * secs;         ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "2.00" )._( t.TimeDiffMins     ),    ms );
-    diff= 2  * mins + 30 * secs;        ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "2.50" )._( t.TimeDiffMins     ),    ms );
-    diff= 9  * mins + 45 * secs;        ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "9.75" )._( t.TimeDiffMins     ),    ms );
-    diff= 9  * mins + 59 * secs;        ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "9.98" )._( t.TimeDiffMins     ),    ms );
-    diff= 9  * mins + 59500 * millis;   ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "9.99" )._( t.TimeDiffMins     ),    ms );
-    diff= 9  * mins + 59999 * millis;   ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "10.0" )._( t.TimeDiffMins     ),    ms );
+    diff= 2  * mins + 0 * secs;         ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "2.00" )._( mi.TimeDiffMins     ),    ms );
+    diff= 2  * mins + 30 * secs;        ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "2.50" )._( mi.TimeDiffMins     ),    ms );
+    diff= 9  * mins + 45 * secs;        ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "9.75" )._( mi.TimeDiffMins     ),    ms );
+    diff= 9  * mins + 59 * secs;        ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "9.98" )._( mi.TimeDiffMins     ),    ms );
+    diff= 9  * mins + 59500 * millis;   ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "9.99" )._( mi.TimeDiffMins     ),    ms );
+    diff= 9  * mins + 59999 * millis;   ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "10.0" )._( mi.TimeDiffMins     ),    ms );
 
-    diff= 99 * mins + 0 * secs;         ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "99.0" )._( t.TimeDiffMins     ),    ms );
-    diff= 99 * mins + 30* secs;         ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "99.5" )._( t.TimeDiffMins     ),    ms );
-    diff= 99 * mins + 59* secs;         ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "99.9" )._( t.TimeDiffMins     ),    ms );
-    diff= 99 * mins + 59500* millis;    ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "99.9" )._( t.TimeDiffMins     ),    ms );
-    diff= 99 * mins + 59999* millis;    ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "1.66" )._( t.TimeDiffHours    ),    ms );
-    diff= 1 * hours + 30* mins;         ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "90.0" )._( t.TimeDiffMins     ),    ms );
+    diff= 99 * mins + 0 * secs;         ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "99.0" )._( mi.TimeDiffMins     ),    ms );
+    diff= 99 * mins + 30* secs;         ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "99.5" )._( mi.TimeDiffMins     ),    ms );
+    diff= 99 * mins + 59* secs;         ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "99.9" )._( mi.TimeDiffMins     ),    ms );
+    diff= 99 * mins + 59500* millis;    ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "99.9" )._( mi.TimeDiffMins     ),    ms );
+    diff= 99 * mins + 59999* millis;    ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "1.66" )._( mi.TimeDiffHours    ),    ms );
+    diff= 1 * hours + 30* mins;         ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "90.0" )._( mi.TimeDiffMins     ),    ms );
 
-    diff= 5 * hours + 30* mins;         ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "5.50" )._( t.TimeDiffHours    ),    ms );
+    diff= 5 * hours + 30* mins;         ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "5.50" )._( mi.TimeDiffHours    ),    ms );
 
-    diff= 9 * hours + 45* mins;         ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "9.75" )._( t.TimeDiffHours    ),    ms );
-    diff= 9 * hours + 59* mins;         ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "9.98" )._( t.TimeDiffHours    ),    ms );
-    diff= 9 * hours + 3540* secs;       ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "9.98" )._( t.TimeDiffHours    ),    ms );
-    diff= 9 * hours + 3580* secs;       ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "9.99" )._( t.TimeDiffHours    ),    ms );
-    diff= 9 * hours + 3599* secs;       ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "9.99" )._( t.TimeDiffHours    ),    ms );
-    diff= 9 * hours + 3600* secs;       ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "10.0" )._( t.TimeDiffHours    ),    ms );
+    diff= 9 * hours + 45* mins;         ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "9.75" )._( mi.TimeDiffHours    ),    ms );
+    diff= 9 * hours + 59* mins;         ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "9.98" )._( mi.TimeDiffHours    ),    ms );
+    diff= 9 * hours + 3540* secs;       ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "9.98" )._( mi.TimeDiffHours    ),    ms );
+    diff= 9 * hours + 3580* secs;       ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "9.99" )._( mi.TimeDiffHours    ),    ms );
+    diff= 9 * hours + 3599* secs;       ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "9.99" )._( mi.TimeDiffHours    ),    ms );
+    diff= 9 * hours + 3600* secs;       ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "10.0" )._( mi.TimeDiffHours    ),    ms );
 
-    diff= 50 * hours + 15 *mins;        ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "50.2" )._( t.TimeDiffHours    ),    ms );
-    diff= 99 * hours + 45 *mins;        ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "99.7" )._( t.TimeDiffHours    ),    ms );
-    diff= 99 * hours + 48 *mins;        ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "99.8" )._( t.TimeDiffHours    ),    ms );
-    diff= 99 * hours + 59 *mins;        ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "99.9" )._( t.TimeDiffHours    ),    ms );
-    diff= 99 * hours + 3540* secs;      ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "99.9" )._( t.TimeDiffHours    ),    ms );
-    diff= 99 * hours + 3580* secs;      ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "99.9" )._( t.TimeDiffHours    ),    ms );
-    diff= 99 * hours + 3599* secs;      ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "99.9" )._( t.TimeDiffHours    ),    ms );
-    diff= 99 * hours + 3600* secs;      ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "4.16" )._( t.TimeDiffDays     ),    ms );
+    diff= 50 * hours + 15 *mins;        ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "50.2" )._( mi.TimeDiffHours    ),    ms );
+    diff= 99 * hours + 45 *mins;        ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "99.7" )._( mi.TimeDiffHours    ),    ms );
+    diff= 99 * hours + 48 *mins;        ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "99.8" )._( mi.TimeDiffHours    ),    ms );
+    diff= 99 * hours + 59 *mins;        ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "99.9" )._( mi.TimeDiffHours    ),    ms );
+    diff= 99 * hours + 3540* secs;      ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "99.9" )._( mi.TimeDiffHours    ),    ms );
+    diff= 99 * hours + 3580* secs;      ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "99.9" )._( mi.TimeDiffHours    ),    ms );
+    diff= 99 * hours + 3599* secs;      ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "99.9" )._( mi.TimeDiffHours    ),    ms );
+    diff= 99 * hours + 3600* secs;      ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "4.16" )._( mi.TimeDiffDays     ),    ms );
 
-    diff= 1 * days + 12* hours;         ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "36.0" )._( t.TimeDiffHours    ),    ms );
+    diff= 1 * days + 12* hours;         ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "36.0" )._( mi.TimeDiffHours    ),    ms );
 
-    diff= 5 * days + 18* hours;         ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "5.75" )._( t.TimeDiffDays     ),    ms );
-    diff= 9 * days + 23* hours;         ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "9.95" )._( t.TimeDiffDays     ),    ms );
-    diff= 9 * days + 1380 * mins;       ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "9.95" )._( t.TimeDiffDays     ),    ms );
-    diff= 9 * days + 1400 * mins;       ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "9.97" )._( t.TimeDiffDays     ),    ms );
-    diff= 9 * days + 1439 * mins;       ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "9.99" )._( t.TimeDiffDays     ),    ms );
-    diff= 9 * days + 1440 * mins;       ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "10.0" )._( t.TimeDiffDays     ),    ms );
-    diff= 15 * days + 6 * hours;        ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "15.2" )._( t.TimeDiffDays     ),    ms );
-    diff= 99 * days + 18 * hours;       ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "99.7" )._( t.TimeDiffDays     ),    ms );
-    diff= 99 * days + 1439 * mins;      ms.Clear(); t.t( ms, diff ); UT_EQ( String16(  "99.9" )._( t.TimeDiffDays     ),    ms );
-    diff= 99 * days + 1440 * mins;      ms.Clear(); t.t( ms, diff ); UT_EQ( String16( "100.0" )._( t.TimeDiffDays     ),    ms );
+    diff= 5 * days + 18* hours;         ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "5.75" )._( mi.TimeDiffDays     ),    ms );
+    diff= 9 * days + 23* hours;         ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "9.95" )._( mi.TimeDiffDays     ),    ms );
+    diff= 9 * days + 1380 * mins;       ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "9.95" )._( mi.TimeDiffDays     ),    ms );
+    diff= 9 * days + 1400 * mins;       ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "9.97" )._( mi.TimeDiffDays     ),    ms );
+    diff= 9 * days + 1439 * mins;       ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "9.99" )._( mi.TimeDiffDays     ),    ms );
+    diff= 9 * days + 1440 * mins;       ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "10.0" )._( mi.TimeDiffDays     ),    ms );
+    diff= 15 * days + 6 * hours;        ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "15.2" )._( mi.TimeDiffDays     ),    ms );
+    diff= 99 * days + 18 * hours;       ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "99.7" )._( mi.TimeDiffDays     ),    ms );
+    diff= 99 * days + 1439 * mins;      ms.Clear(); mi.t( ms, diff ); UT_EQ( String16(  "99.9" )._( mi.TimeDiffDays     ),    ms );
+    diff= 99 * days + 1440 * mins;      ms.Clear(); mi.t( ms, diff ); UT_EQ( String16( "100.0" )._( mi.TimeDiffDays     ),    ms );
 
-    diff= 13452 * days+ 12* hours;      ms.Clear(); t.t( ms, diff ); UT_EQ( String16("13452.5")._( t.TimeDiffDays     ),    ms );
+    diff= 13452 * days+ 12* hours;      ms.Clear(); mi.t( ms, diff ); UT_EQ( String16("13452.5")._( mi.TimeDiffDays     ),    ms );
 }
 
 
 UT_CLASS_END
 
-#endif // defined(ALOX_DBG_LOG)
 
 } // namespace
+
+#endif // ALOX_DBG_LOG
 
 

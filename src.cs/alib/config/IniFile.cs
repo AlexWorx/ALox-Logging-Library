@@ -1,15 +1,16 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 using System;
 using System.IO;
 using System.Collections.Generic;
 using cs.aworx.lib.strings;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
+using cs.aworx.lib.system;
 
 namespace cs.aworx.lib.config  {
 
@@ -63,7 +64,7 @@ namespace cs.aworx.lib.config  {
  *     is written back.
  *
  * - Escaping values
- *   - Spaces \c ' ' and tabulators \c '\\t' are ignored at the start and end of each line and before
+ *   - Spaces <c>' '</c> and tabulators \c '\\t' are ignored at the start and end of each line and before
  *     and after the equal sign \c '='.
  *   - Consequently, whitespaces at the start or end of a value either need to be escaped
  *     using <c>'\\ '</c> or the whole value has to be surrounded by double quotes \c ".
@@ -74,12 +75,12 @@ namespace cs.aworx.lib.config  {
  *   - Values may consist of a list of double quoted values. Whitespaces between such
  *     values are ignored. Consequently, long strings may be enclosed in double quotes
  *     and continued in the next line when the line ends with a backslash \c '\\'.
- *   - Almost any character can be escaped. E.g \c "\\a" is read as \c 'a'.
+ *   - Almost any character can be escaped. E.g \c "\a" is read as \c 'a'.
  *   - On writing only non-printable characters and double quotation marks are escaped.
  *
  * - Other remarks
  *   - Sequences of blank lines are reduced to one blank line, when writing the file.
- *   - Errorneous lines are ignored and not written back. Line numbers with errorneous lines
+ *   - Erroneous lines are ignored and not written back. Line numbers with erroneous lines
  *     are collected in field #LinesWithReadErrors.
  **************************************************************************************************/
 public class IniFile : InMemoryPlugin
@@ -135,7 +136,7 @@ public class IniFile : InMemoryPlugin
                 // if we are still raw, then parse the INI file content
                 if ( Values.Count == 0  )
                 {
-                    ALIB.ASSERT( Delim == '\0' );
+                    ALIB_DBG.ASSERT( Delim == '\0' );
                     Delim= variable.Delim;
                     variable.Comments._()._( Comments );
 
@@ -147,7 +148,7 @@ public class IniFile : InMemoryPlugin
                     raw.TrimStart();
                     if ( raw.CharAtStart() != '=' )
                     {
-                        ALIB.WARNING( "No equal sign in variable \"" + variable.Fullname + "\" of INI file." );
+                        ALIB_DBG.WARNING( "No equal sign in variable \"" + variable.Fullname + "\" of INI file." );
                     }
                     else
                         raw.DeleteStart(1).TrimStart();
@@ -164,7 +165,7 @@ public class IniFile : InMemoryPlugin
                             delLen= 3;
                             --startIdx;
                         }
-                        ALIB.ASSERT( raw.CharAt(startIdx) == '\\' );
+                        ALIB_DBG.ASSERT( raw.CharAt(startIdx) == '\\' );
                         raw.Delete( startIdx, delLen );
 
                         startIdx= raw.TrimAt( startIdx );
@@ -324,7 +325,7 @@ public class IniFile : InMemoryPlugin
 
                 FileName._( path )
                         ._( Path.DirectorySeparatorChar )
-                        ._( Util.GetProcessName() )
+                        ._( ProcessInfo.GetCurrentProcessName() )
                         ._( DefaultFileExtension  );
             }
 
@@ -438,12 +439,12 @@ public class IniFile : InMemoryPlugin
                 }
 
                 // section line
-                if ( line.Consume( '[' ) )
+                if ( line.ConsumeChar( '[' ) )
                 {
                     fileHeaderRead= true;
 
                     // we do not care if there is no closing bracket. But if there is one, we remove it.
-                    if( !line.ConsumeFromEnd(']') )
+                    if( !line.ConsumeCharFromEnd(']') )
                         LinesWithReadErrors.Add( lineNo );
 
                     // search the section in our section list (if section existed already, new comments
@@ -465,7 +466,7 @@ public class IniFile : InMemoryPlugin
                 else
                 {
                     name._()._( line.Buf, line.Start, idx );
-                    line.Consume( idx );
+                    line.ConsumeChars( idx );
                     value._(line);
                 }
 
@@ -602,7 +603,7 @@ public class IniFile : InMemoryPlugin
                     else
                     {
                         file.Write( '=' );
-                        Util.WriteSpaces( file, maxVarLength - entry.Name.Length() + 1 );
+                        Spaces.Write( file, maxVarLength - entry.Name.Length() + 1 );
 
                         bool     isFirst=      true;
 
@@ -615,7 +616,7 @@ public class IniFile : InMemoryPlugin
                                 // write delim and backslash of previous line, newline and then spaces of actual line
                                 if ( !isFirst )
                                 {
-                                    ALIB.ASSERT_ERROR( entry.Delim != 0,
+                                    ALIB_DBG.ASSERT_ERROR( entry.Delim != 0,
                                                        "No delimiter given for multi-value variable \""
                                                        + entry.Name + "\"." );
 
@@ -668,7 +669,7 @@ public class IniFile : InMemoryPlugin
                                 // write delim and backslash of previous line, newline and then spaces of actual line
                                 if ( !isFirst )
                                 {
-                                    ALIB.ASSERT_ERROR( entry.Delim != 0,
+                                    ALIB_DBG.ASSERT_ERROR( entry.Delim != 0,
                                                        "No delimiter given for multi-value variable \""
                                                        + entry.Name + "\"." );
 
@@ -677,11 +678,11 @@ public class IniFile : InMemoryPlugin
                                     if ( backSlashPos < lastLineLen + 1  )
                                          backSlashPos=  lastLineLen + 4;
 
-                                    Util.WriteSpaces( file, backSlashPos - lastLineLen );
+                                    Spaces.Write( file, backSlashPos - lastLineLen );
 
                                     file.WriteLine( '\\' );
 
-                                    Util.WriteSpaces( file, maxVarLength + 2 ); // 2 for "= "
+                                    Spaces.Write( file, maxVarLength + 2 ); // 2 for "= "
                                 }
 
                                 // externalize value

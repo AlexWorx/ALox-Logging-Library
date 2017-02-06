@@ -1,8 +1,8 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 package com.aworx.lib.config;
@@ -21,7 +21,7 @@ import com.aworx.lib.strings.AString;
  * configuration data returns constant false, indicating that this plug-in never writes
  * anything (e.g. command line parameter plug-in, environment variable plug-in).
  *
- * Category and Variable names are character case insensitive for the plug-ins predefined 
+ * Category and Variable names are character case insensitive for the plug-ins predefined
  * with ALib.
  * It is recommended to to ignore character case in custom specializations of this class
  * as well.
@@ -32,7 +32,7 @@ public abstract class ConfigurationPlugin
     // #############################################################################################
     // internal fields
     // #############################################################################################
-    
+
         /** The default external string converter */
         protected  XTernalizer    defaultStringConverter= new XTernalizer();
 
@@ -64,10 +64,10 @@ public abstract class ConfigurationPlugin
          *
          * @param variable      The variable to retrieve.
          * @param searchOnly    If \c true, the variable must not be set. Defaults to \c false.
-         * @return \c true if variable was found within this configuration source, \c false if not. 
+         * @return \c true if variable was found within this configuration source, \c false if not.
          ******************************************************************************************/
         public abstract boolean  load( Variable variable, boolean searchOnly  );
-    
+
         /** ****************************************************************************************
          * Overloaded method providing default value \c false  for parameter \p searchOnly.
          *
@@ -78,7 +78,7 @@ public abstract class ConfigurationPlugin
         {
             return load( variable, false );
         }
-    
+
         /** ****************************************************************************************
          * Writes a variable to the configuration.
          * This default implementation just returns \c false. If this method is not overwritten
@@ -88,12 +88,12 @@ public abstract class ConfigurationPlugin
          * @return \c true if the variable was written, \c false if not which typically indicates
          *         that this plug-in is not able to write values.
          ******************************************************************************************/
-        @SuppressWarnings ("static-method") 
+        @SuppressWarnings ("static-method")
         public boolean store( Variable variable )
         {
             return false;
         }
-        
+
         /** ****************************************************************************************
          * Convenience method that parses the values from the given string using field
          * #stringConverter and then invokes \ref store(Variable) "store".
@@ -106,7 +106,7 @@ public abstract class ConfigurationPlugin
          ******************************************************************************************/
         public boolean  store( Variable variable, Object externalizedValue )
         {
-            if(     externalizedValue != null 
+            if(     externalizedValue != null
                 && ( !(externalizedValue instanceof AString) || ((AString) externalizedValue).isNotNull() ) )
             {
                 stringConverter.loadFromString( variable, externalizedValue );

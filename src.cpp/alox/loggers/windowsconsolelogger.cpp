@@ -1,17 +1,13 @@
 ﻿// #################################################################################################
 //  aworx::lox::loggers - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
-#include "alib/stdafx_alib.h"
+#include "alib/alib.hpp"
 
 #if defined( _WIN32 )
-
-#if !defined (HPP_ALIB)
-    #include "alib/alib.hpp"
-#endif
 
 #if !defined (HPP_ALIB_CONFIG_CONFIGURATION)
     #include "alib/config/configuration.hpp"
@@ -20,9 +16,12 @@
 #if !defined (HPP_ALIB_STRINGS_TOKENIZER)
     #include "alib/strings/tokenizer.hpp"
 #endif
+#if !defined(HPP_ALIB_STRINGS_SPACES)
+    #include "alib/strings/spaces.hpp"
+#endif
+
 
 #include "alox/loggers/windowsconsolelogger.hpp"
-#include "alib/core/util.hpp"
 
 #if !defined (_GLIBCXX_IOSTREAM) && !defined(_IOSTREAM_)
     #include <iostream>
@@ -58,7 +57,7 @@ namespace aworx {
  #define W32C_GRAY_LIGHT     FOREGROUND_RED   | FOREGROUND_GREEN | FOREGROUND_BLUE
  #define W32C_GRAY_DARK      FOREGROUND_INTENSITY
 
-#if !defined( IS_DOXYGEN_PARSER)
+ //! @cond NO_DOX
  WORD win32Cols[]=
  {
     W32C_RED,
@@ -68,7 +67,7 @@ namespace aworx {
     W32C_MAGENTA,
     W32C_CYAN,
  };
-#endif
+ //! @endcond NO_DOX
 
 // #################################################################################################
 // Constructor/Destructor
@@ -86,13 +85,29 @@ WindowsConsoleLogger::WindowsConsoleLogger( const String&  name )
         originalConsoleAttributes= actualAttributes;
     }
 
-    Variable variable;
-    // evaluate environment variable "ALOX_CONSOLE_HAS_LIGHT_BACKGROUND"
+    // evaluate environment variable "ALOX_CONSOLE_LIGHT_COLORS"
+    UseLightColors= -1;
+    Variable variable( ALox::CONSOLE_LIGHT_COLORS );
+    if ( variable.Load() && variable.Size() > 0)
     {
-        if ( variable.Define( ALox::CONSOLE_HAS_LIGHT_BACKGROUND).Load() != 0 )
-            IsBackgroundLight=  variable.IsTrue();
-        else
-            IsBackgroundLight=   ( originalConsoleAttributes & ~W32C_FOREGROUND_MASK )        < 7;
+        Substring p= *variable.GetString();
+        if(p.Trim().IsNotEmpty())
+        {
+                 if( p.ConsumePartOf( "foreground", 1, Case::Ignore ) > 0)  UseLightColors=  1;
+            else if( p.ConsumePartOf( "background", 1, Case::Ignore ) > 0)  UseLightColors=  2;
+            else if( p.ConsumePartOf( "never"     , 1, Case::Ignore ) > 0)  UseLightColors=  0;
+            else
+            {
+                ALIB_WARNING( "Unknown value specified in variable: {} = '{}'.",
+                              variable.Fullname, variable.GetString() );
+            }
+        }
+    }
+
+    if( UseLightColors < 0 )
+    {
+        // default: dark background, hence use light color on foreground
+        UseLightColors=   ( originalConsoleAttributes & ~W32C_FOREGROUND_MASK )  < 7 ? 2 : 1;
     }
 
     // colorize log verbosity strings.
@@ -102,7 +117,7 @@ WindowsConsoleLogger::WindowsConsoleLogger( const String&  name )
     MsgColorError           = W32C_RED;
     MsgColorWarning         = W32C_BLUE;
     MsgColorVerbose         = W32C_GRAY_DARK;
-    if ( !IsBackgroundLight )
+    if ( UseLightColors == 1 )
     {
         MsgColorError           |= FOREGROUND_INTENSITY;
         MsgColorWarning         |= FOREGROUND_INTENSITY;
@@ -143,7 +158,7 @@ void WindowsConsoleLogger::logText( Domain&        ,    Verbosity  verbosity,
 
 
     // loop over message, print the parts between the escape sequences
-    int column= 0;
+    integer column= 0;
     Tokenizer msgParts( msg, '\x1B' );
     Substring& actual= msgParts.Actual;
     Substring& rest=   msgParts.Rest;
@@ -151,7 +166,7 @@ void WindowsConsoleLogger::logText( Domain&        ,    Verbosity  verbosity,
     {
         if ( msgParts.Next( Whitespaces::Keep ).IsNotEmpty() )
         {
-            WriteFile( H, actual.Buffer(), actual.Length(), &ignore, NULL );
+            WriteFile( H, actual.Buffer(), (DWORD) actual.Length(), &ignore, NULL );
             column+= lib::strings::CString::LengthWhenConvertedToWChar( actual.Buffer(), actual.Length() );
         }
 
@@ -159,7 +174,7 @@ void WindowsConsoleLogger::logText( Domain&        ,    Verbosity  verbosity,
             break;
 
         // found a delimiter: process ESC sequence
-        char c= rest.Consume<false>();
+        char c= rest.ConsumeChar<false>();
 
         // Colors
         bool isForeGround=  true;
@@ -167,12 +182,12 @@ void WindowsConsoleLogger::logText( Domain&        ,    Verbosity  verbosity,
         {
             isForeGround=  c== 'c';
 
-            c= rest.Consume();
+            c= rest.ConsumeChar();
             int colNo= c - '0';
             ALIB_ASSERT_WARNING( colNo >=0 && colNo <=9, "ConsoleLogger: Unknown ESC-c code" );
 
             WORD attr= 0;
-            WORD light=  (isForeGround ? !IsBackgroundLight : IsBackgroundLight )  ? FOREGROUND_INTENSITY : 0;
+            WORD light=  UseLightColors > 0 && ((UseLightColors== 1) == isForeGround )  ? FOREGROUND_INTENSITY : 0;
 
             // 0..5 (red, green, yellow, blue, magenta, cyan)
             if ( colNo >= 0 && colNo < 6)  attr= (win32Cols[colNo] | light);
@@ -198,7 +213,7 @@ void WindowsConsoleLogger::logText( Domain&        ,    Verbosity  verbosity,
             // bold/italics style not supported in Windows console
 
             // reset all
-            if ( rest.Consume() == 'a' )
+            if ( rest.ConsumeChar() == 'a' )
                 actualAttributes= originalConsoleAttributes;
         }
 
@@ -206,22 +221,22 @@ void WindowsConsoleLogger::logText( Domain&        ,    Verbosity  verbosity,
         else if ( c == 't'  || c == 'A' )
         {
             bool endOfMeta= c == 'A';
-            c=  rest.Consume();
+            c=  rest.ConsumeChar();
             int extraSpace=  c >= '0' && c <= '9' ? (int) ( c - '0' )
                                                   : (int) ( c - 'A' ) + 10;
 
             // tab stop (write spaces using a growing buffer)
-            int tabStop= AutoSizes.Next( column, extraSpace );
-            int qtySpaces= tabStop - column;
+            integer tabStop= AutoSizes.Next( column, extraSpace );
+            integer qtySpaces= tabStop - column;
             if( qtySpaces > 0 )
             {
                 column+= qtySpaces;
-                const AString& spaces= lib::Util::GetSpaces();
-                int spacesLength= spaces.Length();
+                const AString& spaces= lib::strings::Spaces::Get();
+                integer spacesLength= spaces.Length();
                 while ( qtySpaces > 0 )
                 {
-                    int nextQty= qtySpaces < spacesLength ? qtySpaces : spacesLength;
-                    WriteFile( H, spaces.Buffer(), nextQty, &ignore, NULL );
+                    integer nextQty= qtySpaces < spacesLength ? qtySpaces : spacesLength;
+                    WriteFile( H, spaces.Buffer(), (DWORD) nextQty, &ignore, NULL );
                     qtySpaces-= nextQty;
                 }
             }
@@ -248,8 +263,8 @@ void WindowsConsoleLogger::logText( Domain&        ,    Verbosity  verbosity,
         // Link (we just colorize links here)
         else if ( c == 'l' )
         {
-            if ( rest.Consume() == 'S' )
-                actualAttributes=  ( actualAttributes & W32C_FOREGROUND_MASK ) |  W32C_BLUE | ( IsBackgroundLight ? 0 : FOREGROUND_INTENSITY );
+            if ( rest.ConsumeChar() == 'S' )
+                actualAttributes=  ( actualAttributes & W32C_FOREGROUND_MASK ) |  W32C_BLUE | ( UseLightColors == 1 ? FOREGROUND_INTENSITY : 0 );
             else
                 actualAttributes=  ( actualAttributes & W32C_FOREGROUND_MASK ) |  ( originalConsoleAttributes & ~W32C_FOREGROUND_MASK );
         }

@@ -1,8 +1,8 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -16,18 +16,19 @@
 
 // then, set include guard
 #ifndef HPP_ALIB_CONFIG_VARIABLE
-#if !defined( IS_DOXYGEN_PARSER)
+//! @cond NO_DOX
 #define HPP_ALIB_CONFIG_VARIABLE 1
-#endif
+//! @endcond NO_DOX
 
 #include <vector>
 
-// forwards
+// forward declarations
 namespace aworx {namespace lib {namespace strings{ class Substring; }}}
 
-namespace aworx {
-namespace           lib {
-namespace                   config {
+namespace aworx { namespace lib { namespace config
+{
+// Forward declarations
+class Configuration;
 
 /** ************************************************************************************************
  * A data record used to define an
@@ -102,7 +103,7 @@ struct VariableDefinition
  *
  * \note
  *   For general information about external configuration variables, see namespace documentation
- *   \ref aworx::lib::config "com::aworx::lib::config".
+ *   \ref aworx::lib::config "aworx::lib::config".
  *
  * <b>Construction/Redefinition:</b><br>
  * While constructors accepting attributes of a variable exist, it is recommended to
@@ -150,12 +151,12 @@ struct VariableDefinition
  *   made by a code unit.
  * - Using the interface methods #Load,#Store, #StoreDefault and #Protect found in this class
  *   itself which are provided for convenience. Those simply invoke the interface of the static global singleton
- *   \ref aworx::lib::ALIB::Config "ALIB::Config".
+ *   \ref aworx::lib::config::Configuration::Default "Configuration::Default".
  *
  * Using the interface of this class itself is the most convenient way of loading and storing
  * variables, setting default values or protecting variables.
  * Only very few use cases demand for the creation and use of an instance of class
- * \b %Configuration different to the static singleton \b %ALIB::Config.
+ * \b %Configuration different to the static singleton \b %Configuration::Default.
  *
  * Storing empty variables (method #Size returns \c 0) deletes a variable from the those
  * configuration plug-ins that are write enabled.
@@ -166,7 +167,7 @@ class Variable
     // Public fields
     // #############################################################################################
     public:
-        /** Denotes hints for formating variables when storing in external configuration files  */
+        /** Denotes hints for formatting variables when storing in external configuration files  */
         enum
         {
             /* No hints **/
@@ -288,7 +289,7 @@ class Variable
          * @param definition     The definition data of the variable.
          * @param replacements   List of arguments. Must be of types that are accepted by constructor
          *                       of class \ref aworx::lib::strings::String "String".
-         * @tparam StringTypes   The variadig argument types.
+         * @tparam StringTypes   The variadic argument types.
          ******************************************************************************************/
         template<typename... StringTypes>
         Variable( const VariableDefinition& definition,  const StringTypes&... replacements )
@@ -317,8 +318,6 @@ class Variable
          *                  to delimit different values from each other (e.g. INI files).
          * @param comments  Comment lines that might be added in the configuration storage
          *                  (plug-in implementation dependent).
-         *
-         * @return \c *this to allow concatenated operations.
          ******************************************************************************************/
         Variable( const String& category,  const String& name,  char delim= '\0',
                   const String& comments  = nullptr      )
@@ -348,7 +347,7 @@ class Variable
          * @param replacements   Replacement strings. Must be of types that are accepted by
          *                       constructor of class
          *                       \ref aworx::lib::strings::String "String".
-         * @tparam StringTypes      The variadig argument types.
+         * @tparam StringTypes      The variadic argument types.
          * @return \c *this to allow concatenated operations.
          ******************************************************************************************/
         template<typename... StringTypes>
@@ -433,60 +432,25 @@ class Variable
          * @return A reference to the string which can be manipulated to set the value.
          ******************************************************************************************/
         ALIB_API
-        AString&    AddString();
+        AString&    Add();
 
         /** ****************************************************************************************
-         * Adds the given string value to the end of the list of values.
-         * @param  value  The value to set.
-         * @return A reference to the string which can be further manipulated to set the value.
-         ******************************************************************************************/
-        inline
-        AString&    AddString( const String& value)
-        {
-            return AddString()._(value);
-        }
-
-
-        /** ****************************************************************************************
-         * Adds the given integer value to the end of the list of values.
+         * Adds the given value to the end of the list of values.
+         * Template type \p TApplicable needs to be a type which is applicable to objects of
+         * type \b %AString.
+         * See struct \ref aworx::lib::strings::T_Apply "T_Apply" for more information.
+         *
          * If a different format is desired (minimum digits, etc.), then
-         * #AddString() is to be used and conversion done proprietarily.
+         * #Add is to be used and conversion done proprietary on the returned string objects.
          *
          * @param  value  The value to set.
          * @return A reference to the string representing the integer value.
          ******************************************************************************************/
-        ALIB_API
-        AString&        AddInteger( int value );
-
-        /** ****************************************************************************************
-         * Adds the given double value to the end of the list of values.
-         * Formatting is done using field \c NumberFormat of field #Config, respectively, if this is
-         * not set, the static singleton
-         * \ref aworx::lib::ALIB::Config "ALIB::Config". If a different format is desired,
-         * #AddString() is to be used and conversion done proprietarily.
-         *
-         * @param  value  The value to set.
-         * @return A reference to the string representing the double value.
-         ******************************************************************************************/
-        ALIB_API
-        AString&        AddFloat( double value );
-
-        /** ****************************************************************************************
-         * Adds the given boolean value to the end of the list of values.
-         * For \c true values string \b "true" is set, otherwise \b "false".
-         * \note
-         *  Other, depending on the variable semantics, more user friendly values may be set using
-         *  the string interface #AddString.
-         *  String values recognized for boolean variables are defined in
-         * \ref aworx::lib::config::Configuration::TrueValues   "Configuration::TrueValues".
-         *
-         * @param  value  The value to set.
-         * @return A reference to the string representing the boolean value.
-         ******************************************************************************************/
+        template<typename TApplicable>
         inline
-        AString&       AddBoolean( bool value )
+        AString&  Add( const TApplicable& value )
         {
-            return AddString()._( value ? "true" : "false" );
+            return Add()._( value );
         }
 
         /** ****************************************************************************************
@@ -500,7 +464,7 @@ class Variable
 
         /** ****************************************************************************************
          * Returns the value with the given index. Valid values for parameter \p idx are
-         * between \c 0 and #Size <c>- 1</c>.
+         * between \c 0 and #Size.
          * If no value is set for the given index, \c nullptr is returned.
          *
          * \note
@@ -513,7 +477,7 @@ class Variable
         inline
         AString*    GetString( int idx= 0 )
         {
-            return idx < qtyValues  ? &values[idx]
+            return idx < qtyValues  ? &values[static_cast<size_t>(idx)]
                                     : nullptr;
         }
 
@@ -524,14 +488,14 @@ class Variable
          * @return The value at \p idx interpreted as an integer value.
          ******************************************************************************************/
         ALIB_API
-        int     GetInteger(int idx= 0);
+        integer GetInteger(int idx= 0);
 
         /** ****************************************************************************************
          * Returns the value at \p idx interpreted as a double value.
          * If the index is invalid, \c 0.0 is returned.
          * Parsing is done using field \c NumberFormat of field #Config, respectively, if this is
          * not set, the static singleton
-         * \ref aworx::lib::ALIB::Config "ALIB::Config" is used.
+         * \ref aworx::lib::config::Configuration::Default "Configuration::Default".
          *
          * @param  idx  The index of the value to be retrieved.  Defaults to \c 0.
          * @return The value at \p idx interpreted as a double value.
@@ -543,7 +507,7 @@ class Variable
          * Returns \c true if the first value represents a boolean 'true'.
          * Evaluation is done using field #Config, respectively if this is not set, the static
          * singleton
-         * \ref aworx::lib::ALIB::Config "ALIB::Config".
+         * \ref aworx::lib::config::Configuration::Default "Configuration::Default".
          *
          * @param  idx  The index of the value to be retrieved.  Defaults to \c 0.
          * @return The value at \p idx interpreted as a boolean value.
@@ -567,21 +531,21 @@ class Variable
 
         /** ****************************************************************************************
          * Convenience method that loads the values of a variable from the static singleton
-         * \ref aworx::lib::ALIB::Config "ALIB::Config", using method
+         * \ref aworx::lib::config::Configuration::Default "Configuration::Default", using method
          * \ref aworx::lib::config::Configuration::Load "Configuration::Load".
          *
          * @returns The priority of the configuration plug-in that provided the result.
          *          \c 0 if not found,
          *          \ref aworx::lib::config::Configuration::PrioDefault "Configuration::PrioDefault"
          *          if either found or created in
-         *          \ref aworx::lib::config::Configuration::DefaultValues "ALIB::Config::DefaultValues"
+         *          \ref aworx::lib::config::Configuration::DefaultValues "Configuration::Default::DefaultValues"
          ******************************************************************************************/
         ALIB_API
         int     Load();
 
         /** ****************************************************************************************
          * Convenience method that stores the values of a variable using the static singleton
-         * \ref aworx::lib::ALIB::Config "ALIB::Config", and method
+         * \ref aworx::lib::config::Configuration::Default "Configuration::Default", and method
          * \ref aworx::lib::config::Configuration::Store "Configuration::Store".
          *
          * Optional parameter \p externalizedValue allows to provide a string that is parsed
@@ -590,7 +554,7 @@ class Variable
          * @param externalizedValue     Optional externalized value string. If given, the variable
          *                              is set prior to writing.
          * @returns The result of
-         *          \ref aworx::lib::config::Configuration::Store "ALIB::Config::Store(*this)".
+         *          \ref aworx::lib::config::Configuration::Store "Configuration::Default::Store(*this)".
          ******************************************************************************************/
         ALIB_API
         int     Store( const String& externalizedValue= nullptr );
@@ -598,8 +562,8 @@ class Variable
         /** ****************************************************************************************
          * Convenience method that stores the variable with priority
          * \ref aworx::lib::config::Configuration::PrioDefault "Configuration::PrioDefault"
-         * using the static singleton \b %Configuration object found in
-         * \ref aworx::lib::ALIB::Config "ALIB::Config".
+         * using the static singleton found in
+         * \ref aworx::lib::config::Configuration::Default "Configuration::Default".
          *
          * The variable value is determined as follows:
          * - If optional parameter \p externalizedValue is provided and not \e nulled, the values
@@ -614,7 +578,7 @@ class Variable
          * @param externalizedValue     Optional externalized value string. If given, the variable
          *                              is set prior to writing.
          * @returns The result of
-         *          \ref aworx::lib::config::Configuration::Store "ALIB::Config::Store(*this)".
+         *          \ref aworx::lib::config::Configuration::Store "Configuration::Default::Store(*this)".
          ******************************************************************************************/
         ALIB_API
         int     StoreDefault( const String& externalizedValue= nullptr );
@@ -622,8 +586,8 @@ class Variable
         /** ****************************************************************************************
          * Convenience method that stores the variable with priority
          * \ref aworx::lib::config::Configuration::PrioProtected "Configuration::PrioProtected"
-         * using the static singleton \b %Configuration object found in
-         * \ref aworx::lib::ALIB::Config "ALIB::Config".
+         * using the static singleton found in
+         * \ref aworx::lib::config::Configuration::Default "Configuration::Default".
          *
          * The variable value is determined as follows:
          * - If optional parameter \p externalizedValue is provided and not \e nulled, the values
@@ -637,7 +601,7 @@ class Variable
          * @param externalizedValue     Optional externalized value string. If given, the variable
          *                              is set prior to writing.
          * @returns The result of
-         *          \ref aworx::lib::config::Configuration::Store "ALIB::Config::Store(*this)".
+         *          \ref aworx::lib::config::Configuration::Store "Configuration::Default::Store(*this)".
          ******************************************************************************************/
         ALIB_API
         int     Protect( const String& externalizedValue= nullptr );
@@ -652,7 +616,7 @@ class Variable
          * of default plug-in
          * \ref aworx::lib::config::Configuration::DefaultValues "Configuration::DefaultValues"
          * of static singleton
-         * \ref aworx::lib::ALIB::Config "ALIB::Config" is used.
+         * \ref aworx::lib::config::Configuration::Default "Configuration::Default" is used.
          *
          * @param externalizedValue     The new value to write.
          *

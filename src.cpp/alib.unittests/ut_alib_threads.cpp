@@ -1,23 +1,18 @@
 // #################################################################################################
 //  aworx - Unit Tests
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alox/alox.hpp"
 
-#include "alib/alib.hpp"
 
-#if !defined (HPP_ALIB_TIME)
+#if !defined (HPP_ALIB_TIME_TICKS)
     #include "alib/time/ticks.hpp"
 #endif
 
-#if !defined (HPP_ALIB_STRINGS_ASTRING)
-    #include "alib/strings/asalloc.hpp"
-#endif
-
 #if !defined (HPP_ALIB_THREADS_THREADLOCK)
-    #include "alib/threads/threadlock.hpp"
+    #include "alib/threads/threadlocknr.hpp"
 #endif
 
 
@@ -45,49 +40,49 @@ class Test_ThreadLock_SharedInt
 
 class Test_ThreadLock_TestThread : public Thread
 {
-    public:        AWorxUnitTesting* pUT;
-    public:        ThreadLock*      mutex;
-    public:        int              holdTime;
-    public:        int              repeats;
-    public:        bool             verbose;
-    public:        int              result= 1;
-    public:        Test_ThreadLock_SharedInt* shared;
+    public:        AWorxUnitTesting* UT;
+    public:        ThreadLock*       Mutex;
+    public:        int               HoldTime;
+    public:        int               Repeats;
+    public:        bool              Verbose;
+    public:        int               TResult= 1;
+    public:        Test_ThreadLock_SharedInt* Shared;
 
-    public:        Test_ThreadLock_TestThread( AWorxUnitTesting* pUT, const String& name, ThreadLock* lock, int holdTime, int repeats, bool verbose, Test_ThreadLock_SharedInt* shared )
-    :Thread( name )
+    public:        Test_ThreadLock_TestThread( AWorxUnitTesting* pUT, const String& tname, ThreadLock* lock, int holdTime, int repeats, bool verbose, Test_ThreadLock_SharedInt* shared )
+    :Thread( tname )
     {
-        this->pUT=        pUT;
-        this->mutex=     lock;
-        this->holdTime=  holdTime;
-        this->repeats=   repeats;
-        this->verbose=   verbose;
-        this->shared=    shared;
+        this->UT=        pUT;
+        this->Mutex=     lock;
+        this->HoldTime=  holdTime;
+        this->Repeats=   repeats;
+        this->Verbose=   verbose;
+        this->Shared=    shared;
     }
 
     public: void Run()
     {
-        AWorxUnitTesting &ut= *pUT;
+        AWorxUnitTesting &ut= *UT;
         UT_EQ( GetId(), Thread::CurrentThread()->GetId() );
 
-        for ( int i= 0; i < repeats ; i++ )
+        for ( int i= 0; i < Repeats ; i++ )
         {
-            if (verbose) { UT_PRINT( "Thread: " << GetName() << " acquiring lock..." ); }
-            mutex->Acquire(ALIB_DBG_SRC_INFO_PARAMS);
-            if (verbose) { UT_PRINT( "Thread: " << GetName() << " has lock." ); }
+            if (Verbose) { UT_PRINT( "Thread {!Q} acquiring lock...",GetName() ); }
+            Mutex->Acquire(ALIB_DBG_SRC_INFO_PARAMS);
+            if (Verbose) { UT_PRINT( "Thread {!Q} has lock.", GetName() ); }
 
-                int sVal= ++shared->val;
+                int sVal= ++Shared->val;
 
-                ALIB::SleepMillis( holdTime );
+                ALIB::SleepMillis( HoldTime );
 
-                shared->val= sVal -1;
+                Shared->val= sVal -1;
 
-            if (verbose) { UT_PRINT( "Thread: " << GetName() << " releasing lock." ); }
-            mutex->Release();
-            if (verbose) { UT_PRINT( "Thread: " << GetName() << " released lock." ); }
+            if (Verbose) { UT_PRINT( "Thread {!Q} releasing lock.", GetName() ); }
+            Mutex->Release();
+            if (Verbose) { UT_PRINT( "Thread {!Q} released lock." , GetName() ); }
         }
 
-        result= 0;
-        UT_PRINT( "Thread: " << GetName() << " terminates." );
+        TResult= 0;
+        UT_PRINT( "Thread {!Q} terminates.", GetName() );
 
     }
 };
@@ -102,35 +97,44 @@ UT_METHOD( ThreadSimple )
     // create and delete
     {
         Thread t;
-        UT_PRINT( "Thread object on stack, not started. Alive= " << t.IsAlive() );
+        UT_PRINT( "Thread object on stack, not started. Alive= ", t.IsAlive() );
     }
     {
         Thread* t= new Thread();
-        UT_PRINT( "Thread object on heap, not started. Alive= " << t->IsAlive() );
+        UT_PRINT( "Thread object on heap, not started. Alive= ", t->IsAlive() );
         delete t;
     }
     {
         Thread* t= new Thread();
         t->Start();
-        UT_PRINT( "Empty Thread object, started. Alive= " << t->IsAlive() );
+        UT_PRINT( "Empty Thread object, started. Alive= ", t->IsAlive() );
         delete t;
     }
 
     // simple runnable
+    #if defined(__clang__)
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Wshadow"
+    #endif
     class runner: public Runnable
     {
         public:
         AWorxUnitTesting *pUT;
         int a= 0;
-        runner(AWorxUnitTesting *pUT) { this->pUT= pUT; }
+        #if ALIB_FEAT_THREADS
+            runner(AWorxUnitTesting *put) { this->pUT= put; }
+        #endif
         virtual void Run()
         {
             AWorxUnitTesting& ut= *pUT;
-            UT_PRINT( "Runnable running in thread " << Thread::CurrentThread()->GetId() );  ALIB::SleepMillis(1); a++;
+            UT_PRINT( "Runnable running in thread ", Thread::CurrentThread()->GetId() );  ALIB::SleepMillis(1); a++;
         }
     };
+    #if defined(__clang__)
+        #pragma clang diagnostic pop
+    #endif
 
-    #ifdef ALIB_FEAT_THREADS
+    #if ALIB_FEAT_THREADS
     {
         runner r(&ut);
         {
@@ -147,12 +151,12 @@ UT_METHOD( ThreadSimple )
             int cntWait= 0;
             while( t.IsAlive() )
             {
-                UT_PRINT( "  " << Thread::CurrentThread()->GetId() << " waiting for " << t.GetId() <<" to finish"  );
+                UT_PRINT( "  {} waiting for {} to finish", Thread::CurrentThread()->GetId(), t.GetId() );
                 ALIB::SleepMicros(250);
                 cntWait++;
             }
             UT_TRUE( cntWait < 5 );
-            UT_PRINT( "  Result should be 2: " << r.a  );
+            UT_PRINT( "  Result should be 2: ", r.a  );
             UT_EQ( 2, r.a );
         }
     }
@@ -166,7 +170,7 @@ UT_METHOD( ThreadLockSimple )
 {
     UT_INIT();
 
-    lib::Report::GetDefault().PushHaltFlags( false, false );
+    lib::lang::Report::GetDefault().PushHaltFlags( false, false );
 
     // lock a recursive lock
     {
@@ -204,7 +208,7 @@ UT_METHOD( ThreadLockSimple )
         UT_PRINT( "Expecting error: set unsafe when already locked" );
         aLock.SetSafeness( Safeness::Unsafe );   UT_EQ ( 1, aLock.DbgCountAcquirements() );
         aLock.Release();                         UT_EQ ( 0, aLock.DbgCountAcquirements() );
-        UT_PRINT( "Expecting error: release whithout lock" );
+        UT_PRINT( "Expecting error: release without lock" );
         aLock.Release();                         UT_EQ (-1, aLock.DbgCountAcquirements() );
     }
 
@@ -231,7 +235,7 @@ UT_METHOD( ThreadLockSimple )
         aLock.Release();                            UT_EQ ( 0, aLock.DbgCountAcquirements() );
     }
 
-    lib::Report::GetDefault().PopHaltFlags();
+    lib::lang::Report::GetDefault().PopHaltFlags();
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -241,7 +245,7 @@ UT_METHOD( ThreadLockThreaded )
 {
     UT_INIT();
 
-    lib::Report::GetDefault().PushHaltFlags( false, false );
+    lib::lang::Report::GetDefault().PushHaltFlags( false, false );
 
         ThreadLock aLock;
         Test_ThreadLock_SharedInt* shared= new Test_ThreadLock_SharedInt();
@@ -273,72 +277,72 @@ UT_METHOD( ThreadLockThreaded )
         delete t;
         delete shared;
 
-    lib::Report::GetDefault().PopHaltFlags();
+    lib::lang::Report::GetDefault().PopHaltFlags();
 }
 
 //--------------------------------------------------------------------------------------------------
 //--- SmartLockTest
 //--------------------------------------------------------------------------------------------------
-#if defined (ALOX_DBG_LOG) // in release, no ALIB report is sent.
+#if ALOX_DBG_LOG // in release, no ALIB report is sent.
 UT_METHOD( SmartLockTest )
 {
     UT_INIT();
 
-    lib::Report::GetDefault().PushHaltFlags( false, false );
+    lib::lang::Report::GetDefault().PushHaltFlags( false, false );
     ut.lox.CntLogCalls= 0;
 
     // SmartLock with null-users
     {
-        SmartLock sl;                          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.AddAcquirer   ( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.AddAcquirer   ( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.AddAcquirer   ( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.RemoveAcquirer( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.RemoveAcquirer( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.RemoveAcquirer( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.RemoveAcquirer( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
+        SmartLock sl;                          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
     }
 
     // SmartLock with threadlocks
     {
         ThreadLock tl1, tl2, tl3;
-        SmartLock  sl;                         UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.AddAcquirer   ( &tl1    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.AddAcquirer   ( &tl2    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.AddAcquirer   ( &tl3    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.RemoveAcquirer( &tl3    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.RemoveAcquirer( &tl3    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
-        sl.RemoveAcquirer( &tl2    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.RemoveAcquirer( &tl1    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.RemoveAcquirer( &tl1    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
+        SmartLock  sl;                         UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( &tl1    );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( &tl2    );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( &tl3    );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( &tl3    );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( &tl3    );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( &tl2    );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( &tl1    );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( &tl1    );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
     }
 
     // mixed
     {
         ThreadLock tl1, tl2, tl3;
-        SmartLock  sl;                         UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.AddAcquirer   ( &tl1    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.AddAcquirer   ( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.AddAcquirer   ( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.AddAcquirer   ( &tl2    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.AddAcquirer   ( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.AddAcquirer   ( &tl2    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
-        sl.AddAcquirer   ( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.AddAcquirer   ( &tl3    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.RemoveAcquirer( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.RemoveAcquirer( &tl1    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.RemoveAcquirer( &tl1    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
-        sl.RemoveAcquirer( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.RemoveAcquirer( &tl3    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.RemoveAcquirer( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.RemoveAcquirer( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.RemoveAcquirer( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
-        sl.RemoveAcquirer( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
-        sl.RemoveAcquirer( &tl3    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
-        sl.RemoveAcquirer( &tl2    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
-        sl.RemoveAcquirer( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
+        SmartLock  sl;                         UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( &tl1    );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( &tl2    );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( &tl2    );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( &tl3    );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( &tl1    );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( &tl1    );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( &tl3    );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( &tl3    );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( &tl2    );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
     }
-    lib::Report::GetDefault().PopHaltFlags();
+    lib::lang::Report::GetDefault().PopHaltFlags();
 }
 #endif
 
@@ -371,7 +375,7 @@ UT_METHOD( HeavyLoad )
     while ( t1->IsAlive() || t2->IsAlive() || t3->IsAlive() )
         ALIB::SleepMillis( 1 );
 
-    UT_PRINT( "All threads ended. Shared value=" << shared.val );
+    UT_PRINT( "All threads ended. Shared value=", shared.val );
     UT_EQ( 0, shared.val );
     delete t1;
     delete t2;
@@ -394,7 +398,7 @@ UT_METHOD( LockSpeedTest )
     Ticks stopwatch;
     for ( int run= 1; run <= rrepeats; run ++)
     {
-        UT_PRINT( "Run " << run << '/' << rrepeats );
+        UT_PRINT( "Run {}/{}", run, rrepeats );
 
         aLock.SetSafeness( Safeness::Safe );
         stopwatch.Set();
@@ -404,7 +408,7 @@ UT_METHOD( LockSpeedTest )
             aLock.Release();
         }
         auto time= stopwatch.Age().InMicros();
-        UT_PRINT( "  Safe mode:   " << repeats << " lock/unlock ops: " << time << "\xC2\xB5s" ); // UTF-8 encoding of the greek 'm' letter;
+        UT_PRINT( "  Safe mode: {} lock/unlock ops: {}\xC2\xB5s", repeats, time ); // UTF-8 encoding of the greek 'm' letter;
 
         aLock.SetSafeness( Safeness::Unsafe );
         stopwatch.Set();
@@ -423,7 +427,7 @@ UT_METHOD( LockSpeedTest )
             for ( int tt= 0; tt < 80; tt++ )    ii-= tt; // in release it is rather 20. Strange enough!
         }
         time= stopwatch.Age().InMicros();
-        UT_PRINT( "  Unsafe mode: " << repeats << " lock/unlock ops: " << time << "\xC2\xB5s" ); // UTF-8 encoding of the greek 'm' letter;
+        UT_PRINT( "  Unsafe mode: {} lock/unlock ops: {}\xC2\xB5s", repeats, time ); // UTF-8 encoding of the greek 'm' letter;
         if (ii != 0 )
             UT_PRINT( "Never true! Just to stop compiler from pruning ii" ); //µs
 
@@ -436,7 +440,7 @@ UT_METHOD( LockSpeedTest )
             tNR.Release();
         }
         time= stopwatch.Age().InMicros();
-        UT_PRINT( "  std::mutex:  " << repeats << " lock/unlock ops: " << time << "\xC2\xB5s" ); // UTF-8 encoding of the greek 'm' letter;
+        UT_PRINT( "  std::mutex: {} lock/unlock ops: {}\xC2\xB5s", repeats, time ); // UTF-8 encoding of the greek 'm' letter;
     }
 
 }

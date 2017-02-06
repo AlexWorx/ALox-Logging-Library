@@ -2,8 +2,8 @@
 //  cs.aworx.lox.unittests - ALox Logging Library
 //  (Unit Tests to create tutorial sample code and output)
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using ut_cs_aworx;
 using System;
@@ -11,16 +11,16 @@ using cs.aworx.lib.strings;
 using System.Collections.Generic;
 using cs.aworx.lib.config;
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     using NUnit.Framework;
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 #endif
 
 
 using cs.aworx.lox;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 using cs.aworx.lox.loggers;
 
 namespace ut_cs_aworx_lox
@@ -442,10 +442,10 @@ public class CS_Manual   : AWorxUnitTesting
         memLog.MemoryLog.Clear();
     }
 
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox_Manual")]
@@ -508,10 +508,10 @@ public class CS_Manual   : AWorxUnitTesting
     }
 
 
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox_Manual")]
@@ -532,10 +532,10 @@ public class CS_Manual   : AWorxUnitTesting
         SaveOutput( "Man_LogSetPrefix_1.txt" );
     }
 
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox_Manual")]
@@ -562,7 +562,7 @@ memLog.MemoryLog.Clear();
 
     Log.SetVerbosity( memLog, Verbosity.Info, "/MYDOM", Configuration.PrioDefault + 1 );
     Log.Info( "MYDOM", "This line will be logged" );
-    
+
     Log.SetVerbosity( memLog, Verbosity.Off, "/MYDOM" );
     Log.Info( "MYDOM", "This line will still be logged" );
 

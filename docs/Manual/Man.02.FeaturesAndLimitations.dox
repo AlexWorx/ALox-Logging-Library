@@ -1,8 +1,8 @@
 ﻿/// #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /**
@@ -10,13 +10,12 @@
 
 ### Current Features ###
 
-- Available for C++ 11,  C# (.Net, Windows Phone) and Java
+- Available for <b>C++</b> 11 (GNU/Linux, Windows OS, macOS),  <b>C#</b> (.Net, Windows, Linux, Microsoft, Mono ) and <b>Java</b>
   (with Android support and extensions).
 
-- **Open source**, MIT License.
-- Jump-start **tutorials** for [ALox for C++](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/cpptutorial.html),[ALox for C#](http://alexworx.github.io/ALox-Logging-Library/cs_ref/cstutorial.html) and [ALox for Java](http://alexworx.github.io/ALox-Logging-Library/java_ref/javatutorial.html)).
+- <b>Free software</b>, published under Boost Software License.
 
-- **Auto-configuration** (if not configured by your code) based on OS (GNU/Linux, Windows) and **detecting IDE** (VStudio, Eclipse, QTCreator, etc.). Minimal intrusiveness in respect to *cluttering* your code and what you need to make it really work.
+- Jump-start **tutorials** for [ALox for C++](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/cpptutorial.html),[ALox for C#](http://alexworx.github.io/ALox-Logging-Library/cs_ref/cstutorial.html) and [ALox for Java](http://alexworx.github.io/ALox-Logging-Library/java_ref/javatutorial.html), <b>Sample Projects</b> and pre-configured project files for <b>different IDEs</b> and <b>CMake</b>.
 
 - Formatted, **colorful, configurable log output** with support for ANSI compatible consoles and Windows OS consoles.
 
@@ -24,7 +23,11 @@
 
 - Automatic collection of **meta information** like time stamp, time-difference to previous log, executing thread or executing source scope information (platform/language dependent).
 
-- Use of external configuration (INI-files, command line paramters, environment variables, etc.) which allows developer specific local settings and greatly supports working in teams.
+- Automatic removal, aka **'pruning'**,  of *debug-log* statements from release code mostly without the need of pre-processor if/endif code cluttering. Optionally also automatic pruning of *release-log* statements. (In Java: implemented using [Proguard](http://proguard.sourceforge.net), with provision of ready to use configuration files.
+
+- Minimal intrusiveness in respect to *cluttering* your code and what you need to make it really work.
+
+- Use of external configuration (INI-files, command line parameters, environment variables, etc.) which allows developer specific local settings and greatly supports working in teams.
 
 - **Hierarchical 'Log-Domains'**, (like for example "MYAPP/UI", "MYAPP/DATABASE" that allow the classification of different <em>Log Statements</em> into user defined topics. Verbosity is controlled per domain to allow the programmer to concentrate on the area of current interest.
 
@@ -34,15 +37,13 @@
 
 - Support for **CMake**, **Eclipse**, **Visual Studio**, **QT Creator**, **Mono Develop** in combination with **GNU/Linux**, **Windows**, **Windows Phone** and **Android**. (Windows Phone in current versions not tested any more). Porting to other platforms should be easy.
 
-- Very **fast** to minimize run-time overhead of logging (We just broke our former record and did **one million log lines in a second**, including meta information. This was of-course the C++ version doing release logging on release executable).
-
-- Automatic removal, aka **'pruning'**,  of *debug-log* statements from release code mostly without the need of pre-processor if/endif code  cluttering. Optionally also automatic pruning of *release-log* statements. (In Java: implemented using [Proguard](http://proguard.sourceforge.net), with provision of ready to use configuration files.
+- Very **fast** to minimize runtime overhead of logging (We just broke our former record and did **one million log lines in a second**, including meta information. This was of-course the C++ version doing release logging on release executable).
 
 - Multiple **parallel log streams** with different \e Verbosity, e.g. for logging to the console and in parallel into a file.
 
 - **Extensible** with own loggers, which enables dedicated "data drains" (e.g. databases or Internet services) and custom output formatting. ALox provides a simple programming interface and internal architecture that is easy to learn, not overloaded by 'factories' and 'factory factories' ;-)
 
-- Logging of <b>arbitrary objects</b> which means the whole ALox architecture builds on logging 'objects' instead of just message strings. Only the implementation decides whether an object is - and if yes, how - an object is converted into a human readable string.
+- Logging of <b>arbitrary objects</b> which means the whole ALox architecture builds on logging 'objects' instead of just string messages. Only the logger instances which are attached at runtime, decide how logged data might be converted to human readable strings.
 
 - Scope dependent **Log Data** to add debug variables that automatically get pruned like the debug-logging statements are.
 
@@ -58,8 +59,11 @@
     - Logging **Exceptions** (recursively with inner exceptions)
     - Logging **XML trees**
 
-- C++ version accepts arbitrary **3rd party string types**. This goal was reached by underlying A-Worx utility library *ALib* (open source, MIT License) which greatly [solved that problem](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/namespaceaworx_1_1lib_1_1strings.html) using some *template meta programming* to relieve us from the (disastrous) string mix in the C++ world.
-  On the same token, conversion of **user defined types** to logable (string) objects is supported. After implementing the conversion once, you can just throw your custom types into ALox <em>Log Statements</em>, even as a part of a concatenated log message.
+- C++ version:
+    - Compiled and tested on **GNU/Linux**, **Windows OS** and Apple **macOS**.
+    - Accepts **arbitrary objects** to be logged. This goal is reached by using underlying library [ALib Boxing](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/namespaceaworx_1_1lib_1_1boxing.html) which allows to pass 'anything' as a parameter to C++ functions and methods.
+    - Accepts **3rd party string types**. This goal is reached by using underlying library [ALib Strings](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/namespaceaworx_1_1lib_1_1strings.html).
+
 
 - and finally: ALox is under **continuous development**. You're invited to contribute!
 

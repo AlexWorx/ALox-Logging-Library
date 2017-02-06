@@ -1,16 +1,16 @@
 // #################################################################################################
 //  Unit Tests - AWorx Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package ut_alib;
 import org.junit.Test;
 
 import com.aworx.lib.ALIB;
-import com.aworx.lib.Report;
-import com.aworx.lib.enums.LockMode;
-import com.aworx.lib.enums.Safeness;
+import com.aworx.lib.lang.LockMode;
+import com.aworx.lib.lang.Report;
+import com.aworx.lib.lang.Safeness;
 import com.aworx.lib.threads.SmartLock;
 import com.aworx.lib.threads.ThreadLock;
 import com.aworx.lib.time.Ticks;
@@ -30,9 +30,6 @@ public class UT_alib_threads  extends AWorxUnitTesting
     {
         UT_INIT();
         Report.getDefault().pushHaltFlags( false, false );
-        
-        Log.setDomain( "TL_Simple", Scope.METHOD );
-        Log.info( "\n### ThreadLock_Simple ###" );
 
         // lock a recursive lock
         ThreadLock aLock= new ThreadLock();
@@ -42,7 +39,7 @@ public class UT_alib_threads  extends AWorxUnitTesting
         aLock.acquire();                                UT_TRUE (  aLock.toString().startsWith("Locked")   );
         aLock.acquire();                                UT_TRUE (  aLock.toString().startsWith("Locked")   );
         aLock.release();                                UT_TRUE (  aLock.toString().startsWith("Locked")   );
-                                                                                                
+
         aLock.acquire();                                UT_TRUE (  aLock.toString().startsWith("Locked")   );
         aLock.release();                                UT_TRUE (  aLock.toString().startsWith("Locked")   );
         aLock.release();                                UT_TRUE (  aLock.toString().startsWith("Unlocked") );
@@ -60,7 +57,7 @@ public class UT_alib_threads  extends AWorxUnitTesting
 
         // unsafe
         aLock.acquire();                                UT_TRUE (  aLock.toString().startsWith("Locked")   );
-        Log.info("One warning should come now: ");
+        UT_PRINT("One warning should come now: ");
         aLock.setSafeness( Safeness.SAFE );             UT_TRUE (  aLock.toString().startsWith("Locked")   );
                                                         UT_TRUE (  aLock.toString().contains  ("Unsafe")   );
 
@@ -68,14 +65,14 @@ public class UT_alib_threads  extends AWorxUnitTesting
         aLock= new ThreadLock();
         aLock.acquire();                                UT_TRUE (  aLock.toString().startsWith("Locked") );
                                                         UT_TRUE ( !aLock.toString().contains  ("Unsafe")   );
-        Log.info("One warning should come now: ");
+        UT_PRINT("One warning should come now: ");
         aLock.setSafeness( Safeness.UNSAFE );           UT_TRUE ( !aLock.toString().startsWith("null") );
                                                         UT_TRUE ( !aLock.toString().contains  ("Unsafe")   );
 
 
         // test warnings (10) locks:
         aLock= new ThreadLock();
-        Log.info("Two warnings should come now: ");
+        UT_PRINT("Two warnings should come now: ");
         for (int i= 0; i<20; i++)
             aLock.acquire();
         UT_TRUE (  aLock.toString().startsWith("Locked") );
@@ -89,7 +86,7 @@ public class UT_alib_threads  extends AWorxUnitTesting
         aLock.acquire();                UT_TRUE (  aLock.toString().startsWith("Locked")   );
         aLock.release();                UT_TRUE (  aLock.toString().startsWith("Unlocked") );
 
-        Log.info("One warning should come now: ");
+        UT_PRINT("One warning should come now: ");
         aLock.release();                UT_TRUE (  aLock.toString().startsWith("Unlocked") );
         Report.getDefault().popHaltFlags();
     }
@@ -101,17 +98,16 @@ public class UT_alib_threads  extends AWorxUnitTesting
     public void ThreadLock_Threaded()
     {
         UT_INIT();
-        
+
         Log.setDomain( "TL_Threaded", Scope.METHOD );
-        Log.info( "\n### TicksBasics ###" );
 
         ThreadLock aLock= new ThreadLock();
         Test_ThreadLock_SharedInt shared= new Test_ThreadLock_SharedInt();
-        Log.info("starting thread locked");
+        UT_PRINT("starting thread locked");
         aLock.acquire();
         Test_ThreadLock_TestThread t= new Test_ThreadLock_TestThread( "TT", aLock, 10, 1, true, shared );
         t.start();
-        Log.info("We wait 1100 ms. This should give a warning! ");
+        UT_PRINT("We wait 1100 ms. This should give a warning! ");
         ALIB.sleepMillis( 1100 );
         aLock.release();
 
@@ -124,7 +120,7 @@ public class UT_alib_threads  extends AWorxUnitTesting
         aLock.acquire();
         t= new Test_ThreadLock_TestThread( "TT", aLock, 10, 1, true, shared );
         t.start();
-        Log.info("We wait 1 ms. This should NOT give a warning! ");
+        UT_PRINT("We wait 1 ms. This should NOT give a warning! ");
         ALIB.sleepMillis( 1 );
         aLock.release();
 
@@ -142,7 +138,7 @@ public class UT_alib_threads  extends AWorxUnitTesting
     {
         UT_INIT();
         Report.getDefault().pushHaltFlags( false, false );
-        
+
             // SmartLock with null-users
             {
                                                                                                                                               utWriter.lox.cntLogCalls= 0;
@@ -155,7 +151,7 @@ public class UT_alib_threads  extends AWorxUnitTesting
                 sl.removeAcquirer( null );          UT_TRUE( sl.getSafeness() == Safeness.UNSAFE );  UT_TRUE( utWriter.lox.cntLogCalls== 0 ); utWriter.lox.cntLogCalls= 0;
                 sl.removeAcquirer( null );          UT_TRUE( sl.getSafeness() == Safeness.UNSAFE );  UT_TRUE( utWriter.lox.cntLogCalls== 1 ); utWriter.lox.cntLogCalls= 0;
             }
-        
+
             // SmartLock with threadlocks
             {
                 ThreadLock tl1 = new ThreadLock();
@@ -171,37 +167,39 @@ public class UT_alib_threads  extends AWorxUnitTesting
                 sl.removeAcquirer( tl1 );          UT_TRUE( sl.getSafeness() == Safeness.UNSAFE );  UT_TRUE( utWriter.lox.cntLogCalls== 0 ); utWriter.lox.cntLogCalls= 0;
                 sl.removeAcquirer( tl1 );          UT_TRUE( sl.getSafeness() == Safeness.UNSAFE );  UT_TRUE( utWriter.lox.cntLogCalls== 1 ); utWriter.lox.cntLogCalls= 0;
             }
-        
+
             // mixed
             {
                 ThreadLock tl1 = new ThreadLock();
                 ThreadLock tl2 = new ThreadLock();
                 ThreadLock tl3 = new ThreadLock();
-                SmartLock  sl= new SmartLock();     UT_TRUE( sl.getSafeness() == Safeness.UNSAFE );  UT_TRUE( utWriter.lox.cntLogCalls== 0 ); utWriter.lox.cntLogCalls= 0;
-                sl.addAcquirer   ( tl1  );          UT_TRUE( sl.getSafeness() == Safeness.UNSAFE );  UT_TRUE( utWriter.lox.cntLogCalls== 0 ); utWriter.lox.cntLogCalls= 0;
-                sl.addAcquirer   ( null );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 0 ); utWriter.lox.cntLogCalls= 0;
-                sl.addAcquirer   ( null );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 0 ); utWriter.lox.cntLogCalls= 0;
-                sl.addAcquirer   ( tl2  );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 0 ); utWriter.lox.cntLogCalls= 0;
-                sl.addAcquirer   ( null );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 0 ); utWriter.lox.cntLogCalls= 0;
+                UT_PRINT( "Some error messages should follow" ); utWriter.lox.cntLogCalls= 0;
+                SmartLock  sl= new SmartLock();     UT_TRUE( sl.getSafeness() == Safeness.UNSAFE );  UT_TRUE( utWriter.lox.cntLogCalls== 0 );
+                utWriter.lox.cntLogCalls= 0;
+                sl.addAcquirer   ( tl1  );          UT_TRUE( sl.getSafeness() == Safeness.UNSAFE );  UT_TRUE( utWriter.lox.cntLogCalls== 0 );
+                sl.addAcquirer   ( null );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 0 );
+                sl.addAcquirer   ( null );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 0 );
+                sl.addAcquirer   ( tl2  );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 0 );
+                sl.addAcquirer   ( null );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 0 );
                 sl.addAcquirer   ( tl2  );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 1 ); utWriter.lox.cntLogCalls= 0;
-                sl.addAcquirer   ( null );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 0 ); utWriter.lox.cntLogCalls= 0;
-                sl.addAcquirer   ( tl3  );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 0 ); utWriter.lox.cntLogCalls= 0;
-                sl.removeAcquirer( null );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 0 ); utWriter.lox.cntLogCalls= 0;
-                sl.removeAcquirer( tl1  );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 0 ); utWriter.lox.cntLogCalls= 0;
+                sl.addAcquirer   ( null );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 0 );
+                sl.addAcquirer   ( tl3  );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 0 );
+                sl.removeAcquirer( null );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 0 );
+                sl.removeAcquirer( tl1  );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 0 );
                 sl.removeAcquirer( tl1  );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 1 ); utWriter.lox.cntLogCalls= 0;
-                sl.removeAcquirer( null );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 0 ); utWriter.lox.cntLogCalls= 0;
-                sl.removeAcquirer( tl3  );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 0 ); utWriter.lox.cntLogCalls= 0;
-                sl.removeAcquirer( null );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 0 ); utWriter.lox.cntLogCalls= 0;
-                sl.removeAcquirer( null );          UT_TRUE( sl.getSafeness() == Safeness.UNSAFE );  UT_TRUE( utWriter.lox.cntLogCalls== 0 ); utWriter.lox.cntLogCalls= 0;
+                sl.removeAcquirer( null );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 0 );
+                sl.removeAcquirer( tl3  );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 0 );
+                sl.removeAcquirer( null );          UT_TRUE( sl.getSafeness() == Safeness.SAFE   );  UT_TRUE( utWriter.lox.cntLogCalls== 0 );
+                sl.removeAcquirer( null );          UT_TRUE( sl.getSafeness() == Safeness.UNSAFE );  UT_TRUE( utWriter.lox.cntLogCalls== 0 );
                 sl.removeAcquirer( null );          UT_TRUE( sl.getSafeness() == Safeness.UNSAFE );  UT_TRUE( utWriter.lox.cntLogCalls== 1 ); utWriter.lox.cntLogCalls= 0;
                 sl.removeAcquirer( null );          UT_TRUE( sl.getSafeness() == Safeness.UNSAFE );  UT_TRUE( utWriter.lox.cntLogCalls== 1 ); utWriter.lox.cntLogCalls= 0;
                 sl.removeAcquirer( tl3  );          UT_TRUE( sl.getSafeness() == Safeness.UNSAFE );  UT_TRUE( utWriter.lox.cntLogCalls== 1 ); utWriter.lox.cntLogCalls= 0;
-                sl.removeAcquirer( tl2  );          UT_TRUE( sl.getSafeness() == Safeness.UNSAFE );  UT_TRUE( utWriter.lox.cntLogCalls== 0 ); utWriter.lox.cntLogCalls= 0;
+                sl.removeAcquirer( tl2  );          UT_TRUE( sl.getSafeness() == Safeness.UNSAFE );  UT_TRUE( utWriter.lox.cntLogCalls== 0 );
                 sl.removeAcquirer( null );          UT_TRUE( sl.getSafeness() == Safeness.UNSAFE );  UT_TRUE( utWriter.lox.cntLogCalls== 1 ); utWriter.lox.cntLogCalls= 0;
             }
             Report.getDefault().popHaltFlags();
     }
-    
+
     //--------------------------------------------------------------------------------------------------
     //--- HeavyLoad
     //--------------------------------------------------------------------------------------------------
@@ -209,9 +207,8 @@ public class UT_alib_threads  extends AWorxUnitTesting
     public void ThreadLock_HeavyLoad()
     {
         UT_INIT();
-        
+
         Log.setDomain( "TL_HeavyLoad", Scope.METHOD );
-        Log.info( "### TicksBasics ###" );
         ThreadLock aLock= new ThreadLock();
 
         // uncomment this for unsafe mode
@@ -225,7 +222,7 @@ public class UT_alib_threads  extends AWorxUnitTesting
         Test_ThreadLock_TestThread t1= new Test_ThreadLock_TestThread( "A", aLock, holdTime, repeats, verbose, shared );
         Test_ThreadLock_TestThread t2= new Test_ThreadLock_TestThread( "B", aLock, holdTime, repeats, verbose, shared );
         Test_ThreadLock_TestThread t3= new Test_ThreadLock_TestThread( "C", aLock, holdTime, repeats, verbose, shared );
-        Log.info("starting three threads");
+        UT_PRINT("starting three threads");
         t1.start();
         t2.start();
         t3.start();
@@ -234,7 +231,7 @@ public class UT_alib_threads  extends AWorxUnitTesting
         while ( t1.isAlive() || t2.isAlive() || t3.isAlive() )
             ALIB.sleepMillis( 1 );
 
-        Log.info("All threads ended. Shared value=" + shared.val );
+        UT_PRINT("All threads ended. Shared value=" + shared.val );
 
         UT_TRUE( shared.val == 0 );
     }
@@ -248,9 +245,8 @@ public class UT_alib_threads  extends AWorxUnitTesting
     public void ThreadLock_SpeedTest()
     {
         UT_INIT();
-        
+
         Log.setDomain( "TL_SpeedTest", Scope.METHOD );
-        Log.info( "\n### TicksBasics ###" );
         ThreadLock aLock= new ThreadLock();
 
         int        repeats=    100000;
@@ -260,8 +256,8 @@ public class UT_alib_threads  extends AWorxUnitTesting
         Ticks stopwatch= new Ticks();
         for ( int r= 0; r < rrepeats; r ++)
         {
-            Log.info( "" );
-            Log.info("Run " + rrepeats );
+            UT_PRINT( "" );
+            UT_PRINT("Run " + rrepeats );
 
             aLock.setSafeness( Safeness.SAFE );
             stopwatch.set();
@@ -271,7 +267,7 @@ public class UT_alib_threads  extends AWorxUnitTesting
                 aLock.release();
             }
             long time= stopwatch.age().inMillis();
-            Log.info("Safe mode, " + repeats + " lock/unlock ops: " + time + " ms" );
+            UT_PRINT("Safe mode, " + repeats + " lock/unlock ops: " + time + " ms" );
 
             aLock.setSafeness( Safeness.UNSAFE );
             stopwatch.set();
@@ -287,7 +283,7 @@ public class UT_alib_threads  extends AWorxUnitTesting
                     i-= tt;
             }
             time= stopwatch.age().inMillis();
-            Log.info("Unsafe mode, " + repeats + " lock/unlock ops: " + time + " ms" );
+            UT_PRINT("Unsafe mode, " + repeats + " lock/unlock ops: " + time + " ms" );
         }
     }
 
@@ -326,9 +322,9 @@ public class Test_ThreadLock_TestThread extends Thread
         Log.setDomain( "TestThread", Scope.METHOD );
         for ( int i= 0; i < repeats ; i++ )
         {
-            if (verbose) { Log.info("Thread: "+ getName() +" acuiring lock..."); }
+            if (verbose) { UT_PRINT("Thread: "+ getName() +" acuiring lock..."); }
             lock.acquire();
-            if (verbose) { Log.info("Thread: "+ getName() +" has lock."); }
+            if (verbose) { UT_PRINT("Thread: "+ getName() +" has lock."); }
 
                 int sVal= ++shared.val;
 
@@ -336,13 +332,13 @@ public class Test_ThreadLock_TestThread extends Thread
 
                 shared.val= sVal -1;
 
-            if (verbose) { Log.info("Thread: "+ getName() +" releasing lock."); }
+            if (verbose) { UT_PRINT("Thread: "+ getName() +" releasing lock."); }
             lock.release();
-            if (verbose) { Log.info("Thread: "+ getName() +" released lock."); }
+            if (verbose) { UT_PRINT("Thread: "+ getName() +" released lock."); }
         }
 
         result= 0;
-        Log.info("Thread: "+ getName() +" terminates.");
+        UT_PRINT("Thread: "+ getName() +" terminates.");
     }
 }
 

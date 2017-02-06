@@ -1,8 +1,8 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /**
@@ -51,7 +51,7 @@ ALox \e Scopes are enumerated in enum-class
   (as well as of class \b Log in ALox for C# and Java). In Java, for technical reasons, they are
   identified at runtime, but this does not affect their behavior.
 - <b>Scopes related to the execution thread:</b><br>
-  These scopes are identified at run-time, by examining the thread that is executing a method of class \b Lox.
+  These scopes are identified at runtime, by examining the thread that is executing a method of class \b Lox.
 
 
 
@@ -81,7 +81,7 @@ The techniques are different in each implementation:
 - In ALox for Java, the detection is performed at runtime by examining the 'stack trace' of an object of
   type Exception which is solely created for this purpose. (This implies a quite huge performance
   overhead, which roughly triples the execution time of a <em>Log Statement</em> in Java. However, as soon
-  as such run-time information is not used, e.g. in typical release-logging, the overhead is
+  as such runtime information is not used, e.g. in typical release-logging, the overhead is
   avoided. And: ALox is fast still!).
 
 
@@ -165,7 +165,7 @@ The scope information collected by ALox for each <em>Log Statement</em> incorpor
 'package' name of the class and method that is executing it.
 Therefore, using method
 <b>%Lox.SetDomain</b>
-([C++] (@ref      #aworx::lox::Lox::SetDomain(const TString&, Scope, int)),
+([C++] (@ref      #aworx::lox::Lox::SetDomain(const String&, Scope, int)),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
  [Java](@ref #com::aworx::lox::Lox::setDomain)) with \e Scope PACKAGE
 in Java instructs ALox to use the given <em>Scope Domain</em> for all <em>Log Statements</em> residing in any
@@ -482,7 +482,7 @@ Finally it is noteworthy to mention the impact of \e %Scope.ThreadInner being th
 We learned in section \ref man_scopes_language_path, that this \e Scope through the use of
 optional parameter \p pathLevel of method
 <b>%Lox.SetDomain</b>
-([C++] (@ref      #aworx::lox::Lox::SetDomain(const TString&, Scope, int)),
+([C++] (@ref      #aworx::lox::Lox::SetDomain(const String&, Scope, int)),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
  [Java](@ref #com::aworx::lox::Lox::setDomain)) may be seen as whole set of nested
 \e Scopes itself.
@@ -507,7 +507,7 @@ in the next section.
 
 The same method,
 <b>%Lox.SetDomain</b>
-([C++] (@ref      #aworx::lox::Lox::SetDomain(const TString&, Scope, int)),
+([C++] (@ref      #aworx::lox::Lox::SetDomain(const String&, Scope, int)),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
  [Java](@ref #com::aworx::lox::Lox::setDomain)) which is used for language-related \e Scopes
 is used to set and remove thread-related \e Scopes.
@@ -532,7 +532,7 @@ It was discussed in \ref man_scopes_language_setting, that those types of \e Sco
 set from 'within' the \e Scope to be set (the same or an inner \e Scope). This is different
 with thread-related \e Scopes. Method
 <b>%Lox.SetDomain</b>
-([C++] (@ref      #aworx::lox::Lox::SetDomain(const TString&, Scope, int)),
+([C++] (@ref      #aworx::lox::Lox::SetDomain(const String&, Scope, int)),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
  [Java](@ref #com::aworx::lox::Lox::setDomain)) as well as
 <b>%Lox.RemoveThreadDomain</b>
@@ -581,7 +581,7 @@ We want to summarize the takeaways of this chapter:
 - \e Scopes are nested, we have inner and outer \e Scopes.
 - Four (programming-)language-related \e Scopes were introduced. They work similar to scopes of
   the programming languages.
-- Two thread-related \e Scopes were introduced. They are run-time \e Scopes and associated with
+- Two thread-related \e Scopes were introduced. They are runtime \e Scopes and associated with
   the thread executing a <em>Log Statement</em>.
 - The two thread-related \e Scopes differ only in the 'position' within the hierarchy of \e Scopes.
 - It was explained, that language-related \e Scopes are set exclusively by statements that are placed

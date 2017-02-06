@@ -1,21 +1,21 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alib/alib.hpp"
 
 #include "alib/system/directory.hpp"
 #include "alib/system/process.hpp"
-#include "alib/system/system.hpp"
+#include "alib/system/environment.hpp"
 
-#if   defined(__GLIBCXX__)
+#if   defined(__GLIBCXX__)  || defined(__APPLE__)
     #include <unistd.h>
     #include <dirent.h>
     #include <sys/stat.h>
-    #include <sys/types.h>
-    #include <errno.h>
+    #include <pwd.h>
+
 #elif defined ( _WIN32 )
     #include <direct.h>
 #else
@@ -27,15 +27,12 @@
 #endif
 
 #include <fstream>
-#include <cstdio>   // gives us FILENAME_MAX
 
 
 using namespace std;
 
-namespace aworx {
-namespace           lib {
-namespace                   system {
-
+namespace aworx { namespace lib { namespace system
+{
 
 // #################################################################################################
 // Static variables
@@ -46,7 +43,8 @@ AString         Directory::evaluatedVarTempDir;
 // #################################################################################################
 // Change
 // #################################################################################################
-#if !defined(IS_DOXYGEN_PARSER)
+//! @cond NO_DOX
+void createTempFolderInHomeDir( const String& folderName, AString& resultPath, const String& reasonMsg );
 void createTempFolderInHomeDir( const String& folderName, AString& resultPath, const String& reasonMsg )
 {
     // get home directory and set this as fallback result value
@@ -81,7 +79,7 @@ void createTempFolderInHomeDir( const String& folderName, AString& resultPath, c
     if( exists )
         resultPath=   homeTemp.Path;
 }
-#endif
+//! @endcond NO_DOX
 
 void Directory::Change( SpecialFolder special )
 {
@@ -95,15 +93,33 @@ void Directory::Change( SpecialFolder special )
         {
 
             #if defined (__unix__)
-                // get home path
-                if ( !System::GetVariable( "HOME", Path ) )
-                    Path._( "~/" );
+                if ( !system::GetEnvironmentVariable( "HOME", Path ) )
+                {
+                    struct passwd* pwd = getpwuid(getuid());
+                    if (pwd)
+                        Path= pwd->pw_dir;
+                    else
+                        Path._( "~/" );
+                }
+
+            #elif defined(__APPLE__)
+                macos::ALIB_APPLE_OC_NSHomeDirectory( Path );
+                if ( Path.IsEmpty() )
+                {
+                    struct passwd* pwd = getpwuid(getuid());
+                    if (pwd)
+                        Path= pwd->pw_dir;
+                    else
+                        Path._( "~/" );
+                }
+
+
 
             #elif defined(_WIN32)
-                if ( !System::GetVariable( "USERPROFILE", Path ) || !Directory::Exists( Path ) )
+                if ( !system::GetEnvironmentVariable( "USERPROFILE", Path ) || !Directory::Exists( Path ) )
                 {
-                    System::GetVariable( "HOMEDRIVE", Path );
-                    System::GetVariable( "HOMEPATH",  Path, CurrentData::Keep );
+                    system::GetEnvironmentVariable( "HOMEDRIVE", Path );
+                    system::GetEnvironmentVariable( "HOMEPATH",  Path, CurrentData::Keep );
                 }
             #else
                 #pragma message ("Unknown Platform in file: " __FILE__ )
@@ -114,9 +130,17 @@ void Directory::Change( SpecialFolder special )
         case SpecialFolder::HomeConfig:
         {
             Change( SpecialFolder::Home );
+
             // try ".config" and "AppData/Roaming" subdirectories.
-            if ( !Change( ".config" ) )
-                  Change( String16("AppData") << DirectorySeparator << "Roaming" );
+            #if defined (__unix__)
+                Change( ".config" );
+            #elif defined(__APPLE__)
+                Change( "Library/Preferences" );
+            #elif defined(_WIN32)
+                Change( String16("AppData") << DirectorySeparator << "Roaming" );
+            #else
+                #pragma message ("Unknown Platform in file: " __FILE__ )
+            #endif
         }
         break;
 
@@ -133,17 +157,25 @@ void Directory::Change( SpecialFolder special )
             if ( evaluatedTempDir.IsEmpty() )
             {
                 #if defined (__unix__)
-
                     const String reasonMsg=  "(The default temporary folder \"/tmp\" could not be found.)";
-
                     if ( Directory::Exists( "/tmp" ) )
                         evaluatedTempDir= "/tmp";
+
+                #elif defined(__APPLE__)
+                    const String reasonMsg=  "(The default temporary folder \"/tmp\" could not be found.)";
+                    macos::ALIB_APPLE_OC_NSTemporaryDirectory( evaluatedTempDir );
+                    if ( evaluatedTempDir.IsEmpty() )
+                    {
+                        if ( Directory::Exists( "/tmp" ) )
+                            evaluatedTempDir= "/tmp";
+                    }
+
 
                 #elif defined(_WIN32)
                     const String reasonMsg=  "(Environment variables TMP and TEMP either not set or not containing valid paths.)";
                     AString testDir;
-                    if (     ( System::GetVariable( "TMP" , testDir ) && Directory::Exists( testDir ) )
-                         ||  ( System::GetVariable( "TEMP", testDir ) && Directory::Exists( testDir ) ) )
+                    if (     ( system::GetEnvironmentVariable( "TMP" , testDir ) && Directory::Exists( testDir ) )
+                         ||  ( system::GetEnvironmentVariable( "TEMP", testDir ) && Directory::Exists( testDir ) ) )
                     {
                         evaluatedTempDir= testDir;
                     }
@@ -176,15 +208,21 @@ void Directory::Change( SpecialFolder special )
             if ( evaluatedVarTempDir.IsEmpty() )
             {
                 #if defined (__unix__)
-                    const String reasonMsg=  "(The default temporary folder \"/var/tmp\" could not be found.)";
+                    const String reasonMsg=  "(The default folder \"/var/tmp\" could not be found.)";
 
                     if ( Directory::Exists( "/var/tmp" ) )
                         evaluatedVarTempDir= "/var/tmp";
+                #elif defined(__APPLE__)
+                    const String reasonMsg=  "(The default folder \"/private/var/tmp\" could not be found.)";
+
+                    if ( Directory::Exists( "/private/var/tmp" ) )
+                        evaluatedVarTempDir= "/private/var/tmp";
+
                 #elif defined(_WIN32)
                     const String reasonMsg=  "(Environment variables TMP and TEMP either not set or not containing valid paths.)";
                     AString testDir;
-                    if (     ( System::GetVariable( "TMP" , testDir ) && Directory::Exists( testDir ) )
-                         ||  ( System::GetVariable( "TEMP", testDir ) && Directory::Exists( testDir ) ) )
+                    if (     ( system::GetEnvironmentVariable( "TMP" , testDir ) && Directory::Exists( testDir ) )
+                         ||  ( system::GetEnvironmentVariable( "TEMP", testDir ) && Directory::Exists( testDir ) ) )
                     {
                         evaluatedVarTempDir= testDir;
                     }
@@ -215,7 +253,7 @@ void Directory::Change( SpecialFolder special )
 
 bool Directory::Change( const String& path )
 {
-    int origLength= Path.Length();
+    integer origLength= Path.Length();
     Path._<false>( DirectorySeparator )
         ._( path );
 
@@ -233,12 +271,12 @@ bool Directory::Change( const String& path )
 bool Directory::CurrentDirectory( AString& target )
 {
     target.Clear();
-    char charbuf[FILENAME_MAX];
+    char charBuf[FILENAME_MAX];
 
-    #if   defined(__GLIBCXX__)
-        if ( !getcwd( charbuf, sizeof(charbuf ) ) )
+    #if   defined(__GLIBCXX__) || defined(__APPLE__)
+        if ( !getcwd( charBuf, sizeof(charBuf ) ) )
     #elif defined ( _WIN32 )
-        if ( !_getcwd( charbuf, sizeof(charbuf ) ) )
+        if ( !_getcwd( charBuf, sizeof(charBuf ) ) )
     #else
         #pragma message ("Unknown Platform in file: " __FILE__ )
     #endif
@@ -246,15 +284,15 @@ bool Directory::CurrentDirectory( AString& target )
         return false;
     }
 
-    charbuf[ sizeof(charbuf) - 1 ] = '\0'; // not really required, but who knows
+    charBuf[ sizeof(charBuf) - 1 ] = '\0'; // not really required, but who knows
 
-    target._( (const char*) charbuf );
+    target._( static_cast<const char*>( charBuf ) );
     return true;
 }
 
 bool Directory::Exists( const TString& path )
 {
-    #if defined (__GLIBC__)
+    #if defined (__GLIBC__) || defined(__APPLE__)
         DIR* dir= opendir( path.ToCString() );
         if ( dir != nullptr )
         {
@@ -279,7 +317,7 @@ bool Directory::Exists( const TString& path )
 
 Result Directory::Create( const TString& path )
 {
-    #if defined (__GLIBC__)
+    #if defined (__GLIBC__)  || defined(__APPLE__)
 
         if ( mkdir( path.ToCString(), S_IRWXU | S_IRGRP | S_IROTH
                                               | S_IXGRP | S_IXOTH  ) == 0 )
@@ -287,22 +325,22 @@ Result Directory::Create( const TString& path )
 
         switch( errno )
         {
-              case ENOENT      : return Result::InvalidPath                  ; break;
-              case EEXIST      : return Result::FileExists                   ; break;
+              case ENOENT      : return Result::InvalidPath                  ;
+              case EEXIST      : return Result::FileExists                   ;
 
-              case EACCES      : return Result::Directory_Create_EACCES      ; break;
-              case EDQUOT      : return Result::Directory_Create_EDQUOT      ; break;
-              case EFAULT      : return Result::Directory_Create_EFAULT      ; break;
-              case ELOOP       : return Result::Directory_Create_ELOOP       ; break;
-              case EMLINK      : return Result::Directory_Create_EMLINK      ; break;
-              case ENAMETOOLONG: return Result::Directory_Create_ENAMETOOLONG; break;
-              case ENOMEM      : return Result::Directory_Create_ENOMEM      ; break;
-              case ENOSPC      : return Result::Directory_Create_ENOSPC      ; break;
-              case ENOTDIR     : return Result::Directory_Create_ENOTDIR     ; break;
-              case EPERM       : return Result::Directory_Create_EPERM       ; break;
-              case EROFS       : return Result::Directory_Create_EROFS       ; break;
+              case EACCES      : return Result::Directory_Create_EACCES      ;
+              case EDQUOT      : return Result::Directory_Create_EDQUOT      ;
+              case EFAULT      : return Result::Directory_Create_EFAULT      ;
+              case ELOOP       : return Result::Directory_Create_ELOOP       ;
+              case EMLINK      : return Result::Directory_Create_EMLINK      ;
+              case ENAMETOOLONG: return Result::Directory_Create_ENAMETOOLONG;
+              case ENOMEM      : return Result::Directory_Create_ENOMEM      ;
+              case ENOSPC      : return Result::Directory_Create_ENOSPC      ;
+              case ENOTDIR     : return Result::Directory_Create_ENOTDIR     ;
+              case EPERM       : return Result::Directory_Create_EPERM       ;
+              case EROFS       : return Result::Directory_Create_EROFS       ;
 
-              default:           ALIB_ASSERT( "Unknown Error code returned by 'mkdir'" );
+              default:           ALIB_ERROR( "Unknown Error code returned by 'mkdir'" );
                                  return Result::Error;
         }
 

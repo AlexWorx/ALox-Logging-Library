@@ -1,10 +1,10 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alib/alib.hpp"
 
 #if !defined (HPP_ALIB_THREADS_THREAD)
     #include "thread.hpp"
@@ -12,17 +12,15 @@
 
 using namespace std;
 
-namespace aworx {
-namespace           lib {
-namespace                   threads {
-
+namespace aworx { namespace lib { namespace threads
+{
 // #################################################################################################
 // class Thread static part
 // #################################################################################################
 
 // static variables
 // (attn: these variables have to be placed in the cpp file before the init-function below)
-#if defined(ALIB_FEAT_THREADS)
+#if ALIB_FEAT_THREADS
     map<thread::id, Thread*>    Thread::threadMap;
     mutex                       Thread::mutex;
 #else
@@ -33,11 +31,11 @@ int                             Thread::nextSystemThreadId                      
 int                             Thread::nextThreadId                                           =  1;
 
 // static library initialization code ( invoked by ALIB::Init() )
-void Thread::_Init_ALib()
+void Init()
 {
     Thread* main;
 
-    #if !defined( ALIB_FEAT_THREADS )
+    #if !ALIB_FEAT_THREADS
         main=
         Thread::noThreadsCompilationMainThread= new Thread();
         Thread::noThreadsCompilationMainThread->id= -1;
@@ -54,12 +52,12 @@ void Thread::_Init_ALib()
 
 
 // static library destruction code ( invoked by ALIB::TerminationCleanUp() )
-void Thread::_Terminate_ALib()
+void TerminationCleanUp()
 {
-    #if defined(ALIB_FEAT_THREADS)
+    #if ALIB_FEAT_THREADS
         Thread::mutex.lock();
             ALIB_ASSERT_WARNING( Thread::threadMap.size() > 0,
-                                 "Thread system deinitialized without prior initialization." );
+                                 "Thread system cleanup without prior initialization." );
 
             // we should have exactly one thread and this is the system thread
             size_t qtyThreads= Thread::threadMap.size();
@@ -72,7 +70,7 @@ void Thread::_Terminate_ALib()
             }
 
             Thread* main= Thread::threadMap.begin()->second;
-            #if defined(ALIB_DEBUG)
+            #if ALIB_DEBUG
                 int mainThreadID= main->id;
                 if ( mainThreadID != -1 )
                 {
@@ -86,7 +84,7 @@ void Thread::_Terminate_ALib()
         Thread::mutex.unlock();
     #else
         ALIB_ASSERT_ERROR( Thread::noThreadsCompilationMainThread != nullptr,
-                           "Thread system deinitialized without prior initialization." );
+                           "Thread system cleanup without prior initialization." );
         if ( Thread::noThreadsCompilationMainThread != nullptr )
         {
             delete Thread::noThreadsCompilationMainThread;
@@ -109,7 +107,7 @@ Thread* Thread::CurrentThread()
 {
     Thread* result= nullptr;
 
-    #if defined(ALIB_FEAT_THREADS)
+    #if ALIB_FEAT_THREADS
         // search current in map
         auto    c11ID=  this_thread::get_id();
         mutex.lock();
@@ -125,7 +123,7 @@ Thread* Thread::CurrentThread()
             {
                 result=        new Thread( true );
                 result->id=    nextSystemThreadId--;
-                result->SetName( String32("SYS_") << result->id );
+                result->SetName( String64("SYS_") << result->id );
                 Thread::threadMap.insert( make_pair( c11ID, result) );
             }
         }
@@ -140,27 +138,27 @@ Thread* Thread::CurrentThread()
 // #################################################################################################
 // class Thread
 // #################################################################################################
-Thread::Thread( Runnable* target , const String& name )
+Thread::Thread( Runnable* target , const String& pName )
 : runnable(target)
-, name(name)
+, name(pName)
 {
     // get myself an ID
-    #if defined(ALIB_FEAT_THREADS)
+    #if ALIB_FEAT_THREADS
     mutex.lock();
     #endif
     {
         id=  nextThreadId++;
-        if ( this->name.IsEmpty() )
-            this->name << '(' << id << ')';
+        if ( name.IsEmpty() )
+            name << '(' << id << ')';
     }
-    #if defined(ALIB_FEAT_THREADS)
+    #if ALIB_FEAT_THREADS
     mutex.unlock();
     #endif
 }
 
 Thread::~Thread()
 {
-    #if defined(ALIB_FEAT_THREADS)
+    #if ALIB_FEAT_THREADS
     if (c11Thread)
     {
         if( c11Thread->joinable() )
@@ -176,31 +174,31 @@ Thread::~Thread()
     #endif
 }
 
-#if !defined( IS_DOXYGEN_PARSER )
+//! @cond NO_DOX
 void _Thread__Start( Thread* t )
 {
     t->Run();
     t->isAliveFlag= false;
 }
-#endif
+//! @endcond NO_DOX
 
 void  Thread::Start()
 {
     if ( c11Thread != nullptr )
     {
-        ALIB_ERROR_S512( "Thread already started. (" << GetId() <<  '/' << GetName() << ')')
+        ALIB_ERROR( "Thread already started. ID: ", GetId() )
         return;
     }
 
     if ( id <= 0 )
     {
-        ALIB_ERROR_S512( "System threads can not be started. (" << GetId() <<  '/' << GetName() << ')' )
+        ALIB_ERROR( "System threads can not be started. ID: ", GetId() )
         return;
     }
 
     isAliveFlag= true;
 
-    #if defined(ALIB_FEAT_THREADS)
+    #if ALIB_FEAT_THREADS
         mutex.lock();
         {
             c11Thread=    new std::thread( _Thread__Start, this );
@@ -212,7 +210,7 @@ void  Thread::Start()
     #else
             c11Thread=    this;
             isAliveFlag=  false;
-            ALIB_WARNING_S512( "Starting Thread not supported. ALib is compiled with compilation symbol ALIB_FEAT_THREADS_OFF" )
+            ALIB_WARNING( "Starting Thread not supported. ALib is compiled with compilation symbol ALIB_FEAT_THREADS_OFF" )
     #endif
 }
 

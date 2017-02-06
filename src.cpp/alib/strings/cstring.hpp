@@ -1,25 +1,19 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
-// to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_ALIB) || defined(HPP_ALIB_STRINGS_CSTRING)
-    #error "include alib/alib.hpp instead of this header"
-#endif
-
-// Due to our blocker above, this include will never be executed. But having it, allows IDEs
-// (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_ALIB)
-    #include "alib/alib.hpp"
-#endif
-
-// then, set include guard
+// include guard
 #ifndef HPP_ALIB_STRINGS_CSTRING
 #define HPP_ALIB_STRINGS_CSTRING 1
+
+// to preserve the right order, we are not includable directly from outside.
+#if !defined(ALIB_PROPER_INCLUSION)
+    #error "include 'alib/alib.hpp' or 'alib/alib_strings.hpp' instead of this header"
+#endif
 
 // #################################################################################################
 // includes
@@ -28,12 +22,8 @@
 #include <cstring>
 #include <limits>
 
-namespace aworx {
-namespace           lib {
-namespace                   strings {
-
-class String;
-class TString;
+namespace aworx { namespace lib { namespace strings
+{
 
 /** ************************************************************************************************
  *  This inner class of AString provides static methods working with zero-terminated character
@@ -41,17 +31,14 @@ class TString;
  **************************************************************************************************/
 class CString
 {
+
     // #########################################################################################
     //  Fields
     // #########################################################################################
     public:
 
          /** The maximum length of a cstring.            */
-         #if defined( _MSC_VER )
-            const       static      int               MaxLen=       MAXINT;
-         #else
-            constexpr   static      int               MaxLen=       std::numeric_limits<int>::max();
-         #endif
+         const       static      integer         MaxLen=       (std::numeric_limits<integer>::max)();
 
     // #########################################################################################
     //  String helpers
@@ -66,9 +53,11 @@ class CString
          * - <em>MultiByteToWideChar()</em>
          *   (without providing a conversion buffer) on the Windows platform.
          *
-         * \note On Linux, it might be necessary to invoke std c method <em>setlocale()</em> once
-         *       prior to using this method, to successfully calculate the length.
-         *       This, by default, is done in \ref aworx::lib::ALIB::Init "ALIB::Init".
+         * \note
+         *   On GNU/Linux and Mac OS, it might be necessary to invoke std c method
+         *   <em>setlocale()</em> once, prior to using this method, to successfully calculate
+         *   the length.
+         *   This, by default, is done in \ref aworx::lib::ALIB::Init "ALIB::Init".
          *
          * @param cs         Pointer to the start of the cstring.
          * @param csLength   The length of the sequence in \p cs to examine.
@@ -77,7 +66,7 @@ class CString
          *          If counting failed (what means that the conversion will fail) -1 is returned.
          ******************************************************************************************/
         ALIB_API
-        static int  LengthWhenConvertedToWChar( const char* cs,  int  csLength );
+        static integer  LengthWhenConvertedToWChar( const char* cs,  integer  csLength );
 
         /** ************************************************************************************
          * Static method that adjusts a given region to fit into the range [0 .. referenceLength].
@@ -92,7 +81,7 @@ class CString
          * @return   Returns \c true, if the adjusted region is empty.
          **************************************************************************************/
         inline
-        static  bool AdjustRegion( int referenceLength, int& regionStart, int& regionLength )
+        static  bool AdjustRegion( integer referenceLength, integer& regionStart, integer& regionLength )
         {
             // if start exceeds string, set to empty range at the end of the string and return true
             if (regionStart >= referenceLength)
@@ -110,7 +99,7 @@ class CString
             }
 
             // adjust length
-            int maxLen=  referenceLength - regionStart;
+            integer maxLen=  referenceLength - regionStart;
             if ( regionLength > maxLen )
                  regionLength=  maxLen;
             if ( regionLength < 0 )
@@ -136,12 +125,12 @@ class CString
          **************************************************************************************/
         static
         inline
-        int strncasecmp( const char* cs1,  const char* cs2, int cmpLength  )
+        int strncasecmp( const char* cs1,  const char* cs2, integer cmpLength  )
         {
-            #if defined (__GLIBCXX__)
-                return  ::strncasecmp( cs1, cs2, cmpLength  );
+            #if defined (__GLIBCXX__)  || defined(__APPLE__)
+                return  ::strncasecmp( cs1, cs2, static_cast<size_t>(cmpLength) );
             #elif defined ( _WIN32 )
-                return  _strnicmp  ( cs1, cs2, cmpLength  );
+                return  _strnicmp  ( cs1, cs2, static_cast<size_t>(cmpLength)  );
             #else
                 #pragma message ( "Unknown Platform in file: " __FILE__ )
             #endif
@@ -177,9 +166,9 @@ class CString
          *         If nothing is found, -1 is returned.
          **************************************************************************************/
         ALIB_API
-        static int     IndexOfAny( const char*  haystack,   int  haystackLength,
-                                   const char*  needles,    int  needlesLength,
-                                   enums::Inclusion inclusion                             );
+        static integer IndexOfAny( const char*  haystack,   integer  haystackLength,
+                                   const char*  needles,    integer  needlesLength,
+                                   lang::Inclusion inclusion                             );
 
 
         /** ************************************************************************************
@@ -203,15 +192,39 @@ class CString
          *         of characters. If nothing is found, -1 is returned.
          **************************************************************************************/
         ALIB_API
-        static int     LastIndexOfAny( const char*  haystack,   int  startIdx,
-                                       const char*  needles,    int  needlesLength,
-                                       enums::Inclusion inclusion                               );
+        static integer LastIndexOfAny( const char*  haystack,    integer  startIdx,
+                                       const char*  needles,     integer  needlesLength,
+                                       lang::Inclusion inclusion                               );
+
+        /** ************************************************************************************
+         * Static method that returns the index of the first character which not equal
+         * within two strings.
+         *
+         * @param haystack        Pointer to the start of the string.
+         * @param haystackLength  The length of the string or the maximum position to search.
+         *                        If -1 is provided, the length is determined using % C function
+         *                        strlen (which needs haystack to be zero terminated).
+         * @param needle          Pointer to the start of the string to compare with.
+         * @param needleLength    The length of \p needle.
+         *                        If -1 is provided, the length is determined using % C function
+         *                        strlen (which needs needles to be zero terminated).
+         * @param sensitivity     Denotes whether the comparison should be made case sensitive
+         *                        or not.
+         *
+         * @return The index of the first character found which is not equal in given strings
+         **************************************************************************************/
+        ALIB_API
+        static integer IndexOfFirstDifference( const char*  haystack,   integer  haystackLength,
+                                               const char*  needle,     integer  needleLength,
+                                               lang::Case   sensitivity                             );
 
 
 
 }; //  class CString
 
 
-}}} // namespace aworx::lib::strings
+}} //namespace ::lib::strings
+
+} // namespace aworx
 
 #endif // HPP_ALIB_STRINGS_CSTRING

@@ -1,8 +1,8 @@
 // #################################################################################################
 //  ut_com_aworx - AWorx Unit Test Support using ALib and ALox
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 //
 //  Relies on ALox logging library, which in turn relies on ALib. Hence, ALibs' unit
 //  tests can only be compiled if ALox library is present.
@@ -19,7 +19,7 @@ public class UTSampleWriter
 {
     protected PrintStream      origOut;
     protected PrintStream      utWriter;
-    protected static String    generatedSamplesDir= null;   
+    protected static String    generatedSamplesDir= null;
 
     // defaults to "docs/ALox.CS/".
     // Set this to a suitable value in your bootstrap code, before using this class with
@@ -28,7 +28,7 @@ public class UTSampleWriter
 
     public static String getGeneratedSamplesDir()
     {
-            
+
         // if invoked the first time, search the right directory
         if ( generatedSamplesDir == null )
         {
@@ -39,9 +39,9 @@ public class UTSampleWriter
                 if ( (new File(testDir)).exists() )
                 {
                     generatedSamplesDir= testDir + "/generated";
-                    File dir = new File(generatedSamplesDir);                
-                    if (!dir.exists()) 
-                        try{ dir.mkdir();  }   catch(@SuppressWarnings ("unused") SecurityException se) { /* void */}        
+                    File dir = new File(generatedSamplesDir);
+                    if (!dir.exists())
+                        try{ dir.mkdir();  }   catch(@SuppressWarnings ("unused") SecurityException se) { /* void */}
                     generatedSamplesDir= generatedSamplesDir + "/";
 
                     break;
@@ -51,15 +51,15 @@ public class UTSampleWriter
         }
         return generatedSamplesDir;
     }
-    
+
     public UTSampleWriter(String filename)
     {
         if ( getGeneratedSamplesDir().length() == 0 )
             return;
-            
+
         origOut= System.out;
 
-        // write        
+        // write
         try
         {
             utWriter= new PrintStream(new BufferedOutputStream(new FileOutputStream(getGeneratedSamplesDir() + filename)));
@@ -67,9 +67,9 @@ public class UTSampleWriter
         catch (FileNotFoundException e)
         {
             e.printStackTrace();
-        }        
-        
-        
+        }
+
+
         System.setOut( utWriter );
 
         System.out.println( "//! [OUTPUT]" );
@@ -87,4 +87,4 @@ public class UTSampleWriter
 
 
 } // class UnitTestSampleWriter
-    
+

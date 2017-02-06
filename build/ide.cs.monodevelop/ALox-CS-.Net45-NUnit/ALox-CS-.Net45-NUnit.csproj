@@ -16,7 +16,7 @@
     <BaseIntermediateOutputPath>..\..\_builds_\ide.cs.monodevelop\</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
     <OutputPath>..\..\_builds_\ide.cs.monodevelop\ALox-CS-.Net45-NUnit\bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;ALIB_MONO_DEVELOP;ALOX_DBG_LOG;ALOX_REL_LOG;</DefineConstants>
+    <DefineConstants>DEBUG;ALIB_IDE_MONODEVELOP;ALIB_NUNIT;ALOX_DBG_LOG;ALOX_REL_LOG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -29,7 +29,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <DefineConstants>ALIB_MONO_DEVELOP;ALOX_REL_LOG;</DefineConstants>
+    <DefineConstants>ALIB_IDE_MONODEVELOP;ALIB_NUNIT;ALOX_REL_LOG;</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -55,9 +55,6 @@
     </Compile>
     <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_strings_Substring.cs">
       <Link>ut.ALib\UT_alib_strings_Substring.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_strings_Tokenizer.cs">
-      <Link>ut.ALib\UT_alib_strings_Tokenizer.cs</Link>
     </Compile>
     <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_strings_AStringAndSubstring.cs">
       <Link>ut.ALib\UT_alib_strings_AStringAndSubstring.cs</Link>
@@ -97,6 +94,9 @@
     </Compile>
     <Compile Include="..\..\..\src.cs\alib.unittests\AWorxUnitTesting.cs">
       <Link>ut.ALib\AWorxUnitTesting.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_strings_Format.cs">
+      <Link>ut.ALib\UT_alib_strings_Format.cs</Link>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

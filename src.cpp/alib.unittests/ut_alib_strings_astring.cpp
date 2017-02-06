@@ -1,10 +1,10 @@
 // #################################################################################################
 //  aworx - Unit Tests
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alox/alox.hpp"
 
 
 
@@ -25,7 +25,18 @@
 #endif
 
 // For code compatibility with ALox Java/C++
-#define _NC _<false>
+// We have to use underscore as the start of the name and for this have to disable a compiler
+// warning. But this is a local code (cpp file) anyhow.
+#if defined(__clang__)
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wreserved-id-macro"
+#endif
+
+    #define _NC _<false>
+
+#if defined(__clang__)
+    #pragma clang diagnostic pop
+#endif
 
 using namespace std;
 using namespace aworx;
@@ -45,24 +56,24 @@ UT_METHOD( Constructors )
 
     AString* ms;
     char*     csNull= nullptr;
-               ms= new AString();                        UT_EQ    ( ms->Capacity(),   0 );    UT_EQ( ms->Length(), 0 );
-    delete ms; ms= new AString( 0 );                     UT_EQ    ( ms->Capacity(),   0 );    UT_EQ( ms->Length(), 0 );
-    delete ms; ms= new AString( csNull );                UT_EQ    ( ms->Capacity(),   0 );    UT_EQ( ms->Length(), 0 );
+               ms= new AString();                        UT_EQ    ( 0 , ms->Capacity()   );    UT_EQ( ms->Length(), 0 );
+    delete ms; ms= new AString( 0 );                     UT_EQ    ( 0 , ms->Capacity()   );    UT_EQ( ms->Length(), 0 );
+    delete ms; ms= new AString( csNull );                UT_EQ    ( 0 , ms->Capacity()   );    UT_EQ( ms->Length(), 0 );
     delete ms; ms= new AString( "" );                    UT_TRUE  ( ms->Capacity() >  0 );    UT_EQ( ms->Length(), 0 );
     delete ms; ms= new AString( 25 );                    UT_TRUE  ( ms->Capacity() >  0 );    UT_EQ( ms->Length(), 0 );
     delete ms; ms= new AString( "Test" );                UT_TRUE  ( ms->Capacity() >= 4 );    UT_EQ( ms->Length(), 4 );
 
     AString tNullString;
-    delete ms; ms= new AString( tNullString, 1,     0 );     UT_TRUE  ( ms->Length()     == 0 );            UT_TRUE  ( ms->IsNull() );
-    delete ms; ms= new AString( tNullString, -1000, 0 );     UT_TRUE  ( ms->Length()     == 0 );            UT_TRUE  ( ms->IsNull() );
-    delete ms; ms= new AString( tNullString, -1000, 1 );     UT_TRUE  ( ms->Length()     == 0 );            UT_TRUE  ( ms->IsNull() );
-    delete ms; ms= new AString( tNullString, -100,  1000);   UT_TRUE  ( ms->Length()     == 0 );            UT_TRUE  ( ms->IsNull() );
+    delete ms; ms= new AString( tNullString, 1,     0 );     UT_TRUE  ( ms->Length() == 0 );  UT_TRUE  ( ms->IsNull() );
+    delete ms; ms= new AString( tNullString, -1000, 0 );     UT_TRUE  ( ms->Length() == 0 );  UT_TRUE  ( ms->IsNull() );
+    delete ms; ms= new AString( tNullString, -1000, 1 );     UT_TRUE  ( ms->Length() == 0 );  UT_TRUE  ( ms->IsNull() );
+    delete ms; ms= new AString( tNullString, -100,  1000);   UT_TRUE  ( ms->Length() == 0 );  UT_TRUE  ( ms->IsNull() );
 
     AString tASEmpty("");
-    delete ms; ms= new AString( tASEmpty, 1,     0 );    UT_TRUE  ( ms->Length()     == 0 );            UT_TRUE  ( ms->Capacity() > 0 );
-    delete ms; ms= new AString( tASEmpty, -1000, 0 );    UT_TRUE  ( ms->Length()     == 0 );            UT_TRUE  ( ms->Capacity() > 0 );
-    delete ms; ms= new AString( tASEmpty, -1000, 1 );    UT_TRUE  ( ms->Length()     == 0 );            UT_TRUE  ( ms->Capacity() > 0 );
-    delete ms; ms= new AString( tASEmpty, -100,  1000);  UT_TRUE  ( ms->Length()     == 0 );            UT_TRUE  ( ms->Capacity() > 0 );
+    delete ms; ms= new AString( tASEmpty, 1,     0 );    UT_TRUE  ( ms->Length()     == 0 );  UT_TRUE  ( ms->Capacity() > 0 );
+    delete ms; ms= new AString( tASEmpty, -1000, 0 );    UT_TRUE  ( ms->Length()     == 0 );  UT_TRUE  ( ms->Capacity() > 0 );
+    delete ms; ms= new AString( tASEmpty, -1000, 1 );    UT_TRUE  ( ms->Length()     == 0 );  UT_TRUE  ( ms->Capacity() > 0 );
+    delete ms; ms= new AString( tASEmpty, -100,  1000);  UT_TRUE  ( ms->Length()     == 0 );  UT_TRUE  ( ms->Capacity() > 0 );
 
     AString tAS( "0123456789" );
     delete ms; ms= new AString( tAS, 5);                 UT_TRUE  ( ms->Capacity() >=   5 && ms->Length() ==  5 );    UT_EQ( *ms, "56789");
@@ -126,7 +137,8 @@ UT_METHOD( IsNull )
     ms= "";              UT_TRUE( ms.IsNotNull() ); UT_TRUE( !ms.IsNull() );  UT_TRUE(  ms.IsNotNull() );  UT_TRUE(  ms.IsEmpty() );  UT_TRUE( !ms.IsNotEmpty() );
     ms= "x";             UT_TRUE( ms.IsNotNull() ); UT_TRUE( !ms.IsNull() );  UT_TRUE(  ms.IsNotNull() );  UT_TRUE( !ms.IsEmpty() );  UT_TRUE(  ms.IsNotEmpty() );
 
-    ms= (char*) nullptr; UT_TRUE( ms.IsNull()    ); UT_TRUE(  ms.IsNull() );  UT_TRUE( !ms.IsNotNull() );  UT_TRUE(  ms.IsEmpty() );  UT_TRUE( !ms.IsNotEmpty() );
+    ms= static_cast<char*>( nullptr);
+                         UT_TRUE( ms.IsNull()    ); UT_TRUE(  ms.IsNull() );  UT_TRUE( !ms.IsNotNull() );  UT_TRUE(  ms.IsEmpty() );  UT_TRUE( !ms.IsNotEmpty() );
     ms._( "");           UT_TRUE( ms.IsNotNull() ); UT_TRUE( !ms.IsNull() );  UT_TRUE(  ms.IsNotNull() );  UT_TRUE(  ms.IsEmpty() );  UT_TRUE( !ms.IsNotEmpty() );
     ms._( "xx");         UT_TRUE( ms.IsNotNull() ); UT_TRUE( !ms.IsNull() );  UT_TRUE(  ms.IsNotNull() );  UT_TRUE( !ms.IsEmpty() );  UT_TRUE(  ms.IsNotEmpty() );
 
@@ -419,20 +431,20 @@ UT_METHOD( Append )
     {
         AString ms;  const char* csNull= nullptr;  const char* csEmpty= "";
 
-        ms= csNull;                UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
-        ms= csEmpty;               UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNotNull() );
-        ms= "assign";              UT_EQ  ( ms.Length(), 6     );
-        ms= csNull;                UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
-        ms= "assign";              UT_EQ  ( ms.Length(), 6     );
-        ms= csNull;                UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
+        ms= csNull;                UT_EQ  ( 0, ms.Length()     );  UT_TRUE( ms.IsNull()    );
+        ms= csEmpty;               UT_EQ  ( 0, ms.Length()     );  UT_TRUE( ms.IsNotNull() );
+        ms= "assign";              UT_EQ  ( 6, ms.Length()     );
+        ms= csNull;                UT_EQ  ( 0, ms.Length()     );  UT_TRUE( ms.IsNull()    );
+        ms= "assign";              UT_EQ  ( 6, ms.Length()     );
+        ms= csNull;                UT_EQ  ( 0, ms.Length()     );  UT_TRUE( ms.IsNull()    );
 
 
-        ms._( csNull );            UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
-        ms._( csEmpty);            UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNotNull() );
-        ms.SetNull();              UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
+        ms._( csNull );            UT_EQ  ( 0, ms.Length()     );  UT_TRUE( ms.IsNull()    );
+        ms._( csEmpty);            UT_EQ  ( 0, ms.Length()     );  UT_TRUE( ms.IsNotNull() );
+        ms.SetNull();              UT_EQ  ( 0, ms.Length()     );  UT_TRUE( ms.IsNull()    );
 
-        ms._("1234567");           UT_EQ  ( ms.Capacity(), 16  );  UT_EQ( "1234567",   ms );
-        ms._("89");                UT_TRUE( ms.Length()> 7     );  UT_EQ( "123456789", ms );
+        ms._("1234567");           UT_EQ  (16, ms.Capacity()   );  UT_EQ( "1234567",   ms );
+        ms._("89");                UT_TRUE( ms.Length()> 7      );  UT_EQ( "123456789", ms );
 
         const char* t= "0123456789";
         ms.Clear()._   ( t, 5);                     UT_EQ( ms, "56789"      );
@@ -445,8 +457,8 @@ UT_METHOD( Append )
         ms.Clear()._   ( t, -5, 100);               UT_EQ( ms, "0123456789" );
 
         // _NC
-        ms.SetNull();            UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()   );
-        ms._NC( csEmpty );       UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()   );
+        ms.SetNull();            UT_EQ  ( 0, ms.Length()      );  UT_TRUE( ms.IsNull()   );
+        ms._NC( csEmpty );       UT_EQ  ( 0, ms.Length()      );  UT_TRUE( ms.IsNull()   );
         ms.Clear()._NC( t, 5,3);                  UT_EQ( ms, "567"      );
 
     }
@@ -455,19 +467,19 @@ UT_METHOD( Append )
     {
         AString ms;  const char* csNull= nullptr;  const char* csEmpty= "";
 
-        ms= csNull;                UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
-        ms= csEmpty;               UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNotNull() );
-        ms= "assign";              UT_EQ  ( ms.Length(), 6     );
-        ms= csNull;                UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
-        ms= "assign";              UT_EQ  ( ms.Length(), 6     );
-        ms= csNull;                UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
+        ms= csNull;                UT_EQ  ( 0, ms.Length()     );  UT_TRUE( ms.IsNull()    );
+        ms= csEmpty;               UT_EQ  ( 0, ms.Length()     );  UT_TRUE( ms.IsNotNull() );
+        ms= "assign";              UT_EQ  ( 6, ms.Length()     );
+        ms= csNull;                UT_EQ  ( 0, ms.Length()     );  UT_TRUE( ms.IsNull()    );
+        ms= "assign";              UT_EQ  ( 6, ms.Length()     );
+        ms= csNull;                UT_EQ  ( 0, ms.Length()     );  UT_TRUE( ms.IsNull()    );
 
 
-        ms._( csNull );            UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
-        ms._( csEmpty);            UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNotNull() );
-        ms.SetNull();              UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
+        ms._( csNull );            UT_EQ  ( 0, ms.Length()    );  UT_TRUE( ms.IsNull()    );
+        ms._( csEmpty);            UT_EQ  ( 0, ms.Length()    );  UT_TRUE( ms.IsNotNull() );
+        ms.SetNull();              UT_EQ  ( 0, ms.Length()    );  UT_TRUE( ms.IsNull()    );
 
-        ms._("1234567");           UT_EQ  ( ms.Capacity(), 16  );  UT_EQ( "1234567",   ms );
+        ms._("1234567");           UT_EQ  (16, ms.Capacity()  );  UT_EQ( "1234567",   ms );
         ms._("89");                UT_TRUE( ms.Length()> 7     );  UT_EQ( "123456789", ms );
 
         const char* t= "0123456789";
@@ -481,18 +493,19 @@ UT_METHOD( Append )
         ms.Clear()._   ( t, -5, 100);               UT_EQ( ms, "0123456789" );
 
         // _NC
-        ms.SetNull();            UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()   );
-        ms._NC( csEmpty );       UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()   );
+        ms.SetNull();            UT_EQ  ( 0, ms.Length()      );  UT_TRUE( ms.IsNull()   );
+        ms._NC( csEmpty );       UT_EQ  ( 0, ms.Length()      );  UT_TRUE( ms.IsNull()   );
         ms.Clear()._NC( t, 5,3);                  UT_EQ( ms, "567"      );
 
     }
 
-    // pod types
+    // fundamental types
     {
         AString ms;
         {  int      i= 5;   ms._()._(i)._('/')._(&i);       UT_EQ ( "5/5",    ms); }
 
         {  int8_t   i=  4;  ms._()._(i)._('/')._(&i);       UT_EQ ( "4/4"   , ms); }
+
         {  int8_t   i= -4;  ms._()._(i)._('/')._(&i);       UT_EQ ( "-4/-4" , ms); }
         {  uint8_t  i=  4;  ms._()._(i)._('/')._(&i);       UT_EQ ( "4/4"   , ms); }
 
@@ -531,39 +544,39 @@ UT_METHOD( Append )
     {
         AString ms;  Substring ssNull; Substring ssEmpty("");  Substring t( "01234" );
 
-        ms= ssNull;                UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
-        ms= ssEmpty;               UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNotNull() );
-        ms= t;                     UT_EQ  ( ms.Length(), 5     );  UT_EQ  ( ms, String16(t)    );
-        ms= ssNull;                UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
+        ms= ssNull;                UT_EQ  ( 0, ms.Length()        );  UT_TRUE( ms.IsNull()    );
+        ms= ssEmpty;               UT_EQ  ( 0, ms.Length()        );  UT_TRUE( ms.IsNotNull() );
+        ms= t;                     UT_EQ  ( 5, ms.Length()        );  UT_EQ  ( ms, String16(t)    );
+        ms= ssNull;                UT_EQ  ( 0, ms.Length()        );  UT_TRUE( ms.IsNull()    );
 
-        ms._( ssNull );            UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
-        ms._( ssEmpty);            UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNotNull() );
-        ms.SetNull();              UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
-        ms._( t );                 UT_EQ  ( ms.Capacity(), 16  );    UT_EQ( "01234"     , ms );
+        ms._( ssNull );            UT_EQ  ( 0, ms.Length()        );  UT_TRUE( ms.IsNull()    );
+        ms._( ssEmpty);            UT_EQ  ( 0, ms.Length()        );  UT_TRUE( ms.IsNotNull() );
+        ms.SetNull();              UT_EQ  ( 0, ms.Length()        );  UT_TRUE( ms.IsNull()    );
+        ms._( t );                 UT_EQ  (16, ms.Capacity()      );    UT_EQ( "01234"     , ms );
         ms._( t );                 UT_TRUE( ms.Length()> 5     );  UT_EQ( "0123401234", ms );
 
-        t.Consume();         ms.Clear()._( t );           UT_EQ( ms,  "1234"      );
-        t.Consume();         ms.Clear()._( t );           UT_EQ( ms,   "234"      );
-        t.ConsumeFromEnd();  ms.Clear()._( t );           UT_EQ( ms,  "23"        );
+        t.ConsumeChar();         ms.Clear()._( t );           UT_EQ( ms,  "1234"      );
+        t.ConsumeChar();         ms.Clear()._( t );           UT_EQ( ms,   "234"      );
+        t.ConsumeCharFromEnd();  ms.Clear()._( t );           UT_EQ( ms,  "23"        );
 
         // _NC
-        ms.SetNull();                   UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
-        ms._NC( ssEmpty );        UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()   );
+        ms.SetNull();             UT_EQ  ( 0, ms.Length()        );  UT_TRUE( ms.IsNull()    );
+        ms._NC( ssEmpty );        UT_EQ  ( 0, ms.Length()        );  UT_TRUE( ms.IsNull()   );
         ms.Clear()._NC( t);                       UT_EQ( ms, "23"   );
     }
 
     // std::string
     {
         AString ms;   std::string t( "012" ); std::string ssEmpty("");
-                                   UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
-        ms= ssEmpty;               UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNotNull() );
-        ms= t;                     UT_EQ  ( ms.Length(), 3     );  UT_EQ  ( ms, t.c_str()  );
+                                   UT_EQ  ( 0, ms.Length()      );  UT_TRUE( ms.IsNull()    );
+        ms= ssEmpty;               UT_EQ  ( 0, ms.Length()      );  UT_TRUE( ms.IsNotNull() );
+        ms= t;                     UT_EQ  ( 3, ms.Length()      );  UT_EQ  ( ms, t.c_str()  );
         ms.SetNull();
 
-        ms._( ssEmpty);            UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNotNull() );
-        ms.SetNull();              UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
-        ms._( t );                 UT_EQ  ( ms.Capacity(), 16  );    UT_EQ( "012"   , ms );
-        ms._( t );                 UT_TRUE( ms.Length()> 3     );  UT_EQ( "012012", ms );
+        ms._( ssEmpty);            UT_EQ  ( 0, ms.Length()      );  UT_TRUE( ms.IsNotNull() );
+        ms.SetNull();              UT_EQ  ( 0, ms.Length()      );  UT_TRUE( ms.IsNull()    );
+        ms._( t );                 UT_EQ  (16, ms.Capacity()    );  UT_EQ( "012"   , ms );
+        ms._( t );                 UT_TRUE( ms.Length()> 3       );  UT_EQ( "012012", ms );
         t= "0123456789";
         ms.Clear()._( t, 5);            UT_EQ( ms, "56789"      );
         ms.Clear()._( t, 5, 100);       UT_EQ( ms, "56789"      );
@@ -575,50 +588,50 @@ UT_METHOD( Append )
         ms.Clear()._( t, -5, 100);      UT_EQ( ms, "0123456789" );
 
         // _NC
-        ms.SetNull();                   UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
-        ms._NC( ssEmpty );              UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()   );
-        ms.Clear()._NC( t);             UT_EQ( ms, "0123456789"   );
-        ms.Clear()._<false>( t ,2,3);   UT_EQ( ms, "234"          );
+        ms.SetNull();                   UT_EQ  ( 0, ms.Length());  UT_TRUE( ms.IsNull()    );
+        ms._NC( ssEmpty );              UT_EQ  ( 0, ms.Length());  UT_FALSE( ms.IsNull()   );
+        ms.Clear()._NC( t);             UT_EQ( ms, "0123456789" );
+        ms.Clear()._<false>( t ,2,3);   UT_EQ( ms, "234"        );
     }
 
     // string literals
     {
         // zero length literal
         {
-            AString ms( "" );         UT_EQ( ms.Length(), 0 );   UT_TRUE( ms.IsNotNull() );
+            AString ms( "" );         UT_EQ( 0, ms.Length() );   UT_TRUE( ms.IsNotNull() );
         }
         {
             AString ms;
-            ms._ ( "" );              UT_EQ( ms.Length(), 0 );   UT_TRUE( ms.IsNotNull() );
+            ms._ ( "" );              UT_EQ( 0, ms.Length() );   UT_TRUE( ms.IsNotNull() );
         }
         {
             AString ms;
-            ms <<       ""  ;         UT_EQ( ms.Length(), 0 );   UT_TRUE( ms.IsNotNull() );
+            ms <<       ""  ;         UT_EQ( 0, ms.Length() );   UT_TRUE( ms.IsNotNull() );
         }
 
         // 1 - 6 length literals
         {
-            {        AString ms( "a" );       UT_EQ( ms.Length(), 1 );   UT_EQ( ms, "a"           );}
-            {        AString ms( "ab" );      UT_EQ( ms.Length(), 2 );   UT_EQ( ms, "ab"          );}
-            {        AString ms( "abc" );     UT_EQ( ms.Length(), 3 );   UT_EQ( ms, "abc"         );}
-            {        AString ms( "abcd" );    UT_EQ( ms.Length(), 4 );   UT_EQ( ms, "abcd"        );}
-            {        AString ms( "abcde" );   UT_EQ( ms.Length(), 5 );   UT_EQ( ms, "abcde"       );}
-            {        AString ms( "abcdef" );  UT_EQ( ms.Length(), 6 );   UT_EQ( ms, "abcdef"      );}
+            {   AString ms( "a" );       UT_EQ( 1, ms.Length() );   UT_EQ( ms, "a"           );}
+            {   AString ms( "ab" );      UT_EQ( 2, ms.Length() );   UT_EQ( ms, "ab"          );}
+            {   AString ms( "abc" );     UT_EQ( 3, ms.Length() );   UT_EQ( ms, "abc"         );}
+            {   AString ms( "abcd" );    UT_EQ( 4, ms.Length() );   UT_EQ( ms, "abcd"        );}
+            {   AString ms( "abcde" );   UT_EQ( 5, ms.Length() );   UT_EQ( ms, "abcde"       );}
+            {   AString ms( "abcdef" );  UT_EQ( 6, ms.Length() );   UT_EQ( ms, "abcdef"      );}
 
             { AString ms;
-              ms.Clear()._( "a" );       UT_EQ( ms.Length(), 1 );   UT_EQ( ms, "a"           );
-              ms.Clear()._( "ab" );      UT_EQ( ms.Length(), 2 );   UT_EQ( ms, "ab"          );
-              ms.Clear()._( "abc" );     UT_EQ( ms.Length(), 3 );   UT_EQ( ms, "abc"         );
-              ms.Clear()._( "abcd" );    UT_EQ( ms.Length(), 4 );   UT_EQ( ms, "abcd"        );
-              ms.Clear()._( "abcde" );   UT_EQ( ms.Length(), 5 );   UT_EQ( ms, "abcde"       );
-              ms.Clear()._( "abcdef" );  UT_EQ( ms.Length(), 6 );   UT_EQ( ms, "abcdef"      );}
+              ms.Clear()._( "a" );       UT_EQ( 1, ms.Length() );   UT_EQ( ms, "a"           );
+              ms.Clear()._( "ab" );      UT_EQ( 2, ms.Length() );   UT_EQ( ms, "ab"          );
+              ms.Clear()._( "abc" );     UT_EQ( 3, ms.Length() );   UT_EQ( ms, "abc"         );
+              ms.Clear()._( "abcd" );    UT_EQ( 4, ms.Length() );   UT_EQ( ms, "abcd"        );
+              ms.Clear()._( "abcde" );   UT_EQ( 5, ms.Length() );   UT_EQ( ms, "abcde"       );
+              ms.Clear()._( "abcdef" );  UT_EQ( 6, ms.Length() );   UT_EQ( ms, "abcdef"      );}
             { AString ms;
-              ms.Clear() <<      "a"  ;       UT_EQ( ms.Length(), 1 );   UT_EQ( ms, "a"           );
-              ms.Clear() <<      "ab"  ;      UT_EQ( ms.Length(), 2 );   UT_EQ( ms, "ab"          );
-              ms.Clear() <<      "abc"  ;     UT_EQ( ms.Length(), 3 );   UT_EQ( ms, "abc"         );
-              ms.Clear() <<      "abcd"  ;    UT_EQ( ms.Length(), 4 );   UT_EQ( ms, "abcd"        );
-              ms.Clear() <<      "abcde"  ;   UT_EQ( ms.Length(), 5 );   UT_EQ( ms, "abcde"       );
-              ms.Clear() <<      "abcdef"  ;  UT_EQ( ms.Length(), 6 );   UT_EQ( ms, "abcdef"      );}
+              ms.Clear() << "a"  ;       UT_EQ( 1, ms.Length() );   UT_EQ( ms, "a"           );
+              ms.Clear() << "ab"  ;      UT_EQ( 2, ms.Length() );   UT_EQ( ms, "ab"          );
+              ms.Clear() << "abc"  ;     UT_EQ( 3, ms.Length() );   UT_EQ( ms, "abc"         );
+              ms.Clear() << "abcd"  ;    UT_EQ( 4, ms.Length() );   UT_EQ( ms, "abcd"        );
+              ms.Clear() << "abcde"  ;   UT_EQ( 5, ms.Length() );   UT_EQ( ms, "abcde"       );
+              ms.Clear() << "abcdef"  ;  UT_EQ( 6, ms.Length() );   UT_EQ( ms, "abcdef"      );}
         }
 
     }
@@ -702,11 +715,11 @@ UT_METHOD( CapacityLength )
 
     {
         AString ms( 5 );
-        ms._( 'a' );        UT_EQ( ms.Capacity(), 5 );
-        ms._( 'b' );        UT_EQ( ms.Capacity(), 5 );
-        ms._( 'c' );        UT_EQ( ms.Capacity(), 5 );
-        ms._( 'd' );        UT_EQ( ms.Capacity(), 5 );
-        ms._( 'e' );        UT_EQ( ms.Capacity(), 5 );
+        ms._( 'a' );        UT_EQ( 5, ms.Capacity() );
+        ms._( 'b' );        UT_EQ( 5, ms.Capacity() );
+        ms._( 'c' );        UT_EQ( 5, ms.Capacity() );
+        ms._( 'd' );        UT_EQ( 5, ms.Capacity() );
+        ms._( 'e' );        UT_EQ( 5, ms.Capacity() );
         ms._( 'x' );        UT_TRUE( ms.Capacity() >= 6 );
         UT_EQ( "abcdex", ms );
 
@@ -715,34 +728,34 @@ UT_METHOD( CapacityLength )
 
     {
         AString   ms;
-        int as;
-        ms._( "0123456789" );           UT_EQ( ms.Length(), 10 );    UT_TRUE  ( ms.Capacity() >= 10 );
+        integer as;
+        ms._( "0123456789" );           UT_EQ( 10, ms.Length() );    UT_TRUE  ( ms.Capacity() >= 10 );
 
         as= ms.Capacity();
 
-        lib::Report::GetDefault().PushHaltFlags( false, false );
+        lib::lang::Report::GetDefault().PushHaltFlags( false, false );
             UT_PRINT( "A warning should follow" );
-            ms.SetLength(20);                    UT_EQ( ms.Length(), 10 );    UT_EQ  ( ms.Capacity(), as );    UT_EQ( ms, "0123456789" );
+            ms.SetLength(20);                    UT_EQ( 10, ms.Length() );    UT_EQ  ( ms.Capacity(), as );    UT_EQ( ms, "0123456789" );
 
             UT_PRINT( "No (second) warning should follow" );
-            ms.SetLength(20);                    UT_EQ( ms.Length(), 10 );    UT_EQ  ( ms.Capacity(), as );    UT_EQ( ms, "0123456789" );
+            ms.SetLength(20);                    UT_EQ( 10, ms.Length() );    UT_EQ  ( ms.Capacity(), as );    UT_EQ( ms, "0123456789" );
 
             ALIB_WARN_ONCE_PER_TYPE_ENABLE( AString, SetLengthLonger );
 
             UT_PRINT( "No warning should follow" );
-            ms.SetLength(10);                    UT_EQ( ms.Length(), 10 );    UT_EQ  ( ms.Capacity(), as );    UT_EQ( ms, "0123456789" );
+            ms.SetLength(10);                    UT_EQ( 10, ms.Length() );    UT_EQ  ( ms.Capacity(), as );    UT_EQ( ms, "0123456789" );
 
             UT_PRINT( "A warning should follow" );
-            ms.SetLength(11);                    UT_EQ( ms.Length(), 10 );    UT_EQ  ( ms.Capacity(), as );    UT_EQ( ms, "0123456789" );
+            ms.SetLength(11);                    UT_EQ( 10, ms.Length() );    UT_EQ  ( ms.Capacity(), as );    UT_EQ( ms, "0123456789" );
 
             UT_PRINT( "No (second) warning should follow" );
-            ms.SetLength(11);                    UT_EQ( ms.Length(), 10 );    UT_EQ  ( ms.Capacity(), as );    UT_EQ( ms, "0123456789" );
+            ms.SetLength(11);                    UT_EQ( 10, ms.Length() );    UT_EQ  ( ms.Capacity(), as );    UT_EQ( ms, "0123456789" );
 
-        lib::Report::GetDefault().PopHaltFlags();
+        lib::lang::Report::GetDefault().PopHaltFlags();
 
-        ms.SetLength(5);                         UT_EQ( ms.Length(),  5 );    UT_EQ  ( ms.Capacity(), as );    UT_EQ( ms, "01234"      );
-        ms.SetBuffer(3);                         UT_EQ( ms.Length(),  3 );    UT_EQ  ( ms.Capacity(), 3  );    UT_EQ( ms, "012"        );
-        ms._("ABC");                             UT_EQ( ms.Length(),  6 );    UT_TRUE( ms.Capacity() >= 6);    UT_EQ( ms, "012ABC"     );
+        ms.SetLength(5);                         UT_EQ( 5, ms.Length() );    UT_EQ  ( ms.Capacity(), as );    UT_EQ( ms, "01234"      );
+        ms.SetBuffer(3);                         UT_EQ( 3, ms.Length() );    UT_EQ  ( ms.Capacity(), 3  );    UT_EQ( ms, "012"        );
+        ms._("ABC");                             UT_EQ( 6, ms.Length() );    UT_TRUE( ms.Capacity() >= 6);    UT_EQ( ms, "012ABC"     );
     }
 
     // external buffer
@@ -750,30 +763,30 @@ UT_METHOD( CapacityLength )
         AString* ms;
         ms= new AString();
         ms->SetBuffer( new char[5], 5, 0, Responsibility::Transfer );
-        ms->_("ABC");                  UT_EQ( ms->Length(), 3 );        UT_TRUE ( ms->Capacity() == 4 );  UT_EQ( *ms, "ABC" );
+        ms->_("ABC");                  UT_EQ( 3, ms->Length() );        UT_TRUE ( ms->Capacity() == 4 );  UT_EQ( *ms, "ABC" );
 
         delete ms;
 
         ms= new AString();
         ms->SetBuffer( new char[5], 5, 0, Responsibility::Transfer );
         ms->_("ABC");
-        ms->_("ABC");                  UT_EQ( ms->Length(), 6 );        UT_TRUE ( ms->Capacity() > 4 );  UT_EQ( *ms, "ABCABC" );
+        ms->_("ABC");                  UT_EQ( 6, ms->Length() );        UT_TRUE ( ms->Capacity() > 4 );  UT_EQ( *ms, "ABCABC" );
         delete ms;
 
         char stackCA1[5];
         AString sMS1;
-        sMS1.SetBuffer( (char*) &stackCA1, 5 );
-        sMS1._("ABC");                 UT_TRUE ( sMS1.Buffer() == (char*) &stackCA1 );  UT_EQ( sMS1, "ABC" );
+        sMS1.SetBuffer( reinterpret_cast<char*>(&stackCA1), 5 );
+        sMS1._("ABC");                 UT_TRUE ( sMS1.Buffer() == reinterpret_cast<char*>(&stackCA1) );  UT_EQ( sMS1, "ABC" );
 
-        lib::Report::GetDefault().PushHaltFlags( false, false );
+        lib::lang::Report::GetDefault().PushHaltFlags( false, false );
             char stackCA2[5];
             AString sMS2;
-            sMS2.SetBuffer( (char*) &stackCA2, 5 );
+            sMS2.SetBuffer( reinterpret_cast<char*>(&stackCA2), 5 );
             sMS2._("ABC");
             UT_PRINT( "A warning should follow" );
-            sMS2._("ABC");                UT_TRUE ( sMS2.Buffer() != (char*) &stackCA2 );  UT_EQ( sMS2, "ABCABC" );
+            sMS2._("ABC");                UT_TRUE ( sMS2.Buffer() != reinterpret_cast<char*>(&stackCA2) );  UT_EQ( sMS2, "ABCABC" );
 
-            PAString<(size_t) 5> msS;
+            PAString<5> msS;
             const char* orig= msS.Buffer();
             msS._("ABC");                 UT_TRUE ( msS.Buffer() == orig );  UT_EQ( msS, "ABC" );
             UT_PRINT( "A warning should follow" );
@@ -788,7 +801,7 @@ UT_METHOD( CapacityLength )
             ms64._( '@' );
             UT_TRUE ( ms64 != orig );
             UT_TRUE ( ms64.SearchAndReplace( "@", "X" ) == 64 );
-        lib::Report::GetDefault().PopHaltFlags();
+        lib::lang::Report::GetDefault().PopHaltFlags();
     }
 }
 
@@ -896,7 +909,7 @@ UT_METHOD( SearchAndReplace )
 {
     UT_INIT();
 
-    int result;
+    integer result;
 
     // search characters
     {
@@ -1046,7 +1059,7 @@ UT_METHOD( SearchAndReplace )
         String ms("abcd abcde");
 
         // search one of
-        int l= ms.Length();
+        integer l= ms.Length();
         result= ms.IndexOfAny               ( ""     , Inclusion::Include       );    UT_EQ(  -1, result );
         result= ms.IndexOfAny               ( "x"    , Inclusion::Include       );    UT_EQ(  -1, result );
         result= ms.IndexOfAny               ( "xy"   , Inclusion::Include       );    UT_EQ(  -1, result );
@@ -1271,6 +1284,40 @@ UT_METHOD( SearchAndReplace )
         result= ms.IndexOf  <false>( "util",     1, Case::Ignore ); UT_EQ( result, 13 );
         result= ms.IndexOf  <false>( "UTIL",     5, Case::Ignore ); UT_EQ( result, 13 );
         result= ms.IndexOf  <false>( "UTIL",    13, Case::Ignore ); UT_EQ( result, 13 );
+    }
+
+    // IndexOfFirstDifference
+    {
+        AString as("abcdef");
+        UT_EQ( 6, as.IndexOfFirstDifference("abcdef") );
+        UT_EQ( 5, as.IndexOfFirstDifference("abcde") );
+        UT_EQ( 6, as.IndexOfFirstDifference("abcdefg") );
+
+        UT_EQ( 0, as.IndexOfFirstDifference("123") );
+        UT_EQ( 0, as.IndexOfFirstDifference("123", Case::Ignore   ) );
+        UT_EQ( 0, as.IndexOfFirstDifference("123", Case::Ignore, 2) );
+
+        UT_EQ( 3, as.IndexOfFirstDifference("abc") );
+        UT_EQ( 3, as.IndexOfFirstDifference("abc", Case::Ignore   ) );
+        UT_EQ( 0, as.IndexOfFirstDifference("abc", Case::Ignore, 1) );
+        UT_EQ( 0, as.IndexOfFirstDifference( "bc", Case::Ignore, 0) );
+        UT_EQ( 2, as.IndexOfFirstDifference( "bc", Case::Ignore, 1) );
+        UT_EQ( 1, as.IndexOfFirstDifference( "bd", Case::Ignore, 1) );
+
+
+        UT_EQ( 3, as.IndexOfFirstDifference("ABC", Case::Ignore   ) );
+        UT_EQ( 0, as.IndexOfFirstDifference("ABC", Case::Ignore, 1) );
+        UT_EQ( 0, as.IndexOfFirstDifference( "BC", Case::Ignore, 0) );
+        UT_EQ( 2, as.IndexOfFirstDifference( "BC", Case::Ignore, 1) );
+        UT_EQ( 1, as.IndexOfFirstDifference( "BD", Case::Ignore, 1) );
+
+
+        UT_EQ( 0, as.IndexOfFirstDifference("ABC") );
+        UT_EQ( 0, as.IndexOfFirstDifference("ABC", Case::Sensitive   ) );
+        UT_EQ( 0, as.IndexOfFirstDifference("ABC", Case::Sensitive, 1) );
+        UT_EQ( 0, as.IndexOfFirstDifference( "BC", Case::Sensitive, 0) );
+        UT_EQ( 0, as.IndexOfFirstDifference( "BC", Case::Sensitive, 1) );
+        UT_EQ( 0, as.IndexOfFirstDifference( "BD", Case::Sensitive, 1) );
     }
 
     // replace nullptr
@@ -1590,12 +1637,12 @@ UT_METHOD( ConvertCase )
 
     {
         // test all characters in the 16 bit range
-        int testCharRangeStart= (int) 1;
-        int testCharRangeEnd=    (int) 255;
+        int testCharRangeStart= 1;
+        int testCharRangeEnd=   255;
 
         string sb;
         for ( int i= testCharRangeStart; i <= testCharRangeEnd ; i++ )
-            sb.append( 1, (char) i );
+            sb.append( 1, static_cast<char>( i ) );
 
         string tUpper= sb;    transform( tUpper.begin(), tUpper.end(), tUpper.begin(), ::toupper );
         string tLower= sb;    transform( tLower.begin(), tLower.end(), tLower.begin(), ::tolower );
@@ -1622,8 +1669,8 @@ UT_METHOD( ConvertCase )
 //--------------------------------------------------------------------------------------------------
 void wCharRoundTrip( AString& astring, AWorxUnitTesting& ut, const wchar_t* wstring )
 {
-    const char* msgPrefix=      "wchar string to AString: ";
-    int         msgPrefixLen=   (int) strlen( msgPrefix );
+    const char*      msgPrefix=      "wchar string to AString: ";
+    aworx::integer  msgPrefixLen=   static_cast<aworx::integer>( strlen( msgPrefix ) );
 
     astring._()._( msgPrefix );
     astring._( wstring );

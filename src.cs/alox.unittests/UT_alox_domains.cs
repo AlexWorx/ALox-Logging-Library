@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox.unittests - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
 using System.Threading;
@@ -13,10 +13,10 @@ using ut_cs_aworx;
 using System.IO;
 using cs.aworx.lib.config;
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     using NUnit.Framework;
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 #endif
 
@@ -35,10 +35,10 @@ using System.Collections.Generic;
 namespace ut_cs_aworx_lox
 {
 
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [TestFixture ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestClass]
     #endif
     public class CS_ALox_domains  : AWorxUnitTesting
@@ -50,7 +50,8 @@ namespace ut_cs_aworx_lox
     void LOG_CHECK( String dom, String exp, MemoryLogger ml, Lox lox )
     {
         ml.MemoryLog._(); ml.AutoSizes.Reset();
-        lox.Info( dom, "" );
+        Object[] logables= { "" };
+        lox.Entry( dom, Verbosity.Info, logables );
         UT_EQ( exp , ml.MemoryLog );
     }
 
@@ -59,10 +60,10 @@ namespace ut_cs_aworx_lox
      * Lox_IllegalDomainNames
      **********************************************************************************************/
     #if ALOX_DBG_LOG
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -91,7 +92,7 @@ namespace ut_cs_aworx_lox
         LOG_CHECK( ","       , "</#>"             , ml,Log.LOX);
         LOG_CHECK( "-"       , "</->"             , ml,Log.LOX);
         LOG_CHECK( "_"       , "</_>"             , ml,Log.LOX);
-        LOG_CHECK( "@"       , "</@>"             , ml,Log.LOX);
+        LOG_CHECK( "@"       , "</#>"             , ml,Log.LOX);
         LOG_CHECK( "."       , "</>"              , ml,Log.LOX);
         LOG_CHECK( ".."      , "</>"              , ml,Log.LOX);
         LOG_CHECK( "CU.."    , "</CU##>"          , ml,Log.LOX);
@@ -113,10 +114,10 @@ namespace ut_cs_aworx_lox
     /** ********************************************************************************************
      * Log_RelativeDomains
      **********************************************************************************************/
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -148,10 +149,10 @@ namespace ut_cs_aworx_lox
      * Log_DomainSubstitutions
      **********************************************************************************************/
     #if ALOX_DBG_LOG
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -239,14 +240,14 @@ namespace ut_cs_aworx_lox
 
         Log.SetDomainSubstitutionRule( "*/ABC*"     , "DEF"      );   LOG_CHECK( "ABC"  , "</DEF>"                 , ml,Log.LOX);
         Log.SetDomainSubstitutionRule( "*EF*"       , "ZZZ"      );   LOG_CHECK( "ABC"  , "</DZZZ>"                , ml,Log.LOX);
-        Log.SetDomainSubstitutionRule( "*Z*"        , "@@"       );   LOG_CHECK( "ABC"  , "</D@@@@@@>"             , ml,Log.LOX);
+        Log.SetDomainSubstitutionRule( "*Z*"        , "EE"       );   LOG_CHECK( "ABC"  , "</DEEEEEE>"             , ml,Log.LOX);
 
-        Log.SetDomainSubstitutionRule( "*/q*"       , "v"        );   LOG_CHECK( "Q"    , "</v>"                   , ml,Log.LOX);
+        Log.SetDomainSubstitutionRule( "*/Q*"       , "V"        );   LOG_CHECK( "Q"    , "</V>"                   , ml,Log.LOX);
 
         // delete all rules
-        Log.SetDomainSubstitutionRule( null         , null       );   LOG_CHECK( "/_/abc", "</_/abc>"              , ml,Log.LOX);
-                                                             LOG_CHECK( "Q"     , "</Q>"                  , ml,Log.LOX);
-                                                             LOG_CHECK( "ABC"   , "</ABC>"                , ml,Log.LOX);
+        Log.SetDomainSubstitutionRule( null         , null       );   LOG_CHECK( "/_/ABC", "</_/ABC>"              , ml,Log.LOX);
+                                                                      LOG_CHECK( "Q"     , "</Q>"                  , ml,Log.LOX);
+                                                                      LOG_CHECK( "ABC"   , "</ABC>"                , ml,Log.LOX);
 
         //Log.State( "", Verbosity.Info, "Configuration now is:" );
 
@@ -260,10 +261,10 @@ namespace ut_cs_aworx_lox
      **********************************************************************************************/
     #if ALOX_DBG_LOG
 
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -300,7 +301,7 @@ MYLOX_DOMAIN_SUBSTITUTION= /A_DOM -> /BETTER_NAME   ; \
         //iniFile.WriteFile(); // temporarily enable to see what we have written above
 
         // add to config
-        ALIB.Config.InsertPlugin( iniFile, Configuration.PrioIniFile );
+        Configuration.Default.InsertPlugin( iniFile, Configuration.PrioIniFile );
 
         // create lox, loggers
         Lox myLox= new Lox( "MyLox" ); // name will be upper case
@@ -325,7 +326,7 @@ myLox.SetDomainSubstitutionRule( null, null );  // clear rules eventually read i
 
         //Log.State( "", Verbosity.Info, "Configuration now is:" );
 
-        ALIB.Config.RemovePlugin( iniFile );
+        Configuration.Default.RemovePlugin( iniFile );
         myLox.RemoveLogger( ml );
         myLox.RemoveLogger( "CONSOLE" );
     }
@@ -337,10 +338,10 @@ myLox.SetDomainSubstitutionRule( null, null );  // clear rules eventually read i
      **********************************************************************************************/
     #if ALOX_REL_LOG
 
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -368,7 +369,7 @@ myLox.SetDomainSubstitutionRule( null, null );  // clear rules eventually read i
                           +  "*SUBSTR*   = Info       ;"
                           +  "/OVERWRITE = Info       ;"
                         );
-            ALIB.Config.InsertPlugin( iniFile, Configuration.PrioIniFile );
+            Configuration.Default.InsertPlugin( iniFile, Configuration.PrioIniFile );
 
 
             // test
@@ -464,7 +465,7 @@ myLox.SetDomainSubstitutionRule( null, null );  // clear rules eventually read i
 
             //lox.State( "", Verbosity.Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
-            ALIB.Config.RemovePlugin( iniFile );
+            Configuration.Default.RemovePlugin( iniFile );
             lox.RemoveLogger( ml );
             lox.RemoveLogger( "CONSOLE" );
         }

@@ -2,7 +2,7 @@
 #  QMake 'pro' file - ALox Samples
 #
 #  (c) 2016 A-Worx GmbH, Germany
-#  Published under MIT License (Open Source License, see LICENSE.txt)
+#  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 # #################################################################################################
 
 QT       -= core gui
@@ -28,21 +28,36 @@ DEPENDPATH+=  ../../../../src.cpp
 INCLUDEPATH+= ../../../../src.cpp
 
 #### ALib sources ###########################################################
-SOURCES += ../../../../src.cpp/alib/core/alib.cpp                           \
-           ../../../../src.cpp/alib/core/enums.cpp                          \
-           ../../../../src.cpp/alib/core/report.cpp                         \
-           ../../../../src.cpp/alib/core/util.cpp                           \
+SOURCES += ../../../../src.cpp/alib/alib.cpp                                \
+           ../../../../src.cpp/alib/alib/debug.cpp                          \
+           ../../../../src.cpp/alib/lang/enums.cpp                          \
+           ../../../../src.cpp/alib/lang/memoryblocks.cpp                   \
+           ../../../../src.cpp/alib/lang/report.cpp                         \
+           ../../../../src.cpp/alib/lang/rtti.cpp                           \
+           ../../../../src.cpp/alib/lang/singleton.cpp                      \
+           ../../../../src.cpp/alib/boxing/boxing.cpp                       \
+           ../../../../src.cpp/alib/boxing/ftypes.cpp                       \
+           ../../../../src.cpp/alib/time/calendartime.cpp                   \
            ../../../../src.cpp/alib/time/ticks.cpp                          \
+           ../../../../src.cpp/alib/time/tickspan.cpp                       \
+           ../../../../src.cpp/alib/threads/smartlock.cpp                   \
            ../../../../src.cpp/alib/threads/thread.cpp                      \
            ../../../../src.cpp/alib/threads/threadlock.cpp                  \
-           ../../../../src.cpp/alib/system/system.cpp                       \
-           ../../../../src.cpp/alib/system/process.cpp                      \
            ../../../../src.cpp/alib/system/directory.cpp                    \
+           ../../../../src.cpp/alib/system/environment.cpp                  \
+           ../../../../src.cpp/alib/system/process.cpp                      \
            ../../../../src.cpp/alib/strings/applyformat.cpp                 \
            ../../../../src.cpp/alib/strings/astring.cpp                     \
+           ../../../../src.cpp/alib/strings/autosizes.cpp                   \
            ../../../../src.cpp/alib/strings/cstring.cpp                     \
+           ../../../../src.cpp/alib/strings/formatter.cpp                   \
+           ../../../../src.cpp/alib/strings/formatterjavastyle.cpp          \
+           ../../../../src.cpp/alib/strings/formatterpythonstyle.cpp        \
+           ../../../../src.cpp/alib/strings/formatterstdimpl.cpp            \
            ../../../../src.cpp/alib/strings/numberformat.cpp                \
+           ../../../../src.cpp/alib/strings/spaces.cpp                      \
            ../../../../src.cpp/alib/strings/string.cpp                      \
+           ../../../../src.cpp/alib/strings/stringboxing.cpp                \
            ../../../../src.cpp/alib/strings/substring.cpp                   \
            ../../../../src.cpp/alib/strings/tokenizer.cpp                   \
            ../../../../src.cpp/alib/strings/tstring.cpp                     \
@@ -74,30 +89,55 @@ SOURCES += ../../../../src.cpp/alib/core/alib.cpp                           \
 
 #### ALib headers ###########################################################
 HEADERS += ../../../../src.cpp/alib/alib.hpp                                \
-           ../../../../src.cpp/alib/stdafx_alib.h                           \
-           ../../../../src.cpp/alib/core/alib.hpp                           \
-           ../../../../src.cpp/alib/core/enums.hpp                          \
-           ../../../../src.cpp/alib/core/macros.hpp                         \
-           ../../../../src.cpp/alib/core/ownable.hpp                        \
-           ../../../../src.cpp/alib/core/symbols.hpp                        \
-           ../../../../src.cpp/alib/core/report.hpp                         \
-           ../../../../src.cpp/alib/core/util.hpp                           \
+           ../../../../src.cpp/alib/alib_distribution.hpp                   \
+           ../../../../src.cpp/alib/alib/prepro.hpp                         \
+           ../../../../src.cpp/alib/alib/debug.hpp                          \
+           ../../../../src.cpp/alib/lang/enums.hpp                          \
+           ../../../../src.cpp/alib/lang/memoryblocks.hpp                   \
+           ../../../../src.cpp/alib/lang/ownable.hpp                        \
+           ../../../../src.cpp/alib/lang/report.hpp                         \
+           ../../../../src.cpp/alib/lang/rtti.hpp                           \
+           ../../../../src.cpp/alib/lang/singleton.hpp                      \
+           ../../../../src.cpp/alib/lang/types.hpp                          \
+           ../../../../src.cpp/alib/boxing/box.hpp                          \
+           ../../../../src.cpp/alib/boxing/boxer.hpp                        \
+           ../../../../src.cpp/alib/boxing/boxes.hpp                        \
+           ../../../../src.cpp/alib/boxing/boxing.hpp                       \
+           ../../../../src.cpp/alib/boxing/interface.hpp                    \
+           ../../../../src.cpp/alib/boxing/interface_builtin.hpp            \
+           ../../../../src.cpp/alib/boxing/ftypes.hpp                       \
+           ../../../../src.cpp/alib/time/calendartime.hpp                   \
            ../../../../src.cpp/alib/time/ticks.hpp                          \
+           ../../../../src.cpp/alib/time/tickspan.hpp                       \
+           ../../../../src.cpp/alib/time/tickwatch.hpp                      \
+           ../../../../src.cpp/alib/threads/smartlock.hpp                   \
            ../../../../src.cpp/alib/threads/thread.hpp                      \
            ../../../../src.cpp/alib/threads/threadlock.hpp                  \
-           ../../../../src.cpp/alib/system/system.hpp                       \
-           ../../../../src.cpp/alib/system/process.hpp                      \
+           ../../../../src.cpp/alib/threads/threadlocknr.hpp                \
            ../../../../src.cpp/alib/system/directory.hpp                    \
+           ../../../../src.cpp/alib/system/environment.hpp                  \
+           ../../../../src.cpp/alib/system/process.hpp                      \
            ../../../../src.cpp/alib/strings/applyformat.hpp                 \
            ../../../../src.cpp/alib/strings/applyto.hpp                     \
+           ../../../../src.cpp/alib/strings/autosizes.hpp                   \
            ../../../../src.cpp/alib/strings/astring.hpp                     \
            ../../../../src.cpp/alib/strings/cstring.hpp                     \
+           ../../../../src.cpp/alib/strings/formatter.hpp                   \
+           ../../../../src.cpp/alib/strings/formatterjavastyle.hpp          \
+           ../../../../src.cpp/alib/strings/formatterpythonstyle.hpp        \
+           ../../../../src.cpp/alib/strings/formatterstdimpl.hpp            \
            ../../../../src.cpp/alib/strings/numberformat.hpp                \
            ../../../../src.cpp/alib/strings/preallocatedstring.hpp          \
            ../../../../src.cpp/alib/strings/string.hpp                      \
+           ../../../../src.cpp/alib/strings/spaces.hpp                      \
+           ../../../../src.cpp/alib/strings/string.hpp                      \
+           ../../../../src.cpp/alib/strings/stringboxing.hpp                \
+           ../../../../src.cpp/alib/strings/stringliteral.hpp               \
+           ../../../../src.cpp/alib/strings/stringtuples.hpp                \
            ../../../../src.cpp/alib/strings/stringliteral.hpp               \
            ../../../../src.cpp/alib/strings/substring.hpp                   \
            ../../../../src.cpp/alib/strings/tokenizer.hpp                   \
+           ../../../../src.cpp/alib/strings/formatter.hpp                   \
            ../../../../src.cpp/alib/strings/tstring.hpp                     \
            ../../../../src.cpp/alib/config/configuration.hpp                \
            ../../../../src.cpp/alib/config/variable.hpp                     \

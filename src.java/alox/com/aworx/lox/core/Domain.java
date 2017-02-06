@@ -1,16 +1,15 @@
 // #####################################################################oggeg############################
 //  com.aworx.lox.core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package com.aworx.lox.core;
 
 import java.util.ArrayList;
 
-import com.aworx.lib.ALIB;
-import com.aworx.lib.enums.Case;
-import com.aworx.lib.enums.Inclusion;
+import com.aworx.lib.lang.Case;
+import com.aworx.lib.lang.Inclusion;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.Substring;
 import com.aworx.lox.ALox;
@@ -196,7 +195,7 @@ public class Domain
         if ( getLoggerNo( logger.name ) >= 0 )
             return -1;
 
-        // now this and all childs
+        // now this and all children
         addLoggerRecursive( logger );
         return data.size() - 1;
     }
@@ -215,7 +214,7 @@ public class Domain
             return;
         }
 
-        // now this and all childs
+        // now this and all children
         removeLoggerRecursive( loggerNo );
     }
 
@@ -232,7 +231,7 @@ public class Domain
     /** ****************************************************************************************
      * Searches and returns the \e Logger given by name.
      * @param loggerName  The logger to search.
-     * @return The the \e Logger found corresponding to given name.
+     * @return The \e Logger found corresponding to given name.
      *         If the \e Logger does not exist, null is returned.
      ******************************************************************************************/
     public Logger  getLogger( String loggerName )
@@ -246,11 +245,11 @@ public class Domain
     /** ****************************************************************************************
      * Returns logger of given number.
      * @param no  The number of the \e Logger to return.
-     * @return The the \e Logger found with number \p no.
+     * @return The \e Logger found with number \p no.
      ******************************************************************************************/
     public Logger  getLogger( int no )
     {
-        ALIB.ASSERT_ERROR( no >= 0 && no < data.size(), "Internal error: Illegal Logger Number" );
+        com.aworx.lib.ALIB_DBG.ASSERT_ERROR( no >= 0 && no < data.size(), "Internal error: Illegal Logger Number" );
         return data.get(no).logger;
     }
 
@@ -375,14 +374,13 @@ public class Domain
      * from this domain.
      *
      * @param       domainPathAS  Path and domain to search.
-     * @param       sensitivity   Denotes if domain name search is treated case sensitive or not.
      * @param       maxCreate     The maximum number of sub domains that are created if not
      *                            found at the end of the path.
      * @param[out]  wasCreated    Output parameter that is set \c true if domain was not found
      *                            and hence created.
      * @return The domain found or created.
      **********************************************************************************************/
-    public Domain find( AString domainPathAS, Case sensitivity, int maxCreate, boolean[] wasCreated )
+    public Domain find( AString domainPathAS, int maxCreate, boolean[] wasCreated )
     {
         Substring domainPath= tSubstring;
         domainPath.set( domainPathAS );
@@ -393,9 +391,9 @@ public class Domain
         int lenBeforeTrim= domainPath.length();
 
         // if string is empty (resp. contains only separator characters), return ourselves
-        while( domainPath.consume( PATH_SEPARATOR ) )
+        while( domainPath.consumeChar( PATH_SEPARATOR ) )
         { /* eat separators */ }
-        
+
         if( domainPath.isEmpty() )
             return this;
 
@@ -408,7 +406,7 @@ public class Domain
         }
 
         // call find
-        return startDomain.findRecursive( domainPath, sensitivity, maxCreate, wasCreated );
+        return startDomain.findRecursive( domainPath, maxCreate, wasCreated );
     }
 
     /** ****************************************************************************************
@@ -444,22 +442,20 @@ public class Domain
          * The internal recursive helper of #find.
          *
          * @param       domainPath  Path to search.
-         * @param       sensitivity Denotes if domain name search is treated case sensitive or not.
          * @param       maxCreate   The maximum number of sub domains that are created if not
          *                          found at the end of the path.
          * @param[out]  wasCreated    Output parameter that is set \c true if domain was not found
          *                            and hence created.
          * @return The domain found or created.
          ******************************************************************************************/
-        @SuppressWarnings ("null") 
-        protected Domain findRecursive( Substring domainPath, Case sensitivity, int maxCreate,
-                                        boolean[] wasCreated )
+        @SuppressWarnings ("null")
+        protected Domain findRecursive( Substring domainPath, int maxCreate, boolean[] wasCreated )
         {
             //--- get act sub-name and rest of path
-            domainPath.consume( PATH_SEPARATOR );
+            domainPath.consumeChar( PATH_SEPARATOR );
             int endSubName= domainPath.indexOf( PATH_SEPARATOR );
 
-            ALIB.ASSERT_ERROR( endSubName != 0, "Internal Error" );
+            com.aworx.lib.ALIB_DBG.ASSERT_ERROR( endSubName != 0, "Internal Error" );
 
             // find end of actual domain name and save rest
             Substring restOfDomainPath= tSubstring2;
@@ -488,7 +484,7 @@ public class Domain
                 {
                     for( i= 0; i< subDomains.size(); i++ )
                     {
-                        int comparison=   subDomains.get(i).name.compareTo( domainPath, sensitivity );
+                        int comparison=   subDomains.get(i).name.compareTo( domainPath, Case.SENSITIVE );
                         if( comparison >= 0 )
                         {
                             if ( comparison == 0 )
@@ -510,12 +506,11 @@ public class Domain
                         for( int cp= 0; cp< domainPath.length() ; ++cp )
                         {
                             char c= domainPath.charAt(cp);
-                            if (     c <  '-' || c > 'z'
-                                  || c == '<' || c == '>'
-                                  || c == '[' || c == ']'
-                                  || c == '=' || c == '?' || c == ';' || c == ':'
-                                  || c == '\\'|| c == '\''|| c == '.' || c == ','
-                               )
+                            if (!(    ( c >= '0' && c <= '9' )
+                                   || ( c >= 'A' && c <= 'Z' )
+                                   || c == '-'
+                                   || c == '_'
+                            ))
                             {
                                 illegalCharacterFound= true;
                                 domainPath.buf[domainPath.start + cp]= '#';
@@ -542,7 +537,7 @@ public class Domain
             if ( restOfDomainPath.isNotEmpty() )
             {
                 domainPath.set( restOfDomainPath );
-                return subDomain.findRecursive( domainPath, sensitivity, maxCreate, wasCreated );
+                return subDomain.findRecursive( domainPath, maxCreate, wasCreated );
             }
 
             // that's it

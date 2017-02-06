@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  aworx::lox::loggers - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -22,10 +22,8 @@
     #include "alox/core/textlogger/plaintextlogger.hpp"
 #endif
 
-namespace aworx {
-namespace       lox {
-namespace           loggers{
-
+namespace aworx { namespace lox { namespace loggers
+{
 
 /** ************************************************************************************************
  *  A logger that logs all messages to an in-memory buffer of type AString. The name of the \e Logger
@@ -73,7 +71,7 @@ class MemoryLogger : public aworx::lox::core::textlogger::PlainTextLogger
                                       bool pruneESCSequences                = true,
                                       bool useWCharLengthForTabAdjustments  = true )
                         : PlainTextLogger( name, "MEMORY", false )
-                        , MemoryLog                      (8092)
+                        , MemoryLog      ( 8092 )
                         {
                             PruneESCSequences              = pruneESCSequences;
                             UseWCharLengthForTabAdjustments= useWCharLengthForTabAdjustments;
@@ -83,7 +81,7 @@ class MemoryLogger : public aworx::lox::core::textlogger::PlainTextLogger
         /** ****************************************************************************************
          * Destructs a MemoryLogger
          ******************************************************************************************/
-        virtual        ~MemoryLogger() {};
+        virtual        ~MemoryLogger() {}
 
     // #############################################################################################
     // Abstract method implementations
@@ -95,10 +93,10 @@ class MemoryLogger : public aworx::lox::core::textlogger::PlainTextLogger
          * @param phase  Indicates the beginning or end of a log line.
          * @return Always returns true.
          ******************************************************************************************/
-        virtual bool notifyLogOp(lib::enums::Phase phase)
+        virtual bool notifyLogOp(lib::lang::Phase phase)
         {
             // append new line if buffer has already lines stored
-            if ( phase == lib::enums::Phase::Begin && MemoryLog.IsNotEmpty() )
+            if ( phase == lib::lang::Phase::Begin && MemoryLog.IsNotEmpty() )
                 MemoryLog.NewLine();
             return true;
         }
@@ -111,7 +109,7 @@ class MemoryLogger : public aworx::lox::core::textlogger::PlainTextLogger
          * @param length   The length of the portion in \p buffer to write out.
          * @return The number of characters written, -1 on error.
          ******************************************************************************************/
-        virtual int logSubstring( const AString& buffer, int start, int length )
+        virtual integer logSubstring( const AString& buffer, integer start, integer length )
         {
             MemoryLog._<false>( buffer, start, length );
             return UseWCharLengthForTabAdjustments
@@ -122,7 +120,7 @@ class MemoryLogger : public aworx::lox::core::textlogger::PlainTextLogger
         /** ****************************************************************************************
          *  Empty implementation, not needed for this class
          ******************************************************************************************/
-        virtual    void notifyMultiLineOp( lib::enums::Phase )     {}
+        virtual    void notifyMultiLineOp( lib::lang::Phase )     {}
 
 }; // class MemoryLogger
 

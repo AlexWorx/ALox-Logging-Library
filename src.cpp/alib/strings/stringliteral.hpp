@@ -1,25 +1,19 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
+// include guard
+#ifndef HPP_ALIB_STRINGS_LITERAL
+#define HPP_ALIB_STRINGS_LITERAL 1
+
 // to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_ALIB) || defined(HPP_ALIB_STRINGS_ASLITERAL)
-    #error "include alib/alib.hpp instead of this header"
+#if !defined(ALIB_PROPER_INCLUSION)
+    #error "include 'alib/alib.hpp' or 'alib/alib_strings.hpp' instead of this header"
 #endif
-
-// Due to our blocker above, this include will never be executed. But having it, allows IDEs
-// (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_ALIB)
-    #include "alib/alib.hpp"
-#endif
-
-// then, set include guard
-#ifndef HPP_ALIB_STRINGS_ASLITERAL
-#define HPP_ALIB_STRINGS_ASLITERAL 1
 
 // #################################################################################################
 // includes
@@ -40,10 +34,8 @@
     #pragma warning( disable : 4307 ) // also: integral constant overflow, because of TMP
 #endif
 
-namespace aworx {
-namespace           lib {
-namespace                   strings {
-
+namespace aworx { namespace lib { namespace strings
+{
 
 /** ************************************************************************************************
  * This templated class is a specialization of class #TString which has a fixed length.
@@ -53,17 +45,21 @@ namespace                   strings {
  * For example, template method
  * \ref aworx::lib::strings::AString::operator<<(const T&  op) "AString::operator<<(const T&)"
  * which internally makes use of template method
- * \ref aworx::lib::strings::AString::Apply "AString::Apply" will append
- * ASLiterals (up to a certain amount of characters) without doing a copy loop.
+ * \ref aworx::lib::strings::AString::Apply "AString::Apply" will append objects of this type
+ * without doing a copy loop (up to a certain amount of characters).
  *
  * The class is useful to assign string literals to objects, including their lengths and pass
  * them around, hence the name.<br>
  *
- * \note This class \b %StringLiteral, when used in source code as well as in documentations, is
- *       oftenly referred to using the synonym '<b>%SLiteral</b>'. For more information about
- *       the synonymous names of ALib string classes, refer to
- *       \ref alib_namespace_strings_class_overview "String Classes Overview" and
- *       \ref CPP_AWORX_NS_SHORTCUTS "Type Shortcuts of Namespace aworx".
+ * It might also used to provide strings with variable contents. For this, the character
+ * array given in the constructor needs to be managed and manipulated outside of this class.
+ *
+ * \note
+ *   This class \b %StringLiteral, when used in source code as well as in documentations, is
+ *   often referred to using the synonym '<b>%SLiteral</b>'. For more information about
+ *   the synonymous names of ALib string classes, refer to
+ *   \ref alib_namespace_strings_class_overview "String Classes Overview" and
+ *   \ref CPP_AWORX_NS_SHORTCUTS "Type Shortcuts of Namespace aworx".
  *
  * @tparam TLength The length of the represented string.
 ***************************************************************************************************/
@@ -75,8 +71,6 @@ class StringLiteral : public TString
      * The only available constructor taking a string literal of exactly the size we have plus one
      * for the termination character.
      * @param src  The string literal to represent.
-     * @tparam TCapacity  The capacity of the given buffer. The length of this string is set
-     *         to this value -1.
      **********************************************************************************************/
     constexpr StringLiteral( const char (&src)[TLength + 1]  )
     : TString( src, TLength )
@@ -134,46 +128,29 @@ class StringLiteral : public TString
     }
 };
 
+
 /** ************************************************************************************************
-* Template meta programming (TMP) helper class to get the buffer and (constant) length
-* of a string literal.
-* Specializations exist for C++ string literals and ALib type
-* \ref aworx::lib::strings::StringLiteral "StringLiteral.
-*
-* \note This struct is of internal nature. For standard use of ALib strings, there is no
-*       no need to know about it.<br>
-*       However, if user defined string types exist which have a length known at compile time,
-*       ALib users might want to implement a specialization for that type.
-*       The benefit lies in a performance gain. For example, appending types (of smaller sizes)
-*       to objects of type
-*       \ref aworx::lib::strings::AString "AString" does not invoke memcpy() by inlining the
-*       right number of single copy commands.
-***********************************************************************************************/
-template<typename TLiteral>        struct TMPLiteral
+ * Specialization of template struct \ref aworx::lib::strings::T_StringLiteral for all
+ * template class \ref aworx::lib::strings::StringLiteral "StringLiteral<TLength>".
+ *
+ * @tparam TLength The length of the represented string.
+ **************************************************************************************************/
+template<size_t TLength>
+struct T_StringLiteral<StringLiteral<TLength>> : public std::true_type
 {
-    /// The length of the literal
-    enum      { Length= -1      };
+    /**
+     * Returns the buffer of the literal.
+     * @param src The pointer to the source string literal
+     * @return The buffer of the literal.
+     */
+    static inline constexpr const char* Buffer(const StringLiteral<TLength>& src) { return src.Buffer(); }
 
-    /// Returns the buffer of the literal given as void*.
-    /// @return The Buffer of the literal.
-    static const char* Buffer(void* )  { return nullptr; }
-
+    /**
+     * Returns the constant \p TLength of type <b>StringLiteral<TLength></b>.
+     * @return The length.
+     */
+    static inline constexpr integer    Length()        { return TLength; }
 };
-
-#if !defined( IS_DOXYGEN_PARSER )
-    template<size_t TLength>    struct TMPLiteral<StringLiteral<TLength>>
-    {
-        enum      { Length= TLength      };
-        static const char* Buffer(void* o) { return ((String*) o)->Buffer(); }
-    };
-
-    template<size_t TCapacity>  struct TMPLiteral<char [TCapacity]>
-    {
-        enum      { Length= TCapacity -1 };
-        static const char* Buffer(void* o) { return (const char*) o; }
-    };
-
-#endif
 
 
 
@@ -188,13 +165,11 @@ using     SLiteral  =        aworx::lib::strings::StringLiteral<TLength>;
 // aworx namespace string singletons
 // #################################################################################################
 
-/** The system depended new line character code(s). */
-#ifdef __unix__
-    constexpr static       lib::strings::StringLiteral<1>   NewLine { "\n" };
-#elif defined(_WIN32)
+/** The system dependent new line character code(s). */
+#if defined(_WIN32)
     constexpr static       lib::strings::StringLiteral<2>   NewLine { "\r\n" };
 #else
-    #warning "Warning: Unknown Platform"
+    constexpr static       lib::strings::StringLiteral<1>   NewLine { "\n" };
 #endif
 
 /** Characters that are usually ignored or trimmed. */
@@ -207,4 +182,4 @@ constexpr     static       lib::strings::StringLiteral<4>   DefaultWhitespaces {
 #if defined(_MSC_VER)
     #pragma warning( pop )
 #endif
-#endif // HPP_ALIB_STRINGS_ASLITERAL
+#endif // HPP_ALIB_STRINGS_LITERAL

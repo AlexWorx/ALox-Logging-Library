@@ -1,21 +1,18 @@
 // #################################################################################################
 //  com.aworx.lox - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package com.aworx.lox;
 
 import java.util.Date;
 
-import com.aworx.lib.ALIB;
-import com.aworx.lib.ConsoleReportWriter;
-import com.aworx.lib.Report;
 import com.aworx.lib.config.Configuration;
-import com.aworx.lib.enums.ContainerOp;
-import com.aworx.lib.enums.Inclusion;
+import com.aworx.lib.lang.ContainerOp;
+import com.aworx.lib.lang.Inclusion;
+import com.aworx.lib.lang.Report;
 import com.aworx.lib.strings.AString;
-import com.aworx.lib.threads.ThreadLock;
 import com.aworx.lox.core.Logger;
 import com.aworx.lox.core.textlogger.TextLogger;
 
@@ -64,7 +61,7 @@ public abstract class Log
             if ( lox == null )
                 lox= LOX;
 
-            ALIB.ASSERT_ERROR( debugLogger == null, "Illegal double invocation." );
+            com.aworx.lib.ALIB_DBG.ASSERT_ERROR( debugLogger == null, "Illegal double invocation." );
 
             // add a default console logger
             debugLogger= Lox.createConsoleLogger( "DEBUG_LOGGER" );
@@ -88,8 +85,8 @@ public abstract class Log
         /** ************************************************************************************
          * Removes the \e Logger(s) which was/were created by \ref addDebugLogger.
          *  This method also invokes
-         *  \ref com::aworx::lib::Report::popWriter "Report.popWriter(null)"
-         *  to install a default \ref com::aworx::lib::ReportWriter "ReportWriter" for ALib.
+         *  \ref com::aworx::lib::lang::Report::popWriter "Report.popWriter(null)"
+         *  to install a default \ref com::aworx::lib::lang::ReportWriter "ReportWriter" for ALib.
          *
          * @param lox The lox to remove the debug logger from.
          *           If null, the static debug object#LOX is used.
@@ -100,7 +97,7 @@ public abstract class Log
             Log.removeALibReportWriter();
 
             // remove debug logger(s)
-            ALIB.ASSERT_ERROR( debugLogger != null, "No debug logger to remove." );
+            com.aworx.lib.ALIB_DBG.ASSERT_ERROR( debugLogger != null, "No debug logger to remove." );
 
             if ( debugLogger != null )
             {
@@ -121,8 +118,8 @@ public abstract class Log
 
 
         /** ************************************************************************************
-         * In the case that the original ALib ConsoleReportWriter is still in place,
-         * \ref com::aworx::lib::Report::pushWriter "Report.pushWriter" is invoked to provide a
+         * In the case that the original ALib ReportWriterStdIO is still in place,
+         * \ref com::aworx::lib::lang::Report::pushWriter "Report.pushWriter" is invoked to provide a
          * ReportWriter of type
          * \ref com::aworx::lox::ALoxReportWriter "ALoxReportWriter".
          *
@@ -140,11 +137,11 @@ public abstract class Log
          **************************************************************************************/
         public static void addALibReportWriter( Lox lox )
         {
-            ALIB.ASSERT_WARNING( debugReportWriter == null,
+            com.aworx.lib.ALIB_DBG.ASSERT_WARNING( debugReportWriter == null,
                                  "Log.addReportWriter(): ALoxReportWriter already created." );
 
             // replace the ReportWriter
-            if ( Report.getDefault().peekWriter() == ConsoleReportWriter.SINGLETON  )
+            if ( Report.getDefault().peekWriter() == com.aworx.lib.lang.ReportWriterStdIO.SINGLETON  )
                 Report.getDefault().pushWriter( debugReportWriter= new ALoxReportWriter( lox ) );
         }
 
@@ -173,61 +170,9 @@ public abstract class Log
          * The ALib ReportWriter. This will be created and registered in method
          * \ref com::aworx::lox::Log::addDebugLogger    "Log.addDebugLogger" and removed in
          * \ref com::aworx::lox::Log::removeDebugLogger "Log.removeDebugLogger" in the case that
-         * the original ALib ConsoleReportWriter is in place.
+         * the original ALib ReportWriterStdIO is in place.
          */
         public static ALoxReportWriter  debugReportWriter                                     =null;
-
-
-    // #############################################################################################
-    // Debug-Log Buffer mimicking AString
-    // #############################################################################################
-
-        /** A log buffer singleton. Can be acquired, using buf() */
-        protected static LogBuf         logBuf                                        =new LogBuf();
-
-        /** A locker for the log buffer singleton */
-        protected static ThreadLock     logBufLock                                =new ThreadLock();
-
-        /** ****************************************************************************************
-         * Static code
-         ******************************************************************************************/
-        static
-        {
-            // set recursion warning of log buffer lock to 1.
-            // Warnings are logged if recursively acquired more than once
-            logBufLock.recursionWarningThreshold= 1;
-        }
-
-        /** ****************************************************************************************
-         * Returns a LogBuf singleton, similar to the AString singleton returned by Lox.buf(). Class
-         * LogBuf is a pruneable mimic of AString. Hence working with LogBuf instead of AString is
-         * allowed only for debug logging purposes, not for release logging.<br>
-         * Whenever this method is called, the returned LogBuf object has to be used as a message
-         * within one of the log methods of this class (error(), warning(), info(), verbose(),
-         * assert(), if() or entry()). If this is not done, the object does not get released and
-         * parallel threads using it would be blocked! So, do not use buf() for other reasons
-         * than for creating log messages and be sure to re-acquire the LogBuf object by calling
-         * this method again prior to the next log call.
-         *
-         * @return the static LogBuf singleton.
-         ******************************************************************************************/
-        public static LogBuf buf()
-        {
-            logBufLock.acquire();
-            logBuf.clear();
-            return logBuf;
-        }
-
-        /** ****************************************************************************************
-         * Use this method when you want to abort a log call that you "started" with acquiring the
-         * internal LogBuf singleton acquired using method buf(). Use bufAbort() only if you did
-         * not use the acquired buffer as a parameter of a log method, because this internally
-         * releases the buf already.
-         ******************************************************************************************/
-        public static void bufAbort()
-        {
-            logBufLock.release();
-        }
 
 
     // #############################################################################################
@@ -258,9 +203,6 @@ public abstract class Log
         ALox.register( Log.LOX, ContainerOp.REMOVE );
         Log.LOX=                new Lox("Log", true );
         Log.debugLogger=        null;
-        Log.logBuf=             new LogBuf();
-        Log.logBufLock=         new ThreadLock();
-        Log.logBufLock.recursionWarningThreshold= 1;
         ALox.configCategoryName._()._( "ALOX" );
     }
 
@@ -550,7 +492,7 @@ public abstract class Log
      * account.<br>
      *
      * <b>Wildcards</b><br>
-     * Parameter \p domainPath supports \b 'wildcard' character <c> '*'</c> at the its beginning
+     * Parameter \p domainPath supports \b 'wildcard' character <c> '*'</c> at its beginning
      * and at its end (or both). This allows to have four types of rules:
      * - Exact match
      * - Prefix match (\c * at the end of \p domainPath)
@@ -594,7 +536,7 @@ public abstract class Log
      * variables. Any prioritized \e 'internal' setting of \e Verbosities this way could be
      * circumvented!
      *
-     * For more information consult the ALox user manual.
+     * For more information consult the [ALox User Manual](../man_domain_substitution.html).
      *
      * @param domainPath  The path to search. Has to start with either  <c> '/'</c> or <c> '*'</c>.
      * @param replacement The replacement path.
@@ -605,17 +547,26 @@ public abstract class Log
     }
 
     /** ****************************************************************************************
-     * The given \p logable becomes a <em>Prefix Logable</em> provided to loggers with log statements
-     * executed within the given \p scope.
+     * The given \p prefix becomes a <em>Prefix Logable</em> provided to loggers with each log
+     * statement executed within the given \p scope.
      * The list of objects received by a logger is sorted from outer scope to inner scope.
-     * The logable of the <em>Log Statement</em> itself, is the last in the list, except one or
-     * more <em>Prefix Logables</em> of \e %Scope.THREAD_INNER are set. Those are (similar to how this
-     * \e %Scope is handled with <em>%Scope Domains</em>) are appended to the end of the list.
+     * The logable of the <em>%Log Statement</em> itself, is the last in the list, except one or
+     * more <em>Prefix Logables</em> of \e %Scope.ThreadInner are set. Those are (similar to how
+     * this \e %Scope is used with <em>%Scope Domains</em>) appended to the end of the
+     * list.
      *
      * To remove a previously set <em>Prefix Logable</em>, \c null has to be passed with
      * parameter \p logable.
      * For \e %Scope.THREAD_OUTER and \e %Scope.THREAD_INNER, passing \c null
      * removes the most recently added <em>Prefix Logable</em>.
+     *
+     *<p>
+     * \note
+     *   Unlike other methods of this class which accept more than one logable, this
+     *   method and its overloaded variants accept only one (the prefix).
+     *   To supply several objects to be prefix logables at once, those may be passed as an
+     *   Object[] like shown in the following sample:
+     *   \snippet "UT_alox_scopes.java"      DOX_ALOX_LOX_SETPREFIX
      *
      *<p>
      * \note
@@ -627,7 +578,7 @@ public abstract class Log
      *   <em>Prefix Logables</em> is very useful. Just the name does not fit so well anymore.
      *   Think of 'SetContext' and <em>Context Objects</em> instead.
      *
-     * @param logable      The <em>Prefix Logable</em> to set.
+     * @param prefix       The <em>Prefix Logable(s)</em> to set.
      * @param scope        The scope that should the given \p logable be registered for.
      *                     Available Scope definitions are platform/language dependent.
      * @param packageLevel Used only with
@@ -635,22 +586,22 @@ public abstract class Log
      *                     Cuts the given number of package parts (separated with '.') from the end
      *                     of the packages. Optional and defaults to \c 0.
      ******************************************************************************************/
-    public static  void setPrefix( Object logable, Scope scope, int packageLevel  )
+    public static  void setPrefix( Object prefix, Scope scope, int packageLevel  )
     {
-        LOX.setPrefixImpl( logable, scope, packageLevel, null );
+        LOX.setPrefixImpl( prefix, scope, packageLevel, null );
     }
 
     /** ****************************************************************************************
      * Overloaded version of \ref setPrefix(Object,Scope,int) "setPrefix" providing value \c 0
      * as default for parameter \p packageLevel.
      *
-     * @param logable     The <em>Prefix Logable</em> to set.
+     * @param prefix      The <em>Prefix Logable(s)</em> to set.
      * @param scope       The scope that should the given \p logable be registered for.
      *                    Available Scope definitions are platform/language dependent.
      ******************************************************************************************/
-    public static  void setPrefix( Object logable, Scope scope  )
+    public static  void setPrefix( Object prefix, Scope scope  )
     {
-        LOX.setPrefixImpl( logable, scope, 0, null );
+        LOX.setPrefixImpl( prefix, scope, 0, null );
     }
 
     /** ****************************************************************************************
@@ -796,9 +747,8 @@ public abstract class Log
     }
 
     /** ****************************************************************************************
-     * Stores ALox <em>Log Data</em>, an object of base type
-     * \ref com::aworx::lox::LogData "LogData" which can afterwards be retrieved by invoking
-     * #retrieve. Using the optional \p key and \p scope offer various possibilities to reference
+     * Stores an object which was can afterwards be retrieved by invoking #retrieve.
+     * Optional parameters \p key and \p scope offer various possibilities to reference
      * this data later.<br>
      *
      * To remove data from the store, pass \c null with parameter \p data.
@@ -822,7 +772,7 @@ public abstract class Log
      *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      ******************************************************************************************/
-    public static void store( LogData data, String key, Scope scope, int pkgLevel )
+    public static void store( Object data, String key, Scope scope, int pkgLevel )
     {
         LOX.store( data, key, scope, pkgLevel );
     }
@@ -838,7 +788,7 @@ public abstract class Log
      *                  data is unique to the \e Lox.
      * @param scope     The \e %Scope that the data is bound to.
      ******************************************************************************************/
-    public static void store( LogData data, String key, Scope scope )
+    public static void store( Object data, String key, Scope scope )
     {
         LOX.store( data, key, scope, 0 );
     }
@@ -853,7 +803,7 @@ public abstract class Log
      *                  provided. If omitted and \p scope is Scope.GLOBAL, then the
      *                  data is unique to the \e Lox.
      ******************************************************************************************/
-    public static void store( LogData data, String key )
+    public static void store( Object data, String key )
     {
         LOX.store( data, key, Scope.GLOBAL, 0 );
     }
@@ -864,7 +814,7 @@ public abstract class Log
      * @param data      The data object to store.
      *                  If \c null, currently stored data will be removed.
      ******************************************************************************************/
-    public static void store( LogData data )
+    public static void store( Object data )
     {
         LOX.store( data, null, Scope.GLOBAL, 0 );
     }
@@ -878,7 +828,7 @@ public abstract class Log
      *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      ******************************************************************************************/
-    public static void store( LogData  data, Scope scope, int  pkgLevel )
+    public static void store( Object  data, Scope scope, int  pkgLevel )
     {
         LOX.store( data, null, scope, pkgLevel );
     }
@@ -889,15 +839,14 @@ public abstract class Log
      *                  If \c null, currently stored data will be removed.
      * @param scope     The \e %Scope that the data is bound to.
      ******************************************************************************************/
-    public static void store( LogData  data, Scope scope )
+    public static void store( Object  data, Scope scope )
     {
         LOX.store( data, null, scope, 0 );
     }
 
     /** ****************************************************************************************
-     * Retrieves ALox <em>Log Data</em>, an object of base type
-     * \ref com::aworx::lox::LogData "LogData" which can be stored by invoking
-     * #store. Using the optional \p key and \p scope offer various possibilities to reference
+     * Retrieves an object which was previously stored using #store.
+     * Optional parameters \p key and \p scope offer various possibilities to reference
      * such objects.<br>
      *
      * \note <em>Log Data</em> is a feature provided by ALox to support debug-logging.
@@ -911,9 +860,9 @@ public abstract class Log
      * @param pkgLevel  Used only if parameter \p scope equals
      *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
-     * @return The \b LogData object, \c null if nothing was found.
+     * @return The object, \c null if nothing was found.
      ******************************************************************************************/
-    public static LogData  retrieve( String key, Scope scope,  int pkgLevel )
+    public static Object  retrieve( String key, Scope scope,  int pkgLevel )
     {
         return LOX.retrieve( key, scope, pkgLevel );
     }
@@ -926,9 +875,9 @@ public abstract class Log
      *                  provided. If omitted and \p scope is Scope.GLOBAL, then the
      *                  data is unique to the \e Lox.
      * @param scope     The \e %Scope that the data is bound to.
-     * @return The \b LogData object, \c null if nothing was found.
+     * @return The object, \c null if nothing was found.
      ******************************************************************************************/
-    public static LogData  retrieve( String key, Scope scope )
+    public static Object  retrieve( String key, Scope scope )
     {
         return LOX.retrieve( key, scope, 0 );
     }
@@ -940,9 +889,9 @@ public abstract class Log
      *                  If omitted (or empty or null), the data is bound to the \e %Scope
      *                  provided. If omitted and \p scope is Scope.GLOBAL, then the
      *                  data is unique to the \e Lox.
-     * @return The \b LogData object, \c null if nothing was found.
+     * @return The object, \c null if nothing was found.
      ******************************************************************************************/
-    public static LogData  retrieve( String key )
+    public static Object  retrieve( String key )
     {
         return LOX.retrieve( key, Scope.GLOBAL, 0 );
     }
@@ -950,9 +899,9 @@ public abstract class Log
     /** ****************************************************************************************
      * Overloaded version of #retrieve which omits parameters.
      *
-     * @return The \b LogData object, \c null if nothing was found.
+     * @return The object, \c null if nothing was found.
      ******************************************************************************************/
-    public static LogData  retrieve()
+    public static Object  retrieve()
     {
         return LOX.retrieve( null, Scope.GLOBAL, 0 );
     }
@@ -964,9 +913,9 @@ public abstract class Log
      * @param pkgLevel  Used only if parameter \p scope equals
      *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
-     * @return The \b LogData object, \c null if nothing was found.
+     * @return The object, \c null if nothing was found.
      ******************************************************************************************/
-    public static LogData  retrieve( Scope scope, int pkgLevel )
+    public static Object  retrieve( Scope scope, int pkgLevel )
     {
         return LOX.retrieve( null, scope, pkgLevel);
     }
@@ -975,9 +924,9 @@ public abstract class Log
      * Overloaded version of #retrieve which omits parameters.
      *
      * @param scope     The \e %Scope that the data is bound to.
-     * @return The \b LogData object, \c null if nothing was found.
+     * @return The object, \c null if nothing was found.
      ******************************************************************************************/
-    public static LogData  retrieve( Scope scope )
+    public static Object  retrieve( Scope scope )
     {
         return LOX.retrieve( null, scope, 0 );
     }
@@ -988,13 +937,13 @@ public abstract class Log
      * It uses method #getState to assemble the logable string.
      *
      * \note
-     *   As an alternative to (temporarily) adding an invocation of <b>%Lox.State</b> to 
-     *   your code, ALox provides configuration variable 
-     *   [ALOX_LOXNAME_DUMP_STATE_ON_EXIT](group__GrpALoxConfigVars.html). 
-     *   This allows to enable an automatic invocation of this method using external 
-     *   configuration data like command line parameters, environment variables or 
+     *   As an alternative to (temporarily) adding an invocation of <b>%Lox.State</b> to
+     *   your code, ALox provides configuration variable
+     *   [ALOX_LOXNAME_DUMP_STATE_ON_EXIT](group__GrpALoxConfigVars.html).
+     *   This allows to enable an automatic invocation of this method using external
+     *   configuration data like command line parameters, environment variables or
      *   INI files.
-     *     
+     *
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The verbosity.
@@ -1020,7 +969,7 @@ public abstract class Log
     }
 
     /** ********************************************************************************************
-     * This method collects state information about this lox in a formated multi-line AString.
+     * This method collects state information about this lox in a formatted multi-line AString.
      * Parameter \p flags is a bit field with bits defined in constants of class \b %Lox
      * prefixed with \b "STATE_INFO_", e.g. \c %STATE_INFO_LOGGERS.
      *
@@ -1031,155 +980,132 @@ public abstract class Log
     {
         LOX.getState( buf, flags );
     }
-    
+
     // #############################################################################################
     // Main logging methods
     // #############################################################################################
 
     /** ********************************************************************************************
-     * Logs a \e Logable with the given \e %Verbosity.
+     * Logs a list of \e Logables using the given \e %Verbosity.
+     *
+     * This method is usually \b not used directly. Instead, methods
+     * #info, #verbose, #warning and #error provide simpler interfaces.
+     *
+     * Hence, the use of this method is recommended only if the verbosity of a log statement
+     * is is evaluated only at runtime.
+     *
      *
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The verbosity.
-     * @param logable   The message to log out.
+     * @param logables  The objects to log.
      **********************************************************************************************/
-    public static void entry(String domain, Verbosity verbosity, Object logable)
+    public static void entry( String domain, Verbosity verbosity, Object... logables )
     {
-        LOX.entry( domain, verbosity, logable );
-        if (logable == logBuf) logBufLock.release();
+        LOX.entry( domain, verbosity, logables );
     }
 
     /** ********************************************************************************************
-     * Overloaded version of #entry, defaulting parameter \p domain to a nulled string.
+     * Logs a list of \e Logables using \ref Verbosity::VERBOSE "Verbosity.VERBOSE".
+     * For this, \ref com::aworx::lox::Lox::verbose "Lox.verbose" is invoked on static object
+     * \ref com::aworx::lox::Log::LOX "LOX" used for debug logging.
      *
+     * @param logables  The list of \e Logables, optionally including a domain name at the start.
+     **********************************************************************************************/
+    public static void verbose( Object... logables )
+    {
+        LOX.entryDetectDomain( Verbosity.VERBOSE, logables );
+    }
+
+    /** ********************************************************************************************
+     * Logs a list of \e Logables using \ref Verbosity::INFO "Verbosity.INFO".
+     * For this, \ref com::aworx::lox::Lox::info "Lox.info" is invoked on static object
+     * \ref com::aworx::lox::Log::LOX "LOX" used for debug logging.
+     *
+     * @param logables  The list of \e Logables, optionally including a domain name at the start.
+     **********************************************************************************************/
+    public static void info( Object... logables )
+    {
+        LOX.entryDetectDomain( Verbosity.INFO, logables );
+    }
+
+    /** ********************************************************************************************
+     * Logs a list of \e Logables using \ref Verbosity::WARNING "Verbosity.WARNING".
+     * For this, \ref com::aworx::lox::Lox::warning "Lox.warning" is invoked on static object
+     * \ref com::aworx::lox::Log::LOX "LOX" used for debug logging.
+     *
+     * @param logables  The list of \e Logables, optionally including a domain name at the start.
+     **********************************************************************************************/
+    public static void warning( Object... logables )
+    {
+        LOX.entryDetectDomain( Verbosity.WARNING, logables );
+    }
+
+    /** ********************************************************************************************
+     * Logs a list of \e Logables using \ref Verbosity::ERROR "Verbosity.ERROR".
+     * For this, \ref com::aworx::lox::Lox::error "Lox.error" is invoked on static object
+     * \ref com::aworx::lox::Log::LOX "LOX" used for debug logging.
+     *
+     * @param logables  The list of \e Logables, optionally including a domain name at the start.
+     **********************************************************************************************/
+    public static void error( Object... logables )
+    {
+        LOX.entryDetectDomain( Verbosity.ERROR, logables );
+    }
+
+    /** ********************************************************************************************
+     * Logs a list of \e Logables only if parameter \p condition is not \c true.
+     * For this, \ref com::aworx::lox::Lox::Assert "Lox.Assert" is invoked on static object
+     * \ref com::aworx::lox::Log::LOX "LOX" used for debug logging.
+     *
+     * \note This Method's name starts with capital letter, as <c>'assert'</c> is a Java keyword.
+     *
+     * @param condition If \c false, the <em>Log Statement</em> is executed.
+     * @param logables  The list of \e Logables, optionally including a domain name at the start.
+     **********************************************************************************************/
+    public static void Assert( boolean condition, Object... logables )
+    {
+        LOX.Assert( condition, logables );
+    }
+
+    /** ********************************************************************************************
+     * Logs a list of \e Logables only if the parameter \p condition is \c true.
+     * For this, \ref com::aworx::lox::Lox::If "Lox.If" is invoked on static object
+     * \ref com::aworx::lox::Log::LOX "LOX" used for debug logging.
+     *
+     * \note This Method's name starts with capital letter, as <c>'if'</c> is a Java keyword.
+     *
+     * @param condition If \c false, the <em>Log Statement</em> is executed.
+     * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
+     *                  set for the \e %Scope of invocation.
      * @param verbosity The verbosity.
-     * @param logable   The message to log out.
+     * @param logables  The objects to log.
      **********************************************************************************************/
-    public static void entry(Verbosity verbosity, Object logable)
+    public static void If(boolean condition, String domain, Verbosity verbosity, Object... logables )
     {
-        LOX.entry( null, verbosity, logable );
-        if (logable == logBuf) logBufLock.release();
+        LOX.If( condition, domain, verbosity, logables );
     }
 
     /** ********************************************************************************************
-     * Logs a \e Logable with
-     * \ref Verbosity::VERBOSE "Verbosity.VERBOSE".
+     * Logs a list of \e Logables only if the parameter \p condition is \c true.
+     * For this, \ref com::aworx::lox::Lox::If "Lox.If" is invoked on static object
+     * \ref com::aworx::lox::Log::LOX "LOX" used for debug logging.
+     * This overloaded version omits parameter \p domain.
      *
-     * This overloaded version does not offer a domain parameter but relies on a
-     * Scope Domain set for the scope.
+     * \note This Method's name starts with capital letter, as <c>'if'</c> is a Java keyword.
      *
-     * @param logable   The message to log out.
+     * @param condition If \c false, the <em>Log Statement</em> is executed.
+     * @param verbosity The verbosity.
+     * @param logables  The objects to log.
      **********************************************************************************************/
-    public static void verbose(Object logable)
+    public static void If( boolean condition, Verbosity verbosity, Object... logables )
     {
-        LOX.entry( null, Verbosity.VERBOSE, logable );
-        if (logable == logBuf) logBufLock.release();
+        LOX.If( condition, null, verbosity, logables );
     }
 
-    /** ********************************************************************************************
-     * Logs a \e Logable with
-     * \ref Verbosity::VERBOSE "Verbosity.VERBOSE".
-     *
-     * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-     *                  set for the \e %Scope of invocation.
-     * @param logable   The message to log out.
-     **********************************************************************************************/
-    public static void verbose(String domain, Object logable)
-    {
-        LOX.entry( domain, Verbosity.VERBOSE, logable );
-        if (logable == logBuf) logBufLock.release();
-    }
 
     /** ********************************************************************************************
-     * Logs a \e Logable with
-     * \ref Verbosity::INFO "Verbosity.INFO".
-     *
-     * This overloaded version does not offer a domain parameter but relies on a
-     * Scope Domain set for the scope.
-     *
-     * @param logable   The message to log out.
-     **********************************************************************************************/
-    public static void info(Object logable)
-    {
-        LOX.entry( null, Verbosity.INFO, logable );
-        if (logable == logBuf) logBufLock.release();
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable with
-     * \ref Verbosity::INFO "Verbosity.INFO".
-     *
-     * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-     *                  set for the \e %Scope of invocation.
-     * @param logable   The message to log.
-     **********************************************************************************************/
-    public static void info(String domain, Object logable)
-    {
-        LOX.entry( domain, Verbosity.INFO, logable );
-        if (logable == logBuf) logBufLock.release();
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable with
-     * \ref Verbosity::WARNING "Verbosity.WARNING".
-     *
-     * This overloaded version does not offer a domain parameter but relies on a
-     * Scope Domain set for the scope.
-     *
-     * @param logable   The message to log out.
-     **********************************************************************************************/
-    public static void warning(Object logable)
-    {
-        LOX.entry( null, Verbosity.WARNING, logable );
-        if (logable == logBuf) logBufLock.release();
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable with
-     * \ref Verbosity::WARNING "Verbosity.WARNING".
-     *
-     * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-     *                  set for the \e %Scope of invocation.
-     * @param logable   The message to log.
-     **********************************************************************************************/
-    public static void warning(String domain, Object logable)
-    {
-        LOX.entry( domain, Verbosity.WARNING, logable );
-        if (logable == logBuf) logBufLock.release();
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable with
-     * \ref Verbosity.ERROR "Verbosity.ERROR".
-     *
-     * This overloaded version does not offer a domain parameter but relies on a
-     * Scope Domain set for the scope.
-     *
-     * @param logable   The message to log out.
-     **********************************************************************************************/
-    public static void error(Object logable)
-    {
-        LOX.entry( null, Verbosity.ERROR, logable );
-        if (logable == logBuf) logBufLock.release();
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable with
-     * \ref Verbosity.ERROR "Verbosity.ERROR".
-     *
-     * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-     *                  set for the \e %Scope of invocation.
-     * @param logable   The message to log out.
-     **********************************************************************************************/
-    public static void error(String domain, Object logable)
-    {
-        LOX.entry( domain, Verbosity.ERROR, logable );
-        if (logable == logBuf) logBufLock.release();
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable once, up to \p quantity times or every n-th time.
+     * Logs given \e logables once, up to \p quantity times or every n-th time.
      * In its simplest overloaded version, the counter is bound to the source code line, hence,
      * only the first execution of this exact <em>Log Statement</em> is executed.
      *
@@ -1210,6 +1136,15 @@ public abstract class Log
      * - %Log only the first n statements of a group of statements executed by a specific thread.
      *
      * \note
+     *   Unlike other methods of this class which accept more than one logable, this
+     *   method and its overloaded variants accept only one object. To supply several objects
+     *   at once, an \c Object[] may be passed with parameter \p logables, like in the
+     *   following sample:
+     *   \snippet "UT_alox_lox.java"      DOX_ALOX_LOX_ONCE
+     *
+     *<p>
+     *<p>
+     * \note
      *   Due to the limitations of the Java language to dissolve ambiguities when invoking
      *   overloaded methods, most of the overloads provided await parameters
      *   \p domain and \p verbosity at the start. This is in difference to ALox for C++ and C#,
@@ -1236,7 +1171,7 @@ public abstract class Log
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The object to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
@@ -1250,10 +1185,9 @@ public abstract class Log
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      **********************************************************************************************/
-    public static void once(String domain, Verbosity verbosity, Object logable, String group, Scope scope, int pkgLevel, int quantity)
+    public static void once(String domain, Verbosity verbosity, Object logables, String group, Scope scope, int pkgLevel, int quantity)
     {
-        LOX.once( domain, verbosity, logable, group, scope, pkgLevel, quantity );
-        if (logable == logBuf) logBufLock.release();
+        LOX.once( domain, verbosity, logables, group, scope, pkgLevel, quantity );
     }
 
     /** ********************************************************************************************
@@ -1262,7 +1196,7 @@ public abstract class Log
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The object to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
@@ -1274,10 +1208,9 @@ public abstract class Log
      *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      **********************************************************************************************/
-    public static void once(String domain, Verbosity verbosity, Object logable, String group, Scope scope, int pkgLevel)
+    public static void once(String domain, Verbosity verbosity, Object logables, String group, Scope scope, int pkgLevel)
     {
-        LOX.once( domain, verbosity, logable, group, scope, pkgLevel, 1 );
-        if (logable == logBuf) logBufLock.release();
+        LOX.once( domain, verbosity, logables, group, scope, pkgLevel, 1 );
     }
 
     /** ********************************************************************************************
@@ -1286,7 +1219,7 @@ public abstract class Log
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The object to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
@@ -1295,10 +1228,9 @@ public abstract class Log
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
      **********************************************************************************************/
-    public static void once(String domain, Verbosity verbosity, Object logable, String group, Scope scope )
+    public static void once(String domain, Verbosity verbosity, Object logables, String group, Scope scope )
     {
-        LOX.once( domain, verbosity, logable, group, scope, 0, 1 );
-        if (logable == logBuf) logBufLock.release();
+        LOX.once( domain, verbosity, logables, group, scope, 0, 1 );
     }
 
     /** ********************************************************************************************
@@ -1307,7 +1239,7 @@ public abstract class Log
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The object to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
@@ -1315,10 +1247,9 @@ public abstract class Log
      *                  provided. If omitted and \p scope is Scope::Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      **********************************************************************************************/
-    public static void once(String domain, Verbosity verbosity, Object logable, String group )
+    public static void once(String domain, Verbosity verbosity, Object logables, String group )
     {
-        LOX.once( domain, verbosity, logable, group, Scope.GLOBAL, 0, 1 );
-        if (logable == logBuf) logBufLock.release();
+        LOX.once( domain, verbosity, logables, group, Scope.GLOBAL, 0, 1 );
     }
 
     /** ********************************************************************************************
@@ -1327,7 +1258,7 @@ public abstract class Log
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The object to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
@@ -1337,10 +1268,9 @@ public abstract class Log
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      **********************************************************************************************/
-    public static void once(String domain, Verbosity verbosity, Object logable, String group, int quantity )
+    public static void once(String domain, Verbosity verbosity, Object logables, String group, int quantity )
     {
-        LOX.once( domain, verbosity, logable, group, Scope.GLOBAL, 0, quantity );
-        if (logable == logBuf) logBufLock.release();
+        LOX.once( domain, verbosity, logables, group, Scope.GLOBAL, 0, quantity );
     }
 
     /** ********************************************************************************************
@@ -1349,7 +1279,7 @@ public abstract class Log
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The string message to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
      *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
@@ -1357,10 +1287,9 @@ public abstract class Log
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      **********************************************************************************************/
-    public static void once(String domain, Verbosity verbosity, Object logable, Scope scope, int pkgLevel, int quantity)
+    public static void once(String domain, Verbosity verbosity, Object logables, Scope scope, int pkgLevel, int quantity)
     {
-        LOX.once( domain, verbosity, logable, null, scope, pkgLevel, quantity );
-        if (logable == logBuf) logBufLock.release();
+        LOX.once( domain, verbosity, logables, null, scope, pkgLevel, quantity );
     }
 
     /** ********************************************************************************************
@@ -1369,16 +1298,15 @@ public abstract class Log
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The string message to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
      *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      **********************************************************************************************/
-    public static void once(String domain, Verbosity verbosity, Object logable, Scope scope, int pkgLevel)
+    public static void once(String domain, Verbosity verbosity, Object logables, Scope scope, int pkgLevel)
     {
-        LOX.once( domain, verbosity, logable, null, scope, pkgLevel, 1 );
-        if (logable == logBuf) logBufLock.release();
+        LOX.once( domain, verbosity, logables, null, scope, pkgLevel, 1 );
     }
 
     /** ********************************************************************************************
@@ -1387,13 +1315,12 @@ public abstract class Log
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The string message to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param scope     The \e %Scope that the group or counter is bound to.
      **********************************************************************************************/
-    public static void once(String domain, Verbosity verbosity, Object logable, Scope scope)
+    public static void once(String domain, Verbosity verbosity, Object logables, Scope scope)
     {
-        LOX.once( domain, verbosity, logable, null, scope, 0, 1 );
-        if (logable == logBuf) logBufLock.release();
+        LOX.once( domain, verbosity, logables, null, scope, 0, 1 );
     }
 
     /** ********************************************************************************************
@@ -1402,12 +1329,11 @@ public abstract class Log
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The string message to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      **********************************************************************************************/
-    public static void once(String domain, Verbosity verbosity, Object logable  )
+    public static void once(String domain, Verbosity verbosity, Object logables  )
     {
-        LOX.once( domain, verbosity, logable, null, Scope.GLOBAL, 0, 1 );
-        if (logable == logBuf) logBufLock.release();
+        LOX.once( domain, verbosity, logables, null, Scope.GLOBAL, 0, 1 );
     }
 
     /** ********************************************************************************************
@@ -1416,44 +1342,41 @@ public abstract class Log
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
-     * @param logable   The string message to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
     **********************************************************************************************/
-    public static void once(String domain, Verbosity verbosity, Object logable, int quantity  )
+    public static void once(String domain, Verbosity verbosity, Object logables, int quantity  )
     {
-        LOX.once( domain, verbosity, logable, null, Scope.GLOBAL, 0, quantity );
-        if (logable == logBuf) logBufLock.release();
+        LOX.once( domain, verbosity, logables, null, Scope.GLOBAL, 0, quantity );
     }
 
     /** ********************************************************************************************
      * Overloaded version of \ref once.
      *
-     * @param logable   The string message to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
     **********************************************************************************************/
-    public static void once( Object logable )
+    public static void once( Object logables )
     {
-        LOX.once( null, Verbosity.INFO, logable, null, Scope.GLOBAL, 0, 1);
-        if (logable == logBuf) logBufLock.release();
+        LOX.once( null, Verbosity.INFO, logables, null, Scope.GLOBAL, 0, 1);
     }
 
     /** ********************************************************************************************
      * Overloaded version of \ref once.
      *
-     * @param logable   The string message to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
     **********************************************************************************************/
-    public static void once( Object logable, int quantity  )
+    public static void once( Object logables, int quantity  )
     {
-        LOX.once( null, Verbosity.INFO, logable, null, Scope.GLOBAL, 0, quantity );
-        if (logable == logBuf) logBufLock.release();
+        LOX.once( null, Verbosity.INFO, logables, null, Scope.GLOBAL, 0, quantity );
     }
 
     /** ********************************************************************************************
      * Overloaded version of \ref once.
      *
-     * @param logable   The string message to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      * @param group     The optional name of the statement group . If used, all statements that
@@ -1463,16 +1386,15 @@ public abstract class Log
      *                  provided. If omitted and \p scope is Scope::Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
     **********************************************************************************************/
-    public static void once( Object logable, int quantity, String group  )
+    public static void once( Object logables, int quantity, String group  )
     {
-        LOX.once( null, Verbosity.INFO, logable, group, Scope.GLOBAL, 0, quantity );
-        if (logable == logBuf) logBufLock.release();
+        LOX.once( null, Verbosity.INFO, logables, group, Scope.GLOBAL, 0, quantity );
     }
 
     /** ********************************************************************************************
      * Overloaded version of \ref once.
      *
-     * @param logable   The string message to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      * @param scope     The \e %Scope that the group or counter is bound to.
@@ -1480,95 +1402,21 @@ public abstract class Log
      *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
     **********************************************************************************************/
-    public static void once( Object logable, int quantity, Scope scope, int pkgLevel )
+    public static void once( Object logables, int quantity, Scope scope, int pkgLevel )
     {
-        LOX.once( null, Verbosity.INFO, logable, null, scope, pkgLevel, quantity );
-        if (logable == logBuf) logBufLock.release();
+        LOX.once( null, Verbosity.INFO, logables, null, scope, pkgLevel, quantity );
     }
 
     /** ********************************************************************************************
      * Overloaded version of \ref once.
      *
-     * @param logable   The string message to log.
+     * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      * @param scope     The \e %Scope that the group or counter is bound to.
     **********************************************************************************************/
-    public static void once( Object logable, int quantity, Scope scope  )
+    public static void once( Object logables, int quantity, Scope scope  )
     {
-        LOX.once( null, Verbosity.INFO, logable, null, scope, 0, quantity );
-        if (logable == logBuf) logBufLock.release();
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable only if the parameter \p condition is not \c true.
-     * If executed, \ref Verbosity.ERROR is used.
-     *
-     * \note This Method's name starts with capital letter, as \e 'assert' is a Java keyword.
-     *
-     * @param condition If \c false, the <em>Log Statement</em> is executed.
-     * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-     *                  set for the \e %Scope of invocation.
-     * @param logable   The object to log.
-     **********************************************************************************************/
-    public static void Assert(boolean condition, String domain, Object logable)
-    {
-        LOX.Assert( condition, domain, logable );
-        if (logable == logBuf) logBufLock.release();
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable only if the parameter \p condition is not \c true.
-     * If executed, \ref Verbosity.ERROR is used.
-     *
-     * This overloaded version omits parameter \p domain.
-     *
-     * \note This Method's name starts with capital letter, as \e 'assert' is a Java keyword.
-     *
-     * @param condition If \c false, the <em>Log Statement</em> is executed.
-     * @param logable   The object to log.
-     **********************************************************************************************/
-    public static void Assert(boolean condition, Object logable)
-    {
-        LOX.Assert( condition, null, logable );
-        if (logable == logBuf) logBufLock.release();
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable only if the parameter \p condition is \c true.
-     * This overloaded version omits parameter \p domain.
-     *
-     * \note This Method's name starts with capital letter, as <c>'assert'</c> is a Java keyword.
-     *
-     * \see Method #Assert.
-     *
-     * @param condition If \c false, the <em>Log Statement</em> is executed.
-     * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-     *                  set for the \e %Scope of invocation.
-     * @param verbosity The verbosity.
-     * @param logable   The object to log.
-     **********************************************************************************************/
-    public static void If(boolean condition, String domain, Verbosity verbosity, Object logable)
-    {
-        LOX.If( condition, domain, verbosity, logable );
-        if (logable == logBuf) logBufLock.release();
-    }
-
-    /** ********************************************************************************************
-     * Logs a \e Logable only if the parameter \p condition is \c true.
-     * This overloaded version omits parameter \p domain.
-     *
-     * \note This Method's name starts with capital letter, as <c>'if'</c> is a Java keyword.
-     *
-     * \see Method #Assert.
-     *
-     * @param condition If \c false, the <em>Log Statement</em> is executed.
-     * @param verbosity The verbosity.
-     * @param logable   The object to log.
-     **********************************************************************************************/
-    public static void If(boolean condition, Verbosity verbosity, Object logable)
-    {
-        LOX.If( condition, null, verbosity, logable );
-        if (logable == logBuf) logBufLock.release();
+        LOX.once( null, Verbosity.INFO, logables, null, scope, 0, quantity );
     }
 }

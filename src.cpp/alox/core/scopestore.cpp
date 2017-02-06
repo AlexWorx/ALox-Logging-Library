@@ -1,11 +1,11 @@
 ﻿// #################################################################################################
 //  aworx::lox::core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
-#include "scopestore.hpp"
+#include "alib/alib.hpp"
+#include "alox/alox.hpp"
 
 #if !defined(_GLIBCXX_IOSTREAM) && !defined(_IOSTREAM_)
     #include <iostream>
@@ -29,7 +29,7 @@ namespace core {
 // template instantiations
 // #################################################################################################
 
-#if !defined( IS_DOXYGEN_PARSER )
+//! @cond NO_DOX
 
 // AString*
 template                                ScopeStore<AString*>                    ::ScopeStore      (ScopeInfo&, bool);
@@ -38,18 +38,18 @@ template   void                         ScopeStore<AString*>                    
 template   void                         ScopeStore<AString*>                    ::InitWalk        (Scope,AString*);
 template   AString*                     ScopeStore<AString*>                    ::Walk            ();
 template   void                         ScopeStore<AString*>                    ::InitAccess      (Scope,int,int);
-template   void                         ScopeStore<AString*>                    ::getPathMapNode (bool);
+template   void                         ScopeStore<AString*>                    ::getPathMapNode  (bool);
 template   AString*                     ScopeStore<AString*>                    ::access          (int,AString*);
 
 // Logable*
-template                                ScopeStore<Logable*>                    ::ScopeStore      (ScopeInfo&, bool);
-template                                ScopeStore<Logable*>                    ::~ScopeStore     ();
-template   void                         ScopeStore<Logable*>                    ::Clear           ();
-template   void                         ScopeStore<Logable*>                    ::InitWalk        (Scope,Logable*);
-template   Logable*                     ScopeStore<Logable*>                    ::Walk            ();
-template   void                         ScopeStore<Logable*>                    ::InitAccess      (Scope,int,int);
-template   void                         ScopeStore<Logable*>                    ::getPathMapNode (bool);
-template   Logable*                     ScopeStore<Logable*>                    ::access          (int,Logable*);
+template                                ScopeStore<Box*>                        ::ScopeStore      (ScopeInfo&, bool);
+template                                ScopeStore<Box*>                        ::~ScopeStore     ();
+template   void                         ScopeStore<Box*>                        ::Clear           ();
+template   void                         ScopeStore<Box*>                        ::InitWalk        (Scope,Box*);
+template   Box*                         ScopeStore<Box*>                        ::Walk            ();
+template   void                         ScopeStore<Box*>                        ::InitAccess      (Scope,int,int);
+template   void                         ScopeStore<Box*>                        ::getPathMapNode  (bool);
+template   Box*                         ScopeStore<Box*>                        ::access          (int,Box*);
 
 // std::map<AString, int>*
 template                                ScopeStore<std::map<AString, int>*>     ::ScopeStore      (ScopeInfo&, bool);
@@ -58,41 +58,18 @@ template   void                         ScopeStore<std::map<AString, int>*>     
 template   void                         ScopeStore<std::map<AString, int>*>     ::InitWalk        (Scope,std::map<AString, int>*);
 template   std::map<AString, int>*      ScopeStore<std::map<AString, int>*>     ::Walk            ();
 template   void                         ScopeStore<std::map<AString, int>*>     ::InitAccess      (Scope,int,int);
-template   void                         ScopeStore<std::map<AString, int>*>     ::getPathMapNode (bool);
+template   void                         ScopeStore<std::map<AString, int>*>     ::getPathMapNode  (bool);
 template   std::map<AString, int>*      ScopeStore<std::map<AString, int>*>     ::access          (int,std::map<AString, int>*);
 
-// std::map<AString, LogData*>*
-template                                ScopeStore<std::map<AString, LogData*>*>::ScopeStore      (ScopeInfo&, bool);
-template                                ScopeStore<std::map<AString, LogData*>*>::~ScopeStore     ();
-template   void                         ScopeStore<std::map<AString, LogData*>*>::Clear           ();
-template   void                         ScopeStore<std::map<AString, LogData*>*>::InitWalk        (Scope,std::map<AString, LogData*>*);
-template   std::map<AString, LogData*>* ScopeStore<std::map<AString, LogData*>*>::Walk            ();
-template   void                         ScopeStore<std::map<AString, LogData*>*>::InitAccess      (Scope,int,int);
-template   void                         ScopeStore<std::map<AString, LogData*>*>::getPathMapNode (bool);
-template   std::map<AString, LogData*>* ScopeStore<std::map<AString, LogData*>*>::access          (int,std::map<AString, LogData*>*);
-
-// AString*
-template<> bool                         ScopeStoreType<AString*>                    ::AreEqual        ( AString* first, AString* second )                                         { return first->Equals( second );   }
-template<> bool                         ScopeStoreType<AString*>                    ::IsNull          ( AString* value )                                                          { return value == nullptr;          }
-template<> AString*                     ScopeStoreType<AString*>                    ::NullValue       ()                                                                          { return nullptr;                   }
-
-// Logable*
-template<> bool                         ScopeStoreType<Logable*>                    ::AreEqual        ( Logable* first, Logable* second )                                         { return first->Equals(*second);    }
-template<> bool                         ScopeStoreType<Logable*>                    ::IsNull          ( Logable* value )                                                          { return value == nullptr;          }
-template<> Logable*                     ScopeStoreType<Logable*>                    ::NullValue       ()                                                                          { return nullptr;                   }
-
-
-
-// std::map<AString, int>*
-template<> bool                         ScopeStoreType<std::map<AString, int>*>     ::AreEqual        ( std::map<AString, int>* first, std::map<AString, int>* second )           { return first == second;  }
-template<> bool                         ScopeStoreType<std::map<AString, int>*>     ::IsNull          ( std::map<AString, int>* value )                                           { return value == nullptr; }
-template<> std::map<AString, int>*      ScopeStoreType<std::map<AString, int>*>     ::NullValue       ()                                                                          { return nullptr;          }
-
-// std::map<AString, LogData*>*
-template<> bool                         ScopeStoreType<std::map<AString, LogData*>*>::AreEqual        ( std::map<AString, LogData*>* first, std::map<AString, LogData*>* second ) { return first == second;  }
-template<> bool                         ScopeStoreType<std::map<AString, LogData*>*>::IsNull          ( std::map<AString, LogData*>* value )                                      { return value == nullptr; }
-template<> std::map<AString, LogData*>* ScopeStoreType<std::map<AString, LogData*>*>::NullValue       ()                                                                          { return nullptr;          }
-
+// std::map<AString, Box>*
+template                                ScopeStore<std::map<AString, Box>*>     ::ScopeStore      (ScopeInfo&, bool);
+template                                ScopeStore<std::map<AString, Box>*>     ::~ScopeStore     ();
+template   void                         ScopeStore<std::map<AString, Box>*>     ::Clear           ();
+template   void                         ScopeStore<std::map<AString, Box>*>     ::InitWalk        (Scope,std::map<AString, Box>*);
+template   std::map<AString, Box>*      ScopeStore<std::map<AString, Box>*>     ::Walk            ();
+template   void                         ScopeStore<std::map<AString, Box>*>     ::InitAccess      (Scope,int,int);
+template   void                         ScopeStore<std::map<AString, Box>*>     ::getPathMapNode  (bool);
+template   std::map<AString, Box>*      ScopeStore<std::map<AString, Box>*>     ::access          (int,std::map<AString, Box>*);
 
 #define CMD_INSERT 0
 #define CMD_REMOVE 1
@@ -104,11 +81,11 @@ template<> std::map<AString, LogData*>* ScopeStoreType<std::map<AString, LogData
 // #################################################################################################
 
 template<typename StoreT>
-ScopeStore<StoreT>::ScopeStore(ScopeInfo& scopeInfo,  bool cfgSingleThreadValue )
+ScopeStore<StoreT>::ScopeStore(ScopeInfo& pScopeInfo,  bool pCfgSingleThreadValue )
   : globalStore ( ScopeStoreType<StoreT>::NullValue() )
   , languageStore( nullptr )
-  , scopeInfo   ( scopeInfo   )
-  , cfgSingleThreadValue( cfgSingleThreadValue )
+  , scopeInfo   ( pScopeInfo   )
+  , cfgSingleThreadValue( pCfgSingleThreadValue )
 {
     languageStore= new PathMap<StoreT>();
 }
@@ -162,7 +139,7 @@ StoreT ScopeStore<StoreT>::Walk()
                     if ( it != threadInnerStore.end() )
                     {
                         walkThreadValues=    &it->second;
-                        walkNextThreadIdx=   (int) walkThreadValues->size();
+                        walkNextThreadIdx=   static_cast<int>( walkThreadValues->size() );
                     }
                 }
             }
@@ -171,7 +148,7 @@ StoreT ScopeStore<StoreT>::Walk()
             if ( walkNextThreadIdx > 0 )
             {
                 walkNextThreadIdx--;
-                return (*walkThreadValues)[walkNextThreadIdx];
+                return (*walkThreadValues)[static_cast<size_t>(walkNextThreadIdx)];
             }
 
             // next scope is Method
@@ -214,7 +191,7 @@ StoreT ScopeStore<StoreT>::Walk()
                     if ( it != threadOuterStore.end() )
                     {
                         walkThreadValues=    &it->second;
-                        walkNextThreadIdx=   (int) walkThreadValues->size();
+                        walkNextThreadIdx=   static_cast<int>( walkThreadValues->size() );
                     }
                 }
             }
@@ -223,7 +200,7 @@ StoreT ScopeStore<StoreT>::Walk()
             if ( walkNextThreadIdx > 0 )
             {
                 walkNextThreadIdx--;
-                return (*walkThreadValues)[walkNextThreadIdx];
+                return (*walkThreadValues)[static_cast<size_t>(walkNextThreadIdx)];
             }
 
             // next scope is Global
@@ -245,12 +222,10 @@ StoreT ScopeStore<StoreT>::Walk()
 // #################################################################################################
 // internals
 // #################################################################################################
-#if !defined( IS_DOXYGEN_PARSER )
 #if defined(_WIN32)
     const TString separators= "#\\";
 #else
     const TString separators= "#/";
-#endif
 #endif
 
 template<typename StoreT>
@@ -268,7 +243,7 @@ void ScopeStore<StoreT>::getPathMapNode( bool create )
         int pathLevel= actPathLevel;
         while ( pathLevel > 0 )
         {
-            int idx= key.LastIndexOf( aworx::DirectorySeparator );
+            integer idx= key.LastIndexOf( aworx::DirectorySeparator );
             if (idx < 0 )
             {
                 key.SetLength<false>( 0 );
@@ -289,8 +264,8 @@ void ScopeStore<StoreT>::getPathMapNode( bool create )
     // key: filename
     key._( '-' ) // we need a prefix to have all files share one start node which is not
                  // a separator-node
-       ._( scopeInfo.GetFileNameWithoutExtension() )
-       ._<false>( separators[0] );
+       ._( scopeInfo.GetFileNameWithoutExtension() );
+    key._<false>( separators[0] );
 
     // key: method
     if ( actScope == Scope::Method )
@@ -329,7 +304,7 @@ StoreT ScopeStore<StoreT>::access(  int cmd, StoreT value  )
         return oldValue;
     }
 
-    // --------- tread-related scopes ---------
+    // --------- thread-related scopes ---------
     if(     actScope == Scope::ThreadOuter
         ||  actScope == Scope::ThreadInner    )
     {
@@ -348,15 +323,13 @@ StoreT ScopeStore<StoreT>::access(  int cmd, StoreT value  )
 
         // find (create) the vector of values
         std::vector<StoreT>* values;
-        auto it= threadStore->find( actThreadID );
-        if ( it != threadStore->end() )
-            values= &it->second;
-        else
         {
-            threadStore->insert( std::make_pair( actThreadID, std::vector<StoreT>() ) );
-            it= threadStore->find( actThreadID );
+            auto it= threadStore->find( actThreadID );
+            if ( it != threadStore->end() )
+                values= &it->second;
+            else
+                values= &threadStore->insert( std::make_pair( actThreadID, std::vector<StoreT>() ) ).first->second;
         }
-        values= &it->second;
 
         // 'get'
         if ( cmd == CMD_GET )
@@ -436,6 +409,6 @@ StoreT ScopeStore<StoreT>::access(  int cmd, StoreT value  )
     }
 }
 
-#endif // doxygen parser
+//! @endcond NO_DOX
 
 }}} // namespace aworx::lox::core

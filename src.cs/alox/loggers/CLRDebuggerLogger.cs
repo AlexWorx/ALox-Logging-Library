@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox.loggers - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 using System;
@@ -15,11 +15,11 @@ using cs.aworx.lib;
  *  This is the C# namespace for the implementation of <em>logger classes</em> that are provided
  *  by default with <em>%ALox Logging Library</em>.
  *
- *  Developed by A-Worx GmbH and published under the MIT license.
+ *  Developed by A-Worx GmbH and published under Boost Software License.
  **************************************************************************************************/
 using cs.aworx.lox.core;
 using cs.aworx.lib.strings;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 
 
 namespace cs.aworx.lox.loggers    {
@@ -61,6 +61,11 @@ public class CLRDebuggerLogger : PlainTextLogger
         {
             // prevent cutting off filenames
             MetaInfo.Format.SearchAndReplace( "%Sp", "%SP" );
+
+            #if ALIB_IDE_RIDER
+                MetaInfo.Format.SearchAndReplace( "(%SL):", ":%SL:" );
+            #endif
+
         }
 
     /** ********************************************************************************************

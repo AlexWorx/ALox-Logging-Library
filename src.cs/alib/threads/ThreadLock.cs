@@ -1,14 +1,14 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
 using System.Text;
 using System.Threading;
 using cs.aworx.lib.time;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 using System.Runtime.CompilerServices;
 using cs.aworx.lib.strings;
 
@@ -59,7 +59,7 @@ public class ThreadLock
 
     /**
      * This is a threshold that causes Acquire() to send a warning to
-     * \ref cs::aworx::lib::ReportWriter "ReportWriter"
+     * \ref cs::aworx::lib::lang::ReportWriter "ReportWriter"
      * if acquiring the access takes longer than the given number of milliseconds.
      * To disable such messages, set this value to 0. Default is 1 second.
      */
@@ -67,7 +67,7 @@ public class ThreadLock
 
     /**
      * Limit of recursions. If limit is reached or a multiple of it, an error is passed to
-     * \ref cs::aworx::lib::ReportWriter "ReportWriter". Defaults is 10.
+     * \ref cs::aworx::lib::lang::ReportWriter "ReportWriter". Defaults is 10.
      */
     public    int               RecursionWarningThreshold                                   =10;
 
@@ -143,9 +143,9 @@ public class ThreadLock
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
+    virtual
     public void Acquire(
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
-
     {
         // are we in unsafe mode?
         if ( mutex == null )
@@ -156,10 +156,10 @@ public class ThreadLock
 
             // reached warning limit
             if ( lockCount <= 0 )
-                ALIB.ERROR( "Unsafe mode: Counter invalid (<= 0): This should never happen. Set lock to safe mode!" );
+                ALIB_DBG.ERROR( "Unsafe mode: Counter invalid (<= 0): This should never happen. Set lock to safe mode!" );
 
             else if ( lockCount % RecursionWarningThreshold == 0 )
-                ALIB.WARNING( "Recursion depth " + lockCount + ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code!");
+                ALIB_DBG.WARNING( "Recursion depth " + lockCount + ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code!");
 
             // end of unsafe version of this method
             return;
@@ -179,7 +179,7 @@ public class ThreadLock
                                                            : 1;
                 // reached warning limit
                 if ( lockCount % RecursionWarningThreshold == 0 )
-                    ALIB.WARNING( "Recursion depth " + lockCount + ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code!");
+                    ALIB_DBG.WARNING( "Recursion depth " + lockCount + ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code!");
 
                 return;
             }
@@ -203,7 +203,7 @@ public class ThreadLock
                         if ( time >= waitWarningTimeLimitInMillis )
                         {
                             hasWarned= true;
-                            ALIB.WARNING(    "Timeout (" + waitWarningTimeLimitInMillis
+                            ALIB_DBG.WARNING(    "Timeout (" + waitWarningTimeLimitInMillis
                                               +  " ms). Change your codes critical section length if possible." + CString.NewLineChars
                                               +  "This thread: "  + thisThread.ManagedThreadId + "/" + thisThread.Name  + CString.NewLineChars
                                               +  "Owning thread: " + ( owner != null ? ( owner.ManagedThreadId + "/" + owner.Name ) : "null" )
@@ -236,6 +236,7 @@ public class ThreadLock
      *  Releases ownership of this object. If Acquire() was called multiple times before, the same
      *  number of calls to this method have to be performed to release ownership.
      **********************************************************************************************/
+    virtual
     public void Release()
     {
         // are we in unsafe mode?
@@ -243,7 +244,7 @@ public class ThreadLock
         {
             // not locked
             if( lockMode == LockMode.Recursive && lockCount == 0 )
-                 ALIB.ERROR( "Release() without Acquire() (unsafe mode). This must never happen, check your code, set lock to safe mode!" );
+                 ALIB_DBG.ERROR( "Release() without Acquire() (unsafe mode). This must never happen, check your code, set lock to safe mode!" );
 
             // we are still decreasing the lockCount
             lockCount=  lockMode == LockMode.Recursive  ? lockCount - 1
@@ -257,7 +258,7 @@ public class ThreadLock
         {
             // not locked
             if( lockCount == 0 )
-                ALIB.ERROR( "Release() without Acquire(). This must never happen, check your code!" );
+                ALIB_DBG.ERROR( "Release() without Acquire(). This must never happen, check your code!" );
 
             // decreasing the lockCount
             lockCount=  lockMode == LockMode.Recursive ? lockCount - 1
@@ -291,7 +292,7 @@ public class ThreadLock
      *       performed instead.
      *
      * @param thread The thread to test current ownership of this.
-     *               Defaults to the current (invocating) thread.
+     *               Defaults to the current (invoking) thread.
      * @return The number of (recursive) acquirements, negative if acquired by a different
      *         thread than provided.
      **********************************************************************************************/
@@ -328,7 +329,7 @@ public class ThreadLock
             // already locked? ALIB Error
             if( lockCount != 0 )
             {
-                ALIB.ERROR( "Cannot switch safeness mode while already locked. Current mode: unsafe, requested mode: "
+                ALIB_DBG.ERROR( "Cannot switch safeness mode while already locked. Current mode: unsafe, requested mode: "
                                 +  safeness.ToString() );
                 return;
             }
@@ -347,7 +348,7 @@ public class ThreadLock
             // already locked? ALIB Error
             if( owner != null  )
             {
-                ALIB.ERROR( "Cannot switch safeness mode while already locked. Current mode: safe, requested mode: "
+                ALIB_DBG.ERROR( "Cannot switch safeness mode while already locked. Current mode: safe, requested mode: "
                                 + safeness.ToString() );
                 return;
             }
@@ -360,7 +361,7 @@ public class ThreadLock
 
     /** ********************************************************************************************
      * Query if this instance was set to unsafe mode.
-     * @return A value of type cs::aworx::lib::enums::Safeness "Safeness"
+     * @return A value of type cs::aworx::lib::lang::Safeness "Safeness"
      **********************************************************************************************/
     public Safeness GetSafeness()
     {
@@ -369,11 +370,11 @@ public class ThreadLock
 
     /** ****************************************************************************************
      *  Query if this instance was set to work recursively.
-     * @return A value of type cs::aworx::lib::enums::LockMode "LockMode"
+     * @return A value of type cs::aworx::lib::lang::LockMode "LockMode"
      ******************************************************************************************/
-    public LockMode GetMode()     
+    public LockMode GetMode()
     {
-        return lockMode; 
+        return lockMode;
     }
 
     /** ****************************************************************************************

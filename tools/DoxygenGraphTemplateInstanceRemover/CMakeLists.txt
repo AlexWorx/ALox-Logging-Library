@@ -1,8 +1,8 @@
 # #################################################################################################
 #  CMakeLists.txt - ALox Tools: DoxygenGraphTemplateInstanceRemover
 #
-#  (c) 2015 A-Worx GmbH, Germany
-#  Published under MIT License (Open Source License, see LICENSE.txt)
+#  Copyright 2015 A-Worx GmbH, Germany
+#  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 #
 #  How to use:
 #   1. Enter subdirectory 'debug'   and invoke:  `cmake ..`
@@ -10,6 +10,21 @@
 #   3. Invoke `make` within any of these directories.
 #   More information is found in ALox documentation.
 # ##################################################################################################
+
+# -------------------------------------------------------------------------------------------------
+# Prior to setting CMake project
+# -------------------------------------------------------------------------------------------------
+
+    # uncomment to force a certain compiler (delete temporary output folder on change)
+
+    #set(CMAKE_C_COMPILER    "/usr/bin/clang")
+    #set(CMAKE_CXX_COMPILER  "/usr/bin/clang++")
+
+    #set(CMAKE_C_COMPILER    "/usr/bin/gcc")
+    #set(CMAKE_CXX_COMPILER  "/usr/bin/g++")
+
+    # uncomment to force cotire on clean cmake built
+    #set( ALIB_CMAKE_COTIRE_DEFAULT   "On" )
 
 # -------------------------------------------------------------------------------------------------
 # General
@@ -35,19 +50,7 @@
 ## include ALib/ALox base cmake file
 ## -------------------------------------------------------------------------------------------------
 
-    #-- optional compilation symbols (ALib/ALox features).
-    #-- uncomment to set (the opposite value is their default, therefore commenting the lines switches them)
-    #set( ALIB_DEBUG_GLIB                "On"  )
-    #set( ALIB_AVOID_ANALYZER_WARNINGS   "On"  )
-    #set( ALIB_DEBUG_STRINGS             "On"  )
-    #set( ALIB_FEAT_THREADS              "Off" )
-    #set( ALOX_DBG_LOG                   "Off" )
-    #set( ALOX_DBG_LOG_CI                "Off"  )
-    #set( ALOX_REL_LOG                   "Off" )
-    #set( ALOX_REL_LOG_CI                "On"  )
-
-    set ( ALOX_BASE_DIR   "../.."  )
-    include( ${ALOX_BASE_DIR}/build/cmake.cpp/ALox_Base.cmake )
+    include( ../../build/cmake.cpp/ALox.cmake )
 
 
 # -------------------------------------------------------------------------------------------------
@@ -64,8 +67,28 @@ aux_source_directory(. SRC_LIST)
 
     set_target_properties     ( dot   PROPERTIES  COMPILE_FLAGS     ${AWORX_COMPILE_FLAGS}    )
     set_target_properties     ( dot   PROPERTIES  LINK_FLAGS        ${AWORX_LINK_FLAGS}       )
-    target_link_libraries     ( dot   ALox_StaticLib
-                                      ${ALIB_EXTERNAL_LIBS}
+    target_link_libraries     ( dot   ${ALIB_EXTERNAL_LIBS}
                                       ${ALOX_EXTERNAL_LIBS}   )
 
+#! [DOXYGEN_CMAKE_COTIRE_TARGET]
+# link against unity-built version of library in case of cotire
+if( ${ALIB_CMAKE_COTIRE} )
+    target_link_libraries     ( dot   ALox_StaticLib_unity  )
+else()
+    target_link_libraries     ( dot   ALox_StaticLib        )
+endif()
+#! [DOXYGEN_CMAKE_COTIRE_TARGET]
+
     set( EXECUTABLE_OUTPUT_PATH       ${ALOX_BASE_DIR}/docs/doxygen)
+
+
+# -------------------------------------------------------------------------------------------------
+# Precompiled headers with 'cotire' CMake script.
+# For more Info see 'ALox.cmake' which downloads the script and the cotire website at
+# https://github.com/sakra/cotire/
+# -------------------------------------------------------------------------------------------------
+    if( ${ALIB_CMAKE_COTIRE} )
+        set_target_properties( dot   PROPERTIES COTIRE_UNITY_SOURCE_MAXIMUM_NUMBER_OF_INCLUDES "-j" )
+        set_target_properties( dot   PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT  "${ALIB_SRC_DIR}/alib/alib.hpp" )
+        cotire( dot )
+    endif()

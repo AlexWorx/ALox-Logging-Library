@@ -1,24 +1,14 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
-// check for alib.hpp already there but not us
-#if !defined (HPP_ALIB)
-    #error "include \"alib/alib.hpp\" before including this header"
-#endif
-#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_STRINGS_TOKENIZER)
-    #error "Header already included"
-#endif
-
-// then, set include guard
+// include guard
 #ifndef HPP_ALIB_STRINGS_TOKENIZER
-#if !defined( IS_DOXYGEN_PARSER)
 #define HPP_ALIB_STRINGS_TOKENIZER 1
-#endif
 
 // #################################################################################################
 // includes
@@ -31,10 +21,8 @@
     #include <iosfwd>
 #endif
 
-namespace aworx {
-namespace           lib {
-namespace                   strings {
-
+namespace aworx { namespace lib { namespace strings
+{
 /** ************************************************************************************************
  * This class operates on strings which contains data separated by a delimiter character.
  * It identifies the substrings between the delimiters as \e tokens of type
@@ -104,7 +92,7 @@ class Tokenizer
         char           delim;
 
         /**  If \c true, empty tokens are omitted.  */
-        bool           skipEmptyTokens;
+        bool           skipEmpty;
 
 
     // #############################################################################################
@@ -122,15 +110,15 @@ class Tokenizer
          * Constructs a tokenizer to work on a given string.
          *
          * @param  src             The string to be tokenized.
-         * @param  delim           The delimiter that separates the tokens. Can be changed with
+         * @param  delimiter       The delimiter that separates the tokens. Can be changed with
          *                         every next token.
          * @param  skipEmptyTokens If \c true, empty tokens are omitted.
          *                         Optional and defaults to \c false.
          ******************************************************************************************/
-        Tokenizer( const String& src, char delim, bool skipEmptyTokens= false )
+        Tokenizer( const String& src, char delimiter, bool skipEmptyTokens= false )
         : Rest(src)
-        , delim(delim)
-        , skipEmptyTokens(skipEmptyTokens)
+        , delim(delimiter)
+        , skipEmpty(skipEmptyTokens)
         {}
 
     // #############################################################################################
@@ -141,17 +129,17 @@ class Tokenizer
          * Resets a tokenizer to work on a given string.
          *
          * @param  src             The string to be tokenized
-         * @param  delim           The delimiter that separates the tokens. Can be changed with
+         * @param  delimiter       The delimiter that separates the tokens. Can be changed with
          *                         every next token.
          * @param  skipEmptyTokens If \c true, empty tokens are omitted.
          *                         Optional and defaults to \c false.
          ******************************************************************************************/
-        void Set( const String& src, char delim, bool skipEmptyTokens= false )
+        void Set( const String& src, char delimiter, bool skipEmptyTokens= false )
         {
             Actual.SetNull();
             Rest.Set( src );
-            this->delim=            delim;
-            this->skipEmptyTokens=  skipEmptyTokens;
+            this->delim=            delimiter;
+            this->skipEmpty=  skipEmptyTokens;
         }
 
         /** ****************************************************************************************
@@ -166,14 +154,14 @@ class Tokenizer
          *
          *  @param trimming  Determines if the token is trimmed in respect to the white space
          *                   characters defined in field #Whitespaces.
-         *                   Defaults to \c Whitespaces.Trim.
+         *                   Defaults to \b Whitespaces.Trim.
          *  @param newDelim  The delimiter separates the tokens. Defaults to 0, which keeps the
          *                   current delimiter intact.
          *                   A new delimiter can be provided for every next token.
          * @return \c true if a next token was available, \c false if not.
          ******************************************************************************************/
         ALIB_API
-        Substring&  Next( enums::Whitespaces trimming= enums::Whitespaces::Trim, char newDelim= '\0' );
+        Substring&  Next( lang::Whitespaces trimming= lang::Whitespaces::Trim, char newDelim= '\0' );
 
         /** ****************************************************************************************
          * Returns the currently remaining string (without searching for further delimiter
@@ -181,15 +169,15 @@ class Tokenizer
          * After this call #HasNext will return \c false and #Next will return a \e nulled Substring.
          *  @param trimming  Determines if the token is trimmed in respect to the white space
          *                   characters defined in field #Whitespaces.
-         *                   Defaults to \c Whitespaces.Trim.
+         *                   Defaults to \b Whitespaces.Trim.
          * @return The rest of the original source string, which was not returned by #Next(), yet.
          ******************************************************************************************/
-        Substring&  GetRest( enums::Whitespaces trimming= enums::Whitespaces::Trim )
+        Substring&  GetRest( lang::Whitespaces trimming= lang::Whitespaces::Trim )
         {
             // set start, end and end of tokenizer
             Actual=  Rest;
             Rest.SetNull();
-            if ( trimming == enums::Whitespaces::Trim )
+            if ( trimming == lang::Whitespaces::Trim )
                 Actual.Trim( Whitespaces );
             return Actual;
         }
@@ -199,7 +187,7 @@ class Tokenizer
          * Substring which is not \e nulled.
          * @return \c true if a next token is available.
          ******************************************************************************************/
-        bool        HasNext()       { return Rest.IsNotNull() && ( !skipEmptyTokens || Rest.IsNotEmpty() ); }
+        bool        HasNext()       { return Rest.IsNotNull() && ( !skipEmpty || Rest.IsNotEmpty() ); }
 
 }; // class Tokenizer
 

@@ -1,8 +1,8 @@
-﻿// #################################################################################################
+// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 
@@ -14,9 +14,8 @@
  */
 package com.aworx.lib.threads;
 
-import com.aworx.lib.ALIB;
-import com.aworx.lib.enums.LockMode;
-import com.aworx.lib.enums.Safeness;
+import com.aworx.lib.lang.LockMode;
+import com.aworx.lib.lang.Safeness;
 import com.aworx.lib.strings.CString;
 import com.aworx.lib.time.Ticks;
 
@@ -49,7 +48,7 @@ import com.aworx.lib.time.Ticks;
  * class only if standard synchronization of the Java language seems too limited and mechanisms
  * like the class uses internally would need to be implemented.
  *
- * \note For information on debugging deadlocks with this class, see field #createOwnerStackTrace. 
+ * \note For information on debugging deadlocks with this class, see field #createOwnerStackTrace.
  **************************************************************************************************/
 public class ThreadLock
 {
@@ -59,7 +58,7 @@ public class ThreadLock
 
     /**
      * This is a threshold that causes acquire() to send a warning to
-     * \ref com::aworx::lib::ReportWriter "ReportWriter" if acquiring
+     * \ref com::aworx::lib::lang::ReportWriter "ReportWriter" if acquiring
      * the access takes longer than the given number of milliseconds.
      * To disable such messages, set this value to 0. Default is 1 second.
      */
@@ -67,12 +66,12 @@ public class ThreadLock
 
     /**
      * Limit of recursions. If limit is reached or a multiple of it, an error message is passed to
-     * \ref com::aworx::lib::ReportWriter "ReportWriter". Defaults is 10.
+     * \ref com::aworx::lib::lang::ReportWriter "ReportWriter". Defaults is 10.
      */
     public    int           recursionWarningThreshold                           = 10;
-    
-    /**  If set to true, whenever acquired, the stack trace of the acquirement is stored.  
-     *   Can be set to \c true for debugging deadlocks. Stack trace will be reported when 
+
+    /**  If set to true, whenever acquired, the stack trace of the acquirement is stored.
+     *   Can be set to \c true for debugging deadlocks. Stack trace will be reported when
      *   #waitWarningTimeLimitInMillis is exceeded. */
     protected boolean       createOwnerStackTrace                                           = false;
 
@@ -178,11 +177,11 @@ public class ThreadLock
             // reached warning limit
             if ( lockCount  <= 0  )
             {
-                ALIB.ERROR( "Unsafe mode: Counter invalid (<= 0): This should never happen. Set lock to safe mode!" );
+                com.aworx.lib.ALIB_DBG.ERROR( "Unsafe mode: Counter invalid (<= 0): This should never happen. Set lock to safe mode!" );
             }
 
             else if ( lockCount % recursionWarningThreshold == 0 )
-                ALIB.WARNING( "Recursion depth " + lockCount + ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code." );
+                com.aworx.lib.ALIB_DBG.WARNING( "Recursion depth " + lockCount + ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code." );
 
             // end of unsafe version of this method
             return;
@@ -206,7 +205,7 @@ public class ThreadLock
                                                              : 1;
                 // reached warning limit
                 if ( lockCount % recursionWarningThreshold == 0 )
-                    ALIB.WARNING( "Recursion depth " + lockCount + ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code." );
+                    com.aworx.lib.ALIB_DBG.WARNING( "Recursion depth " + lockCount + ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code." );
 
                 return;
             }
@@ -230,13 +229,13 @@ public class ThreadLock
                         if ( time >= waitWarningTimeLimitInMillis )
                         {
                             hasWarned= true;
-                            ALIB.WARNING(   "Timeout (" + waitWarningTimeLimitInMillis
+                            com.aworx.lib.ALIB_DBG.WARNING(   "Timeout (" + waitWarningTimeLimitInMillis
                                                +" ms). Change your codes critical section length if possible."
-                                               +" This thread: " + thisThread.getId() + "/" + thisThread.getName() 
+                                               +" This thread: " + thisThread.getId() + "/" + thisThread.getName()
                                                +", owner: " + (owner == null ? "null" : owner.getId() + "/" + owner.getName() )
                                                +". Stack trace follows!" );
-                                               
-                            {                                               
+
+                            {
                                 StackTraceElement[] stack= (new Exception()).getStackTrace();
                                 String stackStr="";
                                 for ( int i= 0 ; i < stack.length ; ++i )
@@ -245,11 +244,11 @@ public class ThreadLock
                                                               + stack[i].getLineNumber() + ") "
                                                               + stack[i].getClassName()  + "."
                                                               + stack[i].getMethodName() + "()"
-                                                              + CString.NEW_LINE_CHARS;  
+                                                              + CString.NEW_LINE_CHARS;
                                 }
-                                ALIB.WARNING(   stackStr );
+                                com.aworx.lib.ALIB_DBG.WARNING(   stackStr );
                             }
-                            
+
                             if( ownerException != null )
                             {
                                 StackTraceElement[] stack= ownerException.getStackTrace();
@@ -260,17 +259,17 @@ public class ThreadLock
                                                               + stack[i].getLineNumber() + ") "
                                                               + stack[i].getClassName()  + "."
                                                               + stack[i].getMethodName() + "()"
-                                                              + CString.NEW_LINE_CHARS;  
+                                                              + CString.NEW_LINE_CHARS;
                                 }
-                                ALIB.WARNING(   stackStr );
-                                
+                                com.aworx.lib.ALIB_DBG.WARNING(   stackStr );
+
                             }
                             else
                             {
-                                ALIB.WARNING(  "No stacktrace of acquirement available. To enable stack traces, "
+                                com.aworx.lib.ALIB_DBG.WARNING(  "No stacktrace of acquirement available. To enable stack traces, "
                                              + "set field createOwnerStackTrace temporarily to true!" );
                             }
-                                               
+
                         }
 
                     }
@@ -283,7 +282,7 @@ public class ThreadLock
             owner=        thisThread;
             if ( createOwnerStackTrace )
                 ownerException= new Exception();
-                
+
             lockCount=    1;
 
         } // synchronized
@@ -301,7 +300,7 @@ public class ThreadLock
         {
             // not locked
             if( lockMode == LockMode.RECURSIVE && lockCount == 0 )
-                ALIB.ERROR( "Release without having the lock (in unsafe mode). This must never happen, check your code, set lock to safe mode!" );
+                com.aworx.lib.ALIB_DBG.ERROR( "Release without having the lock (in unsafe mode). This must never happen, check your code, set lock to safe mode!" );
 
             // we are still decreasing the lockCount
             lockCount=  lockMode  == LockMode.RECURSIVE  ? lockCount - 1
@@ -315,7 +314,7 @@ public class ThreadLock
         {
             // not locked
             if( lockCount == 0 )
-                ALIB.ERROR( "Release without having the lock. This must never happen, check your code!" );
+                com.aworx.lib.ALIB_DBG.ERROR( "Release without having the lock. This must never happen, check your code!" );
 
 
             // decreasing the lockCount
@@ -345,7 +344,7 @@ public class ThreadLock
      *       performed instead.
      *
      * @param thread The thread to test current ownership of this.
-     *               Defaults to the current (invocating) thread.
+     *               Defaults to the current (invoking) thread.
      * @return The number of (recursive) acquirements, negative if acquired by a different
      *         thread than provided.
      **********************************************************************************************/
@@ -370,7 +369,7 @@ public class ThreadLock
      *  really expensive. This is provided only for the rare case that your critical section is
      *  very, very frequently executed.
      *
-     * @param safeness  Determines if this object should use a mutex (\c Safeness.Safe) 
+     * @param safeness  Determines if this object should use a mutex (\c Safeness.Safe)
      *                  or just do nothing (\c Safeness.Unsafe).
      **********************************************************************************************/
     public void setSafeness( Safeness safeness )
@@ -381,7 +380,7 @@ public class ThreadLock
             // already locked? ALIB Error
             if( lockCount != 0 )
             {
-                ALIB.ERROR( "Cannot switch safeness mode while already locked. Current mode: unsafe, requested mode: "
+                com.aworx.lib.ALIB_DBG.ERROR( "Cannot switch safeness mode while already locked. Current mode: unsafe, requested mode: "
                              +  safeness.toString() );
                 return;
             }
@@ -400,8 +399,8 @@ public class ThreadLock
             // already locked? ALIB Error
             if( owner != null )
             {
-                ALIB.ERROR(   "Cannot switch safeness mode while already locked. Current mode: safe, requested mode: "
-                            + safeness.toString() 
+                com.aworx.lib.ALIB_DBG.ERROR(   "Cannot switch safeness mode while already locked. Current mode: safe, requested mode: "
+                            + safeness.toString()
                             + " Owner: " + owner.getName() );
                 return;
             }
@@ -415,7 +414,7 @@ public class ThreadLock
     /** ********************************************************************************************
      * Query if this instance was set to unsafe mode.
      *
-     * @return A value of type com::aworx::lib::enums::Safeness "Safeness"
+     * @return A value of type com::aworx::lib::lang::Safeness "Safeness"
      **********************************************************************************************/
     public Safeness getSafeness()
     {
@@ -424,17 +423,17 @@ public class ThreadLock
 
     /** ****************************************************************************************
      *  Query if this instance was set to work recursively.
-     * @return A value of type com::aworx::lib::enums::LockMode "LockMode"
+     * @return A value of type com::aworx::lib::lang::LockMode "LockMode"
      ******************************************************************************************/
-    public LockMode getMode()     
+    public LockMode getMode()
     {
-        return lockMode; 
+        return lockMode;
     }
 
     /** ****************************************************************************************
      * This is for debugging purposes. E.g. this enables the \e Eclipse IDE to display
-     * object descriptions in the debugger. 
-     * @returns A human readable string representation of this object.  
+     * object descriptions in the debugger.
+     * @returns A human readable string representation of this object.
      ******************************************************************************************/
     @Override
     public String toString()
@@ -444,13 +443,13 @@ public class ThreadLock
         else if ( lockCount == 1 )  result+= "Locked";
         else if ( lockCount >  1 )  result+= "Locked (" + lockCount + ")";
         else if ( lockCount <  0 )  result+= "Illegal State. lockCount=" + lockCount;
-        
-             if ( lockMode == LockMode.SINGLE_LOCKS )  
+
+             if ( lockMode == LockMode.SINGLE_LOCKS )
                                     result+= " (Non-Recursive)";
-             
+
              if ( mutex  == null )  result+= " (Unsafe Mode)";
         else if ( lockCount >  0 )  result+= ", Owner: (" + owner.getId() + ") \"" + owner.getName() + "\"";
-        
+
         return result;
     }
 

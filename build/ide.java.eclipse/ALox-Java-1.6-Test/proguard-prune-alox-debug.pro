@@ -2,7 +2,7 @@
 #  Proguard Configuration File  - ALox Logging Library
 #
 #  (c) 2013-2015 A-Worx GmbH, Germany
-#  Published under MIT License (Open Source License, see LICENSE.txt)
+#  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 # #################################################################################################
 
 #![DOXYGEN_PROGUARD_CONFIG]
@@ -24,23 +24,13 @@
 }
 
 # Pruning AWorx Library assertions and debug messages
--assumenosideeffects    class   com.aworx.lib.ALIB
- {
-     void REPORT        ( int, java.lang.String ) ;
-     void ERROR         ( java.lang.String ) ;
-     void WARNING       ( java.lang.String ) ;
-     void ASSERT        ( boolean ) ;
-     void ASSERT_ERROR  ( boolean, java.lang.String ) ;
-     void ASSERT_WARNING( boolean, java.lang.String ) ;
- }
+-assumenosideeffects    class   com.aworx.lib.ALIB_DBG     { <methods>;  <fields>; }
 #![DOXYGEN_PROGUARD_CONFIG]
 
 #![DOXYGEN_PROGUARD_CONFIG_DBG]
 # Pruning ALOX debug logging (release logging stays in)
--assumenosideeffects    class   com.aworx.lox.Log       { <methods>;  <fields>; }
--assumenosideeffects    class   com.aworx.lox.LogBuf    { <methods>;  <fields>; }
+-assumenosideeffects    class   com.aworx.lox.Log      { <methods>;  <fields>; }
 #![DOXYGEN_PROGUARD_CONFIG_DBG]
-
 
 ################## Standard Proguard stuff ######################-
 

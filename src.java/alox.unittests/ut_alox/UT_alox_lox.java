@@ -1,20 +1,20 @@
 // #################################################################################################
 //  Unit Tests - AWorx Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package ut_alox;
 import org.junit.Test;
 
 import com.aworx.lib.ALIB;
+import com.aworx.lib.config.Configuration;
 import com.aworx.lib.config.Variable;
-import com.aworx.lib.enums.Inclusion;
-import com.aworx.lib.enums.Safeness;
+import com.aworx.lib.lang.Inclusion;
+import com.aworx.lib.lang.Safeness;
 import com.aworx.lox.ALox;
 import com.aworx.lox.ESC;
 import com.aworx.lox.Log;
-import com.aworx.lox.LogData;
 import com.aworx.lox.Lox;
 import com.aworx.lox.Scope;
 import com.aworx.lox.Verbosity;
@@ -43,21 +43,25 @@ public class UT_alox_lox  extends AWorxUnitTesting
 
             MemoryLogger checkCnt=  new MemoryLogger( "CHECK");
             Log.setVerbosity( checkCnt, Verbosity.WARNING, ALox.INTERNAL_DOMAINS );
-    
+
             MemoryLogger mem1= new MemoryLogger( "MEM" );
             MemoryLogger mem2= new MemoryLogger( "MEM" );
-    
-            Log.setVerbosity( mem1,     Verbosity.INFO ); UT_EQ( 0, checkCnt.cntLogs );
-            Log.setVerbosity( mem2,     Verbosity.INFO ); UT_EQ( 1, checkCnt.cntLogs );
-            Log.setVerbosity( "XYZ",    Verbosity.INFO ); UT_EQ( 2, checkCnt.cntLogs );
-                                                                             
-            Log.removeLogger( mem2     );                 UT_EQ( 3, checkCnt.cntLogs );
-            Log.removeLogger( mem1     );                 UT_EQ( 3, checkCnt.cntLogs );
-            Log.removeLogger( mem1     );                 UT_EQ( 4, checkCnt.cntLogs );
-            Log.removeLogger( "XYZ"    );                 UT_EQ( 5, checkCnt.cntLogs );
-            Log.removeLogger( con      );                 UT_EQ( 5, checkCnt.cntLogs );
-            Log.removeLogger( con      );                 UT_EQ( 6, checkCnt.cntLogs );
-            Log.removeLogger( checkCnt );                 UT_EQ( 6, checkCnt.cntLogs );
+
+            int checkVal= 0;
+            Log.setVerbosity( mem1,     Verbosity.INFO ); UT_EQ( checkVal+= 0, checkCnt.cntLogs );
+            Log.setVerbosity( mem2,     Verbosity.INFO ); UT_EQ( checkVal+= 1, checkCnt.cntLogs );
+            Log.setVerbosity( "XYZ",    Verbosity.INFO ); UT_EQ( checkVal+= 1, checkCnt.cntLogs );
+
+            // get unknown
+            Log.getLogger(  "XYZ" );                      UT_EQ( checkVal+= 1, checkCnt.cntLogs );
+
+            Log.removeLogger( mem2     );                 UT_EQ( checkVal+= 1, checkCnt.cntLogs );
+            Log.removeLogger( mem1     );                 UT_EQ( checkVal+= 0, checkCnt.cntLogs );
+            Log.removeLogger( mem1     );                 UT_EQ( checkVal+= 1, checkCnt.cntLogs );
+            Log.removeLogger( "XYZ"    );                 UT_EQ( checkVal+= 1, checkCnt.cntLogs );
+            Log.removeLogger( con      );                 UT_EQ( checkVal+= 0, checkCnt.cntLogs );
+            Log.removeLogger( con      );                 UT_EQ( checkVal+= 1, checkCnt.cntLogs );
+            Log.removeLogger( checkCnt );                 UT_EQ( checkVal+= 0, checkCnt.cntLogs );
         }
 
         // one logger in two loxes
@@ -65,17 +69,17 @@ public class UT_alox_lox  extends AWorxUnitTesting
 
             Log.addDebugLogger();
             Lox lox= new Lox( "ReleaseLox" );
-    
+
             UT_TRUE( Log.debugLogger.getSafeness() == Safeness.UNSAFE );
-    
+
             lox.setVerbosity( Log.debugLogger , Verbosity.VERBOSE );
-    
+
             UT_TRUE( Log.debugLogger.getSafeness() == Safeness.SAFE );
-    
+
             lox.removeLogger( Log.debugLogger );
-    
+
             UT_TRUE( Log.debugLogger.getSafeness() == Safeness.UNSAFE );
-    
+
             Log.removeDebugLogger();
         }
     }
@@ -214,7 +218,7 @@ public class UT_alox_lox  extends AWorxUnitTesting
         cntLL= ml.cntLogs;    Log.error      ( "/DFLT/WARN",   testOK  );    UT_EQ ( 1, ml.cntLogs - cntLL );
         cntLL= ml.cntLogs;    Log.error      ( "/DFLT/ERR",    testOK  );    UT_EQ ( 1, ml.cntLogs - cntLL );
 
-        // log without leading "/" on domain (of course, this is quite an error of using ALox)
+        // log without leading "/" on domain (of-course, this is quite an error of using ALox)
         cntLL= ml.cntLogs;    Log.verbose    ( "DFLT",         testERR );    UT_EQ ( 0, ml.cntLogs - cntLL );
         cntLL= ml.cntLogs;    Log.verbose    ( "DFLT/ERR",     testERR );    UT_EQ ( 0, ml.cntLogs - cntLL );
         cntLL= ml.cntLogs;    Log.verbose    ( "DFLT/WARN",    testERR );    UT_EQ ( 0, ml.cntLogs - cntLL );
@@ -327,6 +331,38 @@ public class UT_alox_lox  extends AWorxUnitTesting
         }
     }
 
+    /** ********************************************************************************************
+     * Log_MultipleLogables
+     **********************************************************************************************/
+    @Test @SuppressWarnings ("boxing")
+    public void Log_MultipleLogables()
+    {
+        UT_INIT();
+
+        Log.addDebugLogger();
+        MemoryLogger memLogger= new MemoryLogger();
+        Log.setVerbosity( memLogger, Verbosity.VERBOSE );
+
+        Object[] logables= { "First, ", "second, ", 3 };
+
+        //---- Log.Info -----
+        memLogger.memoryLog.clear();
+        Log.info( logables );
+        UT_TRUE( memLogger.memoryLog.indexOf( "First, second, 3" ) > 0 );
+
+        //---- Log.Once -----
+        memLogger.memoryLog.clear();
+        Log.once( logables );
+        UT_TRUE( memLogger.memoryLog.indexOf( "First, second, 3" ) > 0 );
+
+        memLogger.memoryLog.clear();
+//! [DOX_ALOX_LOX_ONCE]
+Log.once( new Object[] {"One - {} - {}!", "two", 3}  );
+//! [DOX_ALOX_LOX_ONCE]
+        UT_TRUE( memLogger.memoryLog.indexOf( "One - two - 3" ) > 0 );
+
+    }
+
     /** ****************************************************************************************
      *     Log_GetState
      ******************************************************************************************/
@@ -334,60 +370,60 @@ public class UT_alox_lox  extends AWorxUnitTesting
     public void Log_GetState()
     {
         UT_INIT();
-    
+
         Log.addDebugLogger();
         MemoryLogger memLogger= new MemoryLogger();
-    
+
         // reduce meta information to limit output width
-        Log.debugLogger.metaInfo.format._()._( "[%tN]%V[%D](%#): " );   
-        memLogger.metaInfo.format._()._(       "[%tN]%V[%D](%#): " );   
-        memLogger.multiLineMsgMode= 3; 
+        Log.debugLogger.metaInfo.format._()._( "[%tN]%V[%D](%#): " );
+        memLogger.metaInfo.format._()._(       "[%tN]%V[%D](%#): " );
+        memLogger.multiLineMsgMode= 3;
         Log.setVerbosity( memLogger, Verbosity.VERBOSE );
-    
+
         // OK, let's use ALox
         Log.setDomain( "PNS"   ,   Scope.PACKAGE, 1 );
         Log.setDomain( "PATH",     Scope.PACKAGE );
         Log.setDomain( "FN",       Scope.CLASS );
         Log.setDomain( "THREAD",   Scope.THREAD_OUTER );
-    
+
         Log.setVerbosity( "MEMORY",        Verbosity.OFF      , "/CON"    );
         Log.setVerbosity( "DEBUG_LOGGER" , Verbosity.VERBOSE              );
         Log.setVerbosity( "DEBUG_LOGGER" , Verbosity.OFF      , "/MEM"    );
         Log.setVerbosity( "DEBUG_LOGGER" , Verbosity.ERROR    , "/UI"     );
         Log.setVerbosity( "DEBUG_LOGGER" , Verbosity.INFO     , "/UI/DLG" );
-    
+
         Log.info( "This goes to both loggers" );
         Log.info( "/MEM", "This goes only to the memory logger" );
         Log.info( "/CON", "This goes only to the console logger" );
-    
+
         Log.once( "Will we see this in the config?" );
         Log.once( null, Verbosity.INFO, "Will we see this in the config?", "ONCEKEY", Scope.CLASS );
-    
-        Log.store( new LogData( "MyData 1" ), Scope.METHOD );
-        Log.store( new LogData( "MyData 2" ), "DataKey", Scope.METHOD );
-        Log.store( new LogData( 3          ), "DataKey", Scope.CLASS );
-        Log.store( new LogData( 4, this    ), "DataKey", Scope.THREAD_OUTER );
-    
+
+        Log.store( "MyData 1", Scope.METHOD );
+        Log.store( "MyData 2", "DataKey", Scope.METHOD );
+        Log.store( 3         , "DataKey", Scope.CLASS );
+        Log.store( 4         , "DataKey", Scope.THREAD_OUTER );
+
         Log.setPrefix( "TPre: "  , Scope.THREAD_OUTER );
         Log.setPrefix( "MPre: "  , Scope.METHOD );
         Log.setPrefix( "DomPre: " );
         Log.setPrefix( "Mouse: ", "/UI/MOUSE" );
         Log.setPrefix( ESC.RED,  "/ERRORS", Inclusion.EXCLUDE );
-    
+
         Log.mapThreadName( "TUTORIAL" );
-    
+
         // now, log the current config
         Log.state( null, Verbosity.INFO, "State(ALL):" );
-    
+
         Log.state( null, Verbosity.INFO, "State(Domains):", Lox.STATE_INFO_DOMAINS );
         Log.state( null, Verbosity.INFO, "State(Loggers):", Lox.STATE_INFO_LOGGERS );
-    
-    
+
+
         // cleanup
         Log.removeDebugLogger();
         Log.removeLogger( memLogger );
     }
-    
+
     /** ********************************************************************************************
      * Log_DumpStateOnExit
      **********************************************************************************************/
@@ -395,47 +431,47 @@ public class UT_alox_lox  extends AWorxUnitTesting
     public void Log_DumpStateOnExit()
     {
         UT_INIT();
-    
+
         Log.addDebugLogger();
         MemoryLogger memLogger= new MemoryLogger();
-    
-    
+
+
         Log.setVerbosity( memLogger, Verbosity.VERBOSE );
         UT_TRUE( Log.debugLogger.cntLogs == 0 );
         Log.removeLogger( memLogger );
         UT_TRUE( Log.debugLogger.cntLogs == 0 );
-    
+
         Variable var= new Variable( ALox.configCategoryName, Log.LOX.getName() + "_DUMP_STATE_ON_EXIT",  ',' );
         int cntLogs;
-    
-    
+
+
         var.store( "domain=/TEST, verbosity = e, domains, basic" );
-    
+
         var.store("domain=/TEST, verbosity = e, sptr, basic" );
         Log.setVerbosity( memLogger, Verbosity.VERBOSE );
         cntLogs= Log.debugLogger.cntLogs;
         Log.removeLogger( memLogger );
         UT_TRUE( Log.debugLogger.cntLogs > cntLogs );
-    
+
         var.store("verbosity = e, domains, basic" );
         Log.setVerbosity( memLogger, Verbosity.VERBOSE );
         cntLogs= Log.debugLogger.cntLogs;
         Log.removeLogger( memLogger );
         UT_TRUE( Log.debugLogger.cntLogs > cntLogs );
-    
+
         var.store("domains, loggers" );
         Log.setVerbosity( memLogger, Verbosity.VERBOSE );
         cntLogs= Log.debugLogger.cntLogs;
         Log.removeLogger( memLogger );
         UT_TRUE( Log.debugLogger.cntLogs > cntLogs );
-    
+
         var.store("" );
         Log.setVerbosity( memLogger, Verbosity.VERBOSE );
         cntLogs= Log.debugLogger.cntLogs;
         Log.removeLogger( memLogger );
         UT_TRUE( Log.debugLogger.cntLogs == cntLogs );
-    
-    
+
+
         Log.removeDebugLogger();
     }
 
@@ -446,15 +482,15 @@ public class UT_alox_lox  extends AWorxUnitTesting
     public void Log_WriteVerbosities()
     {
         UT_INIT();
-    
+
         Log.addDebugLogger();
         MemoryLogger memLogger= new MemoryLogger( "MYLGGR" );
-    
+
         Variable var= new Variable( ALox.configCategoryName, Log.LOX.getName() + "_MYLGGR_VERBOSITY",  ';' );
         Variable varBack= new Variable();
-        
+
         Log.setVerbosity( Log.debugLogger, Verbosity.VERBOSE, ALox.INTERNAL_DOMAINS);
-    
+
         // test writing into other variable with variable name error
         UT_PRINT( "An error message should follow (wrong variable format): " );
         var.store("writeback MY_" );
@@ -466,7 +502,7 @@ public class UT_alox_lox  extends AWorxUnitTesting
         Log.setVerbosity( memLogger, Verbosity.VERBOSE );
         Log.removeLogger( memLogger );
         varBack.define( "MY",  "VAR" ).load();
-        UT_PRINT(  "Variable written: " + varBack.getString().toString() );
+        UT_PRINT(  "Variable written: ", varBack.getString() );
         UT_TRUE( varBack.getString().length() > 0 );
 
         // test writing into other variable without cat
@@ -474,7 +510,7 @@ public class UT_alox_lox  extends AWorxUnitTesting
         Log.setVerbosity( memLogger, Verbosity.VERBOSE );
         Log.removeLogger( memLogger );
         varBack.define( "",  "ANON" ).load();
-        UT_PRINT(  "Variable written: " + varBack.getString().toString() );
+        UT_PRINT(  "Variable written: ", varBack.getString() );
         UT_TRUE( varBack.getString().length() > 0 );
 
         // test writing into other variable without cat and with underscores in name
@@ -482,7 +518,7 @@ public class UT_alox_lox  extends AWorxUnitTesting
         Log.setVerbosity( memLogger, Verbosity.VERBOSE );
         Log.removeLogger( memLogger );
         varBack.define( "",  "2ND_ANON" ).load();
-        UT_PRINT(  "Variable written: " + varBack.getString().toString() );
+        UT_PRINT(  "Variable written: ", varBack.getString() );
         UT_TRUE( varBack.getString().length() > 0 );
 
         // test writing into other the variable itself
@@ -490,10 +526,10 @@ public class UT_alox_lox  extends AWorxUnitTesting
         Log.setVerbosity( memLogger, Verbosity.VERBOSE );
         Log.removeLogger( memLogger );
 
-        ALIB.config.load( var );
-        UT_PRINT( "Variable written: " + var.getString().toString() );
+        Configuration.Default.load( var );
+        UT_PRINT(  "Variable written: ", varBack.getString() );
         UT_TRUE( var.getString().length() > 0 );
-    
+
        Log.removeDebugLogger();
     }
 

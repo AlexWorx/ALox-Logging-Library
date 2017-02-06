@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  aworx::lox::loggers - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -25,33 +25,32 @@
 #endif
 
 
-namespace aworx {
-namespace       lox {
-namespace           loggers{
-
+namespace aworx { namespace lox { namespace loggers
+{
 /** ************************************************************************************************
- *  A logger that logs all messages to the standard output <em>cout</em>.
- *  The name of the \e Logger defaults to "WINDOWS_CONSOLE".
+ * A logger that logs all messages to the standard output <em>cout</em>.
+ * The name of the \e Logger defaults to "WINDOWS_CONSOLE".
  *
- *  ALox text logger escape sequences (see class \ref aworx::lox::ESC "ESC")
- *  are translated to Windows API calls (<em>SetConsoleTextAttribute</em>) which manipulates
- *  colors the text output.
- *  There is not 100% match between windows console capabilities and the definitions in
- *  \ref aworx::lox::ESC "ESC". Especially, ESC style attributes are ignored.
+ * ALox text logger escape sequences (see class \ref aworx::lox::ESC "ESC")
+ * are translated to Windows API calls (<em>SetConsoleTextAttribute</em>) which manipulates
+ * colors the text output.
+ * There is not 100% match between windows console capabilities and the definitions in
+ * \ref aworx::lox::ESC "ESC". Especially, ESC style attributes are ignored.
  *
- *  Foreground and background colors are set to be either light/dark or dark/light. This improves
- *  the readability of log output a lot. However, the right setting for this is dependent on
- *  the color scheme of final output device (window). To manipulate the right setting, see field
- *  #IsBackgroundLight and also configuration variable
- *  [ALOX_CONSOLE_HAS_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html).
+ * Foreground and background colors can be set to be either light/dark or dark/light. This improves
+ * the readability of log output a lot and even allows to read if foreground and background colors
+ * are the same (they then still differ). However, the right setting for this is dependent on
+ * the color scheme of the final output device (window). To manipulate the right setting, see field
+ * #UseLightColors and also configuration variable
+ * [ALOX_CONSOLE_LIGHT_COLORS](../group__GrpALoxConfigVars.html).
  *
- *  In the constructor, a default format string and some other definitions in member
- *  \ref MetaInfo get set to include ESC sequences. Of-course, these publicly accessible
- *  format attributes can be customized after creation.
+ * In the constructor, a default format string and some other definitions in member
+ * \ref MetaInfo get set to include ESC sequences. Of-course, these publicly accessible
+ * format attributes can be customized after creation.
  *
- *  \note This class can not enable the output console (which receives ALox
- *  log data) to support the windows API call <em>SetConsoleTextAttribute</em>.
- *  The opposite is right: this class should be used only if the output console supports such calls.
+ * \note This class can not enable the output console (which receives ALox
+ * log data) to support the windows API call <em>SetConsoleTextAttribute</em>.
+ * The opposite is right: this class should be used only if the output console supports such calls.
  **************************************************************************************************/
 class WindowsConsoleLogger : public aworx::lox::core::textlogger::TextLogger
 {
@@ -69,22 +68,26 @@ class WindowsConsoleLogger : public aworx::lox::core::textlogger::TextLogger
     // #############################################################################################
     public:
         /**
-         * If \c false, foreground colors will be light colors and background colors dark. If
-         * \c true, the opposite is chosen.
+         * Foreground and background colors chosen by this class might differ in their intensity.
+         * This increases the overall readability by increasing the contrast.
+         * If the background color of a console window is dark, then the background colors of
+         * colored log output should be darker colors than the foreground colors - and vice versa.
          *
-         * This flag can be modified from outside any time.
+         * Depending on the setting of this field foreground or background colors might be
+         * lighter ones:
+         * - If this field is \c 0, light colors are never used.
+         * - If this field is \c 1, foreground colors will be light colors and background colors
+         *   dark. This is the default.
+         * - If \c 2, the opposite of \c 1 is chosen: background colors will be light colors and
+         *   foreground colors dark.
          *
          * The "right" setup will be automatically determined in the constructor of this class
-         * by determining the color scheme of the windows console.
-         * It will be set to \c true, if the standard console of the application is displaying
-         * a light color foreground on a dark color background and vice versa.
+         * by determining the color scheme of the windows console!
          *
-         * The configuration variable [ALOX_CONSOLE_HAS_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html)
-         * is evaluated within the constructor of this class, to allow to modifying this flag at
-         * runtime.
+         * The configuration variable [ALOX_CONSOLE_LIGHT_COLORS](../group__GrpALoxConfigVars.html)
+         * allows to externally modify this flag. It is read once within the constructor .
          */
-        bool            IsBackgroundLight;
-
+        int    UseLightColors;
 
         /**
          * The code page that is used for the console log output. For possible values refer to
@@ -160,7 +163,7 @@ class WindowsConsoleLogger : public aworx::lox::core::textlogger::TextLogger
          *  Empty implementation, not needed for this class
          ******************************************************************************************/
         ALOX_API
-        virtual void notifyMultiLineOp (lib::enums::Phase )    {  }
+        virtual void notifyMultiLineOp (lib::lang::Phase )    {  }
 
 }; // class WindowsConsoleLogger
 

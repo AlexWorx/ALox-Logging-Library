@@ -1,20 +1,20 @@
-﻿// ######################nsure###########################################################################
+// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /**
  *  This namespace of the A-Worx Library provides classes for character string operations
- *  (following \ref com::aworx::lib "the principle design goals of the A-Worx Library").
+ *  (following \ref com::aworx::lib "the principle design goals of \b %ALib").
  */
 package com.aworx.lib.strings;
 
-import com.aworx.lib.ALIB;
-import com.aworx.lib.enums.Alignment;
-import com.aworx.lib.enums.Case;
-import com.aworx.lib.enums.Inclusion;
+import com.aworx.lib.lang.Alignment;
+import com.aworx.lib.lang.Case;
+import com.aworx.lib.lang.Inclusion;
+import com.aworx.lib.lang.Switch;
 
 /** ************************************************************************************************
  *  A mutable string, that provides public access to its internal buffer and fields.
@@ -101,7 +101,7 @@ public class AString implements CharSequence
 
         /** The Buffer array. This may but should not be accessed directly. In case of external
          *   modifications the field hash has to be set to dirty (0). */
-        protected           char[]              buffer                          =CString.nullBuffer;
+        protected           char[]              buffer                          = com.aworx.lib.strings.CString.nullBuffer;
 
         /** The actual length of the string stored in the Buffer. In case of external
             modifications the field hash has to be set to dirty (0). */
@@ -231,7 +231,7 @@ public class AString implements CharSequence
             // set uninitialized
             if ( newCapacity == 0 )
             {
-                buffer=        CString.nullBuffer;
+                buffer=        com.aworx.lib.strings.CString.nullBuffer;
                 length=        0;
                 return;
             }
@@ -332,7 +332,7 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public int  setLength( int newLength )
         {
-            ALIB.ASSERT_WARNING( newLength <= length, "Increase requested" );
+            com.aworx.lib.ALIB_DBG.ASSERT_WARNING( newLength <= length, "Increase requested" );
 
             if ( newLength < length )
             {
@@ -355,7 +355,7 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public    void           setLength_NC( int newLength )
         {
-            ALIB.ASSERT_ERROR( newLength >= 0 && newLength <= length, "Index out of range" );
+            com.aworx.lib.ALIB_DBG.ASSERT_ERROR( newLength >= 0 && newLength <= length, "Index out of range" );
             length= newLength;
             hash=   0;
         }
@@ -515,7 +515,7 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public AString replaceRegion( char c, int regionStart, int regionLength )
         {
-            if ( !CString.adjustRegion( length, regionStart, regionLength, _adjustedRegion ) )
+            if ( !com.aworx.lib.strings.CString.adjustRegion( length, regionStart, regionLength, _adjustedRegion ) )
             {
                 int regionEnd=  _adjustedRegion[0] + _adjustedRegion[1];
                 for ( int i=    _adjustedRegion[0] ; i < regionEnd ; i++ )
@@ -539,7 +539,7 @@ public class AString implements CharSequence
         public    AString    delete( int regionStart, int regionLength )
         {
             // adjust range, if empty do nothing
-            if ( CString.adjustRegion( length, regionStart, regionLength, _adjustedRegion ) )
+            if ( com.aworx.lib.strings.CString.adjustRegion( length, regionStart, regionLength, _adjustedRegion ) )
                 return this;
 
             if ( _adjustedRegion[1] <= 0 )
@@ -578,7 +578,7 @@ public class AString implements CharSequence
          *             See \ref JAVA_ASTRING_NC "Non-checking methods" for <em>_NC</em> method
          *             variants.
          *             Like with method #delete(int, int), it is allowed that the sum of parameters
-         *             \p regionStart and \p regionLength is longer than the length of this %AString.
+         *             \p regionStart and \p regionLength is longer than the length of this \b %AString.
          *             In this case, this string is cut starting from index \p regionStart.
          *
          * @param regionStart  The start of the region to delete.
@@ -587,7 +587,7 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public    AString     delete_NC( int regionStart, int regionLength )
         {
-            ALIB.ASSERT_ERROR(     regionStart  >= 0
+            com.aworx.lib.ALIB_DBG.ASSERT_ERROR(     regionStart  >= 0
                                     &&  regionStart  <= length
                                     &&  regionLength >= 0,
                                     "Parameter assertion" );
@@ -635,7 +635,7 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public AString     deleteStart_NC( int regionLength  )
         {
-            ALIB.ASSERT_ERROR(  regionLength >=0 && regionLength <= length, "Region length out of range" );
+            com.aworx.lib.ALIB_DBG.ASSERT_ERROR(  regionLength >=0 && regionLength <= length, "Region length out of range" );
             System.arraycopy( buffer, regionLength, buffer, 0, length - regionLength );
             length-= regionLength;
             return this;
@@ -670,7 +670,7 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public AString       deleteEnd_NC( int regionLength  )
         {
-            ALIB.ASSERT_ERROR(  regionLength >=0 && regionLength <= length, "Region length out of range" );
+            com.aworx.lib.ALIB_DBG.ASSERT_ERROR(  regionLength >=0 && regionLength <= length, "Region length out of range" );
             length-= regionLength;
             return this;
         }
@@ -692,10 +692,10 @@ public class AString implements CharSequence
                 return this;
 
             if ( trimChars == null )
-                trimChars= CString.DEFAULT_WHITESPACES;
+                trimChars= com.aworx.lib.strings.CString.DEFAULT_WHITESPACES;
 
-            length=  CString.lastIndexOfAny( buffer, 0, length, trimChars, Inclusion.EXCLUDE ) + 1;
-            int idx= CString.indexOfAnyInRegion( buffer, 0, length, trimChars, Inclusion.EXCLUDE );
+            length=  com.aworx.lib.strings.CString.lastIndexOfAny( buffer, 0, length, trimChars, Inclusion.EXCLUDE ) + 1;
+            int idx= com.aworx.lib.strings.CString.indexOfAnyInRegion( buffer, 0, length, trimChars, Inclusion.EXCLUDE );
             if ( idx > 0 )
                 delete_NC( 0, idx );
             return this;
@@ -709,7 +709,7 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public AString trim()
         {
-            return trim( CString.DEFAULT_WHITESPACES );
+            return trim( com.aworx.lib.strings.CString.DEFAULT_WHITESPACES );
         }
 
         /** ****************************************************************************************
@@ -719,37 +719,39 @@ public class AString implements CharSequence
          * trimmed region. With legal \p index given, this value can only be smaller or equal to
          * \p index. If \p index is out of bounds, the length of the string is returned.
          *
-         * @param index       The index to perform the trim operation at. Has to be between zero
+         * @param idx         The index to perform the trim operation at. Has to be between zero
          *                    and <em>Length() -1</em>.
          * @param trimChars   Pointer to a zero terminated set of characters to be omitted.
          *                    Defaults to \ref CString.DEFAULT_WHITESPACES.
          * @return  The index of the first character of those characters that were behind the
          *          trimmed region.
          ******************************************************************************************/
-        public int  trimAt( int index, char[] trimChars )
+        public int  trimAt( int idx, char[] trimChars )
         {
-            if ( index < 0 || index >= length)
+            if ( idx < 0 )
+                 return 0;
+            if ( idx >= length )
                  return length;
 
-            if ( trimChars == null )
-                trimChars= CString.DEFAULT_WHITESPACES;
 
-            int regionStart= CString.lastIndexOfAny( buffer, 0,     index + 1,      trimChars, Inclusion.EXCLUDE ) + 1;
-            int regionEnd=   CString.indexOfAnyInRegion( buffer, index, length - index, trimChars, Inclusion.EXCLUDE );
+            if ( trimChars == null )
+                trimChars= com.aworx.lib.strings.CString.DEFAULT_WHITESPACES;
+
+            int regionStart= com.aworx.lib.strings.CString.lastIndexOfAny( buffer, 0,     idx + 1,      trimChars, Inclusion.EXCLUDE ) + 1;
+            if (regionStart < 0 )
+                regionStart= 0;
+            int regionEnd=   com.aworx.lib.strings.CString.indexOfAnyInRegion( buffer, idx, length - idx, trimChars, Inclusion.EXCLUDE );
             if (regionEnd < 0 )
                 regionEnd= length;
 
             int regionLength= regionEnd - regionStart;
             if ( regionLength > 0 )
-            {
                 delete_NC( regionStart, regionLength );
-                return regionStart;
-            }
-            return index;
+            return regionStart;
         }
 
         /** ****************************************************************************************
-         * Overloaded method providing default \ref CString.DEFAULT_WHITESPACES value for 
+         * Overloaded method providing default \ref CString.DEFAULT_WHITESPACES value for
          * parameter \p trimChars.
          *
          * @param index       The index to perform the trim operation at. Has to be between zero
@@ -759,7 +761,7 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public int  trimAt( int index )
         {
-            return trimAt( index, CString.DEFAULT_WHITESPACES );
+            return trimAt( index, com.aworx.lib.strings.CString.DEFAULT_WHITESPACES );
         }
 
         /** ****************************************************************************************
@@ -774,7 +776,7 @@ public class AString implements CharSequence
         public AString trimStart( char[] trimChars )
         {
             if ( trimChars == null )
-                trimChars= CString.DEFAULT_WHITESPACES;
+                trimChars= com.aworx.lib.strings.CString.DEFAULT_WHITESPACES;
             if (length == 0 || trimChars.length == 0 )
                 return this;
 
@@ -795,7 +797,7 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public AString trimStart()
         {
-            trimAt( 0, CString.DEFAULT_WHITESPACES );
+            trimAt( 0, com.aworx.lib.strings.CString.DEFAULT_WHITESPACES );
             return this;
         }
 
@@ -824,7 +826,7 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public AString trimEnd()
         {
-            trimAt( length - 1, CString.DEFAULT_WHITESPACES );
+            trimAt( length - 1, com.aworx.lib.strings.CString.DEFAULT_WHITESPACES );
             return this;
         }
 
@@ -842,8 +844,8 @@ public class AString implements CharSequence
         public AString newLine()
         {
             // save tab reference and append new line characters
-            tabReference= length + CString.NEW_LINE_CHARS.length();
-            return _( CString.NEW_LINE_CHARS );
+            tabReference= length + com.aworx.lib.strings.CString.NEW_LINE_CHARS.length();
+            return _( com.aworx.lib.strings.CString.NEW_LINE_CHARS );
         }
 
         /** ****************************************************************************************
@@ -1050,7 +1052,7 @@ public class AString implements CharSequence
             }
 
             // adjust range, if empty do nothing
-            if ( CString.adjustRegion( srcLength, regionStart, regionLength, _adjustedRegion ) )
+            if ( com.aworx.lib.strings.CString.adjustRegion( srcLength, regionStart, regionLength, _adjustedRegion ) )
                 return this;
 
             regionStart=    _adjustedRegion[0];
@@ -1163,7 +1165,7 @@ public class AString implements CharSequence
                 return this;
 
             // adjust range, if empty do nothing
-            if ( CString.adjustRegion( src.length(), regionStart, regionLength, _adjustedRegion ) )
+            if ( com.aworx.lib.strings.CString.adjustRegion( src.length(), regionStart, regionLength, _adjustedRegion ) )
             {
                 // special treatment if currently nothing is allocated and a blank string ("") is added:
                 // we allocate, which means, we are not a nulled object anymore!
@@ -1185,7 +1187,7 @@ public class AString implements CharSequence
             // use different built in techniques
                  if ( src instanceof String )           { ((String)        src).getChars( regionStart, regionStart + regionLength, buffer, length );    }
             else if ( src instanceof AString )          { System.arraycopy( ((AString)   src).buffer, regionStart,                           buffer, length, regionLength ); }
-            else if ( src instanceof Substring )        { System.arraycopy( ((Substring) src).buf,    ((Substring) src).start + regionStart, buffer, length, regionLength ); }
+            else if ( src instanceof com.aworx.lib.strings.Substring)        { System.arraycopy( ((com.aworx.lib.strings.Substring) src).buf,    ((com.aworx.lib.strings.Substring) src).start + regionStart, buffer, length, regionLength ); }
             else if ( src instanceof StringBuffer )     { ((StringBuffer)  src).getChars( regionStart, regionStart + regionLength, buffer, length );    }
             else if ( src instanceof StringBuilder )    { ((StringBuilder) src).getChars( regionStart, regionStart + regionLength, buffer, length );    }
 
@@ -1249,7 +1251,7 @@ public class AString implements CharSequence
 
             // use different built in techniques
                  if ( src instanceof AString )               {  System.arraycopy( ((AString)   src).buffer, 0,                       buffer,  length, srcLength ); }
-            else if ( src instanceof Substring )             {  System.arraycopy( ((Substring) src).buf,    ((Substring) src).start, buffer,  length, srcLength ); }
+            else if ( src instanceof com.aworx.lib.strings.Substring)             {  System.arraycopy( ((com.aworx.lib.strings.Substring) src).buf,    ((com.aworx.lib.strings.Substring) src).start, buffer,  length, srcLength ); }
             else if ( src instanceof StringBuffer )          {  ((StringBuffer)  src).getChars( 0, srcLength, buffer, length );            }
             else if ( src instanceof StringBuilder )         {  ((StringBuilder) src).getChars( 0, srcLength, buffer, length );            }
             else // finally CharSequence: do it manually
@@ -1340,7 +1342,7 @@ public class AString implements CharSequence
          * @param src   The source Substring.
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
-        public AString _( Substring src )
+        public AString _( com.aworx.lib.strings.Substring src )
         {
             // check null argument
             if ( src == null )
@@ -1359,7 +1361,7 @@ public class AString implements CharSequence
          * @param src   The source Substring.
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
-        public AString _NC( Substring src )
+        public AString _NC( com.aworx.lib.strings.Substring src )
         {
             return _NC( src.buf, src.start, src.length() );
         }
@@ -1535,7 +1537,7 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public char        charAt_NC( int idx )
         {
-            ALIB.ASSERT_ERROR(  idx >= 0 && idx < length, "Index out of range" );
+            com.aworx.lib.ALIB_DBG.ASSERT_ERROR(  idx >= 0 && idx < length, "Index out of range" );
             return  buffer[idx];
         }
 
@@ -1564,7 +1566,7 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public void        setCharAt_NC( int idx, char c )
         {
-            ALIB.ASSERT_ERROR(  idx >= 0 && idx < length, "Index out of range" );
+            com.aworx.lib.ALIB_DBG.ASSERT_ERROR(  idx >= 0 && idx < length, "Index out of range" );
             buffer[idx]= c;
         }
 
@@ -1590,7 +1592,7 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public char        charAtStart_NC()
         {
-            ALIB.ASSERT_ERROR(  length > 0, "Empy AString" );
+            com.aworx.lib.ALIB_DBG.ASSERT_ERROR(  length > 0, "Empty AString" );
             return  buffer[0];
         }
 
@@ -1616,7 +1618,7 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public char        charAtEnd_NC()
         {
-            ALIB.ASSERT_ERROR(  length > 0, "Empy AString" );
+            com.aworx.lib.ALIB_DBG.ASSERT_ERROR(  length > 0, "Empty AString" );
             return  buffer[length - 1];
         }
 
@@ -1657,15 +1659,15 @@ public class AString implements CharSequence
                 return 1;
 
             // adjust source and compare regions
-            CString.adjustRegion( cmpString.length(), cmpRegionStart, cmpRegionLength, _adjustedRegion );
+            com.aworx.lib.strings.CString.adjustRegion( cmpString.length(), cmpRegionStart, cmpRegionLength, _adjustedRegion );
             cmpRegionStart=   _adjustedRegion[0];
             cmpRegionLength=  _adjustedRegion[1];
 
-            CString.adjustRegion( length, regionStart, regionLength, _adjustedRegion );
+            com.aworx.lib.strings.CString.adjustRegion( length, regionStart, regionLength, _adjustedRegion );
             regionStart=      _adjustedRegion[0];
             regionLength=     _adjustedRegion[1];
 
-            return CString.compareTo( cmpString,  cmpRegionStart, cmpRegionLength,
+            return com.aworx.lib.strings.CString.compareTo( cmpString,  cmpRegionStart, cmpRegionLength,
                                       buffer,        regionStart,    regionLength,
                                       sensitivity );
         }
@@ -1790,7 +1792,7 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public boolean containsAt( CharSequence needle, int pos, Case sensitivity )
         {
-            return CString.containsAt( needle, buffer, pos, length, sensitivity );
+            return com.aworx.lib.strings.CString.containsAt( needle, buffer, pos, length, sensitivity );
         }
 
         /** ****************************************************************************************
@@ -1803,7 +1805,7 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public boolean containsAt( CharSequence needle, int pos )
         {
-            return CString.containsAt( needle, buffer, pos, length, Case.SENSITIVE );
+            return com.aworx.lib.strings.CString.containsAt( needle, buffer, pos, length, Case.SENSITIVE );
         }
 
         /** ****************************************************************************************
@@ -1818,7 +1820,7 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public boolean containsAt( AString needle, int pos, Case sensitivity )
         {
-            return CString.containsAt( needle != null ? needle.buffer() : null, 0,
+            return com.aworx.lib.strings.CString.containsAt( needle != null ? needle.buffer() : null, 0,
                                        needle != null ? needle.length() : 0,
                                        buffer,          pos, length,
                                        sensitivity                             );
@@ -1834,7 +1836,7 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public boolean containsAt( AString needle, int pos )
         {
-            return CString.containsAt( needle != null ? needle.buffer() : null, 0,
+            return com.aworx.lib.strings.CString.containsAt( needle != null ? needle.buffer() : null, 0,
                                        needle != null ? needle.length() : 0,
                                        buffer, pos, length, Case.SENSITIVE     );
         }
@@ -1849,12 +1851,12 @@ public class AString implements CharSequence
          *
          * @return  True if the sequence is found at the given position. False otherwise .
          ******************************************************************************************/
-        public boolean containsAt( Substring needle, int pos, Case sensitivity )
+        public boolean containsAt(com.aworx.lib.strings.Substring needle, int pos, Case sensitivity )
         {
-            return needle != null ? CString.containsAt( needle.buf,    needle.start,   needle.length(),
+            return needle != null ? com.aworx.lib.strings.CString.containsAt( needle.buf,    needle.start,   needle.length(),
                                                         buffer,        pos, length,
                                                         sensitivity     )
-                                  : CString.containsAt( null, 0, 0,
+                                  : com.aworx.lib.strings.CString.containsAt( null, 0, 0,
                                                         buffer,        pos, length,
                                                         sensitivity     );
         }
@@ -1867,12 +1869,12 @@ public class AString implements CharSequence
          *
          * @return  True if the sequence is found at the given position. False otherwise .
          ******************************************************************************************/
-        public boolean containsAt( Substring needle, int pos )
+        public boolean containsAt(com.aworx.lib.strings.Substring needle, int pos )
         {
-            return needle != null ? CString.containsAt( needle.buf, needle.start,  needle.length(),
+            return needle != null ? com.aworx.lib.strings.CString.containsAt( needle.buf, needle.start,  needle.length(),
                                                         buffer,     pos,           length,
                                                         Case.SENSITIVE     )
-                                  : CString.containsAt( null, 0, 0,
+                                  : com.aworx.lib.strings.CString.containsAt( null, 0, 0,
                                                         buffer, pos, length,
                                                         Case.SENSITIVE     );
         }
@@ -1889,7 +1891,7 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public boolean startsWith( CharSequence needle, Case sensitivity )
         {
-            return CString.containsAt( needle, buffer, 0, length, sensitivity );
+            return com.aworx.lib.strings.CString.containsAt( needle, buffer, 0, length, sensitivity );
         }
 
         /** ****************************************************************************************
@@ -1901,7 +1903,7 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public boolean startsWith( CharSequence needle )
         {
-            return CString.containsAt( needle, buffer, 0, length, Case.SENSITIVE );
+            return com.aworx.lib.strings.CString.containsAt( needle, buffer, 0, length, Case.SENSITIVE );
         }
 
         /** ****************************************************************************************
@@ -1939,7 +1941,7 @@ public class AString implements CharSequence
          *
          * @return  true if this starts with the given sequence, false if not.
          ******************************************************************************************/
-        public boolean startsWith( Substring needle, Case sensitivity )
+        public boolean startsWith(com.aworx.lib.strings.Substring needle, Case sensitivity )
         {
             return containsAt( needle, 0, sensitivity );
         }
@@ -1951,7 +1953,7 @@ public class AString implements CharSequence
          *
          * @return  true if this starts with the given sequence, false if not.
          ******************************************************************************************/
-        public boolean startsWith( Substring needle )
+        public boolean startsWith( com.aworx.lib.strings.Substring needle )
         {
             return containsAt( needle, 0, Case.SENSITIVE );
         }
@@ -1969,7 +1971,7 @@ public class AString implements CharSequence
         {
             if ( needle == null )
                 return true;
-            return CString.containsAt( needle,
+            return com.aworx.lib.strings.CString.containsAt( needle,
                                        buffer,       length - needle.length(),   length,
                                        sensitivity     );
         }
@@ -1999,7 +2001,7 @@ public class AString implements CharSequence
         {
             if ( needle == null )
                 return true;
-            return CString.containsAt( needle.buffer(), 0,   needle.length(),
+            return com.aworx.lib.strings.CString.containsAt( needle.buffer(), 0,   needle.length(),
                                        buffer,          length - needle.length(),   length,
                                        sensitivity     );
         }
@@ -2025,11 +2027,11 @@ public class AString implements CharSequence
          *
          * @return  true if this starts with the given sequence, false if not.
          ******************************************************************************************/
-        public boolean endsWith  ( Substring needle, Case sensitivity )
+        public boolean endsWith  (com.aworx.lib.strings.Substring needle, Case sensitivity )
         {
             if ( needle == null )
                 return true;
-            return CString.containsAt( needle.buf,      needle.start,   needle.length(),
+            return com.aworx.lib.strings.CString.containsAt( needle.buf,      needle.start,   needle.length(),
                                        buffer,          length - needle.length(),   length,
                                        sensitivity     );
         }
@@ -2041,7 +2043,7 @@ public class AString implements CharSequence
          *
          * @return  true if this starts with the given sequence, false if not.
          ******************************************************************************************/
-        public boolean endsWith  ( Substring needle )
+        public boolean endsWith  ( com.aworx.lib.strings.Substring needle )
         {
             return endsWith( needle, Case.SENSITIVE );
         }
@@ -2067,7 +2069,7 @@ public class AString implements CharSequence
 
             // compare with known types
             if ( object instanceof AString )        return equals( ((AString)       object ), sensitivity );
-            if ( object instanceof Substring )      return equals( ((Substring)     object ), sensitivity );
+            if ( object instanceof com.aworx.lib.strings.Substring)      return equals( ((com.aworx.lib.strings.Substring)     object ), sensitivity );
             if ( object instanceof String )         return equals( ((String)        object ), sensitivity );
             if ( object instanceof CharSequence )   return equals( ((CharSequence)  object ), sensitivity );
 
@@ -2092,7 +2094,7 @@ public class AString implements CharSequence
          * Tests and returns true, if the given AString equals to what this object
          * represents. True is returned if both are zero length or \c null.
          *
-         * @param cmpString The %AString that is compared to this %AString.
+         * @param cmpString The %AString that is compared to this \b %AString.
          * @param sensitivity   Case sensitivity of the comparison.
          *                      Optional and defaults to Case.Sensitive.
          *
@@ -2115,7 +2117,7 @@ public class AString implements CharSequence
          * Tests and returns true, if the given AString equals to what this object
          * represents. True is returned if both are zero length or \c null.
          *
-         * @param cmpString The %AString that is compared to this %AString.
+         * @param cmpString The %AString that is compared to this \b %AString.
          *
          * @return    true, if contents of this and the given %AString are equal
          ******************************************************************************************/
@@ -2136,7 +2138,7 @@ public class AString implements CharSequence
          * Tests and returns true, if the given String equals to what this object
          * represents. True is returned if both are zero length or \c null.
          *
-         * @param cmpString The %AString that is compared to this %AString.
+         * @param cmpString The %AString that is compared to this \b %AString.
          * @param sensitivity   Case sensitivity of the comparison.
          *                      Optional and defaults to Case.Sensitive.
          *
@@ -2159,7 +2161,7 @@ public class AString implements CharSequence
          * Tests and returns true, if the given String equals to what this object
          * represents. True is returned if both are zero length or \c null.
          *
-         * @param cmpString The %AString that is compared to this %AString.
+         * @param cmpString The %AString that is compared to this \b %AString.
          *
          * @return    true, if contents of this and the given %AString are equal
          ******************************************************************************************/
@@ -2181,13 +2183,13 @@ public class AString implements CharSequence
          * equals to what this object represents.
          * True is returned if both are zero length or \c null.
          *
-         * @param cmpString A Substring that is compared to this %AString.
+         * @param cmpString A Substring that is compared to this \b %AString.
          * @param sensitivity   Case sensitivity of the comparison.
          *                      Optional and defaults to Case.Sensitive.
          *
          * @return    true, if contents of this and the given %AString are equal
          ******************************************************************************************/
-        public boolean equals( Substring cmpString, Case sensitivity )
+        public boolean equals(com.aworx.lib.strings.Substring cmpString, Case sensitivity )
         {
             // null?
             if ( cmpString == null )
@@ -2205,11 +2207,11 @@ public class AString implements CharSequence
          * equals to what this object represents.
          * True is returned if both are zero length or \c null.
          *
-         * @param cmpString A Substring that is compared to this %AString.
+         * @param cmpString A Substring that is compared to this \b %AString.
          *
          * @return    true, if contents of this and the given %AString are equal
          ******************************************************************************************/
-        public boolean equals( Substring cmpString )
+        public boolean equals( com.aworx.lib.strings.Substring cmpString )
         {
             // null?
             if ( cmpString == null )
@@ -2226,7 +2228,7 @@ public class AString implements CharSequence
          * Tests and returns true, if the given CharSequence equals to what this object
          * represents. True is returned if both are zero length or \c null.
          *
-         * @param cmpString A CharSequence that is compared to this %AString.
+         * @param cmpString A CharSequence that is compared to this \b %AString.
          * @param sensitivity   Case sensitivity of the comparison.
          *                      Optional and defaults to Case.Sensitive.
          *
@@ -2249,7 +2251,7 @@ public class AString implements CharSequence
          * Tests and returns true, if the given CharSequence equals to what this object
          * represents. True is returned if both are zero length or \c null.
          *
-         * @param cmpString A CharSequence that is compared to this %AString.
+         * @param cmpString A CharSequence that is compared to this \b %AString.
          *
          * @return    true, if contents of this and the given %AString are equal
          ******************************************************************************************/
@@ -2276,7 +2278,7 @@ public class AString implements CharSequence
          * Search the given String in the buffer starting at a given position.
          *
          * @param needle        The CharSequence to search.
-         * @param startIdx      The index to start the search at. Optional and defaults to 0.
+         * @param startIdx      The index to start the search at. Optional and defaults to \c 0.
          * @param sensitivity   Case sensitivity of the operation.
          *                      Optional and defaults to Case.Sensitive.
          *
@@ -2286,14 +2288,14 @@ public class AString implements CharSequence
         {
             if      ( startIdx < 0 )                startIdx= 0;
             else if ( startIdx >= length )          return -1;
-            return CString.indexOfString( needle, buffer, startIdx, length - startIdx, sensitivity );
+            return com.aworx.lib.strings.CString.indexOfString( needle, buffer, startIdx, length - startIdx, sensitivity );
         }
 
         /** ****************************************************************************************
          * Search a CharSequence in the buffer.
          *
          * @param cs            The CharSequence to search.
-         * @param startIdx      The index to start the search at. Optional and defaults to 0.
+         * @param startIdx      The index to start the search at. Optional and defaults to \c 0.
          *
          * @return  -1 if the String is not found. Otherwise the index of first occurrence.
          ******************************************************************************************/
@@ -2318,7 +2320,7 @@ public class AString implements CharSequence
          * Search a character in the buffer.
          *
          * @param c             The character to search.
-         * @param startIdx      The index to start the search at. Optional and defaults to 0.
+         * @param startIdx      The index to start the search at. Optional and defaults to \c 0.
          *
          * @return  -1 if the character is not found. Otherwise the index of first occurrence.
          ******************************************************************************************/
@@ -2379,7 +2381,7 @@ public class AString implements CharSequence
             if ( startIdx < 0       ) startIdx= 0;
             if ( startIdx >= length ) return   -1;
 
-            return CString.indexOfAnyInRegion( buffer, startIdx, length - startIdx, needles, inclusion );
+            return com.aworx.lib.strings.CString.indexOfAnyInRegion( buffer, startIdx, length - startIdx, needles, inclusion );
         }
 
         /** ****************************************************************************************
@@ -2401,11 +2403,11 @@ public class AString implements CharSequence
         {
             if ( length == 0 ) return   -1;
 
-            return CString.indexOfAnyInRegion( buffer, 0, length, needles, inclusion );
+            return com.aworx.lib.strings.CString.indexOfAnyInRegion( buffer, 0, length, needles, inclusion );
         }
 
         /** ****************************************************************************************
-         * Searches a character starting backwards from the end or a given start index.
+         * Searches a character backwards from the given start index.
          *
          * @param needle       The character to search for.
          * @param startIndex   The index in this to start searching the character.
@@ -2427,7 +2429,7 @@ public class AString implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Searches a character starting backwards from the end or a given start index.
+         * Searches a character backwards from the end or a given start index.
          *
          * @param needle       The character to search for.
          *
@@ -2444,14 +2446,15 @@ public class AString implements CharSequence
          * Returns the index of the first character which is included, respectively <em>not</em>
          * included in a given set of characters.
          * The search starts at the given index and goes backward.
-         * For forward search, see #indexOfAny(char[], Inclusion, int).
+         * For forward search, see #indexOfAny(char[] p,Inclusion,int) "indexOfAny".
+
          *
          * @param needles    Characters to be searched for.
          * @param inclusion  Denotes whether the search returns the first index that holds a value
          *                   that is included or that is not excluded in the set of needle
          *                   characters.
          * @param startIdx   The index to start the search at. The value is cropped to be in
-         *                   the bounds of 0 and the length of this %AString minus one.
+         *                   the bounds of 0 and the length of this \b %AString minus one.
          *                   Defaults to the length of this AString.
          *
          * @return The index of the first character found which is included, respectively not
@@ -2462,14 +2465,14 @@ public class AString implements CharSequence
         {
             if ( startIdx < 0       ) return -1;
             if ( startIdx >= length ) startIdx=  length - 1;
-            return  CString.lastIndexOfAny( buffer, 0, startIdx + 1, needles, inclusion );
+            return  com.aworx.lib.strings.CString.lastIndexOfAny( buffer, 0, startIdx + 1, needles, inclusion );
         }
 
         /** ****************************************************************************************
          * Returns the index of the first character which is included, respectively <em>not</em>
          * included in a given set of characters.
          * The search starts at the given index and goes backward.
-         * For forward search, see #indexOfAny(char[], Inclusion, int).
+         * For forward search, see #indexOfAny(char[] p,Inclusion,int) "indexOfAny".
          *
          * @param needles    Characters to be searched for.
          * @param inclusion  Denotes whether the search returns the first index that holds a value
@@ -2483,7 +2486,7 @@ public class AString implements CharSequence
         public int lastIndexOfAny( char[] needles, Inclusion inclusion )
         {
             if ( length == 0 ) return   -1;
-            return  CString.lastIndexOfAny( buffer, 0, length, needles, inclusion );
+            return  com.aworx.lib.strings.CString.lastIndexOfAny( buffer, 0, length, needles, inclusion );
         }
 
 
@@ -2497,7 +2500,7 @@ public class AString implements CharSequence
          *
          * @param searchStr         The CharSequence to be replaced.
          * @param newStr            The replacement string.
-         * @param startIdx          The index where the search starts. Optional and defaults to 0.
+         * @param startIdx          The index where the search starts. Optional and defaults to \c 0.
          * @param maxReplacements   The maximum number of replacements to perform. Optional and
          *                          defaults to Integer.MAX_VALUE .
          * @param sensitivity       Case sensitivity of the operation.
@@ -2511,7 +2514,7 @@ public class AString implements CharSequence
         {
 
             // check null arguments
-            if ( CString.isNullOrEmpty(searchStr) )
+            if ( com.aworx.lib.strings.CString.isNullOrEmpty(searchStr) )
                 return 0;
 
             // get some values
@@ -2566,7 +2569,7 @@ public class AString implements CharSequence
          *
          * @param searchStr         The CharSequence to be replaced.
          * @param newStr            The replacement string.
-         * @param startIdx          The index where the search starts. Optional and defaults to 0.
+         * @param startIdx          The index where the search starts. Optional and defaults to \c 0.
          * @param maxReplacements   The maximum number of replacements to perform. Optional and
          *                          defaults to Integer.MAX_VALUE .
          *
@@ -2584,7 +2587,7 @@ public class AString implements CharSequence
          *
          * @param searchStr         The CharSequence to be replaced.
          * @param newStr            The replacement string.
-         * @param startIdx          The index where the search starts. Optional and defaults to 0.
+         * @param startIdx          The index where the search starts. Optional and defaults to \c 0.
          *
          * @return  The number of replacements that where performed.
          ******************************************************************************************/
@@ -2632,7 +2635,7 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public AString toUpper( int regionStart, int regionLength )
         {
-            if ( CString.adjustRegion( length, regionStart, regionLength, _adjustedRegion ) )
+            if ( com.aworx.lib.strings.CString.adjustRegion( length, regionStart, regionLength, _adjustedRegion ) )
                 return this;
 
             hash= 0;
@@ -2673,7 +2676,7 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public AString toLower( int regionStart, int regionLength )
         {
-            if ( CString.adjustRegion( length, regionStart, regionLength, _adjustedRegion ) )
+            if ( com.aworx.lib.strings.CString.adjustRegion( length, regionStart, regionLength, _adjustedRegion ) )
                 return this;
 
             hash= 0;
@@ -2705,175 +2708,632 @@ public class AString implements CharSequence
             return toLower( 0, Integer.MAX_VALUE );
         }
 
+        /** ****************************************************************************************
+         * Escapes non-printable characters in the given region, or converts such escaped characters
+         * to their ASCII values.<br>
+         * If the new region length is needed to be known, it can be calculated as the sum of
+         * the old region length and the difference of the string before and after the operation.
+         *
+         * @param escape        \b Switch::On escapes ascii characters (the default),
+         *                      \b Switch::Off converts  escaped strings to ascii codes.
+         * @param regionStart   The start of the region to convert.
+         * @param regionLength  The length of the region to convert.
+         * @return \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString escape( Switch escape, int regionStart, int regionLength )
+        {
+           if( com.aworx.lib.strings.CString.adjustRegion(length, regionStart, regionLength, _adjustedRegion) )
+               return this;
+
+            int regionEnd= _adjustedRegion[0] + _adjustedRegion[1];
+
+            //
+            // To escape sequences
+            //
+            if (escape == Switch.ON)
+            {
+                for( int idx= _adjustedRegion[0]; idx < regionEnd ; ++idx )
+                {
+                    char c= buffer[idx];
+
+                    char resultChar= '\0';
+                    switch(c)
+                    {
+                        case '\\' : resultChar= '\\'; break;
+                        case '\r' : resultChar= 'r' ; break;
+                        case '\n' : resultChar= 'n' ; break;
+                        case '\t' : resultChar= 't' ; break;
+                    //  case '\a' : resultChar= 'a' ; break;
+                        case '\b' : resultChar= 'b' ; break;
+                    //  case '\v' : resultChar= 'v' ; break;
+                        case '\f' : resultChar= 'f' ; break;
+                    //  case '\e' : resultChar= 'e' ; break; Not C++ standard
+                        case '"'  : resultChar= '"' ; break;
+
+                        default   :                   break;
+                    }
+
+                    if( resultChar != '\0')
+                    {
+                        insertChars( ' ', 1, idx);
+                        buffer[idx++]= '\\';
+                        buffer[idx]= resultChar;
+                        regionEnd++;
+                    }
+                    else
+                    {
+                        if (c < 32  )
+                        {
+                            insertChars(' ', 3, idx);
+                            buffer[idx++]= '\\';
+                            buffer[idx++]= '0';
+                            int oct= c >> 3;
+                            buffer[idx++]=  (char) ( '0' + oct );
+                                 oct=       (char) ( c & 7 );
+                            buffer[idx]  =  (char) ( '0' + oct );
+
+                            regionEnd+=3;
+                        }
+                        else
+                        if ( c >126 )
+                        {
+                            insertChars(' ', 3, idx);
+                            buffer[idx++]= '\\';
+                            buffer[idx++]= 'x';
+                            int nibble= c >> 4;
+                            buffer[idx++]= (char) ( (nibble <10 ? '0' : 'A' -10) + nibble );
+                                nibble=    (char) ( c & 15 );
+                            buffer[idx]  = (char) ( (nibble <10 ? '0' : 'A' -10) + nibble );
+
+                            regionEnd+=3;
+                        }
+                    }
+                }
+            }
+
+            //
+            // Un-escape escape sequences
+            //
+            else
+            {
+                regionEnd--; // we can go 1 over it!
+                for( int idx= _adjustedRegion[0]; idx < regionEnd ; ++idx )
+                {
+                    char c= buffer[idx];
+                    if( c != '\\' )
+                        continue;
+                    c= buffer[idx + 1];
+
+                    char resultChar= '\0';
+                    switch(c)
+                    {
+                        case '\\' : resultChar= '\\' ; break;
+                        case 'r'  : resultChar= '\r' ; tabReference= idx + 1; break;
+                        case 'n'  : resultChar= '\n' ; tabReference= idx + 1; break;
+                        case 't'  : resultChar= '\t' ; break;
+                    //  case 'a'  : resultChar= '\a' ; break;
+                        case 'b'  : resultChar= '\b' ; break;
+                    //  case 'v'  : resultChar= '\v' ; break;
+                        case 'f'  : resultChar= '\f' ; break;
+                     // case 'e'  : resultChar= '\e' ; break; Not C++ standard
+                        case '"'  : resultChar= '"' ; break;
+
+                        default   :                   break;
+                    }
+
+                    if( resultChar != '\0')
+                    {
+                        delete( idx, 1);
+                        buffer[idx]= resultChar;
+                        regionEnd--;
+                    }
+                    else
+                    {
+                        if (c == '0' && idx + 2 < regionEnd )
+                        {
+                            buffer[idx]= (char) (   (buffer[idx + 2] - '0' ) *8
+                                                  + (buffer[idx + 3] - '0' ))        ;
+                            delete( idx + 1, 3);
+                            regionEnd-=3;
+                        }
+                        else
+                        if (c == 'x' && idx + 2 < regionEnd )
+                        {
+                            c= buffer[idx+2];
+                                 if( c>='0' && c<= '9') c-= '0';
+                            else if( c>='a' && c<= 'f') c-= (char) ( 'a' - 10 );
+                            else if( c>='A' && c<= 'F') c-= (char) ( 'A' - 10 );
+                            char nc= c;
+                            c= buffer[idx + 3];
+                                 if( c>='0' && c<= '9') c-= '0';
+                            else if( c>='a' && c<= 'f') c-= (char) ( 'a' - 10 );
+                            else if( c>='A' && c<= 'F') c-= (char) ( 'A' - 10 );
+
+                            buffer[idx]= (char) ( (nc << 4) + c );
+                            delete( idx+1, 3);
+                            regionEnd-=3;
+                        }
+                    }
+                }
+            }
+
+
+            return this;
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version providing default parameter(s).
+         *
+         * @param escape        \b Switch::On escapes ascii characters (the default),
+         *                      \b Switch::Off converts  escaped strings to ascii codes.
+         * @param regionStart   The start of the region to convert.
+         * @return \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString escape( Switch escape, int regionStart )
+        {
+            return escape( escape, regionStart, Integer.MAX_VALUE );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version providing default parameter(s).
+         *
+         * @param escape        \b Switch::On escapes ascii characters (the default),
+         *                      \b Switch::Off converts  escaped strings to ascii codes.
+         * @return \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString escape( Switch escape )
+        {
+            return escape( escape, 0, Integer.MAX_VALUE );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version providing default parameter(s).
+         * @return \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString escape()
+        {
+            return escape( Switch.ON, 0, Integer.MAX_VALUE );
+        }
+
 
     /** ############################################################################################
      * @name Conversion
      ##@{ ########################################################################################*/
 
         /** ****************************************************************************************
-         * Convert and append a 32-Bit integer value.
+         * Format and append a 32-Bit integer value.
          *
-         * @param value        The integer value to append.
-         * @param minDigits    The minimum number of digits to append.
-         *                     If given value has less digits, '0' characters are prepended.
-         *                     a value is cut to the range 1..19 (max digits of a 64 bit
-         *                     integer, which is the largest integer processed
-         *                     in overloaded methods).<br>
-         *                     Optional and defaults to 1.
+         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * the static singleton found in
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational".
+         * To generate output better readable for humans, provide
+         * \ref com::aworx::lib::strings::NumberFormat::global "NumberFormat.global", or a
+         * customized object of that type.
          *
+         * See \ref com::aworx::lib::strings::NumberFormat "NumberFormat"
+         * for more information on formatting options.<br>
+         *
+         * @param value         The value to append.
+         * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
+         *                      specified in field
+         *                      \ref com::aworx::lib::strings::NumberFormat::decMinimumFieldWidth "NumberFormat.decMinimumFieldWidth".
+         * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
-        public AString _( int value, int minDigits )
+        public AString _( int value, int overrideWidth, NumberFormat numberFormat )
         {
-            if ( minDigits > 20 )
-                minDigits= 20;
-            int maxDigits= 10;
-            if ( maxDigits < minDigits )
-                maxDigits= minDigits;
-
-            // flag us dirty (as we will be manipulated)
             hash= 0;
 
-            // big enough?
-            if ( buffer.length < length + maxDigits + 1 )
-                ensureRemainingCapacity( maxDigits + 1 );
+            if( numberFormat == null)
+                numberFormat= com.aworx.lib.strings.NumberFormat.computational;
 
-            boolean isNegative= (value < 0);
-            if (isNegative)
-                buffer[length++]= '-';
+            ensureRemainingCapacity( 28 );
 
-            length= NumberFormat.integerToString(  isNegative  ? -((long) value)
-                                                               :   (long) value,
-                                                    buffer, length,
-                                                    minDigits, maxDigits);
+            length= numberFormat.writeDecSigned( value, buffer, length, overrideWidth );
 
+            com.aworx.lib.ALIB_DBG.ASSERT( length <= capacity() );
 
-            ALIB.ASSERT( length <= capacity() );
-
-            // return me for concatenated operations
             return this;
         }
 
         /** ****************************************************************************************
-         * Convert and append a 32-Bit integer value.
+         * Overloaded version of #_(int,int,NumberFormat) which provides default parameter(s).
+         * @param value         The value to append.
+         * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
+         *                      specified in field
+         *                      \ref com::aworx::lib::strings::NumberFormat::decMinimumFieldWidth "NumberFormat.decMinimumFieldWidth".
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _( int value, int overrideWidth )
+        {
+            return _(value, overrideWidth, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #_(int,int,NumberFormat) which provides default parameter(s).
          *
-         * @param value        The integer value to append.
-         * @return      \c this to allow concatenated calls.
+         * @param value         The value to append.
+         * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
         public AString _( int value )
         {
-            return _( value, 1 );
+            return _(value, 0, null );
         }
 
         /** ****************************************************************************************
-         * Convert and append a 64-Bit integer value.
+         * Overloaded version of #_(int,int,NumberFormat) which provides default parameter(s).
          *
-         * @param value        The integer value to append.
-         * @param minDigits    The minimum number of digits to append.
-         *                     If given value has less digits, '0' characters are prepended.
-         *                     The given value is cut to the range 1..19 (max digits of a 64 bit
-         *                     integer, which is the largest integer processed
-         *                     in overloaded methods).<br>
-         *                     Optional and defaults to 1.
-         *
+         * @param value         The value to append.
+         * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
-        public AString _( long value, int minDigits )
+        public AString _( int value, NumberFormat numberFormat )
         {
-            // special JAVA handling: Long.MIN_VALUE can not be converted to positive
-            // due to the lack of unsigned long.
-            // We just print it!
-            if ( value == Long.MIN_VALUE )
-            {
-                _( "-9223372036854775808" );
-                return this;
-            }
+            return _(value, 0, numberFormat );
+        }
 
-            if ( minDigits > 20 )
-                minDigits= 20;
-            int maxDigits= 19;
-            if ( maxDigits < minDigits )
-                maxDigits= minDigits;
 
-            // flag us dirty (as we will be manipulated)
+        /** ****************************************************************************************
+         * Format and append a 64-Bit integer value.
+         *
+         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * the static singleton found in
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational".
+         * To generate output better readable for humans, provide
+         * \ref com::aworx::lib::strings::NumberFormat::global "NumberFormat.global", or a
+         * customized object of that type.
+         *
+         * See \ref com::aworx::lib::strings::NumberFormat "NumberFormat"
+         * for more information on formatting options.<br>
+         *
+         * @param value         The value to append.
+         * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
+         *                      specified in field
+         *                      \ref com::aworx::lib::strings::NumberFormat::decMinimumFieldWidth "NumberFormat.decMinimumFieldWidth".
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _( long value, int overrideWidth, NumberFormat numberFormat )
+        {
             hash= 0;
 
-            // big enough?
-            if ( buffer.length < length + maxDigits + 1 )
-                ensureRemainingCapacity( maxDigits + 1 );
+            if( numberFormat == null)
+                numberFormat= com.aworx.lib.strings.NumberFormat.computational;
 
-            if ( value < 0 )
-            {
-                buffer[length++]= '-';
-                value= -value;
-            }
+            ensureRemainingCapacity( 28 );
 
-            length= NumberFormat.integerToString(  value, buffer, length, minDigits, maxDigits );
+            length= numberFormat.writeDecSigned( value, buffer, length, overrideWidth );
 
-            ALIB.ASSERT( length <= capacity() );
+            com.aworx.lib.ALIB_DBG.ASSERT( length <= capacity() );
 
-            // return me for concatenated operations
             return this;
         }
 
         /** ****************************************************************************************
-         * Convert and append the given 64-Bit integer value.
+         * Overloaded version of #_(long,int,NumberFormat) which provides default parameter(s).
          *
-         * @param value     The integer value to append.
-         * @return \c this to allow concatenated calls.
+         * @param value         The value to append.
+         * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
+         *                      specified in field
+         *                      \ref com::aworx::lib::strings::NumberFormat::decMinimumFieldWidth "NumberFormat.decMinimumFieldWidth".
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _( long value, int overrideWidth )
+        {
+            return _(value, overrideWidth, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #_(long,int,NumberFormat) which provides default parameter(s).
+         *
+         * @param value         The value to append.
+         * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
         public AString _( long value )
         {
-            return _( value, 1 );
+            return _(value, 0, null );
         }
 
         /** ****************************************************************************************
-         * Appends a double value as string representation.
-         * The conversion is performed by an object of class
-         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat".
-         * If no object of this type is provided with optional parameter \p numberFormat,
-         * the static default object found in
-         * \ref com::aworx::lib::strings::NumberFormat::global "NumberFormat.global" is used.
+         * Overloaded version of #_(long,int,NumberFormat) which provides default parameter(s).
          *
-         * @param value        The double value to append.
-         * @param numberFormat The object performing the conversion and defines the output format.
-         *                     Optional and defaults to null.
-         *
-         * @return    \c this to allow concatenated calls.
+         * @param value         The value to append.
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
-        public AString _( double value, NumberFormat numberFormat )
+        public AString _( long value, NumberFormat numberFormat )
         {
-            // flag us dirty (as we will be manipulated)
+            return _(value, 0, numberFormat );
+        }
+
+        /** ****************************************************************************************
+         * Append a 64-Bit integer value in binary format.
+         *
+         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * the static singleton found in
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational".
+         * To generate output better readable for humans, provide
+         * \ref com::aworx::lib::strings::NumberFormat::global "NumberFormat.global", or a
+         * customized object of that type.
+         *
+         * See \ref com::aworx::lib::strings::NumberFormat "NumberFormat"
+         * for more information on formatting options.<br>
+         *
+         * @param value         The value to append.
+         * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
+         *                      specified in field
+         *                      \ref com::aworx::lib::strings::NumberFormat::binFieldWidth "NumberFormat.binFieldWidth".
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _Bin( long value, int overrideWidth, NumberFormat numberFormat )
+        {
             hash= 0;
 
-            // big enough?  2 x 15 + '.' + '-' = 32
-            if ( buffer.length < length + 32 ) //
-                ensureRemainingCapacity( 32 );
+            if( numberFormat == null)
+                numberFormat= com.aworx.lib.strings.NumberFormat.computational;
 
+            ensureRemainingCapacity( 80 );
 
-            length= numberFormat.floatToString( value, buffer, length );
+            length= numberFormat.writeBin( value, buffer, length, overrideWidth );
 
-            ALIB.ASSERT( length <= capacity() );
+            com.aworx.lib.ALIB_DBG.ASSERT( length <= capacity() );
 
             return this;
         }
 
         /** ****************************************************************************************
-         * Appends a double value as string representation.
-         * The conversion is performed using
-         * \ref com::aworx::lib::strings::NumberFormat::global "NumberFormat.global".
+         * Overloaded version of #_Bin(long,int,NumberFormat) which provides default parameter(s).
          *
-         * The overloaded method #_(double, NumberFormat)
-         * allows to explicitly provide a dedicated conversion object.
+         * @param value         The value to append.
+         * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
+         *                      specified in field
+         *                      \ref com::aworx::lib::strings::NumberFormat::binFieldWidth "NumberFormat.binFieldWidth".
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _Bin( long value, int overrideWidth )
+        {
+            return _Bin(value, overrideWidth, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #_Bin(long,int,NumberFormat) which provides default parameter(s).
          *
-         * @param value The double value to append.
+         * @param value         The value to append.
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _Bin( long value)
+        {
+            return _Bin(value, 0, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #_Bin(long,int,NumberFormat) which provides default parameter(s).
          *
-         * @return    \c this to allow concatenated calls.
+         * @param value         The value to append.
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _Bin( long value, NumberFormat numberFormat)
+        {
+            return _Bin(value, 0, numberFormat );
+        }
+
+        /** ****************************************************************************************
+         * Append a 64-Bit integer value in hexadecimal format.
+         *
+         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * the static singleton found in
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational".
+         * To generate output better readable for humans, provide
+         * \ref com::aworx::lib::strings::NumberFormat::global "NumberFormat.global", or a
+         * customized object of that type.
+         *
+         * See \ref com::aworx::lib::strings::NumberFormat "NumberFormat"
+         * for more information on formatting options.<br>
+         *
+         * @param value         The value to append.
+         * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
+         *                      specified in field
+         *                      \ref com::aworx::lib::strings::NumberFormat::hexFieldWidth "NumberFormat.hexFieldWidth".
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _Hex( long value, int overrideWidth, NumberFormat numberFormat )
+        {
+            hash= 0;
+
+            if( numberFormat == null)
+                numberFormat= com.aworx.lib.strings.NumberFormat.computational;
+
+            ensureRemainingCapacity( 25 );
+
+            length= numberFormat.writeHex( value, buffer, length, overrideWidth );
+
+            com.aworx.lib.ALIB_DBG.ASSERT( length <= capacity() );
+
+            return this;
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #_Hex(long,int,NumberFormat) which provides default
+         * parameter(s).
+         *
+         * @param value         The value to append.
+         * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
+         *                      specified in field
+         *                      \ref com::aworx::lib::strings::NumberFormat::hexFieldWidth "NumberFormat.hexFieldWidth".
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _Hex( long value, int overrideWidth )
+        {
+            return _Hex(value,overrideWidth,null);
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #_Hex(long,int,NumberFormat) which provides default
+         * parameter(s).
+         *
+         * @param value         The value to append.
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _Hex( long value )
+        {
+            return _Hex(value,0,null);
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #_Hex(long,int,NumberFormat) which provides default
+         * parameter(s).
+         *
+         * @param value         The value to append.
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _Hex( long value, NumberFormat numberFormat )
+        {
+            return _Hex(value,0,numberFormat);
+        }
+
+        /** ****************************************************************************************
+         * Append a 64-Bit integer value in octal format.
+         *
+         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * the static singleton found in
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational".
+         * To generate output better readable for humans, provide
+         * \ref com::aworx::lib::strings::NumberFormat::global "NumberFormat.global", or a
+         * customized object of that type.
+         *
+         * See \ref com::aworx::lib::strings::NumberFormat "NumberFormat"
+         * for more information on formatting options.<br>
+
+         *
+         * @param value         The value to append.
+         * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
+         *                      specified in field
+         *                      \ref com::aworx::lib::strings::NumberFormat::octFieldWidth "NumberFormat.octFieldWidth".
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _Oct( long value, int overrideWidth, NumberFormat numberFormat )
+        {
+            hash= 0;
+
+            if( numberFormat == null)
+                numberFormat= com.aworx.lib.strings.NumberFormat.computational;
+
+            ensureRemainingCapacity( 30 );
+
+            length= numberFormat.writeOct( value, buffer, length, overrideWidth );
+
+            com.aworx.lib.ALIB_DBG.ASSERT( length <= capacity() );
+
+            return this;
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #_Oct(long,int,NumberFormat) which provides default parameter(s).
+         *
+         * @param value         The value to append.
+         * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
+         *                      specified in field
+         *                      \ref com::aworx::lib::strings::NumberFormat::octFieldWidth "NumberFormat.octFieldWidth".
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _Oct( long value, int overrideWidth )
+        {
+            return _Oct(value, overrideWidth, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #_Oct(long,int,NumberFormat) which provides default parameter(s).
+         *
+         * @param value         The value to append.
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _Oct( long value )
+        {
+            return _Oct(value, 0, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #_Oct(long,int,NumberFormat) which provides default parameter(s).
+         *
+         * @param value         The value to append.
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _Oct( long value, NumberFormat numberFormat )
+        {
+            return _Oct(value, 0, numberFormat );
+        }
+
+        /** ****************************************************************************************
+         * Append a double value. See
+         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat"
+         * for more information on formatting options.
+         *
+         * @param value         The double value to append.
+         * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
+         *                      specified in field
+         *                      \ref com::aworx::lib::strings::NumberFormat::integralPartMinimumWidth "NumberFormat.integralPartMinimumWidth"
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _( double value, int overrideWidth, NumberFormat numberFormat )
+        {
+            hash= 0;
+
+            if( numberFormat == null)
+                numberFormat= com.aworx.lib.strings.NumberFormat.computational;
+
+            ensureRemainingCapacity( 48 ); // 2x15 + '.' + ',' + sign + fear
+
+            length= numberFormat.writeFloat( value, buffer, length, overrideWidth );
+
+            com.aworx.lib.ALIB_DBG.ASSERT( length <= capacity() );
+
+            return this;
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #_(double,int,NumberFormat) which provides default parameter(s).
+         *
+         * @param value         The double value to append.
+         * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
+         *                      specified in field
+         *                      \ref com::aworx::lib::strings::NumberFormat::integralPartMinimumWidth "NumberFormat.integralPartMinimumWidth"
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _( double value, int overrideWidth )
+        {
+            return _(value, overrideWidth, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of #_(double,int,NumberFormat) which provides default parameter(s).
+         *
+         * @param value         The double value to append.
+         * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
         public AString _( double value )
         {
-            return _( value, NumberFormat.global );
+            return _(value, 0, null );
         }
+
+        /** ****************************************************************************************
+         * Overloaded version of #_(double,int,NumberFormat) which provides default parameter(s).
+         *
+         * @param value         The double value to append.
+         * @param numberFormat  The format definition. Defaults to \c null.
+         * @return  \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _( double value, NumberFormat numberFormat )
+        {
+            return _(value, 0, numberFormat );
+        }
+
 
         /** ****************************************************************************************
          * Creates a String containing a copy of a region of the contents of this AString.
@@ -2887,8 +3347,8 @@ public class AString implements CharSequence
         public String toString( int regionStart, int regionLength )
         {
             // adjust range, if empty return empty string
-            if ( CString.adjustRegion( length, regionStart, regionLength, _adjustedRegion ) )
-                return CString.EMPTY;
+            if ( com.aworx.lib.strings.CString.adjustRegion( length, regionStart, regionLength, _adjustedRegion ) )
+                return com.aworx.lib.strings.CString.EMPTY;
 
             // create string
             return new String( buffer, _adjustedRegion[0], _adjustedRegion[1] );
@@ -2921,12 +3381,12 @@ public class AString implements CharSequence
         /** ****************************************************************************************
          * Copies a region of the contents of this AString into the given StringBuilder.
          *
-         * @param result        A result StringBuilder to copy the specified region into. If null, a new
-         *                      String builder is created
+         * @param result        A result StringBuilder to copy the specified region into.
+         *                      If \c null, a new String builder is created
          * @param regionStart   The start index of the region to be copied.
          * @param regionLength  The maximum length of the region to be copied.
-         * @param appendMode    If true, any contents in the result is preserved. Otherwise such content
-         *                      gets replaced.
+         * @param appendMode    If true, any contents in the result is preserved.
+         *                      Otherwise such content gets replaced.
          * @return  The (modified) result that was provided (for concatenation of calls).
          ******************************************************************************************/
         public StringBuilder toString( StringBuilder result, int regionStart, int regionLength,
@@ -2939,7 +3399,7 @@ public class AString implements CharSequence
                 result.delete( 0, result.length() );
 
             // adjust range, if empty return empty string
-            if ( CString.adjustRegion( length, regionStart, regionLength, _adjustedRegion ) )
+            if ( com.aworx.lib.strings.CString.adjustRegion( length, regionStart, regionLength, _adjustedRegion ) )
                 return result;
 
             // copy our buffer into result
@@ -2948,282 +3408,904 @@ public class AString implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Reads a 64-bit integer from the %AString at the given position.
-         * The given output parameter is set to point to first character that is not a number.
-         * If no number is found at the given index, zero is returned and the output parameter is
-         * set to the original start index.
+         * Parses an integer value consisting of characters \c '0' to \c '9' from this string.
+         * <br>Unlike with #parseInt or #parseDec, no sign, whitespaces or group characters are
+         * accepted.
          *
-         * Leading whitespace characters are ignored. However, if after leading whitespaces no
-         * numbers were found, then the output parameter is set to the original start index.
-         * This way, the optionally provided index can be used to check if parsing succeeded.
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public long parseDecDigits( int startIdx, int[] newIdx )
+        {
+            return com.aworx.lib.strings.NumberFormat.parseDecDigits( buffer, startIdx, length-1, newIdx  );
+        }
+
+        /** ****************************************************************************************
+         * Parses a long integer value in decimal, binary, hexadecimal or octal format from
+         * the string by invoking method
+         * \ref com::aworx::lib::strings::NumberFormat::parseInt "NumberFormat.parseInt"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * which is configured to 'international' settings (not using the locale) and therefore
+         * also not parsing grouping characters.
+         *
+         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
+         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * read.
+         *
+         * For more information on number conversion, see class
+         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * have a corresponding implementation within class \b %AString.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public long  parseInt( int startIdx, NumberFormat numberFormat, int[] newIdx )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseInt( buffer, startIdx, length - 1, newIdx );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseInt(int,NumberFormat,int[] p) "parseInt" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public long  parseInt( int startIdx, NumberFormat numberFormat )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseInt( buffer, startIdx, length - 1, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseInt(int,NumberFormat,int[] p) "parseInt" providing default values for
+         * omitted parameters.
          *
          * @param startIdx     The start index from where the integer value is tried to be parsed.
-         *                     Optional and defaults to 0.
+         *                     Optional and defaults to \c 0.
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public long parseInt( int startIdx )
+        {
+            return  com.aworx.lib.strings.NumberFormat.computational.parseInt( buffer, startIdx, length - 1, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseInt(int,NumberFormat,int[] p) "parseInt" providing default values for
+         * omitted parameters.
+         *
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public long parseInt()
+        {
+            return  com.aworx.lib.strings.NumberFormat.computational.parseInt( buffer, 0, length - 1, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseInt(int,NumberFormat,int[] p) "parseInt" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index from where the integer value is tried to be parsed.
+         *                     Optional and defaults to \c 0.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the float number that was parsed.
-         *                     If parsing fails, it will be set to the value of parameter startIdx.
-         * @param whitespaces  White space characters used to trim the substring at the front
-         *                     before reading the value.
-         *                     Defaults to \c null, which causes the method to use
-         *                     \ref CString.DEFAULT_WHITESPACES.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public long parseInt( int startIdx, int[] newIdx )
+        {
+            return  com.aworx.lib.strings.NumberFormat.computational.parseInt( buffer, startIdx, length - 1, newIdx );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseInt(int,NumberFormat,int[] p) "parseInt" providing default values for
+         * omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the float number that was parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public long  parseInt( NumberFormat numberFormat, int[] newIdx )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseInt( buffer, 0, length - 1, newIdx );
+        }
+
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseInt(int,NumberFormat,int[] p) "parseInt" providing default values for
+         * omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public long  parseInt( NumberFormat numberFormat )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseInt( buffer, 0, length - 1, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseInt(int,NumberFormat,int[] p) "parseInt" providing default values for
+         * omitted parameters.
+         *
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the float number that was parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public long parseInt( int[] newIdx )
+        {
+            return  com.aworx.lib.strings.NumberFormat.computational.parseInt( buffer, 0, length - 1, newIdx );
+        }
+
+
+        /** ****************************************************************************************
+         * Reads an unsigned 64-bit integer in standard decimal format at the given position
+         * from this \b %AString. This is done, by invoking
+         * \ref com::aworx::lib::strings::NumberFormat::parseDec "NumberFormat.parseDec"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
+         *
+         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
+         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * read.
+         *
+         * Sign literals \c '-' or \c '+' are \b not accepted and parsing will fail.
+         * For reading signed integer values, see methods #parseInt, for floating point numbers
+         * #parseFloat.
+         *
+         * For more information on number conversion, see class
+         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * have a corresponding implementation within class \b %AString.
+         *
+         * \note Because Java does not support unsigned integer, the value to read is limited to
+         *       <c>Long.MAX_VALUE</c> in this language implementation of ALib.
+         *
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
          *
          * @return  The parsed value. In addition, the output parameter \p newIdx is set to point
-         *          to the first character behind any found integer number.
+         *          to the first character behind the parsed number.
          ******************************************************************************************/
-        public long  toLong( int startIdx, int[] newIdx, char[] whitespaces )
+        public long  parseDec( int startIdx, NumberFormat numberFormat, int[] newIdx )
         {
-            // initialize output variable newIdx
-            if ( newIdx != null )
-                newIdx[0]= startIdx;
-
-            // get index, read whitespaces and store start index after white spaces
-            int idxOrig= startIdx;
-            if ( (startIdx= indexOfAny( whitespaces != null ? whitespaces : CString.DEFAULT_WHITESPACES,
-                                        Inclusion.EXCLUDE, startIdx ) ) == -1 )
-                return 0;
-
-            int idxWS= startIdx;
-            long retval=  NumberFormat.stringToInteger( buffer, startIdx, length-1, newIdx );
-
-            if ( newIdx != null )
-            {
-                if ( newIdx[0] == idxWS  )
-                    newIdx[0]= idxOrig;
-            }
-            return retval;
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseDec( buffer, startIdx, length - 1, newIdx );
         }
 
         /** ****************************************************************************************
          * Overloaded version of
-         * \ref toLong(int,int[],char[]) "toLong" providing default values for omitted parameters.
+         * \ref parseDec(int,NumberFormat,int[] p) "parseDec" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public long  parseDec( int startIdx, NumberFormat numberFormat )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseDec( buffer, startIdx, length - 1, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseDec(int,NumberFormat,int[] p) "parseDec" providing default values for
+         * omitted parameters.
          *
          * @param startIdx     The start index from where the integer value is tried to be parsed.
-         *                     Optional and defaults to 0.
+         *                     Optional and defaults to \c 0.
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public long parseDec( int startIdx )
+        {
+            return  com.aworx.lib.strings.NumberFormat.computational.parseDec( buffer, startIdx, length - 1, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseDec(int,NumberFormat,int[] p) "parseDec" providing default values for
+         * omitted parameters.
+         *
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public long parseDec()
+        {
+            return  com.aworx.lib.strings.NumberFormat.computational.parseDec( buffer, 0, length - 1, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseDec(int,NumberFormat,int[] p) "parseDec" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index from where the integer value is tried to be parsed.
+         *                     Optional and defaults to \c 0.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the float number that was parsed.
-         *                     If parsing fails, it will be set to the value of parameter startIdx.
-         * @return  The parsed value.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
          ******************************************************************************************/
-        public long toLong( int startIdx, int[] newIdx )
+        public long parseDec( int startIdx, int[] newIdx )
         {
-            return toLong( startIdx, newIdx, null );
+            return  com.aworx.lib.strings.NumberFormat.computational.parseDec( buffer, startIdx, length - 1, newIdx );
         }
 
         /** ****************************************************************************************
          * Overloaded version of
-         * \ref toLong(int,int[],char[]) "toLong" providing default values for omitted parameters.
+         * \ref parseDec(int,NumberFormat,int[] p) "parseDec" providing default values for
+         * omitted parameters.
          *
-         * @param startIdx     The start index from where the integer value is tried to be parsed.
-         *                     Optional and defaults to 0.
-         * @return  The parsed value.
-         ******************************************************************************************/
-        public long toLong( int startIdx )
-        {
-            return toLong( startIdx, null, null );
-        }
-
-        /** ****************************************************************************************
-         * Overloaded version of
-         * \ref toLong(int,int[],char[]) "toLong" providing default values for omitted parameters.
-         *
-         * @return  The parsed value.
-         ******************************************************************************************/
-        public long toLong()
-        {
-            return toLong( 0, null, null );
-        }
-
-        /** ****************************************************************************************
-         * Reads a 32-bit integer from the %AString at the given position.
-         * The given output parameter is set to point to first character that is not a number.
-         * If no number is found at the given index, zero is returned and the output parameter is
-         * set to the original start index.
-         *
-         * Leading whitespace characters are ignored. However, if after leading whitespaces no
-         * numbers were found, then the output parameter is set to the original start index.
-         * This way, the optionally provided index can be used to check if parsing succeeded.
-         *
-         * @param startIdx     The start index from where the integer value is tried to be parsed.
-         *                     Optional and defaults to 0.
+         * @param numberFormat The format definition. Defaults to \c null.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the float number that was parsed.
-         *                     If parsing fails, it will be set to the value of parameter startIdx.
-         * @param whitespaces  White space characters used to trim the substring at the front
-         *                     before reading the value.
-         *                     Defaults to \c null, which causes the method to use
-         *                     \ref CString.DEFAULT_WHITESPACES.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public long  parseDec( NumberFormat numberFormat, int[] newIdx )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseDec( buffer, 0, length - 1, newIdx );
+        }
+
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseDec(int,NumberFormat,int[] p) "parseDec" providing default values for
+         * omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public long  parseDec( NumberFormat numberFormat )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseDec( buffer, 0, length - 1, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseDec(int,NumberFormat,int[] p) "parseDec" providing default values for
+         * omitted parameters.
+         *
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the float number that was parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public long parseDec( int[] newIdx )
+        {
+            return  com.aworx.lib.strings.NumberFormat.computational.parseDec( buffer, 0, length - 1, newIdx );
+        }
+
+
+        /** ****************************************************************************************
+         * Reads an unsigned 64-bit integer in binary format at the given position
+         * from this \b %AString. This is done, by invoking
+         * \ref com::aworx::lib::strings::NumberFormat::parseBin "NumberFormat.parseBin"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
+         *
+         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
+         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * read.
+         *
+         * For more information on number conversion, see class
+         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * have a corresponding implementation within class \b %AString.
+         *
+         * \note Although Java does not support unsigned integer, the value that is read with this
+         *       method is correct in respect to the bits set in the signed value returned.
+         *       In other words, if the most significant bit (#64), is set, the return value is
+         *       negative.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
          *
          * @return  The parsed value. In addition, the output parameter \p newIdx is set to point
-         *          to the first character behind any found integer number.
+         *          to the first character behind the parsed number.
          ******************************************************************************************/
-        public int  toInt( int startIdx, int[] newIdx, char[] whitespaces )
+        public long  parseBin( int startIdx, NumberFormat numberFormat, int[] newIdx )
         {
-            return (int) toLong( startIdx, newIdx, whitespaces );
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseBin( buffer, startIdx, length - 1, newIdx );
         }
 
         /** ****************************************************************************************
          * Overloaded version of
-         * \ref toInt(int,int[],char[]) "toInt" providing default values for omitted parameters.
+         * \ref parseBin(int,NumberFormat,int[] p) "parseBin" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public long  parseBin( int startIdx, NumberFormat numberFormat )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseBin( buffer, startIdx, length - 1, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseBin(int,NumberFormat,int[]p ) "parseBin" providing default values for
+         * omitted parameters.
          *
          * @param startIdx     The start index from where the integer value is tried to be parsed.
-         *                     Optional and defaults to 0.
+         *                     Optional and defaults to \c 0.
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public long parseBin( int startIdx )
+        {
+            return  com.aworx.lib.strings.NumberFormat.computational.parseBin( buffer, startIdx, length - 1, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseBin(int,NumberFormat,int[] p) "parseBin" providing default values for
+         * omitted parameters.
+         *
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public long parseBin()
+        {
+            return  com.aworx.lib.strings.NumberFormat.computational.parseBin( buffer, 0, length - 1, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseBin(int,NumberFormat,int[] p) "parseBin" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index from where the integer value is tried to be parsed.
+         *                     Optional and defaults to \c 0.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the float number that was parsed.
-         *                     If parsing fails, it will be set to the value of parameter startIdx.
-         * @return  The parsed value.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
          ******************************************************************************************/
-        public int  toInt( int startIdx, int[] newIdx )
+        public long parseBin( int startIdx, int[] newIdx )
         {
-            return (int) toLong( startIdx, newIdx, null );
+            return  com.aworx.lib.strings.NumberFormat.computational.parseBin( buffer, startIdx, length - 1, newIdx );
         }
 
         /** ****************************************************************************************
          * Overloaded version of
-         * \ref toInt(int,int[],char[]) "toInt" providing default values for omitted parameters.
+         * \ref parseBin(int,NumberFormat,int[] p) "parseBin" providing default values for
+         * omitted parameters.
+         *
+         * @param numberFormat The format definition.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the float number that was parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public long  parseBin( NumberFormat numberFormat, int[] newIdx )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseBin( buffer, 0, length - 1, newIdx );
+        }
+
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseBin(int,NumberFormat,int[] p) "parseBin" providing default values for
+         * omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public long  parseBin( NumberFormat numberFormat )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseBin( buffer, 0, length - 1, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseBin(int,NumberFormat,int[] p) "parseBin" providing default values for
+         * omitted parameters.
+         *
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the float number that was parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public long parseBin( int[] newIdx )
+        {
+            return  com.aworx.lib.strings.NumberFormat.computational.parseBin( buffer, 0, length - 1, newIdx );
+        }
+
+
+        /** ****************************************************************************************
+         * Reads an unsigned 64-bit integer in hexadecimal format at the given position
+         * from this \b %AString. This is done, by invoking
+         * \ref com::aworx::lib::strings::NumberFormat::parseHex "NumberFormat.parseHex"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
+         *
+         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
+         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * read.
+         *
+         * For more information on number conversion, see class
+         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * have a corresponding implementation within class \b %AString.
+         *
+         * \note Although Java does not support unsigned integer, the value that is read with this
+         *       method is correct in respect to the bits set in the signed value returned.
+         *       In other words, if the most significant bit (#64), is set, the return value is
+         *       negative. For this, 16 hexadecimal digits need to be read and the first of
+         *       them needs to be greater or equal to \b 0x8.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         *
+         * @return  The parsed value. In addition, the output parameter \p newIdx is set to point
+         *          to the first character behind the parsed number.
+         ******************************************************************************************/
+        public long  parseHex( int startIdx, NumberFormat numberFormat, int[] newIdx )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseHex( buffer, startIdx, length - 1, newIdx );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseHex(int,NumberFormat,int[] p) "parseHex" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public long  parseHex( int startIdx, NumberFormat numberFormat )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseHex( buffer, startIdx, length - 1, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseHex(int,NumberFormat,int[] p) "parseHex" providing default values for
+         * omitted parameters.
          *
          * @param startIdx     The start index from where the integer value is tried to be parsed.
-         *                     Optional and defaults to 0.
+         *                     Optional and defaults to \c 0.
          * @return  The parsed value.
          ******************************************************************************************/
-        public int  toInt( int startIdx )
+        public long parseHex( int startIdx )
         {
-            return (int) toLong( startIdx, null, null );
+            return  com.aworx.lib.strings.NumberFormat.computational.parseHex( buffer, startIdx, length - 1, null );
         }
 
         /** ****************************************************************************************
          * Overloaded version of
-         * \ref toInt(int,int[],char[]) "toInt" providing default values for omitted parameters.
+         * \ref parseHex(int,NumberFormat,int[] p) "parseHex" providing default values for
+         * omitted parameters.
          *
          * @return  The parsed value.
          ******************************************************************************************/
-        public int  toInt()
+        public long parseHex()
         {
-            return (int) toLong( 0, null, null );
+            return  com.aworx.lib.strings.NumberFormat.computational.parseHex( buffer, 0, length - 1, null );
         }
 
         /** ****************************************************************************************
-         * Reads a floating point value from this object at the given position using the
-         * class com::aworx::lib::strings::NumberFormat "NumberFormat".
-         * If no object of this type is provided with optional parameter \p numberFormat,
-         * the static default object found in
-         * \ref com::aworx::lib::strings::NumberFormat::global "NumberFormat.global"
-         * is used.
+         * Overloaded version of
+         * \ref parseHex(int,NumberFormat,int[] p) "parseHex" providing default values for
+         * omitted parameters.
          *
-         * Leading whitespace characters as defined in optional parameter \p whitespaces, are
-         * ignored.
+         * @param startIdx     The start index from where the integer value is tried to be parsed.
+         *                     Optional and defaults to \c 0.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the float number that was parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public long parseHex( int startIdx, int[] newIdx )
+        {
+            return  com.aworx.lib.strings.NumberFormat.computational.parseHex( buffer, startIdx, length - 1, newIdx );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseHex(int,NumberFormat,int[] p) "parseHex" providing default values for
+         * omitted parameters.
          *
-         * The optional output parameter \p newIdx is set to point to the first character that does
-         * not belong to the number. If no number is found at the given index (respectively at
-         * the first non-whitespace character at or after the given index), zero is returned and
-         * the output parameter is set to the original start index.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the float number that was parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public long  parseHex( NumberFormat numberFormat, int[] newIdx )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseHex( buffer, 0, length - 1, newIdx );
+        }
+
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseHex(int,NumberFormat,int[] p) "parseHex" providing default values for
+         * omitted parameters.
          *
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public long  parseHex( NumberFormat numberFormat )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseHex( buffer, 0, length - 1, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseHex(int,NumberFormat,int[] p) "parseHex" providing default values for
+         * omitted parameters.
          *
-         * @param startIdx     The start index from where the float value is tried to be read.
-         *                     Defaults to 0.
-         * @param[out] newIdx  Optional output variable that will point to the first character
-         *                     after the float number that was parsed.
-         *                     If parsing fails, it will be set to the value of parameter startIdx.
-         *                     Therefore, this parameter can be used to check if a value was found.
-         * @param numberFormat The object performing the conversion and defines the output format.
-         *                     Optional and defaults to \c null.
-         * @param whitespaces  White space characters used to trim the substring at the front
-         *                     before reading the value.
-         *                     Defaults to \c null, which causes the method to use
-         *                     \ref CString.DEFAULT_WHITESPACES.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the float number that was parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public long parseHex( int[] newIdx )
+        {
+            return  com.aworx.lib.strings.NumberFormat.computational.parseHex( buffer, 0, length - 1, newIdx );
+        }
+
+
+        /** ****************************************************************************************
+         * Reads an unsigned 64-bit integer in octal format at the given position
+         * from this \b %AString. This is done, by invoking
+         * \ref com::aworx::lib::strings::NumberFormat::parseOct "NumberFormat.parseOct"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * which is configured to not using - and therefore also not parsing - grouping characters.
+         *
+         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
+         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * read.
+         *
+         * For more information on number conversion, see class
+         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * have a corresponding implementation within class \b %AString.
+         *
+         * \note Although Java does not support unsigned integer, the value that is read with this
+         *       method is correct in respect to the bits set in the signed value returned.
+         *       In other words, if the most significant bit (#64), is set, the return value is
+         *       negative. For this, 22 octal digits need to be read with the first being \c 1.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         *
+         * @return  The parsed value. In addition, the output parameter \p newIdx is set to point
+         *          to the first character behind the parsed number.
+         ******************************************************************************************/
+        public long  parseOct( int startIdx, NumberFormat numberFormat, int[] newIdx )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseOct( buffer, startIdx, length - 1, newIdx );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseOct(int,NumberFormat,int[] p) "parseOct" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public long  parseOct( int startIdx, NumberFormat numberFormat )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseOct( buffer, startIdx, length - 1, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseOct(int,NumberFormat,int[] p) "parseOct" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index from where the integer value is tried to be parsed.
+         *                     Optional and defaults to \c 0.
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public long parseOct( int startIdx )
+        {
+            return  com.aworx.lib.strings.NumberFormat.computational.parseOct( buffer, startIdx, length - 1, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseOct(int,NumberFormat,int[] p) "parseOct" providing default values for
+         * omitted parameters.
+         *
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public long parseOct()
+        {
+            return  com.aworx.lib.strings.NumberFormat.computational.parseOct( buffer, 0, length - 1, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseOct(int,NumberFormat,int[] p) "parseOct" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index from where the integer value is tried to be parsed.
+         *                     Optional and defaults to \c 0.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the float number that was parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public long parseOct( int startIdx, int[] newIdx )
+        {
+            return  com.aworx.lib.strings.NumberFormat.computational.parseOct( buffer, startIdx, length - 1, newIdx );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseOct(int,NumberFormat,int[] p) "parseOct" providing default values for
+         * omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the float number that was parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public long  parseOct( NumberFormat numberFormat, int[] newIdx )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseOct( buffer, 0, length - 1, newIdx );
+        }
+
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseOct(int,NumberFormat,int[] p) "parseOct" providing default values for
+         * omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public long  parseOct( NumberFormat numberFormat )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseOct( buffer, 0, length - 1, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseOct(int,NumberFormat,int[] p) "parseOct" providing default values for
+         * omitted parameters.
+         *
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the float number that was parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public long parseOct( int[] newIdx )
+        {
+            return  com.aworx.lib.strings.NumberFormat.computational.parseOct( buffer, 0, length - 1, newIdx );
+        }
+
+
+        /** ****************************************************************************************
+         * Reads a floating point number at the given position from this \b %AString.
+         * This is done, by invoking
+         * \ref com::aworx::lib::strings::NumberFormat::parseFloat "NumberFormat.parseFloat"
+         * on the given \p numberFormat instance.<br>
+         * Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * which is configured to 'international' settings (not using the locale) and therefore
+         * also not parsing grouping characters.
+         *
+         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
+         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * read.
+         *
+         * For more information on parsing options for floating point numbers and number
+         * conversion in general, see class
+         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * have a corresponding implementation within class \b %AString.
+         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the number parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
          *
          * @return  The parsed value. In addition, the output parameter \p newIdx is set to point
          *          to the first character behind any found float number.
          ******************************************************************************************/
-        public double toFloat(  int           startIdx,        int[] newIdx,
-                                NumberFormat  numberFormat,    char[] whitespaces )
+        public double  parseFloat( int startIdx, NumberFormat numberFormat, int[] newIdx )
         {
-            // initialize output variable newIdx
-            if ( newIdx != null )
-                newIdx[0]= startIdx;
-
-            // get index, read whitespaces and store start index after white spaces
-            startIdx= indexOfAny( whitespaces != null ? whitespaces : CString.DEFAULT_WHITESPACES,
-                                  Inclusion.EXCLUDE, startIdx );
-            if ( startIdx == -1 )
-                return 0;
-
-            int oldIdx= startIdx;
-            double retval=  numberFormat.stringToFloat( buffer, startIdx, length-1, newIdx );
-            if ( oldIdx != startIdx && newIdx != null)
-                newIdx[0]= startIdx;
-
-            return retval;
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseFloat( buffer, startIdx, length - 1, newIdx );
         }
 
         /** ****************************************************************************************
          * Overloaded version of
-         * \ref toFloat(int,int[],NumberFormat,char[]) "toFloat" providing default values for
+         * \ref parseFloat(int,NumberFormat,int[] p) "parseFloat" providing default values for
          * omitted parameters.
          *
-         * @param startIdx     The start index from where the float value is tried to be read.
-         *                     Defaults to 0.
-         * @param[out] newIdx  Optional output variable that will point to the first character
-         *                     after the float number that was parsed.
-         *                     If parsing fails, it will be set to the value of parameter startIdx.
-         *                     Therefore, this parameter can be used to check if a value was found.
-         * @param numberFormat The object performing the conversion and defines the output format.
-         *                     Optional and defaults to \c null.
-         *
-         * @return  The parsed value. In addition, the output parameter \p newIdx is set to point
-         *          to the first character behind any found float number.
-         ******************************************************************************************/
-        public double toFloat(  int           startIdx,        int[] newIdx,
-                                NumberFormat  numberFormat )
-        {
-            return toFloat( startIdx, newIdx, numberFormat, null );
-        }
-
-        /** ****************************************************************************************
-         * Overloaded version of
-         * \ref toFloat(int,int[],NumberFormat,char[]) "toFloat" providing default values for
-         * omitted parameters.
-         *
-         * @param startIdx     The start index from where the float value is tried to be read.
-         *                     Defaults to 0.
-         * @param[out] newIdx  Optional output variable that will point to the first character
-         *                     after the float number that was parsed.
-         *                     If parsing fails, it will be set to the value of parameter startIdx.
-         *                     Therefore, this parameter can be used to check if a value was found.
-         *
-         * @return  The parsed value. In addition, the output parameter \p newIdx is set to point
-         *          to the first character behind any found float number.
-         ******************************************************************************************/
-        public double toFloat( int  startIdx, int[] newIdx )
-        {
-            return toFloat( startIdx, newIdx, NumberFormat.global, null );
-        }
-
-        /** ****************************************************************************************
-         * Overloaded version of
-         * \ref toFloat(int,int[],NumberFormat,char[]) "toFloat" providing default values for
-         * omitted parameters.
-         *
-         * @param startIdx     The start index from where the float value is tried to be read.
-         *                     Defaults to 0.
-         *
+         * @param startIdx     The start index for parsing.
+         *                     Optional and defaults to \c 0.
+         * @param numberFormat The format definition. Defaults to \c null.
          * @return  The parsed value.
          ******************************************************************************************/
-        public double toFloat(  int           startIdx )
+        public double  parseFloat( int startIdx, NumberFormat numberFormat )
         {
-            return toFloat( startIdx, null, NumberFormat.global, null );
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseFloat( buffer, startIdx, length - 1, null );
         }
-
 
         /** ****************************************************************************************
          * Overloaded version of
-         * \ref toFloat(int,int[],NumberFormat,char[]) "toFloat" providing default values for
+         * \ref parseFloat(int,NumberFormat,int[] p) "parseFloat" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index from where the integer value is tried to be parsed.
+         *                     Optional and defaults to \c 0.
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public double parseFloat( int startIdx )
+        {
+            return  com.aworx.lib.strings.NumberFormat.computational.parseFloat( buffer, startIdx, length - 1, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseFloat(int,NumberFormat,int[] p) "parseFloat" providing default values for
          * omitted parameters.
          *
          * @return  The parsed value.
          ******************************************************************************************/
-        public double toFloat( )
+        public double parseFloat()
         {
-            return toFloat( 0, null, NumberFormat.global, null );
+            return  com.aworx.lib.strings.NumberFormat.computational.parseFloat( buffer, 0, length - 1, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseFloat(int,NumberFormat,int[] p) "parseFloat" providing default values for
+         * omitted parameters.
+         *
+         * @param startIdx     The start index from where the integer value is tried to be parsed.
+         *                     Optional and defaults to \c 0.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the float number that was parsed.
+         *                     On failure, it will be set to the initial value \p startIdx.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public double parseFloat( int startIdx, int[] newIdx )
+        {
+            return  com.aworx.lib.strings.NumberFormat.computational.parseFloat( buffer, startIdx, length - 1, newIdx );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseFloat(int,NumberFormat,int[] p) "parseFloat" providing default values for
+         * omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the float number that was parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public double  parseFloat( NumberFormat numberFormat, int[] newIdx )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseFloat( buffer, 0, length - 1, newIdx );
+        }
+
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseFloat(int,NumberFormat,int[] p) "parseFloat" providing default values for
+         * omitted parameters.
+         *
+         * @param numberFormat The format definition. Defaults to \c null.
+         * @return  The parsed value.
+         ******************************************************************************************/
+        public double  parseFloat( NumberFormat numberFormat )
+        {
+            return ( numberFormat != null ? numberFormat
+                                          : com.aworx.lib.strings.NumberFormat.computational ).parseFloat( buffer, 0, length - 1, null );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref parseFloat(int,NumberFormat,int[] p) "parseFloat" providing default values for
+         * omitted parameters.
+         *
+         * @param[out] newIdx  Optional output variable that will point to the first
+         *                     character in this string after the float number that was parsed.
+         *                     On failure, it will be set to the initial value \c 0.
+         * @return  The parsed value. In addition, the output parameter \b newIdx is set to
+         *          point to the first character behind the parsed number.
+         ******************************************************************************************/
+        public double parseFloat( int[] newIdx )
+        {
+            return  com.aworx.lib.strings.NumberFormat.computational.parseFloat( buffer, 0, length - 1, newIdx );
         }
 
 
@@ -3255,7 +4337,7 @@ public class AString implements CharSequence
         // note: charAt() already implemented in standard interface
 
         /** ****************************************************************************************
-         * Reports an ALib error (using \ref com::aworx::lib::ReportWriter "ReportWriter")
+         * Reports an ALib error (using \ref com::aworx::lib::lang::ReportWriter "ReportWriter")
          * and returns null. The reason for this behavior is to disallow the usage of AString
          * within (system) methods that create sub sequences. This would be in contrast to the
          * design goal of AString.
@@ -3268,7 +4350,7 @@ public class AString implements CharSequence
         @Override public CharSequence subSequence(int beginIndex, int endIndex)
         {
             // this function should never be used
-            ALIB.ERROR( "subSequence() is not supported" );
+            com.aworx.lib.ALIB_DBG.ERROR( "subSequence() is not supported" );
             return null;
         }
 

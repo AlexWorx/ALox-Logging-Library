@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../src.java/alox">
+      <sourceFolder url="file://$MODULE_DIR$/../../src.java/alox" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src.java/alox/com" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src.java/alox/com/aworx" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src.java/alox/com/aworx/lox" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src.java/alox/com/aworx/lox/core" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src.java/alox/com/aworx/lox/core/textlogger" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src.java/alox/com/aworx/lox/loggers" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src.java/alox/com/aworx/lox/tools" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="ALib" exported="" />
+  </component>
+</module>

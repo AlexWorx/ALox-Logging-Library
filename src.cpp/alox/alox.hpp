@@ -1,10 +1,12 @@
 ﻿// #################################################################################################
 //  aworx::lox - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-/** @file */ //<- needed for Doxygen include
+
+// needed for Doxygen include
+/** @file */
 
 #ifndef HPP_ALOX
 #define HPP_ALOX 1
@@ -13,7 +15,7 @@
 namespace aworx {
 /** ************************************************************************************************
  *  This is the C++ namespace for code of the <em>%ALox Logging Library</em>.
- *  Developed by A-Worx GmbH and published under the MIT license.
+ *  Developed by A-Worx GmbH and published under Boost Software License.
  **************************************************************************************************/
 namespace lox {
 
@@ -21,33 +23,46 @@ namespace lox {
 }}
 
 // #################################################################################################
-// ALOX_DLL_EXPORTS
+// ALOX_API_IS_DLL
 // Before including ALIB.h, we have to evaluate the DLL exports symbol to set the corresponding
 // flag for ALIB as if it was passed to the compiler.
 // #################################################################################################
 /**
  * @addtogroup GrpALoxCompilerSymbols
- * @{ \def  ALOX_DLL_EXPORTS
+ * @{ \def  ALOX_API_IS_DLL
  *  This compiler symbol has to be defined when compiling ALox as a DLL under Windows/MSC.
- *  In addition, also \ref ALIB_DLL_EXPORTS has to be defined.
+ *  In addition, also \ref ALIB_API_IS_DLL has to be defined.
  *  Within code units that use the ALox DLL, both symbols must not be defined.
+ * @}
+ *
+ * @addtogroup GrpALoxCompilerSymbols
+ * @{ \def  ALOX_API_NO_DLL
+ *  This compiler symbol has to be defined when compiling ALib classes directly into a project
+ *  under Windows/MSC (not using a DLL).
+ *  \see #ALOX_API_IS_DLL and #ALOX_API
  * @}
  *
  * @addtogroup GrpALoxMacrosLowLevel
  * @{ \def  ALOX_API
  *  Used to export/import C++ symbols into a dynamic link library.
- *  Defined when compiling ALox as a DLL under Windows/MSC. Dependent on \ref ALOX_DLL_EXPORTS.
+ *  Defined when compiling ALox as a DLL under Windows/MSC. Dependent on \ref ALOX_API_IS_DLL.
  * @}
  */
-#if defined( _MSC_VER )
-    #ifdef ALOX_DLL_EXPORTS
-        #define ALOX_API  __declspec(dllexport)
-    #else
-        #define ALOX_API  __declspec(dllimport)
-    #endif
+#if defined(DOX_PARSER)
+    #define  ALOX_API
+    #define  ALOX_API_IS_DLL
+    #define  ALOX_API_NO_DLL
 #else
-    #define ALOX_API
-#endif
+    #if defined( _MSC_VER )  && !defined( ALOX_API_NO_DLL )
+        #ifdef ALOX_API_IS_DLL
+            #define ALOX_API  __declspec(dllexport)
+        #else
+            #define ALOX_API  __declspec(dllimport)
+        #endif
+    #else
+        #define ALOX_API
+    #endif
+#endif //DOX_PARSER
 
 // #################################################################################################
 // include ALIB
@@ -69,6 +84,7 @@ namespace lox {
 #endif
 #include "internals/alox_macros.hpp"
 
+// #### other includes ####
 #if !defined (_GLIBCXX_VECTOR) && !defined(_VECTOR_)
     #include <vector>
 #endif
@@ -77,12 +93,8 @@ namespace lox {
     #include "alib/config/configuration.hpp"
 #endif
 
-#if !defined(HPP_ALIB_STRINGS_TOKENIZER)
-    #include "alib/strings/tokenizer.hpp"
-#endif
-
-namespace aworx {
-namespace       lox {
+namespace aworx { namespace lox
+{
 
 
 // #############################################################################################
@@ -101,8 +113,11 @@ class ALox
 
     protected:
         /**  flag indicating that ALox has been initialized */
-        ALOX_API static
-        bool      isInitialized;
+        ALOX_API static bool                    isInitialized;
+
+        /** A lock  */
+        ALOX_API static ThreadLockNR            lock;
+
 
     // #############################################################################################
     // Version, Compilation flags and verification
@@ -125,16 +140,16 @@ class ALox
 
          /**
          * These flags are used internally to detect incompatibilities when linking ALox to
-         * binaries that use differen compilation flags.
+         * binaries that use different compilation flags.
          */
-        ALIB_API static    const uint32_t       CompilationFlags;
+        ALIB_API static    const uint64_t       CompilationFlags;
 
         /**
-         * This is for creationg (debug) output on information about the bits found in
+         * This is for the creation of (debug) output information about the bits found in
          * field #CompilationFlags.
          */
         ALIB_API static
-        std::pair <const char*, uint32_t>       CompilationFlagMeanings[4];
+        std::pair <const char*, uint64_t>       CompilationFlagMeanings[4];
 
 
          /**
@@ -142,7 +157,7 @@ class ALox
          * ALib (can only be different in the unusual case that ALib exists in a library independent
          * from ALox).
          */
-        ALIB_API static    const uint32_t       ALibCompilationFlags;
+        ALIB_API static    const uint64_t       ALibCompilationFlags;
 
         /** ****************************************************************************************
          * Verifies a given sets of ALox compilation flags with the internal set
@@ -153,15 +168,15 @@ class ALox
          *
          * This method should be called on bootstrap to detect if incompatible library types were
          * built. If several libraries that use ALib are linked together, each should invoke this
-         * test against separately. The macro \c ALIB_COMPATIBILITY_VERYFIER will provide the
+         * test against separately. The macro \c ALIB_COMPATIBILITY_VERIFYER will provide the
          * flags.
          *
-         * @param flags The flags externally grabbed using macro \c ALIB_COMPATIBILITY_VERYFIER.
+         * @param flags The flags externally grabbed using macro \c ALIB_COMPATIBILITY_VERIFYER.
          *
          * @return \c true if compatible, \c false else.
          ******************************************************************************************/
         ALIB_API  static
-        bool      VerifyCompilationFlags( uint32_t flags );
+        bool      VerifyCompilationFlags( uint64_t flags );
 
     // #############################################################################################
     // Public fields
@@ -226,7 +241,8 @@ class ALox
         ALIB_API static  lib::config::VariableDefinition FORMAT_DATE_TIME;              ///< Configuration variable definition
         ALIB_API static  lib::config::VariableDefinition FORMAT_TIME_DIFF;              ///< Configuration variable definition
         ALIB_API static  lib::config::VariableDefinition FORMAT_MULTILINE;              ///< Configuration variable definition
-        ALIB_API static  lib::config::VariableDefinition CONSOLE_HAS_LIGHT_BACKGROUND;  ///< Configuration variable definition
+        ALIB_API static  lib::config::VariableDefinition REPLACEMENTS;                  ///< Configuration variable definition
+        ALIB_API static  lib::config::VariableDefinition CONSOLE_LIGHT_COLORS;          ///< Configuration variable definition
         ALIB_API static  lib::config::VariableDefinition SPTR_GLOBAL;                   ///< Configuration variable definition
         ALIB_API static  lib::config::VariableDefinition SPTR_LOX;                      ///< Configuration variable definition
 
@@ -239,7 +255,7 @@ class ALox
     // #############################################################################################
     protected:
         /** The Lox singleton for debug logging. Created on request. */
-        #if defined(ALOX_DBG_LOG)
+        #if ALOX_DBG_LOG
             ALIB_API static Lox*             theLog;
         #endif
 
@@ -271,8 +287,9 @@ class ALox
          * \note If other, custom configuration data sources should be used already with this method
          *       (to read the configuration variables as described in
          *       \ref aworx::lib::ALIB::Init "ALIB::Init"),
-         *       according configuration plug-ins have to be added attached to public, static field
-         *       \ref aworx::lib::ALIB::Config prior to invoking this method.
+         *       according configuration plug-ins have to be added attached to public singleton
+         *       \ref aworx::lib::config::Configuration::Default "Configuration::Default"
+         *       prior to invoking this method.
          *
          * <p>
          *
@@ -296,7 +313,7 @@ class ALox
          * \attention
          *   If release logging is used, the explicit initialization of ALox by invoking
          *   this method is mandatory. While debug logging 'automatically' invokes the method
-         *   hiddenly in the background, release logging does not.
+         *   hidden in the background, release logging does not.
          *   If omitted, critical errors and undefined behavior in release builds might occur
          *   in the moment when debug-logging is pruned!
          *
@@ -314,7 +331,7 @@ class ALox
             if ( isInitialized )  return false;
             ALox::checkLibraryVersions(); // this call has to stay in the header file
             ALIB::Init( argc, argv );
-            isInitialized= true;
+            initImpl();
             return true;
         }
 
@@ -332,7 +349,7 @@ class ALox
             if ( isInitialized )  return false;
             ALox::checkLibraryVersions(); // this call has to stay in the header file
             ALIB::Init( argc, argv );
-            isInitialized= true;
+            initImpl();
             return true;
         }
 
@@ -367,7 +384,7 @@ class ALox
          * @return The \b Lox found, \c nullptr in case of failure.
          ******************************************************************************************/
         ALOX_API static
-        Lox*     Get( const TString& name, Create create= Create::Never );
+        Lox*     Get( const String& name, Create create= Create::Never );
 
         /** ****************************************************************************************
          * Registers or un-registers a \b %Lox object statically with ALox.
@@ -376,7 +393,7 @@ class ALox
          * No two objects with the same name must be registered. If this is done, the latter
          * will not be registered and not be found by #Get. In debug-compilations, an ALib
          * error report is written (by default raises 'assert') if a name is registered twice.<br>
-         * Note that name comparisson is performed case <b>in</b>-sensitive.
+         * Note that name comparison is performed case <b>in</b>-sensitive.
          *
          * If debug-logging is enabled (depends on compilation symbols) and used, the singleton
          * of type \% Lox provided for debug-logging is registered. This uses the name \c "Log"
@@ -410,6 +427,11 @@ class ALox
     // Internals
     // #############################################################################################
     protected:
+        /** ****************************************************************************************
+         * The part of #Init that is allowed to go to the cpp file.
+         ******************************************************************************************/
+        ALOX_API static
+        void  initImpl();
 
         /** ****************************************************************************************
          * Checks if versions of ALib, ALox and the actual compilation unit share compatible
@@ -421,10 +443,10 @@ class ALox
          * @param flagsALox   Defaults to a value defined by the currently included headers.
          ******************************************************************************************/
         ALOX_API static
-        void     checkLibraryVersions( int alibVersion    =ALIB_VERSION_VERYFIER,
-                                       int aloxVersion    =ALIB_VERSION_VERYFIER,
-                                       uint32_t flagsALib =ALIB_COMPATIBILITY_VERYFIER,
-                                       uint32_t flagsALox =ALOX_COMPATIBILITY_VERYFIER  );
+        void     checkLibraryVersions( int      alibVersion   = ALIB_VERSION_VERYFIER,
+                                       int      aloxVersion   = ALIB_VERSION_VERYFIER,
+                                       uint64_t flagsALib     = ALIB_COMPATIBILITY_VERIFYER,
+                                       uint64_t flagsALox     = ALOX_COMPATIBILITY_VERYFIER  );
 };// class ALox
 
 /** ************************************************************************************************
@@ -433,7 +455,7 @@ class ALox
  * and registered with ALib.<br>
  * Uses internal domain <c>'$/REPORT'</c> for logging.
  **************************************************************************************************/
-class    ALoxReportWriter : public aworx::lib::ReportWriter
+class    ALoxReportWriter : public aworx::lib::lang::ReportWriter
 {
     protected:
         /** The \b Lox to report to */
@@ -465,7 +487,7 @@ class    ALoxReportWriter : public aworx::lib::ReportWriter
      * Write ALib reports using ALox.
      * @param report The report to log.
      **********************************************************************************************/
-     virtual void Report  ( const lib::Report::Message& report );
+     virtual void Report  ( const lib::lang::Report::Message& report );
 
     /** ********************************************************************************************
      * Returns the domain used to write reports.

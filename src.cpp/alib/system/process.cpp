@@ -1,26 +1,30 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alib/alib.hpp"
 
-
-#if !defined (HPP_ALIB_STRINGS_TOKENIZER)
+#if !defined(HPP_ALIB_STRINGS_TOKENIZER)
     #include "alib/strings/tokenizer.hpp"
 #endif
 
-#if !defined (HPP_ALIB_SYSTEM_PROCESSINFO)
+#if !defined(HPP_ALIB_SYSTEM_PROCESSINFO)
     #include "alib/system/process.hpp"
 #endif
 
-#if !defined (HPP_ALIB_THREADS_THREADLOCK)
-    #include "alib/threads/threadlock.hpp"
+#if !defined(HPP_ALIB_THREADS_THREADLOCK)
+    #include "alib/threads/threadlocknr.hpp"
 #endif
 
-#if defined (__GLIBCXX__)
+#if defined(__GLIBCXX__)
     #include <unistd.h>
+#elif defined(__APPLE__)
+    #include <unistd.h>
+    #include <sys/sysctl.h>
+    #include <libproc.h>
+
 #elif   defined( _WIN32 )
     #include <direct.h>
 #else
@@ -34,83 +38,90 @@
 
 using namespace std;
 
-namespace aworx {
-namespace           lib {
-namespace                   system {
-
+namespace aworx { namespace lib { namespace system
+{
 // static instance representing current process
 ProcessInfo    ProcessInfo::current;
 
+
 const ProcessInfo&    ProcessInfo::Current()
 {
-    if( current.PID.IsEmpty()  )
+    static ThreadLockNR   lock;
+    if( current.PID == 0 )
     {
         // Own global lock and check if still nulled.
         // (If not, this is a very unlikely parallel access )
-        OWN( ALIB::Lock );
-        if ( ProcessInfo::current.PID.IsEmpty() )
-            ProcessInfo::current.get(nullptr);
+        OWN( lock );
+        if ( ProcessInfo::current.PID == 0 )
+            ProcessInfo::current.get( 0 );
     }
     return current;
 }
 
 
 #if defined(__GLIBC__) && defined(__unix__)
+    bool readProcFile( const TString& fileName, AString& result  );
     bool readProcFile( const TString& fileName, AString& result  )
     {
         result.Clear();
         ifstream file( fileName.ToCString() );
-        string buffer;
+
+        std::string buffer;
         getline(file, buffer);
 
         // spaces are replaced with '\0'. Revert this.
-        for( int i= buffer.size() -2 ; i>=0 ; --i )
-            if ( buffer[i] == '\0' )
-                buffer[i]= ' ';
+        if (buffer.size() > 2 )
+            for( size_t i= 0 ; i < buffer.size() -2 ; ++i )
+                if ( buffer[i] == '\0' )
+                    buffer[i]= ' ';
 
         result.Clear()._( buffer.c_str() );
         file.close();
         return true;
     }
 
-    bool ProcessInfo::getStatField( int fieldNo, AString& result )
+    bool ProcessInfo::getStatField( int fieldNo, AString& target)
     {
-        result.Clear();
+        target.Clear();
         Tokenizer tknzr( Stat, ' ');
-        bool retval= true;
-        while ( --fieldNo >= 0 && (retval= tknzr.HasNext()) )
+        bool result= true;
+        while ( --fieldNo >= 0 && (result= tknzr.HasNext()) )
             tknzr.Next();
 
-        result._( tknzr.Next() );
-        return retval;
+        target._( tknzr.Next() );
+        return result;
     }
 
-    bool ProcessInfo::get( const String& pid )
+    bool ProcessInfo::get( uinteger pid )
     {
         // use current thread if no PID given
-        String32 newPID;
-        if ( pid.IsNull() )
-            newPID << getpid();
+        uinteger newPID= 0;
+        if ( pid == 0 )
+        {
+            auto np= getpid();
+            if(np > 0 )
+                newPID= static_cast<uinteger>( np );
+        }
         else
-            newPID << pid;
+            newPID= pid;
 
-        if ( newPID.IsEmpty() )
+        if ( newPID == 0 )
             return false;
 
 
-        PID.Clear()._( newPID );
+        PID= newPID;
 
         // cmdline, stat from proc
         String64 procDir("/proc/");  procDir._<false>( PID )._( '/' );
-        int      procPathLen= procDir.Length();
+        integer    procPathLen= procDir.Length();
         {
-
             // read things
             procDir << "cmdline"; readProcFile( procDir,  CmdLine  );  procDir.SetLength(procPathLen);
             procDir << "stat";    readProcFile( procDir,  Stat     );  procDir.SetLength(procPathLen);
         }
 
-        getStatField( 3, PPID );
+        getStatField( 3, Name ); // PPID
+        PPID= static_cast<uinteger>( atoi( Name.ToCString() ) );
         getStatField( 1, Name );
         ALIB_ASSERT_ERROR(                 Name.IsEmpty()
                                 ||   (     Name.Length() >= 2
@@ -121,7 +132,7 @@ const ProcessInfo&    ProcessInfo::Current()
         if ( Name.CharAtEnd  () == ')' ) Name.DeleteEnd  <false>( 1 );
         if ( Name.CharAtStart() == '(' ) Name.DeleteStart<false>( 1 );
         getStatField( 2, StatState );
-        getStatField( 4, statPGRP );
+        getStatField( 4, StatPGRP );
 
         // get executable path and name
         ExecFileName._();
@@ -135,10 +146,10 @@ const ProcessInfo&    ProcessInfo::Current()
         if( length > 0 )
         {
             ExecFilePath.Append( buffer, length );
-            int idx= ExecFilePath.LastIndexOf( '/' );
+            integer idx= ExecFilePath.LastIndexOf( '/' );
             ALIB_ASSERT_ERROR( idx>= 0,
-                                String256() << "Executable path does not contain directory separator character: "
-                                            << ExecFilePath );
+                               (String256() << "Executable path does not contain directory separator character: "
+                                            << ExecFilePath ).ToCString() );
             ExecFileName._( ExecFilePath, idx + 1 );
             ExecFilePath.SetLength( idx );
         }
@@ -150,16 +161,55 @@ const ProcessInfo&    ProcessInfo::Current()
         return true;
     }
 
+#elif defined (__APPLE__)
+
+    bool ProcessInfo::get( uinteger pid )
+    {
+        PID= PPID= 0;
+        if( pid == 0 )
+            pid= static_cast<uinteger>( getpid() );
+
+        struct proc_bsdinfo proc;
+        int st = proc_pidinfo( static_cast<int>(pid), PROC_PIDTBSDINFO, 0, &proc, PROC_PIDTBSDINFO_SIZE);
+        if (st != PROC_PIDTBSDINFO_SIZE)
+            return false;
+
+        // pid and parent pid
+        PID=    pid;
+        PPID=   static_cast<uinteger>( proc.pbi_ppid );
+
+        // get name
+        Name._(reinterpret_cast<const char*>( proc.pbi_comm ) );
+
+        // get executable filename and path
+        {
+            char pathbuf[PROC_PIDPATHINFO_MAXSIZE];
+
+            if ( proc_pidpath (static_cast<int>( PID ), pathbuf, PROC_PIDPATHINFO_MAXSIZE) > 0 )
+            {
+                ExecFilePath._( reinterpret_cast<const char*>( pathbuf ) );
+                integer sepPos= ExecFilePath.LastIndexOf( '/' );
+                if( sepPos > 0 )
+                {
+                    ExecFileName._(ExecFilePath, sepPos + 1 );
+                    ExecFilePath.SetLength( sepPos );
+                }
+            }
+        }
+
+        return true;
+    }
+
 #elif defined (_WIN32)
 
-    bool ProcessInfo::get( const String& pid )
+    bool ProcessInfo::get( uinteger pid )
     {
         // get pid
-        if (pid  != nullptr )
+        if (pid  != 0 )
             return false;
 
         DWORD wPID= GetCurrentProcessId();
-        PID    .Clear()._( (int)  wPID          );
+        PID = (uinteger)  wPID;
 
 
         // get command line
@@ -174,7 +224,7 @@ const ProcessInfo&    ProcessInfo::Current()
         char buf[MAX_PATH];
         GetModuleFileNameA( NULL, buf, MAX_PATH );
         ExecFilePath._()._( (const char*) buf );
-        int idx= ExecFilePath.LastIndexOf( '\\' );
+        integer idx= ExecFilePath.LastIndexOf( '\\' );
         ALIB_ASSERT_ERROR( idx>= 0,
                             String256() << "Executable path does not contain directory separator character: "
                                         << ExecFilePath );

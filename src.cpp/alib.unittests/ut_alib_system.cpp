@@ -1,15 +1,14 @@
 // #################################################################################################
 //  aworx - Unit Tests
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alox/alox.hpp"
 
-#include "alib/alib.hpp"
 
 #if !defined (HPP_ALIB_SYSTEM_ENVIRONMENT)
-    #include "alib/system/system.hpp"
+    #include "alib/system/environment.hpp"
 #endif
 
 #if !defined (HPP_ALIB_SYSTEM_PROCESSINFO)
@@ -19,11 +18,6 @@
 #if !defined (HPP_ALIB_SYSTEM_DIRECTORY)
     #include "alib/system/directory.hpp"
 #endif
-
-#if !defined (HPP_ALIB_STRINGS_ASTRING)
-    #include "alib/strings/asalloc.hpp"
-#endif
-
 
 
 #define TESTCLASSNAME       CPP_ALib_System
@@ -106,18 +100,23 @@ UT_METHOD(GetVariable)
     UT_INIT();
 
     UT_PRINT(""); UT_PRINT( "### Environment::GetVariable###" );
-
-    aworx::AString home;
+    aworx::AString aString;
+    bool result;
     #if defined(_WIN32)
-        System::GetVariable( "HOMEDRIVE", home );
-        System::GetVariable( "HOMEPATH" , home, CurrentData::Keep );
+        result=  lib::system::GetEnvironmentVariable( "HOMEDRIVE", aString );
+        result|= lib::system::GetEnvironmentVariable( "HOMEPATH" , aString, CurrentData::Keep );
     #else
-        System::GetVariable( "HOME"    , home );
+        result=  lib::system::GetEnvironmentVariable( "HOME"    , aString );
     #endif
 
-    UT_PRINT("The home directory is:" );
-    UT_PRINT(home);
-    UT_TRUE( Directory::Exists( home ) );
+    UT_PRINT("The aString directory is:" );
+    UT_PRINT(aString);
+    UT_TRUE( Directory::Exists( aString ) );
+    UT_TRUE( result );
+
+    result=  lib::system::GetEnvironmentVariable( "Nonexistingenvvar"  , aString );
+    UT_FALSE( result );
+    UT_TRUE( aString.IsEmpty() );
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -132,13 +131,13 @@ UT_METHOD(Processes)
 
     String512 output;
     const ProcessInfo& currentProcess= ProcessInfo::Current();
-    UT_TRUE( currentProcess.PID.IsNotEmpty() );
+    UT_TRUE( currentProcess.PID != 0 );
 
-    #if defined (__GLIBC__)
+    #if defined (__GLIBC__) || defined(__APPLE__)
         // print process tree of us
         int indent= 0;
-        String16 nextPID= currentProcess.PPID;
-        while ( nextPID.IsNotEmpty() )
+        uinteger nextPID= currentProcess.PPID;
+        while ( nextPID != 0 )
         {
             ProcessInfo pi( nextPID );
             output.Clear().InsertChars(' ', 2* indent); output  << "PID:          " << pi.PID;            UT_PRINT( output )
@@ -147,8 +146,10 @@ UT_METHOD(Processes)
             output.Clear().InsertChars(' ', 2* indent); output  << "ExecFileName: " << pi.ExecFileName;   UT_PRINT( output )
             output.Clear().InsertChars(' ', 2* indent); output  << "ExecFilePath: " << pi.ExecFilePath;   UT_PRINT( output )
             output.Clear().InsertChars(' ', 2* indent); output  << "CmdLine:      " << pi.CmdLine;        UT_PRINT( output )
+            #if !defined(__APPLE__)
             output.Clear().InsertChars(' ', 2* indent); output  << "StatState:    " << pi.StatState;      UT_PRINT( output )
-            output.Clear().InsertChars(' ', 2* indent); output  << "statPGRP:     " << pi.statPGRP;       UT_PRINT( output )
+            output.Clear().InsertChars(' ', 2* indent); output  << "StatPGRP:     " << pi.StatPGRP;       UT_PRINT( output )
+            #endif
             //output.Clear()._(' ', 2* indent); output  << "Stat:      " << pi.Stat;      UT_PRINT( output )
 
             indent++;

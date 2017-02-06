@@ -1,8 +1,8 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /**
@@ -80,15 +80,8 @@ The interface for setting and retrieving <em>Log Data</em> is provided with meth
  [C#]  (@ref  #cs::aworx::lox::Lox::Retrieve),
  [Java](@ref #com::aworx::lox::Lox::retrieve)).
 
-The type of data stored is
-<b>%LogData</b>
-([C++] (@ref      #aworx::lox::LogData),
- [C#]  (@ref  #cs::aworx::lox::LogData),
- [Java](@ref #com::aworx::lox::LogData)). This class is designed in typical [Bauhaus code style](\ref faq_bauhaus)
-code style used by ALox. This way, it provides three public members, which can be set with
-variations of its constructor and otherwise accessed as wanted. There is an integer value, an
-AString and an Object (C++: \c void*) found which have no other functionality defined by its
-use.
+The type of data stored is \b Object in Java and C# implementations and
+\ref aworx::lib::boxing::Box "Box" in <b>%ALox for C++</b>.
 
 While in Chapter \ref man_log_once of this manual, it was explained in detail how parameters
 \p group and \p scope of method
@@ -129,27 +122,16 @@ clearer when reading chapter \ref man_log_once "Lox.Once".
 # 4. Language Specific Notes ##  {#man_log_data_langspec}
 
 ## 4.1 ALox for C++ ##  {#man_log_data_langspec_cpp}
-### 4.1.1 The Lifecycle of Log Data objects ###
-It is important to understand that in ALox for C++, <em>Log Data</em> objects have to be heap
-allocated and while created by the user code (mostly directly in the \b Lox.Store statement itself)
-they get deleted by ALox when they are overwritten, or a nulled object is passed to method \b %Lox.Store.
+It is important to understand that in ALox for C++, <em>Log Data</em> objects have to
+be kept in memory, if they are passed as pointers. The question if data is passed as a pointer
+or as a value is answered in \ref aworx::lib::boxing "ALib Boxing" documentation.
 
-This is to fulfill the design goal of the ALox feature <em>'Log Data'</em> itself! Implementing
-debug variables, ALox motivates to keep such variables in, avoid code clutter when using them, and
-so forth. The lifecycle of <em>Log Data</em> consequently is:
-- Created by the user and passed to \b Lox.Store.
-- When a different object is passed to \b Lox.Store using the same parameter \p key and \p scope
-  (and residing in the same scope), the previously stored object is deleted by ALox.
-- When a Lox object is deleted, all stored <em>Log Data</em> objects are deleted.
-- If a specific stored <em>Log Data</em> object should be deleted, for example because its allocated
-  memory is huge and should be freed, a \c nullptr has to be stored.
-
-### 4.1.2 Type Information of Log Data objects ###
-In ALox for C++, class \ref aworx::lox::LogData "LogData" provides an extra field \p Type. This may be
-used when more complex debug-code implement derived types. Those derived types might be identified
-and dynamically casted based on the type field. In the C# and Java versions, run-time type-information
-facilities of these languages can be leveraged to reach the same.
-
+In short, it can be said, that typically all fundamental C++ types (\c int, \c char, \c double, etc.) as
+well as pointers to those, are stored as values. The same is true for supported string types.
+However, in the case of strings, the "value" passed is the pointer to the start of the string in
+the memory. Therefore, this memory has to be kept valid.
+In the case of storing an \b %AString, the memory stored might become invalid, if the string
+is extended after it was stored. Be sure to understand this constraint when using this feature.
 
 <h2> 4.2 ALox for C# </h2>
 

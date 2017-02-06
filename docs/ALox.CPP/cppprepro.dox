@@ -1,8 +1,8 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 ####################################################################################################
@@ -133,7 +133,7 @@ The compilation symbols for ALox and ALib are listed here:
 
 These symbols are mostly derived (by the ALib/ALox header files) from the
 <b>Compilation Symbols </b>(\ref GrpALibCompilerSymbols "ALib", \ref GrpALoxCompilerSymbols "ALox")
-discussed in the previous section and, their naming oftenly corresponds to these, excluding
+discussed in the previous section and, their naming often corresponds to these, excluding
 suffixes <em>_ON</em> and <em>_OFF</em>.<p>
 These symbols must not be passed to the compiler and must not be set manually from within code
 entities that use ALox libraries. They can be used in code entities that use ALox to select code

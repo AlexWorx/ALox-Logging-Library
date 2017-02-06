@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 using System;
@@ -37,7 +37,7 @@ namespace cs.aworx.lib.time  {
  * The resolution and accuracy of the values is platform dependent. Especially nanoseconds are
  * deemed to be not accurate and above 100 ns (this was written and fact in 2013).
  **************************************************************************************************/
-public class Ticks
+public class Ticks : IFormattable
 {
     // #############################################################################################
     // static fields and methods
@@ -109,7 +109,7 @@ public class Ticks
     // Constructors
     // #############################################################################################
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          * Creates a Ticks instance representing the point in time when this constructor was invoked.
          ******************************************************************************************/
         public                  Ticks( )                {    Set();                }
@@ -441,6 +441,24 @@ public class Ticks
          ******************************************************************************************/
         public     DateTime     InDotNetDateTime()           { return new DateTime ( ticks );    }
 
+    // #############################################################################################
+    // platform/language specifics
+    // #############################################################################################
+        /** ****************************************************************************************
+         * Returns a  String that represents this object formatted according to \p formatString.
+         * For this, an object of .Net type \b %DateTime is created and its \b %ToString method
+         * is invoked. Hence, the format string follows the syntax defined for class \b %DateTime.
+         *
+         * @param formatString The format string
+         * @param fProvider    The format provider
+         * @return  A String that represents this object.
+         ******************************************************************************************/
+        public string        ToString(string formatString, System.IFormatProvider fProvider)
+        {
+            DateTime dateTime= new DateTime(InDotNetDateTimeTicks());
+            return dateTime.ToString(formatString, fProvider);
+        }
+
 }
 
 
@@ -606,7 +624,7 @@ public class TickWatch
 
 
     // #############################################################################################
-    // Conversion to time platform/language specific objects
+    // platform/language specifics
     // #############################################################################################
 
         /** ****************************************************************************************

@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox.unittests - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
 using System.Threading;
@@ -10,13 +10,13 @@ using System.Xml.Linq;
 using cs.aworx.lox.core.textlogger;
 using cs.aworx.lib.strings;
 using ut_cs_aworx;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 using cs.aworx.lib.config;
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     using NUnit.Framework;
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 #endif
 
@@ -37,31 +37,10 @@ namespace ut_cs_aworx_lox
     class MyType
     {}
 
-    class MyObjectConverter : cs.aworx.lox.core.textlogger.ObjectConverter
-    {
-        public override bool ConvertObject( Object o, AString result )
-        {
-            if ( o == null )
-            {
-                result._( "MyObjectConverter: null" );
-                return true;
-            }
-
-            if ( o.GetType() == typeof(MyType) )
-            {
-                result._( "my type" );
-                return true;
-            }
-
-            return false;
-        }
-    }
-
-
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [TestFixture ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestClass]
     #endif
     public class CS_ALox_Logger  : AWorxUnitTesting
@@ -69,56 +48,12 @@ namespace ut_cs_aworx_lox
     public static void ScopeInfoCacheTest() { Log.Info("Test method of CS_ALox_Logger"); }
 
     /** ********************************************************************************************
-     * Log_ObjectConverter.
-     **********************************************************************************************/
-    #if ALOX_DBG_LOG
-    #if ALIB_MONO_DEVELOP
-        [Test ()]
-    #endif
-    #if ALIB_VSTUDIO
-        [TestMethod]
-        #if !WINDOWS_PHONE
-            [TestCategory("CS_ALox_Consoles")]
-        #endif
-    #endif
-    public void Log_ObjectConverter()
-    {
-        UT_INIT();
-
-        Log.AddDebugLogger();
-
-        Log.SetDomain( "OBJECT_CONV",       Scope.Method );
-        MemoryLogger ml= new MemoryLogger();
-        ml.MetaInfo.Format._();
-        Log.SetVerbosity( ml, Verbosity.Verbose );
-
-        StringConverter mainConverter= (StringConverter) ml.ObjectConverters[0];
-        // test without my converter
-        MyType mytype= new MyType();
-        Log.Info( "Test" ); UT_TRUE( ml.MemoryLog.IndexOf( "Test" ) >= 0 );                        ml.MemoryLog._();
-        Log.Info( null   ); UT_TRUE( ml.MemoryLog.IndexOf( mainConverter.FmtNullObject ) >= 0 );   ml.MemoryLog._();
-        Log.Info( mytype ); UT_EQ  ( mytype.ToString(), ml.MemoryLog );                            ml.MemoryLog._();
-        Log.Info( null   ); UT_EQ  ( mainConverter.FmtNullObject,  ml.MemoryLog );                 ml.MemoryLog._();
-
-        // test without my converter
-                     ml.ObjectConverters.Add( new MyObjectConverter() );
-        Log.DebugLogger.ObjectConverters.Add( new MyObjectConverter() );
-        Log.Info( "Test" ); UT_TRUE( ml.MemoryLog.IndexOf( "Test" ) >= 0 );                        ml.MemoryLog._();
-        Log.Info( null   ); UT_EQ  ( "MyObjectConverter: null" , ml.MemoryLog );                   ml.MemoryLog._();
-        Log.Info( mytype   ); UT_EQ( "my type"                 , ml.MemoryLog );                   ml.MemoryLog._();
-
-        // cleanup
-        Log.RemoveLogger( ml );
-        Log.RemoveDebugLogger();
-    }
-    #endif
-    /** ********************************************************************************************
      * Log_TestException.
      **********************************************************************************************/
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox_Consoles")]
@@ -193,14 +128,15 @@ namespace ut_cs_aworx_lox
                                 );
 
         #if ALOX_DBG_LOG
+            int oldVal= 0;
             AnsiConsoleLogger   acl= (AnsiConsoleLogger)    Log.GetLogger( "ANSI_CONSOLE" );
             ColorConsoleLogger  ccl= (ColorConsoleLogger)   Log.GetLogger( "COLORCONSOLE" );
-            if ( acl!=null )        acl.IsBackgroundLight= !acl.IsBackgroundLight;
-            if ( ccl!=null )        ccl.IsBackgroundLight= !ccl.IsBackgroundLight;
-        #endif
+            if ( acl!=null )        { oldVal= acl.UseLightColors;  acl.UseLightColors= acl.UseLightColors == 1 ? 2 : 1; }
+            if ( ccl!=null )        { oldVal= ccl.UseLightColors;  ccl.UseLightColors= ccl.UseLightColors == 1 ? 2 : 1; }
+            if( acl != null || ccl != null )
+            {
 
-
-        Log.Info( "Same rev.:  "
+                Log.Info( "Same rev.:  "
                                 + ">>>" + ESC.RED     + ESC.BG_RED     + "RED"        + ESC.RESET + "<<<"
                                 + ">>>" + ESC.GREEN   + ESC.BG_GREEN   + "GREEN"      + ESC.RESET + "<<<"
                                 + ">>>" + ESC.BLUE    + ESC.BG_BLUE    + "BLUE"       + ESC.RESET + "<<<"
@@ -211,9 +147,10 @@ namespace ut_cs_aworx_lox
                                 + ">>>" + ESC.WHITE   + ESC.BG_WHITE   + "WHITE"      + ESC.RESET + "<<<"
                                 + ">>>" + ESC.BLACK   + ESC.BG_BLACK   + "BLACK"      + ESC.RESET + "<<<"
                                 );
-        #if ALOX_DBG_LOG
-            if ( acl!=null )        acl.IsBackgroundLight= !acl.IsBackgroundLight;
-            if ( ccl!=null )        ccl.IsBackgroundLight= !ccl.IsBackgroundLight;
+            }
+
+            if ( acl!=null )   acl.UseLightColors= oldVal;
+            if ( ccl!=null )   ccl.UseLightColors= oldVal;
         #endif
 
         #if ALOX_DBG_LOG
@@ -328,13 +265,13 @@ namespace ut_cs_aworx_lox
     {
         Variable var= new Variable();
         var.Define(ALox.ConfigCategoryName, "TESTML_FORMAT", ',').Store( testFormat  );
-    
-        Lox lox= new Lox("TEST");   
+
+        Lox lox= new Lox("TEST");
         MemoryLogger ml= new MemoryLogger("TESTML");
         lox.SetVerbosity( ml, Verbosity.Info );
         lox.RemoveLogger( ml );
         ALox.Register( lox, ContainerOp.Remove );
-    
+
                                      UT_EQ( expFmt       , ml.MetaInfo.Format );
         if( expFmtError  != null ) { UT_EQ( expFmtError  , ml.MetaInfo.VerbosityError   ); }
         if( expFmtWarning!= null ) { UT_EQ( expFmtWarning, ml.MetaInfo.VerbosityWarning ); }
@@ -343,10 +280,10 @@ namespace ut_cs_aworx_lox
     }
 
 
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -376,10 +313,10 @@ namespace ut_cs_aworx_lox
         }
     #endif
 
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -488,10 +425,10 @@ namespace ut_cs_aworx_lox
      * Log_LogLevelSetting
      **********************************************************************************************/
     #if ALOX_DBG_LOG
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -580,10 +517,10 @@ namespace ut_cs_aworx_lox
      * Log_LineFormat
      **********************************************************************************************/
     #if ALOX_DBG_LOG
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -658,10 +595,10 @@ namespace ut_cs_aworx_lox
     /** ********************************************************************************************
      * Log_Multiline.
      **********************************************************************************************/
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]

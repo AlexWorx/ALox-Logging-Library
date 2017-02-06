@@ -1,8 +1,8 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /**
@@ -11,9 +11,294 @@
 Historically, there existed a kind of predecessor of this library for C++ and Java and was
 more or less maintained since the year 1999. However this is a complete rewrite with C++, Java
 and C# implementations.<br>
-The first released version was Version 1.0.1 in **May 2013**.
+The first version released was V. 1.0.1 in **May 2013**.
 
 This change log is sorted reversely in respect to chronology.
+
+\~Comment ####################################################################################### \~
+\~Comment #############################       V. 1702        #################################### \~
+\~Comment ####################################################################################### \~
+
+
+
+## Version 1702, Revision 0, released February 6th, 2017 ##
+
+<b>A General Note:</b><br>
+This is once more a major update of \b %ALox. And - once more - we hope that with this update
+the foundation is now led to provide a stable version that will not undergo major interface changes
+in the future. The good news is: For existing logging statements, the interface is still
+valid and code does not need to be changed. The other good news is that the interface dramatically
+improved and - if a user wants - he/she may convert existing log statements to this new interface.
+
+The change lies in the fact that prior versions supported \b one \e "logable" (aka one arbitrary object)
+to log. The new interface allows an arbitrary amount of \e logables to log.
+In respect to textual logging (the normal use case), this means that in prior versions the text
+to be logged needed to be assembled first and then passed to \b %ALox. Now, this assembling is
+not necessary any more: All objects are concatenated inside the logger, of-course supporting now
+nice format strings that tell the logger how to do this.<br>
+This explains, why the interface remained compatible to the old version: The logger of-course still
+accepts such single pre-assembled strings to log. However, the benefits of passing the components
+of the string using a list of arguments are:
+
+- String concatenation is performed only if needed (if a log is executed in respect to its \e Verbosity)
+- Less code clutter, better readable log statements
+- better Readable
+- Easier to use
+
+Now, people may wonder why this feature comes only so late!? The answer is: While in languages
+\c C# and \c Java such interface is quite easy to implement (due to the approach
+"everything is an object or gets automatically boxed into an object" of these languages) in \c C++
+it is not: How can you pass arbitrary amounts of arbitrary objects and then process them and convert
+them to strings in C++? Our answer to this is: <b>ALib Boxing</b>!
+
+In short, <b>ALib Boxing</b> allows to create methods that accept any type of argument as parameter,
+without the need of type conversion, wrapper classes, etc. Furthermore <b>ALib Boxing</b> allows to
+add virtual interfaces to C++ types, independent from the original implementation of the type itself.
+This means that any 3rd-party type can be adopted to support "boxing" and to provide its own
+virtual interface implementations. To reach this goal, quite a bit of
+[template meta programming](https://en.wikipedia.org/wiki/Template_metaprogramming)
+was used and some other tricks with C++ type information facilities.
+
+Therefore, the big effort for this release affected two areas:
+- Implement C++ Boxing in underlying library \b %ALib.
+- Implement formatters (we support Python style and Java style format syntax today) for
+  all three languages.
+
+We should not forget to mention that the impact on binary logging (logging of non textual objects
+using custom loggers) is huge: Custom loggers in general are not compatible to the new version.
+The good news is: <b>ALib Boxing</b> provides a whole new level of possibilities and ease of
+use to binary loggers in general.
+
+<b>License:</b><br>
+The license was changed from "MIT License" to "Boost Software License". The Boost License is
+more liberal in respect to distributions in binary format. No copyright notice has to be given
+when ALib/ALox code is distributed exclusively within binary files (compiled code).
+
+<b>Pre-configured Projects and Tools:</b><br>
+- Support for
+  [JetBrains CLion](https://www.jetbrains.com/clion/),
+  [JetBrains IntelliJ](https://www.jetbrains.com/idea/) and
+  [JetBrains Rider](https://www.jetbrains.com/rider/) added.<br>
+  Special thanks goes to \e JetBrains people for <b>granting a free license</b> to support \b %ALox as
+  an open source project!<br>
+  ALox logging and marvellous (!) JetBrains IDEs go together very well: On all platforms and languages,
+  the log output will be nicely formatted with "clickable" links back into the source code!
+
+  Information on how to use ALox with JetBrains products is found in the setup manual pages.
+
+- Moved to Doxygen V. 1.8.12, with some impact on ALox homepage design.
+
+- C++ Version:
+  - All code is now fully compatible with [clang](http://clang.llvm.org/) compiler.
+    \b %ALox/ALib is using its maximum possible warning level for the code. The impact was huge! For example all "old style casts" have been
+    removed from the code.
+    Only a few single warnings need to be disabled. But those are anyhow more for analytics
+    but for day-to-day use. So, we are optimistic that ALib/ALox compiles in any setting without
+    warnings!
+  - ALib and ALox code is now compiling under <b>Mac OSX</b>. Development of platform specific
+    code sections has been made using CMake and [JetBrains CLion](https://www.jetbrains.com/clion/).
+    No XCode project has been set up, yet. Help for future Mac OS support is welcome!
+  - Code is now compiling and tested on 32-bit GNU/Linux OS.
+  - Added [Pretty Printers for GNU Debugger](tools.html#tools_debug_helpers_gdb). However, this is not completely
+    satisfying with all IDEs. The best support for pretty printing of ALox/ALib classes is still
+    with IDE QTCreator.
+  - Renamed CMake files \e ALib_Base.cmake and \e ALox_Base.cmake to \b ALib.cmake and \b ALox.cmake.
+  - Various ALib/ALox CMake variables which had been "hardcoded" have been turned into CMake cache variables.
+  - Renamed macros \b ALIB_DLL_EXPORTS and \b ALOX_DLL_EXPORTS to \ref ALIB_API_IS_DLL and \ref ALOX_API_IS_DLL.
+    On the same token, added macros \b ALIB_API_NO_DLL and \b ALOX_API_NO_DLL.
+
+
+<p>
+<b>Changes in ALib:</b><br>
+
+- In an effort to modularize <b>ALib for C++</b>, with the goal to make portions of ALib available for use
+  without the need of complete \b %ALib, some major refactoring had to be performed. Among many, many small
+  things, the more important of those are:
+  - new namespace/package
+    <b>[com::|cs::]%aworx::lib::lang</b>
+      ([C++] (@ref      aworx::lib::lang),
+       [C#]  (@ref  cs::aworx::lib::lang),
+       [Java](@ref com::aworx::lib::lang))
+  - Removal of former namespace <b>[com::|cs::] %aworx::lib::enums</b>. Enums were moved to \b lang
+    namespace
+  - Moving of various types to different namespaces for supporting modularization
+
+- Complete overhaul of class
+  <b>%NumberFormat</b>
+    ([C++](@ref      #aworx::lib::strings::NumberFormat),
+    [C#]  (@ref  #cs::aworx::lib::strings::NumberFormat),
+    [Java](@ref #com::aworx::lib::strings::NumberFormat)) with greatly extended interface
+  and options for writing and parsing integer and floating point numbers in various formats
+  and fashions.
+
+- New class
+  <b>%Formatter</b>
+    ([C++](@ref      #aworx::lib::strings::Formatter),
+    [C#]  (@ref  #cs::aworx::lib::strings::Formatter),
+    [Java](@ref #com::aworx::lib::strings::Formatter)) to format textual strings using a format
+  definition and arbitrary typed parameters. (In C++, this uses new <b>ALib %Boxing</b> module.)
+  Supported formats are:
+  - "Python Style": Similar and mostly compatible to the (modern version of) formatting syntax of Python string class.
+  - "Java Style":  Similar and mostly compatible to the formatting syntax of the Java formatting classes.
+
+- New class <b>%AutoSizes</b>
+  ([C++](@ref      #aworx::lib::strings::AutoSizes),
+  [C#]  (@ref  #cs::aworx::lib::strings::AutoSizes),
+  [Java](@ref #com::aworx::lib::strings::AutoSizes)) in strings namespace. In fact, this class
+  was moved from the \b %ALox project to \b %ALib as it used in the new formatter classes.
+
+- Class <b>%Variable</b>
+  ([C++](@ref      #aworx::lib::config::Variable),
+  [C#]  (@ref  #cs::aworx::lib::config::Variable),
+  [Java](@ref #com::aworx::lib::config::Variable)): Renamed various methods \b 'AddXyz' to
+  overloaded method \b 'Add'.
+  In C++ version, a template method fetches types applicable to class \b %AString.
+
+- Class <b>%XTernalizer</b>
+  ([C++](@ref      #aworx::lib::config::XTernalizer),
+  [C#]  (@ref  #cs::aworx::lib::config::XTernalizer),
+  [Java](@ref #com::aworx::lib::config::XTernalizer)) learned further escapes codes to externalize
+  (\c \\a, \c \\b, \c \\v, \c \\f, \c \\e).
+
+- Added the following string methods:
+  - <b>%CString::[I|i]ndexOfFirstDifference</b>
+    ([C++](@ref      #aworx::lib::strings::CString::IndexOfFirstDifference),
+    [C#]  (@ref  #cs::aworx::lib::strings::CString::IndexOfFirstDifference),
+    [Java](@ref #com::aworx::lib::strings::CString::indexOfFirstDifference)),
+  - <b>%Substring::[I|i]ndexOfFirstDifference</b>
+    ([C++](@ref      #aworx::lib::strings::String::IndexOfFirstDifference),
+    [C#]  (@ref  #cs::aworx::lib::strings::Substring::IndexOfFirstDifference),
+    [Java](@ref #com::aworx::lib::strings::Substring::indexOfFirstDifference)),
+  - <b>%Substring::[C|c]onsumePartOf</b>
+    ([C++](@ref      #aworx::lib::strings::Substring::ConsumePartOf),
+    [C#]  (@ref  #cs::aworx::lib::strings::Substring::ConsumePartOf),
+    [Java](@ref #com::aworx::lib::strings::Substring::consumePartOf)),
+
+  - <b>%AString::[E|e]scape</b>
+    ([C#]  (@ref #cs::aworx::lib::strings::AString::Escape),
+    [Java](@ref #com::aworx::lib::strings::AString::escape)) (resp.
+    \ref aworx::lib::strings::Format::Escape "Format::Escape" in C++).
+
+- Class <b>Report::Message</b>
+    ([C++](@ref      #aworx::lib::lang::Report::Message),
+    [C#]  (@ref  #cs::aworx::lib::lang::Report::Message),
+    [Java](@ref #com::aworx::lib::lang::Report::Message)) now represents a list of arbitrary
+  message objects instead just one string.
+  On the same token, class \b %Report accepts variadic arguments.<br>
+  In C# and Java, debug warning, error and assertion methods have been moved from class \b %ALib to new class
+  <b>%ALIB_DBG</b>
+    ([C#]  (@ref  #cs::aworx::lib::ALIB_DBG),
+     [Java](@ref #com::aworx::lib::ALIB_DBG)).
+  This was necessary due to the inability of
+  [Proguard](https://www.guardsquare.com/en/proguard) to remove selected methods with variadic arguments.
+
+- Changes specific to ALib for C++
+  - New ALib for C++ namespace \b worx::lib::boxing including a
+    \ref aworx::lib::boxing "detailed documentation" of more than 35+ pages!
+
+  - Added types
+    \ref aworx::lib::lang::integer  "integer" and
+    \ref aworx::lib::lang::uinteger "uinteger" to represent platform dependent 'natural sized' integer values.<br>
+    The length of ALib strings now uses this type and hence is now 63-bit on typical 64-bit platforms
+    and compilers.
+
+  - Added types
+    \ref aworx::lib::lang::intGap_t   "intGap_t"
+    \ref aworx::lib::lang::uintGap_t "uintGap_t" which are used to implement complete template specializations
+    and methods overloads in a compiler-independent way.
+
+  - Added method \ref  #aworx::lib::strings::String::CopyTo "String::CopyTo" which is similar
+    corresponding Java (\b String.getChars) and C# (\b String.CopyTo) built-in methods.
+
+  - Moved partly specialized template functions into partly specialized structs:
+    - \ref aworx::lib::strings::T_String (was \b % ToStringDefined  and \b %ToString before)
+    - \ref aworx::lib::strings::T_Apply (was \b %IsApplicable and \b % ApplyTo before)
+
+    This is a much cleaner approach and allows templated specializations of the templated types
+    (which is not allowed with template functions).
+
+    In addition the template type names of \b %T_Apply are now no longer requested to be
+    <b>const MyType &</b> but solely <b>MyType</b> instead. Furthermore, the default implementation
+    of method \ref aworx::lib::strings::T_Apply::Apply "T_Apply::Apply", which should never be
+    called, has now a more strict compile-time detection of the application of unsupported types.
+
+  - Added support for C++ fundamental types \c char16_t and \c char32_t throughout classes of namespace
+    #aworx::lib::strings "ALib Strings"
+
+  - Changed various preprocessor macros to define a value of \c 0 or \c 1 and instead of testing
+    definition of the macros, now testing for their value.
+
+  - Added preprocessor macros
+    - \ref ALIB_OVERRIDE
+    - \ref ALIB_FALLTHROUGH
+    - \ref ALIB_WARNINGS_RESTORE
+    - \ref ALIB_WARNINGS_START_TMP
+    - \ref ALIB_WARNINGS_UNINITIALIZED_OFF
+    - \ref ALIB_WARNINGS_MACRO_NOT_USED_OFF
+    - \ref ALIB_WARNINGS_OVERLOAD_VIRTUAL_OFF
+
+  - Changed letter case treatment of environment variables. See documentation of namespace function
+    \ref aworx::lib::system::GetEnvironmentVariable.
+
+  - Renamed variable \c ALIB::DebuggerProcessName to
+    \ref aworx::lib::ALIB::DebuggerProcessNames "ALIB::DebuggerProcessNames"  and extended its
+    functionality as documented.
+
+  - Revised internals of class \ref aworx::lib::time::Ticks "Ticks" to provide more consistant
+    results in respect to conversion between \b %Ticks values and real world clock times.
+    See new namespace function \ref aworx::lib::time::SyncClock for details.
+
+<p>
+<b>Changes in ALox:</b><br>
+
+- Based on the the new formatter classes of \b %ALib and the new feature of "boxing" in
+  <b>%ALib for C++</b>, the interface of ALox changed quite dramatically: Instead of the provision
+  of one object to log, which in cases of text-logging needed to be a string, now, an arbitrary
+  amount of arbitrary objects can be passed to the log methods. In the case a textual logger is
+  in place, such will try to detect format strings and their arguments in the list of objects to
+  log and assemble the textual message from those.<br>
+  Consequently, classes, fields and methods which provided an \b AString singleton to be used as a
+  reusable log buffer have been removed in C# and Java versions.
+
+  As \b %ALib provides Python style and Java style formatting syntax, this is now supported by
+  \b %ALox as well.
+
+
+- Most efforts of detecting the execution environment and setting appropriate loggers, output
+  format strings, etc. - with the goal of making log files clickable -  have been removed.
+
+  We understood that it is not easily possible to create and then maintain the code for the
+  different IDEs, operating systems, implementation languages, user settings, and so forth!
+
+  Instead, we decided to document what is necessary and have the user make his fine-tuned settings
+  from this documentation.
+
+- Added configuration variable \ref ALOX_LOGGERNAME_REPLACEMENTS.
+
+- Replaced variable \b %CONSOLE_HAS_LIGHT_BACKGROUND with \ref ALOX_CONSOLE_LIGHT_COLORS.
+- Removed color fields in
+- Class <b>%AnsiLogger</b>
+  ([C++](@ref      #aworx::lox::loggers::AnsiLogger),
+  [C#]  (@ref  #cs::aworx::lox::loggers::AnsiLogger),
+  [Java](@ref #com::aworx::lox::loggers::AnsiLogger)) that indicated the \e %Verbosity.
+  This is now done with existing fields in class
+  Class <b>%MetaInfo</b>
+  ([C++](@ref      #aworx::lox::core::textlogger::MetaInfo),
+  [C#]  (@ref  #cs::aworx::lox::core::textlogger::MetaInfo),
+  [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo)) and by positioning placeholder "%V" at
+  the end of the meta info format string (by default).
+- Removed class \b %LogData. Instead, in C++ Version now objects of new \b %ALib class \b %Box are
+  stored and received. In Java/C# class \c Object is used as a replacement.
+
+- Domain names now have to be upper case letters (this was just a recommendation before). Introducing this
+  restriction allowed an even better auto-detection of logging parameters that constitute a domain
+  specifier. Consequently, field <b>Lox.DomainSensitivity</b> was removed.
+
+- Various preprocessor macros of the C++ version now define a value of \c 0 or \c 1 and instead of testing
+  definition of the macros, code is now testing for their value. Among the macros changed are
+  \ref ALOX_DBG_LOG, \ref ALOX_DBG_LOG_CI, \ref ALOX_REL_LOG and \ref ALOX_REL_LOG_CI
+
+
 
 \~Comment ####################################################################################### \~
 \~Comment #############################       V. 1607        #################################### \~
@@ -79,20 +364,20 @@ This change log is sorted reversely in respect to chronology.
   - <b>Variable substitution</b>: It is now possible to substitute external variables within other
     external variables. This brings a lot of general flexibility to any feature using external
     configuration (as seen in ALox changes below).
-  - New class 
+  - New class
     <b>%Variable</b>
       ([C++](@ref      #aworx::lib::config::Variable),
       [C#]  (@ref  #cs::aworx::lib::config::Variable),
       [Java](@ref #com::aworx::lib::config::Variable)) provides a much more convenient interface
       to loading and storing configuration variables as well to accessing their values or lists of values (parsing
       several values is now done already here, respectively in the plug-ins and not in the user code).
-  - New class 
+  - New class
     <b>%VariableDefinition</b>
       ([C++](@ref      #aworx::lib::config::VariableDefinition),
       [C#]  (@ref  #cs::aworx::lib::config::VariableDefinition),
-      [Java](@ref #com::aworx::lib::config::VariableDefinition)) allows to locate declarations of an applications' variables, 
-      including their category, name, comments, default value and default value delimiter in one place. 
-      
+      [Java](@ref #com::aworx::lib::config::VariableDefinition)) allows to locate declarations of an applications' variables,
+      including their category, name, comments, default value and default value delimiter in one place.
+
   - Field
     <b>%IniFile.AutoSave</b>
       ([C++](@ref      #aworx::lib::config::IniFile::AutoSave),
@@ -125,13 +410,13 @@ This change log is sorted reversely in respect to chronology.
     [C#]  (@ref  #cs::aworx::lib::strings::Substring::TrimEnd),
     [Java](@ref #com::aworx::lib::strings::Substring::trimEnd)) to return \c this instead of \b %Substring.IsEmpty().
   This behavior just fits better to the majority of use cases.
-  
+
 - Changed return value of method
   <b>%AString.TrimAt</b>
     ([C++](@ref      #aworx::lib::strings::AString::TrimAt),
     [C#]  (@ref  #cs::aworx::lib::strings::AString::TrimAt),
     [Java](@ref #com::aworx::lib::strings::AString::trimAt)) to return the new index of the first untrimmed
-    character. On the same token fine-tuned methods \b %TrimStart and \b %TrimEnd in respect of performance.    
+    character. On the same token fine-tuned methods \b %TrimStart and \b %TrimEnd in respect of performance.
 
 - Added optional parameter \p sensitivity to character and string version of  'consume'-methods of class
   <b>%Substring</b>
@@ -141,7 +426,7 @@ This change log is sorted reversely in respect to chronology.
 
 - Class \b %AString now always allocates at least 16 bytes when first characters are added.
 
-- Java Version: Fixed method \ref com::aworx::lib::strings::AString::_(Object) "AString._(Object)" which 
+- Java Version: Fixed method \ref com::aworx::lib::strings::AString::_(Object) "AString._(Object)" which
   unecessarily created temporary strings for various types of parameter \p object.
 
 - Further small alignments of unit testing class \b %AWorxUnitTesting of the three
@@ -196,27 +481,27 @@ This change log is sorted reversely in respect to chronology.
   - [ALOX_LOGGERNAME_FORMAT_MULTILINE](group__GrpALoxConfigVars.html),
   which enable to manipulate various formatting options of standard text loggers.
 
-- C++/C# Versions: 
-  - Capitalized names of fields 
+- C++/C# Versions:
+  - Capitalized names of fields
     <b>Logger.Name</b>
       ([C++] (@ref      #aworx::lox::core::Logger::Name),
        [C#]  (@ref  #cs::aworx::lox::core::Logger::Name)) and
     <b>Logger.TypeName</b>
       ([C++] (@ref      #aworx::lox::core::Logger::TypeName),
        [C#]  (@ref  #cs::aworx::lox::core::Logger::TypeName)).
-   
+
   - Changed signature of methods
     <b>%Lox.SetSourcePathTrimRule</b>
       ([C++](@ref      #aworx::lox::Lox::SetSourcePathTrimRule),
       [C#]  (@ref  #cs::aworx::lox::Lox::SetSourcePathTrimRule))) and
     <b>%Lox.ClearSourcePathTrimRules</b>
       ([C++](@ref      #aworx::lox::Lox::ClearSourcePathTrimRules),
-      [C#]  (@ref  #cs::aworx::lox::Lox::ClearSourcePathTrimRules)) by introducing new enum 
+      [C#]  (@ref  #cs::aworx::lox::Lox::ClearSourcePathTrimRules)) by introducing new enum
     <b>%Reach</b>
       ([C++] (@ref      #aworx::lib::enums::Reach),
-       [C#]  (@ref  #cs::aworx::lib::enums::Reach), 
-       [JAVA](@ref #com::aworx::lib::enums::Reach)) and slightly changeing order of parameters. 
-      (Functionality and format of external configuration variable remains the same.) 
+       [C#]  (@ref  #cs::aworx::lib::enums::Reach),
+       [JAVA](@ref #com::aworx::lib::enums::Reach)) and slightly changeing order of parameters.
+      (Functionality and format of external configuration variable remains the same.)
 
 - Method
   <b>%Log.RemoveALibReportWriter</b>
@@ -237,10 +522,10 @@ This change log is sorted reversely in respect to chronology.
   version do the same report when constructing an object of this class, now.
 
 - Java version: Stack trace and thread information is now retrieved lazily. This speeds up
-  log lines which do not use such information drastically. 
+  log lines which do not use such information drastically.
 
-- Internal logging, when overwriting a <em>Scope Domain</em> with the same value as previously set, are now 
-  attributed \e Verbose instead \e Warning. 
+- Internal logging, when overwriting a <em>Scope Domain</em> with the same value as previously set, are now
+  attributed \e Verbose instead \e Warning.
 
 
 \~Comment ####################################################################################### \~
@@ -272,7 +557,7 @@ This change log is sorted reversely in respect to chronology.
 
 - C++ Version:
     - Added QT support in respect to compatibility of ALib strings and the QT class library.<br>
-      See \ref aworx::lib::strings::ApplyTo<const QString&>(AString&,const QString&) "ApplyTo<const QString&>"
+      See <b>ApplyTo<const QString&></b>
       for more information.<br>
       On the same token, added option \b -fPIC to the compile flags "ALib_Base_cmake" to be
       compatible with QT compilations. This should be revised in the future (compilation flags
@@ -283,14 +568,14 @@ This change log is sorted reversely in respect to chronology.
     - Fixed method \b %AString::ApplyTo for type \b Format::Tab which occurred when parameter
       \p reference was negative and the last newline character sequence was at the end of the string.
     - Added default value to parameter \p regionLength of constructor
-      \ref aworx::lib::strings::String::String(const String&, int, int) "String::String".
+      <b>String::String(const String&, int, int)</b>.
     - Added parameter \b trim defaulting to \c true to method
-      \ref aworx::lib::strings::Substring::Split(int, Substring&, int, bool) "Substring::Split".
+      <b>Substring::Split(int, Substring&, int, bool)</b>.
     - Added a nullptr check to function <c>std::ostream& operator<<( std::ostream& stream, const String& string )</c>
     - Renamed \b %PathSeparator to
       \ref aworx::lib::system::DirectorySeparator "DirectorySeparator".
     - Windows OS version of class \b %ProcessInfo now correctly sets the length of field \b CmdLine.
-    - Method \ref aworx::lib::system::System::GetVariable "System::GetVariable" under Windows OS
+    - Method <b>System::GetVariable</b> under Windows OS
       now correctly returns \c true, when the variable was found.
     - Updated external CMake module [cotire](https://github.com/sakra/cotire/) to recent version
       (precompiled header support).
@@ -367,7 +652,7 @@ This change log is sorted reversely in respect to chronology.
       (This method is provided for debug and unit test purposes mainly).
     - Added automatic detection and configuration of log format of processes running
       within <em>QT Creator</em> to support clickable ALox log output. For more details,
-      see \ref cppsetup_qtcreator_clickable.
+      see \ref cppsetup.
 
 - C# and Java Version:
     - Added the use of an INI file in sample application.
@@ -389,9 +674,9 @@ This change log is sorted reversely in respect to chronology.
     - Missing empty constructor was added to class
       [Tokenizer] (@ref      #aworx::lib::strings::Tokenizer).
     - New macros
-      #ALIB_STRINGS_APPLYTO_DECLARATION,
-      #ALIB_STRINGS_APPLYTO_DEFINITION and
-      #ALIB_STRINGS_APPLYTO_INLINE
+      \b ALIB_STRINGS_APPLYTO_DECLARATION,
+      \b ALIB_STRINGS_APPLYTO_DEFINITION and
+      \b ALIB_STRINGS_APPLYTO_INLINE
       to simplify the extension of partially implemented template method \b %ApplyTo for custom
       'applicable' types.
     - Compilation error in file applyto.hpp fixed. This started occurring in optimized release
@@ -436,11 +721,7 @@ This change log is sorted reversely in respect to chronology.
 <b> Changes in ALib:</b>
 
 Besides small fixes and correction of documentation, relevant changes are:
-- Class
-  <b>Report</b>
-    ([C++](@ref      #aworx::lib::Report),
-    [C#]  (@ref  #cs::aworx::lib::Report),
-    [Java](@ref #com::aworx::lib::Report)) was extended by methods to push, pop and peek the
+- Class <b>Report</b> was extended by methods to push, pop and peek the
   current \b ReportWriter, which replaces former method \b Report::ReplaceReportWriter.
 
 - Added methods
@@ -670,11 +951,7 @@ With these goals in mind, the changes in design and log interface are:
 - Added a counter for the number of <em>Log Statements</em> per domain/logger which is exposed with
   <b>%Lox.LogConfig</b>.
 
-- Added field
-  <b>Lox.DomainSensitivity</b>
-    ([C++](@ref #aworx::lox::Lox::DomainSensitivity),
-    [C#]  (@ref #cs::aworx::lox::Lox::DomainSensitivity),
-    [Java](@ref #com::aworx::lox::Lox::domainSensitivity)) which controls if <em>Log Domains</em>
+- Added field <b>Lox.DomainSensitivity</b> which controls if <em>Log Domains</em>
   are treated the same when they only differ in the case of their writing (which is the default and
   also former behavior) or if case sensitivity is enforced.
 
@@ -760,15 +1037,8 @@ This is a revision of version 1602, with minimal impact on standard ALox user co
 
 <b> Changes in ALib (the utility library that ALox builds on)</b>
 - Removed public flags \b HaltOnError and \b HaltOnWarning in class \b Report and replaced their
-  functionality by providing new methods
-  <b>Report::PushHaltFlags</b>
-    ([C++] (@ref      #aworx::lib::Report::PushHaltFlags),
-     [C#]  (@ref  #cs::aworx::lib::Report::PushHaltFlags),
-     [Java](@ref #com::aworx::lib::Report::pushHaltFlags)) and
-  <b>Report::PopHaltFlags</b>
-    ([C++] (@ref      #aworx::lib::Report::PopHaltFlags),
-     [C#]  (@ref  #cs::aworx::lib::Report::PopHaltFlags),
-     [Java](@ref #com::aworx::lib::Report::popHaltFlags)).
+  functionality by providing new methods <b>Report::PushHaltFlags</b> and
+  <b>Report::PopHaltFlags</b>.
 
 
 <b> Changes in ALox</b>
@@ -927,10 +1197,7 @@ More important general changes are:
     anything that smells like a string in its TMP-based constructor!)
 
 - A sort of 'global' approach to \e enumerations in ALib has been taken. Read more about that in:
-  <b>Namespace 'enums'</b>
-    ([C++] (@ref #aworx::lib::enums),
-    [C#]  (@ref #cs::aworx::lib::enums),
-    [Java](@ref #com::aworx::lib::enums))
+  <b>Namespace 'enums'</b>.
 
 - Class
   <b>ALIB</b>
@@ -948,15 +1215,8 @@ More important general changes are:
    - \e ALIB_ERROR,
    - \e ALIB_ASSERT_WARNING, etc.
 
-- These assertions make use of classes
-  <b>Report</b>
-  ([C++] (@ref #aworx::lib::Report),
-   [C#]  (@ref #cs::aworx::lib::Report),
-   [Java](@ref #com::aworx::lib::Report)) and
-  <b>ReportWriter</b>
-  ([C++] (@ref #aworx::lib::ReportWriter),
-   [C#]  (@ref #cs::aworx::lib::ReportWriter),
-   [Java](@ref #com::aworx::lib::ReportWriter)) which replaced the former \e ErrorHandler class.
+- These assertions make use of classes <b>Report</b> and  <b>ReportWriter</b>
+  which replaced the former \e ErrorHandler class.
 
 
 <p>
@@ -1189,9 +1449,8 @@ More important general changes are:
 - Added a AString singleton to classes
   [Log](@ref #cs::aworx::lox::Log) and
   [Lox](@ref #cs::aworx::lox::Lox) that can be acquired using
-  [Log.Buf()](@ref #cs::aworx::lox::Lox::Buf) respectively
-  [Lox.Buf()](@ref #cs::aworx::lox::Lox::Buf) and is automatically released when contents gets logged. See
-  new tutorial section \ref tutcs_logbuf.
+  \b Log.Buf respectively \b Lox.Buf and is automatically released when contents gets logged. See
+  new tutorial section.
 
 - C# class [ThreadLock](@ref cs::aworx::lib::threads::ThreadLock) corrected method names to follow "upper camel case".
 

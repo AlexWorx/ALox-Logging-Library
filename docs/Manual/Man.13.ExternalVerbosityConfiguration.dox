@@ -1,8 +1,8 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /**
@@ -224,7 +224,7 @@ is a little different than when using method
         /COMM/ERRORS/SEVERE
 
   This is not possible with using method \b %Lox.SetVerbosity which always modifies exactly
-  one <em>Log Domain</em> and its sub-domains..
+  one <em>Log Domain</em> and its sub-domains.
 
 - Using method \b %Lox.SetVerbosity, it is possible to use "relative path addressing", which
   means, a <em>Log Domain</em> or sub-domain of the evaluated, currently applicable domain resulting from
@@ -246,12 +246,12 @@ variables from within the source code.
     <b>%Configuration.DefaultValues</b>
      ([C++] (@ref      #aworx::lib::config::Configuration.DefaultValues),
       [C#]  (@ref  #cs::aworx::lib::config::Configuration.DefaultValues),
-      [Java](@ref #com::aworx::lib::config::Configuration.defaultValues)) of the public static
-  singleton of class \b %Configuration found in field
-    <b>%ALIB.Config</b>
-     ([C++] (@ref      #aworx::lib::ALIB::Config),
-      [C#]  (@ref  #cs::aworx::lib::ALIB::Config),
-      [Java](@ref #com::aworx::lib::ALIB::config)).
+      [Java](@ref #com::aworx::lib::config::Configuration.defaultValues))
+  of the public static singleton of class \b %Configuration found in field
+    <b>%Configuration.Default</b>
+     ([C++] (@ref      #aworx::lib::config::Configuration::Default),
+      [C#]  (@ref  #cs::aworx::lib::config::Configuration::Default),
+      [Java](@ref #com::aworx::lib::config::Configuration::Default)).
   Of-course,you do this instead of invoking \b %Lox.SetVerbosity.
 
 \note
@@ -286,10 +286,11 @@ configuration as soon as a \e Logger is removed from a \b %Lox object.
 
 \note
   Of-course, a write-enabled configuration plug-in needs to be attached to public static singleton
-  <b>%ALIB.Config</b>
-    ([C++] (@ref      #aworx::lib::ALIB::Config),
-     [C#]  (@ref  #cs::aworx::lib::ALIB::Config),
-     [Java](@ref #com::aworx::lib::ALIB::config)). The simplest type is found with class
+  <b>%Configuration.Default</b>
+   ([C++] (@ref      #aworx::lib::config::Configuration::Default),
+    [C#]  (@ref  #cs::aworx::lib::config::Configuration::Default),
+    [Java](@ref #com::aworx::lib::config::Configuration::Default)).
+  The simplest type is found with class
   <b>%IniFile</b>
     ([C++] (@ref      #aworx::lib::config::IniFile),
      [C#]  (@ref  #cs::aworx::lib::config::IniFile),
@@ -310,7 +311,7 @@ need to do is adding section and variable:
         LOG_DEBUG_LOGGER_VERBOSITY = writeback
 
 The variable name addresses the default debug \e Logger which is called
-\b DEBUG_LOGGER and the default debug \b %Lox wich is called \b LOG.
+\b DEBUG_LOGGER and the default debug \b %Lox which is called \b LOG.
 
 Now after your next run of your application, ALox will have written back
 the current configuration and your INI might look like this:
@@ -336,7 +337,7 @@ runs. The reason is that ALox recognizes only those domains that are actually
 used (independend from their \e Verbosity setting). Subsequent runs may
 have different execution paths and this way might "touch" other <em>Log Domains</em>.
 
-As ALox reads the the variable during the runs, any change you make in the
+As ALox reads the variable during the runs, any change you make in the
 INI-file is well kept.
 
 \note
@@ -523,7 +524,7 @@ As a summary, these are the takeaways of this chapter:
   and one general, public instance. The user-dependent INI file may modify (overwrite) settings
   of the general one.
 - In special situations it is recommended to protect certain <em>Log Domains</em> from being changed
-  at run-time. This is done by explicitly providing
+  at runtime. This is done by explicitly providing
   <b>%Configuration.PrioProtected</b>
   ([C++] (@ref      #aworx::lib::config::Configuration::PrioProtected),
    [C#]  (@ref  #cs::aworx::lib::config::Configuration::PrioProtected),

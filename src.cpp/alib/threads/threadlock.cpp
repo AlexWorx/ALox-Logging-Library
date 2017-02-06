@@ -1,43 +1,35 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alib/alib.hpp"
 
 
 #if !defined (HPP_ALIB_THREADS_THREADLOCK)
     #include "alib/threads/threadlock.hpp"
 #endif
-#if !defined (HPP_ALIB_TIME)
+#if !defined (HPP_ALIB_TIME_TICKS)
     #include "alib/time/ticks.hpp"
 #endif
 
-#include <algorithm>
-
-
 using namespace std;
 
-namespace aworx {
-namespace           lib {
-namespace                   threads {
-
-// #################################################################################################
-// class ThreadLock
-// #################################################################################################
-
-ThreadLock::ThreadLock( LockMode lockMode, Safeness safeness )
-: lockMode(lockMode)
+namespace aworx { namespace lib { namespace threads
 {
-    SetSafeness( safeness );
+
+ThreadLock::ThreadLock( LockMode pLockMode, Safeness pSafeness )
+: lockMode(pLockMode)
+{
+    SetSafeness( pSafeness );
 }
 
 ThreadLock::~ThreadLock()
 {
-    ALIB_ASSERT_WARNING_S512( cntAcquirements == 0, "Destruction while locked" );
+    ALIB_ASSERT_WARNING( cntAcquirements == 0, "Destruction while locked" );
 
-    #if defined(ALIB_FEAT_THREADS)
+    #if ALIB_FEAT_THREADS
         if ( mutex            != nullptr ) delete mutex;
         if ( mutexNotifier    != nullptr ) delete mutexNotifier;
     #endif
@@ -45,7 +37,7 @@ ThreadLock::~ThreadLock()
 
 int ThreadLock::DbgCountAcquirements( Thread* thread )
 {
-    #if defined(ALIB_FEAT_THREADS)
+    #if ALIB_FEAT_THREADS
         if ( GetSafeness() == Safeness::Unsafe )
             return cntAcquirements;
 
@@ -65,7 +57,7 @@ int ThreadLock::DbgCountAcquirements( Thread* thread )
     #endif
 }
 
-#if defined( ALIB_DEBUG )
+#if ALIB_DEBUG
     void ThreadLock::Acquire( const TString& file, int line, const TString& func )
 #else
     void ThreadLock::Acquire()
@@ -79,9 +71,10 @@ int ThreadLock::DbgCountAcquirements( Thread* thread )
                                                            : 1;
 
         // reached warning limit?
-        ALIB_ASSERT_WARNING_S512( cntAcquirements > 0 && cntAcquirements % RecursionWarningThreshold != 0,
-                "Recursion depth " << cntAcquirements
-           <<   ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code!" );
+        ALIB_ASSERT_WARNING( cntAcquirements > 0 && cntAcquirements % RecursionWarningThreshold != 0,
+                            "Recursion depth warning.\n"
+                            "To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code.\n"
+                            "Depth: ", cntAcquirements );
 
         // end of unsafe version of this method
         return;
@@ -92,7 +85,7 @@ int ThreadLock::DbgCountAcquirements( Thread* thread )
     Thread* thisThread= Thread::CurrentThread();
 
     // synchronize on mutex
-    #if defined(ALIB_FEAT_THREADS)
+    #if ALIB_FEAT_THREADS
     unique_lock<std::mutex> lock(*mutex);  {
     #endif
 
@@ -103,17 +96,18 @@ int ThreadLock::DbgCountAcquirements( Thread* thread )
             cntAcquirements=  lockMode== LockMode::Recursive  ? cntAcquirements + 1
                                                               : 1;
             // reached warning limit?
-            ALIB_ASSERT_WARNING_S512( cntAcquirements > 0  && cntAcquirements % RecursionWarningThreshold != 0,
-                    "Recursion depth " << cntAcquirements
-                <<  ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code!" );
+            ALIB_ASSERT_WARNING( cntAcquirements > 0  && cntAcquirements % RecursionWarningThreshold != 0,
+                                "Recursion depth warning.\n"
+                                "To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code.\n"
+                                "Depth: ", cntAcquirements );
 
-            #if defined(ALIB_FEAT_THREADS)
+            #if ALIB_FEAT_THREADS
                 lock.unlock();
             #endif
             return;
         }
 
-        #if defined(ALIB_FEAT_THREADS)
+        #if ALIB_FEAT_THREADS
         // we do not own this thread, wait until lock is free
         bool hasWarned= false;
         while( owner != nullptr )
@@ -131,14 +125,16 @@ int ThreadLock::DbgCountAcquirements( Thread* thread )
                 if ( millis >= WaitWarningTimeLimitInMillis )
                 {
                     hasWarned= true;
-                    ALIB_WARNING_S512(    "Timeout (" << WaitWarningTimeLimitInMillis
-                                         << " ms). Change your codes' critical section length if possible."           << NewLine
-                                         << "This thread: " <<  thisThread->GetId() <<  '/' << thisThread->GetName()  << NewLine
-                                         << "Owner: "       <<  owner->     GetId() <<  '/' << owner->     GetName()  << NewLine
-                                         << "Location of acquirement: " << acquirementSourcefile << ':'
-                                                                        << acquirementLineNumber << ' '
-                                                                        << acquirementMethodName << "()"
-                                      );
+                    ALIB_WARNING( (String256() <<
+                        "Timeout acquiring lock (" << millis
+                        << "). Change your codes' critical section length if possible."
+                        << "\n  This thread: " << thisThread->GetId() << '/' << thisThread->GetName()
+                        << "\n  Owner:       " <<      owner->GetId() << '/' <<      owner->GetName()
+                        << "\n  Location of acquirement: " << acquirementSourcefile
+                                                           << '[' << acquirementLineNumber << "]: "
+                                                           << acquirementMethodName << "().").ToCString()
+
+                    )
                 }
             }
         }
@@ -146,14 +142,14 @@ int ThreadLock::DbgCountAcquirements( Thread* thread )
 
         // take control
         owner=           thisThread;
-        #if defined( ALIB_DEBUG )
+        #if ALIB_DEBUG
             acquirementSourcefile= file;
             acquirementLineNumber= line;
             acquirementMethodName= func;
         #endif
         cntAcquirements= 1;
 
-    #if defined(ALIB_FEAT_THREADS)
+    #if ALIB_FEAT_THREADS
     } lock.unlock(); // synchronized
     #endif
 }
@@ -180,7 +176,7 @@ void ThreadLock::Release()
     }
 
     // synchronize on mutex
-    #if defined(ALIB_FEAT_THREADS)
+    #if ALIB_FEAT_THREADS
     unique_lock<std::mutex> lock(*mutex); {
     #endif
 
@@ -195,11 +191,11 @@ void ThreadLock::Release()
         if( cntAcquirements == 0 )
         {
             owner=    nullptr;
-            #if defined(ALIB_FEAT_THREADS)
+            #if ALIB_FEAT_THREADS
                 mutexNotifier->notify_one();
             #endif
         }
-    #if defined(ALIB_FEAT_THREADS)
+    #if ALIB_FEAT_THREADS
     } lock.unlock(); // synchronized
     #endif
 }
@@ -213,8 +209,8 @@ void ThreadLock::SetSafeness( Safeness safeness )
         // already locked? ALIB Error
         if( cntAcquirements != 0 )
         {
-            ALIB_ERROR_S512( "Cannot switch safeness mode while already locked. "
-                             "Current mode: unsafe, requested mode: "  << safeness )
+            ALIB_ERROR( (String256() << "Cannot switch safeness mode while already locked.\n"
+                        "  Current mode: unsafe, requested mode: " << safeness).ToCString() )
 
             return;
         }
@@ -222,7 +218,7 @@ void ThreadLock::SetSafeness( Safeness safeness )
         //  switch on?
         if( safeness == Safeness::Safe )
         {
-            #if defined(ALIB_FEAT_THREADS)
+            #if ALIB_FEAT_THREADS
                 mutex=            new std::mutex();
                 mutexNotifier=    new condition_variable();
             #else
@@ -235,22 +231,22 @@ void ThreadLock::SetSafeness( Safeness safeness )
     }
 
     // synchronize on mutex
-    #if defined(ALIB_FEAT_THREADS)
+    #if ALIB_FEAT_THREADS
     unique_lock<std::mutex> lock(*mutex); {
     #endif
         // already locked? ALIB Error
         if ( owner != nullptr )
         {
-            ALIB_ERROR_S512(  "Cannot switch safeness mode while already locked. "
-                            "Current mode: safe, requested mode: " << safeness
-                            << " Owner: "  << owner->GetId() <<  '/' << owner->GetName() )
+            ALIB_ERROR( (String256() << "Cannot switch safeness mode while already locked.\n"
+                                        "  Current mode: safe, requested mode: " << safeness << "\n"
+                                        "  Owner: "<< owner->GetId() << '/' << owner->GetName() ).ToCString() )
             return;
         }
 
         //  switch off?
         if( safeness == Safeness::Unsafe )
         {
-            #if defined(ALIB_FEAT_THREADS)
+            #if ALIB_FEAT_THREADS
                 lock.unlock();
                 delete mutexNotifier;    mutexNotifier= nullptr;
                 delete mutex;            mutex= nullptr;
@@ -260,149 +256,11 @@ void ThreadLock::SetSafeness( Safeness safeness )
 
             return;
         }
-    #if defined(ALIB_FEAT_THREADS)
+    #if ALIB_FEAT_THREADS
     } lock.unlock(); // synchronized
     #endif
 
 }
-
-// #################################################################################################
-// class SmartLock
-// #################################################################################################
-
-int SmartLock::CntAcquirers()
-{
-    OWN( ALIB::Lock )
-    return (int) acquirers.size();
-}
-
-int   SmartLock::AddAcquirer( ThreadLock* newAcquirer )
-{
-    int count= -1;
-    #if defined ALIB_DEBUG
-        bool errAllreadyAdded=      true;
-        bool errHasToBeRecursive=   false;
-        int  errWasAcquired=        0;
-    #endif
-    {
-        OWN( ALIB::Lock )
-
-        count= (int) acquirers.size();
-
-        // check doubly added
-        if (     newAcquirer == nullptr
-             ||  std::find( acquirers.begin(), acquirers.end(), newAcquirer ) == acquirers.end() )
-        {
-            #if defined ALIB_DEBUG
-                errAllreadyAdded= false;
-                errWasAcquired=   ThreadLock::DbgCountAcquirements() != 0 ? 1 : 0;
-            #endif
-
-            // switch on?
-            if( acquirers.size() == 1 )
-            {
-                ThreadLock* firstAcquirer= acquirers[0];
-
-                // non-anonymous acquirer?
-                if ( firstAcquirer != nullptr )
-                {
-                    if( firstAcquirer->GetMode() == LockMode::Recursive )
-                    {
-                        firstAcquirer->Acquire( ALIB_DBG_SRC_INFO_PARAMS);
-                            SetSafeness( Safeness::Safe );
-                            acquirers.emplace_back( newAcquirer );
-                            count++;
-                        firstAcquirer->Release();
-                    }
-                    #if defined ALIB_DEBUG
-                    else
-                        errHasToBeRecursive= false;
-                    #endif
-
-                }
-
-                // critical section: our first acquirer is anonymous. As documented in class,
-                // this must happen only in situations, when we are sure, that we are safe, e.g. still
-                // single threaded execution of process bootstrap.
-                else
-                {
-                    // If this assert happens, its only good luck: we detected a misuse. But it should
-                    // be very seldom to be detected this way :-/
-                    #if defined ALIB_DEBUG
-                        if ( errWasAcquired == 1 )
-                            errWasAcquired= 2;
-                    #endif
-
-                    SetSafeness( Safeness::Safe );
-                    acquirers.emplace_back( newAcquirer );
-                    count++;
-                }
-            }
-            else
-                acquirers.emplace_back( newAcquirer );
-        }
-    }//OWN
-
-
-    ALIB_ASSERT_ERROR( !errAllreadyAdded,    "Acquirer already registered." );
-    ALIB_ASSERT_ERROR( !errHasToBeRecursive, "Acquireres need to be in recursive mode " );
-    ALIB_ASSERT_ERROR( errWasAcquired!=1,    "Already aquired. Hint: Acquirer[0] must not acquire this before adding itself!" );
-    ALIB_ASSERT_ERROR( errWasAcquired!=2,    "Aquired and acquirer[0] anonymous. Misuse of SmartLock!" );
-
-    return count;
-}
-
-int   SmartLock::RemoveAcquirer( ThreadLock* acquirerToRemove )
-{
-    int count= -1;
-    #if defined ALIB_DEBUG
-        bool errNotFound=    true;
-        bool errWasAcquired= false;
-    #endif
-    {
-        OWN( ALIB::Lock )
-
-        #if defined ALIB_DEBUG
-            errWasAcquired=   ThreadLock::DbgCountAcquirements() != 0;
-        #endif
-
-        // search acquirer
-        auto it= std::find( acquirers.begin(), acquirers.end(), acquirerToRemove );
-        if( it != acquirers.end() )
-        {
-            #if defined ALIB_DEBUG
-                errNotFound= false;
-            #endif
-
-            // switch off?
-            if( acquirers.size() == 2 )
-            {
-                ThreadLock* acquirer1=  acquirers[0];
-                ThreadLock* acquirer2=  acquirers[1];
-                if( acquirer1== acquirerToRemove ) acquirer1= nullptr;
-                if( acquirer2== acquirerToRemove ) acquirer2= nullptr;
-
-                // Aquire acquirers in their order of appearance
-                if ( acquirer1 != nullptr ) acquirer1->Acquire(ALIB_DBG_SRC_INFO_PARAMS);
-                  if ( acquirer2 != nullptr ) acquirer2->Acquire(ALIB_DBG_SRC_INFO_PARAMS);
-                      SetSafeness( Safeness::Unsafe );
-                      acquirers.erase( it );
-                  if ( acquirer2 != nullptr ) acquirer2->Release();
-                if ( acquirer1 != nullptr ) acquirer1->Release();
-            }
-
-            // just remove acquirer, keep mode
-            else
-                acquirers.erase( it );
-        }
-        count= (int) acquirers.size();
-    }
-
-    ALIB_ASSERT_ERROR( !errNotFound,    "Acquirer not found." );
-    ALIB_ASSERT_ERROR( !errWasAcquired, "Aquired on release. Hint: Acquirers must acquire only when acquired themselves!" );
-    return count;
-}
-
 
 
 }}}// namespace aworx::lib::threads

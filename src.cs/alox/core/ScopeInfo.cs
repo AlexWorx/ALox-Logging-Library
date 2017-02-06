@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox.core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 using System;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using cs.aworx.lib;
 using cs.aworx.lib.time;
 using cs.aworx.lib.strings;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 using cs.aworx.lib.threads;
 using System.IO;
 using System.Diagnostics;
@@ -37,13 +37,6 @@ public class ScopeInfo
 
         /** The dictionary for thread names (a copy of that from our Lox)  */
         protected        Dictionary<int, String>   threadDictionary;
-
-
-        /**  Line number within the source file (given by the diagnostics)  **/
-        protected        int                       origLine;
-
-        /**  Function/method name (given by the diagnostics)  **/
-        protected        String                    origMethod;
 
 
 
@@ -100,13 +93,6 @@ public class ScopeInfo
         /** A list of source files. The its size is dependent on static field #DefaultCacheSize. */
         protected         SourceFile[]              cache;
 
-        /** The actual entry of the source file cache      */
-        SourceFile                                  actual;
-
-
-        /** Time of the call represented by this instance.  **/
-        protected        Ticks                      timeStamp                          = new Ticks();
-
         /** The thread that executed the log.  **/
         protected        Thread                     thread;
 
@@ -124,6 +110,38 @@ public class ScopeInfo
          *  with the path of the executable of the current process.
          */
         protected bool                              AutoDetectTrimableSourcePath             = true;
+
+        /** Information of a single source file. Stored in field #cache */
+
+            /**
+         * Holds values for the current scope. Because recursive logging might occur (e.g. when
+         * parameters rely on method invocations wich incorporate log statements), objects of this
+         * class are stored in stack #scopes.
+         */
+    protected class Scope
+        {
+            /** Time of the call represented by this instance.  **/
+            public           Ticks                  timeStamp                     = new Ticks();
+
+            /**  Line number within the source file (given by the diagnostics)  **/
+            public           int                    origLine;
+
+            /**  Function/method name (given by the diagnostics)  **/
+            public           String                 origMethod;
+
+            /** The entry of the source file cache      */
+            public           SourceFile             sourceFile;
+        }
+
+        /** A stack of scopes (allows recursive calls/nested logging) */
+        protected        List<Scope>                scopes                      = new List<Scope>();
+
+        /** The current depth of recursive invocations. */
+        protected        int                        actScopeDepth                              = -1;
+
+        /** The last source file used. This is tried first with next invocation. If it does not
+         *  match, the cache is searched for another matching one.*/
+        protected        SourceFile                 lastSourceFile;
 
     // #############################################################################################
     // Public memebers (in C++ this is protected and Lox is a friend)
@@ -163,14 +181,14 @@ public class ScopeInfo
         public ScopeInfo( String name,  Dictionary<int, String> threadDictionary )
         {
             loxName= name.ToUpper();
-            ALIB.ASSERT_ERROR( !loxName.Equals( "GLOBAL" ), "Name \"GLOBAL\" not allowed for Lox instances" );
+            ALIB_DBG.ASSERT_ERROR( !loxName.Equals( "GLOBAL" ), "Name \"GLOBAL\" not allowed for Lox instances" );
 
             this.threadDictionary= threadDictionary;
 
             cache=  new SourceFile[cacheSize= DefaultCacheSize];
             for ( int i= 0; i< cacheSize; i++ )
                 cache[i]= new SourceFile();
-            actual= cache[0];
+            lastSourceFile= cache[0];
 
             // read trim rules from config
             // do 2 times, 0== local list, 1== global list
@@ -205,7 +223,7 @@ public class ScopeInfo
                             rule.Path= new AString();
                             ruleTok.Next();
                             if( ! ( rule.IsPrefix= !ruleTok.Actual.StartsWith( "*" ) ) )
-                                ruleTok.Actual.Consume(1);
+                                ruleTok.Actual.ConsumeChars(1);
                             rule.Path._( ruleTok.Actual );
                             if ( rule.Path.CharAtEnd() == '*' )
                                 rule.Path.DeleteEnd( 1 );
@@ -221,7 +239,7 @@ public class ScopeInfo
                             rule.IncludeString = ALIB.ReadInclusion( ruleTok.Next() );
 
                             if ( ruleTok.HasNext () )
-                                ruleTok.Next().ConsumeInteger( out rule.TrimOffset );
+                                ruleTok.Next().ConsumeInt( out rule.TrimOffset );
 
                             rule.Sensitivity = ALIB.ReadCase( ruleTok.Next() );
 
@@ -232,7 +250,7 @@ public class ScopeInfo
                         }
                         catch( Exception )
                         {
-                            ALIB.ERROR( "Error reading source path trim rule from configuration. Invalid String: "
+                            ALIB_DBG.ERROR( "Error reading source path trim rule from configuration. Invalid String: "
                                         + variable.GetString( ruleNo ).ToString() );
                         }
                     }
@@ -249,24 +267,37 @@ public class ScopeInfo
          * @param callerMemberName       Name of the method the log call is placed in.
          * @param thread                 The thread. If \c null, it will be determined if needed.
          ******************************************************************************************/
-        public void Set ( int callerLineNumber, String callerSourceFileName, String callerMemberName,
-                          Thread thread )
+        public void Set( int callerLineNumber, String callerSourceFileName, String callerMemberName,
+                         Thread thread )
         {
+            actScopeDepth++;
+            if( scopes.Count == actScopeDepth )
+            {
+                ALIB_DBG.ASSERT( actScopeDepth < 8 );
+                scopes.Add( new Scope() );
+            }
+            Scope scope = scopes[actScopeDepth];
+
             // 1) set the actual timestamp as early as possible
-            timeStamp.Set();
+            scope.timeStamp.Set();
 
             // 2) save parameters
-            if( actual.origFile != callerSourceFileName )
+            scope.origLine=    callerLineNumber;
+            scope.origMethod=  callerMemberName;
+            scope.sourceFile=  lastSourceFile;
+
+            // 3) find matching source file info record
+            if( scope.sourceFile.origFile != callerSourceFileName )
             {
                 int   oldestIdx= -1;
                 long  oldestTime= ++cacheRun;
 
-                actual= null;
+                scope.sourceFile= null;
                 for( int i= 0; i < cacheSize; i++ )
                 {
                     if ( cache[i].origFile == callerSourceFileName )
                     {
-                        actual= cache[i];
+                        scope.sourceFile= cache[i];
                         break;
                     }
 
@@ -278,27 +309,22 @@ public class ScopeInfo
                 }
 
                 // not found? Use the oldest
-                if ( actual == null )
+                if ( scope.sourceFile == null )
                 {
-                    actual= cache[oldestIdx];
+                    scope.sourceFile= cache[oldestIdx];
 
-                    actual.origFile=                callerSourceFileName;
-                    actual.origFilePathLength=      -2;
-                    actual.lazyTrimmedPath          =
-                    actual.lazyName                 =
-                    actual.lazyNameWOExt            =false;
+                    scope.sourceFile.origFile=                callerSourceFileName;
+                    scope.sourceFile.origFilePathLength=      -2;
+                    scope.sourceFile.lazyTrimmedPath          =
+                    scope.sourceFile.lazyName                 =
+                    scope.sourceFile.lazyNameWOExt            =false;
                 }
 
                 // mark as used
-                actual.timeStamp= cacheRun;
+                scope.sourceFile.timeStamp= cacheRun;
             }
 
-
-
-            this.origLine=    callerLineNumber;
-            this.origMethod=  callerMemberName;
-
-            // 3) get thread information
+            // 4) get thread information
             threadName._();
 
             // get current thread
@@ -319,6 +345,17 @@ public class ScopeInfo
                     threadName._( thread.Name )._( '(' )._( threadID )._( ')' );
             }
         }
+
+        /** ****************************************************************************************
+         * Releases latest scope information.
+         ******************************************************************************************/
+        public void Release()
+        {
+            lastSourceFile= scopes[actScopeDepth].sourceFile;
+            actScopeDepth--;
+            ALIB_DBG.ASSERT( actScopeDepth >=-1 );
+        }
+
 
         /** ****************************************************************************************
          * Does the job for
@@ -345,9 +382,14 @@ public class ScopeInfo
                                              Reach      reach,
                                              int        priority            )
         {
-            // unset current origFile to have lazy variables reset with the next invocation
-            for ( int i= 0; i< cacheSize; i++ )
-                cache[i].origFile= null;
+            // unset current cache objects to have lazy variables reset with the next invocation
+            for (int i = 0; i < cacheSize; i++)
+            {
+                cache[i].origFilePathLength=      -2;
+                cache[i].lazyTrimmedPath          =
+                cache[i].lazyName                 =
+                cache[i].lazyNameWOExt            =false;
+            }
 
             // clear command
             if ( trimOffset == 999999 )
@@ -413,7 +455,7 @@ public class ScopeInfo
          ******************************************************************************************/
         public String GetOrigFile()
         {
-            return actual.origFile;
+            return scopes[actScopeDepth].sourceFile.origFile;
         }
 
         /** ****************************************************************************************
@@ -424,6 +466,7 @@ public class ScopeInfo
          ******************************************************************************************/
         public String GetFullPath( out int length )
         {
+            SourceFile actual= scopes[actScopeDepth].sourceFile;
             if( actual.origFilePathLength == -2 )
                 actual.origFilePathLength= actual.origFile.LastIndexOf( Path.DirectorySeparatorChar );
 
@@ -441,6 +484,7 @@ public class ScopeInfo
          ******************************************************************************************/
         public AString GetTrimmedPath()
         {
+            SourceFile actual= scopes[actScopeDepth].sourceFile;
             if( actual.lazyTrimmedPath )
                 return actual.trimmedPath;
             actual.lazyTrimmedPath= true;
@@ -513,11 +557,8 @@ public class ScopeInfo
 
                 if ( i > 1 )
                 {
-                    String origFile= actual.origFile;
                     SetSourcePathTrimRule( currentDir.Substring( 0, i ), Inclusion.Include, 0, Case.Ignore,  "", Reach.Local,
                                            Configuration.PrioDefault - 1 );
-
-                    actual.origFile= origFile;
 
                     // one recursive call
                     actual.lazyTrimmedPath= false;
@@ -535,6 +576,7 @@ public class ScopeInfo
          ******************************************************************************************/
         public AString GetFileName()
         {
+            SourceFile actual= scopes[actScopeDepth].sourceFile;
             if( actual.lazyName )
                 return actual.name;
 
@@ -555,6 +597,7 @@ public class ScopeInfo
          ******************************************************************************************/
         public AString GetFileNameWithoutExtension()
         {
+            SourceFile actual= scopes[actScopeDepth].sourceFile;
             if( actual.lazyNameWOExt )
                 return actual.nameWOExt;
             actual.lazyNameWOExt= true;
@@ -573,7 +616,7 @@ public class ScopeInfo
          ******************************************************************************************/
         public String GetMethod()
         {
-            return origMethod;
+            return scopes[actScopeDepth].origMethod;
         }
 
         /** ****************************************************************************************
@@ -583,7 +626,7 @@ public class ScopeInfo
          ******************************************************************************************/
         public int GetLineNumber()
         {
-            return origLine;
+            return scopes[actScopeDepth].origLine;
         }
 
         /** ****************************************************************************************
@@ -592,7 +635,7 @@ public class ScopeInfo
          ******************************************************************************************/
         public Ticks GetTimeStamp()
         {
-            return timeStamp;
+            return scopes[actScopeDepth].timeStamp;
         }
 
         /** ************************************************************************************

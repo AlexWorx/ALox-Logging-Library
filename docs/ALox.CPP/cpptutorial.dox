@@ -1,8 +1,8 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /**
@@ -160,7 +160,7 @@ log messages in textual format e.g. to standard output stream (and/or to the app
 As said above, other \e Loggers could be added in parallel that use other "drains" to write the
 output to, e.g. files, a metrics server in the cloud, etc.
 
-Together with the <em>Log Statement</em> of the the first introductory sample, your projects code (e.g. in method \c main)
+Together with the <em>Log Statement</em> of the first introductory sample, your projects code (e.g. in method \c main)
 should look like this:
 
 \snippet ut_dox_tutorial.cpp Tut_ALox_Logger_2
@@ -288,7 +288,7 @@ ALox allows to control this on a 'per \e %Logger' basis using method
 
 \snippet ut_dox_tutorial.cpp        Tut_Verbosity_SetVerbosity
 
-Here, we are explicitly passing the the \e Logger object that ALox creates as a static singleton
+Here, we are explicitly passing the \e Logger object that ALox creates as a static singleton
 for debug-logging purposes, with method \b AddDebugLogger().
 Instead of passing the reference to the object, we could as well use a \e Loggers' name.
 The \e Logger that method \b AddDebugLogger() creates is named \c "DEBUG_LOGGER". Therefore, the
@@ -511,11 +511,80 @@ in the [ALox User Manual](../manual.html). Among other things, you will find:
 - More samples and use cases, e.g. when to use absolute paths in <em>Scope Domains</em>.
 
 
+\~Comment ####################################################################################### \~
+# 10. Formatting #   {#tutcpp_formatting}
+While talking about rather complicated things like <em>Log Domains</em> and \e Scopes, we must not
+forget to talk about the log output itself. \b %ALox is designed to be able to pass any type of
+data to one or more \e Loggers. In the default case, a textual output of these \e "Logables" is wanted.
+We have seen in previous samples already, that if two objects are passed, their textual representation
+is just concatenated:
+
+\snippet ut_dox_tutorial.cpp        Tut_Format_1
+\verbinclude ALox.CPP/generated/Tut_Format_1.txt
+
+But in fact, this concatenation is just the "fallback" strategy of a quite powerful formatting
+system coming with \b %ALox. In short, \b %ALox here relies on underlying library \b %ALib, which
+provides abstract class \ref aworx::lib::strings::Formatter "Formatter"
+allowing to format a set of arguments in accordance with a given format string that contains placeholder symbols.
+
+Now there are two tricks implemented: First, if no format string is recognized, a simple
+concatenation is performed. This is what we already saw. But secondly, if one formatter does not
+recognize a format string, a next formatter can be asked.
+
+Two formatters are provided by \b %ALib and \b %ALox (by default) installs both in parallel:
+1. \ref aworx::lib::strings::FormatterPythonStyle "FormatterPythonStyle"<br>
+   Implements an extended version of
+   [Python String Fromat Syntax](https://docs.python.org/3.5/library/string.html#format-string-syntax),
+   which is also similar to what C# offers.
+2. \ref aworx::lib::strings::FormatterJavaStyle "FormatterJavaStyle"<br>
+   Implements the
+   [formatting standards of the Java language](http://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html),
+   which in turn are a little like good old \c printf, but of-course much more powerful and also type-safe.
+
+With this background information, it is no surprise that the line above can alternatively be
+written like this:
+
+\snippet ut_dox_tutorial.cpp        Tut_Format_P
+
+which is Python compatible syntax, or like this:
+
+\snippet ut_dox_tutorial.cpp        Tut_Format_J
+
+which is how Java formatters declare format strings!
+
+If more arguments exists than a format string "consumes", the next remaining argument is treated
+like the first one: if a format string is detected it is processed, otherwise the textual representation
+of the argument is just appended to the log output. Because of this, the following statements
+all produce the same log output:
+
+\snippet ut_dox_tutorial.cpp        Tut_Format_Multi
+
+Of-course it is even allowed to mix Python style and Java style format strings in one log statement:
+
+\snippet ut_dox_tutorial.cpp        Tut_Format_Mix
+
+The output is:
+
+\verbinclude ALox.CPP/generated/Tut_Format_Mix.txt
+
+However, please note that it is \b not allowed to mix Python and Java styles within one format
+string!
+
+In general, we are recommending to use Python style syntax with \b ALox, because it is more powerful and
+probably also better readable. The full documentation of the formats and how this is adopted
+within the C++ version of <b>%ALib/%ALox</b> is found with documentation of classes
+\ref aworx::lib::strings::FormatterPythonStyle "FormatterPythonStyle" and
+\ref aworx::lib::strings::FormatterJavaStyle   "FormatterJavaStyle". Let us conclude this chapter
+with some more samples:
+
+\snippet ut_dox_tutorial.cpp        Tut_Format_Sample_1
+\verbinclude ALox.CPP/generated/Tut_Format_Sample_1.txt
+
 
 \~Comment ####################################################################################### \~
-# 10. Conditional logging  #   {#tutcpp_conditional}
+# 11. Conditional logging  #   {#tutcpp_conditional}
 
-## 10.1. Lox.Assert  ##
+## 11.1. Lox.Assert  ##
 
 Often log lines should only be displayed if a certain condition is met. Here is a
 sample:
@@ -536,7 +605,7 @@ As with using *Assert()* the evaluation of the expression is definitely pruned f
 - In accordance with the concept of assertions, the condition has to be \c false to have ALox perform the log.
 - The \e Verbosity of *Assert()* is *Verbosity::ERROR*.
 
-## 10.2. Lox.If  ##
+## 11.2. Lox.If  ##
 
 A similar method to \b %Lox.Assert this is
 [Lox.If]       (@ref #aworx::lox::Lox::If). The differences to \b Lox.Assert are:
@@ -547,7 +616,7 @@ Hence, the very same effect as given in the previous sample can be achieved with
 
 \snippet ut_dox_tutorial.cpp        Tut_ConditionalLogging3
 
-## 10.3. Log.Once  ##
+## 11.3. Log.Once  ##
 
 Another useful <em>Log Statement</em> provided by ALox is
 [Lox.Once]   (@ref #aworx::lox::Lox::Once). As the method name suggests, the statement
@@ -572,7 +641,7 @@ therefore just summarize some facts:
 
 
 \~Comment ####################################################################################### \~
-# 11. Prefixes  #   {#tutcpp_Log_Prefix}
+# 12. Prefixes  #   {#tutcpp_Log_Prefix}
 
 Imagine, all log statements of a of a certain kind should be very visible and distinguishable
 from other output. You could do this by
@@ -618,7 +687,7 @@ structured data!
 
 
 \~Comment ####################################################################################### \~
-# 12. LogTools: Log Complex Data ##       {#tutcpp_logtools}
+# 13. LogTools: Log Complex Data ##       {#tutcpp_logtools}
 
 Ooopps, unfortunately, we have to skip this chapter in the C++ Version of ALox. While C# and Java provide
 runtime type information and class reflection (introspection), pure C++ does not.
@@ -653,79 +722,6 @@ For future versions of ALox for C++, it is planned to provide:
 - Tools to log certain standard classes from STL, BOOST, QT or what have you.
 You are invited to send us your proposals of log tool code for common libraries to be included in our codebase.
 
-
-\~Comment ####################################################################################### \~
-# 13 Using aworx::StringNNN for Log Messages #        {#tutcpp_astring}
-
-In many occasions, a log message consists of a string that is assembled from strings and
-values. Creating such strings is time consuming and slows down the execution speed of your program.
-Usually, when strings are concatenated, memory allocations are performed.
-We want to avoid such allocations and therefore, we use ALib
-class [AString](@ref aworx::lib::strings::AString). AString manages an internal, heap allocated
-buffer and provides various methods and overloaded operators to append values.<p>
-
-As we want to avoid just *all* allocations on the memory heap, AString is extended by template class
-[PreallocatedString<size_t>](@ref aworx::lib::strings::PreallocatedString), which allocates the amount of string buffer
-space provided in the template parameter 'internally'.
-
-\note Internally here means: If class *PreallocatedString<size_t>* is allocated on the stack, also its buffer resides
-on the stack. If allocated in the heap using the new() operator, then the buffer memory is a part of the
-heap allocation of the class itself. In other words: in the latter case, only one heap allocation is
-performed while in the stack allocation case, no heap allocation is performed.
-
-ALib provides type definitions for the most common sizes:
-*String16*, *String32*, *String64*, ... *String1K*, *String2K*, *String4K*.
-
-OK, if you are new to C++ and not too accustomed, yet with memory allocation details, then the good
-news is: The use of StringNN is very simple! Here is a sample code:
-
-\snippet ut_dox_tutorial.cpp        Tut_ALibStringNN
-
-A more complex sample for debug logging using a stack allocated AString object is provided here:
-
-\snippet ut_dox_tutorial.cpp        Tut_ALibStringNN-2
-
-In our sample, we place code that is only inserted for the sake of generation debug log output
-into the macro \b Log_Prune. This just removes this code in the release version of the software
-the same as the logging statements are pruned.
-
-\note
-    Yes, also the macro Log_Prune does not follow the capital case convention for C++ macros.
-    We decided to \e not adhere to this convention for all logging macros that will appear everywhere
-    in your code later, which, as noted before, increases readability and especially source compatibility with
-    ALox libraries for other programming languages, where pruning is not implemented by macros.
-
-The log output could look as follows:
-
-
-\verbinclude ALox.CPP/generated/Tut_ALibStringNN.txt
-
-As you see in the sample, we chose two different sizes for the string class, 64 and 256.
-The rules for choosing those are as follows:
-- first of all: if a size is too small for the string to be written, this is *not* serious.
-[PreallocatedString<size_t>](@ref aworx::lib::strings::PreallocatedString)
-will just allocate heap memory to perform all operations.
-So, all we are talking here is performance optimization.
-- second of all: If a preallocated is chosen too big, this also does not hurt, because all it
-does is reserving stack memory, which is \e 'released' as soon as the current scope is left.
-- You should avoid to allocate too much stack memory if many recursive calls are invoked.
-What helps here, is to place logging and the use of the AStringNN in its own code block (curly braces).
-When the code block is left, the stack allocation will be freed instantly.
-
-This is of-course all common knowledge to C++ programmers and not specific to ALox.
-\note
-- The sample above appends a \e std::string to an <em>ALib string</em>. To support this,
-  header file <em>"alib/compatibility/std_string.hpp"</em> has to be included.
-- For more information about string classes provided by \e ALib, refer to
-  \ref aworx::lib::strings.
-
-\attention
-  \ref aworx::lib::strings are extremely flexible. If your project uses any custom string class
-  of your choice, there is the possibility to write a very small piece of code (below 10 lines!)
-  to <b>make your custom string class fully compatible</b> to ALib/ALox. When you do,
-  the result is that you can pass your string objects to just all interface methods of ALox
-  with conversion, not only for messages, but also for log domain strings, prefix objects and
-  so forth. The way this is achieved in ALib was by using a little template meta programming.
 
 \~Comment ####################################################################################### \~
 # 14. Name Your Threads  #       {#tutcpp_threadnames}
@@ -797,9 +793,9 @@ reduced in comparison to other ways to introduce temporary variables used for de
 The methods to store and retrieve <em>Log Data</em> with ALox are
 \ref aworx::lox::Lox::Store "Lox::Store" and
 \ref aworx::lox::Lox::Retrieve "Lox::Retrieve". The objects stored are of type
-\ref aworx::lox::LogData "LogData". In the C++ implementation of ALox it is notable, that
-these objects are deleted internally when overwritten or an instance of class \b %Lox is deleted.
-Therefore, these objects need to be heap-allocated.
+\ref aworx::lib::boxing::Box "Box". In the C++ implementation of \b %ALox it is notable, that in the case
+that the data provided is not a value type (in respect to \ref aworx::lib::boxing "ALib Boxing", the
+data has to be kept in memory as long it is stored and potentially retrieved.
 
 Here is a sample code which sets a debug variable in ALox providing a version of a file that
 was read by an application:
@@ -814,10 +810,13 @@ The output will be:
 
 \verbinclude ALox.CPP/generated/Tut_LogData.txt
 
-And even if method "Read()" of the sample above was not executed and therefore no variable was
-stored, ALox just creates an empty, default object. The output in this case would look like this:
+If it was not sure, that <em>Log Data</em> was set, then using macro \ref Log_Retrieve as shown
+above, allows to do checks on the object returned, because it is declared as a local variable.
+When you are sure, that the retrieval returns an object of the type you expect, then the retrieval
+of the data can also be inlined. In this case, macro \ref LOG_LOX should be used to name
+the right debug \b %Lox:
 
-\verbinclude ALox.CPP/generated/Tut_LogData2.txt
+\snippet ut_dox_tutorial.cpp        Tut_LogData_3
 
 
 \~Comment ####################################################################################### \~

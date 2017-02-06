@@ -1,8 +1,8 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 // To link here from sub-dox:  [ALox Configuration Variables](../group__GrpALoxConfigVars.html)
@@ -18,7 +18,7 @@ Configuration Variable ALIB_WAIT_FOR_KEY_PRESS;
 
 Configuration Variable ALOX_CODE_PAGE;
 Configuration Variable ALOX_CONSOLE_TYPE;
-Configuration Variable ALOX_CONSOLE_HAS_LIGHT_BACKGROUND;
+Configuration Variable ALOX_CONSOLE_LIGHT_COLORS;
 Configuration Variable ALOX_GLOBAL_SOURCE_PATH_TRIM_RULES;
 Configuration Variable ALOX_LOGGERNAME_AUTO_SIZES;
 Configuration Variable ALOX_LOGGERNAME_FORMAT;
@@ -26,6 +26,7 @@ Configuration Variable ALOX_LOGGERNAME_FORMAT_DATE_TIME;
 Configuration Variable ALOX_LOGGERNAME_FORMAT_TIME_DIFF;
 Configuration Variable ALOX_LOGGERNAME_FORMAT_MULTILINE;
 Configuration Variable ALOX_LOGGERNAME_MAX_ELAPSED_TIME;
+Configuration Variable ALOX_LOGGERNAME_REPLACEMENTS;
 Configuration Variable ALOX_LOXNAME_DOMAIN_SUBSTITUTION;
 Configuration Variable ALOX_LOXNAME_LOGGERNAME_VERBOSITY;
 Configuration Variable ALOX_LOXNAME_DUMP_STATE_ON_EXIT;
@@ -69,7 +70,7 @@ such differences.
 <b>Default Behavior:</b><p>
 ALox and the AWorx library are designed to run fine without setting configuration variables wherever
 this is possible.
-Nevertheless, these variables provide an additional way to tweak ALox and overwrite the default
+Nevertheless, these variables provide an additional way to tweak ALox and change its default
 behavior.
 
 <b>Boolean Variables:</b><p>
@@ -96,10 +97,10 @@ get an overview, refer to [Wikipedia](https://en.wikipedia.org/wiki/Environment_
 <b>%ALib::RTE</b>
  ([C++] (@ref      #aworx::lib::ALIB::RTE),
   C#, Java: not applicable).<br>
-\e Default Value: \c "auto"<br> 
+\e Default Value: \c "auto"<br>
 
-Overwrites the runtime environment returned by in method
-[System::RTE] (@ref #aworx::lib::system::System::RTE).
+Overwrites the runtime environment returned by method
+[ALIB::RTE] (@ref #aworx::lib::ALIB::RTE).
 If this variable is set, then no auto detection of the environment is performed,
 unless its value is "auto".
 
@@ -125,7 +126,7 @@ device                   | RuntimeEnvironment::MOBILE_DEVICE
 <b>%ALib::LOCALE</b>
  ([C++,GLIBC version only] (@ref      #aworx::lib::ALIB::LOCALE),
   C#, Java: not applicable).<br>
-\e Default Value: \c "" (empty string)<br> 
+\e Default Value: \c "" (empty string)<br>
 
 This variable is evaluated within [ALIB::Init] (@ref #aworx::lib::ALIB::Init). The behavior is
 as follows:
@@ -145,10 +146,10 @@ multi-byte character strings to wide character strings.
 <b>%ALib::ALIB_HAS_CONSOLE_WINDOW</b>
  ([C++] (@ref      #aworx::lib::ALIB::ALIB_HAS_CONSOLE_WINDOW),
   C#, Java: not applicable).<br>
-\e Default Value: \c "" (empty string)<br> 
+\e Default Value: \c "" (empty string)<br>
 
 This boolean configuration variable overwrites the value determined in method
-\ref  aworx::lib::system::System::HasConsoleWindow "System::HasConsoleWindow".
+\ref  aworx::lib::ALIB::HasConsoleWindow "ALIB::HasConsoleWindow".
 */
 
 /**
@@ -158,7 +159,7 @@ This boolean configuration variable overwrites the value determined in method
  ([C++] (@ref      #aworx::lib::ALIB::WAIT_FOR_KEY_PRESS),
   [C#]  (@ref  #cs::aworx::lib::ALIB::WAIT_FOR_KEY_PRESS),
   Java: not applicable).<br>
-\e Default Value: \c "" (empty string)<br> 
+\e Default Value: \c "" (empty string)<br>
 This boolean variable is evaluated within
 <b>%ALIB::Init</b>
  ([C++] (@ref #aworx::lib::ALIB::Init),
@@ -201,11 +202,11 @@ Setting this variable, this behavior can be overwritten.
 \e Default Value: \c "default"<br>
 
 Influences the type of console logger to be will be created by method
-<b>Log::CreateConsoleLogger</b>
+<b>%Log::CreateConsoleLogger</b>
  ([C++] (@ref #aworx::lox::Lox::CreateConsoleLogger),
   [C#]  (@ref #cs::aworx::lox::Lox::CreateConsoleLogger),
   [Java](@ref #com::aworx::lox::Lox::createConsoleLogger)) which is also used by
-<b>Log::AddDebugLogger</b>
+<b>%Log::AddDebugLogger</b>
  ([C++] (@ref #aworx::lox::Log::AddDebugLogger),
   [C#]  (@ref #cs::aworx::lox::Log::AddDebugLogger),
   [Java](@ref #com::aworx::lox::Log::addDebugLogger)).
@@ -213,39 +214,51 @@ Influences the type of console logger to be will be created by method
 Possible values are:
 <center>Value</center>   | <center>Effect</center>
 - - - - - - - - - - - - -| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-   Default    | No influence, same as if variable was not set (auto detection mechanism applies).
+   Default    | No influence, same as if variable was not set (An OS-specific, colorful logger is chosen).
    Plain      | Plain text \e Logger of type <b>ConsoleLogger</b> ([C++] (@ref #aworx::lox::loggers::ConsoleLogger), [C#]  (@ref #cs::aworx::lox::loggers::ConsoleLogger), [Java](@ref #com::aworx::lox::loggers::ConsoleLogger)) is created.
    Ansi       | A \e Logger of type \b AnsiLogger ([C++] (@ref #aworx::lox::loggers::AnsiLogger), [C#]  (@ref #cs::aworx::lox::loggers::AnsiLogger), [Java](@ref #com::aworx::lox::loggers::AnsiLogger)) is created
    Windows    | In C++, a \e Logger of type [WindowsConsoleLogger] (@ref #aworx::lox::loggers::WindowsConsoleLogger) is created.<br> In C#, a \e Logger of type [ColorConsoleLogger] (@ref #cs::aworx::lox::loggers::ColorConsoleLogger) is created.<br> (It is advisable to use this value when in Windows operating system, while using ANSI for colorful output under Linux/Mono.)<br> In Java, this value is not supported.<br>
-   NoQtCreator| Available only in C++: This variable suppresses actions taken by method \b %Lox::CreateConsoleLogger when QTCreator is detected. This should be used when QTCreator is used in combination with CMake because then, unfortunately, QTCreator does not support clickable output. See \ref cppsetup for more information.
 */
 
 
 /**
-\var  ALOX_CONSOLE_HAS_LIGHT_BACKGROUND
+\var  ALOX_CONSOLE_LIGHT_COLORS
 \e Declaration:
-<b>%ALox::CONSOLE_HAS_LIGHT_BACKGROUND</b>
- ([C++]      (@ref #aworx::lox::ALox::CONSOLE_HAS_LIGHT_BACKGROUND),
-  [C#]   (@ref #cs::aworx::lox::ALox::CONSOLE_HAS_LIGHT_BACKGROUND),
-  [Java](@ref #com::aworx::lox::ALox::CONSOLE_HAS_LIGHT_BACKGROUND))<br>
+<b>%ALox::CONSOLE_LIGHT_COLORS</b>
+ ([C++]      (@ref #aworx::lox::ALox::CONSOLE_LIGHT_COLORS),
+  [C#]   (@ref #cs::aworx::lox::ALox::CONSOLE_LIGHT_COLORS),
+  [Java](@ref #com::aworx::lox::ALox::CONSOLE_LIGHT_COLORS))<br>
 \e Default Value: \c "" (empty string)<br>
 
 Evaluated by colorful loggers that dispose about light and dark colors to
 adjust their foreground color accordingly. E.g. for instances of class
 <b>%AnsiLogger</b>
- ([C++] (@ref #aworx::lox::loggers::AnsiLogger),
-  [C#]  (@ref #cs::aworx::lox::loggers::AnsiLogger),
+ ([C++] (@ref      #aworx::lox::loggers::AnsiLogger),
+  [C#]  (@ref  #cs::aworx::lox::loggers::AnsiLogger),
   [Java](@ref #com::aworx::lox::loggers::AnsiLogger)) field
-<b>%AnsiLogger::IsBackgroundLight</b>
- ([C++] (@ref #aworx::lox::loggers::AnsiLogger::IsBackgroundLight),
-  [C#]  (@ref #cs::aworx::lox::loggers::AnsiLogger::IsBackgroundLight),
-  [Java](@ref #com::aworx::lox::loggers::AnsiLogger::isBackgroundLight)) is
+<b>%AnsiLogger::UseLightColors</b>
+ ([C++] (@ref      #aworx::lox::loggers::AnsiLogger::UseLightColors),
+  [C#]  (@ref  #cs::aworx::lox::loggers::AnsiLogger::UseLightColors),
+  [Java](@ref #com::aworx::lox::loggers::AnsiLogger::useLightColors)) is
 set.
 
-If not given, under Windows OS the right value is detected. Otherwise the value
-defaults to \b false. In some occasions the
-(detected or set) runtime environment might also indicate a default value.
+If not given, under Windows OS the right value is detected (here, the color of a terminal
+is detectable). Otherwise the value defaults to be an empty string, which chooses a
+programatically evaluated (internal) default value. In some occasions the
+(detected or set) runtime environment might influence such default value.
 
+Value options are:
+- \b "Foreground": Sets the foreground color to a light color. This is recommended if for consoles
+  with dark background.
+- \b "Background": Sets the background color to a light color. This is recommended if for consoles
+  with a light background.
+- \b "Never": Sets foreground and background color to the same "brightness". This is recommended
+  solely for systems that do not support light colors.
+
+\note
+  When using a [JetBrains IDE](https://www.jetbrains.com) (CLion, Rider or Intellij), light colors are not shown within the IDEs'
+  application output window. Therefore, here a value of "never" should be used. In some languages/
+  platforms the JetBrains IDE is properly detected and the settings are right by default.
 */
 
 
@@ -313,7 +326,7 @@ See field
   [C#]   (@ref #cs::aworx::lox::core::textlogger::TextLogger.AutoSizes),
   [Java](@ref #com::aworx::lox::core::textlogger::TextLogger.autoSizes)) for more information.
 
-Note, that the portion <c>'LOGGERNAME'</c> in the variable name is replaced by ALox
+Note that the portion <c>'LOGGERNAME'</c> in the variable name is replaced by ALox
 with the value of
 <b>%Logger.GetName</b>
   ([C++]      (@ref #aworx::lox::core::Logger::GetName),
@@ -356,14 +369,14 @@ of utility class
  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo),
   [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo),
   [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo)) for format parameter \c "%TC".
-  
-Consequently, the width of the log output (in respect to meta info \c "%TC") automatically adjusts 
-to a reasonable value, depending on the execution time of the sofware.  
-  
-The variable optionally supports a second attribute \c 'limit' which restricts the maximum value
-when a new session starts.   
 
-Note, that the portion <c>'LOGGERNAME'</c> in the variable name is replaced by ALox
+Consequently, the width of the log output (in respect to meta info \c "%TC") automatically adjusts
+to a reasonable value, depending on the execution time of the sofware.
+
+The variable optionally supports a second attribute \c 'limit' which restricts the maximum value
+when a new session starts.
+
+Note that the portion <c>'LOGGERNAME'</c> in the variable name is replaced by ALox
 with the value of
 <b>%Logger.GetName</b>
   ([C++]      (@ref #aworx::lox::core::Logger::GetName),
@@ -419,7 +432,7 @@ Format: <c> ALOX_\<LOGGERNAME\>_FORMAT = ["]Format["] [, ["]Error["] [, ["]Warni
 Values that start or end with whitespace characters or which contain comma characters (<c>,</c>) ,
 need to be enclosed by quotation marks (<c>\"</c>).
 
-Note, that the portion <c>'LOGGERNAME'</c> in the variable name is replaced by ALox as follows:
+Note that the portion <c>'LOGGERNAME'</c> in the variable name is replaced by ALox as follows:
 - First, value of
     <b>%Logger.GetName</b>
      ([C++]      (@ref #aworx::lox::core::Logger::GetName),
@@ -440,7 +453,7 @@ As a sample, configuration variable \b ALOX_ANSI_CONSOLE_LOGGER_FORMAT, affects 
   [Java](@ref #com::aworx::lox::loggers::AnsiConsoleLogger)) as long as no specific name
 is set when such \e %Logger is constructed and no separate configuration for that name is set.
 
-Note, that the default debug \e %Logger which is automatically created if no \e %Logger is
+Note that the default debug \e %Logger which is automatically created if no \e %Logger is
 attached to the debug \b %Lox singleton, is named \c "DEBUG_LOGGER".
 Therefore, by setting variable \c ALOX_DEBUG_LOGGER_FORMAT, this \e Logger is affected.
 Furthermore, in C++ and C# versions of ALox, when debugging, a second debug-\e Logger for
@@ -457,7 +470,7 @@ the IDE might be created. Its' name is \c "IDE_LOGGER".
   [Java](@ref #com::aworx::lox::ALox::FORMAT_DATE_TIME))<br>
 \e Default Value: Set to the default values of the class members (fields).<br>
 
-This variable is used and applied in the same way as \ref ALOX_LOGGERNAME_FORMAT, but  
+This variable is used and applied in the same way as \ref ALOX_LOGGERNAME_FORMAT, but
 defines the following fields:
 
 - <b>%MetaInfo.DateFormat</b>
@@ -475,6 +488,34 @@ defines the following fields:
 
 */
 
+
+/**
+\var ALOX_LOGGERNAME_REPLACEMENTS
+\e Declaration:
+<b>%ALox::LOGGERNAME_REPLACEMENTS</b>
+ ([C++]      (@ref #aworx::lox::ALox::REPLACEMENTS),
+  [C#]   (@ref #cs::aworx::lox::ALox::REPLACEMENTS),
+  [Java](@ref #com::aworx::lox::ALox::REPLACEMENTS))<br>
+
+Format: <c> ALOX_\<LOGGERNAME\>_REPLACEMENTSFORMAT = ["]search["] , ["]replace["] [,...] </c>
+
+Note that the portion <c>'LOGGERNAME'</c> in the variable name is replaced as documented in
+\ref ALOX_LOGGERNAME_FORMAT.
+
+The variable allows to set pairs of search and replace strings for a text logger.
+Pairs found here, are set using method
+<b>%TextLogger::SetReplacement</b>
+ ([C++]      (@ref #aworx::lox::core::textlogger::TextLogger::SetReplacement),
+  [C#]   (@ref #cs::aworx::lox::core::textlogger::TextLogger::SetReplacement),
+  [Java](@ref #com::aworx::lox::core::textlogger::TextLogger::setReplacement)).
+
+Values that start or end with whitespace characters or which contain comma characters (<c>,</c>) ,
+need to be enclosed by quotation marks (<c>\"</c>).
+
+*/
+
+
+
 /**
 \var  ALOX_LOGGERNAME_FORMAT_TIME_DIFF
 \e Declaration:
@@ -484,7 +525,7 @@ defines the following fields:
   [Java](@ref #com::aworx::lox::ALox::FORMAT_TIME_DIFF))<br>
 \e Default Value: Set to the default values of the class members (fields).<br>
 
-This variable is used and applied in the same way as \ref ALOX_LOGGERNAME_FORMAT, but  
+This variable is used and applied in the same way as \ref ALOX_LOGGERNAME_FORMAT, but
 defines the following fields:
 
 - <b>%MetaInfo.TimeDiffMinimum</b>
@@ -535,7 +576,7 @@ defines the following fields:
   [Java](@ref #com::aworx::lox::ALox::FORMAT_MULTILINE))<br>
 \e Default Value: Set to the default values of the class members (fields).<br>
 
-This variable is used and applied in the same way as \ref ALOX_LOGGERNAME_FORMAT, but  
+This variable is used and applied in the same way as \ref ALOX_LOGGERNAME_FORMAT, but
 defines the following fields:
 
 - <b>%MultiLineMsgMode</b>
@@ -668,7 +709,7 @@ Each definition contains of the following parameters:
   (i.e. \b "E" is enough) and is read in case insensitive way.
   The meaning is the same as parameter \p otherPLs of method
   <b>Log.SetPrefix</b>
-     ([C++] (@ref      #aworx::lox::Lox::SetPrefix(const void*,int,const TString&,lib::enums::Inclusion)),
+     ([C++] (@ref      #aworx::lox::Lox::SetPrefix(const Box&,const String&,lib::lang::Inclusion)),
       [C#]  (@ref  #cs::aworx::lox::Lox::SetPrefix(Object,String,Inclusion otherPLs, int,String,String)),
       [Java](@ref #com::aworx::lox::Lox::setPrefix(Object,String,Inclusion otherPLs)))
 */

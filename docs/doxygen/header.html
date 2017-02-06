@@ -1,39 +1,16 @@
-<!-- HTML header for doxygen 1.8.10-->
+<!-- HTML header for doxygen 1.8.12-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen $doxygenversion"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <!--BEGIN PROJECT_NAME--><title>$projectname: $title</title><!--END PROJECT_NAME-->
 <!--BEGIN !PROJECT_NAME--><title>$title</title><!--END !PROJECT_NAME-->
 <link href="$relpath^tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="$relpath^jquery.js"></script>
 <script type="text/javascript" src="$relpath^dynsections.js"></script>
-
-<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
-<script>
-  $(document).ready(function() {     
-    fnameStart= window.location.href.lastIndexOf('/')
-    fnameEnd=   window.location.href.indexOf('_', fnameStart )
-    if( fnameEnd < 0 ) {
-        fnameEnd=   window.location.href.indexOf('.', fnameStart )
-    }
-    
-    if( fnameEnd > -1 ) {
-        subString= window.location.href.substring( fnameStart, fnameEnd )
-        $('li').toArray().forEach(function(li){
-            if(     typeof li.firstChild.href != 'undefined'
-                &&  li.firstChild.href.indexOf(subString) > 0 
-                ){
-               li.classList.add('current');
-            }
-        });
-    }
-  });
-
-</script>
-
 $treeview
 $search
 $mathjax
@@ -76,4 +53,19 @@ $extrastylesheet
 </table>
 </div>
 <!--END TITLEAREA-->
+<!--ALox Main Menu-->
+<div style="background: #2f3a48; " >
+<table  class="aworx-menutable"  >
+ <tbody>
+ <tr style="height: 36px;">
+  <td> <a class="aworx-menu_hl" href="index.html"                  >Home</a>                        </td>
+  <td> <a class="aworx-menu"    href="cpp_ref/cppmainpage.html"    >ALox for C++</a>                </td>
+  <td> <a class="aworx-menu"    href="cs_ref/csmainpage.html"      >ALox for C#</a>                 </td>
+  <td> <a class="aworx-menu"    href="java_ref/javamainpage.html"  >ALox for Java</a>               </td>
+  <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!--end ALox Main Menu-->
 <!-- end header part -->

@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -15,9 +15,11 @@
 #endif
 
 #ifndef HPP_ALIB_COMPATIBILITY_STD_IOSTREAM
-#if !defined( IS_DOXYGEN_PARSER)
+//! @cond NO_DOX
 #define HPP_ALIB_COMPATIBILITY_STD_IOSTREAM 1
-#endif
+//! @endcond NO_DOX
+
+#if ALIB_MODULE_STRINGS
 
 // #################################################################################################
 // includes
@@ -31,44 +33,41 @@
 // String / AString IO
 // #################################################################################################
 
-namespace aworx {
-namespace           lib {
-namespace                   strings {
-
+namespace aworx { namespace lib { namespace strings
+{
+    namespace thirdparty { namespace std {
 
     /** ****************************************************************************************
-     * Parameter class which is \e 'applicable' to objects of type
-     * \ref aworx::lib::strings::AString "AString" with
-     * \ref aworx::lib::strings::ApplyTo(AString&, const ReadLineFromIStream&) "corresponding specialization"
-     *  of template function
-     * \ref aworx::lib::strings::ApplyTo "ApplyTo".<p>
-     *  Reads a line of text from a \b std::istream and appends it to the target AString.<br>
-     *  While, of-course, this class can be created 'inline' like most
-     *  <em>ApplyTo parameter classes</em>,  if a series of lines are to be read from a
-     *  an \b std::istream, a local object of this type might be created before the read loop
-     *  and used inside.
-     *  In this case, the 'output parameter' #IsEOF, can be used e.g. as a loop criteria.
-     *  \see
-     *  - \ref operator>>(std::istream&, AString&) and
-     *    \ref operator<<(std::ostream& os, const String& as) "operator<<(ostream& os, const String& as)"
-     *  - For a sample, refer to source code of ALib class \b %IniFile, method
-     *    \ref aworx::lib::config::IniFile::ReadFile "IniFile::ReadFile".
+     * Parameter class used for \e application to objects of type
+     * \ref aworx::lib::strings::AString "AString" with specialization of template struct
+     * \ref aworx::lib::strings::thirdparty::std::T_Apply<thirdparty::std::ReadLineFromIStream> "T_Apply<ReadLineFromIStream>".<br>
+     * Reads a line of text from a \b std::istream and appends it to the target \b %AString.<br>
+     * While, of-course, this class can be created 'inline' (similar objects of parameter classes
+     * found in \ref aworx::lib::strings::Format "Format"), if a series of lines are to be read
+     * from a \b std::istream, a local object of this type might be created outside the loop
+     * and used inside.
+     * In this case, the 'output parameter' #IsEOF, can be used e.g. as a loop criteria.
+     * \see
+     * - \ref operator>>(::std::istream&, AString&)            "operator>>(std::istream&, AString&)" and
+     *   \ref operator<<(::std::ostream& os, const String& as) "operator<<(ostream& os, const String& as)"
+     * - For a sample, refer to source code of ALib class \b %IniFile, method
+     *   \ref aworx::lib::config::IniFile::ReadFile "IniFile::ReadFile".
      ******************************************************************************************/
     class ReadLineFromIStream
     {
         public:
 
         /** The input stream to read from.*/
-        std::istream&           istream;
+        ::std::istream&         IStream;
 
         /** If \c CurrentData::KEEP, the target \c %AString is not cleared before the read operation. */
-        enums::CurrentData      TargetData;
+        lang::CurrentData       TargetData;
 
         /** The amount of characters that the buffer is increased while reading parts of the line.*/
-        int                     BufferSize;
+        integer                BufferSize;
 
         /** The maximum length of a single line to be read. Longer lines get truncated. */
-        int                     MaxLineWidth;
+        integer                MaxLineWidth;
 
         /**
          * Indicates if the end of the input stream was detected with the last read operation.
@@ -78,47 +77,34 @@ namespace                   strings {
         bool                    IsEOF           = false;
 
         /** ****************************************************************************************
-         * Constructs this <em>ApplyTo parameter class</em>.
-         *  Reads a line of text from a \b std::istream.
-         *  @param istream       The input stream to read from.
-         *  @param targetData    If \c CurrentData::Keep, the target \c %AString is not cleared before
-         *                       the read operation is performed. Defaults to \c CurrentData::Clear.
-         *  @param bufferSize    The amount of characters that the buffer is increased while reading
-         *                       parts of the line. Defaults to 256 characters.
-         *  @param maxLineWidth  The maximum length of a single line to be read. Longer lines
-         *                       get truncated. Defaults to 4096 characters.
+         * Constructor.
+         *
+         * @param istream       The input stream to read from.
+         * @param targetData    If \c CurrentData::Keep, the target \c %AString is not cleared
+         *                      before the read operation is performed.
+         *                      Defaults to \c CurrentData::Clear.
+         * @param bufferSize    The amount of characters that the buffer is increased while reading
+         *                      parts of the line. Defaults to 256 characters.
+         * @param maxLineWidth  The maximum length of a single line to be read. Longer lines
+         *                      get truncated. Defaults to 4096 characters.
          ******************************************************************************************/
-
-        ReadLineFromIStream( std::istream&      istream,
-                             enums::CurrentData targetData= enums::CurrentData::Clear,
-                             int                bufferSize= 256,
-                             int                maxLineWidth= 4096              )
-          : istream(istream), TargetData(targetData), BufferSize(bufferSize), MaxLineWidth(maxLineWidth)
+        ReadLineFromIStream( ::std::istream&   istream,
+                             lang::CurrentData targetData   = lang::CurrentData::Clear,
+                             integer          bufferSize   = 256,
+                             integer          maxLineWidth = 4096                        )
+        : IStream     (istream),
+          TargetData  (targetData),
+          BufferSize  (bufferSize),
+          MaxLineWidth(maxLineWidth)
         {}
     };
 
-    /** ********************************************************************************************
-     * Specialization of template method
-     * \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
-     * \ref aworx::lib::strings::ReadLineFromIStream "ReadLineFromIStream".
-     *  If the end of the input stream was reached, field
-     * \ref aworx::lib::strings::ReadLineFromIStream::IsEOF "IsEOF" of parameter \p param  will
-     *  be set to \c true what indicates that a next read operation would fail.
-     *  \note
-     *    For setting field <em>IsEOF</em> the object will be casted to a non-constant reference.
-     *    See \ref aworx::lib::strings::ApplyTo "ApplyTo" for an explanation why it is OK to do so.
-     *
-     * @param  target     The AString object to read into.
-     * @param  param      The object holding the \b std::istream and some parameters.
-     * @return The number of characters appended to target.
-     **********************************************************************************************/
-    template<>  ALIB_API   int ApplyTo( AString& target, const ReadLineFromIStream& param);
-    #if !defined( IS_DOXYGEN_PARSER )
-        template<>  struct         IsApplicable<const ReadLineFromIStream&> : public std::true_type {};
-
-        template<>  inline   int   ApplyTo_NC( AString& target,  const ReadLineFromIStream& param )
-        {  return  ApplyTo<const ReadLineFromIStream&>( target,           param );  }
+    // We are faking all template specializations of namespace strings for doxygen into namespace
+    // strings::apply to keep the documentation of namespace string clean!
+    #if !defined(DOX_PARSER)
+      }} //namespace aworx::lib::strings [::thirdparty::std]
     #endif
+
 
     /** ********************************************************************************************
      * Copies the contents of the given %String to into the std::ostream given as reference.
@@ -126,7 +112,7 @@ namespace                   strings {
      * @param  string The String to write into the given ostream.
      * @returns The ostream to allow concatenated operations.
      **********************************************************************************************/
-    inline std::ostream& operator<<( std::ostream& stream, const String& string )
+    inline ::std::ostream& operator<<( ::std::ostream& stream, const String& string )
     {
         if ( string.IsNotEmpty() )
             stream.write( string.Buffer(), string.Length() );
@@ -139,7 +125,7 @@ namespace                   strings {
      * @param  string The String to write into the given ostream.
      * @returns The ostream to allow concatenated operations.
      **********************************************************************************************/
-    inline std::ostream* operator<<( std::ostream* stream, const String& string )
+    inline ::std::ostream* operator<<( ::std::ostream* stream, const String& string )
     {
         stream->write( string.Buffer(), string.Length() );
         return stream;
@@ -152,9 +138,9 @@ namespace                   strings {
      * @param  string The AString to receive data.
      * @returns The ostream to allow concatenated operations.
      **********************************************************************************************/
-    inline std::istream& operator>>( std::istream& stream, AString& string )
+    inline ::std::istream& operator>>( ::std::istream& stream, AString& string )
     {
-        string << ReadLineFromIStream( stream, enums::CurrentData::Clear );
+        string << thirdparty::std::ReadLineFromIStream( stream, lang::CurrentData::Clear );
         return stream;
     }
 
@@ -165,15 +151,47 @@ namespace                   strings {
      * @param  string The AString to receive data.
      * @returns The ostream to allow concatenated operations.
      **********************************************************************************************/
-    inline std::istream* operator>>( std::istream* stream, AString& string )
+    inline ::std::istream* operator>>( ::std::istream* stream, AString& string )
     {
-        ALIB_ASSERT_WARNING ( stream != nullptr, "Given std::istream is nullptr" );
+        ALIB_ASSERT_WARNING ( stream != nullptr, "Given std::IStream is nullptr" );
 
         if (stream != nullptr)
-            string << ReadLineFromIStream( *stream, enums::CurrentData::Clear );
+            string << thirdparty::std::ReadLineFromIStream( *stream, lang::CurrentData::Clear );
         return stream;
     }
 
+
+    /** Specialization of template struct \ref T_Apply for type \c thirdparty::std::ReadLineFromIStream.   */
+    template<> struct T_Apply<thirdparty::std::ReadLineFromIStream> : public ::std::true_type
+    {
+        /** ****************************************************************************************
+         * Reads a line from a text file and appends the contents to \p target.
+         * If the end of the input stream was reached, field
+         * \ref aworx::lib::strings::thirdparty::std::ReadLineFromIStream::IsEOF "IsEOF"
+         * of parameter \p reader will be set to \c true what indicates that a next read operation
+         * would fail if it was performed.
+         *
+         * \note
+         *   For setting field <em>IsEOF</em> the object will be casted to a non-constant reference.
+         *   See \ref aworx::lib::strings::T_Apply "T_Apply" for an explanation why it is OK to
+         *   do so.
+         *
+         * @param  target     The AString object to read into.
+         * @param  reader     The object holding the \b std::istream and some parameters.
+         * @return The number of characters appended to target.
+         ******************************************************************************************/
+        static  ALIB_API   integer Apply( AString& target, const thirdparty::std::ReadLineFromIStream& reader);
+    };
+
+// We are faking all template specializations of namespace strings for doxygen into namespace
+// strings::apply to keep the documentation of namespace string clean!
+#if defined(DOX_PARSER)
+}}
+#endif
+
 }}}
+
+#endif // ALIB_MODULE_STRINGS
+
 
 #endif // HPP_ALIB_COMPATIBILITY_STD_IOSTREAM

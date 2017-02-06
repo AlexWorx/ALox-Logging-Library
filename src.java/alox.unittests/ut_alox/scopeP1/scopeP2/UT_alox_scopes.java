@@ -1,19 +1,18 @@
 // #################################################################################################
 //  Unit Tests - AWorx Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package ut_alox.scopeP1.scopeP2;
 
 import org.junit.Test;
 
 import com.aworx.lib.ALIB;
-import com.aworx.lib.enums.Inclusion;
+import com.aworx.lib.lang.Inclusion;
 import com.aworx.lib.strings.AString;
 import com.aworx.lox.ALox;
 import com.aworx.lox.Log;
-import com.aworx.lox.LogData;
 import com.aworx.lox.Scope;
 import com.aworx.lox.Verbosity;
 import com.aworx.lox.loggers.MemoryLogger;
@@ -22,7 +21,7 @@ import ut_com_aworx.AWorxUnitTesting;
 
 class DomainTestThread extends Thread
 {
-    @Override 
+    @Override
     public void run()
     {
         Log.info( "DTT", "" );
@@ -31,7 +30,7 @@ class DomainTestThread extends Thread
 
 class LogOnceTestThread extends Thread
 {
-    @Override 
+    @Override
     public void run()
     {
         Log.once( "", Verbosity.INFO, "Once(Scope.THREAD_OUTER) 2x - 2nd thread", Scope.THREAD_OUTER, 0, 2 );
@@ -46,16 +45,16 @@ class StoreDataTestThreadThread extends Thread
     AWorxUnitTesting ut;
     StoreDataTestThreadThread(AWorxUnitTesting ut) { this.ut= ut; }
 
-    @Override 
+    @Override
     public void run()
     {
-        LogData data= null;
+        Object data= null;
 
-        Log.store( new LogData( "2nd Thread Data"        ),             Scope.THREAD_OUTER   );
-        Log.store( new LogData( "2nd Thread Data, keyed" ),   "mykey",  Scope.THREAD_OUTER   );
+        Log.store( "2nd Thread Data"       ,             Scope.THREAD_OUTER   );
+        Log.store( "2nd Thread Data, keyed",   "mykey",  Scope.THREAD_OUTER   );
 
-        data= Log.retrieve(          Scope.THREAD_OUTER ); ut.UT_EQ( "2nd Thread Data"        , data.stringValue );
-        data= Log.retrieve( "mykey", Scope.THREAD_OUTER ); ut.UT_EQ( "2nd Thread Data, keyed" , data.stringValue );
+        data= Log.retrieve(          Scope.THREAD_OUTER ); AWorxUnitTesting.UT_EQ( "2nd Thread Data"        , data.toString() );
+        data= Log.retrieve( "mykey", Scope.THREAD_OUTER ); AWorxUnitTesting.UT_EQ( "2nd Thread Data, keyed" , data.toString() );
     }
 }
 
@@ -69,14 +68,14 @@ public class UT_alox_scopes extends AWorxUnitTesting
    /** ********************************************************************************************
      * Log_Prefix
      **********************************************************************************************/
-    void PFXCHECK( String exp, MemoryLogger ml )
+    static void PFXCHECK( String exp, MemoryLogger ml )
     {
         UT_EQ( exp  , ml.memoryLog );
         ml.memoryLog._();
         ml.autoSizes.reset();
     }
 
-    @SuppressWarnings("static-method")
+    @SuppressWarnings({ "static-method", "boxing" } )
     @Test
     public void Log_Prefix()
     {
@@ -90,6 +89,12 @@ public class UT_alox_scopes extends AWorxUnitTesting
         Log.setVerbosity(ml, Verbosity.VERBOSE );
         Log.setVerbosity(Log.debugLogger, Verbosity.VERBOSE, ALox.INTERNAL_DOMAINS );
         Log.setDomain( "/PREFIX", Scope.METHOD);
+
+//! [DOX_ALOX_LOX_SETPREFIX]
+Log.setPrefix( new Object[] {"One, ", "two, ", 3 },  Scope.GLOBAL   );
+//! [DOX_ALOX_LOX_SETPREFIX]
+Log.info( "*msg*" ); PFXCHECK( "One, two, 3*msg*"    ,ml );
+
 
         // src scopes
         Log.setPrefix( "REPLACE:",    Scope.GLOBAL     );  Log.info( "*msg*" ); PFXCHECK( "REPLACE:*msg*"          ,ml );
@@ -115,7 +120,7 @@ public class UT_alox_scopes extends AWorxUnitTesting
 
         // domain related
         Log.setPrefix( "DOM1:" );                          Log.info( "*msg*" ); PFXCHECK( "FILE:METHOD:DOM1:*msg*"            ,ml );
-        Log.setPrefix( "DOM2:" );                          Log.info( "*msg*" ); PFXCHECK( "FILE:METHOD:DOM1:DOM2:*msg*"       ,ml );
+        Log.setPrefix( new Object[] {"DO","M2:"} );        Log.info( "*msg*" ); PFXCHECK( "FILE:METHOD:DOM1:DOM2:*msg*"       ,ml );
         Log.setPrefix( "DOM3:" );                          Log.info( "*msg*" ); PFXCHECK( "FILE:METHOD:DOM1:DOM2:DOM3:*msg*"  ,ml );
         Log.setPrefix( ""      );                          Log.info( "*msg*" ); PFXCHECK( "FILE:METHOD:DOM1:DOM2:*msg*"       ,ml );
         Log.setPrefix( ""      );                          Log.info( "*msg*" ); PFXCHECK( "FILE:METHOD:DOM1:*msg*"            ,ml );
@@ -169,7 +174,7 @@ public class UT_alox_scopes extends AWorxUnitTesting
         Log.setPrefix( null    ,Scope.METHOD           );  Log.info( "*msg*" ); PFXCHECK( "*msg*:TI"                     ,ml );
         Log.setPrefix( null    ,Scope.THREAD_INNER     );  Log.info( "*msg*" ); PFXCHECK( "*msg*"                        ,ml );
 
-        // check if breaking dom-releated, removes all thread inner correctly
+        // check if breaking dom-related, removes all thread inner correctly
         Log.setPrefix( ":TI"         ,Scope.THREAD_INNER);  Log.info( "*msg*" ); PFXCHECK( "*msg*:TI"                  ,ml );
         Log.setPrefix( "DOM1:", ""   ,Inclusion.INCLUDE );  Log.info( "*msg*" ); PFXCHECK( "DOM1:*msg*:TI"             ,ml );
         Log.setPrefix( "DOMX:", ""   ,Inclusion.EXCLUDE );  Log.info( "*msg*" ); PFXCHECK( "DOMX:*msg*"                ,ml );
@@ -192,7 +197,7 @@ public class UT_alox_scopes extends AWorxUnitTesting
     static void LSD2_A()   {  Log.setDomain( "A2",   Scope.METHOD );    Log.info( "" );    }
     static void LSD2()     {  Log.setDomain( "LSD2", Scope.METHOD );    Log.info( "" );    }
 
-    void SDCHECK( String exp, MemoryLogger ml )
+    static void SDCHECK( String exp, MemoryLogger ml )
     {
         UT_EQ( exp  , ml.memoryLog );
         ml.memoryLog._();
@@ -245,8 +250,8 @@ public class UT_alox_scopes extends AWorxUnitTesting
 
         // source path
         Log.setDomain( "REPLACE",    Scope.PACKAGE     );  Log.info( "" ); SDCHECK( "@/REPLACE/CLASS/METHOD#"         ,ml );
-        
-        
+
+
         Log.setDomain( "PACK",       Scope.PACKAGE     );  Log.info( "" ); SDCHECK( "@/PACK/CLASS/METHOD#"            ,ml );
         Log.setDomain( "REPLACE",    Scope.PACKAGE, 1  );  Log.info( "" ); SDCHECK( "@/REPLACE/PACK/CLASS/METHOD#"    ,ml );
         Log.setDomain( "PO1",        Scope.PACKAGE, 1  );  Log.info( "" ); SDCHECK( "@/PO1/PACK/CLASS/METHOD#"        ,ml );
@@ -452,76 +457,63 @@ public class UT_alox_scopes extends AWorxUnitTesting
         Log.setVerbosity( Log.debugLogger, Verbosity.VERBOSE, ALox.INTERNAL_DOMAINS );
         Log.setDomain( "DATA", Scope.METHOD );
 
-        // LogData Constructors
-        {
-            LogData ld;
-            AString  asnull= new AString();
-            ld= new LogData(              ); UT_EQ(  asnull, ld.stringValue ); UT_EQ( 0, ld.integerValue ); UT_TRUE( ld.objectValue == null );
-            ld= new LogData(       3      ); UT_EQ(  asnull, ld.stringValue ); UT_EQ( 3, ld.integerValue ); UT_TRUE( ld.objectValue == null );
-            ld= new LogData(       3, this); UT_EQ(  asnull, ld.stringValue ); UT_EQ( 3, ld.integerValue ); UT_TRUE( ld.objectValue == this );
-            ld= new LogData("ABC"         ); UT_EQ(   "ABC", ld.stringValue ); UT_EQ( 0, ld.integerValue ); UT_TRUE( ld.objectValue == null );
-            ld= new LogData("ABC",    this); UT_EQ(   "ABC", ld.stringValue ); UT_EQ( 0, ld.integerValue ); UT_TRUE( ld.objectValue == this );
-            ld= new LogData("ABC", 3      ); UT_EQ(   "ABC", ld.stringValue ); UT_EQ( 3, ld.integerValue ); UT_TRUE( ld.objectValue == null );
-            ld= new LogData("ABC", 3, this); UT_EQ(   "ABC", ld.stringValue ); UT_EQ( 3, ld.integerValue ); UT_TRUE( ld.objectValue == this );
-        }
-
         // without key
-        Log.store( null                         ,    Scope.GLOBAL         );
-        Log.store( new LogData( "Replaced"     ),    Scope.GLOBAL         );
-        Log.store( null                         ,    Scope.GLOBAL         );
-        Log.store( new LogData( "Replaced"     ),    Scope.GLOBAL         );
-        Log.store( new LogData( "Global"       ),    Scope.GLOBAL         );
-        Log.store( new LogData( "Replaced"     ),    Scope.THREAD_OUTER    );
-        Log.store( new LogData( "ThreadOuter"  ),    Scope.THREAD_OUTER    );
-        Log.store( new LogData( "Replaced"     ),    Scope.PACKAGE,    1     );
-        Log.store( new LogData( "Path1"        ),    Scope.PACKAGE,    1     );
-        Log.store( new LogData( "Replaced"     ),    Scope.PACKAGE           );
-        Log.store( new LogData( "Path"         ),    Scope.PACKAGE           );
-        Log.store( new LogData( "Replaced"     ),    Scope.CLASS       );
-        Log.store( new LogData( "FileName"     ),    Scope.CLASS       );
-        Log.store( new LogData( "Replaced"     ),    Scope.METHOD         );
-        Log.store( new LogData( "Method"       ),    Scope.METHOD         );
-        Log.store( new LogData( "Replaced"     ),    Scope.THREAD_INNER    );
-        Log.store( new LogData( "ThreadInner"  ),    Scope.THREAD_INNER    );
+        Log.store( null             ,Scope.GLOBAL         );
+        Log.store( "Replaced"       ,Scope.GLOBAL         );
+        Log.store( null             ,Scope.GLOBAL         );
+        Log.store( "Replaced"       ,Scope.GLOBAL         );
+        Log.store( "Global"         ,Scope.GLOBAL         );
+        Log.store( "Replaced"       ,Scope.THREAD_OUTER   );
+        Log.store( "ThreadOuter"    ,Scope.THREAD_OUTER   );
+        Log.store( "Replaced"       ,Scope.PACKAGE,    1  );
+        Log.store( "Path1"          ,Scope.PACKAGE,    1  );
+        Log.store( "Replaced"       ,Scope.PACKAGE        );
+        Log.store( "Path"           ,Scope.PACKAGE        );
+        Log.store( "Replaced"       ,Scope.CLASS          );
+        Log.store( "FileName"       ,Scope.CLASS          );
+        Log.store( "Replaced"       ,Scope.METHOD         );
+        Log.store( "Method"         ,Scope.METHOD         );
+        Log.store( "Replaced"       ,Scope.THREAD_INNER   );
+        Log.store( "ThreadInner"    ,Scope.THREAD_INNER   );
 
-        LogData data= null;
-        data= Log.retrieve( Scope.GLOBAL       ); UT_EQ( "Global"        , data.stringValue );
-        data= Log.retrieve( Scope.THREAD_OUTER ); UT_EQ( "ThreadOuter"   , data.stringValue );
-        data= Log.retrieve( Scope.PACKAGE,    1); UT_EQ( "Path1"         , data.stringValue );
-        data= Log.retrieve( Scope.PACKAGE      ); UT_EQ( "Path"          , data.stringValue );
-        data= Log.retrieve( Scope.CLASS        ); UT_EQ( "FileName"      , data.stringValue );
-        data= Log.retrieve( Scope.METHOD       ); UT_EQ( "Method"        , data.stringValue );
-        data= Log.retrieve( Scope.THREAD_INNER ); UT_EQ( "ThreadInner"   , data.stringValue );
+        Object data= null;
+        data= Log.retrieve( Scope.GLOBAL       ); UT_EQ( "Global"        , (String) data );
+        data= Log.retrieve( Scope.THREAD_OUTER ); UT_EQ( "ThreadOuter"   , (String) data );
+        data= Log.retrieve( Scope.PACKAGE,    1); UT_EQ( "Path1"         , (String) data );
+        data= Log.retrieve( Scope.PACKAGE      ); UT_EQ( "Path"          , (String) data );
+        data= Log.retrieve( Scope.CLASS        ); UT_EQ( "FileName"      , (String) data );
+        data= Log.retrieve( Scope.METHOD       ); UT_EQ( "Method"        , (String) data );
+        data= Log.retrieve( Scope.THREAD_INNER ); UT_EQ( "ThreadInner"   , (String) data );
 
         // wit key
-        Log.store( new LogData( "Replaced"     ),   "mykey",  Scope.GLOBAL         );
-        Log.store( new LogData( "Global"       ),   "mykey",  Scope.GLOBAL         );
-        Log.store( new LogData( "Replaced"     ),   "mykey",  Scope.THREAD_OUTER   );
-        Log.store( new LogData( "ThreadOuter"  ),   "mykey",  Scope.THREAD_OUTER   );
-        Log.store( new LogData( "Replaced"     ),   "mykey",  Scope.PACKAGE,    1  );
-        Log.store( new LogData( "Path1"        ),   "mykey",  Scope.PACKAGE,    1  );
-        Log.store( new LogData( "Replaced"     ),   "mykey",  Scope.PACKAGE        );
-        Log.store( new LogData( "Path"         ),   "mykey",  Scope.PACKAGE        );
-        Log.store( new LogData( "Replaced"     ),   "mykey",  Scope.CLASS          );
-        Log.store( new LogData( "FileName"     ),   "mykey",  Scope.CLASS          );
-        Log.store( new LogData( "Replaced"     ),   "mykey",  Scope.METHOD         );
-        Log.store( new LogData( "Method"       ),   "mykey",  Scope.METHOD         );
-        Log.store( new LogData( "Replaced"     ),   "mykey",  Scope.THREAD_INNER   );
-        Log.store( new LogData( "ThreadInner"  ),   "mykey",  Scope.THREAD_INNER   );
+        Log.store( "Replaced"    ,  "mykey",  Scope.GLOBAL         );
+        Log.store( "Global"      ,  "mykey",  Scope.GLOBAL         );
+        Log.store( "Replaced"    ,  "mykey",  Scope.THREAD_OUTER   );
+        Log.store( "ThreadOuter" ,  "mykey",  Scope.THREAD_OUTER   );
+        Log.store( "Replaced"    ,  "mykey",  Scope.PACKAGE,    1  );
+        Log.store( "Path1"       ,  "mykey",  Scope.PACKAGE,    1  );
+        Log.store( "Replaced"    ,  "mykey",  Scope.PACKAGE        );
+        Log.store( "Path"        ,  "mykey",  Scope.PACKAGE        );
+        Log.store( "Replaced"    ,  "mykey",  Scope.CLASS          );
+        Log.store( "FileName"    ,  "mykey",  Scope.CLASS          );
+        Log.store( "Replaced"    ,  "mykey",  Scope.METHOD         );
+        Log.store( "Method"      ,  "mykey",  Scope.METHOD         );
+        Log.store( "Replaced"    ,  "mykey",  Scope.THREAD_INNER   );
+        Log.store( "ThreadInner" ,  "mykey",  Scope.THREAD_INNER   );
 
 
-        data= Log.retrieve( "mykey", Scope.GLOBAL       ); UT_EQ( "Global"        , data.stringValue );
-        data= Log.retrieve( "mykey", Scope.THREAD_OUTER ); UT_EQ( "ThreadOuter"   , data.stringValue );
-        data= Log.retrieve( "mykey", Scope.PACKAGE,    1); UT_EQ( "Path1"         , data.stringValue );
-        data= Log.retrieve( "mykey", Scope.PACKAGE      ); UT_EQ( "Path"          , data.stringValue );
-        data= Log.retrieve( "mykey", Scope.CLASS        ); UT_EQ( "FileName"      , data.stringValue );
-        data= Log.retrieve( "mykey", Scope.METHOD       ); UT_EQ( "Method"        , data.stringValue );
-        data= Log.retrieve( "mykey", Scope.THREAD_INNER ); UT_EQ( "ThreadInner"   , data.stringValue );
+        data= Log.retrieve( "mykey", Scope.GLOBAL       ); UT_EQ( "Global"        , (String) data );
+        data= Log.retrieve( "mykey", Scope.THREAD_OUTER ); UT_EQ( "ThreadOuter"   , (String) data );
+        data= Log.retrieve( "mykey", Scope.PACKAGE,    1); UT_EQ( "Path1"         , (String) data );
+        data= Log.retrieve( "mykey", Scope.PACKAGE      ); UT_EQ( "Path"          , (String) data );
+        data= Log.retrieve( "mykey", Scope.CLASS        ); UT_EQ( "FileName"      , (String) data );
+        data= Log.retrieve( "mykey", Scope.METHOD       ); UT_EQ( "Method"        , (String) data );
+        data= Log.retrieve( "mykey", Scope.THREAD_INNER ); UT_EQ( "ThreadInner"   , (String) data );
 
 
         // threaded
-        Log.store( new LogData( "Main Thread Data"        ),             Scope.THREAD_OUTER   );
-        Log.store( new LogData( "Main Thread Data, keyed" ),   "mykey",  Scope.THREAD_OUTER   );
+        Log.store( "Main Thread Data"       ,             Scope.THREAD_OUTER   );
+        Log.store( "Main Thread Data, keyed",   "mykey",  Scope.THREAD_OUTER   );
 
 
         Thread thread= new StoreDataTestThreadThread( this );
@@ -529,8 +521,8 @@ public class UT_alox_scopes extends AWorxUnitTesting
         while( thread.isAlive() )
             ALIB.sleepMicros(1);
 
-        data= Log.retrieve(          Scope.THREAD_OUTER ); UT_EQ( "Main Thread Data"         , data.stringValue );
-        data= Log.retrieve( "mykey", Scope.THREAD_OUTER ); UT_EQ( "Main Thread Data, keyed"  , data.stringValue );
+        data= Log.retrieve(          Scope.THREAD_OUTER ); UT_EQ( "Main Thread Data"         , (String) data );
+        data= Log.retrieve( "mykey", Scope.THREAD_OUTER ); UT_EQ( "Main Thread Data, keyed"  , (String) data );
 
         //Log.state( "", Verbosity.INFO, "Configuration now is:" );
     }

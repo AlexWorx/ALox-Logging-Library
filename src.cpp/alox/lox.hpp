@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  aworx::lox - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -24,8 +24,8 @@
 // #################################################################################################
 // includes
 // #################################################################################################
-#if !defined (HPP_ALIB_THREADS_THREADLOCK)
-    #include "alib/threads/threadlock.hpp"
+#if !defined (HPP_ALIB_THREADS_SMARTLOCK)
+    #include "alib/threads/smartlock.hpp"
 #endif
 #if !defined (HPP_ALIB_STRINGS_TOKENIZER)
     #include "alib/strings/tokenizer.hpp"
@@ -51,14 +51,58 @@
 #endif
 
 
-namespace aworx {
-namespace       lox {
+namespace aworx { namespace lox { namespace core
+{
+    class Logger;
+    namespace textlogger
+    {
+        class TextLogger;
+    }
+}
 
-namespace  core   {
-                     class Logger;
-                     namespace  textlogger  {class TextLogger; }
-                  }
+/** ************************************************************************************************
+ * Used to store prefixes set. Those provided as
+ * \ref aworx::lib::boxing::Box "boxes" of character arrays are copied into an internal AString
+ * and will be deleted with the object. This ensures, that simple strings might get assembled
+ * on the stack and still used as a prefix logable.
+ **************************************************************************************************/
+class PrefixLogable : public Box
+{
+    protected:
+        /** Flag to indicate if a stored AString object needs to be deleted on deletion of this
+         *  object.See class description. */
+        AString* copy   = nullptr;
 
+    public:
+    /**
+     * Constructor taking the originally provided box. If this is an array of characters, the
+     * contents is copied into a heap allocated (new) AString and our boxer is replaced accordingly.
+     * @param src The prefix object provided by the user
+     */
+    PrefixLogable( const Box& src )
+    : Box( src )
+    {
+        if ( IsArrayOf<char>() )
+        {
+            // use "placement new" to overwrite the box part of ourselves
+            new (this) Box( copy= new AString( Unbox<String>() ));
+        }
+    }
+
+    ~PrefixLogable()
+    {
+        if(copy)
+            delete copy;
+    }
+    /**
+     * Move assignment operator.
+     * Default implementation of compiler is used.
+     * (Needs to be explicitly given due to custom destructor.)
+     * @param move The object to be moved.
+     * @return This object
+     */
+    PrefixLogable& operator= (PrefixLogable&& move ) = default;
+};
 
 /** ************************************************************************************************
  * This class acts as a container for \e Loggers and provides a convenient interface to logging.
@@ -73,19 +117,10 @@ namespace  core   {
  * <b>'Logable Objects' in <em>ALox for C++</em></b><br>
  * While other ALox implementations, like ALox for C# or ALox for Java use the 'runtime type
  * information' feature of their underlying programming language to identify any object type,
- * this is not possible in standard C++. Therefore, in ALox for C++ objects of type
- * \e void* are logged. Together with the pointer, a type information has to be provided.
- *
- * The default type '0' is the only predefined type that ALox comes with and indicates
- * \ref aworx::lib::strings::TString "ALib TString". Due to the flexible and
- * implicit conversion of user defined string types, almost anything that is a string can be passed
- * to be logged. (For more information on string handling in ALib, see \ref aworx::lib::strings).
- *
- * The use of custom types (in combination with custom logger implementations or custom
- * \ref aworx::lox::core::textlogger::ObjectConverter "textlogger::ObjectConverter" types
- * allows to dispatch just any other data to their log destination.
+ * in the C++ version
+ * \ref aworx::lib::boxing "%ALib Boxing" is used to be able to log arbitrary object types.
  **************************************************************************************************/
-class Lox : public aworx::lib::threads::ThreadLock
+class Lox : protected aworx::lib::threads::ThreadLock
 {
     // #############################################################################################
     // Public fields
@@ -96,13 +131,6 @@ class Lox : public aworx::lib::threads::ThreadLock
          * disabled <em>Log Domain</em> and those suppressed by the optional log condition parameter.
          */
         int                                        CntLogCalls                                   =0;
-
-        /**
-         * Denotes if <em>Log Domains</em> are searched ignoring the letter case or being sensitive
-         * about it.<br>
-         * Defaults to \p Case::Ignore.
-         */
-        Case                                       DomainSensitivity                  =Case::Ignore;
 
         /**
          * Denotes flags used with methods #GetState and #State to select different parts
@@ -134,50 +162,59 @@ class Lox : public aworx::lib::threads::ThreadLock
     // Private/protected fields  and constants
     // #############################################################################################
     protected:
+        /** The list of collected log objects which is passed to the \e Loggers  */
+        Boxes                                           tmpLogables;
+
+        /** A list of a lists of logables used for (recursive) logging.  */
+        std::vector<Boxes*>                             logableContainers;
+
+        /** A list of a lists of logables used for (recursive) internal logging.  */
+        std::vector<Boxes*>                             internalLogables;
+
+        /** The recursion counter for internal logging.  */
+        size_t                                          internalLogRecursionCounter             = 0;
+
         /** Information about the source code, method, thread, etc. invoking a log  call */
-        core::ScopeInfo                            scopeInfo;
+        core::ScopeInfo                                 scopeInfo;
 
         /**
          * Dictionary to translate thread IDs into something maybe nicer/shorter.
          * The dictionary has to be filled by the user of the library.
          */
-        core::ScopeInfo::ThreadDictionary          threadDictionary;
+        core::ScopeInfo::ThreadDictionary               threadDictionary;
 
         /**
          * The root domain \"/\". All registered domains become a sub domain of this root.
          * If a <em>Sub-Log Domains' Verbosity</em> is not explicitly set, such sub domain inherits
          * the verbosity of its parent.
          */
-        core::Domain                               domains;
+        core::Domain                                    domains;
 
         /**
          * The root domain for internal <em>Log Domains</em>.
          */
-        core::Domain                               internalDomains;
+        core::Domain                                    internalDomains;
 
         /** Scope Domains */
-        core::ScopeStore<AString*>                 scopeDomains;
+        core::ScopeStore<AString*>                      scopeDomains;
 
         /** Log once counters */
-        core::ScopeStore<std::map<AString, int>*>  scopeLogOnce;
+        core::ScopeStore<std::map<AString, int>*>       scopeLogOnce;
 
         /** Prefix logables store */
-        core::ScopeStore<core::Logable*>           scopePrefixes;
+        core::ScopeStore<Box*>                          scopePrefixes;
 
         /** Log data store */
-        core::ScopeStore<std::map<AString, LogData*>*> scopeLogData;
+        core::ScopeStore<std::map<AString, Box>*>  scopeLogData;
 
         /** Used for tabular output of logger lists */
-        int                                        maxLoggerNameLength                           =0;
+        integer                                        maxLoggerNameLength                      =0;
 
         /** Used for tabular output of logger lists */
-        int                                        maxDomainPathLength;
+        integer                                        maxDomainPathLength;
 
         /** A key value used in stores if no key is given (global object).  */
-        const aworx::TString                       noKeyHashKey                               = "$";
-
-        /** The list of collected log objects which is passed to the \e Loggers  */
-        core::Logables                             tmpLogables;
+        const aworx::String                             noKeyHashKey                          = "$";
 
         /**  Domain stubstitution rules.  */
         struct DomainSubstitutionRule
@@ -200,14 +237,14 @@ class Lox : public aworx::lib::threads::ThreadLock
              * @param s The path to search.
              * @param r The replacment.
             */
-            DomainSubstitutionRule( const TString& s, const TString& r )
+            DomainSubstitutionRule( const String& s, const String& r )
             {
                 ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( Search,      ReplaceExternalBuffer );
                 ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( Replacement, ReplaceExternalBuffer );
 
                 // get type and adjust given search parameter
-                int startPos=   0;
-                int length=     s.Length();
+                integer startPos=   0;
+                integer length=     s.Length();
                 if ( s.CharAtStart() == '*' )
                 {
                     startPos++;
@@ -282,7 +319,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          *                   Optional and defaults to \c true.
          ******************************************************************************************/
         ALOX_API
-        Lox(const TString& name, bool doRegister =true );
+        Lox(const String& name, bool doRegister =true );
 
         /** ****************************************************************************************
          * Destructs a lox
@@ -299,7 +336,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          *
          * @returns The name of this %Lox.
          ******************************************************************************************/
-        const TString    GetName()                        { return scopeInfo.loxName;              }
+        const String    GetName()                        { return scopeInfo.loxName;              }
 
         /** ****************************************************************************************
          * Status of registration with ALox. To keep a \b %Lox "private" using parameter
@@ -312,9 +349,10 @@ class Lox : public aworx::lib::threads::ThreadLock
         bool             IsRegistered()                   { return ALox::Get( GetName() ) == this; }
 
 
+        ALIB_WARNINGS_OVERLOAD_VIRTUAL_OFF
+
         /** ***************************************************************************************
-         * Sets the scope information data for the next log. In addition, invoces
-         * \ref aworx::lib::threads::ThreadLock::Acquire()
+         * Acquire s this \b %Lox and sets the scope information data for the next log.
          *
          * @param file  The name of the source code file that the call is placed in. Usually
          *              the predefined preprocessor macro __FILE__ is passed here.
@@ -323,9 +361,12 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @param func  The name of the function that the call is placed in. Usually the
          *              predefined preprocessor macro __func__ (or __FUNCTION__) is passed here.
          **************************************************************************************/
-        void SetScopeInfo( const TString& file, int line, const TString& func )
+        virtual void Acquire( const TString& file, int line, const TString& func )
+        #if ALIB_DEBUG
+            ALIB_OVERRIDE
+        #endif
         {
-            #if defined( ALIB_DEBUG )
+            #if ALIB_DEBUG
                 ThreadLock::Acquire(file,line,func);
             #else
                 ThreadLock::Acquire();
@@ -334,13 +375,16 @@ class Lox : public aworx::lib::threads::ThreadLock
             scopeInfo.Set( file, line, func, owner );
         }
 
+        ALIB_WARNINGS_RESTORE
+
         /** ****************************************************************************************
          * Releases ownership of this object. If #Acquire was called multiple times, the same
          * number of calls to this method have to be performed to release ownership.
          ******************************************************************************************/
-        virtual void        Release()
+        virtual void        Release()                                                  ALIB_OVERRIDE
         {
-             ThreadLock::Release();
+            scopeInfo.Release();
+            ThreadLock::Release();
         }
 
         /** ****************************************************************************************
@@ -349,7 +393,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          * - All domain settings are cleared
          * - Scope Domains are cleared
          * - Log data is cleared
-         * - Log once counters are cleard
+         * - Log once counters are cleared
          * - The thread dictionary is cleared.
          * - All Trim domains which set are cleared
          *
@@ -405,7 +449,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @param includeString   Determines if \p path should be included in the trimmed path or not.
          *                        Optional and defaults to \b %Inclusion::Exclude.
          * @param trimOffset      Adjusts the portion of \p path that is trimmed.
-         *                        Optional and defaults to 0.
+         *                        Optional and defaults to \c 0.
          * @param sensitivity     Determines if the comparison of \p path with a source files' path
          *                        is performed case sensitive or not.
          *                        Optional and defaults to \b Case::Ignore.
@@ -417,7 +461,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @param priority        The priority of the setting. Defaults to
          *                        \ref aworx::lib::config::Configuration::PrioDefault "Configuration::PrioDefault".
          ******************************************************************************************/
-        void      SetSourcePathTrimRule( const TString& path,
+        void      SetSourcePathTrimRule( const String& path,
                                          Inclusion      includeString   = Inclusion::Exclude,
                                          int            trimOffset      = 0,
                                          Case           sensitivity     = Case::Ignore,
@@ -455,39 +499,23 @@ class Lox : public aworx::lib::threads::ThreadLock
                                              Case::Ignore, NullString, reach, -1  );
         }
 
-        /** ************************************************************************************
-         * This static method creates an adequate/default console logger. 'Adequate' here means
-         * that this function tries to detect what might be the best choice for the environment
-         * that the ALox based process is running in.
-         * This method is due to changes with the evolution of future ALox versions and
-         * should be considered as a convenience method to shorten the bootstrap code needed
-         * to use ALox.
-         *
-         * The current C++ implementation takes the following approach:
-         *
-         * - check if configuration variable
-         *   [ALOX_CONSOLE_TYPE](../group__GrpALoxConfigVars.html) is set. This variable's
-         *   setting takes priority and if set, the according logger is created.
-         * - check which
-         *   \ref aworx::lib::system::System::RuntimeEnvironment "System::RuntimeEnvironment"
-         *   is set and try to choose a reasonable setting.
-         *   E.g. if Eclipse CDT IDE is detected, no ANSI support is assumed.
-         * - Otherwise, on Unix like OS, class
+        /** ****************************************************************************************
+         * This static method creates a console logger. To decide which logger type to choose,
+         * configuration variable [ALOX_CONSOLE_TYPE](../group__GrpALoxConfigVars.html) is checked.
+         * If this variable is not set, then the decision is made as follows:
+         * - On GNU/Linux OS, a
          *   \ref aworx::lox::loggers::AnsiConsoleLogger "AnsiConsoleLogger" is chosen.
-         * - Otherwise, on windows system, check if process is attached to a windows console.
-         *   If yes, a
-         *   \ref aworx::lox::loggers::WindowsConsoleLogger "WindowsConsoleLogger"
-         *   is chosen to enabled colorful output. If no, plain text mode is preferred
-         *   by choosing
-         *   \ref aworx::lox::loggers::ConsoleLogger "ConsoleLogger".
+         * - On Windows OS, if a console window is attached, type
+         *   \ref aworx::lox::loggers::WindowsConsoleLogger "WindowsConsoleLogger" is chosen. If
+         *   no console is attached to the process, instead a
+         *   \ref aworx::lox::loggers::ConsoleLogger "ConsoleLogger" is returned.
          *
-         * For further information check out the source code.
          *
          * @param name The name of the \e Logger. Defaults to nullptr, which implies standard
          *             logger names defined in the \e Logger sub-classes.
          *
          * @return An instance of the chosen console type logger.
-         **************************************************************************************/
+         ******************************************************************************************/
         ALOX_API
         static core::textlogger::TextLogger*  CreateConsoleLogger( const String& name= nullptr );
 
@@ -505,7 +533,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          * Removes a logger from this container.
          * \note
          *  To (temporarily) disable a logger without removing it, a call to
-         *  \ref SetVerbosity(core::Logger*,Verbosity,const TString&,int) "SetVerbosity(logger, Verbosity::Off)"
+         *  \ref SetVerbosity(core::Logger*,Verbosity,const String&,int) "SetVerbosity(logger, Verbosity::Off)"
          *   can be used.
          *
          * @param logger   The logger to be removed.
@@ -518,7 +546,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          * Removes logger named \p loggerName from this container.
          * \note
          *  To (temporarily) disable a logger without removing it, a call to
-         *  \ref SetVerbosity(core::Logger*,Verbosity,const TString&,int) "SetVerbosity(logger, Verbosity::Off)"
+         *  \ref SetVerbosity(core::Logger*,Verbosity,const String&,int) "SetVerbosity(logger, Verbosity::Off)"
          *   can be used.
          *
          * @param loggerName  The name of the \e Logger(s) to be removed (case insensitive).
@@ -588,14 +616,14 @@ class Lox : public aworx::lib::threads::ThreadLock
         ALOX_API
         void            SetVerbosity( core::Logger*    logger,
                                       Verbosity        verbosity,
-                                      const TString&   domain        = TString("/"),
+                                      const String&    domain        = "/",
                                       int              priority      = lib::config::Configuration::PrioDefault  );
 
         /** ****************************************************************************************
-         * Same as \ref #SetVerbosity(core::Logger*,Verbosity,const TString&,int) "SetVerbosity"
+         * Same as \ref #SetVerbosity(core::Logger*,Verbosity,const String&,int) "SetVerbosity"
          * but addressing the \e %Logger to manipulate by its name.<br>
          * This method may only be used after a \e %Logger was once 'registered' with this \b %Lox
-         * using \ref #SetVerbosity(core::Logger*,Verbosity,const TString&,int) "SetVerbosity".
+         * using \ref #SetVerbosity(core::Logger*,Verbosity,const String&,int) "SetVerbosity".
          *
          * @param loggerName The logger to be to be affected, identified by its name (case
          *                   insensitive).
@@ -609,7 +637,7 @@ class Lox : public aworx::lib::threads::ThreadLock
         ALOX_API
         void            SetVerbosity( const String&    loggerName,
                                       Verbosity        verbosity,
-                                      const TString&   domain        =  TString("/"),
+                                      const String&    domain        =  "/",
                                       int              priority      =  lib::config::Configuration::PrioDefault );
 
         /** ****************************************************************************************
@@ -643,14 +671,14 @@ class Lox : public aworx::lib::threads::ThreadLock
          *                    \ref aworx::lox::Scope::Path "Scope::Path"
          *                    to reference parent directories. Optional and defaults to \c 0.
          ******************************************************************************************/
-        void        SetDomain( const TString& scopeDomain, Scope scope, int pathLevel = 0  )
+        void        SetDomain( const String& scopeDomain, Scope scope, int pathLevel = 0  )
         {
             setDomainImpl( scopeDomain, scope, pathLevel, false, nullptr );
         }
 
         /** ****************************************************************************************
          * This overloaded version of
-         * \ref SetDomain(const TString&,Scope,int) "SetDomain" is applicable only for
+         * \ref SetDomain(const String&,Scope,int) "SetDomain" is applicable only for
          * \e %Scope.ThreadOuter and \e %Scope.ThreadInner and allows to specify the thread that
          * the setting should be associated with.
          *
@@ -663,9 +691,9 @@ class Lox : public aworx::lib::threads::ThreadLock
          *                    values, an internal error is logged.
          * @param thread      The thread to set/unset a thread-related Scope Domains for.
          ******************************************************************************************/
-        void        SetDomain( const TString& scopeDomain, Scope scope, Thread* thread )
+        void        SetDomain( const String& scopeDomain, Scope scope, Thread* thread )
         {
-            if ( !isThreadReleatedScope( scope ) )
+            if ( !isThreadRelatedScope( scope ) )
                 return;
             setDomainImpl( scopeDomain, scope, 0, false, thread );
         }
@@ -677,7 +705,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          * account.<br>
          *
          * <b>Wildcards</b><br>
-         * Parameter \p domainPath supports \b 'wildcard' character <c> '*'</c> at the its beginning
+         * Parameter \p domainPath supports \b 'wildcard' character <c> '*'</c> at its beginning
          * and at its end (or both). This allows to have four types of rules:
          * - Exact match
          * - Prefix match (\c * at the end of \p domainPath)
@@ -721,13 +749,13 @@ class Lox : public aworx::lib::threads::ThreadLock
          * variables. Any prioritized \e 'internal' setting of \e Verbosities this way could be
          * circumvented!
          *
-         * For more information consult the ALox user manual.
+         * For more information consult the [ALox User Manual](../man_domain_substitution.html).
          *
          * @param domainPath  The path to search. Has to start with either  <c> '/'</c> or <c> '*'</c>.
          * @param replacement The replacement path.
          ******************************************************************************************/
         ALOX_API
-        void     SetDomainSubstitutionRule( const TString& domainPath, const TString& replacement );
+        void     SetDomainSubstitutionRule( const String& domainPath, const String& replacement );
 
         /** ****************************************************************************************
          * This method is used to remove an <em>explicitly given</em> domain path from the list
@@ -753,27 +781,56 @@ class Lox : public aworx::lib::threads::ThreadLock
          *                    Defaults to the current thread.
          ******************************************************************************************/
         ALOX_API
-        void        RemoveThreadDomain( const TString& scopeDomain, Scope scope, Thread* thread= nullptr );
+        void        RemoveThreadDomain( const String& scopeDomain, Scope scope, Thread* thread= nullptr );
 
         /** ****************************************************************************************
-         * The given \p logable becomes a <em>Prefix Logable</em> provided to loggers with log statements
-         * executed within the given \p scope.
+         * The given \p prefix becomes a <em>Prefix Logable</em> provided to loggers with each log
+         * statement executed within the given \p scope.
          * The list of objects received by a logger is sorted from outer scope to inner scope.
-         * The logable of the <em>Log Statement</em> itself, is the last in the list, except one or
-         * more <em>Prefix Logables</em> of \e %Scope.ThreadInner are set. Those are (similar to how this
-         * \e %Scope is handled with <em>%Scope Domains</em>) are appended to the end of the list.
+         * The logable of the <em>%Log Statement</em> itself, is the last in the list, except one or
+         * more <em>Prefix Logables</em> of \e %Scope.ThreadInner are set. Those are (similar to how
+         * this \e %Scope is used with <em>%Scope Domains</em>) appended to the end of the
+         * list.
          *
          * To remove a previously set <em>Prefix Logable</em>, \c nullptr has to be passed with
-         * parameter \p logable.
+         * parameter \p prefix.
          * For \e %Scope.ThreadOuter and \e %Scope.ThreadInner, passing \c nullptr (respectively
          * with the overloaded method accepting string messages, a \e nulled string)
          * removes the most recently added <em>Prefix Logable</em>.
          *
-         * \note  The C++ version of ALox implements scope mechanisms using scope information
-         *        generated by the preprocessor. By default, debug logging supports such caller
-         *        information, release logging does not. This can be changed. For more information
-         *        on how to change such defaults, see \ref ALOX_DBG_LOG_CI and \ref ALOX_REL_LOG_CI
-         *        in section \ref GrpALoxCodeSelectorSymbols.
+         *
+         * \note
+         *   \e Logables of boxed character array types are duplicated internally by \b %ALox when
+         *   setting as <em>Prefix Logables</em>.
+         *   This means, in contrast to other types, for string-type <em>Prefix Logables</em>
+         *   the life-cycle of the object passed in parameter \p prefix is allowed to end
+         *   right after the invocation of this method. This is a convenience feature of \b %ALox.
+         *   However, this also means, that changes of the strings that occur after the string
+         *   objects got set as a <em>Prefix Logable</em>, are not reflected.
+         *   To implement "variable" <em>Prefix Logable</em> of string-type, an object of type
+         *   \b %AString might be passed wrapped in class
+         *   \ref aworx::lib::boxing::BoxedAs "BoxedAs<AString>".<br>
+         *   For more information consult the
+         *   [ALox User Manual](../man_prefix_logables.html#man_prefix_logables_cppspecifics).
+         *
+         *<p>
+         * \note
+         *   Unlike other methods of this class which accept an arbitrary amount of logables, this
+         *   method and its overloaded variants accept only one logable (the prefix).
+         *   To supply several objects to be prefix logables at once, a container of type
+         *   \ref aworx::lib::boxing::Boxes "Boxes" may be passed with parameter \p logables, like
+         *   in the following sample:
+         *   \snippet "ut_alox_log_scopes.cpp"      DOX_ALOX_LOX_SETPREFIX
+         *   The provided container as well as the prefixes themselves have to be kept in memory
+         *   until they are unset.
+         *
+         *<p>
+         * \note
+         *   The C++ version of ALox implements scope mechanisms using scope information
+         *   generated by the preprocessor. By default, debug logging supports such caller
+         *   information, release logging does not. This can be changed. For more information
+         *   on how to change such defaults, see \ref ALOX_DBG_LOG_CI and \ref ALOX_REL_LOG_CI
+         *   in section \ref GrpALoxCodeSelectorSymbols.
          *
          *<p>
          * \note
@@ -781,91 +838,43 @@ class Lox : public aworx::lib::threads::ThreadLock
          *   <em>Prefix Logables</em> is chosen for the fact that with text loggers (which is the
          *   most widely applied use case for ALox) such objects are prefixes to the log
          *   message. Of-course, with using \e %Scope.ThreadInner, this turns into a suffix!<br>
-         *   When using ALox to process objects instead of log messages, the concept of
-         *   <em>Prefix Logables</em> is very useful. Just the name does not fit so well anymore.
+         *   When using ALox to process arbitrary objects instead of text messages, the concept of
+         *   <em>Prefix Logables</em> is still very useful. Just the name does not fit so well anymore.
          *   Think of 'SetContext' and <em>Context Objects</em> instead.
          *
-         * @param logable     The <em>Prefix Logable</em> to set.
-         * @param type        Type information of \p logable.
+         * @param prefix      The <em>Prefix Logable</em> to set.
          * @param scope       The scope that should the given \p domain be registered for.
          *                    Available Scope definitions are platform/language dependent.
          * @param pathLevel   Used only if parameter \p scope equals
          *                    \ref aworx::lox::Scope::Path "Scope::Path"
          *                    to reference parent directories. Optional and defaults to \c 0.
          ******************************************************************************************/
-        void        SetPrefix( const void* logable, int type, Scope scope, int pathLevel = 0  )
+        void        SetPrefix( const Box& prefix, Scope scope, int pathLevel = 0  )
         {
-            setPrefixImpl( logable, type, scope, pathLevel, nullptr );
+            setPrefixImpl( prefix, scope, pathLevel, nullptr );
         }
-
 
         /** ****************************************************************************************
          * This overloaded version of
-         * \ref SetPrefix(const void*,int,Scope,int) "SetPrefix" is applicable only for
+         * \ref SetPrefix(const Box&,Scope,int) "SetPrefix" is applicable only for
          * \e %Scope.ThreadOuter and \e %Scope.ThreadInner and allows to specify the thread that
          * the setting should be associated with.
          *
          * If \p scopeDomain is nullptr or empty, the most recently added <em>Prefix Logable</em>
          * is removed.
          *
-         * @param logable     The <em>Prefix Logable</em> to set.
-         * @param type        Type information of \p logable.
+         * @param prefix      The <em>Prefix Logable</em> to set.
          * @param scope       Either \e %Scope.ThreadOuter or \e %Scope.ThreadInner. With other
          *                    values, an internal error is logged.
          * @param thread      The thread to set/unset a thread-related Scope Domains for.
          ******************************************************************************************/
-        void        SetPrefix( const void* logable, int type, Scope scope, Thread* thread )
+        void        SetPrefix( const Box& prefix, Scope scope, Thread* thread )
         {
-            setPrefixImpl( logable, type, scope, 0, thread );
-        }
-
-
-        /** ****************************************************************************************
-         * Overloaded version of \ref SetPrefix(const void*,int,Scope,int) "SetPrefix"
-         * accepting a string-type logable.
-         *
-         * \note
-         *   String-type \e Logables are duplicated interally by ALox when setting as <em>Prefix Logables</em>.
-         *   This means, different to <em>Prefix Logables</em> of custom types, the life-cycle of the object passed
-         *   in parameter \p logable is allowed to end right after the invokation of this method.
-         *
-         * @param logable     The string-type <em>Prefix Logable</em> to set.
-         * @param scope       The scope that should the given \p logable be registered for.
-         *                    Available Scope definitions are platform/language dependent.
-         * @param pathLevel   Used only if parameter \p scope equals
-         *                    \ref aworx::lox::Scope::Path "Scope::Path"
-         *                    to reference parent directories. Optional and defaults to \c 0.
-         ******************************************************************************************/
-        void        SetPrefix( const TString& logable, Scope scope, int pathLevel = 0  )
-        {
-            setPrefixImpl( &logable, 0, scope, pathLevel, nullptr );
-        }
-
-
-        /** ****************************************************************************************
-         * Overloaded version of \ref SetPrefix(const void*,int,Scope,Thread*) "SetPrefix"
-         * accepting a string-type logable.
-         *
-         * To remove the most recently added <em>Prefix Logable</em> associated with a <em>Log Domain</em>,
-         * \c nullptr or a nulled or empty string has to be passed with parameter \p logable.
-         *
-         * \note
-         *   String-type \e Logables are duplicated interally by ALox when setting as <em>Prefix Logables</em>.
-         *   This means, different to <em>Prefix Logables</em> of custom types, the life-cycle of the object passed
-         *   in parameter \p logable is allowed to end right after the invokation of this method.
-         *
-         * @param logable     The string-type <em>Prefix Logable</em> to set.
-         * @param scope       Either \e %Scope.ThreadOuter or \e %Scope.ThreadInner. With other
-         *                    values an internal error is logged.
-         * @param thread      The thread to set/unset a thread-related <em>Prefix Logable</em> for.
-         ******************************************************************************************/
-        void        SetPrefix( const TString& logable, Scope scope, Thread* thread )
-        {
-            setPrefixImpl( &logable, 0, scope, 0, thread );
+            setPrefixImpl( prefix, scope, 0, thread );
         }
 
         /** ****************************************************************************************
-         * The given \p logable becomes a <em>Prefix Logable</em> associated to the given
+         * The given \p prefix becomes a <em>Prefix Logable</em> associated to the given
          * <em>Log Domain</em>.
          * <em>Prefix Logables</em> associated with the <em>Log Domain</em> are added to the
          * list of \e Logables right
@@ -873,7 +882,14 @@ class Lox : public aworx::lib::threads::ThreadLock
          * Multiple <em>Prefix Logables</em> can be added per <em>Log Domain</em>.
          *
          * To remove the most recently added <em>Prefix Logable</em> associated with a <em>Log Domain</em>,
-         * \c nullptr has to be passed with parameter \p logable.
+         * \c nullptr has to be passed with parameter \p prefix.
+         *
+         * \note
+         *   String-type \e Logables are duplicated internally by ALox when setting as
+         *   <em>Prefix Logables</em>.
+         *   This means, different to <em>Prefix Logables</em> of type \b %AString or custom types,
+         *   the life-cycle of the object passed in parameter \p prefix is allowed to end
+         *   right after the invocation of this method.
          *
          * \attention
          *   The same as with most interface methods of this class, the given \p domain parameter is
@@ -883,8 +899,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          *   The default value of parameter \p domain is \c "" which addresses the domain evaluated
          *   for the current scope.
          *
-         * @param logable     The <em>Prefix Logable</em> to set.
-         * @param type        Type information of \p logable.
+         * @param prefix      The <em>Prefix Logable</em> to set.
          * @param domain      The domain path. Defaults to \c nullptr, resulting in
          *                    evaluated <em>Scope Domain</em> path.
          * @param otherPLs    If set to \c Inclusion::Exclude, scope-related <em>Prefix Logables</em>
@@ -893,35 +908,8 @@ class Lox : public aworx::lib::threads::ThreadLock
          *                    Defaults to \c Inclusion::Include.
          ******************************************************************************************/
         ALOX_API
-        void        SetPrefix( const void* logable, int type, const TString& domain= nullptr,
-                               lib::enums::Inclusion otherPLs=  lib::enums::Inclusion::Include );
-
-
-        /** ****************************************************************************************
-         * Overloaded version of \ref SetPrefix(const void*,int,const TString&, Inclusion) "SetPrefix"
-         * accepting a string-type logable.
-         *
-         * To remove the most recently added <em>Prefix Logable</em> associated with a <em>Log Domain</em>,
-         * \c nullptr or a nulled or empty string has to be passed with parameter \p logable.
-         *
-         * \note
-         *   String-type \e Logables are duplicated internally by ALox when setting as <em>Prefix Logables</em>.
-         *   This means, different to <em>Prefix Logables</em> of custom types, the life-cycle of the object passed
-         *   in parameter \p logable is allowed to end right after the invocation of this method.
-         *
-         * @param logable     The string-type <em>Prefix Logable</em> to set.
-         * @param domain      The domain path. Defaults to \c nullptr, resulting in
-         *                    evaluated <em>Scope Domain</em> path.
-         * @param otherPLs    If set to \c Inclusion::Exclude, scope-related <em>Prefix Logables</em>
-         *                    are ignored and only domain-related <em>Prefix Logables</em> are passed to
-         *                    the \e Loggers.
-         *                    Defaults to \c Inclusion::Include.
-         ******************************************************************************************/
-        void        SetPrefix( const TString& logable, const TString& domain= nullptr,
-                               Inclusion otherPLs=  Inclusion::Include )
-        {
-            SetPrefix( &logable, 0, domain, otherPLs );
-        }
+        void        SetPrefix( const Box& prefix, const String& domain= nullptr,
+                               lib::lang::Inclusion otherPLs=  lib::lang::Inclusion::Include );
 
         /** ****************************************************************************************
          * This method is used reset (or to explicitly set) the start time of one or all logger(s).
@@ -940,12 +928,12 @@ class Lox : public aworx::lib::threads::ThreadLock
          *                   be affected.
          ******************************************************************************************/
         ALOX_API
-        void SetStartTime( lib::time::Ticks  startTime = lib::time::Ticks(0),
-                           const String&     loggerName= nullptr );
+        void SetStartTime( Ticks           startTime    = lib::time::Ticks(0),
+                           const String&   loggerName   = nullptr               );
 
-        #if defined (__GLIBCXX__)
+        #if defined (__GLIBCXX__) || defined(__APPLE__)
             /** ****************************************************************************************
-             * Convertes the given \p startTime and invokes #SetStartTime(lib::time::Ticks, const String&)
+             * Converts the given \p startTime and invokes #SetStartTime(lib::time::Ticks, const String&)
              * \note  GLib specific.
              *
              * @param startTime  The new start time in system specific time unit.
@@ -961,7 +949,7 @@ class Lox : public aworx::lib::threads::ThreadLock
 
         #if defined( _MSC_VER )
             /** ****************************************************************************************
-             * Convertes the given \p startTime and invokes #SetStartTime(lib::time::Ticks, const String&)
+             * Converts the given \p startTime and invokes #SetStartTime(lib::time::Ticks, const String&)
              * \note  Microsoft Windows specific.
              *
              * @param startTime  The new start time in system specific time unit.
@@ -970,7 +958,7 @@ class Lox : public aworx::lib::threads::ThreadLock
              *                   be affected.
              ******************************************************************************************/
             ALOX_API
-            void        SetStartTime( LPFILETIME startTime, const String& loggerName= nullptr );
+            void        SetStartTime( const FILETIME& startTime, const String& loggerName= nullptr );
 
         #endif
 
@@ -986,8 +974,8 @@ class Lox : public aworx::lib::threads::ThreadLock
         void        MapThreadName( const String& threadName, int id= 0 );
 
         /** ****************************************************************************************
-         * Stores ALox <em>Log Data</em>, a \e Logable  of base type
-         * \ref aworx::lox::LogData "LogData" which can afterwards be retrieved by invoking
+         * Stores data encapsulated in an object of class
+         * \ref aworx::lib::boxing::Box "Box" which can be retrieved back by invoking
          * #Retrieve. Using the optional \p key and \p scope offer various possibilities to reference
          * this data later.<br>
          *
@@ -1015,7 +1003,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          *                  to reference parent directories. Optional and defaults to \c 0.
          ******************************************************************************************/
         inline
-        void        Store( LogData* data,                       const TString& key,
+        void        Store( const Box& data,                       const String& key,
                            Scope scope= Scope::Global , int            pathLevel= 0 )
         {
             storeImpl( data, key, scope, pathLevel );
@@ -1023,7 +1011,7 @@ class Lox : public aworx::lib::threads::ThreadLock
 
         /** ****************************************************************************************
          * Overloaded version of
-         * Store(LogData*,const TString&,Scope,int) "Store" which omits parameter \p key.
+         * Store(const Box&,const String&,Scope,int) "Store" which omits parameter \p key.
          * @param data      The data object to store.
          *                  In C++, has to be heap allocated and will be deleted
          *                  by this \b %Lox when overwritten or this lox is deleted.
@@ -1033,19 +1021,20 @@ class Lox : public aworx::lib::threads::ThreadLock
          *                  to reference parent directories. Optional and defaults to \c 0.
          ******************************************************************************************/
         inline
-        void        Store( LogData* data,
+        void        Store( const Box& data,
                            Scope scope= Scope::Global , int            pathLevel= 0 )
         {
             storeImpl( data, nullptr, scope, pathLevel );
         }
 
         /** ****************************************************************************************
-         * Retrieves ALox <em>Log Data</em>, an object of base type
-         * \ref aworx::lox::LogData "LogData" which can be stored by invoking
+         * Retrieves ALox <em>Log Data</em>, an object type
+         * \ref aworx::lib::boxing::Box "Box" which had been stored in a prior call to
          * #Store. Using the optional \p key and \p scope offer various possibilities to reference
          * such objects.<br>
          *
-         * \note If no <em>Log Data</em> object is found, an empty object is stored and returned.
+         * \note If no data is found, an nulled object is returned. This can be tested using method
+         *       \ref aworx::lib::boxing::Box::IsNull "Box::IsNull".
          *
          * <p>
          * \note <em>Log Data</em> is a feature provided by ALox to support debug-logging.
@@ -1059,10 +1048,10 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @param pathLevel Used only if parameter \p scope equals
          *                  \ref aworx::lox::Scope::Path "Scope::Path"
          *                  to reference parent directories. Optional and defaults to \c 0.
-         * @return The \b LogData object, \c nullptr if nothing was found.
+         * @return The data, a nulled box if no value was found.
          ******************************************************************************************/
         ALOX_API
-        LogData*  Retrieve  ( const TString& key,
+        Box       Retrieve  ( const String& key,
                               Scope scope= Scope::Global , int  pathLevel= 0 )
         {
             return retrieveImpl( key, scope, pathLevel );
@@ -1078,10 +1067,10 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @param pathLevel Used only if parameter \p scope equals
          *                  \ref aworx::lox::Scope::Path "Scope::Path"
          *                  to reference parent directories. Optional and defaults to \c 0.
-         * @return The \b LogData object, \c nullptr if nothing was found.
+         * @return The data, a nulled box if no value was found.
          ******************************************************************************************/
         ALOX_API
-        LogData*  Retrieve  ( Scope scope= Scope::Global , int  pathLevel= 0 )
+        Box  Retrieve  ( Scope scope= Scope::Global , int  pathLevel= 0 )
         {
             return retrieveImpl( nullptr, scope, pathLevel );
         }
@@ -1105,13 +1094,13 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @param flags         Flag bits that define which state information is logged.
          ******************************************************************************************/
         ALOX_API
-        void        State   ( const TString&       domain,
+        void        State   ( const String&      domain,
                               Verbosity           verbosity,
                               const String&       headLine,
-                              unsigned int        flags= StateInfo_All  );
+                              int                 flags= StateInfo_All  );
 
         /** ****************************************************************************************
-         * This method collects state information about this lox in a formated multi-line AString.
+         * This method collects state information about this lox in a formatted multi-line AString.
          * Parameter \p flags is a bit field with bits defined in constants of class \b %Lox
          * prefixed with \b "StateInfo_", e.g. \c %StateInfo_Loggers.
          *
@@ -1119,287 +1108,259 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @param flags      Flag bits that define which state information is collected.
          ******************************************************************************************/
         ALOX_API
-        void        GetState( AString& buf, unsigned int flags= StateInfo_All   );
+        void        GetState( AString& buf, int flags= StateInfo_All   );
 
 
     // #############################################################################################
     // Main logging methods
     // #############################################################################################
+        /** ****************************************************************************************
+         * Returns a reference to a list of boxes to be used for logging. The list is recycled
+         * from a previous log operation and cleared. The method may be used to retrieve
+         * a container for logables that then are collected until finally logged.<br>
+         * Note that the \b %Lox instance has to be acquired prior to invoking this method and
+         * the container returned must be used only while the object is still acquired.
+         *
+         * @return An empty list of boxes.
+         ******************************************************************************************/
+        Boxes&  GetLogableContainer()
+        {
+            ALIB_ASSERT_ERROR( cntAcquirements >= 1, "Lox not acquired." );
+            while( logableContainers.size() < static_cast<size_t>(cntAcquirements) )
+                logableContainers.emplace_back( new Boxes() );
+
+            Boxes& logables= *logableContainers[static_cast<size_t>(cntAcquirements - 1)];
+            logables.clear();
+            return logables;
+        }
+
 
         /** ****************************************************************************************
-         * Logs a \e Logable  with the given \e %Verbosity.
+         * Logs a list of  \e Logables  with the given \e %Verbosity.
+         *
+         * This method is usually \b not used directly. Instead, methods
+         * #Info, #Verbose, #Warning and #Error provide simpler interfaces which take variadic
+         * arguments that are collected in a list of boxed objects and then passed to
+         * this methods.<br>
+         * Note that the other interface methods accept an "external" list of boxes as a parameter.
+         * as well. This means also with these methods it is allowed to collect the logables in
+         * an user-specific list first and later pass them to these methods.
+         *
+         * Hence, the use of this method is recommended only if the verbosity of a log statement
+         * is is evaluated only at runtime.
          *
          * @param domain        Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
          *                      set for the \e %Scope of invocation.
          * @param verbosity     The verbosity.
-         * @param logable       The object to log.
-         * @param type          Type information on the object to log.
+         * @param logables      The objects to log.
          ******************************************************************************************/
         ALOX_API
-        void Entry(  const TString&    domain,
-                    Verbosity         verbosity,
-                    const void*       logable,
-                    int               type );
+        void Entry( const String&  domain, Verbosity verbosity, const Boxes& logables  );
 
         /** ****************************************************************************************
-         * Overloaded version of \ref Entry(const TString&,Verbosity,const void*,int) "Entry",
-         * defaulting parameter \p domain to a nulled string.
+         * Logs a list of \e Logables with the given \e %Verbosity.
          *
-         * @param verbosity     The verbosity.
-         * @param logable       The object to log.
-         * @param type          Type information on the object to log.
+         * If more than one \e Logable is given and the first one is of string type and comprises a
+         * valid domain name, then this first argument is interpreted as a the domain name!
+         * Valid domain names are strings that consists only of characters of the following set:
+         * - upper case letters,
+         * - numbers,
+         * - hyphen (\c '-') and
+         * - underscore (\c '_').
+         *
+         * If a first \e Logable could be misinterpreted as being a domain name, an empty string
+         * (the "neutral" domain) has to be added as a first argument. Alternatively, a character
+         * which is illegal in respect to domain names could be added to the first argument,
+         * for example a simple space at the end of an output string.
+         *
+         * \note
+         *   This method allows a consistent interface of overloaded methods \b %Info, \b Error,
+         *   etc, without introducing a separate version which excepts a then mandatory domain
+         *   parameter.
+         *   The little drawback of the auto detection is the possibility of ambiguous invocations.
+         *
+         * @param verbosity The verbosity.
+         * @param logables  The list of \e Logables, optionally including a domain name at the start.
          ******************************************************************************************/
-        inline
-        void Entry(Verbosity verbosity, const void* logable, int type )
+        template <typename... BoxedObjects>
+        void EntryDetectDomain( Verbosity          verbosity,
+                                BoxedObjects&&...  logables )
         {
-            Entry( nullptr, verbosity, logable, type );
+            Boxes& boxes= GetLogableContainer();
+            boxes.Add( std::forward<BoxedObjects>(logables)... );
+            entryDetectDomainImpl( verbosity, boxes );
         }
 
         /** ****************************************************************************************
-         * Logs a string with the given \e %Verbosity.
+         * Logs given logables using \ref Verbosity::Verbose.
          *
-         * @param domain        Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-         *                      set for the \e %Scope of invocation.
-         * @param verbosity     The verbosity.
-         * @param msg       The string to be logged.
+         * The first object provided may be a domain name. All values are passed to
+         * #EntryDetectDomain. See documentation of this method for information on how to avoid
+         * ambiguities in respect to domain names.
+         *
+         * If one of the arguments (or a single argument given) is of type
+         * \ref aworx::lib::boxing::Boxes "Boxes", then the contents of this list is inserted into
+         * the list of logables. This allows to collect logables prior to invoking the method.
+         *
+         * @param logables  The list of \e Logables, optionally including a domain name at the start.
          ******************************************************************************************/
+        template <typename... BoxedObjects>
         inline
-        void Entry(  const TString&    domain,
-                    Verbosity         verbosity,
-                    const TString&    msg         )
+        void Verbose( BoxedObjects&&... logables )
         {
-            Entry( domain, verbosity, &msg, 0 );
+            EntryDetectDomain( Verbosity::Verbose, std::forward<BoxedObjects>(logables)... );
         }
 
         /** ****************************************************************************************
-         * Overloaded version of \ref Entry(const TString&,Verbosity,const TString&) "Entry"
-         * defaulting parameter \p domain to a nulled string.
+         * Logs given logables using \ref Verbosity::Info.
          *
-         * @param verbosity     The verbosity.
-         * @param msg       The string to be logged.
+         * The first object provided may be a domain name. All values are passed to
+         * #EntryDetectDomain. See documentation of this method for information on how to avoid
+         * ambiguities in respect to domain names.
+         *
+         * If one of the arguments (or a single argument given) is of type
+         * \ref aworx::lib::boxing::Boxes "Boxes", then the contents of this list is inserted into
+         * the list of logables. This allows to collect logables prior to invoking the method.
+         *
+         * @param logables  The list of \e Logables, optionally including a domain name at the start.
          ******************************************************************************************/
+        template <typename... BoxedObjects>
         inline
-        void Entry(Verbosity verbosity, const TString& msg )
+        void Info( BoxedObjects&&... logables )
         {
-            Entry( nullptr, verbosity, &msg, 0 );
+            EntryDetectDomain( Verbosity::Info,  std::forward<BoxedObjects>(logables)... );
         }
 
         /** ****************************************************************************************
-         * Logs a \e Logable  using \ref Verbosity::Verbose.
+         * Logs given logables using \ref Verbosity::Warning.
          *
+         * The first object provided may be a domain name. All values are passed to
+         * #EntryDetectDomain. See documentation of this method for information on how to avoid
+         * ambiguities in respect to domain names.
+         *
+         * If one of the arguments (or a single argument given) is of type
+         * \ref aworx::lib::boxing::Boxes "Boxes", then the contents of this list is inserted into
+         * the list of logables. This allows to collect logables prior to invoking the method.
+         *
+         * @param logables  The list of \e Logables, optionally including a domain name at the start.
+         ******************************************************************************************/
+        template <typename... BoxedObjects>
+        inline
+        void Warning( BoxedObjects&&... logables )
+        {
+            EntryDetectDomain( Verbosity::Warning,  std::forward<BoxedObjects>(logables)... );
+        }
+
+        /** ****************************************************************************************
+         * Logs given logables using \ref Verbosity::Error.
+         *
+         * The first object provided may be a domain name. All values are passed to
+         * #EntryDetectDomain. See documentation of this method for information on how to avoid
+         * ambiguities in respect to domain names.
+         *
+         * If one of the arguments (or a single argument given) is of type
+         * \ref aworx::lib::boxing::Boxes "Boxes", then the contents of this list is inserted into
+         * the list of logables. This allows to collect logables prior to invoking the method.
+         *
+         * @param logables  The list of \e Logables, optionally including a domain name at the start.
+         ******************************************************************************************/
+        template <typename... BoxedObjects>
+        inline
+        void Error( BoxedObjects&&... logables )
+        {
+            EntryDetectDomain( Verbosity::Error,  std::forward<BoxedObjects>(logables)... );
+        }
+
+        /** ****************************************************************************************
+         * Logs given logables only if the parameter \p condition is not \c true.
+         * If executed, \ref Verbosity::Error is used.
+         *
+         * The first object provided may be a domain name. All values are passed to
+         * #EntryDetectDomain. See documentation of this method for information on how to avoid
+         * ambiguities in respect to domain names.
+         *
+         * If one of the arguments (or a single argument given) is of type
+         * \ref aworx::lib::boxing::Boxes "Boxes", then the contents of this list is inserted into
+         * the list of logables. This allows to collect logables prior to invoking the method.
+         *
+         * @param condition If \c false, the <em>Log Statement</em> is executed.
+         * @param logables  The list of \e Logables, optionally including a domain name at the start.
+         ******************************************************************************************/
+        template <typename... BoxedObjects>
+        inline
+        void Assert( bool condition, BoxedObjects&&... logables )
+        {
+            if (!condition )
+            {
+                EntryDetectDomain( Verbosity::Error,  std::forward<BoxedObjects>(logables)... );
+            }
+            else
+                CntLogCalls++;
+        }
+
+        /** ****************************************************************************************
+         * Logs a list of \e Logables only if the parameter \p condition is \c true.
+         *
+         * \see Method #Assert.
+         *
+         * @param condition If \c false, the <em>Log Statement</em> is executed.
          * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
          *                  set for the \e %Scope of invocation.
-         * @param logable   Pointer to the object to log.
-         * @param type      Type information on the object to log.
+         * @param verbosity The verbosity.
+         * @param logables  The list of \e Logables.
          ******************************************************************************************/
+        template <typename... BoxedObjects>
         inline
-        void Verbose( const TString& domain, void* logable, int type )
+        void If( bool condition, const String& domain, Verbosity verbosity, BoxedObjects&&... logables )
         {
-             Entry( domain, Verbosity::Verbose, logable, type );
+            if ( condition )
+            {
+                Boxes& boxes= GetLogableContainer();
+                boxes.Add( std::forward<BoxedObjects>(logables)... );
+                Entry( domain, verbosity, boxes );
+            }
+            else
+                CntLogCalls++;
         }
 
         /** ****************************************************************************************
-         * Overloaded version of \ref Verbose(const TString&,const void*,int) "Verbose",
-         * defaulting parameter \p domain to a nulled string.
+         * Logs a list of \e Logables only if the parameter \p condition is \c true.<br>
          *
-         * @param logable   Pointer to the object to log.
-         * @param type      Type information on the object to log.
-         ******************************************************************************************/
-        inline
-        void Verbose( void* logable, int type )
-        {
-            Entry( nullptr, Verbosity::Verbose, logable, type );
-        }
-
-        /** ****************************************************************************************
-         * Logs a string using \ref Verbosity::Verbose.
+         * This overloaded version omits parameter \p domain.
+         * The first \e logable provided may be a domain name. All values are passed to
+         * #EntryDetectDomain. See documentation of this method for information on how to avoid
+         * ambiguities in respect to domain names.
          *
-         * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-         *                  set for the \e %Scope of invocation.
-         * @param msg       The string to be logged.
-         ******************************************************************************************/
-        inline
-        void Verbose( const TString& domain, const TString& msg )
-        {
-             Entry( domain, Verbosity::Verbose, &msg, 0 );
-        }
-
-        /** ****************************************************************************************
-         * Overloaded version of \ref Verbose(const TString&,const TString&) "Verbose"
-         * defaulting parameter \p domain to a nulled string.
+         * If one of the arguments (or a single argument given) is of type
+         * \ref aworx::lib::boxing::Boxes "Boxes", then the contents of this list is inserted into
+         * the list of logables. This allows to collect logables prior to invoking the method.
          *
-         * @param msg       The string to be logged.
-         ******************************************************************************************/
-        inline
-        void Verbose( const TString& msg )
-        {
-            Entry( nullptr, Verbosity::Verbose, &msg, 0 );
-        }
-
-        /** ****************************************************************************************
-         * Logs a \e Logable  using \ref Verbosity::Info.
+         * \see Method #Assert.
          *
-         * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-         *                  set for the \e %Scope of invocation.
-         * @param logable   Pointer to the object to log.
-         * @param type      Type information on the object to log.
+         * @param condition If \c false, the <em>Log Statement</em> is executed.
+         * @param verbosity The verbosity.
+         * @param logables  The list of \e Logables.
          ******************************************************************************************/
+        template <typename... BoxedObjects>
         inline
-        void Info( const TString&  domain, void* logable, int type )
+        void If( bool condition, Verbosity verbosity, BoxedObjects&&... logables )
         {
-            Entry( domain, Verbosity::Info, logable, type );
+            if ( condition )
+            {
+                EntryDetectDomain( verbosity, std::forward<BoxedObjects>(logables)... );
+            }
+            else
+                CntLogCalls++;
         }
 
-        /** ****************************************************************************************
-         * Overloaded version of \ref aworx::lox::Lox::Info(const TString&,void*,int) "Info",
-         * defaulting parameter \p domain to a nulled string.
-         *
-         * @param logable   Pointer to the object to log.
-         * @param type      Type information on the object to log.
-         ******************************************************************************************/
-        inline
-        void Info( void* logable, int type )
-        {
-            Entry(  nullptr, Verbosity::Info, logable, type );
-        }
 
         /** ****************************************************************************************
-         * Logs a string using \ref Verbosity::Info.
-         *
-         * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-         *                  set for the \e %Scope of invocation.
-         * @param msg       The string to be logged.
-         ******************************************************************************************/
-        inline
-        void Info( const TString&  domain,   const TString& msg )
-        {
-            Entry( domain, Verbosity::Info, &msg, 0 );
-        }
-
-        /** ****************************************************************************************
-         * Overloaded version of \ref aworx::lox::Lox::Info(const TString&,const TString&) "Info"
-         * defaulting parameter \p domain to a nulled string.
-         *
-         * @param msg       The string to be logged.
-         ******************************************************************************************/
-        inline
-        void Info( const TString& msg )
-        {
-            Entry(  nullptr, Verbosity::Info, &msg, 0 );
-        }
-
-        /** ****************************************************************************************
-         * Logs a \e Logable  using \ref Verbosity::Warning.
-         *
-         * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-         *                  set for the \e %Scope of invocation.
-         * @param logable   Pointer to the object to log.
-         * @param type      Type information on the object to log.
-         ******************************************************************************************/
-        inline
-        void Warning( const TString& domain, void* logable, int type )
-        {
-            Entry( domain, Verbosity::Warning, logable, type );
-        }
-
-        /** ****************************************************************************************
-         * Overloaded version of \ref Warning(const TString&,const void*,int) "Warning",
-         * defaulting parameter \p domain to a nulled string.
-         *
-         * @param logable   Pointer to the object to log.
-         * @param type      Type information on the object to log.
-         ******************************************************************************************/
-        inline
-        void Warning( void* logable, int type )
-        {
-            Entry( nullptr, Verbosity::Warning, logable, type );
-        }
-
-        /** ****************************************************************************************
-         * Logs a string using \ref Verbosity::Warning.
-         *
-         * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-         *                  set for the \e %Scope of invocation.
-         * @param msg       The string to be logged.
-         ******************************************************************************************/
-        inline
-        void Warning( const TString& domain, const TString& msg )
-        {
-            Entry( domain, Verbosity::Warning, &msg, 0 );
-        }
-
-        /** ****************************************************************************************
-         * Overloaded version of \ref Warning(const TString&,const TString&) "Warning"
-         * defaulting parameter \p domain to a nulled string.
-         *
-         * @param msg       The string to be logged.
-         ******************************************************************************************/
-        inline
-        void Warning( const TString& msg )
-        {
-            Entry( nullptr, Verbosity::Warning, &msg, 0 );
-        }
-
-        /** ****************************************************************************************
-         * Logs a \e Logable  using \ref Verbosity::Error.
-         *
-         * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-         *                  set for the \e %Scope of invocation.
-         * @param logable   Pointer to the object to log.
-         * @param type      Type information on the object to log.
-         ******************************************************************************************/
-        inline
-        void Error( const TString& domain,  void* logable, int type )
-        {
-            Entry( domain, Verbosity::Error, logable, type );
-        }
-
-        /** ****************************************************************************************
-         * Overloaded version of \ref Error(const TString&,void*,int) "Error",
-         * defaulting parameter \p domain to a nulled string.
-         *
-         * @param logable   Pointer to the object to log.
-         * @param type      Type information on the object to log.
-         ******************************************************************************************/
-        inline
-        void Error( void* logable, int type )
-        {
-            Entry( nullptr, Verbosity::Error, logable, type );
-        }
-
-        /** ****************************************************************************************
-         * Logs a string using \ref Verbosity::Error.
-         *
-         * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-         *                  set for the \e %Scope of invocation.
-         * @param msg       The string to be logged.
-         ******************************************************************************************/
-        inline
-        void Error( const TString& domain,   const TString& msg )
-        {
-            Entry( domain, Verbosity::Error, &msg, 0 );
-        }
-
-        /** ****************************************************************************************
-         * Overloaded version of \ref Error(const TString&,const TString&) "Error"
-         * defaulting parameter \p domain to a nulled string.
-         *
-         * @param msg       The string to be logged.
-         ******************************************************************************************/
-        inline
-        void Error( const TString& msg )
-        {
-            Entry( nullptr, Verbosity::Error, &msg, 0 );
-        }
-
-        /** ****************************************************************************************
-         * Logs a \e Logable  or a string message once, up to \p quantity times, or
-         * every n-th time.
+         * Logs given \e logables once, up to \p quantity times, or every n-th time.
          * In its simplest overloaded version, the counter is bound to the source code line, hence,
          * only the first execution of this exact <em>Log Statement</em> is executed.
          *
-         * Using parameter \p group, a set of <em>Log Statements</em> that share the same group key, can be
-         * grouped and of such set, only the one which is first executed actually logs.<br>
+         * With parameter \p group, a set of <em>Log Statements</em> that share the same group key,
+         * can be grouped and of such set, only the one which is first executed actually logs.<br>
          * Alternatively, when \p key is omitted (or nullptr or empty), but a
          * \ref aworx::lox::Scope "Scope" is given with parameter \p scope, then the
          * counter is associated with the scope.<br>
@@ -1424,20 +1385,23 @@ class Lox : public aworx::lib::threads::ThreadLock
          * - %Log a <em>Log Statement</em> n-times per new thread.
          * - %Log only the first n statements of a group of statements executed by a specific thread.
          *
-         * \note
-         *   To avoid another set of even more overloaded methods, this is the only method that
-         *   accepts arbitrary objects (void* along with a type identifier).
-         *
-         *
          * When parameter \p quantity is a negative value, the log statement is executed every n-th time
          * instead n-times. E.g, if \p quantity is \c -5, the first statement is executed and afterwards
          * every fifth invocation.
          *
+         * \note
+         *   Unlike other methods of this class which accept an arbitrary amount of logables, this
+         *   method and its overloaded variants accept only one object. To supply several objects
+         *   at once, a container of type \ref aworx::lib::boxing::Boxes "Boxes" may be passed with
+         *   parameter \p logables, like in the following sample:
+         *   \snippet "ut_alox_lox.cpp"      DOX_ALOX_LOX_ONCE
+         *
+         *
          * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
          *                  set for the \e %Scope of invocation.
          * @param verbosity The verbosity of the <em>Log Statement</em> (if performed).
-         * @param logable   Pointer to the object to log.
-         * @param type      Type information on the object to log.
+         * @param logables  The objects to log (Multiple objects may be provided within
+         *                  container class Boxes.)
          * @param group     The optional name of the statement group . If used, all statements that
          *                  share the same group name are working on the same counter (according
          *                  to the \p scope.)
@@ -1453,23 +1417,22 @@ class Lox : public aworx::lib::threads::ThreadLock
          *                  If negative, the first and every "-quantity-th" statement is executed.
          ******************************************************************************************/
         inline
-        void Once( const TString& domain, Verbosity verbosity, const void* logable, int type,
-                   const TString& group,
+        void Once( const String& domain, Verbosity verbosity,
+                   const Box&  logables,
+                   const String& group,
                    Scope scope= Scope::Global , int pathLevel= 0,
                    int quantity= 1)
         {
-            once( domain, verbosity, logable, type, group, scope, pathLevel, quantity );
+            once( domain, verbosity, logables, group, scope, pathLevel, quantity );
         }
 
         /** ****************************************************************************************
          * Overloaded version of
-         * \ref Once(const TString&,Verbosity,const void*,int,const TString&,Scope,int,int) "Once".
-         * which accepts an aworx::String object as the log message.
+         * \ref Once(const String&,Verbosity,const Box&,const String&,Scope,int,int) "Once".
          *
-         * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-         *                  set for the \e %Scope of invocation.
          * @param verbosity The verbosity of the <em>Log Statement</em> (if performed).
-         * @param msg       The string message to log.
+         * @param logables  The objects to log (Multiple objects may be provided within
+         *                  container class Boxes.)
          * @param group     The optional name of the statement group . If used, all statements that
          *                  share the same group name are working on the same counter (according
          *                  to the \p scope.)
@@ -1484,26 +1447,114 @@ class Lox : public aworx::lib::threads::ThreadLock
          *                  this defaults to \c 1.
          ******************************************************************************************/
         inline
-        void Once( const TString& domain, Verbosity verbosity, const TString& msg,
-                   const TString& group,
+        void Once(                        Verbosity verbosity, const Box& logables,
+                   const String& group,
+                   Scope scope, int pathLevel= 0,
+                   int quantity= 1)
+        {
+            once( nullptr, verbosity, logables, group, scope, pathLevel, quantity );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref Once(const String&,Verbosity,const Box&,const String&,Scope,int,int) "Once".
+         *
+         * @param verbosity The verbosity of the <em>Log Statement</em> (if performed).
+         * @param logables  The objects to log (Multiple objects may be provided within
+         *                  container class Boxes.)
+         * @param group     The optional name of the statement group . If used, all statements that
+         *                  share the same group name are working on the same counter (according
+         *                  to the \p scope.)
+         *                  If omitted (or empty or nullptr), the counter is is bound to the \e %Scope
+         *                  provided. If omitted and \p scope is Scope::Global, then the
+         *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
+         * @param quantity  The number of logs to be performed. As the name of the method indicates,
+         *                  this defaults to \c 1.
+         ******************************************************************************************/
+        inline
+        void Once(                        Verbosity verbosity, const Box& logables,
+                   const String& group,
+                   int quantity= 1)
+        {
+            once( nullptr, verbosity, logables, group, Scope::Global, 0, quantity );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref Once(const String&,Verbosity,const Box&,const String&,Scope,int,int) "Once".
+         *
+         * @param verbosity The verbosity of the <em>Log Statement</em> (if performed).
+         * @param logables  The objects to log (Multiple objects may be provided within
+         *                  container class Boxes.)
+         * @param quantity  The number of logs to be performed. As the name of the method indicates,
+         *                  this defaults to \c 1.
+         ******************************************************************************************/
+        inline
+        void Once(                        Verbosity verbosity, const Box& logables,
+                   int quantity= 1)
+        {
+            once( nullptr, verbosity, logables, nullptr, Scope::Global, 0, quantity );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref Once(const String&,Verbosity,const Box&,const String&,Scope,int,int) "Once".
+         *
+         * @param logables  The objects to log (Multiple objects may be provided within
+         *                  container class Boxes.)
+         * @param group     The optional name of the statement group . If used, all statements that
+         *                  share the same group name are working on the same counter (according
+         *                  to the \p scope.)
+         *                  If omitted (or empty or nullptr), the counter is is bound to the \e %Scope
+         *                  provided. If omitted and \p scope is Scope::Global, then the
+         *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
+         * @param scope     The \e %Scope that the group or counter is bound to.
+         * @param pathLevel Used only if parameter \p scope equals
+         *                  \ref aworx::lox::Scope::Path "Scope::Path"
+         *                  to reference parent directories. Optional and defaults to \c 0.
+         * @param quantity  The number of logs to be performed. As the name of the method indicates,
+         *                  this defaults to \c 1.
+         ******************************************************************************************/
+        inline
+        void Once(                                          const Box& logables,
+                   const String& group,
+                   Scope scope, int pathLevel= 0,
+                   int quantity= 1)
+        {
+            once( nullptr, Verbosity::Info, logables, group, scope, pathLevel, quantity );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of
+         * \ref Once(const String&,Verbosity,const Box&,const String&,Scope,int,int) "Once".
+         *
+         * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
+         *                  set for the \e %Scope of invocation.
+         * @param verbosity The verbosity of the <em>Log Statement</em> (if performed).
+         * @param logables  The objects to log (Multiple objects may be provided within
+         *                  container class Boxes.)
+         * @param scope     The \e %Scope that the group or counter is bound to.
+         * @param pathLevel Used only if parameter \p scope equals
+         *                  \ref aworx::lox::Scope::Path "Scope::Path"
+         *                  to reference parent directories. Optional and defaults to \c 0.
+         * @param quantity  The number of logs to be performed. As the name of the method indicates,
+         *                  this defaults to \c 1.
+         ******************************************************************************************/
+        inline
+        void Once( const String& domain, Verbosity verbosity, const Box& logables,
                    Scope scope= Scope::Global , int pathLevel= 0,
                    int quantity= 1)
         {
-            once( domain, verbosity, &msg, 0, group, scope, pathLevel, quantity );
+            once( domain, verbosity, logables, nullptr, scope, pathLevel, quantity );
         }
 
         /** ****************************************************************************************
          * Overloaded version of
-         * \ref Once(const TString&,Verbosity,const void*,int,const TString&,Scope,int,int) "Once".
+         * \ref Once(const String&,Verbosity,const Box&,const String&,Scope,int,int) "Once".
          *
          * @param verbosity The verbosity of the <em>Log Statement</em> (if performed).
-         * @param msg       The string message to log.
-         * @param group     The optional name of the statement group . If used, all statements that
-         *                  share the same group name are working on the same counter (according
-         *                  to the \p scope.)
-         *                  If omitted (or empty or nullptr), the counter is is bound to the \e %Scope
-         *                  provided. If omitted and \p scope is Scope::Global, then the
-         *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
+         * @param logables  The objects to log (Multiple objects may be provided within
+         *                  container class Boxes.)
          * @param scope     The \e %Scope that the group or counter is bound to.
          * @param pathLevel Used only if parameter \p scope equals
          *                  \ref aworx::lox::Scope::Path "Scope::Path"
@@ -1512,64 +1563,19 @@ class Lox : public aworx::lib::threads::ThreadLock
          *                  this defaults to \c 1.
          ******************************************************************************************/
         inline
-        void Once(                        Verbosity verbosity, const TString& msg,
-                   const TString& group,
+        void Once(                        Verbosity verbosity, const Box& logables,
                    Scope scope, int pathLevel= 0,
                    int quantity= 1)
         {
-            once( nullptr, verbosity, &msg, 0, group, scope, pathLevel, quantity );
+            once( nullptr, verbosity, logables, nullptr, scope, pathLevel, quantity );
         }
 
         /** ****************************************************************************************
          * Overloaded version of
-         * \ref Once(const TString&,Verbosity,const void*,int,const TString&,Scope,int,int) "Once".
+         * \ref Once(const String&,Verbosity,const Box&,const String&,Scope,int,int) "Once".
          *
-         * @param verbosity The verbosity of the <em>Log Statement</em> (if performed).
-         * @param msg       The string message to log.
-         * @param group     The optional name of the statement group . If used, all statements that
-         *                  share the same group name are working on the same counter (according
-         *                  to the \p scope.)
-         *                  If omitted (or empty or nullptr), the counter is is bound to the \e %Scope
-         *                  provided. If omitted and \p scope is Scope::Global, then the
-         *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
-         * @param quantity  The number of logs to be performed. As the name of the method indicates,
-         *                  this defaults to \c 1.
-         ******************************************************************************************/
-        inline
-        void Once(                        Verbosity verbosity, const TString& msg,
-                   const TString& group,
-                   int quantity= 1)
-        {
-            once( nullptr, verbosity, &msg, 0, group, Scope::Global, 0, quantity );
-        }
-
-        /** ****************************************************************************************
-         * Overloaded version of
-         * \ref Once(const TString&,Verbosity,const void*,int,const TString&,Scope,int,int) "Once".
-         *
-         * @param verbosity The verbosity of the <em>Log Statement</em> (if performed).
-         * @param msg       The string message to log.
-         * @param quantity  The number of logs to be performed. As the name of the method indicates,
-         *                  this defaults to \c 1.
-         ******************************************************************************************/
-        inline
-        void Once(                        Verbosity verbosity, const TString& msg,
-                   int quantity= 1)
-        {
-            once( nullptr, verbosity, &msg, 0, nullptr, Scope::Global, 0, quantity );
-        }
-
-        /** ****************************************************************************************
-         * Overloaded version of
-         * \ref Once(const TString&,Verbosity,const void*,int,const TString&,Scope,int,int) "Once".
-         *
-         * @param msg       The string message to log.
-         * @param group     The optional name of the statement group . If used, all statements that
-         *                  share the same group name are working on the same counter (according
-         *                  to the \p scope.)
-         *                  If omitted (or empty or nullptr), the counter is is bound to the \e %Scope
-         *                  provided. If omitted and \p scope is Scope::Global, then the
-         *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
+         * @param logables  The objects to log (Multiple objects may be provided within
+         *                  container class Boxes.)
          * @param scope     The \e %Scope that the group or counter is bound to.
          * @param pathLevel Used only if parameter \p scope equals
          *                  \ref aworx::lox::Scope::Path "Scope::Path"
@@ -1578,98 +1584,35 @@ class Lox : public aworx::lib::threads::ThreadLock
          *                  this defaults to \c 1.
          ******************************************************************************************/
         inline
-        void Once(                                          const TString& msg,
-                   const TString& group,
+        void Once(                                          const Box& logables,
                    Scope scope, int pathLevel= 0,
                    int quantity= 1)
         {
-            once( nullptr, Verbosity::Info, &msg, 0, group, scope, pathLevel, quantity );
+            once( nullptr, Verbosity::Info, logables, nullptr, scope, pathLevel, quantity );
         }
 
         /** ****************************************************************************************
          * Overloaded version of
-         * \ref Once(const TString&,Verbosity,const void*,int,const TString&,Scope,int,int) "Once".
+         * \ref Once(const String&,Verbosity,const Box&,const String&,Scope,int,int) "Once".
          *
-         * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-         *                  set for the \e %Scope of invocation.
-         * @param verbosity The verbosity of the <em>Log Statement</em> (if performed).
-         * @param msg       The string message to log.
-         * @param scope     The \e %Scope that the group or counter is bound to.
-         * @param pathLevel Used only if parameter \p scope equals
-         *                  \ref aworx::lox::Scope::Path "Scope::Path"
-         *                  to reference parent directories. Optional and defaults to \c 0.
+         * @param logables  The objects to log (Multiple objects may be provided within
+         *                  container class Boxes.)
          * @param quantity  The number of logs to be performed. As the name of the method indicates,
          *                  this defaults to \c 1.
          ******************************************************************************************/
         inline
-        void Once( const TString& domain, Verbosity verbosity, const TString& msg,
-                   Scope scope= Scope::Global , int pathLevel= 0,
+        void Once(                                          const Box& logables,
                    int quantity= 1)
         {
-            once( domain, verbosity, &msg, 0, nullptr, scope, pathLevel, quantity );
+            once( nullptr, Verbosity::Info, logables, nullptr, Scope::Global, 0, quantity );
         }
 
         /** ****************************************************************************************
          * Overloaded version of
-         * \ref Once(const TString&,Verbosity,const void*,int,const TString&,Scope,int,int) "Once".
+         * \ref Once(const String&,Verbosity,const Box&,const String&,Scope,int,int) "Once".
          *
-         * @param verbosity The verbosity of the <em>Log Statement</em> (if performed).
-         * @param msg       The string message to log.
-         * @param scope     The \e %Scope that the group or counter is bound to.
-         * @param pathLevel Used only if parameter \p scope equals
-         *                  \ref aworx::lox::Scope::Path "Scope::Path"
-         *                  to reference parent directories. Optional and defaults to \c 0.
-         * @param quantity  The number of logs to be performed. As the name of the method indicates,
-         *                  this defaults to \c 1.
-         ******************************************************************************************/
-        inline
-        void Once(                        Verbosity verbosity, const TString& msg,
-                   Scope scope, int pathLevel= 0,
-                   int quantity= 1)
-        {
-            once( nullptr, verbosity, &msg, 0, nullptr, scope, pathLevel, quantity );
-        }
-
-        /** ****************************************************************************************
-         * Overloaded version of
-         * \ref Once(const TString&,Verbosity,const void*,int,const TString&,Scope,int,int) "Once".
-         *
-         * @param msg       The string message to log.
-         * @param scope     The \e %Scope that the group or counter is bound to.
-         * @param pathLevel Used only if parameter \p scope equals
-         *                  \ref aworx::lox::Scope::Path "Scope::Path"
-         *                  to reference parent directories. Optional and defaults to \c 0.
-         * @param quantity  The number of logs to be performed. As the name of the method indicates,
-         *                  this defaults to \c 1.
-         ******************************************************************************************/
-        inline
-        void Once(                                          const TString& msg,
-                   Scope scope, int pathLevel= 0,
-                   int quantity= 1)
-        {
-            once( nullptr, Verbosity::Info, &msg, 0, nullptr, scope, pathLevel, quantity );
-        }
-
-        /** ****************************************************************************************
-         * Overloaded version of
-         * \ref Once(const TString&,Verbosity,const void*,int,const TString&,Scope,int,int) "Once".
-         *
-         * @param msg       The string message to log.
-         * @param quantity  The number of logs to be performed. As the name of the method indicates,
-         *                  this defaults to \c 1.
-         ******************************************************************************************/
-        inline
-        void Once(                                          const TString& msg,
-                   int quantity= 1)
-        {
-            once( nullptr, Verbosity::Info, &msg, 0, nullptr, Scope::Global, 0, quantity );
-        }
-
-        /** ****************************************************************************************
-         * Overloaded version of
-         * \ref Once(const TString&,Verbosity,const void*,int,const TString&,Scope,int,int) "Once".
-         *
-         * @param msg       The string message to log.
+         * @param logables  The objects to log (Multiple objects may be provided within
+         *                  container class Boxes.)
          * @param group     The optional name of the statement group . If used, all statements that
          *                  share the same group name are working on the same counter (according
          *                  to the \p scope.)
@@ -1680,168 +1623,12 @@ class Lox : public aworx::lib::threads::ThreadLock
          *                  this defaults to \c 1.
          ******************************************************************************************/
         inline
-        void Once(                                          const TString& msg,
-                   const TString& group, int quantity= 1 )
+        void Once(                                          const Box& logables,
+                   const String& group, int quantity= 1 )
         {
-            once( nullptr, Verbosity::Info, &msg, 0, group, Scope::Global, 0, quantity );
+            once( nullptr, Verbosity::Info, logables, group, Scope::Global, 0, quantity );
         }
 
-
-        /** ****************************************************************************************
-         * Logs a \e Logable  only if the parameter \p condition is not \c true.
-         * If executed, \ref Verbosity::Error is used.
-         *
-         * @param condition If \c false, the <em>Log Statement</em> is executed.
-         * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-         *                  set for the \e %Scope of invocation.
-         * @param logable   Pointer to the object to log.
-         * @param type      Type information on the object to log.
-         ******************************************************************************************/
-        inline
-        void Assert( bool condition, const TString& domain, void* logable, int type )
-        {
-            if (!condition )
-                Entry( domain, Verbosity::Error, logable, type );
-            else
-                CntLogCalls++;
-        }
-
-        /** ****************************************************************************************
-         * Logs a \e Logable  only if the parameter \p condition is not \c true.
-         * If executed, \ref Verbosity::Error is used.
-         *
-         * This overloaded version omits parameter \p domain.
-         *
-         * @param condition If \c false, the <em>Log Statement</em> is executed.
-         * @param logable   Pointer to the object to log.
-         * @param type      Type information on the object to log.
-         ******************************************************************************************/
-        inline
-        void Assert( bool condition, void* logable, int type )
-        {
-            if (!condition )
-                Entry( nullptr, Verbosity::Error, logable, type );
-            else
-                CntLogCalls++;
-        }
-
-        /** ****************************************************************************************
-         * Logs a string only if the parameter \p condition is not \c true.
-         * If executed, \ref Verbosity::Error is used.
-         *
-         * @param condition If \c false, the <em>Log Statement</em> is executed.
-         * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-         *                  set for the \e %Scope of invocation.
-         * @param msg       The string to be logged.
-         ******************************************************************************************/
-        inline
-        void Assert( bool condition, const TString& domain, const TString& msg )
-        {
-            if (!condition )
-                Entry( domain, Verbosity::Error, &msg, 0 );
-            else
-                CntLogCalls++;
-        }
-
-        /** ****************************************************************************************
-         * Logs a string only if the parameter \p condition is not \c true.
-         * If executed, \ref Verbosity::Error is used.
-         *
-         * This overloaded version omits parameter \p domain.
-         *
-         * @param condition If \c false, the <em>Log Statement</em> is executed.
-         * @param msg       The string to be logged.
-         ******************************************************************************************/
-        inline
-        void Assert( bool condition, const TString& msg )
-        {
-            if (!condition )
-                Entry( nullptr, Verbosity::Error, &msg, 0 );
-            else
-                CntLogCalls++;
-        }
-
-        /** ****************************************************************************************
-         * Logs a \e Logable  only if the parameter \p condition is \c true.
-         *
-         * \see Method \ref Assert(bool, const TString&, void*, int) "Assert".
-         *
-         * @param condition If \c false, the <em>Log Statement</em> is executed.
-         * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-         *                  set for the \e %Scope of invocation.
-         * @param verbosity The verbosity.
-         * @param logable   Pointer to the object to log.
-         * @param type      Type information on the object to log.
-         ******************************************************************************************/
-        inline
-        void If( bool condition, const TString& domain, Verbosity verbosity, void* logable, int type )
-        {
-            if ( condition )
-                Entry( domain, verbosity, logable, type );
-            else
-                CntLogCalls++;
-        }
-
-        /** ****************************************************************************************
-         * Logs a \e Logable  only if the parameter \p condition is \c true.
-         *
-         * This overloaded version omits parameter \p domain.
-         *
-         * \see Method \ref Assert(bool, const TString&, void*, int) "Assert".
-         *
-         * @param condition If \c false, the <em>Log Statement</em> is executed.
-         * @param verbosity The verbosity.
-         * @param logable   Pointer to the object to log.
-         * @param type       information on the object to log.
-         ******************************************************************************************/
-        inline
-        void If( bool condition, Verbosity verbosity, void* logable, int type )
-        {
-            if ( condition )
-                Entry( nullptr, verbosity, logable, type );
-            else
-                CntLogCalls++;
-        }
-
-        /** ****************************************************************************************
-         * Logs a string only if the parameter \p condition is \c true.
-         *
-         * \see Method \ref Assert(bool, const TString&, const TString&) "Assert".
-         *
-         * @param condition If \c false, the <em>Log Statement</em> is executed.
-         * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-         *                  set for the \e %Scope of invocation.
-         * @param verbosity The verbosity.
-         * @param msg       The string to be logged.
-         ******************************************************************************************/
-        inline
-        void If( bool condition, const TString& domain, Verbosity verbosity, const TString& msg )
-        {
-            if ( condition )
-                Entry( domain, verbosity, &msg, 0 );
-            else
-                CntLogCalls++;
-        }
-
-        /** ****************************************************************************************
-         * Logs a string only if the parameter \p condition is \c true.
-         *
-         * This overloaded version omits parameter \p domain.
-         *
-         * \see Method \ref Assert(bool, const TString&, const TString&) "Assert".
-         *
-         * @param condition If \c false, the <em>Log Statement</em> is executed.
-         * @param verbosity The verbosity.
-         * @param msg       The string to be logged.
-         ******************************************************************************************/
-        inline
-        void If( bool condition, Verbosity verbosity, const TString& msg )
-        {
-            if ( condition )
-                Entry( nullptr, verbosity, &msg, 0 );
-            else
-                CntLogCalls++;
-        }
 
     // #############################################################################################
     // internals
@@ -1863,7 +1650,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @return The resulting \ref aworx::lox::core::Domain "Domain".
          ******************************************************************************************/
         ALOX_API
-        core::Domain*   evaluateResultDomain( const TString& domainPath );
+        core::Domain*   evaluateResultDomain( const String& domainPath );
 
         /** ****************************************************************************************
          * Invokes \b Find on the given domain and logs internal message when the domain was
@@ -1874,21 +1661,21 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @return The resulting \ref aworx::lox::core::Domain "Domain".
          ******************************************************************************************/
         ALOX_API
-        core::Domain*   findDomain( core::Domain& domainSystem, TString domainPath );
+        core::Domain*   findDomain( core::Domain& domainSystem, String domainPath );
 
         /** ****************************************************************************************
          * This method is looping over the \e Loggers, checking their verbosity against the given
          * one, and, if they match, invoke the log method of the \e Logger.
          * With the first logger identified to be active, the <em>Prefix Objects</em> get
          * collected from the scope store.
-         * @param dom       The domain to log on
-         * @param verbosity The verbosity.
-         * @param logable   The object to log.
-         * @param prefixes  Denotes if prefixes should be included or not.
+         * @param dom          The domain to log on
+         * @param verbosity    The verbosity.
+         * @param logables     The objects to log.
+         * @param prefixes     Denotes if prefixes should be included or not.
          ******************************************************************************************/
         ALOX_API
-        void      log( core::Domain*  dom,     Verbosity verbosity,
-                       core::Logable& logable, Inclusion prefixes );
+        void      log( core::Domain*  dom,       Verbosity verbosity,
+                       const Boxes&   logables,  Inclusion prefixes );
 
 
         /** ****************************************************************************************
@@ -1900,7 +1687,32 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @param msg       The message.
          ******************************************************************************************/
         ALOX_API
-        void            logInternal( Verbosity verbosity, const String& subDomain, const TString& msg );
+        void            logInternal( Verbosity verbosity, const String& subDomain, const Boxes& msg );
+
+        /** ****************************************************************************************
+         * Overloaded version accepting a string to log.
+         *
+         * @param verbosity The verbosity.
+         * @param subDomain The sub-domain of the internal domain to log into.
+         * @param msg       The message.
+         ******************************************************************************************/
+        ALOX_API
+        void            logInternal( Verbosity verbosity, const String& subDomain, const String& msg );
+
+        /** ****************************************************************************************
+         * Returns a reference to a list of boxes to be used by internal logging.
+         * Each invocation has to be followed by an invocation to #logInternal
+         * which releases the logables.
+         *
+         * @return A list of boxes.
+         ******************************************************************************************/
+        Boxes&  acquireInternalLogables()
+        {
+            if( internalLogables.size() == internalLogRecursionCounter )
+                internalLogables.emplace_back( new Boxes() );
+
+            return *internalLogables[internalLogRecursionCounter++];
+        }
 
         /** ****************************************************************************************
          * Implementation of the interface method fetching all possible parameters.
@@ -1916,14 +1728,13 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @param thread      The thread to set/unset a thread-related Scope Domain for.
          ******************************************************************************************/
         ALOX_API
-        void      setDomainImpl( const TString& scopeDomain, Scope scope,
+        void      setDomainImpl( const String& scopeDomain, Scope scope,
                                  int pathLevel, bool removeNTRSD, Thread* thread  );
 
         /** ****************************************************************************************
          * Implementation of the interface method fetching all possible parameters.
          *
-         * @param logable     The <em>Prefix Logable</em> to set.
-         * @param type        Type information of \p logable.
+         * @param prefix      The <em>Prefix Logable</em> to set.
          * @param scope       The scope that the given \p logable should be registered for.
          *                    Available Scope definitions are platform/language dependent.
          * @param pathLevel   Used only if parameter \p scope equals
@@ -1932,8 +1743,17 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @param thread      The thread to set/unset a thread-related <em>Prefix Logable</em> for.
          ******************************************************************************************/
         ALOX_API
-        void      setPrefixImpl( const void*  logable, int   type,
-                                 Scope        scope,   int   pathLevel,   Thread* thread  );
+        void      setPrefixImpl( const Box& prefix,
+                                 Scope scope, int pathLevel, Thread* thread );
+
+        /** ****************************************************************************************
+         * The implementation of #EntryDetectDomain.
+         *
+         * @param verbosity     The verbosity.
+         * @param logables      The objects to log.
+         ******************************************************************************************/
+        ALOX_API
+        void entryDetectDomainImpl( Verbosity verbosity, Boxes& logables );
 
         /** ****************************************************************************************
          * Internal method serving public interface #Once.
@@ -1941,9 +1761,9 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
          *                  set for the \e %Scope of invocation.
          * @param verbosity The verbosity of the <em>Log Statement</em> (if performed).
-         * @param logable   Pointer to the object to log.
-         * @param type      information on the object to log.
-         * @param group     The optional name of the statement group . If used, all statements that
+         * @param logables  The objects to log (Multiple objects may be provided within
+         *                  container class Boxes.)
+         * @param pGroup     The optional name of the statement group . If used, all statements that
          *                  share the same group name are working on the same counter (according
          *                  to the \p scope.)
          *                  If omitted (or empty or nullptr), the counter is is bound to the \e %Scope
@@ -1957,8 +1777,8 @@ class Lox : public aworx::lib::threads::ThreadLock
          *                  this defaults to \c 1.
          ******************************************************************************************/
         ALOX_API
-        void once( const TString& domain, Verbosity verbosity, const void* logable,   int type,
-                   const TString& group,  Scope     scope,     int         pathLevel, int quantity );
+        void once( const String& domain, Verbosity verbosity, const Box& logables,
+                   const String& pGroup,  Scope     scope,     int         pathLevel, int quantity );
 
         /** ****************************************************************************************
          * Internal method serving public interface #Store.
@@ -1966,27 +1786,27 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @param data      The data object to store.
          *                  In C++, has to be heap allocated and will be deleted
          *                  by this \b %Lox when overwritten or this lox is deleted.
-         * @param key       The key to the data.
+         * @param pKey       The key to the data.
          * @param scope     The \e %Scope that the data is bound to.
          * @param pathLevel Used only if parameter \p scope equals
          *                  \ref aworx::lox::Scope::Path "Scope::Path"
          *                  to reference parent directories.
          ******************************************************************************************/
         ALOX_API
-        void      storeImpl( LogData* data, const TString& key, Scope scope, int pathLevel );
+        void      storeImpl( const Box& data, const String& pKey, Scope scope, int pathLevel );
 
         /** ****************************************************************************************
          * Internal method serving public interface #Retrieve.
          *
-         * @param key       The key to the data.
+         * @param pKey       The key to the data.
          * @param scope     The \e %Scope that the data is bound to.
          * @param pathLevel Used only if parameter \p scope equals
          *                  \ref aworx::lox::Scope::Path "Scope::Path"
          *                  to reference parent directories.
-         * @return The \b LogData object, \c nullptr if nothing was found.
+         * @return The data, a nulled box if no value was found.
          ******************************************************************************************/
         ALOX_API
-        LogData*  retrieveImpl  ( const TString& key, Scope scope, int  pathLevel );
+        Box  retrieveImpl  ( const String& pKey, Scope scope, int  pathLevel );
 
         /** ****************************************************************************************
          * Checks if given scope is thread-related.
@@ -1995,7 +1815,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @return \c true if \p scope is thread-related, \c false else.
          ******************************************************************************************/
         ALOX_API
-        bool      isThreadReleatedScope( Scope scope );
+        bool      isThreadRelatedScope( Scope scope );
 
         /** ****************************************************************************************
          * Checks if given scope needs information that is not available.
@@ -2008,7 +1828,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @return \c true if all is fine, \c false else.
          ******************************************************************************************/
         ALOX_API
-        bool      checkScopeInformation( Scope scope, int pathLevel, const TString& internalDomain );
+        bool      checkScopeInformation( Scope scope, int pathLevel, const String& internalDomain );
 
         /** ****************************************************************************************
          * Used on destruction and with #Reset.

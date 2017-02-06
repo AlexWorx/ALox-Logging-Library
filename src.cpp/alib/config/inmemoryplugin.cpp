@@ -1,10 +1,10 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alib/alib.hpp"
 
 #if !defined (HPP_ALIB_CONFIG_CONFIGURATION)
     #include "alib/config/configuration.hpp"
@@ -18,18 +18,13 @@
 #if !defined (HPP_ALIB_COMPATIBILITY_STD_IOSTREAM)
     #include "alib/compatibility/std_iostream.hpp"
 #endif
-#if !defined (HPP_ALIB_UTIL)
-    #include "alib/core/util.hpp"
-#endif
 
-#include <fstream>
 #include <algorithm>
+
 using namespace std;
 
-namespace aworx {
-namespace           lib {
-namespace                   config {
-
+namespace aworx { namespace lib { namespace config
+{
 
 // #################################################################################################
 // interface
@@ -120,10 +115,10 @@ bool InMemoryPlugin::Section::DeleteEntry ( const String& name )
     for ( size_t idx= 0; idx < Entries.size(); ++idx )
     {
         Entry* entry= Entries[idx];
-        if ( entry->Name.Equals( name, enums::Case::Ignore ) )
+        if ( entry->Name.Equals( name, lang::Case::Ignore ) )
         {
             delete Entries[idx];
-            Entries.erase( Entries.begin() + idx );
+            Entries.erase( Entries.begin() + static_cast<std::vector<Entry*>::difference_type>(idx) );
             return true;
         }
     }
@@ -170,7 +165,7 @@ void InMemoryPlugin::Entry::ToVariable( const InMemoryPlugin* , Variable& variab
 
     variable.Comments._()._( Comments );
     for( AString& val : Values )
-        variable.AddString( val );
+        variable.Add( val );
 }
 
 
@@ -185,8 +180,8 @@ void InMemoryPlugin::Entry::FromVariable( const InMemoryPlugin* , Variable& vari
         Comments._( variable.Comments );
 
     // adjust size of value array
-    int varSize=       variable.Size();
-    int valSize= (int) Values.size();
+    int varSize=                   variable.Size();
+    int valSize= static_cast<int>( Values.size()   );
     while (valSize < varSize )
     {
         Values.insert( Values.end(), AString() );
@@ -197,7 +192,7 @@ void InMemoryPlugin::Entry::FromVariable( const InMemoryPlugin* , Variable& vari
 
     // copy
     for ( int i= 0; i< varSize; i++ )
-        Values[i]._()._( variable.GetString( i ) );
+        Values[static_cast<size_t>(i)]._()._( variable.GetString( i ) );
 }
 
 

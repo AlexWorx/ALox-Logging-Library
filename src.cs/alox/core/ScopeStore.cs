@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox.core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 using System;
@@ -87,7 +87,7 @@ public class ScopeStore<T>
 
         /** The (constant) list of separators needed by the tree map */
         protected AString                          separators= new AString( "#" )._(Path.DirectorySeparatorChar);
-        
+
         /** A temporary substring used for searching keys in the tree map */
         protected Substring                        languageKeySubstr              = new Substring();
 
@@ -220,7 +220,7 @@ public class ScopeStore<T>
                         if( actValue != null )
                             return actValue;
                     }
-        
+
                     actScope=  Scope.ThreadOuter;
                     walkNextThreadIdx= -2;
                 }
@@ -316,7 +316,7 @@ public class ScopeStore<T>
                 actPathMapNode= languageStore.Get( languageKeySubstr.Set(languageKey), create, separators );
                 return;
             }
-            
+
             languageKey._( separators[1] );
 
             // key: filename
@@ -440,18 +440,18 @@ public class ScopeStore<T>
                 // 0= insert, 1= remove, 2= get.
                 if ( cmd == 0 && value == null )
                     cmd= 1;
-        
+
                 if (    lazyLanguageNode
                     ||  ( actPathMapNode == null && cmd == 0 ) ) // insert
                     getPathMapNode( true ); // always create
-        
+
                 if ( actPathMapNode != null )
                 {
                     oldValue = actPathMapNode.Value;
-        
+
                     if ( cmd == 0 ) // insert
                         actPathMapNode.Value= value;
-        
+
                     else if ( cmd == 1 ) // remove
                         languageStore.Remove( actPathMapNode );
                 }

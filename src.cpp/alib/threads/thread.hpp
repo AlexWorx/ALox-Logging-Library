@@ -1,8 +1,8 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -14,19 +14,11 @@
     #error "Header already included"
 #endif
 
-// Due to our blocker above, this include will never be executed. But having it, allows IDEs
-// (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_ALIB)
-    #include "alib/alib.hpp"
-#endif
-
-
-
 // then, set include guard
 #ifndef HPP_ALIB_THREADS_THREAD
-#if !defined( IS_DOXYGEN_PARSER)
+//! @cond NO_DOX
 #define HPP_ALIB_THREADS_THREAD 1
-#endif
+//! @endcond NO_DOX
 
 
 // #################################################################################################
@@ -37,7 +29,7 @@
 // #################################################################################################
 // includes
 // #################################################################################################
-#if defined(ALIB_FEAT_THREADS)
+#if ALIB_FEAT_THREADS
 
     #if !defined (_GLIBCXX_MAP) && !defined(_MAP_)
         #include <map>
@@ -57,9 +49,7 @@
 
 #endif // ALIB_FEAT_THREADS
 
-namespace aworx {
-namespace           lib {
-
+namespace aworx { namespace lib {
 
 /**
  *  This namespace of ALib holds classes that are providing an interface into
@@ -101,7 +91,24 @@ namespace           lib {
  *  <em>pruned</em>.
  *
  */
-namespace                   threads {
+namespace threads {
+
+/**
+ * Initializes ALib thread logic.
+ * This method should not be called directly. use
+ * \ref aworx::lib::ALIB::Init "ALIB::Init" to initialize all <b>%ALib Modules</b> included in the
+ * distribution.
+ */
+ALIB_API void Init();
+
+/**
+ * Frees resources and shuts down ALib thread logic.
+ * This method should not be called directly. Use
+ * \ref aworx::lib::ALIB::TerminationCleanUp "ALIB::TerminationCleanUp" to de-initialize all
+ * <b>%ALib Modules</b> included in the distribution.
+ */
+ALIB_API void TerminationCleanUp();
+
 
 /** ************************************************************************************************
  *  This class mimics Interface Runnable of the Java runtime library.
@@ -126,25 +133,16 @@ class Runnable
  **************************************************************************************************/
 class Thread : public Runnable
 {
+    // friends (namespace init/cleanup methods)
+    ALIB_API friend void Init();
+    ALIB_API friend void TerminationCleanUp();
+
     // #############################################################################################
     // ALib Threads initialization
     // #############################################################################################
     public:
-        /**
-         * Initializes ALib thread logic.
-         * This method should not be called directly. use
-         * \ref aworx::lib::ALIB::Init "ALIB::Init" to initialize ALib
-         */
-        static void _Init_ALib();
 
-        /**
-         * Frees resources and shuts down ALib thread logic.
-         * This method should not be called directly. use
-         * \ref aworx::lib::ALIB::TerminationCleanUp "ALIB::TerminationCleanUp" to de-initialize ALib
-         */
-        static void _Terminate_ALib();
-
-        /**  This is a value that may be passed as a value indicating an undefined (null) thread  */
+        /**  This is a value that may be passed as a value indicating an undefined thread  */
         static constexpr   int      NullThreadId= 0;
 
 
@@ -158,7 +156,7 @@ class Thread : public Runnable
         /**  A counter to provide thread IDs for ALIB threads  */
         static    int                                     nextThreadId;
 
-        #if defined(ALIB_FEAT_THREADS)
+        #if ALIB_FEAT_THREADS
             /**  A mutex to protect the static stuff.  */
             static    std::mutex                          mutex;
 
@@ -172,7 +170,7 @@ class Thread : public Runnable
     // Protected fields
     // #############################################################################################
     protected:
-        #if defined(ALIB_FEAT_THREADS)
+        #if ALIB_FEAT_THREADS
             /**  The internal C++ 11 thread object.  */
             std::thread*        c11Thread                                                  =nullptr;
 
@@ -227,20 +225,21 @@ class Thread : public Runnable
     public:
         /** ****************************************************************************************
          *  Constructor without parameters. As no runnable was provided, such thread will not
-         *  execute any code unless a specialized class is derived that overwrites the Run method.
+         *  execute any code unless a specialized class is derived that overrides virtual method
+         *  #Run.
          *  The name of the thread will be set to match a string representation of the thread id.
          ******************************************************************************************/
         ALIB_API            Thread()                     : Thread( nullptr, "" )       {}
 
         /** ****************************************************************************************
          *  Constructor without a parameter specifying a Runnable. Such thread will not execute any
-         *  code unless a specialized class is derived that overwrites the Run method.
+         *  code unless a specialized class is derived that overrides virtual method #Run.
          *
-         * @param name The designated name of the thread. If the name provided is empty or,
-         *             \c nullptr, the name of the thread will be set to match a string representation
-         *             of the thread id.
+         * @param threadName The designated name of the thread. If the name provided is empty or,
+         *                   \c nullptr, the name of the thread will be set to match a string
+         *                   representation of the thread id.
          ******************************************************************************************/
-        ALIB_API            Thread( const String& name ) : Thread( nullptr, name )     {}
+        ALIB_API            Thread( const String& threadName ) : Thread( nullptr, threadName )     {}
 
         /** ****************************************************************************************
          *  Constructor with provision of a Runnable 'target'. The Run method of 'target' will be
@@ -291,7 +290,7 @@ class Thread : public Runnable
          * @return  Returns the name of the thread.
          ******************************************************************************************/
         inline
-        const String&  GetName()                            { return name; }
+        const TString& GetName()                            { return name; }
 
         /** ****************************************************************************************
          *  Sets the name of the thread. An ALIB thread can have any name that is given to it and
@@ -333,9 +332,6 @@ using     Runnable=     aworx::lib::threads::Runnable;
 
 /** Type alias name in namespace #aworx. */
 using     Thread=       aworx::lib::threads::Thread;
-
-/** Type alias name in namespace #aworx. */
-using     ThreadLockNR= aworx::lib::threads::ThreadLockNR;
 
 }  // namespace aworx
 

@@ -1,15 +1,15 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 using System;
 using System.IO;
 using System.Collections.Generic;
 using cs.aworx.lib.strings;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 
 namespace cs.aworx.lib.config  {
 
@@ -69,7 +69,7 @@ public class InMemoryPlugin : ConfigurationPlugin
              */
             public virtual void ToVariable( InMemoryPlugin parent, Variable variable )
             {
-                ALIB.ASSERT( Delim != '\0' || Values.Count <= 1);
+                ALIB_DBG.ASSERT( Delim != '\0' || Values.Count <= 1);
                 if ( Delim != '\0' )
                     variable.Delim= Delim;
                 if ( FormatHints != 0 )
@@ -79,7 +79,7 @@ public class InMemoryPlugin : ConfigurationPlugin
 
                 variable.Comments._()._( Comments );
                 foreach( AString val in Values )
-                    variable.AddString( val );
+                    variable.Add( val );
             }
 
             /**
@@ -218,7 +218,7 @@ public class InMemoryPlugin : ConfigurationPlugin
          ******************************************************************************************/
         public override bool  Load( Variable variable, bool searchOnly= false )
         {
-            ALIB.ASSERT_WARNING( variable.Name.IsNotEmpty(), "Empty name given" );
+            ALIB_DBG.ASSERT_WARNING( variable.Name.IsNotEmpty(), "Empty name given" );
 
             Section    section;
             Entry      entry=  null;

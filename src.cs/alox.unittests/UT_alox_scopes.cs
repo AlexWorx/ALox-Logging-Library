@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox.unittests - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
 using System.Threading;
@@ -10,14 +10,14 @@ using System.Xml.Linq;
 using cs.aworx.lox.core.textlogger;
 using cs.aworx.lib.strings;
 using ut_cs_aworx;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 using cs.aworx.lib.config;
 using System.IO;
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     using NUnit.Framework;
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 #endif
 
@@ -43,10 +43,10 @@ namespace ut_cs_aworx_lox
 
 
 
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [TestFixture ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestClass]
     #endif
     public class CS_ALox_scopes  : AWorxUnitTesting
@@ -75,15 +75,15 @@ namespace ut_cs_aworx_lox
    void StoreDataTestThreadRun()
    {
         #if ALOX_DBG_LOG
-            LogData data= null;
+            Object data= null;
         #endif
 
-        Log.Store( new LogData( "2nd Thread Data"        ),             Scope.ThreadOuter   );
-        Log.Store( new LogData( "2nd Thread Data, keyed" ),   "mykey",  Scope.ThreadOuter   );
+        Log.Store( "2nd Thread Data"       ,             Scope.ThreadOuter   );
+        Log.Store( "2nd Thread Data, keyed",   "mykey",  Scope.ThreadOuter   );
 
         #if ALOX_DBG_LOG
-            data= Log.Retrieve(          Scope.ThreadOuter ); UT_EQ( "2nd Thread Data"        , data.StringValue );
-            data= Log.Retrieve( "mykey", Scope.ThreadOuter ); UT_EQ( "2nd Thread Data, keyed" , data.StringValue );
+            data= Log.Retrieve(          Scope.ThreadOuter ); UT_EQ( "2nd Thread Data"        , (String) data );
+            data= Log.Retrieve( "mykey", Scope.ThreadOuter ); UT_EQ( "2nd Thread Data, keyed" , (String) data );
         #endif
    }
 
@@ -98,10 +98,10 @@ namespace ut_cs_aworx_lox
     }
 
     #if ALOX_DBG_LOG
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -124,6 +124,12 @@ namespace ut_cs_aworx_lox
         Log.SetVerbosity(ml, Verbosity.Verbose );
         Log.SetVerbosity(Log.DebugLogger, Verbosity.Verbose, ALox.InternalDomains );
         Log.SetDomain( "/PREFIX", Scope.Method );
+
+//! [DOX_ALOX_LOX_SETPREFIX]
+Log.SetPrefix( new Object[] {"One, ", "two, ", 3 },  Scope.Global   );
+//! [DOX_ALOX_LOX_SETPREFIX]
+Log.Info( "*msg*" ); PFXCHECK( "One, two, 3*msg*"    ,ml );
+
 
         // src scopes
         Log.SetPrefix( "REPLACE:",    Scope.Global      );  Log.Info( "*msg*" ); PFXCHECK( "REPLACE:*msg*"          ,ml );
@@ -149,7 +155,7 @@ namespace ut_cs_aworx_lox
 
         // domain related
         Log.SetPrefix( "DOM1:" );                           Log.Info( "*msg*" ); PFXCHECK( "FILE:METHOD:DOM1:*msg*"            ,ml );
-        Log.SetPrefix( "DOM2:" );                           Log.Info( "*msg*" ); PFXCHECK( "FILE:METHOD:DOM1:DOM2:*msg*"       ,ml );
+        Log.SetPrefix( new Object[] {"DO","M2:"} );         Log.Info( "*msg*" ); PFXCHECK( "FILE:METHOD:DOM1:DOM2:*msg*"       ,ml );
         Log.SetPrefix( "DOM3:" );                           Log.Info( "*msg*" ); PFXCHECK( "FILE:METHOD:DOM1:DOM2:DOM3:*msg*"  ,ml );
         Log.SetPrefix( ""      );                           Log.Info( "*msg*" ); PFXCHECK( "FILE:METHOD:DOM1:DOM2:*msg*"       ,ml );
         Log.SetPrefix( ""      );                           Log.Info( "*msg*" ); PFXCHECK( "FILE:METHOD:DOM1:*msg*"            ,ml );
@@ -203,7 +209,7 @@ namespace ut_cs_aworx_lox
         Log.SetPrefix( null          ,Scope.Method      );  Log.Info( "*msg*" ); PFXCHECK( "*msg*:TI"                     ,ml );
         Log.SetPrefix( null          ,Scope.ThreadInner );  Log.Info( "*msg*" ); PFXCHECK( "*msg*"                        ,ml );
 
-        // check if breaking dom-releated, removes all thread inner correctly
+        // check if breaking dom-related, removes all thread inner correctly
         Log.SetPrefix( ":TI"         ,Scope.ThreadInner );  Log.Info( "*msg*" ); PFXCHECK( "*msg*:TI"                  ,ml );
         Log.SetPrefix( "DOM1:", ""   ,Inclusion.Include );  Log.Info( "*msg*" ); PFXCHECK( "DOM1:*msg*:TI"             ,ml );
         Log.SetPrefix( "DOMX:", ""   ,Inclusion.Exclude );  Log.Info( "*msg*" ); PFXCHECK( "DOMX:*msg*"                ,ml );
@@ -232,10 +238,10 @@ namespace ut_cs_aworx_lox
     }
 
     #if ALOX_DBG_LOG
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -370,10 +376,10 @@ namespace ut_cs_aworx_lox
     }
 
     #if ALOX_DBG_LOG
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -489,10 +495,10 @@ namespace ut_cs_aworx_lox
         Log.Once( Verbosity.Info, "Once(Scope filename) 4x -from other method", Scope.Filename, 0, 4 );
     }
 
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -626,10 +632,10 @@ namespace ut_cs_aworx_lox
     /** ********************************************************************************************
      * Log_Data
      **********************************************************************************************/
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -640,80 +646,67 @@ namespace ut_cs_aworx_lox
         UT_INIT();
 
         Log.AddDebugLogger();
+        Log.DebugLogger.MetaInfo.Format._()._(utWriter.logger.MetaInfo.Format);
         Log.SetVerbosity( Log.DebugLogger, Verbosity.Verbose, ALox.InternalDomains );
         Log.SetDomain( "Data", Scope.Method );
 
-        // LogData Constructors
-        {
-            LogData ld;
-            AString  asnull= new AString();
-            ld= new LogData(              ); UT_EQ(  asnull, ld.StringValue ); UT_EQ( 0, ld.IntegerValue ); UT_TRUE( ld.ObjectValue == null );
-            ld= new LogData(       3      ); UT_EQ(  asnull, ld.StringValue ); UT_EQ( 3, ld.IntegerValue ); UT_TRUE( ld.ObjectValue == null );
-            ld= new LogData(       3, this); UT_EQ(  asnull, ld.StringValue ); UT_EQ( 3, ld.IntegerValue ); UT_TRUE( ld.ObjectValue == this );
-            ld= new LogData("ABC"         ); UT_EQ(   "ABC", ld.StringValue ); UT_EQ( 0, ld.IntegerValue ); UT_TRUE( ld.ObjectValue == null );
-            ld= new LogData("ABC", 0, this); UT_EQ(   "ABC", ld.StringValue ); UT_EQ( 0, ld.IntegerValue ); UT_TRUE( ld.ObjectValue == this );
-            ld= new LogData("ABC", 3      ); UT_EQ(   "ABC", ld.StringValue ); UT_EQ( 3, ld.IntegerValue ); UT_TRUE( ld.ObjectValue == null );
-            ld= new LogData("ABC", 3, this); UT_EQ(   "ABC", ld.StringValue ); UT_EQ( 3, ld.IntegerValue ); UT_TRUE( ld.ObjectValue == this );
-        }
 
         // without key
-        Log.Store( null                         ,    Scope.Global         );
-        Log.Store( new LogData( "Replaced"     ),    Scope.Global         );
-        Log.Store( null                         ,    Scope.Global         );
-        Log.Store( null                         ,    Scope.Global         );
-        Log.Store( new LogData( "Replaced"     ),    Scope.Global         );
-        Log.Store( new LogData( "Global"       ),    Scope.Global         );
-        Log.Store( new LogData( "Replaced"     ),    Scope.ThreadOuter    );
-        Log.Store( new LogData( "ThreadOuter"  ),    Scope.ThreadOuter    );
-        Log.Store( new LogData( "Replaced"     ),    Scope.Path,    1     );
-        Log.Store( new LogData( "Path1"        ),    Scope.Path,    1     );
-        Log.Store( new LogData( "Replaced"     ),    Scope.Path           );
-        Log.Store( new LogData( "Path"         ),    Scope.Path           );
-        Log.Store( new LogData( "Replaced"     ),    Scope.Filename       );
-        Log.Store( new LogData( "FileName"     ),    Scope.Filename       );
-        Log.Store( new LogData( "Replaced"     ),    Scope.Method         );
-        Log.Store( new LogData( "Method"       ),    Scope.Method         );
-        Log.Store( new LogData( "Replaced"     ),    Scope.ThreadInner    );
-        Log.Store( new LogData( "ThreadInner"  ),    Scope.ThreadInner    );
+        Log.Store( null           ,    Scope.Global         );
+        Log.Store( "Replaced"     ,    Scope.Global         );
+        Log.Store( null           ,    Scope.Global         );
+        Log.Store( "Global"       ,    Scope.Global         );
+        Log.Store( "Replaced"     ,    Scope.ThreadOuter    );
+        Log.Store( "ThreadOuter"  ,    Scope.ThreadOuter    );
+        Log.Store( "Replaced"     ,    Scope.Path,    1     );
+        Log.Store( "Path1"        ,    Scope.Path,    1     );
+        Log.Store( "Replaced"     ,    Scope.Path           );
+        Log.Store( "Path"         ,    Scope.Path           );
+        Log.Store( "Replaced"     ,    Scope.Filename       );
+        Log.Store( "FileName"     ,    Scope.Filename       );
+        Log.Store( "Replaced"     ,    Scope.Method         );
+        Log.Store( "Method"       ,    Scope.Method         );
+        Log.Store( "Replaced"     ,    Scope.ThreadInner    );
+        Log.Store( "ThreadInner"  ,    Scope.ThreadInner    );
 
-        LogData data= null;
-        data= Log.Retrieve( Scope.Global       ); UT_EQ( "Global"        , data.StringValue );
-        data= Log.Retrieve( Scope.ThreadOuter  ); UT_EQ( "ThreadOuter"   , data.StringValue );
-        data= Log.Retrieve( Scope.Path,    1   ); UT_EQ( "Path1"         , data.StringValue );
-        data= Log.Retrieve( Scope.Path         ); UT_EQ( "Path"          , data.StringValue );
-        data= Log.Retrieve( Scope.Filename     ); UT_EQ( "FileName"      , data.StringValue );
-        data= Log.Retrieve( Scope.Method       ); UT_EQ( "Method"        , data.StringValue );
-        data= Log.Retrieve( Scope.ThreadInner  ); UT_EQ( "ThreadInner"   , data.StringValue );
+        Object data= null;
+        data= Log.Retrieve( Scope.Global       ); UT_EQ( "Global"        , (String) data );
+        data= Log.Retrieve( Scope.ThreadOuter  ); UT_EQ( "ThreadOuter"   , (String) data );
+        data= Log.Retrieve( Scope.Path,    1   ); UT_EQ( "Path1"         , (String) data );
+        data= Log.Retrieve( Scope.Path         ); UT_EQ( "Path"          , (String) data );
+        data= Log.Retrieve( Scope.Filename     ); UT_EQ( "FileName"      , (String) data );
+        data= Log.Retrieve( Scope.Method       ); UT_EQ( "Method"        , (String) data );
+        data= Log.Retrieve( Scope.ThreadInner  ); UT_EQ( "ThreadInner"   , (String) data );
 
         // wit key
-        Log.Store( new LogData( "Replaced"     ),   "mykey",  Scope.Global         );
-        Log.Store( new LogData( "Global"       ),   "mykey",  Scope.Global         );
-        Log.Store( new LogData( "Replaced"     ),   "mykey",  Scope.ThreadOuter    );
-        Log.Store( new LogData( "ThreadOuter"  ),   "mykey",  Scope.ThreadOuter    );
-        Log.Store( new LogData( "Replaced"     ),   "mykey",  Scope.Path,    1     );
-        Log.Store( new LogData( "Path1"        ),   "mykey",  Scope.Path,    1     );
-        Log.Store( new LogData( "Replaced"     ),   "mykey",  Scope.Path           );
-        Log.Store( new LogData( "Path"         ),   "mykey",  Scope.Path           );
-        Log.Store( new LogData( "Replaced"     ),   "mykey",  Scope.Filename       );
-        Log.Store( new LogData( "FileName"     ),   "mykey",  Scope.Filename       );
-        Log.Store( new LogData( "Replaced"     ),   "mykey",  Scope.Method         );
-        Log.Store( new LogData( "Method"       ),   "mykey",  Scope.Method         );
-        Log.Store( new LogData( "Replaced"     ),   "mykey",  Scope.ThreadInner    );
-        Log.Store( new LogData( "ThreadInner"  ),   "mykey",  Scope.ThreadInner    );
+        Log.Store( "Replaced"    ,   "mykey",  Scope.Global         );
+        Log.Store( "Global"      ,   "mykey",  Scope.Global         );
+        Log.Store( "Replaced"    ,   "mykey",  Scope.ThreadOuter    );
+        Log.Store( "ThreadOuter" ,   "mykey",  Scope.ThreadOuter    );
+        Log.Store( "Replaced"    ,   "mykey",  Scope.Path,    1     );
+        Log.Store( "Path1"       ,   "mykey",  Scope.Path,    1     );
+        Log.Store( "Replaced"    ,   "mykey",  Scope.Path           );
+        Log.Store( "Path"        ,   "mykey",  Scope.Path           );
+        Log.Store( "Replaced"    ,   "mykey",  Scope.Filename       );
+        Log.Store( "FileName"    ,   "mykey",  Scope.Filename       );
+        Log.Store( "Replaced"    ,   "mykey",  Scope.Method         );
+        Log.Store( "Method"      ,   "mykey",  Scope.Method         );
+        Log.Store( "Replaced"    ,   "mykey",  Scope.ThreadInner    );
+        Log.Store( "ThreadInner" ,   "mykey",  Scope.ThreadInner    );
 
 
-        data= Log.Retrieve( "mykey", Scope.Global       ); UT_EQ( "Global"        , data.StringValue );
-        data= Log.Retrieve( "mykey", Scope.ThreadOuter  ); UT_EQ( "ThreadOuter"   , data.StringValue );
-        data= Log.Retrieve( "mykey", Scope.Path,    1   ); UT_EQ( "Path1"         , data.StringValue );
-        data= Log.Retrieve( "mykey", Scope.Path         ); UT_EQ( "Path"          , data.StringValue );
-        data= Log.Retrieve( "mykey", Scope.Filename     ); UT_EQ( "FileName"      , data.StringValue );
-        data= Log.Retrieve( "mykey", Scope.Method       ); UT_EQ( "Method"        , data.StringValue );
-        data= Log.Retrieve( "mykey", Scope.ThreadInner  ); UT_EQ( "ThreadInner"   , data.StringValue );
+        data= Log.Retrieve( "mykey", Scope.Global       ); UT_EQ( "Global"        , (String) data );
+        data= Log.Retrieve( "mykey", Scope.ThreadOuter  ); UT_EQ( "ThreadOuter"   , (String) data );
+        data= Log.Retrieve( "mykey", Scope.Path,    1   ); UT_EQ( "Path1"         , (String) data );
+        data= Log.Retrieve( "mykey", Scope.Path         ); UT_EQ( "Path"          , (String) data );
+        data= Log.Retrieve( "mykey", Scope.Filename     ); UT_EQ( "FileName"      , (String) data );
+        data= Log.Retrieve( "mykey", Scope.Method       ); UT_EQ( "Method"        , (String) data );
+        data= Log.Retrieve( "mykey", Scope.ThreadInner  ); UT_EQ( "ThreadInner"   , (String) data );
 
 
         // threaded
-        Log.Store( new LogData( "Main Thread Data"        ),             Scope.ThreadOuter   );
-        Log.Store( new LogData( "Main Thread Data, keyed" ),   "mykey",  Scope.ThreadOuter   );
+        Log.Store( "Main Thread Data"       ,             Scope.ThreadOuter   );
+        Log.Store( "Main Thread Data, keyed",   "mykey",  Scope.ThreadOuter   );
 
 
         Thread thread= new Thread( new ThreadStart( StoreDataTestThreadRun ) );
@@ -721,8 +714,8 @@ namespace ut_cs_aworx_lox
         while( thread.IsAlive )
             ALIB.SleepMicros(1);
 
-        data= Log.Retrieve(          Scope.ThreadOuter ); UT_EQ( "Main Thread Data"         , data.StringValue );
-        data= Log.Retrieve( "mykey", Scope.ThreadOuter ); UT_EQ( "Main Thread Data, keyed"  , data.StringValue );
+        data= Log.Retrieve(          Scope.ThreadOuter ); UT_EQ( "Main Thread Data"         , (String) data );
+        data= Log.Retrieve( "mykey", Scope.ThreadOuter ); UT_EQ( "Main Thread Data, keyed"  , (String) data );
 
     }
 

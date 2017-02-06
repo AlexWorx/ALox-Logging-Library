@@ -1,8 +1,8 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /**
@@ -151,7 +151,7 @@ output to, e.g. files, a metrics server in the cloud, etc.
   The normal [ConsoleLogger](@ref com.aworx.lox.loggers.ConsoleLogger) would not produce any
   visible output using the Android Emulator or a debugging device.<br>
 
-Together with the <em>Log Statement</em> of the the first introductory sample, your projects code (e.g. in method \c main)
+Together with the <em>Log Statement</em> of the first introductory sample, your projects code (e.g. in method \c main)
 should look like this:
 
 \snippet UT_dox_tutorial.java        Tut_ALox_Logger_2
@@ -272,7 +272,7 @@ ALox allows to control this on a 'per \e %Logger' basis using method
 
 \snippet UT_dox_tutorial.java        Tut_Verbosity_SetVerbosity
 
-Here, we are explicitly passing the the \e Logger object that ALox creates as a static singleton
+Here, we are explicitly passing the \e Logger object that ALox creates as a static singleton
 for debug-logging purposes, with method \b addDebugLogger().
 Instead of passing the reference to the object, we could as well use a \e Loggers' name.
 The \e Logger that method \b addDebugLogger() creates is named \c "DEBUG_LOGGER". Therefore, the
@@ -496,9 +496,80 @@ in the [ALox User Manual](../manual.html). Among other things, you will find:
 
 
 \~Comment ####################################################################################### \~
-# 10. Conditional logging  #   {#tutjava_conditional}
+# 10. Formatting #   {#tutjava_formatting}
 
-## 10.1. Lox.Assert  ##
+While talking about rather complicated things like <em>Log Domains</em> and \e Scopes, we must not
+forget to talk about the log output itself. \b %ALox is designed to be able to pass any type of
+data to one or more \e Loggers. In the default case, a textual output of these \e "Logables" is wanted.
+We have seen in previous samples already, that if two objects are passed, their textual representation
+is just concatenated:
+
+\snippet UT_dox_tutorial.java        Tut_Format_1
+\verbinclude ALox.Java/generated/Tut_Format_1.txt
+
+But in fact, this concatenation is just the "fallback" strategy of a quite powerful formatting
+system coming with \b %ALox. In short, \b %ALox here relies on underlying library \b %ALib, which
+provides abstract class \ref com::aworx::lib::strings::Formatter "Formatter"
+allowing to format a set of arguments in accordance with a given format string that contains placeholder symbols.
+
+Now there are two tricks implemented: First, if no format string is recognized, a simple
+concatenation is performed. This is what we already saw. But secondly, if one formatter does not
+recognize a format string, a next formatter can be asked.
+
+Two formatters are provided by \b %ALib and \b %ALox (by default) installs both in parallel:
+1. \ref com::aworx::lib::strings::FormatterPythonStyle "FormatterPythonStyle"<br>
+   Implements an extended version of
+   [Python String Fromat Syntax](https://docs.python.org/3.5/library/string.html#format-string-syntax),
+   which is also similar to what C# offers.
+2. \ref com::aworx::lib::strings::FormatterJavaStyle "FormatterJavaStyle"<br>
+   Implements the
+   [formatting standards of the Java language](http://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html),
+   which in turn are a little like good old \c printf, but of-course much more powerful and also type-safe.
+
+With this background information, it is no surprise that the line above can alternatively be
+written like this:
+
+\snippet UT_dox_tutorial.java        Tut_Format_P
+
+which is Python compatible syntax, or like this:
+
+\snippet UT_dox_tutorial.java        Tut_Format_J
+
+which is how Java formatters declare format strings!
+
+If more arguments exists than a format string "consumes", the next remaining argument is treated
+like the first one: if a format string is detected it is processed, otherwise the textual representation
+of the argument is just appended to the log output. Because of this, the following statements
+all produce the same log output:
+
+\snippet UT_dox_tutorial.java        Tut_Format_Multi
+
+Of-course it is even allowed to mix Python style and Java style format strings in one log statement:
+
+\snippet UT_dox_tutorial.java        Tut_Format_Mix
+
+The output is:
+
+\verbinclude ALox.Java/generated/Tut_Format_Mix.txt
+
+However, please note that it is \b not allowed to mix Python and Java styles within one format
+string!
+
+In general, we are recommending to use Python style syntax with \b ALox, because it is more powerful and
+probably also better readable. The full documentation of the formats and how this is adopted
+within the C++ version of <b>%ALib/%ALox</b> is found with documentation of classes
+\ref com::aworx::lib::strings::FormatterPythonStyle "FormatterPythonStyle" and
+\ref com::aworx::lib::strings::FormatterJavaStyle   "FormatterJavaStyle". Let us conclude this chapter
+with some more samples:
+
+\snippet UT_dox_tutorial.java        Tut_Format_Sample_1
+\verbinclude ALox.Java/generated/Tut_Format_Sample_1.txt
+
+
+\~Comment ####################################################################################### \~
+# 11. Conditional logging  #   {#tutjava_conditional}
+
+## 11.1. Lox.Assert  ##
 
 Often log lines should only be displayed if a certain condition is met. Here is a
 sample:
@@ -521,7 +592,7 @@ As with using *Assert()* the evaluation of the expression is definitely pruned f
 - The \e Verbosity of *Assert()* is *Verbosity.ERROR*.
 
 
-## 10.2. Lox.if  ##
+## 11.2. Lox.if  ##
 
 A similar method to \b %Lox.Assert this is
 [Lox.If]       (@ref #com::aworx::lox::Lox::If). The differences to \b Lox.Assert are:
@@ -535,7 +606,7 @@ Hence, the very same effect as given in the previous sample can be achieved with
 \note Same as with method \b %Assert, this methods' name is starting with a capital letter, because
       \c if is a reserved keyword in Java.
 
-## 10.3. Log.Once  ##
+## 11.3. Log.Once  ##
 
 Another useful <em>Log Statement</em> provided by ALox is
 [Lox.once]   (@ref #com::aworx::lox::Lox::once). As the method name suggests, the statement
@@ -560,7 +631,7 @@ therefore just summarize some facts:
 
 
 \~Comment ####################################################################################### \~
-# 11. Prefixes  #   {#tutjava_log_prefix}
+# 12. Prefixes  #   {#tutjava_log_prefix}
 
 Imagine, all log statements of a of a certain kind should be very visible and distinguishable
 from other output. You could do this by
@@ -605,7 +676,7 @@ The next chapter shows that ALox has already built-in mechanics for logging out
 structured data!
 
 \~Comment ####################################################################################### \~
-# 12. LogTools: Log Complex Data ##       {#tutjava_logtools}
+# 13. LogTools: Log Complex Data ##       {#tutjava_logtools}
 
 ALox also provides some log functions that log more complex stuff. The design decision was made to not
 put this into the classes
@@ -615,7 +686,7 @@ However, LogTools is used in the same simple fashion as classes \b Log / \b Lox 
 
 On the Java language platform two methods are currently available which are briefly covered in the following:
 
-## 12.1 Instance(): Log any object recursively ## {#tutjava_more_logtools_instance}
+## 13.1 Instance(): Log any object recursively ## {#tutjava_more_logtools_instance}
 
 The method [LogTools.instance()] (@ref #com.aworx.lox.tools.LogTools.instance) allows you to log just any object
 recursively in a well formatted way. You can try this out quickly by adding the following code to your sample:
@@ -634,7 +705,7 @@ Here are the first lines of output of the above sample:
 
 \verbinclude ALox.Java/generated/Tut_Instance.txt
 
-## 12.2 Exception(): Log an exception recursively (with inner exceptions) ## {#tutjava_more_logtools_exception}
+## 13.2 Exception(): Log an exception recursively (with inner exceptions) ## {#tutjava_more_logtools_exception}
 
 Just like Instance(), the method [LogTools.exception()] (@ref #com.aworx.lox.tools.LogTools.exception) uses the multi
 line feature of ALox to log out the contents of a Java Exception well formatted and recursively (following inner exceptions).
@@ -654,80 +725,6 @@ The following log output will be generated:
 
 \verbinclude ALox.Java/generated/Tut_Exceptions.txt
 
-\~Comment ####################################################################################### \~
-# 13. Using the Log-Buffer Singleton ##        {#tutjava_logbuf}
-In many occasions, a log message consists of a string that is assembled from strings and
-values. Creating such strings is time consuming. It would not hurt too much, but in addition
-on some ALox platform/language implementations, when creating a release binary, the auto-pruning
-process would omit the creation code of such strings, so they would still exist. Besides correct pruning
-handling and general speed considerations even in the debug version, the third motivation for using the
-internal log buffer singleton is that it is quite handy!
-ALox provides it in classes
-[Log](@ref com.aworx.lox.Log) and
-[Lox](@ref com.aworx.lox.Lox) where it can be acquired using
-[Log.buf()](@ref com.aworx.lox.Log.buf) respectively
-[Lox.buf()](@ref com.aworx.lox.Lox.buf).
-
-"Acquired" here means, that when retrieved, internally a mutex (see
-[ThreadLock](@ref com.aworx.lib.threads.ThreadLock)) is locked. The mutex is released in the moment
-the buffer is passed into one of the log methods.
-
-Look at the following sample code:
-
-\snippet UT_dox_tutorial.java        Tut_UsingLogBuffer1
-
-As you see, the internal log buf is acquired in the parameter list of the *info()* method and
-filled with the log contents using concatenated calls to it.<br>
-Passed to method *info()*, class *Log* internally *releases* (the opposite of *acquire*) the buffer.
-
-Alternatively, the buffer can also be used "outside" of the log call and then passed
-to it. The following snippet shows a sample:
-
-
-\snippet UT_dox_tutorial.java         Tut_UsingLogBuffer2
-
-
-As you see, in the sample the <em>Log Statement</em> is not executed. Therefore it is necessary
-to *release* the buffer "manually" using
-[Log.bufAbort()](@ref com.aworx.lox.Lox.bufAbort) respectively
-[Lox.bufAbort()](@ref com.aworx.lox.Lox.bufAbort) in the case of release logging.
-
-\note
-While with other language/platform combinations, ALox provides an object of type
-[AString]   (@ref com::aworx::lib::strings::AString), in the Java version of ALox the method
-[Log.buf()] (@ref com.aworx.lox.Lox.buf) returns an object of type
-[LogBuf]    (@ref com.aworx.lox.LogBuf)! (Method
-[Lox.buf()] (@ref com.aworx.lox.Lox.buf) still returns an AString!)<br>
-<br>
-Class *LogBuf* encapsulates an AString and mimics its public non-static interface 1:1
-as its own. The reason for this (otherwise stupid) thing is the auto pruning mechanics in
-Java (see \ref javasetup_pruning "Pruning ALox"). So, as a Java programmer, keep in mind that
-when you use the internal log buffer singleton outside of a function call,
-- for debug logging you will receive an object of type *LogBuf* from class *Log*, while
-- in release logging you will receive an object of type *AString* from class *Lox*
-
-Finally, let's see what happens if you do not release the log buffer singleton:
-
-\snippet UT_dox_tutorial.java         Tut_UsingLogBuffer3
-
-The output of the whole sequence of this section looks like this. Please note the last line:
-
-\verbinclude ALox.Java/generated/Tut_UsingLogBuffer.txt
-
-You get a warning from utility class
-[ThreadLock](@ref com.aworx.lib.threads.ThreadLock) (on <em>Log Domain</em> "ALIB") that tells you that the buffer
-was doubly acquired. This should never happen. The warning is very severe! The
-problem would start if you accessed the buffer in a different thread later on
-(e.g. your applications UI thread). In this moment **your application would run into
-a deadlock!**
-
-\note
-  The error takes place in ALib. ALib builds on ALox. Therefore, ALib does not \e know about ALox,
-  because it 'lies under ALox'. So how can an error in ALib appear in ALox log messages?
-  For those who are interested, this is explained in the documentation of classes
-  \ref com::aworx::lib::Report "Report" (ALib),
-  \ref com::aworx::lib::ReportWriter "ReportWriter" (ALib) and
-  \ref com::aworx::lox::ALoxReportWriter "ALoxReportWriter" (ALox).
 
 \~Comment ####################################################################################### \~
 # 14. Name Your Threads  #       {#tutjava_threadnames}
@@ -781,10 +778,7 @@ reduced in comparison to other ways to introduce temporary variables used for de
 
 The methods to store and retrieve <em>Log Data</em> with ALox are
 \ref com::aworx::lox::Lox::store "Lox.store" and
-\ref com::aworx::lox::Lox::retrieve "Lox.retrieve". The objects stored are of type
-\ref com::aworx::lox::LogData "LogData". In the C++ implementation of ALox it is notable, that
-these objects are deleted internally when overwritten or an instance of class \b %Lox is deleted.
-Therefore, these objects need to be heap-allocated.
+\ref com::aworx::lox::Lox::retrieve "Lox.retrieve".
 
 Here is a sample code which sets a debug variable in ALox providing a version of a file that
 was read by an application:
@@ -799,7 +793,7 @@ The output will be:
 
 \verbinclude ALox.Java/generated/Tut_LogData.txt
 
-And even if method "Read()" of the sample above was not executed and therefore no variable was
+If method "Read()" of the sample above was not executed and therefore no variable was
 stored, ALox just creates an empty, default object. The output in this case would look like this:
 
 \verbinclude ALox.Java/generated/Tut_LogData2.txt

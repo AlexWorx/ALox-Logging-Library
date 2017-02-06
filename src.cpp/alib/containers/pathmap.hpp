@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -16,9 +16,9 @@
 
 // then, set include guard
 #ifndef HPP_ALIB_CONTAINERS_PATHMAP
-#if !defined( IS_DOXYGEN_PARSER)
+//! @cond NO_DOX
 #define HPP_ALIB_CONTAINERS_PATHMAP 1
-#endif
+//! @endcond NO_DOX
 
 
 
@@ -33,13 +33,13 @@
 #endif
 
 
-namespace aworx {
-namespace           lib {
+namespace aworx { namespace lib {
 
 /** ************************************************************************************************
  * This namespace of the A-Worx Library holds classes that are implementing (generic) containers.
  **************************************************************************************************/
-namespace                   containers {
+namespace containers
+{
 
 /** ************************************************************************************************
  * This class implements a map suitable for keys that are hierarchically organized.
@@ -59,7 +59,7 @@ class PathMap
     // #############################################################################################
     public:
         /** Our parent, if empty, we are root. Attention: The parent might not be identical to
-         *  the object that lists us in its #Childs vector. This is true, when an associated
+         *  the object that lists us in its #Children vector. This is true, when an associated
          *  value is not to be used in the parent.
          */
         PathMap*                               Parent;
@@ -71,7 +71,7 @@ class PathMap
         StoreT                                 Value;
 
         /** A list of children. */
-        std::vector<PathMap*>                  Childs;
+        std::vector<PathMap*>                  Children;
 
     // #############################################################################################
     // Public interface
@@ -94,7 +94,7 @@ class PathMap
          ******************************************************************************************/
         ~PathMap()
         {
-            for ( auto child : Childs )
+            for ( auto child : Children )
                 delete child;
         }
 
@@ -106,10 +106,10 @@ class PathMap
             ALIB_ASSERT( Value == 0 );
             ALIB_ASSERT( Path.IsEmpty() );
 
-            for ( auto child : Childs )
+            for ( auto child : Children )
                 delete child;
 
-            Childs.clear();
+            Children.clear();
         }
 
 
@@ -153,18 +153,18 @@ class PathMap
         PathMap*    get    ( Substring&  key,  bool create, const TString& separators )
         {
             // find the index of the match length and consume these characters from the key
-            int idx= 0;
-            int pLen= Path.Length();
+            integer idx= 0;
+            integer pLen= Path.Length();
             if ( pLen > 0 )
             {
-                int cmpLen= pLen < key.Length() ? pLen : key.Length();
+                integer cmpLen= pLen < key.Length() ? pLen : key.Length();
                 const char* kBuf=    key.Buffer();
                 const char* pBuf=    Path.Buffer();
 
                 while( idx < cmpLen && *(kBuf + idx) == *(pBuf +idx ) )
                     idx++;
 
-                key.Consume<false>( idx );
+                key.ConsumeChars<false>( idx );
             }
 
             // all of 'our' path characters matched
@@ -175,7 +175,7 @@ class PathMap
                     return this;
 
                 // return matching child
-                for ( auto child : Childs )
+                for ( auto child : Children )
                 {
                     if( key.CharAtStart<false>() == child->Path.CharAtStart() )
                     {
@@ -191,7 +191,7 @@ class PathMap
                     PathMap* newChild= nullptr;
                     newChild= new PathMap( this );
                     newChild->Path._( key );
-                    Childs.emplace_back( newChild );
+                    Children.emplace_back( newChild );
                     return newChild;
                 }
             }
@@ -204,17 +204,17 @@ class PathMap
             // just a part of us matched
             else if ( create )
             {
-                // create new child receiving our old path (rest), our value and childs
+                // create new child receiving our old path (rest), our value and children
                 PathMap* child1= new PathMap( this );
                 child1->Path._( Path, idx );
 
-                for( auto child : Childs )
+                for( auto child : Children )
                     child->Parent= child1;
 
-                child1->Childs= Childs;
+                child1->Children= Children;
                 child1->Value=  Value;
-                Childs.clear();
-                Childs.emplace_back( child1 );
+                Children.clear();
+                Children.emplace_back( child1 );
 
                 // cut my path and clear my value
                 Path.SetLength<false>( idx );
@@ -226,7 +226,7 @@ class PathMap
                     PathMap* child2= new PathMap( this );
                     child2->Path._( key );
 
-                    Childs.emplace_back( child2 );
+                    Children.emplace_back( child2 );
                     return child2;
                 }
 
@@ -242,9 +242,9 @@ class PathMap
             return Parent;
         }
 
-    /** ************************************************************************************************
+    /** ********************************************************************************************
      * This inner class implements a \c std::iterator using a DFS strategy.
-     **************************************************************************************************/
+     **********************************************************************************************/
     public:
     class Iterator : public std::iterator<std::input_iterator_tag, StoreT>
     {
@@ -253,17 +253,17 @@ class PathMap
             struct NodeAndChild
             {
                 const PathMap<StoreT>*     node;       ///< A node to remember.
-                int                         childNo;    ///< The current child of the node.
+                int                        childNo;    ///< The current child of the node.
 
                 /** Constructor
-                 *  @param node     The node to store.
-                 *  @param childNo  The current child within \p node.
+                 *  @param n     The node to store.
+                 *  @param c  The current child within \p node.
                  */
-                NodeAndChild(const PathMap<StoreT>* node, int childNo) : node(node), childNo(childNo) {}
+                NodeAndChild(const PathMap<StoreT>* n, int c) : node(n), childNo(c) {}
             };
 
             /** A stack holding the recursive list of child maps and the  idx of their current child */
-            std::stack<NodeAndChild>                    nodesAndChilds;
+            std::stack<NodeAndChild>                    nodesAndChildren;
 
         public:
             /** Standard constructor, used to create and \c end() iterator  */
@@ -276,7 +276,7 @@ class PathMap
              */
             Iterator(const PathMap<StoreT> &sm)
             {
-                nodesAndChilds.push( NodeAndChild(&sm, -2) );
+                nodesAndChildren.push( NodeAndChild(&sm, -2) );
                 ++(*this);
             }
 
@@ -285,12 +285,12 @@ class PathMap
              *  @return \c true if this and given iterator are equal, \c false otherwise. */
             bool operator==(const typename PathMap<StoreT>::Iterator &other) const
             {
-                if ( nodesAndChilds.size() == 0 || other.nodesAndChilds.size() == 0)
-                    return nodesAndChilds.size() == other.nodesAndChilds.size();
+                if ( nodesAndChildren.size() == 0 || other.nodesAndChildren.size() == 0)
+                    return nodesAndChildren.size() == other.nodesAndChildren.size();
 
 
-                return      this->nodesAndChilds.top().node    == other.nodesAndChilds.top().node
-                        &&  this->nodesAndChilds.top().childNo == other.nodesAndChilds.top().childNo;
+                return      this->nodesAndChildren.top().node    == other.nodesAndChildren.top().node
+                        &&  this->nodesAndChildren.top().childNo == other.nodesAndChildren.top().childNo;
             }
 
             /** Comparison operator.
@@ -305,28 +305,28 @@ class PathMap
              * @return The current PathMap node.              */
             const PathMap<StoreT>& operator*() const
             {
-                return *nodesAndChilds.top().node;
+                return *nodesAndChildren.top().node;
             }
 
             /** Increment operator.
              *  @return A reference to ourselves. */
             Iterator& operator++()
             {
-                while(nodesAndChilds.size() > 0 )
+                while(nodesAndChildren.size() > 0 )
                 {
-                    int child= ++nodesAndChilds.top().childNo;
+                    int child= ++nodesAndChildren.top().childNo;
 
-                    if ( child >= (int) nodesAndChilds.top().node->Childs.size() )
+                    if ( child >= static_cast<int>( nodesAndChildren.top().node->Children.size() ) )
                     {
-                        nodesAndChilds.pop();
+                        nodesAndChildren.pop();
                         continue;
                     }
                     else if ( child >= 0 )
                     {
-                        nodesAndChilds.push( NodeAndChild( nodesAndChilds.top().node->Childs[child], -1 ) );
+                        nodesAndChildren.push( NodeAndChild( nodesAndChildren.top().node->Children[static_cast<size_t>(child)], -1 ) );
                     }
 
-                    if ( nodesAndChilds.top().node->Value != 0 )
+                    if ( nodesAndChildren.top().node->Value != 0 )
                         return *this;
                 }
 
@@ -358,7 +358,6 @@ using  PathMap=    aworx::lib::containers::PathMap<StoreT>;
 
 
 } // namespace aworx
-
 
 
 #endif // HPP_ALIB_CONTAINERS_PATHMAP

@@ -1,21 +1,19 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /**
 \page man_colorful_loggers  16 - Colorful Loggers
-
-
 \~Comment ####################################################################################### \~
 # 1. Technical Prerequisites #
 
-To explain the use of colorful log output in ALox, it is best to elaborate roughly on some
-details of the ALox software architecture.
+To explain the use of colorful log output in \b %ALox, it is best to elaborate roughly on some
+details of the \b %ALox software architecture.
 
-While ALox in principle is designed to process \e Logables of arbitrary type, the most
+While \b %ALox in principle is designed to process \e Logables of arbitrary type, the most
 widely spread use case is logging textual information. For this reason,
 abstract class
 <b>%Logger</b>
@@ -37,7 +35,7 @@ These sequences are gathered in class
 ([C++] (@ref      #aworx::lox::ESC),
  [C#]  (@ref  #cs::aworx::lox::ESC)). The ESC-sequences are quite similar to those known from
 ANSI terminals. They provide settings of foreground and background colors and font styles.
-The ESC-sequences can be embedded into any textual \e Logable and as well into field
+The ESC-sequences may occur in the (string type) \e Logables and as well in field
 <b>%MetaInfo.Format</b>
 ([C++] (@ref      #aworx::lox::core::textlogger::MetaInfo.Format),
  [C#]  (@ref  #cs::aworx::lox::core::textlogger::MetaInfo.Format),
@@ -72,7 +70,7 @@ digraph TextLoggers
 
 The result of this design should not need much explanation:
 \e %Logger types that do not support colors are derived from \b %PlainTextLogger,
-while those support colors are derived from \b %TextLogger:
+while those that support colors are derived from \b %TextLogger:
 
 \dot
 digraph TextLoggers
@@ -99,17 +97,18 @@ digraph TextLoggers
 
 The takeaways from this short technical spotlight are now fairly obvious:
 
-- Any <em>Log Statement</em> addressing textual \e %Loggers, may contain ESC-sequences.
-- A user of ALox does not need to care about whether \e %Loggers are used that support colorized output
-  or similar ESC-sequences.
-- A user of ALox can identify \e %Loggers that do or do not support colorful log output easily by
-  looking at their inheritance line.
+- The \e Logables of <em>Log Statements</em> as well as <em>Prefix Logables</em> may contain ESC-sequences.
+- A user of \b %ALox does not need to care about whether \e %Loggers are used that support colorized output
+  (or similar ESC-sequences) or not. They are ignored if not supported.
+- With the introduction of own, <b>%ALox</b>-specific escape codes, software that uses \b %ALox becomes
+  independent from the underlying, platform-specific sequences. For example, \b %ALox is not relying
+  on ANSI color codes, which are not supported by colorful Windows consoles. Instead, on each platform,
+  dedicated \e Loggers will perform the translation of \b %ALox codes to platform-specific ones.
 - A developer of a custom \e %Logger that should not be enabled to support ESC-sequences, simply can
   derive from class \b %PlainTextLogger which finds and removes ESC-sequences before the
-  messages are passed to the custom type. (See chapter \ref man_ext_loggers).
-
+  messages are passed to the custom type.
+  (For the creation of custom loggers, see also chapter \ref man_ext_loggers).
 
 --------------------------------------------------------------------
                          <center> \ref manual "Back to index" </center>
-
 */

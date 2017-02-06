@@ -2,8 +2,8 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
 using System.Text;
@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using cs.aworx.lib.time;
 using cs.aworx.lib.strings;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 
 
 /** ************************************************************************************************
@@ -154,9 +154,9 @@ This way, it is possible to protect values against external modification.
     that 3rd party code) to configure things that you do not want to be configurable.
 
 # 5. Using class %Configuration #
-In normal use cases, there is no need to create an instance of class Configuration, as class %ALib
-provides a public static singleton with field
-\ref cs::aworx::lib::ALIB::Config "ALIB.Config".
+In normal use cases, there is no need to create an instance of class Configuration, as a default
+singleton is provided with
+\ref cs::aworx::lib::config::Configuration::Default "Configuration.Default".
 The command line parameters (optionally) provided with
 \ref cs::aworx::lib::ALIB::Init "ALIB.Init" are passed to the command-line plug-in of this
 singleton.
@@ -238,8 +238,8 @@ can be passed to the interface of class Configuration or directly to specific
 However, the simplest way of loading and storing variables is to use the interface methods of class
 \b %Variable itself. These methods are considered "available for convenience", hence all they do is
 to invoke methods of class \b %Configuration passing themselves as parameters. The methods are using
-the public static singleton of class \b %Configuration found in field
-\ref cs::aworx::lib::ALIB::Config "ALIB.Config". For most use cases this all that is needed!
+the public static singleton \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default".
+For most use cases this all that is needed!
 
 Simple access methods allow to read or set the values of a variable.
 
@@ -282,7 +282,7 @@ namespace cs.aworx.lib.config  {
 
 /** ************************************************************************************************
  * This class primarily is used via the public static singleton instance of it, found in
- * \ref cs::aworx::lib::ALIB::Config "ALIB.Config".
+ * \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default".
  * It holds a list of objects of type
  * \ref cs::aworx::lib::config::ConfigurationPlugin "ConfigurationPlugin",
  * sorted by their priority and provides a
@@ -335,6 +335,17 @@ public class Configuration
     // public fields
     // #############################################################################################
         /**
+         * This is the default singleton for standard use. Note that it is allowed to have
+         * multiple instances of this class but this default is provided for convenience as
+         * standard applications have just one.<br>
+         * Overloaded methods found in classes of this namespace, which omit the configuration
+         * parameter use this singleton instead.
+         * Of-course, also custom plug-ins may be attached to this object.
+         */
+        public static Configuration         Default                           = new Configuration();
+
+
+        /**
          * Values considered to indicate "true". Defaults to
          * { "1", "true", "t", "yes", "y", "on", "ok" }.
          * See methods #IsTrue.
@@ -352,15 +363,15 @@ public class Configuration
          * Defaults to single character \c '$'. If a string is set, i.e. \c "${", then field
          * #SubstitutionVariableEnd may be set accordingly, i.e. \c "}"
          */
-        public AString                      SubstitutionVariableStart              = new AString("$");
+        public AString                      SubstitutionVariableStart            = new AString("$");
 
         /**
          * The end of a substitution variables.
-         * If this field is set, then field #SubstitutionVariableDelimiters is ignored. If this field
-         * is null (the default) or empty, it is ignored and characters in field
+         * If this field is set, then field #SubstitutionVariableDelimiters is ignored. If this
+         * field is null (the default) or empty, it is ignored and characters in field
          * #SubstitutionVariableDelimiters are used to identify the end of the variable.
          */
-        public AString                      SubstitutionVariableEnd                   = new AString();
+        public AString                      SubstitutionVariableEnd                 = new AString();
 
         /**
          * The delimiters used to identify the end of a substitutable variable.
@@ -445,7 +456,7 @@ public class Configuration
          * \note This method should be called for instances of this class after construction.<br>
          *       In standard application scenarios, this method is invoked by method
          *       \ref cs::aworx::lib::ALIB::Init   "ALIB.Init" for the static singleton found in
-         *       \ref cs::aworx::lib::ALIB::Config "ALIB.Config".
+         *       \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default".
          *
          * @param args    Parameters taken from <em>standard C#</em> method \c main()
          *                (the list of command line arguments).
@@ -477,7 +488,7 @@ public class Configuration
             int i;
             for ( i= 0; i < plugins.Count; i++ )
             {
-                ALIB.ASSERT_ERROR( plugins[i].prio != priority,
+                ALIB_DBG.ASSERT_ERROR( plugins[i].prio != priority,
                     "Configuration.InsertPlugin(): Plug-in with same priority exists" );
 
                 if ( plugins[i].prio < priority )
@@ -509,7 +520,7 @@ public class Configuration
                 }
             }
 
-            ALIB.WARNING( "No Plug-in was removed " );
+            ALIB_DBG.WARNING( "No Plug-in was removed " );
             return false;
         }
 
@@ -675,13 +686,13 @@ public class Configuration
             {
                 if ( variable.Name.IsEmpty())
                 {
-                    ALIB.ERROR( "Trying to store an undefined variable."  );
+                    ALIB_DBG.ERROR( "Trying to store an undefined variable."  );
                     return 0;
                 }
 
                 if ( variable.Size() > 1 && variable.Delim == '\0' )
                 {
-                    ALIB.ERROR(   "Trying to store variable \"" + variable.Fullname
+                    ALIB_DBG.ERROR(   "Trying to store variable \"" + variable.Fullname
                                 + "\" which has multiple values set but no delimiter defined."  );
                     return 0;
                 }
@@ -789,7 +800,7 @@ public class Configuration
                         int idx=   value.IndexOf   ( SubstitutionVariableEnd, varStart );
                         if (idx < 0 )
                         {
-                            ALIB.WARNING(   "End of substitution variable not found (while start was found). Variable name: "
+                            ALIB_DBG.WARNING(   "End of substitution variable not found (while start was found). Variable name: "
                                            + variable.Fullname
                                            + " Value: \"" + value + "\"." );
                             break;
@@ -849,7 +860,7 @@ public class Configuration
 
                 // warn if max replacements
                 if( maxReplacements <= 0 )
-                    ALIB.WARNING(     "Too many substitutions in variable "
+                    ALIB_DBG.WARNING(     "Too many substitutions in variable "
                                       + variable.Fullname
                                       + ". Probably a recursive variable definition was made. ");
             }

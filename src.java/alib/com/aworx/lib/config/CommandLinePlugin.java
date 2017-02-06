@@ -1,14 +1,14 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 package com.aworx.lib.config;
 
-import com.aworx.lib.enums.Case;
-import com.aworx.lib.enums.Whitespaces;
+import com.aworx.lib.lang.Case;
+import com.aworx.lib.lang.Whitespaces;
 import com.aworx.lib.strings.Substring;
 
 
@@ -37,12 +37,11 @@ public class CommandLinePlugin extends ConfigurationPlugin
      * \ref com::aworx::lib::config::Configuration::setCommandLineArgs "Configuration.setCommandLineArgs".
      *
      *\note In standard application scenarios, this method is invoked by method
-     *      \ref com::aworx::lib::ALIB::init "ALIB.init" for the singleton of this class found
-     *      in class \b %Configuration, which in turn is found as a singleton in
-     *      \ref com::aworx::lib::ALIB::config "ALIB.config".
+     *      \ref com::aworx::lib::ALIB::init "ALIB.init" for the singleton
+     *      \ref com::aworx::lib::config::Configuration::Default "Configuration.Default".
      *
      * @param args    Parameters taken from <em>standard Java</em> method \c main()
-     *                (the list of command line arguments). Accepts \c null to ignore 
+     *                (the list of command line arguments). Accepts \c null to ignore
      *                command line parameters.
      ******************************************************************************************/
     public void setArgs( String[] args )   { this.args= args; }
@@ -68,9 +67,9 @@ public class CommandLinePlugin extends ConfigurationPlugin
         {
             // remove whitespaces (if somebody would work with quotation marks...)
             // and request '-' and allow a second '-'
-            if ( !actVar.set( args[i]).trim().consume('-') )
+            if ( !actVar.set( args[i]).trim().consumeChar('-') )
                 continue;
-            actVar.consume('-');
+            actVar.consumeChar('-');
 
             if ( variable.fullname.compareTo( args[i], Case.IGNORE, actVar.start, optionLength, 0, optionLength ) == 0)
             {
@@ -79,11 +78,11 @@ public class CommandLinePlugin extends ConfigurationPlugin
                 if ( actVar.isEmpty() )
                 {
                     if ( !searchOnly )
-                        variable.addString(); 
+                        variable.add();
                     return true;
                 }
-                
-                if ( actVar.consume( '=', Case.SENSITIVE, Whitespaces.TRIM  ) )
+
+                if ( actVar.consumeChar( '=', Case.SENSITIVE, Whitespaces.TRIM  ) )
                 {
                     if ( !searchOnly )
                     {

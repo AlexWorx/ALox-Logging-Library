@@ -1,18 +1,18 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox.unittests - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
 using System.Threading;
 using System.Xml.Linq;
 using ut_cs_aworx;
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     using NUnit.Framework;
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 #endif
 
@@ -29,10 +29,10 @@ using System.Collections.Generic;
 
 namespace ut_cs_aworx_lox
 {
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [TestFixture ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestClass]
     #endif
     public class CS_ALox_Tools   : AWorxUnitTesting
@@ -43,10 +43,10 @@ namespace ut_cs_aworx_lox
     /** ********************************************************************************************
      * Log_Exception.
      **********************************************************************************************/
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox_LogTools")]
@@ -69,10 +69,10 @@ namespace ut_cs_aworx_lox
     /** ********************************************************************************************
      * Log_Instance
      **********************************************************************************************/
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox_LogTools")]
@@ -188,10 +188,10 @@ namespace ut_cs_aworx_lox
     /** ********************************************************************************************
      * Log_XML
      **********************************************************************************************/
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox_LogTools")]
@@ -213,10 +213,10 @@ namespace ut_cs_aworx_lox
      * Log_JSON
      **********************************************************************************************/
     #if !WINDOWS_PHONE
-        #if ALIB_MONO_DEVELOP
+        #if ALIB_NUNIT
             [Test ()]
         #endif
-        #if ALIB_VSTUDIO
+        #if ALIB_IDE_VSTUDIO
             [TestMethod]
             #if !WINDOWS_PHONE
                 [TestCategory("CS_ALox")]

@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  aworx::lox::loggers - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -28,10 +28,8 @@
 #endif
 
 
-namespace aworx {
-namespace       lox {
-namespace           loggers{
-
+namespace aworx { namespace lox { namespace loggers
+{
 /** ************************************************************************************************
  * A logger that logs all messages to the <em>std::basic_ostream</em> instance provided in the
  * constructor. The name of the \e Logger defaults to "ANSI_LOGGER".
@@ -43,11 +41,12 @@ namespace           loggers{
  * can be set.
  * ANSI escape sequences are also available in various IDE output windows.
  *
- * Foreground and background colors are set to be either light/dark or dark/light. This improves
- * the readability of log output a lot. However, the right setting for this is dependent on
- * the color scheme of final output device (window). To manipulate the right setting, see field
- * #IsBackgroundLight and also configuration variable
- * [ALOX_CONSOLE_HAS_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html).
+ * Foreground and background colors can be set to be either light/dark or dark/light. This improves
+ * the readability of log output a lot and even allows to read if foreground and background colors
+ * are the same (they then still differ). However, the right setting for this is dependent on
+ * the color scheme of the final output device (window). To manipulate the right setting, see field
+ * #UseLightColors and also configuration variable
+ * [ALOX_CONSOLE_LIGHT_COLORS](../group__GrpALoxConfigVars.html).
  *
  * In the constructor, a default format string and some other definitions in member
  * \ref MetaInfo get set to include ESC Escape Sequences.
@@ -55,7 +54,7 @@ namespace           loggers{
  *
  * \note Instead of using ANSI sequences in the format strings directly, which would lower the
  * runtime cost a little, ESC sequences are used because this way the light/dark color
- * selection, which depends on the field #IsBackgroundLight is performed correctly.
+ * selection, which depends on the field #UseLightColors is performed correctly.
  *
  * There is not 100% match between the ANSI sequences and the definitions in
  * \ref aworx::lox::ESC "ESC".
@@ -193,44 +192,28 @@ class AnsiLogger : public aworx::lox::core::textlogger::TextLogger
     public:
 
         /**
-         * Forground and background colors chosen by this class differ in their intensity to increase
-         * the overall readablity by increasing the contrast.
+         * Foreground and background colors chosen by this class might differ in their intensity.
+         * This increases the overall readability by increasing the contrast.
          * If the background color of a console window is dark, then the background colors of
-         * colored log output should be darker colors than the forground colors and vice versa.
+         * colored log output should be darker colors than the foreground colors - and vice versa.
          *
-         * If this field is \c false, foreground colors will be light colors and background colors dark.
-         * If \c true, the opposite is chosen.
+         * Depending on the setting of this field, ALox
+         * \ref aworx::lox::ESC "escape codes" for colors are translated to normal ANSI colors or
+         * lighter ones:
+         * - If this field is \c 0, light colors are never used.
+         * - If this field is \c 1, foreground colors will be light colors and background colors
+         *   dark. This is the default.
+         * - If \c 2, the opposite of \c 1 is chosen: background colors will be light colors and
+         *   foreground colors dark.
          *
-         * Defaults to \c false.
-         *
-         * The configuration variable [ALOX_CONSOLE_HAS_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html)
-         * is evaluated within the constructor of this class, to allow to modifying this flag at
-         * runtime.
+         * The configuration variable [ALOX_CONSOLE_LIGHT_COLORS](../group__GrpALoxConfigVars.html)
+         * allows to externally modify this flag. It is read once within the constructor .
          */
-        bool        IsBackgroundLight;
+        int    UseLightColors;
 
-
-        /** Characters  placed at the beginning of a log line with \e Verbosity 'Error'.*/
-        String MsgPrefixError;
-
-        /** Characters  placed at the beginning of a log line with \e Verbosity 'Warning'.*/
-        String MsgPrefixWarning;
-
-        /** Characters  placed at the beginning of a log line with \e Verbosity 'Info'.*/
-        String MsgPrefixInfo                   = "";
-
-        /** Characters  placed at the beginning of a log line with \e Verbosity 'Verbose'.*/
-        String MsgPrefixVerbose;
 
         /** Characters  placed at the end of each line (e.g. used to reset colors and styles).*/
         String MsgSuffix                      = ANSI_RESET;
-
-        /** Colorful replacement for corresponding meta info string.*/
-        String64  NoSourceFileInfo;
-
-        /** Colorful replacement for corresponding meta info string.*/
-        String64  NoMethodInfo;
-
 
     // #############################################################################################
     // Constructor/destructor
@@ -238,15 +221,15 @@ class AnsiLogger : public aworx::lox::core::textlogger::TextLogger
     public:
         /** ****************************************************************************************
          * Creates an AnsiLogger.
-         * @param oStream        The output stream to write into.
-         * @param usesStdStreams Denotes wether this logger writes to the
+         * @param pOStream       The output stream to write into.
+         * @param usesStdStreams Denotes whether this logger writes to the
          *                       <em>standard output streams</em>.
          * @param name           The name of the \e Logger, defaults to what is provided with
          *                       parameter \p typeName.
          * @param typeName       The type of the \e Logger, defaults to "ANSI".
          ******************************************************************************************/
         ALOX_API
-        explicit        AnsiLogger( std::basic_ostream<char>* oStream, bool  usesStdStreams,
+        explicit        AnsiLogger( std::basic_ostream<char>* pOStream, bool  usesStdStreams,
                                     const String& name= nullptr, const String& typeName= "ANSI" );
 
         /** ****************************************************************************************
@@ -288,7 +271,7 @@ class AnsiLogger : public aworx::lox::core::textlogger::TextLogger
          *  Empty implementation, not needed for this class
          ******************************************************************************************/
         ALOX_API
-        virtual void notifyMultiLineOp ( lib::enums::Phase )    {  }
+        virtual void notifyMultiLineOp ( lib::lang::Phase )    {  }
 
 
 

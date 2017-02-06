@@ -2,8 +2,8 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
 using System.Text;
@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using cs.aworx.lib.time;
 using cs.aworx.lib.strings;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 
 
 namespace cs.aworx.lib.config  {
@@ -160,13 +160,13 @@ public struct VariableDefinition
  *   which may be used if the decision about the source or drain of a load/store operation is explicitly
  *   made by a code unit.
  * - Using the interface methods #Load,#Store, #StoreDefault and #Protect found in this class
- *   itself which are provided for convenience. Those simply invoke the interface of the static global singleton
- *   \ref cs::aworx::lib::ALIB::Config "ALIB.Config".
+ *   itself which are provided for convenience. Those simply invoke the interface of static global singleton
+ *   \\ref cs::aworx::lib::config::Configuration::Default "Configuration.Default".
  *
  * Using the interface of this class itself is the most convenient way of loading and storing
  * variables, setting default values or protecting variables.
  * Only very few use cases demand for the creation and use of an instance of class
- * \b %Configuration different to the static singleton \b  %ALIB.Config.
+ * \b %Configuration different to the static singleton \b  %Configuration.Default.
  *
  * Storing empty variables (method #Size returns \c 0) deletes a variable from the those
  * configuration plug-ins that are write enabled.
@@ -177,7 +177,7 @@ public class Variable
     // Public fields
     // #############################################################################################
 
-        /** Denotes hints for formating variables when storing in external configuration files  */
+        /** Denotes hints for formatting variables when storing in external configuration files  */
         public enum FormatHint
         {
             /** No hints */
@@ -394,7 +394,7 @@ public class Variable
                 Fullname._( Category )._( '_' );
             Fullname._( Name );
 
-            ALIB.ASSERT_WARNING(  Name.IsNotEmpty(), "Empty variable name given" );
+            ALIB_DBG.ASSERT_WARNING(  Name.IsNotEmpty(), "Empty variable name given" );
 
             return this;
         }
@@ -479,7 +479,7 @@ public class Variable
          * Adds a value to the end of the list of values.
          * @return A reference to the string which can be manipulated to set the value.
          ******************************************************************************************/
-        public AString    AddString()
+        public AString    Add()
         {
             int actIdx= qtyValues;
             qtyValues++;
@@ -496,37 +496,9 @@ public class Variable
          * @param  value  The value to set.
          * @return A reference to the string which can be further manipulated to set the value.
          ******************************************************************************************/
-        public AString    AddString( Object value )
+        public AString    Add( Object value )
         {
-            return AddString()._( value );
-        }
-
-        /** ****************************************************************************************
-         * Adds the given long integer value to the end of the list of values.
-         * If a different format is desired (minimum digits, etc.), then
-         * #AddString() is to be used and conversion done proprietarily.
-         *
-         * @param  value  The value to set.
-         * @return A reference to the string representing the integer value.
-         ******************************************************************************************/
-        public AString    AddInteger( long value )
-        {
-            return AddString()._( value );
-        }
-
-        /** ****************************************************************************************
-         * Adds the given double value to the end of the list of values.
-         * Formatting is done using field \c NumberFormat of field #Config, respectively, if this is
-         * not set, the static singleton
-         * \ref cs::aworx::lib::ALIB::Config "ALIB.Config". If a different format is desired,
-         * #AddString() is to be used and conversion done proprietarily.
-         *
-         * @param  value  The value to set.
-         * @return A reference to the string representing the boolean value.
-         ******************************************************************************************/
-        public AString    AddFloat( double value )
-        {
-            return AddString()._( value );
+            return Add()._( value );
         }
 
         /** ****************************************************************************************
@@ -534,18 +506,17 @@ public class Variable
          * For \c true values string \b "true" is set, otherwise \b "false".
          * \note
          *  Other, depending on the variable semantics, more user friendly values may be set using
-         *  the string interface #AddString.
+         *  the string interface #Add.
          *  String values recognized for boolean variables are defined in
          * \ref cs::aworx::lib::config::Configuration::TrueValues   "Configuration.TrueValues".
          *
          * @param  value  The value to set.
          * @return A reference to the string representing the boolean value.
          ******************************************************************************************/
-        public AString    AddBoolean( bool value )
+        public AString    Add( bool value )
         {
-            return AddString()._( value ? "true" : "false" );
+            return Add()._( value ? "true" : "false" );
         }
-
 
         /** ****************************************************************************************
          * Replaces the value at \p idx with the values of the given other variable.
@@ -557,7 +528,7 @@ public class Variable
         {
             if( idx < 0 || idx >= qtyValues )
             {
-                ALIB.WARNING( "Index out of range: " + idx + " ( 0 - " + qtyValues + " allowed)." );
+                ALIB_DBG.WARNING( "Index out of range: " + idx + " ( 0 - " + qtyValues + " allowed)." );
                 return;
             }
 
@@ -603,7 +574,7 @@ public class Variable
          ******************************************************************************************/
         public long             GetInteger(int idx= 0)
         {
-            return idx < qtyValues  ? GetString( idx ).ToLong()
+            return idx < qtyValues  ? GetString( idx ).ParseInt()
                                     : 0;
         }
 
@@ -612,7 +583,7 @@ public class Variable
          * If the index is invalid, \c 0.0 is returned.
          * Parsing is done using field \c NumberFormat of field #Config, respectively, if this is
          * not set, the static singleton
-         * \ref cs::aworx::lib::ALIB::Config "ALIB.Config" is used.
+         * \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default" is used.
          *
          * @param  idx  The index of the value to be retrieved.  Defaults to \c 0.
          * @return The value at \p idx interpreted as a double value.
@@ -620,7 +591,7 @@ public class Variable
         public double           GetFloat(int idx= 0)
         {
             int newIdxdummy;
-            return idx < qtyValues  ?   GetString( idx ).ToFloat( 0, out newIdxdummy, Config.NumberFormat )
+            return idx < qtyValues  ?   GetString( idx ).ParseFloat( Config.NumberFormat, out newIdxdummy )
                                     :   0.0;
         }
 
@@ -628,7 +599,7 @@ public class Variable
          * Returns \c true if the first value represents a boolean 'true'.
          * Evaluation is done using field #Config, respectively if this is not set, the static
          * singleton
-         * \ref cs::aworx::lib::ALIB::Config "ALIB.Config".
+         * \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default".
          *
          * @param  idx  The index of the value to be retrieved.  Defaults to \c 0.
          * @return The value at \p idx interpreted as a boolean value.
@@ -641,18 +612,18 @@ public class Variable
 
         /** ****************************************************************************************
          * Convenience method that loads the values of a variable from the static singleton
-         * \ref cs::aworx::lib::ALIB::Config                "ALIB.Config", using method
-         * \ref cs::aworx::lib::config::Configuration::Load "Configuration.Load".
+         * \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default", using method
+         * \ref cs::aworx::lib::config::Configuration::Load    "Configuration.Load".
          *
          * @returns The priority of the configuration plug-in that provided the result.
          *          \c 0 if not found,
          *          \ref cs::aworx::lib::config::Configuration::PrioDefault   "Configuration.PrioDefault"
          *          if either found or created in
-         *          \ref cs::aworx::lib::config::Configuration::DefaultValues "ALIB.Config.DefaultValues"
+         *          \ref cs::aworx::lib::config::Configuration::DefaultValues "Configuration.Default.DefaultValues"
          ******************************************************************************************/
         public int     Load()
         {
-            return ALIB.Config.Load( this );
+            return Configuration.Default.Load( this );
         }
 
         /** ****************************************************************************************
@@ -670,8 +641,8 @@ public class Variable
             for ( int i= 0; i< Size(); i++ )
             {
                 result.Set( GetString(i ) );
-                if (    result.Consume( attrName,  Case.Ignore, Whitespaces.Trim )
-                     && result.Consume( attrDelim, Case.Ignore, Whitespaces.Trim ) )
+                if (    result.ConsumeString( attrName,  Case.Ignore, Whitespaces.Trim )
+                     && result.ConsumeChar  ( attrDelim, Case.Ignore, Whitespaces.Trim ) )
                 {
                     result.Trim();
                     return true;
@@ -682,8 +653,8 @@ public class Variable
 
         /** ****************************************************************************************
          * Convenience method that stores the values of a variable using the static singleton
-         * \ref cs::aworx::lib::ALIB::Config "ALIB.Config", and method
-         * \ref cs::aworx::lib::config::Configuration::Store "Configuration.Store".
+         * \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default", and method
+         * \ref cs::aworx::lib::config::Configuration::Store   "Configuration.Store".
          *
          * Optional parameter \p externalizedValue allows to provide a string that is parsed
          * by the storing plug-in to reset the variables' values prior to writing.
@@ -691,18 +662,18 @@ public class Variable
          * @param externalizedValue     Optional externalized value string. If given, the variable
          *
          * @returns The result of
-         *          \ref cs::aworx::lib::config::Configuration::Store "ALIB.Config.Store(this)".
+         *          \ref cs::aworx::lib::config::Configuration::Store "Configuration.Default.Store(this)".
          ******************************************************************************************/
         public int     Store( Object externalizedValue= null )
         {
-            return ALIB.Config.Store( this, externalizedValue );
+            return Configuration.Default.Store( this, externalizedValue );
         }
 
         /** ****************************************************************************************
          * Convenience method that stores the variable with priority
          * \ref cs::aworx::lib::config::Configuration::PrioDefault "Configuration.PrioDefault"
-         * using the static singleton \b %Configuration object found in
-         * \ref cs::aworx::lib::ALIB::Config "ALIB.Config".
+         * using the static singleton
+         * \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default".
          *
          * The variable value is determined as follows:
          * - If optional parameter \p externalizedValue is provided and not \e nulled, the values
@@ -717,26 +688,26 @@ public class Variable
          * @param externalizedValue     Optional externalized value string. If given, the variable
          *                              is set prior to writing.
          * @returns The result of
-         *          \ref cs::aworx::lib::config::Configuration::Store "ALIB.Config.Store(this)".
+         *          \ref cs::aworx::lib::config::Configuration::Store "Configuration.Default.Store(this)".
          ******************************************************************************************/
         public int     StoreDefault( Object externalizedValue= null )
         {
             if(     externalizedValue != null
                 && ( !(externalizedValue is AString) || ((AString) externalizedValue).IsNotNull() ) )
-                ALIB.Config.DefaultValues.StringConverter.LoadFromString( this, externalizedValue );
+                Configuration.Default.DefaultValues.StringConverter.LoadFromString( this, externalizedValue );
 
             if ( Size() == 0 && DefaultValue.IsNotNull() )
-                ALIB.Config.DefaultValues.StringConverter.LoadFromString( this, DefaultValue );
+                Configuration.Default.DefaultValues.StringConverter.LoadFromString( this, DefaultValue );
 
             Priority= Configuration.PrioDefault;
-            return ALIB.Config.Store( this, null );
+            return Configuration.Default.Store( this, null );
         }
 
         /** ****************************************************************************************
          * Convenience method that stores the variable with priority
          * \ref cs::aworx::lib::config::Configuration::PrioProtected "Configuration.PrioProtected"
-         * using the static singleton \b %Configuration object found in
-         * \ref cs::aworx::lib::ALIB::Config "ALIB.Config".
+         * using the static singleton
+         * \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default".
          *
          * The variable value is determined as follows:
          * - If optional parameter \p externalizedValue is provided and not \e nulled, the values
@@ -750,19 +721,19 @@ public class Variable
          * @param externalizedValue     Optional externalized value string. If given, the variable
          *                              is set prior to writing.
          * @returns The result of
-         *          \ref cs::aworx::lib::config::Configuration::Store "ALIB.Config.Store(this)".
+         *          \ref cs::aworx::lib::config::Configuration::Store "Configuration.Default.Store(this)".
          ******************************************************************************************/
         public int     Protect( Object externalizedValue= null )
         {
             if(     externalizedValue != null
                 && ( !(externalizedValue is AString) || ((AString) externalizedValue).IsNotNull() ) )
-                ALIB.Config.DefaultValues.StringConverter.LoadFromString( this, externalizedValue );
+                Configuration.Default.DefaultValues.StringConverter.LoadFromString( this, externalizedValue );
 
             if ( Size() == 0 && DefaultValue.IsNotNull() )
-                ALIB.Config.DefaultValues.StringConverter.LoadFromString( this, DefaultValue );
+                Configuration.Default.DefaultValues.StringConverter.LoadFromString( this, DefaultValue );
 
             Priority= Configuration.PrioProtected;
-            return ALIB.Config.Store( this, null );
+            return Configuration.Default.Store( this, null );
         }
 
 
@@ -775,7 +746,7 @@ public class Variable
          * of default plug-in
          * \ref cs::aworx::lib::config::Configuration::DefaultValues "Configuration.DefaultValues"
          * of static singleton
-         * \ref cs::aworx::lib::ALIB::Config "ALIB.Config" is used.
+         * \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default" is used.
          *
          * @param externalizedValue     The new value to write.
          *
@@ -783,7 +754,7 @@ public class Variable
          ******************************************************************************************/
         public int   LoadFromString( Object externalizedValue )
         {
-            ALIB.Config.DefaultValues.StringConverter.LoadFromString( this, externalizedValue );
+            Configuration.Default.DefaultValues.StringConverter.LoadFromString( this, externalizedValue );
             return Size();
         }
 

@@ -1,23 +1,23 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox.unittests - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
 using System.Threading;
 using System.Xml.Linq;
 using ut_cs_aworx;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 using cs.aworx.lib.strings;
 using cs.aworx.lox.core.textlogger;
 using System.IO;
 using cs.aworx.lib.config;
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     using NUnit.Framework;
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 #endif
 
@@ -33,10 +33,10 @@ using System.Collections.Generic;
 
 namespace ut_cs_aworx_lox
 {
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [TestFixture ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestClass]
     #endif
     public class CS_ALox_Lox   : AWorxUnitTesting
@@ -48,10 +48,10 @@ namespace ut_cs_aworx_lox
      * Lox_AddLogger.
      **********************************************************************************************/
     #if ALOX_DBG_LOG
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -72,17 +72,22 @@ namespace ut_cs_aworx_lox
             MemoryLogger mem1= new MemoryLogger( "MEM" );
             MemoryLogger mem2= new MemoryLogger( "MEM" );
 
-            Log.SetVerbosity( mem1,     Verbosity.Info ); UT_EQ( 0, checkCnt.CntLogs );
-            Log.SetVerbosity( mem2,     Verbosity.Info ); UT_EQ( 1, checkCnt.CntLogs );
-            Log.SetVerbosity( "XYZ",    Verbosity.Info ); UT_EQ( 2, checkCnt.CntLogs );
+            int checkVal= 0;
+            Log.SetVerbosity( mem1,     Verbosity.Info ); UT_EQ( checkVal+= 0, checkCnt.CntLogs );
+            Log.SetVerbosity( mem2,     Verbosity.Info ); UT_EQ( checkVal+= 1, checkCnt.CntLogs );
+            Log.SetVerbosity( "XYZ",    Verbosity.Info ); UT_EQ( checkVal+= 1, checkCnt.CntLogs );
 
-            Log.RemoveLogger( mem2     );                 UT_EQ( 3, checkCnt.CntLogs );
-            Log.RemoveLogger( mem1     );                 UT_EQ( 3, checkCnt.CntLogs );
-            Log.RemoveLogger( mem1     );                 UT_EQ( 4, checkCnt.CntLogs );
-            Log.RemoveLogger( "XYZ"    );                 UT_EQ( 5, checkCnt.CntLogs );
-            Log.RemoveLogger( con      );                 UT_EQ( 5, checkCnt.CntLogs );
-            Log.RemoveLogger( con      );                 UT_EQ( 6, checkCnt.CntLogs );
-            Log.RemoveLogger( checkCnt );                 UT_EQ( 6, checkCnt.CntLogs );
+            // get unknown
+            Log.GetLogger( "XYZ" );                       UT_EQ( checkVal+= 1, checkCnt.CntLogs );
+
+
+            Log.RemoveLogger( mem2     );                 UT_EQ( checkVal+= 1, checkCnt.CntLogs );
+            Log.RemoveLogger( mem1     );                 UT_EQ( checkVal+= 0, checkCnt.CntLogs );
+            Log.RemoveLogger( mem1     );                 UT_EQ( checkVal+= 1, checkCnt.CntLogs );
+            Log.RemoveLogger( "XYZ"    );                 UT_EQ( checkVal+= 1, checkCnt.CntLogs );
+            Log.RemoveLogger( con      );                 UT_EQ( checkVal+= 0, checkCnt.CntLogs );
+            Log.RemoveLogger( con      );                 UT_EQ( checkVal+= 1, checkCnt.CntLogs );
+            Log.RemoveLogger( checkCnt );                 UT_EQ( checkVal+= 0, checkCnt.CntLogs );
         }
 
         // one logger in two loxes
@@ -123,10 +128,10 @@ namespace ut_cs_aworx_lox
     }
 
     #if ALOX_DBG_LOG
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -206,10 +211,10 @@ namespace ut_cs_aworx_lox
      * Log_SetSourcePathTrimRuleExternal
      **********************************************************************************************/
     #if ALOX_DBG_LOG
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -251,7 +256,7 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
             iniFile.ReadFile();
             //iniFile.WriteFile(); // temporarily enable to see what we have written above
 
-            ALIB.Config.InsertPlugin( iniFile, Configuration.PrioIniFile );
+            Configuration.Default.InsertPlugin( iniFile, Configuration.PrioIniFile );
 
             // test
             Lox lox= new Lox("T_LOX", false );
@@ -265,14 +270,14 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
 
             lox.Info( "" );  UT_EQ("alox.unittests", ml.MemoryLog ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
-            ALIB.Config.RemovePlugin( iniFile );
+            Configuration.Default.RemovePlugin( iniFile );
             lox.RemoveLogger( ml );
             lox.RemoveLogger( "CONSOLE" );
         }
 
         // local rule
         clearLox.ClearSourcePathTrimRules( Reach.Global, false);
-        ALIB.Config.DefaultValues.Reset();
+        Configuration.Default.DefaultValues.Reset();
         {
             // store default values
             Variable var= new Variable();
@@ -300,7 +305,7 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
         }
 
         clearLox.ClearSourcePathTrimRules( Reach.Global, false);
-        ALIB.Config.DefaultValues.Reset();
+        Configuration.Default.DefaultValues.Reset();
         {
             // create iniFile
             IniFile iniFile= new IniFile("*"); // don't read
@@ -309,7 +314,7 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
             iniFile.Store( var.Define( ALox.ConfigCategoryName, "T_LOX_SOURCE_PATH_TRIM_RULES",';'),
                            "*alox.u, excl, 2, sens" );
 
-            ALIB.Config.InsertPlugin( iniFile, Configuration.PrioIniFile );
+            Configuration.Default.InsertPlugin( iniFile, Configuration.PrioIniFile );
 
 
             // test
@@ -330,14 +335,14 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
             lox.SetSourcePathTrimRule( "*alox.u", Inclusion.Exclude, 0, Case.Ignore, "REPLACE_2/", Reach.Local, Configuration.PrioProtected );
             lox.Info( "" ); UT_TRUE( ml.MemoryLog.StartsWith( "REPLACE_2/" ) ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
-            ALIB.Config.RemovePlugin( iniFile );
+            Configuration.Default.RemovePlugin( iniFile );
             lox.RemoveLogger( ml );
             lox.RemoveLogger( "CONSOLE" );
         }
 
         // ignore case
         clearLox.ClearSourcePathTrimRules( Reach.Global, false);
-        ALIB.Config.DefaultValues.Reset();
+        Configuration.Default.DefaultValues.Reset();
         {
             // store default values
             Variable var= new Variable();
@@ -363,7 +368,7 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
         }
 
         clearLox.ClearSourcePathTrimRules( Reach.Global, false);
-        ALIB.Config.DefaultValues.Reset();
+        Configuration.Default.DefaultValues.Reset();
         {
             // store default values
             Variable var= new Variable();
@@ -400,10 +405,10 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
      * Log_ScopeInfoCacheTest
      **********************************************************************************************/
     #if ALOX_DBG_LOG
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -456,10 +461,10 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
      * Log_SimpleScopeDomain
      **********************************************************************************************/
     #if ALOX_DBG_LOG
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -531,7 +536,7 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
         cntLL= ml.CntLogs;    Log.Error  ( "/DFLT/WARN",   testOK  );    UT_EQ ( oneLine,  ml.CntLogs - cntLL );
         cntLL= ml.CntLogs;    Log.Error  ( "/DFLT/ERR",    testOK  );    UT_EQ ( oneLine,  ml.CntLogs - cntLL );
 
-        // log without leading "/" on domain (of course, this is quite an error of using ALox)
+        // log without leading "/" on domain (of-course, this is quite an error of using ALox)
         cntLL= ml.CntLogs;    Log.Verbose( "DFLT",         testERR );    UT_EQ ( (uint) 0, ml.CntLogs - cntLL );
         cntLL= ml.CntLogs;    Log.Verbose( "DFLT/ERR",     testERR );    UT_EQ ( (uint) 0, ml.CntLogs - cntLL );
         cntLL= ml.CntLogs;    Log.Verbose( "DFLT/WARN",    testERR );    UT_EQ ( (uint) 0, ml.CntLogs - cntLL );
@@ -576,10 +581,10 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
     /** ********************************************************************************************
      * Log_AssertAndIf
      **********************************************************************************************/
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -616,10 +621,10 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
     /** ********************************************************************************************
      * Log.Threads
      **********************************************************************************************/
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -660,14 +665,66 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
         }
     }
 
+
+    /** ********************************************************************************************
+     * Log_MultipleLogables
+     **********************************************************************************************/
+    #if ALOX_DBG_LOG
+    #if ALIB_NUNIT
+        [Test ()]
+    #endif
+    #if ALIB_IDE_VSTUDIO
+        [TestMethod]
+        #if !WINDOWS_PHONE
+            [TestCategory("CS_ALox")]
+        #endif
+    #endif
+    public void Log_MultipleLogables()
+    {
+        UT_INIT();
+
+        Log.AddDebugLogger();
+        MemoryLogger memLogger= new MemoryLogger();
+        Log.SetVerbosity( memLogger, Verbosity.Verbose );
+
+        Object[] logables= { "First, ", "second, ", 3 };
+
+        //---- Log.Info -----
+        memLogger.MemoryLog.Clear();
+        Log.Info( logables );
+        UT_TRUE( memLogger.MemoryLog.IndexOf( "First, second, 3" ) > 0 );
+
+        memLogger.MemoryLog.Clear();
+//! [DOX_ALOX_LOX_MULTIPLE_PARAMS]
+Log.Info( "MYDOM", new Object[] {"The result of {} + {} is ", 10, 5,  10 + 5 } );
+//! [DOX_ALOX_LOX_MULTIPLE_PARAMS]
+
+        UT_TRUE( memLogger.MemoryLog.IndexOf( "The result of 10 + 5 is 15" ) > 0 );
+
+
+
+        //---- Log.Once -----
+        memLogger.MemoryLog.Clear();
+        Log.Once( logables );
+        UT_TRUE( memLogger.MemoryLog.IndexOf( "First, second, 3" ) > 0 );
+
+        memLogger.MemoryLog.Clear();
+//! [DOX_ALOX_LOX_ONCE]
+Log.Once( new Object[] {"One - {} - {}!", "two", 3}  );
+//! [DOX_ALOX_LOX_ONCE]
+        UT_TRUE( memLogger.MemoryLog.IndexOf( "One - two - 3" ) > 0 );
+
+    }
+    #endif
+
     /** ********************************************************************************************
      * Log.Threads
      **********************************************************************************************/
     #if ALOX_DBG_LOG
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -705,10 +762,10 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
         Log.Once( "Will we see this in the config?" );
         Log.Once( "Will we see this in the config?", "ONCEKEY", Scope.Filename );
 
-        Log.Store( new LogData( "MyData 1" ), Scope.Method );
-        Log.Store( new LogData( "MyData 2" ), "DataKey", Scope.Method );
-        Log.Store( new LogData( 3          ), "DataKey", Scope.Filename );
-        Log.Store( new LogData( 4, this    ), "DataKey", Scope.ThreadOuter );
+        Log.Store( "MyData 1" , Scope.Method );
+        Log.Store( "MyData 2" , "DataKey", Scope.Method );
+        Log.Store( 3          , "DataKey", Scope.Filename );
+        Log.Store( 4          , "DataKey", Scope.ThreadOuter );
 
         Log.SetPrefix( "TPre: "  , Scope.ThreadOuter );
         Log.SetPrefix( "MPre: "  , Scope.Method );
@@ -735,10 +792,10 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
      * Log_DumpStateOnExit
      **********************************************************************************************/
     #if ALOX_DBG_LOG
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -789,15 +846,15 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
         Log.RemoveDebugLogger();
     }
     #endif
-                                                     
+
     /** ********************************************************************************************
      * Log_WriteVerbosities
      **********************************************************************************************/
     #if ALOX_DBG_LOG
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [Test ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestMethod]
         #if !WINDOWS_PHONE
             [TestCategory("CS_ALox")]
@@ -825,7 +882,7 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
         Log.SetVerbosity( memLogger, Verbosity.Verbose );
         Log.RemoveLogger( memLogger );
         varBack.Define( "MY",  "VAR" ).Load();
-        UT_PRINT(  "Variable written: " + varBack.GetString().ToString() );
+        UT_PRINT(  "Variable written: ", varBack.GetString() );
         UT_TRUE( varBack.GetString().Length() > 0 );
 
         // test writing into other variable without cat
@@ -833,7 +890,7 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
         Log.SetVerbosity( memLogger, Verbosity.Verbose );
         Log.RemoveLogger( memLogger );
         varBack.Define( "",  "ANON" ).Load();
-        UT_PRINT(  "Variable written: " + varBack.GetString().ToString() );
+        UT_PRINT(  "Variable written: ", varBack.GetString() );
         UT_TRUE( varBack.GetString().Length() > 0 );
 
         // test writing into other variable without cat and with underscores in name
@@ -841,7 +898,7 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
         Log.SetVerbosity( memLogger, Verbosity.Verbose );
         Log.RemoveLogger( memLogger );
         varBack.Define( "",  "2ND_ANON" ).Load();
-        UT_PRINT(  "Variable written: " + varBack.GetString().ToString() );
+        UT_PRINT(  "Variable written: ", varBack.GetString() );
         UT_TRUE( varBack.GetString().Length() > 0 );
 
         // test writing into other the variable itself
@@ -849,8 +906,8 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
         Log.SetVerbosity( memLogger, Verbosity.Verbose );
         Log.RemoveLogger( memLogger );
 
-        ALIB.Config.Load( var);
-        UT_PRINT( "Variable written: " + var.GetString().ToString() );
+        Configuration.Default.Load( var);
+        UT_PRINT( "Variable written: ", var.GetString() );
         UT_TRUE( var.GetString().Length() > 0 );
 
        Log.RemoveDebugLogger();

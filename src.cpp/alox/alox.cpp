@@ -1,10 +1,10 @@
 ﻿// #################################################################################################
 //  aworx::lox::core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alib/alib.hpp"
 
 #if !defined (HPP_ALOX)
     #include "alox/alox.hpp"
@@ -26,9 +26,9 @@ namespace aworx { namespace lox {
 // #################################################################################################
 const int            ALox::Version=                                           ALIB_VERSION_VERYFIER;
 const int            ALox::Revision=                                                              0;
-const uint32_t       ALox::CompilationFlags=                            ALOX_COMPATIBILITY_VERYFIER;
-const uint32_t       ALox::ALibCompilationFlags=                        ALIB_COMPATIBILITY_VERYFIER;
-std::pair <const char*, uint32_t> ALox::CompilationFlagMeanings[]=
+const uint64_t       ALox::CompilationFlags=                            ALOX_COMPATIBILITY_VERYFIER;
+const uint64_t       ALox::ALibCompilationFlags=                        ALIB_COMPATIBILITY_VERIFYER;
+std::pair <const char*, uint64_t> ALox::CompilationFlagMeanings[]=
 {
     { "ALOX_DBG_LOG"            , ALOX_DBG_LOG_VFYBIT         },
     { "ALOX_DBG_LOG_CI"         , ALOX_DBG_LOG_CI_VFYBIT      },
@@ -55,7 +55,7 @@ lib::config::VariableDefinition ALox::NO_IDE_LOGGER =
     "false",
     '\0', nullptr, Variable::FormatHint_None,
     "If true, the creation of an additional, ide-specific debug logger is suppressed." "\n"
-    "(In particular suppresses VebugLogger (C#) and VStudioLogger (C++))"
+    "(In particular suppresses DebugLogger (C#) and VStudioLogger (C++))"
 };
 
 lib::config::VariableDefinition ALox::AUTO_SIZES =
@@ -145,23 +145,23 @@ lib::config::VariableDefinition ALox::CODEPAGE =
 };
 #endif
 
-lib::config::VariableDefinition ALox::CONSOLE_HAS_LIGHT_BACKGROUND =
+lib::config::VariableDefinition ALox::CONSOLE_LIGHT_COLORS =
 {
-    &ALox::ConfigCategoryName,   nullptr,     "CONSOLE_HAS_LIGHT_BACKGROUND",
+    &ALox::ConfigCategoryName,   nullptr,     "CONSOLE_LIGHT_COLORS",
     "",
     '\0', nullptr, Variable::FormatHint_None,
-     "Evaluated by colorful loggers that dispose about light and dark colors. Those"        "\n"
-     "adjust their foreground color accordingly. If not given, under Windows OS the right"  "\n"
-     "value is detected. Otherwise the value defaults to false. In some occasions, the"     "\n"
-     "(detected or set) runtime environment might also indicate a default value."
+     "Evaluated by colorful loggers that dispose about light and dark colors. Those may"        "\n"
+     "adjust their foreground and background color accordingly. If not given, under Windows OS" "\n"
+     "the right value is detected. Otherwise the value defaults to \"foreground\". In some"     "\n"
+     "occasions, the (detected or set) runtime environment might also indicate a different"     "\n"
+     "default value.  Possible values are 'foreground', 'background' and 'never'."
 };
 
 
 lib::config::VariableDefinition ALox::FORMAT =
 {
     &ALox::ConfigCategoryName,   nullptr,     "%1_FORMAT",
-    nullptr, // default value must stay nullptr, because 2 variables are requested. If was given here,
-             // the second is never tried!
+    nullptr,
     ',', nullptr, Variable::FormatHint_MultLine,
      "Meta info format of text logger \"%1\", including signatures for verbosity strings."       "\n"
      "   Format: format [, Error [, Warning [, Info [, Verbose ]]]]"
@@ -171,8 +171,7 @@ lib::config::VariableDefinition ALox::FORMAT =
 lib::config::VariableDefinition ALox::FORMAT_DATE_TIME =
 {
     &ALox::ConfigCategoryName,   nullptr,     "%1_FORMAT_DATE_TIME",
-    nullptr, // default value must stay nullptr, because 2 variables are requested. If was given here,
-             // the second is never tried!
+    nullptr,
     ',', nullptr, Variable::FormatHint_None,
      "Meta info date and time format of text logger \"%1\"."       "\n"
      "   Format: DateFormat [, TimeOfDayFormat [, TimeElapsedDays ]]]"
@@ -182,8 +181,7 @@ lib::config::VariableDefinition ALox::FORMAT_TIME_DIFF =
 {
     &ALox::ConfigCategoryName,   nullptr,     "%1_FORMAT_TIME_DIFF",
 
-    nullptr, // default value must stay nullptr, because 2 variables are requested. If was given here,
-             // the second is never tried!
+    nullptr,
 
     ',', nullptr, Variable::FormatHint_None,
      "Meta info time difference entities of text logger \"%1\"."       "\n"
@@ -195,8 +193,7 @@ lib::config::VariableDefinition ALox::FORMAT_MULTILINE=
 {
     &ALox::ConfigCategoryName,   nullptr,     "%1_FORMAT_MULTILINE",
 
-    nullptr, // default value must stay nullptr, because 2 variables are requested. If was given here,
-             // the second is never tried!
+    nullptr,
 
     ',', nullptr, Variable::FormatHint_None,
      "Multi-line format of text logger \"%1\"."       "\n"
@@ -204,21 +201,33 @@ lib::config::VariableDefinition ALox::FORMAT_MULTILINE=
      "           [, MultiLineDelimiter [, MultiLineDelimiterRepl ]]]]]"
 };
 
+lib::config::VariableDefinition ALox::REPLACEMENTS=
+{
+    &ALox::ConfigCategoryName,   nullptr,     "%1_REPLACEMENTS",
+
+    nullptr,
+
+    ',', nullptr, Variable::FormatHint_None,
+     "Pairs of search and replacement strings for text logger \"%1\"."       "\n"
+     "   Format: search, replacement [, search, replacement] [,...]"
+};
+
+
 
 // #################################################################################################
 // Compilation Flags
 // #################################################################################################
 
 // check compiler symbols, give warning once (therefore not in HPP)
-#if !defined( ALOX_DBG_LOG ) && defined( ALOX_DBG_LOG_CI_ON )
-    #warning "ALox compiler symbol mismatch: ALOX_DBG_LOG_CI_ON given while ALOX_DBG_LOG is undefined"
+#if !ALOX_DBG_LOG && defined( ALOX_DBG_LOG_CI_ON )
+    #pragma message ( "Warning: ALox compiler symbol mismatch: ALOX_DBG_LOG_CI_ON given while ALOX_DBG_LOG is undefined" )
 #endif
-#if !defined( ALOX_REL_LOG ) && defined( ALOX_REL_LOG_CI_ON )
-    #warning "ALox compiler symbol mismatch: ALOX_REL_LOG_CI_ON given while ALOX_REL_LOG is undefined"
+#if !ALOX_REL_LOG && defined( ALOX_REL_LOG_CI_ON )
+    #pragma message ( "Warning: ALox compiler symbol mismatch: ALOX_REL_LOG_CI_ON given while ALOX_REL_LOG is undefined" )
 #endif
 
 
-bool ALox::VerifyCompilationFlags( uint32_t flags )
+bool ALox::VerifyCompilationFlags( uint64_t flags )
 {
     if ( flags == ALox::CompilationFlags )
         return true;
@@ -235,7 +244,7 @@ bool ALox::VerifyCompilationFlags( uint32_t flags )
     return false;
 }
 
-void ALox::checkLibraryVersions( int alibVersion, int aloxVersion, uint32_t flagsALib,  uint32_t flagsALox )
+void ALox::checkLibraryVersions( int alibVersion, int aloxVersion, uint64_t flagsALib,  uint64_t flagsALox )
 {
     if (ALIB::Version != alibVersion )
     {
@@ -255,7 +264,7 @@ void ALox::checkLibraryVersions( int alibVersion, int aloxVersion, uint32_t flag
         exit(-1);
     }
 
-    // verify ALib agains ALox
+    // verify ALib against ALox
     if (!ALIB::VerifyCompilationFlags( ALox::ALibCompilationFlags ) )
     {
         cout << "!!! Error in ALib library compilation: linked library of ALib has different compilation symbols set." << endl;
@@ -280,12 +289,19 @@ void ALox::checkLibraryVersions( int alibVersion, int aloxVersion, uint32_t flag
 // #################################################################################################
 // ALox library initialization
 // #################################################################################################
-bool            ALox::isInitialized                                                      =false;
-String          ALox::ConfigCategoryName                                                 ="ALOX";
+ThreadLockNR    ALox::lock;
+bool            ALox::isInitialized                                                         = false;
+String          ALox::ConfigCategoryName                                                   = "ALOX";
+
+void  ALox::initImpl()
+{
+    aworx::lib::boxing::DefineInterface<aworx::lox::core::Logger*, false, aworx::lib::strings::boxing::IApply_TApplicable<aworx::lox::core::Logger*>>();
+    isInitialized= true;
+}
 
 void ALox::TerminationCleanUp()
 {
-    #if defined(ALOX_DBG_LOG)
+    #if ALOX_DBG_LOG
         if ( Log::DebugLogger  != nullptr )
             Log_RemoveDebugLogger();
     #endif
@@ -298,7 +314,7 @@ void ALox::TerminationCleanUp()
 // #################################################################################################
 
 // The lox singletons for debug and release logging
-#if defined(ALOX_DBG_LOG)
+#if ALOX_DBG_LOG
     Lox* ALox::theLog=    nullptr;
 
     Lox*     ALox::Log()
@@ -312,9 +328,9 @@ void ALox::TerminationCleanUp()
 
 std::vector<Lox*> ALox::loxes;
 
-Lox*     ALox::Get( const TString& name, Create create )
+Lox*     ALox::Get( const String& name, Create create )
 {
-    OWN(ALIB::Lock)
+    OWN(lock)
 
     // search
     for( auto it : loxes )
@@ -336,7 +352,7 @@ Lox*     ALox::Get( const TString& name, Create create )
 
 void     ALox::Register( Lox* lox, ContainerOp operation )
 {
-    OWN(ALIB::Lock)
+    OWN(lock)
 
     // check
     if ( lox == nullptr )
@@ -354,8 +370,8 @@ void     ALox::Register( Lox* lox, ContainerOp operation )
                 loxes.erase( search );
                 return;
             }
-        ALIB_WARNING_S512(   "A lox named \"" << (lox != nullptr ? lox->GetName() : "<null>")
-                          << "\" could not be found for removal." );
+        ALIB_WARNING( "A lox named {!Q} could not be found for removal.", (lox != nullptr ? lox->GetName() : "<null>") )
+
     }
 
     // insert
@@ -364,8 +380,8 @@ void     ALox::Register( Lox* lox, ContainerOp operation )
         for( auto it : loxes )
             if( it->GetName().Equals( lox->GetName() ) )
             {
-                ALIB_ERROR_S512(    "A lox named \"" << lox->GetName()
-                                 << "\" was already registered. Registration ignored" );
+                ALIB_ERROR( "A lox named {!Q} was already registered. Registration ignored.",
+                            lox->GetName() );
                 return;
             }
         loxes.emplace_back( lox );
@@ -376,7 +392,7 @@ void        ALox::Reset()
 {
     Lox("trimruleresetlox", false).Reset(); // this clears the global source path trim rules
 
-    #if defined(ALOX_DBG_LOG)
+    #if ALOX_DBG_LOG
         if (Log::DebugLogger != nullptr )
             Log_RemoveDebugLogger();
 
@@ -393,24 +409,26 @@ void        ALox::Reset()
 // #################################################################################################
 // ALoxReportWriter
 // #################################################################################################
-ALoxReportWriter::ALoxReportWriter ( Lox* lox )
+ALoxReportWriter::ALoxReportWriter ( Lox* pLox )
 {
-    this->lox= lox;
+    this->lox= pLox;
 
-    #if defined( ALIB_DEBUG )
-        lox->Acquire( ALIB_DBG_SRC_INFO_PARAMS );
+    #if ALIB_DEBUG
+        pLox->Acquire( ALIB_SRC_INFO_PARAMS );
 
-            lox->Verbose( ALoxReportWriter::LogDomain(), "ALoxReportWriter set" );
+            Boxes& logables= pLox->GetLogableContainer();
+            logables.Add( "ALoxReportWriter set" );
+            pLox->Entry( ALoxReportWriter::LogDomain(), Verbosity::Verbose, logables );
 
-        lox->Release ();
+        pLox->Release ();
     #else
 
     #endif
 }
 
-void ALoxReportWriter::Report( const lib::Report::Message& report )
+void ALoxReportWriter::Report( const lib::lang::Report::Message& report )
 {
-    #if defined( ALIB_DEBUG )
+    #if ALIB_DEBUG
         lox->Acquire( report.File, report.Line, report.Func );
 
             lox->Entry( ALoxReportWriter::LogDomain(),
@@ -418,7 +436,7 @@ void ALoxReportWriter::Report( const lib::Report::Message& report )
                         report.Type == 1 ? Verbosity::Warning :
                         report.Type == 2 ? Verbosity::Info    :
                                            Verbosity::Verbose,
-                        &report.Contents, 0 );
+                        report );
 
         lox->Release ();
     #else
@@ -426,14 +444,7 @@ void ALoxReportWriter::Report( const lib::Report::Message& report )
     #endif
 }
 
-#if defined(_MSC_VER)
-    #pragma warning( push )
-    #pragma warning( disable : 4592 )
-#endif
 String16 ALoxReportWriter::reportDomain;
-#if defined(_MSC_VER)
-    #pragma warning( pop )
-#endif
 
 String& ALoxReportWriter::LogDomain()
 {

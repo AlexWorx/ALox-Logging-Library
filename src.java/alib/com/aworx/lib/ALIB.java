@@ -1,53 +1,51 @@
-﻿// #################################################################################################
+// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 
 
 /**
- *  \namespace com.aworx
- *  This is the outer Java package for all classes published by A-Worx GmbH, Germany. As far as we
- *  have planned today, there is nothing inside this namespace but other namespaces.<p>
- *  \note While the Java language strongly proposes to use the complete 'reverse domain' name
- *  and therefore Java code published by A-Worx GmbH resides in namespace <em>com.aworx</em>,
- *  for C++ we decided to omit the <em>com</em> and for C# we replaced the prefix *com*
- *  with *cs*.<br>
- *  This is for having classes with the same names existing in C++, C# and Java not collide
- *  within the Doxygen documentation system.
+ * \namespace com.aworx
+ * This is the outer Java package for all classes published by A-Worx GmbH, Germany. As far as we
+ * have planned today, there is nothing inside this namespace but other namespaces.<p>
+ * \note
+ *   While the Java language strongly proposes to use the complete 'reverse domain' name
+ *   and therefore Java code published by A-Worx GmbH resides in namespace <em>com.aworx</em>,
+ *   for C++ we decided to omit the <em>com</em> and for C# we replaced the prefix *com*
+ *   with *cs*.<br>
+ *   This is for having classes with the same names existing in C++, C# and Java not collide
+ *   within the [Doxygen](http://www.stack.nl/~dimitri/doxygen) documentation system.
  */
 
 
 
 /**
- *  This is the Java package for core utility classes developed by A-Worx GmbH, Germany,
- *  published under the <em>MIT License</em>.
+ * This is the Java package for core utility classes developed by A-Worx GmbH, Germany,
+ * published under <em>Boost Software License</em>.
  *
- *  The set of classes and things found within this namespace and its descendants is referred
- *  to as <em>AWorx Utility Classes</em>, <em>AWorx Library</em> or just <em>A-Worx</em>.
+ * The set of classes and things found within this namespace and its descendants is referred
+ * to as <em>AWorx Utility Classes</em>, <em>AWorx Library</em> or just <em>A-Worx</em>.
  *
- *  Besides Java, this library is available in C# and C++, with language specific differences.
- *  The design goals of the three are:
- *  - Be small, efficient and easy to understand
- *  - Keep C++, C# and Java versions similar and mimic functionality of core classes of all
- *    three languages whenever this is appropriate.
- *  - Do not reinvent the world: There are more comprehensive 'low level' libraries out
- *    there! However, for some reason, we have right to exist.
+ * Besides Java, this library is available in C# and C++, with language specific differences.
+ * The design goals of the three are:
+ * - Be small, efficient and easy to understand
+ * - Keep C++, C# and Java versions similar and mimic functionality of core classes of all
+ *   three languages whenever this is appropriate.
  */
 package com.aworx.lib;
 
 import com.aworx.lib.config.Configuration;
-import com.aworx.lib.enums.Case;
-import com.aworx.lib.enums.Inclusion;
-import com.aworx.lib.enums.LockMode;
+import com.aworx.lib.lang.Case;
+import com.aworx.lib.lang.Inclusion;
+import com.aworx.lib.lang.Report;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.CString;
 import com.aworx.lib.strings.NumberFormat;
 import com.aworx.lib.strings.Substring;
 import com.aworx.lib.threads.SmartLock;
-import com.aworx.lib.threads.ThreadLock;
 import com.aworx.lib.time.Ticks;
 
 /** ************************************************************************************************
@@ -57,8 +55,6 @@ import com.aworx.lib.time.Ticks;
  * - Collecting information on the executed process and its environment.
  * - Initialization of several ALib components with methods #init and #terminationCleanUp.
  * - Thread sleep methods
- * - 'Pruneable' debug shortcuts to to methods of class
- *   \ref com::aworx::lib::Report "Report".
  **************************************************************************************************/
 public final class ALIB
 {
@@ -71,7 +67,7 @@ public final class ALIB
          * Besides this version number, field #revision indicates if this is a revised version
          * of a former release.
          */
-        public static final int         version                                               =1607;
+        public static final int         version                                               =1702;
 
         /**
          * The revision number of this release. Each ALib #version is initially released as
@@ -82,19 +78,6 @@ public final class ALIB
 
 
         /**
-         *  This is the configuration singleton for ALib.
-         *  In method #init(), this configuration is optionally filled with the default
-         *  configuration plug-ins
-         *  \ref com::aworx::lib::config::EnvironmentPlugin "EnvironmentPlugin"
-         *  and
-         *  \ref com::aworx::lib::config::CommandLinePlugin "CommandLinePlugin".
-         *  Further, custom plug-ins may be attached.
-         *
-         *  For more information, see namespace \ref com::aworx::lib::config.
-         */
-        public static  Configuration    config                    = new Configuration();
-
-        /**
          * The name of the configuration category of configuration variables used by the AWorx
          * library.<br>
          * Defaults to "ALIB".<br>
@@ -103,14 +86,6 @@ public final class ALIB
          * bootstrap code, before the invocation of #init.
          */
         public  static AString          configCategoryName                  = new AString( "ALIB" );
-
-        /**
-         * This is a general mutex that is used by ALib internally but also may be used from outside
-         * for different purposes. It is non-recursive and supposed to be used seldom and 'shortly',
-         * e.g. for one-time initialization tasks. In case of doubt, a separated, problem-specific
-         * mutex should be created.
-         */
-        public static    ThreadLock     lock                 =new ThreadLock(LockMode.SINGLE_LOCKS);
 
         /**
          * This is a smart mutex that allows to lock an applications' <em>standard output
@@ -182,8 +157,9 @@ public final class ALIB
          *
          * If other, custom configuration data sources should be used already with this method
          * (however, in the current Java implementation, no configuration variables are read),
-         * then such plug-in(s) have to be added to public, static field #config prior to invoking
-         * this method.
+         * then such plug-in(s) have to be added to public, static field
+         * \ref com::aworx::lib::config::Configuration::Default "Configuration.Default" prior to
+         * invoking this method.
          * In other words, currently it is irrelevant whether custom plug-ins are added prior
          * or after invoking this method. But in future versions this may change and in other
          * language versions of ALib, some variables are read. Therefore, it is good practice
@@ -202,9 +178,9 @@ public final class ALIB
 
             // set the system's locale as the default for our static default number format
             NumberFormat.global.setFromLocale();
+            NumberFormat.global.writeGroupChars= true;
 
-
-            config.setCommandLineArgs( args );
+            Configuration.Default.setCommandLineArgs( args );
         }
 
         /** ****************************************************************************************
@@ -213,94 +189,6 @@ public final class ALIB
         public static void     terminationCleanUp()
         {
             /* Got nothing to do in current Java version of ALib */
-        }
-
-    // #############################################################################################
-    // ReportWriter debug interface
-    // #############################################################################################
-
-        /** ****************************************************************************************
-         * Invokes
-         * \ref com::aworx::lib::Report::doReport "Report.doReport".
-         * This method is pruned from release code.
-         *
-         * @param type  The msg type.
-         * @param msg  The msg to be passed to the \ref com::aworx::lib::ReportWriter "ReportWriter".
-         ******************************************************************************************/
-        public static void REPORT( int type, String msg )
-        {
-            Report.getDefault().doReport( type, msg );
-        }
-
-        /** ****************************************************************************************
-         * Invokes
-         * \ref com::aworx::lib::Report::doReport "Report.doReport".
-         * This method is pruned from release code.
-         *
-         *  @param msg  The msg to be passed to the \ref com::aworx::lib::ReportWriter "ReportWriter".
-         ******************************************************************************************/
-        public static void ERROR( String msg )
-        {
-            Report.getDefault().doReport( 0, msg );
-        }
-
-        /** ****************************************************************************************
-         * Invokes
-         * \ref com::aworx::lib::Report::doReport "Report.doReport".
-         * This method is pruned from release code.
-         *
-         *  @param msg  The msg to be passed to the
-         *              \ref com::aworx::lib::ReportWriter "ReportWriter".
-         ******************************************************************************************/
-        public static void WARNING( String msg )
-        {
-            Report.getDefault().doReport( 1, msg );
-        }
-
-        /** ****************************************************************************************
-         * If given condition is false, method
-         * \ref com::aworx::lib::Report::doReport "Report.doReport" gets invoked with the standard message
-         * "Internal Error".
-         * This method is pruned from release code.
-         *
-         * @param cond The condition that has to be met to prevent
-         *             \ref com::aworx::lib::ReportWriter "ReportWriter" call.
-         ******************************************************************************************/
-        public static void ASSERT( boolean cond )
-        {
-            if ( !cond )
-                Report.getDefault().doReport( 0, "Internal Error" );
-        }
-
-
-        /** ****************************************************************************************
-         * If given condition is false, method
-         * \ref com::aworx::lib::Report::doReport "Report.doReport" gets invoked with the given message.
-         * This method is pruned from release code.
-         *
-         * @param cond The condition that has to be met to prevent
-         *             \ref com::aworx::lib::ReportWriter "ReportWriter" call.
-         * @param msg  The msg to be passed to the \ref com::aworx::lib::ReportWriter "ReportWriter".
-         ******************************************************************************************/
-        public static void ASSERT_ERROR( boolean cond, String msg )
-        {
-            if ( !cond )
-                Report.getDefault().doReport( 0, msg );
-        }
-
-        /** ****************************************************************************************
-         * If given condition is false, method
-         * \ref com::aworx::lib::Report::doReport "Report.doReport" gets invoked with the given message.
-         * This method is pruned from release code.
-         *
-         * @param cond The condition that has to be met to prevent
-         *             \ref com::aworx::lib::ReportWriter "ReportWriter" call.
-         * @param msg  The msg to be passed to the \ref com::aworx::lib::ReportWriter "ReportWriter".
-         ******************************************************************************************/
-        public static void ASSERT_WARNING( boolean cond, String msg )
-        {
-            if ( !cond )
-                Report.getDefault().doReport( 1, msg );
         }
 
     // #############################################################################################
@@ -395,7 +283,7 @@ public final class ALIB
 
         /** ****************************************************************************************
          * Interprets given \p src as a boolean value.
-         * \ref com::aworx::lib::enums::Inclusion "enums.Inclusion".
+         * \ref com::aworx::lib::lang::Inclusion "enums.Inclusion".
          * If the case insensitive comparison of the first non-whitespace characters of the string with
          * with values "t", "1", "y", "on", "ok"
          * matches, \c true is returned.
@@ -427,7 +315,7 @@ public final class ALIB
 
         /** ****************************************************************************************
          * Interprets given \p src as a value of enum type
-         * \ref com::aworx::lib::enums::Case "enums.Case".
+         * \ref com::aworx::lib::lang::Case "enums.Case".
          * If the case insensitive comparison of the first non-whitespace characters of the string
          * with values "s", "y", "t", "1"
          * matches, \b %Case.SENSITIVE is returned.
@@ -455,7 +343,7 @@ public final class ALIB
 
         /** ****************************************************************************************
          * Interprets given \p src as a value of enum type
-         * \ref com::aworx::lib::enums::Inclusion "enums.Inclusion".
+         * \ref com::aworx::lib::lang::Inclusion "enums.Inclusion".
          * If the case insensitive comparison of the first non-whitespace characters of the string
          * with values "i", "y", "t", "1"
          * matches, \b %Inclusion.INCLUDE is returned.

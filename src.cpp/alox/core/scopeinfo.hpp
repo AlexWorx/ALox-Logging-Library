@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  aworx::lox::core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -18,7 +18,7 @@
 // #################################################################################################
 // includes
 // #################################################################################################
-#if !defined (HPP_ALIB_TIME)
+#if !defined (HPP_ALIB_TIME_TICKS)
     #include "alib/time/ticks.hpp"
 #endif
 
@@ -35,10 +35,8 @@
     #include <map>
 #endif
 
-namespace aworx {
-namespace       lox {
-namespace           core{
-
+namespace aworx { namespace lox { namespace core
+{
 /** ************************************************************************************************
  *  Encapsulates information of the caller that can be collected. This is platform specific, in
  *  this case, C++. What we receive from the C++ preprocessor, is the source file name
@@ -67,7 +65,7 @@ class ScopeInfo
          * This might be modified, prior to creating any object of class \b Lox.<br>
          * Defaults to 5.
          */
-        ALIB_API
+        ALOX_API
         static  int             DefaultCacheSize;
 
     // #############################################################################################
@@ -91,14 +89,14 @@ class ScopeInfo
         };
 
         /**  List of trim definitions for portions of source paths to be ignored  */
-        ALIB_API
+        ALOX_API
         static std::vector<SourcePathTrimRule>   GlobalSPTRs;
 
         /**  List of trim definitions for portions of source paths to be ignored  */
                std::vector<SourcePathTrimRule>   LocalSPTRs;
 
         /**  Flag to determine if global rules have been read from config already  */
-        ALIB_API
+        ALOX_API
         static bool                              GlobalSPTRsReadFromConfig;
 
         /**
@@ -127,52 +125,40 @@ class ScopeInfo
         /** The thread dictionary, managed externally, provided as a pointer in the constructor. **/
         const ThreadDictionary&                 threadDictionary;
 
-        /**  Time of the call represented by this instance.  **/
-        Ticks                                   timeStamp;
-
-        /**  Line number within the source file (given by the C++ preprocessor)  **/
-        int                                     origLine;
-
-        /**  Function/method name (given by the C++ preprocessor)  **/
-        TString                                 origMethod;
-
-
         /** Information of a single source file. Stored in field #cache */
         struct SourceFile
         {
             /**  'Timestamp' for LRU overwriting (not a time, but using field #cacheRun) */
-            uint_fast64_t                           timeStamp       = 0;
+            uint64_t                            timeStamp       = 0;
 
             /**  Path and name of source file (given by the C++ preprocessor)  **/
-            TString                                 origFile;
+            TString                             origFile;
 
             /** Full path of source file  (evaluated)  **/
-            String                                  fullPath;
+            String                              fullPath;
 
             /** Trimmed path of source file  (evaluated)  **/
-            String                                  trimmedPath;
+            String                              trimmedPath;
 
             /** Prefix for the trimmed path taken from trim rule. Has to be added on writing
              *  the trimmed path **/
-            String                                  trimmedPathPrefix;
+            String                              trimmedPathPrefix;
 
             /** File name (evaluated)  **/
-            String                                  name;
+            String                              name;
 
             /** File name without extension (evaluated)  **/
-            String                                  nameWOExt;
+            String                              nameWOExt;
 
             /** Index of last path separator in #origFile **/
-            int                                     origFilePathLength;
+            integer                            origFilePathLength;
 
             /** Constructor **/
-            SourceFile() {  Set( nullptr ); }
+            SourceFile() {  origFile= nullptr; Clear(); }
 
-            /** Sets a new path and clears other values.
-             *  @param sourceFile  The source file that we represent. **/
-            void Set( const TString& sourceFile )
+            /** Clears calculated values. Keeps #origFile intact. **/
+            void Clear()
             {
-                origFile=           sourceFile;
                 origFilePathLength= -2;
                 fullPath=           nullptr;
                 trimmedPath=        nullptr;
@@ -185,19 +171,47 @@ class ScopeInfo
 
         /** The 'timestamp' used to identify the LRU entry. Incremented, whenever a different source
             file is evaluated.  */
-        uint_fast64_t                               cacheRun=   0;
+        uint64_t                                cacheRun                                        = 0;
 
         /**
           * The number of source file path and corresponding, evaluated derived values.
           * Determined in the constructor by reading static field #DefaultCacheSize.
           */
-        int                                         cacheSize;
+        int                                     cacheSize;
 
         /** A list of source files. The its size is dependent on static field #DefaultCacheSize. */
-        SourceFile*                                 cache;
+        SourceFile*                             cache;
 
-        /** The actual entry of the source file cache      */
-        SourceFile*                                 actual;
+        /**
+         * Holds values for the current scope. Because recursive logging might occur (e.g. when
+         * parameters rely on method invocations which incorporate log statements), objects of this
+         * class are stored in stack #scopes.
+         */
+        struct Scope
+        {
+            /**  Time of the call represented by this instance.  **/
+            Ticks                               timeStamp;
+
+            /** The entry of the source file cache      */
+            SourceFile*                         sourceFile;
+
+            /**  Line number within the source file (given by the C++ preprocessor)  **/
+            int                                 origLine;
+
+            /**  Function/method name (given by the C++ preprocessor)  **/
+            TString                             origMethod;
+
+        };
+
+        /** A stack of scopes (allows recursive calls/nested logging) */
+        std::vector<Scope>                      scopes;
+
+        /** The current depth of recursive invocations. */
+        int                                     actScopeDepth                                  = -1;
+
+        /** The last source file used. This is tried first with next invocation. If it does not
+         *  match, the cache is searched for another matching one.*/
+        SourceFile*                             lastSourceFile;
 
 
     // #############################################################################################
@@ -211,20 +225,20 @@ class ScopeInfo
          * @param threadDictionary  A dictionary to map thread IDs to user friendly names which is
          *                          managed outside of this class.
          ******************************************************************************************/
-        ALIB_API
+        ALOX_API
          ScopeInfo( const TString& name, const std::map<int, String32>& threadDictionary );
 
-        ALIB_API
+        ALOX_API
         ~ScopeInfo();
 
      // #############################################################################################
      // public interface
      // #############################################################################################
     public:
-        /** ************************************************************************************
+        /** ****************************************************************************************
          * Stores C++ specific caller parameters and some other values like the time stamp.
          * Also, flags thread information as not received, yet.
-         * Counts the recursion counter up. Only the first invocation will set the values.
+         * Counts the recursion counter up.
          * @param source      Name, including path, of the source code file of the actual log
          *                    invocation (__FILE__).
          * @param lineNumber  Line number within the source code file of the actual log
@@ -232,9 +246,20 @@ class ScopeInfo
          * @param method      Name of method or function of the actual log invocation (mostly
          *                    __func__/ __FUNCTION__).
          * @param thread      The thread. If \c nullptr, it will be determined if needed.
-         **************************************************************************************/
-        ALIB_API
-        void Set ( const TString& source, int lineNumber, const TString& method, Thread* thread );
+         ******************************************************************************************/
+        ALOX_API
+        void Set( const TString& source, int lineNumber, const TString& method, Thread* thread );
+
+        /** ****************************************************************************************
+         * Releases latest scope information.
+         ******************************************************************************************/
+        void Release()
+        {
+            lastSourceFile= scopes[static_cast<size_t>( actScopeDepth )].sourceFile;
+            actScopeDepth--;
+            ALIB_ASSERT( actScopeDepth >= -1 )
+        }
+
 
         /** ****************************************************************************************
          * Does the job for
@@ -253,7 +278,7 @@ class ScopeInfo
          *                        Defaults to \b %Reach::Global.
          * @param priority        The priority of the setting.
         ******************************************************************************************/
-        ALIB_API
+        ALOX_API
         void      SetSourcePathTrimRule( const TString& path,
                                          Inclusion      includeString,
                                          int            trimOffset,
@@ -280,7 +305,7 @@ class ScopeInfo
         inline
         const TString& GetOrigFile()
         {
-            return actual->origFile;
+            return scopes[static_cast<size_t>(actScopeDepth)].sourceFile->origFile;
         }
 
         /** ****************************************************************************************
@@ -290,9 +315,10 @@ class ScopeInfo
         inline
         const String GetFullPath()
         {
+            SourceFile* actual= scopes[static_cast<size_t>(actScopeDepth)].sourceFile;
             if( actual->fullPath.IsNull() )
             {
-                int idx= getPathLength();
+                integer idx= getPathLength();
                 if( idx >= 0 )
                     actual->fullPath= String( actual->origFile.Buffer(), idx );
                 else
@@ -303,14 +329,14 @@ class ScopeInfo
         }
 
         /** ****************************************************************************************
-         * Receives the path of the source file, trimmed according to trim-information provided
+         * Writes the path of the source file, trimmed according to trim-information provided
          * with #SetSourcePathTrimRule or detected according to #AutoDetectTrimableSourcePath.
          * @param target The target string to append the trimmed path to.
-         * @return The trimmed path.
          ******************************************************************************************/
         inline
         void GetTrimmedPath( AString& target )
         {
+            SourceFile* actual= scopes[static_cast<size_t>(actScopeDepth)].sourceFile;
             if( actual->trimmedPath.IsNull() )
                 trimPath();
 
@@ -325,9 +351,10 @@ class ScopeInfo
         inline
         const String GetFileName()
         {
+            SourceFile* actual= scopes[static_cast<size_t>(actScopeDepth)].sourceFile;
             if( actual->name.IsNull() )
             {
-                int idx= getPathLength();
+                integer idx= getPathLength();
                 if( idx >= 0 )
                     actual->name= String( actual->origFile.Buffer() + idx + 1,
                                                            actual->origFile.Length() - idx - 1 );
@@ -345,10 +372,11 @@ class ScopeInfo
         inline
         const String GetFileNameWithoutExtension()
         {
+            SourceFile* actual= scopes[static_cast<size_t>(actScopeDepth)].sourceFile;
             if( actual->nameWOExt.IsNull() )
             {
                 actual->nameWOExt= GetFileName();
-                int lastDot=   actual->nameWOExt.LastIndexOf( '.' );
+                integer lastDot=   actual->nameWOExt.LastIndexOf( '.' );
                 if ( lastDot > 0 )
                     actual->nameWOExt= String( actual->nameWOExt.Buffer(), lastDot );
             }
@@ -363,7 +391,7 @@ class ScopeInfo
         inline
         const String GetMethod()
         {
-            return origMethod;
+            return scopes[static_cast<size_t>(actScopeDepth)].origMethod;
         }
 
         /** ****************************************************************************************
@@ -373,7 +401,7 @@ class ScopeInfo
         inline
         int GetLineNumber()
         {
-            return origLine;
+            return scopes[static_cast<size_t>(actScopeDepth)].origLine;
         }
 
         /** ****************************************************************************************
@@ -383,7 +411,7 @@ class ScopeInfo
         inline
         const Ticks& GetTimeStamp()
         {
-            return timeStamp;
+            return scopes[static_cast<size_t>(actScopeDepth)].timeStamp;
         }
 
         /** ************************************************************************************
@@ -438,7 +466,7 @@ class ScopeInfo
          * the successfully trimmed path or to the non-trimmed one. This way, it is executed
          * only once, at it is 'lazily' invoked by #GetTrimmedPath()
          **************************************************************************************/
-        ALIB_API
+        ALOX_API
         void            trimPath();
 
         /** ************************************************************************************
@@ -447,14 +475,15 @@ class ScopeInfo
          * @return The index of the path separator in SourceFile::origFile.
          **************************************************************************************/
         inline
-        int             getPathLength()
+        integer        getPathLength()
         {
+            SourceFile* actual= scopes[static_cast<size_t>(actScopeDepth)].sourceFile;
             if( actual->origFilePathLength == -1 )
                 return -1;
             return ( actual->origFilePathLength= actual->origFile.LastIndexOf( aworx::DirectorySeparator ) );
         }
 }; // class ScopeInfo
 
-}}} // namespace aworx::lox::core
+}}} // namespace aworx::lox::utils
 
 #endif // HPP_ALOX_CORE_SCOPEINFO

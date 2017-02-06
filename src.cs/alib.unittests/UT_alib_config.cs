@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  cs.aworx.unittests - AWorx Util
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
 using System.IO;
@@ -11,12 +11,12 @@ using cs.aworx.lox.loggers;
 using cs.aworx.lib.config;
 using cs.aworx.lib.strings;
 using ut_cs_aworx;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     using NUnit.Framework;
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 #endif
 
@@ -26,10 +26,10 @@ using cs.aworx.lib;
 
 namespace ut_cs_aworx_lib
 {
-    #if ALIB_MONO_DEVELOP
+    #if ALIB_NUNIT
         [TestFixture ()]
     #endif
-    #if ALIB_VSTUDIO
+    #if ALIB_IDE_VSTUDIO
         [TestClass]
     #endif
     public class CS_Configuration   : AWorxUnitTesting
@@ -40,10 +40,10 @@ namespace ut_cs_aworx_lib
 /** ********************************************************************************************
  * CommandLineArgs
  **********************************************************************************************/
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     [Test ()]
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     [TestMethod]
     #if !WINDOWS_PHONE
         [TestCategory("CS_Configuration")]
@@ -87,10 +87,10 @@ public void CommandLineArgs()
  * IniFileTest
  **********************************************************************************************/
 
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     [Test ()]
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     [TestMethod]
     #if !WINDOWS_PHONE
         [TestCategory("CS_Configuration")]
@@ -189,26 +189,26 @@ public void IniFileTest()
 
     // add it to ALIB config
     ALox.Init();
-    ALIB.Config.InsertPlugin( iniFile, Configuration.PrioIniFile );
-    ALIB.Config.Load( var.Define( "",               "CUBA"              ) );   UT_EQ( "a country"  , var.GetString() );
-    ALIB.Config.Load( var.Define( "",               "cUbA"              ) );   UT_EQ( "a country"  , var.GetString() );
-    ALIB.Config.Load( var.Define( "",               "SIZE"              ) );   UT_EQ( "25"         , var.GetString() );
-    ALIB.Config.Load( var.Define( "",               "concat"            ) );   UT_EQ( 11 , var.Size());
+    Configuration.Default.InsertPlugin( iniFile, Configuration.PrioIniFile );
+    Configuration.Default.Load( var.Define( "",               "CUBA"              ) );   UT_EQ( "a country"  , var.GetString() );
+    Configuration.Default.Load( var.Define( "",               "cUbA"              ) );   UT_EQ( "a country"  , var.GetString() );
+    Configuration.Default.Load( var.Define( "",               "SIZE"              ) );   UT_EQ( "25"         , var.GetString() );
+    Configuration.Default.Load( var.Define( "",               "concat"            ) );   UT_EQ( 11 , var.Size());
                                                                                UT_EQ( "start =5"   , var.GetString(0) );
                                                                                UT_EQ( "end   =32"  , var.GetString(1) );
-    ALIB.Config.Load( var.Define( "Great Section",  "SectionVar"        ) );   UT_EQ( "5"          , var.GetString() );
-    ALIB.Config.Load( var.Define( "2nd Section",    "SectionVar"        ) );   UT_EQ( "6"          , var.GetString() );
-    ALIB.Config.Load( var.Define( "Great Section",  "SECTION_CONTINUED" ) );   UT_EQ( "yEs"        , var.GetString() );
-    ALIB.Config.Load( var.Define( "Great Section",  "Tricky"            ) );   UT_EQ( "backslash\\", var.GetString() );
-    ALIB.Config.Load( var.Define( "Great Section",  "SECTION_CONTINUED" ) );   UT_TRUE( var.IsTrue() );
+    Configuration.Default.Load( var.Define( "Great Section",  "SectionVar"        ) );   UT_EQ( "5"          , var.GetString() );
+    Configuration.Default.Load( var.Define( "2nd Section",    "SectionVar"        ) );   UT_EQ( "6"          , var.GetString() );
+    Configuration.Default.Load( var.Define( "Great Section",  "SECTION_CONTINUED" ) );   UT_EQ( "yEs"        , var.GetString() );
+    Configuration.Default.Load( var.Define( "Great Section",  "Tricky"            ) );   UT_EQ( "backslash\\", var.GetString() );
+    Configuration.Default.Load( var.Define( "Great Section",  "SECTION_CONTINUED" ) );   UT_TRUE( var.IsTrue() );
 
 
     // check if environment variable "home" overwrites INI file
     AString vIniFile= new AString();   iniFile.Load( var.Define( "", "hOme" ) );               UT_EQ( "overwritten_by_environment", var.GetString() );
-    int prio= ALIB.Config.Load( var.Define("", "hOme" ));
+    int prio= Configuration.Default.Load( var.Define("", "hOme" ));
     if (prio != Configuration.PrioEnvironment ) // Windows platform?
     {
-        prio= ALIB.Config.Load( var.Define("", "hOmePAth") );
+        prio= Configuration.Default.Load( var.Define("", "hOmePAth") );
         iniFile.Load( var.Define( "", "hOmePAth") );    UT_EQ( "overwritten_by_environment", var.GetString() );
     }
     UT_EQ( Configuration.PrioEnvironment, prio );
@@ -219,26 +219,26 @@ public void IniFileTest()
     // change a value and write a new one
     var.Define( "New Section",  "newvar");
     var.Priority= Configuration.PrioIniFile;
-    UT_EQ( Configuration.PrioIniFile, ALIB.Config.Store( var, "new" ) );
-    ALIB.Config.Load  ( var.Define("New Section",  "newvar") );  UT_EQ( "new",   var.GetString() );
+    UT_EQ( Configuration.PrioIniFile, Configuration.Default.Store( var, "new" ) );
+    Configuration.Default.Load  ( var.Define("New Section",  "newvar") );  UT_EQ( "new",   var.GetString() );
 
     var.Define( "",             "newvar");
     var.Priority= Configuration.PrioIniFile;
-    UT_EQ( Configuration.PrioIniFile, ALIB.Config.Store( var, "aworx") );
-    ALIB.Config.Load  ( var.Define("",             "newvar") );  UT_EQ( "aworx", var.GetString() );
+    UT_EQ( Configuration.PrioIniFile, Configuration.Default.Store( var, "aworx") );
+    Configuration.Default.Load  ( var.Define("",             "newvar") );  UT_EQ( "aworx", var.GetString() );
 
 
     var.Define( "",   "newvarList", ',');
-    var.AddString("val1=5");
-    var.AddString("val2=10");
-    var.AddString("val3=hello");
+    var.Add("val1=5");
+    var.Add("val2=10");
+    var.Add("val3=hello");
     var.Priority= Configuration.PrioIniFile;
-    UT_EQ( Configuration.PrioIniFile, ALIB.Config.Store(var) );
-    ALIB.Config.Load (  var.Define( "",  "newvarList")   );
+    UT_EQ( Configuration.PrioIniFile, Configuration.Default.Store(var) );
+    Configuration.Default.Load (  var.Define( "",  "newvarList")   );
 
     var.Define( "",   "commented", ',', "2lines" );
     var.Priority= Configuration.PrioIniFile;
-    UT_EQ( Configuration.PrioIniFile, ALIB.Config.Store(  var,  "this is c-line 1 \nand this line 2" ) );
+    UT_EQ( Configuration.PrioIniFile, Configuration.Default.Store(  var,  "this is c-line 1 \nand this line 2" ) );
 
     // write the file
     iniFile.FileName._(".writeback.txt");
@@ -298,23 +298,23 @@ public void IniFileTest()
     readBack.Load ( var.Define( "",             "newvar" ) );   UT_EQ( "aworx", var.GetString() );
 
 
-    ALIB.Config.RemovePlugin( iniFile );
+    Configuration.Default.RemovePlugin( iniFile );
 
 
-    ALIB.Config.InsertPlugin( readBack, Configuration.PrioIniFile );
-    ALIB.Config.Load ( var.Define( "New Section",  "newvar") );   UT_EQ( "new"   , var.GetString() );
-    ALIB.Config.Load ( var.Define( "",             "newvar") );   UT_EQ( "aworx" , var.GetString() );
+    Configuration.Default.InsertPlugin( readBack, Configuration.PrioIniFile );
+    Configuration.Default.Load ( var.Define( "New Section",  "newvar") );   UT_EQ( "new"   , var.GetString() );
+    Configuration.Default.Load ( var.Define( "",             "newvar") );   UT_EQ( "aworx" , var.GetString() );
 
-    ALIB.Config.RemovePlugin( readBack );
+    Configuration.Default.RemovePlugin( readBack );
 }
 
 /** ********************************************************************************************
  * ConfigDefaultAndProtected
  **********************************************************************************************/
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     [Test ()]
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     [TestMethod]
     #if !WINDOWS_PHONE
         [TestCategory("CS_Configuration")]
@@ -353,7 +353,7 @@ public void ConfigDefaultAndProtected()
     // set and remove an entry using plugin interface
     var.Define( "TEST", "Remove" );     UT_EQ( 0, var.Size() );     UT_EQ( -1                           ,var.Priority );
     cfg.DefaultValues.Load( var );      UT_EQ( 0, var.Size() );     UT_EQ( -1                           ,var.Priority );
-    var.AddString("To be deleted");     UT_EQ( 1, var.Size() );     UT_EQ( -1                           ,var.Priority );
+    var.Add("To be deleted");           UT_EQ( 1, var.Size() );     UT_EQ( -1                           ,var.Priority );
     cfg.DefaultValues.Store( var );     UT_EQ( 1, var.Size() );     UT_EQ( -1                           ,var.Priority );
     var.Define( "TEST", "Remove" );     UT_EQ( 0, var.Size() );     UT_EQ( -1                           ,var.Priority );
     cfg.DefaultValues.Load( var );      UT_EQ( 1, var.Size() );     UT_EQ( -1                           ,var.Priority );
@@ -365,7 +365,7 @@ public void ConfigDefaultAndProtected()
     // set and remove an entry using configuration interface
     cfg              .Load ( var );     UT_EQ( 0, var.Size() );     UT_EQ(  0                           ,var.Priority );
     cfg              .Store( var );     UT_EQ( 0, var.Size() );     UT_EQ(  0                           ,var.Priority );
-    var.AddString("To be deleted");     UT_EQ( 1, var.Size() );     UT_EQ(  0                           ,var.Priority );
+    var.Add("To be deleted");           UT_EQ( 1, var.Size() );     UT_EQ(  0                           ,var.Priority );
     cfg              .Store( var );     UT_EQ( 1, var.Size() );     UT_EQ( Configuration.PrioDefault    ,var.Priority );
     var.Define( "TEST", "Remove" );     UT_EQ( 0, var.Size() );     UT_EQ( -1                           ,var.Priority );
     cfg              .Load ( var );     UT_EQ( 1, var.Size() );     UT_EQ( Configuration.PrioDefault    ,var.Priority );
@@ -381,14 +381,14 @@ public void ConfigDefaultAndProtected()
     var.StoreDefault( "def par");       UT_EQ( "def par",   var.GetString() );  UT_EQ( Configuration.PrioDefault   ,var.Priority );
 
     var.ClearValues();
-    var.AddString( "def var" );
+    var.Add( "def var" );
     var.StoreDefault();                 UT_EQ( "def var",   var.GetString() );  UT_EQ( Configuration.PrioDefault   ,var.Priority );
 
     var.ClearValues();
     var.StoreDefault();                 UT_EQ( "Default",   var.GetString() );  UT_EQ( Configuration.PrioDefault   ,var.Priority );
 
     var.ClearValues();
-    var.AddString( "def var" );
+    var.Add( "def var" );
     var.Protect();                      UT_EQ( "def var",   var.GetString() );  UT_EQ( Configuration.PrioProtected ,var.Priority );
     var.Protect("prot par");            UT_EQ( "prot par",  var.GetString() );  UT_EQ( Configuration.PrioProtected ,var.Priority );
     var.ClearValues();
@@ -403,10 +403,10 @@ public void ConfigDefaultAndProtected()
 /** ********************************************************************************************
  * ConfigReplacementVariables
  **********************************************************************************************/
-#if ALIB_MONO_DEVELOP
+#if ALIB_NUNIT
     [Test ()]
 #endif
-#if ALIB_VSTUDIO
+#if ALIB_IDE_VSTUDIO
     [TestMethod]
     #if !WINDOWS_PHONE
         [TestCategory("CS_Configuration")]

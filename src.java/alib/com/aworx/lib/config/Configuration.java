@@ -1,8 +1,8 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /** ************************************************************************************************
@@ -148,9 +148,8 @@ This way, it is possible to protect values against external modification.
 
 # 5. Using class %Configuration #
 
-In normal use cases, there is no need to create an instance of class Configuration, as class %ALib
-provides a public static singleton with field
-\ref com::aworx::lib::ALIB::config "ALIB.config".
+In normal use cases, there is no need to create an instance of class Configuration, as singleton
+\ref com::aworx::lib::config::Configuration::Default "Configuration.Default" should be used.
 The command line parameters (optionally) provided with
 \ref com::aworx::lib::ALIB::init "ALIB.init" are passed to the command-line plug-in of this
 singleton.
@@ -232,8 +231,8 @@ can be passed to the interface of class Configuration or directly to specific
 However, the simplest way of loading and storing variables is to use the interface methods of class
 \b %Variable itself. These methods are considered "available for convenience", hence all they do is
 to invoke methods of class \b %Configuration passing themselves as parameters. The methods are using
-the public static singleton of class \b %Configuration found in field
-\ref com::aworx::lib::ALIB::config "ALIB.config". For most use cases this all that is needed!
+the public static singleton
+\ref com::aworx::lib::config::Configuration::Default "Configuration.Default". For most use cases this all that is needed!
 
 Simple access methods allow to read or set the values of a variable.
 
@@ -272,9 +271,8 @@ package com.aworx.lib.config;
 
 import java.util.ArrayList;
 
-import com.aworx.lib.ALIB;
-import com.aworx.lib.enums.Case;
-import com.aworx.lib.enums.Inclusion;
+import com.aworx.lib.lang.Case;
+import com.aworx.lib.lang.Inclusion;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.NumberFormat;
 import com.aworx.lib.strings.Substring;
@@ -282,7 +280,7 @@ import com.aworx.lib.strings.Substring;
 
 /** ************************************************************************************************
  * This class primarily is used via the public static singleton instance of it, found in
- * \ref com::aworx::lib::ALIB::config "ALIB.config".
+ * \ref com::aworx::lib::config::Configuration::Default "Configuration.Default".
  * It holds a list of objects of type
  * \ref com::aworx::lib::config::ConfigurationPlugin "ConfigurationPlugin",
  * sorted by their priority and provides a
@@ -334,6 +332,16 @@ public class Configuration
     // #############################################################################################
     // public fields
     // #############################################################################################
+        /**
+         * This is the default singleton for standard use. Note that it is allowed to have
+         * multiple instances of this class but this default is provided for convenience as
+         * standard applications have just one.<br>
+         * Overloaded methods found in classes of this namespace, which omit the configuration
+         * parameter use this singleton instead.
+         * Of-course, also custom plug-ins may be attached to this object.
+         */
+        public static  Configuration            Default                       = new Configuration();
+
         /**
          * Values considered to indicate "true". Defaults to
          * { "1", "true", "t", "yes", "y", "on", "ok" }.
@@ -444,8 +452,7 @@ public class Configuration
          *
          * \note This method should be called for instances of this class after construction.<br>
          *       In standard application scenarios, this method is invoked by method
-         *       \ref com::aworx::lib::ALIB::init   "ALIB.init" for the static singleton found in
-         *       \ref com::aworx::lib::ALIB::config "ALIB.config".
+         *       \ref com::aworx::lib::ALIB::init   "ALIB.init" for the static singleton #Default.
          *
          * @param args    Parameters taken from <em>standard Java</em> method \c main()
          *                (the list of command line arguments). Accepts \c null to ignore
@@ -476,7 +483,7 @@ public class Configuration
             int i;
             for ( i= 0; i < plugins.size(); i++ )
             {
-                ALIB.ASSERT_ERROR( plugins.get(i).prio != priority,
+                com.aworx.lib.ALIB_DBG.ASSERT_ERROR( plugins.get(i).prio != priority,
                     "Configuration.InsertPlugin(): Plug-in with same priority exists" );
                 if ( plugins.get( i ).prio < priority )
                     break;
@@ -507,7 +514,7 @@ public class Configuration
                 }
             }
 
-            ALIB.WARNING( "No Plug-in was removed " );
+            com.aworx.lib.ALIB_DBG.WARNING( "No Plug-in was removed " );
             return false;
         }
 
@@ -672,13 +679,13 @@ public class Configuration
             {
                 if ( variable.name.isEmpty())
                 {
-                    ALIB.ERROR( "Trying to store an undefined variable."  );
+                    com.aworx.lib.ALIB_DBG.ERROR( "Trying to store an undefined variable."  );
                     return 0;
                 }
 
                 if ( variable.size() > 1 && variable.delim == '\0' )
                 {
-                    ALIB.ERROR(   "Trying to store variable \"" + variable.fullname
+                    com.aworx.lib.ALIB_DBG.ERROR(   "Trying to store variable \"" + variable.fullname
                                 + "\" which has multiple values set but no delimiter defined."  );
                     return 0;
                 }
@@ -799,7 +806,7 @@ public class Configuration
                         int idx=   value.indexOf   ( substitutionVariableEnd, varStart );
                         if (idx < 0 )
                         {
-                            ALIB.WARNING(   "End of substitution variable not found (while start was found). Variable name: "
+                            com.aworx.lib.ALIB_DBG.WARNING(   "End of substitution variable not found (while start was found). Variable name: "
                                            + variable.fullname
                                            + " Value: \"" + value + "\"." );
                             break;
@@ -857,7 +864,7 @@ public class Configuration
 
                 // warn if max replacements
                 if( maxReplacements <= 0 )
-                    ALIB.WARNING(     "Too many substitutions in variable "
+                    com.aworx.lib.ALIB_DBG.WARNING(     "Too many substitutions in variable "
                                       + variable.fullname
                                       + ". Probably a recursive variable definition was made. ");
             }

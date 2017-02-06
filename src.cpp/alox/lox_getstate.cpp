@@ -1,10 +1,10 @@
 ﻿// #################################################################################################
 //  aworx::lox - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alib/alib.hpp"
 
 #if !defined (HPP_ALOX)
     #include "alox/alox.hpp"
@@ -12,9 +12,6 @@
 
 #if !defined (HPP_ALIB_CONFIG_CONFIGURATION)
     #include "alib/config/configuration.hpp"
-#endif
-#if !defined (HPP_ALIB_SYSTEM_SYSTEM)
-    #include "alib/system/system.hpp"
 #endif
 #if !defined (HPP_ALOX_CONSOLE_LOGGERS)
     #include "alox/alox_console_loggers.hpp"
@@ -31,6 +28,20 @@
     #include <algorithm>
 #endif
 
+// For code compatibility with ALox Java/C++
+// We have to use underscore as the start of the name and for this have to disable a compiler
+// warning. But this is a local code (cpp file) anyhow.
+#if defined(__clang__)
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wreserved-id-macro"
+#endif
+
+    #define _NC _<false>
+
+#if defined(__clang__)
+    #pragma clang diagnostic pop
+#endif
+
 
 using namespace std;
 
@@ -38,16 +49,15 @@ namespace aworx {
     namespace lox   {
 
     using namespace core;
-// For code compatibility with ALox Java/C++
-#define _NC _<false>
 
 
-#if !defined( IS_DOXYGEN_PARSER)
-void getStateDomainRecursive( Domain& domain, int maxDomainPathLength, AString& buf )
+//! @cond NO_DOX
+void getStateDomainRecursive( Domain& domain, integer maxDomainPathLength, AString& buf );
+void getStateDomainRecursive( Domain& domain, integer maxDomainPathLength, AString& buf )
 {
-    int reference= buf.Length();
+    integer reference= buf.Length();
     buf._("  "); domain.ToString( buf );
-    int idx= buf.IndexOf( '[', reference );
+    integer idx= buf.IndexOf( '[', reference );
     buf.InsertChars( ' ', maxDomainPathLength + 5 - idx + reference, idx);
     buf.NewLine();
 
@@ -56,22 +66,24 @@ void getStateDomainRecursive( Domain& domain, int maxDomainPathLength, AString& 
         getStateDomainRecursive( *subDomain, maxDomainPathLength, buf );
 }
 
-void getStateDomsWithDiffVerb( Domain* dom, int loggerNo, vector<Domain*>& results )
+void getStateDomainsWithDiffVerb( Domain* dom, int loggerNo, vector<Domain*>& results );
+void getStateDomainsWithDiffVerb( Domain* dom, int loggerNo, vector<Domain*>& results )
 {
     if (    dom->Parent == nullptr
         ||  dom->Parent->GetVerbosity(loggerNo) != dom->GetVerbosity(loggerNo) )
         results.emplace_back( dom );
 
     for( auto it : dom->SubDomains )
-        getStateDomsWithDiffVerb( it, loggerNo, results );
+        getStateDomainsWithDiffVerb( it, loggerNo, results );
 }
 
-void getStateCollectPrefixes( Domain* dom, int indentSpaces, AString& target )
+void getStateCollectPrefixes( Domain* dom, integer indentSpaces, AString& target );
+void getStateCollectPrefixes( Domain* dom, integer indentSpaces, AString& target )
 {
     for ( auto pfl : dom->PrefixLogables )
     {
         target.InsertChars( ' ', indentSpaces );
-        pfl.first.ToString( target );
+        target._( static_cast<Box*>(pfl.first) );
         if ( pfl.second == Inclusion::Exclude )
             target._NC( " (Excl.)" );
         target._NC( Format::Tab( 25, -1 ) );
@@ -81,9 +93,9 @@ void getStateCollectPrefixes( Domain* dom, int indentSpaces, AString& target )
     for( auto it : dom->SubDomains )
         getStateCollectPrefixes( it, indentSpaces, target );
 }
-#endif
+//! @endcond NO_DOX
 
-void Lox::GetState( AString& buf, unsigned int flags )
+void Lox::GetState( AString& buf, int flags )
 {
     ALIB_ASSERT_ERROR ( this->GetSafeness() == Safeness::Unsafe || this->DbgCountAcquirements() > 0,
                         "Lox not acquired" );
@@ -98,7 +110,7 @@ void Lox::GetState( AString& buf, unsigned int flags )
         {
             for( auto& p : ALIB::CompilationFlagMeanings )
             {
-                buf << "  " << Format::Field( String32() << p.first << ':', 20, Alignment::Left )
+                buf << "  " << Format::Field( p.first, 28, Alignment::Left ) << ':'
                     << (ALIB::CompilationFlags & p.second  ? " On" : " Off")
                     << NewLine;
             }
@@ -108,7 +120,7 @@ void Lox::GetState( AString& buf, unsigned int flags )
         {
             for( auto& p : ALox::CompilationFlagMeanings )
             {
-                buf << "  " << Format::Field( p.first, 20, Alignment::Left ) << ':'
+                buf << "  " << Format::Field( p.first, 28, Alignment::Left ) << ':'
                     << (ALox::CompilationFlags & p.second  ? " On" : " Off")
                     << NewLine;
             }
@@ -138,7 +150,7 @@ void Lox::GetState( AString& buf, unsigned int flags )
         // do 2 times, 0== global list, 1 == local list
         for( int trimInfoNo= 0; trimInfoNo < 2 ; trimInfoNo++ )
         {
-            // choosel local or global list
+            // choose local or global list
             std::vector<ScopeInfo::SourcePathTrimRule>* trimInfoList=
                        trimInfoNo == 0   ? &ScopeInfo::GlobalSPTRs
                                          : &scopeInfo.LocalSPTRs;
@@ -173,7 +185,7 @@ void Lox::GetState( AString& buf, unsigned int flags )
         if( domainSubstitutions.size() > 0 )
         {
             // get size
-            int maxWidth= 0;
+            integer maxWidth= 0;
             for ( auto& it : domainSubstitutions )
                 if ( maxWidth < it.Search.Length() )
                      maxWidth = it.Search.Length();
@@ -225,7 +237,7 @@ void Lox::GetState( AString& buf, unsigned int flags )
     if( flags & Lox::StateInfo_PrefixLogables )
     {
         buf._NC( "Prefix Logables: " ).NewLine();
-        int oldLength= buf.Length();
+        integer oldLength= buf.Length();
         scopeDump.writeStore( &scopePrefixes, 2 );
         getStateCollectPrefixes( &domains, 2, buf );
         if ( oldLength == buf.Length() )
@@ -261,7 +273,7 @@ void Lox::GetState( AString& buf, unsigned int flags )
     // Loggers
     if( flags & Lox::StateInfo_Loggers )
     {
-        vector<Domain*> domsWithDiffVerb;
+        vector<Domain*> domainsWithDiffVerb;
         for (int treeNo= 0; treeNo < 2; ++treeNo )
         {
             int cnt= 0;
@@ -287,15 +299,15 @@ void Lox::GetState( AString& buf, unsigned int flags )
                 buf._NC( "    Creation time: "     )._NC( logger->TimeOfCreation.Format( "yyyy-MM-dd HH:mm:ss", as64._()) ).NewLine();
                 buf._NC( "    Last log time: "     )._NC( logger->TimeOfLastLog .Format( "yyyy-MM-dd HH:mm:ss", as64._()) ).NewLine();
 
-                domsWithDiffVerb.clear();
-                getStateDomsWithDiffVerb( domTree, loggerNo, domsWithDiffVerb);
-                for ( Domain* dom : domsWithDiffVerb )
+                domainsWithDiffVerb.clear();
+                getStateDomainsWithDiffVerb( domTree, loggerNo, domainsWithDiffVerb);
+                for ( Domain* dom : domainsWithDiffVerb )
                 {
                     buf._NC( "    " )
-                       ._(  dom == *domsWithDiffVerb.begin() ? "Verbosities:   "
+                       ._(  dom == *domainsWithDiffVerb.begin() ? "Verbosities:   "
                                                              : "               " );
 
-                    int tabRef= buf.Length();
+                    integer tabRef= buf.Length();
                     buf << dom->FullPath << Format::Tab( maxDomainPathLength +1, tabRef);
 
                     buf << "= "; ToString(  dom->GetVerbosity( loggerNo ), dom->GetPriority(loggerNo), buf )

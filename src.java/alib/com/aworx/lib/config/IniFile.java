@@ -1,28 +1,22 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 package com.aworx.lib.config;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
-import com.aworx.lib.ALIB;
-import com.aworx.lib.Util;
-import com.aworx.lib.enums.Inclusion;
-import com.aworx.lib.enums.Whitespaces;
+import com.aworx.lib.lang.Inclusion;
+import com.aworx.lib.lang.Whitespaces;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.CString;
 import com.aworx.lib.strings.Substring;
 import com.aworx.lib.strings.Tokenizer;
+import com.aworx.lib.strings.Spaces;
 
 /** ************************************************************************************************
  * Specialization of class #InMemoryPlugin, which reads and writes a simple configuration file
@@ -73,7 +67,7 @@ import com.aworx.lib.strings.Tokenizer;
  *     is written back.
  *
  * - Escaping values
- *   - Spaces \c ' ' and tabulators \c '\\t' are ignored at the start and end of each line and before
+ *   - Spaces <c>' '</c> and tabulators \c '\\t' are ignored at the start and end of each line and before
  *     and after the equal sign \c '='.
  *   - Consequently, whitespaces at the start or end of a value either need to be escaped
  *     using <c>'\\ '</c> or the whole value has to be surrounded by double quotes \c ".
@@ -84,12 +78,12 @@ import com.aworx.lib.strings.Tokenizer;
  *   - Values may consist of a list of double quoted values. Whitespaces between such
  *     values are ignored. Consequently, long strings may be enclosed in double quotes
  *     and continued in the next line when the line ends with a backslash \c '\\'.
- *   - Almost any character can be escaped. E.g \c "\\a" is read as \c 'a'.
+ *   - Almost any character can be escaped. E.g \c "\a" is read as \c 'a'.
  *   - On writing only non-printable characters and double quotation marks are escaped.
  *
  * - Other remarks
  *   - Sequences of blank lines are reduced to one blank line, when writing the file.
- *   - Errorneous lines are ignored and not written back. Line numbers with errorneous lines
+ *   - Erroneous lines are ignored and not written back. Line numbers with erroneous lines
  *     are collected in field #linesWithReadErrors.
  **************************************************************************************************/
 public class IniFile extends InMemoryPlugin
@@ -148,7 +142,7 @@ public class IniFile extends InMemoryPlugin
                 // if we are still raw, then parse the INI file content
                 if ( values.size() == 0 )
                 {
-                    ALIB.ASSERT( delim == '\0' );
+                    com.aworx.lib.ALIB_DBG.ASSERT( delim == '\0' );
                     delim= variable.delim;
                     variable.comments._()._( comments );
 
@@ -160,7 +154,7 @@ public class IniFile extends InMemoryPlugin
                     raw.trimStart();
                     if ( raw.charAtStart() != '=' )
                     {
-                        ALIB.WARNING( "No equal sign in variable \"" + variable.fullname + "\" of INI file." );
+                        com.aworx.lib.ALIB_DBG.WARNING( "No equal sign in variable \"" + variable.fullname + "\" of INI file." );
                     }
                     else
                         raw.deleteStart(1).trimStart();
@@ -177,7 +171,7 @@ public class IniFile extends InMemoryPlugin
                             delLen= 3;
                             --startIdx;
                         }
-                        ALIB.ASSERT( raw.charAt(startIdx) == '\\' );
+                        com.aworx.lib.ALIB_DBG.ASSERT( raw.charAt(startIdx) == '\\' );
                         raw.delete( startIdx, delLen );
 
                         startIdx= raw.trimAt( startIdx );
@@ -377,16 +371,26 @@ public class IniFile extends InMemoryPlugin
                 }
 
                 StackTraceElement[] stack=          Thread.currentThread ().getStackTrace ();
-                AString             mainClassName=  new AString( stack[stack.length - 1].getClassName () );
-                int dotPos= mainClassName.lastIndexOfAny( ".".toCharArray(), Inclusion.INCLUDE );
+
+                StackTraceElement ste= null;
+                for( int i= 0 ; i< stack.length; i++ )
+                {
+                    ste= stack[i];
+                    if( ste.getMethodName().equals("main") )
+                        break;
+                }
+                @SuppressWarnings ("null")
+                AString mainClassName=  new AString( ste.getClassName () );
+
+                int dotPos= mainClassName.lastIndexOf( '.' );
                 if (dotPos > 0)
                     mainClassName.delete_NC( 0, dotPos + 1 );
+
                 fileName._NC( path )._( File.separatorChar )._NC( mainClassName )._NC( DEFAULT_FILE_EXTENSION );
             }
 
             readFile();
         }
-
 
     // #############################################################################################
     // ConfigurationPlugin interface implementation
@@ -497,12 +501,12 @@ public class IniFile extends InMemoryPlugin
                     }
 
                     // section line
-                    if ( line.consume( '[' ) )
+                    if ( line.consumeChar( '[' ) )
                     {
                         fileHeaderRead= true;
 
                         // we do not care if there is no closing bracket. But if there is one, we remove it.
-                        if( !line.consumeFromEnd( ']' ) )
+                        if( !line.consumeCharFromEnd( ']' ) )
                             linesWithReadErrors.add( new Integer( lineNo ) );
 
 
@@ -525,7 +529,7 @@ public class IniFile extends InMemoryPlugin
                     else
                     {
                         name._()._( line.buf, line.start, idx );
-                        line.consume( idx );
+                        line.consumeChars( idx );
                         value._(line);
                     }
 
@@ -668,7 +672,7 @@ public class IniFile extends InMemoryPlugin
                         else
                         {
                             file.write( '=' );
-                            Util.writeSpaces( file, maxVarLength - entry.name.length() + 1 );
+                            Spaces.write( file, maxVarLength - entry.name.length() + 1 );
 
                             boolean  isFirst=      true;
 
@@ -681,7 +685,7 @@ public class IniFile extends InMemoryPlugin
                                     // write delim and backslash of previous line, newline and then spaces of actual line
                                     if ( !isFirst )
                                     {
-                                        ALIB.ASSERT_ERROR( entry.delim != 0,
+                                        com.aworx.lib.ALIB_DBG.ASSERT_ERROR( entry.delim != 0,
                                                            "No delimiter given for multi-value variable \""
                                                             + entry.name + "\"." );
 
@@ -734,7 +738,7 @@ public class IniFile extends InMemoryPlugin
                                     // write delim and backslash of previous line, newline and then spaces of actual line
                                     if ( !isFirst )
                                     {
-                                        ALIB.ASSERT_ERROR( entry.delim != 0,
+                                        com.aworx.lib.ALIB_DBG.ASSERT_ERROR( entry.delim != 0,
                                                            "No delimiter given for multi-value variable \""
                                                            + entry.name + "\"." );
 
@@ -742,12 +746,12 @@ public class IniFile extends InMemoryPlugin
 
                                         if ( backSlashPos < lastLineLen + 1 )
                                              backSlashPos=  lastLineLen + 4;
-                                        Util.writeSpaces( file, backSlashPos - lastLineLen );
+                                        Spaces.write( file, backSlashPos - lastLineLen );
 
                                         file.write( '\\' );
                                         file.newLine();
 
-                                        Util.writeSpaces( file, maxVarLength + 2 ); // 2 for "= "
+                                        Spaces.write( file, maxVarLength + 2 ); // 2 for "= "
                                     }
 
                                     // externalize value

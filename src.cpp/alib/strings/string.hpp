@@ -1,25 +1,19 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
+// Include guard
+#ifndef HPP_ALIB_STRINGS_STRING
+#define HPP_ALIB_STRINGS_STRING 1
+
 // to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_ALIB) || defined(HPP_ALIB_STRINGS_AS)
-    #error "include alib/alib.hpp instead of this header"
+#if !defined(ALIB_PROPER_INCLUSION)
+    #error "include 'alib/alib.hpp' or 'alib/alib_strings.hpp' instead of this header"
 #endif
-
-// Due to our blocker above, this include will never be executed. But having it, allows IDEs
-// (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_ALIB)
-    #include "alib/alib.hpp"
-#endif
-
-// then, set include guard
-#ifndef HPP_ALIB_STRINGS_AS
-#define HPP_ALIB_STRINGS_AS 1
 
 // #################################################################################################
 // includes
@@ -44,19 +38,57 @@
 // #################################################################################################
 
 /**
+ * @addtogroup GrpALibCompilerSymbols
+ * @{ \def  ALIB_DEBUG_STRINGS_ON
+ *  This compiler symbol enables additional debug code within class AString. When provided,
+ *  it defines \ref ALIB_DEBUG_STRINGS to \c true. This is useful when extending or specifically debugging
+ *  class AString.
+ * @}
+ *
+ * @addtogroup GrpALibCompilerSymbols
+ * @{ \def  ALIB_DEBUG_STRINGS_OFF
+ *  Disables certain debug code within class AString. See \ref ALIB_DEBUG_STRINGS_ON.
+ *  This symbol represents the default behavior and is provided for completeness.
+ * @}
+ *
+ * @addtogroup GrpALibCodeSelectorSymbols
+ * @{ \def  ALIB_DEBUG_STRINGS
+ *  Selects extra debug code within class AString. Gets defined by compiler symbol
+ *  \ref ALIB_DEBUG_STRINGS_ON.
+ * @}
+ */
+
+#if defined(DOX_PARSER)
+    #define     ALIB_DEBUG_STRINGS
+    #define     ALIB_DEBUG_STRINGS_ON
+    #define     ALIB_DEBUG_STRINGS_OFF
+#else
+    #if defined(ALIB_DEBUG_STRINGS_OFF) && defined(ALIB_DEBUG_STRINGS_ON)
+        #error "ALIB_DEBUG_STRINGS_OFF / ALIB_DEBUG_STRINGS_ON are both set"
+    #endif
+
+    #if defined( ALIB_DEBUG_STRINGS_ON )
+        #define    ALIB_DEBUG_STRINGS 1
+    #else
+        #define    ALIB_DEBUG_STRINGS 0
+    #endif
+#endif //DOX_PARSER
+
+
+/**
  * @addtogroup GrpALibStringsMacros
  * @{ \def  ALIB_STRING_DBG_CHK
  * Simple macro that just invokes method _dbgCheck(), which is defined for classes
  * \ref aworx::lib::strings::String   "String",
  * \ref aworx::lib::strings::TString  "TString" and
  * \ref aworx::lib::strings::AString "AString".
- * It is active only when compiler symbol \ref ALIB_DEBUG_STRINGS is set.
+ * It is active only when compiler symbol \ref ALIB_DEBUG_STRINGS is \c true.
  * The macro is placed in almost every method.
  * @}
  */
 
 // do not indent this, for the sake of doxygen formatting
-#if defined(ALIB_DEBUG_STRINGS)
+#if ALIB_DEBUG_STRINGS
 #define ALIB_STRING_DBG_CHK(instance)    \
 {                                        \
     (instance)->_dbgCheck();             \
@@ -65,163 +97,235 @@
 #define  ALIB_STRING_DBG_CHK(instance)
 #endif
 
-namespace aworx {
-namespace           lib {
-namespace                   strings {
 
+/**
+ * @addtogroup GrpALibStringsMacros
+ * @{ \def  ALIB_STRING_CONSTRUCTOR_FIX
+ * Defines template class
+ * \ref aworx::lib::strings::T_String  "T_String" for the given type. This is needed to suppress
+ * "false errors" on compilation for certain types. For example (at the time of writing this), the
+ * use of \c std::tuple with elements of type \b %String might lead to errors in certain complex
+ * usage scenarios.<br>
+ * The macro defines methods \c %Buffer and \c %Length to return \c nullptr and \c 0, because
+ * in effect, the methods are never called. The same as the specialization of the struct itself, the
+ * methods need to exist only to avoid compiler errors in the constructor of class
+ * \ref aworx::lib::strings::String "String".
+ *
+ * The macro must be placed outside of any namespace.<br>
+ * When passing template types with comma separated type lists, the commas must be given using
+ * macro \ref ALIB_COMMA.
+ * @}
+ */
+#define ALIB_STRING_CONSTRUCTOR_FIX(TYPE)                                           \
+namespace aworx { namespace lib { namespace strings {                               \
+  template<>   struct      T_String<TYPE>   : public std::true_type                 \
+  {                                                                                 \
+      static inline const char* Buffer( const TYPE&  ) {  return nullptr; }         \
+      static inline integer     Length( const TYPE&  ) {  return 0;       }         \
+  };                                                                                \
+}}}
+
+
+
+namespace aworx { namespace lib { namespace strings
+{
 // #################################################################################################
-// forwards
+// forward declarations
 // #################################################################################################
 class String;
-class NumberFormat;
 
-// We are including this header before we include headers for class Report. Therefore, we have to
-// move debug warnings to the implementation file. (And: We do not need to document this to
-// the user as this is pure internal stuff.)
-#if defined(ALIB_DEBUG) && !defined( IS_DOXYGEN_PARSER )
-    ALIB_API void dbgAStringAlibWarning( const char* msg );
-    ALIB_API void dbgAStringAlibError  ( const char* msg );
+#if !defined(DOX_PARSER)
+    ALIB_WARNINGS_START_TMP;
 #endif
 
+
 /** ********************************************************************************************
- * This is a TMP (template meta programming) 'class' which defaults the question
- * <c>ToStringDefined<T>::value</c> to \c false for every type.<br>
- * When implementing specializations of template function
- * \ref aworx::lib::strings::ToString(const TString) "ToString" for custom types, this class has to
- * be specialized as well.
- * Otherwise, a compile time assertion (<em>static_assert</em>) will fail whenever the type
- * is used to implicitly construct an
- * \ref aworx::lib::strings::String "String" providing that type.
+ * This is a specializable struct which defaults the question whether a given type
+ * can be used to construct an \ref aworx::lib::strings::String "String" to \c false.
  *
- * Definition has to be made as follows:
-\verbatim
-    template<>  struct ToStringDefined<T> : public std::true_type {};
-\endverbatim
- * where T is the type that is to be defined given as a const reference.
- * For example, in the ALib support header file <em>"alib/compatibility/std_string.hpp"</em>,
- * for class <em>std::string</em>, the definition looks as follows:
-\verbatim
-    template<>  struct ToStringDefined<const std::string&> : public std::true_type {};
-\endverbatim
- * \see For more information and a sample refer to
- *      \ref aworx::lib::strings::ToString(const TString) "ToString".
- * **********************************************************************************************/
-template<typename Type>  struct ToStringDefined     : public std::false_type{};
-
-
-/** ********************************************************************************************
- * This template function supports converting 'external' <em>user defined</em>
- * to ALib string
+ * Specializations of this struct inherit from \c std::true_type, to define a type to be a usable
+ * constructor parameter of \b %String.
+ *
+ * Hence, this template struct supports converting 'external' <em>user defined</em> to
  * \ref aworx::lib::strings::String "String". It has a central role for using ALib in a
  * \ref aworx::lib "non intrusive" way, by allowing to pass external string types just as
- * the are when invoking ALib functions and methods.
+ * the are when invoking ALib functions and methods that expect parameters of type
+ * <c>const %String&</c>. Due to the implicit constructor invocation of C++
+ * and the template meta programming in constructor of class \b %String, custom types
+ * (that specialize this struct) may be passed "as is" to such methods.
  *
- * Partially specialized versions of this method are invoked by constructor
- * \ref aworx::lib::strings::String::String(const T&) "String(const T&)"
- * with template parameters \p TString and \p TReturn set to receive a pointer to the
- * character buffer and the length of the external string type.
+ * Methods #Buffer and #Length of partially specialized versions of this struct are invoked
+ * by constructor \ref aworx::lib::strings::String::String(const TStringLike&) "String(const TStringLike&)"
+ * to receive a pointer to the character buffer and the length of the external string type.
  *
- * The type of the (external) string is given in parameter \p TString. To restrict need for
- * specializations of this method to a single variant of the external type, \p TSTring will
- * always be a "constant reference". As an example, if the external type was
- * '<em>class MyString></em>' and a non-constant pointer to an object of that type was used to
- * construct an %String, the template parameter \p TString would be '<em>const MyString &</em>'.
  *
- * The second type that is given in parameter \p TReturn has two possible values when invoked
- * from the constructor r of class %String:
- * - '<em>const char*</em>' for returning the string buffer
- * - '<em>int</em>' for returning the strings length
- *
- * This way, exactly two specializations of this template method <em>ToString</em> have to be
- * provided when using ALib with external types: Both with \p TString being a constant reference
- * to the user defined type, one with \p TReturn being <em>int</em>, the other with \p TReturn
- * being <em>const char*</em>.
- *
- * Finally, for allowing static (compile time) assertions when user code tries to provide arbitrary
- * types to
- * \ref aworx::lib::strings::String::String(const T&) "String(const T&)" that are not supported with
- * specializations of this method, it is necessary to implement
- * \ref aworx::lib::strings::ToStringDefined "ToStringDefined" for the external type as well.
- *
- * The following sample demonstrates this. Please note, that the sample in addition
- * provides an implementation of
- * \ref aworx::lib::strings::ApplyTo "ApplyTo". This is a similar mechanism for 'applying' user defined
- * string types to class
- * \ref aworx::lib::strings::AString "AString". The general term '<em>applying to</em>' for external string
- * types normally is implemented in a way that it means '<em>append to</em>'.
+ * The following sample demonstrates the use of this technique:
  *
  * \snippet "DOX_ALIB_TOAS.cpp"     DOX_ALIB_TOAS
  *  The output will be:
  * \snippet "DOX_ALIB_TOAS.txt"     OUTPUT
  *
- * @returns Has to return a pointer to the buffer of object of type T, respectively its length.
+ * \note
+ *   As shown in the sample, if a specialized version of this struct for a custom type exists, such
+ *   type becomes automatically also an "applicable" type to class #AString, because template meta
+ *   programming of method \b %AString::Apply checks for the existence of the specialization as well
+ *   as the constructor of class #String.
+ *
+ * A compile time assertion will be raised when a String is constructed with a type that has
+ * no specialization of this struct.
+ * **********************************************************************************************/
+template<typename TStringLike>
+struct T_String     : public std::false_type
+{
+    /** ********************************************************************************************
+     * In specialized versions, this method has to return a pointer to the buffer of the given
+     * object of type \p TStringLike.
+     *
+     * This default implementation makes some static assertions to detect usage of an unsupported
+     * type (a type that is not allowed to construct class \b %String with).
+     *
+     * @returns Has to return a pointer to the buffer of object of type T, respectively its length.
+     **********************************************************************************************/
+    static inline constexpr
+    const char* Buffer( const TStringLike& )
+    {
+        // should never happen, because of static assert in string constructor
+        return nullptr;
+    }
+
+    /** ********************************************************************************************
+     * In specialized versions, this method has to return the length of the buffer of the given
+     * object of type \p TStringLike.
+     *
+     * @returns Has to return the length of the string.
+     **********************************************************************************************/
+    static inline
+    integer Length( const TStringLike& )
+    {
+        return (integer) 0;
+    }
+};
+
+/** ************************************************************************************************
+ * Specialization of \ref aworx::lib::strings::T_String for character pointers.
+ **************************************************************************************************/
+template<> struct T_String<char*> : public std::true_type
+{
+    /**
+     * Returns the buffer of the literal.
+     * @param src The pointer to the source string
+     * @return The buffer of the literal
+     */
+    static inline constexpr const char*   Buffer(char* const & src)
+    {
+        return src;
+    }
+
+    /**
+     * Returns the length of the string evaluated with \c std::strlen.
+     * @param src The pointer to the source string
+     * @return The length.
+     */
+    static inline integer      Length(char* const & src)
+    {
+        return static_cast<integer>( strlen(src) );
+    }
+};
+
+/** ************************************************************************************************
+ * Specialization of \ref aworx::lib::strings::T_String for const character pointers.
+ * \note
+ *   This is a second specialization for type <c>char const*</c> existing besides the one
+ *   for <c>char*</c>. Having both in place makes the TMP code of constructor of
+ *   class \c %String easier.
+ **************************************************************************************************/
+template<> struct T_String<char const*> : public std::true_type
+{
+    /**
+     * Returns the buffer of the literal.
+     * @param src The pointer to the source string
+     * @return The buffer of the literal
+     */
+    static inline constexpr const char*   Buffer(const char* const & src)
+    {
+        return src;
+    }
+
+    /**
+     * Returns the length of the string evaluated with \c std::strlen.
+     * @param src The pointer to the source string
+     * @return The length.
+     */
+    static inline integer      Length(const char* const & src)
+    {
+        return static_cast<integer>( strlen(src) );
+    }
+};
+
+
+
+/** ************************************************************************************************
+ * This is quite the same as template struct \ref aworx::lib::strings::T_String.
+ * It is used when the length of the string can be deduced from type \p TLiteral.
+ * The most obvious type are C++ string literal, hence character arrays \c char[TCapacity] of a
+ * given length.
+ *
+ * See also class \ref aworx::lib::strings::StringLiteral "StringLiteral" which comes with a
+ * (templated) specialization of this struct and can be used to declare C++ strings of fixed size
+ * with variable contents.
+ *
+ * The benefit of specializing this struct when possible (in comparison to specializing
+ * \ref aworx::lib::strings::T_String)
+ * is that method #Length is declared \c constexpr with this struct.
+ * This allows shorter template code and a small performance gain with some methods.
+ *
+ * @tparam TLiteral The literal type.
  **********************************************************************************************/
-
-// this template method is for debugging.
-/*
-template<typename TPlain>   inline void TellMeThe_TPlain_Type()
+template<typename TLiteral>
+struct T_StringLiteral  : public std::false_type
 {
-    static_assert(
-        // nullptr?
-            std::is_same    <decltype(nullptr), TPlain >::value
 
-        // char*
-        ||  std::is_same    <char  ,            TPlain >::value
+    /**
+     * Returns the buffer of the literal.
+     * @return The buffer of the literal
+     */
+    static inline constexpr char* Buffer(const TLiteral& )  { return nullptr; }
 
-        // literal? (fixed size char array)
-        ||  (    std::is_array < TPlain >::value
-              && std::is_same<char,  typename std::remove_extent<TPlain>::type >::value )
+    /**
+     * Returns the constant length (length is depending only on type \p TLiteral)
+     * @return The length
+     */
+    static inline constexpr integer Length()      { return  1;      };
 
-        // another String
-        ||  std::is_base_of <String,            TPlain >::value
+};
 
-        // External type with defined ToString method?
-        ||  ToStringDefined     <          const    TPlain&>::value
-
-    , "!!!!!!!!!! Your compiler speaking... !!!!!!!!!!!!" );
-
-}
-*/
-
-template<typename TString, typename TReturn>   inline TReturn ToString( const TString )
+/** ************************************************************************************************
+ * Specialization of \ref aworx::lib::strings::T_StringLiteral for character arrays.
+ *
+ * @tparam TCapacity The length of the character array.
+ **************************************************************************************************/
+template<size_t TCapacity>
+struct T_StringLiteral<char[TCapacity]>  : public std::true_type
 {
-    // prevent invoking us with unknown types
-    static_assert(      std::is_same< int        , TReturn >::value
-                    ||  std::is_same< const char*, TReturn >::value,
-    "ALib: Wrong type for TReturn requested. Allowed is 'int' and 'const char*'" );
+    /**
+     * Returns the buffer of the literal.
+     * @param src The source string
+     * @return The buffer of the literal
+     */
+    static inline const     char*    Buffer( char  const (&src) [TCapacity]   ) { return src; }
 
-    using TPlain= typename std::remove_const    <
-                  typename std::remove_pointer  <
-                  typename std::remove_reference<
-                  typename std::remove_const    < TString >::type>::type>::type>::type;
-
-    //TellMeThe_TPlain_Type<TPlain>();
-
-    static_assert(
-        // nullptr?
-            std::is_same    <decltype(nullptr), TPlain >::value
-
-        // char*
-        ||  std::is_same    <char  ,            TPlain >::value
-
-        // literal? (fixed size char array)
-        ||  (    std::is_array < TPlain >::value
-              && std::is_same<char,  typename std::remove_extent<TPlain>::type >::value )
-
-        // another String
-        ||  std::is_base_of <String,            TPlain >::value
-
-        // External type wiht defined ToString method?
-        ||  ToStringDefined     <          const    TPlain&>::value
-
-    , "ALib: Unknown type to construct String. Implement ToString() to support implicit conversions." );
+    /**
+     * Returns the constant length which is \p TCapacity in \c char[TCapacity] minus one.
+     * @return The length.
+     */
+    static inline constexpr integer Length()        { return TCapacity -1;                  }
+};
 
 
-    // should never happen, because of static assert above
-    assert(false);
-    return (TReturn) 0;
-}
 
+#if !defined(DOX_PARSER)
+    ALIB_WARNINGS_RESTORE;
+#endif
 
 /** ************************************************************************************************
  * This class is the base class of all ALib string classes. It represents a character string
@@ -236,23 +340,23 @@ template<typename TString, typename TReturn>   inline TReturn ToString( const TS
  *
  * <b>Templated Construction</b><br>
  * What makes this class very flexible, is the constructor variant
- * \ref aworx::lib::strings::String::String(const T&) "String(const T&)".
+ * \ref aworx::lib::strings::String::String(const TStringLike&) "String(const TStringLike&)".
  * This template method internally uses so called
  * <em>template meta programming</em> to detect known types and, and
  * to convert them to constant references of those. They are then passed to template methods
- * \ref aworx::lib::strings::ToString "ToString" that simply return a pointer to the external types' buffer
+ * \ref aworx::lib::strings::T_String "T_String" that simply return a pointer to the external types' buffer
  * and length. This way, objects of this class can be implicitly constructed from just anything that
  * 'smells' like a string.<br>
  * For more information on how to make %String support to implicitly construct from user defined types,
  * see namespace template function
- * \ref aworx::lib::strings::ToString "ToString".
+ * \ref aworx::lib::strings::T_String "T_String".
  *
  * This class provides compiler defined copy and move constructors and assignment operators.
  * Once and object is constructed, methods #Buffer and #Length allow read access to the contents.
  *
  * <b>Null-State</b><br> \anchor CPP_STRINGS_AS_NULLSTATE
  * Objects of this class can be \e nulled which means that it is a difference whether they are
- * representing an empty string or a null pointer. As objects are immutable, this is decided
+ * representing an empty string or a \c nullptr. As objects are immutable, this is decided
  * on construction: once a %String is nulled, it will remain nulled.
  * In other words, it makes a difference if an %String is constructed using
  * - <em>%String()</em>, which creates a \e nulled object, method #IsNull will give \c true, or
@@ -285,21 +389,22 @@ class String
     // Debug warnings
     // #############################################################################################
     public:
-        #if !defined( IS_DOXYGEN_PARSER )
+        //! @cond NO_DOX
 
-            ALIB_WARN_ONCE_PER_TYPE_DECL(ALIB_API, SetLengthLonger);
+            ALIB_WARN_ONCE_PER_TYPE_DECL(ALIB_API, SetLengthLonger)
 
-            #if defined(ALIB_DEBUG_STRINGS)
+            #if ALIB_DEBUG_STRINGS
                 void     _dbgCheck()   const;
             #endif
 
-        #endif
+        //! @endcond NO_DOX
+
 
     // #############################################################################################
     // Private fields
     // #############################################################################################
     protected:
-    #if !defined( IS_DOXYGEN_PARSER )
+    #if !defined( DOX_PARSER )
 
          union
          {
@@ -328,7 +433,7 @@ class String
          * The length of the string represented by us.
          * Read access to this field is granted with method #Length.
          */
-        int               length;
+        integer         length;
 
     public:
 
@@ -356,8 +461,8 @@ class String
          ******************************************************************************************/
         inline
         constexpr
-        String( const char* buffer, int contentLength ) : buffer(buffer)
-                                                        , length(contentLength )
+        String( const char* buffer, integer contentLength ) : buffer(buffer)
+                                                             , length(contentLength )
         {}
 
         /** ****************************************************************************************
@@ -367,7 +472,7 @@ class String
          *
          *  \note
          *    When constructing an aworx::String from a region of another aworx::String, this
-         *    constructor is preferable over the overloaded <b>String(const char*, int)</b>
+         *    constructor is preferable over the overloaded <b>String(const char*, size_t)</b>
          *    (although often the same calculation of parameters has to be performed),
          *    because this constructor checks the bounds!
          *
@@ -376,112 +481,144 @@ class String
          *  @param regionLength  The length of the region within the given %String.
          ******************************************************************************************/
         inline
-        String(  const String& src, int regionStart, int regionLength= CString::MaxLen )
+        String(  const String& src, integer regionStart, integer regionLength=  CString::MaxLen )
         {
             src.AdjustRegion( regionStart, regionLength );
-            buffer= src.buffer + regionStart;
-            length=              regionLength;
+            buffer=  src.buffer + regionStart;
+            length=  regionLength;
         }
 
+        #if !defined(DOX_PARSER)
+            ALIB_WARNINGS_START_TMP;
+        #endif
         /** ****************************************************************************************
-         *  Templated constructors for different types. This constructor uses some template meta
-         *  programming to provide maximum flexibility to implicitly embed the data of any string
-         *  type in an object of type %String.
+         * Templated constructor for different types. This constructor uses some template meta
+         * programming to provide maximum flexibility to implicitly embed the data of any string
+         * type in an object of type %String.
          *
-         *  This constructor accepts the following types:
-         *  - <em>nullptr</em> (creates a \e nulled %String).
-         *  - <em>[const] char*</em>
-         *  - Classes derived from %String.
-         *  - User defined (external types). See documentation of
-         *    \ref aworx::lib::strings::ToString "ToString" on how to add support for implicit conversion
-         *    of user defined types with this constructor.
-         *  - std::string (as just one case/sample of user defined external types,
-         *    provided by ALib already).
+         * This constructor accepts the following types:
+         * - <em>nullptr</em> (creates a \e nulled %String).
+         * - <em>[const] char*</em>
+         * - Classes derived from %String.
+         * - User defined (external) types. See documentation of
+         *   \ref aworx::lib::strings::T_String "T_String" on how to add support for implicit
+         *   construction of \b ALib strings from custom string types.
+         * - User defined literal types. See documentation of
+         *   \ref aworx::lib::strings::T_StringLiteral "T_StringLiteral".
          *
-         *  \note
-         *  - Other than the type of parameter \p src (<em>const T&</em>) may indicate,
-         *    objects of the class types named above may be provided as pointer or reference.
-         *  - The source code of this method seems quite large. But the compiler will inline only
-         *    the minimum necessary code depending on the type that is passed.
+         * When a non-supported type is passed, a compile-time error (\c static_assert) is raised.
+         * In some rare cases, dependent on the compiler and platform, some false alarms may be
+         * given for types that are not even passed to the constructor, but the compiler wrongly
+         * "thinks" that such type is passed. For example, with advanced use of \c std::tuple template
+         * class, such errors might occur. To suppress a "false" error, use macro
+         * \ref ALIB_STRING_CONSTRUCTOR_FIX for the type in question.
          *
-         *  \see For more information, see
-         *  \ref aworx::lib::strings "namespace documentation" and template
-         *  function \ref aworx::lib::strings::ToString "ToString".
          *
-         * @param src  The source of template type T to take the buffer and length from.
+         * \note
+         * - Other than the type of parameter \p src (<em>const TStringLike&</em>) may indicate,
+         *   objects of the class types named above may be provided as pointer or reference.
+         *   The TMP will detect \c nullptr and otherwise convert pointers to references.
+         * - The source code of this method seems quite large. But the compiler will inline only
+         *   the minimum necessary code depending on the type that is passed.
+         *
+         * \see For more information, see
+         * \ref aworx::lib::strings "namespace documentation" and template
+         * function \ref aworx::lib::strings::T_String "T_String".
+         *
+         * @tparam TStringLike  Type that allows to construct Strings.
+         * @param src           The source of template type T to take the buffer and length from.
          ******************************************************************************************/
-        template <typename T>
+        template <typename TStringLike>
         inline
-        constexpr
-        String(const  T& src )
+        # if !defined(_MSC_VER)
+            constexpr
+        #endif
+        String(const  TStringLike& src )
         : buffer(
-                   // nullptr ?
-                   std::is_same<T, decltype(nullptr)>::value
-                   ? nullptr
+            // nullptr ?
+            std::is_same<decltype(nullptr), TStringLike>::value
+              ? nullptr
+            : std::is_pointer<TStringLike>::value && (*(char**)&src) == nullptr
+              ? nullptr
 
-                   // string literal?
-                   : (    std::is_array<T>::value
-                       && std::is_same<typename std::remove_extent<typename std::remove_const<typename std::remove_pointer<T>::type>::type>::type, char>::value )
-                   ? (char*) &src
+            // String literal?
+            :   T_StringLiteral<typename std::remove_cv<TStringLike                                    >::type>::value
+              ? T_StringLiteral<typename std::remove_cv<TStringLike                                    >::type>::Buffer( (typename std::add_const<TStringLike>::type &) src )
 
+            // String literal pointer?
+            :   T_StringLiteral<typename std::remove_cv<typename std::remove_pointer<TStringLike>::type>::type>::value
+              ? T_StringLiteral<typename std::remove_cv<typename std::remove_pointer<TStringLike>::type>::type>::Buffer( *(typename std::remove_cv<typename std::remove_pointer<TStringLike>::type>::type *&)  src )
 
-                   // Reference type?
-                   :!std::is_pointer<T>::value
-                   ? ( std::is_base_of<String, T  >::value
-                       ?  ((String*) &src)->buffer
-                       :  ToString<typename std::add_const<T>::type &, const char*>( (typename std::add_const<T>::type &) src )
-                     )
+            // Custom string?
+            :   T_String       <typename std::remove_cv<TStringLike                                    >::type>::value
+              ? T_String       <typename std::remove_cv<TStringLike                                    >::type>::Buffer( (typename std::add_const<TStringLike>::type &) src )
 
-                   // nullptr ?
-                   : (*(char**)&src) == nullptr
-                   ? nullptr
+            // Custom string pointer?
+            :   T_String       <typename std::remove_cv<typename std::remove_pointer<TStringLike>::type>::type>::value
+              ? T_String       <typename std::remove_cv<typename std::remove_pointer<TStringLike>::type>::type>::Buffer( *(typename std::remove_cv<typename std::remove_pointer<TStringLike>::type>::type *&)  src )
 
-                   // character pointer?
-                   : (std::is_same<T, char*>::value || std::is_same<T, const char*>::value)
-                   ?  *((char**) &src)
+            // Derived string type?
+            :  std::is_base_of<String, TStringLike  >::value
+              ?  ((String*) &src)->buffer
 
-                   // Pointer type
-                   : std::is_convertible<T, const String*  >::value
-                       ?  (*(String**) &src)->buffer
-                       :  ToString<typename std::add_const<typename std::remove_pointer<T>::type>::type &, const char*>(
-                                     *(typename std::add_const<typename std::remove_pointer<T>::type>::type *&)  src )
-                )
+            // Pointer to derived string type?
+            :  std::is_base_of<String, typename std::remove_pointer<TStringLike>::type  >::value
+              ?  (*(String**) &src)->buffer
+
+            : (const char*) -1   // this should never happen due to the static assert below
+        )
 
         , length(
-                   // nullptr ?
-                   std::is_same<T, decltype(nullptr)>::value
-                   ? 0
+            // nullptr ?
+            std::is_same<decltype(nullptr), TStringLike>::value
+              ? 0
+            : std::is_pointer<TStringLike>::value && (*(char**)&src) == nullptr
+              ? 0
 
-                   // string literal?
-                   : (    std::is_array<T>::value
-                       && std::is_same<typename std::remove_extent<typename std::remove_const<typename std::remove_pointer<T>::type>::type>::type, char>::value )
-                   ? std::extent<typename std::remove_const<typename std::remove_pointer<T>::type>::type>::value- 1
+            // String literal?
+            :   T_StringLiteral<typename std::remove_cv<TStringLike                                    >::type>::value
+              ? T_StringLiteral<typename std::remove_cv<TStringLike                                    >::type>::Length()
 
-                   // Reference type?
-                   :!std::is_pointer<T>::value
-                   ? ( std::is_base_of<String, T  >::value
-                       ?  ((String*) &src)->length
-                       :  ToString<typename std::add_const<T>::type &, int>( (typename std::add_const<T>::type &) src )
-                     )
+            // String literal pointer?
+            :   T_StringLiteral<typename std::remove_cv<typename std::remove_pointer<TStringLike>::type>::type>::value
+              ? T_StringLiteral<typename std::remove_cv<typename std::remove_pointer<TStringLike>::type>::type>::Length()
 
-                   // nullptr ?
-                   : (*(char**)&src) == nullptr
-                   ? 0
+            // Custom string?
+            :   T_String       <typename std::remove_cv<TStringLike                                    >::type>::value
+              ? T_String       <typename std::remove_cv<TStringLike                                    >::type>::Length( (typename std::add_const<TStringLike>::type &) src )
 
-                   // character pointer?
-                   : (std::is_same<T, char*>::value || std::is_same<T, const char*>::value)
-                   ?  (int) strlen(*((char**) &src))
+            // Custom string pointer?
+            :   T_String       <typename std::remove_cv<typename std::remove_pointer<TStringLike>::type>::type>::value
+              ? T_String       <typename std::remove_cv<typename std::remove_pointer<TStringLike>::type>::type>::Length( *(typename std::remove_cv<typename std::remove_pointer<TStringLike>::type>::type *&)  src )
 
-                   // Pointer type
-                   : std::is_convertible<T, const String*  >::value
-                       ?  (*(String**) &src)->length
-                       :  ToString<typename std::add_const<typename std::remove_pointer<T>::type>::type &, int>(
-                             *(typename std::add_const<typename std::remove_pointer<T>::type>::type *&)  src )
-                )
+            // Derived string type?
+            :  std::is_base_of<String, TStringLike  >::value
+              ?  ((String*) &src)->length
+
+            // Pointer to derived string type?
+            :  std::is_base_of<String, typename std::remove_pointer<TStringLike>::type  >::value
+              ?  (*(String**) &src)->length
+
+            : -1  // this should never happen due to the static assert below
+        )
         {
-            static_assert( std::is_same<T, char>::value == false,
-                           "ALib String (aka aworx::String) can't be constructed with type 'char'." );
+            static_assert
+            (
+                std::is_same   <decltype(nullptr),                                   TStringLike              >::value
+             || T_StringLiteral<typename std::remove_cv<                             TStringLike       >::type>::value
+             || T_StringLiteral<typename std::remove_cv<typename std::remove_pointer<TStringLike>::type>::type>::value
+             || T_String       <typename std::remove_cv<                             TStringLike       >::type>::value
+             || T_String       <typename std::remove_cv<typename std::remove_pointer<TStringLike>::type>::type>::value
+             || std::is_base_of<String,                                              TStringLike              >::value
+             || std::is_base_of<String,                 typename std::remove_pointer<TStringLike>::type       >::value
+
+               , "ALib String (aka aworx::String) can't be constructed from this type."
+            );
         }
+
+        #if !defined(DOX_PARSER)
+            ALIB_WARNINGS_RESTORE
+        #endif
 
     /** ############################################################################################
      * @name Buffer Access, Length and State
@@ -494,7 +631,7 @@ class String
          * @return The internal buffer array.
          ******************************************************************************************/
         inline
-        const char*  Buffer()          const       { return buffer;    }
+        const char*  Buffer()           const       { return buffer;    }
 
         /** ****************************************************************************************
          *  Returns the length of the string we are representing.
@@ -502,7 +639,7 @@ class String
          * @return The length of the string represented by this.
          ******************************************************************************************/
         inline
-        int          Length()           const       { return length;    }
+        integer     Length()            const       { return length;    }
 
         /** ****************************************************************************************
          * Returns \c true if field #buffer equals nullptr, \c false otherwise.
@@ -551,15 +688,12 @@ class String
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        char        CharAt( int idx )          const
+        char        CharAt( integer idx )          const
         {
             if (TCheck)
                 return  ( idx >= 0 && idx < length ) ? *(buffer + idx )
                                                      : '\0' ;
-            #if defined(ALIB_DEBUG)
-                if( idx < 0 && idx >= length )
-                    dbgAStringAlibError( "Non checking version: Index out of range" );
-            #endif
+            ALIB_ASSERT_ERROR( idx >= 0 && idx < length, "Non checking version: Index out of range" );
 
             return  *(buffer + idx );
         }
@@ -580,10 +714,7 @@ class String
             if (TCheck)
                 return length > 0  ?  *(buffer)
                                    :  '\0';
-            #if defined(ALIB_DEBUG)
-                if( length <= 0 )
-                    dbgAStringAlibError( "Non checking invocation on Empy String" );
-            #endif
+            ALIB_ASSERT_ERROR(  length > 0, "Non checking invocation on empty string" );
 
             return  *(buffer);
         }
@@ -607,10 +738,7 @@ class String
                 return length > 0   ?  *(buffer + length - 1)
                                     : '\0';
 
-            #if defined(ALIB_DEBUG)
-                if( length <= 0 )
-                    dbgAStringAlibError( "Non checking invocation on Empy String" );
-            #endif
+            ALIB_ASSERT_ERROR( length > 0, "Non checking invocation on empty string" );
 
             return  *(buffer + length - 1);
         }
@@ -622,24 +750,21 @@ class String
          *   Unlike other operator methods in the family of of ALib string classes, which are
          *   performing parameter checks (in this case a range check), this operator does
          *   <em>not</em> do a check!<br>
-         *   The rationale is that in derived class %AString, which overwrites this operator
+         *   The rationale is that in derived class %AString, which overrides this operator
          *   returning, a reference to the character to provide write access, no reference
          *   to a character can be given if the index is out of range. This way, this method is
          *   equivalent to method #CharAt<\c false>.<br>
          *   For safe access to characters in the buffer use #CharAt (with template parameter
          *   \p TCheck being \c true).
          *
-         * @param   op    The index of the character within this objects' buffer.
+         * @param   idx    The index of the character within this objects' buffer.
          * @returns If the character contained at index \p op.
          ******************************************************************************************/
          inline
-         char    operator[] (int  op) const
+         char    operator[] (integer idx) const
          {
-            #if defined(ALIB_DEBUG)
-                if( op < 0  || op >= length )
-                    dbgAStringAlibError( "Index out of bounds" );
-            #endif
-            return buffer[op];
+            ALIB_ASSERT_ERROR( idx >= 0  && idx < length, "Index out of bounds" );
+            return buffer[idx];
          }
 
     /** ############################################################################################
@@ -656,7 +781,7 @@ class String
          * @return    \c true, if contents of this and the given %String are equal.
          ******************************************************************************************/
         inline
-        bool Equals( const String& needle, enums::Case sensitivity =enums::Case::Sensitive )
+        bool Equals( const String& needle, lang::Case sensitivity =lang::Case::Sensitive )
         const
         {
             ALIB_STRING_DBG_CHK(this)
@@ -667,9 +792,9 @@ class String
             if ( length == 0 )
                 return true;
 
-            return  0 == (sensitivity == enums::Case::Sensitive
-                            ?   strncmp             ( buffer, needle.buffer, length )
-                            :   CString::strncasecmp( buffer, needle.buffer, length ) );
+            return  0 == (sensitivity == lang::Case::Sensitive
+                            ?   strncmp             ( buffer, needle.buffer, static_cast<size_t>(length) )
+                            :   CString::strncasecmp( buffer, needle.buffer,                     length  ) );
         }
 
         /** ****************************************************************************************
@@ -690,31 +815,28 @@ class String
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        bool ContainsAt( const String& needle, int pos, enums::Case sensitivity =enums::Case::Sensitive )
+        bool ContainsAt( const String& needle, integer pos, lang::Case sensitivity =lang::Case::Sensitive )
         const
         {
-            int cmpLength= needle.length;
+            integer needleLength= needle.length;
             ALIB_STRING_DBG_CHK(this)
             if ( TCheck )
             {
-                if ( pos < 0 || pos + cmpLength > length || needle.IsNull () )
+                if ( pos < 0 || pos + needleLength > length || needle.IsNull () )
                     return false;
-                if ( cmpLength == 0 )
+                if ( needleLength == 0 )
                     return true;
             }
             else
             {
-                #if defined(ALIB_DEBUG)
-                    if( pos < 0 || pos + cmpLength > length || needle.IsNull () )
-                        dbgAStringAlibError( "Non checking and index out of range" );
-                    if( cmpLength == 0 )
-                        dbgAStringAlibError( "Non checking and emtpy compare string" );
-                #endif
+                ALIB_ASSERT_ERROR( pos >= 0 && pos + needleLength <= length && !needle.IsNull(),
+                                 "Non checking and index out of range" );
+                ALIB_ASSERT_ERROR( needleLength != 0, "Non checking and emtpy compare string" );
             }
 
-            return 0 == ( sensitivity == enums::Case::Sensitive
-                            ?   strncmp             ( buffer + pos,  needle.buffer, cmpLength )
-                            :   CString::strncasecmp( buffer + pos,  needle.buffer, cmpLength ) );
+            return 0 == ( sensitivity == lang::Case::Sensitive
+                            ?   strncmp             ( buffer + pos,  needle.buffer, static_cast<size_t>(needleLength) )
+                            :   CString::strncasecmp( buffer + pos,  needle.buffer,                     needleLength  ) );
         }
 
         /** ****************************************************************************************
@@ -727,17 +849,17 @@ class String
          * @return \c true if \p needle is found at the start of this, \c false otherwise. *
          ******************************************************************************************/
         inline
-        bool StartsWith( const String& needle, enums::Case sensitivity =enums::Case::Sensitive )
+        bool StartsWith( const String& needle, lang::Case sensitivity =lang::Case::Sensitive )
         const
         {
-            int cmpLength= needle.length;
-            if ( cmpLength > length )
+            integer needleLength= needle.length;
+            if ( needleLength > length )
                 return false;
-            if ( cmpLength == 0 )
+            if ( needleLength == 0 )
                 return true;
-            return 0 == ( sensitivity == enums::Case::Sensitive
-                            ?   strncmp             ( buffer,  needle.buffer, cmpLength )
-                            :   CString::strncasecmp( buffer,  needle.buffer, cmpLength ) );
+            return 0 == ( sensitivity == lang::Case::Sensitive
+                            ?   strncmp             ( buffer,  needle.buffer, static_cast<size_t>(needleLength) )
+                            :   CString::strncasecmp( buffer,  needle.buffer, needleLength ) );
         }
 
         /** ****************************************************************************************
@@ -750,18 +872,17 @@ class String
          * @return \c true if \p needle is found at the end of this, \c false otherwise. *
          ******************************************************************************************/
         inline
-        bool EndsWith( const String& needle, enums::Case sensitivity =enums::Case::Sensitive )
+        bool EndsWith( const String& needle, lang::Case sensitivity =lang::Case::Sensitive )
         const
         {
-            int cmpLength= needle.length;
-            int pos= length - cmpLength;
-            if ( pos < 0 || pos + cmpLength > length )
+            integer needleLength= needle.length;
+            if ( needleLength > length )
                 return false;
-            if ( cmpLength == 0 )
+            if ( needleLength <= 0 )
                 return true;
-            return 0 == ( sensitivity == enums::Case::Sensitive
-                    ?   strncmp             ( buffer + pos,  needle.buffer, cmpLength )
-                    :   CString::strncasecmp( buffer + pos,  needle.buffer, cmpLength ) );
+            return 0 == ( sensitivity == lang::Case::Sensitive
+                          ?   strncmp             ( buffer + length - needleLength,  needle.buffer, static_cast<size_t>(needleLength) )
+                          :   CString::strncasecmp( buffer + length - needleLength,  needle.buffer,                     needleLength  ) );
         }
 
         /** ****************************************************************************************
@@ -782,25 +903,26 @@ class String
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int CompareTo(  const String&  needle, enums::Case sensitivity =enums::Case::Sensitive )
+        int CompareTo(  const String&  needle, lang::Case sensitivity =lang::Case::Sensitive )
         const
         {
-            // check null arguments
+            // check \c nullptr arguments
             if (TCheck &&        IsNull() )  return  needle.IsNull() ? 0 : -1;
             if (TCheck && needle.IsNull() )  return  +1;
 
             // zero length ?
-            int cmpLength= needle.length;
-            if ( TCheck && length == 0 )  return  cmpLength == 0 ? 0 : -1;
-            if (        cmpLength == 0 )  return +1;
+            integer needleLength= needle.length;
+            if ( TCheck && length == 0 )  return  needleLength == 0 ? 0 : -1;
+            if (     needleLength == 0 )  return +1;
 
-            bool iAmShorter= length < cmpLength;
-            int  shortLen=   iAmShorter ? length : cmpLength;
+            bool   iAmShorter= length < needleLength;
+            integer shortLen=   iAmShorter ? length : needleLength;
 
-            int cmpVal= sensitivity == enums::Case::Sensitive ? strncmp             ( buffer, needle.buffer, shortLen )
-                                                              : CString::strncasecmp( buffer, needle.buffer, shortLen );
+            int cmpVal= (sensitivity == lang::Case::Sensitive)
+                ? strncmp             ( buffer, needle.buffer, static_cast<size_t>(shortLen) )
+                : CString::strncasecmp( buffer, needle.buffer,                     shortLen  );
 
-            if ( cmpVal != 0 || length == cmpLength )
+            if ( cmpVal != 0 || length == needleLength )
                 return cmpVal;
             return iAmShorter ? -1 : 1;
         }
@@ -809,19 +931,19 @@ class String
         /** ****************************************************************************************
          * Compares this with a region of another %String.
          *
-         * @tparam TCheck         Defaults to \c true which is the normal invocation mode.
-         *                        If \c \<false\> is added to the method name, no check for a \e nulled
-         *                        comparison object is performed and this string must not be empty.
-         *                        Furthermore, no check is performed whether the given region fits
-         *                        to parameter \p needle. This also means that the default value must
-         *                        not be used with <em>TCheck==\<\c false\></em>.
-         * @param needle          The string to compare this string with.
-         * @param sensitivity     Determines if comparison is case sensitive (the default) or not.
-         * @param cmpRegionStart  The start of the region in \p needle to compare this object
-         *                        with.
-         * @param cmpRegionLength The length of the region in \p needle to compare this object
-         *                        with.
-         *                        Defaults to CString::MaxLen;
+         * @tparam TCheck            Defaults to \c true which is the normal invocation mode.
+         *                           If \c \<false\> is added to the method name, no check for a \e nulled
+         *                           comparison object is performed and this string must not be empty.
+         *                           Furthermore, no check is performed whether the given region fits
+         *                           to parameter \p needle. This also means that the default value must
+         *                           not be used with <em>TCheck==\<\c false\></em>.
+         * @param needle             The string to compare this string with.
+         * @param sensitivity        Determines if comparison is case sensitive (the default) or not.
+         * @param needleRegionStart  The start of the region in \p needle to compare this object
+         *                           with.
+         * @param needleRegionLength The length of the region in \p needle to compare this object
+         *                           with.
+         *                           Defaults to CString::MaxLen;
          *
          * @return
          *  -  0 if this and \p needle are \e nulled or if both have a length of 0 or if both
@@ -831,24 +953,24 @@ class String
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int CompareTo(  const String&   needle,
-                        enums::Case sensitivity,
-                        int         cmpRegionStart,
-                        int         cmpRegionLength  =CString::MaxLen
+        int CompareTo(  const String&  needle,
+                        lang::Case    sensitivity,
+                        integer       needleRegionStart,
+                        integer       needleRegionLength  =CString::MaxLen
                      )
         const
         {
             if ( TCheck )
             {
                 String cmpSub( needle.buffer, 0);
-                needle.AdjustRegion( cmpRegionStart, cmpRegionLength );
-                cmpSub.buffer+=   cmpRegionStart;
-                cmpSub.length=    cmpRegionLength;
+                needle.AdjustRegion( needleRegionStart, needleRegionLength );
+                cmpSub.buffer+=   needleRegionStart;
+                cmpSub.length=    needleRegionLength;
 
                 return CompareTo( cmpSub, sensitivity );
             }
             else
-                return CompareTo<false>( String( needle.buffer + cmpRegionStart, cmpRegionLength ), sensitivity );
+                return CompareTo<false>( String( needle.buffer + needleRegionStart, needleRegionLength ), sensitivity );
         }
 
         /** ****************************************************************************************
@@ -881,11 +1003,11 @@ class String
         template <bool TCheck= true>
         inline
         int CompareTo(  const String&   needle,
-                        enums::Case sensitivity,
-                        int         cmpRegionStart,
-                        int         cmpRegionLength,
-                        int         regionStart,
-                        int         regionLength    =CString::MaxLen
+                        lang::Case      sensitivity,
+                        integer         cmpRegionStart,
+                        integer         cmpRegionLength,
+                        integer         regionStart,
+                        integer         regionLength    =CString::MaxLen
                      )
         const
         {
@@ -910,7 +1032,7 @@ class String
          * Uses method #CompareTo with parameter \p op to perform a lexical comparison.
          *
          * @param op The string to compare this string with.
-         * @returns \c true if this is lexically smaler then \p op, \c false otherwise.
+         * @returns \c true if this is lexically smaller then \p op, \c false otherwise.
          */
         bool     operator<  (const String& op) const { return CompareTo( op ) <  0 ;  }
 
@@ -950,12 +1072,12 @@ class String
          *           Otherwise the index of first occurrence.
          ******************************************************************************************/
         inline
-        int            IndexOf( char needle ) const
+        integer      IndexOf( char needle ) const
         {
             ALIB_STRING_DBG_CHK(this)
-            const char* result=      (const char*) memchr( buffer, needle, length );
+            const char* result=   static_cast<const char*>( memchr( buffer, needle, static_cast<size_t>(length) ) );
 
-            return result != nullptr ? (int) ( result -  buffer )
+            return result != nullptr ? result  -  buffer
                                      : -1;
         }
 
@@ -973,7 +1095,7 @@ class String
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int            IndexOf( char needle, int regionStart ) const
+        integer  IndexOf( char needle, integer regionStart ) const
         {
             ALIB_STRING_DBG_CHK(this)
 
@@ -985,15 +1107,13 @@ class String
             }
             else
             {
-                #if defined(ALIB_DEBUG)
-                    if( regionStart < 0 || regionStart >= length )
-                        dbgAStringAlibError( "Non checking and index out of range" );
-                #endif
+                ALIB_ASSERT_ERROR( regionStart >= 0 && regionStart < length,
+                                 "Non checking and index out of range" );
             }
 
-            const char* result=  (const char*) memchr( buffer + regionStart, needle, length - regionStart );
+            const char* result=  static_cast<const char*>( memchr( buffer + regionStart, needle, static_cast<size_t>(length - regionStart) ) );
 
-            return result != nullptr ? (int) (result -  buffer)
+            return result != nullptr ? result  -  buffer
                                      : -1;
         }
 
@@ -1012,7 +1132,7 @@ class String
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int            IndexOf( char needle, int regionStart, int regionLength ) const
+        integer         IndexOf( char needle, integer regionStart, integer regionLength ) const
         {
             ALIB_STRING_DBG_CHK(this)
 
@@ -1024,19 +1144,17 @@ class String
             }
             else
             {
-                #if defined(ALIB_DEBUG)
-                    int rs= regionStart;
-                    int rl= regionLength;
-                    if (    AdjustRegion( rs, rl )
-                         || rs != regionStart
-                         || rl != regionLength )
-                        dbgAStringAlibError( "Non checking and region out of range or empty" );
+                #if ALIB_DEBUG
+                    integer rs= regionStart;
+                    integer rl= regionLength;
+                    ALIB_ASSERT_ERROR( !AdjustRegion( rs, rl ) && rs == regionStart && rl == regionLength,
+                                     "Non checking and region out of range or empty" );
                 #endif
             }
 
-            const char* result=      (const char*) memchr( buffer + regionStart, needle, regionLength );
+            const char* result=  static_cast<const char*>( memchr( buffer + regionStart, needle, static_cast<size_t>(regionLength) ) );
 
-            return result != nullptr ? (int) ( result -  buffer )
+            return result != nullptr ? result  -  buffer
                                      : -1;
         }
 
@@ -1056,7 +1174,7 @@ class String
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int            LastIndexOf( char needle, int startIndex= CString::MaxLen ) const
+        integer    LastIndexOf( char needle, integer startIndex= CString::MaxLen ) const
         {
             ALIB_STRING_DBG_CHK(this)
 
@@ -1068,10 +1186,8 @@ class String
             }
             else
             {
-                #if defined(ALIB_DEBUG)
-                    if( startIndex < 0 || startIndex >= length )
-                        dbgAStringAlibError( "Non checking and index out of range" );
-                #endif
+                ALIB_ASSERT_ERROR( startIndex >= 0 && startIndex < length,
+                                 "Non checking and index out of range"  );
             }
 
             while( startIndex >= 0 && buffer[ startIndex ] != needle )
@@ -1084,7 +1200,7 @@ class String
          * Returns the index of the first character which is included, respectively <em>not</em>
          * included in a given set of characters.
          *
-         * \note In derived class \b %TString (aka TString), a  faster version (using
+         * \note In derived class \b %TString, a  faster version (using
          *       \e std::strpbrk() respectively \e std::strspn()) is available. So, if performance
          *       is important, it might be advisable to copy this \b %String (and the needles) to a
          *       terminatable buffer.
@@ -1109,7 +1225,7 @@ class String
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int            IndexOfAny( const String& needles, enums::Inclusion inclusion, int startIdx= 0 )
+        integer    IndexOfAny( const String& needles, lang::Inclusion inclusion, integer startIdx= 0 )
         const
         {
             if (TCheck)
@@ -1119,26 +1235,21 @@ class String
             }
             else
             {
-                #if defined(ALIB_DEBUG)
-                    if (    startIdx < 0
-                         || startIdx >= length
-                         || needles.Length() == 0    )
-                        dbgAStringAlibError( "Non checking and illegal parameters" );
-                #endif
+                ALIB_ASSERT_ERROR( startIdx >= 0 && startIdx < length && needles.Length() != 0,
+                                 "Non checking and illegal parameters" );
             }
 
 
-            int idx= CString::IndexOfAny(  buffer + startIdx,  length - startIdx,
-                                           needles.Buffer(),
-                                           needles.Length(),
-                                           inclusion
-                                        );
+            integer idx= CString::IndexOfAny( buffer + startIdx,  length - startIdx,
+                                               needles.Buffer(),
+                                               needles.Length(),
+                                               inclusion                                       );
 
             return idx == -1 ? -1 : startIdx + idx;
         }
 
         /** ****************************************************************************************
-         * Returns the index of the first character which is included, respectively <em>not</em>
+         * Returns the index of the last character which is included, respectively <em>not</em>
          * included in a given set of characters.
          *
          * This method searches backwards starting at the given index. For forwards search, see
@@ -1158,7 +1269,7 @@ class String
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int    LastIndexOfAny( const String& needles, enums::Inclusion inclusion, int startIdx= CString::MaxLen )
+        integer LastIndexOfAny( const String& needles, lang::Inclusion inclusion, integer startIdx= CString::MaxLen )
         const
         {
             if (TCheck)
@@ -1168,17 +1279,13 @@ class String
             }
             else
             {
-                #if defined(ALIB_DEBUG)
-                    if (    startIdx < 0
-                         || startIdx >= length
-                         || needles.Length() == 0    )
-                        dbgAStringAlibError( "Non checking and illegal parameters" );
-                #endif
+                ALIB_ASSERT_ERROR( startIdx >= 0 && startIdx < length && needles.Length() != 0,
+                                 "Non checking and illegal parameters" );
             }
 
-            return  CString::LastIndexOfAny(         Buffer(), startIdx,
-                                                 needles.Buffer(), needles.Length(),
-                                                 inclusion                               );
+            return  CString::LastIndexOfAny(  Buffer(), startIdx,
+                                              needles.Buffer(), needles.Length(),
+                                              inclusion                               );
         }
 
         /** ****************************************************************************************
@@ -1194,7 +1301,7 @@ class String
          *                     If \c \<false\> is added to the method name, parameter \p startIdx
          *                     must be valid and \p needle must not be empty.
          * @param needle       The string to search for.
-         * @param startIdx     The index to start the search at. Optional and defaults to 0.
+         * @param startIdx     The index to start the search at. Optional and defaults to \c 0.
          * @param sensitivity  Case sensitivity of the comparison.
          *                     Optional and defaults to \b Case::Sensitive.
          *
@@ -1202,12 +1309,12 @@ class String
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int            IndexOfSubstring( const String&  needle,
-                                         int            startIdx= 0,
-                                         enums::Case    sensitivity=  enums::Case::Sensitive )
+        integer  IndexOfSubstring( const String&  needle,
+                                    integer       startIdx= 0,
+                                    lang::Case    sensitivity=  lang::Case::Sensitive )
         const
         {
-            int         nLen=   needle.Length();
+            integer nLen=   needle.Length();
             if (TCheck)
             {
                 if ( startIdx < 0 )                startIdx= 0;
@@ -1216,12 +1323,8 @@ class String
             }
             else
             {
-                #if defined(ALIB_DEBUG)
-                    if (    startIdx < 0
-                         || startIdx + nLen > length
-                         || nLen == 0    )
-                        dbgAStringAlibError( "Non checking and illegal parameters" );
-                #endif
+                ALIB_ASSERT_ERROR( startIdx >= 0 && startIdx + nLen <= length && nLen != 0,
+                                 "Non checking and illegal parameters" );
             }
 
             const char*  buf=    buffer + startIdx;
@@ -1233,26 +1336,79 @@ class String
             {
                 const char* b=  buf;
                 const char* n= nBuf;
-                if ( sensitivity == enums::Case::Sensitive )
+                if ( sensitivity == lang::Case::Sensitive )
                 {
                     while ( *b++ == *n++ )
                         if( n == nBufEnd )
-                            return (int) ( buf - buffer );
+                            return buf  - buffer;
                 }
                 else
                 {
                     while ( tolower(*b++) == tolower(*n++) )
                         if( n == nBufEnd )
-                            return (int) ( buf - buffer );
+                            return buf  - buffer;
                 }
                 buf++;
             }
             return -1;
         }
 
+        /** ****************************************************************************************
+         * Searches the first difference with given string.
+         *
+         * @tparam TCheck      Defaults to \c true which is the normal invocation mode.
+         *                     If \c \<false\> is added to the method name, no range check is
+         *                     performed.
+         * @param needle       The character to search for.
+         * @param sensitivity  Case sensitivity of the comparison.
+         *                     Optional and defaults to \b Case::Sensitive.
+         * @param idx          The index in this to start comparing with \p needle.
+         *                     Optional and defaults to \c 0.
+         *
+         * @return  The index of the first difference in \p needle.
+         ******************************************************************************************/
+        template <bool TCheck= true>
+        inline
+        integer  IndexOfFirstDifference( const String&     needle,
+                                          lang::Case        sensitivity   = lang::Case::Sensitive,
+                                          integer          idx         = 0                     ) const
+        {
+            ALIB_STRING_DBG_CHK(this)
+
+            if ( TCheck )
+            {
+                // adjust range, if empty return -1
+                     if ( idx <  0      )  idx= 0;
+                else if ( idx >= length )  return idx;
+            }
+            else
+            {
+                ALIB_ASSERT_ERROR( idx >= 0 && idx < length,
+                                   "Non checking and index out of range" );
+            }
+
+            return   CString::IndexOfFirstDifference(        buffer + idx,           length - idx,
+                                                      needle.buffer,          needle.length,
+                                                      sensitivity                                 );
+        }
+
+
     /** ############################################################################################
      * @name Conversion
      ##@{ ########################################################################################*/
+
+        /** ****************************************************************************************
+         * Copies the strings contents into a given character buffer.
+         *
+         * @param dest   The destination buffer.
+         * @return    The length of this string.
+         ******************************************************************************************/
+        inline
+        integer CopyTo( char* dest ) const
+        {
+            memcpy( dest, buffer, static_cast<size_t>(length) );
+            return length;
+        }
 
         /** ****************************************************************************************
          * Converts a region of this string into a wide character string.
@@ -1278,16 +1434,15 @@ class String
          * @param destCapacity  The size of the destination buffer. Has to be equal or greater than
          *                      the provided region length plus one for termination.
          * @param regionStart   The start of the region in this to convert.
-         *                      Optional and defaults to 0.
+         *                      Optional and defaults to \c 0.
          * @param regionLength  The maximum length of the region in this to convert.
          *                      Optional and defaults to CString::MaxLen
          *
          * @return    On success, the length of converted destination string. -1 for conversion
          *            failure, -2 if destination buffer was too small.
          ******************************************************************************************/
-        ALIB_API int  ToWString( wchar_t*    dest,             int  destCapacity,
-                                 int         regionStart =0,   int  regionLength   =CString::MaxLen ) const;
-
+        ALIB_API integer  ToWString( wchar_t*  dest,             integer  destCapacity,
+                                      integer  regionStart =0,   integer  regionLength   =CString::MaxLen ) const;
     /** ############################################################################################
      * @name Helper methods
      ##@{ ########################################################################################*/
@@ -1303,7 +1458,7 @@ class String
          * @return   Returns \c true, if the adjusted region is empty.
          **************************************************************************************/
         inline
-        bool AdjustRegion( int& regionStart, int& regionLength ) const
+        bool AdjustRegion( integer& regionStart, integer& regionLength ) const
         {
             return CString::AdjustRegion( length, regionStart, regionLength );
         }
@@ -1314,7 +1469,8 @@ class String
 
 
 /** Type alias name in namespace #aworx. */
-using     String    =       aworx::lib::strings::String;
+using     String    =   aworx::lib::strings::String;
+
 
 // #################################################################################################
 // aworx namespace string singletons
@@ -1340,4 +1496,4 @@ constexpr lib::strings::String   EmptyString {"", 0};
 #if defined(_MSC_VER)
     #pragma warning( pop )
 #endif
-#endif // HPP_ALIB_STRINGS_AS
+#endif // HPP_ALIB_STRINGS_STRING

@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox.core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 using System;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using cs.aworx.lib;
 using cs.aworx.lib.time;
 using cs.aworx.lib.strings;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 using System.IO;
 using System.Threading;
 using cs.aworx.lib.containers;
@@ -73,7 +73,7 @@ public class ScopeDump
 
         /** ****************************************************************************************
          * Writes hash tables stored in a ScopeStore. Keys are AStrings.
-         * Value types currently supported are LogData and int (in C# different method).
+         * Value types currently supported are Object and int (in C# different method).
          * @param store The store to use.
          * @return The total number of hash table entries written.
          ******************************************************************************************/
@@ -93,7 +93,7 @@ public class ScopeDump
             {
                 if ( thread.Value.Count == 0 )
                     continue;
-                ALIB.ASSERT( thread.Value.Count == 1 );
+                ALIB_DBG.ASSERT( thread.Value.Count == 1 );
                 if( firstEntry ) firstEntry= false; else   target.NewLine();
                 target._NC("  Scope.ThreadOuter ");  storeThreadToScope( thread.Key )._( ':' ).NewLine();
                 cnt+= thread.Value[0].Count;
@@ -113,7 +113,7 @@ public class ScopeDump
             {
                 if ( thread.Value.Count == 0 )
                     continue;
-                ALIB.ASSERT( thread.Value.Count == 1 );
+                ALIB_DBG.ASSERT( thread.Value.Count == 1 );
                 if( firstEntry ) firstEntry= false; else   target.NewLine();
                 target._NC("  Scope.ThreadInner ");  storeThreadToScope( thread.Key )._( ':' ).NewLine();
                 cnt+= thread.Value[0].Count;
@@ -327,8 +327,8 @@ public class ScopeDump
 
                 target.Field()._( tempAS).Field( maxKeyLength, Alignment.Left )._( '=' );
 
-                if ( map is Dictionary<AString, LogData> )
-                    ((LogData) (Object) it.Value).ToString(  target );
+                if ( map is Dictionary<AString, Object> )
+                    target._((Object) it.Value);
                 else
                     target._( ((int[]) (Object) it.Value)[0] );
 

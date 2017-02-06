@@ -1,8 +1,8 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 //
 // Notes:
 // This tool replaces simple, pure 'integer' template instantiation nodes in doxygen
@@ -15,13 +15,12 @@
 // This is a quick and dirty written piece of code.
 // Maybe doxygen will support an option to remove instantiated classes some day.
 // #################################################################################################
-/**@file*///<- needed for Doxygen include of the using statements at the end of the file
+/** @file */ // Hello Doxygen
 
 // to preserve the right order, we are not includable directly from outside.
 #include <alox/alox.hpp>
 #include "alib/compatibility/std_iostream.hpp"
 #include "alib/config/inifile.hpp"
-#include "alib/system/system.hpp"
 #include "alib/system/directory.hpp"
 
 #include <fstream>
@@ -36,14 +35,19 @@ using namespace std;
 // #################################################################################################
 // Globals
 // #################################################################################################
-bool     DebugMode;
-IniFile* Inifile;
-AString  FileName;
-String   NewFileNameSuffix= ".corrected.dot";
-bool     IsSingleTNodeInheritFile= false;
+extern bool     DebugMode;
+       bool     DebugMode;
+extern IniFile* Inifile;
+       IniFile* Inifile;
+extern AString  FileName;
+       AString  FileName;
+extern String   NewFileNameSuffix;
+       String   NewFileNameSuffix= ".corrected.dot";
+extern bool     IsSingleTNodeInheritFile;
+       bool     IsSingleTNodeInheritFile= false;
 
 // #################################################################################################
-// Simple data structurs
+// Simple data structures
 // #################################################################################################
 struct Content
 {
@@ -52,14 +56,14 @@ struct Content
     Type        type;
     Substring   LineRest;
 
-    Content ( Type type) : type(type) {}
+    Content ( Type pType) : type(pType) {}
 };
 
 struct Node : public Content
 {
     int       Num;
     Substring TClassName;
-    String32  TParamName;
+    String128 TParamName;
     bool      IsIntInstance   = false;
     int       TInstantiationNum  = -1;
     int       ReplacementNodeNum = -1;
@@ -90,43 +94,43 @@ struct DotFile
     vector<Link*>        SortedLinks;
 };
 
-vector<pair<String8, String8>>   nodesToDelete;
-
-DotFile dotFile;
+extern DotFile dotFile;
+       DotFile dotFile;
 
 
 // #################################################################################################
 // Parse a single line and create content entry
 // #################################################################################################
+bool ParseLine( Line& fileLine );
 bool ParseLine( Line& fileLine )
 {
     Substring line(fileLine.original);
 
     // Ignore lines not starting with "Node"
-    if ( !line.Consume( "Node", Case::Sensitive, Whitespaces::Trim ) )
+    if ( !line.ConsumeString( "Node", Case::Sensitive, Whitespaces::Trim ) )
         return true;
 
     // From now on, unknown means error (stop processing file)
     int nodeNum;
-    if( !line.ConsumeInteger( nodeNum ) )
+    if( !line.ConsumeInt( nodeNum ) )
     {
-        Log_Error( String512() << "Error reading line: " << fileLine.original );
+        Log_Error( "Error reading line: ", fileLine.original );
         return false;
     }
 
     //------------- read node definition lines -------------
-    if( line.Consume( "[label=\"", Case::Sensitive, Whitespaces::Trim ) )
+    if( line.ConsumeString( "[label=\"", Case::Sensitive, Whitespaces::Trim ) )
     {
-        int idx= line.IndexOf( '\"' );
+        integer idx= line.IndexOf( '\"' );
         if (idx < 0 )
         {
-            Log_Error( String512() << "Error reading line: " << fileLine.original );
+            Log_Error( "Error reading line: ", fileLine.original );
             return false;
         }
 
         Substring  lineRest;
         line.Split( idx, lineRest, 1 );
-        Log_Verbose( String256() << "Found Node " << nodeNum << "=" << Format::Tab(14)  << line );
+        Log_Verbose( "Found Node {} = {!Tab14}", nodeNum, line );
 
         // is template class node?
         idx= line.IndexOf( '<' );
@@ -138,16 +142,16 @@ bool ParseLine( Line& fileLine )
         fileLine.content=   node;
         node->Num=          nodeNum;
         node->LineRest=     lineRest;
-        line.Consume<false>( idx - 1, &node->TClassName );
+        line.ConsumeChars<false>( idx - 1, &node->TClassName );
 
         // read contents of brackets
-        line.Consume<false>( 2 );
+        line.ConsumeChars<false>( 2 );
         idx= line.LastIndexOf( '>' );
         Log_Assert( idx > 0, "terminating '>' not found" );
-        line.ConsumeFromEnd( line.Length() - idx );
-        line.ConsumeFromEnd('\\');
+        line.ConsumeCharsFromEnd( line.Length() - idx );
+        line.ConsumeCharFromEnd('\\');
 
-        node->IsIntInstance=     line.ConsumeInteger( node->TInstantiationNum )
+        node->IsIntInstance=     line.ConsumeInt( node->TInstantiationNum )
                              &&  line.Trim().IsEmpty();
 
 
@@ -159,32 +163,32 @@ bool ParseLine( Line& fileLine )
                 node->TParamName= line;
                 dotFile.TClasses.emplace_back( node );
 
-                Log_Info( String256() << "  Saveing param name: class \"" << node->TClassName << "\"= \"" << node->TParamName << "\"" );
+                Log_Info( "  Saveing param name: class {!Q}= {!Q}", node->TClassName, node->TParamName );
                 Variable var( nullptr, String64() << "TCLASS_" << node->TClassName, '\0', "auto generated" );
-                var.AddString( node->TParamName );
+                var.Add( node->TParamName );
                 Inifile->Store( var );
             }
             else
             {
-                Log_Info( String256() << "  Template param <" << line << "> found, not usable as parameter name" );
+                Log_Info( "  Template param <{}> found, not usable as parameter name", line );
                 dotFile.TClassesUntouched.emplace_back( &fileLine );
             }
 
         }
         else
-            Log_Info( String64() << "  Template<NN> found" );
+            Log_Info( "  Template<NN> found" );
 
         // OK
         return true;
     }
 
     //------------- read link lines -------------
-    if( line.Consume( "-> Node", Case::Ignore, Whitespaces::Trim ) )
+    if( line.ConsumeString( "-> Node", Case::Ignore, Whitespaces::Trim ) )
     {
         Link* link= new Link();
         fileLine.content=   link;
         link->From=         nodeNum;
-        line.ConsumeInteger( link->To );
+        line.ConsumeInt( link->To );
         link->LineRest=     line;
 
         return true;
@@ -197,41 +201,42 @@ bool ParseLine( Line& fileLine )
 // #################################################################################################
 // Read/Write File
 // #################################################################################################
+int ReadFile();
 int ReadFile()
 {
-    Log_Info( String512() << "Reading file: " << FileName );
+    Log_Info( "Reading file: ", FileName );
 
     dotFile.Lines.clear();
     ifstream file( FileName.ToCString() );
     if ( !file.is_open() )
     {
-        cerr << "DoxygenGraphTemplateInstanceRemover:  opening file: "<< FileName << endl;
+        cerr << "DoxygenGraphTemplateInstanceRemover:  Error opening file: "<< FileName << endl;
         return -1;
     }
 
-    lib::strings::ReadLineFromIStream readOp= lib::strings::ReadLineFromIStream( file );
+    lib::strings::thirdparty::std::ReadLineFromIStream readOp= lib::strings::thirdparty::std::ReadLineFromIStream( file );
     while( !readOp.IsEOF )
     {
         dotFile.Lines.emplace_back( Line() );
         dotFile.Lines.back().original << readOp;
 
-
         // Replacing namespaces in untouched template node lines
         Line* line= &dotFile.Lines.back();
         {
             line->original.SearchAndReplace("\\l", "" ); // new line characters
+            line->original.SearchAndReplace("aworx::lib::boxing::",                 "" );
             line->original.SearchAndReplace("aworx::lib::strings::",                "" );
             line->original.SearchAndReplace("aworx::lib::containers::",             "" );
             line->original.SearchAndReplace("aworx::lib::threads::",                "" );
             line->original.SearchAndReplace("aworx::lib::config::",                 "" );
             line->original.SearchAndReplace("aworx::lib::time",                     "" );
             line->original.SearchAndReplace("aworx::lib::",                         "" );
-            line->original.SearchAndReplace("aworx::lox::core::textlogger::",       "" );
-            line->original.SearchAndReplace("core::aworx::lox::core::",             "" ); //very strange, but this occurs!?
-            line->original.SearchAndReplace("aworx::lox::core::",                   "" );
+            line->original.SearchAndReplace("aworx::lox::lang::textlogger::",       "" );
+            line->original.SearchAndReplace("lang::aworx::lox::core::",             "" ); //very strange, but this occurs!?
+            line->original.SearchAndReplace("aworx::lox::lang::",                   "" );
             line->original.SearchAndReplace("aworx::lox::",                         "" );
-            line->original.SearchAndReplace("lox::core::",                          "" );
-            line->original.SearchAndReplace("core::",                               "" );
+            line->original.SearchAndReplace("lox::lang::",                          "" );
+            line->original.SearchAndReplace("lang::",                               "" );
             line->original.SearchAndReplace("std::",                                "" );
             line->original.SearchAndReplace("< ",        "<" );
             line->original.SearchAndReplace("< ",        "<" );
@@ -255,7 +260,7 @@ int ReadFile()
             return 0;
     }
 
-    return dotFile.Lines.size();
+    return static_cast<int>( dotFile.Lines.size() );
 }
 
 
@@ -263,6 +268,7 @@ int ReadFile()
 // #################################################################################################
 // Build all information needed to write the new file
 // #################################################################################################
+bool Build();
 bool Build()
 {
     Log_Info( String512() << "Building..." );
@@ -447,9 +453,10 @@ bool Build()
     return true;
 }
 
+bool WriteFile();
 bool WriteFile()
 {
-    Log_Info( String512() << "Writing file " );
+    Log_Info( "Writing file " );
 
     // create file or redirect to cout (in debug mode)
     ofstream* file= nullptr;
@@ -465,7 +472,7 @@ bool WriteFile()
     }
     ostream& out= DebugMode ? cout : *file;
 
-    Log_Info( String512() << "Untouched stuff" );
+    Log_Info( "Untouched stuff" );
 
     // write file
     bool nodesAndLinksWritten= IsSingleTNodeInheritFile;
@@ -483,17 +490,17 @@ bool WriteFile()
         {
             nodesAndLinksWritten= true;
 
-            Log_Info( String512() << "Writing Nodes" );
+            Log_Info( "Writing Nodes" );
 
             // write nodes
-            Log_Info( String512() << "Writing untouched template nodes" );
+            Log_Info( "Writing untouched template nodes" );
             for( Line* nline : dotFile.TClassesUntouched )
             {
                 out << nline->original << endl;
             }
 
             // write nodes
-            Log_Info( String512() << "Writing template replacement nodes" );
+            Log_Info( "Writing template replacement nodes" );
             for( Node* node : dotFile.TClasses )
             {
                 out  << "  Node" << node->Num << " [label=\"" << node->TClassName
@@ -502,15 +509,15 @@ bool WriteFile()
             }
 
             // write links
-            Log_Info( String512() << "Writing links" );
+            Log_Info( "Writing links" );
             for( Link* link : dotFile.SortedLinks )
                 if ( !link->Skip )
                     out << "  Node"   << link->From  << " -> Node" << link->To << link->LineRest << endl;
-            Log_Info( String512() << "The rest is untouched stuff again" );
+            Log_Info( "The rest is untouched stuff again" );
         }
     }
 
-    Log_Info( String512() << "Replaced File: " << FileName );
+    Log_Info( "Replaced File: ", FileName );
 
     if (!DebugMode)
         delete file;
@@ -521,6 +528,7 @@ bool WriteFile()
 // #################################################################################################
 // InvokeDotAndExit
 // #################################################################################################
+void     InvokeDotAndExit( int argc, char *argv[] );
 void     InvokeDotAndExit( int argc, char *argv[] )
 {
     if (DebugMode )
@@ -557,7 +565,7 @@ int main(int argc, char *argv[])
     ALox::Init( argc, argv);
     Log_AddDebugLogger();
     Log_SetDomain( "DOXGRAPH", Scope::Filename  );
-    Log_SetVerbosity( "DEBUG_LOGGER", DebugMode || System::IsDebuggerPresent()
+    Log_SetVerbosity( "DEBUG_LOGGER", DebugMode || ALIB::IsDebuggerPresent()
                                       ?  Verbosity::Verbose :  Verbosity::Warning,
                                       "/DOXGRAPH" );
 
@@ -565,7 +573,7 @@ int main(int argc, char *argv[])
     if (!DebugMode )
     {
       //Log_SetVerbosity( "DEBUG_LOGGER",  Verbosity::Info , "/DOXGRAPH" );
-        lib::Report::GetDefault().PushHaltFlags( false, false );
+        lib::lang::Report::GetDefault().PushHaltFlags( false, false );
         FileName= argv[1];
     }
     else
@@ -575,21 +583,21 @@ int main(int argc, char *argv[])
         //String debugFile( "/classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger__inherit__graph.dot");
         //String debugFile( "/classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo__coll__graph.dot" );
         //String debugFile( "/classaworx_1_1lox_1_1loggers_1_1AnsiConsoleLogger__coll__graph.dot" );
-        String debugFile( "/inherit_graph_49.dot" );
+        String debugFile( "classaworx_1_1lib_1_1lang_1_1Singleton__inherit__graph.dot" ); // "inherit_graph_49.dot" );
 
         FileName._("../html/cpp_ref");
         for( int depth= 0; depth < 10 ; depth++ )
         {
             if ( Directory::Exists( FileName ) )
             {
-                FileName._( debugFile );
+                FileName << '/' << debugFile;
                 break;
             }
             FileName.InsertAt( "../", 0 );
         }
     }
 
-    Log_SetPrefix( String256() << FileName << ": " );
+    Log_Warning( "Processing File: ", FileName );
 
     // read INI file
     Inifile= new IniFile("doxygenDotFixer.cfg");
@@ -598,8 +606,8 @@ int main(int argc, char *argv[])
     Inifile->FileComments=
      "======================================================================================" "\n" \
      "ALib - A-Worx Utility Library"                                                          "\n" \
-     "(c) 2013-2016 A-Worx GmbH, Germany"                                                     "\n" \
-     "Published under MIT License (Open Source License, see LICENSE.txt)"                     "\n" \
+     "Copyright 2013-2017 A-Worx GmbH, Germany"                                               "\n" \
+     "Published under 'Boost Software License' (a free software license, see LICENSE.txt)"          "\n" \
      "======================================================================================" "\n" \
      "This tool replaces simple, pure integer template instantiation nodes in doxygen"        "\n" \
      "dot files by their parameterized template class counterparts."                          "\n" \
@@ -627,6 +635,7 @@ int main(int argc, char *argv[])
             else
                 delete static_cast<Node*>( line.content );
         }
+
 
     delete Inifile;
     FileName.SetNull();

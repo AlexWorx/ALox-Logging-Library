@@ -1,14 +1,28 @@
 // #################################################################################################
 //  Unit Tests - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
-#include "alib/alib.hpp"
 #include "alox/alox.hpp"
 
-#include "gtest/gtest.h"
+#if defined(__clang__)
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wundef"
+    #pragma clang diagnostic ignored "-Wdeprecated"
+    #pragma clang diagnostic ignored "-Wmissing-noreturn"
+    #pragma clang diagnostic ignored "-Wshift-sign-overflow"
+    #pragma clang diagnostic ignored "-Wused-but-marked-unused"
+#endif
+
+    #include "gtest/gtest.h"
+
+#if defined(__clang__)
+    #pragma clang diagnostic pop
+#endif
+
+
 #include "alib.unittests/aworx_unittests.hpp"
 
 #include "alib/compatibility/std_iostream.hpp"
@@ -17,21 +31,21 @@
 using namespace std;
 using namespace aworx;
 
-
 int main( int argc, char **argv )
 {
     ::testing::InitGoogleTest( &argc, argv);
-
     aworx::lox::ALox::Init( argc, argv );
 
-    //aworx::lib::Report::GetDefault().HaltOnWarning= true;
+    //aworx::lib::lang::Report::GetDefault().HaltOnWarning= true;
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_Strings_AString*:CPP_Ticks*:CPP_Thread*:CPP_ALox*:CPP_Tutorial*";
 
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Boxing*";
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_AString.*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Substring.*";
-//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_StringsTokenizer.*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Format.*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Format.ConvertIntegers";
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Time*";
 
@@ -44,13 +58,13 @@ int main( int argc, char **argv )
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Config.ConfigDefaultAndProtected";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Config.ConfigReplacementVariables";
 
-//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Tutorial*";
-//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Tutorial.Hello*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_Dox_Tutorial*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_TestMultiline*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_ColorsAndStyles*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox*";
-//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox.Log_GetState";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox.Log_MultipleLogables";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox.Log_DumpStateOnExit";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox.Log_WriteVerbosities";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox.Log_TestThreads*";
@@ -75,14 +89,15 @@ int main( int argc, char **argv )
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_TextLogger_ObjectConverter*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_TextLogger_FormatConfig*";
 
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Compatibility.*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Boxing.Boxing_D*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib__Dox.*";
 
-//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Compatiblity_QT.*";
-
-    auto retval= RUN_ALL_TESTS();
+    auto result= RUN_ALL_TESTS();
 
     ALox::TerminationCleanUp();
 
-    return retval;
+    return result;
 }
 
 

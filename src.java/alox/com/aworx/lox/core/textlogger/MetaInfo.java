@@ -1,8 +1,8 @@
 // #################################################################################################ests
 //  com.aworx.lox.core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package com.aworx.lox.core.textlogger;
 
@@ -13,10 +13,9 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-import com.aworx.lib.ALIB;
-import com.aworx.lib.Util;
-import com.aworx.lib.enums.Alignment;
-import com.aworx.lib.enums.Whitespaces;
+import com.aworx.lib.lang.Alignment;
+import com.aworx.lib.lang.Whitespaces;
+import com.aworx.lib.system.ProcessInfo;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.Substring;
 import com.aworx.lib.strings.Tokenizer;
@@ -82,16 +81,16 @@ public class MetaInfo
              =  new AString( "(%SF:%SL) %SM():%A5[%TC +%TL][%tN]%V[%D]%A1(%#): ");
 
         /** The replacement for variable \c %%V in field #format if \e Verbosity is \c ERROR */
-        public    AString               verbosityError           = new AString( "[ERR]" );
+        public    String                verbosityError           = "[ERR]";
 
         /** The replacement for variable \c %%V in field #format if \e Verbosity is \c WARNING */
-        public    AString               verbosityWarning         = new AString( "[WRN]" );
+        public    String                verbosityWarning         = "[WRN]";
 
         /** The replacement for variable \c %%V in field #format if \e Verbosity is \c INFO */
-        public    AString               verbosityInfo            = new AString( "     " );
+        public    String                verbosityInfo            = "     ";
 
         /** The replacement for variable \c %%V in field #format if \e Verbosity is \c VERBOSE */
-        public    AString               verbosityVerbose         = new AString( "[***]" );
+        public    String                verbosityVerbose         = "[***]";
 
         /** Format string for the output of the log date.
             For more information about possible, see class java.text.SimpleDateFormat  */
@@ -134,17 +133,17 @@ public class MetaInfo
         /** Prefix for the domain. */
         public    int                   logNumberMinDigits       = 3;
 
-        /**  
+        /**
          * Object to retrieve formatted log date. This field has to be set to null,
          * when the field #dateFormat gets modified and log operations have been scheduled
-         * since the creation of the \e Logger (respectively since the last change of that format).  
+         * since the creation of the \e Logger (respectively since the last change of that format).
          */
         public    SimpleDateFormat      dateFormatter;
 
         /**
          * Object to retrieve formatted time of day. This field has to be set to null,
          * when the field #timeOfDayFormat gets modified and log operations have been scheduled
-         * since the creation of the \e Logger (respectively since the last change of that format). 
+         * since the creation of the \e Logger (respectively since the last change of that format).
          */
         public    SimpleDateFormat      timeOfDayFormatter;
 
@@ -152,9 +151,9 @@ public class MetaInfo
          * The maximum time elapsed. Used to determine the width of the output when writing
          * the elapsed time.
          *
-         * This field will be read from the 
+         * This field will be read from the
          * configuration variable [ALOX_LOGGERNAME_MAX_ELAPSED_TIME](../group__GrpALoxConfigVars.html)
-         * when the \b %TextLogger that this object belongs to is attached to a \b %Lox 
+         * when the \b %TextLogger that this object belongs to is attached to a \b %Lox
          * and written back on removal.
          */
         public    Ticks                 maxElapsedTime                           = new Ticks(0);
@@ -270,13 +269,13 @@ public class MetaInfo
     {
         // process commands
         char c2;
-        switch ( variable.consume() )
+        switch ( variable.consumeChar() )
         {
             // scope info
             case 'S':
             {
                 // read sub command
-                char s= variable.consume();
+                char s= variable.consumeChar();
                 if ( s == 'L' )
                     dest._( scope.getLineNumber() );
                 else
@@ -292,7 +291,7 @@ public class MetaInfo
             case 'T':
             {
                 // read sub command
-                c2= variable.consume();
+                c2= variable.consumeChar();
 
                 // %TD: Date
                 if ( c2 == 'D' )
@@ -368,13 +367,13 @@ public class MetaInfo
                 {
                     elapsedTime.set( scope.timeStamp );
                     elapsedTime.sub( logger.timeOfCreation );
-    
+
                     if( maxElapsedTime.raw() < elapsedTime.raw() )
                         maxElapsedTime.set( elapsedTime );
-    
+
                     long      maxElapsedSecs= maxElapsedTime.inSeconds();
                     elapsed.set( elapsedTime );
-    
+
                     if ( maxElapsedSecs >= 60*60*24 )  dest._( elapsed.days  )._NC( timeElapsedDays );
                     if ( maxElapsedSecs >= 60*60    )  dest._( elapsed.hours  ,  maxElapsedSecs >= 60*60*10 ?  2 : 1 )._( ':' );
                     if ( maxElapsedSecs >= 60       )  dest._( elapsed.minutes,  maxElapsedSecs >= 10*60    ?  2 : 1 )._( ':' );
@@ -390,7 +389,7 @@ public class MetaInfo
                     if( !warnedOnce )
                     {
                         warnedOnce= true;
-                        ALIB.WARNING( "Unknown format variable '%S" + c2 + "\' (only one warning)" );
+                        com.aworx.lib.ALIB_DBG.WARNING( "Unknown format variable '%S" + c2 + "\' (only one warning)" );
                     }
                     dest._( "%ERROR" );
                 }
@@ -401,7 +400,7 @@ public class MetaInfo
             // Thread
             case 't':
             {
-                c2= variable.consume();
+                c2= variable.consumeChar();
                 if ( c2 == 'N' )
                 {
                     AString threadName= scope.getThreadName();
@@ -414,14 +413,14 @@ public class MetaInfo
                     tmpAString._()._( scope.getThreadID() );
                     dest.field()
                          ._( tmpAString )
-                       .field( logger.autoSizes.next( tmpAString.length()      , 0 ), Alignment.CENTER );
+                       .field( logger.autoSizes.next( tmpAString.length(), 0 ), Alignment.CENTER );
                 }
                 else
                 {
                     if( !warnedOnce )
                     {
                         warnedOnce= true;
-                        ALIB.WARNING( "Unknown format variable '%t" + c2 + "\' (only one warning)" );
+                        com.aworx.lib.ALIB_DBG.WARNING( "Unknown format variable '%t" + c2 + "\' (only one warning)" );
                     }
                     dest._( "%ERROR" );
                 }
@@ -431,7 +430,7 @@ public class MetaInfo
 
             case 'L':
             {
-                c2= variable.consume();
+                c2= variable.consumeChar();
                      if ( c2 == 'G' )     dest._NC( logger.getName() );
                 else if ( c2 == 'X' )     dest._NC( scope.getLoxName() );
                 else
@@ -439,7 +438,7 @@ public class MetaInfo
                     if( !warnedOnce )
                     {
                         warnedOnce= true;
-                        ALIB.WARNING( "Unknown format variable '%L" + c2 + "\' (only one warning)" );
+                        com.aworx.lib.ALIB_DBG.WARNING( "Unknown format variable '%L" + c2 + "\' (only one warning)" );
                     }
                     dest._( "%ERROR" );
                     return 0;
@@ -449,7 +448,7 @@ public class MetaInfo
 
             case 'P':
             {
-                dest._NC( Util.getProcessName() );
+                dest._NC( ProcessInfo.getCurrentProcessName() );
                 return 0;
             }
 
@@ -472,10 +471,9 @@ public class MetaInfo
             case 'A':
             {
                 // read extra space from format string
-                int oldStart=    variable.start;
-                int extraSpace=  variable.toInt();
-                if ( oldStart == variable.start )
-                    extraSpace=         1;
+                int extraSpace= 1;
+                if ( variable.consumeDecDigits() )
+                    extraSpace=  (int) variable.consumedLong;
 
                 // insert ESC code to jump to next tab level
                 extraSpace= Math.min( extraSpace, 10 + ('Z'-'A') );
@@ -488,7 +486,7 @@ public class MetaInfo
 
             default:
             {
-                ALIB.ERROR( "Unknown format character \'" + variable.buf[variable.start - 1] + "\'" );
+                com.aworx.lib.ALIB_DBG.ERROR( "Unknown format character \'" + variable.buf[variable.start - 1] + "\'" );
                 return 0;
             }
         }

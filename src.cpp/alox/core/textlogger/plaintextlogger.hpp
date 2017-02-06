@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  aworx::lox::core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -19,20 +19,18 @@
 // #################################################################################################
 // includes
 // #################################################################################################
+
 #if !defined (HPP_ALOX_CORE_TEXTLOGGER_TEXTLOGGER)
     #include "alox/core/textlogger/textlogger.hpp"
 #endif
 
 
 // #################################################################################################
-// forwards
+// forward declarations
 // #################################################################################################
 namespace aworx { namespace lib { namespace strings { class Substring; } } }
 
-namespace aworx {
-namespace           lox {
-namespace                   core{
-namespace                           textlogger{
+namespace aworx { namespace lox { namespace core { namespace textlogger{
 
 /** ************************************************************************************************
  * A text logger that either removes or ignores (just writes through) ALox ESC sequences.
@@ -74,7 +72,7 @@ class PlainTextLogger : public aworx::lox::core::textlogger::TextLogger
          * Destructs a MemoryLogger
          ******************************************************************************************/
         virtual  ~PlainTextLogger()
-        {};
+        {}
 
     // #############################################################################################
     // Abstract methods introduced
@@ -94,7 +92,7 @@ class PlainTextLogger : public aworx::lox::core::textlogger::TextLogger
          * @return If \c false is returned, the log line is aborted without an invocation of
          *         \ref notifyLogOp "notifyLogOp(Phase::End)".
          ******************************************************************************************/
-        virtual bool notifyLogOp(lib::enums::Phase phase)                                       = 0;
+        virtual bool notifyLogOp(lib::lang::Phase phase)                                       = 0;
 
         /** ****************************************************************************************
          * Abstract method to be implemented by descendants. Has to write the given region of
@@ -109,7 +107,7 @@ class PlainTextLogger : public aworx::lox::core::textlogger::TextLogger
          * @param length   The length of the portion in \p buffer to write out.
          * @return The number of characters written, -1 on error.
          ******************************************************************************************/
-        virtual int logSubstring( const AString& buffer, int start, int length )             = 0;
+        virtual integer logSubstring( const AString& buffer, integer start, integer length )       = 0;
 
 
     // #############################################################################################

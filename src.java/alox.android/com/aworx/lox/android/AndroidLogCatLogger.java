@@ -1,8 +1,8 @@
 // #################################################################################################
 //  com.aworx.lox.android  - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 
@@ -10,11 +10,11 @@
  *  This is the Java package for extension classes of the <em>%ALox Logging Library</em>
  *  to support ALox on Android devices.
  *
- *  Developed by A-Worx GmbH and published under the MIT license.
+ *  Developed by A-Worx GmbH and published under Boost Software License.
  **************************************************************************************************/
 package com.aworx.lox.android;
 
-import com.aworx.lib.enums.Phase;
+import com.aworx.lib.lang.Phase;
 import com.aworx.lib.strings.AString;
 import com.aworx.lox.core.ScopeInfo;
 import com.aworx.lox.core.Domain;

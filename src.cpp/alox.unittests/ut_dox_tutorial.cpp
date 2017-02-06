@@ -2,10 +2,10 @@
 //  Unit Tests - ALox Logging Library
 //  (Unit Tests to create tutorial sample code and output)
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-#include "alib/stdafx_alib.h"
+#include "alox/alox.hpp"
 
 //! [Tut_include_statement]
 #include "alox/alox_console_loggers.hpp"
@@ -14,7 +14,6 @@
 #include "alib/compatibility/std_string.hpp"
 //! [Tut_include_statement]
 
-#include "alib/system/system.hpp"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -34,12 +33,13 @@ extern void HelloALox();
 namespace ut_alox {
 
 // used with unit test Log_ScopeInfoCacheTest
+void ScopeInfoCacheTest7();
 void ScopeInfoCacheTest7() { Log_Info("Test Method 7"); }
 
 // #################################################################################################
 // Tut_ScopeDomains
 // #################################################################################################
-#if defined (ALOX_DBG_LOG)
+#if ALOX_DBG_LOG
 class TutScopeDom
 {
     public:
@@ -48,7 +48,7 @@ class TutScopeDom
     {
         Log_SetDomain( "ZIP/EXTRACT", Scope::Method ); // set Scope Domain path for this method
         //...
-        Log_Info( String128("Extracting ") << fileName );
+        Log_Info( "Extracting {!Q}", fileName );
         //...
         //...
         Log_Info( "Success" ); // a nice, clear, local, copyable log statement!
@@ -74,7 +74,7 @@ class Zipper
     {
         Log_SetDomain( "COMPRESS", Scope::Method ); // set Scope Domain path for this method
         //...
-        Log_Info( String128("Compressing ") << fileName );
+        Log_Info( "Compressing {!Q}", fileName );
         //...
         //...
         Log_Info( "Success" ); // domain "ZIP/COMPRESS"
@@ -86,7 +86,7 @@ class Zipper
     {
         Log_SetDomain( "EXTRACT", Scope::Method ); // set Scope Domain path for this method
         //...
-        Log_Info( String128("Extracting ") << fileName );
+        Log_Info( "Extracting {!Q}", fileName );
         //...
         //...
         Log_Info( "Success" ); // domain "ZIP/EXTRACT"
@@ -107,15 +107,15 @@ class FileIO
     void Read( const aworx::String& fileName )
     {
         Log_SetDomain( "READ", Scope::Method );
-        Log_Info( String128("Reading ") << fileName );
+        Log_Info( "Reading {!Q}", fileName );
 
-        int fileVersion= 0;
+        String fileVersion= nullptr;
         //...
         //...
         // Identified file version
-        fileVersion= 42;
+        fileVersion= "3.1";
 
-        Log_Store( new LogData( fileVersion ), "FILE_VERSION" );
+        Log_Store( fileVersion, "FILE_VERSION" );
 
         //...
         //...
@@ -132,7 +132,9 @@ class FileIO
 **********************************************************************************************/
 // with GTEST macros it all gets wild. Fix the method name
 #undef  ALIB_SRC_INFO_PARAMS
-#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, aworxTestName
+#if ALOX_DBG_LOG
+  #define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, UT_GET_TEST_NAME
+#endif
 
 UT_CLASS()
 
@@ -150,14 +152,13 @@ UT_METHOD(MiniMumAlox)
 UT_METHOD(Hello_ALox)
 {
     UT_INIT();
-//    #define ConsoleLogger MemoryLogger
 
     Log_Prune( if ( Log::DebugLogger != nullptr ) )
                    Log_RemoveDebugLogger();
 
     Log_Prune( MemoryLogger memLog; )
 
-    //! [Tut_Understanding_ALox_All]
+
 
     //! [Tut_ALox_Logger_1]
     Log_AddDebugLogger();
@@ -172,7 +173,6 @@ UT_METHOD(Hello_ALox)
     Log_Info ( "Hello ALox" );
     //! [Tut_ALox_Logger_2]
 
-    //! [Tut_Understanding_ALox_All]
 
     Log_Prune( ut.WriteResultFile( "Tut_ALox_Logger.txt", memLog.MemoryLog, "" ); )
     Log_RemoveLogger( &memLog )
@@ -335,7 +335,7 @@ UT_METHOD(Tut_HierDom)
 // #################################################################################################
 // Tut_ScopeDomains
 // #################################################################################################
-#if defined (ALOX_DBG_LOG)
+#if ALOX_DBG_LOG
 UT_METHOD(Tut_ScopeDomains)
 {
     UT_INIT();
@@ -481,83 +481,6 @@ UT_METHOD(Tut_ThreadName )
 
 }
 
-// #################################################################################################
-// Tut_ALibStringNN
-// #################################################################################################
-// restore original ALib param macro
-#undef  ALIB_SRC_INFO_PARAMS
-#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, __func__
-
-void getUsersFromDB( std::vector<std::string>& users)
-{
-    users.insert( users.end(), "Lisa" );
-    users.insert( users.end(), "John" );
-    users.insert( users.end(), "Joe" );
-}
-
-// restore original ALib param macro
-#undef  ALIB_SRC_INFO_PARAMS
-#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, __func__
-
-
-double heavyCalculation() { return 42.0; }
-void notExecuted_Tut_ALibStringNN()
-{
-    //! [Tut_ALibStringNN]
-    double  result= heavyCalculation();
-    Log_Info( String64() << "Heavy calculation finished. Result: " << result );
-    //! [Tut_ALibStringNN]
-    (void) result;
-
-}
-
-
-// with GTEST macros it all gets wild. Fix the method name
-#undef  ALIB_SRC_INFO_PARAMS
-#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, aworxTestName
-
-
-UT_METHOD(Tut_ALibStringNN )
-{
-    UT_INIT();
-
-    //! [Tut_ALibStringNN-2]
-    Log_AddDebugLogger();
-    Log_SetDomain( "/DB_QUERIES", Scope::Filename );
-
-    // get users from database
-    vector<std::string> usersInDB;
-    getUsersFromDB( usersInDB );
-
-    Log_Info( String64() << "There are " << usersInDB.size() << " users in the database"  );
-
-    Log_Prune( String256 userNames("The users are: ");   )
-    Log_Prune( for( auto user : usersInDB )               )
-    Log_Prune(     userNames << user << ' ';              )
-
-    Log_Verbose( userNames )
-    //! [Tut_ALibStringNN-2]
-    //!
-    Log_RemoveDebugLogger();
-
-    // we repeat that with a memory logger
-    MemoryLogger memLog;
-    Log_SetVerbosity( &memLog, Verbosity::Off );
-
-        Log_SetDomain( "/DB_QUERIES", Scope::Filename );
-        Log_SetVerbosity("MEMORY", Verbosity::Verbose, "" );
-
-        // get users from database
-        getUsersFromDB( usersInDB );
-
-        Log_Info( String64() << "There are " << usersInDB.size() << " users in the database"  );
-        Log_Verbose( userNames )
-
-    Log_RemoveLogger( &memLog );
-    Log_Prune( memLog.MemoryLog.SearchAndReplace( "MEMORY", "CONSOLE" );                       )
-    Log_Prune( ut.WriteResultFile( "Tut_ALibStringNN.txt", memLog.MemoryLog, "" ); )
-}
-
 
 // #################################################################################################
 // Tut_ConditionalLogging
@@ -565,8 +488,9 @@ UT_METHOD(Tut_ALibStringNN )
 
 // restore original ALib param macro
 #undef  ALIB_SRC_INFO_PARAMS
-#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, __func__
-
+#if ALOX_DBG_LOG
+    #define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, __func__
+#endif
 
 void process(int) {}
 void notCompiledConditionalLogging()
@@ -606,7 +530,9 @@ void notCompiledConditionalLogging()
 
 // with GTEST macros it all gets wild. Fix the method name
 #undef  ALIB_SRC_INFO_PARAMS
-#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, aworxTestName
+#if ALOX_DBG_LOG
+    #define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, UT_GET_TEST_NAME
+#endif
 
 // #################################################################################################
 // Tut_LogState
@@ -645,10 +571,10 @@ UT_METHOD(Tut_LogState)
     Log_Once( "Will we see this in the config?" );
     Log_Once( "Will we see this in the config?", "ONCEKEY", Scope::Filename );
 
-    Log_Store( new LogData( "MyData 1" ), Scope::Method );
-    Log_Store( new LogData( "MyData 2" ), "DataKey", Scope::Method );
-    Log_Store( new LogData( 3          ), "DataKey", Scope::Filename );
-    Log_Store( new LogData( 4, this    ), "DataKey", Scope::ThreadOuter );
+    Log_Store( "MyData 1" ,            Scope::Method );
+    Log_Store( "MyData 2" , "DataKey", Scope::Method );
+    Log_Store( 3          , "DataKey", Scope::Filename );
+    Log_Store( 4          , "DataKey", Scope::ThreadOuter );
 
     Log_SetPrefix( "TPre: "  , Scope::ThreadOuter );
     Log_SetPrefix( "MPre: "  , Scope::Method );
@@ -700,10 +626,10 @@ UT_METHOD(Tut_LogInternalDomains)
     Log_Once( "Will we see this in the config?" );
     Log_Once( "Will we see this in the config?", "ONCEKEY", Scope::Filename );
 
-    Log_Store( new LogData("MyData 1"), Scope::Method );
-    Log_Store( new LogData("MyData 2"), "DataKey", Scope::Method );
-    Log_Store( new LogData("MyData 3"), "DataKey", Scope::Filename );
-    Log_Store( new LogData("MyData 4"), "DataKey", Scope::ThreadOuter );
+    Log_Store( "MyData 1" ,            Scope::Method );
+    Log_Store( "MyData 2" , "DataKey", Scope::Method );
+    Log_Store( 3          , "DataKey", Scope::Filename );
+    Log_Store( 4          , "DataKey", Scope::ThreadOuter );
 
     Log_SetPrefix( "TPre: "  , Scope::ThreadOuter );
     Log_SetPrefix( "MPre: "  , Scope::Method );
@@ -721,7 +647,7 @@ UT_METHOD(Tut_LogInternalDomains)
 }
 
 
-#if defined (ALOX_DBG_LOG)
+#if ALOX_DBG_LOG
 UT_METHOD(Tut_LogData)
 {
     UT_INIT();
@@ -732,30 +658,99 @@ UT_METHOD(Tut_LogData)
     Log_SetVerbosity( &memLogger, Verbosity::Verbose );
     Log_SetVerbosity( Log::DebugLogger, Verbosity::Verbose, ALox::InternalDomains );
 
-
-
-    // access without prior setting
+    // set auto tabs
     {
-        Log_Retrieve( dbgFileVersion, "FILE_VERSION" );
-        Log_Info( String64( "Working on file version " ) << dbgFileVersion->IntegerValue );
-        Log_Prune( ut.WriteResultFile( "Tut_LogData2.txt", memLogger.MemoryLog, "" ); )
+        Log_Info( "X" );
         Log_Prune( memLogger.MemoryLog.Clear(); )
     }
+
 
     FileIO fileIo;
     fileIo.Read( "myfile.dat" );
 
     //! [Tut_LogData_2]
     Log_Retrieve( dbgFileVersion, "FILE_VERSION" );
-    Log_Info( String64( "Working on file version " ) << dbgFileVersion->IntegerValue );
+    Log_Info( "Working on file version {!Q}", dbgFileVersion.Unbox<String>() );
     //! [Tut_LogData_2]
 
     Log_Prune( ut.WriteResultFile( "Tut_LogData.txt", memLogger.MemoryLog, "" ); )
+
+    //! [Tut_LogData_3]
+    Log_Info( "Working on file version {!Q}", LOG_LOX.Retrieve("FILE_VERSION").Unbox<String>() );
+    //! [Tut_LogData_3]
+
 
     Log_RemoveDebugLogger();
     Log_RemoveLogger( "MEMORY" );
 
 }
+
+UT_METHOD(Tut_Format)
+{
+    UT_INIT();
+
+    Log_AddDebugLogger();
+    Log_Prune( MemoryLogger memLogger;  )
+    Log_SetVerbosity( &memLogger, Verbosity::Verbose );
+    Log_SetVerbosity( Log::DebugLogger, Verbosity::Verbose, ALox::InternalDomains );
+
+
+    //! [Tut_Format_1]
+    Log_Info( "Value=", 5 );
+    //! [Tut_Format_1]
+    Log_Prune( ut.WriteResultFile( "Tut_Format_1.txt", memLogger.MemoryLog, "" ); )
+
+    //! [Tut_Format_P]
+    Log_Info( "Value={}", 5 );
+    //! [Tut_Format_P]
+
+    //! [Tut_Format_J]
+    Log_Info( "Value=%s", 5 );
+    //! [Tut_Format_J]
+
+
+    //! [Tut_Format_Multi]
+    Log_Info( "One-", "Two-", "Three" );
+    Log_Info( "{}-{}-{}", "One", "Two", "Three" );
+    Log_Info( "{}-{}-"  , "One", "Two", "Three" );
+    Log_Info( "{}-"  , "One", "{}-", "Two", "{}", "Three" );
+    //! [Tut_Format_Multi]
+
+    Log_Prune( memLogger.MemoryLog.Clear(); )
+    //! [Tut_Format_Mix]
+    Log_Info( "Python Style: {!s}","PS", " - ", "Java Style: \"%s\"", "JS" );
+    //! [Tut_Format_Mix]
+    Log_Prune( ut.WriteResultFile( "Tut_Format_Mix.txt", memLogger.MemoryLog, "" ); )
+
+    Log_Prune( memLogger.MemoryLog.Clear(); )
+    //! [Tut_Format_Sample_1]
+    Log_Info( ">{:<10}<" , "left" );
+    Log_Info( ">{:>10}<" , "right" );
+    Log_Info( ">{:^10}<" , "center" );
+    Log_Info( ">{:10.3}<", 12.3456789 );
+
+    Log_Info( "Tab:{!Tab12}", "Stop" );
+
+    Log_Info( "Auto Tab:{!ATab}", "Stop" );
+    Log_Info( "Auto Tab XXX:{!ATab}", "Stop" );
+    Log_Info( "Auto Tab:{!ATab}", "Stop" );
+
+    Log_Info( "A quoted {!Q} string", "Placeholder" );
+    Log_Info( "A quoted {!Q} number", 395 );
+
+    Log_Info( "Upper {0!Q!up} and lower {0!Q!lo} conversion", "CaSe" );
+
+    Log_Info( "Hex: {:#x}. With group chars: {0:x,}", 0x11FF22EE );
+    Log_Info( "Oct: {:#o}. With group chars: {0:o,}", 012345670 );
+    Log_Info( "Bin: {:#b}. With group chars: {0:b,}", 145 );
+    //! [Tut_Format_Sample_1]
+    Log_Prune( ut.WriteResultFile( "Tut_Format_Sample_1.txt", memLogger.MemoryLog, "" ); )
+
+
+    Log_RemoveDebugLogger();
+    Log_RemoveLogger( "MEMORY" );
+}
+
 #endif
 
 

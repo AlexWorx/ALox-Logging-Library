@@ -1,8 +1,8 @@
 // #################################################################################################
 //  com.aworx.lox.core - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 
@@ -15,11 +15,12 @@ import java.util.ArrayList;
 
 import com.aworx.lib.ALIB;
 import com.aworx.lib.config.Variable;
-import com.aworx.lib.enums.Case;
-import com.aworx.lib.enums.Phase;
+import com.aworx.lib.lang.Case;
+import com.aworx.lib.lang.Phase;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.CString;
 import com.aworx.lib.strings.Substring;
+import com.aworx.lib.strings.AutoSizes;
 import com.aworx.lib.threads.ThreadLock;
 import com.aworx.lox.ALox;
 import com.aworx.lox.ESC;
@@ -74,22 +75,23 @@ public abstract class TextLogger extends Logger
     // #############################################################################################
 
         /**
-         * A list of helper objects to get textual representation of logable objects.<br>
-         * To extend TextLogger to support logging custom objects, custom converters can
-         * be appended. Also, the default may be removed and deleted.<br>
-         * In the destructor of this class, all object converters (still attached) will be deleted.
+         * A helper object to get textual representation of logable objects.
+         * If no converter is set when this logger is used, a converter of type
+         * \ref com::aworx::lox::core::textlogger::StandardConverter "StandardConverter" is created and used.
+         * In the destructor of this class, the current object converter will be deleted.
          *
-         * When converting an object, all object converts listed here are invoked in
-         * <b> reverse order</b> until a first reports a successful conversion.
+         * To extend class \b %TextLogger to support logging custom objects, custom converters can
+         * set. The preferred alternative is however, to make custom types be formattable
+         * by formatter classes used with \b %StandardConverter.
          */
-        public    ArrayList<ObjectConverter> objectConverters    = new ArrayList<ObjectConverter>();
+        public  ObjectConverter             converter;
 
         /**
          * A helper object to format log objects into textual representations. This class incorporates
          * a format string that defines the meta information in the log output. Furthermore, to extend
          * TextLogger, this object can be replaced by custom implementations of it.
          */
-        public    MetaInfo                  metaInfo                    = new MetaInfo();
+        public  MetaInfo                    metaInfo                               = new MetaInfo();
 
         /**
          * Holds a list of values for auto tab positions and field sizes.
@@ -104,7 +106,7 @@ public abstract class TextLogger extends Logger
          * when the \b %TextLogger that we belong to is attached to a \b %Lox and written back
          * on removal.
          */
-        public    AutoSizes                 autoSizes                   = new AutoSizes();
+        public    AutoSizes                 autoSizes                             = new AutoSizes();
 
         /**
          * Determines if multi line messages should be split into different log lines. Possible values are:
@@ -124,8 +126,10 @@ public abstract class TextLogger extends Logger
         public    int                       multiLineMsgMode                                    = 2;
 
         /**
-         * This is the string interpreted as line delimiter within log messages. If null, CR, LF or CRLF
-         * are used.  Important: Set to empty string, to stop any multi line processing of TextLogger, even the replacements.
+         * This is the string interpreted as line delimiter within log messages. If \e nulled, then
+         * <c>'\\n'</c>, <c>'\\r'</c> or <c>'\\r\\n'</c> is recognized.<br>
+         * Important: Can be set to an empty string, to stop any multi line processing of
+         * \b %TextLogger, even the replacements of the delimiter character.
          */
         public    String                    multiLineDelimiter                               = null;
 
@@ -151,10 +155,6 @@ public abstract class TextLogger extends Logger
          */
         public    String                    fmtMultiLineSuffix                               = null;
 
-        /** Used to return an error message in the case the object could not be converted */
-        public    String                    fmtUnknownObject           ="<unknown object type '%'>";
-
-
     // #############################################################################################
     // Constructor
     // #############################################################################################
@@ -171,11 +171,11 @@ public abstract class TextLogger extends Logger
         {
             super( name, typeName );
             this.usesStdStreams= usesStdStreams;
-            objectConverters.add( new StringConverter() );
+            converter= new com.aworx.lox.core.textlogger.StandardConverter();
         }
 
     // #############################################################################################
-    // Reimplementing interface of grand-parent class SmartLock
+    // Re-implementing interface of grand-parent class SmartLock
     // #############################################################################################
 
         /** ****************************************************************************************
@@ -186,15 +186,17 @@ public abstract class TextLogger extends Logger
          * @param newAcquirer The acquirer to add.
          * @return The new number of \e acquirers set.
          ******************************************************************************************/
-        @Override
+        @Override @SuppressWarnings ("boxing")
         public int   addAcquirer( ThreadLock newAcquirer )
         {
             // register with ALIB lockers (if not done yet)
             if ( usesStdStreams )
             {
-                ALIB.lock.acquire();
-                    int  registrationCounter= this.stdStreamLockRegistrationCounter++;
-                ALIB.lock.release();
+                int  registrationCounter;
+                synchronized (this)
+                {
+                    registrationCounter= this.stdStreamLockRegistrationCounter++;
+                }
 
                 if ( registrationCounter == 0 )
                     ALIB.stdOutputStreamsLock.addAcquirer( this );
@@ -213,48 +215,49 @@ public abstract class TextLogger extends Logger
                 Substring attrValue= new Substring();
                 if ( variable.getAttribute( "limit", attrValue ) )
                 {
-                    long maxMax= attrValue.toLong();
-                    if ( maxInSecs > maxMax )
-                        maxInSecs= maxMax;
+                    attrValue.consumeInt();
+                    if ( maxInSecs > attrValue.consumedLong )
+                        maxInSecs= attrValue.consumedLong;
+
                 }
                 metaInfo.maxElapsedTime.fromSeconds( maxInSecs );
             }
 
             // Variable  <name>_FORMAT / <typeName>_FORMAT:
-            ALIB.ASSERT_WARNING( ALox.FORMAT.defaultValue == null,
+            com.aworx.lib.ALIB_DBG.ASSERT_WARNING( ALox.FORMAT.defaultValue == null,
                                  "Default value of variable FORMAT should be kept null" );
             if(    0 ==  variable.define( ALox.FORMAT, getName()     ).load()
                 && 0 ==  variable.define( ALox.FORMAT, getTypeName() ).load() )
             {
                 // no variable created, yet. Let's create a 'personal' one on our name
                 variable.define( ALox.FORMAT, getName() );
-                variable.addString( metaInfo.format            );
-                variable.addString( metaInfo.verbosityError    );
-                variable.addString( metaInfo.verbosityWarning  );
-                variable.addString( metaInfo.verbosityInfo     );
-                variable.addString( metaInfo.verbosityVerbose  );
+                variable.add( metaInfo.format            );
+                variable.add( metaInfo.verbosityError    );
+                variable.add( metaInfo.verbosityWarning  );
+                variable.add( metaInfo.verbosityInfo     );
+                variable.add( metaInfo.verbosityVerbose  );
                 variable.store();
             }
             else
             {
                                            metaInfo.format          ._()._( variable.getString(0) );
-                if( variable.size() >= 2 ) metaInfo.verbosityError  ._()._( variable.getString(1) );
-                if( variable.size() >= 3 ) metaInfo.verbosityWarning._()._( variable.getString(2) );
-                if( variable.size() >= 4 ) metaInfo.verbosityInfo   ._()._( variable.getString(3) );
-                if( variable.size() >= 5 ) metaInfo.verbosityVerbose._()._( variable.getString(4) );
+                if( variable.size() >= 2 ) metaInfo.verbosityError  = variable.getString(1).toString();
+                if( variable.size() >= 3 ) metaInfo.verbosityWarning= variable.getString(2).toString();
+                if( variable.size() >= 4 ) metaInfo.verbosityInfo   = variable.getString(3).toString();
+                if( variable.size() >= 5 ) metaInfo.verbosityVerbose= variable.getString(4).toString();
             }
-        
+
             // Variable  <name>_FORMAT_DATE_TIME / <typeName>_FORMAT_DATE_TIME:
-            ALIB.ASSERT_WARNING( ALox.FORMAT_DATE_TIME.defaultValue == null,
+            com.aworx.lib.ALIB_DBG.ASSERT_WARNING( ALox.FORMAT_DATE_TIME.defaultValue == null,
                                  "Default value of variable FORMAT_DATE_TIME should be kept null" );
             if(    0 ==  variable.define( ALox.FORMAT_DATE_TIME, getName()     ).load()
                 && 0 ==  variable.define( ALox.FORMAT_DATE_TIME, getTypeName() ).load() )
             {
                 // no variable created, yet. Let's create a 'personal' one on our name
                 variable.define( ALox.FORMAT_DATE_TIME, getName() );
-                variable.addString( metaInfo.dateFormat        );
-                variable.addString( metaInfo.timeOfDayFormat   );
-                variable.addString( metaInfo.timeElapsedDays   );
+                variable.add( metaInfo.dateFormat        );
+                variable.add( metaInfo.timeOfDayFormat   );
+                variable.add( metaInfo.timeElapsedDays   );
                 variable.store();
             }
             else
@@ -263,24 +266,24 @@ public abstract class TextLogger extends Logger
                 if( variable.size() >= 2 ) metaInfo.timeOfDayFormat = variable.getString(1).toString();
                 if( variable.size() >= 3 ) metaInfo.timeElapsedDays = variable.getString(2).toString();
             }
-        
+
             // Variable  <name>FORMAT_TIME_DIFF / <typeName>FORMAT_TIME_DIFF:
-            ALIB.ASSERT_WARNING( ALox.FORMAT_TIME_DIFF.defaultValue == null,
+            com.aworx.lib.ALIB_DBG.ASSERT_WARNING( ALox.FORMAT_TIME_DIFF.defaultValue == null,
                                  "Default value of variable FORMAT_TIME_DIFF should be kept null" );
             if(    0 ==  variable.define( ALox.FORMAT_TIME_DIFF, getName()     ).load()
                 && 0 ==  variable.define( ALox.FORMAT_TIME_DIFF, getTypeName() ).load() )
             {
                 // no variable created, yet. Let's create a 'personal' one on our name
                 variable.define( ALox.FORMAT_TIME_DIFF, getName() );
-                variable.addInteger(metaInfo.timeDiffMinimum);
-                variable.addString( metaInfo.timeDiffNone   );
-                variable.addString( metaInfo.timeDiffNanos  );
-                variable.addString( metaInfo.timeDiffMicros );
-                variable.addString( metaInfo.timeDiffMillis );
-                variable.addString( metaInfo.timeDiffSecs   );
-                variable.addString( metaInfo.timeDiffMins   );
-                variable.addString( metaInfo.timeDiffHours  );
-                variable.addString( metaInfo.timeDiffDays   );
+                variable.add(metaInfo.timeDiffMinimum);
+                variable.add( metaInfo.timeDiffNone   );
+                variable.add( metaInfo.timeDiffNanos  );
+                variable.add( metaInfo.timeDiffMicros );
+                variable.add( metaInfo.timeDiffMillis );
+                variable.add( metaInfo.timeDiffSecs   );
+                variable.add( metaInfo.timeDiffMins   );
+                variable.add( metaInfo.timeDiffHours  );
+                variable.add( metaInfo.timeDiffDays   );
                 variable.store();
             }
             else
@@ -295,19 +298,19 @@ public abstract class TextLogger extends Logger
                 if( variable.size() >= 8 ) metaInfo.timeDiffHours  = variable.getString(7).toString();
                 if( variable.size() >= 9 ) metaInfo.timeDiffDays   = variable.getString(8).toString();
             }
-        
+
             // Variable  <name>FORMAT_MULTILINE / <typeName>FORMAT_MULTILINE:
-            ALIB.ASSERT_WARNING( ALox.FORMAT_MULTILINE.defaultValue == null,
+            com.aworx.lib.ALIB_DBG.ASSERT_WARNING( ALox.FORMAT_MULTILINE.defaultValue == null,
                                  "Default value of variable FORMAT_MULTILINE should be kept null" );
             if(    0 ==  variable.define( ALox.FORMAT_MULTILINE, getName()     ).load()
                 && 0 ==  variable.define( ALox.FORMAT_MULTILINE, getTypeName() ).load() )
             {
                 // no variable created, yet. Let's create a 'personal' one on our name
                 variable.define( ALox.FORMAT_MULTILINE, getName() );
-                variable.addInteger( multiLineMsgMode );
-                variable.addString ( fmtMultiLineMsgHeadline   );
-                variable.addString ( fmtMultiLinePrefix );
-                variable.addString ( fmtMultiLineSuffix );
+                variable.add( multiLineMsgMode );
+                variable.add( fmtMultiLineMsgHeadline   );
+                variable.add( fmtMultiLinePrefix );
+                variable.add( fmtMultiLineSuffix );
                 variable.store();
             }
             else
@@ -322,6 +325,21 @@ public abstract class TextLogger extends Logger
                                                 multiLineDelimiter= variable.getString(4).toString();
                                            }
                 if( variable.size() >= 6 ) multiLineDelimiterRepl = variable.getString(5).toString();
+            }
+
+            // Variable  <name>FORMAT_REPLACEMENTS / <typeName>FORMAT_REPLACEMENTS:
+            com.aworx.lib.ALIB_DBG.ASSERT_WARNING( ALox.REPLACEMENTS.defaultValue == null,
+                                 "Default value of variable FORMAT_MULTILINE should be kept null" );
+            if(    0 !=  variable.define( ALox.REPLACEMENTS, getName()     ).load()
+                || 0 !=  variable.define( ALox.REPLACEMENTS, getTypeName() ).load() )
+            {
+                for( int i= 0; i< variable.size() / 2 ; i++ )
+                {
+                    AString searchString=  variable.getString(i * 2);
+                    AString replaceString= variable.getString(i * 2 + 1);
+                    if( searchString != null  && replaceString != null )
+                        setReplacement( searchString.toString(), replaceString.toString() );
+                }
             }
 
             // call parents' implementation
@@ -340,11 +358,13 @@ public abstract class TextLogger extends Logger
             // de-register with ALIB lockers (if not done yet)
             if ( usesStdStreams )
             {
-                ALIB.lock.acquire();
-                    int  counter= --this.stdStreamLockRegistrationCounter;
-                ALIB.lock.release();
+                int  registrationCounter;
+                synchronized (this)
+                {
+                    registrationCounter= --this.stdStreamLockRegistrationCounter;
+                }
 
-                if ( counter == 0 )
+                if ( registrationCounter == 0 )
                     ALIB.stdOutputStreamsLock.removeAcquirer( this );
             }
 
@@ -352,13 +372,13 @@ public abstract class TextLogger extends Logger
 
             // export autosizes to configuration
             variable.define( ALox.AUTO_SIZES, getName() );
-            autoSizes.exportValues( variable.addString() );
+            autoSizes.exportValues( variable.add() );
             variable.store();
 
             // export "max elapsed time" to configuration
             variable.define( ALox.MAX_ELAPSED_TIME, getName() );
             AString destVal=  variable.load() != 0  ?  variable.getString()
-                                                    :  variable.addString();
+                                                    :  variable.add();
             destVal._()._( metaInfo.maxElapsedTime.inSeconds() );
             variable.store();
 
@@ -372,7 +392,7 @@ public abstract class TextLogger extends Logger
 
         /** ****************************************************************************************
          * Adds the given pair of replacement strings. If searched string already exists, the
-         * current replacement string gets replaced. If the replacement string equals 'null'
+         * current replacement string gets replaced. If the replacement string is \c null,
          * nothing is set and a previously set replacement definition becomes unset.
          *
          * @param searched    The string to be searched.
@@ -422,9 +442,9 @@ public abstract class TextLogger extends Logger
     // #############################################################################################
 
         /** ****************************************************************************************
-         * This abstract method introduced by this class "replaces" the the abstract method #log
+         * This abstract method introduced by this class "replaces" the abstract method #log
          * of parent class Logger which this class implements. In other words, descendants of this
-         * class need to overwrite this method instead of \b %Do. This class %TextLogger is
+         * class need to override this method instead of \b %Do. This class %TextLogger is
          * responsible for generating meta information, doing text replacements, handle multi-line
          * messages, etc. and provides the textual representation of the whole log contents
          * to descendants using this method.
@@ -462,7 +482,7 @@ public abstract class TextLogger extends Logger
          * This class implements this method and but exposes the new abstract method #logText.
          * This mechanism allows this class to do various things that are standard to Loggers
          * of type TextLogger. For example, meta information of the log invocation is formatted and
-         * string replacements are performed. This way, descendants of this class will consume
+         * string replacements are performed. This way, descendants of this class will consumeChar
          * a ready to use log buffer with all meta information and contents of all objects to be
          * included and their primary obligation is to copy the content into a corresponding
          * output stream.
@@ -487,20 +507,9 @@ public abstract class TextLogger extends Logger
 
 
             // convert msg object into an AString representation
-            msgBuf._();
-            for( Object logable : logables )
-            {
-                int i;
-                for( i= objectConverters.size() - 1; i >= 0 ; i-- )
-                    if ( objectConverters.get(i).convertObject( logable, msgBuf ) )
-                        break;
-                if ( i == -1 )
-                {
-                    AString msg= new AString( fmtUnknownObject );
-                    msg.searchAndReplace( "%", "" + logable.getClass().getName() );
-                    msgBuf._NC( msg );
-                }
-            }
+            if ( converter == null )
+                converter= new StandardConverter();
+            converter.convertObjects( msgBuf._(), logables );
 
             // replace strings in message
             for ( int i= 0 ; i < replacements.size() -1 ; i+= 2 )

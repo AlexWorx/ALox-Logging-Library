@@ -10,6 +10,8 @@
     <RootNamespace>ALox_CS_Net45_DLL_ReleaseLog</RootNamespace>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <ReleaseVersion>1.3</ReleaseVersion>
+    <BaseIntermediateOutputPath>..\..\_builds_\ide.cs.monodevelop</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -18,7 +20,7 @@
     <BaseIntermediateOutputPath>..\..\_builds_\ide.cs.monodevelop\</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
     <OutputPath>..\..\_builds_\ide.cs.monodevelop\ALox-CS-.Net45-DLL-Release-Log\bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;ALOX_DBG_LOG;ALOX_REL_LOG;ALIB_MONO_DEVELOP</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;ALOX_DBG_LOG;ALOX_REL_LOG;ALIB_IDE_MONODEVELOP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -29,7 +31,7 @@
     <BaseIntermediateOutputPath>..\..\_builds_\ide.cs.monodevelop\</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
     <OutputPath>..\..\_builds_\ide.cs.monodevelop\ALox-CS-.Net45-DLL-Release-Log\bin\Release\</OutputPath>
-    <DefineConstants>TRACE;ALOX_REL_LOG;ALIB_MONO_DEVELOP</DefineConstants>
+    <DefineConstants>TRACE;ALOX_REL_LOG;ALIB_IDE_MONODEVELOP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AssemblyName>AWorx-Util-CS</AssemblyName>
@@ -76,12 +78,6 @@
     <Compile Include="..\..\..\src.cs\alib\ALib.cs">
       <Link>ALib\ALib.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alib\Enums.cs">
-      <Link>ALib\Enums.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src.cs\alox\core\textlogger\AutoSizes.cs">
-      <Link>ALox\core\textlogger\AutoSizes.cs</Link>
-    </Compile>
     <Compile Include="..\..\..\src.cs\alox\core\textlogger\MetaInfo.cs">
       <Link>ALox\core\textlogger\MetaInfo.cs</Link>
     </Compile>
@@ -124,15 +120,6 @@
     <Compile Include="..\..\..\src.cs\alox\Lox.cs">
       <Link>ALox\Lox.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alib\Report.cs">
-      <Link>ALib\Report.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src.cs\alib\ReportWriter.cs">
-      <Link>ALib\ReportWriter.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src.cs\alib\Util.cs">
-      <Link>ALib\Util.cs</Link>
-    </Compile>
     <Compile Include="..\..\..\src.cs\alox\core\textlogger\PlainTextLogger.cs">
       <Link>ALox\core\textlogger\PlainTextLogger.cs</Link>
     </Compile>
@@ -166,6 +153,39 @@
     <Compile Include="..\..\..\src.cs\alib\config\Variable.cs">
       <Link>ALib\config\Variable.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\src.cs\alib\lang\Enums.cs">
+      <Link>ALib\lang\Enums.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\lang\Report.cs">
+      <Link>ALib\lang\Report.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\lang\ReportWriter.cs">
+      <Link>ALib\lang\ReportWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\strings\Spaces.cs">
+      <Link>ALib\strings\Spaces.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\system\ProcessInfo.cs">
+      <Link>ALib\system\ProcessInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\strings\AutoSizes.cs">
+      <Link>ALib\strings\AutoSizes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\strings\Formatter.cs">
+      <Link>ALib\strings\Formatter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\strings\FormatterPythonStyle.cs">
+      <Link>ALib\strings\FormatterPythonStyle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\strings\FormatterStdImpl.cs">
+      <Link>ALib\strings\FormatterStdImpl.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\strings\FormatterJavaStyle.cs">
+      <Link>ALib\strings\FormatterJavaStyle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\ALIB_DBG.cs">
+      <Link>ALib\ALIB_DBG.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -194,5 +214,7 @@
     <Folder Include="ALox\loggers\" />
     <Folder Include="ALox\tools\json\" />
     <Folder Include="ALib\containers\" />
+    <Folder Include="ALib\lang\" />
+    <Folder Include="ALib\system\" />
   </ItemGroup>
 </Project>

@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /**
@@ -17,14 +17,19 @@ compilation symbols already. The following gives the complete list of such symbo
 introduced by ALox for C#:
 
 
-- **ALIB_MONO_DEVELOP**<br>
-  Enables code that supports compiling/running AWorx library in development environment
-  [MonoDevelop](http://www.monodevelop.com).
+- **ALIB_IDE_VSTUDIO**<br>
+  Enables code that supports compiling/running \b %ALib in development environment
+  [Microsoft Visual Studio](http://visualstudio.com).
   <p>
 
-- **ALIB_VSTUDIO**<br>
-  Enables code that supports compiling/running AWorx library in development environment
-  [Microsoft Visual Studio](http://visualstudio.com).
+- **ALIB_IDE_RIDER**<br>
+  Enables code that supports compiling/running \b %ALib in development environment
+  [JetBrains Rider](https://www.jetbrains.com/rider/).
+  <p>
+
+- **ALIB_IDE_MONODEVELOP**<br>
+  Enables code that supports compiling/running \b %ALib in development environment
+  [MonoDevelop](http://www.monodevelop.com).
   <p>
 
 - **ALOX_DBG_LOG**<br>

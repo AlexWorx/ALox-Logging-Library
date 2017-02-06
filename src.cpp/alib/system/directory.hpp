@@ -1,8 +1,8 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
@@ -16,13 +16,30 @@
 
 // then, set include guard
 #ifndef HPP_ALIB_SYSTEM_DIRECTORY
-#if !defined( IS_DOXYGEN_PARSER)
+//! @cond NO_DOX
 #define HPP_ALIB_SYSTEM_DIRECTORY 1
+//! @endcond NO_DOX
+
+namespace aworx { namespace lib {
+
+/**
+ * This namespace of \b %ALib holds classes and functions that are interfacing with the operating
+ * system.
+ */
+namespace system
+{
+
+// #############################################################################################
+// MacOS System call wrappers (implemented in Objective-C)
+// #############################################################################################
+#if defined(__APPLE__)
+namespace macos
+{
+    void ALIB_APPLE_OC_NSTemporaryDirectory( AString& target);
+    void ALIB_APPLE_OC_NSHomeDirectory     ( AString& target);
+}
 #endif
 
-namespace aworx {
-namespace           lib {
-namespace                   system {
 
 /** ************************************************************************************************
  *  Represents a directory (folder) in a file system.
@@ -110,7 +127,7 @@ class Directory
          * Singleton containing the path for the use of enum value
          * \ref SpecialFolder "SpecialFolder::Temp".
          * This is evaluated once with the first use of \b %SpecialFolder::Temp.
-         * To change the default behavior of evaluation, this variable may be filled with a propper
+         * To change the default behavior of evaluation, this variable may be filled with a proper
          * path prior to using enum \b %SpecialFolder::Temp.
          */
         static      AString         evaluatedTempDir;
@@ -119,13 +136,13 @@ class Directory
          * Singleton containing the path for the use of enum value
          * \ref SpecialFolder "SpecialFolder::VarTemp".
          * This is evaluated once with the first use of \b %SpecialFolder::VarTemp.
-         * To change the default behavior of evaluation, this variable may be filled with a propper
+         * To change the default behavior of evaluation, this variable may be filled with a proper
          * path prior to using enum \b %SpecialFolder::VarTemp.
          */
         static      AString         evaluatedVarTempDir;
 
         /// The path of the directory represented by this instance
-        String256      Path;
+        String256                   Path;
 
     // #############################################################################################
     // Constructors
@@ -134,10 +151,10 @@ class Directory
         /** ****************************************************************************************
          * Constructs an object representing one of the known special directories.
          * @param special  The special directory to initialize this instance to.
-         * @returns \c true if the change was successful, \c false otherwise.
          ******************************************************************************************/
         inline                  Directory( SpecialFolder special )
         {
+            ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( Path,  ReplaceExternalBuffer );
             Change( special );
         }
 
@@ -149,6 +166,7 @@ class Directory
          ******************************************************************************************/
         inline                  Directory( const String& path )
         {
+            ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( Path,  ReplaceExternalBuffer );
             Path._( path );
         }
 
@@ -202,11 +220,11 @@ class Directory
          *  Creates the directory of the given (absolute or relative) path.
          *  @param path     The path to test.
          *  @return \b Result::OK if a directory was found. Common errors codes are:
-         *          - \ref aworx::lib::enums::Result::InvalidPath "Result::InvalidPath"
-         *          - \ref aworx::lib::enums::Result::FileExists  "Result::FileExists"
+         *          - \ref aworx::lib::lang::Result::InvalidPath "Result::InvalidPath"
+         *          - \ref aworx::lib::lang::Result::FileExists  "Result::FileExists"
          *          but other errors might occur as well (OS dependent).
          ******************************************************************************************/
-        ALIB_API static enums::Result   Create( const TString& path );
+        ALIB_API static lang::Result   Create( const TString& path );
 }; //class Directory
 
 }} // namespace lib::system
@@ -219,7 +237,7 @@ using     Directory=       aworx::lib::system::Directory;
  * Note: Available only with including "alib/system/directory.hpp"
  */
 constexpr char    DirectorySeparator
-#if defined(IS_DOXYGEN_PARSER)
+#if defined(DOX_PARSER)
     ;
 #else
     =

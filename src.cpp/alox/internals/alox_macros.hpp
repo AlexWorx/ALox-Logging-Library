@@ -1,10 +1,12 @@
 ﻿// #################################################################################################
 //  aworx::lox - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-/** @file */ //<- needed for Doxygen include
+
+// needed for Doxygen include
+/** @file */
 
 #ifndef HPP_ALOX_MACROS
 #define HPP_ALOX_MACROS 1
@@ -23,32 +25,32 @@
 // ALOX_SYMBOL_DEBUG
 // #################################################################################################
 
-#if !defined( IS_DOXYGEN_PARSER )
+//! @cond NO_DOX
 
 
 #define ALOX_DBG_LOG_VFYBIT                (1 << 0)
-#if defined(ALOX_DBG_LOG)
+#if ALOX_DBG_LOG
     #define ALOX_DBG_LOG_VFYVAL            ALOX_DBG_LOG_VFYBIT
 #else
     #define ALOX_DBG_LOG_VFYVAL            0
 #endif
 
 #define ALOX_DBG_LOG_CI_VFYBIT             (1 << 1)
-#if defined(ALOX_DBG_LOG_CI)
+#if ALOX_DBG_LOG_CI
     #define ALOX_DBG_LOG_CI_VFYVAL         ALOX_DBG_LOG_CI_VFYBIT
 #else
     #define ALOX_DBG_LOG_CI_VFYVAL         0
 #endif
 
 #define ALOX_REL_LOG_VFYBIT                (1 << 2)
-#if defined(ALOX_REL_LOG)
+#if ALOX_REL_LOG
     #define ALOX_REL_LOG_VFYVAL            ALOX_REL_LOG_VFYBIT
 #else
     #define ALOX_REL_LOG_VFYVAL            0
 #endif
 
 #define ALOX_REL_LOG_CI_VFYBIT             (1 << 3)
-#if defined(ALOX_REL_LOG_CI)
+#if ALOX_REL_LOG_CI
     #define ALOX_REL_LOG_CI_VFYVAL         ALOX_REL_LOG_CI_VFYBIT
 #else
     #define ALOX_REL_LOG_CI_VFYVAL         0
@@ -60,7 +62,8 @@
                                           + ALOX_REL_LOG_VFYVAL       \
                                           + ALOX_REL_LOG_CI_VFYVAL    \
                                         )
-#endif
+
+//! @endcond NO_DOX
 
 /**
  * @defgroup GrpALoxMacrosLowLevel    ALox Low level Macros
@@ -108,7 +111,7 @@
     #define LOG_LOX       (*aworx::ALox::Log())
 #endif
 
-#if defined(IS_DOXYGEN_PARSER)
+#if defined(DOX_PARSER)
     #define LOX_LOX
 #endif
 
@@ -125,9 +128,9 @@
  * the debug lox instance access code using \ref LOG_LOX.
  */
 #ifdef  ALOX_DBG_LOG_CI
-    #define LOG_ACQUIRE     { aworx::Lox& log= LOG_LOX; log.SetScopeInfo( ALIB_SRC_INFO_PARAMS );
+    #define LOG_ACQUIRE     { aworx::Lox& log= LOG_LOX; log.Acquire( ALIB_SRC_INFO_PARAMS );
 #else
-    #define LOG_ACQUIRE     { aworx::Lox& log= LOG_LOX; log.SetScopeInfo( nullptr, 0, nullptr );
+    #define LOG_ACQUIRE     { aworx::Lox& log= LOG_LOX; log.Acquire( nullptr, 0, nullptr );
 #endif
 
 /**
@@ -144,9 +147,9 @@
  * the release lox instance access code using \ref LOX_LOX.
  */
 #ifdef  ALOX_REL_LOG_CI
-    #define LOX_ACQUIRE     LOX_LOX.SetScopeInfo( ALIB_SRC_INFO_PARAMS );
+    #define LOX_ACQUIRE     LOX_LOX.Acquire( ALIB_SRC_INFO_PARAMS );
 #else
-    #define LOX_ACQUIRE     LOX_LOX.SetScopeInfo( nullptr, 0, nullptr );
+    #define LOX_ACQUIRE     LOX_LOX.Acquire( nullptr, 0, nullptr );
 #endif
 
 /**
@@ -174,7 +177,7 @@
  * of-course, the normal C++ API of ALox can be used in parallel to using the macros.
  * For proper pruning of code that is using the C++ API, such code has to be enclosed by<br>
  \verbatim
- #if defined(ALOX_DBG_LOG)
+ #if ALOX_DBG_LOG
     ...
  #endif
  \endverbatim
@@ -214,7 +217,7 @@
  * Depends on \ref ALOX_DBG_LOG. If this is set, the macro just copies the code provided, else it
  * does not copy it, hence removes the code.
  */
-#if defined(ALOX_DBG_LOG)
+#if ALOX_DBG_LOG
     #define Log_Prune( ... ) __VA_ARGS__
 #else
     #define Log_Prune( ... )
@@ -292,8 +295,7 @@
 #define Log_Store(...)                          { Log_Prune( LOG_ACQUIRE LOG_LOX.Store        ( __VA_ARGS__ );            LOG_RELEASE ) }
 
 /** Invokes \ref aworx::lox::Lox::Retrieve "Lox::Retrieve" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
-#define Log_Retrieve(data,...)                    Log_Prune( LogData* data;                                                             \
-                                                             LOG_ACQUIRE data= log.Retrieve( __VA_ARGS__ );               LOG_RELEASE )
+#define Log_Retrieve(data,...)                    Log_Prune( Box data; LOG_ACQUIRE data= LOG_LOX.Retrieve( __VA_ARGS__ );     LOG_RELEASE )
 
 /** @} */
 
@@ -312,7 +314,7 @@
  * of-course, the normal C++ API of ALox can be used in parallel to using the macros.
  * Code that is using the C++ API might be enclosed by<br>
  \verbatim
- #if defined(ALOX_REL_LOG)
+ #if ALOX_REL_LOG
     ...
  #endif
  \endverbatim
@@ -361,7 +363,7 @@
  * does not copy it, hence removes the code.
  */
 
-#if defined(ALOX_REL_LOG)
+#if ALOX_REL_LOG
     #define Lox_Prune( releaseLogCode ) releaseLogCode
 #else
     #define Lox_Prune( releaseLogCode )

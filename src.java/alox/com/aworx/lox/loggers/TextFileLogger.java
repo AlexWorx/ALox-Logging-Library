@@ -1,15 +1,15 @@
 // #################################################################################################
 //  com.aworx.lox.loggers - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package com.aworx.lox.loggers;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 
-import com.aworx.lib.enums.Phase;
+import com.aworx.lib.lang.Phase;
 import com.aworx.lib.strings.AString;
 import com.aworx.lox.ALox;
 import com.aworx.lox.Verbosity;
@@ -19,9 +19,9 @@ import com.aworx.lox.tools.LogTools;
 
 /** ************************************************************************************************
  * This is a very simple file logger for textual log outputs. The file name string provided
- * in the constructor is not verified. 
- * The fileName may be changed any time by simply setting the public member #fileName 
- * without the need of any other interaction other than acquiring the \c Lox that this logger is 
+ * in the constructor is not verified.
+ * The fileName may be changed any time by simply setting the public member #fileName
+ * without the need of any other interaction other than acquiring the \c Lox that this logger is
  * attached to.
  **************************************************************************************************/
 public class TextFileLogger extends PlainTextLogger
@@ -40,7 +40,7 @@ public class TextFileLogger extends PlainTextLogger
 
     /** Flag that indicates if there was an error opening he file */
     public    boolean                   hasIoError                                           =false;
-    
+
     /** ********************************************************************************************
      * Creates a TextFileLogger with the given name.
      *
@@ -90,7 +90,7 @@ public class TextFileLogger extends PlainTextLogger
     {
         if(hasIoError)
             return;
-            
+
         try
         {
             bw.close();
@@ -129,7 +129,7 @@ public class TextFileLogger extends PlainTextLogger
      * @param phase  Indicates the beginning or end of a log operation.
      * @return The IO status (\c true if OK).
      **********************************************************************************************/
-    @Override 
+    @Override
     protected boolean notifyLogOp( Phase phase )
     {
         // write new line
@@ -167,7 +167,7 @@ public class TextFileLogger extends PlainTextLogger
      * @param length   The length of the portion in \p buffer to write out.
      * @return The IO status (\c true if OK).
      **********************************************************************************************/
-    @Override 
+    @Override
     protected boolean logSubstring( AString buffer, int start, int length )
     {
         try

@@ -1,8 +1,8 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /**
@@ -107,7 +107,7 @@ for automatic pruning are:
 Automatic pruning assures furthermore, that the above
 stays true for all  <em>debug logging</em> statements while all <em>release logging</em> statements
 remain in the code. Such remaining <em>release logging</em> might be deactivated initially and
-activated in case of run-time errors, external triggers, or other special events.
+activated in case of runtime errors, external triggers, or other special events.
 
 For details on how pruning is implemented in the different flavors of ALox, refer to
 \ref cppprepro_macros   "Pruning ALox for C++",

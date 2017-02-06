@@ -1,8 +1,8 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 /**
@@ -12,13 +12,13 @@
 
 \tableofcontents
 
-This chapter introduces to the major concepts of ALox.
+This chapter introduces to the major concepts of \b %ALox.
 
-Before we explain those, we want to start with defining terms used in this manual, the
+Before we explain those, we want to start with defining terms used by this manual and by the
 <b>reference documentation</b>
   ([C++] (cpp_ref/cppmainpage.html),
    [C#]  (cs_ref/csmainpage.html),
-   [Java](java_ref/javamainpage.html)) and in the ALox API.
+   [Java](java_ref/javamainpage.html)).
 
 
 \~Comment ####################################################################################### \~
@@ -35,92 +35,129 @@ data streams. Abstract class
   ([C++] (@ref #aworx::lox::core::Logger),
    [C#]  (@ref #cs::aworx::lox::core::Logger),
    [Java](@ref #com::aworx::lox::core::Logger))
-represents such a log stream. While some implementations of class \b %Logger are provided with the ALox package,
+represents such a log stream. While some implementations of class \b %Logger are provided with the \b %ALox package,
 the system allows custom implementations of \e Loggers that log information to any 'data drain' in
 any format you like.
 
 
-When using ALox, there is not much interaction with classes of type \e %Logger, though. The
+When using \b %ALox, there is not much interaction with classes of type \e %Logger, though. The
 reason for this is, that the data that is logged, should optionally be directed into multiple
 \e Loggers at once. Therefore, the API interface for executing the logging itself, is residing somewhere
-else and internally, ALox dispatches the log data to the list of \e Loggers in question.
+else and internally, \b %ALox dispatches the log data to the list of \e Loggers in question.
 
 The interaction with a class \b %Logger (and its derived types) is therefore limited to the
 following:
 - Creation of a \e %Logger
 - Optional configuration of a \e %Logger (e.g. details on the output format, etc.)
-- Registration of the \e %Logger with ALox.
+- Registration of the \e %Logger with \b %ALox.
 
 ## 1.2. Logables ## {#man_alox_tak_terminology_logables}
 
-What can be described as "the data that is logged", is called a \b 'Logable'
-in ALox. While most logging APIs are restricted to logging text messages, ALox is not. Still,
-the usual case is logging text messages, but the architecture of ALox is independent about
-the type.
 
-However, there is no corresponding class for \e Logables defined in ALox. Much more, \e Logables are
-passed parameters into ALox and overloaded versions of interface methods to do so exist. ALox,
-for technical reasons, follows different approaches in its different language versions:
+What can be described as "the data that is logged", is called a \b 'Logable' or, as it may be more
+than one, <em>the Logables</em> in \b %ALox. While most logging APIs are restricted to logging
+text messages, \b %ALox is not. Still, the usual case is logging text messages, but the architecture
+of \b %ALox allows to log an arbitrary amount of objects of arbitrary type.
+
+For technical reasons, the interfaces to pass the \e Logables to \b %ALox are slightly different
+in the different language versions:
 
 - <b>ALox for Java</b>:<br>
-  Here, all parameters passing \e Logables are of type \c Object. \e Loggers that process such
+  Here, parameters of \e Logables are of type \c Object. \e Loggers that process such
   object are using runtime-type information capabilities of Java (e.g keyword \c instanceof) to
-  interpret what was dispatched to them as a \e Logable.
+  interpret what was dispatched to them as a \e Logable.<br>
+  Many methods use variadic arguments (ellipsis syntax, \c '...') to be able to accept
+  an arbitrary amount of \e Logables. In some cases this is not possible (e.g. due to overloaded
+  methods and ambiguities with those), only one \e Logable of type \c Object is accepted. In this
+  case, the object passed may be of type \c Object[] which is then internally "flattened" into
+  a list of \e Logables  as if each object of the list was passed.
 
 - <b>ALox for C#</b>:<br>
-  Similar to Java, in C#, most parameters accepting \e Logables are of type \c Object. However, some (overloaded)
-  interface methods exist in C# that accept String objects. The only reason lies in the need to
-  sometimes dissolve ambigiouties that arise from the fact that C# does so called 'auto-boxing' of
-  C# literals to \c Objects (for example number literals). Internally, the \e Logables that are fetched using a
-  parameter of type \c String, are passed forward as type \c Object and this
-  is what a \e Logger 'sees' in the end.
+  Similar to Java, in C#, parameters accepting \e Logables are of type \c Object.
+  However, in C# it is not possible to use variadic arguments (ellipsis syntax, \c '...') to
+  allow an arbitrary amount of logables. The reason is that most interface methods have
+  "hidden" parameters that are filled automatically by the compiler with caller information (the
+  actual source code, method name and line number). Therefore, the number of parameters that
+  denote the \b Logables is limited to four.<br>
+  The good news is, that any of these four parameters may be of type \c Object[]. Arrays are
+  "flattened" internally and added to the list of \e Logables. With this "trick", <b>ALox for C#</b>
+  manages to provide a simple interface, where only in the case that more than four logables are
+  to be passed those have to be placed in an array. Such placement is usually done "inline", right
+  within the invocation parameter list.
 
 - <b>ALox for C++</b>:<br>
-  Here, the situation is slightly different due to the fact that C++ (for good reasons) does not
-  support runtime-type information. Therefore, a \e Logable is defined from a pair of parameters,
-  one of type <c>const void*</c> providing a pointer to the \e Logable, the other of type <c>int</c>,
-  which is providing the type information of the object given.
+  For C++, the situation is slightly different due to the fact that this language (for good reasons)
+  does not support "runtime type information" and no unique parent class \c Object exists that is the
+  natural origin of all classes.
+  Nevertheless, the logging interface provides the same seamless and natural way of passing any
+  type of argument as provided in the other language implementations!
 
-  To better support the (standard) case of logging text messages, all interface methods have
-  an overloaded sibling method that accept a \e Logable of type <c>'const %aworx::TString&'</c>
-  instead of the two parameters. This string class is defined in the general utility class library
-  called \b %ALib, which %ALox builds on. The good news is that the family of string classes in
-  \e %ALib is very powerful and convenient. The best thing about it that ALib is extensible and
-  supports the implicit (!) conversion of just any type of string class that exists in C++.
-  You have your own string class? Just pass it as a \e Logable to ALox! All you need to do is to
-  add a few lines of code somewhere in your project, which specializes an \e %ALib template method.
-  All information about how this is done is provided here:
-  \ref aworx::lib::strings.
+  This is reached by using \ref aworx::lib::boxing "ALib Boxing". This (underlying) library uses
+  [template meta programming](https://en.wikipedia.org/wiki/Template_metaprogramming) to automatically
+  wrap whatever a user passes as an argument into an object of type \b %Box
+  (e.g. \c char, \c int, \c double or pointers, values, references to and even arrays of objects of any type).
+  Once a parameter is boxed, it can be passed further (in our case to the \e Loggers) and
+  then processed in a type-safe way.
+  Besides the ability of getting type information from the "boxes" and to "unbox" their values,
+  <b>%ALib Boxing</b> allows to define and invoke some sort of "virtual interface methods" on
+  boxed values. And all this can be done on arbitrary types, without modifying (preparing) the types for that.
 
-  Otherwise, the parameter \p type which is passed as run-time information of \e Logables has
-  to be interpreted by custom \e Loggers. All type values greater than \b 0 are free to custom use.
-  Negative values and value \b 0  are reserved by ALox. As of this version of ALox, only two values
-  are used:
-  - \b 0  for \e Logables of type <b>const TString*</b>
-  - \b -1 for \e Logables of type <b>const TString*</b> whose life-cylce is explicitly managed internally.
+  In short, <b>%ALib Boxing</b> allows a user of \b %ALox to pass just any type of objects to the
+  logging system without prior conversion. Also it is irrelevant if pointers or references are
+  passed, just anything may be "thrown in"!  An \b %ALox user does not need to know how this works,
+  it is all hidden behind the scenes. Only for very advanced use, the knowledge of the
+  \ref aworx::lib::boxing "details of ALib Boxing" may become relevant.
 
-  Type \b -1 for example is used with \ref man_prefix_logables.
+In the case of textual logging (the standard case, including 'simple' debug logging), all \e Logables
+are processed by instances of derived types of class
+<b>%Formatter</b>
+ ([C++](@ref      #aworx::lib::strings::Formatter),
+ [C#]  (@ref  #cs::aworx::lib::strings::Formatter),
+ [Java](@ref #com::aworx::lib::strings::Formatter)). This abstract class is defined in underlying
+library \b %ALib.
+This is why \b %ALox logging optionally allows to pass format strings which include placeholders
+and formatting options, like field width, alignment, tabulators, quotes, and much more.
+If no format string is detected, string representations of the  \e Logables will be just
+concatenated and logged. This way, formatting the output is just an option.
+
+And the flexibility goes even beyond that: By default, \b two built-in incarnations of this class
+are used:
+<b>%FormatterPythonStyle</b>
+ ([C++](@ref      #aworx::lib::strings::FormatterPythonStyle),
+ [C#]  (@ref  #cs::aworx::lib::strings::FormatterPythonStyle),
+ [Java](@ref #com::aworx::lib::strings::FormatterPythonStyle)) and
+<b>%FormatterJavaStyle</b>
+ ([C++](@ref      #aworx::lib::strings::FormatterJavaStyle),
+ [C#]  (@ref  #cs::aworx::lib::strings::FormatterJavaStyle),
+ [Java](@ref #com::aworx::lib::strings::FormatterJavaStyle)). The two types are used in parallel!
+This means, that the already optional and auto-detected format strings may follow either the
+[Python String Fromat Syntax](https://docs.python.org/3.5/library/string.html#format-string-syntax),
+which is also similar to what C# offers, or the
+[formatting standards of the Java language](http://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html),
+which in turn are a little like good old \c printf, but of-course much more powerful and also type-safe.
+
+It can be concluded that \b %ALox logs just anything a user passes to it as \e Logables:
+Textual or binary data and if textual, optionally accepting auto-detected formatting strings of
+different syntactical type!
 
 
 \~Comment ####################################################################################### \~
 ## 1.3. Log Statements ## {#man_alox_tak_terminology_statements}
 
-When this manual and the reference documentation of ALox are referring to a <b>'Log Statement'</b>,
+When this manual and the reference documentation of \b %ALox are referring to a <b>'Log Statement'</b>,
 this means a piece of (user) code that invokes an %ALox interface method that potentially performs
 log output.
 
-Of-course, each <em>Log Statement</em> incorporates the provision of a \e Logable to ALox. Hence,
-those interface methods of the ALox API that carry a parameter named \p 'logable' can easily
-be identified as methods that, when invoked, form a <em>Log Statement</em>.
-
-\note Don't be irritated, we just want to be a little precise here!
+Of-course, each <em>Log Statement</em> incorporates the provision of one or more \e Logables to \b %ALox.
+Hence, those interface methods of the \b %ALox API that carry a parameter named \p 'logable' (or a list
+of those, named \p 'logables') can easily be identified as methods that comprise <em>Log Statement</em>.
 
 
 \~Comment ####################################################################################### \~
 ## 1.4. Log Domains ## {#man_alox_tak_terminology_domains}
-The term <b>'Log Domain'</b> in ALox denotes a sort of 'key' that is used to group
-<em>Log Statements</em> into different sets. Each <em>Log Statement</em> belongs to exactly one specific set of <em>Log Statements</em> by having a <em>Log Domain</em>
-associated.
+The term <b>'Log Domain'</b> in \b %ALox denotes a sort of 'key' that is used to group
+<em>Log Statements</em> into different sets. Each <em>Log Statement</em> belongs to exactly one
+specific set of <em>Log Statements</em> by having a <em>Log Domain</em> associated.
 
 Such association can be made by using an \b optional parameter named \p 'domain' which
 is available in each interface method of the %ALox API which comprises a <em>Log Statement</em>.
@@ -132,24 +169,30 @@ is available in each interface method of the %ALox API which comprises a <em>Log
   Therefore, when we talk about 'optional parameters', this means that an alternative, overloaded
   method with the same name exists, but excluding this parameter from the list.
 
-A simple sample for a <em>Log Domain</em> might be setting it to value \c "UI" for for all <em>Log Statement</em>
-that provide information about the user interface of an application.
-
-A user of ALox may switch <em>Log Domain</em> \c "UI" completely off (or allow just warning and error messages) in the moment
-he/she is not interested in UI development. Later, when again working on UI related
-code, that <em>Log Domain</em> may be enabled again. It might also be a team of developers, where
-each team member configures %ALox to enable those <em>Log Domains</em> that he/she is currently working on.<br>
-
 \note
-  Although the parameter \p domain, specifying the <em>Log Domain</em> of a <em>Log Statement</em> is optional, still each <em>Log Statement</em> is
-  associated with a <em>Log Domain</em>. The way how ALox 'magically' associates <em>Log Statements</em> with <em>Log Domains</em> is one of the
-  things that makes %ALox quite unique.
+  Furthermore, important <em>Log Statements</em> do not have an explicit \p domain parameter. Instead
+  \b %ALox uses a mechanism to auto-detect <em>Log Domains</em> at the first position in the the list
+  of parameters that otherwise are the \e Logables of the statement. This is done to further ease
+  the use of log statements.
+
+A typical sample for a <em>Log Domain</em> might using name \c "UI" with all <em>Log Statements</em>
+that concern the user interface of an application. A developer may switch <em>Log Statements</em> of
+<em>Log Domain</em> \c "UI" completely off in the moment he/she is not interested in UI development.
+Alternatively, warning and error messages might get allowed. Later, when working on UI related
+code again, that <em>Log Domain</em> may be re-enabled.
+If a team of developers is working on a project, each team member may configure %ALox to enable
+those <em>Log Domains</em> that he/she is currently working on.
+
+Although parameter \p domain is optional, still each <em>Log Statement</em> is associated with a <em>Log Domain</em>.
+The way how \b %ALox 'magically' associates <em>Log Statements</em> with 'the right' <em>Log Domain</em>,
+without the need for the user to be explicit about it, is one of the features that makes \b %ALox quite unique.
+More about this will be explained in later chapters of this manual.
 
 
 ## 1.5. Verbosity# {#man_alox_terminology_verbosity}
 
 It is very common for logging eco-systems, to implement the concept of 'verbosity levels',
-and ALox is no exclamation to this. First of all, the term <b>%Verbosity</b> denotes an attribute
+and \b %ALox is no exclamation to this. First of all, the term <b>%Verbosity</b> denotes an attribute
 of <em>Log Statements</em>. The values of this attribute are defined in enum class
 <b>%Verbosity</b>
 ([C++] (@ref      #aworx::lox::Verbosity),
@@ -162,7 +205,7 @@ named \p verbosity of type \b %Verbosity.
 
 Besides <em>Log Statements</em>, \e Verbosity is also an attribute of <em>Log Domains</em>.
 As every <em>Log Statement</em> has a <em>Log Domain</em> and a \e Verbosity
-associated with it, ALox is able to match both values against each other to decide whether a
+associated with it, \b %ALox is able to match both values against each other to decide whether a
 <em>Log Statement</em> is executed or not.
 
 When you think about this for a second, what is gained by this concept becomes obvious: The
@@ -171,15 +214,15 @@ This allows to just switch the topic that an application is logging about. When 
 user interface things, a <em>Log Domain</em> called \c "UI" might be set to a 'more verbose' level, while
 other <em>Log Domains</em> are switched off or are reduced to real error messages.
 
-But the concept of ALox in respect to filtering the log output is even more granular and
-flexible. This is described later.
+As described later in this manual, the possibilities of \b %ALox to filter the log output
+are even more granular and flexible.
 
 ## 1.6. Scopes ## {#man_alox_terminology_scopes}
-The \b %Scope is a next attribute any <em>Log Statement</em> possesses. The different types of scopes are nested into
+The \b '%Scope' is a next attribute any <em>Log Statement</em> possesses. The different types of scopes are nested into
 each other and some of the possible values are similar to what the programming languages that
-%ALox is written in provide. For example the \e %Scope.Method is similar to what a variable that
-is defined in a class method has as a scope from a language perspective: it is visible only in exactly this method.
-But in ALox, \e Scopes are different and the main reason is that ALox is not able to detect scopes in the
+%ALox is written in provide. For example \e %Scope.Method is similar to what a variable that
+is defined in a method has as a scope from a language perspective: it is visible only in exactly this method.
+But still, in \b %ALox, \e Scopes are different and the main reason is that \b %ALox is not able to detect scopes in the
 same way as a compiler of a programming language is. Therefore, we are talking about <b>language
 related scopes</b>. In C++ and C# those are:
 
@@ -197,7 +240,7 @@ related scopes</b>. In C++ and C# those are:
 
 In Java, they are slightly different and named 'Package', 'Class' and 'Method'.
 
-Besides these <em>language-related Scopes</em>, ALox in addition defines <em>thread-related Scopes</em>.
+Besides these <em>language-related Scopes</em>, \b %ALox in addition defines <em>thread-related Scopes</em>.
 Those are relating to the thread that is executing a <em>Log Statement</em>. There are two of them, one defined as
 an 'outer' \e Scope of the language-related set of \e Scopes, the other is an 'inner' \e Scope
 of those.
@@ -210,16 +253,16 @@ All information about this topic is found in chapter
  [Java](@ref #com::aworx::lox::Scope)).
 
 ## 1.7. Scope Domains ## {#man_alox_terminology_scopedomains}
-Attention, now it becomes tricky! Each <em>Log Statement</em> belongs to
-a \e Scope, precisely, even to a set of nested \e Scope values. The benefit of the grouping
-by \e Scopes is that it is done automatically by ALox. The \e Scope is detected from the position
+Attention: now it becomes tricky! Each <em>Log Statement</em> belongs to
+a \e Scope, precisely, even to a set of nested \e Scope values. The grouping of the statements
+into \e Scopes is done automatically by \b %ALox. The \e Scope is detected from the position
 of the <em>Log Statement</em> within the source code and from the thread that is executing it.
-A <b>Scope Domain</b> is a default domain set by the user of %ALox for a specific \e %Scope.
+Now, a <b>Scope Domain</b> is a default domain set by the user of %ALox for a specific \e %Scope.
 Once such default value is set, %ALox uses this domain for each <em>Log Statement</em> located within that \e %Scope.
 This way, <em>Log Statements</em> get their <em>Log Domain</em> associated 'automatically'.
 
 As a sample, a <em>Scope Domain</em> \c "DB" could be set as the default <em>Log Domain</em> for \e %Scope.Filename
-(Java: \e %Scope.CLASS) that contains code that stores and retrieves data from a
+(In ALox for Java: \e %Scope.CLASS) that contains code that stores and retrieves data from a
 database management system. Now, all <em>Log Statement</em> within this source file (class) get this <em>Log Domain</em> automatically
 associated, without explicitly specifying \c "DB" with every <em>Log Statement</em>.
 Therefore - although each <em>Log Statement</em> needs to refer to a <em>Log Domain</em> - such domain is not needed to be
@@ -239,14 +282,14 @@ and knowing that the \e Scopes are nested into each other, the question is what 
 a <em>Log Domain</em>?
 
 The answer is: %ALox concatenates all <em>Scope Domain</em> to a <b>Domain Path</b>, separated by character <c> '/'</c>.
-This means that %ALox organizes <em>Log Domain</em> hierarchically, hence this can be seen as a <b>tree of Log Domains</b>.
+This means that %ALox organizes <em>Log Domains</em> hierarchically, hence this can be seen as a <b>tree of Log Domains</b>.
 The concatenation starts from the most 'outer' \e Scope and ends at the most 'inner'. The value of optional
 parameter \p domain is appended close to the end - but not completely at the end.
 
-Besides 'mixing' <em>Scope Domains</em> and parameter \p domain, ALox also allows to 'overwrite'
+Besides 'mixing' <em>Scope Domains</em> and parameter \p domain, \b %ALox also allows to 'overwrite'
 <em>Scope Domains</em> with parameter \p domain.
 
-Using the techniques in the right manner, is one of the keys to efficiently use ALox.
+Using the techniques in the right manner, is one of the keys to efficiently use \b %ALox.
 The details of how this is done is explained in a dedicated chapter: \ref man_logdomains.
 
 
@@ -270,7 +313,7 @@ quickly summarized. We have:
   3. A \e Scope, which gives a different, automatic way of grouping <em>Log Statements</em>.
 - <b>Scope Domains:</b>
   Those are acting as 'default domains' and are collected and concatenated by %ALox to form,
-  together with parameter \p domain of a <em>Log Statement</em> a 'domain path' identifying the resulting, final
+  together with parameter \p domain of a <em>Log Statement</em>, a 'domain path' identifying the resulting, final
   <em>Log Domain</em> of a <em>Log Statement</em>.
 
 Now, the most prominent class of %ALox which acts almost like a "single point of contact" comes
@@ -284,7 +327,7 @@ This class keeps it all together! This is what class  \b %Lox does:
 
 - It provides the most important parts of the %ALox API, especially those interface methods that comprise <em>Log Statements</em>.
 - It manages a set of <em>Loggers</em> which write the \e Logables of <em>Log Statements</em>.
-- It maintains a tree of hierarchically organized <em>Log Domains</em>
+- It maintains a tree of hierarchically organized <em>Log Domains</em>.
 - It stores a \e Verbosity value for <em>Log Domains</em>, which
   is the counter-value of a <em>Log Statements</em>' \e Verbosity and determines if a <em>Log Statement</em> is executed or not.
   This is done on a per-\e Logger basis.
@@ -295,57 +338,59 @@ This class keeps it all together! This is what class  \b %Lox does:
 - It collects some meta information like timestamps or counters.
 - It provides a dictionary to translate thread IDs in human readable (logable) thread names.
 
-It becomes clear that this class is an ALox users' main interface into logging. After ALox was
+It becomes clear that this class is an \b %ALox users' main interface into logging. After \b %ALox was
 set-up once (probably in the bootstrap section of a software), and <em>Loggers</em> are created,
 configured and attached to a \b %Lox, this class is almost all that is needed across all other parts of
-a software. All main ALox functionality, especially the interface for the logging statements themselves
+a software. All main \b %ALox functionality, especially the interface for the logging statements themselves
 is comprised in this class.
 
 One important detail of the internal management of class \b Lox is the fact that it
 associates a separated <em>Verbosity</em>  value for each combination of <em>Log Domain</em> and
 <em>Logger</em>.<br>
 The rational behind that is easy to understand: An application that supports different \e Loggers
-at once (which happens quite quickly when using ALox), might want to log different subsets of the
+at once (which happens quite quickly when using \b %ALox), might want to log different subsets of the
 log messages with a different \e Verbosity to each of theses \e Loggers. For example, a \e Logger
 dedicated for debug-logging that streams into an output window of an IDE, would be desired to
 be generally more verbose and also switch \e Verbosity more frequently, than a
 <em>Logger</em> that in parallel logs into a file which is storing also logs of earlier debug sessions.
 
 ## 2.1 Prefix Logables ## {#man_alox_tak_lox_prefixlogables}
-While the interface methods in class
+While those interface methods in class
 <b>Lox</b>
   ([C++] (@ref      #aworx::lox::Lox),
    [C#]  (@ref  #cs::aworx::lox::Lox),
-   [Java](@ref #com::aworx::lox::Lox)) which comprise a <em>Log Statement</em> accept just a single \e Logable
-as parameter, the abstract method in \e %Logger that executes a <em>Log Statement</em>,
-<b>Logger.Log</b>
+   [Java](@ref #com::aworx::lox::Lox)) which comprise a <em>Log Statement</em> already accept an
+arbitrary amount of \e Logables as parameters, this list can even be extended by further objects
+which are then all together passed to method
+<b>%Logger.Log</b>
   ([C++] (@ref      #aworx::lox::core::Logger::Log),
    [C#]  (@ref  #cs::aworx::lox::core::Logger::Log),
-   [Java](@ref #com::aworx::lox::core::Logger::log)), accepts an array of such objects.
-What seems a contradiction, is a next hidden (orthogonal) feature in ALox called <b>Prefix Logables</b>.
-In short, ALox allows to associate \e Logables to \e Scopes. This way, all <em>Log Statements</em> 'collect'
+   [Java](@ref #com::aworx::lox::core::Logger::log)) of each \e Logger attached.
+
+Such additional objects are called <b>Prefix Logables</b>.
+In short, \b %ALox allows to associate \e Logables to \e Scopes. This way, all <em>Log Statements</em> 'collect'
 such <em>Prefix Logables</em> which were defined to any of the nested \e Scopes  in a list and passes
 them to the \e %Logger. We could have named them <em>Scope Logables</em> or <em>Context Logables</em>,
-however, the word 'prefix' makes perfect sense with the most important type of \e Logables, Strings.
+however, the word 'prefix' makes perfect sense with the most important type of \e Logables, namely strings!
 With logging text messages, <em>Prefix Logables</em> act like a prefix to a log message.
 All about this topic is found in chapter \ref man_prefix_logables.
 
 ## 2.2 Log Once ## {#man_alox_tak_lox_logonce}
-Another feature of ALox which leverages the concept of \e Scopes, is found with overloaded methods
+Another feature of \b %ALox which leverages the concept of \e Scopes, is found with overloaded methods
 <b>%Lox.Once</b>
   ([C++] (@ref      #aworx::lox::Lox::Once),
    [C#]  (@ref  #cs::aworx::lox::Lox::Once),
    [Java](@ref #com::aworx::lox::Lox::once)).
 
 They are really 'heavily' overloaded, therefore the most simple version just accepts a \e Logable.
-With this version ALox hides the use of \e Scopes and offers what you would expect from the methods'
+With this version \b %ALox hides the use of \e Scopes and offers what you would expect from the methods'
 name: logging a statement only the first time it is executed. The different parameters allow to
 cover more complex uses cases than this. All about this <em>Log Statement</em> is found in chapter  \ref man_log_once.
 
 ## 2.2 Log Data ## {#man_alox_tak_lox_logdata}
-As being able to 'prune' ALox debug-<em>Log Statements</em> from release code, a low hanging fruit for the ALox
+As being able to 'prune' \b %ALox debug-<em>Log Statements</em> from release code, a low hanging fruit for the \b %ALox
 feature list is to offer a concept for storing and using data, that otherwise would be
-temporary debug variables during the development process. Again, ALox \e Scopes are leveraged
+temporary debug variables during the development process. Again, \b %ALox \e Scopes are leveraged
 which makes the otherwise simple methods
 <b>%Lox.Store</b>
   ([C++] (@ref      #aworx::lox::Lox::Store),
@@ -363,7 +408,7 @@ All about <em>Log Data</em> is found in chapter  \ref man_log_data.
 \~Comment ####################################################################################### \~
 # 3. Using Multiple Lox Instances # {#man_alox_tak_multiple_loxes}
 
-While ALox claims to be lean, easy and [Bauhaus code style](\ref faq_bauhaus),
+While \b %ALox claims to be lean, easy and [Bauhaus code style](\ref faq_bauhaus),
 besides these concepts explained in this chapter, it was decided that a next
 level of complexity is supported. The good news is: for simple use case scenarios, you do not
 need to know about that.
@@ -382,7 +427,7 @@ There are two fundamental logging scenarios that we call **debug logging** and *
 For various reasons (performance, code size, security, etc), debug <em>Log Statements</em> should be disabled
 and removed (pruned) from the release version of a software.
 
-To achieve all goals and provide a very simple interface into debug logging, the ALox ecosystem
+To achieve all goals and provide a very simple interface into debug logging, the \b %ALox ecosystem
 provides class
 <b>Log</b>
   ([C++] (@ref #aworx::lox::Log),
@@ -436,12 +481,12 @@ each stream accordingly.
 Another motivation for using separated instances of class \b Lox may be understood when thinking
 about use cases where things start getting critical from different point of views. For example:
 
-- A Lox is supposed to collect run-time data from <em>the field</em>, hence metrics, which are
-  transferred using a tailored \e %Logger that contacts a metrics server at run-time. The team
+- A Lox is supposed to collect runtime data from <em>the field</em>, hence metrics, which are
+  transferred using a tailored \e %Logger that contacts a metrics server at runtime. The team
   that implements such metrics collection, may, for good reason, not want to share 'their' \b Lox
   with other parts of a software maintained by another team. Accidental mis-configuration of the
   Lox and its domain may lead to uncontrolled server communication.
-- A Lox is supposed to collect critical run-time errors from deployed software. Such log information
+- A Lox is supposed to collect critical runtime errors from deployed software. Such log information
   should be separated from other log streams, e.g. much more 'verbose' standard release-logging
   that goes to a rolling log file
 - A local software want to support writing messages to the \e Linux or <em> Windows OS</em> specific
@@ -451,12 +496,12 @@ about use cases where things start getting critical from different point of view
 
 ## 3.3 Multiple Registration of a Logger ## {#man_alox_tak_multiple_logger_registration}
 
-It is explicitly allowed  to attach a \e %Logger to more than one \b Lox objects.
+It is explicitly allowed  to attach a \e %Logger to more than one \b Lox object.
 class \b %Logger implements a mechanism to protect
 against race conditions in multi-threaded environments as soon as such double-registration occurs.
 The obvious use case is again the mission-critical, separated \b Lox described in the previous
 paragraphs. A \e %Logger that is responsible for 'standard' release logging, e.g. logging into a rolling
-release log file, can be attached to the the 'mission-critical' \b Lox which holds the corresponding
+release log file, can be attached to the 'mission-critical' \b Lox which holds the corresponding
 'mission-critical' \e %Logger. Now, the standard release log automatically receives a copy of the
 'mission-critical' <em>Log Statements</em>.
 
@@ -470,7 +515,7 @@ Pure static class
 were registered with it. Registration is done by default when constructing a Lox.
 The advantage of that registration is that a \b %Lox can be retrieved statically using
 <b>%ALox.Get</b>
-  ([C++]      (@ref #aworx::lox::ALox::Get(const TString&, Create)),
+  ([C++]      (@ref #aworx::lox::ALox::Get(const String&, Create)),
    [C#]   (@ref #cs::aworx::lox::ALox::Get(String, Create)),
    [Java](@ref #com::aworx::lox::ALox::get(String, Create))). This is convenient because this way, references
 of a \b %Lox do not be passed around or otherwise made public.

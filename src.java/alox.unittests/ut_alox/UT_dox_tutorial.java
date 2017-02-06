@@ -1,9 +1,9 @@
-﻿// #################################################################################################
+// #################################################################################################
 //  Unit Tests - AWorx Library
 //  (Tests to create tutorial sample code and output)
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package ut_alox;
 import java.io.BufferedWriter;
@@ -12,10 +12,16 @@ import java.io.FileWriter;
 
 import org.junit.Test;
 
-import com.aworx.lib.enums.Inclusion;
+import com.aworx.lib.lang.Inclusion;
 
 //! [Tut_using_statement]
 import com.aworx.lib.strings.*;
+import com.aworx.lox.Verbosity;
+import com.aworx.lox.Scope;
+import com.aworx.lox.Log;
+import com.aworx.lox.Log;
+import com.aworx.lox.ESC;
+import com.aworx.lox.ALox;
 import com.aworx.lox.*;
 import com.aworx.lox.core.textlogger.*;
 import com.aworx.lox.loggers.*;
@@ -31,7 +37,7 @@ import ut_com_aworx.UTSampleWriter;
 // #################################################################################################
 class TutScopeDom
 {
-    @SuppressWarnings ("static-method") 
+    @SuppressWarnings ("static-method")
     //! [Tut_ScopeDomains]
     public char[] Extract( String fileName, char[] buffer )
     {
@@ -56,7 +62,7 @@ class Zipper
         Log.setDomain( "ZIP", Scope.CLASS ); // set Scope Domain path for this class
         //...
         this.fileName= fileName;
-        
+
         Log.info( "Zipper created" ); // domain "ZIP"
         //...
     }
@@ -90,7 +96,7 @@ class Zipper
 // #################################################################################################
 // Tut_LogData
 // #################################################################################################
-@SuppressWarnings ("static-method") 
+@SuppressWarnings ("static-method")
 //! [Tut_LogData]
 class FileIO
 {
@@ -99,13 +105,13 @@ class FileIO
         Log.setDomain( "READ", Scope.METHOD );
         Log.info( "Reading " + fileName );
 
-        int fileVersion= 0;
+        String fileVersion;
         //...
         //...
         // Identified file version
-        fileVersion= 42;
+        fileVersion= "3.1";
 
-        Log.store( new LogData( fileVersion ), "FILE_VERSION" );
+        Log.store( fileVersion, "FILE_VERSION" );
 
         //...
         //...
@@ -160,7 +166,6 @@ public void Tut_Hello_ALox()
 {
     UT_INIT();
 
-    //! [Tut_Hello_ALox]
     //! [Tut_ALox_Logger_1]
     Log.addDebugLogger();
     //! [Tut_ALox_Logger_1]
@@ -170,6 +175,7 @@ public void Tut_Hello_ALox()
 
     //! [Tut_ALox_Logger_2]
     Log.addDebugLogger();
+    //! [Tut_Hello_ALox]
     Log.info( "Hello ALox" );
     //! [Tut_ALox_Logger_2]
     //! [Tut_Hello_ALox]
@@ -579,10 +585,10 @@ public void Tut_LogState()
     Log.once( "Will we see this in the config?" );
     Log.once( "", Verbosity.INFO, "Will we see this in the config?", "ONCEKEY", Scope.CLASS );
 
-    Log.store( new LogData("MyData 1"), Scope.METHOD );
-    Log.store( new LogData("MyData 2"), "DataKey", Scope.METHOD );
-    Log.store( new LogData("MyData 3"), "DataKey", Scope.CLASS );
-    Log.store( new LogData("MyData 4"), "DataKey", Scope.THREAD_OUTER );
+    Log.store( "MyData 1",            Scope.METHOD );
+    Log.store( "MyData 2", "DataKey", Scope.METHOD );
+    Log.store( "MyData 3", "DataKey", Scope.CLASS );
+    Log.store( "MyData 4", "DataKey", Scope.THREAD_OUTER );
 
     Log.setPrefix( "TPre: "  , Scope.THREAD_OUTER );
     Log.setPrefix( "MPre: "  , Scope.METHOD );
@@ -633,10 +639,10 @@ public void Tut_LogInternalDomains()
     Log.once( "Will we see this in the config?" );
     Log.once( "", Verbosity.INFO, "Will we see this in the config?", "ONCEKEY", Scope.CLASS );
 
-    Log.store( new LogData("MyData 1"), Scope.METHOD );
-    Log.store( new LogData("MyData 2"), "DataKey", Scope.METHOD );
-    Log.store( new LogData("MyData 3"), "DataKey", Scope.CLASS );
-    Log.store( new LogData("MyData 4"), "DataKey", Scope.THREAD_OUTER );
+    Log.store( "MyData 1",            Scope.METHOD );
+    Log.store( "MyData 2", "DataKey", Scope.METHOD );
+    Log.store( "MyData 3", "DataKey", Scope.CLASS );
+    Log.store( "MyData 4", "DataKey", Scope.THREAD_OUTER );
 
     Log.setPrefix( "TPre: "  , Scope.THREAD_OUTER );
     Log.setPrefix( "MPre: "  , Scope.METHOD );
@@ -654,62 +660,6 @@ public void Tut_LogInternalDomains()
 }
 
 /** ************************************************************************************************
- * Tut_UsingLogBuffer
- **************************************************************************************************/
-@Test
-public void Tut_UsingLogBuffer()
-{
-    UT_INIT();
-
-    Log.setVerbosity( tutLog= new MemoryLogger( "Tutlog" ), Verbosity.VERBOSE, "/" );
-
-    //! [Tut_UsingLogBuffer1]
-    //  Create logger and register domain LOGBUF
-    Log.addDebugLogger();
-    Log.setDomain( "LOGBUF", Scope.METHOD );
-    Log.setVerbosity( Log.debugLogger, Verbosity.VERBOSE, "LOGBUF" );
-
-    //  Let's do some logging using the internal buffer singleton;
-    Log.info( Log.buf()._( "Hello Buf!. This is only one string. Not useful to use the buf, however..." ) );
-    Log.info( Log.buf()._( "This is a 5-digtit rep of 42: " )._( 42, 5 ) );
-    Log.info( Log.buf()._( "***All upper case and stars replaced by dollar signs ***" )
-                       .toUpper()
-                       .searchAndReplaceAll( "*", "$" ) );
-    //! [Tut_UsingLogBuffer1]
-
-    //! [Tut_UsingLogBuffer2]
-    // using the log buf outside of the <em>Log Statement</em>
-    LogBuf logBuf= Log.buf();
-    logBuf._( "Lets see if school math is correct: " );
-    int a= 4;
-    int b= 2;
-    if( a/b == 3)
-    {
-        // shout it out loud!
-        logBuf._( "They taught me wrong in school!" );
-        Log.error( logBuf );
-    }
-    else
-    {
-        // we better say nothing
-        Log.bufAbort();
-    }
-    //! [Tut_UsingLogBuffer2]
-
-    //! [Tut_UsingLogBuffer3]
-    // causing trouble
-    Log.info( "Let's create an internal error by accessing the buffer twice:" );
-    Log.buf();
-    Log.buf();
-    //! [Tut_UsingLogBuffer3]
-
-    // END OF TUTORIAL
-    tutLog.memoryLog.searchAndReplace( "Tutlog", "CONSOLE" );
-    SaveTutorialOutput( "Tut_UsingLogBuffer.txt", tutLog.memoryLog );
-    Log.removeLogger( tutLog );
-}
-
-/** ************************************************************************************************
  * Tut_LogData
  **************************************************************************************************/
 @Test
@@ -723,6 +673,7 @@ public void Tut_LogData()
 
     // access without prior setting
     {
+        Log.info( "Working on file version {!Q}", Log.retrieve( "FILE_VERSION" ) );
         SaveTutorialOutput( "Tut_LogData2.txt", tutLog.memoryLog );
         tutLog.memoryLog.clear();
     }
@@ -731,7 +682,7 @@ public void Tut_LogData()
     fileIo.Read( "myfile.dat" );
 
     //! [Tut_LogData_2]
-    Log.info( "Working on file version " + Log.retrieve( "FILE_VERSION" ).integerValue );
+    Log.info( "Working on file version {!Q}", Log.retrieve( "FILE_VERSION" ) );
     //! [Tut_LogData_2]
 
     SaveTutorialOutput( "Tut_LogData.txt", tutLog.memoryLog );
@@ -739,6 +690,75 @@ public void Tut_LogData()
     Log.removeDebugLogger();
     Log.removeLogger( "MEMORY" );
 
+}
+
+/** ************************************************************************************************
+ * Tut_Format
+ **************************************************************************************************/
+@Test
+public void Tut_Format()
+{
+    UT_INIT();
+    Log.addDebugLogger();
+    Log.setVerbosity( tutLog= new MemoryLogger( "Tutlog" ), Verbosity.VERBOSE );
+
+    Log.setVerbosity( Log.debugLogger, Verbosity.VERBOSE, ALox.INTERNAL_DOMAINS );
+
+
+    //! [Tut_Format_1]
+    Log.info( "Value=", 5 );
+    //! [Tut_Format_1]
+    SaveTutorialOutput( "Tut_Format_1.txt", tutLog.memoryLog );
+
+
+    //! [Tut_Format_P]
+    Log.info( "Value={}", 5 );
+    //! [Tut_Format_P]
+
+    //! [Tut_Format_J]
+    Log.info( "Value=%s", 5 );
+    //! [Tut_Format_J]
+
+
+    //! [Tut_Format_Multi]
+    Log.info( "One-", "Two-", "Three" );
+    Log.info( "{}-{}-{}", "One", "Two", "Three" );
+    Log.info( "{}-{}-"  , "One", "Two", "Three" );
+    Log.info( "{}-"  , "One", "{}-", "Two", "{}", "Three" );
+    //! [Tut_Format_Multi]
+
+    tutLog.memoryLog.clear();
+    //! [Tut_Format_Mix]
+    Log.info( "Python Style: {!s}","PS", " - ", "Java Style: \"%s\"", "JS" );
+    //! [Tut_Format_Mix]
+    SaveTutorialOutput( "Tut_Format_Mix.txt", tutLog.memoryLog );
+
+    tutLog.memoryLog.clear();
+    //! [Tut_Format_Sample_1]
+    Log.info( ">{:<10}<" , "left" );
+    Log.info( ">{:>10}<" , "right" );
+    Log.info( ">{:^10}<" , "center" );
+    Log.info( ">{:10.3}<", 12.3456789 );
+
+    Log.info( "Tab:{!Tab12}", "Stop" );
+
+    Log.info( "Auto Tab:{!ATab}", "Stop" );
+    Log.info( "Auto Tab XXX:{!ATab}", "Stop" );
+    Log.info( "Auto Tab:{!ATab}", "Stop" );
+
+    Log.info( "A quoted {!Q} string", "Placeholder" );
+    Log.info( "A quoted {!Q} number", 395 );
+
+    Log.info( "Upper {0!Q!up} and lower {0!Q!lo} conversion", "CaSe" );
+
+    Log.info( "Hex: {:#x}. With group chars: {0:x,}", 0x11FF22EE );
+    Log.info( "Oct: {:#o}. With group chars: {0:o,}", 012345670 );
+    Log.info( "Bin: {:#b}. With group chars: {0:b,}", 145 );
+    //! [Tut_Format_Sample_1]
+    SaveTutorialOutput( "Tut_Format_Sample_1.txt", tutLog.memoryLog );
+
+    Log.removeDebugLogger();
+    Log.removeLogger( "MEMORY" );
 }
 
 } // class

@@ -1,8 +1,8 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox.loggers - ALox Logging Library
 //
-//  (c) 2013-2016 A-Worx GmbH, Germany
-//  Published under MIT License (Open Source License, see LICENSE.txt)
+//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 using System;
@@ -16,10 +16,10 @@ using cs.aworx.lib.strings;
  *  This is the C# namespace for the implementation of <em>logger classes</em> that are provided
  *  by default with <em>%ALox Logging Library</em>.
  *
- *  Developed by A-Worx GmbH and published under the MIT license.
+ *  Developed by A-Worx GmbH and published under Boost Software License.
  **************************************************************************************************/
 using cs.aworx.lox.core;
-using cs.aworx.lib.enums;
+using cs.aworx.lib.lang;
 using cs.aworx.lib.config;
 
 
@@ -33,11 +33,12 @@ namespace cs.aworx.lox.loggers    {
  * that are found within the log messages (and meta info format strings) to a corresponding
  * color setting of class <em>System.Console</em>.
  *
- * Foreground and background colors are set to be either light/dark or dark/light. This improves
- * the readability of log output a lot. However, the right setting for this is dependent on
- * the color scheme of final output device (window). To manipulate the right setting, see field
- * #IsBackgroundLight and also configuration variable
- * [ALOX_CONSOLE_HAS_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html).
+ * Foreground and background colors can be set to be either light/dark or dark/light. This improves
+ * the readability of log output a lot and even allows to read if foreground and background colors
+ * are the same (they then still differ). However, the right setting for this is dependent on
+ * the color scheme of the final output device (window). To manipulate the right setting, see field
+ * #UseLightColors and also configuration variable
+ * [ALOX_CONSOLE_LIGHT_COLORS](../group__GrpALoxConfigVars.html).
  *
  * \note
  *   The implementation of class <em>System.Console</em> and its color support is system
@@ -62,22 +63,24 @@ public class ColorConsoleLogger : TextLogger
     // #############################################################################################
 
         /**
-         * Forground and background colors chosen by this class differ in their intensity to increase
-         * the overall readablity by increasing the contrast.
+         * Foreground and background colors chosen by this class might differ in their intensity.
+         * This increases the overall readability by increasing the contrast.
          * If the background color of a console window is dark, then the background colors of
-         * colored log output should be darker colors than the forground colors and vice versa.
+         * colored log output should be darker colors than the foreground colors - and vice versa.
          *
-         * If this field is false, foreground colors will be light colors and background colors dark.
-         * If true, the opposite is chosen.
+         * Depending on the setting of this field, ALox
+         * \ref cs::aworx::lox::ESC "escape codes" for colors are translated to normal ANSI colors or
+         * lighter ones:
+         * - If this field is \c 0, light colors are never used.
+         * - If this field is \c 1, foreground colors will be light colors and background colors
+         *   dark. This is the default.
+         * - If \c 2, the opposite of \c 1 is chosen: background colors will be light colors and
+         *   foreground colors dark.
          *
-         * Defaults to false.
-         *
-         * The configuration variable [ALOX_CONSOLE_HAS_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html)
-         * is evaluated within the constructor of this class, to allow to modifying this flag at
-         * runtime.
+         * The configuration variable [ALOX_CONSOLE_LIGHT_COLORS](../group__GrpALoxConfigVars.html)
+         * allows to externally modify this flag. It is read once within the constructor .
          */
-
-        public      bool                    IsBackgroundLight;
+        public      int                     UseLightColors;
 
         /** Color of a log line with \e Verbosity 'Error'.*/
         public      ConsoleColor            MsgColorError;
@@ -129,38 +132,53 @@ public class ColorConsoleLogger : TextLogger
         // get actual console foreground color
         ConsoleColor fgCol= Console.ForegroundColor;
 
-        // evaluate environment variable "ALOX_CONSOLE_HAS_LIGHT_BACKGROUND"
-        Variable variable= new Variable( ALox.CONSOLE_HAS_LIGHT_BACKGROUND );
-        variable.Load();
-        if ( variable.Size() > 0 )
-            IsBackgroundLight=  variable.IsTrue();
-        else
-        {
-            IsBackgroundLight=      fgCol == ConsoleColor.Black
+            // evaluate environment variable "ALOX_CONSOLE_LIGHT_COLORS"
+            UseLightColors= -1;
+            Variable variable= new Variable( ALox.CONSOLE_LIGHT_COLORS );
+            if ( variable.Load() > 0 && variable.Size() > 0)
+            {
+                Substring p= new Substring(variable.GetString());
+                if(p.Trim().IsNotEmpty())
+                {
+                         if( p.ConsumePartOf( "foreground", 1, Case.Ignore ) > 0)  UseLightColors=  1;
+                    else if( p.ConsumePartOf( "background", 1, Case.Ignore ) > 0)  UseLightColors=  2;
+                    else if( p.ConsumePartOf( "never"     , 1, Case.Ignore ) > 0)  UseLightColors=  0;
+                    else
+                    {
+                        ALIB_DBG.WARNING( "Unknown value specified in variable: " + variable.Fullname
+                                      +" = " + variable.GetString() +'.' );
+                    }
+                }
+            }
+
+            if( UseLightColors < 0 )
+            {
+                // default: dark background, hence use light color on foreground
+                UseLightColors=     fgCol == ConsoleColor.Black
                                 ||  fgCol == ConsoleColor.DarkBlue
                                 ||  fgCol == ConsoleColor.DarkCyan
                                 ||  fgCol == ConsoleColor.DarkGray
                                 ||  fgCol == ConsoleColor.DarkGreen
                                 ||  fgCol == ConsoleColor.DarkMagenta
                                 ||  fgCol == ConsoleColor.DarkRed
-                                ||  fgCol == ConsoleColor.DarkYellow   ;
+                                ||  fgCol == ConsoleColor.DarkYellow    ? 2 : 1;
         }
 
 
         // remove verbosity information and colorize the whole line
         MetaInfo.Format.SearchAndReplace( " %V ", " " );
         MsgColorInfo          = fgCol;
-        if ( IsBackgroundLight )
-        {
-            MsgColorError           = ConsoleColor.DarkRed;
-            MsgColorWarning         = ConsoleColor.DarkBlue;
-            MsgColorVerbose         = ConsoleColor.DarkGray;
-        }
-        else
+        if ( UseLightColors == 1 )
         {
             MsgColorError           = ConsoleColor.Red;
             MsgColorWarning         = ConsoleColor.Blue;
             MsgColorVerbose         = ConsoleColor.Gray;
+        }
+        else
+        {
+            MsgColorError           = ConsoleColor.DarkRed;
+            MsgColorWarning         = ConsoleColor.DarkBlue;
+            MsgColorVerbose         = ConsoleColor.DarkGray;
         }
     }
 
@@ -207,7 +225,7 @@ public class ColorConsoleLogger : TextLogger
                 break;
 
             // found an ESC sequence
-            char c= rest.Consume();
+            char c= rest.ConsumeChar();
 
             // Colors
             bool isForeGround=  true;
@@ -215,15 +233,14 @@ public class ColorConsoleLogger : TextLogger
             {
                 isForeGround=  c== 'c';
 
-                c= rest.Consume();
+                c= rest.ConsumeChar();
                 int colNo= c - '0';
-                ALIB.ASSERT_WARNING( colNo >=0 && colNo <=9, "Unknown ESC-c code" );
-
+                ALIB_DBG.ASSERT_WARNING( colNo >=0 && colNo <=9, "Unknown ESC-c code" );
 
                 // set color
                 if( colNo >= 0 && colNo <= 8 || colNo == 8)
                 {
-                    ConsoleColor[] cols=  (isForeGround ? !IsBackgroundLight : IsBackgroundLight )  ? lightColors : darkColors;
+                    ConsoleColor[] cols=  UseLightColors != 0 && ( (UseLightColors == 1) == isForeGround )  ? lightColors : darkColors;
                     if ( isForeGround )
                         Console.ForegroundColor= cols[ colNo ];
                     else
@@ -239,7 +256,7 @@ public class ColorConsoleLogger : TextLogger
 
                 else
                 {
-                    ALIB.WARNING( "Unknown ESC- code" );
+                    ALIB_DBG.WARNING( "Unknown ESC- code" );
                 }
 
             }
@@ -250,7 +267,7 @@ public class ColorConsoleLogger : TextLogger
                 // bold/italics style not supported in Windows console
 
                 // reset all
-                if ( rest.Consume() == 'a' )
+                if ( rest.ConsumeChar() == 'a' )
                 {
                     Console.ForegroundColor= actualFGCol;
                     Console.BackgroundColor= actualBGCol;
@@ -261,13 +278,13 @@ public class ColorConsoleLogger : TextLogger
             else if ( c == 't' || c == 'A')
             {
                 bool endOfMeta= c == 'A';
-                c=  rest.Consume();
+                c=  rest.ConsumeChar();
                 int extraSpace=  c >= '0' && c <= '9' ? (int)  ( c - '0' )
                                                       : (int)  ( c - 'A' ) + 10;
 
                 int tabStop= AutoSizes.Next( column, extraSpace );
 
-                Util.WriteSpaces( Console.Out, tabStop - column );
+                Spaces.Write( Console.Out, tabStop - column );
                 column= tabStop;
 
                 if ( endOfMeta )
@@ -286,15 +303,15 @@ public class ColorConsoleLogger : TextLogger
             // Link (we just colorize links here)
             else if ( c == 'l' )
             {
-                if ( rest.Consume() == 'S' )
-                    Console.ForegroundColor=  IsBackgroundLight ? ConsoleColor.DarkBlue : ConsoleColor.Blue;
+                if ( rest.ConsumeChar() == 'S' )
+                    Console.ForegroundColor=  (UseLightColors != 1) ? ConsoleColor.DarkBlue : ConsoleColor.Blue;
                 else
                     Console.ForegroundColor=  actualFGCol;
             }
 
             else
             {
-                ALIB.WARNING( "Unknown ESC code" );
+                ALIB_DBG.WARNING( "Unknown ESC code" );
             }
 
         } // write loop
