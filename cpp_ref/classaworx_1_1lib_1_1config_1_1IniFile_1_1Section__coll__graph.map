@@ -1,7 +1,7 @@
 <map id="IniFile::Section" name="IniFile::Section">
-<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html" title="Section" alt="" coords="1009,68,1076,95"/>
-<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="233,81,437,108"/>
-<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html" title="Entry" alt="" coords="533,119,587,145"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html" title="Section" alt="" coords="1005,68,1072,95"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="233,81,436,108"/>
+<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html" title="Entry" alt="" coords="530,119,583,145"/>
 <area shape="rect" id="node5" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="119,81,184,108"/>
 <area shape="rect" id="node7" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="5,81,69,108"/>
 </map>

@@ -1,6 +1,6 @@
 <map id="ownable.hpp" name="ownable.hpp">
-<area shape="rect" id="node2" href="$threadlock_8hpp.html" title="threadlock.hpp" alt="" coords="7,80,114,107"/>
-<area shape="rect" id="node3" href="$configuration_8hpp.html" title="configuration.hpp" alt="" coords="49,155,171,181"/>
-<area shape="rect" id="node4" href="$lox_8hpp.html" title="lox.hpp" alt="" coords="9,229,73,256"/>
-<area shape="rect" id="node5" href="$alox_8hpp.html" title="alox.hpp" alt="" coords="5,304,76,331"/>
+<area shape="rect" id="node2" href="$threadlocknr_8hpp.html" title="threadlocknr.hpp" alt="" coords="75,80,193,107"/>
+<area shape="rect" id="node3" href="$threadlock_8hpp.html" title="threadlock.hpp" alt="" coords="81,155,187,181"/>
+<area shape="rect" id="node4" href="$configuration_8hpp.html" title="configuration.hpp" alt="" coords="5,229,127,256"/>
+<area shape="rect" id="node5" href="$smartlock_8hpp.html" title="smartlock.hpp" alt="" coords="151,229,255,256"/>
 </map>

@@ -1,10 +1,10 @@
 <map id="Configuration" name="Configuration">
-<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html" title="EnvironmentPlugin" alt="" coords="973,103,1103,129"/>
-<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html" title="ConfigurationPlugin" alt="" coords="657,164,791,191"/>
-<area shape="rect" id="node8" href="$classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html" title="InMemoryPlugin" alt="" coords="980,204,1096,231"/>
-<area shape="rect" id="node11" href="$classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html" title="CommandLinePlugin" alt="" coords="967,153,1109,180"/>
-<area shape="rect" id="node4" href="$classcom_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html" title="XTernalizer" alt="" coords="352,164,440,191"/>
-<area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="169,115,234,141"/>
-<area shape="rect" id="node7" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="163,192,240,219"/>
-<area shape="rect" id="node13" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="983,477,1093,504"/>
+<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html" title="EnvironmentPlugin" alt="" coords="1031,165,1161,192"/>
+<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html" title="ConfigurationPlugin" alt="" coords="680,232,815,259"/>
+<area shape="rect" id="node8" href="$classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html" title="InMemoryPlugin" alt="" coords="1038,333,1154,360"/>
+<area shape="rect" id="node11" href="$classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html" title="CommandLinePlugin" alt="" coords="1025,216,1167,243"/>
+<area shape="rect" id="node4" href="$classcom_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html" title="XTernalizer" alt="" coords="379,232,465,259"/>
+<area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="167,165,233,192"/>
+<area shape="rect" id="node13" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="500,123,608,149"/>
+<area shape="rect" id="node7" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="161,260,239,287"/>
 </map>

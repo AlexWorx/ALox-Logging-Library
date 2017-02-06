@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['case',['Case',['cpp_ref/namespaceaworx.html#ac497730bb253c7efcfee90f6de02a0ba',1,'aworx']]],
-  ['configuration',['Configuration',['cpp_ref/namespaceaworx.html#a9b321d2f72b975b304aa678e20344e7a',1,'aworx']]],
-  ['consolelogger',['ConsoleLogger',['cpp_ref/namespaceaworx.html#acfbbfc11d98646c37dbf27e3ede11644',1,'aworx']]],
-  ['containerop',['ContainerOp',['cpp_ref/namespaceaworx.html#a79b40b1cf65e889763d9ac0858268172',1,'aworx']]],
-  ['create',['Create',['cpp_ref/namespaceaworx.html#ae9b7ef57f8fb67372f77ff485e3087d7',1,'aworx']]],
-  ['currentdata',['CurrentData',['cpp_ref/namespaceaworx.html#a8cd9fd65cae399a824854fa2ea3b8bfc',1,'aworx']]]
+  ['box',['Box',['.././cpp_ref/namespaceaworx.html#af923f654916f15a4287246e5bb3beabb',1,'aworx']]],
+  ['boxed_5fint',['boxed_int',['.././cpp_ref/namespaceaworx.html#ae3275727f1c6ee612615d3c881610d61',1,'aworx::boxed_int()'],['.././cpp_ref/namespaceaworx_1_1lib_1_1boxing_1_1ftypes.html#ae01feb126fdae1ecf8a72a70abb605d2',1,'aworx::lib::boxing::ftypes::boxed_int()']]],
+  ['boxed_5fuint',['boxed_uint',['.././cpp_ref/namespaceaworx.html#a7ce7b3f615ad2b8992291d1692b8691e',1,'aworx::boxed_uint()'],['.././cpp_ref/namespaceaworx_1_1lib_1_1boxing_1_1ftypes.html#a5fcdb87abc3548c14049e3c9b6dee7b7',1,'aworx::lib::boxing::ftypes::boxed_uint()']]],
+  ['boxedas',['BoxedAs',['.././cpp_ref/namespaceaworx.html#a76b064b4620c8d0e669796405dce6378',1,'aworx']]],
+  ['boxes',['Boxes',['.././cpp_ref/namespaceaworx.html#a13da4402eea5d25b5fbddc19c3605e22',1,'aworx']]],
+  ['boxvalue',['boxvalue',['.././cpp_ref/namespaceaworx_1_1lib_1_1boxing.html#aa3e009a14ed9d13b3f9cfac1ac29bee5',1,'aworx::lib::boxing']]]
 ];

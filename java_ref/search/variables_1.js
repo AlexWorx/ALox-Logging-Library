@@ -6,7 +6,8 @@ var searchData=
   ['actscope',['actScope',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#ab420b6d519025a485c6345895ad174ee',1,'com::aworx::lox::core::ScopeStore']]],
   ['actthread',['actThread',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a64257a7b447d7633ab917c0096ea1f7b',1,'com::aworx::lox::core::ScopeStore']]],
   ['actual',['actual',['../classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html#a4f83cc7feb7c540ea14bd73c5195b9c9',1,'com::aworx::lib::strings::Tokenizer']]],
-  ['actualindex',['actualIndex',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html#a878dc4b2ee69905e75e4254ef541ec0f',1,'com::aworx::lox::core::textlogger::AutoSizes']]],
+  ['actualindex',['actualIndex',['../classcom_1_1aworx_1_1lib_1_1strings_1_1AutoSizes.html#a878dc4b2ee69905e75e4254ef541ec0f',1,'com::aworx::lib::strings::AutoSizes']]],
+  ['alternativenumberformat',['AlternativeNumberFormat',['../classcom_1_1aworx_1_1lib_1_1strings_1_1FormatterStdImpl.html#a52a5cabc12ebd7e9366ebfbbb223ffd2',1,'com::aworx::lib::strings::FormatterStdImpl']]],
   ['ansi_5fbg_5fblack',['ANSI_BG_BLACK',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#a5e21416bbc02e7d5591d55d8f7d5bae4',1,'com::aworx::lox::loggers::AnsiLogger']]],
   ['ansi_5fbg_5fblue',['ANSI_BG_BLUE',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#a2e58813a4166da5582b857247361d59d',1,'com::aworx::lox::loggers::AnsiLogger']]],
   ['ansi_5fbg_5fcyan',['ANSI_BG_CYAN',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#a9b60a1704f9963b1ec2ae2307fb73c61',1,'com::aworx::lox::loggers::AnsiLogger']]],
@@ -47,6 +48,7 @@ var searchData=
   ['ansi_5fyellow',['ANSI_YELLOW',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#ab4ec1e4491268f65475e476b1ba722af',1,'com::aworx::lox::loggers::AnsiLogger']]],
   ['ansicols',['ansiCols',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#a6df381da9b7a53520c7181cc0a4006f7',1,'com::aworx::lox::loggers::AnsiLogger']]],
   ['args',['args',['../classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html#a7551501f7caf9b087ab3da98fbed0ce9',1,'com::aworx::lib::config::CommandLinePlugin']]],
+  ['argsconsumed',['argsConsumed',['../classcom_1_1aworx_1_1lib_1_1strings_1_1FormatterStdImpl.html#a277c7607ec7714d48a412b5e54997ded',1,'com::aworx::lib::strings::FormatterStdImpl']]],
   ['auto_5fsizes',['AUTO_SIZES',['../classcom_1_1aworx_1_1lox_1_1ALox.html#a236ae855e60b84d4cbb590d7b058fc21',1,'com::aworx::lox::ALox']]],
   ['autosave',['autoSave',['../classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a5b3964b63bd8facd8a6282509c924916',1,'com::aworx::lib::config::IniFile']]],
   ['autosizes',['autoSizes',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#aa4f19574c48ddda56b341246abd50bcd',1,'com::aworx::lox::core::textlogger::TextLogger']]]

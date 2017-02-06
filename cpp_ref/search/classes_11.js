@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['xternalizer',['XTernalizer',['../classaworx_1_1lib_1_1config_1_1XTernalizer.html',1,'aworx::lib::config']]]
+  ['windowsconsolelogger',['WindowsConsoleLogger',['../classaworx_1_1lox_1_1loggers_1_1WindowsConsoleLogger.html',1,'aworx::lox::loggers']]]
 ];

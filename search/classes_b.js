@@ -1,12 +1,9 @@
 var searchData=
 [
-  ['reach',['Reach',['java_ref/enumcom_1_1aworx_1_1lib_1_1enums_1_1Reach.html',1,'com::aworx::lib::enums']]],
-  ['readlinefromistream',['ReadLineFromIStream',['cpp_ref/classaworx_1_1lib_1_1strings_1_1ReadLineFromIStream.html',1,'aworx::lib::strings']]],
-  ['report',['Report',['cpp_ref/classaworx_1_1lib_1_1Report.html',1,'aworx::lib']]],
-  ['report',['Report',['java_ref/classcom_1_1aworx_1_1lib_1_1Report.html',1,'com::aworx::lib']]],
-  ['report',['Report',['cs_ref/classcs_1_1aworx_1_1lib_1_1Report.html',1,'cs::aworx::lib']]],
-  ['reportwriter',['ReportWriter',['cs_ref/interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html',1,'cs::aworx::lib']]],
-  ['reportwriter',['ReportWriter',['java_ref/interfacecom_1_1aworx_1_1lib_1_1ReportWriter.html',1,'com::aworx::lib']]],
-  ['reportwriter',['ReportWriter',['cpp_ref/classaworx_1_1lib_1_1ReportWriter.html',1,'aworx::lib']]],
-  ['runnable',['Runnable',['cpp_ref/classaworx_1_1lib_1_1threads_1_1Runnable.html',1,'aworx::lib::threads']]]
+  ['objectconverter',['ObjectConverter',['.././cs_ref/classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html',1,'cs::aworx::lox::core::textlogger']]],
+  ['objectconverter',['ObjectConverter',['.././cpp_ref/classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html',1,'aworx::lox::core::textlogger']]],
+  ['objectconverter',['ObjectConverter',['.././java_ref/interfacecom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html',1,'com::aworx::lox::core::textlogger']]],
+  ['oct',['Oct',['.././cpp_ref/structaworx_1_1lib_1_1strings_1_1Format_1_1Oct.html',1,'aworx::lib::strings::Format']]],
+  ['ownable',['Ownable',['.././cpp_ref/classaworx_1_1lib_1_1lang_1_1Ownable.html',1,'aworx::lib::lang']]],
+  ['owner',['Owner',['.././cpp_ref/structaworx_1_1lib_1_1lang_1_1Owner.html',1,'aworx::lib::lang']]]
 ];

@@ -1,13 +1,13 @@
 <map id="TextLogger" name="TextLogger">
-<area shape="rect" id="node8" href="$classaworx_1_1lib_1_1threads_1_1SmartLock.html" title="SmartLock" alt="" coords="517,29,602,56"/>
-<area shape="rect" id="node14" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html" title="AutoSizes" alt="" coords="875,865,957,892"/>
-<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="457,539,661,565"/>
-<area shape="rect" id="node7" href="$classaworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="885,245,947,272"/>
-<area shape="rect" id="node11" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" title="MetaInfo" alt="" coords="879,404,953,431"/>
-<area shape="rect" id="node9" href="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="5,5,96,32"/>
-<area shape="rect" id="node10" href="$classaworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="532,280,587,307"/>
-<area shape="rect" id="node12" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="244,347,309,373"/>
-<area shape="rect" id="node13" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="19,131,83,157"/>
-<area shape="rect" id="node15" href="$classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html" title="TicksCalendarTime" alt="" coords="492,408,627,435"/>
-<area shape="rect" id="node16" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" title="ObjectConverter" alt="" coords="501,811,618,837"/>
+<area shape="rect" id="node7" href="$classaworx_1_1lib_1_1threads_1_1SmartLock.html" title="SmartLock" alt="" coords="516,73,601,100"/>
+<area shape="rect" id="node14" href="$classaworx_1_1lib_1_1strings_1_1AutoSizes.html" title="AutoSizes" alt="" coords="861,829,944,856"/>
+<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="457,668,660,695"/>
+<area shape="rect" id="node6" href="$classaworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="872,317,933,344"/>
+<area shape="rect" id="node10" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" title="MetaInfo" alt="" coords="866,539,939,565"/>
+<area shape="rect" id="node8" href="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="5,35,96,61"/>
+<area shape="rect" id="node9" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="244,333,309,360"/>
+<area shape="rect" id="node11" href="$classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html" title="ThreadLockNR" alt="" coords="223,107,331,133"/>
+<area shape="rect" id="node12" href="$classaworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="531,352,586,379"/>
+<area shape="rect" id="node13" href="$classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html" title="TicksCalendarTime" alt="" coords="491,480,626,507"/>
+<area shape="rect" id="node15" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" title="ObjectConverter" alt="" coords="845,880,961,907"/>
 </map>

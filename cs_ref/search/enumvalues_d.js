@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['recursive',['Recursive',['../namespacecs_1_1aworx_1_1lib_1_1enums.html#a00fc859257c8f09ff9198dde28121961a556c3dd912453ae5cb3095cd5054e6f4',1,'cs::aworx::lib::enums']]],
-  ['remove',['Remove',['../namespacecs_1_1aworx_1_1lib_1_1enums.html#af6d9cc1e6686eca6e60d57d959cf57fba1063e38cb53d94d386f21227fcd84717',1,'cs::aworx::lib::enums']]],
-  ['right',['Right',['../namespacecs_1_1aworx_1_1lib_1_1enums.html#acdfaca60ec19c0265bac2692d7982726a92b09c7c48c520c3c55e497875da437c',1,'cs::aworx::lib::enums']]]
+  ['path',['Path',['../namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b',1,'cs::aworx::lox']]],
+  ['prefixlogables',['PrefixLogables',['../classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a4febf3aa9c543957a624d0e01118ad99',1,'cs::aworx::lox::Lox']]]
 ];

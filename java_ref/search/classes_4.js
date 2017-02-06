@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['inclusion',['Inclusion',['../enumcom_1_1aworx_1_1lib_1_1enums_1_1Inclusion.html',1,'com::aworx::lib::enums']]],
-  ['inifile',['IniFile',['../classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html',1,'com::aworx::lib::config']]],
-  ['inmemoryplugin',['InMemoryPlugin',['../classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html',1,'com::aworx::lib::config']]]
+  ['formatter',['Formatter',['../classcom_1_1aworx_1_1lib_1_1strings_1_1Formatter.html',1,'com::aworx::lib::strings']]],
+  ['formatterjavastyle',['FormatterJavaStyle',['../classcom_1_1aworx_1_1lib_1_1strings_1_1FormatterJavaStyle.html',1,'com::aworx::lib::strings']]],
+  ['formatterpythonstyle',['FormatterPythonStyle',['../classcom_1_1aworx_1_1lib_1_1strings_1_1FormatterPythonStyle.html',1,'com::aworx::lib::strings']]],
+  ['formatterstdimpl',['FormatterStdImpl',['../classcom_1_1aworx_1_1lib_1_1strings_1_1FormatterStdImpl.html',1,'com::aworx::lib::strings']]]
 ];

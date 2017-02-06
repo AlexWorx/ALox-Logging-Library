@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['grpalibstringsmacros',['GrpALibStringsMacros',['cpp_ref/group__GrpALibStringsMacros.html',1,'']]]
+  ['grpalibstringsmacros',['GrpALibStringsMacros',['.././cpp_ref/group__GrpALibStringsMacros.html',1,'']]]
 ];

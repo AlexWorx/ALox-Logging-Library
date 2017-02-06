@@ -10,9 +10,19 @@ var searchData=
   ['bg_5freset',['BG_RESET',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a23cb0fc00083aca1cb08c85b63bb072f',1,'cs::aworx::lox::ESC']]],
   ['bg_5fwhite',['BG_WHITE',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a530f160d98731a247fb64399147d6f4d',1,'cs::aworx::lox::ESC']]],
   ['bg_5fyellow',['BG_YELLOW',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a5543908493d3a333e5045d18d8805952',1,'cs::aworx::lox::ESC']]],
+  ['binbytegroupchar',['BinByteGroupChar',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#ade8533df8da8765093139ab54d06488f',1,'cs::aworx::lib::strings::NumberFormat']]],
+  ['binfieldwidth',['BinFieldWidth',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a3bc6f3d1550a4d2a5210ddd33fa794ba',1,'cs::aworx::lib::strings::NumberFormat']]],
+  ['binliteralprefix',['BinLiteralPrefix',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a9adbd793ca89a9f55f3180bad9b9c022',1,'cs::aworx::lib::strings::NumberFormat']]],
+  ['binnibblegroupchar',['BinNibbleGroupChar',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a52fb2bece64bb3a4adf24e044e17e510',1,'cs::aworx::lib::strings::NumberFormat']]],
+  ['binword32groupchar',['BinWord32GroupChar',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#af3718aaa08f434d1d0debee4fbbd644a',1,'cs::aworx::lib::strings::NumberFormat']]],
+  ['binwordgroupchar',['BinWordGroupChar',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acaa2bcb7c8ec0e16cd3a4a8ef42f9196',1,'cs::aworx::lib::strings::NumberFormat']]],
+  ['bitsinfneg',['BitsInfNeg',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a25ec9669bfe6c9791c9a624f334a5a8b',1,'cs::aworx::lib::strings::NumberFormat']]],
+  ['bitsinfpos',['BitsInfPos',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#ac4eac4b5dd598dc3f717fed753cb4c1f',1,'cs::aworx::lib::strings::NumberFormat']]],
+  ['bitsnan',['BitsNaN',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#af1b15c864963bfa7efbb46b1a5bc3484',1,'cs::aworx::lib::strings::NumberFormat']]],
   ['black',['BLACK',['../classcs_1_1aworx_1_1lox_1_1ESC.html#aad038c9271b9cacb5fc354d9e0c790a3',1,'cs::aworx::lox::ESC']]],
   ['blue',['BLUE',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a482bba397389d91be57d6e0605f9f162',1,'cs::aworx::lox::ESC']]],
   ['bold',['BOLD',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a79517c1ad930e5746fa9b41936adbea6',1,'cs::aworx::lox::ESC']]],
+  ['boxes',['boxes',['../classcs_1_1aworx_1_1lib_1_1strings_1_1Formatter.html#a66789c9a052145500a6f4f21c828f5e1',1,'cs::aworx::lib::strings::Formatter']]],
   ['buf',['Buf',['../classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a6a6be65c62f7ad0671d250f11c8564bf',1,'cs::aworx::lib::strings::Substring']]],
-  ['buffer',['buffer',['../classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a8317b33b8c004741d95935199d964be9',1,'cs::aworx::lib::strings::AString']]]
+  ['buffer',['buffer',['../classcs_1_1aworx_1_1lib_1_1lang_1_1ReportWriterStdIO.html#aaf50e38674e1c356539d73525486b1d5',1,'cs.aworx.lib.lang.ReportWriterStdIO.buffer()'],['../classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a8317b33b8c004741d95935199d964be9',1,'cs.aworx.lib.strings.AString.buffer()']]]
 ];

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['xternalizer',['XTernalizer',['cs_ref/classcs_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html',1,'cs::aworx::lib::config']]],
-  ['xternalizer',['XTernalizer',['java_ref/classcom_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html',1,'com::aworx::lib::config']]],
-  ['xternalizer',['XTernalizer',['cpp_ref/classaworx_1_1lib_1_1config_1_1XTernalizer.html',1,'aworx::lib::config']]]
+  ['whitespaces',['Whitespaces',['.././java_ref/enumcom_1_1aworx_1_1lib_1_1lang_1_1Whitespaces.html',1,'com::aworx::lib::lang']]],
+  ['windowsconsolelogger',['WindowsConsoleLogger',['.././cpp_ref/classaworx_1_1lox_1_1loggers_1_1WindowsConsoleLogger.html',1,'aworx::lox::loggers']]]
 ];

@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['macros_2ehpp',['macros.hpp',['cpp_ref/macros_8hpp.html',1,'']]],
-  ['memorylogger_2ehpp',['memorylogger.hpp',['cpp_ref/memorylogger_8hpp.html',1,'']]]
+  ['inifile_2ehpp',['inifile.hpp',['.././cpp_ref/inifile_8hpp.html',1,'']]],
+  ['inmemoryplugin_2ehpp',['inmemoryplugin.hpp',['.././cpp_ref/inmemoryplugin_8hpp.html',1,'']]],
+  ['interface_2ehpp',['interface.hpp',['.././cpp_ref/interface_8hpp.html',1,'']]],
+  ['interface_5fbuiltin_2ehpp',['interface_builtin.hpp',['.././cpp_ref/interface____builtin_8hpp.html',1,'']]]
 ];

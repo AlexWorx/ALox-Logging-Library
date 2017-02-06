@@ -1,6 +1,6 @@
 <map id="TString" name="TString">
 <area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1StringLiteral.html" title="StringLiteral\&lt;TLength\&gt;" alt="" coords="221,5,376,32"/>
 <area shape="rect" id="node4" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="266,56,331,83"/>
-<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="424,56,628,83"/>
+<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="424,56,627,83"/>
 <area shape="rect" id="node5" href="$classaworx_1_1lib_1_1strings_1_1String.html" title="String" alt="" coords="5,31,61,57"/>
 </map>

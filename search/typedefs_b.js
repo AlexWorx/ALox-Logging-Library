@@ -1,21 +1,8 @@
 var searchData=
 [
-  ['safeness',['Safeness',['cpp_ref/namespaceaworx.html#ae44933ed0bc5c2462dce430a034dd6b0',1,'aworx']]],
-  ['scope',['Scope',['cpp_ref/namespaceaworx.html#aef58f56e96f194bf0b5f765175f6ebd6',1,'aworx']]],
-  ['sliteral',['SLiteral',['cpp_ref/namespaceaworx.html#af631a26bf70ad6d6143973fadf779747',1,'aworx']]],
-  ['smartlock',['SmartLock',['cpp_ref/namespaceaworx.html#aee1cd004a3010e8ee798517d96c1ffca',1,'aworx']]],
-  ['string',['String',['cpp_ref/namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d',1,'aworx']]],
-  ['string128',['String128',['cpp_ref/namespaceaworx.html#a2841f1443c3b2f3d6066d5774cf69dbc',1,'aworx']]],
-  ['string16',['String16',['cpp_ref/namespaceaworx.html#a148a217c34a72b4360462205858b8f0e',1,'aworx']]],
-  ['string1k',['String1K',['cpp_ref/namespaceaworx.html#a82395a8f3fac47787ebe8749679a2796',1,'aworx']]],
-  ['string256',['String256',['cpp_ref/namespaceaworx.html#a152f787b6dac47dd3f94ae5ebf1ece53',1,'aworx']]],
-  ['string2k',['String2K',['cpp_ref/namespaceaworx.html#a76f69ad445caecfbf03351c884637b09',1,'aworx']]],
-  ['string32',['String32',['cpp_ref/namespaceaworx.html#a221752691fb92bcd592c045d6c368289',1,'aworx']]],
-  ['string4k',['String4K',['cpp_ref/namespaceaworx.html#a772f06f37ace5e2b2eb8cafc0c859c44',1,'aworx']]],
-  ['string512',['String512',['cpp_ref/namespaceaworx.html#af634b7550d8a316ce3cf3fb6f9e86079',1,'aworx']]],
-  ['string64',['String64',['cpp_ref/namespaceaworx.html#ac2fdc487456a994238ba4284b3859c41',1,'aworx']]],
-  ['string8',['String8',['cpp_ref/namespaceaworx.html#ab35696c2e8d79567a528a4b6da788eb3',1,'aworx']]],
-  ['substring',['Substring',['cpp_ref/namespaceaworx.html#aade494154da29084f1e59cfa2f83a23b',1,'aworx']]],
-  ['switch',['Switch',['cpp_ref/namespaceaworx.html#abbc3fd675117881e7c7aebcd1058ad03',1,'aworx']]],
-  ['system',['System',['cpp_ref/namespaceaworx.html#aea0af9d6b00ede1a16d0af24fdaeebe0',1,'aworx']]]
+  ['rawtime',['rawtime',['.././cpp_ref/namespaceaworx.html#a5e26f5d598237e2bfb9e70feb8437769',1,'aworx::rawtime()'],['.././cpp_ref/namespaceaworx_1_1lib_1_1time.html#af2ca9ecf6a96d10a62296253014294f3',1,'aworx::lib::time::rawtime()']]],
+  ['reach',['Reach',['.././cpp_ref/namespaceaworx.html#a7a83f9bd51ff561df1e199546542229f',1,'aworx']]],
+  ['responsibility',['Responsibility',['.././cpp_ref/namespaceaworx.html#a3671252255ccd69a9165a3cc752cb73e',1,'aworx']]],
+  ['result',['Result',['.././cpp_ref/namespaceaworx.html#a20d057ff1a7079bfd81da875491fe3ef',1,'aworx']]],
+  ['runnable',['Runnable',['.././cpp_ref/namespaceaworx.html#af259362a7fa123eef74daaf4036e02a5',1,'aworx']]]
 ];

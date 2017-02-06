@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['off',['Off',['../namespacecs_1_1aworx_1_1lib_1_1enums.html#a9f3c28a2cb05bdcc618b542e49bfda3fad15305d7a4e34e02489c74a5ef542f36',1,'cs.aworx.lib.enums.Off()'],['../namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313ad15305d7a4e34e02489c74a5ef542f36',1,'cs.aworx.lox.Off()']]],
-  ['ok',['OK',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a67a0db04d321a74b7e7fcfd3f1a3f70bae0aa021e21dddbd6d8cecec71e9cf564',1,'cs::aworx::lib::config::IniFile']]],
-  ['omit',['Omit',['../namespacecs_1_1aworx_1_1lib_1_1enums.html#aeae0c2d4659a32ef54bd221d1a3da4e6a3f9823fc8c5bf8d5efbb0ad3be5f16c9',1,'cs::aworx::lib::enums']]],
-  ['on',['On',['../namespacecs_1_1aworx_1_1lib_1_1enums.html#a9f3c28a2cb05bdcc618b542e49bfda3fa521c36a31c2762741cf0f8890cbe05e3',1,'cs::aworx::lib::enums']]],
-  ['once',['Once',['../classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31ae1a9dc9f23534e63de9df0d540ac1611',1,'cs::aworx::lox::Lox']]]
+  ['never',['Never',['../namespacecs_1_1aworx_1_1lib_1_1lang.html#a55781bd0c78c4e5d47ce433f4eeeee85a6e7b34fa59e1bd229b207892956dc41c',1,'cs::aworx::lib::lang']]],
+  ['nodelimspaces',['NoDelimSpaces',['../classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#aebb3561ef8cb7db28ec75a25358ab5d4a3308dff642c5b3a0cc5b192ba1a94958',1,'cs::aworx::lib::config::Variable']]],
+  ['none',['None',['../classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#aebb3561ef8cb7db28ec75a25358ab5d4a6adf97f83acf6453d4a6a4b1070f3754',1,'cs::aworx::lib::config::Variable']]],
+  ['notgiven',['NotGiven',['../classcs_1_1aworx_1_1lib_1_1strings_1_1FormatterStdImpl.html#a4660396d3d3ae4a0b0985d23df5c32e8ab2a08319d780b24b0f694c89e549a51f',1,'cs::aworx::lib::strings::FormatterStdImpl']]]
 ];

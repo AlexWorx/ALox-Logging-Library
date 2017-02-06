@@ -1,9 +1,13 @@
 var searchData=
 [
-  ['lockmode',['LockMode',['cpp_ref/namespaceaworx.html#acae7a6e21dc6155b5f1b7c932fb8aa34',1,'aworx']]],
-  ['log',['Log',['cpp_ref/namespaceaworx.html#a5d8a9ca518e5abc7446b6a753e2b7ae6',1,'aworx']]],
-  ['logables',['Logables',['cpp_ref/namespaceaworx_1_1lox_1_1core.html#a89b734aa261b747d9edc7a459bfc9db8',1,'aworx::lox::core']]],
-  ['logdata',['LogData',['cpp_ref/namespaceaworx.html#a07d961a72c3ccbe33993cdeb56dab52e',1,'aworx']]],
-  ['logger',['Logger',['cpp_ref/namespaceaworx.html#a8ec4a1b5f5786befe04b9f08d5417cdc',1,'aworx']]],
-  ['lox',['Lox',['cpp_ref/namespaceaworx.html#abf1258bbd9cf9772a1559f4ceb37fde4',1,'aworx']]]
+  ['iapply',['IApply',['.././cpp_ref/namespaceaworx.html#af231913c4b88a341cf804f9fedf38adb',1,'aworx']]],
+  ['iequals',['IEquals',['.././cpp_ref/namespaceaworx.html#ad2a6bc6649fc6c466eea78e6cc2adaf3',1,'aworx']]],
+  ['iisempty',['IIsEmpty',['.././cpp_ref/namespaceaworx.html#ae6997e75801a3dcdc3a80cec77b1a62f',1,'aworx']]],
+  ['iisnull',['IIsNull',['.././cpp_ref/namespaceaworx.html#a95b27610e38c813268b4a843ef5ef173',1,'aworx']]],
+  ['inclusion',['Inclusion',['.././cpp_ref/namespaceaworx.html#a934720ec6a941ba8927467c410f9783c',1,'aworx']]],
+  ['inifile',['IniFile',['.././cpp_ref/namespaceaworx.html#aef31dd55ee6403c15d9ba93325d3333d',1,'aworx']]],
+  ['inmemoryplugin',['InMemoryPlugin',['.././cpp_ref/namespaceaworx.html#a5acd1ac5b29f64268c6bd7dea9e3a3bd',1,'aworx']]],
+  ['integer',['integer',['.././cpp_ref/namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4',1,'aworx::integer()'],['.././cpp_ref/namespaceaworx_1_1lib_1_1lang.html#a050df5b24462b4a6256f2ed69c6b50ae',1,'aworx::lib::lang::integer()']]],
+  ['interface',['Interface',['.././cpp_ref/namespaceaworx.html#aef105b1e431c10dcbb5691cb9814cac8',1,'aworx']]],
+  ['intgap_5ft',['intGap_t',['.././cpp_ref/namespaceaworx.html#adea1bda61bf659bfe398c7f2f13242df',1,'aworx::intGap_t()'],['.././cpp_ref/namespaceaworx_1_1lib_1_1lang.html#af9eb8b6fb1aab7d526e9419b10fd5363',1,'aworx::lib::lang::intGap_t()']]]
 ];

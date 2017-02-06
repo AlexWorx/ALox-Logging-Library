@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['unknown',['Unknown',['cpp_ref/classaworx_1_1lib_1_1system_1_1System.html#aeae50cdd350e3deaae33d2900b0a72f2a88183b946cc5f0e8c96b2e66e1c74a7e',1,'aworx::lib::system::System']]],
-  ['unsafe',['Unsafe',['cs_ref/namespacecs_1_1aworx_1_1lib_1_1enums.html#a8c800527afe0a8a6c71ae4cceda6bf9dad3d57868b6ff9839eff631d2cc8acbce',1,'cs::aworx::lib::enums::Unsafe()'],['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#a8c800527afe0a8a6c71ae4cceda6bf9dad3d57868b6ff9839eff631d2cc8acbce',1,'aworx::lib::enums::Unsafe()']]],
-  ['utc',['UTC',['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#a9b1d8f31e178e17a8fef3a9e94bc4b2ca9234324ddf6b4176b57d803a925b7961',1,'aworx::lib::enums']]]
+  ['vartemp',['VarTemp',['.././cpp_ref/classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0ac42dbffd040a78993701573319deb9be',1,'aworx::lib::system::Directory']]],
+  ['verbose',['Verbose',['.././cs_ref/namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313ad4a9fa383ab700c5bdd6f31cf7df0faf',1,'cs::aworx::lox::Verbose()'],['.././cpp_ref/namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313ad4a9fa383ab700c5bdd6f31cf7df0faf',1,'aworx::lox::Verbose()']]],
+  ['version',['Version',['.././cs_ref/classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a34b6cd75171affba6957e308dcbd92be',1,'cs::aworx::lox::Lox']]]
 ];

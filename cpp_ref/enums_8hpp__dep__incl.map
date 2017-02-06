@@ -1,24 +1,6 @@
 <map id="enums.hpp" name="enums.hpp">
-<area shape="rect" id="node2" href="$alib_8hpp.html" title="alib.hpp" alt="" coords="723,80,789,107"/>
-<area shape="rect" id="node3" href="$ownable_8hpp.html" title="ownable.hpp" alt="" coords="1291,155,1386,181"/>
-<area shape="rect" id="node4" href="$threadlock_8hpp.html" title="threadlock.hpp" alt="" coords="649,229,756,256"/>
-<area shape="rect" id="node5" href="$alox_8hpp.html" title="alox.hpp" alt="" coords="1217,379,1287,405"/>
-<area shape="rect" id="node6" href="$report_8hpp.html" title="report.hpp" alt="" coords="213,155,293,181"/>
-<area shape="rect" id="node7" href="$util_8hpp.html" title="util.hpp" alt="" coords="317,155,381,181"/>
-<area shape="rect" id="node8" href="$applyformat_8hpp.html" title="applyformat.hpp" alt="" coords="405,155,520,181"/>
-<area shape="rect" id="node9" href="$applyto_8hpp.html" title="applyto.hpp" alt="" coords="545,155,634,181"/>
-<area shape="rect" id="node10" href="$astring_8hpp.html" title="astring.hpp" alt="" coords="658,155,745,181"/>
-<area shape="rect" id="node11" href="$cstring_8hpp.html" title="cstring.hpp" alt="" coords="769,155,855,181"/>
-<area shape="rect" id="node12" href="$preallocatedstring_8hpp.html" title="preallocatedstring.hpp" alt="" coords="880,155,1029,181"/>
-<area shape="rect" id="node13" href="$string_8hpp.html" title="string.hpp" alt="" coords="1054,155,1133,181"/>
-<area shape="rect" id="node14" href="$stringliteral_8hpp.html" title="stringliteral.hpp" alt="" coords="1157,155,1267,181"/>
-<area shape="rect" id="node15" href="$substring_8hpp.html" title="substring.hpp" alt="" coords="1518,155,1618,181"/>
-<area shape="rect" id="node16" href="$tstring_8hpp.html" title="tstring.hpp" alt="" coords="1411,155,1493,181"/>
-<area shape="rect" id="node17" href="$thread_8hpp.html" title="thread.hpp" alt="" coords="5,155,88,181"/>
-<area shape="rect" id="node18" href="$configuration_8hpp.html" title="configuration.hpp" alt="" coords="1191,304,1313,331"/>
-<area shape="rect" id="node19" href="$scopeinfo_8hpp.html" title="scopeinfo.hpp" alt="" coords="1201,453,1303,480"/>
-<area shape="rect" id="node20" href="$plugins_8hpp.html" title="plugins.hpp" alt="" coords="1273,229,1361,256"/>
-<area shape="rect" id="node21" href="$pathmap_8hpp.html" title="pathmap.hpp" alt="" coords="1562,229,1659,256"/>
-<area shape="rect" id="node22" href="$tokenizer_8hpp.html" title="tokenizer.hpp" alt="" coords="1386,229,1486,256"/>
-<area shape="rect" id="node23" href="$ticks_8hpp.html" title="ticks.hpp" alt="" coords="1471,304,1545,331"/>
+<area shape="rect" id="node2" href="$alib_8hpp.html" title="alib.hpp" alt="" coords="84,80,151,107"/>
+<area shape="rect" id="node3" href="$ownable_8hpp.html" title="ownable.hpp" alt="" coords="17,155,111,181"/>
+<area shape="rect" id="node4" href="$alox_8hpp.html" title="alox.hpp" alt="" coords="135,155,206,181"/>
+<area shape="rect" id="node5" href="$threadlocknr_8hpp.html" title="threadlocknr.hpp" alt="" coords="5,229,123,256"/>
 </map>

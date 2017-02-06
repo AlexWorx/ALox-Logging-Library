@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['nodeandchild',['NodeAndChild',['../classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap_1_1NodeAndChild.html',1,'cs::aworx::lib::containers::PathMap']]],
-  ['numberformat',['NumberFormat',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html',1,'cs::aworx::lib::strings']]]
+  ['memorylogger',['MemoryLogger',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html',1,'cs::aworx::lox::loggers']]],
+  ['message',['Message',['../classcs_1_1aworx_1_1lib_1_1lang_1_1Report_1_1Message.html',1,'cs::aworx::lib::lang::Report']]],
+  ['metainfo',['MetaInfo',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html',1,'cs::aworx::lox::core::textlogger']]]
 ];

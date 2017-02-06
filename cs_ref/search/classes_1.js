@@ -6,6 +6,5 @@ var searchData=
   ['configuration',['Configuration',['../classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html',1,'cs::aworx::lib::config']]],
   ['configurationplugin',['ConfigurationPlugin',['../classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html',1,'cs::aworx::lib::config']]],
   ['consolelogger',['ConsoleLogger',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html',1,'cs::aworx::lox::loggers']]],
-  ['consolereportwriter',['ConsoleReportWriter',['../classcs_1_1aworx_1_1lib_1_1ConsoleReportWriter.html',1,'cs::aworx::lib']]],
   ['cstring',['CString',['../classcs_1_1aworx_1_1lib_1_1strings_1_1CString.html',1,'cs::aworx::lib::strings']]]
 ];

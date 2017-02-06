@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['configuration_2ehpp',['configuration.hpp',['../configuration_8hpp.html',1,'']]],
-  ['consolelogger_2ehpp',['consolelogger.hpp',['../consolelogger_8hpp.html',1,'']]],
-  ['cstring_2ehpp',['cstring.hpp',['../cstring_8hpp.html',1,'']]]
+  ['box_2ehpp',['box.hpp',['../box_8hpp.html',1,'']]],
+  ['boxer_2ehpp',['boxer.hpp',['../boxer_8hpp.html',1,'']]],
+  ['boxes_2ehpp',['boxes.hpp',['../boxes_8hpp.html',1,'']]],
+  ['boxing_2ehpp',['boxing.hpp',['../boxing_8hpp.html',1,'']]]
 ];

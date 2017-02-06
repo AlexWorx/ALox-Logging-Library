@@ -1,13 +1,13 @@
 <map id="InMemoryPlugin.Section" name="InMemoryPlugin.Section">
-<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html" title="Tokenizer" alt="" coords="490,23,569,49"/>
-<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="163,145,240,172"/>
-<area shape="rect" id="node8" href="$classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html" title="Configuration" alt="" coords="1312,285,1411,312"/>
-<area shape="rect" id="node11" href="$classcom_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html" title="XTernalizer" alt="" coords="352,208,440,235"/>
-<area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="169,320,234,347"/>
-<area shape="rect" id="node6" href="$classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html" title="Variable" alt="" coords="1569,509,1639,536"/>
-<area shape="rect" id="node9" href="$classcom_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html" title="EnvironmentPlugin" alt="" coords="993,180,1123,207"/>
-<area shape="rect" id="node10" href="$classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html" title="ConfigurationPlugin" alt="" coords="657,232,791,259"/>
-<area shape="rect" id="node12" href="$classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html" title="InMemoryPlugin" alt="" coords="1000,232,1116,259"/>
-<area shape="rect" id="node15" href="$classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html" title="CommandLinePlugin" alt="" coords="987,283,1129,309"/>
-<area shape="rect" id="node16" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="1003,423,1113,449"/>
+<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html" title="Tokenizer" alt="" coords="492,28,571,55"/>
+<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="161,184,239,211"/>
+<area shape="rect" id="node8" href="$classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html" title="Configuration" alt="" coords="1344,263,1443,289"/>
+<area shape="rect" id="node11" href="$classcom_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html" title="XTernalizer" alt="" coords="353,157,440,184"/>
+<area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="167,351,233,377"/>
+<area shape="rect" id="node6" href="$classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html" title="Variable" alt="" coords="1601,481,1669,508"/>
+<area shape="rect" id="node9" href="$classcom_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html" title="EnvironmentPlugin" alt="" coords="1027,161,1157,188"/>
+<area shape="rect" id="node16" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="853,408,961,435"/>
+<area shape="rect" id="node10" href="$classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html" title="ConfigurationPlugin" alt="" coords="657,127,792,153"/>
+<area shape="rect" id="node12" href="$classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html" title="InMemoryPlugin" alt="" coords="1034,60,1150,87"/>
+<area shape="rect" id="node15" href="$classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html" title="CommandLinePlugin" alt="" coords="1021,111,1163,137"/>
 </map>

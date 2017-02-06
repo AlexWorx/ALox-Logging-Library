@@ -1,8 +1,9 @@
 var searchData=
 [
   ['fg_5freset',['FG_RESET',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a4d090538b91aeb913f57329509da9116',1,'cs::aworx::lox::ESC']]],
+  ['fieldbuffer',['fieldBuffer',['../classcs_1_1aworx_1_1lib_1_1strings_1_1FormatterStdImpl.html#a010e279780e5b70b379b2b6befd295db',1,'cs::aworx::lib::strings::FormatterStdImpl']]],
   ['fieldreference',['fieldReference',['../classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a3f9db4d35ad598af0040026b2b59afa4',1,'cs::aworx::lib::strings::AString']]],
-  ['file',['File',['../classcs_1_1aworx_1_1lib_1_1Report_1_1Message.html#a64de1063997925283992f28eeac1631a',1,'cs::aworx::lib::Report::Message']]],
+  ['file',['File',['../classcs_1_1aworx_1_1lib_1_1lang_1_1Report_1_1Message.html#a64de1063997925283992f28eeac1631a',1,'cs::aworx::lib::lang::Report::Message']]],
   ['filecomments',['FileComments',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a83074eb05e084e3cc5d0f9f3bb78f01b',1,'cs::aworx::lib::config::IniFile']]],
   ['filename',['FileName',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a8bea19241a8e12acb6725e40dd6f2d74',1,'cs.aworx.lib.config.IniFile.FileName()'],['../classcs_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html#a5066dd8adab56e4ea54fe46b9db3bd9a',1,'cs.aworx.lox.loggers.TextFileLogger.FileName()']]],
   ['fmtexcnull',['FmtExcNull',['../classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#aa8eaf49e43df1021c2d606be3fa2a105',1,'cs::aworx::lox::tools::LogTools']]],
@@ -23,9 +24,8 @@ var searchData=
   ['fmtmultilinemsgheadline',['FmtMultiLineMsgHeadline',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#ab3423baaf4b67d0e7cfa757203aaf872',1,'cs::aworx::lox::core::textlogger::TextLogger']]],
   ['fmtmultilineprefix',['FmtMultiLinePrefix',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a74da3f13d354d7b4b31aa8fefa7e7115',1,'cs::aworx::lox::core::textlogger::TextLogger']]],
   ['fmtmultilinesuffix',['FmtMultiLineSuffix',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a7daa8e01ebd6550ac7f2a0efacf3ef39',1,'cs::aworx::lox::core::textlogger::TextLogger']]],
-  ['fmtnullobject',['FmtNullObject',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html#ac281d117b6e931783195f52f70bfa5b3',1,'cs::aworx::lox::core::textlogger::StringConverter']]],
-  ['fmtunknownobject',['FmtUnknownObject',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a3051aebc3f205a04fc1196a5433d78e5',1,'cs::aworx::lox::core::textlogger::TextLogger']]],
-  ['forcescientificformat',['ForceScientificFormat',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#ae4968ebb3e654b4b07f58e13d2786dae',1,'cs::aworx::lib::strings::NumberFormat']]],
+  ['forcedecimalpoint',['ForceDecimalPoint',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acd495e7cc1a2cbe9356f593f65ea7432',1,'cs::aworx::lib::strings::NumberFormat']]],
+  ['forcescientific',['ForceScientific',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a4abcf6e13582e3d8c9d0dbf893f831f9',1,'cs::aworx::lib::strings::NumberFormat']]],
   ['format',['Format',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a5f73a9d6a9bfabaa4a33c34831006d07',1,'cs.aworx.lox.core.textlogger.MetaInfo.Format()'],['../classcs_1_1aworx_1_1lox_1_1ALox.html#a1373a5f581c7e737533d89eeae7d419e',1,'cs.aworx.lox.ALox.FORMAT()']]],
   ['format_5fdate_5ftime',['FORMAT_DATE_TIME',['../classcs_1_1aworx_1_1lox_1_1ALox.html#a0830aa343a032fafff6de4ca4c9c4037',1,'cs::aworx::lox::ALox']]],
   ['format_5fmultiline',['FORMAT_MULTILINE',['../classcs_1_1aworx_1_1lox_1_1ALox.html#a4fc7408e67c79f6fca8bd53e82356eda',1,'cs::aworx::lox::ALox']]],
@@ -36,8 +36,13 @@ var searchData=
   ['formatsb',['formatSB',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a85c8d54f584a622009048d0536f6160f',1,'cs::aworx::lox::core::textlogger::MetaInfo']]],
   ['formatspaceafterdelim',['FormatSpaceAfterDelim',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a0745166b66e5abe95006b75eeff309ca',1,'cs::aworx::lib::config::IniFile']]],
   ['formatspacebeforedelim',['FormatSpaceBeforeDelim',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a4bac2e411ff2f25c16dedaba0de76d3d',1,'cs::aworx::lib::config::IniFile']]],
-  ['fractionaldigits',['FractionalDigits',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a6c90dcda5ed7d0ecdbc8ec0aa9c76ac3',1,'cs::aworx::lib::strings::NumberFormat']]],
+  ['formatstring',['formatString',['../classcs_1_1aworx_1_1lib_1_1strings_1_1FormatterStdImpl.html#a2bf621d6180546942079679255cfdb28',1,'cs::aworx::lib::strings::FormatterStdImpl']]],
+  ['formatter',['Formatter',['../classcs_1_1aworx_1_1lib_1_1lang_1_1ReportWriterStdIO.html#ad62b42a3a6f5f000bc141fa4f26506f4',1,'cs::aworx::lib::lang::ReportWriterStdIO']]],
+  ['formatterjs',['FormatterJS',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1StandardConverter.html#a41deffcdf2933af4c71b1d2441ca4b2f',1,'cs::aworx::lox::core::textlogger::StandardConverter']]],
+  ['formattername',['formatterName',['../classcs_1_1aworx_1_1lib_1_1strings_1_1FormatterStdImpl.html#aa9fb019c5c136152ad305c67b8a78124',1,'cs::aworx::lib::strings::FormatterStdImpl']]],
+  ['formatterps',['FormatterPS',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1StandardConverter.html#a85f447c2e5d7073292ccd3ed59824b5e',1,'cs::aworx::lox::core::textlogger::StandardConverter']]],
+  ['fractionalpartwidth',['FractionalPartWidth',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a97e091f874fd75c5506bd2adf6288d48',1,'cs::aworx::lib::strings::NumberFormat']]],
   ['fullname',['Fullname',['../classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#a0a6355e3ba2adaedd7968141c85a257a',1,'cs::aworx::lib::config::Variable']]],
   ['fullpath',['FullPath',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a2a6c0d3ee72cd24b4333894999aadcd0',1,'cs::aworx::lox::core::Domain']]],
-  ['func',['Func',['../classcs_1_1aworx_1_1lib_1_1Report_1_1Message.html#a39c230199b392ed588e57b8950add07f',1,'cs::aworx::lib::Report::Message']]]
+  ['func',['Func',['../classcs_1_1aworx_1_1lib_1_1lang_1_1Report_1_1Message.html#a39c230199b392ed588e57b8950add07f',1,'cs::aworx::lib::lang::Report::Message']]]
 ];

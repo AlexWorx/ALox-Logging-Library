@@ -2,14 +2,32 @@ digraph "ticks.hpp"
 {
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
-  Node1 [label="ticks.hpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
-  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="ticks.hpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
   Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node4 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="scopeinfo.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$scopeinfo_8hpp.html"];
-  Node3 [label="lox.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$lox_8hpp.html"];
-  Node4 [label="alox.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$alox_8hpp.html"];
+  Node3 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="calendartime.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$calendartime_8hpp.html"];
+  Node5 [label="textlogger.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$textlogger_8hpp.html"];
+  Node6 [label="plaintextlogger.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$plaintextlogger_8hpp.html"];
+  Node12 [label="ansilogger.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$ansilogger_8hpp.html"];
+  Node13 [label="windowsconsolelogger.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$windowsconsolelogger_8hpp.html"];
+  Node14 [label="tickspan.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tickspan_8hpp.html"];
+  Node15 [label="tickwatch.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tickwatch_8hpp.html"];
+  Node16 [label="scopeinfo.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$scopeinfo_8hpp.html"];
+  Node17 [label="lox.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$lox_8hpp.html"];
+  Node18 [label="alox.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$alox_8hpp.html"];
 }
 

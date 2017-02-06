@@ -1,6 +1,6 @@
 <map id="Logger" name="Logger">
 <area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html" title="SmartLock" alt="" coords="96,216,181,243"/>
 <area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="272,105,363,131"/>
-<area shape="rect" id="node4" href="$enumcom_1_1aworx_1_1lib_1_1enums_1_1LockMode.html" title="LockMode" alt="" coords="276,7,359,33"/>
+<area shape="rect" id="node4" href="$enumcom_1_1aworx_1_1lib_1_1lang_1_1LockMode.html" title="LockMode" alt="" coords="276,7,359,33"/>
 <area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="15,7,70,33"/>
 </map>

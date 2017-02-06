@@ -5,18 +5,11 @@
   <filterSection>
     <filterAttribute>doxygen</filterAttribute>
     <toc>
-      <section title="ALox V. 1607 R. 0" ref="index.html">
-        <section title="ALox Main Page" ref="index.html" />
-        <section title="FAQ" ref="faq.html" />
-        <section title="Manual" ref="manual.html">
-          <section title="man_intro" ref="man_intro.html" />
-          <section title="man_concepts" ref="@ref man_concepts" />
-          <section title="man_achieving_goals" ref="@ref man_achieving_goals" />
-        </section>
-        <section title="ALox for C++" ref="cpp_ref/cppmainpage.html" />
-        <section title="ALox for C#" ref="cs_ref/csmainpage.html" />
-        <section title="ALox for Java" ref="java_ref/javamainpage.html" />
+      <section title="ALox V. 1702 R. 0" ref="index.html">
+        <section title="Overview" ref="index.html" />
+        <section title="Manual" ref="manual.html" />
         <section title="Tools" ref="tools.html" />
+        <section title="FAQ" ref="faq.html" />
       </section>
     </toc>
     <keywords>
@@ -39,32 +32,33 @@
       <keyword name="A - Namespaces" id="A - Namespaces" ref="man_ext_namespaces.html" />
       <keyword name="B - Loggers and Implementing Custom Types" id="B - Loggers and Implementing Custom Types" ref="man_ext_loggers.html" />
       <keyword name="II -  ALox Auto-Configuration and Orthogonality" id="II -  ALox Auto-Configuration and Orthogonality" ref="man_apdx_auto_config.html" />
-      <keyword name="User Manual" id="User Manual" ref="manual.html" />
+      <keyword name="Contents" id="Contents" ref="manual.html" />
       <keyword name="Change Log" id="Change Log" ref="changelog.html" />
       <keyword name="FAQ - Frequently asked Questions for ALox" id="FAQ - Frequently asked Questions for ALox" ref="faq.html" />
       <keyword name="Tools for ALox" id="Tools for ALox" ref="tools.html" />
       <keyword name="I - Configuration Variables" id="I - Configuration Variables" ref="group__GrpALoxConfigVars.html" />
-      <keyword name="ALIB_RTE" id="GrpALoxConfigVars::ALIB_RTE" ref="group__GrpALoxConfigVars.html#gac62abc7811e32bb6329a151fe9ba8881" />
-      <keyword name="ALIB_LOCALE" id="GrpALoxConfigVars::ALIB_LOCALE" ref="group__GrpALoxConfigVars.html#ga3ba85db0d6d1aff71681e17a2cfb5b3a" />
-      <keyword name="ALIB_HAS_CONSOLE_WINDOW" id="GrpALoxConfigVars::ALIB_HAS_CONSOLE_WINDOW" ref="group__GrpALoxConfigVars.html#ga0609e3155155dd75380c499571325be9" />
-      <keyword name="ALIB_WAIT_FOR_KEY_PRESS" id="GrpALoxConfigVars::ALIB_WAIT_FOR_KEY_PRESS" ref="group__GrpALoxConfigVars.html#ga8a40f5382d8a235f941b948b0fbd3727" />
-      <keyword name="ALOX_USE_SYSTEM_OUT_PRINT" id="GrpALoxConfigVars::ALOX_USE_SYSTEM_OUT_PRINT" ref="group__GrpALoxConfigVars.html#gadf6b9350cbf7d941b8fae502f0724ccb" />
-      <keyword name="ALOX_CONSOLE_TYPE" id="GrpALoxConfigVars::ALOX_CONSOLE_TYPE" ref="group__GrpALoxConfigVars.html#ga52268b31ecbd87a730acb741e2926477" />
-      <keyword name="ALOX_CONSOLE_HAS_LIGHT_BACKGROUND" id="GrpALoxConfigVars::ALOX_CONSOLE_HAS_LIGHT_BACKGROUND" ref="group__GrpALoxConfigVars.html#ga033eedd6ce4b3a9bd337924f18690f79" />
-      <keyword name="ALOX_NO_IDE_LOGGER" id="GrpALoxConfigVars::ALOX_NO_IDE_LOGGER" ref="group__GrpALoxConfigVars.html#gaae997c0e73d7487684ed839e4bdd4a17" />
-      <keyword name="ALOX_CODE_PAGE" id="GrpALoxConfigVars::ALOX_CODE_PAGE" ref="group__GrpALoxConfigVars.html#gadb1d24a054196d1b178645be4e9a2422" />
-      <keyword name="ALOX_LOGGERNAME_AUTO_SIZES" id="GrpALoxConfigVars::ALOX_LOGGERNAME_AUTO_SIZES" ref="group__GrpALoxConfigVars.html#ga0741a1d6212c64779093dc2357d0f672" />
-      <keyword name="ALOX_LOGGERNAME_MAX_ELAPSED_TIME" id="GrpALoxConfigVars::ALOX_LOGGERNAME_MAX_ELAPSED_TIME" ref="group__GrpALoxConfigVars.html#gab375e0c2170c55e8638985d007a3e6db" />
-      <keyword name="ALOX_LOGGERNAME_FORMAT" id="GrpALoxConfigVars::ALOX_LOGGERNAME_FORMAT" ref="group__GrpALoxConfigVars.html#ga4afceac725b2d9036373691895259c67" />
-      <keyword name="ALOX_LOGGERNAME_FORMAT_DATE_TIME" id="GrpALoxConfigVars::ALOX_LOGGERNAME_FORMAT_DATE_TIME" ref="group__GrpALoxConfigVars.html#gaad119ea1ba30c62207002497a3f8c8ec" />
-      <keyword name="ALOX_LOGGERNAME_FORMAT_TIME_DIFF" id="GrpALoxConfigVars::ALOX_LOGGERNAME_FORMAT_TIME_DIFF" ref="group__GrpALoxConfigVars.html#gaaf6362b72deb62e566a150791ab3d932" />
-      <keyword name="ALOX_LOGGERNAME_FORMAT_MULTILINE" id="GrpALoxConfigVars::ALOX_LOGGERNAME_FORMAT_MULTILINE" ref="group__GrpALoxConfigVars.html#ga27bda622e7b9f55c5125fec47dda45d3" />
-      <keyword name="ALOX_LOXNAME_DOMAIN_SUBSTITUTION" id="GrpALoxConfigVars::ALOX_LOXNAME_DOMAIN_SUBSTITUTION" ref="group__GrpALoxConfigVars.html#ga33d3336fd34d7d8e0c05aaf56aa2a5fd" />
-      <keyword name="ALOX_GLOBAL_SOURCE_PATH_TRIM_RULES" id="GrpALoxConfigVars::ALOX_GLOBAL_SOURCE_PATH_TRIM_RULES" ref="group__GrpALoxConfigVars.html#ga9fff149ffbfa1d599972b86ecb03aa71" />
-      <keyword name="ALOX_LOXNAME_SOURCE_PATH_TRIM_RULES" id="GrpALoxConfigVars::ALOX_LOXNAME_SOURCE_PATH_TRIM_RULES" ref="group__GrpALoxConfigVars.html#ga4f3e16aa4e19916600ac66181e93b482" />
-      <keyword name="ALOX_LOXNAME_LOGGERNAME_VERBOSITY" id="GrpALoxConfigVars::ALOX_LOXNAME_LOGGERNAME_VERBOSITY" ref="group__GrpALoxConfigVars.html#gabcd13580239d502881f74e45de96e46d" />
-      <keyword name="ALOX_LOXNAME_PREFIXES" id="GrpALoxConfigVars::ALOX_LOXNAME_PREFIXES" ref="group__GrpALoxConfigVars.html#ga299a0d20586716e77563f08a1cb77ebb" />
-      <keyword name="ALOX_LOXNAME_DUMP_STATE_ON_EXIT" id="GrpALoxConfigVars::ALOX_LOXNAME_DUMP_STATE_ON_EXIT" ref="group__GrpALoxConfigVars.html#gafc5f4962f037b49befef9efbd79d9807" />
+      <keyword name="ALIB_RTE" id="Man.Ref.I.ConfigurationVariables.dox::ALIB_RTE" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#gac62abc7811e32bb6329a151fe9ba8881" />
+      <keyword name="ALIB_LOCALE" id="Man.Ref.I.ConfigurationVariables.dox::ALIB_LOCALE" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#ga3ba85db0d6d1aff71681e17a2cfb5b3a" />
+      <keyword name="ALIB_HAS_CONSOLE_WINDOW" id="Man.Ref.I.ConfigurationVariables.dox::ALIB_HAS_CONSOLE_WINDOW" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#ga0609e3155155dd75380c499571325be9" />
+      <keyword name="ALIB_WAIT_FOR_KEY_PRESS" id="Man.Ref.I.ConfigurationVariables.dox::ALIB_WAIT_FOR_KEY_PRESS" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#ga8a40f5382d8a235f941b948b0fbd3727" />
+      <keyword name="ALOX_USE_SYSTEM_OUT_PRINT" id="Man.Ref.I.ConfigurationVariables.dox::ALOX_USE_SYSTEM_OUT_PRINT" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#gadf6b9350cbf7d941b8fae502f0724ccb" />
+      <keyword name="ALOX_CONSOLE_TYPE" id="Man.Ref.I.ConfigurationVariables.dox::ALOX_CONSOLE_TYPE" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#ga52268b31ecbd87a730acb741e2926477" />
+      <keyword name="ALOX_CONSOLE_LIGHT_COLORS" id="Man.Ref.I.ConfigurationVariables.dox::ALOX_CONSOLE_LIGHT_COLORS" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#gafb66dfae083f29b602d5a698192e1da2" />
+      <keyword name="ALOX_NO_IDE_LOGGER" id="Man.Ref.I.ConfigurationVariables.dox::ALOX_NO_IDE_LOGGER" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#gaae997c0e73d7487684ed839e4bdd4a17" />
+      <keyword name="ALOX_CODE_PAGE" id="Man.Ref.I.ConfigurationVariables.dox::ALOX_CODE_PAGE" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#gadb1d24a054196d1b178645be4e9a2422" />
+      <keyword name="ALOX_LOGGERNAME_AUTO_SIZES" id="Man.Ref.I.ConfigurationVariables.dox::ALOX_LOGGERNAME_AUTO_SIZES" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#ga0741a1d6212c64779093dc2357d0f672" />
+      <keyword name="ALOX_LOGGERNAME_MAX_ELAPSED_TIME" id="Man.Ref.I.ConfigurationVariables.dox::ALOX_LOGGERNAME_MAX_ELAPSED_TIME" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#gab375e0c2170c55e8638985d007a3e6db" />
+      <keyword name="ALOX_LOGGERNAME_FORMAT" id="Man.Ref.I.ConfigurationVariables.dox::ALOX_LOGGERNAME_FORMAT" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#ga4afceac725b2d9036373691895259c67" />
+      <keyword name="ALOX_LOGGERNAME_FORMAT_DATE_TIME" id="Man.Ref.I.ConfigurationVariables.dox::ALOX_LOGGERNAME_FORMAT_DATE_TIME" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#gaad119ea1ba30c62207002497a3f8c8ec" />
+      <keyword name="ALOX_LOGGERNAME_REPLACEMENTS" id="Man.Ref.I.ConfigurationVariables.dox::ALOX_LOGGERNAME_REPLACEMENTS" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#ga148e84be7fcaec0e4a258616a6efc499" />
+      <keyword name="ALOX_LOGGERNAME_FORMAT_TIME_DIFF" id="Man.Ref.I.ConfigurationVariables.dox::ALOX_LOGGERNAME_FORMAT_TIME_DIFF" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#gaaf6362b72deb62e566a150791ab3d932" />
+      <keyword name="ALOX_LOGGERNAME_FORMAT_MULTILINE" id="Man.Ref.I.ConfigurationVariables.dox::ALOX_LOGGERNAME_FORMAT_MULTILINE" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#ga27bda622e7b9f55c5125fec47dda45d3" />
+      <keyword name="ALOX_LOXNAME_DOMAIN_SUBSTITUTION" id="Man.Ref.I.ConfigurationVariables.dox::ALOX_LOXNAME_DOMAIN_SUBSTITUTION" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#ga33d3336fd34d7d8e0c05aaf56aa2a5fd" />
+      <keyword name="ALOX_GLOBAL_SOURCE_PATH_TRIM_RULES" id="Man.Ref.I.ConfigurationVariables.dox::ALOX_GLOBAL_SOURCE_PATH_TRIM_RULES" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#ga9fff149ffbfa1d599972b86ecb03aa71" />
+      <keyword name="ALOX_LOXNAME_SOURCE_PATH_TRIM_RULES" id="Man.Ref.I.ConfigurationVariables.dox::ALOX_LOXNAME_SOURCE_PATH_TRIM_RULES" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#ga4f3e16aa4e19916600ac66181e93b482" />
+      <keyword name="ALOX_LOXNAME_LOGGERNAME_VERBOSITY" id="Man.Ref.I.ConfigurationVariables.dox::ALOX_LOXNAME_LOGGERNAME_VERBOSITY" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#gabcd13580239d502881f74e45de96e46d" />
+      <keyword name="ALOX_LOXNAME_PREFIXES" id="Man.Ref.I.ConfigurationVariables.dox::ALOX_LOXNAME_PREFIXES" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#ga299a0d20586716e77563f08a1cb77ebb" />
+      <keyword name="ALOX_LOXNAME_DUMP_STATE_ON_EXIT" id="Man.Ref.I.ConfigurationVariables.dox::ALOX_LOXNAME_DUMP_STATE_ON_EXIT" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#gafc5f4962f037b49befef9efbd79d9807" />
     </keywords>
     <files>
       <file>tabs.css</file>
@@ -331,6 +325,68 @@
       <file>inherit_graph_199.svg</file>
       <file>inherit_graph_200.svg</file>
       <file>inherit_graph_201.svg</file>
+      <file>inherit_graph_202.svg</file>
+      <file>inherit_graph_203.svg</file>
+      <file>inherit_graph_204.svg</file>
+      <file>inherit_graph_205.svg</file>
+      <file>inherit_graph_206.svg</file>
+      <file>inherit_graph_207.svg</file>
+      <file>inherit_graph_208.svg</file>
+      <file>inherit_graph_209.svg</file>
+      <file>inherit_graph_210.svg</file>
+      <file>inherit_graph_211.svg</file>
+      <file>inherit_graph_212.svg</file>
+      <file>inherit_graph_213.svg</file>
+      <file>inherit_graph_214.svg</file>
+      <file>inherit_graph_215.svg</file>
+      <file>inherit_graph_216.svg</file>
+      <file>inherit_graph_217.svg</file>
+      <file>inherit_graph_218.svg</file>
+      <file>inherit_graph_219.svg</file>
+      <file>inherit_graph_220.svg</file>
+      <file>inherit_graph_221.svg</file>
+      <file>inherit_graph_222.svg</file>
+      <file>inherit_graph_223.svg</file>
+      <file>inherit_graph_224.svg</file>
+      <file>inherit_graph_225.svg</file>
+      <file>inherit_graph_226.svg</file>
+      <file>inherit_graph_227.svg</file>
+      <file>inherit_graph_228.svg</file>
+      <file>inherit_graph_229.svg</file>
+      <file>inherit_graph_230.svg</file>
+      <file>inherit_graph_231.svg</file>
+      <file>inherit_graph_232.svg</file>
+      <file>inherit_graph_233.svg</file>
+      <file>inherit_graph_234.svg</file>
+      <file>inherit_graph_235.svg</file>
+      <file>inherit_graph_236.svg</file>
+      <file>inherit_graph_237.svg</file>
+      <file>inherit_graph_238.svg</file>
+      <file>inherit_graph_239.svg</file>
+      <file>inherit_graph_240.svg</file>
+      <file>inherit_graph_241.svg</file>
+      <file>inherit_graph_242.svg</file>
+      <file>inherit_graph_243.svg</file>
+      <file>inherit_graph_244.svg</file>
+      <file>inherit_graph_245.svg</file>
+      <file>inherit_graph_246.svg</file>
+      <file>inherit_graph_247.svg</file>
+      <file>inherit_graph_248.svg</file>
+      <file>inherit_graph_249.svg</file>
+      <file>inherit_graph_250.svg</file>
+      <file>inherit_graph_251.svg</file>
+      <file>inherit_graph_252.svg</file>
+      <file>inherit_graph_253.svg</file>
+      <file>inherit_graph_254.svg</file>
+      <file>inherit_graph_255.svg</file>
+      <file>inherit_graph_256.svg</file>
+      <file>inherit_graph_257.svg</file>
+      <file>inherit_graph_258.svg</file>
+      <file>inherit_graph_259.svg</file>
+      <file>inherit_graph_260.svg</file>
+      <file>inherit_graph_261.svg</file>
+      <file>inherit_graph_262.svg</file>
+      <file>inherit_graph_263.svg</file>
       <file>pages.html</file>
     </files>
   </filterSection>

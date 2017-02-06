@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['readlinefromistream',['ReadLineFromIStream',['../classaworx_1_1lib_1_1strings_1_1ReadLineFromIStream.html',1,'aworx::lib::strings']]],
-  ['report',['Report',['../classaworx_1_1lib_1_1Report.html',1,'aworx::lib']]],
-  ['reportwriter',['ReportWriter',['../classaworx_1_1lib_1_1ReportWriter.html',1,'aworx::lib']]],
-  ['runnable',['Runnable',['../classaworx_1_1lib_1_1threads_1_1Runnable.html',1,'aworx::lib::threads']]]
+  ['objectconverter',['ObjectConverter',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html',1,'aworx::lox::core::textlogger']]],
+  ['oct',['Oct',['../structaworx_1_1lib_1_1strings_1_1Format_1_1Oct.html',1,'aworx::lib::strings::Format']]],
+  ['ownable',['Ownable',['../classaworx_1_1lib_1_1lang_1_1Ownable.html',1,'aworx::lib::lang']]],
+  ['owner',['Owner',['../structaworx_1_1lib_1_1lang_1_1Owner.html',1,'aworx::lib::lang']]]
 ];

@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['inclusion',['Inclusion',['cpp_ref/namespaceaworx.html#af3771c700d4232fb5b8a10510e088274',1,'aworx']]],
-  ['inifile',['IniFile',['cpp_ref/namespaceaworx.html#aef31dd55ee6403c15d9ba93325d3333d',1,'aworx']]],
-  ['inmemoryplugin',['InMemoryPlugin',['cpp_ref/namespaceaworx.html#a5acd1ac5b29f64268c6bd7dea9e3a3bd',1,'aworx']]]
+  ['format',['Format',['.././cpp_ref/namespaceaworx.html#aed5a5fab6b4a0c81a5a231f6d0379d41',1,'aworx']]],
+  ['formatter',['Formatter',['.././cpp_ref/namespaceaworx.html#a8154e200e167bdb644cea5b843038c76',1,'aworx']]],
+  ['formatterjavastyle',['FormatterJavaStyle',['.././cpp_ref/namespaceaworx.html#a67c4890b8768bb48cbc816180d65d40f',1,'aworx']]],
+  ['formatterpythonstyle',['FormatterPythonStyle',['.././cpp_ref/namespaceaworx.html#ac234ed530eb391d282f39a474fdceb73',1,'aworx']]]
 ];

@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['uint32',['UInt32',['../classaworx_1_1lib_1_1strings_1_1Format_1_1UInt32.html#a43588a61a7b361b2fc1f563eee1f3979',1,'aworx::lib::strings::Format::UInt32']]],
-  ['uint64',['UInt64',['../classaworx_1_1lib_1_1strings_1_1Format_1_1UInt64.html#a8c277fa0e922affef8caced713b9a3c1',1,'aworx::lib::strings::Format::UInt64']]]
+  ['unbox',['Unbox',['../classaworx_1_1lib_1_1boxing_1_1Box.html#a7e697abb81d1cc6d8669a75e48ec0d88',1,'aworx::lib::boxing::Box']]],
+  ['unboxelement',['UnboxElement',['../classaworx_1_1lib_1_1boxing_1_1Box.html#a974225964bd92b7338e69557376719e1',1,'aworx::lib::boxing::Box']]],
+  ['unboxing',['Unboxing',['../structaworx_1_1lib_1_1boxing_1_1T__Boxing.html#a5dfd7dc3e9e72651fd2441d71bc56163',1,'aworx::lib::boxing::T_Boxing::Unboxing()'],['../structaworx_1_1lib_1_1boxing_1_1T__Boxing_3_01BoxedAs_3_01TBoxed_01_4_01_4.html#a85d958630c8c99139d447d639dc5f5e4',1,'aworx::lib::boxing::T_Boxing&lt; BoxedAs&lt; TBoxed &gt; &gt;::Unboxing()'],['../structaworx_1_1lib_1_1boxing_1_1T__Boxing_3_01std_1_1vector_3_01TElem_01_4_01_4.html#af7839b313fc67890cb0f500252cf69a8',1,'aworx::lib::boxing::T_Boxing&lt; std::vector&lt; TElem &gt; &gt;::Unboxing()'],['../structaworx_1_1lib_1_1strings_1_1boxing_1_1T__Boxing_3_01aworx_1_1lib_1_1strings_1_1PreallocatedString_3_01TCapacity_01_4_01_4.html#a9e6336f15a96d454d61e39e98f22fc3a',1,'aworx::lib::strings::boxing::T_Boxing&lt; aworx::lib::strings::PreallocatedString&lt; TCapacity &gt; &gt;::Unboxing()'],['../structaworx_1_1lib_1_1strings_1_1boxing_1_1T__Boxing_3_01strings_1_1StringLiteral_3_01TLength_01_4_01_4.html#aa1ff6388131ed3f82f63fcad5a478a69',1,'aworx::lib::strings::boxing::T_Boxing&lt; strings::StringLiteral&lt; TLength &gt; &gt;::Unboxing()']]],
+  ['unboxraw',['UnboxRaw',['../classaworx_1_1lib_1_1boxing_1_1Box.html#a7f83d910b885d130193aaa77d472f29c',1,'aworx::lib::boxing::Box']]]
 ];

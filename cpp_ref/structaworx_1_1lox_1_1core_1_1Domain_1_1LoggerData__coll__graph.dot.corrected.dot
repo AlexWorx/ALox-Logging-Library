@@ -3,21 +3,23 @@ digraph "Domain::LoggerData"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   Node1 [label="Domain::LoggerData",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
-  Node5 [label="vector\<ThreadLock *\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-  Node7 [label="PreallocatedString\<TCapacity\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html"];
+  Node15 [label="vector\<ThreadLock *\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node17 [label="PreallocatedString\<TCapacity\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html"];
   Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Logger" ,fontname="Helvetica"];
   Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node4 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
-  Node5 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" acquirers" ,fontname="Helvetica"];
-  Node6 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" TimeOfLastLog\nTimeOfCreation" ,fontname="Helvetica"];
-  Node6 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" creationTime" ,fontname="Helvetica"];
-  Node7 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" TypeName\nName" ,fontname="Helvetica"];
-  Node8 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 -> Node15 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
+  Node12 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" lock" ,fontname="Helvetica"];
+  Node15 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" acquirers" ,fontname="Helvetica"];
+  Node16 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" TimeOfLastLog\nTimeOfCreation" ,fontname="Helvetica"];
+  Node16 -> Node16 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" creationTime" ,fontname="Helvetica"];
+  Node17 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" TypeName\nName" ,fontname="Helvetica"];
   Node2 [label="Logger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1core_1_1Logger.html"];
   Node3 [label="SmartLock",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1threads_1_1SmartLock.html"];
   Node4 [label="ThreadLock",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html"];
-  Node6 [label="Ticks",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1time_1_1Ticks.html"];
-  Node8 [label="AString",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1AString.html"];
+  Node14 [label="ThreadLockNR",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html"];
+  Node16 [label="Ticks",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1time_1_1Ticks.html"];
+  Node12 [label="AString",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1AString.html"];
 }
 

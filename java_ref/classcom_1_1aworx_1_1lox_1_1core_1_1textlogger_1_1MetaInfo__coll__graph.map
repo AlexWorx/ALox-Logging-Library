@@ -1,7 +1,7 @@
 <map id="MetaInfo" name="MetaInfo">
-<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html" title="Tokenizer" alt="" coords="5,216,84,243"/>
-<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="13,81,90,108"/>
-<area shape="rect" id="node7" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="99,133,164,160"/>
-<area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lib_1_1time_1_1TickSpan.html" title="TickSpan" alt="" coords="258,216,335,243"/>
-<area shape="rect" id="node10" href="$classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="801,216,856,243"/>
+<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html" title="Tokenizer" alt="" coords="5,187,84,213"/>
+<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="11,81,89,108"/>
+<area shape="rect" id="node7" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="96,133,161,160"/>
+<area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lib_1_1time_1_1TickSpan.html" title="TickSpan" alt="" coords="222,187,299,213"/>
+<area shape="rect" id="node10" href="$classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="764,187,819,213"/>
 </map>

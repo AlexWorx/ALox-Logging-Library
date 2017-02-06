@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['numberformat_2ehpp',['numberformat.hpp',['../numberformat_8hpp.html',1,'']]]
+  ['log_2ehpp',['log.hpp',['../log_8hpp.html',1,'']]],
+  ['logger_2ehpp',['logger.hpp',['../logger_8hpp.html',1,'']]],
+  ['lox_2ehpp',['lox.hpp',['../lox_8hpp.html',1,'']]]
 ];

@@ -1,8 +1,7 @@
 <map id="ScopeStore&lt; T &gt;" name="ScopeStore&lt; T &gt;">
-<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="49,5,114,32"/>
-<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html" title="ScopeInfo" alt="" coords="62,231,143,257"/>
-<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html" title="ScopeInfo.SourceFile" alt="" coords="181,125,328,152"/>
-<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="353,125,407,152"/>
-<area shape="rect" id="node6" href="$classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html" title="PathMap\&lt; T \&gt;" alt="" coords="168,231,275,257"/>
-<area shape="rect" id="node7" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="308,231,385,257"/>
+<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="62,5,127,32"/>
+<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html" title="ScopeInfo" alt="" coords="54,228,135,255"/>
+<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html" title="ScopeInfo.SourceFile" alt="" coords="193,124,340,151"/>
+<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html" title="PathMap\&lt; T \&gt;" alt="" coords="160,228,267,255"/>
+<area shape="rect" id="node6" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="300,228,377,255"/>
 </map>

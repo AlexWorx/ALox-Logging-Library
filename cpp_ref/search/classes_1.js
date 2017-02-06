@@ -1,9 +1,12 @@
 var searchData=
 [
-  ['commandlineplugin',['CommandLinePlugin',['../classaworx_1_1lib_1_1config_1_1CommandLinePlugin.html',1,'aworx::lib::config']]],
-  ['configuration',['Configuration',['../classaworx_1_1lib_1_1config_1_1Configuration.html',1,'aworx::lib::config']]],
-  ['configurationplugin',['ConfigurationPlugin',['../classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html',1,'aworx::lib::config']]],
-  ['consolelogger',['ConsoleLogger',['../classaworx_1_1lox_1_1loggers_1_1ConsoleLogger.html',1,'aworx::lox::loggers']]],
-  ['consolereportwriter',['ConsoleReportWriter',['../classaworx_1_1lib_1_1ConsoleReportWriter.html',1,'aworx::lib']]],
-  ['cstring',['CString',['../classaworx_1_1lib_1_1strings_1_1CString.html',1,'aworx::lib::strings']]]
+  ['bin',['Bin',['../structaworx_1_1lib_1_1strings_1_1Format_1_1Bin.html',1,'aworx::lib::strings::Format']]],
+  ['block',['Block',['../structaworx_1_1lib_1_1lang_1_1MemoryBlocks_1_1Block.html',1,'aworx::lib::lang::MemoryBlocks']]],
+  ['box',['Box',['../classaworx_1_1lib_1_1boxing_1_1Box.html',1,'aworx::lib::boxing']]],
+  ['boxdata',['BoxData',['../structaworx_1_1lib_1_1boxing_1_1BoxData.html',1,'aworx::lib::boxing']]],
+  ['boxedas',['BoxedAs',['../classaworx_1_1lib_1_1boxing_1_1BoxedAs.html',1,'aworx::lib::boxing']]],
+  ['boxer',['Boxer',['../classaworx_1_1lib_1_1boxing_1_1Boxer.html',1,'aworx::lib::boxing']]],
+  ['boxert',['BoxerT',['../classaworx_1_1lib_1_1boxing_1_1BoxerT.html',1,'aworx::lib::boxing']]],
+  ['boxes',['Boxes',['../classaworx_1_1lib_1_1boxing_1_1Boxes.html',1,'aworx::lib::boxing']]],
+  ['boxing',['Boxing',['../classaworx_1_1lib_1_1debug_1_1Boxing.html',1,'aworx::lib::debug']]]
 ];

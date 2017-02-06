@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['ownable_2ehpp',['ownable.hpp',['../ownable_8hpp.html',1,'']]]
+  ['memoryblocks_2ehpp',['memoryblocks.hpp',['../memoryblocks_8hpp.html',1,'']]],
+  ['memorylogger_2ehpp',['memorylogger.hpp',['../memorylogger_8hpp.html',1,'']]]
 ];

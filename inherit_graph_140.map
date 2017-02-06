@@ -1,7 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="/home/a/mnt/dev/A-Worx/ALox/html/cs_ref/cs_ref.tag$classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html" title="cs::aworx::lib::config\l::ConfigurationPlugin" alt="" coords="5,71,148,112"/>
-<area shape="rect" id="node2" href="/home/a/mnt/dev/A-Worx/ALox/html/cs_ref/cs_ref.tag$classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html" title="cs::aworx::lib::config\l::CommandLinePlugin" alt="" coords="196,5,347,47"/>
-<area shape="rect" id="node3" href="/home/a/mnt/dev/A-Worx/ALox/html/cs_ref/cs_ref.tag$classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html" title="cs::aworx::lib::config\l::EnvironmentPlugin" alt="" coords="200,71,343,112"/>
-<area shape="rect" id="node4" href="/home/a/mnt/dev/A-Worx/ALox/html/cs_ref/cs_ref.tag$classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html" title="cs::aworx::lib::config\l::InMemoryPlugin" alt="" coords="200,136,343,177"/>
-<area shape="rect" id="node5" href="/home/a/mnt/dev/A-Worx/ALox/html/cs_ref/cs_ref.tag$classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html" title="cs::aworx::lib::config\l::IniFile" alt="" coords="395,136,537,177"/>
-</map>

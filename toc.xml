@@ -1,13 +1,6 @@
 <toc label="ALox" topic="index.html">
-  <topic label="ALox Main Page" href="index.html"/>
-  <topic label="FAQ" href="faq.html"/>
-  <topic label="Manual" href="manual.html">
-    <topic label="man_intro" href="man_intro.html"/>
-    <topic label="man_concepts" href="@ref man_concepts"/>
-    <topic label="man_achieving_goals" href="@ref man_achieving_goals"/>
-  </topic>
-  <topic label="ALox for C++" href="cpp_ref/cppmainpage.html"/>
-  <topic label="ALox for C#" href="cs_ref/csmainpage.html"/>
-  <topic label="ALox for Java" href="java_ref/javamainpage.html"/>
+  <topic label="Overview" href="index.html"/>
+  <topic label="Manual" href="manual.html"/>
   <topic label="Tools" href="tools.html"/>
+  <topic label="FAQ" href="faq.html"/>
 </toc>

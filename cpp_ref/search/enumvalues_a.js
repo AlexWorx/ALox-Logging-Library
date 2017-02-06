@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['method',['Method',['../namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4c3880bb027f159e801041b1021e88e8',1,'aworx::lox']]],
-  ['mobiledevice',['MobileDevice',['../classaworx_1_1lib_1_1system_1_1System.html#aeae50cdd350e3deaae33d2900b0a72f2aeaf6ea57c3dde8d4f04202a0115c613f',1,'aworx::lib::system::System']]],
-  ['module',['Module',['../classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0ae55f75a29310d7b60f7ac1d390c8ae42',1,'aworx::lib::system::Directory']]]
+  ['never',['Never',['../namespaceaworx_1_1lib_1_1lang.html#a55781bd0c78c4e5d47ce433f4eeeee85a6e7b34fa59e1bd229b207892956dc41c',1,'aworx::lib::lang']]],
+  ['notgiven',['NotGiven',['../classaworx_1_1lib_1_1strings_1_1FormatterStdImpl.html#a4660396d3d3ae4a0b0985d23df5c32e8ab2a08319d780b24b0f694c89e549a51f',1,'aworx::lib::strings::FormatterStdImpl']]]
 ];

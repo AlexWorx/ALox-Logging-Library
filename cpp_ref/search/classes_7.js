@@ -1,6 +1,25 @@
 var searchData=
 [
-  ['memorylogger',['MemoryLogger',['../classaworx_1_1lox_1_1loggers_1_1MemoryLogger.html',1,'aworx::lox::loggers']]],
-  ['message',['Message',['../classaworx_1_1lib_1_1Report_1_1Message.html',1,'aworx::lib::Report']]],
-  ['metainfo',['MetaInfo',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html',1,'aworx::lox::core::textlogger']]]
+  ['iapply',['IApply',['../classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply.html',1,'aworx::lib::strings::boxing']]],
+  ['iapply_5fboxedas_5ftapplicable',['IApply_BoxedAs_TApplicable',['../classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__BoxedAs__TApplicable.html',1,'aworx::lib::strings::boxing']]],
+  ['iapply_5ftapplicable',['IApply_TApplicable',['../classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__TApplicable.html',1,'aworx::lib::strings::boxing']]],
+  ['iapply_5ftchar16_5ftarr',['IApply_Tchar16_tArr',['../classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__Tchar16__tArr.html',1,'aworx::lib::strings::boxing']]],
+  ['iapply_5ftchar32_5ftarr',['IApply_Tchar32_tArr',['../classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__Tchar32__tArr.html',1,'aworx::lib::strings::boxing']]],
+  ['iapply_5ftchararr',['IApply_TcharArr',['../classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__TcharArr.html',1,'aworx::lib::strings::boxing']]],
+  ['iapply_5ftwchar_5ftarr',['IApply_Twchar_tArr',['../classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__Twchar__tArr.html',1,'aworx::lib::strings::boxing']]],
+  ['iequals',['IEquals',['../classaworx_1_1lib_1_1boxing_1_1IEquals.html',1,'aworx::lib::boxing']]],
+  ['iequals_5ftchar16_5ftarr',['IEquals_Tchar16_tArr',['../classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__Tchar16__tArr.html',1,'aworx::lib::boxing::ftypes']]],
+  ['iequals_5ftchar32_5ftarr',['IEquals_Tchar32_tArr',['../classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__Tchar32__tArr.html',1,'aworx::lib::boxing::ftypes']]],
+  ['iequals_5ftchararr',['IEquals_TcharArr',['../classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__TcharArr.html',1,'aworx::lib::boxing::ftypes']]],
+  ['iequals_5ftdouble',['IEquals_Tdouble',['../classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__Tdouble.html',1,'aworx::lib::boxing::ftypes']]],
+  ['iequals_5ftwchar_5ftarr',['IEquals_Twchar_tArr',['../classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__Twchar__tArr.html',1,'aworx::lib::boxing::ftypes']]],
+  ['iformat',['IFormat',['../classaworx_1_1lib_1_1strings_1_1boxing_1_1IFormat.html',1,'aworx::lib::strings::boxing']]],
+  ['iformat_5ftticks',['IFormat_TTicks',['../classaworx_1_1lib_1_1time_1_1IFormat__TTicks.html',1,'aworx::lib::time']]],
+  ['iisempty',['IIsEmpty',['../classaworx_1_1lib_1_1boxing_1_1IIsEmpty.html',1,'aworx::lib::boxing']]],
+  ['iisnull',['IIsNull',['../classaworx_1_1lib_1_1boxing_1_1IIsNull.html',1,'aworx::lib::boxing']]],
+  ['iisnull_5ffalse',['IIsNull_false',['../classaworx_1_1lib_1_1boxing_1_1IIsNull__false.html',1,'aworx::lib::boxing']]],
+  ['inifile',['IniFile',['../classaworx_1_1lib_1_1config_1_1IniFile.html',1,'aworx::lib::config']]],
+  ['inmemoryplugin',['InMemoryPlugin',['../classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html',1,'aworx::lib::config']]],
+  ['interface',['Interface',['../classaworx_1_1lib_1_1boxing_1_1Interface.html',1,'aworx::lib::boxing']]],
+  ['iterator',['Iterator',['../classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html',1,'aworx::lib::containers::PathMap']]]
 ];

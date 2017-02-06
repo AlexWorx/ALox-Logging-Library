@@ -1,14 +1,18 @@
 var searchData=
 [
   ['end',['end',['../namespaceaworx_1_1lib_1_1containers.html#a493642c7093a3913fb626ebd25eb4c7d',1,'aworx::lib::containers']]],
-  ['endswith',['EndsWith',['../classaworx_1_1lib_1_1strings_1_1String.html#a34f943472db189e27586b5ad6df554f4',1,'aworx::lib::strings::String']]],
-  ['ensureremainingcapacity',['EnsureRemainingCapacity',['../classaworx_1_1lib_1_1strings_1_1AString.html#afa227b35c03708d90f56d9b3280163f1',1,'aworx::lib::strings::AString']]],
-  ['entry',['Entry',['../classaworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html#abc5302970b7c9dbce8d2303596ed5746',1,'aworx::lib::config::IniFile::Entry::Entry()'],['../classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html#abc5302970b7c9dbce8d2303596ed5746',1,'aworx::lib::config::InMemoryPlugin::Entry::Entry()'],['../classaworx_1_1lox_1_1Lox.html#a6c3cca935f588cd3ce14b9ea8e077a4d',1,'aworx::lox::Lox::Entry(const TString &amp;domain, Verbosity verbosity, const void *logable, int type)'],['../classaworx_1_1lox_1_1Lox.html#a8f6a598272b876b9f4bf8e3cff0a974d',1,'aworx::lox::Lox::Entry(Verbosity verbosity, const void *logable, int type)'],['../classaworx_1_1lox_1_1Lox.html#a764d843b292c608d125b17e68480d143',1,'aworx::lox::Lox::Entry(const TString &amp;domain, Verbosity verbosity, const TString &amp;msg)'],['../classaworx_1_1lox_1_1Lox.html#a7f16d440005d604207e93de5f5bcae8b',1,'aworx::lox::Lox::Entry(Verbosity verbosity, const TString &amp;msg)']]],
+  ['endswith',['EndsWith',['../classaworx_1_1lib_1_1strings_1_1String.html#ad94f0e5b6be0fe047edc412b802bddc7',1,'aworx::lib::strings::String']]],
+  ['ensureremainingcapacity',['EnsureRemainingCapacity',['../classaworx_1_1lib_1_1strings_1_1AString.html#ad0ca8167792fc2b3168875eb74c52244',1,'aworx::lib::strings::AString']]],
+  ['entry',['Entry',['../classaworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html#abc5302970b7c9dbce8d2303596ed5746',1,'aworx::lib::config::IniFile::Entry::Entry()'],['../classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html#abc5302970b7c9dbce8d2303596ed5746',1,'aworx::lib::config::InMemoryPlugin::Entry::Entry()'],['../classaworx_1_1lox_1_1Lox.html#aaeff7b63095347dff33a54a83016fb12',1,'aworx::lox::Lox::Entry()']]],
+  ['entrydetectdomain',['EntryDetectDomain',['../classaworx_1_1lox_1_1Lox.html#a8bc0b8686b418eea110be695a6646450',1,'aworx::lox::Lox']]],
+  ['entrydetectdomainimpl',['entryDetectDomainImpl',['../classaworx_1_1lox_1_1Lox.html#ad132aba7e2b2765d493b24246e436ab5',1,'aworx::lox::Lox']]],
   ['environmentplugin',['EnvironmentPlugin',['../classaworx_1_1lib_1_1config_1_1EnvironmentPlugin.html#a0d616ebe017e9fb0d1e37fbfbd792c0d',1,'aworx::lib::config::EnvironmentPlugin']]],
-  ['equals',['Equals',['../classaworx_1_1lib_1_1strings_1_1String.html#aa30b895dcfaf0574aca843b212ee2602',1,'aworx::lib::strings::String::Equals()'],['../structaworx_1_1lox_1_1core_1_1Logable.html#a1bb22a7f33e2cce3c5abc5ced4bf4c06',1,'aworx::lox::core::Logable::Equals()']]],
-  ['error',['Error',['../classaworx_1_1lox_1_1Lox.html#a7cdf87c0b7a9162f2c748b35f421a218',1,'aworx::lox::Lox::Error(const TString &amp;domain, void *logable, int type)'],['../classaworx_1_1lox_1_1Lox.html#afb10be657f483af50f2dd2e47ca8ac27',1,'aworx::lox::Lox::Error(void *logable, int type)'],['../classaworx_1_1lox_1_1Lox.html#a99504f65048f664e85268b185682f7ac',1,'aworx::lox::Lox::Error(const TString &amp;domain, const TString &amp;msg)'],['../classaworx_1_1lox_1_1Lox.html#a605156badc9cabaf2391bc99c398bde2',1,'aworx::lox::Lox::Error(const TString &amp;msg)']]],
-  ['evaluateresultdomain',['evaluateResultDomain',['../classaworx_1_1lox_1_1Lox.html#a9b58060c77090803e3cf92866bd90ce4',1,'aworx::lox::Lox']]],
+  ['equals',['Equals',['../classaworx_1_1lib_1_1strings_1_1String.html#af8afc22664fd3e83354780b3d3dd78cd',1,'aworx::lib::strings::String']]],
+  ['error',['Error',['../classaworx_1_1lox_1_1Lox.html#a04f4500374e0206bf2f2e9b8c5b8008f',1,'aworx::lox::Lox']]],
+  ['errorformatstring',['errorFormatString',['../classaworx_1_1lib_1_1strings_1_1FormatterStdImpl.html#a770a51b419d09342863f760d4da8de72',1,'aworx::lib::strings::FormatterStdImpl']]],
+  ['escape',['Escape',['../structaworx_1_1lib_1_1strings_1_1Format_1_1Escape.html#aff3cb0b1408ec439c531cd4d8671f6a0',1,'aworx::lib::strings::Format::Escape']]],
+  ['evaluateresultdomain',['evaluateResultDomain',['../classaworx_1_1lox_1_1Lox.html#a8726cc323411194c683b6a8ff0b1a895',1,'aworx::lox::Lox']]],
   ['exists',['Exists',['../classaworx_1_1lib_1_1system_1_1Directory.html#a348d7a37454d70c73f2b7e4106b5389a',1,'aworx::lib::system::Directory']]],
-  ['export',['Export',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html#aac883c890047d2981a5d7450a10111f9',1,'aworx::lox::core::textlogger::AutoSizes']]],
+  ['export',['Export',['../classaworx_1_1lib_1_1strings_1_1AutoSizes.html#aac883c890047d2981a5d7450a10111f9',1,'aworx::lib::strings::AutoSizes']]],
   ['externalizevalue',['ExternalizeValue',['../classaworx_1_1lib_1_1config_1_1XTernalizer.html#ac028e93dccee5716835072185c65a0af',1,'aworx::lib::config::XTernalizer']]]
 ];

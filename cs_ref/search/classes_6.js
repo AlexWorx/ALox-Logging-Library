@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['memorylogger',['MemoryLogger',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html',1,'cs::aworx::lox::loggers']]],
-  ['message',['Message',['../classcs_1_1aworx_1_1lib_1_1Report_1_1Message.html',1,'cs::aworx::lib::Report']]],
-  ['metainfo',['MetaInfo',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html',1,'cs::aworx::lox::core::textlogger']]]
+  ['log',['Log',['../classcs_1_1aworx_1_1lox_1_1Log.html',1,'cs::aworx::lox']]],
+  ['logger',['Logger',['../classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html',1,'cs::aworx::lox::core']]],
+  ['loggerdata',['LoggerData',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html',1,'cs::aworx::lox::core::Domain']]],
+  ['logtools',['LogTools',['../classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html',1,'cs::aworx::lox::tools']]],
+  ['lox',['Lox',['../classcs_1_1aworx_1_1lox_1_1Lox.html',1,'cs::aworx::lox']]]
 ];

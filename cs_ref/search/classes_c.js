@@ -1,9 +1,19 @@
 var searchData=
 [
-  ['textfilelogger',['TextFileLogger',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html',1,'cs::aworx::lox::loggers']]],
-  ['textlogger',['TextLogger',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html',1,'cs::aworx::lox::core::textlogger']]],
-  ['threadlock',['ThreadLock',['../classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html',1,'cs::aworx::lib::threads']]],
-  ['ticks',['Ticks',['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html',1,'cs::aworx::lib::time']]],
-  ['tickwatch',['TickWatch',['../classcs_1_1aworx_1_1lib_1_1time_1_1TickWatch.html',1,'cs::aworx::lib::time']]],
-  ['tokenizer',['Tokenizer',['../classcs_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html',1,'cs::aworx::lib::strings']]]
+  ['scope',['Scope',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1Scope.html',1,'cs::aworx::lox::core::ScopeInfo']]],
+  ['scopedump',['ScopeDump',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html',1,'cs::aworx::lox::core']]],
+  ['scopeinfo',['ScopeInfo',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html',1,'cs::aworx::lox::core']]],
+  ['scopestore',['ScopeStore',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html',1,'cs::aworx::lox::core']]],
+  ['scopestore_3c_20astring_20_3e',['ScopeStore&lt; AString &gt;',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html',1,'cs::aworx::lox::core']]],
+  ['scopestore_3c_20dictionary_3c_20astring_2c_20int_5b_5d_3e_20_3e',['ScopeStore&lt; Dictionary&lt; AString, int[]&gt; &gt;',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html',1,'cs::aworx::lox::core']]],
+  ['scopestore_3c_20dictionary_3c_20astring_2c_20object_20_3e_20_3e',['ScopeStore&lt; Dictionary&lt; AString, Object &gt; &gt;',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html',1,'cs::aworx::lox::core']]],
+  ['scopestore_3c_20object_20_3e',['ScopeStore&lt; Object &gt;',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html',1,'cs::aworx::lox::core']]],
+  ['section',['Section',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html',1,'cs::aworx::lib::config::IniFile']]],
+  ['section',['Section',['../classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html',1,'cs::aworx::lib::config::InMemoryPlugin']]],
+  ['smartlock',['SmartLock',['../classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html',1,'cs::aworx::lib::threads']]],
+  ['sourcefile',['SourceFile',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html',1,'cs::aworx::lox::core::ScopeInfo']]],
+  ['sourcepathtrimrule',['SourcePathTrimRule',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html',1,'cs::aworx::lox::core::ScopeInfo']]],
+  ['spaces',['Spaces',['../classcs_1_1aworx_1_1lib_1_1strings_1_1Spaces.html',1,'cs::aworx::lib::strings']]],
+  ['standardconverter',['StandardConverter',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1StandardConverter.html',1,'cs::aworx::lox::core::textlogger']]],
+  ['substring',['Substring',['../classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html',1,'cs::aworx::lib::strings']]]
 ];

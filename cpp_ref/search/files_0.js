@@ -9,5 +9,6 @@ var searchData=
   ['ansilogger_2ehpp',['ansilogger.hpp',['../ansilogger_8hpp.html',1,'']]],
   ['applyformat_2ehpp',['applyformat.hpp',['../applyformat_8hpp.html',1,'']]],
   ['applyto_2ehpp',['applyto.hpp',['../applyto_8hpp.html',1,'']]],
-  ['astring_2ehpp',['astring.hpp',['../astring_8hpp.html',1,'']]]
+  ['astring_2ehpp',['astring.hpp',['../astring_8hpp.html',1,'']]],
+  ['autosizes_2ehpp',['autosizes.hpp',['../autosizes_8hpp.html',1,'']]]
 ];

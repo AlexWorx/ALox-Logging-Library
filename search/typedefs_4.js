@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['format',['Format',['cpp_ref/namespaceaworx.html#aed5a5fab6b4a0c81a5a231f6d0379d41',1,'aworx']]]
+  ['elementtype',['ElementType',['.././cpp_ref/classaworx_1_1lib_1_1strings_1_1StringTuples.html#ac6daef9421022cf674922d903efe19f0',1,'aworx::lib::strings::StringTuples']]],
+  ['esc',['ESC',['.././cpp_ref/namespaceaworx.html#a41196e8ca29644376437095a102ad9ec',1,'aworx']]]
 ];

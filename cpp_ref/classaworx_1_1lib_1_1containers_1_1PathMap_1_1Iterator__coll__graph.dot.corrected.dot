@@ -3,12 +3,12 @@ digraph "PathMap&lt;StoreT&gt;::Iterator"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node2 [label="iterator\<input_iterator_tag, StoreT\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-  Node3 [label="stack\<PathMap::Iterator::NodeAndChild\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-  Node1 [label="PathMap\<StoreT\>",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
-  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" nodesAndChilds" ,fontname="Helvetica"];
-  Node4 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
-  Node4 [label="NodeAndChild",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator_1_1NodeAndChild.html"];
+  Node3 [label="iterator\<input_iterator_tag, StoreT\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node4 [label="stack\<PathMap::Iterator::NodeAndChild\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node2 [label="PathMap\<StoreT\>",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" nodesAndChildren" ,fontname="Helvetica"];
+  Node5 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
+  Node5 [label="NodeAndChild",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator_1_1NodeAndChild.html"];
 }
 

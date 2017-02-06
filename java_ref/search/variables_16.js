@@ -9,8 +9,11 @@ var searchData=
   ['warnedonce',['warnedOnce',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#af092cd717d73525692163f7b819cfa5e',1,'com::aworx::lox::core::textlogger::MetaInfo']]],
   ['warning',['WARNING',['../enumcom_1_1aworx_1_1lox_1_1Verbosity.html#a1dfc73ab73898d3f4f348d462a5d126a',1,'com::aworx::lox::Verbosity']]],
   ['white',['WHITE',['../classcom_1_1aworx_1_1lox_1_1ESC.html#a0b17837b5a89a43dd7679caab6815fa1',1,'com::aworx::lox::ESC']]],
-  ['whitespaces',['whitespaces',['../classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html#a770cc9eabce13d40acf8680199c8b2c2',1,'com::aworx::lib::strings::Tokenizer']]],
+  ['whitespaces',['whitespaces',['../classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a770cc9eabce13d40acf8680199c8b2c2',1,'com.aworx.lib.strings.NumberFormat.whitespaces()'],['../classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html#a770cc9eabce13d40acf8680199c8b2c2',1,'com.aworx.lib.strings.Tokenizer.whitespaces()']]],
+  ['writealiberrorreports',['WriteALibErrorReports',['../classcom_1_1aworx_1_1lib_1_1strings_1_1FormatterStdImpl.html#a1c335bc479631e18269b2b89e57ee8f4',1,'com::aworx::lib::strings::FormatterStdImpl']]],
+  ['writeerrorstotargetstring',['WriteErrorsToTargetString',['../classcom_1_1aworx_1_1lib_1_1strings_1_1FormatterStdImpl.html#a433d4f9bf8cc10b1a1a515c82a2c03b0',1,'com::aworx::lib::strings::FormatterStdImpl']]],
   ['writeexponentplussign',['writeExponentPlusSign',['../classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#abc0c9349d06d894de0a9e0d508930cd7',1,'com::aworx::lib::strings::NumberFormat']]],
+  ['writegroupchars',['writeGroupChars',['../classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acff30393dbde80efbeef8a484015db5b',1,'com::aworx::lib::strings::NumberFormat']]],
   ['writer',['writer',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#a129d01b0d5a07842418148c5becab129',1,'com::aworx::lox::loggers::ConsoleLogger']]],
-  ['writers',['writers',['../classcom_1_1aworx_1_1lib_1_1Report.html#a41e462834183af7f77ae8cedec0ccdac',1,'com::aworx::lib::Report']]]
+  ['writers',['writers',['../classcom_1_1aworx_1_1lib_1_1lang_1_1Report.html#a41e462834183af7f77ae8cedec0ccdac',1,'com::aworx::lib::lang::Report']]]
 ];
