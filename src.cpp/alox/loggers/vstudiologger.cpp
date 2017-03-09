@@ -12,8 +12,8 @@
     #include "alib/config/configuration.hpp"
 #endif
 
-#if !defined (HPP_ALIB_STRINGS_TOKENIZER)
-    #include "alib/strings/tokenizer.hpp"
+#if !defined (HPP_ALIB_STRINGS_UTIL_TOKENIZER)
+    #include "alib/strings/util/tokenizer.hpp"
 #endif
 
 #include "alox/loggers/vstudiologger.hpp"

@@ -83,7 +83,12 @@ void getStateCollectPrefixes( Domain* dom, integer indentSpaces, AString& target
     for ( auto pfl : dom->PrefixLogables )
     {
         target.InsertChars( ' ', indentSpaces );
+        target << '"';
+        integer actLen= target.Length();
         target._( static_cast<Box*>(pfl.first) );
+        ESC::ReplaceToReadable( target, actLen );
+        target << Format::Escape( Switch::On, actLen );
+        target << '"';
         if ( pfl.second == Inclusion::Exclude )
             target._NC( " (Excl.)" );
         target._NC( Format::Tab( 25, -1 ) );

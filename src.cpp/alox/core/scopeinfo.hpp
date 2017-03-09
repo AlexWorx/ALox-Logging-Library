@@ -35,8 +35,8 @@
     #include <map>
 #endif
 
-namespace aworx { namespace lox { namespace core
-{
+namespace aworx { namespace lox { namespace core {
+
 /** ************************************************************************************************
  *  Encapsulates information of the caller that can be collected. This is platform specific, in
  *  this case, C++. What we receive from the C++ preprocessor, is the source file name
@@ -51,6 +51,7 @@ namespace aworx { namespace lox { namespace core
  **************************************************************************************************/
 class ScopeInfo
 {
+    /** Class \b %Lox uses and controls this class. */
     friend class aworx::lox::Lox;
 
     // #############################################################################################

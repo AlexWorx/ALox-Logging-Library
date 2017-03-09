@@ -29,8 +29,6 @@
     #include <iostream>
 #endif
 
-using namespace std;
-
 
 namespace aworx { namespace lib { namespace strings
 {

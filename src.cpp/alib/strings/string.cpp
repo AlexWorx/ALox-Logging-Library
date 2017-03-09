@@ -11,8 +11,8 @@
     #include "alib/strings/substring.hpp"
 #endif
 
-#if !defined (HPP_ALIB_STRINGS_NUMBERFORMAT)
-    #include "alib/strings/numberformat.hpp"
+#if !defined (HPP_ALIB_STRINGS_FORMAT_FORMATTER)
+    #include "alib/strings/format/formatter.hpp"
 #endif
 
 
@@ -28,8 +28,6 @@
 #if !defined (_GLIBCXX_IOSTREAM ) && !defined(_IOSTREAM_)
     #include <iostream>
 #endif
-
-using namespace std;
 
 // Windows.h might bring in max/min macros
 #if defined( max )
@@ -368,7 +366,7 @@ either shrinking or they are just changing completely. They are especially usefu
 data.
 Some Parsing of strings (in its probably simplest form) making use of class \b %Substring is provided
 with class
-\ref aworx::lib::strings::Tokenizer "Tokenizer", which is also defined in this namespace.
+\ref aworx::lib::strings::util::Tokenizer "Tokenizer", which is also defined in this namespace.
 
 \note Speaking of \b %Substring being '<em>non constant</em>' refers to their own members
 \e buffer and \e length. This does not mean that the contents of the buffer is manipulable.
@@ -462,9 +460,9 @@ execution performance.
 # Formatting Strings # {#alib_namespace_strings_format}
 <b>%ALib Strings</b> provide powerful formatting facilities for string data stored in \b %AString objects
 through abstract class
-\ref aworx::lib::strings::Formatter "Formatter" and its specializations
-\ref aworx::lib::strings::FormatterPythonStyle "FormatterPythonStyle"
-\ref aworx::lib::strings::FormatterJavaStyle   "FormatterJavaStyle". Consult the reference
+\ref aworx::lib::strings::format::Formatter "Formatter" and its specializations
+\ref aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle"
+\ref aworx::lib::strings::format::FormatterJavaStyle   "FormatterJavaStyle". Consult the reference
 documentation of these classes for further information.
 
 
@@ -534,7 +532,6 @@ classes).
 ***************************************************************************************************/
 namespace strings
 {
-
 // #################################################################################################
 //  globals/statics
 // #################################################################################################
@@ -581,6 +578,24 @@ namespace strings
 //! @endcond NO_DOX
 
 
+ALIB_NAMESPACE_INIT_FLAG
+void Init()
+{
+    ALIB_NAMESPACE_INIT_DEDUP
+
+    #if ALIB_MODULE_BOXING
+        aworx::lib::strings::boxing::Init();
+    #endif
+}
+
+void TerminationCleanUp()
+{
+    #if ALIB_MODULE_BOXING
+        if ( format::Formatter::defaultFormatter )
+            delete format::Formatter::defaultFormatter;
+        format::Formatter::defaultFormatter= nullptr;
+    #endif
+}
 
 // ####################################################################################################
 // Conversion

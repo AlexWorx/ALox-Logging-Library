@@ -115,7 +115,7 @@ public abstract class ALox
          * revision \e 0. Pure maintenance releases that do not change the interface of ALox
          * are holding the same #version but an increased number in this field.
          */
-        public static final int         revision                                                 =0;
+        public static final int         revision                                                 =1;
 
         /**
          * The name of the configuration category of configuration variables used by ALox.<br>
@@ -127,7 +127,10 @@ public abstract class ALox
          */
         public  static AString          configCategoryName                  = new AString( "ALOX" );
 
-        /** Configuration variable definition */
+        /**
+         * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
+         * used by \ref com::aworx::lox::Lox::createConsoleLogger "Lox.createConsoleLogger".
+         */
         public static          VariableDefinition           CONSOLE_TYPE = new VariableDefinition(
             configCategoryName,   null,             "CONSOLE_TYPE",
             "default",
@@ -137,7 +140,10 @@ public abstract class ALox
             "Possible values are: default, plain, ansi, windows"
             );
 
-        /** Configuration variable definition */
+        /**
+         * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
+         * used by \ref com::aworx::lox::core::textlogger::TextLogger "TextLogger".
+         */
         public static          VariableDefinition           AUTO_SIZES = new VariableDefinition(
             configCategoryName,   null,     "%1_AUTO_SIZES",
             null,
@@ -145,7 +151,10 @@ public abstract class ALox
             "Auto size values of last run of Logger '%1' (generated and temporary values)."
         );
 
-        /** Configuration variable definition */
+        /**
+         * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
+         * used by \ref com::aworx::lox::core::textlogger::TextLogger "TextLogger".
+         */
         public static          VariableDefinition           MAX_ELAPSED_TIME = new VariableDefinition(
             configCategoryName,   null,     "%1_MAX_ELAPSED_TIME",
             "0, limit=59",
@@ -154,7 +163,11 @@ public abstract class ALox
             "width, set this to 0 manually. Generated and temporary value.)"
         );
 
-        /** Configuration variable definition */
+
+        /**
+         * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
+         * used by \ref com::aworx::lox::Lox "Lox".
+         */
         public static          VariableDefinition           DOMAIN_SUBSTITUTION = new VariableDefinition(
             configCategoryName,   null,     "%1_DOMAIN_SUBSTITUTION",
             null,
@@ -162,7 +175,11 @@ public abstract class ALox
             ""
         );
 
-        /** Configuration variable definition */
+
+        /**
+         * Attributes of corresponding configuration variable
+         * [ALOX_LOXNAME_LOGGERNAME_VERBOSITY](../group__GrpALoxConfigVars.html).
+         */
         public static          VariableDefinition           VERBOSITY = new VariableDefinition(
             configCategoryName,   null,     "%1_%2_VERBOSITY",
             "writeback;",
@@ -171,7 +188,11 @@ public abstract class ALox
             "to enable automatic writing on application exit."
         );
 
-        /** Configuration variable definition */
+
+        /**
+         * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
+         * used by \ref com::aworx::lox::Lox "Lox".
+         */
         public static          VariableDefinition           PREFIXES = new VariableDefinition(
             configCategoryName,   null,     "%1_PREFIXES",
             "",
@@ -180,7 +201,11 @@ public abstract class ALox
             "   Format: [*]domainpath[*] = prefixstring [, inclusion] [ ; … ] "
         );
 
-        /** Configuration variable definition */
+
+        /**
+         * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
+         * used by \ref com::aworx::lox::Lox "Lox".
+         */
         public static          VariableDefinition           DUMP_STATE_ON_EXIT = new VariableDefinition(
             configCategoryName,   null,     "%1_DUMP_STATE_ON_EXIT",
             "none, verbosity=info, domain=/ALOX",
@@ -192,7 +217,12 @@ public abstract class ALox
             "  CompilationFlags. If NONE is given nothing is dumped"
         );
 
-        /** Configuration variable definition */
+
+        /**
+         * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
+         * used by colorful specializations of class
+         * \ref com::aworx::lox::core::textlogger::TextLogger "TextLogger".
+         */
         public static          VariableDefinition           CONSOLE_LIGHT_COLORS = new VariableDefinition(
             configCategoryName,   null,     "CONSOLE_LIGHT_COLORS",
             "",
@@ -204,7 +234,11 @@ public abstract class ALox
             "default value.  Possible values are 'foreground', 'background' and 'never'."
         );
 
-        /** Configuration variable definition */
+
+        /**
+         * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
+         * used by \ref com::aworx::lox::loggers::ConsoleLogger "ConsoleLogger".
+         */
         public static          VariableDefinition           USE_SYSTEM_OUT_PRINT = new VariableDefinition(
             configCategoryName,   null,     "USE_SYSTEM_OUT_PRINT",
             "false",
@@ -214,18 +248,25 @@ public abstract class ALox
             "this variable is 'true' System.out.print() is used instead. (Java only)"
         );
 
-        /** Configuration variable definition */
+        /**
+         * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
+         * used by \ref com::aworx::lox::core::textlogger::TextLogger "TextLogger".
+         */
         public static          VariableDefinition           FORMAT = new VariableDefinition(
             configCategoryName,   null,     "%1_FORMAT",
 
             null,
 
             ',', null, Variable.FORMAT_HINT_MULTILINE,
-             "Meta info format of text logger \"%1\", including signatures for verbosity strings.\n"       +
-             "   Format: [\"]format[\"] [, Error [, Warning [, Info [, Verbose ]]]]"
+            "Meta info format of text logger \"%1\", including signatures for verbosity strings and\n"   +
+            "an optional string added to the end of each log statement.\n"                               +
+            "   Format: metaInfoFormat [, Error [, Warning [, Info [, Verbose [, MsgSuffix ]]]]]"
         );
 
-        /** Configuration variable definition */
+        /**
+         * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
+         * used by \ref com::aworx::lox::core::textlogger::TextLogger "TextLogger".
+         */
         public static          VariableDefinition           FORMAT_DATE_TIME = new VariableDefinition(
             configCategoryName,   null,     "%1_FORMAT_DATE_TIME",
 
@@ -236,7 +277,10 @@ public abstract class ALox
              "   Format: DateFormat [, TimeOfDayFormat [, TimeElapsedDays ]]]"
         );
 
-        /** Configuration variable definition */
+        /**
+         * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
+         * used by \ref com::aworx::lox::core::textlogger::TextLogger "TextLogger".
+         */
         public static          VariableDefinition           FORMAT_TIME_DIFF = new VariableDefinition(
             configCategoryName,   null,     "%1_FORMAT_TIME_DIFF",
 
@@ -248,7 +292,10 @@ public abstract class ALox
              "           [, TimeDiffSecs [, TimeDiffMins [, TimeDiffHours [,  TimeDiffDays  ]]]]]]]]"
         );
 
-        /** Configuration variable definition */
+        /**
+         * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
+         * used by \ref com::aworx::lox::core::textlogger::TextLogger "TextLogger".
+         */
         public static          VariableDefinition           FORMAT_MULTILINE = new VariableDefinition(
             configCategoryName,   null,     "%1_FORMAT_MULTILINE",
 
@@ -261,7 +308,10 @@ public abstract class ALox
         );
 
 
-        /** Configuration variable definition */
+        /**
+         * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
+         * used by \ref com::aworx::lox::core::textlogger::TextLogger "TextLogger".
+         */
         public static          VariableDefinition           REPLACEMENTS     = new VariableDefinition(
             configCategoryName,   null,     "%1_REPLACEMENTS",
 

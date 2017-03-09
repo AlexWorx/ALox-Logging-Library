@@ -28,7 +28,7 @@ namespace aworx { namespace lib { namespace boxing
 // forward declarations
 // #################################################################################################
 class Box;
-
+void  TerminationCleanUp();
 
 // #################################################################################################
 // class Boxer
@@ -44,11 +44,12 @@ class Box;
  */
 class Boxer
 {
+    friend class Box;
+    friend void  TerminationCleanUp();
+
     // #############################################################################################
     // Protected fields
     // #############################################################################################
-    friend class Box;
-
     protected:
         /** Information about the boxer type as provided in the constructor by derived class. */
         const std::type_info&           type;
@@ -209,6 +210,16 @@ class Boxer
             }
 
 
+        /**
+         * Virtual destructor.<br>
+         * Note: This is not really need. However, as derived classes \b %BoxerT and
+         * \b %ArrayBoxerT derive from singleton, which is virtual, having this constructor allows
+         * to clean memory on termination more 'precisely' and reduce warnings of analytics tools
+         * like \b valgrind.
+         */
+        virtual ~Boxer()  {}
+
+
     // #############################################################################################
     // Interface
     // #############################################################################################
@@ -265,7 +276,18 @@ class Boxer
          */
         inline void         DefineInterface( Interface* interface)
         {
-            interfaces[interface->typeInfo]= interface;
+            #if ALIB_DEBUG
+                if( interfaces.find( interface->typeInfo )  != interfaces.end() )
+                {
+                    ALIB_MESSAGE( "ALib Boxing: Replacing interface ",
+                                  debug::TypeDemangler(interface->typeInfo).Get(),
+                                  " for type ",
+                                  debug::TypeDemangler(type).Get()                 )
+                }
+            #endif
+
+            interfaces.insert(std::make_pair(std::reference_wrapper<const std::type_info>(interface->typeInfo), interface) );
+
             #if ALIB_DEBUG
                 Boxer::dbgKnownInterfaces[interface->typeInfo]= interface;
                 Boxer::dbgKnownInterfaceImpl[typeid(*interface)]= interface;
@@ -296,6 +318,7 @@ class Boxer
 template<typename TBoxable>
 class BoxerT  : public Boxer   , public Singleton<BoxerT<TBoxable>>
 {
+    /** Allow construction by class \b %Singleton (implementation of strict-singleton concept). */
     friend class lang::Singleton<BoxerT<TBoxable>>;
 
     private:
@@ -315,6 +338,7 @@ class BoxerT  : public Boxer   , public Singleton<BoxerT<TBoxable>>
 template<typename TElementType>
 class ArrayBoxerT : public Boxer, public Singleton<ArrayBoxerT<TElementType>>
 {
+    /** Allow construction by class \b %Singleton (implementation of strict-singleton concept). */
     friend class lang::Singleton<ArrayBoxerT<TElementType>>;
 
     private:

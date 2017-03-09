@@ -5,9 +5,8 @@
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alox/alox.hpp"
-#include "alib/strings/tokenizer.hpp"
+#include "alib/strings/util/tokenizer.hpp"
 #include "alib/strings/numberformat.hpp"
-#include "alib/time/ticks.hpp"
 #include "alib/compatibility/std_iostream.hpp"
 #include "alib/compatibility/std_string.hpp"
 
@@ -1046,6 +1045,8 @@ UT_METHOD( MoveConstructors )
     UT_INIT();
 
     lib::lang::Report::GetDefault().PushHaltFlags( false, false );
+    UT_PRINT( "One or more buffer warnings should follow" );
+
 
     // this test is more for debug stepping to check if the right constructors are used
     {   AString as       ( AString ( "Anonymous"));          as._    ( "x");   }

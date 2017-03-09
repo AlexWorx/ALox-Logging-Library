@@ -10,12 +10,11 @@ import java.io.FileWriter;
 
 import org.junit.Test;
 
+import com.aworx.lib.strings.Substring;
 import com.aworx.lib.config.Configuration;
 import com.aworx.lib.config.InMemoryPlugin;
 import com.aworx.lib.config.IniFile;
 import com.aworx.lib.config.Variable;
-import com.aworx.lib.strings.AString;
-import com.aworx.lib.strings.Substring;
 import com.aworx.lox.ALox;
 
 import ut_com_aworx.AWorxUnitTesting;

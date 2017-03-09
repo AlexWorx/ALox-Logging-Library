@@ -6,6 +6,10 @@
 // #################################################################################################
 #include "alox/alox.hpp"
 
+#if defined(_MSC_VER)
+#pragma warning( disable : 4244 ) //  '=': conversion from 'int' to 'char', possible loss of data
+#endif
+
 
 
 #define TESTCLASSNAME       CPP_ALib_Strings_AString
@@ -23,6 +27,7 @@
     #undef max
     #undef min
 #endif
+
 
 // For code compatibility with ALox Java/C++
 // We have to use underscore as the start of the name and for this have to disable a compiler
@@ -1636,13 +1641,14 @@ UT_METHOD( ConvertCase )
     AString ms;
 
     {
-        // test all characters in the 16 bit range
+        // test all characters in the 8 bit range
         int testCharRangeStart= 1;
         int testCharRangeEnd=   255;
 
         string sb;
         for ( int i= testCharRangeStart; i <= testCharRangeEnd ; i++ )
             sb.append( 1, static_cast<char>( i ) );
+
 
         string tUpper= sb;    transform( tUpper.begin(), tUpper.end(), tUpper.begin(), ::toupper );
         string tLower= sb;    transform( tLower.begin(), tLower.end(), tLower.begin(), ::tolower );

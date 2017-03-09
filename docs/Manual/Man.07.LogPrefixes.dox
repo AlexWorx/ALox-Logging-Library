@@ -190,7 +190,7 @@ accepting Python formatter strings as well as the corresponding Java syntax.
 
 \note
   As already explained in this manual and in the documentation of class
-  \ref aworx::lib::strings::Formatter "Formatter", there is an important feature that supports
+  \ref aworx::lib::strings::format::Formatter "Formatter", there is an important feature that supports
   the concept of <em>Prefix Logables</em> very nicely: While usually (in other libraries and languages)
   such formatting classes accept \b one format string and an arbitrary amount of objects, with
   this class the format string is included in the object list. The first object may or may not

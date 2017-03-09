@@ -511,7 +511,9 @@ void notCompiledConditionalLogging()
         i++;
     }
     if ( i == len )
+    {
         Log_Error( "Nothing found :-(" );
+    }
     //! [Tut_ConditionalLogging]
 
     //! [Tut_ConditionalLogging2]

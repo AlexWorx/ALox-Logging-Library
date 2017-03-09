@@ -46,6 +46,7 @@ int main( int argc, char **argv )
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Substring.*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Format.*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Format.ConvertIntegers";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Util.*";
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Time*";
 
@@ -59,16 +60,17 @@ int main( int argc, char **argv )
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Config.ConfigReplacementVariables";
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_Dox_Tutorial*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_Dox_Tutorial.Tut_LogState";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.*";
-//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_TestMultiline*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_Recursive*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_ColorsAndStyles*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox.Log_MultipleLogables";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox.Log_DumpStateOnExit";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox.Log_WriteVerbosities";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox.Log_TestThreads*";
-//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox.Log_SetSourcePathTrimRule";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox.Log_SetSourcePathTrimRuleTest";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox.Log_ScopeInfoCacheTest";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox.Log_GetState*";
 

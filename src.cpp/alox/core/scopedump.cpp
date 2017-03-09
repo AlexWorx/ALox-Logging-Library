@@ -52,8 +52,21 @@ template   int ScopeDump::writeStoreMap( ScopeStore<std::map<AString, Box>* >* s
 // #################################################################################################
 // local helper functions (non members)
 // #################################################################################################
-template<typename T> void write( T        val, AString& target ) {  target._(val);  }
-template<>           void write( Box&     val, AString& target ) {  target._(val);  }
+template<typename T> void write( T        val, AString& target )
+{
+    // prefix logable?
+    if( std::is_same<T, Box*>::value )
+    {
+        target << '"';
+        integer actLen= target.Length();
+        target._( val );
+        ESC::ReplaceToReadable( target, actLen );
+        target << Format::Escape( Switch::On, actLen );
+        target << '"';
+    }
+    else
+        target._(val);
+}
 
 // #################################################################################################
 // protected methods

@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------------------------------
 # set cache variables
 # --------------------------------------------------------------------------------------------------
-    set( ALIB_VERSION                   "1702R0"                                        CACHE STRING
+    set( ALIB_VERSION                   "1702R1"                                        CACHE STRING
          "The ALib version. Not modifiable (will be overwritten on generation!)"        FORCE )
 
     set( temp "${CMAKE_CURRENT_LIST_DIR}/../.." )
@@ -71,6 +71,16 @@
          "Defaults to false. If true, a corresponding symbol gets set in debug compilations which is detected by GDB pretty printer scripts provided with ALib/ALox.")
     set( ALIB_GDB_PP_FIND_POINTER_TYPES ${tmp_default_val}                              CACHE   BOOL
          "Defaults to false. If true, a corresponding symbol gets set in debug compilations which is detected by GDB pretty printer scripts provided with ALib/ALox.")
+
+
+    # use 'cotire'? (https://github.com/sakra/cotire/)
+    if ( ${ALIB_CMAKE_COTIRE_DEFAULT} )
+        set( tmp_default_val   "On" )
+    else()
+        set( tmp_default_val   "Off" )
+    endif()
+    set( ALIB_CMAKE_COTIRE              ${tmp_default_val}                                  CACHE   BOOL
+         "If true, CMake compilation tool 'cotire' (https://github.com/sakra/cotire/) is downloaded and may be used to speedup builds. Set variable ALIB_CMAKE_COTIRE_DEFAULT prior to invoking 'ALib.cmake' to change default cached value." )
 
 
 
@@ -225,8 +235,16 @@ set( ALIB_EXTERNAL_LIBS ${ALIB_EXTERNAL_LIBS}         ${CMAKE_THREAD_LIBS_INIT} 
         set( AWORX_COMPILE_FLAGS "${AWORX_COMPILE_FLAGS} -Wno-weak-vtables"                  )
         set( AWORX_COMPILE_FLAGS "${AWORX_COMPILE_FLAGS} -Wno-documentation-unknown-command" )
 
-        # needs to be off of due to "unity builds" of cotire
-        set( AWORX_COMPILE_FLAGS "${AWORX_COMPILE_FLAGS} -Wno-header-hygiene"                   )
+        if ( ${ALIB_CMAKE_COTIRE} )
+            # needs to be off of due to "unity builds" of cotire
+            set( AWORX_COMPILE_FLAGS "${AWORX_COMPILE_FLAGS} -Wno-header-hygiene"                   )
+
+            # Maybe a 'bug' in cotire. Was discussed and closed. Might be removed in the future
+            # However: If removed, 'often' things still work, only sometimes compiler complains that
+            #          trigraph settings are different in precompiled header and actual source
+            set( AWORX_COMPILE_FLAGS "${AWORX_COMPILE_FLAGS} -trigraphs"                    )
+        endif()
+
 
 
     #! NEVER TESTED YET !
@@ -253,15 +271,6 @@ set( ALIB_EXTERNAL_LIBS ${ALIB_EXTERNAL_LIBS}         ${CMAKE_THREAD_LIBS_INIT} 
 #   To change the default value for this variable (on clean cmake builts), set non-cached CMake
 #   variable ALIB_CMAKE_COTIRE_DEFAULT prior to invoking this script.
 # -------------------------------------------------------------------------------------------------
-
-# introduce CMake cache variable "ALIB_CMAKE_COTIRE"
-if ( ${ALIB_CMAKE_COTIRE_DEFAULT} )
-    set( tmp_default_val   "On" )
-else()
-    set( tmp_default_val   "Off" )
-endif()
-set( ALIB_CMAKE_COTIRE              ${tmp_default_val}                                  CACHE   BOOL
-     "If true, CMake compilation tool 'cotire' (https://github.com/sakra/cotire/) is downloaded and may be used to speedup builds. Set variable ALIB_CMAKE_COTIRE_DEFAULT prior to invoking 'ALib.cmake' to change default cached value." )
 
 # download cotire (once)
 if ( ${ALIB_CMAKE_COTIRE} )

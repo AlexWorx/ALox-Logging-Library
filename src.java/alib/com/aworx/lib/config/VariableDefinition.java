@@ -25,8 +25,8 @@ import com.aworx.lib.strings.AString;
  * This allows to define a series of variables whose category, name, description and value is
  * dependent on runtime information.
  *
- * Besides the use for passing parameters into objects of type Variable, this
- * class provides no further logic.
+ * Besides the use for passing parameters into objects of type Variable, this class does not
+ * provide further logic.
  **************************************************************************************************/
 public class VariableDefinition
 {

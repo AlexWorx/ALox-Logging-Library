@@ -10,9 +10,6 @@
     #include "alox/alox.hpp"
 #endif
 
-#if !defined (HPP_ALIB_CONFIG_CONFIGURATION)
-    #include "alib/config/configuration.hpp"
-#endif
 #if !defined (HPP_ALOX_CONSOLE_LOGGERS)
     #include "alox/alox_console_loggers.hpp"
 #endif
@@ -21,9 +18,6 @@
 #endif
 #if !defined (HPP_ALIB_CONTAINERS_PATHMAP)
     #include "alib/containers/pathmap.hpp"
-#endif
-#if !defined (HPP_ALIB_STRINGS_TOKENIZER)
-    #include "alib/strings/tokenizer.hpp"
 #endif
 
 
@@ -1129,9 +1123,8 @@ void Lox::once(  const String&  domain,   Verbosity verbosity,
             it->second++;
 
             // do the log
-            Boxes& logables= GetLogableContainer();
-            logables.Add( std::forward<const Box&>( logable ) );
-            Entry( domain, verbosity, logables );
+            GetLogableContainer().Add( std::forward<const Box&>( logable ) );
+            Entry( domain, verbosity );
 
             // log info if this was the last time
             if( it->second == quantity )
@@ -1168,9 +1161,8 @@ void Lox::once(  const String&  domain,   Verbosity verbosity,
     {
         if ( it->second++ % -quantity == 0 )
         {
-            Boxes& logables= GetLogableContainer();
-            logables.Add( std::forward<const Box&>( logable ) );
-            Entry( domain, verbosity, logables );
+            GetLogableContainer().Add( std::forward<const Box&>( logable ) );
+            Entry( domain, verbosity );
         }
     }
 }
@@ -1305,16 +1297,23 @@ void Lox::State( const String&    domain,
 
     GetState( buf, flags );
 
-    Boxes& logables= GetLogableContainer();
-    logables.Add( buf );
-    Entry( domain, verbosity, logables );
+    GetLogableContainer().Add( buf );
+    Entry( domain, verbosity );
 }
 
+Boxes&  Lox::GetLogableContainer()
+{
+    ALIB_ASSERT_ERROR( cntAcquirements >= 1, "Lox not acquired." );
+    ALIB_ASSERT_WARNING( cntAcquirements < 5, "Logging recursion depth >= 5" );
+    while( logableContainers.size() < static_cast<size_t>(cntAcquirements) )
+        logableContainers.emplace_back( new Boxes() );
 
+    Boxes& logables= *logableContainers[static_cast<size_t>(cntAcquirements - 1)];
+    logables.clear();
+    return logables;
+}
 
-void Lox::Entry( const String&      domain,
-                 Verbosity          verbosity,
-                 const Boxes&       logables )
+void Lox::Entry( const String& domain, Verbosity verbosity )
 {
     ALIB_ASSERT_ERROR ( this->GetSafeness() == Safeness::Unsafe || this->DbgCountAcquirements() > 0,
                         "Lox not acquired" );
@@ -1332,12 +1331,12 @@ void Lox::Entry( const String&      domain,
     if ( domains.CountLoggers() == 0 )
         return;
 
-    log( evaluateResultDomain( domain ), verbosity, logables, Inclusion::Include );
+    log( evaluateResultDomain( domain ), verbosity, *logableContainers[static_cast<size_t>(cntAcquirements - 1)], Inclusion::Include );
 }
 
-
-void Lox::entryDetectDomainImpl( Verbosity verbosity, Boxes& logables )
+void Lox::entryDetectDomainImpl( Verbosity verbosity )
 {
+    Boxes& logables= *logableContainers[static_cast<size_t>(cntAcquirements - 1)];
     if ( logables.size() > 1 )
     {
         if( logables[0].IsArrayOf<char>() )
@@ -1363,17 +1362,17 @@ void Lox::entryDetectDomainImpl( Verbosity verbosity, Boxes& logables )
 
             if ( illegalCharacterFound )
             {
-                Entry( nullptr, verbosity, logables );
+                Entry( nullptr, verbosity );
                 return;
             }
 
             logables.erase( logables.begin() );
-            Entry( firstArg, verbosity, logables );
+            Entry( firstArg, verbosity );
             return;
         }
     }
 
-    Entry( nullptr, verbosity, logables );
+    Entry( nullptr, verbosity );
 }
 
 
@@ -1767,47 +1766,49 @@ bool Lox::isThreadRelatedScope( Scope scope )
     return false;
 }
 
-void Lox::log( core::Domain* dom, Verbosity verbosity, const Boxes& logables, Inclusion includePrefixes )
+void Lox::log( core::Domain* dom, Verbosity verbosity, Boxes& logables, Inclusion includePrefixes )
 {
     dom->CntLogCalls++;
-    tmpLogables.clear();
+    bool logablesCollected= false;
     Box marker;
     for ( int i= 0; i < dom->CountLoggers() ; i++ )
         if( dom->IsActive( i, verbosity ) )
         {
-            // lazily collect objects once
-            if ( tmpLogables.size() == 0 )
+            // lazily collect objects once an active logger is found
+            if ( !logablesCollected )
             {
+                logablesCollected= true;
                 scopePrefixes.InitWalk( Scope::ThreadInner, &marker );
                 const Box* next;
+                int qtyUserLogables= static_cast<int>( logables.size() );
+                int qtyThreadInners= -1;
+
                 while( (next= scopePrefixes.Walk() ) != nullptr )
                 {
-                    if( next == &marker )
+                    if( next != &marker )
                     {
-                        for( size_t l= 0; l < logables.size() ; ++l )
-                            tmpLogables.insert( tmpLogables.begin() + static_cast<int>(l),
-                                                logables[l] );
-                    }
-                    else
                         // this is false for internal domains (only domain specific logables are added there)
                         if ( includePrefixes == Inclusion::Include )
                         {
-                            // a list of logables? Copy them
+                            // after marker is read, logables need to be prepended. This is checked below
+                            // using "qtyThreadInners < 0"
                             if ( next->IsType<Boxes*>() )
                             {
                                 Boxes* boxes= next->Unbox<Boxes*>();
                                 for (int pfxI= static_cast<int>(boxes->size()) - 1 ; pfxI >= 0 ; --pfxI )
-                                    tmpLogables.insert( tmpLogables.begin(), (*boxes)[static_cast<size_t>(pfxI)] );
+                                    logables.insert( logables.begin() + ( qtyThreadInners < 0 ? qtyUserLogables : 0 ),
+                                                    (*boxes)[static_cast<size_t>(pfxI)] );
                             }
                             else
-                                tmpLogables.insert( tmpLogables.begin(), next );
+                                logables.insert( logables.begin() + ( qtyThreadInners < 0 ? qtyUserLogables : 0 ), next );
                         }
+                    }
 
                     // was this the actual? then insert domain-associated logables now
-                    bool excludeOthers= false;
-                    if( next == &marker )
+                    else
                     {
-                        size_t qtyThreadInner=  tmpLogables.size() -1;
+                        bool excludeOthers= false;
+                        qtyThreadInners= static_cast<int>( logables.size() ) - qtyUserLogables;
                         Domain* pflDom= dom;
                         while ( pflDom != nullptr )
                         {
@@ -1819,10 +1820,10 @@ void Lox::log( core::Domain* dom, Verbosity verbosity, const Boxes& logables, In
                                 {
                                     Boxes* boxes= prefix.Unbox<Boxes*>();
                                     for (int pfxI= static_cast<int>(boxes->size()) - 1 ; pfxI >= 0 ; --pfxI )
-                                        tmpLogables.insert( tmpLogables.begin(), (*boxes)[static_cast<size_t>(pfxI)] );
+                                        logables.insert( logables.begin(), (*boxes)[static_cast<size_t>(pfxI)] );
                                 }
                                 else
-                                    tmpLogables.insert( tmpLogables.begin(), prefix );
+                                    logables.insert( logables.begin(), prefix );
 
 
                                 if ( it->second == Inclusion::Exclude )
@@ -1838,23 +1839,23 @@ void Lox::log( core::Domain* dom, Verbosity verbosity, const Boxes& logables, In
                         // found a stoppable one? remove those from thread inner and break
                         if (excludeOthers)
                         {
-                            for ( size_t ii= 0; ii < qtyThreadInner ; ii++ )
-                                tmpLogables.pop_back();
+                            for ( int ii= 0; ii < qtyThreadInners ; ii++ )
+                                logables.pop_back();
                             break;
                         }
                     }
                 }
-            }
+            } // end of collection
 
             Logger* logger= dom->GetLogger(i);
             OWN(*logger);
                 logger->CntLogs++;
-                logger->Log( *dom, verbosity, tmpLogables, scopeInfo );
+                logger->Log( *dom, verbosity, logables, scopeInfo );
                 logger->TimeOfLastLog.Set();
         }
 }
 
-void Lox::logInternal( Verbosity verbosity, const String& subDomain, const Boxes& msg )
+void Lox::logInternal( Verbosity verbosity, const String& subDomain, Boxes& msg )
 {
     ALIB_ASSERT_ERROR(!ALox::Init(), "ALox not initialized" );
     log( findDomain( internalDomains, subDomain ), verbosity, msg, Inclusion::Exclude );

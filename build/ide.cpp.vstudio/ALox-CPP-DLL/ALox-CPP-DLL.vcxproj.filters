@@ -53,6 +53,15 @@
     <Filter Include="alib\alib">
       <UniqueIdentifier>{7b890037-8348-4e06-af64-575ab0335738}</UniqueIdentifier>
     </Filter>
+    <Filter Include="alib\strings\util">
+      <UniqueIdentifier>{c94c7483-dd94-4fe9-8b87-af42f6b9f987}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="alib\strings\format">
+      <UniqueIdentifier>{424402f1-c7e0-44a0-bdad-c7e2c4528d7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="alib\strings\boxing">
+      <UniqueIdentifier>{567f3a8b-d74b-4624-8f42-129e81eff2c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -139,39 +148,6 @@
     <ClInclude Include="..\..\..\src.cpp\alox\core\domain.hpp">
       <Filter>alox\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\string.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\tokenizer.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\tstring.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\substring.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\astring.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\stringliteral.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\applyformat.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\preallocatedstring.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\numberformat.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\applyto.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\cstring.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src.cpp\alox\core\scopestore.hpp">
       <Filter>alox\core</Filter>
     </ClInclude>
@@ -214,12 +190,6 @@
     <ClInclude Include="..\..\..\src.cpp\alib\compatibility\qt.hpp">
       <Filter>alib\compatibility</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\stringboxing.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\formatter.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src.cpp\alib\lang\enums.hpp">
       <Filter>alib\lang</Filter>
     </ClInclude>
@@ -256,29 +226,11 @@
     <ClInclude Include="..\..\..\src.cpp\alib\time\calendartime.hpp">
       <Filter>alib\time</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\spaces.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src.cpp\alib\boxing\boxes.hpp">
       <Filter>alib\boxing</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src.cpp\alib\lang\memoryblocks.hpp">
       <Filter>alib\lang</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\stringtuples.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\formatterstdimpl.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\formatterjavastyle.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\formatterpythonstyle.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\autosizes.hpp">
-      <Filter>alib\strings</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src.cpp\alib\alib\prepro.hpp">
       <Filter>alib\alib</Filter>
@@ -288,6 +240,60 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src.cpp\alib\distribution.hpp">
       <Filter>alib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\tstring.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\applicables.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\astring.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\cstring.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\numberformat.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\preallocatedstring.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\string.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\stringliteral.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\substring.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\util\tokenizer.hpp">
+      <Filter>alib\strings\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\util\autosizes.hpp">
+      <Filter>alib\strings\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\util\spaces.hpp">
+      <Filter>alib\strings\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\util\stringtuples.hpp">
+      <Filter>alib\strings\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\format\formatterstdimpl.hpp">
+      <Filter>alib\strings\format</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\format\formatter.hpp">
+      <Filter>alib\strings\format</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\format\formatterjavastyle.hpp">
+      <Filter>alib\strings\format</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\format\formatterpythonstyle.hpp">
+      <Filter>alib\strings\format</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\boxing\stringboxing.hpp">
+      <Filter>alib\strings\boxing</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -360,30 +366,6 @@
     <ClCompile Include="..\..\..\src.cpp\alox\core\domain.cpp">
       <Filter>alox\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\astring.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\cstring.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\substring.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\tokenizer.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\tstring.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\applyformat.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\numberformat.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\string.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alox\core\scopeinfo.cpp">
       <Filter>alox\core</Filter>
     </ClCompile>
@@ -411,14 +393,8 @@
     <ClCompile Include="..\..\..\src.cpp\alib\boxing\ftypes.cpp">
       <Filter>alib\boxing</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\stringboxing.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib\alib.cpp">
       <Filter>alib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\formatter.cpp">
-      <Filter>alib\strings</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib\lang\enums.cpp">
       <Filter>alib\lang</Filter>
@@ -444,26 +420,56 @@
     <ClCompile Include="..\..\..\src.cpp\alib\time\calendartime.cpp">
       <Filter>alib\time</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\spaces.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib\lang\memoryblocks.cpp">
       <Filter>alib\lang</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\formatterjavastyle.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\formatterpythonstyle.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\formatterstdimpl.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\autosizes.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib\alib\debug.cpp">
       <Filter>alib\alib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\applicables.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\astring.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\cstring.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\numberformat.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\string.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\substring.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\tstring.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\util\autosizes.cpp">
+      <Filter>alib\strings\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\util\spaces.cpp">
+      <Filter>alib\strings\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\util\tokenizer.cpp">
+      <Filter>alib\strings\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\format\formatter.cpp">
+      <Filter>alib\strings\format</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\format\formatterjavastyle.cpp">
+      <Filter>alib\strings\format</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\format\formatterpythonstyle.cpp">
+      <Filter>alib\strings\format</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\format\formatterstdimpl.cpp">
+      <Filter>alib\strings\format</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\boxing\stringboxing.cpp">
+      <Filter>alib\strings\boxing</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

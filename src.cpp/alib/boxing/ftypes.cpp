@@ -78,6 +78,23 @@ namespace aworx { namespace lib { namespace boxing {
 namespace ftypes
 {
 
+ALIB_NAMESPACE_INIT_FLAG
+void Init()
+{
+    ALIB_NAMESPACE_INIT_DEDUP
+
+    DefineInterface<double         , false, IEquals_Tdouble     >();
+    DefineInterface<char           , true , IEquals_TcharArr    >();
+    DefineInterface<wchar_t        , true , IEquals_Twchar_tArr >();
+    DefineInterface<char16_t       , true , IEquals_Tchar16_tArr>();
+    DefineInterface<char32_t       , true , IEquals_Tchar32_tArr>();
+
+    DefineInterface<boxed_int      , false, IIsNull_false       >();
+    DefineInterface<boxed_uint     , false, IIsNull_false       >();
+    DefineInterface<double         , false, IIsNull_false       >();
+
+}
+
 // #################################################################################################
 // IEquals_Tdouble
 // #################################################################################################

@@ -92,6 +92,11 @@ DumpSingletons();
 #endif
 
     (void) theOne;
+
+#if !ALIB_FEAT_SINGLETON_MAPPED
+    delete myClassSingleton;
+    delete theOne;
+#endif
 }
 
 } //namespace dox_lang_singleton

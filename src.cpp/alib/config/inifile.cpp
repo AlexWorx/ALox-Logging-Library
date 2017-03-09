@@ -18,18 +18,21 @@
 #if !defined (HPP_ALIB_SYSTEM_PROCESSINFO)
     #include "alib/system/process.hpp"
 #endif
-#if !defined (HPP_ALIB_STRINGS_TOKENIZER)
-    #include "alib/strings/tokenizer.hpp"
+#if !defined (HPP_ALIB_STRINGS_UTIL_TOKENIZER)
+    #include "alib/strings/util/tokenizer.hpp"
 #endif
 #if !defined (HPP_ALIB_COMPATIBILITY_STD_IOSTREAM)
     #include "alib/compatibility/std_iostream.hpp"
 #endif
-#if !defined (HPP_ALIB_STRINGS_SPACES)
-    #include "alib/strings/spaces.hpp"
+#if !defined (HPP_ALIB_STRINGS_UTIL_SPACES)
+    #include "alib/strings/util/spaces.hpp"
 #endif
 
 #include <fstream>
-using namespace std;
+#if defined(_MSC_VER)
+    #include <algorithm> 
+#endif
+
 
 namespace aworx { namespace lib { namespace config
 {
@@ -184,7 +187,7 @@ IniFile::Status  IniFile::ReadFile()
     LastStatus= Status::Ok;
 
     // open file
-    ifstream file( FileName.ToCString() );
+    std::ifstream file( FileName.ToCString() );
     if ( !file.is_open() )
         return LastStatus= Status::ErrorOpeningFile;
 
@@ -308,7 +311,7 @@ IniFile::Status  IniFile::ReadFile()
     return LastStatus;
 }
 
-void  IniFile::writeComments( ostream& os, const AString& comments )
+void  IniFile::writeComments( std::ostream& os, const AString& comments )
 {
     // is empty when trimmed?
     if ( Substring(comments).Trim().IsEmpty() )
@@ -322,7 +325,7 @@ void  IniFile::writeComments( ostream& os, const AString& comments )
     {
         if ( !startsWithCommentSymbol( tknzr.Actual ) )
             os << DefaultCommentPrefix;
-        os << tknzr.Actual << endl;
+        os << tknzr.Actual << std::endl;
     }
 
     tknzr.Whitespaces=  DefaultWhitespaces;
@@ -348,7 +351,7 @@ IniFile::Status  IniFile::WriteFile()
     LastStatus= Status::Ok;
 
     // read all variables
-    ofstream file ( FileName.ToCString() );
+    std::ofstream file ( FileName.ToCString() );
     if ( !file.is_open() )
         return LastStatus= Status::ErrorOpeningFile;
 
@@ -356,7 +359,7 @@ IniFile::Status  IniFile::WriteFile()
     if ( FileComments.IsNotEmpty() )
     {
         writeComments( file, FileComments );
-        file << endl;
+        file << std::endl;
     }
 
     // loop over all sections
@@ -365,17 +368,17 @@ IniFile::Status  IniFile::WriteFile()
     {
         // comments, name
         if ( cntVars > 0 )
-            file << endl;
+            file << std::endl;
 
         // write section comments and name
         writeComments( file, section->Comments );
         if ( section->Name.IsNotEmpty() )
-            file << '[' << section->Name << ']' << endl;
+            file << '[' << section->Name << ']' << std::endl;
 
         // variables
         integer maxVarLength= 0;
         for ( InMemoryPlugin::Entry* entry : section->Entries )
-            maxVarLength= max( maxVarLength, entry->Name.Length() );
+            maxVarLength= (std::max)( maxVarLength, entry->Name.Length() );
 
         bool previousVarHasComments= true;
         for ( InMemoryPlugin::Entry* entry : section->Entries )
@@ -387,7 +390,7 @@ IniFile::Status  IniFile::WriteFile()
             {
                 // we make an extra empty line if previous var had no comments
                 if( !previousVarHasComments)
-                    file << endl;
+                    file << std::endl;
 
                 writeComments( file, entry->Comments );
             }
@@ -485,7 +488,7 @@ IniFile::Status  IniFile::WriteFile()
 
                             Spaces::Write( file, backSlashPos - lastLineLen );
 
-                            file << '\\' << endl;
+                            file << '\\' << std::endl;
 
                             Spaces::Write( file, maxVarLength + 2 ); // 2 for "= "
                         }
@@ -518,11 +521,11 @@ IniFile::Status  IniFile::WriteFile()
                     }
                 }
             }
-            file << endl;
+            file << std::endl;
 
             // add an empty line if we have comments
             if( (previousVarHasComments= entry->Comments.IsNotEmpty() ) == true )
-                file << endl;
+                file << std::endl;
         }
     }
 

@@ -36,7 +36,7 @@ UT_CLASS()
 
 void dateFormatCheck( AWorxUnitTesting& ut, TicksCalendarTime& ct,  const char * fmt, const char * expected )
 {
-    String32 res;
+    String128 res;
     ct.Format( fmt, res );
     UT_PRINT( (String128("TicksCalendarTime.Format: ") << fmt << " ->")._(Format::Tab(20)) << res );
     UT_EQ( expected, res );
@@ -188,9 +188,7 @@ UT_METHOD(DateTimeConversion)
                 UT_PRINT( "Ticks original:  ", ticksNowOrig     .Raw() );
                 UT_PRINT( "Ticks roundtrip: ", ticksNowRoundtrip.Raw() );
 
-                #if ALIB_AVOID_ANALYZER_WARNINGS
-                    UT_EQ( ticksNowOrig.InSeconds() ,  ticksNowRoundtrip.InSeconds() );
-                #endif
+                UT_NEAR( ticksNowOrig.InSeconds() ,  ticksNowRoundtrip.InSeconds(), 1 );
             }
 
             // now we add a day

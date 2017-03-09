@@ -6,8 +6,8 @@
 // #################################################################################################
 #include "alib/alib.hpp"
 
-#if !defined(HPP_ALIB_STRINGS_TOKENIZER)
-    #include "alib/strings/tokenizer.hpp"
+#if !defined(HPP_ALIB_STRINGS_UTIL_TOKENIZER)
+    #include "alib/strings/util/tokenizer.hpp"
 #endif
 
 #if !defined(HPP_ALIB_SYSTEM_PROCESSINFO)
@@ -36,7 +36,6 @@
 #endif
 
 
-using namespace std;
 
 namespace aworx { namespace lib { namespace system
 {
@@ -64,7 +63,7 @@ const ProcessInfo&    ProcessInfo::Current()
     bool readProcFile( const TString& fileName, AString& result  )
     {
         result.Clear();
-        ifstream file( fileName.ToCString() );
+        std::ifstream file( fileName.ToCString() );
 
         std::string buffer;
         getline(file, buffer);

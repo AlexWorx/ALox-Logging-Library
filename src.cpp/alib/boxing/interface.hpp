@@ -112,8 +112,8 @@ namespace aworx { namespace lib { namespace boxing
  **************************************************************************************************/
 class Interface
 {
+    /** Class \b %Boxer controls this class and is therefore a friend. */
     friend class aworx::lib::boxing::Boxer;
-    friend class aworx::lib::boxing::Box;
 
     protected:
         /**

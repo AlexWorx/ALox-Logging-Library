@@ -5,6 +5,7 @@
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using cs.aworx.lib.strings;
+using cs.aworx.lib.strings.util;
 using cs.aworx.lib.lang;
 using cs.aworx.lib.time;
 using cs.aworx.lib.system;

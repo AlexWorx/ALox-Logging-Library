@@ -13,6 +13,7 @@ import java.util.Map;
 import com.aworx.lib.containers.PathMap;
 import com.aworx.lib.lang.Alignment;
 import com.aworx.lib.strings.AString;
+import com.aworx.lox.ESC;
 
 /** ************************************************************************************************
  * This class is an internal helper to export current scope values.
@@ -210,7 +211,12 @@ public class ScopeDump
             {
                 cnt++;
                 target.insertChars( ' ', indentSpaces );
-                target._( '\"' )._NC( store.globalStore.toString() )._( '\"' );
+                target._( '\"' );
+                int idx= target.length();
+                target._NC( store.globalStore.toString() );
+                ESC.replaceToReadable( target, idx );
+                target._( '\"' );
+
                 target.tab( 25, -1 )._NC( "Scope.Global " ).newLine();
             }
 
@@ -219,7 +225,11 @@ public class ScopeDump
                 {
                     cnt++;
                     target.insertChars( ' ', indentSpaces );
-                    target._( '\"' )._NC( it.toString() )._( '\"' );
+                    target._( '\"' );
+                    int idx= target.length();
+                    target._NC( it.toString() );
+                    ESC.replaceToReadable( target, idx );
+                    target._( '\"' );
                     target.tab( 25, -1 )
                           ._NC( "Scope.THREAD_OUTER " );
                     storeThreadToScope( thread.getKey() ).newLine();
@@ -230,7 +240,11 @@ public class ScopeDump
                 cnt++;
 
                 target.insertChars( ' ', indentSpaces );
-                target._( '\"' )._NC( it.value.toString() )._( '\"' );
+                    target._( '\"' );
+                    int idx= target.length();
+                    target._NC( it.value.toString() );
+                    ESC.replaceToReadable( target, idx );
+                    target._( '\"' );
                 target.tab( 25, -1 );
 
                 storeKeyToScope( it ).newLine();
@@ -241,7 +255,11 @@ public class ScopeDump
                 {
                     cnt++;
                     target.insertChars( ' ', indentSpaces );
-                    target._( '\"' )._NC( it.toString() )._( '\"' );
+                    target._( '\"' );
+                    int idx= target.length();
+                    target._NC( it.toString() );
+                    ESC.replaceToReadable( target, idx );
+                    target._( '\"' );
                     target.tab( 25, -1 )
                           ._NC( "Scope.THREAD_INNER " );
                     storeThreadToScope( thread.getKey() ).newLine();

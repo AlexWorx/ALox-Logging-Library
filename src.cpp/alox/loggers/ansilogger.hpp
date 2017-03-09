@@ -28,8 +28,8 @@
 #endif
 
 
-namespace aworx { namespace lox { namespace loggers
-{
+namespace aworx { namespace lox { namespace loggers {
+
 /** ************************************************************************************************
  * A logger that logs all messages to the <em>std::basic_ostream</em> instance provided in the
  * constructor. The name of the \e Logger defaults to "ANSI_LOGGER".
@@ -49,7 +49,7 @@ namespace aworx { namespace lox { namespace loggers
  * [ALOX_CONSOLE_LIGHT_COLORS](../group__GrpALoxConfigVars.html).
  *
  * In the constructor, a default format string and some other definitions in member
- * \ref MetaInfo get set to include ESC Escape Sequences.
+ * \ref MetaInfo get set to include color settings.
  * Of-course, these publicly accessible format attributes can be customized after creation.
  *
  * \note Instead of using ANSI sequences in the format strings directly, which would lower the
@@ -183,13 +183,21 @@ class AnsiLogger : public aworx::lox::core::textlogger::TextLogger
     // protected fields
     // #############################################################################################
     protected:
-        /** The output stream provided in the constructor.              */
+        /** The output stream provided in the constructor.               */
         std::basic_ostream<char>*           oStream;
 
     // #############################################################################################
     // public fields
     // #############################################################################################
     public:
+        /** Denotes states of field #UseLightColors.  */
+        enum class LightColorUsage
+        {
+            _Undefined,      ///< Internal, temporary state
+            Never,           ///< Never use light colors
+            ForegroundLight, ///< Use light colors for foreground
+            ForegroundDark   ///< Use light colors for background
+        };
 
         /**
          * Foreground and background colors chosen by this class might differ in their intensity.
@@ -200,20 +208,17 @@ class AnsiLogger : public aworx::lox::core::textlogger::TextLogger
          * Depending on the setting of this field, ALox
          * \ref aworx::lox::ESC "escape codes" for colors are translated to normal ANSI colors or
          * lighter ones:
-         * - If this field is \c 0, light colors are never used.
-         * - If this field is \c 1, foreground colors will be light colors and background colors
-         *   dark. This is the default.
-         * - If \c 2, the opposite of \c 1 is chosen: background colors will be light colors and
-         *   foreground colors dark.
+         * - If this field is \ref LightColorUsage "LightColorUsage::Never", light colors are
+         *   never used.
+         * - If this field is \ref LightColorUsage "LightColorUsage::ForegroundLight", foreground
+         *   colors will be light colors and background colors dark ones. This is the default.
+         * - If \ref LightColorUsage "LightColorUsage::ForegroundDark", background colors will be
+         *   light colors and foreground colors dark ones.
          *
          * The configuration variable [ALOX_CONSOLE_LIGHT_COLORS](../group__GrpALoxConfigVars.html)
          * allows to externally modify this flag. It is read once within the constructor .
          */
-        int    UseLightColors;
-
-
-        /** Characters  placed at the end of each line (e.g. used to reset colors and styles).*/
-        String MsgSuffix                      = ANSI_RESET;
+        LightColorUsage    UseLightColors;
 
     // #############################################################################################
     // Constructor/destructor
@@ -248,9 +253,9 @@ class AnsiLogger : public aworx::lox::core::textlogger::TextLogger
     // #############################################################################################
     protected:
         /** ****************************************************************************************
-         *  The implementation of the abstract method of parent class TextLogger.
-         *  Logs messages to the basic output stream provided in the constructor. Replaces
-         *  ALox ESC escape sequences with ANSI escape sequences.
+         * Implementation of the abstract method of parent class TextLogger.
+         * Logs messages to the basic output stream provided in the constructor. Replaces
+         * ALox ESC escape sequences with ANSI escape sequences.
          *
          * @param domain      The <em>Log Domain</em>.
          * @param verbosity   The verbosity. This has been checked to be active already on this
@@ -268,25 +273,24 @@ class AnsiLogger : public aworx::lox::core::textlogger::TextLogger
                                  int               lineNumber);
 
         /** ****************************************************************************************
-         *  Empty implementation, not needed for this class
+         * Empty implementation.
          ******************************************************************************************/
-        ALOX_API
-        virtual void notifyMultiLineOp ( lib::lang::Phase )    {  }
+        virtual void notifyMultiLineOp ( lib::lang::Phase ) {}
 
 
 
 }; // class AnsiLogger
 
 /** ************************************************************************************************
- *  A #AnsiLogger that logs all messages to the standard output <em>cout</em>.
- *  The name of the \e Logger defaults to "ANSI_CONSOLE".
+ * A #AnsiLogger that logs all messages to the standard output <em>cout</em>.
+ * The name of the \e Logger defaults to "ANSI_CONSOLE".
  *
- *  Provides 'cout' to the constructor of its parent class %AnsiLogger.
- *  See class #AnsiLogger for more information on ANSI escape sequences and their use.
+ * Provides 'cout' to the constructor of its parent class %AnsiLogger.
+ * See class #AnsiLogger for more information on ANSI escape sequences and their use.
  *
- *  \note To avoid misunderstandings: This class can not enable the output console (which receives
- *        ALox log data) to support ANSI Escape Codes. The opposite is right: this class should be
- *        used only if the console supports ANSI Escape Codes.
+ * \note To avoid misunderstandings: This class can not enable the output console (which receives
+ *       ALox log data) to support ANSI Escape Codes. The opposite is right: this class should be
+ *       used only if the console supports ANSI Escape Codes.
  **************************************************************************************************/
 class AnsiConsoleLogger : public AnsiLogger
 {
@@ -295,7 +299,7 @@ class AnsiConsoleLogger : public AnsiLogger
     // #############################################################################################
     public:
         /** ****************************************************************************************
-         *  Creates an AnsiConsoleLogger.
+         * Creates an AnsiConsoleLogger.
          * @param name     (Optional) The name of the \e Logger, defaults to "CONSOLE".
          ******************************************************************************************/
         ALOX_API

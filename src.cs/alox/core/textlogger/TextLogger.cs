@@ -13,6 +13,7 @@ using System.Text;
 
 using cs.aworx.lib;
 using cs.aworx.lib.strings;
+using cs.aworx.lib.strings.util;
 using cs.aworx.lib.lang;
 using cs.aworx.lib.threads;
 using cs.aworx.lib.config;
@@ -102,6 +103,18 @@ public abstract class TextLogger : Logger
     public    MetaInfo                  MetaInfo                                    =new MetaInfo();
 
     /**
+     * Characters written after each <em>Log Statement</em>.
+     * This may be used for example to reset colors and styles.
+     * Note, that with multi-line <em>Log Statements</em>, the contents of this field is \b not
+     * written at the end of each line, but only at the end of the last line.
+     * To define characters that are written after each line of a multi-line
+     * <em>Log Statement</em>, field #FmtMultiLineSuffix.
+     *
+     * Defaults to empty string.
+     */
+    public    String                    FmtMsgSuffix                                            ="";
+
+    /**
      * Holds a list of values for auto tab positions and field sizes.
      * For each requested value, a corresponding array field is created on the fly.
      * If the format string get's changed and different (new) auto values should be used, then
@@ -161,8 +174,11 @@ public abstract class TextLogger : Logger
     public    String                    FmtMultiLinePrefix                                   =">> ";
 
     /**
-     *  Suffix for multi line messages. This is also used if multi line messages logging is switched off
-     *  (MultiLineMsgMode == 0) but replacing of a set MultiLineDelimiter takes place.
+     * Suffix for multi line messages. This is also used if multi line messages logging is
+     * switched off (MultiLineMsgMode == 0) and replacing of a set #MultiLineDelimiter
+     * takes place.<br>
+     * Note that at the end of the last line, in addition #FmtMsgSuffix is added.<br>
+     * Defaults to "".
      */
     public    String                    FmtMultiLineSuffix                                    =null;
 
@@ -243,6 +259,7 @@ public abstract class TextLogger : Logger
                 variable.Add( MetaInfo.VerbosityWarning  );
                 variable.Add( MetaInfo.VerbosityInfo     );
                 variable.Add( MetaInfo.VerbosityVerbose  );
+                variable.Add( FmtMsgSuffix               );
                 variable.Store();
             }
             else
@@ -252,6 +269,7 @@ public abstract class TextLogger : Logger
                 if( variable.Size() >= 3 ) MetaInfo.VerbosityWarning= variable.GetString(2).ToString();
                 if( variable.Size() >= 4 ) MetaInfo.VerbosityInfo   = variable.GetString(3).ToString();
                 if( variable.Size() >= 5 ) MetaInfo.VerbosityVerbose= variable.GetString(4).ToString();
+                if( variable.Size() >= 6 ) FmtMsgSuffix             = variable.GetString(5).ToString();
             }
 
             // Variable  <name>_FORMAT_DATE_TIME / <typeName>_FORMAT_DATE_TIME:
@@ -448,7 +466,7 @@ public abstract class TextLogger : Logger
         /** ****************************************************************************************
          * This abstract method introduced by this class "replaces" the abstract method #Log
          * of parent class Logger which this class implements. In other words, descendants of this
-         * class need to overwrite this method instead of \b %Do. This class %TextLogger is
+         * class need to overwrite this method instead of \b %Log. This class %TextLogger is
          * responsible for generating meta information, doing text replacements, handle multi-line
          * messages, etc. and provides the textual representation of the whole log contents
          * to descendants using this method.
@@ -457,7 +475,7 @@ public abstract class TextLogger : Logger
          * @param verbosity  The verbosity. This has been checked to be active already on this
          *                   stage and is provided to be able to be logged out only.
          * @param msg        The log message.
-         * @param scope      Information about the scope of the <em>Log Statement</em>..
+         * @param scope      Information about the scope of the <em>Log Statement</em>.
          * @param lineNumber The line number of a multi-line message, starting with 0.
          *                   For single line messages this is -1.
          ******************************************************************************************/
@@ -503,29 +521,32 @@ public abstract class TextLogger : Logger
                                    List<Object>  logables,
                                    ScopeInfo     scope  )
         {
-            // clear Buffer and reset utility members
-            logBuf.Clear();
-            AutoSizes.Start();
-
-            //  << meta info << ESC::EOMETA
-            int qtyESCTabsWritten=  MetaInfo.Write( this, logBuf, domain, verbosity, scope );
-
-            logBuf._( ESC.EOMETA );
-
-            // convert msg object into an AString representation
+            // check
             if ( Converter == null )
                 Converter= new StandardConverter();
-            Converter.ConvertObjects( msgBuf._(), logables );
 
+            // we store the current msgBuf length and reset the buffer to this length when exiting.
+            // This allows recursive calls! Recursion might happen with the evaluation of the
+            // logables (in the next line!)
+            int msgBufStartLength= msgBuf.Length();
+            Converter.ConvertObjects( msgBuf, logables );
 
             // replace strings in message
             for ( int i= 0; i < replacements.Count ; i+=2 )
-                msgBuf.SearchAndReplace( replacements[i], replacements[i + 1] );
+                msgBuf.SearchAndReplace( replacements[i],
+                                         replacements[i + 1], msgBufStartLength );
+
+            // setup log buffer with meta info << ESC::EOMETA
+            logBuf.Clear();
+            AutoSizes.Start();
+            int qtyESCTabsWritten=  MetaInfo.Write( this, logBuf, domain, verbosity, scope );
+            logBuf._NC( ESC.EOMETA );
 
             // check for empty messages
-            if ( msgBuf.IsEmpty() )
+            if ( msgBuf.Length() == msgBufStartLength )
             {
                 // log empty msg and quit
+                logBuf._NC( FmtMsgSuffix );
                 if (usesStdStreams) ALIB.StdOutputStreamsLock.Acquire();
                     logText( domain, verbosity, logBuf, scope, -1 );
                 if (usesStdStreams) ALIB.StdOutputStreamsLock.Release();
@@ -538,38 +559,39 @@ public abstract class TextLogger : Logger
                 // replace line separators
                 int cntReplacements=0;
                 if ( MultiLineDelimiter != null )
-                    cntReplacements+=msgBuf.SearchAndReplace( MultiLineDelimiter,    MultiLineDelimiterRepl );
+                    cntReplacements+=msgBuf.SearchAndReplace( MultiLineDelimiter,    MultiLineDelimiterRepl, msgBufStartLength );
                 else
                 {
-                    cntReplacements+=msgBuf.SearchAndReplace( "\r\n", MultiLineDelimiterRepl );
-                    cntReplacements+=msgBuf.SearchAndReplace( "\r", MultiLineDelimiterRepl );
-                    cntReplacements+=msgBuf.SearchAndReplace( "\n", MultiLineDelimiterRepl );
+                    cntReplacements+=msgBuf.SearchAndReplace( "\r\n", MultiLineDelimiterRepl, msgBufStartLength );
+                    cntReplacements+=msgBuf.SearchAndReplace( "\r"  , MultiLineDelimiterRepl, msgBufStartLength );
+                    cntReplacements+=msgBuf.SearchAndReplace( "\n"  , MultiLineDelimiterRepl, msgBufStartLength );
                 }
 
                 // append msg to logBuf
                 if ( cntReplacements == 0 )
                 {
-                    logBuf._( msgBuf );
+                    logBuf._( msgBuf, msgBufStartLength, msgBuf.Length() - msgBufStartLength );
                 }
                 else
                 {
                     logBuf._( FmtMultiLinePrefix );
-                    logBuf._( msgBuf );
+                    logBuf._( msgBuf, msgBufStartLength, msgBuf.Length() - msgBufStartLength );
                     logBuf._( FmtMultiLineSuffix );
                 }
+                logBuf._NC( FmtMsgSuffix );
 
                 // now do the logging by calling our derived classes' logText
                 logText( domain, verbosity, logBuf, scope, -1 );
 
                 // stop here
+                msgBuf.SetLength( msgBufStartLength );
                 return;
             }
 
             // multiple line output
-            int qtyTabStops= AutoSizes.ActualIndex;
-
-            int actStart=0;
-            int lineNo=0;
+            int qtyTabStops=        AutoSizes.ActualIndex;
+            int actStart=           msgBufStartLength;
+            int lineNo=             0;
             int lbLenBeforeMsgPart= logBuf.Length();
 
             // loop over lines in msg
@@ -606,7 +628,8 @@ public abstract class TextLogger : Logger
                     if ( lineNo == 0 )
                     {
                         // append msg to logBuf
-                        logBuf._( msgBuf );
+                        logBuf._NC( msgBuf, msgBufStartLength, msgBuf.Length() - msgBufStartLength );
+                        logBuf._NC( FmtMsgSuffix );
 
                         // now do the logging by calling our derived classes' logText
                         if (usesStdStreams) ALIB.StdOutputStreamsLock.Acquire();
@@ -614,6 +637,7 @@ public abstract class TextLogger : Logger
                         if (usesStdStreams) ALIB.StdOutputStreamsLock.Release();
 
                         // stop here
+                        msgBuf.SetLength( msgBufStartLength );
                         return;
                     }
 
@@ -678,6 +702,8 @@ public abstract class TextLogger : Logger
                 notifyMultiLineOp( Phase.End );
                 if (usesStdStreams) ALIB.StdOutputStreamsLock.Release();
             }
+
+            msgBuf.SetLength( msgBufStartLength );
         }
 
     #endif // ALOX_DBG_LOG || ALOX_REL_LOG

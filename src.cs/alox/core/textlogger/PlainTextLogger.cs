@@ -10,6 +10,7 @@ using cs.aworx.lox.core.textlogger;
 using cs.aworx.lib;
 using cs.aworx.lox.core;
 using cs.aworx.lib.strings;
+using cs.aworx.lib.strings.util;
 using cs.aworx.lib.lang;
 
 namespace cs.aworx.lox.core.textlogger

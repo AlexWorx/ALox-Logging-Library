@@ -209,12 +209,9 @@ class Report
         /** ****************************************************************************************
          * Deletes static / global resources.
          ******************************************************************************************/
+        ALIB_API
         static
-        void TerminationCleanUp()
-        {
-            if ( defaultReport != nullptr )
-                delete defaultReport;
-        }
+        void TerminationCleanUp();
 
         /** ****************************************************************************************
          * Reports the given message to the current
@@ -228,7 +225,7 @@ class Report
          * @param message The message to report.
          ******************************************************************************************/
         ALIB_API
-        void     DoReport( Message& message );
+        void     DoReport( const Message& message );
 
         /** ****************************************************************************************
          * Overloaded method that fetches all arguments needed to construct a
@@ -324,21 +321,24 @@ class ReportWriter
 
         /** ****************************************************************************************
          * Report a message. Pure virtual abstract interface method.
-         * @param report     The report.
+         * @param msg  The message to report.
          ******************************************************************************************/
-        virtual void Report  ( const Report::Message& report )    =0;
+        virtual void Report  ( const Report::Message& msg )    =0;
 };
 
 /** ************************************************************************************************
  * The standard \b %ReportWriter writing the message to \c std::cout and \c std::cerr.
- * A formatter of type
- * \ref aworx::lib::strings::FormatterPythonStyle "FormatterPythonStyle" is used to process the
- * objects in the report message.
+ * The global formatter singleton is used is used to process the objects in the report message.
+ * This is by default of type
+ * \ref aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle". See
+ * \ref aworx::lib::strings::format::Formatter::AcquireDefault "Formatter::AcquireDefault" for more
+ * information.
  **************************************************************************************************/
 class ReportWriterStdIO : public ReportWriter, public Singleton<ReportWriterStdIO>
 {
     //! @cond NO_DOX
-        friend Singleton<ReportWriterStdIO>;
+        friend class Singleton<ReportWriterStdIO>;
+        friend class Report;
     //! @endcond NO_DOX
 
     /**
@@ -346,23 +346,8 @@ class ReportWriterStdIO : public ReportWriter, public Singleton<ReportWriterStdI
      * instance may exist.
      */
     private:
-        ALIB_API            ReportWriterStdIO();
-        ALIB_API virtual   ~ReportWriterStdIO();
-
-    public:
-        /**
-         * The formatter used to format the output. This field is public and might be exchanged by
-         * users, while no 'safe' change interface is provided (neither in respect to threading,
-         * nor allocation. In contrast the field is just public. Therefore, when replacing this
-         * field,
-         * - the previous one needs to be deleted and
-         * - concurrent access needs to be avoided.
-         */
-        strings::Formatter*      Formatter;
-
-    protected:
-        /** Buffer used for formatting messages */
-        strings::AString*        buffer;
+        ALIB_API            ReportWriterStdIO() {}
+        ALIB_API virtual   ~ReportWriterStdIO() {}
 
     public:
         /** ****************************************************************************************
@@ -378,10 +363,10 @@ class ReportWriterStdIO : public ReportWriter, public Singleton<ReportWriterStdI
          * On Windows platform, if a debugger is present, the message is also written using
          * <em>OutputDebugStringA</em>.
          *
-         * @param report    The report.
+         * @param msg  The message to report.
          ******************************************************************************************/
         ALIB_API
-        virtual void Report  ( const Report::Message& report );
+        virtual void Report  ( const Report::Message& msg );
 };
 
 

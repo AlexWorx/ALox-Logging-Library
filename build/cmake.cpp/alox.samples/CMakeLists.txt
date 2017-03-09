@@ -58,6 +58,7 @@
     add_executable            ( ALoxSamples   ${ALOX_SAMPLES_SOURCES}  )
 
     set_target_properties     ( ALoxSamples   PROPERTIES  COMPILE_FLAGS ${AWORX_COMPILE_FLAGS})
+
     set_target_properties     ( ALoxSamples   PROPERTIES  LINK_FLAGS    ${AWORX_LINK_FLAGS}   )
 
     target_link_libraries     ( ALoxSamples   ALox_SharedLib

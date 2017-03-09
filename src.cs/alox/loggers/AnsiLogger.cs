@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using cs.aworx.lox.core.textlogger;
 using cs.aworx.lib;
 using cs.aworx.lib.strings;
+using cs.aworx.lib.strings.util;
 using cs.aworx.lox.core;
 using cs.aworx.lib.lang;
 using cs.aworx.lib.config;
@@ -18,15 +19,15 @@ using cs.aworx.lib.config;
 namespace cs.aworx.lox.loggers    {
 
 /** ************************************************************************************************
- *  A logger that logs all messages to the <em>System.IO.TextWriter</em> instance provided in the constructor.
- *  The name of the \e Logger defaults to "ANSI_LOGGER".
+ * A logger that logs all messages to the <em>System.IO.TextWriter</em> instance provided in the
+ * constructor. The name of the \e Logger defaults to "ANSI_LOGGER".
  *
- *  ALox text logger escape sequences (see class \ref cs::aworx::lox::ESC "ESC")
- *  are translated to ANSI escape sequences.
- *  Support for ANSI escape sequences (also referred to as <em>VT100 terminal emulation</em>)
- *  is available on most unix terminal windows. Besides text colors, bold and italics font style
- *  can be set.
- *  ANSI escape sequences are also available in various IDE output windows.
+ * ALox text logger escape sequences (see class \ref cs::aworx::lox::ESC "ESC")
+ * are translated to ANSI escape sequences.
+ * Support for ANSI escape sequences (also referred to as <em>VT100 terminal emulation</em>)
+ * is available on most unix terminal windows. Besides text colors, bold and italics font style
+ * can be set.
+ * ANSI escape sequences are also available in various IDE output windows.
  *
  * Foreground and background colors can be set to be either light/dark or dark/light. This improves
  * the readability of log output a lot and even allows to read if foreground and background colors
@@ -35,9 +36,9 @@ namespace cs.aworx.lox.loggers    {
  * #UseLightColors and also configuration variable
  * [ALOX_CONSOLE_LIGHT_COLORS](../group__GrpALoxConfigVars.html).
  *
- *  In the constructor, a default format string and some other definitions in member
- *  \ref MetaInfo get set to include ANSI Escape Sequences. Of-course, these publicly
- *  accessible format attributes can be customized after creation.
+ * In the constructor, a default format string and some other definitions in member
+ * \ref MetaInfo get set to include color settings.
+ * Of-course, these publicly accessible format attributes can be customized after creation.
  *
  *  There is not 100% match between the ANSI sequences and the definitions in
  *  \ref cs::aworx::lox::ESC "ESC".
@@ -130,8 +131,26 @@ public class AnsiLogger : TextLogger
         };
 
     // #############################################################################################
-    // Fields
+    // Internal fields
     // #############################################################################################
+
+        /**
+         * The TextWriter provided in the constructor.
+         */
+        protected   System.IO.TextWriter        textWriter;
+
+    // #############################################################################################
+    // Public fields
+    // #############################################################################################
+
+        /** Denotes states of field #UseLightColors.  */
+        public enum LightColorUsage
+        {
+            _Undefined,      ///< Internal, temporary state
+            Never,           ///< Never use light colors
+            ForegroundLight, ///< Use light colors for foreground
+            ForegroundDark   ///< Use light colors for background
+        }
 
         /**
          * Foreground and background colors chosen by this class might differ in their intensity.
@@ -142,28 +161,17 @@ public class AnsiLogger : TextLogger
          * Depending on the setting of this field, ALox
          * \ref cs::aworx::lox::ESC "escape codes" for colors are translated to normal ANSI colors or
          * lighter ones:
-         * - If this field is \c 0, light colors are never used.
-         * - If this field is \c 1, foreground colors will be light colors and background colors
-         *   dark. This is the default.
-         * - If \c 2, the opposite of \c 1 is chosen: background colors will be light colors and
-         *   foreground colors dark.
+         * - If this field is \ref LightColorUsage "LightColorUsage.Never", light colors are
+         *   never used.
+         * - If this field is \ref LightColorUsage "LightColorUsage.ForegroundLight", foreground
+         *   colors will be light colors and background colors dark ones. This is the default.
+         * - If \ref LightColorUsage "LightColorUsage.ForegroundDark", background colors will be
+         *   light colors and foreground colors dark ones.
          *
          * The configuration variable [ALOX_CONSOLE_LIGHT_COLORS](../group__GrpALoxConfigVars.html)
          * allows to externally modify this flag. It is read once within the constructor .
          */
-        public      int                         UseLightColors;
-
-        /** Flag that indicates if config variable was found to set #UseLightColors */
-        public      bool                        UseLightColorsSetFromOutside;
-
-        /**
-         * The TextWriter provided in the constructor.
-         */
-        protected   System.IO.TextWriter        textWriter;
-
-        /** Characters  placed at the end of each line (e.g. used to reset colors and styles).*/
-        public      String                      MsgSuffix               = ANSI_RESET;
-
+        public      LightColorUsage             UseLightColors;
 
     // #############################################################################################
     // Constructor
@@ -184,17 +192,20 @@ public class AnsiLogger : TextLogger
         {
             this.textWriter= textWriter;
 
+            // set msg suffix to "reset"
+            FmtMsgSuffix= ANSI_RESET;
+
             // evaluate environment variable "ALOX_CONSOLE_LIGHT_COLORS"
-            UseLightColors= -1;
+            UseLightColors= LightColorUsage._Undefined;
             Variable variable= new Variable( ALox.CONSOLE_LIGHT_COLORS );
             if ( variable.Load() > 0 && variable.Size() > 0)
             {
                 Substring p= new Substring(variable.GetString());
                 if(p.Trim().IsNotEmpty())
                 {
-                         if( p.ConsumePartOf( "foreground", 1, Case.Ignore ) > 0)  UseLightColors=  1;
-                    else if( p.ConsumePartOf( "background", 1, Case.Ignore ) > 0)  UseLightColors=  2;
-                    else if( p.ConsumePartOf( "never"     , 1, Case.Ignore ) > 0)  UseLightColors=  0;
+                         if( p.ConsumePartOf( "foreground", 1, Case.Ignore ) > 0)  UseLightColors=  LightColorUsage.ForegroundLight;
+                    else if( p.ConsumePartOf( "background", 1, Case.Ignore ) > 0)  UseLightColors=  LightColorUsage.ForegroundDark;
+                    else if( p.ConsumePartOf( "never"     , 1, Case.Ignore ) > 0)  UseLightColors=  LightColorUsage.Never;
                     else
                     {
                         ALIB_DBG.WARNING( "Unknown value specified in variable: " + variable.Fullname
@@ -203,32 +214,19 @@ public class AnsiLogger : TextLogger
                 }
             }
 
-            UseLightColorsSetFromOutside= (UseLightColors >= 0);
-
-            if( !UseLightColorsSetFromOutside )
+            if( UseLightColors == LightColorUsage._Undefined )
             {
                 // default: dark background, hence use light color on foreground
-                UseLightColors= 1;
-
+                UseLightColors= LightColorUsage.ForegroundLight;
             }
 
             // move verbosity information to the end to colorize the whole line
             MetaInfo.Format.SearchAndReplace( "]%V[", "][" );
             MetaInfo.Format._( "%V" );
-            if ( UseLightColors == 1 )
-            {
-                MetaInfo.VerbosityError           = ANSI_LIGHT_RED;
-                MetaInfo.VerbosityWarning         = ANSI_LIGHT_BLUE;
-                MetaInfo.VerbosityInfo            = "";
-                MetaInfo.VerbosityVerbose         = ANSI_LIGHT_GRAY;
-            }
-            else
-            {
-                MetaInfo.VerbosityError           = ANSI_RED;
-                MetaInfo.VerbosityWarning         = ANSI_BLUE;
-                MetaInfo.VerbosityInfo            = "";
-                MetaInfo.VerbosityVerbose         = ANSI_GRAY;
-            }
+            MetaInfo.VerbosityError           = ESC.RED;
+            MetaInfo.VerbosityWarning         = ESC.BLUE;
+            MetaInfo.VerbosityInfo            = "";
+            MetaInfo.VerbosityVerbose         = ESC.GRAY;
         }
 
     // #############################################################################################
@@ -236,9 +234,8 @@ public class AnsiLogger : TextLogger
     // #############################################################################################
 
     /** ********************************************************************************************
-     *
-     *  The implementation of the abstract method of parent class TextLogger. Logs messages to the
-     *  application console and/or the VStudio output window.
+     * Implementation of the abstract method of parent class TextLogger. Logs messages to the
+     * application console and/or the VStudio output window.
      *
      * @param domain      The <em>Log Domain</em>.
      * @param verbosity   The verbosity. This has been checked to be active already on this
@@ -311,7 +308,8 @@ public class AnsiLogger : TextLogger
                 colNo+=  isForeGround ? 0 : 10;
 
                 // add light
-                if( UseLightColors != 0 && ( (UseLightColors == 1) == isForeGround ) )
+                if(       UseLightColors != LightColorUsage.Never
+                    && ( (UseLightColors == LightColorUsage.ForegroundLight) == isForeGround )   )
                     colNo+= 20;
 
                 textWriter.Write( ansiCols[ colNo ] );
@@ -344,7 +342,7 @@ public class AnsiLogger : TextLogger
             else if ( c == 'l' )
             {
                 textWriter.Write( rest.ConsumeChar() == 'S'
-                                       ?  ( UseLightColors == 1 ? ANSI_LIGHT_BLUE : ANSI_BLUE )
+                                       ?  ( UseLightColors == LightColorUsage.ForegroundLight ? ANSI_LIGHT_BLUE : ANSI_BLUE )
                                        :  ANSI_STD_COL                             );
             }
 
@@ -356,13 +354,14 @@ public class AnsiLogger : TextLogger
         } // write loop
 
 
-        textWriter.WriteLine( MsgSuffix );
+        textWriter.WriteLine();
     }
 
-    /** ********************************************************************************************
-     * Empty implementation, not needed for this class
-     * @param phase  Indicates the beginning or end of a multi-line operation.
-     **********************************************************************************************/
+    /** ****************************************************************************************
+     * Empty implementation.
+     *
+     * @param phase The phase of the multi-line operation (ignored).
+     ******************************************************************************************/
     override protected void notifyMultiLineOp (Phase phase)
     {
     }
@@ -378,26 +377,26 @@ public class AnsiLogger : TextLogger
 
 
 /** ************************************************************************************************
- *  A #AnsiLogger that logs all messages to the TextWrite object found in field
- *  <em>Console.Out</em>. by providing this field to the constructor of its parent
- *  class %AnsiLogger.
- *  See class #AnsiLogger for more information on ANSI escape sequences and their use.
+ * A #AnsiLogger that logs all messages to the TextWrite object found in field
+ * <em>Console.Out</em>. by providing this field to the constructor of its parent
+ * class %AnsiLogger.
+ * See class #AnsiLogger for more information on ANSI escape sequences and their use.
  *
- *  The name of the \e Logger defaults to "ANSI_CONSOLE".
+ * The name of the \e Logger defaults to "ANSI_CONSOLE".
  *
- *  \note Due to the fact that mono libraries under Linux do not support light colors (they
- *  can be used, but they are equal to the dark colors), this logger is preferred over
- *  \ref cs.aworx.lox.loggers.ConsoleLogger "ConsoleLogger" when running ALox under Linux.
- *  The readability of colorful output is better if light foreground colors are used on
- *  console windows with dark background (and vice versa).
+ * \note Due to the fact that mono libraries under Linux do not support light colors (they
+ * can be used, but they are equal to the dark colors), this logger is preferred over
+ * \ref cs.aworx.lox.loggers.ConsoleLogger "ConsoleLogger" when running ALox under Linux.
+ * The readability of colorful output is better if light foreground colors are used on
+ * console windows with dark background (and vice versa).
  *
- *  \note While this class does not use class Console to colorize the output, within the
- *  constructor, class Console is still used to identify whether the background of the console
- *  attached to the current process has a dark or light background.
+ * \note While this class does not use class Console to colorize the output, within the
+ * constructor, class Console is still used to identify whether the background of the console
+ * attached to the current process has a dark or light background.
  *
- *  \note This class can not enable the output console (which receives ALox
- *  log data) to support ANSI Escape Codes. The opposite is right: this class should be used only if
- *  the console supports ANSI Escape Codes.
+ * \note This class can not enable the output console (which receives ALox
+ * log data) to support ANSI Escape Codes. The opposite is right: this class should be used only if
+ * the console supports ANSI Escape Codes.
  **************************************************************************************************/
 
 public class AnsiConsoleLogger : AnsiLogger

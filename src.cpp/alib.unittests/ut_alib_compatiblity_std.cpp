@@ -6,10 +6,10 @@
 // #################################################################################################
 #include "alox/alox.hpp"
 
-#include "alib/strings/tokenizer.hpp"
+#include "alib/strings/util/tokenizer.hpp"
 #include "alib/strings/numberformat.hpp"
-#include "alib/time/ticks.hpp"
 #include "alib/compatibility/std_string.hpp"
+#include "alib/compatibility/std_vector.hpp"
 #include "alib/compatibility/std_iostream.hpp"
 
 #include <iostream>
@@ -41,7 +41,7 @@ UT_METHOD( Std_String )
     UT_PRINT( String128() << "std::String toUtf8() " );
     UT_PRINT( String128() << "  std::wstring: German:  " << std::wstring( L"ÄÜÖäüöß") );
     UT_PRINT( String128() << "  std::wstring: Greek:   " << std::wstring( L"\u03B1\u03B2\u03B3\u03B4\u03B5") );
-    UT_PRINT( String128() << "  std::wstring: Smileys: " << std::wstring( L"\U0001F609 * \U0001F607 * \U0001F603 * \U0001F60E * "
+    UT_PRINT( String256() << "  std::wstring: Smileys: " << std::wstring( L"\U0001F609 * \U0001F607 * \U0001F603 * \U0001F60E * "
                                                                            "\U00000361\U000000b0\U0000035c\U00000296\U00000361\U000000b0") );
 
     AString test;
@@ -71,7 +71,237 @@ UT_METHOD( Std_String )
     test._()._<false>(u32Str);                                                   UT_EQ( "std::u32string" , test );
 }
 
-UT_METHOD( Std_StringBoxing )
+
+//--------------------------------------------------------------------------------------------------
+//--- Std_Vector
+//--------------------------------------------------------------------------------------------------
+UT_METHOD( Std_Vector )
+{
+    UT_INIT();
+
+    // Creating a String from std::vector
+    {
+        std::vector<char> vec= {'a', 'b', 'c', };    UT_EQ( String( "abc"  ), String( vec ) );
+        vec.push_back( 'd');                         UT_EQ( String( "abcd" ), String( vec ) );
+        vec.clear();                                 UT_EQ( String( "" ),     String( vec ) );
+                                                     UT_TRUE ( String( vec ).IsEmpty() );
+                                                     UT_FALSE( String( vec ).IsNull()  );
+                                                     UT_TRUE ( String( std::vector<char>() ).IsEmpty() );
+                                                     UT_TRUE ( String( std::vector<char>() ).IsNull () );
+    }
+
+    // appending std::vector<char> to AString
+    {
+        AString as;
+        std::vector<char> vec= {'a', 'b', 'c', };
+        as << vec;
+        UT_EQ( vec, as );
+        UT_EQ( "abc"   , as );
+    }
+
+    // appending std::vector<wchar_t> to AString
+    {
+        AString as;
+        std::vector<wchar_t> vec= { 'a', 'b', 'c', };
+        as << vec;
+        UT_EQ( "abc"   , as );
+    }
+
+    // appending std::vector<char16_t> to AString
+    {
+        AString as;
+        std::vector<char16_t> vec= { u'a', u'b', u'c', };
+        as << vec;
+        UT_EQ( "abc"   , as );
+    }
+
+    // appending std::vector<char32_t> to AString
+    {
+        AString as;
+        std::vector<char32_t> vec= { U'a', U'b', U'c', };
+        as << vec;
+        UT_EQ( "abc"   , as );
+    }
+
+    // Creating a vector from aworx::String
+    {
+        AString as( "abc" );
+        auto vec= ToStdVector( as );
+
+        UT_EQ( String( vec ), String( vec ) );
+
+        aworx::lib::strings::ToStdVector( "abc", vec,       CurrentData::Keep );    UT_EQ( "abcabc"       , vec );
+        aworx::lib::strings::ToStdVector( "abc", vec,  1,1, CurrentData::Keep );    UT_EQ( "abcabcb"      , vec );
+        aworx::lib::strings::ToStdVector( "abc", vec,  1,5, CurrentData::Keep );    UT_EQ( "abcabcbbc"    , vec );
+        aworx::lib::strings::ToStdVector( "abc", vec, -1,5, CurrentData::Keep );    UT_EQ( "abcabcbbcabc" , vec );
+    }
+}
+
+//--------------------------------------------------------------------------------------------------
+//--- String_Std_Iterator
+//--------------------------------------------------------------------------------------------------
+UT_METHOD( String_Std_Iterator )
+{
+    UT_INIT();
+
+    UT_PRINT("") UT_PRINT( "### String/AString: Testing satisification of concept of std::RandomAccessIterator  ###" );
+
+    // Test iterator: Template code using std::string. This is copied below for aworx::String and aworx::AString
+    {
+        std::string str("abcdef");
+
+        auto it= std::find( str.begin(), str.end(), 'c' );
+        UT_TRUE( it != str.end() );
+        UT_TRUE( *it == 'c' );
+        UT_TRUE( str.end() - it == 4 );
+
+        auto it2= std::find( begin(str), end(str), 'c' );
+        UT_TRUE( it == it2 );
+
+        {  auto i= it++;    UT_TRUE( *i == 'c' );  UT_TRUE( *it == 'd' );    }
+        {  auto i= ++it;    UT_TRUE( *i == 'e' );  UT_TRUE( *it == 'e' );    }
+        {  auto i= it--;    UT_TRUE( *i == 'e' );  UT_TRUE( *it == 'd' );    }
+        {  auto i= --it;    UT_TRUE( *i == 'c' );  UT_TRUE( *it == 'c' );    }
+        {  auto i= it-= 2;  UT_TRUE( *i == 'a' );  UT_TRUE( *it == 'a' ); UT_TRUE( *(it + 5 ) == 'f' );   }
+        {  auto i= it+= 3;  UT_TRUE( *i == 'd' );  UT_TRUE( *it == 'd' ); UT_TRUE( *(it - 3 ) == 'a' );   }
+
+        {  auto i= it;  i++; UT_TRUE( 1 == i - it );    i+=2; UT_TRUE( 3 == i - it );    i-=5; UT_TRUE( -2 == i - it );       }
+
+        UT_TRUE( it[ 1] == 'e' ); UT_TRUE( it[ 2] == 'f' ); UT_TRUE( it[ 0] == 'd' );
+        UT_TRUE( it[-1] == 'c' ); UT_TRUE( it[-2] == 'b' ); UT_TRUE( it[-3] == 'a' );
+
+        *it=    'X'; UT_EQ( "abcXef", str );
+        it[ 0]= '-'; UT_EQ( "abc-ef", str );
+        it[ 1]= '*'; UT_EQ( "abc-*f", str );
+        it[-1]= '~'; UT_EQ( "ab~-*f", str );
+        it[ 2]= '@'; UT_EQ( "ab~-*@", str );
+        it[-2]= '$'; UT_EQ( "a$~-*@", str );
+        it[-3]= '#'; UT_EQ( "#$~-*@", str );
+
+        auto itID= it;
+        auto itP1= it + 1;
+        UT_TRUE ( it <  itP1 );   UT_FALSE( itP1 <  it );  UT_TRUE ( itP1 >  it  );   UT_FALSE(  it >  itP1 );
+        UT_TRUE ( it <= itP1 );   UT_FALSE( itP1 <= it );  UT_TRUE ( itP1 >= it  );   UT_FALSE(  it >= itP1 );
+        UT_FALSE( it <  itID );   UT_FALSE( itID <  it );  UT_FALSE( itID >  it  );   UT_FALSE(  it >  itID );
+        UT_TRUE ( it <= itID );   UT_TRUE ( itID <= it );  UT_TRUE ( itID >= it  );   UT_TRUE (  it >= itID );
+    }
+
+    // Test aworx::String::ConstIterator
+    {
+        aworx::String str("abcdef");
+
+        auto it= std::find( str.begin(), str.end(), 'c' );
+        UT_TRUE( it != str.end() );
+        UT_TRUE( *it == 'c' );
+        UT_TRUE( str.end() - it == 4 );
+
+        auto it2= std::find( begin(str), end(str), 'c' );
+        UT_TRUE( it == it2 );
+
+        {  auto i= it++;    UT_TRUE( *i == 'c' );  UT_TRUE( *it == 'd' );    }
+        {  auto i= ++it;    UT_TRUE( *i == 'e' );  UT_TRUE( *it == 'e' );    }
+        {  auto i= it--;    UT_TRUE( *i == 'e' );  UT_TRUE( *it == 'd' );    }
+        {  auto i= --it;    UT_TRUE( *i == 'c' );  UT_TRUE( *it == 'c' );    }
+        {  auto i= it-= 2;  UT_TRUE( *i == 'a' );  UT_TRUE( *it == 'a' ); UT_TRUE( *(it + 5 ) == 'f' );   }
+        {  auto i= it+= 3;  UT_TRUE( *i == 'd' );  UT_TRUE( *it == 'd' ); UT_TRUE( *(it - 3 ) == 'a' );   }
+
+        {  auto i= it;  i++; UT_TRUE( 1 == i - it );    i+=2; UT_TRUE( 3 == i - it );    i-=5; UT_TRUE( -2 == i - it );       }
+
+        UT_TRUE( it[ 1] == 'e' ); UT_TRUE( it[ 2] == 'f' ); UT_TRUE( it[ 0] == 'd' );
+        UT_TRUE( it[-1] == 'c' ); UT_TRUE( it[-2] == 'b' ); UT_TRUE( it[-3] == 'a' );
+
+        // forbidden:
+        // *it=    'X'; UT_EQ( "abcXef", str );
+        // it[ 0]= '-'; UT_EQ( "abc-ef", str );
+        // ...
+
+
+        auto itID= it;
+        auto itP1= it + 1;
+        UT_TRUE ( it <  itP1 );   UT_FALSE( itP1 <  it );  UT_TRUE ( itP1 >  it  );   UT_FALSE(  it >  itP1 );
+        UT_TRUE ( it <= itP1 );   UT_FALSE( itP1 <= it );  UT_TRUE ( itP1 >= it  );   UT_FALSE(  it >= itP1 );
+        UT_FALSE( it <  itID );   UT_FALSE( itID <  it );  UT_FALSE( itID >  it  );   UT_FALSE(  it >  itID );
+        UT_TRUE ( it <= itID );   UT_TRUE ( itID <= it );  UT_TRUE ( itID >= it  );   UT_TRUE (  it >= itID );
+    }
+
+    // Test aworx::AString::Iterator
+    {
+        aworx::AString str("abcdef");
+
+        auto it= std::find( str.begin(), str.end(), 'c' );
+        UT_TRUE( it != str.end() );
+        UT_TRUE( *it == 'c' );
+        UT_TRUE( str.end() - it == 4 );
+
+        auto it2= std::find( begin(str), end(str), 'c' );
+        UT_TRUE( it == it2 );
+
+        {  auto i= it++;    UT_TRUE( *i == 'c' );  UT_TRUE( *it == 'd' );    }
+        {  auto i= ++it;    UT_TRUE( *i == 'e' );  UT_TRUE( *it == 'e' );    }
+        {  auto i= it--;    UT_TRUE( *i == 'e' );  UT_TRUE( *it == 'd' );    }
+        {  auto i= --it;    UT_TRUE( *i == 'c' );  UT_TRUE( *it == 'c' );    }
+        {  auto i= it-= 2;  UT_TRUE( *i == 'a' );  UT_TRUE( *it == 'a' ); UT_TRUE( *(it + 5 ) == 'f' );   }
+        {  auto i= it+= 3;  UT_TRUE( *i == 'd' );  UT_TRUE( *it == 'd' ); UT_TRUE( *(it - 3 ) == 'a' );   }
+
+        {  auto i= it;  i++; UT_TRUE( 1 == i - it );    i+=2; UT_TRUE( 3 == i - it );    i-=5; UT_TRUE( -2 == i - it );       }
+
+        UT_TRUE( it[ 1] == 'e' ); UT_TRUE( it[ 2] == 'f' ); UT_TRUE( it[ 0] == 'd' );
+        UT_TRUE( it[-1] == 'c' ); UT_TRUE( it[-2] == 'b' ); UT_TRUE( it[-3] == 'a' );
+
+        *it=    'X'; UT_EQ( "abcXef", str );
+        it[ 0]= '-'; UT_EQ( "abc-ef", str );
+        it[ 1]= '*'; UT_EQ( "abc-*f", str );
+        it[-1]= '~'; UT_EQ( "ab~-*f", str );
+        it[ 2]= '@'; UT_EQ( "ab~-*@", str );
+        it[-2]= '$'; UT_EQ( "a$~-*@", str );
+        it[-3]= '#'; UT_EQ( "#$~-*@", str );
+
+        auto itID= it;
+        auto itP1= it + 1;
+        UT_TRUE ( it <  itP1 );   UT_FALSE( itP1 <  it );  UT_TRUE ( itP1 >  it  );   UT_FALSE(  it >  itP1 );
+        UT_TRUE ( it <= itP1 );   UT_FALSE( itP1 <= it );  UT_TRUE ( itP1 >= it  );   UT_FALSE(  it >= itP1 );
+        UT_FALSE( it <  itID );   UT_FALSE( itID <  it );  UT_FALSE( itID >  it  );   UT_FALSE(  it >  itID );
+        UT_TRUE ( it <= itID );   UT_TRUE ( itID <= it );  UT_TRUE ( itID >= it  );   UT_TRUE (  it >= itID );
+    }
+
+
+    // Test basic algorithms (template code with std::string, copied below)
+    {
+        std::string str("cafdeb");
+
+        std::sort( str.begin(), str.end() );
+        UT_EQ( "abcdef", str);
+
+        std::rotate( str.begin() + 1, str.begin() + 4, str.end() - 1 );
+        UT_EQ( "aebcdf", str);
+
+        std::string copy("12345");
+        std::remove_copy( str.begin(), str.end(), copy.begin(), 'd' );
+        UT_EQ( "aebcf", copy);
+    }
+
+
+    // Test basic algorithms
+    {
+        aworx::AString str("cafdeb");
+
+        std::sort( str.begin(), str.end() );
+        UT_EQ( "abcdef", str);
+
+        std::rotate( str.begin() + 1, str.begin() + 4, str.end() - 1 );
+        UT_EQ( "aebcdf", str);
+
+        aworx::AString copy("12345");
+        std::remove_copy( str.begin(), str.end(), copy.begin(), 'd' );
+        UT_EQ( "aebcf", copy);
+    }
+
+}
+
+//--------------------------------------------------------------------------------------------------
+//--- Boxing_Std_String
+//--------------------------------------------------------------------------------------------------
+UT_METHOD( Boxing_Std_String )
 {
     UT_INIT();
     aworx::lib::boxing::InitStdString();

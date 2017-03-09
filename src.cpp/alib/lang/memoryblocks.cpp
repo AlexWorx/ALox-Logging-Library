@@ -9,10 +9,7 @@
 #include <algorithm>
 
 
-using namespace std;
-
-namespace aworx { namespace lib { namespace lang
-{
+namespace aworx { namespace lib { namespace lang {
 
 MemoryBlocks::MemoryBlocks( int stdBlockSize )
 : blockAllocationSize( stdBlockSize )

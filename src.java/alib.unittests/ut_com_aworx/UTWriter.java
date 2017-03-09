@@ -13,10 +13,12 @@ package ut_com_aworx;
 import com.aworx.lib.lang.Phase;
 import com.aworx.lib.lang.Report;
 import com.aworx.lib.lang.ReportWriter;
+import com.aworx.lib.strings.AString;
 import com.aworx.lox.ALox;
 import com.aworx.lox.ESC;
 import com.aworx.lox.Lox;
 import com.aworx.lox.Verbosity;
+import com.aworx.lox.loggers.*;
 import com.aworx.lox.core.textlogger.TextLogger;
 
 /** ****************************************************************************************
@@ -36,7 +38,18 @@ public class UTWriter implements ReportWriter
         lox.omittablePackagePrefixes.add( "ut_com_aworx" );
 
         logger= Lox.createConsoleLogger( "UT ALib ReportWriter" );
-logger.metaInfo.format.clear()._( ".(%SF:%SL) %SM():%A5[%TC +%TL][%tN]%V[%D]%A1#%#: " );
+
+        // check if we are in IntelliJ. Here it is important to switch of the use of dark/light colors
+        if( logger.getTypeName().equals("ANSI_CONSOLE") )
+        {
+            AString classPath= new AString( System.getenv("CLASSPATH" ) );
+            if ( classPath.indexOf("IntelliJ", 0, com.aworx.lib.lang.Case.IGNORE ) >= 0 )
+            {
+                logger.metaInfo.format.clear()._( ".(%SF:%SL) %SM():%A5[%TC +%TL][%tN]%V[%D]%A1#%#: " );
+
+                ((AnsiConsoleLogger)logger).useLightColors= AnsiLogger.LightColorUsage.NEVER;
+            }
+        }
 
         lox.setVerbosity( logger, Verbosity.VERBOSE,  "/UT" );
         lox.setVerbosity( logger, Verbosity.VERBOSE,  ALox.INTERNAL_DOMAINS );
@@ -62,17 +75,17 @@ logger.metaInfo.format.clear()._( ".(%SF:%SL) %SM():%A5[%TC +%TL][%tN]%V[%D]%A1#
 
     /** ************************************************************************************
      * Write ALib reports using ALox.
-     * @param report The report.
+     * @param msg The message to report.
      **************************************************************************************/
     @Override
-    public void report  (Report.Message report)
+    public void report  (Report.Message msg)
     {
         lox.entry( ALox.INTERNAL_DOMAINS + "UT_REPORT",
-                   report.type == 0 ? Verbosity.ERROR       :
-                   report.type == 1 ? Verbosity.WARNING     :
-                   report.type == 2 ? Verbosity.INFO        :
-                                      Verbosity.VERBOSE,
-                   report.contents );
+                   msg.type == 0 ? Verbosity.ERROR       :
+                   msg.type == 1 ? Verbosity.WARNING     :
+                   msg.type == 2 ? Verbosity.INFO        :
+                                   Verbosity.VERBOSE,
+                   msg.contents );
     }
 }
 

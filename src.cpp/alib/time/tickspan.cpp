@@ -17,8 +17,6 @@
 #endif
 
 
-
-using namespace std;
 namespace aworx { namespace lib { namespace time
 {
 void TickSpan::Clear()

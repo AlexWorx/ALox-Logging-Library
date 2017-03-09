@@ -163,8 +163,9 @@ lib::config::VariableDefinition ALox::FORMAT =
     &ALox::ConfigCategoryName,   nullptr,     "%1_FORMAT",
     nullptr,
     ',', nullptr, Variable::FormatHint_MultLine,
-     "Meta info format of text logger \"%1\", including signatures for verbosity strings."       "\n"
-     "   Format: format [, Error [, Warning [, Info [, Verbose ]]]]"
+     "Meta info format of text logger \"%1\", including signatures for verbosity strings and"   "\n"
+     "an optional string added to the end of each log statement."                               "\n"
+     "   Format: metaInfoFormat [, Error [, Warning [, Info [, Verbose [, MsgSuffix ]]]]]"
 };
 
 
@@ -295,15 +296,23 @@ String          ALox::ConfigCategoryName                                        
 
 void  ALox::initImpl()
 {
-    aworx::lib::boxing::DefineInterface<aworx::lox::core::Logger*, false, aworx::lib::strings::boxing::IApply_TApplicable<aworx::lox::core::Logger*>>();
+    ALIB_BOXING_DEFINE_IAPPLY_FOR_APPLICABLE_TYPE(aworx::lox::core::Logger*);
     isInitialized= true;
 }
 
 void ALox::TerminationCleanUp()
 {
     #if ALOX_DBG_LOG
+
         if ( Log::DebugLogger  != nullptr )
             Log_RemoveDebugLogger();
+
+        if( theLog )
+            delete theLog;
+
+        while( loxes.size() > 0 )
+            delete *loxes.begin();
+
     #endif
 
     ALIB::TerminationCleanUp();
@@ -312,6 +321,17 @@ void ALox::TerminationCleanUp()
 // #################################################################################################
 // Lox management
 // #################################################################################################
+
+#if defined(_MSC_VER)
+    // MSC  (as of 12/2015):
+    // C4579: in-class initialization for type 'const aworx::SLiteral<10>'
+    // is not yet implemented; static member will remain uninitialized at runtime but
+    // use in constant-expressions is supported
+    SLiteral<2>  ALox::InternalDomains {"$/" };
+#else
+    constexpr SLiteral<2>  ALox::InternalDomains;
+#endif
+
 
 // The lox singletons for debug and release logging
 #if ALOX_DBG_LOG
@@ -371,7 +391,6 @@ void     ALox::Register( Lox* lox, ContainerOp operation )
                 return;
             }
         ALIB_WARNING( "A lox named {!Q} could not be found for removal.", (lox != nullptr ? lox->GetName() : "<null>") )
-
     }
 
     // insert
@@ -416,9 +435,8 @@ ALoxReportWriter::ALoxReportWriter ( Lox* pLox )
     #if ALIB_DEBUG
         pLox->Acquire( ALIB_SRC_INFO_PARAMS );
 
-            Boxes& logables= pLox->GetLogableContainer();
-            logables.Add( "ALoxReportWriter set" );
-            pLox->Entry( ALoxReportWriter::LogDomain(), Verbosity::Verbose, logables );
+            pLox->GetLogableContainer().Add( "ALoxReportWriter set" );
+            pLox->Entry( ALoxReportWriter::LogDomain(), Verbosity::Verbose );
 
         pLox->Release ();
     #else
@@ -426,21 +444,21 @@ ALoxReportWriter::ALoxReportWriter ( Lox* pLox )
     #endif
 }
 
-void ALoxReportWriter::Report( const lib::lang::Report::Message& report )
+void ALoxReportWriter::Report( const lib::lang::Report::Message& msg )
 {
     #if ALIB_DEBUG
-        lox->Acquire( report.File, report.Line, report.Func );
+        lox->Acquire( msg.File, msg.Line, msg.Func );
 
+            lox->GetLogableContainer().Add( static_cast<const Boxes&>( msg ) );
             lox->Entry( ALoxReportWriter::LogDomain(),
-                        report.Type == 0 ? Verbosity::Error   :
-                        report.Type == 1 ? Verbosity::Warning :
-                        report.Type == 2 ? Verbosity::Info    :
-                                           Verbosity::Verbose,
-                        report );
+                        msg.Type == 0 ? Verbosity::Error   :
+                        msg.Type == 1 ? Verbosity::Warning :
+                        msg.Type == 2 ? Verbosity::Info    :
+                                           Verbosity::Verbose     );
 
         lox->Release ();
     #else
-        (void) report;
+        (void) msg;
     #endif
 }
 

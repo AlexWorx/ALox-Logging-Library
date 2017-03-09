@@ -9,9 +9,9 @@ package com.aworx.lox.core.textlogger;
 import java.util.ArrayList;
 
 import com.aworx.lib.strings.AString;
-import com.aworx.lib.strings.FormatterPythonStyle;
-import com.aworx.lib.strings.FormatterJavaStyle;
-import com.aworx.lib.strings.Substring;
+import com.aworx.lib.strings.format.FormatterPythonStyle;
+import com.aworx.lib.strings.format.FormatterJavaStyle;
+import com.aworx.lib.strings.format.FormatterStdImpl;
 
 /** ************************************************************************************************
  * Implements the interface
@@ -21,11 +21,11 @@ import com.aworx.lib.strings.Substring;
  *
  * This implementation uses
  * two specialisations of class
- * \ref com::aworx::lib::strings::Formatter "Formatter" to format the given logables to a textual
+ * \ref com::aworx::lib::strings::format::Formatter "Formatter" to format the given logables to a textual
  * representation. The formatters (and their sequence!) are:
  *
- * 1. \ref com::aworx::lib::strings::FormatterPythonStyle "FormatterPythonStyle"
- * 2. \ref com::aworx::lib::strings::FormatterJavaStyle   "FormatterJavaStyle"
+ * 1. \ref com::aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle"
+ * 2. \ref com::aworx::lib::strings::format::FormatterJavaStyle   "FormatterJavaStyle"
  *
  * This way, standard text logging supports format strings in Python style as well as in Java style.
  **************************************************************************************************/
@@ -38,6 +38,16 @@ public class StandardConverter implements ObjectConverter
      *  format option.*/
     public FormatterJavaStyle                   formatterJS;
 
+    /** A counter to detect recursive calls.  */
+    protected int                               cntRecursion                                    = 0;
+
+    /**
+     * Formatters used with recursive calls log calls. If recursion occurs, the formatters
+     * are created, respectively re-used from last time and their settings are reset to
+     * those of the main formatters.
+     */
+    protected ArrayList<FormatterPythonStyle>   recursionFormatters = new ArrayList<FormatterPythonStyle>();
+
     /** ****************************************************************************************
      * Constructor.
      ******************************************************************************************/
@@ -45,7 +55,7 @@ public class StandardConverter implements ObjectConverter
     {
         formatterPS     = new FormatterPythonStyle();
         formatterJS     = new FormatterJavaStyle();
-        formatterPS.Next= formatterJS;
+        formatterPS.next= formatterJS;
     }
 
     /** ********************************************************************************************
@@ -57,6 +67,33 @@ public class StandardConverter implements ObjectConverter
     @Override
     public void convertObjects( AString target, ArrayList<Object> logables )
     {
-        formatterPS.FormatList( target, logables );
+        cntRecursion++;
+
+        // get a formatter. We use a clone per recursion depth!
+        FormatterPythonStyle formatter;
+        if( cntRecursion == 1 )
+            formatter= formatterPS;
+        else
+        {
+            // did we have this depth already? If not, create a new set of formatters formatter
+            int recFormatNo= cntRecursion - 1;
+            if( recursionFormatters.size() <= recFormatNo )
+            {
+                formatter= new FormatterPythonStyle();
+                formatter.next= new FormatterJavaStyle();
+                recursionFormatters.add( formatter );
+            }
+            else
+                formatter= recursionFormatters.get(recFormatNo);
+
+            // clone the settings from default formatter set
+            formatter.cloneSettings( formatterPS );
+            ((FormatterStdImpl)formatter.next).cloneSettings( formatterJS );
+        }
+
+        formatter.format( target, logables );
+
+        cntRecursion--;
+
     }
 }

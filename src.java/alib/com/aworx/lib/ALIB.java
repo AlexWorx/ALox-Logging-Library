@@ -40,7 +40,6 @@ package com.aworx.lib;
 import com.aworx.lib.config.Configuration;
 import com.aworx.lib.lang.Case;
 import com.aworx.lib.lang.Inclusion;
-import com.aworx.lib.lang.Report;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.CString;
 import com.aworx.lib.strings.NumberFormat;
@@ -74,7 +73,7 @@ public final class ALIB
          * revision \e 0. Pure maintenance releases that do not change the interface of ALox
          * are holding the same #version but an increased number in this field.
          */
-        public static final int         revision                                                 =0;
+        public static final int         revision                                                 =1;
 
 
         /**

@@ -17,25 +17,23 @@
 #endif
 
 
-using namespace std;
-
 // #################################################################################################
 // Debug functions
 // #################################################################################################
 #if ALIB_DEBUG
 
-namespace aworx { namespace lib { namespace lang {
+namespace aworx { namespace lib { namespace debug {
 
 
 void (*DbgSimpleALibMsg_Plugin)(const char* file, int line, const char* method, int type, int qtyMsgs, const char** msgs)     =nullptr;
 
 
 void DbgSimpleALibMsg( const char* file, int line, const char* method,
-                       int type, const char* msg1, const char* msg2, const char* msg3 )
+                       int type, const char* msg1, const char* msg2, const char* msg3, const char* msg4 )
 {
 
-    int         qtyMsgs=  msg2 != nullptr ? (msg3 != nullptr ? 3 : 2) : 1;
-    const char* msgs[3]= { msg1, msg2, msg3 };
+    int         qtyMsgs=  msg2 != nullptr ? (msg3 != nullptr ? (msg4 != nullptr ? 4 : 3) : 2) : 1;
+    const char* msgs[4]= { msg1, msg2, msg3, msg4 };
 
     if( DbgSimpleALibMsg_Plugin )
     {
@@ -45,8 +43,8 @@ void DbgSimpleALibMsg( const char* file, int line, const char* method,
 
     // internal implementation
     for (int i= 0; i< qtyMsgs; i++ )
-        cout << msgs[i];
-    cout << endl;
+        std::cout << msgs[i];
+    std::cout << std::endl;
     assert(type);
 }
 
@@ -64,7 +62,7 @@ void DbgSimpleALibMsg( const char* file, int line, const char* method,
     }
 
     // internal implementation
-    cout << msg << sIntVal << endl;
+    std::cout << msg << sIntVal << std::endl;
     assert(type);
 }
 
@@ -124,11 +122,11 @@ void DbgSimpleALibMsg( const char* file, int line, const char* method,
 // #################################################################################################
 
 static_assert(         sizeof(aworx::integer )       ==  sizeof(aworx::uinteger  ),         "Error in ALib type definitions" );
-static_assert(         sizeof(aworx::integer )       ==         sizeof(size_t    ),         "Error in ALib type definitions" );
-static_assert(std::is_signed< aworx::integer>::value == std::is_signed<ptrdiff_t >::value,  "Error in ALib type definitions" );
-static_assert(std::is_signed< aworx::integer>::value != std::is_signed<size_t    >::value,  "Error in ALib type definitions" );
-static_assert(std::is_signed<aworx::uinteger>::value == std::is_signed<size_t    >::value,  "Error in ALib type definitions" );
-static_assert(std::is_signed<aworx::uinteger>::value != std::is_signed<ptrdiff_t >::value,  "Error in ALib type definitions" );
+static_assert(         sizeof(aworx::integer )       ==         sizeof(std::size_t    ),         "Error in ALib type definitions" );
+static_assert(std::is_signed< aworx::integer>::value == std::is_signed<std::ptrdiff_t >::value,  "Error in ALib type definitions" );
+static_assert(std::is_signed< aworx::integer>::value != std::is_signed<std::size_t    >::value,  "Error in ALib type definitions" );
+static_assert(std::is_signed<aworx::uinteger>::value == std::is_signed<std::size_t    >::value,  "Error in ALib type definitions" );
+static_assert(std::is_signed<aworx::uinteger>::value != std::is_signed<std::ptrdiff_t >::value,  "Error in ALib type definitions" );
 
 
 // #################################################################################################

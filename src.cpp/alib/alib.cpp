@@ -12,8 +12,8 @@
 #endif
 
 #if ALIB_MODULE_STRINGS
-    #if !defined (HPP_ALIB_STRINGS_SPACES)
-        #include "alib/strings/spaces.hpp"
+    #if !defined (HPP_ALIB_STRINGS_UTIL_SPACES)
+        #include "alib/strings/util/spaces.hpp"
     #endif
 #endif
 
@@ -48,6 +48,10 @@
         #include "alib/threads/smartlock.hpp"
     #endif
 
+    #if !defined (HPP_ALIB_STRINGS_UTIL_TOKENIZER)
+        #include "alib/strings/util/tokenizer.hpp"
+    #endif
+
 #endif
 
 
@@ -63,8 +67,6 @@
     #include <thread>
 #endif
 
-
-using namespace std;
 
 
 // #################################################################################################
@@ -86,7 +88,7 @@ threads::SmartLock   ALIB::StdOutputStreamsLock;
 // #################################################################################################
 const uint64_t       ALIB::CompilationFlags=                            ALIB_COMPATIBILITY_VERIFYER;
 const int            ALIB::Version=                                           ALIB_VERSION_VERYFIER;
-const int            ALIB::Revision=                                                              0;
+const int            ALIB::Revision=                                                              1;
 
 
 bool                 ALIB::initialized                                                       =false;
@@ -114,15 +116,15 @@ bool ALIB::VerifyCompilationFlags( uint64_t flags )
         return true;
 
     // dump out the flags
-    cout << std::left << setw(30) <<  "Symbol" << '|' << setw(5) << " Lib" <<'|' << " Comp. Unit"  <<endl;
+    std::cout << std::left << std::setw(30) <<  "Symbol" << '|' << std::setw(5) << " Lib" <<'|' << " Comp. Unit"  << std::endl;
 
     int cnt= 0;
     for( auto& p : CompilationFlagMeanings )
     {
         cnt++;
-        cout << setw(30) <<  p.first << '|' << setw(5) << (ALIB::CompilationFlags & p.second  ? " On" : " Off")
-                                     << "|" << setw(5) << (flags                  & p.second  ? " On" : " Off")
-             << endl;
+        std::cout << std::setw(30) <<  p.first << '|' << std::setw(5) << (ALIB::CompilationFlags & p.second  ? " On" : " Off")
+                                                << "|" << std::setw(5) << (flags                  & p.second  ? " On" : " Off")
+                  << std::endl;
     }
 
     return false;
@@ -132,9 +134,10 @@ bool ALIB::VerifyCompilationFlags( uint64_t flags )
 // Replacement method for ALib Essential Reports
 // #################################################################################################
 #if ALIB_MODULE_ALL &&  ALIB_DEBUG
+    namespace debug {
     /**
      * This method is installed with
-     * \ref aworx::lib::lang::DbgSimpleALibMsg_Plugin in method
+     * \ref aworx::lib::debug::DbgSimpleALibMsg_Plugin in method
      * \ref aworx::lib::ALIB::Init "ALIB::Init".
      *
      * The message strings are simply passed to the default
@@ -159,6 +162,7 @@ bool ALIB::VerifyCompilationFlags( uint64_t flags )
             message.Add( msgs[i] );
         lang::Report::GetDefault().DoReport( message );
     }
+    } // namespace aworx::lib[::debug]
 #endif
 
 
@@ -306,7 +310,7 @@ void ALIB::init()
 
     //############### create singletons ###############
     #if ALIB_MODULE_ALL &&  ALIB_DEBUG
-        lang::DbgSimpleALibMsg_Plugin= ALib_Dbg_Report_Plugin;
+        debug::DbgSimpleALibMsg_Plugin= debug::ALib_Dbg_Report_Plugin;
     #endif
 
 
@@ -316,9 +320,9 @@ void ALIB::init()
 //############### Initialize boxing ###############
 #if ALIB_MODULE_BOXING
     aworx::lib::boxing::Init();
-    #if ALIB_MODULE_STRINGS
-        aworx::lib::strings::boxing::Init();
-    #endif
+#endif
+#if ALIB_MODULE_STRINGS
+    aworx::lib::strings::Init();
 #endif
 #if ALIB_MODULE_CONFIGURATION
     aworx::lib::time::InitBoxing();
@@ -353,20 +357,20 @@ void ALIB::init()
                            receivedFrom == 2 ? "environment variable 'LANG'"     :
                            receivedFrom == 3 ? "environment variable 'LANGUAGE'" : "ERROR"  );
 
-                cerr.write( msg.Buffer(), msg.Length() );
+                std::cerr.write( msg.Buffer(), msg.Length() );
 
-                cerr << ". Trying  'setlocale(LC_ALL, \"\")': ";
+                std::cerr << ". Trying  'setlocale(LC_ALL, \"\")': ";
                 if ( setlocale(LC_ALL, ""  ) )
-                    cerr << " success.";
+                    std::cerr << " success.";
                 else
                 {
-                    cerr << "failed. Trying  'setlocale(LC_ALL, \"C\")': ";
+                    std::cerr << "failed. Trying  'setlocale(LC_ALL, \"C\")': ";
                     if ( setlocale(LC_ALL, "C" ) )
-                        cerr << " success.";
+                        std::cerr << " success.";
                     else
-                        cerr << endl << "     Panic: No standard locale setting was successful!";
+                        std::cerr << std::endl << "     Panic: No standard locale setting was successful!";
                 }
-                cerr << endl;
+                std::cerr << std::endl;
             }
         }
     }
@@ -413,24 +417,33 @@ void ALIB::TerminationCleanUp()
                                 "\r\n     (To disable this, set 'ALIB::WaitForKeyPressOnTermination' to 'false'.)\r\n" );
         #endif
 
-        cout << endl << "ALIB: Press 'Enter' to exit... " \
-            "      (To disable this, set 'ALIB::WaitForKeyPressOnTermination to 'false'.)" << endl;
+        std::cout << std::endl << "ALIB: Press 'Enter' to exit... " \
+            "      (To disable this, set 'ALIB::WaitForKeyPressOnTermination to 'false'.)" << std::endl;
         while ( getchar() != '\n' )
             ;
     }
-
-    #if ALIB_MODULE_ALL &&  ALIB_DEBUG
-        lang::Report::TerminationCleanUp();
-    #endif
-
-    // remove singletons
-    lang::DeleteSingletons();
 
     // terminate subcomponents
     #if ALIB_MODULE_CONFIGURATION
         aworx::lib::time::TerminationCleanUp();
         aworx::lib::threads::TerminationCleanUp();
     #endif
+
+    #if ALIB_MODULE_ALL && ALIB_DEBUG
+        lang::Report::TerminationCleanUp();
+    #endif
+
+    #if ALIB_MODULE_STRINGS
+        aworx::lib::strings::TerminationCleanUp();
+    #endif
+
+    #if ALIB_MODULE_BOXING
+        aworx::lib::boxing::TerminationCleanUp();
+    #endif
+
+    // remove singletons
+    lang::DeleteSingletons();
+
 }
 
 

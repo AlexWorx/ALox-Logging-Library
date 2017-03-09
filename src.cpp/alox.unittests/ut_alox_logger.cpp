@@ -35,6 +35,45 @@ using namespace ut_aworx;
 using namespace aworx;
 
 
+namespace ut_reclog
+{
+    class ApplyLog
+    {
+        public:
+         aworx::String Text;
+         int           Mode; // 0, no logging, 1 simple, 2 with formatter
+         ApplyLog(const aworx::String& text, int mode) : Text(text), Mode(mode) {}
+    };
+
+}
+
+namespace aworx { namespace lib { namespace strings {
+
+    template<> struct T_Apply<ut_reclog::ApplyLog> : public std::true_type
+    {
+        static inline integer Apply( AString& target, const ut_reclog::ApplyLog& src )
+        {
+            if( src.Mode == 1 )
+            {
+                String128 output("Logging object >");
+                output << src.Text << "<";
+                Log_Info(output);
+            }
+            else if( src.Mode == 2 )
+            {
+                Log_Info("{}{}{}", "Logging object >", src.Text, "<" );
+            }
+
+            target._<false>( src.Text );
+            return 1;
+        }
+    };
+
+
+}}} // namespace aworx::lib::strings
+
+
+
 namespace ut_alox {
 
 
@@ -203,10 +242,10 @@ UT_METHOD(Log_ColorsAndStyles)
                             );
 
     Log_GetLogger( acl, "DEBUG_LOGGER" );
-    Log_Prune( int oldVal1= 0; if ( acl != nullptr && acl->GetTypeName() == "ANSI_CONSOLE")  { oldVal1= static_cast<AnsiConsoleLogger*>(acl)->UseLightColors; static_cast<AnsiConsoleLogger*>(acl)->UseLightColors= static_cast<AnsiConsoleLogger*>(acl)->UseLightColors == 1 ? 2 : 1; } )
+    Log_Prune( AnsiLogger          ::LightColorUsage oldVal1= AnsiLogger          ::LightColorUsage::Never; if ( acl != nullptr && acl->GetTypeName() == "ANSI_CONSOLE")  { oldVal1= static_cast<AnsiConsoleLogger*>(acl)   ->UseLightColors; static_cast<AnsiConsoleLogger*>(acl)   ->UseLightColors= static_cast<AnsiConsoleLogger*>(acl)   ->UseLightColors == AnsiLogger          ::LightColorUsage::ForegroundLight ? AnsiLogger          ::LightColorUsage::ForegroundDark : AnsiLogger          ::LightColorUsage::ForegroundLight; })
     #if defined(_WIN32 )
     Log_GetLogger( wcl, "WINDOWS_CONSOLE" );
-    Log_Prune( int oldVal2= 0; if ( wcl != nullptr ) { oldVal2= ((WindowsConsoleLogger*) wcl)->UseLightColors; ((WindowsConsoleLogger*) wcl)->UseLightColors= !((WindowsConsoleLogger*) wcl)->UseLightColors== 1 ? 2:1; })
+    Log_Prune( WindowsConsoleLogger::LightColorUsage oldVal2= WindowsConsoleLogger::LightColorUsage::Never; if ( wcl != nullptr )                                         { oldVal2= static_cast<WindowsConsoleLogger*>(wcl)->UseLightColors; static_cast<WindowsConsoleLogger*>(wcl)->UseLightColors= static_cast<WindowsConsoleLogger*>(wcl)->UseLightColors == WindowsConsoleLogger::LightColorUsage::ForegroundLight ? WindowsConsoleLogger::LightColorUsage::ForegroundDark : WindowsConsoleLogger::LightColorUsage::ForegroundLight; })
     #endif
 
     Log_Info(    String256("Same rev.:  ")
@@ -500,6 +539,72 @@ UT_METHOD(Log_TextLoggerTimeDiff)
     diff= 13452 * days+ 12* hours;      ms.Clear(); mi.t( ms, diff ); UT_EQ( String16("13452.5")._( mi.TimeDiffDays     ),    ms );
 }
 
+
+/** ********************************************************************************************
+ * Log_Recursive
+ **********************************************************************************************/
+UT_METHOD(Log_Recursive)
+{
+    UT_INIT();
+
+    ALIB_BOXING_DEFINE_IAPPLY_FOR_APPLICABLE_TYPE(ut_reclog::ApplyLog*);
+
+    Log_SetDomain( "RECURSION", Scope::Method );
+    MemoryLogger* testML= new MemoryLogger();
+    Log_SetVerbosity( testML , Verbosity::Verbose);
+
+
+    // tests without the use of the formatter when logging recursively
+    {
+        int oldCntLogs= testML->CntLogs;
+        String32 test;
+        test << ut_reclog::ApplyLog("Test", 1);
+        UT_TRUE( testML->MemoryLog.IndexOf( "Logging object >Test<")  > 0 );
+        UT_EQ( 1, testML->CntLogs - oldCntLogs );
+        testML->MemoryLog.Clear();
+
+        oldCntLogs= testML->CntLogs;
+        Log_Info( "outer>{}<log", ut_reclog::ApplyLog("Test", 1) );
+        UT_EQ( 2, testML->CntLogs - oldCntLogs );
+        UT_TRUE( testML->MemoryLog.IndexOf( "outer>Test<log")  > 0 );
+        testML->MemoryLog.Clear();
+
+
+        oldCntLogs= testML->CntLogs;
+        Log_Info( "123{:^8}456--abc{!UP}efg", ut_reclog::ApplyLog("Test", 1), ut_reclog::ApplyLog("lowerTest", 1) );
+        UT_EQ( 3, testML->CntLogs - oldCntLogs );
+        UT_TRUE( testML->MemoryLog.IndexOf( "123  Test  456"     )  > 0 );
+        UT_TRUE( testML->MemoryLog.IndexOf( "abcLOWERTESTefg")  > 0 );
+    }
+
+    // same tests, now using formatter recursively
+    {
+        int oldCntLogs= testML->CntLogs;
+        String32 test;
+        test << ut_reclog::ApplyLog("Test", 2);
+        UT_TRUE( testML->MemoryLog.IndexOf( "Logging object >Test<")  > 0 );
+        UT_EQ( 1, testML->CntLogs - oldCntLogs );
+        testML->MemoryLog.Clear();
+
+        oldCntLogs= testML->CntLogs;
+        Log_Info( "outer>{}<log", ut_reclog::ApplyLog("Test", 2) );
+        UT_EQ( 2, testML->CntLogs - oldCntLogs );
+std::cout << "---- Memlog:" <<std::endl << testML->MemoryLog.ToCString() << std::endl;
+        UT_TRUE( testML->MemoryLog.IndexOf( "outer>Test<log")  > 0 );
+        testML->MemoryLog.Clear();
+
+
+        oldCntLogs= testML->CntLogs;
+        Log_Info( "123{:^8}456--abc{!UP}efg", ut_reclog::ApplyLog("Test", 2), ut_reclog::ApplyLog("lowerTest", 2) );
+        UT_EQ( 3, testML->CntLogs - oldCntLogs );
+        UT_TRUE( testML->MemoryLog.IndexOf( "123  Test  456"     )  > 0 );
+        UT_TRUE( testML->MemoryLog.IndexOf( "abcLOWERTESTefg")  > 0 );
+    }
+
+
+    Log_RemoveLogger( testML );
+    Log_Prune( delete testML );
+}
 
 UT_CLASS_END
 

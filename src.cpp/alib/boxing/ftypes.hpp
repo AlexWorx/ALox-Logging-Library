@@ -295,24 +295,11 @@ class IEquals_Tchar32_tArr : public IEquals, public Singleton<IEquals_Tchar32_tA
 // #################################################################################################
 // Initialization
 // #################################################################################################
-void  Init(); // forward declaration (needed if very strict warnings are enabled in clang)
 /**
  * Initializes the default fundamental type handling of <b>ALib %Boxing</b>.
  * Defines interface implementation classes as interfaces of certain fundamental types.
  */
-inline void Init()
-{
-    DefineInterface<double         , false, IEquals_Tdouble     >();
-    DefineInterface<char           , true , IEquals_TcharArr    >();
-    DefineInterface<wchar_t        , true , IEquals_Twchar_tArr >();
-    DefineInterface<char16_t       , true , IEquals_Tchar16_tArr>();
-    DefineInterface<char32_t       , true , IEquals_Tchar32_tArr>();
-
-    DefineInterface<boxed_int      , false, IIsNull_false       >();
-    DefineInterface<boxed_uint     , false, IIsNull_false       >();
-    DefineInterface<double         , false, IIsNull_false       >();
-
-}
+ALIB_API void  Init(); // forward declaration (needed if very strict warnings are enabled in clang)
 
 }}} // namespace lib::boxing::ftypes
 

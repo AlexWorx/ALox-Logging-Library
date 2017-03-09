@@ -207,6 +207,27 @@
  * @param isArray            Used as return value of \ref aworx::lib::boxing::T_Boxing::IsArray           "T_Boxing<TSrc>::IsArray".
  * @param isUnboxable        Used as return value of \ref aworx::lib::boxing::T_Boxing::IsUnboxable       "T_Boxing<TSrc>::IsUnboxable".
  *
+ *
+ *
+ * \def  ALIB_BOXING_DEFINE_IAPPLY_FOR_APPLICABLE_TYPE
+ *
+ * This macro creates a singleton object of templated boxing interface class
+ * \ref aworx::lib::strings::boxing::IApply_TApplicable "IApply_TApplicable" for the given
+ * type and passes it to namespace function
+ * \ref aworx::lib::boxing::DefineInterface.
+ *
+ * The macro may be placed in the bootstrap section of an application, for any type that is
+ * \ref aworx::lib::strings::T_Apply "applicable" to class \b %AString.
+ *
+ * \note
+ *   As by default, custom types get boxed as pointers, the type in question should be
+ *   provided here as pointer type, for example:
+ *
+ *          ALIB_BOXING_DEFINE_IAPPLY_FOR_APPLICABLE_TYPE( my_namespace::MyType* )
+ *
+ *
+ * @param TApplicable  The applicable type, usually given as pointer.
+ *
  * @}
  * @}
  */
@@ -726,6 +747,7 @@ void DefineDefaultInterface()
 // #################################################################################################
 
 //! [DOX_ALIB_BOXING_STD_VECTOR]
+
 #if ALIB_FEAT_BOXING_STD_VECTOR
     /**
      * Specialization of struct \b %T_Boxing for template type <c>std::vector<T, std::allocator<T>></c>
@@ -822,6 +844,13 @@ namespace aworx { namespace lib { namespace boxing {
  * \ref aworx::lib::boxing::ftypes::Init is invoked.
  */
 void Init();
+
+/**
+ * De-initializes <b>ALib %Boxing</b> system. This is (as of today) not necessary, but might be
+ * in the future.
+ * Also, some valgrind warnings might disappear when this is invoked properly.
+ */
+void TerminationCleanUp();
 
 }} // namespace aworx[::lib::boxing]
 

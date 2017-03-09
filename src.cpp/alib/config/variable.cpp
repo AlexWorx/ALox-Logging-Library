@@ -14,13 +14,11 @@
     #include "alib/strings/numberformat.hpp"
 #endif
 
-#if !defined(HPP_ALIB_STRINGS_TOKENIZER)
-    #include "alib/strings/tokenizer.hpp"
+#if !defined(HPP_ALIB_STRINGS_UTIL_TOKENIZER)
+    #include "alib/strings/util/tokenizer.hpp"
 #endif
 
 
-
-using namespace std;
 
 namespace aworx { namespace lib { namespace config
 {
@@ -135,8 +133,7 @@ AString&    Variable::Add()
     if( actIdx < values.size() )
         return values[actIdx].Clear();
 
-    values.insert( values.end(), AString() );
-    return values[actIdx];
+    return *values.insert( values.end(), AString() );
 }
 
 

@@ -11,6 +11,7 @@ import org.junit.Test;
 import com.aworx.lib.config.Variable;
 import com.aworx.lib.lang.ContainerOp;
 import com.aworx.lib.strings.AString;
+import com.aworx.lib.strings.util.AutoSizes;
 import com.aworx.lox.ALox;
 import com.aworx.lox.ESC;
 import com.aworx.lox.Log;
@@ -18,10 +19,39 @@ import com.aworx.lox.Lox;
 import com.aworx.lox.Scope;
 import com.aworx.lox.Verbosity;
 import com.aworx.lox.core.textlogger.MetaInfo;
+import com.aworx.lox.loggers.AnsiLogger;
 import com.aworx.lox.loggers.AnsiConsoleLogger;
 import com.aworx.lox.loggers.MemoryLogger;
-
 import ut_com_aworx.AWorxUnitTesting;
+
+class ApplyLog
+{
+    public String Text;
+    public int    Mode; // 0, no logging, 1 simple, 2 with formatter
+    public ApplyLog( String text, int mode )
+    {
+        Text= text;
+        Mode= mode;
+    }
+
+
+    @Override
+    public String toString()
+    {
+        if( Mode == 1 )
+        {
+            String output= "Logging object >" + Text + "<";
+            Log.info(output);
+        }
+        else if( Mode == 2 )
+        {
+            Log.info("{}{}{}", "Logging object >", Text, "<" );
+        }
+
+        return Text;
+    }
+}
+
 
 
 class MyType
@@ -38,6 +68,7 @@ public class UT_alox_logger extends AWorxUnitTesting
     {
         UT_INIT();
 
+        Log.addDebugLogger();
         Log.setDomain( "COLORS", Scope.METHOD );
         MemoryLogger ml= new MemoryLogger();
         Log.setVerbosity( ml , Verbosity.VERBOSE, "COLORS");
@@ -102,8 +133,8 @@ public class UT_alox_logger extends AWorxUnitTesting
         AnsiConsoleLogger acl= (AnsiConsoleLogger) Log.getLogger( "ANSI_CONSOLE" );
         if ( acl!=null )
         {
-            int useLightColors= acl.useLightColors;
-            acl.useLightColors= acl.useLightColors == 1 ? 2 : 1;
+            AnsiLogger.LightColorUsage useLightColors= acl.useLightColors;
+            acl.useLightColors= acl.useLightColors == AnsiLogger.LightColorUsage.FOREGROUND_LIGHT ? AnsiLogger.LightColorUsage.FOREGROUND_DARK : AnsiLogger.LightColorUsage.FOREGROUND_LIGHT;
             ml.memoryLog.clear();
             Log.info( "Same rev.:  "
                                 + ">>>" + ESC.RED     + ESC.BG_RED     + "RED"        + ESC.RESET + "<<<"
@@ -376,8 +407,8 @@ public class UT_alox_logger extends AWorxUnitTesting
         Log.setDomain( "FMT", Scope.METHOD );
 
         Log.info( "This is the default ConsoleLogger log line" );
-        com.aworx.lib.strings.AutoSizes backup= Log.debugLogger.autoSizes;
-        Log.debugLogger.autoSizes= new com.aworx.lib.strings.AutoSizes();
+        AutoSizes backup= Log.debugLogger.autoSizes;
+        Log.debugLogger.autoSizes= new AutoSizes();
 
         AString  lf;
         lf= new AString( "(%SF) %SP.%SL.%SM():%A3[%D][%TD][%TC +%TL][%tN]%V[%D]<%#>: ");    Log.debugLogger.metaInfo.format= lf;    Log.info( "LineFormat set to= \"" + lf + "\"" );
@@ -481,6 +512,69 @@ public class UT_alox_logger extends AWorxUnitTesting
         Log.info( "" );
         Log.info( "-------- ML Mode = 4 (pure multi line, no meta info, no headline, starts at pos 0)) --------" );
         Log.state( "MLine", Verbosity.INFO, "Our Log configuration is:" );
+    }
+
+
+    /** ****************************************************************************************
+     *     Log_Recursive.
+     ******************************************************************************************/
+    @Test
+    public void Log_Recursive()
+    {
+        UT_INIT();
+
+        Log.setDomain( "RECURSION", Scope.METHOD );
+        MemoryLogger testML= new MemoryLogger();
+        Log.setVerbosity( testML , Verbosity.VERBOSE);
+
+        // tests without the use of the formatter when logging recursively
+        {
+            int oldCntLogs= testML.cntLogs;
+            (new ApplyLog("Test", 1)).toString ();
+            UT_TRUE( testML.memoryLog.indexOf( "Logging object >Test<")  > 0 );
+            UT_EQ( 1, testML.cntLogs - oldCntLogs );
+            testML.memoryLog.clear();
+
+            oldCntLogs= testML.cntLogs;
+            Log.info( "outer>{}<log", new ApplyLog("Test", 1) );
+            UT_EQ( 2, testML.cntLogs - oldCntLogs );
+//UT_PRINT("--->>> MemLog:" + CString.NEW_LINE_CHARS + testML.memoryLog.toString() + CString.NEW_LINE_CHARS + "----<<<" );
+            UT_TRUE( testML.memoryLog.indexOf( "outer>Test<log")  > 0 );
+            testML.memoryLog.clear();
+
+
+            oldCntLogs= testML.cntLogs;
+            Log.info( "123{:^8}456--abc{!UP}efg", new ApplyLog("Test", 1), new ApplyLog("lowerTest", 1) );
+            UT_EQ( 3, testML.cntLogs - oldCntLogs );
+            UT_TRUE( testML.memoryLog.indexOf( "123  Test  456"     )  > 0 );
+            UT_TRUE( testML.memoryLog.indexOf( "abcLOWERTESTefg")  > 0 );
+        }
+
+        // same tests, now using formatter recursively
+        {
+            int oldCntLogs= testML.cntLogs;
+            (new ApplyLog("Test", 2)).toString ();
+            UT_TRUE( testML.memoryLog.indexOf( "Logging object >Test<")  > 0 );
+            UT_EQ( 1, testML.cntLogs - oldCntLogs );
+            testML.memoryLog.clear();
+
+            oldCntLogs= testML.cntLogs;
+            Log.info( "outer>{}<log", new ApplyLog("Test", 2) );
+            UT_EQ( 2, testML.cntLogs - oldCntLogs );
+//UT_PRINT("--->>> MemLog:" + CString.NEW_LINE_CHARS + testML.memoryLog.toString() + CString.NEW_LINE_CHARS + "----<<<" );
+            UT_TRUE( testML.memoryLog.indexOf( "outer>Test<log")  > 0 );
+            testML.memoryLog.clear();
+
+
+            oldCntLogs= testML.cntLogs;
+            Log.info( "123{:^8}456--abc{!UP}efg", new ApplyLog("Test", 2), new ApplyLog("lowerTest", 2) );
+            UT_EQ( 3, testML.cntLogs - oldCntLogs );
+            UT_TRUE( testML.memoryLog.indexOf( "123  Test  456"     )  > 0 );
+            UT_TRUE( testML.memoryLog.indexOf( "abcLOWERTESTefg")  > 0 );
+        }
+
+
+        Log.removeLogger( testML );
     }
 
 }

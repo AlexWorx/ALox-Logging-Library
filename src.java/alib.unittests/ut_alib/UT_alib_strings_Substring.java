@@ -12,7 +12,7 @@ import com.aworx.lib.lang.Whitespaces;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.NumberFormat;
 import com.aworx.lib.strings.Substring;
-import com.aworx.lib.strings.Tokenizer;
+import com.aworx.lib.strings.util.Tokenizer;
 
 import ut_com_aworx.AWorxUnitTesting;
 import ut_com_aworx.UTSampleWriter;

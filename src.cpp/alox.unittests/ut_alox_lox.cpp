@@ -6,7 +6,6 @@
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alox/alox.hpp"
-#include "alib/config/inmemoryplugin.hpp"
 #include "alib/compatibility/std_string.hpp"
 #include "alox/loggers/memorylogger.hpp"
 
@@ -43,7 +42,9 @@ void check_MemLogStartsWith( const aworx::TString& exp, AWorxUnitTesting& ut, Me
 void check_MemLogStartsWith( const aworx::TString& exp, AWorxUnitTesting& ut, MemoryLogger& memlog, bool doLog= true )
 {
     if (doLog)
+    {
         Log_Info("");
+    }
 
     if( DirectorySeparator == '/' )
     {
@@ -71,8 +72,9 @@ void check_MemLogContains( const aworx::TString& exp, AWorxUnitTesting& ut, Memo
 void check_MemLogContains( const aworx::TString& exp, AWorxUnitTesting& ut, MemoryLogger& memlog, bool doLog= true )
 {
     if (doLog)
+    {
         Log_Info("");
-
+    }
     if( DirectorySeparator == '/' )
     {
         UT_TRUE( memlog.MemoryLog.IndexOf( exp, 0, Case::Ignore ) >=0 );

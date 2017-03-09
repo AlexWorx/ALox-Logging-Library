@@ -13,10 +13,8 @@
     #include <stdio.h>  /* defines FILENAME_MAX */
 #endif
 
-using namespace std;
+namespace aworx { namespace lib { namespace config {
 
-namespace aworx { namespace lib { namespace config
-{
 // #################################################################################################
 // XTernalizer
 // #################################################################################################

@@ -170,18 +170,18 @@ public class UTWriter : ReportWriter
 
     /** ************************************************************************************
      * Write ALib reports using ALox.
-     * @param report The report.
+     * @param msg  The message to report.
      **************************************************************************************/
-    public virtual void Report  (Report.Message report)
+    public virtual void Report  (Report.Message msg)
     {
-        Object[] logables= {report.Contents};
+        Object[] logables= {msg.Contents};
         lox.Entry( ALox.InternalDomains + "UT_REPORT",
-                   report.Type == 0 ? Verbosity.Error       :
-                   report.Type == 1 ? Verbosity.Warning     :
-                   report.Type == 2 ? Verbosity.Info        :
-                                      Verbosity.Verbose,
+                   msg.Type == 0 ? Verbosity.Error       :
+                   msg.Type == 1 ? Verbosity.Warning     :
+                   msg.Type == 2 ? Verbosity.Info        :
+                                   Verbosity.Verbose,
                    logables,
-                   report.Line, report.File, report.Func );
+                   msg.Line, msg.File, msg.Func );
     }
 }
 

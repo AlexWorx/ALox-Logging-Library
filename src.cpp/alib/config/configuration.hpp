@@ -46,11 +46,6 @@
     #include "alib/config/inmemoryplugin.hpp"
 #endif
 
-#if !defined(HPP_ALIB_STRINGS_TOKENIZER)
-    #include "alib/strings/tokenizer.hpp"
-#endif
-
-
 
 #include <vector>
 

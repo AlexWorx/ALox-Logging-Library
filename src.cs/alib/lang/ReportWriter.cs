@@ -12,6 +12,7 @@ using System.Threading;
 using cs.aworx.lib.threads;
 using cs.aworx.lib.config;
 using cs.aworx.lib.strings;
+using cs.aworx.lib.strings.format;
 using cs.aworx.lib.time;
 
 namespace cs.aworx.lib.lang {
@@ -32,31 +33,23 @@ public interface ReportWriter
 
     /** ********************************************************************************************
      * Report a message. Pure virtual abstract interface method.
-     * @param report     The report.
+     * @param msg    The message to report.
      **********************************************************************************************/
-    void Report( Report.Message report );
+    void Report( Report.Message msg );
 }
 
 /** ************************************************************************************************
  * The standard \b %ReportWriter writing the message to \c Console.Error and \c Console.Out.
- * A formatter of type
- * \ref cs::aworx::lib::strings::FormatterPythonStyle "FormatterPythonStyle" is used to process the
- * objects in the report message.
+ * The global formatter singleton is used is used to process the objects in the report message.
+ * This is by default of type
+ * \ref cs::aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle". See
+ * \ref cs::aworx::lib::strings::format::Formatter::AcquireDefault "Formatter.AcquireDefault"
+ * for more information.
  **************************************************************************************************/
 class ReportWriterStdIO : ReportWriter
 {
     /** The singleton which is added in the constructor of \b Report. */
     public static readonly  ReportWriterStdIO     Singleton               = new ReportWriterStdIO();
-
-    /**
-     * The formatter used to format the output. This field is public and might be exchanged by
-     * users, while no 'safe' change interface is provided (neither in respect to threading,
-     * nor allocation. In contrast the field is just public. Therefore, when replacing this
-     * field,
-     * - the previous one needs to be deleted and
-     * - concurrent access needs to be avoided.
-     */
-    public                  Formatter           Formatter              = new FormatterPythonStyle();
 
     /** Buffer used for formatting messages */
     protected               AString             buffer                              = new AString();
@@ -82,19 +75,21 @@ class ReportWriterStdIO : ReportWriter
      * Just writes the prefix \"ALib Report (Error):\" (respectively \"ALib Report (Warning):\"
      * and the error message to the cout.
      *
-     * @param report     The report.
+     * @param msg The message to report.
      **********************************************************************************************/
-    public virtual void Report( Report.Message report )
+    public virtual void Report( Report.Message msg )
     {
         ALIB.StdOutputStreamsLock.Acquire();
             buffer._()._("ALib ");
-                 if (  report.Type == 0 )   buffer._( "Error:   ");
-            else if (  report.Type == 1 )   buffer._( "Warning: ");
-            else                            buffer._( "Report (type=")._( report.Type )._("): ");
+                 if (  msg.Type == 0 )   buffer._( "Error:   ");
+            else if (  msg.Type == 1 )   buffer._( "Warning: ");
+            else                         buffer._( "Report (type=")._( msg.Type )._("): ");
 
-            Formatter.FormatList( buffer, report.Contents );
+            Formatter formatter= Formatter.AcquireDefault();
+            formatter.Format( buffer, msg.Contents );
+            Formatter.ReleaseDefault();
 
-            System.IO.TextWriter tw= report.Type == 0 || report.Type == 1 ? Console.Error : Console.Out;
+            System.IO.TextWriter tw= msg.Type == 0 || msg.Type == 1 ? Console.Error : Console.Out;
             tw.Flush();
             tw.WriteLine( buffer.ToString() );
             tw.Flush();
@@ -105,7 +100,6 @@ class ReportWriterStdIO : ReportWriter
             #endif
 
         ALIB.StdOutputStreamsLock.Release();
-
     }
 }
 

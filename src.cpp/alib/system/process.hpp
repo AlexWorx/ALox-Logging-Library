@@ -59,7 +59,6 @@ class ProcessInfo
     // Fields under unix like OS
     // #############################################################################################
     #if defined( __unix__ )  || defined(DOX_PARSER)
-        friend class Environment;
 
             /** The parent's process id as AString. (Unix like OS / Mac OS only.)   */
             uinteger    PPID;

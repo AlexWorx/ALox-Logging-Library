@@ -38,7 +38,7 @@ Finally, get it all *pruned* out of your release executable, same as your source
 On the other end of the list, \b %ALox  enables **release logging** for productive applications
 to collect mission critical **metrics from the field**.
 
-This is **Version 1702**, which builds on new C++ feature <b>%ALib Boxing</b> and this way comes
+This is **Version 1702 Revision 1**, which builds on new C++ feature <b>%ALib Boxing</b> and this way comes
 with a new logging interface based on format strings in all supported languages of \b %ALox.
 
 We are optimistic that the simple [Bauhaus Style](\ref faq_bauhaus) architecture of the library allows you
@@ -80,15 +80,9 @@ Language specific documentation is given with:
 
 \note
   If one of the language specific versions is selected the main menu, then the search box
-  finds resutls exclusively from the reference documentation of the selected language.
+  finds results exclusively from the reference documentation of the selected language.
 
 All documentation is created with marvelous [Doxygen](http://www.stack.nl/~dimitri/doxygen/)!
-
-\note
-  Some links in the general search (on this page) are broken. For example selecting header files
-  from the search results provides a broken link. This is technical problem we currently can not
-  resolve.
-
 
 \section mainpage_faq            FAQ
 This is the \ref faq

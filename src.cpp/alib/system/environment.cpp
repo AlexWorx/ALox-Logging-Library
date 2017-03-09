@@ -17,8 +17,6 @@
     #pragma message ("Unknown Platform in file: " __FILE__ )
 #endif
 
-using namespace std;
-
 namespace aworx { namespace lib { namespace system
 {
 

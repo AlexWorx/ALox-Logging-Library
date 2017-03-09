@@ -191,7 +191,12 @@ public class ScopeDump
             {
                 cntScopeDomains++;
                 target.InsertChars( ' ', indentSpaces );
-                target._( '\"' )._NC( store.globalStore.ToString() )._( '\"' );
+                target._( '\"' );
+                int idx= target.Length();
+                target._NC( store.globalStore.ToString() );
+                ESC.ReplaceToReadable( target, idx );
+                target._( '\"' );
+
                 target.Tab( 25, -1 )._NC( "Scope.Global " ).NewLine();
             }
 
@@ -200,7 +205,11 @@ public class ScopeDump
                 {
                     cntScopeDomains++;
                     target.InsertChars( ' ', indentSpaces );
-                    target._( '\"' )._NC( it.ToString() )._( '\"' );
+                    target._( '\"' );
+                    int idx= target.Length();
+                    target._NC( it.ToString() );
+                    ESC.ReplaceToReadable( target, idx );
+                    target._( '\"' );
                     target.Tab( 25, -1 )
                           ._NC( "Scope.ThreadOuter " );
                     storeThreadToScope( thread.Key ).NewLine();
@@ -211,7 +220,11 @@ public class ScopeDump
                 cntScopeDomains++;
 
                 target.InsertChars( ' ', indentSpaces );
-                target._( '\"' )._NC( it.Value.ToString() )._( '\"' );
+                target._( '\"' );
+                int idx= target.Length();
+                target._NC( it.Value.ToString() );
+                ESC.ReplaceToReadable( target, idx );
+                target._( '\"' );
                 target.Tab( 25, -1 );
 
                 storeKeyToScope( it ).NewLine();
@@ -222,7 +235,11 @@ public class ScopeDump
                 {
                     cntScopeDomains++;
                     target.InsertChars( ' ', indentSpaces );
-                    target._( '\"' )._NC( it.ToString() )._( '\"' );
+                    target._( '\"' );
+                    int idx= target.Length();
+                    target._NC( it.ToString() );
+                    ESC.ReplaceToReadable( target, idx );
+                    target._( '\"' );
                     target.Tab( 25, -1 )
                           ._NC( "Scope.ThreadInner " );
                     storeThreadToScope( thread.Key ).NewLine();

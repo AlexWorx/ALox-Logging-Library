@@ -15,8 +15,8 @@
 #if !defined(HPP_ALIB_COMPATIBILITY_STD_IOSTREAM)
     #include "alib/compatibility/std_iostream.hpp"
 #endif
-#if !defined(HPP_ALIB_STRINGS_SPACES)
-    #include "alib/strings/spaces.hpp"
+#if !defined(HPP_ALIB_STRINGS_UTIL_SPACES)
+    #include "alib/strings/util/spaces.hpp"
 #endif
 
 using namespace std;
@@ -132,17 +132,20 @@ AnsiLogger::AnsiLogger( std::basic_ostream<char>* pOStream, bool usesStdStreams,
 :    TextLogger( name, typeName, usesStdStreams )
 ,    oStream( pOStream )
 {
+    // set msg suffix to "reset"
+    FmtMsgSuffix=   ANSI_RESET;
+
     // evaluate environment variable "ALOX_CONSOLE_LIGHT_COLORS"
-    UseLightColors= -1;
+    UseLightColors= LightColorUsage::_Undefined;
     Variable variable( ALox::CONSOLE_LIGHT_COLORS );
     if ( variable.Load() && variable.Size() > 0)
     {
         Substring p= *variable.GetString();
         if(p.Trim().IsNotEmpty())
         {
-                 if( p.ConsumePartOf( "foreground", 1, Case::Ignore ) > 0)  UseLightColors=  1;
-            else if( p.ConsumePartOf( "background", 1, Case::Ignore ) > 0)  UseLightColors=  2;
-            else if( p.ConsumePartOf( "never"     , 1, Case::Ignore ) > 0)  UseLightColors=  0;
+                 if( p.ConsumePartOf( "foreground", 1, Case::Ignore ) > 0)  UseLightColors=  LightColorUsage::ForegroundLight;
+            else if( p.ConsumePartOf( "background", 1, Case::Ignore ) > 0)  UseLightColors=  LightColorUsage::ForegroundDark;
+            else if( p.ConsumePartOf( "never"     , 1, Case::Ignore ) > 0)  UseLightColors=  LightColorUsage::Never;
             else
             {
                 ALIB_WARNING( "Unknown value specified in variable: {} = '{}'.",
@@ -151,31 +154,19 @@ AnsiLogger::AnsiLogger( std::basic_ostream<char>* pOStream, bool usesStdStreams,
         }
     }
 
-    if( UseLightColors < 0 )
+    if( UseLightColors == LightColorUsage::_Undefined )
     {
         // default: dark background, hence use light color on foreground
-        UseLightColors= 1;
+        UseLightColors= LightColorUsage::ForegroundLight;
     }
 
-    //--- modify the default format attributes of the MetaInfo support colors ---
-
-        // move verbosity information to the end to colorize the whole line
+    // move verbosity information to the end to colorize the whole line
     ALIB_ASSERT_RESULT_NOT_EQUALS( MetaInfo->Format.SearchAndReplace( "]%V[", "][" ), 0);
     MetaInfo->Format._("%V");
-    if ( UseLightColors == 1 )
-    {
-        MetaInfo->VerbosityError           = ANSI_LIGHT_RED;
-        MetaInfo->VerbosityWarning         = ANSI_LIGHT_BLUE;
-        MetaInfo->VerbosityInfo            = "";
-        MetaInfo->VerbosityVerbose         = ANSI_LIGHT_GRAY;
-    }
-    else
-    {
-        MetaInfo->VerbosityError           = ANSI_RED;
-        MetaInfo->VerbosityWarning         = ANSI_BLUE;
-        MetaInfo->VerbosityInfo            = "";
-        MetaInfo->VerbosityVerbose         = ANSI_GRAY;
-    }
+    MetaInfo->VerbosityError           = ESC::RED;
+    MetaInfo->VerbosityWarning         = ESC::BLUE;
+    MetaInfo->VerbosityInfo            = "";
+    MetaInfo->VerbosityVerbose         = ESC::GRAY;
 }
 
 AnsiLogger::~AnsiLogger()
@@ -249,7 +240,7 @@ void AnsiLogger::logText( core::Domain&      ,    Verbosity         ,
             colNo+=  isForeGround ? 0 : 10;
 
             // add light
-            if( UseLightColors && ( (UseLightColors == 1) == isForeGround ) )
+            if( UseLightColors != LightColorUsage::Never && ( (UseLightColors == LightColorUsage::ForegroundLight) == isForeGround ) )
                 colNo+= 20;
 
 
@@ -339,7 +330,7 @@ void AnsiLogger::logText( core::Domain&      ,    Verbosity         ,
         {
             if ( rest.ConsumeChar() == 'S' )
             {
-                if (UseLightColors == 1 ) oStream << ANSI_LIGHT_BLUE;
+                if (UseLightColors == LightColorUsage::ForegroundLight ) oStream << ANSI_LIGHT_BLUE;
                 else                      oStream << ANSI_BLUE;
             }
             else
@@ -354,8 +345,7 @@ void AnsiLogger::logText( core::Domain&      ,    Verbosity         ,
 
     } // write loop
 
-
-    (*oStream) << MsgSuffix << endl;
+    (*oStream) << endl;
 }
 
 // #################################################################################################

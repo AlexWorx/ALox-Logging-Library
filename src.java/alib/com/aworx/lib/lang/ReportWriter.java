@@ -26,7 +26,7 @@ public interface ReportWriter
 
     /** ********************************************************************************************
      * Report a message. Pure virtual abstract interface method.
-     * @param report     The report.
+     * @param msg     The message to report.
      **********************************************************************************************/
-    public void report( Report.Message report );
+    public void report( Report.Message msg );
 }

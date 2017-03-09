@@ -21,10 +21,7 @@
 
 #include <algorithm>
 
-using namespace std;
-
-namespace aworx { namespace lib { namespace config
-{
+namespace aworx { namespace lib { namespace config {
 
 // #################################################################################################
 // interface
@@ -146,8 +143,7 @@ InMemoryPlugin::Entry* InMemoryPlugin::Section::GetEntry( const String& name, bo
         return nullptr;
 
     // create entry
-    Entries.insert( Entries.end(), createEntry( name ) );
-    return Entries.back();
+    return *Entries.insert( Entries.end(), createEntry( name ) );
 }
 
 // #################################################################################################

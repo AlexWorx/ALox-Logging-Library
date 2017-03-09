@@ -12,8 +12,6 @@
 
 #include <algorithm>
 
-using namespace std;
-
 namespace aworx { namespace lib {
 
 /** ************************************************************************************************

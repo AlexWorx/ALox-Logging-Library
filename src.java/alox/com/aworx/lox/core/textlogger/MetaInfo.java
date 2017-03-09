@@ -18,7 +18,7 @@ import com.aworx.lib.lang.Whitespaces;
 import com.aworx.lib.system.ProcessInfo;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.Substring;
-import com.aworx.lib.strings.Tokenizer;
+import com.aworx.lib.strings.util.Tokenizer;
 import com.aworx.lib.time.TickSpan;
 import com.aworx.lib.time.Ticks;
 import com.aworx.lox.Verbosity;

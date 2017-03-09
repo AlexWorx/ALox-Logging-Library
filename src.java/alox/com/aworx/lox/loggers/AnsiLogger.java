@@ -15,9 +15,10 @@ import com.aworx.lib.lang.Phase;
 import com.aworx.lib.lang.Whitespaces;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.Substring;
-import com.aworx.lib.strings.Tokenizer;
-import com.aworx.lib.strings.Spaces;
+import com.aworx.lib.strings.util.Tokenizer;
+import com.aworx.lib.strings.util.Spaces;
 import com.aworx.lox.ALox;
+import com.aworx.lox.ESC;
 import com.aworx.lox.Verbosity;
 import com.aworx.lox.core.Domain;
 import com.aworx.lox.core.ScopeInfo;
@@ -42,8 +43,8 @@ import com.aworx.lox.core.textlogger.TextLogger;
  * [ALOX_CONSOLE_LIGHT_COLORS](../group__GrpALoxConfigVars.html).
  *
  * In the constructor, a default format string and some other definitions in member
- * \ref metaInfo get set to include ANSI Escape Sequences. Of-course, these publicly
- * accessible format attributes can be customized after creation.
+ * \ref metaInfo get set to include color settings.
+ * Of-course, these publicly accessible format attributes can be customized after creation.
  *
  * There is not 100% match between the ANSI sequences and the definitions in
  * \ref com::aworx::lox::ESC "ESC".
@@ -126,8 +127,26 @@ public class AnsiLogger extends TextLogger
         };
 
     // #############################################################################################
-    // Fields
+    // Internal fields
     // #############################################################################################
+
+        /**
+         * The PrintStream provided in the constructor.
+         */
+        protected   PrintStream             out;
+
+    // #############################################################################################
+    // Public fields
+    // #############################################################################################
+
+        /** Denotes states of field #useLightColors.  */
+        public enum LightColorUsage
+        {
+            _UNDEFINED,         ///< Internal, temporary state
+            NEVER,              ///< Never use light colors
+            FOREGROUND_LIGHT,   ///< Use light colors for foreground
+            FOREGROUND_DARK     ///< Use light colors for background
+        }
 
         /**
          * Foreground and background colors chosen by this class might differ in their intensity.
@@ -138,25 +157,17 @@ public class AnsiLogger extends TextLogger
          * Depending on the setting of this field, ALox
          * \ref com::aworx::lox::ESC "escape codes" for colors are translated to normal ANSI colors or
          * lighter ones:
-         * - If this field is \c 0, light colors are never used.
-         * - If this field is \c 1, foreground colors will be light colors and background colors
-         *   dark. This is the default.
-         * - If \c 2, the opposite of \c 1 is chosen: background colors will be light colors and
-         *   foreground colors dark.
+         * - If this field is \ref LightColorUsage "LightColorUsageNEVER", light colors are
+         *   never used.
+         * - If this field is \ref LightColorUsage "LightColorUsage.FOREGROUND_LIGHT", foreground
+         *   colors will be light colors and background colors dark ones. This is the default.
+         * - If \ref LightColorUsage "LightColorUsage.FOREGROUND_DARK", background colors will be
+         *   light colors and foreground colors dark ones.
          *
          * The configuration variable [ALOX_CONSOLE_LIGHT_COLORS](../group__GrpALoxConfigVars.html)
          * allows to externally modify this flag. It is read once within the constructor .
          */
-        public      int                     useLightColors;
-
-        /**
-         * The PrintStream provided in the constructor.
-         */
-        protected   PrintStream             out;
-
-        /** Characters  placed at the end of each line (e.g. used to reset colors and styles).*/
-        public      String                  msgSuffix               = ANSI_RESET;
-
+        public      LightColorUsage         useLightColors;
 
     // #############################################################################################
     // Methods
@@ -210,17 +221,20 @@ public class AnsiLogger extends TextLogger
     {
         this.out= ps;
 
+        // set msg suffix to "reset"
+        fmtMsgSuffix= ANSI_RESET;
+
         // evaluate environment variable "ALOX_CONSOLE_LIGHT_COLORS"
-        useLightColors= -1;
+        useLightColors= LightColorUsage._UNDEFINED;
         Variable variable= new Variable( ALox.CONSOLE_LIGHT_COLORS );
         if ( variable.load() > 0 && variable.size() > 0)
         {
             Substring p= new Substring(variable.getString());
             if(p.trim().isNotEmpty())
             {
-                     if( p.consumePartOf( "foreground", 1, Case.IGNORE ) > 0)  useLightColors=  1;
-                else if( p.consumePartOf( "background", 1, Case.IGNORE ) > 0)  useLightColors=  2;
-                else if( p.consumePartOf( "never"     , 1, Case.IGNORE ) > 0)  useLightColors=  0;
+                     if( p.consumePartOf( "foreground", 1, Case.IGNORE ) > 0)  useLightColors=  LightColorUsage.FOREGROUND_LIGHT;
+                else if( p.consumePartOf( "background", 1, Case.IGNORE ) > 0)  useLightColors=  LightColorUsage.FOREGROUND_DARK;
+                else if( p.consumePartOf( "never"     , 1, Case.IGNORE ) > 0)  useLightColors=  LightColorUsage.NEVER;
                 else
                 {
                     com.aworx.lib.ALIB_DBG.WARNING( "Unknown value specified in variable: " + variable.fullname
@@ -231,31 +245,23 @@ public class AnsiLogger extends TextLogger
 
 
 
-        if( useLightColors < 0 )
+        if( useLightColors == LightColorUsage._UNDEFINED )
         {
             // default: dark background, hence use light color on foreground
-            useLightColors= 1;
+            useLightColors= LightColorUsage.FOREGROUND_LIGHT;
         }
 
         // move verbosity information to the end to colorize the whole line
         metaInfo.format.searchAndReplace( "]%V[", "][" );
         metaInfo.format._( "%V" );
-        if ( useLightColors == 1 )
-        {
-            metaInfo.verbosityError           = ANSI_LIGHT_RED;
-            metaInfo.verbosityWarning         = ANSI_LIGHT_BLUE;
-            metaInfo.verbosityVerbose         = ANSI_LIGHT_GRAY;
-        }
-        else
-        {
-            metaInfo.verbosityError           = ANSI_RED;
-            metaInfo.verbosityWarning         = ANSI_BLUE;
-            metaInfo.verbosityVerbose         = ANSI_GRAY;
-        }
+        metaInfo.verbosityError           = ESC.RED;
+        metaInfo.verbosityWarning         = ESC.BLUE;
+        metaInfo.verbosityInfo            = "";
+        metaInfo.verbosityVerbose         = ESC.GRAY;
     }
 
     /** ********************************************************************************************
-     * The implementation of the abstract method of parent class TextLogger. Logs messages to the
+     * Implementation of the abstract method of parent class TextLogger. Logs messages to the
      * application console.
      *
      * @param domain        The <em>Log Domain</em>.
@@ -335,7 +341,8 @@ public class AnsiLogger extends TextLogger
                 colNo+=  isForeGround ? 0 : 10;
 
                 // add light
-                if( useLightColors != 0 && ( (useLightColors == 1) == isForeGround ) )
+                if(       useLightColors != LightColorUsage.NEVER
+                    && ( (useLightColors == LightColorUsage.FOREGROUND_LIGHT) == isForeGround )     )
                     colNo+= 20;
 
                 out.print( ansiCols[ colNo ] );
@@ -368,7 +375,7 @@ public class AnsiLogger extends TextLogger
             else if ( c == 'l' )
             {
                 out.print( rest.consumeChar() == 'S'
-                                       ?  ( useLightColors == 1 ? ANSI_LIGHT_BLUE : ANSI_BLUE )
+                                       ?  ( useLightColors == LightColorUsage.FOREGROUND_LIGHT ? ANSI_LIGHT_BLUE : ANSI_BLUE )
                                        :  ANSI_STD_COL                             );
             }
 
@@ -380,17 +387,16 @@ public class AnsiLogger extends TextLogger
         } // write loop
 
 
-        out.println(msgSuffix);
+        out.println();
     }
 
-    /** ********************************************************************************************
-     * Empty implementation, not needed for this class
+    /** ****************************************************************************************
+     * Empty implementation.
      *
-     * @param phase  Indicates the beginning or end of a multi-line operation.
-     **********************************************************************************************/
+     * @param phase The phase of the multi-line operation (ignored).
+     ******************************************************************************************/
     @Override protected void notifyMultiLineOp (Phase phase)
     {
-        /* nothing to do here */
     }
 
 } // class AnsiLogger

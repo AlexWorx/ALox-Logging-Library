@@ -10,10 +10,9 @@
     #include "thread.hpp"
 #endif
 
-using namespace std;
 
-namespace aworx { namespace lib { namespace threads
-{
+namespace aworx { namespace lib { namespace threads {
+
 // #################################################################################################
 // class Thread static part
 // #################################################################################################
@@ -21,18 +20,20 @@ namespace aworx { namespace lib { namespace threads
 // static variables
 // (attn: these variables have to be placed in the cpp file before the init-function below)
 #if ALIB_FEAT_THREADS
-    map<thread::id, Thread*>    Thread::threadMap;
-    mutex                       Thread::mutex;
+    std::map<std::thread::id, Thread*>  Thread::threadMap;
+    std::mutex                          Thread::mutex;
 #else
-    Thread*                     Thread::noThreadsCompilationMainThread= nullptr;
+    Thread*                             Thread::noThreadsCompilationMainThread= nullptr;
 #endif
 
-int                             Thread::nextSystemThreadId                                     = -1;
-int                             Thread::nextThreadId                                           =  1;
+int                                     Thread::nextSystemThreadId                             = -1;
+int                                     Thread::nextThreadId                                   =  1;
 
 // static library initialization code ( invoked by ALIB::Init() )
+ALIB_NAMESPACE_INIT_FLAG
 void Init()
 {
+    ALIB_NAMESPACE_INIT_DEDUP
     Thread* main;
 
     #if !ALIB_FEAT_THREADS
@@ -61,8 +62,21 @@ void TerminationCleanUp()
 
             // we should have exactly one thread and this is the system thread
             size_t qtyThreads= Thread::threadMap.size();
-            ALIB_ASSERT_WARNING( qtyThreads != 0, "ALib termination: main thread not registered." );
-            ALIB_ASSERT_WARNING( qtyThreads == 1, "ALib termination: Can not shutdown gracefully due to open threads." );
+            #if ALIB_DEBUG
+                if( qtyThreads == 0 )
+                {
+                    Thread::mutex.unlock();
+                        ALIB_WARNING( "ALib termination: main thread not registered." );
+                    Thread::mutex.lock();
+                }
+                if( qtyThreads > 1 )
+                {
+                    Thread::mutex.unlock();
+                        ALIB_WARNING( "ALib termination: Can not shutdown gracefully due to open threads." );
+                    Thread::mutex.lock();
+                }
+            #endif
+
             if( qtyThreads != 1 )
             {
                 Thread::mutex.unlock();
@@ -109,8 +123,8 @@ Thread* Thread::CurrentThread()
 
     #if ALIB_FEAT_THREADS
         // search current in map
-        auto    c11ID=  this_thread::get_id();
-        mutex.lock();
+        auto    c11ID=  std::this_thread::get_id();
+        Thread::mutex.lock();
         {
             auto search=  Thread::threadMap.find( c11ID );
 
@@ -124,10 +138,10 @@ Thread* Thread::CurrentThread()
                 result=        new Thread( true );
                 result->id=    nextSystemThreadId--;
                 result->SetName( String64("SYS_") << result->id );
-                Thread::threadMap.insert( make_pair( c11ID, result) );
+                Thread::threadMap.insert( std::make_pair( c11ID, result) );
             }
         }
-        mutex.unlock();
+        Thread::mutex.unlock();
     #else
         result= noThreadsCompilationMainThread;
     #endif
@@ -144,7 +158,7 @@ Thread::Thread( Runnable* target , const String& pName )
 {
     // get myself an ID
     #if ALIB_FEAT_THREADS
-    mutex.lock();
+    Thread::mutex.lock();
     #endif
     {
         id=  nextThreadId++;
@@ -152,7 +166,7 @@ Thread::Thread( Runnable* target , const String& pName )
             name << '(' << id << ')';
     }
     #if ALIB_FEAT_THREADS
-    mutex.unlock();
+    Thread::mutex.unlock();
     #endif
 }
 
@@ -163,11 +177,11 @@ Thread::~Thread()
     {
         if( c11Thread->joinable() )
             c11Thread->join();
-        mutex.lock();
+        Thread::mutex.lock();
         {
             ALIB_ASSERT_RESULT_EQUALS( Thread::threadMap.erase( c11ID ), 1);
         }
-        mutex.unlock();
+        Thread::mutex.unlock();
 
         delete c11Thread;
     }
@@ -199,14 +213,14 @@ void  Thread::Start()
     isAliveFlag= true;
 
     #if ALIB_FEAT_THREADS
-        mutex.lock();
+        Thread::mutex.lock();
         {
             c11Thread=    new std::thread( _Thread__Start, this );
             c11ID=        c11Thread->get_id();
 
-            Thread::threadMap.insert( make_pair( c11ID, this) );
+            Thread::threadMap.insert( std::make_pair( c11ID, this) );
         }
-        mutex.unlock();
+        Thread::mutex.unlock();
     #else
             c11Thread=    this;
             isAliveFlag=  false;

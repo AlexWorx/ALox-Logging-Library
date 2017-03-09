@@ -112,8 +112,8 @@
     #include "alox/loggers/memorylogger.hpp"
     #define UT_FUNC_MACRO   __FUNCTION__
 
-    #define  UT_CLASS()                   TEST_CLASS(TESTCLASSNAME)                                             \
-                                           {  private:  const char* aworxTestName= ALIB_STRINGIFY(test_name);   \
+    #define  UT_CLASS()                   TEST_CLASS(TESTCLASSNAME)                                                 \
+                                           {  private:  const char* aworxTestName= ALIB_STRINGIFY(TESTCLASSNAME);   \
                                               public:
 
     #define  UT_CLASS_END                  };
@@ -189,7 +189,7 @@ namespace ut_aworx {
 class AWorxUnitTesting : public aworx::lib::lang::ReportWriter
 {
     public:
-        aworx::TString          Domain;
+        aworx::AString          Domain;
         aworx::String           ActTestName;
         bool                    AssertOnFailure= true;
         static aworx::String128 LastAutoSizes;
@@ -210,10 +210,10 @@ class AWorxUnitTesting : public aworx::lib::lang::ReportWriter
         template <typename... T>
         void Print (  const aworx::String& file, int line, aworx::Verbosity verbosity,  T&&... args  )
         {
-            aworx::Boxes boxes( std::forward<T>( args )... );
 
             lox.Acquire(file, line, ActTestName);
-                lox.Entry( Domain, verbosity, boxes );
+                lox.GetLogableContainer().Add( std::forward<T>( args )... );
+                lox.Entry( Domain, verbosity );
             lox.Release();
         }
 

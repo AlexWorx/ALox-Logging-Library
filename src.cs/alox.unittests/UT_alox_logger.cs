@@ -32,6 +32,37 @@ using cs.aworx.lox.tools.json;
 using System.IO;
 #endif
 
+namespace ut_reclog
+{
+    class ApplyLog
+    {
+        public String Text;
+        public int    Mode; // 0, no logging, 1 simple, 2 with formatter
+        public ApplyLog( String text, int mode )
+        {
+            Text= text;
+            Mode= mode;
+        }
+
+
+        public override String ToString()
+        {
+            if( Mode == 1 )
+            {
+                String output= "Logging object >" + Text + "<";
+                Log.Info(output);
+            }
+            else if( Mode == 2 )
+            {
+                Log.Info("{}{}{}", "Logging object >", Text, "<" );
+            }
+
+            return Text;
+        }
+    }
+
+}
+
 namespace ut_cs_aworx_lox
 {
     class MyType
@@ -128,11 +159,12 @@ namespace ut_cs_aworx_lox
                                 );
 
         #if ALOX_DBG_LOG
-            int oldVal= 0;
+            AnsiLogger.LightColorUsage         oldVal= 0;
+            ColorConsoleLogger.LightColorUsage oldCCV= 0;
             AnsiConsoleLogger   acl= (AnsiConsoleLogger)    Log.GetLogger( "ANSI_CONSOLE" );
             ColorConsoleLogger  ccl= (ColorConsoleLogger)   Log.GetLogger( "COLORCONSOLE" );
-            if ( acl!=null )        { oldVal= acl.UseLightColors;  acl.UseLightColors= acl.UseLightColors == 1 ? 2 : 1; }
-            if ( ccl!=null )        { oldVal= ccl.UseLightColors;  ccl.UseLightColors= ccl.UseLightColors == 1 ? 2 : 1; }
+            if ( acl!=null )        { oldVal= acl.UseLightColors;  acl.UseLightColors= acl.UseLightColors == AnsiLogger        .LightColorUsage.ForegroundLight ? AnsiLogger        .LightColorUsage.ForegroundDark : AnsiLogger        .LightColorUsage.ForegroundLight; }
+            if ( ccl!=null )        { oldCCV= ccl.UseLightColors;  ccl.UseLightColors= ccl.UseLightColors == ColorConsoleLogger.LightColorUsage.ForegroundLight ? ColorConsoleLogger.LightColorUsage.ForegroundDark : ColorConsoleLogger.LightColorUsage.ForegroundLight; }
             if( acl != null || ccl != null )
             {
 
@@ -150,7 +182,7 @@ namespace ut_cs_aworx_lox
             }
 
             if ( acl!=null )   acl.UseLightColors= oldVal;
-            if ( ccl!=null )   ccl.UseLightColors= oldVal;
+            if ( ccl!=null )   ccl.UseLightColors= oldCCV;
         #endif
 
         #if ALOX_DBG_LOG
@@ -657,7 +689,78 @@ namespace ut_cs_aworx_lox
     }
 
 
-        #endif  // ALOX_DBG_LOG || ALOX_REL_LOG
+#endif  // ALOX_DBG_LOG || ALOX_REL_LOG
+
+#if ALOX_DBG_LOG
+    /** ********************************************************************************************
+     * Log_Recursive.
+     **********************************************************************************************/
+    #if ALIB_NUNIT
+        [Test ()]
+    #endif
+    #if ALIB_IDE_VSTUDIO
+        [TestMethod]
+        #if !WINDOWS_PHONE
+            [TestCategory("CS_ALox")]
+        #endif
+    #endif
+    public void Log_Recursive()
+    {
+        UT_INIT();
+
+        Log.SetDomain( "RECURSION", Scope.Method );
+        MemoryLogger testML= new MemoryLogger();
+        Log.SetVerbosity( testML , Verbosity.Verbose);
+
+        // tests without the use of the formatter when logging recursively
+        {
+            int oldCntLogs= testML.CntLogs;
+            (new ut_reclog.ApplyLog("Test", 1)).ToString ();
+            UT_TRUE( testML.MemoryLog.IndexOf( "Logging object >Test<")  > 0 );
+            UT_EQ( 1, testML.CntLogs - oldCntLogs );
+            testML.MemoryLog.Clear();
+
+            oldCntLogs= testML.CntLogs;
+            Log.Info( "outer>{}<log", new ut_reclog.ApplyLog("Test", 1) );
+            UT_EQ( 2, testML.CntLogs - oldCntLogs );
+UT_PRINT("--->>> MemLog:" + CString.NewLineChars + testML.MemoryLog.ToString() + CString.NewLineChars + "----<<<" );
+            UT_TRUE( testML.MemoryLog.IndexOf( "outer>Test<log")  > 0 );
+            testML.MemoryLog.Clear();
+
+
+            oldCntLogs= testML.CntLogs;
+            Log.Info( "123{:^8}456--abc{!UP}efg", new ut_reclog.ApplyLog("Test", 1), new ut_reclog.ApplyLog("lowerTest", 1) );
+            UT_EQ( 3, testML.CntLogs - oldCntLogs );
+            UT_TRUE( testML.MemoryLog.IndexOf( "123  Test  456"     )  > 0 );
+            UT_TRUE( testML.MemoryLog.IndexOf( "abcLOWERTESTefg")  > 0 );
+        }
+/*
+        // same tests, now using formatter recursively
+        {
+            int oldCntLogs= testML.CntLogs;
+            (new ut_reclog.ApplyLog("Test", 2)).ToString ();
+            UT_TRUE( testML.MemoryLog.IndexOf( "Logging object >Test<")  > 0 );
+            UT_EQ( 1, testML.CntLogs - oldCntLogs );
+            testML.MemoryLog.Clear();
+
+            oldCntLogs= testML.CntLogs;
+            Log.Info( "outer>{}<log", new ut_reclog.ApplyLog("Test", 2) );
+            UT_EQ( 2, testML.CntLogs - oldCntLogs );
+            UT_TRUE( testML.MemoryLog.IndexOf( "outer>Test<log")  > 0 );
+            testML.MemoryLog.Clear();
+
+
+            oldCntLogs= testML.CntLogs;
+            Log.Info( "123{:^8}456--abc{!UP}efg", new ut_reclog.ApplyLog("Test", 2), new ut_reclog.ApplyLog("lowerTest", 2) );
+            UT_EQ( 3, testML.CntLogs - oldCntLogs );
+            UT_TRUE( testML.MemoryLog.IndexOf( "123  Test  456"     )  > 0 );
+            UT_TRUE( testML.MemoryLog.IndexOf( "abcLOWERTESTefg")  > 0 );
+        }
+*/
+
+        Log.RemoveLogger( testML );
+    }
+#endif
 
 
     } // class

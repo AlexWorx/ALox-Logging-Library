@@ -33,7 +33,7 @@ import com.aworx.lib.lang.Whitespaces;
  *  \note
  *    To generate Substrings which are separated by a delimiter character within a
  *    character array, use class
- *    \ref com::aworx::lib::strings::Tokenizer "Tokenizer".
+ *    \ref com::aworx::lib::strings::util::Tokenizer "Tokenizer".
  *  <p>
  *
  *  \note

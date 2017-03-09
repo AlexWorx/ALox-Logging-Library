@@ -13,11 +13,11 @@
     #include "alib/config/configuration.hpp"
 #endif
 
-#if !defined (HPP_ALIB_STRINGS_TOKENIZER)
-    #include "alib/strings/tokenizer.hpp"
+#if !defined (HPP_ALIB_STRINGS_UTIL_TOKENIZER)
+    #include "alib/strings/util/tokenizer.hpp"
 #endif
-#if !defined(HPP_ALIB_STRINGS_SPACES)
-    #include "alib/strings/spaces.hpp"
+#if !defined(HPP_ALIB_STRINGS_UTIL_SPACES)
+    #include "alib/strings/util/spaces.hpp"
 #endif
 
 
@@ -86,16 +86,16 @@ WindowsConsoleLogger::WindowsConsoleLogger( const String&  name )
     }
 
     // evaluate environment variable "ALOX_CONSOLE_LIGHT_COLORS"
-    UseLightColors= -1;
+    UseLightColors= LightColorUsage::_Undefined;
     Variable variable( ALox::CONSOLE_LIGHT_COLORS );
     if ( variable.Load() && variable.Size() > 0)
     {
         Substring p= *variable.GetString();
         if(p.Trim().IsNotEmpty())
         {
-                 if( p.ConsumePartOf( "foreground", 1, Case::Ignore ) > 0)  UseLightColors=  1;
-            else if( p.ConsumePartOf( "background", 1, Case::Ignore ) > 0)  UseLightColors=  2;
-            else if( p.ConsumePartOf( "never"     , 1, Case::Ignore ) > 0)  UseLightColors=  0;
+                 if( p.ConsumePartOf( "foreground", 1, Case::Ignore ) > 0)  UseLightColors=  LightColorUsage::ForegroundLight;
+            else if( p.ConsumePartOf( "background", 1, Case::Ignore ) > 0)  UseLightColors=  LightColorUsage::ForegroundDark;
+            else if( p.ConsumePartOf( "never"     , 1, Case::Ignore ) > 0)  UseLightColors=  LightColorUsage::Never;
             else
             {
                 ALIB_WARNING( "Unknown value specified in variable: {} = '{}'.",
@@ -104,25 +104,20 @@ WindowsConsoleLogger::WindowsConsoleLogger( const String&  name )
         }
     }
 
-    if( UseLightColors < 0 )
+    if( UseLightColors == LightColorUsage::_Undefined )
     {
         // default: dark background, hence use light color on foreground
-        UseLightColors=   ( originalConsoleAttributes & ~W32C_FOREGROUND_MASK )  < 7 ? 2 : 1;
+        UseLightColors=   ( originalConsoleAttributes & ~W32C_FOREGROUND_MASK )  < 7 ?  LightColorUsage::ForegroundDark 
+                                                                                     :  LightColorUsage::ForegroundLight;
     }
 
-    // colorize log verbosity strings.
+    // move verbosity information to the end to colorize the whole line
     ALIB_ASSERT_RESULT_NOT_EQUALS( MetaInfo->Format.SearchAndReplace( "]%V[", "][" ), 0);
-
-    MsgColorInfo            = actualAttributes & ~W32C_FOREGROUND_MASK;
-    MsgColorError           = W32C_RED;
-    MsgColorWarning         = W32C_BLUE;
-    MsgColorVerbose         = W32C_GRAY_DARK;
-    if ( UseLightColors == 1 )
-    {
-        MsgColorError           |= FOREGROUND_INTENSITY;
-        MsgColorWarning         |= FOREGROUND_INTENSITY;
-        MsgColorVerbose         |= FOREGROUND_INTENSITY;
-    }
+    MetaInfo->Format._("%V");
+    MetaInfo->VerbosityError           = ESC::RED;
+    MetaInfo->VerbosityWarning         = ESC::BLUE;
+    MetaInfo->VerbosityInfo            = "";
+    MetaInfo->VerbosityVerbose         = ESC::GRAY;
 
     // evaluate config variable CODE_PAGE
     if ( variable.Define( ALox::CODEPAGE ).Load() != 0 )
@@ -136,7 +131,7 @@ WindowsConsoleLogger::~WindowsConsoleLogger()
 // #################################################################################################
 // logText
 // #################################################################################################
-void WindowsConsoleLogger::logText( Domain&        ,    Verbosity  verbosity,
+void WindowsConsoleLogger::logText( Domain&        ,    Verbosity  ,
                                     AString&    msg,
                                     ScopeInfo&     ,    int                   )
 {
@@ -187,7 +182,7 @@ void WindowsConsoleLogger::logText( Domain&        ,    Verbosity  verbosity,
             ALIB_ASSERT_WARNING( colNo >=0 && colNo <=9, "ConsoleLogger: Unknown ESC-c code" );
 
             WORD attr= 0;
-            WORD light=  UseLightColors > 0 && ((UseLightColors== 1) == isForeGround )  ? FOREGROUND_INTENSITY : 0;
+            WORD light=  UseLightColors != LightColorUsage::Never && ((UseLightColors== LightColorUsage::ForegroundLight) == isForeGround )  ? FOREGROUND_INTENSITY : 0;
 
             // 0..5 (red, green, yellow, blue, magenta, cyan)
             if ( colNo >= 0 && colNo < 6)  attr= (win32Cols[colNo] | light);
@@ -220,7 +215,6 @@ void WindowsConsoleLogger::logText( Domain&        ,    Verbosity  verbosity,
         // auto tab / end of meta
         else if ( c == 't'  || c == 'A' )
         {
-            bool endOfMeta= c == 'A';
             c=  rest.ConsumeChar();
             int extraSpace=  c >= '0' && c <= '9' ? (int) ( c - '0' )
                                                   : (int) ( c - 'A' ) + 10;
@@ -231,7 +225,7 @@ void WindowsConsoleLogger::logText( Domain&        ,    Verbosity  verbosity,
             if( qtySpaces > 0 )
             {
                 column+= qtySpaces;
-                const AString& spaces= lib::strings::Spaces::Get();
+                const AString& spaces= lib::strings::util::Spaces::Get();
                 integer spacesLength= spaces.Length();
                 while ( qtySpaces > 0 )
                 {
@@ -240,23 +234,6 @@ void WindowsConsoleLogger::logText( Domain&        ,    Verbosity  verbosity,
                     qtySpaces-= nextQty;
                 }
             }
-
-
-
-            if ( endOfMeta )
-            {
-                WORD col;
-                switch ( verbosity )
-                {
-                    case Verbosity::Verbose:   col= MsgColorVerbose;     break;
-                    case Verbosity::Info:      col= MsgColorInfo;        break;
-                    case Verbosity::Warning:   col= MsgColorWarning;     break;
-                    case Verbosity::Error:     col= MsgColorError;       break;
-                    default: col= 0; break;
-                }
-                actualAttributes= ( actualAttributes & W32C_FOREGROUND_MASK ) | col;
-            }
-
         }
 
 
@@ -264,7 +241,7 @@ void WindowsConsoleLogger::logText( Domain&        ,    Verbosity  verbosity,
         else if ( c == 'l' )
         {
             if ( rest.ConsumeChar() == 'S' )
-                actualAttributes=  ( actualAttributes & W32C_FOREGROUND_MASK ) |  W32C_BLUE | ( UseLightColors == 1 ? FOREGROUND_INTENSITY : 0 );
+                actualAttributes=  ( actualAttributes & W32C_FOREGROUND_MASK ) |  W32C_BLUE | ( UseLightColors == LightColorUsage::ForegroundLight ? FOREGROUND_INTENSITY : 0 );
             else
                 actualAttributes=  ( actualAttributes & W32C_FOREGROUND_MASK ) |  ( originalConsoleAttributes & ~W32C_FOREGROUND_MASK );
         }

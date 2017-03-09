@@ -27,7 +27,7 @@
 #include <sstream>
 #include "alib/compatibility/std_iostream.hpp"
 #include "alib/compatibility/std_string.hpp"
-#include "alib/strings/stringtuples.hpp"
+#include "alib/strings/util/stringtuples.hpp"
 
 namespace std
 {

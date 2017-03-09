@@ -129,7 +129,7 @@ UT_METHOD(Processes)
     UT_PRINT(""); UT_PRINT( "### Environment::GetProcessInfo###" );
 
 
-    String512 output;
+    String2K output;
     const ProcessInfo& currentProcess= ProcessInfo::Current();
     UT_TRUE( currentProcess.PID != 0 );
 

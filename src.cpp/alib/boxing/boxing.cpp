@@ -7,8 +7,6 @@
 
 #include "alib/alib.hpp"
 
-using namespace std;
-
 namespace aworx { namespace lib {
 
 /** ************************************************************************************************
@@ -918,7 +916,7 @@ of applying them to objects of type
 \ref aworx::lib::strings::AString "AString". This way, this templated interface class can
 be registered with <b>ALib %Boxing</b> in the bootstrap section of a process as follows:
 
-\snippet "stringboxing.hpp"     DOX_ALIB_BOXING_SAMPLE_TEMPLATED_INTERFACE
+\snippet "stringboxing.cpp"     DOX_ALIB_BOXING_SAMPLE_TEMPLATED_INTERFACE
 
 The same can be done in custom bootstrap code with every applicable custom type!
 
@@ -1017,13 +1015,13 @@ fundamental of any interface may be added even if the built-in boxing of fundame
 (which is mandatory for all \b %ALib distributions apart from the pure <b>ALib %Boxing</b> module).
 
 <b>%IIsNull:</b>
-Interface \b % IIsNull introduces the concept of <em>"nullable"</em> types to <b>ALib %Boxing</b>.
+Interface \b %IIsNull introduces the concept of <em>"nullable"</em> types to <b>ALib %Boxing</b>.
 This concept is useful for pointer types or string types and may be adopted for custom types as well.
 For information on how the default implementation of <b>Alib Boxing</b> defines this concept,
 by default, refer to the \ref aworx::lib::boxing::IIsNull "reference documentation of class IIsNull".
 
 <b>%IIsEmpty:</b>
-Interface \b % IIsEmpty introduces the concept of <em>"emptiness"</em> to <b>ALib %Boxing</b>.
+Interface \b %IIsEmpty introduces the concept of <em>"emptiness"</em> to <b>ALib %Boxing</b>.
 This concept is useful for array types or string types and may be adopted for custom types as well.
 For information on how the default implementation of <b>Alib Boxing</b> defines this concept,
 by default, refer to the \ref aworx::lib::boxing::IIsEmpty "reference documentation of class IIsEmpty".
@@ -1269,7 +1267,7 @@ method \b %Invoke is therefore again rather simple:
 \snippet "alib/time/ticks.cpp"     DOX_ALIB_BOXING_IFORMAT_TTICKS
 
 Boxing interface \b %IFormat is used by \b %ALib internally in module <b>ALib Strings</b> with class
-\ref aworx::lib::strings::Formatter "Formatter" which is used to format the contents of \b %AString
+\ref aworx::lib::strings::format::Formatter "Formatter" which is used to format the contents of \b %AString
 objects. The whole class relies on <b>ALib %Boxing</b> and therefore it is not included
 with the single module distribution of <b>ALib Strings</b> (which excludes boxing).
 
@@ -1382,7 +1380,7 @@ Therefore, adding support for boxing of "heavy" string types is even more simple
 - <b>Step 3</b> is omitted. You're done.
 
 
-Optionally, to be complete, one thing might be done for "heavy" string types: As explained already
+Optionally, to be complete, one thing might be done for "heavy" string types: As explained already,
 to alternatively box such types without loosing the object, wrapper class
 \ref aworx::lib::boxing::BoxedAs "BoxedAs" might be used (see chapter
 \ref alib_namespace_boxing_types_boxedas  "4.5 Boxing Types As They Are"). Now, it might be
@@ -1577,7 +1575,7 @@ If combined module [ALib %Boxing & Strings](https://github.com/AlexWorx/ALib-Box
 is used, the provision of compilation symbol \ref ALIB_FEAT_BOXING_FTYPES_OFF will suppress
 the the default implementation of boxing <b>ALib String</b> types as well, and consequently will
 not allow to use class
-\ref aworx::lib::strings::Formatter "Formatter" and associated types.
+\ref aworx::lib::strings::format::Formatter "Formatter" and associated types.
 
 Besides header \c "alib/alib.hpp", no other header needs to be included, apart from what is
 documented in  chapter
@@ -2021,8 +2019,11 @@ namespace boxing
 // #################################################################################################
 // Init()
 // #################################################################################################
+ALIB_NAMESPACE_INIT_FLAG
 void Init()
 {
+    ALIB_NAMESPACE_INIT_DEDUP
+
     // set built-in boxer interfaces
     DefineDefaultInterface<IEquals >();
     DefineDefaultInterface<IIsNull >();
@@ -2035,12 +2036,21 @@ void Init()
     #endif
 }
 
+void TerminationCleanUp()
+{
+    // delete boxer and interface singletons. This is to be done only for tools like
+    // valgrind, hence in debug mode.
+    #if ALIB_DEBUG
+        for( auto it: Boxer::dbgKnownBoxers         ) delete it.second;
+        for( auto it: Boxer::dbgKnownInterfaceImpl  ) delete it.second;
+    #endif
+}
+
 // #################################################################################################
 // class Boxer
 // #################################################################################################
 
 lang::TypeinfoMap<Interface*>   Boxer::defaultInterfaces;
-
 
 // Debug checks and type name output
 #if ALIB_DEBUG
@@ -2053,23 +2063,22 @@ lang::TypeinfoMap<Interface*>   Boxer::dbgKnownInterfaceImpl;
 
 void  Boxer:: dbgCheckNewBoxer()
 {
-    auto entry= Boxer::dbgKnownBoxers.find( type );
-    if ( entry != Boxer::dbgKnownBoxers.end() )
+    if ( Boxer::dbgKnownBoxers.find( type ) != Boxer::dbgKnownBoxers.end() )
     {
         ALIB_ERROR( "Double instantiation of Boxer of Type: \"", debug::TypeDemangler(type).Get(), "\"" )
         return;
     }
 
-    dbgKnownBoxers[type]= this;
+    //dbgKnownBoxers[type]= this;
+    Boxer::dbgKnownBoxers.insert(std::make_pair(std::reference_wrapper<const std::type_info>(type), this) );
 }
 
 void  Boxer::debugCheckInterfaceExists( const std::type_info& type )
 {
-    auto entry= Boxer::dbgKnownInterfaces.find( type );
-    if ( entry == Boxer::dbgKnownInterfaces.end() )
+    if ( Boxer::dbgKnownInterfaces.find( type ) == Boxer::dbgKnownInterfaces.end() )
     {
         ALIB_ERROR( "Requested interface was never registered for any boxable type: ",
-                           debug::TypeDemangler(type).Get() )
+                    debug::TypeDemangler(type).Get() )
         return;
     }
 }

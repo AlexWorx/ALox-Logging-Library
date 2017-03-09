@@ -12,16 +12,14 @@
     #include "alib/threads/smartlock.hpp"
 #endif
 
-#if !defined(HPP_ALIB_STRINGS_FORMATTER_PYTHONSTYLE)
-    #include <alib/strings/formatterpythonstyle.hpp>
+#if !defined(HPP_ALIB_STRINGS_FORMAT_FORMATTER_PYTHONSTYLE)
+    #include "alib/strings/format/formatterpythonstyle.hpp"
 #endif
 
-#if !defined(HPP_ALIB_STRINGS_FORMATTER)
-    #include <alib/strings/formatter.hpp>
+#if !defined(HPP_ALIB_STRINGS_FORMAT_FORMATTER)
+    #include "alib/strings/format/formatter.hpp"
 #endif
 
-
-using namespace std;
 
 namespace aworx { namespace lib { namespace lang
 {
@@ -29,7 +27,7 @@ namespace aworx { namespace lib { namespace lang
 // #################################################################################################
 // static objects
 // #################################################################################################
-Report* Report::defaultReport   = nullptr;
+Report* Report::defaultReport                                                             = nullptr;
 
 // #################################################################################################
 // class Report
@@ -46,6 +44,15 @@ Report::~Report()
     PopWriter( ReportWriterStdIO::GetSingleton() );
     delete lock;
 }
+
+void Report::TerminationCleanUp()
+{
+    if ( defaultReport != nullptr )
+        delete defaultReport;
+    if( ReportWriterStdIO::singleton )
+        delete ReportWriterStdIO::singleton;
+}
+
 
 void Report::PushHaltFlags( bool haltOnErrors, bool haltOnWarnings )
 {
@@ -103,7 +110,7 @@ ReportWriter* Report::PeekWriter()
     return writers.top();
 }
 
-void Report::DoReport( Message& message )
+void Report::DoReport( const Message& message )
 {
     OWN(*lock);
     if (recursionBlocker)
@@ -111,7 +118,7 @@ void Report::DoReport( Message& message )
     recursionBlocker= true;
 
         if ( writers.size() > 0 )
-            writers.top()->Report( message );
+            writers.top()->Report( message  );
 
         #if ALIB_DEBUG
             int haltFlags= haltAfterReport.top();
@@ -134,20 +141,6 @@ void Report::DoReport( Message& message )
     recursionBlocker= false;
 }
 
-ReportWriterStdIO::ReportWriterStdIO()
-{
-    Formatter= nullptr;
-    buffer=    nullptr;
-}
-
-ReportWriterStdIO::~ReportWriterStdIO()
-{
-    if (Formatter)
-    {
-        delete Formatter;
-        delete buffer;
-    }
-}
 
 void ReportWriterStdIO::NotifyActivation( lang::Phase phase )
 {
@@ -161,29 +154,24 @@ void ReportWriterStdIO::NotifyActivation( lang::Phase phase )
 void ReportWriterStdIO::Report( const Report::Message& msg )
 {
     ALIB::StdOutputStreamsLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
-        if( !Formatter )
-        {
-            Formatter= new FormatterPythonStyle();
-            buffer=    new AString();
-        }
+
+        String512 buffer( "ALib " );
+             if (  msg.Type == 0 )   buffer._( "Error:   " );
+        else if (  msg.Type == 1 )   buffer._( "Warning: " );
+        else                         buffer._( "Report (type=" )._( msg.Type )._("): ");
 
 
-        String64 prefix( "ALib " );
-             if (  msg.Type == 0 )   prefix._( "Error:   " );
-        else if (  msg.Type == 1 )   prefix._( "Warning: " );
-        else                         prefix._( "Report (type=" )._( msg.Type )._("): ");
+        auto& out   = msg.Type == 0 || msg.Type == 1 ? std::cerr : std::cout;
+        auto& other = msg.Type == 0 || msg.Type == 1 ? std::cout : std::cerr;
 
-
-        auto& out   = msg.Type == 0 || msg.Type == 1 ? cerr : cout;
-        auto& other = msg.Type == 0 || msg.Type == 1 ? cout : cerr;
-        buffer->Clear();
-        Formatter->FormatList(*buffer, msg );
+        Formatter::AcquireDefault().Format( buffer, dynamic_cast<const Boxes&>( msg ) );
+        Formatter::ReleaseDefault();
 
         out  .flush();
         other.flush();
-        out.write(  prefix.Buffer(),  prefix.Length() );
-        out.write( buffer->Buffer(), buffer->Length() );
-        out << endl;
+        out << std::endl;
+        out.write( buffer.Buffer(), buffer.Length() );
+        out << std::endl;
         out  .flush();
         other.flush();
 
@@ -191,8 +179,7 @@ void ReportWriterStdIO::Report( const Report::Message& msg )
         #if defined( _WIN32 )
             if ( ALIB::IsDebuggerPresent() )
             {
-                OutputDebugStringA( prefix.ToCString() );
-                OutputDebugStringA( buffer->Buffer() );
+                OutputDebugStringA( buffer.ToCString() );
                 OutputDebugStringA( "\r\n" );
             }
         #endif

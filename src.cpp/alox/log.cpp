@@ -29,23 +29,11 @@ namespace aworx {
 // #################################################################################################
 #if ALOX_DBG_LOG
     ALoxReportWriter*   Log::DebugReportWriter   = nullptr;
-#endif
 
 
-#if defined(_MSC_VER)
-    // MSC  (as of 12/2015):
-    // C4579: in-class initialization for type 'const aworx::SLiteral<10>'
-    // is not yet implemented; static member will remain uninitialized at runtime but
-    // use in constant-expressions is supported
-    SLiteral<2>  ALox::InternalDomains {"$/" };
-#else
-    constexpr SLiteral<2>  ALox::InternalDomains;
-#endif
-
-// #################################################################################################
-// Auto detection of DEBUG environment
-// #################################################################################################
-#if ALOX_DBG_LOG
+    // #################################################################################################
+    // Auto detection of DEBUG environment
+    // #################################################################################################
 
     TextLogger*   Log::DebugLogger= nullptr;
     TextLogger*   Log::IDELogger  = nullptr;
@@ -114,25 +102,24 @@ namespace aworx {
         #endif
     }
 
-#endif // ALOX_DBG_LOG
 
 // #################################################################################################
 // ALib Report Writer installation
 // #################################################################################################
-#if ALOX_DBG_LOG
 
     void Log::AddALibReportWriter( Lox* lox )
     {
-        ALIB_ASSERT_WARNING( DebugReportWriter == nullptr, "Log::AddReportWriter(): ALoxReportWriter already created." );
+        ALIB_ASSERT_WARNING( DebugReportWriter == nullptr,
+                             "Log::AddReportWriter(): ALoxReportWriter already created." );
 
-        // replace ALibs' ReportWriter by an ALox ReportWriter
+        // replace ALibs' default ReportWriter (but only this!) by an ALoxReportWriter
         if ( lib::lang::Report::GetDefault().PeekWriter() == lib::lang::ReportWriterStdIO::GetSingleton()  )
             lib::lang::Report::GetDefault().PushWriter( DebugReportWriter= new ALoxReportWriter( lox ) );
     }
 
     void Log::RemoveALibReportWriter()
     {
-        // replace the report writer (if we replaced it before)
+        // replace the report writer
         if ( DebugReportWriter != nullptr )
         {
             lib::lang::Report::GetDefault().PopWriter( DebugReportWriter );
@@ -140,6 +127,8 @@ namespace aworx {
             DebugReportWriter=  nullptr;
         }
     }
+
+
 #endif // ALOX_DBG_LOG
 
 }}// namespace aworx::lox

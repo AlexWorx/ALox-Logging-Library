@@ -5,13 +5,12 @@
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
-
 #include "alib/compatibility/std_iostream.hpp"
+#if defined(_MSC_VER)
+    #include <algorithm> 
+#endif
 
 #if ALIB_MODULE_STRINGS
-
-using namespace std;
-using namespace aworx::lib::strings::thirdparty::std;
 
 
 namespace aworx { namespace lib { namespace strings {
@@ -63,11 +62,11 @@ namespace std {
 
 #endif
 
-integer T_Apply<thirdparty::std::ReadLineFromIStream>::Apply( AString& target, const ReadLineFromIStream& reader)
+integer T_Apply<thirdparty::std::ReadLineFromIStream>::Apply( AString& target, const thirdparty::std::ReadLineFromIStream& reader)
 {
     // we are required to write to the param object. So we cast to non-const. This is OK, as
     // the const specifier came through TMP.
-    ReadLineFromIStream& param= const_cast<ReadLineFromIStream&>( reader );
+    thirdparty::std::ReadLineFromIStream& param= const_cast<thirdparty::std::ReadLineFromIStream&>( reader );
 
     if ( param.TargetData == CurrentData::Clear )
         target.Clear();
@@ -78,7 +77,7 @@ integer T_Apply<thirdparty::std::ReadLineFromIStream>::Apply( AString& target, c
     {
         // calc buffer size (if we hit the overall line width)
         // and check if we reached the limit per line
-        integer actReadSize= min( param.BufferSize,  param.MaxLineWidth - ( target.Length() - origLength) + 1  );
+        integer actReadSize= (std::min)( param.BufferSize,  param.MaxLineWidth - ( target.Length() - origLength) + 1  );
         if ( actReadSize < 2 )
             return target.Length() - origLength;
 
@@ -87,8 +86,8 @@ integer T_Apply<thirdparty::std::ReadLineFromIStream>::Apply( AString& target, c
         // read
         int64_t start= target.Length();
         param.IStream.getline( target.VBuffer() + start, actReadSize );
-        streamsize gCount= param.IStream.gcount();
-        streamsize count=  static_cast<streamsize>(strlen( target.Buffer() + start ));
+        std::streamsize gCount= param.IStream.gcount();
+        std::streamsize count=  static_cast<std::streamsize>(strlen( target.Buffer() + start ));
 
         bool lineComplete=  count + 1 == gCount;
 
@@ -136,7 +135,7 @@ integer T_Apply<thirdparty::std::ReadLineFromIStream>::Apply( AString& target, c
 
             // otherwise, it should really have been the buffer size, so let's clear the bit
             // and continue with more buffer space
-            ALIB_ASSERT( param.IStream.rdstate() == iostream::failbit )
+            ALIB_ASSERT( param.IStream.rdstate() == std::iostream::failbit )
             param.IStream.clear();
             continue;
         }
@@ -145,7 +144,7 @@ integer T_Apply<thirdparty::std::ReadLineFromIStream>::Apply( AString& target, c
         if ( param.IStream.eof() )
             break;
 
-        if ( param.IStream.rdstate() == iostream::failbit )
+        if ( param.IStream.rdstate() == std::iostream::failbit )
         {
             ALIB_ERROR( "Unknown Error Reading File. Maybe method implemented incomplete?" );
             break;

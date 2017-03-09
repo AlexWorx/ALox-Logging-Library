@@ -50,9 +50,9 @@ namespace aworx { namespace lib { namespace strings
  * <p>
  *
  * \note The move constructor of this class will copy the buffer of the movable \b %AString or
- *       \b %PreallocatedString object rather, instead of moving it. This is to keep the statically allocated
- *       buffer in place. Only if the contents does fit into our TCapacity, the buffer is '\e stolen'
- *       (and an one-time warning is issued in debug compilations).<br>
+ *       \b %PreallocatedString object rather, instead of moving it. This is to keep the statically
+ *       allocated buffer in place. Only if the contents does fit into our TCapacity, the buffer
+ *       is '\e stolen' (and an one-time warning is issued in debug compilations).<br>
  *       Like parent class \b %AString, this class does not provide move assignment. See
  *       \ref aworx::lib::strings::AString "AString" for the rational of this design decision.
  *

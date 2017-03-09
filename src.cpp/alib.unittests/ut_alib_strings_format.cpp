@@ -7,14 +7,14 @@
 #include "alox/alox.hpp"
 
 #if !defined (HPP_ALIB_STRINGS)
-    #include "alib/strings/tokenizer.hpp"
+    #include "alib/strings/util/tokenizer.hpp"
 #endif
 #if !defined (HPP_ALIB_STRINGS_NUMBERFORMAT)
     #include "alib/strings/numberformat.hpp"
 #endif
 
-#include "alib/strings/formatterpythonstyle.hpp"
-#include "alib/strings/formatterjavastyle.hpp"
+#include "alib/strings/format/formatterpythonstyle.hpp"
+#include "alib/strings/format/formatterjavastyle.hpp"
 #include "alib/time/calendartime.hpp"
 
 #undef min
@@ -813,6 +813,7 @@ UT_METHOD( ConvertFloats )
         }
 
         // roundtrip e-200 to e+200
+        #if !ALIB_AVOID_ANALYZER_WARNINGS
         {
             for ( int exp= -200 ; exp <= 200 ; exp+=1 )
             {
@@ -830,6 +831,7 @@ UT_METHOD( ConvertFloats )
                 }
             }
         }
+        #endif
 
         // special exponent symbol
         {
@@ -870,8 +872,9 @@ void    checkError (AWorxUnitTesting& ut, const String& exp, BoxedObjects&&... a
     testAS.SetBuffer(1);
 
     // invoke format
+    UT_PRINT( "An error/warning should follow" );
     lib::lang::Report::GetDefault().PushHaltFlags( false, false );
-    testFormatter->FormatList( testAS, boxes );
+    testFormatter->Format( testAS, boxes );
     lib::lang::Report::GetDefault().PopHaltFlags();
 
     UT_TRUE( testAS.IndexOf(exp) >= 0);
@@ -889,7 +892,7 @@ void    checkFormat(AWorxUnitTesting& ut,  const String& exp, BoxedObjects&&... 
     testAS.SetBuffer(1);
 
     // invoke format
-    testFormatter->FormatList( testAS, boxes );
+    testFormatter->Format( testAS, boxes );
 
     UT_EQ( exp, testAS );
 }

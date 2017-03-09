@@ -30,7 +30,7 @@ import com.aworx.lib.lang.Whitespaces;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.CString;
 import com.aworx.lib.strings.Substring;
-import com.aworx.lib.strings.Tokenizer;
+import com.aworx.lib.strings.util.Tokenizer;
 import com.aworx.lib.threads.ThreadLock;
 import com.aworx.lib.time.Ticks;
 import com.aworx.lox.core.Domain;
@@ -148,8 +148,9 @@ public class Lox extends ThreadLock
     /** A key value used in stores if no key is given (global object).  */
     protected final static String   noKeyHashKey                                              = "$";
 
-    /** The list of collected log objects which is passed to the \e Loggers  */
-    protected ArrayList<Object>     tmpLogables                            = new ArrayList<Object>();
+    /** A list of lists of objects. The list is passed to the \e Loggers. For each recursive call,
+     *  one list is created.    */
+    protected ArrayList<ArrayList<Object>>  logableLists       = new ArrayList<ArrayList<Object>>();
 
     /** Rule types */
     public enum  DSRType
@@ -3053,21 +3054,22 @@ public class Lox extends ThreadLock
     }
 
     /** ********************************************************************************************
-     * Simple helper method that inserts a logable at the front of #tmpLogables.
+     * Simple helper method that inserts a logable at the front of given \p list.
      * If the logable is an object array, each object will be inserted.
      *
+     * @param list      The logable list
      * @param logable   The logable or array of logables.
      **********************************************************************************************/
-    protected void insertLogables( Object logable )
+    protected static void insertLogables( ArrayList<Object> list, Object logable )
     {
         if ( logable instanceof Object[] )
         {
             Object[] logableArray= (Object[]) logable;
             for (int i= logableArray.length - 1 ; i >= 0 ; --i )
-                tmpLogables.add( 0, logableArray[i] );
+                list.add( 0, logableArray[i] );
         }
         else
-            tmpLogables.add( 0, logable );
+            list.add( 0, logable );
     }
 
     /** ********************************************************************************************
@@ -3083,12 +3085,17 @@ public class Lox extends ThreadLock
     protected void log( Domain dom, Verbosity verbosity, Object[] logables, Inclusion prefixes )
     {
         dom.cntLogCalls++;
-        tmpLogables.clear();
+
+        // get a logable list (reuse, one per recursive log)
+        while( logableLists.size() < lockCount )
+            logableLists.add( new ArrayList<Object>() );
+        ArrayList<Object> logableList= logableLists.get( lockCount - 1 );
+
         for ( int i= 0; i < dom.countLoggers() ; i++ )
             if( dom.isActive( i, verbosity ) )
             {
                 // lazily collect objects once
-                if ( tmpLogables.size() == 0 )
+                if ( logableList.size() == 0 )
                 {
                     // OK, this is a little crude, but the simplest solution: As class ScopeStore sees
                     // null objects as nothing and won't return them in a walk, we replace null by
@@ -3099,24 +3106,24 @@ public class Lox extends ThreadLock
                     {
                         if ( next == logables )
                             for( int l= logables.length -1 ; l >= 0; --l )
-                                insertLogables( logables[l] );
+                                insertLogables( logableList, logables[l] );
 
                         else if (    next != this                    // see comment above
                                   && prefixes == Inclusion.INCLUDE ) // this is false for internal domains (only domain specific logables are added there)
-                            insertLogables( next );
+                            insertLogables( logableList, next );
 
                         // was this the actual? then insert domain-associated logables now
                         boolean excludeOthers= false;
                         if( next == logables || next == this )
                         {
-                            int qtyThreadInner= tmpLogables.size() -1;
+                            int qtyThreadInner= logableList.size() -1;
                             Domain pflDom= dom;
                             while ( pflDom != null )
                             {
                                 for( int ii= pflDom.prefixLogables.size() -1 ; ii >= 0 ; ii-- )
                                 {
                                     Domain.PL pl= pflDom.prefixLogables.get(ii);
-                                    insertLogables( pl.logable );
+                                    insertLogables( logableList, pl.logable );
                                     if ( pl.includeOtherPLs == Inclusion.EXCLUDE )
                                     {
                                         excludeOthers= true;
@@ -3131,7 +3138,7 @@ public class Lox extends ThreadLock
                             if (excludeOthers)
                             {
                                 for ( int ii= 0; ii < qtyThreadInner ; ii++ )
-                                    tmpLogables.remove( tmpLogables.size() - 1 );
+                                    logableList.remove( logableList.size() - 1 );
                                 break;
                             }
                         }
@@ -3141,10 +3148,11 @@ public class Lox extends ThreadLock
                 Logger logger= dom.getLogger( i );
                 logger.acquire();
                     logger.cntLogs++;
-                    logger.log( dom, verbosity, tmpLogables, scopeInfo );
+                    logger.log( dom, verbosity, logableList, scopeInfo );
                     logger.timeOfLastLog.set();
                 logger.release();
             }
+        logableList.clear();
     }
 
     /** ********************************************************************************************

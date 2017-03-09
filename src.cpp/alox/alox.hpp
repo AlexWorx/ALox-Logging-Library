@@ -93,14 +93,7 @@ namespace lox {
     #include "alib/config/configuration.hpp"
 #endif
 
-namespace aworx { namespace lox
-{
-
-
-// #############################################################################################
-// Forward declarations
-// #############################################################################################
-
+namespace aworx { namespace lox {
 
 /** ************************************************************************************************
  * This is a 100% static class that holds constants and 'global' methods of the
@@ -229,34 +222,39 @@ class ALox
          */
         ALIB_API static  String              ConfigCategoryName;
 
-        ALIB_API static  lib::config::VariableDefinition NO_IDE_LOGGER;                 ///< Configuration variable definition
-        ALIB_API static  lib::config::VariableDefinition CONSOLE_TYPE;                  ///< Configuration variable definition
-        ALIB_API static  lib::config::VariableDefinition AUTO_SIZES;                    ///< Configuration variable definition
-        ALIB_API static  lib::config::VariableDefinition MAX_ELAPSED_TIME;              ///< Configuration variable definition
-        ALIB_API static  lib::config::VariableDefinition DOMAIN_SUBSTITUTION;           ///< Configuration variable definition
-        ALIB_API static  lib::config::VariableDefinition VERBOSITY;                     ///< Configuration variable definition
-        ALIB_API static  lib::config::VariableDefinition PREFIXES;                      ///< Configuration variable definition
-        ALIB_API static  lib::config::VariableDefinition DUMP_STATE_ON_EXIT;            ///< Configuration variable definition
-        ALIB_API static  lib::config::VariableDefinition FORMAT;                        ///< Configuration variable definition
-        ALIB_API static  lib::config::VariableDefinition FORMAT_DATE_TIME;              ///< Configuration variable definition
-        ALIB_API static  lib::config::VariableDefinition FORMAT_TIME_DIFF;              ///< Configuration variable definition
-        ALIB_API static  lib::config::VariableDefinition FORMAT_MULTILINE;              ///< Configuration variable definition
-        ALIB_API static  lib::config::VariableDefinition REPLACEMENTS;                  ///< Configuration variable definition
-        ALIB_API static  lib::config::VariableDefinition CONSOLE_LIGHT_COLORS;          ///< Configuration variable definition
-        ALIB_API static  lib::config::VariableDefinition SPTR_GLOBAL;                   ///< Configuration variable definition
-        ALIB_API static  lib::config::VariableDefinition SPTR_LOX;                      ///< Configuration variable definition
+        ALIB_API static  lib::config::VariableDefinition NO_IDE_LOGGER;         ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by \ref aworx::lox::Log::AddDebugLogger "Log::AddDebugLogger".
+        ALIB_API static  lib::config::VariableDefinition CONSOLE_TYPE;          ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by \ref aworx::lox::Lox::CreateConsoleLogger "Lox::CreateConsoleLogger".
+
+        ALIB_API static  lib::config::VariableDefinition AUTO_SIZES;            ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::core::textlogger::TextLogger "TextLogger".
+        ALIB_API static  lib::config::VariableDefinition FORMAT;                ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::core::textlogger::TextLogger "TextLogger".
+        ALIB_API static  lib::config::VariableDefinition FORMAT_DATE_TIME;      ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::core::textlogger::TextLogger "TextLogger".
+        ALIB_API static  lib::config::VariableDefinition FORMAT_MULTILINE;      ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::core::textlogger::TextLogger "TextLogger".
+        ALIB_API static  lib::config::VariableDefinition FORMAT_TIME_DIFF;      ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::core::textlogger::TextLogger "TextLogger".
+        ALIB_API static  lib::config::VariableDefinition MAX_ELAPSED_TIME;      ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::core::textlogger::TextLogger "TextLogger".
+        ALIB_API static  lib::config::VariableDefinition REPLACEMENTS;          ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::core::textlogger::TextLogger "TextLogger".
+
+        ALIB_API static  lib::config::VariableDefinition CONSOLE_LIGHT_COLORS;  ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by colorful specializations of class \ref aworx::lox::core::textlogger::TextLogger "TextLogger".
+
+        ALIB_API static  lib::config::VariableDefinition VERBOSITY;             ///< Attributes of corresponding configuration variable [ALOX_LOXNAME_LOGGERNAME_VERBOSITY](../group__GrpALoxConfigVars.html).
+        ALIB_API static  lib::config::VariableDefinition SPTR_GLOBAL;           ///< Attributes of corresponding configuration variable [ALOX_GLOBAL_SOURCE_PATH_TRIM_RULES](../group__GrpALoxConfigVars.html).
+
+        ALIB_API static  lib::config::VariableDefinition SPTR_LOX;              ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::Lox "Lox".
+        ALIB_API static  lib::config::VariableDefinition DOMAIN_SUBSTITUTION;   ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::Lox "Lox".
+        ALIB_API static  lib::config::VariableDefinition PREFIXES;              ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::Lox "Lox".
+        ALIB_API static  lib::config::VariableDefinition DUMP_STATE_ON_EXIT;    ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::Lox "Lox".
 
         #if defined(_WIN32)
-        ALIB_API static  lib::config::VariableDefinition CODEPAGE;      ///< Configuration variable definition
+        ALIB_API static  lib::config::VariableDefinition CODEPAGE;      ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::loggers::WindowsConsoleLogger "WindowsConsoleLogger".
         #endif
 
     // #############################################################################################
     // Protected fields
     // #############################################################################################
     protected:
-        /** The Lox singleton for debug logging. Created on request. */
         #if ALOX_DBG_LOG
+            /** The Lox singleton for debug logging. Created on request. */
             ALIB_API static Lox*             theLog;
+
         #endif
 
         /** The Lox objects registered with us. */
@@ -485,9 +483,9 @@ class    ALoxReportWriter : public aworx::lib::lang::ReportWriter
 
     /** ********************************************************************************************
      * Write ALib reports using ALox.
-     * @param report The report to log.
+     * @param msg The message to log.
      **********************************************************************************************/
-     virtual void Report  ( const lib::lang::Report::Message& report );
+     virtual void Report  ( const lib::lang::Report::Message& msg );
 
     /** ********************************************************************************************
      * Returns the domain used to write reports.
@@ -502,7 +500,10 @@ class    ALoxReportWriter : public aworx::lib::lang::ReportWriter
 } // namespace lox
 
 /** Type alias name in namespace #aworx. */
-using     ALox=         aworx::lox::ALox;
+using     ALox=                 aworx::lox::ALox;
+
+/** Type alias name in namespace #aworx. */
+using     ALoxReportWriter=     aworx::lox::ALoxReportWriter;
 
 }  // namespace aworx
 

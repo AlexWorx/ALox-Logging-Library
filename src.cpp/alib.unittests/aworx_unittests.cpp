@@ -7,17 +7,17 @@
 
 #include "alox/alox.hpp"
 #include "alib/strings/substring.hpp"
-#include "alib/system/directory.hpp"
+#include "alib/system/environment.hpp"
 #include "alib/compatibility/std_iostream.hpp"
 
 #include "aworx_unittests.hpp"
 
 #if defined(__clang__)
-    #pragma message "Clang Compiler"
+    #pragma message "Clang Compiler (not a warning, just for an information)"
 #elif defined(__GNUC__)
-    #pragma message "GNU Compiler"
+    #pragma message "GNU Compiler (not a warning, just for an information)"
 #elif defined(_MSC_VER)
-    #pragma message ("MS Compiler")
+    #pragma message ("MS Compiler (not a warning, just for an information)")
 #endif
 
 
@@ -39,10 +39,11 @@ String    AWorxUnitTesting::GeneratedSamplesSearchDir= "docs/ALox.CPP/";
 // #################################################################################################
 // Constructors/destructor
 // #################################################################################################
-AWorxUnitTesting::AWorxUnitTesting( const TString& domain, const TString& testName)
+AWorxUnitTesting::AWorxUnitTesting( const TString& pdomain, const TString& testName)
 : lox( "UTLox", false )
 {
-    this->Domain=       domain;
+    this->Domain=  pdomain;
+    this->Domain.ToUpper();
     this->ActTestName=  testName;
 
     Log_SetSourcePathTrimRule( "*/src.cpp/", Inclusion::Include );
@@ -75,6 +76,15 @@ AWorxUnitTesting::AWorxUnitTesting( const TString& domain, const TString& testNa
         }
     #else
         utl= Lox::CreateConsoleLogger();
+
+        // check if we are in CLion. Here it is important to switch of the use of dark/light colors
+        if( utl->GetName().Equals("ANSI_CONSOLE") )
+        {
+            AString classPath;
+            aworx::lib::system::GetEnvironmentVariable( "CLASSPATH", classPath );
+            if ( classPath.IndexOf("CLion", 0, Case::Ignore) >= 0 )
+                dynamic_cast<AnsiConsoleLogger*>(utl)->UseLightColors= AnsiLogger::LightColorUsage::Never;
+        }
     #endif
 
     if ( LastAutoSizes.IsNotEmpty() )
@@ -83,10 +93,9 @@ AWorxUnitTesting::AWorxUnitTesting( const TString& domain, const TString& testNa
     }
 
     lox.Acquire(ALIB_SRC_INFO_PARAMS);
-        lox.SetVerbosity( utl, Verbosity::Verbose, domain);
+        lox.SetVerbosity( utl, Verbosity::Verbose, Domain);
         lox.SetVerbosity( utl, Verbosity::Warning, ALox::InternalDomains );
         lox.SetVerbosity( utl, Verbosity::Info,    String64() << ALox::InternalDomains << "UT_REPORT" );
-        lox.SetPrefix( ESC::BG_GRAY, "/" );
     lox.Release();
 
     lib::lang::Report::GetDefault().PushWriter( this );
@@ -122,7 +131,8 @@ AWorxUnitTesting::~AWorxUnitTesting()
 
 void AWorxUnitTesting::Failed( const String& file, int line, const Box& exp, const Box& given )
 {
-    Print( file, line, aworx::Verbosity::Error, "UT Failure: Expected: {!Q}, given: {!Q}.", exp, given );
+    Print( file, line, aworx::Verbosity::Error, "UT Failure: Expected: \"{!ESC}\"\\n"
+                                                "               given: \"{!ESC}\"", exp, given );
     assert(!AssertOnFailure);
 }
 
@@ -182,13 +192,12 @@ void AWorxUnitTesting::WriteResultFile(const String& name, const String& outputR
 void AWorxUnitTesting::Report  ( const lib::lang::Report::Message& msg )
 {
         lox.Acquire(msg.File, msg.Line, msg.Func);
-
+            lox.GetLogableContainer().Add( static_cast<const Boxes&>( msg ) );
             lox.Entry( String16() << ALox::InternalDomains << "UT_REPORT",
                        msg.Type == 0 ? Verbosity::Error    :
                        msg.Type == 1 ? Verbosity::Warning  :
                        msg.Type == 2 ? Verbosity::Info     :
-                                       Verbosity::Verbose,
-                       msg                                                        );
+                                       Verbosity::Verbose                         );
 
         lox.Release();
 }

@@ -43,17 +43,17 @@ public class ALoxReportWriter implements ReportWriter
 
     /** ********************************************************************************************
      * Log an ALib report using ALox.
-     * @param report  The error message.
+     * @param msg The message to report.
      **********************************************************************************************/
     @Override
-    public void report  (Report.Message report)
+    public void report  (Report.Message msg)
     {
         lox.entry( ALoxReportWriter.logDomain(),
-                   report.type == 0 ? Verbosity.ERROR      :
-                   report.type == 1 ? Verbosity.WARNING    :
-                   report.type == 2 ? Verbosity.INFO       :
-                                      Verbosity.VERBOSE,
-                   report.contents );
+                   msg.type == 0 ? Verbosity.ERROR      :
+                   msg.type == 1 ? Verbosity.WARNING    :
+                   msg.type == 2 ? Verbosity.INFO       :
+                                   Verbosity.VERBOSE,
+                   msg.contents );
     }
 
     /** ********************************************************************************************

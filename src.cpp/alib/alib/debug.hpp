@@ -22,7 +22,7 @@
  * The macros listed here are defined in two different versions, depending on the ALib distribution.
  * With single <b>ALib Modules</b> that do not incorporate class
  * \ref aworx::lib::lang::Report and family, namespace function
- * \ref aworx::lib::lang::DbgSimpleALibMsg (and overloads) are used to write the messages.
+ * \ref aworx::lib::debug::DbgSimpleALibMsg (and overloads) are used to write the messages.
  * The default implementation of this message invokes \b %assert(false) if the message is of
  * error type.<br>
  * There is a very simple "plug-in" concept in place that allows to redirect this method to
@@ -68,15 +68,15 @@
 
 #if ALIB_DEBUG
 
-    namespace aworx { namespace lib { namespace lang {
+    namespace aworx { namespace lib { namespace debug {
 
     /**
-     * Most ALib modules do not (must not) rely on
+     * Some ALib modules do not (must not) rely on
      * \ref aworx::lib::lang::Report "Report" /
      * \ref aworx::lib::lang::ReportWriter "ReportWriter" mechanics. Therefore, this simple method is
      * used for error handling in those portions of ALib that are exposed in such modules.<br>
      * This method first checks if static function pointer
-     * \ref aworx::lib::lang::DbgSimpleALibMsg_Plugin is set and if yes, passes the parameters
+     * \ref aworx::lib::debug::DbgSimpleALibMsg_Plugin is set and if yes, passes the parameters
      * to this method and exits.
      * If the complete ALib distribution is used, method
      * \ref aworx::lib::ALIB::Init "ALIB::Init"
@@ -94,6 +94,7 @@
      * @param msg1    The first message string.
      * @param msg2    Optional 2nd message string.
      * @param msg3    Optional 3rd message string.
+     * @param msg4    Optional 4th message string.
      *
      */
     ALIB_API
@@ -101,11 +102,12 @@
                                   int type,
                                   const char* msg1,
                                   const char* msg2= nullptr,
-                                  const char* msg3= nullptr );
+                                  const char* msg3= nullptr,
+                                  const char* msg4= nullptr );
 
     /**
      * Overloaded version of
-     * \ref DbgSimpleALibMsg(const char* file,int,const char*,int,const char*,const char*,const char*) "DbgSimpleALibMsg"
+     * \ref DbgSimpleALibMsg(const char* file,int,const char*,int,const char*,const char*,const char*,const char*) "DbgSimpleALibMsg"
      * which accepts one integer value and writes \p msg and \p intValue in sequence.
      *
      * @param file     The source file of the message invocation.
@@ -143,11 +145,11 @@
     void (*DbgSimpleALibMsg_Plugin)(const char* file, int line, const char* method, int type, int qtyMsgs, const char** msgs);
 
 
-    }}} // namespace [aworx::lib::lang]
+    }}} // namespace [aworx::lib::debug]
 
-    #define ALIB_ERROR(...)                { aworx::lib::lang::DbgSimpleALibMsg( ALIB_DBG_SRC_INFO_PARAMS, 0, __VA_ARGS__); }
-    #define ALIB_WARNING(...)              { aworx::lib::lang::DbgSimpleALibMsg( ALIB_DBG_SRC_INFO_PARAMS, 1, __VA_ARGS__); }
-    #define ALIB_MESSAGE(...)              { aworx::lib::lang::DbgSimpleALibMsg( ALIB_DBG_SRC_INFO_PARAMS, 2, __VA_ARGS__); }
+    #define ALIB_ERROR(...)                { aworx::lib::debug::DbgSimpleALibMsg( ALIB_DBG_SRC_INFO_PARAMS, 0, __VA_ARGS__); }
+    #define ALIB_WARNING(...)              { aworx::lib::debug::DbgSimpleALibMsg( ALIB_DBG_SRC_INFO_PARAMS, 1, __VA_ARGS__); }
+    #define ALIB_MESSAGE(...)              { aworx::lib::debug::DbgSimpleALibMsg( ALIB_DBG_SRC_INFO_PARAMS, 2, __VA_ARGS__); }
     #define ALIB_ASSERT(cond)              { if(!(cond)) ALIB_ERROR( "Assertion Failed" ); }
     #define ALIB_ASSERT_ERROR(cond, ...)   { if(!(cond)) ALIB_ERROR( __VA_ARGS__ );      }
     #define ALIB_ASSERT_WARNING(cond, ...) { if(!(cond)) ALIB_WARNING( __VA_ARGS__ );    }

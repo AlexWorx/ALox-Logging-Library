@@ -24,7 +24,7 @@ import com.aworx.lib.lang.Inclusion;
  *   classes
  *      \ref com::aworx::lib::strings::AString   "AString",
  *      \ref com::aworx::lib::strings::Substring "Substring" or
- *      \ref com::aworx::lib::strings::Formatter "Formatter"
+ *      \ref com::aworx::lib::strings::format::Formatter "Formatter"
  *   to write and parse numbers, which accept an object of this type as parameters.
  *
  * <b>Defined Singletons and User-Defined Instances:</b><br>
@@ -449,20 +449,20 @@ public class NumberFormat
     public com.aworx.lib.strings.AString octLiteralPrefix;
 
     // #############################################################################################
-    //  protected fields
+    //  constants
     // #############################################################################################
     /** Used for float conversion */
-    protected static final long signMask =   Double.doubleToRawLongBits(-0.0) ^
+    public    static final long signMask =   Double.doubleToRawLongBits(-0.0) ^
                                              Double.doubleToRawLongBits(+0.0);
 
     /** Used for float conversion */
-    protected static final long bitsNaN=     Double.doubleToRawLongBits( Double.NaN );
+    public    static final long bitsNaN=     Double.doubleToRawLongBits( Double.NaN );
 
     /** Used for float conversion */
-    protected static final long bitsInfPos=  Double.doubleToRawLongBits( Double.POSITIVE_INFINITY);
+    public    static final long bitsInfPos=  Double.doubleToRawLongBits( Double.POSITIVE_INFINITY);
 
     /** Used for float conversion */
-    protected static final long bitsInfNeg=  Double.doubleToRawLongBits( Double.NEGATIVE_INFINITY );
+    public    static final long bitsInfNeg=  Double.doubleToRawLongBits( Double.NEGATIVE_INFINITY );
 
     // #############################################################################################
     //  Interface

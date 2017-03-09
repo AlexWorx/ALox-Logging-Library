@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -28,26 +28,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -192,25 +192,24 @@
     <ClInclude Include="..\..\..\src.cpp\alib\lang\rtti.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\lang\singleton.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\lang\types.hpp" />
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\applyformat.hpp" />
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\applyto.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\applicables.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\strings\astring.hpp" />
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\autosizes.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\boxing\stringboxing.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\strings\cstring.hpp" />
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\formatter.hpp" />
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\formatterjavastyle.hpp" />
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\formatterpythonstyle.hpp" />
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\formatterstdimpl.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\format\formatter.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\format\formatterjavastyle.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\format\formatterpythonstyle.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\format\formatterstdimpl.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\strings\numberformat.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\strings\preallocatedstring.hpp" />
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\spaces.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\strings\string.hpp" />
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\stringboxing.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\strings\stringliteral.hpp" />
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\stringtuples.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\strings\substring.hpp" />
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\tokenizer.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\strings\tstring.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\util\autosizes.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\util\spaces.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\util\stringtuples.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\util\tokenizer.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\system\directory.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\system\environment.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\system\process.hpp" />
@@ -248,16 +247,16 @@
     <ClCompile Include="..\..\..\src.cpp\alib\alib.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\alib\debug.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\boxing\boxing.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib\boxing\ftypes.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib\compatibility\std_iostream.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\config\configuration.cpp" />
@@ -270,26 +269,26 @@
     <ClCompile Include="..\..\..\src.cpp\alib\lang\report.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\lang\rtti.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\lang\singleton.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\applyformat.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\applicables.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\astring.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\autosizes.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\boxing\stringboxing.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\cstring.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\formatter.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\formatterjavastyle.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\formatterpythonstyle.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\formatterstdimpl.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\format\formatter.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\format\formatterjavastyle.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\format\formatterpythonstyle.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\format\formatterstdimpl.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\numberformat.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\spaces.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\string.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\stringboxing.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\substring.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\tokenizer.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\tstring.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\util\autosizes.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\util\spaces.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\util\tokenizer.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\system\directory.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\system\environment.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\system\process.cpp" />

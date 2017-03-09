@@ -505,7 +505,7 @@ is just concatenated:
 
 But in fact, this concatenation is just the "fallback" strategy of a quite powerful formatting
 system coming with \b %ALox. In short, \b %ALox here relies on underlying library \b %ALib, which
-provides abstract class \ref cs::aworx::lib::strings::Formatter "Formatter"
+provides abstract class \ref cs::aworx::lib::strings::format::Formatter "Formatter"
 allowing to format a set of arguments in accordance with a given format string that contains placeholder symbols.
 
 Now there are two tricks implemented: First, if no format string is recognized, a simple
@@ -513,11 +513,11 @@ concatenation is performed. This is what we already saw. But secondly, if one fo
 recognize a format string, a next formatter can be asked.
 
 Two formatters are provided by \b %ALib and \b %ALox (by default) installs both in parallel:
-1. \ref cs::aworx::lib::strings::FormatterPythonStyle "FormatterPythonStyle"<br>
+1. \ref cs::aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle"<br>
    Implements an extended version of
    [Python String Fromat Syntax](https://docs.python.org/3.5/library/string.html#format-string-syntax),
    which is also similar to what C# offers.
-2. \ref cs::aworx::lib::strings::FormatterJavaStyle "FormatterJavaStyle"<br>
+2. \ref cs::aworx::lib::strings::format::FormatterJavaStyle "FormatterJavaStyle"<br>
    Implements the
    [formatting standards of the Java language](http://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html),
    which in turn are a little like good old \c printf, but of-course much more powerful and also type-safe.
@@ -561,8 +561,8 @@ string!
 In general, we are recommending to use Python style syntax with \b ALox, because it is more powerful and
 probably also better readable. The full documentation of the formats and how this is adopted
 within the C++ version of <b>%ALib/%ALox</b> is found with documentation of classes
-\ref cs::aworx::lib::strings::FormatterPythonStyle "FormatterPythonStyle" and
-\ref cs::aworx::lib::strings::FormatterJavaStyle   "FormatterJavaStyle". Let us conclude this chapter
+\ref cs::aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle" and
+\ref cs::aworx::lib::strings::format::FormatterJavaStyle   "FormatterJavaStyle". Let us conclude this chapter
 with some more samples:
 
 \snippet UT_dox_tutorial.cs        Tut_Format_Sample_1

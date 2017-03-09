@@ -53,7 +53,7 @@ class Tokenizer;
  *<p>
  * \note To generate \b %Substring objects which are separated by a delimiter character within a
  *       character array, use class
- *       \ref aworx::lib::strings::Tokenizer "Tokenizer".
+ *       \ref aworx::lib::strings::util::Tokenizer "Tokenizer".
  **************************************************************************************************/
 class Substring : public String
 {

@@ -5,8 +5,8 @@
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
-#if !defined (HPP_ALIB_STRINGS_TOKENIZER)
-    #include "alib/strings/tokenizer.hpp"
+#if !defined (HPP_ALIB_STRINGS_UTIL_TOKENIZER)
+    #include "alib/strings/util/tokenizer.hpp"
 #endif
 #if !defined (HPP_ALIB_SYSTEM_DIRECTORY)
     #include "alib/system/directory.hpp"
@@ -14,11 +14,11 @@
 #if !defined (HPP_ALIB_SYSTEM_PROCESSINFO)
     #include "alib/system/process.hpp"
 #endif
-#if !defined (HPP_ALIB_STRINGS_FORMATTER_PYTHONSTYLE)
-    #include "alib/strings/formatterpythonstyle.hpp"
+#if !defined (HPP_ALIB_STRINGS_FORMAT_FORMATTER_PYTHONSTYLE)
+    #include "alib/strings/format/formatterpythonstyle.hpp"
 #endif
-#if !defined (HPP_ALIB_STRINGS_FORMATTER_JAVASTYLE)
-    #include "alib/strings/formatterjavastyle.hpp"
+#if !defined (HPP_ALIB_STRINGS_FORMAT_FORMATTER_JAVASTYLE)
+    #include "alib/strings/format/formatterjavastyle.hpp"
 #endif
 #if !defined (HPP_ALOX)
     #include "alox/alox.hpp"
@@ -66,15 +66,49 @@ namespace aworx { namespace lox { namespace core { namespace textlogger {
 StandardConverter::StandardConverter()
 {
     FormatterPS.Next= &FormatterJS;
+    cntRecursion= 0;
 }
 
 StandardConverter::~StandardConverter()
 {
+    ALIB_ASSERT( cntRecursion == 0  )
+    for( auto elem : recursionFormatters )
+    {
+        delete elem->Next;
+        delete elem;
+    }
 }
 
 void StandardConverter::ConvertObjects( AString& target, Boxes& logables  )
 {
-    FormatterPS.FormatList( target, logables );
+    cntRecursion++;
+    ALIB_ASSERT_WARNING( cntRecursion < 5, "Logging recursion depth >= 5" );
+
+    // get a formatter. We use a clone per recursion depth!
+    FormatterPythonStyle* formatter;
+    if( cntRecursion == 1 )
+        formatter= &FormatterPS;
+    else
+    {
+        // did we have this depth already? If not, create a new set of formatters formatter
+        size_t recFormatNo= static_cast<size_t>( cntRecursion - 1 );
+        if( recursionFormatters.size() <= recFormatNo )
+        {
+            formatter= new FormatterPythonStyle();
+            formatter->Next= new FormatterJavaStyle();
+            recursionFormatters.emplace_back( formatter );
+        }
+        else
+            formatter= recursionFormatters[recFormatNo];
+
+        // clone the settings from default formatter set
+        formatter->CloneSettings( FormatterPS );
+        dynamic_cast<lib::strings::format::FormatterStdImpl*>(formatter->Next)->CloneSettings( FormatterJS );
+    }
+
+    formatter->Format( target, logables );
+
+    cntRecursion--;
 }
 
 // #################################################################################################
@@ -527,6 +561,7 @@ TextLogger::~TextLogger()
     delete MetaInfo;
     if (Converter)
         delete Converter;
+    ALIB_ASSERT( msgBuf.IsEmpty() )
 }
 
 int   TextLogger::AddAcquirer( ThreadLock* newAcquirer )
@@ -576,6 +611,7 @@ int   TextLogger::AddAcquirer( ThreadLock* newAcquirer )
         variable.Add( MetaInfo->VerbosityWarning  );
         variable.Add( MetaInfo->VerbosityInfo     );
         variable.Add( MetaInfo->VerbosityVerbose  );
+        variable.Add( FmtMsgSuffix                );
         variable.Store();
     }
     else
@@ -585,6 +621,7 @@ int   TextLogger::AddAcquirer( ThreadLock* newAcquirer )
         if( variable.Size() >= 3 ) MetaInfo->VerbosityWarning._()._( variable.GetString(2) );
         if( variable.Size() >= 4 ) MetaInfo->VerbosityInfo   ._()._( variable.GetString(3) );
         if( variable.Size() >= 5 ) MetaInfo->VerbosityVerbose._()._( variable.GetString(4) );
+        if( variable.Size() >= 6 ) FmtMsgSuffix              ._()._( variable.GetString(5) );
     }
 
     // Variable  <name>_FORMAT_DATE_TIME / <typeName>_FORMAT_DATE_TIME:
@@ -751,34 +788,34 @@ void TextLogger::ClearReplacements()
     replacements.clear();
 }
 
-
-// #################################################################################################
-// TextLogger::Log()
-// #################################################################################################
-void TextLogger::Log( Domain& domain, Verbosity verbosity, Boxes& logables, ScopeInfo& scope)
+void TextLogger::Log( Domain& domain, Verbosity verbosity, Boxes& logables, ScopeInfo& scope )
 {
-    // clear Buffers
-    logBuf.Clear();
-
-    AutoSizes.Start();
-
-    // meta info << ESC::EOMETA
-    int qtyESCTabsWritten= MetaInfo->Write( *this, logBuf, domain, verbosity, scope );
-    logBuf._NC( ESC::EOMETA );
-
-    // convert msg object into an AString representation
+    // check
     if (!Converter)
         Converter=  new textlogger::StandardConverter();
-    Converter->ConvertObjects( msgBuf._(), logables );
+
+    // we store the current msgBuf length and reset the buffer to this length when exiting.
+    // This allows recursive calls! Recursion might happen with the evaluation of the
+    // logables (in the next line!)
+    integer msgBufStartLength= msgBuf.Length();
+    Converter->ConvertObjects( msgBuf, logables );
 
     // replace strings in message
     for ( size_t i= 0; i < replacements.size() ; i+= 2 )
-        msgBuf.SearchAndReplace( replacements[i], replacements[i + 1] );
+        msgBuf.SearchAndReplace( replacements[i],
+                                 replacements[i + 1], msgBufStartLength );
+
+    // setup log buffer with meta info << ESC::EOMETA
+    logBuf.Clear();
+    AutoSizes.Start();
+    int qtyESCTabsWritten= MetaInfo->Write( *this, logBuf, domain, verbosity, scope );
+    logBuf._NC( ESC::EOMETA );
 
     // check for empty messages
-    if ( msgBuf.IsEmpty() )
+    if ( msgBuf.Length() == msgBufStartLength )
     {
         // log empty msg and quit
+        logBuf._NC( FmtMsgSuffix );
         if (usesStdStreams) ALIB::StdOutputStreamsLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
             logText( domain, verbosity, logBuf, scope, -1 );
         if (usesStdStreams) ALIB::StdOutputStreamsLock.Release();
@@ -791,26 +828,27 @@ void TextLogger::Log( Domain& domain, Verbosity verbosity, Boxes& logables, Scop
         // replace line separators
         integer cntReplacements=0;
         if ( MultiLineDelimiter.IsNotNull() )
-            cntReplacements+=    msgBuf.SearchAndReplace( MultiLineDelimiter, MultiLineDelimiterRepl );
+            cntReplacements+=    msgBuf.SearchAndReplace( MultiLineDelimiter, MultiLineDelimiterRepl, msgBufStartLength );
         else
         {
             String& replacement= MultiLineDelimiterRepl;
-            cntReplacements+=    msgBuf.SearchAndReplace( "\r\n", replacement );
-            cntReplacements+=    msgBuf.SearchAndReplace( "\r",   replacement );
-            cntReplacements+=    msgBuf.SearchAndReplace( "\n",   replacement );
+            cntReplacements+=    msgBuf.SearchAndReplace( "\r\n", replacement, msgBufStartLength );
+            cntReplacements+=    msgBuf.SearchAndReplace( "\r",   replacement, msgBufStartLength );
+            cntReplacements+=    msgBuf.SearchAndReplace( "\n",   replacement, msgBufStartLength );
         }
 
         // append msg to logBuf
         if ( cntReplacements == 0 )
         {
-            logBuf._NC( msgBuf );
+            logBuf._NC( msgBuf, msgBufStartLength, msgBuf.Length() - msgBufStartLength );
         }
         else
         {
             logBuf._NC( FmtMultiLinePrefix );
-            logBuf._NC( msgBuf );
+            logBuf._NC( msgBuf, msgBufStartLength, msgBuf.Length() - msgBufStartLength );
             logBuf._NC( FmtMultiLineSuffix );
         }
+        logBuf._NC( FmtMsgSuffix );
 
         // now do the logging by calling our derived classes' logText
         if (usesStdStreams) ALIB::StdOutputStreamsLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
@@ -818,14 +856,15 @@ void TextLogger::Log( Domain& domain, Verbosity verbosity, Boxes& logables, Scop
         if (usesStdStreams) ALIB::StdOutputStreamsLock.Release();
 
         // stop here
+        msgBuf.SetLength( msgBufStartLength );
         return;
     }
 
     // multiple line output
-    int       qtyTabStops= AutoSizes.ActualIndex;
-    integer  actStart=    0;
-    int       lineNo=      0;
-    integer lbLenBeforeMsgPart= logBuf.Length();
+    int      qtyTabStops= AutoSizes.ActualIndex;
+    integer  actStart=    msgBufStartLength;
+    int      lineNo=      0;
+    integer  lbLenBeforeMsgPart= logBuf.Length();
 
     // loop over lines in msg
     while ( actStart < msgBuf.Length() )
@@ -860,11 +899,15 @@ void TextLogger::Log( Domain& domain, Verbosity verbosity, Boxes& logables, Scop
             // single line?
             if ( lineNo == 0 )
             {
-                logBuf._NC( msgBuf );
+                logBuf._NC( msgBuf, msgBufStartLength, msgBuf.Length() - msgBufStartLength );
+                logBuf._NC( FmtMsgSuffix );
+
                 if (usesStdStreams) ALIB::StdOutputStreamsLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
                     logText( domain, verbosity, logBuf, scope, -1 );
                 if (usesStdStreams) ALIB::StdOutputStreamsLock.Release();
+
                 // stop here
+                msgBuf.SetLength( msgBufStartLength );
                 return;
             }
 
@@ -929,6 +972,8 @@ void TextLogger::Log( Domain& domain, Verbosity verbosity, Boxes& logables, Scop
         notifyMultiLineOp( Phase::End );
         if (usesStdStreams) ALIB::StdOutputStreamsLock.Release();
     }
+
+    msgBuf.SetLength( msgBufStartLength );
 }
 
 }}}}//namespace aworx::lox::core::textlogger

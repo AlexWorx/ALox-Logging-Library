@@ -15,8 +15,8 @@ import com.aworx.lib.lang.Whitespaces;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.CString;
 import com.aworx.lib.strings.Substring;
-import com.aworx.lib.strings.Tokenizer;
-import com.aworx.lib.strings.Spaces;
+import com.aworx.lib.strings.util.Tokenizer;
+import com.aworx.lib.strings.util.Spaces;
 
 /** ************************************************************************************************
  * Specialization of class #InMemoryPlugin, which reads and writes a simple configuration file

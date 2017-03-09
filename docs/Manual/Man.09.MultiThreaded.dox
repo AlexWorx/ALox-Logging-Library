@@ -101,11 +101,11 @@ This is a complex topic and there is a whole bunch of chapters we have to refer 
 To name just a few "applications" of the features described in the chapters above:
 
 - Execute a <em>Log Statement</em> only if executed (or just not executed) by a certain thread.
-- Separate <em>Log Statement</em> depending on the thread they are executed by and control the \e Verbosity
-  independently from each other. By mixing thread-related <em>Scope Domain</em> other <em>Scope Domain</em> with each other
-  a user of \b %ALox is enabled fine-tune the log output very granular, even for logging code that
-  he/she has no access to
-- Execute <em>Log Statement</em> once per thread.
+- Separate <em>Log Statements</em> depending on the thread they are executed by, and control the \e Verbosity
+  independently from each other. By mixing thread-related <em>Scope Domains</em> and language related <em>Scope Domains</em> with each other,
+  a user of \b %ALox is enabled to fine-tune the log output very granular, even for logging code that
+  he/she has no access to.
+- Execute <em>Log Statements</em> once per thread.
 - Assign prefix strings (respectively arbitrary \e Logables) to each <em>Log Statement</em> executed by a certain thread.
 - Store and retrieve named <em>Log Domain</em> objects (debug-information) associated with threads.
 

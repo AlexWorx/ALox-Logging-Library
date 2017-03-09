@@ -25,7 +25,7 @@ namespace cs.aworx.lib.strings  {
  *   classes
  *      \ref cs::aworx::lib::strings::AString   "AString",
  *      \ref cs::aworx::lib::strings::Substring "Substring" or
- *      \ref cs::aworx::lib::strings::Formatter "Formatter"
+ *      \ref cs::aworx::lib::strings::format::Formatter "Formatter"
  *   to write and parse numbers, which accept an object of this type as parameters.
  *
  * <b>Defined Singletons and User-Defined Instances:</b><br>

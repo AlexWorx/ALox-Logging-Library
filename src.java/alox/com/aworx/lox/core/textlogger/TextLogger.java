@@ -20,7 +20,7 @@ import com.aworx.lib.lang.Phase;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.CString;
 import com.aworx.lib.strings.Substring;
-import com.aworx.lib.strings.AutoSizes;
+import com.aworx.lib.strings.util.AutoSizes;
 import com.aworx.lib.threads.ThreadLock;
 import com.aworx.lox.ALox;
 import com.aworx.lox.ESC;
@@ -94,6 +94,18 @@ public abstract class TextLogger extends Logger
         public  MetaInfo                    metaInfo                               = new MetaInfo();
 
         /**
+         * Characters written after each <em>Log Statement</em>.
+         * This may be used for example to reset colors and styles.
+         * Note, that with multi-line <em>Log Statements</em>, the contents of this field is \b not
+         * written at the end of each line, but only at the end of the last line.
+         * To define characters that are written after each line of a multi-line
+         * <em>Log Statement</em>, field #fmtMultiLineSuffix.
+         *
+         * Defaults to empty string.
+         */
+        public    String                    fmtMsgSuffix                                        ="";
+
+        /**
          * Holds a list of values for auto tab positions and field sizes.
          * For each requested value, a corresponding array field is created on the fly.
          * If the format string get's changed and different (new) auto values should be used, then
@@ -150,8 +162,11 @@ public abstract class TextLogger extends Logger
         public    String                    fmtMultiLinePrefix                              = ">> ";
 
         /**
-         *  Suffix for multi line messages. This is also used if multi line messages logging is switched off
-         *  (MultiLineMsgMode == 0) but replacing of a set MultiLineDelimiter takes place.
+         * Suffix for multi line messages. This is also used if multi line messages logging is
+         * switched off (MultiLineMsgMode == 0) and replacing of a set #multiLineDelimiter
+         * takes place.<br>
+         * Note that at the end of the last line, in addition #fmtMsgSuffix is added.<br>
+         * Defaults to "".
          */
         public    String                    fmtMultiLineSuffix                               = null;
 
@@ -236,6 +251,7 @@ public abstract class TextLogger extends Logger
                 variable.add( metaInfo.verbosityWarning  );
                 variable.add( metaInfo.verbosityInfo     );
                 variable.add( metaInfo.verbosityVerbose  );
+                variable.add( fmtMsgSuffix               );
                 variable.store();
             }
             else
@@ -245,6 +261,7 @@ public abstract class TextLogger extends Logger
                 if( variable.size() >= 3 ) metaInfo.verbosityWarning= variable.getString(2).toString();
                 if( variable.size() >= 4 ) metaInfo.verbosityInfo   = variable.getString(3).toString();
                 if( variable.size() >= 5 ) metaInfo.verbosityVerbose= variable.getString(4).toString();
+                if( variable.size() >= 6 ) fmtMsgSuffix             = variable.getString(5).toString();
             }
 
             // Variable  <name>_FORMAT_DATE_TIME / <typeName>_FORMAT_DATE_TIME:
@@ -444,7 +461,7 @@ public abstract class TextLogger extends Logger
         /** ****************************************************************************************
          * This abstract method introduced by this class "replaces" the abstract method #log
          * of parent class Logger which this class implements. In other words, descendants of this
-         * class need to override this method instead of \b %Do. This class %TextLogger is
+         * class need to override this method instead of \b %log. This class %TextLogger is
          * responsible for generating meta information, doing text replacements, handle multi-line
          * messages, etc. and provides the textual representation of the whole log contents
          * to descendants using this method.
@@ -453,7 +470,7 @@ public abstract class TextLogger extends Logger
          * @param verbosity     The verbosity. This has been checked to be active already on this
          *                      stage and is provided to be able to be logged out only.
          * @param msg           The log message.
-         * @param scope         Information about the scope of the <em>Log Statement</em>..
+         * @param scope         Information about the scope of the <em>Log Statement</em>.
          * @param lineNumber    The line number of a multi-line message, starting with 0.
          *                      For single line messages this is -1.
          ******************************************************************************************/
@@ -497,28 +514,32 @@ public abstract class TextLogger extends Logger
                                    ArrayList<Object> logables,
                                    ScopeInfo         scope       )
         {
-            // clear Buffer and reset utility members
-            logBuf.clear();
-            autoSizes.start();
-
-            //  << meta info << ESC.EOMETA
-            int qtyESCTabsWritten=  metaInfo.write( this, logBuf, domain, verbosity, scope );
-            logBuf._( ESC.EOMETA );
-
-
-            // convert msg object into an AString representation
+            // check
             if ( converter == null )
                 converter= new StandardConverter();
-            converter.convertObjects( msgBuf._(), logables );
+
+            // we store the current msgBuf length and reset the buffer to this length when exiting.
+            // This allows recursive calls! Recursion might happen with the evaluation of the
+            // logables (in the next line!)
+            int msgBufStartLength= msgBuf.length();
+            converter.convertObjects( msgBuf, logables );
 
             // replace strings in message
             for ( int i= 0 ; i < replacements.size() -1 ; i+= 2 )
-                msgBuf.searchAndReplace( replacements.get( i ), replacements.get( i + 1 ) );
+                msgBuf.searchAndReplace( replacements.get( i ),
+                                         replacements.get( i + 1 ), msgBufStartLength );
+
+            // setup log buffer with meta info << ESC::EOMETA
+            logBuf.clear();
+            autoSizes.start();
+            int qtyESCTabsWritten=  metaInfo.write( this, logBuf, domain, verbosity, scope );
+            logBuf._NC( ESC.EOMETA );
 
             // check for empty messages
-            if ( msgBuf.isEmpty() )
+            if ( msgBuf.length() == msgBufStartLength )
             {
                 // log empty msg and quit
+                logBuf._NC( fmtMsgSuffix );
                 if (usesStdStreams) ALIB.stdOutputStreamsLock.acquire();
                     logText( domain, verbosity, logBuf, scope, -1 );
                 if (usesStdStreams) ALIB.stdOutputStreamsLock.release();
@@ -531,37 +552,39 @@ public abstract class TextLogger extends Logger
                 // replace line separators
                 int cntReplacements= 0;
                 if ( multiLineDelimiter != null )
-                    cntReplacements+= msgBuf.searchAndReplace( multiLineDelimiter, multiLineDelimiterRepl );
+                    cntReplacements+= msgBuf.searchAndReplace( multiLineDelimiter, multiLineDelimiterRepl, msgBufStartLength );
                 else
                 {
-                    cntReplacements+= msgBuf.searchAndReplace( "\r\n",  multiLineDelimiterRepl );
-                    cntReplacements+= msgBuf.searchAndReplace( "\r",    multiLineDelimiterRepl );
-                    cntReplacements+= msgBuf.searchAndReplace( "\n",    multiLineDelimiterRepl );
+                    cntReplacements+= msgBuf.searchAndReplace( "\r\n",  multiLineDelimiterRepl, msgBufStartLength );
+                    cntReplacements+= msgBuf.searchAndReplace( "\r",    multiLineDelimiterRepl, msgBufStartLength );
+                    cntReplacements+= msgBuf.searchAndReplace( "\n",    multiLineDelimiterRepl, msgBufStartLength );
                 }
 
                 // append msg to logBuf
                 if ( cntReplacements == 0 )
                 {
-                    logBuf._NC( msgBuf );
+                    logBuf._NC( msgBuf, msgBufStartLength, msgBuf.length() - msgBufStartLength );
                 }
                 else
                 {
                     logBuf._( fmtMultiLinePrefix );
-                      logBuf._NC( msgBuf );
+                      logBuf._NC( msgBuf, msgBufStartLength, msgBuf.length() - msgBufStartLength );
                     logBuf._( fmtMultiLineSuffix );
                 }
+                logBuf._NC( fmtMsgSuffix );
 
                 // now do the logging by calling our derived classes' logText
                 logText( domain, verbosity, logBuf, scope, -1 );
 
                 // stop here
+                msgBuf.setLength( msgBufStartLength );
                 return;
             }
 
             // multiple line output
-            int qtyTabStops= autoSizes.actualIndex;
-            int actStart= 0;
-            int lineNo= 0;
+            int qtyTabStops=        autoSizes.actualIndex;
+            int actStart=           msgBufStartLength;
+            int lineNo=             0;
             int lbLenBeforeMsgPart= logBuf.length();
 
             // loop over lines in msg
@@ -598,7 +621,8 @@ public abstract class TextLogger extends Logger
                     if (lineNo == 0)
                     {
                         // append msg to logBuf
-                        logBuf._( msgBuf );
+                        logBuf._NC( msgBuf, msgBufStartLength, msgBuf.length() - msgBufStartLength );
+                        logBuf._NC( fmtMsgSuffix );
 
                         // now do the logging by calling our derived classes' logText
                         if (usesStdStreams) ALIB.stdOutputStreamsLock.acquire();
@@ -606,6 +630,7 @@ public abstract class TextLogger extends Logger
                         if (usesStdStreams) ALIB.stdOutputStreamsLock.release();
 
                         // stop here
+                        msgBuf.setLength( msgBufStartLength );
                         return;
                     }
 
@@ -670,6 +695,8 @@ public abstract class TextLogger extends Logger
                 notifyMultiLineOp( Phase.END );
                 if (usesStdStreams) ALIB.stdOutputStreamsLock.release();
             }
+
+            msgBuf.setLength( msgBufStartLength );
         }
 
 } // class TextLogger

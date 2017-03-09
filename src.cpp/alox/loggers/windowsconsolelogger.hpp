@@ -67,27 +67,35 @@ class WindowsConsoleLogger : public aworx::lox::core::textlogger::TextLogger
     // public fields
     // #############################################################################################
     public:
+        /** Denotes states of field #UseLightColors.  */
+        enum class LightColorUsage
+        {
+            _Undefined,      ///< Internal, temporary state
+            Never,           ///< Never use light colors
+            ForegroundLight, ///< Use light colors for foreground
+            ForegroundDark   ///< Use light colors for background
+        };
+
         /**
          * Foreground and background colors chosen by this class might differ in their intensity.
          * This increases the overall readability by increasing the contrast.
          * If the background color of a console window is dark, then the background colors of
          * colored log output should be darker colors than the foreground colors - and vice versa.
          *
-         * Depending on the setting of this field foreground or background colors might be
+         * Depending on the setting of this field, ALox
+         * \ref aworx::lox::ESC "escape codes" for colors are translated to normal ANSI colors or
          * lighter ones:
-         * - If this field is \c 0, light colors are never used.
-         * - If this field is \c 1, foreground colors will be light colors and background colors
-         *   dark. This is the default.
-         * - If \c 2, the opposite of \c 1 is chosen: background colors will be light colors and
-         *   foreground colors dark.
-         *
-         * The "right" setup will be automatically determined in the constructor of this class
-         * by determining the color scheme of the windows console!
+         * - If this field is \ref LightColorUsage "LightColorUsage::Never", light colors are
+         *   never used.
+         * - If this field is \ref LightColorUsage "LightColorUsage::ForegroundLight", foreground
+         *   colors will be light colors and background colors dark ones. This is the default.
+         * - If \ref LightColorUsage "LightColorUsage::ForegroundDark", background colors will be
+         *   light colors and foreground colors dark ones.
          *
          * The configuration variable [ALOX_CONSOLE_LIGHT_COLORS](../group__GrpALoxConfigVars.html)
          * allows to externally modify this flag. It is read once within the constructor .
          */
-        int    UseLightColors;
+        LightColorUsage    UseLightColors;
 
         /**
          * The code page that is used for the console log output. For possible values refer to
@@ -104,18 +112,6 @@ class WindowsConsoleLogger : public aworx::lox::core::textlogger::TextLogger
          */
 
         UINT            CodePage                                                            =65001;
-
-        /** Color of a log line with \e Verbosity 'Error'.*/
-        WORD            MsgColorError;
-
-        /** Color of a log line with \e Verbosity 'Warning'.*/
-        WORD            MsgColorWarning;
-
-        /** Color of a log line with \e Verbosity 'Info'.*/
-        WORD            MsgColorInfo;
-
-        /** Color of a log line with \e Verbosity 'Verbose'.*/
-        WORD            MsgColorVerbose;
 
     // #############################################################################################
     // Constructor/destructor

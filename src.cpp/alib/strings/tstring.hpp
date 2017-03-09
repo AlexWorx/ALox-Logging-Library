@@ -372,8 +372,8 @@ class TString : public String
         template <bool TCheck= true>
         inline
         integer    IndexOf( const TString&   needle,
-                             integer        startIdx= 0,
-                             lang::Case      sensitivity=  lang::Case::Sensitive )
+                            integer          startIdx= 0,
+                            lang::Case       sensitivity=  lang::Case::Sensitive )
         const
         {
             if (TCheck)

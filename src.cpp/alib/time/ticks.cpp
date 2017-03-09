@@ -23,8 +23,6 @@
     #include <cmath>
 #endif
 
-using namespace std;
-
 
 namespace aworx { namespace lib { namespace time
 {
@@ -36,6 +34,7 @@ Ticks*     Ticks::creationTime;
 // #################################################################################################
 // glibc specific: library init, InEpochSeconds(), SetFromEpochSeconds()
 // #################################################################################################
+ALIB_NAMESPACE_INIT_FLAG
 
 #if defined (__GLIBCXX__) || defined(__APPLE__)
 
@@ -44,6 +43,8 @@ Ticks*     Ticks::creationTime;
 
     void Init()
     {
+        ALIB_NAMESPACE_INIT_DEDUP
+
         // get the timers resolution. On workstations, the result should be seconds= 0, nanoseconds= 1
         // which means 1 tick per nanosecond
         struct timespec t;
@@ -109,6 +110,8 @@ Ticks*     Ticks::creationTime;
     // static library initialization code ( invoked by ALIB::Init() )
     void Init()
     {
+        ALIB_NAMESPACE_INIT_DEDUP
+
         // get system's timer frequency
         LARGE_INTEGER   frequency;
         QueryPerformanceFrequency( &frequency );

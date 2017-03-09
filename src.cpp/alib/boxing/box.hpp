@@ -34,11 +34,17 @@ namespace aworx { namespace lib { namespace boxing
  **************************************************************************************************/
 class Box
 {
-    // #############################################################################################
-    // friends
-    // #############################################################################################
-                                 friend class     Boxer;
+    /** \b %T_Boxing shall access our data object directly.  */
+            template<typename TBoxable>
+    friend  struct      T_Boxing;
 
+    /** \b %DefaultBoxing shall access our data object directly.  */
+            template<typename TBoxable>
+    friend  void        DefaultBoxing(Box& box, const TBoxable& value);
+
+    /** \b %DefaultUnboxing shall access our data object directly.  */
+            template<typename TBoxable>
+    friend  TBoxable    DefaultUnboxing( const Box& box );
 
     // #############################################################################################
     // protected fields
@@ -50,7 +56,7 @@ class Box
          * behaviour.
          */
         Boxer*      boxer;
-public:
+
         /** The data that we encapsulate. */
         BoxData     data;
 
@@ -539,8 +545,18 @@ public:
 
             // not found: In debug mode, check if this interface exists anywhere
             #if ALIB_DEBUG
-                Boxer::debugCheckInterfaceExists( typeid(TInterface) );
-                ALIB_ERROR( "Interface not found: ", debug::TypeDemangler(typeid(TInterface)).Get() )
+                if ( Boxer::dbgKnownInterfaces.find( typeid(TInterface) ) == Boxer::dbgKnownInterfaces.end() )
+                {
+                    ALIB_ERROR( "Unknown interface type: ",         debug::TypeDemangler(typeid(TInterface)).Get(),
+                                ". Note: Invoked on box of type: ", debug::TypeDemangler(boxer->type       ).Get()
+                                );
+                }
+                else
+                {
+                    ALIB_ERROR( "Interface type: ",                 debug::TypeDemangler(typeid(TInterface)).Get(),
+                                " not defined for box of type: ",   debug::TypeDemangler(boxer->type       ).Get()
+                                );
+                }
             #endif
 
             return TReturn();

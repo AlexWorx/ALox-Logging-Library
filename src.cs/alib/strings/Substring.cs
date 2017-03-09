@@ -34,7 +34,7 @@ namespace cs.aworx.lib.strings  {
  *  \note
  *    To generate Substrings which are separated by a delimiter character within a
  *    character array, use class
- *    \ref cs::aworx::lib::strings::Tokenizer "Tokenizer".
+ *    \ref cs::aworx::lib::strings::util::Tokenizer "Tokenizer".
  *  <p>
  *
  *  \note

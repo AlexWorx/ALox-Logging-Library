@@ -12,8 +12,6 @@ import com.aworx.lib.lang.Case;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.CString;
 import com.aworx.lib.strings.Substring;
-import com.aworx.lox.Log;
-import com.aworx.lox.Scope;
 
 import ut_com_aworx.AWorxUnitTesting;
 

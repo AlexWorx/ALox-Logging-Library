@@ -134,7 +134,7 @@ class PlainTextLogger : public aworx::lox::core::textlogger::TextLogger
         ALOX_API
         virtual void logText( core::Domain&     domain,    Verbosity verbosity,
                               AString&          msg,
-                              core::ScopeInfo&  scope,     int       lineNumber);
+                              core::ScopeInfo&  scope,     int       lineNumber );
 }; // class PlainTextLogger
 
 }}}} // namespace

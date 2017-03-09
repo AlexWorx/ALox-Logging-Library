@@ -23,7 +23,7 @@ ALox attempts to make logging as easy and intuitive as possible. We want you to 
 
 On the other end of the list, ALox  enables **release logging** for productive applications to collect mission critical **metrics from the field**.
 
-This is **Version 1702**. 
+This is **Version 1702 Revision 1**. 
 
 ## Features ##
 
@@ -67,6 +67,8 @@ This is **Version 1702**.
 * **Conditional logging** (similar to assertions).
 
 * **Log Once** to restrict a log message or a set of log messages to appear only once (or up to n-times).
+
+* Support for **Recursive logging**, which is the correct execution of log statements during the evaluation of parameters of another log statement.
 
 * Automatic (OK, half-automatic :-) mapping of thread IDs to **readable thread names**
 

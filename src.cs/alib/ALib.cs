@@ -72,7 +72,7 @@ public static class ALIB
          * revision \e 0. Pure bug-fix releases that do not change the interface of ALib
          * are holding the same #Version but an increased number in this field.
          */
-        public static readonly  int                    Revision                                  =0;
+        public static readonly  int                    Revision                                  =1;
 
         /**
          * The name of the configuration category of configuration variables used by the AWorx

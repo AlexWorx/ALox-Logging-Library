@@ -25,7 +25,6 @@ void ApplyToSample();
 
 //! [DOX_ALIB_APPLYTO_DEFINITION]
 #include "alib/alib.hpp"
-#include "alib/time/ticks.hpp"
 #include "alib/strings/numberformat.hpp"
 
 // get support for  ostream operator<<() on String objects

@@ -425,7 +425,7 @@ The result of the things said above incorporate **six great news** for you:
 4. All debug <em>Log Statements</em>, including all textual messages you are adding to your log calls, are completely
    pruned from the release executable! Your "debug secrets" can not be reverse engineered, they are just gone!
 5. Even if you mix debug and release logging features of ALox the above stays true, except that the footprint
-   of the ALox library is a little higher (e.g. it is 50kb in V1.1.0) !
+   of the ALox library is a little higher.
 
 \note
 This is all true for Java. For other platforms check out platform specific sections of ALox pruning techniques.

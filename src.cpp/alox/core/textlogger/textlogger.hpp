@@ -26,12 +26,12 @@
     #include "alib/time/calendartime.hpp"
 #endif
 
-#if !defined (HPP_ALIB_STRINGS_FORMATTER_JAVASTYLE)
-    #include "alib/strings/formatterjavastyle.hpp"
+#if !defined (HPP_ALIB_STRINGS_FORMAT_FORMATTER_JAVASTYLE)
+    #include "alib/strings/format/formatterjavastyle.hpp"
 #endif
 
-#if !defined (HPP_ALIB_STRINGS_FORMATTER_PYTHONSTYLE)
-    #include "alib/strings/formatterpythonstyle.hpp"
+#if !defined (HPP_ALIB_STRINGS_FORMAT_FORMATTER_PYTHONSTYLE)
+    #include "alib/strings/format/formatterpythonstyle.hpp"
 #endif
 
 
@@ -77,11 +77,11 @@ class ObjectConverter
  *
  * This implementation uses
  * two specialisations of class
- * \ref aworx::lib::strings::Formatter "Formatter" to format the given logables to a textual
+ * \ref aworx::lib::strings::format::Formatter "Formatter" to format the given logables to a textual
  * representation. The formatters (and their sequence!) are:
  *
- * 1. \ref aworx::lib::strings::FormatterPythonStyle "FormatterPythonStyle"
- * 2. \ref aworx::lib::strings::FormatterJavaStyle   "FormatterJavaStyle"
+ * 1. \ref aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle"
+ * 2. \ref aworx::lib::strings::format::FormatterJavaStyle   "FormatterJavaStyle"
  *
  * This way, standard text logging supports format strings in Python style as well as in Java style.
  **************************************************************************************************/
@@ -89,22 +89,35 @@ class StandardConverter : public ObjectConverter
 {
     public:
         /** Formatter to process python style format strings. Used as the first (main) formatter. */
-        lib::strings::FormatterPythonStyle    FormatterPS;
+        FormatterPythonStyle                  FormatterPS;
 
         /** Formatter to process Java style format strings. Attached to #FormatterPS as second
          *  format option.*/
-        lib::strings::FormatterJavaStyle      FormatterJS;
+        FormatterJavaStyle                    FormatterJS;
+
+    protected:
+        /** A counter to detect recursive calls.  */
+        int                                   cntRecursion;
+
+        /**
+         * Formatters used with recursive calls log calls. If recursion occurs, the formatters
+         * are created, respectively re-used from last time and their settings are reset to
+         * those of the main formatters.
+         */
+        std::vector<FormatterPythonStyle*>    recursionFormatters;
 
     public:
 
         /** ****************************************************************************************
          * Constructor.
          ******************************************************************************************/
-        ALOX_API        StandardConverter();
+        ALOX_API
+                        StandardConverter();
 
         /** ****************************************************************************************
          * Virtual destructor.
          ******************************************************************************************/
+        ALOX_API
         virtual        ~StandardConverter();
 
         /** ****************************************************************************************
@@ -384,18 +397,19 @@ class TextLogger : public Logger
     // Internal fields
     // #############################################################################################
     protected:
-        /** The internal log Buffer. */
-        AString         logBuf;
 
-        /** A buffer for converting the user object(s).     */
-        AString         msgBuf;
+        /** The internal log Buffer. */
+        AString                 logBuf;
+
+        /** The buffers for converting the logables.   */
+        AString                 msgBuf;
 
         /** Denotes whether this logger writes to the <em>standard output streams</em>.  */
-        bool            usesStdStreams;
+        bool                    usesStdStreams;
 
         /** Used to avoid to repeatedly register with ALib <em>standard output stream</em> lockers
             when attached to multiple instances of class \b Lox.   */
-        int             stdStreamLockRegistrationCounter                                         =0;
+        int                     stdStreamLockRegistrationCounter                                 =0;
 
         /**
          * A list of pairs of strings. Within each log message, the first string of a pair is
@@ -427,6 +441,18 @@ class TextLogger : public Logger
         textlogger::MetaInfo*           MetaInfo;
 
         /**
+         * Characters written after each <em>Log Statement</em>.
+         * This may be used for example to reset colors and styles.
+         * Note, that with multi-line <em>Log Statements</em>, the contents of this field is \b not
+         * written at the end of each line, but only at the end of the last line.
+         * To define characters that are written after each line of a multi-line
+         * <em>Log Statement</em>, field #FmtMultiLineSuffix.
+         *
+         * Defaults to empty string.
+         */
+        String16                        FmtMsgSuffix;
+
+        /**
          * Holds a list of values for auto tab positions and field sizes.
          * For each requested value, a corresponding array field is created on the fly.
          * If the format string get's changed and different (new) auto values should be used, then
@@ -439,7 +465,7 @@ class TextLogger : public Logger
          * when the \b %TextLogger that we belong to is attached to a \b %Lox and written back
          * on removal.
          */
-        lib::strings::AutoSizes         AutoSizes;
+        lib::strings::util::AutoSizes   AutoSizes;
 
         /**
          * Determines if multi line messages should be split into different log lines. Possible
@@ -493,9 +519,10 @@ class TextLogger : public Logger
         String16                        FmtMultiLinePrefix                                   =">> ";
 
         /**
-         *  Suffix for multi line messages. This is also used if multi line messages logging is
-         *  switched off (MultiLineMsgMode == 0) but replacing of a set MultiLineDelimiter
-         *  takes place.
+         * Suffix for multi line messages. This is also used if multi line messages logging is
+         * switched off (MultiLineMsgMode == 0) and replacing of a set #MultiLineDelimiter
+         * takes place.<br>
+         * Note that at the end of the last line, in addition #FmtMsgSuffix is added.<br>
          * Defaults to "".
          */
         String16                        FmtMultiLineSuffix                                      ="";
@@ -531,6 +558,20 @@ class TextLogger : public Logger
          * is set, registers with
          * \ref aworx::lib::ALIB::StdOutputStreamsLock "ALIB::StdOutputStreamsLock".
          *
+         * Furthermore, configuration variables are read within this method and created with
+         * default values, in the case they do not exist, yet. The variables read and optionally
+         * created are:
+         * - \b ALox::AUTO_SIZES
+         * - \b ALox::FORMAT
+         * - \b ALox::FORMAT_DATE_TIME
+         * - \b ALox::FORMAT_MULTILINE
+         * - \b ALox::FORMAT_TIME_DIFF
+         * - \b ALox::MAX_ELAPSED_TIME
+         * - \b ALox::REPLACEMENTS
+         *
+         * Configuration variables are
+         * [documented here](../group__GrpALoxConfigVars.html).
+         *
          * @param newAcquirer The acquirer to add.
          * @return The new number of \e acquirers set.
          ******************************************************************************************/
@@ -554,7 +595,7 @@ class TextLogger : public Logger
         /** ****************************************************************************************
          *  This abstract method introduced by this class "replaces" the abstract method #Log
          *  of parent class Logger which this class implements. In other words, descendants of this
-         *  class need to override this method instead of \b %Do. This class %TextLogger is
+         *  class need to override this method instead of \b %Log. This class %TextLogger is
          *  responsible for generating meta information, doing text replacements, handle multi-line
          *  messages, etc. and provides the textual representation of the whole log contents
          *  to descendants using this method.
@@ -563,7 +604,7 @@ class TextLogger : public Logger
          * @param verbosity  The verbosity. This has been checked to be active already on this
          *                   stage and is provided to be able to be logged out only.
          * @param msg        The log message.
-         * @param scope     Information about the scope of the <em>Log Statement</em>..
+         * @param scope      Information about the scope of the <em>Log Statement</em>.
          * @param lineNumber The line number of a multi-line message, starting with 0.
          *                   For single line messages this is -1.
          ******************************************************************************************/

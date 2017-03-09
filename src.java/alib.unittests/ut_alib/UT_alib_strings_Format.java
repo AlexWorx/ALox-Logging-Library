@@ -13,6 +13,7 @@ import java.util.Date;
 import org.junit.Test;
 
 import com.aworx.lib.strings.*;
+import com.aworx.lib.strings.format.*;
 
 import ut_com_aworx.AWorxUnitTesting;
 
@@ -781,7 +782,7 @@ void    checkError( String exp, Object... args )
 
     // invoke format
     com.aworx.lib.lang.Report.getDefault().pushHaltFlags( false, false );
-    testFormatter.FormatList( testAS, args );
+    testFormatter.format( testAS, args );
     com.aworx.lib.lang.Report.getDefault().popHaltFlags();
 
     UT_TRUE( testAS.indexOf( exp ) >= 0 );
@@ -795,7 +796,7 @@ void    checkFormat( String exp, Object... args )
     testAS.setBuffer(1);
 
     // invoke format
-    testFormatter.FormatList( testAS, args );
+    testFormatter.format( testAS, args );
     UT_EQ( exp, testAS );
 }
 
@@ -809,15 +810,15 @@ public void FormatterJavaStyle()
 {
     UT_PRINT( "ALib Format Tests Java Style: Start" );
 
-    com.aworx.lib.strings.FormatterJavaStyle formatter= new com.aworx.lib.strings.FormatterJavaStyle();
-    formatter.Next=  new com.aworx.lib.strings.FormatterPythonStyle();
+    FormatterJavaStyle formatter= new FormatterJavaStyle();
+    formatter.next=  new FormatterPythonStyle();
     testFormatter= formatter;
 
-    formatter.AlternativeNumberFormat.decimalPointChar=     ',';
-    formatter.AlternativeNumberFormat.thousandsGroupChar=   '.';
+    formatter.alternativeNumberFormat.decimalPointChar=     ',';
+    formatter.alternativeNumberFormat.thousandsGroupChar=   '.';
 
     NumberFormat nfBackup= new NumberFormat();
-    nfBackup.set( formatter.DefaultNumberFormat );
+    nfBackup.set( formatter.defaultNumberFormat );
 
     //===== Simple initial tests =========
     checkFormat(  "No JSF"                 , ""                 , "No JSF"        );
@@ -1087,11 +1088,11 @@ public void FormatterJavaStyle()
     //--- a quick check on local setting (this procedure is maybe not too nice but documented)  ---
 
 
-    formatter.DefaultNumberFormat.decimalPointChar  = ',';
-    formatter.DefaultNumberFormat.thousandsGroupChar= '.';
+    formatter.defaultNumberFormat.decimalPointChar  = ',';
+    formatter.defaultNumberFormat.thousandsGroupChar= '.';
     checkFormat(           "1234,500"         ,  "%.3g"             ,  1234.5       );
     checkFormat(          "1.234,500"         ,  "%,.3g"             ,  1234.5       );
-    formatter.DefaultNumberFormat.set(nfBackup);
+    formatter.defaultNumberFormat.set(nfBackup);
 
 
     //----------------------------- floats with width and precision ----------------------------
@@ -1343,16 +1344,16 @@ public void FormatterPythonStyle()
 {
     UT_PRINT( "ALib Format Tests Python Style: Start" );
 
-    FormatterPythonStyle formatter= new com.aworx.lib.strings.FormatterPythonStyle();
-    formatter.Next= new com.aworx.lib.strings.FormatterJavaStyle();
+    FormatterPythonStyle formatter= new FormatterPythonStyle();
+    formatter.next= new FormatterJavaStyle();
     testFormatter= formatter;
 
-    formatter.AlternativeNumberFormat.decimalPointChar=     ',';
-    formatter.AlternativeNumberFormat.thousandsGroupChar=   '.';
+    formatter.alternativeNumberFormat.decimalPointChar=     ',';
+    formatter.alternativeNumberFormat.thousandsGroupChar=   '.';
 
 
     NumberFormat nfBackup= new NumberFormat();
-    nfBackup.set( formatter.DefaultNumberFormat );
+    nfBackup.set( formatter.defaultNumberFormat );
 
     //===== null  =========
     checkFormat( "Hello PX"                   , "Hello {}", 'P', null, null, "X", null);
@@ -1603,10 +1604,10 @@ public void FormatterPythonStyle()
     // with separators
     // default
 
-    formatter.DefaultNumberFormat.binNibbleGroupChar=   '~';
-    formatter.DefaultNumberFormat.binByteGroupChar=     '\'';
-    formatter.DefaultNumberFormat.binWordGroupChar=     '-';
-    formatter.DefaultNumberFormat.binWord32GroupChar=   '#';
+    formatter.defaultNumberFormat.binNibbleGroupChar=   '~';
+    formatter.defaultNumberFormat.binByteGroupChar=     '\'';
+    formatter.defaultNumberFormat.binWordGroupChar=     '-';
+    formatter.defaultNumberFormat.binWord32GroupChar=   '#';
     checkFormat(                                                 "0", "{:b,}",         0x00  );
     checkFormat(                                                 "1", "{:b,}",         0x01  );
     checkFormat(                                                "10", "{:b,}",         0x02  );
@@ -1620,9 +1621,9 @@ public void FormatterPythonStyle()
 
     checkFormat( "1111~1111#0001~0001'0010~0010-0011~0011'0100~0100", "{:b,}", 0xFF11223344L  );
 
-    formatter.DefaultNumberFormat.binNibbleGroupChar=     '\0';
+    formatter.defaultNumberFormat.binNibbleGroupChar=     '\0';
     checkFormat( "11111111#00010001'00100010-00110011'01000100", "{:b,}", 0xFF11223344L );
-    formatter.DefaultNumberFormat.set(nfBackup);
+    formatter.defaultNumberFormat.set(nfBackup);
 
     // fixed length
     checkFormat(                                "0000000100111110", "{:16b}" ,              0x13E  );
@@ -1692,19 +1693,19 @@ public void FormatterPythonStyle()
     // with separators
     // default
     checkFormat( "FF'1122'3344", "{:X,}", 0xFF11223344L  );
-    formatter.DefaultNumberFormat.hexByteGroupChar=     '\'';
-    formatter.DefaultNumberFormat.hexWordGroupChar=     '-';
-    formatter.DefaultNumberFormat.hexWord32GroupChar=   '#';
+    formatter.defaultNumberFormat.hexByteGroupChar=     '\'';
+    formatter.defaultNumberFormat.hexWordGroupChar=     '-';
+    formatter.defaultNumberFormat.hexWord32GroupChar=   '#';
     checkFormat(                         "8F", "{:X,}"               ,         0x8F  );
     checkFormat(                       "1'3E", "{:X,}"               ,        0x13E  );
     checkFormat(                      "FF'FF", "{:X,}"               ,       0xFFFF  );
     checkFormat(                "81'81-FF'FF", "{:X,}"               ,   0x8181FFFFL );
     checkFormat(             "FF#11'22-33'44", "{:X,}"               , 0xFF11223344L );
 
-    formatter.DefaultNumberFormat.hexByteGroupChar=     '\0';
+    formatter.defaultNumberFormat.hexByteGroupChar=     '\0';
     checkFormat( "FF#1122-3344", "{:X,}"                , 0xFF11223344L  );
-    formatter.DefaultNumberFormat.setComputational();
-    formatter.DefaultNumberFormat.writeExponentPlusSign= true;
+    formatter.defaultNumberFormat.setComputational();
+    formatter.defaultNumberFormat.writeExponentPlusSign= true;
 
 
 

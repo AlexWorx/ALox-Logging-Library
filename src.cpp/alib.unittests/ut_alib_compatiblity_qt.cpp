@@ -7,9 +7,8 @@
 #include "alox/alox.hpp"
 
 #if defined(QT_CORE_LIB)
-#include "alib/strings/tokenizer.hpp"
+#include "alib/strings/util/tokenizer.hpp"
 #include "alib/strings/numberformat.hpp"
-#include "alib/time/ticks.hpp"
 #include "alib/compatibility/std_iostream.hpp"
 #include "alib/compatibility/qt.hpp"
 

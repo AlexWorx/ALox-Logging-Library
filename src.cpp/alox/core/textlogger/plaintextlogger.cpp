@@ -5,8 +5,8 @@
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
-#if !defined (HPP_ALIB_STRINGS_TOKENIZER)
-    #include "alib/strings/tokenizer.hpp"
+#if !defined (HPP_ALIB_STRINGS_UTIL_TOKENIZER)
+    #include "alib/strings/util/tokenizer.hpp"
 #endif
 #if !defined (HPP_ALIB_SYSTEM_DIRECTORY)
     #include "alib/system/directory.hpp"
@@ -18,7 +18,7 @@
 #endif
 
 #include "alox/core/textlogger/plaintextlogger.hpp"
-#include "alib/strings/spaces.hpp"
+#include "alib/strings/util/spaces.hpp"
 
 
 using namespace std;
@@ -73,7 +73,7 @@ void PlainTextLogger::logText( Domain&          ,   Verbosity  ,
 
                 if ( tabStop > column )
                 {
-                    const AString& spaces= lib::strings::Spaces::Get();
+                    const AString& spaces= Spaces::Get();
                     integer spacesLength= spaces.Length();
                     integer qty= tabStop - column;
                     while ( qty > 0 )

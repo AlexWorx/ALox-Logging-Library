@@ -33,8 +33,8 @@ namespace cs.aworx.lib.config  {
  * This allows to define a series of variables whose category, name, description and value is
  * dependent on runtime information.
  *
- * Besides the use for passing parameters into objects of type Variable, this
- * struct provides no further logic.
+ * Besides the use for passing parameters into objects of type Variable, this struct does not
+ * provide further logic.
  **************************************************************************************************/
 public struct VariableDefinition
 {

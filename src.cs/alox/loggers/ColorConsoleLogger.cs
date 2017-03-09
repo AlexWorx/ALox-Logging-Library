@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using cs.aworx.lox.core.textlogger;
 using cs.aworx.lib;
 using cs.aworx.lib.strings;
+using cs.aworx.lib.strings.util;
 
 
 /** ************************************************************************************************
@@ -62,6 +63,15 @@ public class ColorConsoleLogger : TextLogger
     // Fields
     // #############################################################################################
 
+        /** Denotes states of field #UseLightColors.  */
+        public enum LightColorUsage
+        {
+            _Undefined,      ///< Internal, temporary state
+            Never,           ///< Never use light colors
+            ForegroundLight, ///< Use light colors for foreground
+            ForegroundDark   ///< Use light colors for background
+        }
+
         /**
          * Foreground and background colors chosen by this class might differ in their intensity.
          * This increases the overall readability by increasing the contrast.
@@ -71,28 +81,17 @@ public class ColorConsoleLogger : TextLogger
          * Depending on the setting of this field, ALox
          * \ref cs::aworx::lox::ESC "escape codes" for colors are translated to normal ANSI colors or
          * lighter ones:
-         * - If this field is \c 0, light colors are never used.
-         * - If this field is \c 1, foreground colors will be light colors and background colors
-         *   dark. This is the default.
-         * - If \c 2, the opposite of \c 1 is chosen: background colors will be light colors and
-         *   foreground colors dark.
+         * - If this field is \ref LightColorUsage "LightColorUsage.Never", light colors are
+         *   never used.
+         * - If this field is \ref LightColorUsage "LightColorUsage.ForegroundLight", foreground
+         *   colors will be light colors and background colors dark ones. This is the default.
+         * - If \ref LightColorUsage "LightColorUsage.ForegroundDark", background colors will be
+         *   light colors and foreground colors dark ones.
          *
          * The configuration variable [ALOX_CONSOLE_LIGHT_COLORS](../group__GrpALoxConfigVars.html)
          * allows to externally modify this flag. It is read once within the constructor .
          */
-        public      int                     UseLightColors;
-
-        /** Color of a log line with \e Verbosity 'Error'.*/
-        public      ConsoleColor            MsgColorError;
-
-        /** Color of a log line with \e Verbosity 'Warning'.*/
-        public      ConsoleColor            MsgColorWarning;
-
-        /** Color of a log line with \e Verbosity 'Info'.*/
-        public      ConsoleColor            MsgColorInfo;
-
-        /** Color of a log line with \e Verbosity 'Verbose'.*/
-        public      ConsoleColor            MsgColorVerbose;
+        public      LightColorUsage         UseLightColors;
 
         /** Conversion table from ESC to light colors      */
         protected   ConsoleColor[]          lightColors= {
@@ -133,16 +132,16 @@ public class ColorConsoleLogger : TextLogger
         ConsoleColor fgCol= Console.ForegroundColor;
 
             // evaluate environment variable "ALOX_CONSOLE_LIGHT_COLORS"
-            UseLightColors= -1;
+            UseLightColors= LightColorUsage._Undefined;
             Variable variable= new Variable( ALox.CONSOLE_LIGHT_COLORS );
             if ( variable.Load() > 0 && variable.Size() > 0)
             {
                 Substring p= new Substring(variable.GetString());
                 if(p.Trim().IsNotEmpty())
                 {
-                         if( p.ConsumePartOf( "foreground", 1, Case.Ignore ) > 0)  UseLightColors=  1;
-                    else if( p.ConsumePartOf( "background", 1, Case.Ignore ) > 0)  UseLightColors=  2;
-                    else if( p.ConsumePartOf( "never"     , 1, Case.Ignore ) > 0)  UseLightColors=  0;
+                         if( p.ConsumePartOf( "foreground", 1, Case.Ignore ) > 0)  UseLightColors=  LightColorUsage.ForegroundLight;
+                    else if( p.ConsumePartOf( "background", 1, Case.Ignore ) > 0)  UseLightColors=  LightColorUsage.ForegroundDark;
+                    else if( p.ConsumePartOf( "never"     , 1, Case.Ignore ) > 0)  UseLightColors=  LightColorUsage.Never;
                     else
                     {
                         ALIB_DBG.WARNING( "Unknown value specified in variable: " + variable.Fullname
@@ -151,7 +150,7 @@ public class ColorConsoleLogger : TextLogger
                 }
             }
 
-            if( UseLightColors < 0 )
+            if( UseLightColors == LightColorUsage._Undefined )
             {
                 // default: dark background, hence use light color on foreground
                 UseLightColors=     fgCol == ConsoleColor.Black
@@ -161,25 +160,18 @@ public class ColorConsoleLogger : TextLogger
                                 ||  fgCol == ConsoleColor.DarkGreen
                                 ||  fgCol == ConsoleColor.DarkMagenta
                                 ||  fgCol == ConsoleColor.DarkRed
-                                ||  fgCol == ConsoleColor.DarkYellow    ? 2 : 1;
+                                ||  fgCol == ConsoleColor.DarkYellow    ? LightColorUsage.ForegroundDark
+                                                                        : LightColorUsage.ForegroundLight;
         }
 
 
-        // remove verbosity information and colorize the whole line
-        MetaInfo.Format.SearchAndReplace( " %V ", " " );
-        MsgColorInfo          = fgCol;
-        if ( UseLightColors == 1 )
-        {
-            MsgColorError           = ConsoleColor.Red;
-            MsgColorWarning         = ConsoleColor.Blue;
-            MsgColorVerbose         = ConsoleColor.Gray;
-        }
-        else
-        {
-            MsgColorError           = ConsoleColor.DarkRed;
-            MsgColorWarning         = ConsoleColor.DarkBlue;
-            MsgColorVerbose         = ConsoleColor.DarkGray;
-        }
+        // move verbosity information to the end to colorize the whole line
+        MetaInfo.Format.SearchAndReplace( "]%V[", "][" );
+        MetaInfo.Format._( "%V" );
+        MetaInfo.VerbosityError           = ESC.RED;
+        MetaInfo.VerbosityWarning         = ESC.BLUE;
+        MetaInfo.VerbosityInfo            = "";
+        MetaInfo.VerbosityVerbose         = ESC.GRAY;
     }
 
     /** ********************************************************************************************
@@ -240,7 +232,8 @@ public class ColorConsoleLogger : TextLogger
                 // set color
                 if( colNo >= 0 && colNo <= 8 || colNo == 8)
                 {
-                    ConsoleColor[] cols=  UseLightColors != 0 && ( (UseLightColors == 1) == isForeGround )  ? lightColors : darkColors;
+                    ConsoleColor[] cols=        UseLightColors != LightColorUsage.Never
+                                          && ( (UseLightColors == LightColorUsage.ForegroundLight) == isForeGround )  ? lightColors : darkColors;
                     if ( isForeGround )
                         Console.ForegroundColor= cols[ colNo ];
                     else
@@ -277,7 +270,6 @@ public class ColorConsoleLogger : TextLogger
             // auto tab / end of meta
             else if ( c == 't' || c == 'A')
             {
-                bool endOfMeta= c == 'A';
                 c=  rest.ConsumeChar();
                 int extraSpace=  c >= '0' && c <= '9' ? (int)  ( c - '0' )
                                                       : (int)  ( c - 'A' ) + 10;
@@ -286,25 +278,14 @@ public class ColorConsoleLogger : TextLogger
 
                 Spaces.Write( Console.Out, tabStop - column );
                 column= tabStop;
-
-                if ( endOfMeta )
-                {
-                    switch ( verbosity )
-                    {
-                        case Verbosity.Verbose:   Console.ForegroundColor= MsgColorVerbose;     break;
-                        case Verbosity.Info:      Console.ForegroundColor= MsgColorInfo;        break;
-                        case Verbosity.Warning:   Console.ForegroundColor= MsgColorWarning;     break;
-                        case Verbosity.Error:     Console.ForegroundColor= MsgColorError;       break;
-                        default:                  break;
-                    }
-                }
             }
 
             // Link (we just colorize links here)
             else if ( c == 'l' )
             {
                 if ( rest.ConsumeChar() == 'S' )
-                    Console.ForegroundColor=  (UseLightColors != 1) ? ConsoleColor.DarkBlue : ConsoleColor.Blue;
+                    Console.ForegroundColor=  (UseLightColors != LightColorUsage.ForegroundLight) ? ConsoleColor.DarkBlue
+                                                                                                  : ConsoleColor.Blue;
                 else
                     Console.ForegroundColor=  actualFGCol;
             }

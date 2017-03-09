@@ -14,8 +14,6 @@
     #include "alib/time/ticks.hpp"
 #endif
 
-using namespace std;
-
 namespace aworx { namespace lib { namespace threads
 {
 
@@ -86,7 +84,7 @@ int ThreadLock::DbgCountAcquirements( Thread* thread )
 
     // synchronize on mutex
     #if ALIB_FEAT_THREADS
-    unique_lock<std::mutex> lock(*mutex);  {
+    std::unique_lock<std::mutex> lock(*mutex);  {
     #endif
 
         // we already own the thread
@@ -125,7 +123,7 @@ int ThreadLock::DbgCountAcquirements( Thread* thread )
                 if ( millis >= WaitWarningTimeLimitInMillis )
                 {
                     hasWarned= true;
-                    ALIB_WARNING( (String256() <<
+                    ALIB_WARNING( (String1K() <<
                         "Timeout acquiring lock (" << millis
                         << "). Change your codes' critical section length if possible."
                         << "\n  This thread: " << thisThread->GetId() << '/' << thisThread->GetName()
@@ -177,7 +175,7 @@ void ThreadLock::Release()
 
     // synchronize on mutex
     #if ALIB_FEAT_THREADS
-    unique_lock<std::mutex> lock(*mutex); {
+    std::unique_lock<std::mutex> lock(*mutex); {
     #endif
 
         // not locked?
@@ -220,7 +218,7 @@ void ThreadLock::SetSafeness( Safeness safeness )
         {
             #if ALIB_FEAT_THREADS
                 mutex=            new std::mutex();
-                mutexNotifier=    new condition_variable();
+                mutexNotifier=    new std::condition_variable();
             #else
                 mutex=            this;
             #endif
@@ -232,7 +230,7 @@ void ThreadLock::SetSafeness( Safeness safeness )
 
     // synchronize on mutex
     #if ALIB_FEAT_THREADS
-    unique_lock<std::mutex> lock(*mutex); {
+    std::unique_lock<std::mutex> lock(*mutex); {
     #endif
         // already locked? ALIB Error
         if ( owner != nullptr )

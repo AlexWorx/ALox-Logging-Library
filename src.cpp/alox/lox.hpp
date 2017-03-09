@@ -27,8 +27,8 @@
 #if !defined (HPP_ALIB_THREADS_SMARTLOCK)
     #include "alib/threads/smartlock.hpp"
 #endif
-#if !defined (HPP_ALIB_STRINGS_TOKENIZER)
-    #include "alib/strings/tokenizer.hpp"
+#if !defined (HPP_ALIB_STRINGS_UTIL_TOKENIZER)
+    #include "alib/strings/util/tokenizer.hpp"
 #endif
 #if !defined (HPP_ALIB_CONFIG_CONFIGURATION)
     #include "alib/config/configuration.hpp"
@@ -162,9 +162,6 @@ class Lox : protected aworx::lib::threads::ThreadLock
     // Private/protected fields  and constants
     // #############################################################################################
     protected:
-        /** The list of collected log objects which is passed to the \e Loggers  */
-        Boxes                                           tmpLogables;
-
         /** A list of a lists of logables used for (recursive) logging.  */
         std::vector<Boxes*>                             logableContainers;
 
@@ -313,7 +310,7 @@ class Lox : protected aworx::lib::threads::ThreadLock
          * \ref aworx::lox::ALox::Get "ALox::Get". In some situations, such 'registration'
          * may not be wanted.
          *
-         * @param name       The name of the Lox. Will be converted to upper case.
+         * @param name       The name of the Lox. Will be copied and converted to upper case.
          * @param doRegister If \c true, this object is registered with static class
          *                   \ref aworx::lox::ALox "ALox".
          *                   Optional and defaults to \c true.
@@ -1121,22 +1118,18 @@ class Lox : protected aworx::lib::threads::ThreadLock
          * Note that the \b %Lox instance has to be acquired prior to invoking this method and
          * the container returned must be used only while the object is still acquired.
          *
+         * With each recursive acquirement of this object, a different container is returned.
+         * This is implemented to allow recursive log calls.
          * @return An empty list of boxes.
          ******************************************************************************************/
-        Boxes&  GetLogableContainer()
-        {
-            ALIB_ASSERT_ERROR( cntAcquirements >= 1, "Lox not acquired." );
-            while( logableContainers.size() < static_cast<size_t>(cntAcquirements) )
-                logableContainers.emplace_back( new Boxes() );
+        ALOX_API
+        Boxes&  GetLogableContainer();
 
-            Boxes& logables= *logableContainers[static_cast<size_t>(cntAcquirements - 1)];
-            logables.clear();
-            return logables;
-        }
 
 
         /** ****************************************************************************************
-         * Logs a list of  \e Logables  with the given \e %Verbosity.
+         * Logs the current list of \e Logables (those received with #GetLogableContainer)
+         * with the given \e %Verbosity.
          *
          * This method is usually \b not used directly. Instead, methods
          * #Info, #Verbose, #Warning and #Error provide simpler interfaces which take variadic
@@ -1149,13 +1142,13 @@ class Lox : protected aworx::lib::threads::ThreadLock
          * Hence, the use of this method is recommended only if the verbosity of a log statement
          * is is evaluated only at runtime.
          *
-         * @param domain        Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
-         *                      set for the \e %Scope of invocation.
+         * @param domain        The domain.
          * @param verbosity     The verbosity.
-         * @param logables      The objects to log.
          ******************************************************************************************/
         ALOX_API
-        void Entry( const String&  domain, Verbosity verbosity, const Boxes& logables  );
+        void Entry( const String&  domain, Verbosity verbosity );
+
+
 
         /** ****************************************************************************************
          * Logs a list of \e Logables with the given \e %Verbosity.
@@ -1183,12 +1176,10 @@ class Lox : protected aworx::lib::threads::ThreadLock
          * @param logables  The list of \e Logables, optionally including a domain name at the start.
          ******************************************************************************************/
         template <typename... BoxedObjects>
-        void EntryDetectDomain( Verbosity          verbosity,
-                                BoxedObjects&&...  logables )
+        void EntryDetectDomain( Verbosity verbosity,  BoxedObjects&&...  logables )
         {
-            Boxes& boxes= GetLogableContainer();
-            boxes.Add( std::forward<BoxedObjects>(logables)... );
-            entryDetectDomainImpl( verbosity, boxes );
+            GetLogableContainer().Add( std::forward<BoxedObjects>(logables)... );
+            entryDetectDomainImpl( verbosity );
         }
 
         /** ****************************************************************************************
@@ -1315,9 +1306,8 @@ class Lox : protected aworx::lib::threads::ThreadLock
         {
             if ( condition )
             {
-                Boxes& boxes= GetLogableContainer();
-                boxes.Add( std::forward<BoxedObjects>(logables)... );
-                Entry( domain, verbosity, boxes );
+                GetLogableContainer().Add( std::forward<BoxedObjects>(logables)... );
+                Entry( domain, verbosity );
             }
             else
                 CntLogCalls++;
@@ -1675,7 +1665,7 @@ class Lox : protected aworx::lib::threads::ThreadLock
          ******************************************************************************************/
         ALOX_API
         void      log( core::Domain*  dom,       Verbosity verbosity,
-                       const Boxes&   logables,  Inclusion prefixes );
+                       Boxes&         logables,  Inclusion prefixes );
 
 
         /** ****************************************************************************************
@@ -1687,7 +1677,7 @@ class Lox : protected aworx::lib::threads::ThreadLock
          * @param msg       The message.
          ******************************************************************************************/
         ALOX_API
-        void            logInternal( Verbosity verbosity, const String& subDomain, const Boxes& msg );
+        void            logInternal( Verbosity verbosity, const String& subDomain, Boxes& msg );
 
         /** ****************************************************************************************
          * Overloaded version accepting a string to log.
@@ -1750,10 +1740,9 @@ class Lox : protected aworx::lib::threads::ThreadLock
          * The implementation of #EntryDetectDomain.
          *
          * @param verbosity     The verbosity.
-         * @param logables      The objects to log.
          ******************************************************************************************/
         ALOX_API
-        void entryDetectDomainImpl( Verbosity verbosity, Boxes& logables );
+        void entryDetectDomainImpl( Verbosity verbosity);
 
         /** ****************************************************************************************
          * Internal method serving public interface #Once.

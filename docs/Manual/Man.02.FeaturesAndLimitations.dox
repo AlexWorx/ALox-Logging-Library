@@ -51,6 +51,8 @@
 
 - **Log Once** to restrict a log message or a set of log messages to appear only once (or up to n-times).
 
+- Support for **Recursive logging**, which is the correct execution of log statements during the evaluation of parameters of another log statement.
+
 - Automatic (OK, half-automatic :-) mapping of thread IDs to **readable thread names**
 
 - **LogTools** (in C# and Java) for

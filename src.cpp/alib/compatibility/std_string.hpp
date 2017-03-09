@@ -27,8 +27,8 @@
 
 namespace aworx { namespace lib { namespace strings
 {
-// We are faking all template specializations of namespace boxing for doxygen into namespace
-// boxing::thirdparty to keep the documentation of namespace string clean!
+// We are faking template specializations of namespace string for doxygen into sub namespace
+// thirdparty::std to keep the documentation of namespace string clean!
 #if defined(DOX_PARSER)
 namespace thirdparty { namespace std {
 #endif
@@ -53,7 +53,7 @@ namespace thirdparty { namespace std {
         }
 
         /** ****************************************************************************************
-         * Returns the  result of \c std::string::c_str.
+         * Returns the  result of \c std::string::length.
          *
          * @param  src    The source string.
          * @return The length of \p src.
@@ -122,11 +122,11 @@ namespace thirdparty { namespace std {
     // #############################  ToStdString (from std::string)  ##############################
 
     /** ********************************************************************************************
-     *  Copies or appends a region of a given \ref aworx::lib::strings::String "String" into
-     *  a \c std::string.
-     *  The region is adjusted to the length of the %String.
+     * Copies or appends a region of a given \ref aworx::lib::strings::String "String" into
+     * an object of type \c std::string.
+     * The given region is adjusted to match the length of the %String.
      *
-     * @param as            The \ref aworx::lib::strings::String "String" to convert into a std::string.
+     * @param src           The \ref aworx::lib::strings::String "String" to convert into a std::string.
      * @param target        A result std::string to copy the specified region into.
      * @param regionStart   The start index of the region to be copied.
      * @param regionLength  The maximum length of the region to be copied.
@@ -137,10 +137,10 @@ namespace thirdparty { namespace std {
      * @return The (modified) std::string& result that was provided (for concatenation of calls).
      **********************************************************************************************/
     inline
-    std::string& ToStdString( const String&      as,
+    std::string& ToStdString( const String&      src,
                               std::string&       target,
-                              integer           regionStart,
-                              integer           regionLength    = CString::MaxLen,
+                              integer            regionStart,
+                              integer            regionLength    = CString::MaxLen,
                               lang::CurrentData  targetData      = lang::CurrentData::Clear )
     {
 
@@ -148,59 +148,59 @@ namespace thirdparty { namespace std {
             target.clear();
 
         // adjust range, if empty return empty string
-        if ( as.AdjustRegion( regionStart, regionLength ) )
+        if ( src.AdjustRegion( regionStart, regionLength ) )
             return target;
 
         // copy our buffer into target
-        target.append( as.Buffer() , static_cast<size_t>(regionStart), static_cast<size_t>(regionLength ) );
+        target.append( src.Buffer() , static_cast<size_t>(regionStart), static_cast<size_t>(regionLength ) );
         return  target;
     }
 
     /** ********************************************************************************************
-     * Copies a region of a given \ref aworx::lib::strings::String "String" into a \c std::string
-     * which is created.
-     * The region is adjusted to the length of the %String.
+     * Copies a region of a given \ref aworx::lib::strings::String "String" into an object of type
+     * \c std::string, which is created.
+     * The given region is adjusted to match the length of the %String.
      *
-     * @param as            The \ref aworx::lib::strings::String "String" to convert into a std::string.
+     * @param src           The \ref aworx::lib::strings::String "String" to convert into a std::string.
      * @param regionStart   The start index of the region in this to create the std::string from.
      * @param regionLength  The maximum length of the region to be copied.
      *                      Defaults to CString::MaxLen.
      *
-     * @return A string that represents the specified sub region of this object.
+     * @return A \c std::string that represents the specified sub region of this object.
      **********************************************************************************************/
     inline
-    std::string  ToStdString( const String& as,
-                              integer         regionStart,
-                              integer      regionLength= CString::MaxLen )
+    std::string  ToStdString( const String& src,
+                              integer       regionStart,
+                              integer       regionLength= CString::MaxLen )
     {
         std::string result;
-        ToStdString( as, result, regionStart, regionLength, lang::CurrentData::Keep );
+        ToStdString( src, result, regionStart, regionLength, lang::CurrentData::Keep );
         return result;
     }
 
     /** ********************************************************************************************
      * Copies the contents of a given \ref aworx::lib::strings::String "String" into the given
-     * \c std::string.
+     * object of type \c std::string.
      *
-     * @param as            The \ref aworx::lib::strings::String "String" to convert into a std::string.
-     * @return A std::string that represents this object.
+     * @param src The \ref aworx::lib::strings::String "String" to convert into a std::string.
+     * @return A \c std::string that represents this object.
      **********************************************************************************************/
     inline
-    std::string  ToStdString( const String& as )
+    std::string  ToStdString( const String& src )
     {
-        return ToStdString( as, 0, as.Length() );
+        return ToStdString( src, 0, src.Length() );
     }
 
 
     /** ********************************************************************************************
      * Copies the contents of a given \ref aworx::lib::strings::String "String" into the
-     * given \c std::string.
+     * given object of type \c std::string.
      *
      * @param as           The \ref aworx::lib::strings::String "String" to convert into a std::string.
      * @param target       A target std::string to copy the contents of this %String into.
      * @param targetData   If \c CurrentData::Keep, parameter \p target is not cleared before
      *                     the result is written. Defaults to \c CurrentData::Clear.
-     * @return The (modified) result that was provided (for concatenation of calls).
+     * @return The (modified) \p target that was provided (returned to allow concatenation of calls).
      **********************************************************************************************/
     inline
     std::string& ToStdString( const String&     as,
@@ -210,8 +210,8 @@ namespace thirdparty { namespace std {
         return ToStdString( as, target, 0, as.Length(), targetData );
     }
 
-// We are faking all template specializations of namespace boxing for doxygen into namespace
-// boxing::thirdparty to keep the documentation of namespace string clean!
+// We are faking template specializations of namespace string for doxygen into sub namespace
+// thirdparty::std to keep the documentation of namespace string clean!
 #if defined(DOX_PARSER)
 }}
 #endif

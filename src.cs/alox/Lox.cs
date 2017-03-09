@@ -18,6 +18,7 @@ using cs.aworx.lib.lang;
 using cs.aworx.lib.config;
 using cs.aworx.lib.time;
 using cs.aworx.lib.strings;
+using cs.aworx.lib.strings.util;
 using cs.aworx.lib.threads;
 using cs.aworx.lox.core;
 using cs.aworx.lox.loggers;
@@ -122,8 +123,9 @@ public class Lox : ThreadLock
         /** A key value used in stores if no key is given (global object).  */
         protected readonly String               noKeyHashKey                                  = "$";
 
-        /** The list of collected log objects which is passed to the \e Loggers  */
-        protected List<Object>                  tmpLogables                    = new List<Object>();
+        /** A list of lists of objects. The list is passed to the \e Loggers. For each recursive call,
+         *  one list is created.    */
+        protected List<List<Object>>            logableLists             = new List<List<Object>>();
 
         /** A temporary AString, following the "create once and reuse" design pattern. */
         protected AString                       intMsg                         = new AString( 256 );
@@ -2347,7 +2349,7 @@ public class Lox : ThreadLock
             if( optLog2 != null )
             {
                 String firstArg= null;
-                     if ( logableOrDomain is String  ) firstArg= (String)  logableOrDomain;
+                     if ( logableOrDomain is String  ) firstArg= (String)    logableOrDomain;
                 else if ( logableOrDomain is AString ) firstArg= ((AString)  logableOrDomain).ToString();
 
                 bool illegalCharacterFound= false;
@@ -3552,21 +3554,22 @@ public class Lox : ThreadLock
 
 
         /** ****************************************************************************************
-         * Simple helper method that inserts a logable at the front of #tmpLogables.
+         * Simple helper method that inserts a logable at the front of given \p list.
          * If the logable is an object array, each object will be inserted.
          *
+         * @param list      The logable list
          * @param logable   The logable or array of logables.
          ******************************************************************************************/
-        protected void insertLogables( Object logable )
+        protected void insertLogables( List<Object> list, Object logable )
         {
             if ( logable is Object[] )
             {
                 Object[] logableArray= (Object[]) logable;
                 for (int i= logableArray.Length - 1 ; i >= 0 ; --i )
-                    tmpLogables.Insert( 0, logableArray[i] );
+                    list.Insert( 0, logableArray[i] );
             }
             else
-                tmpLogables.Insert( 0, logable );
+                list.Insert( 0, logable );
         }
 
         /** ****************************************************************************************
@@ -3582,12 +3585,17 @@ public class Lox : ThreadLock
         protected void log( Domain dom, Verbosity verbosity, Object[] logables, Inclusion prefixes )
         {
             dom.CntLogCalls++;
-            tmpLogables.Clear();
+
+            // get a logable list (reuse, one per recursive log)
+            while( logableLists.Count < lockCount )
+                logableLists.Add( new List<Object>() );
+            List<Object> logableList= logableLists[lockCount - 1 ];
+
             for ( int i= 0; i < dom.CountLoggers() ; i++ )
                 if( dom.IsActive( i, verbosity ) )
                 {
                     // lazily collect objects once
-                    if ( tmpLogables.Count == 0 )
+                    if ( logableList.Count == 0 )
                     {
                         // OK, this is a little crude, but the simplest solution: As class ScopeStore sees
                         // null objects as nothing and won't return them in a walk, we replace null by
@@ -3598,17 +3606,17 @@ public class Lox : ThreadLock
                         {
                             if ( next == logables )
                                 for( int l= logables.Length -1 ; l >= 0; --l )
-                                    insertLogables( logables[l] );
+                                    insertLogables( logableList, logables[l] );
 
                             else if (    next != this                    // see comment above
                                       && prefixes == Inclusion.Include ) // this is false for internal domains (only domain specific logables are added there)
-                                insertLogables( next );
+                                insertLogables( logableList, next );
 
                             // was this the actual? then insert domain-associated logables now
                             bool excludeOthers= false;
                             if( next == logables || next == this )
                             {
-                                int qtyThreadInner= tmpLogables.Count -1;
+                                int qtyThreadInner= logableList.Count -1;
                                 Domain pflDom= dom;
                                 while ( pflDom != null )
                                 {
@@ -3616,7 +3624,7 @@ public class Lox : ThreadLock
                                     {
                                         Domain.PL pl= pflDom.PrefixLogables[ii];
 
-                                        insertLogables( pl.Logable );
+                                        insertLogables( logableList, pl.Logable );
 
                                         if ( pl.IncludeOtherPLs == Inclusion.Exclude )
                                         {
@@ -3632,7 +3640,7 @@ public class Lox : ThreadLock
                                 if (excludeOthers)
                                 {
                                     for ( int ii= 0; ii < qtyThreadInner ; ii++ )
-                                        tmpLogables.RemoveAt( tmpLogables.Count - 1 );
+                                        logableList.RemoveAt( logableList.Count - 1 );
                                     break;
                                 }
                             }
@@ -3642,10 +3650,11 @@ public class Lox : ThreadLock
                     Logger logger= dom.GetLogger(i);
                     logger.Acquire();
                         logger.CntLogs++;
-                        logger.Log( dom, verbosity, tmpLogables, scopeInfo );
+                        logger.Log( dom, verbosity, logableList, scopeInfo );
                         logger.TimeOfLastLog.Set();
                     logger.Release();
                 }
+            logableList.Clear();
         }
 
         /** ****************************************************************************************

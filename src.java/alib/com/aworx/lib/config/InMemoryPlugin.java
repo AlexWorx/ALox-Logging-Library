@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import com.aworx.lib.lang.Case;
 import com.aworx.lib.strings.AString;
-import com.aworx.lib.strings.Tokenizer;
+import com.aworx.lib.strings.util.Tokenizer;
 
 /** ************************************************************************************************
  * Specialization of abstract interface class #ConfigurationPlugin, which holds

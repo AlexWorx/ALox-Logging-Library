@@ -6,7 +6,10 @@
 // #################################################################################################
 #include "alib/alib.hpp"
 
-using namespace std;
+#if defined(_MSC_VER)
+    #include <algorithm>
+#endif
+
 
 namespace aworx { namespace lib { namespace strings
 {
@@ -124,7 +127,7 @@ void AString::SetBuffer( integer newCapacity )
     if ( capacity != 0 )
     {
         // copy data and delete old buffer
-        memcpy( newBuffer, buffer, static_cast<size_t>(min( length + 1, newCapacity + 1)) );
+        memcpy( newBuffer, buffer, static_cast<size_t>((std::min)( length + 1, newCapacity + 1)) );
         if ( capacity > 0 )
           #if !ALIB_DEBUG_STRINGS
             delete[] buffer;
@@ -392,10 +395,10 @@ AString& AString::Trim( const TString& trimChars )
 //  Replace()
 // #################################################################################################
 integer AString::SearchAndReplace(  const TString&  needle,
-                                  const String&   replacement,
-                                  integer           startIdx,
-                                  integer        maxReplacements,
-                                  Case            sensitivity        )
+                                    const String&   replacement,
+                                    integer         startIdx,
+                                    integer         maxReplacements,
+                                    Case            sensitivity        )
 {
     ALIB_STRING_DBG_CHK(this)
 
@@ -415,6 +418,7 @@ integer AString::SearchAndReplace(  const TString&  needle,
     while ( cntReplacements < maxReplacements && startIdx < length)
     {
         // search  next occurrence
+        ALIB_STRING_DBG_UNTERMINATE(*this, 0);
         integer    idx= IndexOf<false>( needle, startIdx, sensitivity );
         if ( idx < 0 )
             break;
@@ -429,7 +433,7 @@ integer AString::SearchAndReplace(  const TString&  needle,
                      vbuffer + idx + nLen,
                      static_cast<size_t>(length  - idx - nLen) );
             length+= lenDiff;
-            Terminate();
+            ALIB_STRING_DBG_UNTERMINATE(*this, 0);
         }
 
         // fill replacement in
@@ -437,11 +441,12 @@ integer AString::SearchAndReplace(  const TString&  needle,
             memcpy( vbuffer + idx, replacement.Buffer(), static_cast<size_t>(rLen) );
 
         // set start index to first character behind current replacement
-        startIdx= idx+ rLen;
+        startIdx= idx + rLen;
 
         // next
         cntReplacements++;
     }
+
 
     // that's it
     return cntReplacements;

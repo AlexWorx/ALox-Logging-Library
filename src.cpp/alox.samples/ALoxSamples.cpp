@@ -61,9 +61,10 @@ void ReleaseLog()
     // let the system choose an appropriate console logger
     Lox_Prune( TextLogger* releaseLogger= Lox::CreateConsoleLogger(); )
 
-    // In debug compilations, we still install a report writer. (Log_XXX is removed in release comp)
+    // In debug compilations, we still install a report writer.
     Log_Prune( Log::AddALibReportWriter( &LOX_LOX ); )
-    Log_Prune( Lox_SetVerbosity( releaseLogger, Verbosity::Verbose, lox::ALoxReportWriter::LogDomain() ); )
+    Log_Prune( Lox_SetVerbosity( releaseLogger, Verbosity::Verbose, ALoxReportWriter::LogDomain() ); )
+    Log_Prune( Lox_SetPrefix( "ALib Report: ", ALoxReportWriter::LogDomain() ); )
 
     // if makefile did not specify scope info for release logging (which is standard behavior),
     // we set a format string without scope information.
@@ -73,6 +74,8 @@ void ReleaseLog()
 
     Lox_SetVerbosity( releaseLogger, Verbosity::Info );
     Lox_Info ( "Hello ALox, this is release logging" );
+
+    ALIB_MESSAGE ( "And this is an ALib report message. Appears on release lox but only in debug compilation." );
 
 
     // shutdown
@@ -423,11 +426,11 @@ void ALoxSampleReset()
 int main( int argc, char *argv[] )
 {
     #if defined(__clang__)
-        #pragma message "Info: Clang Compiler"
+        #pragma message "Info: Clang Compiler (not a warning, just for an information)"
     #elif defined(__GNUC__)
-        #pragma message "Info: GNU Compiler"
+        #pragma message "Info: GNU Compiler (not a warning, just for an information)"
     #elif defined(_MSC_VER)
-        #pragma message ("Info: MS Compiler")
+        #pragma message ("Info: MS Compiler (not a warning, just for an information)")
     #endif
 
     // first attach INI file to config system...

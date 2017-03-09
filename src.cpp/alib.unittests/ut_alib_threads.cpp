@@ -300,6 +300,7 @@ UT_METHOD( SmartLockTest )
         sl.RemoveAcquirer( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
         sl.RemoveAcquirer( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
         sl.RemoveAcquirer( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        UT_PRINT( "One warning should follow" ); ut.lox.CntLogCalls= 0;
         sl.RemoveAcquirer( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
     }
 
@@ -311,9 +312,11 @@ UT_METHOD( SmartLockTest )
         sl.AddAcquirer   ( &tl2    );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
         sl.AddAcquirer   ( &tl3    );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
         sl.RemoveAcquirer( &tl3    );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        UT_PRINT( "One warning should follow" ); ut.lox.CntLogCalls= 0;
         sl.RemoveAcquirer( &tl3    );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
         sl.RemoveAcquirer( &tl2    );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
         sl.RemoveAcquirer( &tl1    );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        UT_PRINT( "One warning should follow" ); ut.lox.CntLogCalls= 0;
         sl.RemoveAcquirer( &tl1    );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
     }
 
@@ -326,20 +329,24 @@ UT_METHOD( SmartLockTest )
         sl.AddAcquirer   ( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
         sl.AddAcquirer   ( &tl2    );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
         sl.AddAcquirer   ( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        UT_PRINT( "One warning should follow" ); ut.lox.CntLogCalls= 0;
         sl.AddAcquirer   ( &tl2    );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
         sl.AddAcquirer   ( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
         sl.AddAcquirer   ( &tl3    );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
         sl.RemoveAcquirer( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
         sl.RemoveAcquirer( &tl1    );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        UT_PRINT( "One warning should follow" ); ut.lox.CntLogCalls= 0;
         sl.RemoveAcquirer( &tl1    );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
         sl.RemoveAcquirer( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
         sl.RemoveAcquirer( &tl3    );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
         sl.RemoveAcquirer( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
         sl.RemoveAcquirer( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        UT_PRINT( "Three warnings should follow" ); ut.lox.CntLogCalls= 0;
         sl.RemoveAcquirer( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
         sl.RemoveAcquirer( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
         sl.RemoveAcquirer( &tl3    );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
         sl.RemoveAcquirer( &tl2    );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        UT_PRINT( "One warning should follow" ); ut.lox.CntLogCalls= 0;
         sl.RemoveAcquirer( nullptr );          UT_TRUE( sl.GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
     }
     lib::lang::Report::GetDefault().PopHaltFlags();

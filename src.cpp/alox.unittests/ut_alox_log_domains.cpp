@@ -44,8 +44,8 @@ void ScopeInfoCacheTest2() { Log_Info("Test Method 2"); }
         ml.MemoryLog._();                               \
         ml.AutoSizes.Reset();                           \
         lox.Acquire(ALIB_SRC_INFO_PARAMS);              \
-        Boxes argument("");                             \
-        lox.Entry( d, Verbosity::Info, argument );      \
+        lox.GetLogableContainer().Add("");              \
+        lox.Entry( d, Verbosity::Info );                \
         lox.Release();                                  \
         UT_EQ(s, ml .MemoryLog);                        \
         }

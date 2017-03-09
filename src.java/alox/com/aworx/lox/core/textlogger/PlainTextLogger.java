@@ -8,7 +8,7 @@ package com.aworx.lox.core.textlogger;
 
 import com.aworx.lib.lang.Phase;
 import com.aworx.lib.strings.AString;
-import com.aworx.lib.strings.Spaces;
+import com.aworx.lib.strings.util.Spaces;
 import com.aworx.lox.Verbosity;
 import com.aworx.lox.core.Domain;
 import com.aworx.lox.core.ScopeInfo;

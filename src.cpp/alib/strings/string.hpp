@@ -102,27 +102,34 @@
  * @addtogroup GrpALibStringsMacros
  * @{ \def  ALIB_STRING_CONSTRUCTOR_FIX
  * Defines template class
- * \ref aworx::lib::strings::T_String  "T_String" for the given type. This is needed to suppress
+ * \ref aworx::lib::strings::T_String  "T_String" for the given type. This may be used to suppress
  * "false errors" on compilation for certain types. For example (at the time of writing this), the
  * use of \c std::tuple with elements of type \b %String might lead to errors in certain complex
  * usage scenarios.<br>
- * The macro defines methods \c %Buffer and \c %Length to return \c nullptr and \c 0, because
- * in effect, the methods are never called. The same as the specialization of the struct itself, the
- * methods need to exist only to avoid compiler errors in the constructor of class
- * \ref aworx::lib::strings::String "String".
+ * The macro defines methods \c %Buffer and \c %Length to return \c nullptr and \c 0. In effect
+ * the methods are never called. The same as the specialization of the struct itself, the
+ * methods need to exist only to avoid the failure of a static assertion, as evaluated by some
+ * compilers in the constructor of class \ref aworx::lib::strings::String "String".
  *
  * The macro must be placed outside of any namespace.<br>
  * When passing template types with comma separated type lists, the commas must be given using
  * macro \ref ALIB_COMMA.
  * @}
  */
-#define ALIB_STRING_CONSTRUCTOR_FIX(TYPE)                                           \
-namespace aworx { namespace lib { namespace strings {                               \
-  template<>   struct      T_String<TYPE>   : public std::true_type                 \
-  {                                                                                 \
-      static inline const char* Buffer( const TYPE&  ) {  return nullptr; }         \
-      static inline integer     Length( const TYPE&  ) {  return 0;       }         \
-  };                                                                                \
+#define ALIB_STRING_CONSTRUCTOR_FIX(TYPE)                                                          \
+namespace aworx { namespace lib { namespace strings {                                              \
+    template<>   struct      T_String<TYPE>   : public std::true_type                              \
+    {                                                                                              \
+        static inline const char* Buffer( const TYPE&  )                                           \
+        {                                                                                          \
+            ALIB_ERROR( "Macro ALIB_STRING_CONSTRUCTOR_FIX set for type \""                        \
+                        ALIB_STRINGIFY((TYPE))                                                     \
+                        "\", which is used for string construction" );                             \
+            return nullptr;                                                                        \
+        }                                                                                          \
+                                                                                                   \
+        static inline integer     Length( const TYPE&  )  { return 0; }                            \
+    };                                                                                             \
 }}}
 
 
@@ -137,6 +144,19 @@ class String;
 #if !defined(DOX_PARSER)
     ALIB_WARNINGS_START_TMP;
 #endif
+
+/**
+ * Initializes the <b>ALib String</b> namespace.
+ * In current version, all it does is invoking \ref aworx::lib::strings::boxing::Init().
+ */
+ALIB_API void Init();
+
+/**
+ * Frees resources of the <b>ALib String</b> namespace.
+ * In current version, all it does is deleting the global formatter object.
+ */
+ALIB_API void TerminationCleanUp();
+
 
 
 /** ********************************************************************************************
@@ -462,7 +482,7 @@ class String
         inline
         constexpr
         String( const char* buffer, integer contentLength ) : buffer(buffer)
-                                                             , length(contentLength )
+                                                            , length(contentLength )
         {}
 
         /** ****************************************************************************************
@@ -513,13 +533,10 @@ class String
          * class, such errors might occur. To suppress a "false" error, use macro
          * \ref ALIB_STRING_CONSTRUCTOR_FIX for the type in question.
          *
-         *
          * \note
-         * - Other than the type of parameter \p src (<em>const TStringLike&</em>) may indicate,
+         *   Other than the type of parameter \p src (<em>const TStringLike&</em>) may indicate,
          *   objects of the class types named above may be provided as pointer or reference.
          *   The TMP will detect \c nullptr and otherwise convert pointers to references.
-         * - The source code of this method seems quite large. But the compiler will inline only
-         *   the minimum necessary code depending on the type that is passed.
          *
          * \see For more information, see
          * \ref aworx::lib::strings "namespace documentation" and template
@@ -530,7 +547,7 @@ class String
          ******************************************************************************************/
         template <typename TStringLike>
         inline
-        # if !defined(_MSC_VER)
+        #if !defined(_MSC_VER)
             constexpr
         #endif
         String(const  TStringLike& src )
@@ -612,7 +629,7 @@ class String
              || std::is_base_of<String,                                              TStringLike              >::value
              || std::is_base_of<String,                 typename std::remove_pointer<TStringLike>::type       >::value
 
-               , "ALib String (aka aworx::String) can't be constructed from this type."
+               , "aworx::String can not be constructed from type TStringLike."
             );
         }
 
@@ -1446,6 +1463,7 @@ class String
     /** ############################################################################################
      * @name Helper methods
      ##@{ ########################################################################################*/
+    public:
         /** ************************************************************************************
          * This is a helper method that adjusts a given region (in/out parameters) to fit to
          * this objects' buffer range [0..length].
@@ -1462,6 +1480,229 @@ class String
         {
             return CString::AdjustRegion( length, regionStart, regionLength );
         }
+
+    /** ############################################################################################
+     * @name std::iterator
+     ##@{ ########################################################################################*/
+    public:
+        /** ****************************************************************************************
+         * Implementation of \c std::iterator for class \b String. This class exposes
+         * #ConstIterator which uses <c>const char*</c> and <c>const char&</c> as
+         * pointer and reference types. Descendent classes may expose a mutable version
+         * (e.g. \ref aworx::lib::strings::AString "AString").
+         *
+         * As the name of the class indicates, this iterator satisfies the std library concept
+         * [RandomAccessIterator](http://en.cppreference.com/w/cpp/concept/RandomAccessIterator).
+         ******************************************************************************************/
+        template<typename TPointer, typename TReference>
+        class RandomAccessIteratorBase
+            : public std::iterator< std::random_access_iterator_tag,  // iterator_category
+                                    char,                             // value_type
+                                    integer,                          // integer
+                                    TPointer,                         // pointer
+                                    TReference                        // reference
+                                  >
+        {
+            protected:
+                /** The pointer into the buffer is all we store. */
+                TPointer p;
+
+            public:
+                /** Constructor.
+                 *  @param _p Our initial value       */
+                explicit RandomAccessIteratorBase( TPointer _p = nullptr ) : p(_p)
+                {
+                }
+
+            //######################   To satisfy concept of  InputIterator   ######################
+
+                /** Prefix increment operator.
+                 *  @return A reference to ourselves. */
+                RandomAccessIteratorBase& operator++()
+                {
+                    p++;
+                    return *this;
+                }
+
+                /** Postfix increment operator.
+                 *  @return A reference to ourselves. */
+                RandomAccessIteratorBase operator++(int)
+                {
+                    return RandomAccessIteratorBase(p++);
+                }
+
+                /** Comparison operator.
+                 *  @param other  The iterator to compare ourselves to.
+                 *  @return \c true if this and given iterator are equal, \c false otherwise. */
+                bool operator==(RandomAccessIteratorBase other)             const
+                {
+                    return p == other.p;
+                }
+
+                /** Comparison operator.
+                 *  @param other  The iterator to compare ourselves to.
+                 *  @return \c true if this and given iterator are not equal, \c false otherwise. */
+                bool operator!=(RandomAccessIteratorBase other)             const
+                {
+                    return !(*this == other);
+                }
+
+                /** Retrieves the character that this iterator references.
+                 * @return The character value.                               */
+                TReference operator*()                          const
+                {
+                    return *p;
+                }
+
+
+            //##################   To satisfy concept of  BidirectionalIterator   ##################
+
+                /** Prefix decrement operator.
+                 *  @return A reference to ourselves. */
+                RandomAccessIteratorBase& operator--()
+                {
+                    p--;
+                    return *this;
+                }
+
+
+                /** Postfix decrement operator.
+                 *  @return An iterator that with the old value. */
+                RandomAccessIteratorBase operator--(int)
+                {
+                    return RandomAccessIteratorBase(p--);
+                }
+
+
+            //##################   To satisfy concept of  RandomAccessIterator   ###################
+
+                /** Addition assignment.
+                 *  @param n The value to subtract.
+                 *  @return A reference to ourselves. */
+                RandomAccessIteratorBase& operator+=(integer n)
+                {
+                    p+= n;
+                    return *this;
+                }
+
+                /** Subtraction assignment.
+                 *  @param n The value to subtract.
+                 *  @return A reference to ourselves. */
+                RandomAccessIteratorBase& operator-=(integer n)
+                {
+                    p-= n;
+                    return *this;
+                }
+
+                /** Addition.
+                 *  @param n The value to subtract.
+                 *  @return A reference to the new iterator. */
+                RandomAccessIteratorBase operator+(integer n)       const
+                {
+                    return RandomAccessIteratorBase( p + n );
+                }
+
+                /** Subtraction.
+                 *  @param n The value to subtract.
+                 *  @return A reference to the new iterator. */
+                RandomAccessIteratorBase operator-(integer n)       const
+                {
+                    return RandomAccessIteratorBase( p - n );
+                }
+
+                /** Difference (distance) from this iterator to the given one.
+                 *  @param other  The iterator to subtract
+                 *  @return The iterator to subtract.    */
+                integer operator-(RandomAccessIteratorBase other)   const
+                {
+                    return p - other.p;
+                }
+
+                /** Subscript operator.
+                 *  @param n  The iterator to subtract
+                 *  @return <c>*( (*this) + n )</c>.                      */
+                TReference operator[]( integer n )   const
+                {
+                    return *( p + n );
+                }
+
+            //#### Comparison operators (also needed to satisfy concept of RandomAccessIterator) ###
+
+                /** Compares this iterator with the given one.
+                 *  @param other  The iterator to compare
+                 *  @return \c true if this iterator is \e smaller than \p other,
+                 *          \c false otherwise. */
+                integer operator<(RandomAccessIteratorBase other)   const
+                {
+                    return p < other.p;
+                }
+
+                /** Compares this iterator with the given one.
+                 *  @param other  The iterator to compare
+                 *  @return \c true if this iterator is \e smaller than or equal to \p other,
+                 *          \c false otherwise. */
+                integer operator<=(RandomAccessIteratorBase other)   const
+                {
+                    return p <= other.p;
+                }
+
+
+                /** Compares this iterator with the given one.
+                 *  @param other  The iterator to compare
+                 *  @return \c true if this iterator is \e greater than \p other,
+                 *          \c false otherwise. */
+                integer operator>(RandomAccessIteratorBase other)   const
+                {
+                    return p > other.p;
+                }
+
+                /** Compares this iterator with the given one.
+                 *  @param other  The iterator to compare
+                 *  @return \c true if this iterator is \e greater than or equal to \p other,
+                 *          \c false otherwise. */
+                integer operator>=(RandomAccessIteratorBase other)   const
+                {
+                    return p >= other.p;
+                }
+        };
+
+        /** The constant iterator exposed by this character container. A Mutable version is
+         *  found only in descendent classes (e.g. \ref aworx::lib::strings::AString "AString").
+         */
+        using ConstIterator= RandomAccessIteratorBase<const char*, const char&>;
+
+
+        /**
+         * Returns an iterator pointing to the start of this string.
+         * @return The start of this string.
+         */
+        ConstIterator begin()                       const
+        {
+            return ConstIterator( Buffer() );
+        }
+
+        /**
+         * Returns an iterator pointing to the first character behind this string.
+         * @return The end of this string.
+         */
+        ConstIterator end()                         const
+        {
+            return ConstIterator( Buffer() + length );
+        }
+
+        /** ****************************************************************************************
+         * Constructs this string using start and end iterators.
+         *
+         * @param start An iterator referencing the start of the string.
+         * @param end   An iterator referencing the end of the string.
+         ******************************************************************************************/
+        inline
+        String( ConstIterator& start, ConstIterator& end )
+        : buffer( &*start)
+        , length( end-start >= 0 ? end-start : 0 )
+        {}
+
+
 
 }; // class %String
 
@@ -1491,6 +1732,17 @@ constexpr lib::strings::String   EmptyString {"", 0};
 
 
 } // namespace aworx
+
+// #################################################################################################
+// False assertion fixes. Dependent on compiler and library
+// #################################################################################################
+/** clang needs this when class String is used as a key of class std::map (in std::map::operator[String]). */
+#if defined(__clang__)
+    ALIB_STRING_CONSTRUCTOR_FIX( std::tuple<      String &>  )
+    ALIB_STRING_CONSTRUCTOR_FIX( std::tuple<const String &>  )
+    ALIB_STRING_CONSTRUCTOR_FIX( std::tuple<      String &&> )
+#endif
+
 
 
 #if defined(_MSC_VER)

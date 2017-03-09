@@ -9,6 +9,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using cs.aworx.lib.strings;
+using cs.aworx.lib.strings.util;
 using cs.aworx.lib.lang;
 
 namespace cs.aworx.lib.config  {

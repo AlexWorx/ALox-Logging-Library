@@ -20,11 +20,8 @@
     #include <intrin.h>
 #endif
 
-using namespace std;
+namespace aworx { namespace lib { namespace strings {
 
-
-namespace aworx { namespace lib { namespace strings
-{
 //! @cond NO_DOX
 
 constexpr const uint64_t pow10_0to19[]=
@@ -1037,7 +1034,7 @@ integer NumberFormat::WriteFloat( double value,  char* buffer, integer idx, int 
     int integralWidth= overrideWidth != 0 ? overrideWidth : IntegralPartMinimumWidth;
 
     // check for NaN
-    if( isnan( value ) )    {  return idx+= NANLiteral.CopyTo(buffer + idx);   }
+    if( std::isnan( value ) )    {  return idx+= NANLiteral.CopyTo(buffer + idx);   }
 
     // sign
     if ( std::signbit(value) )
@@ -1052,7 +1049,7 @@ integer NumberFormat::WriteFloat( double value,  char* buffer, integer idx, int 
     }
 
     // +/-inf
-    if( isinf( value ) )    {  return idx+= INFLiteral.CopyTo(buffer + idx);   }
+    if( std::isinf( value ) )    {  return idx+= INFLiteral.CopyTo(buffer + idx);   }
 
 
     constexpr int MaxFloatSignificantDigits= 16;

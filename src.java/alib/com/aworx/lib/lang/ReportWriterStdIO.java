@@ -7,34 +7,21 @@
 package com.aworx.lib.lang;
 
 import com.aworx.lib.ALIB;
-import com.aworx.lib.threads.ThreadLock;
-import com.aworx.lib.threads.SmartLock;
-import com.aworx.lib.lang.Phase;
-import com.aworx.lib.lang.Report;
 import com.aworx.lib.strings.AString;
-import com.aworx.lib.strings.Formatter;
-import com.aworx.lib.strings.FormatterPythonStyle;
+import com.aworx.lib.strings.format.Formatter;
 
 /** ************************************************************************************************
  * The standard \b %ReportWriter writing the message to \c System.err and \c System.out.
- * A formatter of type
- * \ref com::aworx::lib::strings::FormatterPythonStyle "FormatterPythonStyle" is used to process the
- * objects in the report message.
+ * The global formatter singleton is used is used to process the objects in the report message.
+ * This is by default of type
+ * \ref com::aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle". See
+ * \ref com::aworx::lib::strings::format::Formatter::acquireDefault "Formatter.acquireDefault"
+ * for more information.
  **************************************************************************************************/
 public class ReportWriterStdIO implements ReportWriter
 {
     /** The singleton which is added in the constructor of \b Report. */
     public final static     ReportWriterStdIO SINGLETON= new com.aworx.lib.lang.ReportWriterStdIO();
-
-    /**
-     * The formatter used to format the output. This field is public and might be exchanged by
-     * users, while no 'safe' change interface is provided (neither in respect to threading,
-     * nor allocation. In contrast the field is just public. Therefore, when replacing this
-     * field,
-     * - the previous one needs to be deleted and
-     * - concurrent access needs to be avoided.
-     */
-    public                  Formatter           formatter              = new FormatterPythonStyle();
 
     /** Buffer used for formatting messages */
     protected               AString             buffer                              = new AString();
@@ -62,22 +49,25 @@ public class ReportWriterStdIO implements ReportWriter
      * Just writes the prefix \"ALib Report (Error):\" (respectively \"ALib Report (Warning):\"
      * and the error message to the cout.
      *
-     * @param report     The report.
+     * @param msg The message to report.
      **********************************************************************************************/
     @Override
     @SuppressWarnings("all")
-    public void report( Report.Message report )
+    public void report( Report.Message msg )
     {
         ALIB.stdOutputStreamsLock.acquire();
             buffer._()._("ALib ");
-                 if (  report.type == 0 )   buffer._( "Error:   ");
-            else if (  report.type == 1 )   buffer._( "Warning: ");
-            else                            buffer._( "Report (type=")._( report.type )._("): ");
+                 if (  msg.type == 0 )   buffer._( "Error:   ");
+            else if (  msg.type == 1 )   buffer._( "Warning: ");
+            else                         buffer._( "Report (type=")._( msg.type )._("): ");
 
 
-            formatter.FormatList( buffer, report.contents );
+            Formatter formatter= Formatter.acquireDefault();
+            formatter.format( buffer, msg.contents );
+            Formatter.releaseDefault();
 
-            if (report.type == 0 || report.type == 1)
+
+            if (msg.type == 0 || msg.type == 1)
             {
                 System.err.flush();
                 System.err.println( buffer.toString() );

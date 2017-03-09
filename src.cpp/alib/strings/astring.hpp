@@ -180,6 +180,85 @@ template<typename TApplicable>   struct T_Apply    : public std::false_type
 
 };
 
+#if defined(DOX_PARSER)
+
+/** ************************************************************************************************
+ * @addtogroup GrpALibMacros
+ * @{
+ * @name Macros Supporting TMP Class T_Apply
+ * TMP class
+ * \ref aworx::lib::strings::T_Apply "T_Apply" may be specialized for user types to allow the
+ * <em>"application"</em> of custom object of type
+ * \ref aworx::lib::strings::AString "AString".
+ * The following macros simplify such specialization.
+ *
+ * @{
+ *  \def ALIB_STRINGS_SPECIALIZE_T_APPLY
+ *  Helper macro for specializing struct
+ *  \ref aworx::lib::strings::T_Apply "T_Apply" for type \p TYPE.
+ *  This macro has to be positioned outside of any namespace and the given type has to include
+ *  its full namespace qualification.
+ *
+ *  This macro is to be used in combination with macro #ALIB_STRINGS_SPECIALIZE_T_APPLY_DEF.<br>
+ *  As an alternative to the two macros, #ALIB_STRINGS_SPECIALIZE_T_APPLY_INLINE might be used, which will
+ *  specialize \c T_Apply and define method \b %Apply inline.
+ *
+ *  \see \ref alib_namespace_strings_astring_applyto "Applying Objects to AStrings"
+ *
+ *  @param TYPE The type to specialize struct \b %T_Apply for.
+ *
+ *  \def ALIB_STRINGS_SPECIALIZE_T_APPLY_DEF
+ *  Macro used in combination with \ref ALIB_STRINGS_SPECIALIZE_T_APPLY which specializes struct
+ *  \ref aworx::lib::strings::T_Apply "T_Apply" for type \p TYPE and with this declares its
+ *  member function \b %Apply.<br>
+ *  This macro is used for the implementation of this member function.
+ *
+ *  @param TYPE  The type that struct \b %T_Apply was specialized for.
+ *  @param IMPL The implementation code for method \b %Apply.
+ *
+ *  \def ALIB_STRINGS_SPECIALIZE_T_APPLY_INLINE
+ *  Helper macro for specializing struct
+ *  \ref aworx::lib::strings::T_Apply "T_Apply" for a custom type for custom type \p TYPE.
+ *  This macro has to be positioned outside of any namespace and the given type has to include
+ *  its full namespace qualification.
+ *
+ *  With the specialization of struct \b %T_Apply, method \b %Apply will be defined and
+ *  implemented inline.
+ *
+ *  Macros #ALIB_STRINGS_SPECIALIZE_T_APPLY and #ALIB_STRINGS_SPECIALIZE_T_APPLY_DEF
+ *  provide a non-inline alternative to this macro.
+ *
+ *  \see \ref alib_namespace_strings_astring_applyto "Applying Objects to AStrings"
+ *
+ *  @param TYPE The type to specialize struct \b %T_Apply for.
+ *  @param IMPL The implementation code for method \b %Apply.
+ *
+ * @}
+ * @} //ingroup GrpALibMacros
+ **************************************************************************************************/
+#define ALIB_STRINGS_SPECIALIZE_T_APPLY(TYPE)
+#define ALIB_STRINGS_SPECIALIZE_T_APPLY_DEF(TYPE, IMPL)
+#define ALIB_STRINGS_SPECIALIZE_T_APPLY_INLINE(TYPE, IMPL)
+
+#else
+
+ #define ALIB_STRINGS_SPECIALIZE_T_APPLY(TYPE)                                                     \
+    namespace aworx { namespace lib { namespace strings {                                          \
+   template<> struct       T_Apply<TYPE> : public std::true_type                                   \
+  { static integer Apply( AString& target, const TYPE src );  }; }}}
+
+#define ALIB_STRINGS_SPECIALIZE_T_APPLY_DEF(TYPE, IMPL)                                            \
+aworx::lib::lang::integer aworx::lib::strings::T_Apply<TYPE>::Apply(AString& target, const TYPE src) \
+{ IMPL }
+
+ #define ALIB_STRINGS_SPECIALIZE_T_APPLY_INLINE(TYPE, IMPL)                                        \
+    namespace aworx { namespace lib { namespace strings {                                          \
+   template<> struct       T_Apply<TYPE> : public std::true_type                                   \
+  { static inline integer Apply( AString& target, const TYPE src ){ IMPL }  }; }}}
+
+#endif // else of defined(DOX_PARSER)
+
+
 /** ************************************************************************************************
  * Specializes class
  * \ref aworx::lib::strings::TString "TString" to implement mutable, non-constant
@@ -233,7 +312,8 @@ template<typename TApplicable>   struct T_Apply    : public std::false_type
  * contents is copied like in the copy constructor.<br>
  * This class does not provide a move assignment operator. The rational for this is that normally
  * a "more temporary" AString would be assigned to a "less temporary" one. In this case, it would
- * be not helpful to replace the allocated storage, each time.
+ * not be helpful to replace the allocated storage, each time.
+ *
  * \note
  *   In general, while assignment of other objects of type \b %AString is possible through
  *   #operator=(const AString&), the advised code style is to use a combination of #Clear and
@@ -364,13 +444,10 @@ template<typename TApplicable>   struct T_Apply    : public std::false_type
  **************************************************************************************************/
 class AString : public TString
 {
-    // #############################################################################################
-    // friends
-    // #############################################################################################
 
-        // this is (unfortunately) needed to allow PreallocatedString stealing our buffer in its
-        // move constructor.
-        template <const integer TCapacity> friend class PreallocatedString;
+    /**  This friendship is needed to allow class PreallocatedString to steal our buffer in its
+         move constructor. */
+    template <const integer TCapacity> friend class PreallocatedString;
 
     /** ############################################################################################
      * @name Debug Features
@@ -770,9 +847,10 @@ class AString : public TString
          * The <em>non-checking</em> version may be used to increase the length. Here, an
          * assertion is only raised, when the length is negative or greater than the
          * current #Capacity. Therefore, the non-checking version <em>has to</em> be used when
-         * external change an \c %AStrings' size.
-         * E.g. specializations of function
-         * \ref aworx::lib::strings::T_Apply "T_Apply" regularly do that.<p>
+         * external code changes the size of the string represented in an \c %AString buffer.
+         * Specializations of function
+         * \ref aworx::lib::strings::T_Apply "T_Apply" regularly do that.
+         *
          * Furthermore, if \ref ALIB_DEBUG_STRINGS is \c true, the non-checking version applies
          * \ref  ALIB_STRING_DBG_UNTERMINATE to this object, after the new length was
          * set. Only the, a \ref ALIB_STRING_DBG_CHK is executed.
@@ -2098,6 +2176,33 @@ class AString : public TString
             return *this;
         }
 
+    /** ############################################################################################
+     * @name std::iterator
+     ##@{ ########################################################################################*/
+    public:
+        /**
+         *  While parent class \b %String provides a constant iterator, we are exposing the same
+         *  thing in a mutable fashion.
+         */
+        using Iterator= RandomAccessIteratorBase<char*, char&>;
+
+        /**
+         * Returns an iterator pointing to the start of this string.
+         * @return The start of this string.
+         */
+        Iterator begin()
+        {
+            return Iterator( VBuffer() );
+        }
+
+        /**
+         * Returns an iterator pointing to the first character behind this string.
+         * @return The end of this string.
+         */
+        Iterator end()
+        {
+            return Iterator( VBuffer() + length );
+        }
 
 
 }; // class AString

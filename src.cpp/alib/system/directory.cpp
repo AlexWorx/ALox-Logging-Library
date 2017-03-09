@@ -29,8 +29,6 @@
 #include <fstream>
 
 
-using namespace std;
-
 namespace aworx { namespace lib { namespace system
 {
 
@@ -61,15 +59,15 @@ void createTempFolderInHomeDir( const String& folderName, AString& resultPath, c
             exists= true;
             AString fileName( homeTemp.Path ); fileName._( DirectorySeparator )._( "readme.txt" );
 
-            ofstream file ( fileName.ToCString() );
+            std::ofstream file ( fileName.ToCString() );
             if ( file.is_open() )
             {
                 const ProcessInfo& pi= ProcessInfo::Current();
                 file << "This folder was created by \"" << pi.CmdLine
-                     << "\"" << endl
-                     << "to be used for temporary files." << endl
+                     << "\"" << std::endl
+                     << "to be used for temporary files." << std::endl
                      << reasonMsg
-                     << endl;
+                     << std::endl;
                 file.close();
             }
         }

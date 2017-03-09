@@ -29,7 +29,6 @@ void documentationSample();
 #include "alib/compatibility/std_iostream.hpp"
 #include "alib/compatibility/std_string.hpp"
 
-#include "alib/system/directory.hpp"
 
 using namespace std;
 using namespace aworx;
@@ -39,7 +38,7 @@ void PrintResult()
     const int result= 42; // this took a long time to calculate
 
     AString as;
-    as <<  "The result is: " << Format::Tab(15) << Format::Field( String16(result), 8, Alignment::Center, '*' );
+    as <<  "The result is: " << Format::Tab(15) << Format::Field( String64(result), 8, Alignment::Center, '*' );
     cout << as << endl;
 }
 

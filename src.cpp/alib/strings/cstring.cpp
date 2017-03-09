@@ -10,11 +10,8 @@
     #include <cctype>
 #endif
 
-using namespace std;
 
-
-namespace aworx { namespace lib { namespace strings
-{
+namespace aworx { namespace lib { namespace strings {
 
 integer  CString::LengthWhenConvertedToWChar( const char* cs, integer  csLength )
 {

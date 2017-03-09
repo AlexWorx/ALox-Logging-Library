@@ -29,7 +29,7 @@ namespace aworx { namespace lib { namespace strings
  *   classes
  *      \ref aworx::lib::strings::AString   "AString",
  *      \ref aworx::lib::strings::Substring "Substring" or
- *      \ref aworx::lib::strings::Formatter "Formatter"
+ *      \ref aworx::lib::strings::format::Formatter "Formatter"
  *   to write and parse numbers, which accept an object of this type as parameters.
  *
  * <b>Defined Singletons and User-Defined Instances:</b><br>

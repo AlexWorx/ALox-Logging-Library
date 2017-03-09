@@ -423,11 +423,15 @@ It is read when a \e Logger of that type is added to a \b %Lox and if found, fie
   ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.VerbosityVerbose),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.VerbosityVerbose),
    [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.verbosityVerbose))
+- <b>%TextLogger.FmtMsgSuffix</b>
+  ([C++]      (@ref #aworx::lox::core::textlogger::TextLogger.FmtMsgSuffix),
+   [C#]   (@ref #cs::aworx::lox::core::textlogger::TextLogger.FmtMsgSuffix),
+   [Java](@ref #com::aworx::lox::core::textlogger::TextLogger.fmtMsgSuffix))
 
 are (optionally) set according to the variables' content. The contents of the variable is specified
 as follows:
 
-Format: <c> ALOX_\<LOGGERNAME\>_FORMAT = ["]Format["] [, ["]Error["] [, ["]Warning["] [, ["]Info["] [, ["]Verbose["] ]]]] </c>
+Format: <c> ALOX_\<LOGGERNAME\>_FORMAT = ["]Format["] [, ["]Error["] [, ["]Warning["] [, ["]Info["] [, ["]Verbose["] ] [, ["]MsgSuffix["] ]]]]] </c>
 
 Values that start or end with whitespace characters or which contain comma characters (<c>,</c>) ,
 need to be enclosed by quotation marks (<c>\"</c>).

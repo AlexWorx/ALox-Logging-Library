@@ -78,35 +78,35 @@
     <Compile Include="..\..\..\src.cs\alib\strings\AString.cs">
       <Link>ALib\strings\AString.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alib\strings\AutoSizes.cs">
-      <Link>ALib\strings\AutoSizes.cs</Link>
-    </Compile>
     <Compile Include="..\..\..\src.cs\alib\strings\CString.cs">
       <Link>ALib\strings\CString.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alib\strings\Formatter.cs">
-      <Link>ALib\strings\Formatter.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib\strings\format\Formatter.cs">
+      <Link>ALib\strings\format\Formatter.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alib\strings\FormatterJavaStyle.cs">
-      <Link>ALib\strings\FormatterJavaStyle.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib\strings\format\FormatterJavaStyle.cs">
+      <Link>ALib\strings\format\FormatterJavaStyle.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alib\strings\FormatterPythonStyle.cs">
-      <Link>ALib\strings\FormatterPythonStyle.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib\strings\format\FormatterPythonStyle.cs">
+      <Link>ALib\strings\format\FormatterPythonStyle.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alib\strings\FormatterStdImpl.cs">
-      <Link>ALib\strings\FormatterStdImpl.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib\strings\format\FormatterStdImpl.cs">
+      <Link>ALib\strings\format\FormatterStdImpl.cs</Link>
     </Compile>
     <Compile Include="..\..\..\src.cs\alib\strings\NumberFormat.cs">
       <Link>ALib\strings\NumberFormat.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alib\strings\Spaces.cs">
-      <Link>ALib\strings\Spaces.cs</Link>
-    </Compile>
     <Compile Include="..\..\..\src.cs\alib\strings\Substring.cs">
       <Link>ALib\strings\Substring.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alib\strings\Tokenizer.cs">
-      <Link>ALib\strings\Tokenizer.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib\strings\util\AutoSizes.cs">
+      <Link>ALib\strings\util\AutoSizes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\strings\util\Spaces.cs">
+      <Link>ALib\strings\util\Spaces.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\strings\util\Tokenizer.cs">
+      <Link>ALib\strings\util\Tokenizer.cs</Link>
     </Compile>
     <Compile Include="..\..\..\src.cs\alib\system\ProcessInfo.cs">
       <Link>ALib\system\ProcessInfo.cs</Link>

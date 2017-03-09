@@ -9,6 +9,7 @@ using System.Globalization;
 using cs.aworx.lox;
 using cs.aworx.lox.loggers;
 using cs.aworx.lib.strings;
+using cs.aworx.lib.strings.format;
 using ut_cs_aworx;
 using cs.aworx.lib.lang;
 
@@ -918,7 +919,7 @@ void    checkError( String exp, params Object[] args )
 
     // invoke format
     cs.aworx.lib.lang.Report.GetDefault().PushHaltFlags( false, false );
-    testFormatter.FormatList( testAS, args );
+    testFormatter.Format( testAS, args );
     cs.aworx.lib.lang.Report.GetDefault().PopHaltFlags();
 
     UT_TRUE( testAS.IndexOf(exp) >= 0 );
@@ -933,7 +934,7 @@ void    checkFormat( String exp, params Object[] args )
     testAS.SetBuffer(1);
 
     // invoke format
-    testFormatter.FormatList( testAS, args );
+    testFormatter.Format( testAS, args );
     UT_EQ( exp, testAS );
 }
 
