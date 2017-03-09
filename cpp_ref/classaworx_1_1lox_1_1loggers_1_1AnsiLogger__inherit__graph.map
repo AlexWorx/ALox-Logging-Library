@@ -1,6 +1,0 @@
-<map id="AnsiLogger" name="AnsiLogger">
-<area shape="rect" id="node2" href="$classaworx_1_1lox_1_1loggers_1_1AnsiConsoleLogger.html" title="AnsiConsoleLogger" alt="" coords="5,304,140,331"/>
-<area shape="rect" id="node3" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="TextLogger" alt="" coords="29,155,116,181"/>
-<area shape="rect" id="node4" href="$classaworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="42,80,103,107"/>
-<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1threads_1_1SmartLock.html" title="SmartLock" alt="" coords="30,5,115,32"/>
-</map>

@@ -9,5 +9,6 @@ var searchData=
   ['inmemoryplugin',['InMemoryPlugin',['../namespaceaworx.html#a5acd1ac5b29f64268c6bd7dea9e3a3bd',1,'aworx']]],
   ['integer',['integer',['../namespaceaworx_1_1lib_1_1lang.html#a050df5b24462b4a6256f2ed69c6b50ae',1,'aworx::lib::lang::integer()'],['../namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4',1,'aworx::integer()']]],
   ['interface',['Interface',['../namespaceaworx.html#aef105b1e431c10dcbb5691cb9814cac8',1,'aworx']]],
-  ['intgap_5ft',['intGap_t',['../namespaceaworx_1_1lib_1_1lang.html#af9eb8b6fb1aab7d526e9419b10fd5363',1,'aworx::lib::lang::intGap_t()'],['../namespaceaworx.html#adea1bda61bf659bfe398c7f2f13242df',1,'aworx::intGap_t()']]]
+  ['intgap_5ft',['intGap_t',['../namespaceaworx_1_1lib_1_1lang.html#af9eb8b6fb1aab7d526e9419b10fd5363',1,'aworx::lib::lang::intGap_t()'],['../namespaceaworx.html#adea1bda61bf659bfe398c7f2f13242df',1,'aworx::intGap_t()']]],
+  ['iterator',['Iterator',['../classaworx_1_1lib_1_1strings_1_1AString.html#adfbdc69365e618a3fc2c3da2dbc9149f',1,'aworx::lib::strings::AString']]]
 ];

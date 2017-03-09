@@ -14,7 +14,6 @@ var searchData=
   ['milliseconds',['milliseconds',['../classcom_1_1aworx_1_1lib_1_1time_1_1TickSpan.html#a5849f804fcf2677de863d9704d3ea272',1,'com::aworx::lib::time::TickSpan']]],
   ['minutes',['minutes',['../classcom_1_1aworx_1_1lib_1_1time_1_1TickSpan.html#ab693b677bdc9ded12b06daf49778101c',1,'com::aworx::lib::time::TickSpan']]],
   ['msgbuf',['msgBuf',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#aca76e783906a4030895a9797a98adb3f',1,'com::aworx::lox::core::textlogger::TextLogger']]],
-  ['msgsuffix',['msgSuffix',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#a9044757d6630385d974814cde7e519af',1,'com::aworx::lox::loggers::AnsiLogger']]],
   ['multilinedelimiter',['multiLineDelimiter',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a927436a8c9c6474fc683bb0888f43b62',1,'com::aworx::lox::core::textlogger::TextLogger']]],
   ['multilinedelimiterrepl',['multiLineDelimiterRepl',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a55f49a9dca5dd991ad7198b48307732b',1,'com::aworx::lox::core::textlogger::TextLogger']]],
   ['multilinemsgmode',['multiLineMsgMode',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#accadd49b1318abe7fc5b7ae8dcb0f431',1,'com::aworx::lox::core::textlogger::TextLogger']]],

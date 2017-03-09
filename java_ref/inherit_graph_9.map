@@ -1,7 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html" title="ConfigurationPlugin" alt="" coords="5,56,140,83"/>
-<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html" title="CommandLinePlugin" alt="" coords="188,5,329,32"/>
-<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html" title="EnvironmentPlugin" alt="" coords="193,56,324,83"/>
-<area shape="rect" id="node4" href="$classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html" title="InMemoryPlugin" alt="" coords="201,107,317,133"/>
-<area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html" title="IniFile" alt="" coords="377,107,435,133"/>
-</map>

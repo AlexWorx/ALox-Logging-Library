@@ -68,6 +68,6 @@ digraph "numberformat.hpp"
   Node20 [label="formatter.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$formatter_8hpp.html"];
   Node21 [label="formatterstdimpl.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$formatterstdimpl_8hpp.html"];
   Node22 [label="formatterjavastyle.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$formatterjavastyle_8hpp.html"];
-  Node23 [label="formatterpythonstyle.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$formatterpythonstyle_8hpp.html"];
+  Node23 [label="formatterpythonstyle.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$formatterpythonstyle_8hpp.html"];
 }
 

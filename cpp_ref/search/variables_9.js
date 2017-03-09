@@ -4,6 +4,8 @@ var searchData=
   ['idelogger',['IDELogger',['../classaworx_1_1lox_1_1Log.html#a7764bec073718f0cc7c022afbc17b4b9',1,'aworx::lox::Log']]],
   ['inaccuracy',['inaccuracy',['../classaworx_1_1lib_1_1time_1_1Ticks.html#aa912f27400c5f13494ef9b2fb919ae20',1,'aworx::lib::time::Ticks']]],
   ['includestring',['IncludeString',['../structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a4dfbe3fa1c6cd975f1a6a3b17dc6ac8d',1,'aworx::lox::core::ScopeInfo::SourcePathTrimRule']]],
+  ['indent',['Indent',['../classaworx_1_1lib_1_1strings_1_1util_1_1SimpleText.html#aa46c75f8c6410ec88c40c070a00a541e',1,'aworx::lib::strings::util::SimpleText']]],
+  ['indentfirstline',['IndentFirstLine',['../classaworx_1_1lib_1_1strings_1_1util_1_1SimpleText.html#a3761d4218b375e88b4deee7824443b02',1,'aworx::lib::strings::util::SimpleText']]],
   ['infliteral',['INFLiteral',['../classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a4cc2fe9387873552ba7934d551e12e49',1,'aworx::lib::strings::NumberFormat']]],
   ['initialized',['initialized',['../classaworx_1_1lib_1_1ALIB.html#aedeffc7d23da25d52b9a50045189fe2b',1,'aworx::lib::ALIB']]],
   ['integralpartminimumwidth',['IntegralPartMinimumWidth',['../classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a2a4db10f06c84cfd604377afdf6d3678',1,'aworx::lib::strings::NumberFormat']]],

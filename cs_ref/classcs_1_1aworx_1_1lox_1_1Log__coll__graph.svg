@@ -118,18 +118,18 @@
 <text text-anchor="middle" x="433.5" y="-15.5013" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> TimeOfLastLog</text>
 <text text-anchor="middle" x="433.5" y="-4.5013" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">TimeOfCreation</text>
 </g>
-<!-- Node22 -->
-<g id="node22" class="node">
-<title>Node22</title>
-<g id="a_node22"><a xlink:href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" target="_top" xlink:title="MetaInfo">
+<!-- Node21 -->
+<g id="node21" class="node">
+<title>Node21</title>
+<g id="a_node21"><a xlink:href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" target="_top" xlink:title="MetaInfo">
 <polygon fill="#ffffff" stroke="#000000" points="528.5,-147.0013 528.5,-166.0013 583.5,-166.0013 583.5,-147.0013 528.5,-147.0013"/>
 <text text-anchor="middle" x="556" y="-154.0013" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">MetaInfo</text>
 </a>
 </g>
 </g>
-<!-- Node4&#45;&gt;Node22 -->
-<g id="edge34" class="edge">
-<title>Node4&#45;&gt;Node22</title>
+<!-- Node4&#45;&gt;Node21 -->
+<g id="edge33" class="edge">
+<title>Node4&#45;&gt;Node21</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M167.4634,-40.7027C172.9413,-42.4 178.6195,-44.071 184,-45.5013 266.1384,-67.3369 289.5235,-61.3129 371,-85.5013 431.5174,-103.4675 500.33,-132.1572 534.4522,-146.9662"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="168.5177,-37.3653 157.9271,-37.6656 166.3934,-44.0352 168.5177,-37.3653"/>
 <text text-anchor="middle" x="316" y="-99.5013" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> elapsedTime</text>
@@ -239,9 +239,9 @@
 <text text-anchor="middle" x="556" y="-245.5013" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> logBuf</text>
 <text text-anchor="middle" x="556" y="-234.5013" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">msgBuf</text>
 </g>
-<!-- Node6&#45;&gt;Node22 -->
-<g id="edge33" class="edge">
-<title>Node6&#45;&gt;Node22</title>
+<!-- Node6&#45;&gt;Node21 -->
+<g id="edge30" class="edge">
+<title>Node6&#45;&gt;Node21</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M140.6421,-323.825C146.1582,-298.8061 158.7773,-255.5029 184,-227.5013 209.9487,-198.6938 223.9071,-197.7854 261,-186.5013 310.6203,-171.4064 464.892,-161.4879 528.3291,-157.949"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="137.1537,-323.4155 138.5877,-333.9129 144.0129,-324.8124 137.1537,-323.4155"/>
 <text text-anchor="middle" x="316" y="-222.5013" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> Format</text>
@@ -329,18 +329,18 @@
 <text text-anchor="middle" x="213.5" y="-268.5013" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> tSubstring2</text>
 <text text-anchor="middle" x="213.5" y="-257.5013" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">tSubstring</text>
 </g>
-<!-- Node23 -->
-<g id="node23" class="node">
-<title>Node23</title>
-<g id="a_node23"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html" target="_top" xlink:title="Tokenizer">
+<!-- Node22 -->
+<g id="node22" class="node">
+<title>Node22</title>
+<g id="a_node22"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1Tokenizer.html" target="_top" xlink:title="Tokenizer">
 <polygon fill="#ffffff" stroke="#000000" points="286.5,-117.0013 286.5,-136.0013 345.5,-136.0013 345.5,-117.0013 286.5,-117.0013"/>
 <text text-anchor="middle" x="316" y="-124.0013" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Tokenizer</text>
 </a>
 </g>
 </g>
-<!-- Node12&#45;&gt;Node23 -->
+<!-- Node12&#45;&gt;Node22 -->
 <g id="edge32" class="edge">
-<title>Node12&#45;&gt;Node23</title>
+<title>Node12&#45;&gt;Node22</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M145.6076,-180.4823C153.3812,-165.735 166.3178,-146.2238 184,-136.5013 215.7186,-119.061 258.3722,-119.2953 286.4997,-122.0576"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="142.3219,-179.233 141.0559,-189.7519 148.6053,-182.3184 142.3219,-179.233"/>
 <text text-anchor="middle" x="213.5" y="-150.5013" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> Rest</text>
@@ -437,35 +437,35 @@
 <polygon fill="#9a32cd" stroke="#9a32cd" points="817.9685,-240.1419 808.4075,-244.7068 818.7284,-247.1006 817.9685,-240.1419"/>
 <text text-anchor="middle" x="850" y="-245.5013" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> Converter</text>
 </g>
-<!-- Node21 -->
-<g id="node21" class="node">
-<title>Node21</title>
-<g id="a_node21"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1AutoSizes.html" target="_top" xlink:title="AutoSizes">
+<!-- Node21&#45;&gt;Node17 -->
+<g id="edge29" class="edge">
+<title>Node21&#45;&gt;Node17</title>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M593.8124,-156.7731C654.4494,-158.2176 776.5185,-165.3022 874,-197.5013 891.6767,-203.3402 910.4725,-213.4574 923.1853,-220.9546"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="593.6408,-153.2691 583.5732,-156.5697 593.5017,-160.2677 593.6408,-153.2691"/>
+<text text-anchor="middle" x="764.5" y="-182.5013" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> MetaInfo</text>
+</g>
+<!-- Node22&#45;&gt;Node21 -->
+<g id="edge31" class="edge">
+<title>Node22&#45;&gt;Node21</title>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M356.1006,-131.5139C404.888,-137.6123 485.9688,-147.7475 528.3179,-153.0411"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="356.2678,-128.0077 345.9109,-130.2402 355.3995,-134.9536 356.2678,-128.0077"/>
+<text text-anchor="middle" x="433.5" y="-149.5013" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> tTok</text>
+</g>
+<!-- Node23 -->
+<g id="node23" class="node">
+<title>Node23</title>
+<g id="a_node23"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html" target="_top" xlink:title="AutoSizes">
 <polygon fill="#ffffff" stroke="#000000" points="733.5,-278.0013 733.5,-297.0013 795.5,-297.0013 795.5,-278.0013 733.5,-278.0013"/>
 <text text-anchor="middle" x="764.5" y="-285.0013" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">AutoSizes</text>
 </a>
 </g>
 </g>
-<!-- Node21&#45;&gt;Node17 -->
-<g id="edge29" class="edge">
-<title>Node21&#45;&gt;Node17</title>
+<!-- Node23&#45;&gt;Node17 -->
+<g id="edge34" class="edge">
+<title>Node23&#45;&gt;Node17</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M805.2807,-277.6646C826.0476,-272.3194 851.5797,-265.2291 874,-257.5013 888.8051,-252.3983 905.0674,-245.5823 917.5589,-240.0755"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="804.3364,-274.2932 795.5033,-280.1435 806.0568,-281.0785 804.3364,-274.2932"/>
 <text text-anchor="middle" x="850" y="-275.5013" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> AutoSizes</text>
-</g>
-<!-- Node22&#45;&gt;Node17 -->
-<g id="edge30" class="edge">
-<title>Node22&#45;&gt;Node17</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M593.8124,-156.7731C654.4494,-158.2176 776.5185,-165.3022 874,-197.5013 891.6767,-203.3402 910.4725,-213.4574 923.1853,-220.9546"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="593.6408,-153.2691 583.5732,-156.5697 593.5017,-160.2677 593.6408,-153.2691"/>
-<text text-anchor="middle" x="764.5" y="-182.5013" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> MetaInfo</text>
-</g>
-<!-- Node23&#45;&gt;Node22 -->
-<g id="edge31" class="edge">
-<title>Node23&#45;&gt;Node22</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M356.1006,-131.5139C404.888,-137.6123 485.9688,-147.7475 528.3179,-153.0411"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="356.2678,-128.0077 345.9109,-130.2402 355.3995,-134.9536 356.2678,-128.0077"/>
-<text text-anchor="middle" x="433.5" y="-149.5013" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> tTok</text>
 </g>
 </g>
 </svg>

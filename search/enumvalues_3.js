@@ -1,5 +1,11 @@
 var searchData=
 [
-  ['domains',['Domains',['.././cs_ref/classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a78cd2c7d5422ffdb6d9545211ca49eeb',1,'cs::aworx::lox::Lox']]],
-  ['dsr',['DSR',['.././cs_ref/classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a2f83cd74c1361769a936e39b22fdc603',1,'cs::aworx::lox::Lox']]]
+  ['center',['Center',['.././cs_ref/namespacecs_1_1aworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726a4f1f6016fc9f3f2353c0cc7c67b292bd',1,'cs::aworx::lib::lang::Center()'],['.././cpp_ref/namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726a4f1f6016fc9f3f2353c0cc7c67b292bd',1,'aworx::lib::lang::Center()']]],
+  ['character',['Character',['.././cs_ref/classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a4660396d3d3ae4a0b0985d23df5c32e8a76a40e4f974fd895a0a2598c1cee28b4',1,'cs::aworx::lib::strings::format::FormatterStdImpl::Character()'],['.././cpp_ref/classaworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a4660396d3d3ae4a0b0985d23df5c32e8a76a40e4f974fd895a0a2598c1cee28b4',1,'aworx::lib::strings::format::FormatterStdImpl::Character()']]],
+  ['clear',['Clear',['.././cs_ref/namespacecs_1_1aworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2',1,'cs::aworx::lib::lang::Clear()'],['.././cpp_ref/namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2',1,'aworx::lib::lang::Clear()']]],
+  ['colon',['COLON',['.././cs_ref/classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#af89f0be472dea6889fc0b6fb35e338caaf65f22e75defc168edfc6444e6aaf4f8',1,'cs::aworx::lib::strings::format::FormatterPythonStyle']]],
+  ['conversion',['CONVERSION',['.././cs_ref/classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#af89f0be472dea6889fc0b6fb35e338caa4f95b2b3043e8094e82b1df5e337ab4c',1,'cs::aworx::lib::strings::format::FormatterPythonStyle']]],
+  ['create',['Create',['.././cs_ref/namespacecs_1_1aworx_1_1lib_1_1lang.html#af6d9cc1e6686eca6e60d57d959cf57fba686e697538050e4664636337cc3b834f',1,'cs::aworx::lib::lang::Create()'],['.././cpp_ref/namespaceaworx_1_1lib_1_1lang.html#af6d9cc1e6686eca6e60d57d959cf57fba686e697538050e4664636337cc3b834f',1,'aworx::lib::lang::Create()']]],
+  ['current',['Current',['.././cpp_ref/classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0a222a267cc5778206b253be35ee3ddab5',1,'aworx::lib::system::Directory']]],
+  ['custom',['Custom',['.././cs_ref/classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#aebb3561ef8cb7db28ec75a25358ab5d4a90589c47f06eb971d548591f23c285af',1,'cs::aworx::lib::config::Variable']]]
 ];

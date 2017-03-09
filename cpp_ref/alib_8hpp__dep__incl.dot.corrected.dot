@@ -2,14 +2,14 @@ digraph "alib.hpp"
 {
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
-  Node38 [label="alib.hpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node37 [label="alib.hpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node37 -> Node38 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node37 -> Node42 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node38 -> Node39 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node38 -> Node43 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node39 -> Node40 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node40 -> Node41 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node39 [label="ownable.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ownable_8hpp.html"];
-  Node40 [label="threadlocknr.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$threadlocknr_8hpp.html"];
-  Node41 [label="threadlock.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$threadlock_8hpp.html"];
-  Node43 [label="alox.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$alox_8hpp.html"];
+  Node38 [label="ownable.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ownable_8hpp.html"];
+  Node39 [label="threadlocknr.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$threadlocknr_8hpp.html"];
+  Node40 [label="threadlock.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$threadlock_8hpp.html"];
+  Node42 [label="alox.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$alox_8hpp.html"];
 }
 

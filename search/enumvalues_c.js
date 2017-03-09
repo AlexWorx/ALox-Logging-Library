@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['never',['Never',['.././cs_ref/namespacecs_1_1aworx_1_1lib_1_1lang.html#a55781bd0c78c4e5d47ce433f4eeeee85a6e7b34fa59e1bd229b207892956dc41c',1,'cs::aworx::lib::lang::Never()'],['.././cpp_ref/namespaceaworx_1_1lib_1_1lang.html#a55781bd0c78c4e5d47ce433f4eeeee85a6e7b34fa59e1bd229b207892956dc41c',1,'aworx::lib::lang::Never()']]],
-  ['nodelimspaces',['NoDelimSpaces',['.././cs_ref/classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#aebb3561ef8cb7db28ec75a25358ab5d4a3308dff642c5b3a0cc5b192ba1a94958',1,'cs::aworx::lib::config::Variable']]],
-  ['none',['None',['.././cs_ref/classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#aebb3561ef8cb7db28ec75a25358ab5d4a6adf97f83acf6453d4a6a4b1070f3754',1,'cs::aworx::lib::config::Variable']]],
-  ['notgiven',['NotGiven',['.././cs_ref/classcs_1_1aworx_1_1lib_1_1strings_1_1FormatterStdImpl.html#a4660396d3d3ae4a0b0985d23df5c32e8ab2a08319d780b24b0f694c89e549a51f',1,'cs::aworx::lib::strings::FormatterStdImpl::NotGiven()'],['.././cpp_ref/classaworx_1_1lib_1_1strings_1_1FormatterStdImpl.html#a4660396d3d3ae4a0b0985d23df5c32e8ab2a08319d780b24b0f694c89e549a51f',1,'aworx::lib::strings::FormatterStdImpl::NotGiven()']]]
+  ['method',['Method',['.././cs_ref/namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4c3880bb027f159e801041b1021e88e8',1,'cs::aworx::lox::Method()'],['.././cpp_ref/namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4c3880bb027f159e801041b1021e88e8',1,'aworx::lox::Method()']]],
+  ['module',['Module',['.././cpp_ref/classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0ae55f75a29310d7b60f7ac1d390c8ae42',1,'aworx::lib::system::Directory']]],
+  ['multline',['MultLine',['.././cs_ref/classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#aebb3561ef8cb7db28ec75a25358ab5d4a3440172974d6140e5d1051e68730d036',1,'cs::aworx::lib::config::Variable']]]
 ];

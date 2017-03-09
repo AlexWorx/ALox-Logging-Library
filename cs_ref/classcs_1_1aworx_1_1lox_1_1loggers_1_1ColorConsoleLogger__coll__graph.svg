@@ -107,18 +107,18 @@
 <text text-anchor="middle" x="344.5" y="-385" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> CreationTime</text>
 <text text-anchor="middle" x="344.5" y="-374" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">tempTicks</text>
 </g>
-<!-- Node15 -->
-<g id="node11" class="node">
-<title>Node15</title>
-<g id="a_node11"><a xlink:href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" target="_top" xlink:title="MetaInfo">
+<!-- Node14 -->
+<g id="node10" class="node">
+<title>Node14</title>
+<g id="a_node10"><a xlink:href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" target="_top" xlink:title="MetaInfo">
 <polygon fill="#ffffff" stroke="#000000" points="129,-125.5 129,-144.5 184,-144.5 184,-125.5 129,-125.5"/>
 <text text-anchor="middle" x="156.5" y="-132.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">MetaInfo</text>
 </a>
 </g>
 </g>
-<!-- Node10&#45;&gt;Node15 -->
-<g id="edge16" class="edge">
-<title>Node10&#45;&gt;Node15</title>
+<!-- Node10&#45;&gt;Node14 -->
+<g id="edge15" class="edge">
+<title>Node10&#45;&gt;Node14</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M254.9623,-365.8556C234.2991,-348.4354 203.1752,-318.7536 186.5,-286 161.428,-236.7534 173.4316,-218.1694 162.5,-164 161.1982,-157.5491 159.6982,-150.2991 158.5236,-144.6618"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="252.8948,-368.6869 262.8422,-372.3337 257.3401,-363.2795 252.8948,-368.6869"/>
 <text text-anchor="middle" x="224.5" y="-278" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> elapsedTime</text>
@@ -153,9 +153,9 @@
 <text text-anchor="middle" x="97.5" y="-138" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> logBuf</text>
 <text text-anchor="middle" x="97.5" y="-127" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">msgBuf</text>
 </g>
-<!-- Node12&#45;&gt;Node15 -->
-<g id="edge15" class="edge">
-<title>Node12&#45;&gt;Node15</title>
+<!-- Node12&#45;&gt;Node14 -->
+<g id="edge12" class="edge">
+<title>Node12&#45;&gt;Node14</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M25.4429,-216.0186C27.2802,-199.826 32.4176,-177.5467 46.5,-164 58.2069,-152.7385 100.2883,-143.9755 128.8744,-139.15"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="21.9472,-215.8244 24.6288,-226.0742 28.9244,-216.3893 21.9472,-215.8244"/>
 <text text-anchor="middle" x="84.5" y="-200" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> Format</text>
@@ -179,61 +179,61 @@
 <polygon fill="#9a32cd" stroke="#9a32cd" points="321.3264,-121.7433 331.3216,-125.2573 325.6993,-116.2772 321.3264,-121.7433"/>
 <text text-anchor="middle" x="328.5" y="-98" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> Converter</text>
 </g>
-<!-- Node14 -->
-<g id="node10" class="node">
-<title>Node14</title>
-<g id="a_node10"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1AutoSizes.html" target="_top" xlink:title="AutoSizes">
-<polygon fill="#ffffff" stroke="#000000" points="405.5,-125.5 405.5,-144.5 467.5,-144.5 467.5,-125.5 405.5,-125.5"/>
-<text text-anchor="middle" x="436.5" y="-132.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">AutoSizes</text>
-</a>
-</g>
-</g>
 <!-- Node14&#45;&gt;Node6 -->
 <g id="edge11" class="edge">
 <title>Node14&#45;&gt;Node6</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M410.1693,-120.5115C394.5814,-112.313 374.2702,-102.2772 355.5,-95 334.5815,-86.8899 310.3315,-79.8899 291.3111,-74.9174"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="408.7387,-123.7153 419.2086,-125.3378 412.0356,-117.5403 408.7387,-123.7153"/>
-<text text-anchor="middle" x="404.5" y="-98" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> AutoSizes</text>
-</g>
-<!-- Node15&#45;&gt;Node6 -->
-<g id="edge12" class="edge">
-<title>Node15&#45;&gt;Node6</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M177.7331,-119.2762C188.0939,-111.7477 200.8156,-102.7141 212.5,-95 222.1747,-88.6126 233.2696,-81.8437 242.1389,-76.5614"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="175.6628,-116.4541 169.6598,-125.1842 179.7968,-122.1031 175.6628,-116.4541"/>
 <text text-anchor="middle" x="233.5" y="-98" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> MetaInfo</text>
 </g>
-<!-- Node16 -->
-<g id="node12" class="node">
-<title>Node16</title>
-<g id="a_node12"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html" target="_top" xlink:title="Tokenizer">
+<!-- Node15 -->
+<g id="node11" class="node">
+<title>Node15</title>
+<g id="a_node11"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1Tokenizer.html" target="_top" xlink:title="Tokenizer">
 <polygon fill="#ffffff" stroke="#000000" points="89,-226.5 89,-245.5 148,-245.5 148,-226.5 89,-226.5"/>
 <text text-anchor="middle" x="118.5" y="-233.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Tokenizer</text>
 </a>
 </g>
 </g>
-<!-- Node16&#45;&gt;Node15 -->
+<!-- Node15&#45;&gt;Node14 -->
 <g id="edge13" class="edge">
-<title>Node16&#45;&gt;Node15</title>
+<title>Node15&#45;&gt;Node14</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M123.2816,-216.4951C127.1676,-201.7868 133.193,-181.2655 140.5,-164 143.3238,-157.3277 147.2439,-150.1983 150.4971,-144.678"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="119.8203,-215.9046 120.7412,-226.4594 126.6033,-217.634 119.8203,-215.9046"/>
 <text text-anchor="middle" x="151.5" y="-183.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> tTok</text>
 </g>
-<!-- Node17 -->
-<g id="node13" class="node">
-<title>Node17</title>
-<g id="a_node13"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html" target="_top" xlink:title="Substring">
+<!-- Node16 -->
+<g id="node12" class="node">
+<title>Node16</title>
+<g id="a_node12"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html" target="_top" xlink:title="Substring">
 <polygon fill="#ffffff" stroke="#000000" points="89.5,-304.5 89.5,-323.5 147.5,-323.5 147.5,-304.5 89.5,-304.5"/>
 <text text-anchor="middle" x="118.5" y="-311.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Substring</text>
 </a>
 </g>
 </g>
-<!-- Node17&#45;&gt;Node16 -->
+<!-- Node16&#45;&gt;Node15 -->
 <g id="edge14" class="edge">
-<title>Node17&#45;&gt;Node16</title>
+<title>Node16&#45;&gt;Node15</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M118.5,-294.2866C118.5,-278.7395 118.5,-257.7276 118.5,-245.6426"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="115.0001,-294.4356 118.5,-304.4357 122.0001,-294.4357 115.0001,-294.4356"/>
 <text text-anchor="middle" x="132.5" y="-278" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> Rest</text>
 <text text-anchor="middle" x="132.5" y="-267" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Actual</text>
+</g>
+<!-- Node17 -->
+<g id="node13" class="node">
+<title>Node17</title>
+<g id="a_node13"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html" target="_top" xlink:title="AutoSizes">
+<polygon fill="#ffffff" stroke="#000000" points="405.5,-125.5 405.5,-144.5 467.5,-144.5 467.5,-125.5 405.5,-125.5"/>
+<text text-anchor="middle" x="436.5" y="-132.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">AutoSizes</text>
+</a>
+</g>
+</g>
+<!-- Node17&#45;&gt;Node6 -->
+<g id="edge16" class="edge">
+<title>Node17&#45;&gt;Node6</title>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M410.1693,-120.5115C394.5814,-112.313 374.2702,-102.2772 355.5,-95 334.5815,-86.8899 310.3315,-79.8899 291.3111,-74.9174"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="408.7387,-123.7153 419.2086,-125.3378 412.0356,-117.5403 408.7387,-123.7153"/>
+<text text-anchor="middle" x="404.5" y="-98" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> AutoSizes</text>
 </g>
 </g>
 </svg>

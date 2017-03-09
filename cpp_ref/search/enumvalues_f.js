@@ -1,9 +1,22 @@
 var searchData=
 [
-  ['temp',['Temp',['../classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0a9a438bd942f1f19e6a641028bcfb43ff',1,'aworx::lib::system::Directory']]],
-  ['threadinner',['ThreadInner',['../namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6ae46b159c990fae9e712309bdb4d7b7c4',1,'aworx::lox']]],
-  ['threadouter',['ThreadOuter',['../namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a1ee3f312b05c55202500569aadfc8d9b',1,'aworx::lox']]],
-  ['todescendants',['ToDescendants',['../namespaceaworx_1_1lib_1_1lang.html#aeae0c2d4659a32ef54bd221d1a3da4e6aa9857b4deb35c57d5753f94fa00a028e',1,'aworx::lib::lang']]],
-  ['transfer',['Transfer',['../namespaceaworx_1_1lib_1_1lang.html#ab5305b978950ba3946cf79a4bccbf7afa6950810f0d2bba97a6f710c7b965b84e',1,'aworx::lib::lang']]],
-  ['trim',['Trim',['../namespaceaworx_1_1lib_1_1lang.html#ad4a46f9fb632511f6be7c53e05f330f7a1fc5884251ca9f20a4fd5f79a458f94f',1,'aworx::lib::lang']]]
+  ['safe',['Safe',['../namespaceaworx_1_1lib_1_1lang.html#a8c800527afe0a8a6c71ae4cceda6bf9dac6eea0560cd6f377e78dff2c85cc9122',1,'aworx::lib::lang']]],
+  ['sensitive',['Sensitive',['../namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b',1,'aworx::lib::lang']]],
+  ['singlelocks',['SingleLocks',['../namespaceaworx_1_1lib_1_1lang.html#a00fc859257c8f09ff9198dde28121961a67b491789a29d0c717a2b4ebe369a936',1,'aworx::lib::lang']]],
+  ['startswith',['StartsWith',['../structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html#a1d1cfd8ffb84e947f82999c682b666a7a9d1a2cba952f9245c54397bbbf3e8183',1,'aworx::lox::Lox::DomainSubstitutionRule']]],
+  ['stateinfo_5fbasic',['StateInfo_Basic',['../classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a4f2ea67d97f96331439b0a1ca2d083db',1,'aworx::lox::Lox']]],
+  ['stateinfo_5fcompilationflags',['StateInfo_CompilationFlags',['../classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a312521b5e1373eba35be14d2676f7f43',1,'aworx::lox::Lox']]],
+  ['stateinfo_5fdomains',['StateInfo_Domains',['../classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a0cfe61b3491148f99db83c51b9a36682',1,'aworx::lox::Lox']]],
+  ['stateinfo_5fdsr',['StateInfo_DSR',['../classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a155fbfbb987b91a1f4b8aa8e6a577045',1,'aworx::lox::Lox']]],
+  ['stateinfo_5finternaldomains',['StateInfo_InternalDomains',['../classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a261450da2fb0377ae568ea271df75382',1,'aworx::lox::Lox']]],
+  ['stateinfo_5flogdata',['StateInfo_LogData',['../classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a325d8d794fa2bfec9142d51acaabc2b4',1,'aworx::lox::Lox']]],
+  ['stateinfo_5floggers',['StateInfo_Loggers',['../classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a5ab8a46c8344beef8d4109905dd51383',1,'aworx::lox::Lox']]],
+  ['stateinfo_5fonce',['StateInfo_Once',['../classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5abf66f34c4d811a22437439effd868cbb',1,'aworx::lox::Lox']]],
+  ['stateinfo_5fprefixlogables',['StateInfo_PrefixLogables',['../classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5aee324135b4a5bd701042dbfb7cc713f1',1,'aworx::lox::Lox']]],
+  ['stateinfo_5fscopedomains',['StateInfo_ScopeDomains',['../classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a69dfc3282698ee2ca226a8f49a74a448',1,'aworx::lox::Lox']]],
+  ['stateinfo_5fsptr',['StateInfo_SPTR',['../classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a7ab954bf94dd5bd711094597ef4c8082',1,'aworx::lox::Lox']]],
+  ['stateinfo_5fthreadmappings',['StateInfo_ThreadMappings',['../classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a69192c477dd713b20bf5280c4cd84e5c',1,'aworx::lox::Lox']]],
+  ['stateinfo_5fversion',['StateInfo_Version',['../classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a8b4ecf28d924534de013261b35207b27',1,'aworx::lox::Lox']]],
+  ['string',['String',['../classaworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a4660396d3d3ae4a0b0985d23df5c32e8a27118326006d3829667a400ad23d5d98',1,'aworx::lib::strings::format::FormatterStdImpl']]],
+  ['substring',['Substring',['../structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html#a1d1cfd8ffb84e947f82999c682b666a7a7ba559a2b304b4c6d34d67ed77f80345',1,'aworx::lox::Lox::DomainSubstitutionRule']]]
 ];

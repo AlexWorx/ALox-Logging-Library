@@ -12,10 +12,10 @@
 <!-- Node0 -->
 <g id="node1" class="node">
 <title>Node0</title>
-<g id="a_node1"><a doxygen="ALox/html/java_ref/java_ref.tag:./java_ref/" xlink:href="./java_ref/classcom_1_1aworx_1_1lib_1_1strings_1_1Spaces.html" target="_top" xlink:title="com::aworx::lib::strings\l::Spaces">
+<g id="a_node1"><a doxygen="ALox/html/java_ref/java_ref.tag:./java_ref/" xlink:href="./java_ref/classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html" target="_top" xlink:title="com::aworx::lib::strings\l::AString">
 <polygon fill="#ffffff" stroke="#000000" points="0,-.5 0,-30.5 118,-30.5 118,-.5 0,-.5"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">com::aworx::lib::strings</text>
-<text text-anchor="middle" x="59" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">::Spaces</text>
+<text text-anchor="middle" x="59" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">::AString</text>
 </a>
 </g>
 </g>

@@ -1,20 +1,14 @@
 var searchData=
 [
-  ['wait_5ffor_5fkey_5fpress',['WAIT_FOR_KEY_PRESS',['../classaworx_1_1lib_1_1ALIB.html#a16240c3c22f871bc3d2aae28e3d4069d',1,'aworx::lib::ALIB']]],
-  ['waitforkeypressontermination',['WaitForKeyPressOnTermination',['../classaworx_1_1lib_1_1ALIB.html#ada43e256e3815ef07e1fa43666e356da',1,'aworx::lib::ALIB']]],
-  ['waitwarningtimelimitinmillis',['WaitWarningTimeLimitInMillis',['../classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a1a326aeefec583cbccf74ea567257e11',1,'aworx::lib::threads::ThreadLock']]],
-  ['walking',['walking',['../classaworx_1_1lox_1_1core_1_1ScopeStore.html#aa99316a33a7768a6af77f01edda34ef3',1,'aworx::lox::core::ScopeStore']]],
-  ['walklocalobject',['walkLocalObject',['../classaworx_1_1lox_1_1core_1_1ScopeStore.html#a82821b811e042ad4ca39396346cd49e0',1,'aworx::lox::core::ScopeStore']]],
-  ['walknextthreadidx',['walkNextThreadIdx',['../classaworx_1_1lox_1_1core_1_1ScopeStore.html#a9928f44e5399d356c4380ab105e48941',1,'aworx::lox::core::ScopeStore']]],
-  ['walkthreadvalues',['walkThreadValues',['../classaworx_1_1lox_1_1core_1_1ScopeStore.html#abf7b7f408957d23da2c7b6fc692436cd',1,'aworx::lox::core::ScopeStore']]],
-  ['wargs',['wArgs',['../classaworx_1_1lib_1_1config_1_1CommandLinePlugin.html#aa12d3084f7f24b687e9495935fddb6ce',1,'aworx::lib::config::CommandLinePlugin']]],
-  ['wcharbuffer',['wCharBuffer',['../classaworx_1_1lox_1_1loggers_1_1VStudioLogger.html#a91eee64289a4ad8305ad6f78e85090c9',1,'aworx::lox::loggers::VStudioLogger']]],
-  ['wcharbuffersize',['wCharBufferSize',['../classaworx_1_1lox_1_1loggers_1_1VStudioLogger.html#a097dc29175f1cb3e0a307177fca6f6f0',1,'aworx::lox::loggers::VStudioLogger']]],
-  ['white',['WHITE',['../classaworx_1_1lox_1_1ESC.html#a7e39de6e4f8233bb0dc0a259f6169608',1,'aworx::lox::ESC']]],
-  ['whitespaces',['Whitespaces',['../classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a9930366fb06415d9ff341fc79da323fd',1,'aworx::lib::strings::NumberFormat::Whitespaces()'],['../classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ade1a53d31b95db4ed98b03ff74a8b472',1,'aworx::lib::strings::Tokenizer::Whitespaces()']]],
-  ['writealiberrorreports',['WriteALibErrorReports',['../classaworx_1_1lib_1_1strings_1_1FormatterStdImpl.html#ab3371479dbef0811469ad762d5ef75ca',1,'aworx::lib::strings::FormatterStdImpl']]],
-  ['writeerrorstotargetstring',['WriteErrorsToTargetString',['../classaworx_1_1lib_1_1strings_1_1FormatterStdImpl.html#a3a232ac8dee64cd972b38c95a97ef304',1,'aworx::lib::strings::FormatterStdImpl']]],
-  ['writeexponentplussign',['WriteExponentPlusSign',['../classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a6c00bcda73309af42240644e7b354a35',1,'aworx::lib::strings::NumberFormat']]],
-  ['writegroupchars',['WriteGroupChars',['../classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a877af5f03733426bed72938e52874da7',1,'aworx::lib::strings::NumberFormat']]],
-  ['writers',['writers',['../classaworx_1_1lib_1_1lang_1_1Report.html#a46a7dd034e50f98088be4da9bb180524',1,'aworx::lib::lang::Report']]]
+  ['v',['v',['../classaworx_1_1lib_1_1strings_1_1Format.html#a382e9ea0d7bc529dee1b4a50ff8d10f2',1,'aworx::lib::strings::Format']]],
+  ['value',['Value',['../structaworx_1_1lib_1_1boxing_1_1BoxData.html#ae5cc2f97c501622beca5fdeffb7e755c',1,'aworx::lib::boxing::BoxData::Value()'],['../classaworx_1_1lib_1_1containers_1_1PathMap.html#acc64411e4973d80d6983e983f9ce7f0e',1,'aworx::lib::containers::PathMap::Value()'],['../classaworx_1_1lib_1_1boxing_1_1BoxedAs.html#a37970b24ff8115a54b5c57718f83fb10',1,'aworx::lib::boxing::BoxedAs::value()']]],
+  ['values',['values',['../classaworx_1_1lib_1_1config_1_1Variable.html#a082c95cffd7b5ec8f2d19f8b8ba15575',1,'aworx::lib::config::Variable::values()'],['../classaworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html#a666b5dd3fd1a34b57a7ff77570f99986',1,'aworx::lib::strings::util::AutoSizes::values()'],['../classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html#ae034b91bcff57549de332664c053c1f3',1,'aworx::lib::config::InMemoryPlugin::Entry::Values()']]],
+  ['valuetype',['valueType',['../classaworx_1_1lib_1_1strings_1_1Format.html#a8005d517c7a9e379314e1ce4f90a3dce',1,'aworx::lib::strings::Format']]],
+  ['vbuffer',['vbuffer',['../classaworx_1_1lib_1_1strings_1_1String.html#ab060ffba71bd8a3d7067a38950b39a82',1,'aworx::lib::strings::String']]],
+  ['verbosity',['VERBOSITY',['../classaworx_1_1lox_1_1ALox.html#aab2d3e17d5ce98f508c9439d95d41cca',1,'aworx::lox::ALox']]],
+  ['verbosityerror',['VerbosityError',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a697a4af23750f87b2cc13aaaecc056eb',1,'aworx::lox::core::textlogger::MetaInfo']]],
+  ['verbosityinfo',['VerbosityInfo',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a807b208f28b840290a9784dbef53e5bc',1,'aworx::lox::core::textlogger::MetaInfo']]],
+  ['verbosityverbose',['VerbosityVerbose',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a9959513d319bcf3d5bbd6d4d49b2ef27',1,'aworx::lox::core::textlogger::MetaInfo']]],
+  ['verbositywarning',['VerbosityWarning',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#aec7b4b89c7f2ec594514bd36388f7cc6',1,'aworx::lox::core::textlogger::MetaInfo']]],
+  ['version',['Version',['../classaworx_1_1lib_1_1ALIB.html#a8d88b5f159f3cd597cdd92f942340024',1,'aworx::lib::ALIB::Version()'],['../classaworx_1_1lox_1_1ALox.html#a8d88b5f159f3cd597cdd92f942340024',1,'aworx::lox::ALox::Version()']]]
 ];

@@ -9,9 +9,9 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 744)">
 <title>Graphical Class Hierarchy</title>
 <polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-744 445,-744 445,4 -4,4"/>
-<!-- Node356 -->
+<!-- Node363 -->
 <g id="node1" class="node">
-<title>Node356</title>
+<title>Node363</title>
 <g id="a_node1"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" xlink:href="./cpp_ref/classaworx_1_1lib_1_1boxing_1_1Boxer.html" target="_top" xlink:title="aworx::lib::boxing\l::Boxer">
 <polygon fill="#ffffff" stroke="#000000" points="146,-684.5 146,-714.5 238,-714.5 238,-684.5 146,-684.5"/>
 <text text-anchor="start" x="154" y="-702.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">aworx::lib::boxing</text>
@@ -29,9 +29,9 @@
 </a>
 </g>
 </g>
-<!-- Node356&#45;&gt;Node1 -->
+<!-- Node363&#45;&gt;Node1 -->
 <g id="edge1" class="edge">
-<title>Node356&#45;&gt;Node1</title>
+<title>Node363&#45;&gt;Node1</title>
 <path fill="none" stroke="#191970" d="M248.4231,-691.7398C267.0827,-689.1734 287.9009,-686.3102 306.7979,-683.7112"/>
 <polygon fill="#191970" stroke="#191970" points="247.7345,-688.3015 238.3047,-693.1315 248.6883,-695.2362 247.7345,-688.3015"/>
 </g>
@@ -45,15 +45,15 @@
 </a>
 </g>
 </g>
-<!-- Node356&#45;&gt;Node2 -->
+<!-- Node363&#45;&gt;Node2 -->
 <g id="edge2" class="edge">
-<title>Node356&#45;&gt;Node2</title>
+<title>Node363&#45;&gt;Node2</title>
 <path fill="none" stroke="#191970" d="M248.3309,-707.5703C267.9706,-710.384 290.011,-713.5417 309.6894,-716.3609"/>
 <polygon fill="#191970" stroke="#191970" points="248.7,-704.0876 238.3047,-706.1339 247.7072,-711.0168 248.7,-704.0876"/>
 </g>
-<!-- Node287 -->
+<!-- Node294 -->
 <g id="node4" class="node">
-<title>Node287</title>
+<title>Node294</title>
 <g id="a_node4"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" xlink:href="./cpp_ref/classaworx_1_1lib_1_1boxing_1_1Interface.html" target="_top" xlink:title="aworx::lib::boxing\l::Interface">
 <polygon fill="#ffffff" stroke="#000000" points="0,-415.5 0,-445.5 92,-445.5 92,-415.5 0,-415.5"/>
 <text text-anchor="start" x="8" y="-433.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">aworx::lib::boxing</text>
@@ -61,9 +61,9 @@
 </a>
 </g>
 </g>
-<!-- Node288 -->
+<!-- Node295 -->
 <g id="node5" class="node">
-<title>Node288</title>
+<title>Node295</title>
 <g id="a_node5"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" xlink:href="./cpp_ref/classaworx_1_1lib_1_1boxing_1_1IEquals.html" target="_top" xlink:title="aworx::lib::boxing\l::IEquals">
 <polygon fill="#ffffff" stroke="#000000" points="146,-464.5 146,-494.5 238,-494.5 238,-464.5 146,-464.5"/>
 <text text-anchor="start" x="154" y="-482.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">aworx::lib::boxing</text>
@@ -71,15 +71,15 @@
 </a>
 </g>
 </g>
-<!-- Node287&#45;&gt;Node288 -->
+<!-- Node294&#45;&gt;Node295 -->
 <g id="edge3" class="edge">
-<title>Node287&#45;&gt;Node288</title>
+<title>Node294&#45;&gt;Node295</title>
 <path fill="none" stroke="#191970" d="M100.8407,-448.9055C116.1164,-454.0322 132.5249,-459.5392 147.1524,-464.4484"/>
 <polygon fill="#191970" stroke="#191970" points="101.5901,-445.4651 90.9961,-445.6014 99.3628,-452.1014 101.5901,-445.4651"/>
 </g>
-<!-- Node289 -->
+<!-- Node296 -->
 <g id="node11" class="node">
-<title>Node289</title>
+<title>Node296</title>
 <g id="a_node11"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" xlink:href="./cpp_ref/classaworx_1_1lib_1_1boxing_1_1IIsEmpty.html" target="_top" xlink:title="aworx::lib::boxing\l::IIsEmpty">
 <polygon fill="#ffffff" stroke="#000000" points="146,-415.5 146,-445.5 238,-445.5 238,-415.5 146,-415.5"/>
 <text text-anchor="start" x="154" y="-433.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">aworx::lib::boxing</text>
@@ -87,15 +87,15 @@
 </a>
 </g>
 </g>
-<!-- Node287&#45;&gt;Node289 -->
+<!-- Node294&#45;&gt;Node296 -->
 <g id="edge9" class="edge">
-<title>Node287&#45;&gt;Node289</title>
+<title>Node294&#45;&gt;Node296</title>
 <path fill="none" stroke="#191970" d="M102.4576,-430.5C116.8168,-430.5 132.0773,-430.5 145.8548,-430.5"/>
 <polygon fill="#191970" stroke="#191970" points="102.1953,-427.0001 92.1953,-430.5 102.1953,-434.0001 102.1953,-427.0001"/>
 </g>
-<!-- Node290 -->
+<!-- Node297 -->
 <g id="node12" class="node">
-<title>Node290</title>
+<title>Node297</title>
 <g id="a_node12"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" xlink:href="./cpp_ref/classaworx_1_1lib_1_1boxing_1_1IIsNull.html" target="_top" xlink:title="aworx::lib::boxing\l::IIsNull">
 <polygon fill="#ffffff" stroke="#000000" points="146,-317.5 146,-347.5 238,-347.5 238,-317.5 146,-317.5"/>
 <text text-anchor="start" x="154" y="-335.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">aworx::lib::boxing</text>
@@ -103,15 +103,15 @@
 </a>
 </g>
 </g>
-<!-- Node287&#45;&gt;Node290 -->
+<!-- Node294&#45;&gt;Node297 -->
 <g id="edge10" class="edge">
-<title>Node287&#45;&gt;Node290</title>
+<title>Node294&#45;&gt;Node297</title>
 <path fill="none" stroke="#191970" d="M66.9249,-408.023C82.5588,-392.2452 105.0974,-371.5385 128,-357.5 134.0004,-353.822 140.6344,-350.5114 147.2913,-347.5942"/>
 <polygon fill="#191970" stroke="#191970" points="64.2918,-405.7106 59.8335,-415.3217 69.3123,-410.5885 64.2918,-405.7106"/>
 </g>
-<!-- Node291 -->
+<!-- Node298 -->
 <g id="node14" class="node">
-<title>Node291</title>
+<title>Node298</title>
 <g id="a_node14"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" xlink:href="./cpp_ref/classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply.html" target="_top" xlink:title="aworx::lib::strings\l::boxing::IApply">
 <polygon fill="#ffffff" stroke="#000000" points="145.5,-164.5 145.5,-194.5 238.5,-194.5 238.5,-164.5 145.5,-164.5"/>
 <text text-anchor="start" x="153.5" y="-182.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">aworx::lib::strings</text>
@@ -119,15 +119,15 @@
 </a>
 </g>
 </g>
-<!-- Node287&#45;&gt;Node291 -->
+<!-- Node294&#45;&gt;Node298 -->
 <g id="edge12" class="edge">
-<title>Node287&#45;&gt;Node291</title>
+<title>Node294&#45;&gt;Node298</title>
 <path fill="none" stroke="#191970" d="M60.0012,-406.4295C89.7956,-355.2075 158.7485,-236.6652 183.2035,-194.6228"/>
 <polygon fill="#191970" stroke="#191970" points="56.9158,-404.7728 54.9132,-415.1767 62.9666,-408.2924 56.9158,-404.7728"/>
 </g>
-<!-- Node292 -->
+<!-- Node299 -->
 <g id="node21" class="node">
-<title>Node292</title>
+<title>Node299</title>
 <g id="a_node21"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" xlink:href="./cpp_ref/classaworx_1_1lib_1_1strings_1_1boxing_1_1IFormat.html" target="_top" xlink:title="aworx::lib::strings\l::boxing::IFormat">
 <polygon fill="#ffffff" stroke="#000000" points="145.5,-562.5 145.5,-592.5 238.5,-592.5 238.5,-562.5 145.5,-562.5"/>
 <text text-anchor="start" x="153.5" y="-580.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">aworx::lib::strings</text>
@@ -135,9 +135,9 @@
 </a>
 </g>
 </g>
-<!-- Node287&#45;&gt;Node292 -->
+<!-- Node294&#45;&gt;Node299 -->
 <g id="edge19" class="edge">
-<title>Node287&#45;&gt;Node292</title>
+<title>Node294&#45;&gt;Node299</title>
 <path fill="none" stroke="#191970" d="M68.1817,-452.8336C98.1804,-483.0378 150.9024,-536.1209 176.7886,-562.1844"/>
 <polygon fill="#191970" stroke="#191970" points="70.6049,-450.3067 61.0747,-445.6779 65.6383,-455.2395 70.6049,-450.3067"/>
 </g>
@@ -151,9 +151,9 @@
 </a>
 </g>
 </g>
-<!-- Node288&#45;&gt;Node3 -->
+<!-- Node295&#45;&gt;Node3 -->
 <g id="edge4" class="edge">
-<title>Node288&#45;&gt;Node3</title>
+<title>Node295&#45;&gt;Node3</title>
 <path fill="none" stroke="#191970" d="M247.9563,-463.7873C268.7512,-457.9481 292.2799,-451.3412 312.8626,-445.5615"/>
 <polygon fill="#191970" stroke="#191970" points="246.9861,-460.4243 238.3047,-466.4975 248.8785,-467.1637 246.9861,-460.4243"/>
 </g>
@@ -167,9 +167,9 @@
 </a>
 </g>
 </g>
-<!-- Node288&#45;&gt;Node4 -->
+<!-- Node295&#45;&gt;Node4 -->
 <g id="edge5" class="edge">
-<title>Node288&#45;&gt;Node4</title>
+<title>Node295&#45;&gt;Node4</title>
 <path fill="none" stroke="#191970" d="M247.1262,-461.3247C250.2334,-459.5431 253.2192,-457.6051 256,-455.5 277.5462,-439.1895 270.1716,-422.4309 292,-406.5 297.2896,-402.6395 303.2148,-399.3478 309.3512,-396.5473"/>
 <polygon fill="#191970" stroke="#191970" points="245.4217,-458.2653 238.1179,-465.9404 248.6138,-464.4952 245.4217,-458.2653"/>
 </g>
@@ -183,9 +183,9 @@
 </a>
 </g>
 </g>
-<!-- Node288&#45;&gt;Node5 -->
+<!-- Node295&#45;&gt;Node5 -->
 <g id="edge6" class="edge">
-<title>Node288&#45;&gt;Node5</title>
+<title>Node295&#45;&gt;Node5</title>
 <path fill="none" stroke="#191970" d="M216.636,-501.3148C236.0043,-517.5431 264.2613,-539.2572 292,-553.5 298.4068,-556.7896 305.3539,-559.7458 312.3431,-562.3657"/>
 <polygon fill="#191970" stroke="#191970" points="218.7898,-498.5519 208.907,-494.7335 214.2516,-503.8815 218.7898,-498.5519"/>
 </g>
@@ -199,9 +199,9 @@
 </a>
 </g>
 </g>
-<!-- Node288&#45;&gt;Node6 -->
+<!-- Node295&#45;&gt;Node6 -->
 <g id="edge7" class="edge">
-<title>Node288&#45;&gt;Node6</title>
+<title>Node295&#45;&gt;Node6</title>
 <path fill="none" stroke="#191970" d="M247.9563,-495.2127C268.7512,-501.0519 292.2799,-507.6588 312.8626,-513.4385"/>
 <polygon fill="#191970" stroke="#191970" points="248.8785,-491.8363 238.3047,-492.5025 246.9861,-498.5757 248.8785,-491.8363"/>
 </g>
@@ -215,9 +215,9 @@
 </a>
 </g>
 </g>
-<!-- Node288&#45;&gt;Node7 -->
+<!-- Node295&#45;&gt;Node7 -->
 <g id="edge8" class="edge">
-<title>Node288&#45;&gt;Node7</title>
+<title>Node295&#45;&gt;Node7</title>
 <path fill="none" stroke="#191970" d="M248.4605,-479.5C262.7506,-479.5 278.3047,-479.5 293.2913,-479.5"/>
 <polygon fill="#191970" stroke="#191970" points="248.3047,-476.0001 238.3047,-479.5 248.3046,-483.0001 248.3047,-476.0001"/>
 </g>
@@ -231,9 +231,9 @@
 </a>
 </g>
 </g>
-<!-- Node290&#45;&gt;Node8 -->
+<!-- Node297&#45;&gt;Node8 -->
 <g id="edge11" class="edge">
-<title>Node290&#45;&gt;Node8</title>
+<title>Node297&#45;&gt;Node8</title>
 <path fill="none" stroke="#191970" d="M248.377,-332.5C271.6194,-332.5 298.2174,-332.5 320.282,-332.5"/>
 <polygon fill="#191970" stroke="#191970" points="248.3047,-329.0001 238.3047,-332.5 248.3046,-336.0001 248.3047,-329.0001"/>
 </g>
@@ -248,9 +248,9 @@
 </a>
 </g>
 </g>
-<!-- Node291&#45;&gt;Node9 -->
+<!-- Node298&#45;&gt;Node9 -->
 <g id="edge13" class="edge">
-<title>Node291&#45;&gt;Node9</title>
+<title>Node298&#45;&gt;Node9</title>
 <path fill="none" stroke="#191970" d="M248.9245,-179.5C265.6385,-179.5 284.0483,-179.5 301.2396,-179.5"/>
 <polygon fill="#191970" stroke="#191970" points="248.7628,-176.0001 238.7628,-179.5 248.7628,-183.0001 248.7628,-176.0001"/>
 </g>
@@ -265,9 +265,9 @@
 </a>
 </g>
 </g>
-<!-- Node291&#45;&gt;Node10 -->
+<!-- Node298&#45;&gt;Node10 -->
 <g id="edge14" class="edge">
-<title>Node291&#45;&gt;Node10</title>
+<title>Node298&#45;&gt;Node10</title>
 <path fill="none" stroke="#191970" d="M245.5829,-161.0761C264.9076,-154.4315 286.835,-146.892 306.6606,-140.0751"/>
 <polygon fill="#191970" stroke="#191970" points="244.3523,-157.798 236.0337,-164.3595 246.6284,-164.4177 244.3523,-157.798"/>
 </g>
@@ -281,9 +281,9 @@
 </a>
 </g>
 </g>
-<!-- Node291&#45;&gt;Node11 -->
+<!-- Node298&#45;&gt;Node11 -->
 <g id="edge15" class="edge">
-<title>Node291&#45;&gt;Node11</title>
+<title>Node298&#45;&gt;Node11</title>
 <path fill="none" stroke="#191970" d="M211.9991,-156.8501C230.8655,-136.7017 260.8347,-107.6887 292,-89.5 298.4806,-85.7178 305.6153,-82.4068 312.824,-79.5391"/>
 <polygon fill="#191970" stroke="#191970" points="209.2871,-154.6286 205.096,-164.3592 214.4404,-159.366 209.2871,-154.6286"/>
 </g>
@@ -297,9 +297,9 @@
 </a>
 </g>
 </g>
-<!-- Node291&#45;&gt;Node12 -->
+<!-- Node298&#45;&gt;Node12 -->
 <g id="edge16" class="edge">
-<title>Node291&#45;&gt;Node12</title>
+<title>Node298&#45;&gt;Node12</title>
 <path fill="none" stroke="#191970" d="M203.2504,-155.1307C218.8665,-123.9155 250.0018,-70.1922 292,-39.5 296.7176,-36.0524 301.9523,-33.0858 307.3973,-30.536"/>
 <polygon fill="#191970" stroke="#191970" points="199.9601,-153.8935 198.7315,-164.4169 206.2544,-156.9565 199.9601,-153.8935"/>
 </g>
@@ -313,9 +313,9 @@
 </a>
 </g>
 </g>
-<!-- Node291&#45;&gt;Node13 -->
+<!-- Node298&#45;&gt;Node13 -->
 <g id="edge17" class="edge">
-<title>Node291&#45;&gt;Node13</title>
+<title>Node298&#45;&gt;Node13</title>
 <path fill="none" stroke="#191970" d="M214.7926,-201.3049C234.0713,-218.7692 263.0998,-242.8545 292,-258.5 298.8386,-262.2022 306.3253,-265.4951 313.8324,-268.3775"/>
 <polygon fill="#191970" stroke="#191970" points="217.1325,-198.7017 207.4051,-194.5028 212.3909,-203.8512 217.1325,-198.7017"/>
 </g>
@@ -329,9 +329,9 @@
 </a>
 </g>
 </g>
-<!-- Node291&#45;&gt;Node14 -->
+<!-- Node298&#45;&gt;Node14 -->
 <g id="edge18" class="edge">
-<title>Node291&#45;&gt;Node14</title>
+<title>Node298&#45;&gt;Node14</title>
 <path fill="none" stroke="#191970" d="M248.5824,-197.334C271.2214,-204.4695 297.0167,-212.5998 318.6963,-219.4329"/>
 <polygon fill="#191970" stroke="#191970" points="249.3524,-193.907 238.7628,-194.239 247.2481,-200.5833 249.3524,-193.907"/>
 </g>
@@ -345,9 +345,9 @@
 </a>
 </g>
 </g>
-<!-- Node292&#45;&gt;Node15 -->
+<!-- Node299&#45;&gt;Node15 -->
 <g id="edge20" class="edge">
-<title>Node292&#45;&gt;Node15</title>
+<title>Node299&#45;&gt;Node15</title>
 <path fill="none" stroke="#191970" d="M248.6458,-593.4063C269.2535,-599.193 292.4696,-605.7121 312.8134,-611.4247"/>
 <polygon fill="#191970" stroke="#191970" points="249.3367,-589.965 238.7628,-590.6311 247.4442,-596.7043 249.3367,-589.965"/>
 </g>

@@ -5,7 +5,7 @@
   <filterSection>
     <filterAttribute>doxygen</filterAttribute>
     <toc>
-      <section title="ALox V. 1702 R. 0" ref="index.html">
+      <section title="ALox V. 1702 R. 1" ref="index.html">
         <section title="Overview" ref="index.html" />
         <section title="Manual" ref="manual.html" />
         <section title="Tools" ref="tools.html" />
@@ -29,8 +29,7 @@
       <keyword name="14 - Trimming Source File Paths and Clickable IDE Output" id="14 - Trimming Source File Paths and Clickable IDE Output" ref="man_trim_source_path.html" />
       <keyword name="15 - Log Domain Substitution" id="15 - Log Domain Substitution" ref="man_domain_substitution.html" />
       <keyword name="16 - Colorful Loggers" id="16 - Colorful Loggers" ref="man_colorful_loggers.html" />
-      <keyword name="A - Namespaces" id="A - Namespaces" ref="man_ext_namespaces.html" />
-      <keyword name="B - Loggers and Implementing Custom Types" id="B - Loggers and Implementing Custom Types" ref="man_ext_loggers.html" />
+      <keyword name="A - Loggers and Implementing Custom Types" id="A - Loggers and Implementing Custom Types" ref="man_ext_loggers.html" />
       <keyword name="II -  ALox Auto-Configuration and Orthogonality" id="II -  ALox Auto-Configuration and Orthogonality" ref="man_apdx_auto_config.html" />
       <keyword name="Contents" id="Contents" ref="manual.html" />
       <keyword name="Change Log" id="Change Log" ref="changelog.html" />
@@ -77,6 +76,8 @@
       <file>sync_off.png</file>
       <file>doxygen.css</file>
       <file>aworx_stylesheet.css</file>
+      <file>jquery.js</file>
+      <file>dynsections.js</file>
       <file>search/search_l.png</file>
       <file>search/search_m.png</file>
       <file>search/search_r.png</file>
@@ -104,13 +105,9 @@
       <file>man_colorful_loggers.html</file>
       <file>dot_inline_dotgraph_3.svg</file>
       <file>dot_inline_dotgraph_4.svg</file>
-      <file>man_ext_namespaces.html</file>
+      <file>man_ext_loggers.html</file>
       <file>dot_inline_dotgraph_5.svg</file>
       <file>dot_inline_dotgraph_6.svg</file>
-      <file>dot_inline_dotgraph_7.svg</file>
-      <file>man_ext_loggers.html</file>
-      <file>dot_inline_dotgraph_8.svg</file>
-      <file>dot_inline_dotgraph_9.svg</file>
       <file>man_apdx_auto_config.html</file>
       <file>manual.html</file>
       <file>changelog.html</file>
@@ -387,6 +384,13 @@
       <file>inherit_graph_261.svg</file>
       <file>inherit_graph_262.svg</file>
       <file>inherit_graph_263.svg</file>
+      <file>inherit_graph_264.svg</file>
+      <file>inherit_graph_265.svg</file>
+      <file>inherit_graph_266.svg</file>
+      <file>inherit_graph_267.svg</file>
+      <file>inherit_graph_268.svg</file>
+      <file>inherit_graph_269.svg</file>
+      <file>inherit_graph_270.svg</file>
       <file>pages.html</file>
     </files>
   </filterSection>

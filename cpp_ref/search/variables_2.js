@@ -18,11 +18,11 @@ var searchData=
   ['binwordgroupchar',['BinWordGroupChar',['../classaworx_1_1lib_1_1strings_1_1NumberFormat.html#acaa2bcb7c8ec0e16cd3a4a8ef42f9196',1,'aworx::lib::strings::NumberFormat']]],
   ['black',['BLACK',['../classaworx_1_1lox_1_1ESC.html#a03fcfa32650e29154ebb6ddfc325f13a',1,'aworx::lox::ESC']]],
   ['blockallocationsize',['blockAllocationSize',['../classaworx_1_1lib_1_1lang_1_1MemoryBlocks.html#a716207b6d42fa3556bd14fea9d447a59',1,'aworx::lib::lang::MemoryBlocks']]],
-  ['blocks',['blocks',['../classaworx_1_1lib_1_1lang_1_1MemoryBlocks.html#a8233bb73a8902511160c088a35036f8f',1,'aworx::lib::lang::MemoryBlocks::blocks()'],['../classaworx_1_1lib_1_1strings_1_1StringTuples.html#ad0337a186504be5501a77ce052e9c7c8',1,'aworx::lib::strings::StringTuples::blocks()']]],
+  ['blocks',['blocks',['../classaworx_1_1lib_1_1lang_1_1MemoryBlocks.html#a8233bb73a8902511160c088a35036f8f',1,'aworx::lib::lang::MemoryBlocks::blocks()'],['../classaworx_1_1lib_1_1strings_1_1util_1_1StringTuples.html#ad0337a186504be5501a77ce052e9c7c8',1,'aworx::lib::strings::util::StringTuples::blocks()']]],
   ['blue',['BLUE',['../classaworx_1_1lox_1_1ESC.html#aae0f71c16c24eca46ba82cb778a4511e',1,'aworx::lox::ESC']]],
   ['bold',['BOLD',['../classaworx_1_1lox_1_1ESC.html#a9f9f2126d9e6edff3218927c04074dcb',1,'aworx::lox::ESC']]],
   ['boxer',['boxer',['../classaworx_1_1lib_1_1boxing_1_1Box.html#ac9663bfd726a1b8c391b21f6e836c66e',1,'aworx::lib::boxing::Box']]],
-  ['boxes',['boxes',['../classaworx_1_1lib_1_1strings_1_1Formatter.html#a9c235ad71ffb912aa8ecc4e998d0eb0e',1,'aworx::lib::strings::Formatter']]],
-  ['buffer',['buffer',['../classaworx_1_1lib_1_1lang_1_1ReportWriterStdIO.html#a75b8ba8c7c9a2a9a334f9a4f14095af6',1,'aworx::lib::lang::ReportWriterStdIO::buffer()'],['../classaworx_1_1lib_1_1strings_1_1String.html#adae84acc92cd77a04f6aaf533643a33a',1,'aworx::lib::strings::String::buffer()']]],
+  ['boxes',['boxes',['../classaworx_1_1lib_1_1strings_1_1format_1_1Formatter.html#a9c235ad71ffb912aa8ecc4e998d0eb0e',1,'aworx::lib::strings::format::Formatter::boxes()'],['../classaworx_1_1lib_1_1strings_1_1util_1_1SimpleText.html#a9c235ad71ffb912aa8ecc4e998d0eb0e',1,'aworx::lib::strings::util::SimpleText::boxes()']]],
+  ['buffer',['buffer',['../classaworx_1_1lib_1_1strings_1_1String.html#adae84acc92cd77a04f6aaf533643a33a',1,'aworx::lib::strings::String']]],
   ['buffersize',['BufferSize',['../classaworx_1_1lib_1_1strings_1_1thirdparty_1_1std_1_1ReadLineFromIStream.html#a3751e27c933a5440488f3d69faeb9802',1,'aworx::lib::strings::thirdparty::std::ReadLineFromIStream']]]
 ];

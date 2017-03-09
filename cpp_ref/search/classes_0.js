@@ -7,5 +7,5 @@ var searchData=
   ['ansilogger',['AnsiLogger',['../classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html',1,'aworx::lox::loggers']]],
   ['arrayboxert',['ArrayBoxerT',['../classaworx_1_1lib_1_1boxing_1_1ArrayBoxerT.html',1,'aworx::lib::boxing']]],
   ['astring',['AString',['../classaworx_1_1lib_1_1strings_1_1AString.html',1,'aworx::lib::strings']]],
-  ['autosizes',['AutoSizes',['../classaworx_1_1lib_1_1strings_1_1AutoSizes.html',1,'aworx::lib::strings']]]
+  ['autosizes',['AutoSizes',['../classaworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html',1,'aworx::lib::strings::util']]]
 ];

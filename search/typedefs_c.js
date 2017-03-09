@@ -2,10 +2,11 @@ var searchData=
 [
   ['safeness',['Safeness',['.././cpp_ref/namespaceaworx.html#aa79d65dae6fee850c4a638c5bb26b1e3',1,'aworx']]],
   ['scope',['Scope',['.././cpp_ref/namespaceaworx.html#aef58f56e96f194bf0b5f765175f6ebd6',1,'aworx']]],
+  ['simpletext',['SimpleText',['.././cpp_ref/namespaceaworx.html#a6406bb650e022971a7e6d11926f1aeca',1,'aworx']]],
   ['singleton',['Singleton',['.././cpp_ref/namespaceaworx.html#a853db7b4d3eea2d12c2aef317b6110ee',1,'aworx']]],
   ['sliteral',['SLiteral',['.././cpp_ref/namespaceaworx.html#af631a26bf70ad6d6143973fadf779747',1,'aworx']]],
   ['smartlock',['SmartLock',['.././cpp_ref/namespaceaworx.html#aee1cd004a3010e8ee798517d96c1ffca',1,'aworx']]],
-  ['spaces',['Spaces',['.././cpp_ref/namespaceaworx.html#a21b91dd964ea7642199ae73935110943',1,'aworx']]],
+  ['spaces',['Spaces',['.././cpp_ref/namespaceaworx.html#a9f69e16cb165fb1d0263890b165a5613',1,'aworx']]],
   ['string',['String',['.././cpp_ref/namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d',1,'aworx']]],
   ['string128',['String128',['.././cpp_ref/namespaceaworx.html#a2841f1443c3b2f3d6066d5774cf69dbc',1,'aworx']]],
   ['string16',['String16',['.././cpp_ref/namespaceaworx.html#a148a217c34a72b4360462205858b8f0e',1,'aworx']]],
@@ -17,8 +18,8 @@ var searchData=
   ['string512',['String512',['.././cpp_ref/namespaceaworx.html#af634b7550d8a316ce3cf3fb6f9e86079',1,'aworx']]],
   ['string64',['String64',['.././cpp_ref/namespaceaworx.html#ac2fdc487456a994238ba4284b3859c41',1,'aworx']]],
   ['string8',['String8',['.././cpp_ref/namespaceaworx.html#ab35696c2e8d79567a528a4b6da788eb3',1,'aworx']]],
-  ['strings',['Strings',['.././cpp_ref/namespaceaworx.html#a7f7e2ce87d962d967d9a4809606acd1c',1,'aworx']]],
-  ['stringtuples',['StringTuples',['.././cpp_ref/namespaceaworx.html#a67aa733be659f9e66222f74c1f0dcfcc',1,'aworx']]],
+  ['strings',['Strings',['.././cpp_ref/namespaceaworx.html#abc46e42927a238007065da5265423816',1,'aworx']]],
+  ['stringtuples',['StringTuples',['.././cpp_ref/namespaceaworx.html#aa0aafb6be60b02340000199f1a508044',1,'aworx']]],
   ['substring',['Substring',['.././cpp_ref/namespaceaworx.html#afed2e22d908094b0badbf8ac4d5f3900',1,'aworx']]],
   ['switch',['Switch',['.././cpp_ref/namespaceaworx.html#a68e1ec4ff4ca04def6fdd7fe217a245a',1,'aworx']]]
 ];

@@ -146,10 +146,10 @@
 <text text-anchor="middle" x="163" y="-118" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">FORMAT_MULTILINE</text>
 <text text-anchor="middle" x="163" y="-107" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">SPTR_LOX</text>
 <text text-anchor="middle" x="163" y="-96" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">CONSOLE_TYPE</text>
-<text text-anchor="middle" x="163" y="-85" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">CODEPAGE</text>
-<text text-anchor="middle" x="163" y="-74" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">MAX_ELAPSED_TIME</text>
-<text text-anchor="middle" x="163" y="-63" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">SPTR_GLOBAL</text>
-<text text-anchor="middle" x="163" y="-52" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">FORMAT</text>
+<text text-anchor="middle" x="163" y="-85" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">MAX_ELAPSED_TIME</text>
+<text text-anchor="middle" x="163" y="-74" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">SPTR_GLOBAL</text>
+<text text-anchor="middle" x="163" y="-63" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">FORMAT</text>
+<text text-anchor="middle" x="163" y="-52" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">PREFIXES</text>
 <text text-anchor="middle" x="163" y="-41" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">...</text>
 </g>
 <!-- Node4&#45;&gt;Node3 -->

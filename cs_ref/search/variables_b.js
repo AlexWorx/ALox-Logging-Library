@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['lamformatstring',['lamFormatString',['../classcs_1_1aworx_1_1lib_1_1strings_1_1Formatter.html#a83ed0ec9ef8575acb9275f4a3981670b',1,'cs::aworx::lib::strings::Formatter']]],
+  ['lamformatstring',['lamFormatString',['../classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html#a83ed0ec9ef8575acb9275f4a3981670b',1,'cs::aworx::lib::strings::format::Formatter']]],
   ['languagekey',['languageKey',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#afff48198d20f5acb5e3b9f526f3aa89b',1,'cs::aworx::lox::core::ScopeStore']]],
   ['languagekeysubstr',['languageKeySubstr',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a3bf60f6469b0c69c146a974a7a4c08e4',1,'cs::aworx::lox::core::ScopeStore']]],
   ['languagestore',['languageStore',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a3cc97c81f5f73c882d4a1f5abbe41811',1,'cs::aworx::lox::core::ScopeStore']]],
@@ -11,7 +11,7 @@ var searchData=
   ['lazynamewoext',['lazyNameWOExt',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a6c3770fbdfb42ce16f192d1991386269',1,'cs::aworx::lox::core::ScopeInfo::SourceFile']]],
   ['lazytrimmedpath',['lazyTrimmedPath',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a373c2b29a02975ba423efd04fdd49206',1,'cs::aworx::lox::core::ScopeInfo::SourceFile']]],
   ['leadinggroupcharreplacement',['LeadingGroupCharReplacement',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#aa2765e4ca203eddcddc204992bb12f7f',1,'cs::aworx::lib::strings::NumberFormat']]],
-  ['length',['length',['../classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a9f59b34b1f25fe00023291b678246bcc',1,'cs.aworx.lib.strings.AString.length()'],['../classcs_1_1aworx_1_1lib_1_1strings_1_1AutoSizes.html#a9f59b34b1f25fe00023291b678246bcc',1,'cs.aworx.lib.strings.AutoSizes.length()']]],
+  ['length',['length',['../classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a9f59b34b1f25fe00023291b678246bcc',1,'cs.aworx.lib.strings.AString.length()'],['../classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html#a9f59b34b1f25fe00023291b678246bcc',1,'cs.aworx.lib.strings.util.AutoSizes.length()']]],
   ['lightcolors',['lightColors',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1ColorConsoleLogger.html#a40714713a3c01f0a1a1d2b5953b4e404',1,'cs::aworx::lox::loggers::ColorConsoleLogger']]],
   ['line',['Line',['../classcs_1_1aworx_1_1lib_1_1lang_1_1Report_1_1Message.html#af5b2cae791582f6f4f975f6b25290977',1,'cs::aworx::lib::lang::Report::Message']]],
   ['lineswithreaderrors',['LinesWithReadErrors',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a7b1f8eca9e66b6d4df78aa76531b3bc6',1,'cs::aworx::lib::config::IniFile']]],
@@ -20,6 +20,7 @@ var searchData=
   ['lockcount',['lockCount',['../classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a7f41e1e3070abd18f7cdfdb9a95b3d9c',1,'cs::aworx::lib::threads::ThreadLock']]],
   ['lockmode',['lockMode',['../classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a22778d029b4af3e865c273d2ad677cb6',1,'cs::aworx::lib::threads::ThreadLock']]],
   ['logable',['Logable',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1PL.html#a3d56dedd09174aaf80ef55ff192d6299',1,'cs::aworx::lox::core::Domain::PL']]],
+  ['logablelists',['logableLists',['../classcs_1_1aworx_1_1lox_1_1Lox.html#a2020be9ec4612436e602adea00069b65',1,'cs::aworx::lox::Lox']]],
   ['logbuf',['logBuf',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a1c3b59e6dc2850f90df33ae9b4533334',1,'cs::aworx::lox::core::textlogger::TextLogger']]],
   ['logcallsperdomain',['LogCallsPerDomain',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html#a2eb0308f7da72022ce5a09987b3f14bf',1,'cs::aworx::lox::core::Domain::LoggerData']]],
   ['logger',['Logger',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html#a42bd749bb12fae89508e2020e2f451bf',1,'cs::aworx::lox::core::Domain::LoggerData']]],

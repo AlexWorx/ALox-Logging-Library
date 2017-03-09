@@ -5,6 +5,7 @@ var searchData=
   ['containers',['containers',['../namespacecs_1_1aworx_1_1lib_1_1containers.html',1,'cs::aworx::lib']]],
   ['core',['core',['../namespacecs_1_1aworx_1_1lox_1_1core.html',1,'cs::aworx::lox']]],
   ['cs',['cs',['../namespacecs.html',1,'']]],
+  ['format',['format',['../namespacecs_1_1aworx_1_1lib_1_1strings_1_1format.html',1,'cs::aworx::lib::strings']]],
   ['json',['json',['../namespacecs_1_1aworx_1_1lox_1_1tools_1_1json.html',1,'cs::aworx::lox::tools']]],
   ['lang',['lang',['../namespacecs_1_1aworx_1_1lib_1_1lang.html',1,'cs::aworx::lib']]],
   ['lib',['lib',['../namespacecs_1_1aworx_1_1lib.html',1,'cs::aworx']]],
@@ -15,5 +16,6 @@ var searchData=
   ['textlogger',['textlogger',['../namespacecs_1_1aworx_1_1lox_1_1core_1_1textlogger.html',1,'cs::aworx::lox::core']]],
   ['threads',['threads',['../namespacecs_1_1aworx_1_1lib_1_1threads.html',1,'cs::aworx::lib']]],
   ['time',['time',['../namespacecs_1_1aworx_1_1lib_1_1time.html',1,'cs::aworx::lib']]],
-  ['tools',['tools',['../namespacecs_1_1aworx_1_1lox_1_1tools.html',1,'cs::aworx::lox']]]
+  ['tools',['tools',['../namespacecs_1_1aworx_1_1lox_1_1tools.html',1,'cs::aworx::lox']]],
+  ['util',['util',['../namespacecs_1_1aworx_1_1lib_1_1strings_1_1util.html',1,'cs::aworx::lib::strings']]]
 ];

@@ -9,90 +9,90 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 136)">
 <title>plaintextlogger.hpp</title>
 <polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-136 431.5,-136 431.5,4 -4,4"/>
-<!-- Node75 -->
+<!-- Node74 -->
 <g id="node1" class="node">
-<title>Node75</title>
+<title>Node74</title>
 <polygon fill="#bfbfbf" stroke="#000000" points="167.5,-112.5 167.5,-131.5 265.5,-131.5 265.5,-112.5 167.5,-112.5"/>
 <text text-anchor="middle" x="216.5" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">plaintextlogger.hpp</text>
 </g>
-<!-- Node76 -->
+<!-- Node75 -->
 <g id="node2" class="node">
-<title>Node76</title>
+<title>Node75</title>
 <g id="a_node2"><a xlink:href="consolelogger_8hpp.html" target="_top" xlink:title="consolelogger.hpp">
 <polygon fill="#ffffff" stroke="#000000" points="0,-56.5 0,-75.5 95,-75.5 95,-56.5 0,-56.5"/>
 <text text-anchor="middle" x="47.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">consolelogger.hpp</text>
 </a>
 </g>
 </g>
-<!-- Node75&#45;&gt;Node76 -->
+<!-- Node74&#45;&gt;Node75 -->
 <g id="edge1" class="edge">
-<title>Node75&#45;&gt;Node76</title>
+<title>Node74&#45;&gt;Node75</title>
 <path fill="none" stroke="#191970" d="M177.8427,-109.1905C146.8807,-98.9309 104.1426,-84.7691 76.173,-75.5011"/>
 <polygon fill="#191970" stroke="#191970" points="176.8545,-112.5501 187.4479,-112.3733 179.0563,-105.9054 176.8545,-112.5501"/>
 </g>
-<!-- Node78 -->
+<!-- Node77 -->
 <g id="node3" class="node">
-<title>Node78</title>
+<title>Node77</title>
 <g id="a_node3"><a xlink:href="memorylogger_8hpp.html" target="_top" xlink:title="memorylogger.hpp">
 <polygon fill="#ffffff" stroke="#000000" points="113.5,-56.5 113.5,-75.5 209.5,-75.5 209.5,-56.5 113.5,-56.5"/>
 <text text-anchor="middle" x="161.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">memorylogger.hpp</text>
 </a>
 </g>
 </g>
-<!-- Node75&#45;&gt;Node78 -->
+<!-- Node74&#45;&gt;Node77 -->
 <g id="edge2" class="edge">
-<title>Node75&#45;&gt;Node78</title>
+<title>Node74&#45;&gt;Node77</title>
 <path fill="none" stroke="#191970" d="M199.8774,-105.0751C190.4145,-95.4402 178.9031,-83.7196 170.9705,-75.6427"/>
 <polygon fill="#191970" stroke="#191970" points="197.4155,-107.5635 206.9197,-112.2455 202.4097,-102.6585 197.4155,-107.5635"/>
 </g>
-<!-- Node79 -->
+<!-- Node78 -->
 <g id="node4" class="node">
-<title>Node79</title>
+<title>Node78</title>
 <g id="a_node4"><a xlink:href="textfilelogger_8hpp.html" target="_top" xlink:title="textfilelogger.hpp">
 <polygon fill="#ffffff" stroke="#000000" points="227.5,-56.5 227.5,-75.5 317.5,-75.5 317.5,-56.5 227.5,-56.5"/>
 <text text-anchor="middle" x="272.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">textfilelogger.hpp</text>
 </a>
 </g>
 </g>
-<!-- Node75&#45;&gt;Node79 -->
+<!-- Node74&#45;&gt;Node78 -->
 <g id="edge3" class="edge">
-<title>Node75&#45;&gt;Node79</title>
+<title>Node74&#45;&gt;Node78</title>
 <path fill="none" stroke="#191970" d="M233.4249,-105.0751C243.0598,-95.4402 254.7804,-83.7196 262.8573,-75.6427"/>
 <polygon fill="#191970" stroke="#191970" points="230.8507,-102.6996 226.2545,-112.2455 235.8004,-107.6493 230.8507,-102.6996"/>
 </g>
-<!-- Node80 -->
+<!-- Node79 -->
 <g id="node5" class="node">
-<title>Node80</title>
+<title>Node79</title>
 <g id="a_node5"><a xlink:href="vstudiologger_8hpp.html" target="_top" xlink:title="vstudiologger.hpp">
 <polygon fill="#ffffff" stroke="#000000" points="335.5,-56.5 335.5,-75.5 427.5,-75.5 427.5,-56.5 335.5,-56.5"/>
 <text text-anchor="middle" x="381.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">vstudiologger.hpp</text>
 </a>
 </g>
 </g>
-<!-- Node75&#45;&gt;Node80 -->
+<!-- Node74&#45;&gt;Node79 -->
 <g id="edge4" class="edge">
-<title>Node75&#45;&gt;Node80</title>
+<title>Node74&#45;&gt;Node79</title>
 <path fill="none" stroke="#191970" d="M254.6356,-109.057C284.8325,-98.8084 326.3163,-84.729 353.5056,-75.5011"/>
 <polygon fill="#191970" stroke="#191970" points="253.2091,-105.845 244.8645,-112.3733 255.4589,-112.4736 253.2091,-105.845"/>
 </g>
-<!-- Node77 -->
+<!-- Node76 -->
 <g id="node6" class="node">
-<title>Node77</title>
+<title>Node76</title>
 <g id="a_node6"><a xlink:href="alox__console__loggers_8hpp.html" target="_top" xlink:title="alox_console_loggers.hpp">
 <polygon fill="#ffffff" stroke="#000000" points="150,-.5 150,-19.5 279,-19.5 279,-.5 150,-.5"/>
 <text text-anchor="middle" x="214.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">alox_console_loggers.hpp</text>
 </a>
 </g>
 </g>
-<!-- Node76&#45;&gt;Node77 -->
+<!-- Node75&#45;&gt;Node76 -->
 <g id="edge5" class="edge">
-<title>Node76&#45;&gt;Node77</title>
+<title>Node75&#45;&gt;Node76</title>
 <path fill="none" stroke="#191970" d="M85.6998,-53.1905C116.2954,-42.9309 158.5278,-28.7691 186.1663,-19.5011"/>
 <polygon fill="#191970" stroke="#191970" points="84.5767,-49.8755 76.2083,-56.3733 86.8022,-56.5123 84.5767,-49.8755"/>
 </g>
-<!-- Node80&#45;&gt;Node77 -->
+<!-- Node79&#45;&gt;Node76 -->
 <g id="edge6" class="edge">
-<title>Node80&#45;&gt;Node77</title>
+<title>Node79&#45;&gt;Node76</title>
 <path fill="none" stroke="#191970" d="M343.3002,-53.1905C312.7046,-42.9309 270.4722,-28.7691 242.8337,-19.5011"/>
 <polygon fill="#191970" stroke="#191970" points="342.1978,-56.5123 352.7917,-56.3733 344.4233,-49.8755 342.1978,-56.5123"/>
 </g>

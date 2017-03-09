@@ -12,7 +12,7 @@
 <!-- Node0 -->
 <g id="node1" class="node">
 <title>Node0</title>
-<g id="a_node1"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1Formatter.html" target="_top" xlink:title="Formatter">
+<g id="a_node1"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html" target="_top" xlink:title="Formatter">
 <polygon fill="#ffffff" stroke="#000000" points="0,-19.5 0,-38.5 59,-38.5 59,-19.5 0,-19.5"/>
 <text text-anchor="middle" x="29.5" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Formatter</text>
 </a>
@@ -21,7 +21,7 @@
 <!-- Node1 -->
 <g id="node2" class="node">
 <title>Node1</title>
-<g id="a_node2"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1FormatterStdImpl.html" target="_top" xlink:title="FormatterStdImpl">
+<g id="a_node2"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html" target="_top" xlink:title="FormatterStdImpl">
 <polygon fill="#ffffff" stroke="#000000" points="95,-19.5 95,-38.5 187,-38.5 187,-19.5 95,-19.5"/>
 <text text-anchor="middle" x="141" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">FormatterStdImpl</text>
 </a>
@@ -36,7 +36,7 @@
 <!-- Node2 -->
 <g id="node3" class="node">
 <title>Node2</title>
-<g id="a_node3"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1FormatterJavaStyle.html" target="_top" xlink:title="FormatterJavaStyle">
+<g id="a_node3"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterJavaStyle.html" target="_top" xlink:title="FormatterJavaStyle">
 <polygon fill="#ffffff" stroke="#000000" points="228,-38.5 228,-57.5 330,-57.5 330,-38.5 228,-38.5"/>
 <text text-anchor="middle" x="279" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">FormatterJavaStyle</text>
 </a>
@@ -51,7 +51,7 @@
 <!-- Node3 -->
 <g id="node4" class="node">
 <title>Node3</title>
-<g id="a_node4"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1FormatterPythonStyle.html" target="_top" xlink:title="FormatterPythonStyle">
+<g id="a_node4"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html" target="_top" xlink:title="FormatterPythonStyle">
 <polygon fill="#ffffff" stroke="#000000" points="223,-.5 223,-19.5 335,-19.5 335,-.5 223,-.5"/>
 <text text-anchor="middle" x="279" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">FormatterPythonStyle</text>
 </a>

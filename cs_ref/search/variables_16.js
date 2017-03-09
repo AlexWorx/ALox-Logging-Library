@@ -10,9 +10,9 @@ var searchData=
   ['walkthreadvalues',['walkThreadValues',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#aa8bfb8fbaf597501f52826c0e01afcb9',1,'cs::aworx::lox::core::ScopeStore']]],
   ['warnedonce',['warnedOnce',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a83ccaa242c5dcfb1d9a5d5d1e2ba5087',1,'cs::aworx::lox::core::textlogger::MetaInfo']]],
   ['white',['WHITE',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a9856bdd07ec8a5877eeeeaa4bbb9f814',1,'cs::aworx::lox::ESC']]],
-  ['whitespaces',['Whitespaces',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#ab83ff0aa583c8a57cbc00240349185f1',1,'cs.aworx.lib.strings.NumberFormat.Whitespaces()'],['../classcs_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html#ab83ff0aa583c8a57cbc00240349185f1',1,'cs.aworx.lib.strings.Tokenizer.Whitespaces()']]],
-  ['writealiberrorreports',['WriteALibErrorReports',['../classcs_1_1aworx_1_1lib_1_1strings_1_1FormatterStdImpl.html#ab3371479dbef0811469ad762d5ef75ca',1,'cs::aworx::lib::strings::FormatterStdImpl']]],
-  ['writeerrorstotargetstring',['WriteErrorsToTargetString',['../classcs_1_1aworx_1_1lib_1_1strings_1_1FormatterStdImpl.html#a3a232ac8dee64cd972b38c95a97ef304',1,'cs::aworx::lib::strings::FormatterStdImpl']]],
+  ['whitespaces',['Whitespaces',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#ab83ff0aa583c8a57cbc00240349185f1',1,'cs.aworx.lib.strings.NumberFormat.Whitespaces()'],['../classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1Tokenizer.html#ab83ff0aa583c8a57cbc00240349185f1',1,'cs.aworx.lib.strings.util.Tokenizer.Whitespaces()']]],
+  ['writealiberrorreports',['WriteALibErrorReports',['../classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#ab3371479dbef0811469ad762d5ef75ca',1,'cs::aworx::lib::strings::format::FormatterStdImpl']]],
+  ['writeerrorstotargetstring',['WriteErrorsToTargetString',['../classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a3a232ac8dee64cd972b38c95a97ef304',1,'cs::aworx::lib::strings::format::FormatterStdImpl']]],
   ['writeexponentplussign',['WriteExponentPlusSign',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a6c00bcda73309af42240644e7b354a35',1,'cs::aworx::lib::strings::NumberFormat']]],
   ['writegroupchars',['WriteGroupChars',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a877af5f03733426bed72938e52874da7',1,'cs::aworx::lib::strings::NumberFormat']]],
   ['writers',['writers',['../classcs_1_1aworx_1_1lib_1_1lang_1_1Report.html#a3cced29036e4120a234178a3a76d0991',1,'cs::aworx::lib::lang::Report']]]

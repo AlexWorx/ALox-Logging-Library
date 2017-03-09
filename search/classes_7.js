@@ -19,12 +19,8 @@ var searchData=
   ['iisnull',['IIsNull',['.././cpp_ref/classaworx_1_1lib_1_1boxing_1_1IIsNull.html',1,'aworx::lib::boxing']]],
   ['iisnull_5ffalse',['IIsNull_false',['.././cpp_ref/classaworx_1_1lib_1_1boxing_1_1IIsNull__false.html',1,'aworx::lib::boxing']]],
   ['inclusion',['Inclusion',['.././java_ref/enumcom_1_1aworx_1_1lib_1_1lang_1_1Inclusion.html',1,'com::aworx::lib::lang']]],
-  ['inifile',['IniFile',['.././cpp_ref/classaworx_1_1lib_1_1config_1_1IniFile.html',1,'aworx::lib::config']]],
-  ['inifile',['IniFile',['.././java_ref/classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html',1,'com::aworx::lib::config']]],
-  ['inifile',['IniFile',['.././cs_ref/classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html',1,'cs::aworx::lib::config']]],
-  ['inmemoryplugin',['InMemoryPlugin',['.././cpp_ref/classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html',1,'aworx::lib::config']]],
-  ['inmemoryplugin',['InMemoryPlugin',['.././cs_ref/classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html',1,'cs::aworx::lib::config']]],
-  ['inmemoryplugin',['InMemoryPlugin',['.././java_ref/classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html',1,'com::aworx::lib::config']]],
+  ['inifile',['IniFile',['.././java_ref/classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html',1,'com::aworx::lib::config::IniFile'],['.././cpp_ref/classaworx_1_1lib_1_1config_1_1IniFile.html',1,'aworx::lib::config::IniFile'],['.././cs_ref/classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html',1,'cs::aworx::lib::config::IniFile']]],
+  ['inmemoryplugin',['InMemoryPlugin',['.././java_ref/classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html',1,'com::aworx::lib::config::InMemoryPlugin'],['.././cpp_ref/classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html',1,'aworx::lib::config::InMemoryPlugin'],['.././cs_ref/classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html',1,'cs::aworx::lib::config::InMemoryPlugin']]],
   ['interface',['Interface',['.././cpp_ref/classaworx_1_1lib_1_1boxing_1_1Interface.html',1,'aworx::lib::boxing']]],
   ['iterator',['Iterator',['.././cpp_ref/classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html',1,'aworx::lib::containers::PathMap']]]
 ];

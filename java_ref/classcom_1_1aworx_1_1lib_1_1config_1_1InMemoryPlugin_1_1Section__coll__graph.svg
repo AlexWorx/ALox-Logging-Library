@@ -18,7 +18,7 @@
 <!-- Node3 -->
 <g id="node2" class="node">
 <title>Node3</title>
-<g id="a_node2"><a xlink:href="classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html" target="_top" xlink:title="Tokenizer">
+<g id="a_node2"><a xlink:href="classcom_1_1aworx_1_1lib_1_1strings_1_1util_1_1Tokenizer.html" target="_top" xlink:title="Tokenizer">
 <polygon fill="#ffffff" stroke="#000000" points="365,-461 365,-480 424,-480 424,-461 365,-461"/>
 <text text-anchor="middle" x="394.5" y="-468" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Tokenizer</text>
 </a>

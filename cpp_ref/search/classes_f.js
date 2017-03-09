@@ -40,6 +40,9 @@ var searchData=
   ['t_5fapply_3c_20std_3a_3atype_5finfo_20_3e',['T_Apply&lt; std::type_info &gt;',['../structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01std_1_1type__info_01_4.html',1,'aworx::lib::strings::applyto']]],
   ['t_5fapply_3c_20std_3a_3au16string_20_3e',['T_Apply&lt; std::u16string &gt;',['../structaworx_1_1lib_1_1strings_1_1thirdparty_1_1std_1_1T__Apply_3_01std_1_1u16string_01_4.html',1,'aworx::lib::strings::thirdparty::std']]],
   ['t_5fapply_3c_20std_3a_3au32string_20_3e',['T_Apply&lt; std::u32string &gt;',['../structaworx_1_1lib_1_1strings_1_1thirdparty_1_1std_1_1T__Apply_3_01std_1_1u32string_01_4.html',1,'aworx::lib::strings::thirdparty::std']]],
+  ['t_5fapply_3c_20std_3a_3avector_3c_20char16_5ft_20_3e_20_3e',['T_Apply&lt; std::vector&lt; char16_t &gt; &gt;',['../structaworx_1_1lib_1_1strings_1_1thirdparty_1_1std_1_1T__Apply_3_01std_1_1vector_3_01char16__t_01_4_01_4.html',1,'aworx::lib::strings::thirdparty::std']]],
+  ['t_5fapply_3c_20std_3a_3avector_3c_20char32_5ft_20_3e_20_3e',['T_Apply&lt; std::vector&lt; char32_t &gt; &gt;',['../structaworx_1_1lib_1_1strings_1_1thirdparty_1_1std_1_1T__Apply_3_01std_1_1vector_3_01char32__t_01_4_01_4.html',1,'aworx::lib::strings::thirdparty::std']]],
+  ['t_5fapply_3c_20std_3a_3avector_3c_20wchar_5ft_20_3e_20_3e',['T_Apply&lt; std::vector&lt; wchar_t &gt; &gt;',['../structaworx_1_1lib_1_1strings_1_1thirdparty_1_1std_1_1T__Apply_3_01std_1_1vector_3_01wchar__t_01_4_01_4.html',1,'aworx::lib::strings::thirdparty::std']]],
   ['t_5fapply_3c_20std_3a_3awstring_20_3e',['T_Apply&lt; std::wstring &gt;',['../structaworx_1_1lib_1_1strings_1_1thirdparty_1_1std_1_1T__Apply_3_01std_1_1wstring_01_4.html',1,'aworx::lib::strings::thirdparty::std']]],
   ['t_5fapply_3c_20thirdparty_3a_3astd_3a_3areadlinefromistream_20_3e',['T_Apply&lt; thirdparty::std::ReadLineFromIStream &gt;',['../structaworx_1_1lib_1_1strings_1_1thirdparty_1_1std_1_1T__Apply_3_01thirdparty_1_1std_1_1ReadLineFromIStream_01_4.html',1,'aworx::lib::strings::thirdparty::std']]],
   ['t_5fapply_3c_20uint16_5ft_20_3e',['T_Apply&lt; uint16_t &gt;',['../structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01uint16__t_01_4.html',1,'aworx::lib::strings::applyto']]],
@@ -62,6 +65,7 @@ var searchData=
   ['t_5fstring_3c_20qbytearray_20_3e',['T_String&lt; QByteArray &gt;',['../structaworx_1_1lib_1_1strings_1_1thirdparty_1_1qt_1_1T__String_3_01QByteArray_01_4.html',1,'aworx::lib::strings::thirdparty::qt']]],
   ['t_5fstring_3c_20qlatin1string_20_3e',['T_String&lt; QLatin1String &gt;',['../structaworx_1_1lib_1_1strings_1_1thirdparty_1_1qt_1_1T__String_3_01QLatin1String_01_4.html',1,'aworx::lib::strings::thirdparty::qt']]],
   ['t_5fstring_3c_20std_3a_3astring_20_3e',['T_String&lt; std::string &gt;',['../structaworx_1_1lib_1_1strings_1_1thirdparty_1_1std_1_1T__String_3_01std_1_1string_01_4.html',1,'aworx::lib::strings::thirdparty::std']]],
+  ['t_5fstring_3c_20std_3a_3avector_3c_20char_20_3e_20_3e',['T_String&lt; std::vector&lt; char &gt; &gt;',['../structaworx_1_1lib_1_1strings_1_1thirdparty_1_1std_1_1T__String_3_01std_1_1vector_3_01char_01_4_01_4.html',1,'aworx::lib::strings::thirdparty::std']]],
   ['t_5fstringliteral',['T_StringLiteral',['../structaworx_1_1lib_1_1strings_1_1T__StringLiteral.html',1,'aworx::lib::strings']]],
   ['t_5fstringliteral_3c_20char_5btcapacity_5d_3e',['T_StringLiteral&lt; char[TCapacity]&gt;',['../structaworx_1_1lib_1_1strings_1_1T__StringLiteral_3_01char[TCapacity]_4.html',1,'aworx::lib::strings']]],
   ['t_5fstringliteral_3c_20stringliteral_3c_20tlength_20_3e_20_3e',['T_StringLiteral&lt; StringLiteral&lt; TLength &gt; &gt;',['../structaworx_1_1lib_1_1strings_1_1T__StringLiteral_3_01StringLiteral_3_01TLength_01_4_01_4.html',1,'aworx::lib::strings']]],
@@ -75,7 +79,7 @@ var searchData=
   ['tickscalendartime',['TicksCalendarTime',['../classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html',1,'aworx::lib::time']]],
   ['tickspan',['TickSpan',['../classaworx_1_1lib_1_1time_1_1TickSpan.html',1,'aworx::lib::time']]],
   ['tickwatch',['TickWatch',['../classaworx_1_1lib_1_1time_1_1TickWatch.html',1,'aworx::lib::time']]],
-  ['tokenizer',['Tokenizer',['../classaworx_1_1lib_1_1strings_1_1Tokenizer.html',1,'aworx::lib::strings']]],
+  ['tokenizer',['Tokenizer',['../classaworx_1_1lib_1_1strings_1_1util_1_1Tokenizer.html',1,'aworx::lib::strings::util']]],
   ['tstring',['TString',['../classaworx_1_1lib_1_1strings_1_1TString.html',1,'aworx::lib::strings']]],
   ['typedemangler',['TypeDemangler',['../classaworx_1_1lib_1_1debug_1_1TypeDemangler.html',1,'aworx::lib::debug']]]
 ];

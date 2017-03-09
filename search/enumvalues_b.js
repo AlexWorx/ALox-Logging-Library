@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['method',['Method',['.././cs_ref/namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4c3880bb027f159e801041b1021e88e8',1,'cs::aworx::lox::Method()'],['.././cpp_ref/namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4c3880bb027f159e801041b1021e88e8',1,'aworx::lox::Method()']]],
-  ['module',['Module',['.././cpp_ref/classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0ae55f75a29310d7b60f7ac1d390c8ae42',1,'aworx::lib::system::Directory']]],
-  ['multline',['MultLine',['.././cs_ref/classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#aebb3561ef8cb7db28ec75a25358ab5d4a3440172974d6140e5d1051e68730d036',1,'cs::aworx::lib::config::Variable']]]
+  ['left',['Left',['.././cs_ref/namespacecs_1_1aworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726a945d5e233cf7d6240f6b783b36a374ff',1,'cs::aworx::lib::lang::Left()'],['.././cpp_ref/namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726a945d5e233cf7d6240f6b783b36a374ff',1,'aworx::lib::lang::Left()']]],
+  ['local',['Local',['.././cs_ref/namespacecs_1_1aworx_1_1lib_1_1lang.html#a9537c0a8df05f0a728b6e2a89c7f3a1ba509820290d57f333403f490dde7316f4',1,'cs::aworx::lib::lang::Local()'],['.././cpp_ref/namespaceaworx_1_1lib_1_1lang.html#a9537c0a8df05f0a728b6e2a89c7f3a1ba509820290d57f333403f490dde7316f4',1,'aworx::lib::lang::Local()'],['.././cpp_ref/namespaceaworx_1_1lib_1_1lang.html#a9b1d8f31e178e17a8fef3a9e94bc4b2ca509820290d57f333403f490dde7316f4',1,'aworx::lib::lang::Local()']]],
+  ['logdata',['LogData',['.././cs_ref/classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a8252db9108bed0cc77b9108ef2e5b215',1,'cs::aworx::lox::Lox']]],
+  ['loggers',['Loggers',['.././cs_ref/classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a96b1c552ca6ed5ee0ee3d0af174530ab',1,'cs::aworx::lox::Lox']]]
 ];

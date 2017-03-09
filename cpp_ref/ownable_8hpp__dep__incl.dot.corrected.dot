@@ -2,14 +2,16 @@ digraph "ownable.hpp"
 {
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
-  Node39 [label="ownable.hpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node38 [label="ownable.hpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node38 -> Node39 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node39 -> Node40 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node40 -> Node41 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node41 -> Node42 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node41 -> Node60 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node40 [label="threadlocknr.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$threadlocknr_8hpp.html"];
-  Node41 [label="threadlock.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$threadlock_8hpp.html"];
-  Node42 [label="configuration.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$configuration_8hpp.html"];
-  Node60 [label="smartlock.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$smartlock_8hpp.html"];
+  Node40 -> Node59 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node40 -> Node64 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node39 [label="threadlocknr.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$threadlocknr_8hpp.html"];
+  Node40 [label="threadlock.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$threadlock_8hpp.html"];
+  Node41 [label="configuration.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$configuration_8hpp.html"];
+  Node59 [label="formatter.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$formatter_8hpp.html"];
+  Node64 [label="smartlock.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$smartlock_8hpp.html"];
 }
 

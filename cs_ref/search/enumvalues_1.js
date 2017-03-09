@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['center',['Center',['../namespacecs_1_1aworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726a4f1f6016fc9f3f2353c0cc7c67b292bd',1,'cs::aworx::lib::lang']]],
-  ['character',['Character',['../classcs_1_1aworx_1_1lib_1_1strings_1_1FormatterStdImpl.html#a4660396d3d3ae4a0b0985d23df5c32e8a76a40e4f974fd895a0a2598c1cee28b4',1,'cs::aworx::lib::strings::FormatterStdImpl']]],
-  ['clear',['Clear',['../namespacecs_1_1aworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2',1,'cs::aworx::lib::lang']]],
-  ['create',['Create',['../namespacecs_1_1aworx_1_1lib_1_1lang.html#af6d9cc1e6686eca6e60d57d959cf57fba686e697538050e4664636337cc3b834f',1,'cs::aworx::lib::lang']]],
-  ['custom',['Custom',['../classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#aebb3561ef8cb7db28ec75a25358ab5d4a90589c47f06eb971d548591f23c285af',1,'cs::aworx::lib::config::Variable']]]
+  ['basic',['Basic',['../classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a972e73b7a882d0802a4e3a16946a2f94',1,'cs::aworx::lox::Lox']]],
+  ['begin',['Begin',['../namespacecs_1_1aworx_1_1lib_1_1lang.html#ae1c5184dc404edf057ed537bcfddef84a1a06729125544cab7cee73195fc044f0',1,'cs::aworx::lib::lang']]],
+  ['bool',['Bool',['../classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a4660396d3d3ae4a0b0985d23df5c32e8ac26f15e86e3de4c398a8273272aba034',1,'cs::aworx::lib::strings::format::FormatterStdImpl']]]
 ];

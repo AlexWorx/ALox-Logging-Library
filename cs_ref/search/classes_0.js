@@ -7,5 +7,5 @@ var searchData=
   ['ansiconsolelogger',['AnsiConsoleLogger',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiConsoleLogger.html',1,'cs::aworx::lox::loggers']]],
   ['ansilogger',['AnsiLogger',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html',1,'cs::aworx::lox::loggers']]],
   ['astring',['AString',['../classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html',1,'cs::aworx::lib::strings']]],
-  ['autosizes',['AutoSizes',['../classcs_1_1aworx_1_1lib_1_1strings_1_1AutoSizes.html',1,'cs::aworx::lib::strings']]]
+  ['autosizes',['AutoSizes',['../classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html',1,'cs::aworx::lib::strings::util']]]
 ];

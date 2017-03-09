@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['basic',['Basic',['../classcs_1_1aworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a972e73b7a882d0802a4e3a16946a2f94',1,'cs::aworx::lox::Lox']]],
-  ['begin',['Begin',['../namespacecs_1_1aworx_1_1lib_1_1lang.html#ae1c5184dc404edf057ed537bcfddef84a1a06729125544cab7cee73195fc044f0',1,'cs::aworx::lib::lang']]],
-  ['bool',['Bool',['../classcs_1_1aworx_1_1lib_1_1strings_1_1FormatterStdImpl.html#a4660396d3d3ae4a0b0985d23df5c32e8ac26f15e86e3de4c398a8273272aba034',1,'cs::aworx::lib::strings::FormatterStdImpl']]]
+  ['_5fundefined',['_Undefined',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#a2c0a0e233e4cc72e4c5655d595dde836a99b8e8f98ec8efcf4b56a1fa0ec5997b',1,'cs.aworx.lox.loggers.AnsiLogger._Undefined()'],['../classcs_1_1aworx_1_1lox_1_1loggers_1_1ColorConsoleLogger.html#a2c0a0e233e4cc72e4c5655d595dde836a99b8e8f98ec8efcf4b56a1fa0ec5997b',1,'cs.aworx.lox.loggers.ColorConsoleLogger._Undefined()']]]
 ];

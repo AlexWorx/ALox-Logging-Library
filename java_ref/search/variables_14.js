@@ -4,6 +4,6 @@ var searchData=
   ['url_5fend',['URL_END',['../classcom_1_1aworx_1_1lox_1_1ESC.html#a9be01baf7857127f52afc2d86310853d',1,'com::aworx::lox::ESC']]],
   ['url_5fstart',['URL_START',['../classcom_1_1aworx_1_1lox_1_1ESC.html#a484e9f8e3bb04e2c97d47e85af70d8cd',1,'com::aworx::lox::ESC']]],
   ['use_5fsystem_5fout_5fprint',['USE_SYSTEM_OUT_PRINT',['../classcom_1_1aworx_1_1lox_1_1ALox.html#a9091ccfcdc56cf9659b81589ea583a24',1,'com::aworx::lox::ALox']]],
-  ['uselightcolors',['useLightColors',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#acee70d82cd74391df19486688e964973',1,'com::aworx::lox::loggers::AnsiLogger']]],
+  ['uselightcolors',['useLightColors',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#a880309870a66bd04d790145d3ed57ed8',1,'com::aworx::lox::loggers::AnsiLogger']]],
   ['usesstdstreams',['usesStdStreams',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a374fb69f48d91d4f43333f953e129b1f',1,'com::aworx::lox::core::textlogger::TextLogger']]]
 ];

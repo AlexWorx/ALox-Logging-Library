@@ -6,5 +6,5 @@ var searchData=
   ['ticks',['Ticks',['../classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html',1,'com::aworx::lib::time']]],
   ['tickspan',['TickSpan',['../classcom_1_1aworx_1_1lib_1_1time_1_1TickSpan.html',1,'com::aworx::lib::time']]],
   ['tickwatch',['TickWatch',['../classcom_1_1aworx_1_1lib_1_1time_1_1TickWatch.html',1,'com::aworx::lib::time']]],
-  ['tokenizer',['Tokenizer',['../classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html',1,'com::aworx::lib::strings']]]
+  ['tokenizer',['Tokenizer',['../classcom_1_1aworx_1_1lib_1_1strings_1_1util_1_1Tokenizer.html',1,'com::aworx::lib::strings::util']]]
 ];

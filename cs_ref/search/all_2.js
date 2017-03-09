@@ -24,8 +24,8 @@ var searchData=
   ['black',['BLACK',['../classcs_1_1aworx_1_1lox_1_1ESC.html#aad038c9271b9cacb5fc354d9e0c790a3',1,'cs::aworx::lox::ESC']]],
   ['blue',['BLUE',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a482bba397389d91be57d6e0605f9f162',1,'cs::aworx::lox::ESC']]],
   ['bold',['BOLD',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a79517c1ad930e5746fa9b41936adbea6',1,'cs::aworx::lox::ESC']]],
-  ['bool',['Bool',['../classcs_1_1aworx_1_1lib_1_1strings_1_1FormatterStdImpl.html#a4660396d3d3ae4a0b0985d23df5c32e8ac26f15e86e3de4c398a8273272aba034',1,'cs::aworx::lib::strings::FormatterStdImpl']]],
-  ['boxes',['boxes',['../classcs_1_1aworx_1_1lib_1_1strings_1_1Formatter.html#a66789c9a052145500a6f4f21c828f5e1',1,'cs::aworx::lib::strings::Formatter']]],
+  ['bool',['Bool',['../classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a4660396d3d3ae4a0b0985d23df5c32e8ac26f15e86e3de4c398a8273272aba034',1,'cs::aworx::lib::strings::format::FormatterStdImpl']]],
+  ['boxes',['boxes',['../classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html#a66789c9a052145500a6f4f21c828f5e1',1,'cs::aworx::lib::strings::format::Formatter']]],
   ['buf',['Buf',['../classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a6a6be65c62f7ad0671d250f11c8564bf',1,'cs::aworx::lib::strings::Substring']]],
   ['buffer',['Buffer',['../classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#ad69b5cb760dc02917a5493fe8f9f7cb4',1,'cs.aworx.lib.strings.AString.Buffer()'],['../classcs_1_1aworx_1_1lib_1_1lang_1_1ReportWriterStdIO.html#aaf50e38674e1c356539d73525486b1d5',1,'cs.aworx.lib.lang.ReportWriterStdIO.buffer()'],['../classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a8317b33b8c004741d95935199d964be9',1,'cs.aworx.lib.strings.AString.buffer()']]]
 ];
