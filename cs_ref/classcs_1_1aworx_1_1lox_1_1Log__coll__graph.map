@@ -1,0 +1,23 @@
+<map id="Log" name="Log">
+<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lox_1_1Lox.html" title="Lox" alt="" coords="1003,239,1046,265"/>
+<area shape="rect" id="node15" href="$classcs_1_1aworx_1_1lox_1_1ALoxReportWriter.html" title="ALoxReportWriter" alt="" coords="1195,227,1319,253"/>
+<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="381,705,472,732"/>
+<area shape="rect" id="node19" href="$classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html" title="SmartLock" alt="" coords="704,705,789,732"/>
+<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="161,705,215,732"/>
+<area shape="rect" id="node18" href="$classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="994,705,1055,732"/>
+<area shape="rect" id="node21" href="$classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" title="MetaInfo" alt="" coords="710,537,783,564"/>
+<area shape="rect" id="node6" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="155,288,221,315"/>
+<area shape="rect" id="node9" href="$classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html" title="ScopeInfo" alt="" coords="706,239,787,265"/>
+<area shape="rect" id="node10" href="$classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html" title="ScopeInfo.SourceFile" alt="" coords="353,100,500,127"/>
+<area shape="rect" id="node11" href="$classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html" title="Domain" alt="" coords="393,356,460,383"/>
+<area shape="rect" id="node17" href="$classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="TextLogger" alt="" coords="1213,439,1300,465"/>
+<area shape="rect" id="node7" href="$classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt; Object \&gt;" alt="" coords="671,5,823,32"/>
+<area shape="rect" id="node8" href="$classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt; Dictionary\l\&lt; AString, int[]\&gt; \&gt;" alt="" coords="667,57,827,98"/>
+<area shape="rect" id="node12" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="149,480,227,507"/>
+<area shape="rect" id="node22" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1Tokenizer.html" title="Tokenizer" alt="" coords="387,577,466,604"/>
+<area shape="rect" id="node13" href="$classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt; Dictionary\l\&lt; AString, Object \&gt; \&gt;" alt="" coords="667,122,827,163"/>
+<area shape="rect" id="node14" href="$classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt; AString \&gt;" alt="" coords="669,188,825,215"/>
+<area shape="rect" id="node16" href="$interfacecs_1_1aworx_1_1lib_1_1lang_1_1ReportWriter.html" title="ReportWriter" alt="" coords="977,188,1072,215"/>
+<area shape="rect" id="node20" href="$classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" title="ObjectConverter" alt="" coords="967,413,1083,440"/>
+<area shape="rect" id="node23" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html" title="AutoSizes" alt="" coords="983,363,1066,389"/>
+</map>

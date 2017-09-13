@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -107,6 +107,9 @@ $(function() {
 <li>recursionBlocker
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1lang_1_1Report.html#a42a1d72405eb74a89f3fadd6baa22be5">Report</a>
 </li>
+<li>recursionDepth
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a9a1951fdc18bdd21f3de11073fc7fcfa">StringTree&lt; T &gt;.Walker</a>
+</li>
 <li>recursionFormatters
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1StandardConverter.html#a9af860bf1913969ecf2dcd141e21a80c">StandardConverter</a>
 </li>
@@ -130,12 +133,6 @@ $(function() {
 <li>releaseDefault()
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html#aaa818f27b92b478a9dd9eed839154ac7">Formatter</a>
 </li>
-<li>remove()
-: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap_1_1MyIterator.html#a1fcb45e5d2428352eb36b487d1d4eea3">PathMap&lt; StoreT &gt;.MyIterator</a>
-</li>
-<li>Remove()
-: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html#a34f4f7743c42b4c5c5437db3e013ba12">PathMap&lt; StoreT &gt;</a>
-</li>
 <li>REMOVE
 : <a class="el" href="enumcom_1_1aworx_1_1lib_1_1lang_1_1ContainerOp.html#aa6533af166e05c78a0c1449a72be26e7">ContainerOp</a>
 </li>
@@ -155,7 +152,7 @@ $(function() {
 <li>removeLogger()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html#a13f53561d67bd0b769ab5a7e102b3a72">Domain</a>
 , <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a7ffce9599fa306280caf0a805bb421b8">Log</a>
-, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a66058640838e3b536267f4e91bcba6b5">Lox</a>
+, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a50816f6ae535958e8f0904e1ab028bbb">Lox</a>
 </li>
 <li>removeLoggerRecursive()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html#a1b032fcdfc7306d529107bcd28145b66">Domain</a>
@@ -216,6 +213,7 @@ $(function() {
 <li>reset()
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html#ad20897c5c8bd47f5d4005989bead0e55">IniFile</a>
 , <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html#ad20897c5c8bd47f5d4005989bead0e55">InMemoryPlugin</a>
+, <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html#a021703a4bea76131dbce257765493ad0">StringTree&lt; T &gt;.Walker.RecursionData</a>
 , <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html#ad20897c5c8bd47f5d4005989bead0e55">AutoSizes</a>
 , <a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1TickWatch.html#ad20897c5c8bd47f5d4005989bead0e55">TickWatch</a>
 , <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#ab9d3f06dc4ef871fad50465095b5ea32">ALox</a>
@@ -239,7 +237,7 @@ $(function() {
 </li>
 <li>retrieve()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a0141b5077f524038e0ca2bbc56306b8e">Log</a>
-, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a87d8773b5df8176b10b31e7f7563b863">Lox</a>
+, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a739be749d7924f992401a1375c7a1789">Lox</a>
 </li>
 <li>revision
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a80915412cfca1d0f550c217f30d3083c">ALIB</a>
@@ -248,12 +246,16 @@ $(function() {
 <li>RIGHT
 : <a class="el" href="enumcom_1_1aworx_1_1lib_1_1lang_1_1Alignment.html#a2d192e0d040aa72b0c0e855aaf9462e5">Alignment</a>
 </li>
+<li>root()
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a248b8e3d2a82ddc44ca0b694450226cf">StringTree&lt; T &gt;.Cursor</a>
+, <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree.html#a60591a2a62ffba453012ba51340a0c17">StringTree&lt; T &gt;</a>
+</li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:29 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:01 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

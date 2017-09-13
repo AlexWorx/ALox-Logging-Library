@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['parent',['Parent',['../classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html#a98f7d710ee0779c2bec209d8c22fbbbe',1,'cs.aworx.lib.containers.PathMap.Parent()'],['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a8dc3c25005f0e2de28d10fb5d12b97cb',1,'cs.aworx.lox.core.Domain.Parent()']]],
+  ['parent',['Parent',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a8dc3c25005f0e2de28d10fb5d12b97cb',1,'cs.aworx.lox.core.Domain.Parent()'],['../classcs_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#a81a028255ddea0de66dea19140d52bfb',1,'cs.aworx.lib.containers.StringTree.Node.parent()']]],
   ['parseextconversion',['parseExtConversion',['../classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#af32d2f254a6bf4828e9942a91a087bc7',1,'cs::aworx::lib::strings::format::FormatterPythonStyle']]],
   ['parser',['parser',['../classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#ac5266ddfc119218fadb17b56e0aa7f18',1,'cs::aworx::lib::strings::format::FormatterStdImpl']]],
-  ['path',['Path',['../classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html#a5e583dd1bf88abfb28487df2f676a6e8',1,'cs.aworx.lib.containers.PathMap.Path()'],['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a5e583dd1bf88abfb28487df2f676a6e8',1,'cs.aworx.lox.core.ScopeInfo.SourcePathTrimRule.Path()']]],
+  ['path',['Path',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a5e583dd1bf88abfb28487df2f676a6e8',1,'cs::aworx::lox::core::ScopeInfo::SourcePathTrimRule']]],
+  ['pathsorter',['pathSorter',['../classcs_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1Sorter.html#ad31a4dcb4209f5660e7b0bb286597f0d',1,'cs::aworx::lib::containers::StringTree::Walker::Sorter']]],
   ['phaalignment',['phaAlignment',['../classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a42cf696609494c55050a14311909a4c8',1,'cs::aworx::lib::strings::format::FormatterStdImpl']]],
   ['phaalignmentspecified',['phaAlignmentSpecified',['../classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#aa4fc2a97542a8043de0b8a06ce2f296d',1,'cs::aworx::lib::strings::format::FormatterStdImpl']]],
   ['phaalternateform',['phaAlternateForm',['../classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterJavaStyle.html#a6ac7a73efcd35310992a003e88ec5d57',1,'cs::aworx::lib::strings::format::FormatterJavaStyle']]],

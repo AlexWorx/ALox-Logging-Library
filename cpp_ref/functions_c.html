@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -137,17 +137,14 @@ $(function() {
 , <a class="el" href="classaworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#a61f1eb4b9b6f6bb7aff160536a0496f8">FormatterPythonStyle</a>
 , <a class="el" href="classaworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a894b330f53f267cca774d3e8fc1b7ad0">FormatterStdImpl</a>
 </li>
-<li>childNo
-: <a class="el" href="structaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator_1_1NodeAndChild.html#ac10cf46c3127cd5d178f7dafd27307eb">PathMap&lt; StoreT &gt;::Iterator::NodeAndChild</a>
-</li>
-<li>Children
-: <a class="el" href="classaworx_1_1lib_1_1containers_1_1PathMap.html#afe6e54f5638b38180db181a521b86d81">PathMap&lt; StoreT &gt;</a>
+<li>children
+: <a class="el" href="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#ac37f26f9defa51c300e3f29fb591cfe4">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Node</a>
 </li>
 <li>clear()
 : <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#ac8bb3912a3ce86b15842e79d0b421204">Variable</a>
 </li>
 <li>Clear()
-: <a class="el" href="classaworx_1_1lib_1_1containers_1_1PathMap.html#aa71d36872f416feaa853788a7a7a7ef8">PathMap&lt; StoreT &gt;</a>
+: <a class="el" href="classaworx_1_1lib_1_1containers_1_1StringTree.html#aa71d36872f416feaa853788a7a7a7ef8">StringTree&lt; T, TKeyAllocator, TSeparator &gt;</a>
 , <a class="el" href="classaworx_1_1lib_1_1lang_1_1MemoryBlocks.html#ab7a5aad81a18b91f5d6a030be84407f7">MemoryBlocks</a>
 , <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#ae4d5af65574550e39830297e4496f81b">AString</a>
 , <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#af3534dc253659982f8f5f646da7c951c">Substring</a>
@@ -168,6 +165,9 @@ $(function() {
 </li>
 <li>ClearValues()
 : <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#aa62ba4657e53457817abd37b52564195">Variable</a>
+</li>
+<li>Clone()
+: <a class="el" href="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a716af637049daa5f0a7c9ef4d68c4990">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Cursor</a>
 </li>
 <li>CloneSettings()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a9dee9e8b29527a7c4a83330eab8248bb">FormatterStdImpl</a>
@@ -271,10 +271,10 @@ $(function() {
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a105d1a949f88a6f3bf185e6f6b62b03c">Substring</a>
 </li>
 <li>ConsumeChars()
-: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a4e4eea49b40899820afd59c34e10ffc9">Substring</a>
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aa92d18f63bf16bd73b4146c738a9b9eb">Substring</a>
 </li>
 <li>ConsumeCharsFromEnd()
-: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a7447c3eb16c727f928613f0135414ea8">Substring</a>
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#af86dfb35eed1fe734ec7977187f79b95">Substring</a>
 </li>
 <li>ConsumeDec()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#ae616e4986934db6e74c8a468456d2b40">Substring</a>
@@ -343,6 +343,12 @@ $(function() {
 <li>Create()
 : <a class="el" href="classaworx_1_1lib_1_1system_1_1Directory.html#a4705a3d882c8aa61346f6175f1c83a30">Directory</a>
 </li>
+<li>createChild()
+: <a class="el" href="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#ac73b1e901363b189cd0edee4fc48c851">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Node</a>
+</li>
+<li>createChildNoCheck()
+: <a class="el" href="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#ae875d1a5a1d29cfcef7658ef760053b3">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Node</a>
+</li>
 <li>CreateConsoleLogger()
 : <a class="el" href="classaworx_1_1lox_1_1Lox.html#ae92c4ae884c3cd723deb9b5e8d27b6ac">Lox</a>
 </li>
@@ -350,15 +356,18 @@ $(function() {
 : <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html#a17c765fa30a40c65d18b1c216479d905">IniFile::Section</a>
 , <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html#a17c765fa30a40c65d18b1c216479d905">InMemoryPlugin::Section</a>
 </li>
+<li>createPathAndReturnLeaf()
+: <a class="el" href="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#afd5858321e9f0ad6b314a9a054aa29f0">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Cursor</a>
+</li>
 <li>createSection()
 : <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#ac31ca82a48b7109f18662de9a2b43e6b">IniFile</a>
 , <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html#ac31ca82a48b7109f18662de9a2b43e6b">InMemoryPlugin</a>
 </li>
-<li>creationTime
-: <a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html#ac4aaa87e2fbf873c653a97f4a1d49d13">Ticks</a>
-</li>
 <li>CreationTime()
 : <a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html#a065d72f29bb4f81481339beef14afe7a">Ticks</a>
+</li>
+<li>creationTime
+: <a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html#ac4aaa87e2fbf873c653a97f4a1d49d13">Ticks</a>
 </li>
 <li>current
 : <a class="el" href="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#afabfc6a52ba3d7842fe4c2b0bdc7cf6d">ProcessInfo</a>
@@ -375,6 +384,9 @@ $(function() {
 <li>CurrentThread()
 : <a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html#afbdb4b0df9aaf36f3ab6c4965178f0d6">Thread</a>
 </li>
+<li>Cursor()
+: <a class="el" href="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a9d2203168bb2489b91572f716cf7ef02">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Cursor</a>
+</li>
 <li>CYAN
 : <a class="el" href="classaworx_1_1lox_1_1ESC.html#afdf0230e4d8012d7a89df6f3fa266e5a">ESC</a>
 </li>
@@ -383,7 +395,7 @@ $(function() {
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:27 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

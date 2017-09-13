@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -84,15 +84,15 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>The macros listed here, are provided to place debug <em>Log Statements</em> within source code using ALox. Besides that, macros controlling and setting preferences for ALox exists.</p>
-<p>The exclusive use of these macros should be sufficient to support most of common debug logging statements with ALox. Should some functionality be not available easily with using the macros, of-course, the normal C++ API of ALox can be used in parallel to using the macros. For proper pruning of code that is using the C++ API, such code has to be enclosed by<br />
+<p>The macros listed here, are provided to place debug <em>Log Statements</em> within source code using <b>ALox</b>. Besides that, macros controlling and setting preferences for <b>ALox</b> exists.</p>
+<p>The exclusive use of these macros should be sufficient to support most of common debug logging statements with <b>ALox</b>. Should some functionality be not available easily with using the macros, of-course, the normal C++ API of <b>ALox</b> can be used in parallel to using the macros. For proper pruning of code that is using the C++ API, such code has to be enclosed by<br />
  </p><pre class="fragment">#if ALOX_DBG_LOG
    ...
 #endif
 </pre><p> lines, or embedded in macro <a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>. </p><dl class="section note"><dt>Note</dt><dd>To be clear: When using the macros, the <em>#if / #endif</em> statements are <em>not</em> needed!</dd></dl>
-<p>All macro names are prefixed "Log_". This implies that they are macros to implement <em>debug</em> logging. In contrast to this, a set of similar macros exists for release logging (see <a class="el" href="group__GrpMacrosReleaseLog.html">ALox Macros For Release Logging</a>). Those are prefixed "Lox_". (The choice of the prefixes <em>Log_</em> and <em>Lox</em> provide maximum source code compatibility of ALox for C++ log lines in comparison to ALox for C# and ALox for Java.</p>
-<p>Most macros make use of the macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a>, which references a singleton object of class <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> that is used for all debug logging. This singleton concept covers most uses cases for debug logging. If more flexibility is wanted, then either the macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a> might be changed for different compilation units or the ALox C++ API might be used instead of the macros listed here.</p>
-<dl class="section note"><dt>Note</dt><dd>The ALox Scope Domain mechanism as well as other ALox functionality which relies on <em>Scopes</em> rely on the information provided by ALib macro <a class="el" href="group__GrpALibMacros.html#gab1836c6de18fd089b123e40e22472f4d">ALIB_SRC_INFO_PARAMS</a>. Changing this macro, might cause these mechanism to fail. </dd></dl>
+<p>All macro names are prefixed "Log_". This implies that they are macros to implement <em>debug</em> logging. In contrast to this, a set of similar macros exists for release logging (see <a class="el" href="group__GrpMacrosReleaseLog.html">ALox Macros For Release Logging</a>). Those are prefixed "Lox_". (The choice of the prefixes <em>Log_</em> and <em>Lox</em> provide maximum source code compatibility of <b>ALox for C++</b> log lines in comparison to ALox for C# and ALox for Java.</p>
+<p>Most macros make use of the macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a>, which references a singleton object of class <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> that is used for all debug logging. This singleton concept covers most uses cases for debug logging. If more flexibility is wanted, then either macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a> might be changed for different compilation units or the <b>ALox for C++ API</b> might be used instead of the macros listed here.</p>
+<dl class="section note"><dt>Note</dt><dd>The <em>Scope Domain</em> mechanism of <b>ALox</b>, as well as other <b>ALox</b> functionality which relies on <em>Scopes</em> use the information provided by <b>ALib</b> macro <a class="el" href="group__GrpALibMacros.html#gab1836c6de18fd089b123e40e22472f4d">ALIB_SRC_INFO_PARAMS</a>. Changing this macro, might cause these mechanism to fail. </dd></dl>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -268,8 +268,8 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><a class="code" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>( <a class="code" href="classaworx_1_1lox_1_1core_1_1Logger.html">aworx::lox::core::Logger</a>* identifier;                                      \</div><div class="line">                                                             LOG_ACQUIRE  identifier= _log.GetLogger( name );        <a class="code" href="group__GrpALoxMacrosLowLevel.html#ga0d5795316ecfccc7b40b43c01bf62b0e">LOG_RELEASE</a> )</div><div class="ttc" id="classaworx_1_1lox_1_1core_1_1Logger_html"><div class="ttname"><a href="classaworx_1_1lox_1_1core_1_1Logger.html">aworx::lox::core::Logger</a></div><div class="ttdef"><b>Definition:</b> logger.hpp:52</div></div>
-<div class="ttc" id="group__GrpMacrosDebugLog_html_ga7dbb7427d18d49e2dd87d5f2d2036e0b"><div class="ttname"><a href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a></div><div class="ttdeci">#define Log_Prune(...)</div><div class="ttdef"><b>Definition:</b> alox_macros.hpp:221</div></div>
-<div class="ttc" id="group__GrpALoxMacrosLowLevel_html_ga0d5795316ecfccc7b40b43c01bf62b0e"><div class="ttname"><a href="group__GrpALoxMacrosLowLevel.html#ga0d5795316ecfccc7b40b43c01bf62b0e">LOG_RELEASE</a></div><div class="ttdeci">#define LOG_RELEASE</div><div class="ttdef"><b>Definition:</b> alox_macros.hpp:141</div></div>
+<div class="ttc" id="group__GrpMacrosDebugLog_html_ga7dbb7427d18d49e2dd87d5f2d2036e0b"><div class="ttname"><a href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a></div><div class="ttdeci">#define Log_Prune(...)</div><div class="ttdef"><b>Definition:</b> alox_macros.hpp:237</div></div>
+<div class="ttc" id="group__GrpALoxMacrosLowLevel_html_ga0d5795316ecfccc7b40b43c01bf62b0e"><div class="ttname"><a href="group__GrpALoxMacrosLowLevel.html#ga0d5795316ecfccc7b40b43c01bf62b0e">LOG_RELEASE</a></div><div class="ttdeci">#define LOG_RELEASE</div><div class="ttdef"><b>Definition:</b> alox_macros.hpp:160</div></div>
 </div><!-- fragment --><p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a829395dc991b4aed5a09ef5aa77e3e12">Lox::GetLogger</a> on the debug singleton of class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a>. </p>
 
 </div>
@@ -384,7 +384,7 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This very simple macro is used for pruning debug <em>Log Statements</em>. While it is used as a building block of all other macros for debug logging, for code entities using ALox, it provides an easy way to prune code lines that get inserted purely to support logging, e.g. to create ALox loggers or to prepare more complex log output. (The alternative way is to enclose such code within <code> #ifdef ALOX_DBG_LOG </code> / <code> #endif </code> preprocessor lines. </p>
+<p>This very simple macro is used for pruning debug <em>Log Statements</em>. While it is used as a building block of all other macros for debug logging, for code entities using <b>ALox</b>, it provides an easy way to prune code lines that get inserted purely to support logging, e.g. to create <b>ALox</b> loggers or to prepare more complex log output. (The alternative way is to enclose such code within <code> #ifdef ALOX_DBG_LOG </code> / <code> #endif </code> preprocessor lines. </p>
 <p>Depends on <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga2c6ba32fb7e34be7cee2100578b84a6e">ALOX_DBG_LOG</a>. If this is set, the macro just copies the code provided, else it does not copy it, hence removes the code. </p>
 
 </div>
@@ -659,7 +659,7 @@ Macros</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:26 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:47:57 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

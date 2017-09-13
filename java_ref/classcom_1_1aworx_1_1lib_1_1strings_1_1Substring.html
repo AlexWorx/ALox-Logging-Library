@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -106,7 +106,7 @@ Collaboration diagram for Substring:</div>
 <p>If created or set using a reference of class <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>, the buffer of <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> is <em>not</em> copied. This allows efficient operations on sub-strings of class <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>. However, the source string must not be changed (or only in a controlled way) during the use the Substring instance.</p>
 <p>Objects of this class can be reused by freshly initializing them using one of the overloaded <b>set</b> methods.</p>
 <dl class="section note"><dt>Note</dt><dd>To generate Substrings which are separated by a delimiter character within a character array, use class <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1util_1_1Tokenizer.html">Tokenizer</a>. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>In the Java and C# versions of ALib, due to the language design, fields <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a37722a150250e2a5a98e5e0d11e53449">start</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#abce9f5dc9c83f2639b72024fdee5d388">end</a> have to be used to define the substring on a field <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a9998f6d669c822c8daab53c6c541ca0b">buf</a>, the character buffer. This forces a <em>reimplementation</em> of a bigger portion of the interface of class <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>. In the C++ version of ALib, there is a richer family of string classes that fully integrates with zero terminated <em>C strings</em>, standard C++ strings and 3rd party string libraries. Neither the fields <em>start</em> and <em>end</em> are necessary, nor the aforementioned reimplementation. Consequently, when directly accessing public fields <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a9998f6d669c822c8daab53c6c541ca0b">buf</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a37722a150250e2a5a98e5e0d11e53449">start</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#abce9f5dc9c83f2639b72024fdee5d388">end</a>, the code gets incompatible to C++ code. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>In the Java and C# versions of <b>ALib</b>, due to the language design, fields <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a37722a150250e2a5a98e5e0d11e53449">start</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#abce9f5dc9c83f2639b72024fdee5d388">end</a> have to be used to define the substring on a field <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a9998f6d669c822c8daab53c6c541ca0b">buf</a>, the character buffer. This forces a <em>reimplementation</em> of a bigger portion of the interface of class <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>. In the C++ version of <b>ALib</b>, there is a richer family of string classes that fully integrates with zero terminated <em>C strings</em>, standard C++ strings and 3rd party string libraries. Neither the fields <em>start</em> and <em>end</em> are necessary, nor the aforementioned reimplementation. Consequently, when directly accessing public fields <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a9998f6d669c822c8daab53c6c541ca0b">buf</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a37722a150250e2a5a98e5e0d11e53449">start</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#abce9f5dc9c83f2639b72024fdee5d388">end</a>, the code gets incompatible to C++ code. </dd></dl>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Fields</h2></td></tr>
@@ -323,6 +323,14 @@ Public Methods</h2></td></tr>
 <tr><td colspan="2"><div class="groupText"><h6></h6>
 <h2></h2>
 </div></td></tr>
+<tr class="memitem:a0b622a0c3c5b2336aef8add6acc51b26"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a0b622a0c3c5b2336aef8add6acc51b26">indexOf</a> (char needle, int startIdx)</td></tr>
+<tr class="separator:a0b622a0c3c5b2336aef8add6acc51b26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade42faee457e82e80ffeab1370962671"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#ade42faee457e82e80ffeab1370962671">indexOf</a> (char c)</td></tr>
+<tr class="separator:ade42faee457e82e80ffeab1370962671"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3c37ef206b54791224db576156a4962"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#ab3c37ef206b54791224db576156a4962">indexOfOrLength</a> (char needle)</td></tr>
+<tr class="separator:ab3c37ef206b54791224db576156a4962"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7331a8a9bc28f5f1ce8bde74bca2ec21"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a7331a8a9bc28f5f1ce8bde74bca2ec21">indexOfOrLength</a> (char needle, int startIdx)</td></tr>
+<tr class="separator:a7331a8a9bc28f5f1ce8bde74bca2ec21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a992383100184777fa21ade7651d464e8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a992383100184777fa21ade7651d464e8">indexOf</a> (CharSequence needle, int startIdx, <a class="el" href="enumcom_1_1aworx_1_1lib_1_1lang_1_1Case.html">Case</a> sensitivity)</td></tr>
 <tr class="separator:a992383100184777fa21ade7651d464e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aefe297ce15b20f4a9d517c769a088f69"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#aefe297ce15b20f4a9d517c769a088f69">indexOf</a> (CharSequence cs, int startIdx)</td></tr>
@@ -335,10 +343,6 @@ Public Methods</h2></td></tr>
 <tr class="separator:a3141c245577939693fb6f563454b4095"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36b7d0ece097395ab8e760c8b29b5e81"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a36b7d0ece097395ab8e760c8b29b5e81">indexOfFirstDifference</a> (CharSequence needle)</td></tr>
 <tr class="separator:a36b7d0ece097395ab8e760c8b29b5e81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b622a0c3c5b2336aef8add6acc51b26"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a0b622a0c3c5b2336aef8add6acc51b26">indexOf</a> (char needle, int startIdx)</td></tr>
-<tr class="separator:a0b622a0c3c5b2336aef8add6acc51b26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade42faee457e82e80ffeab1370962671"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#ade42faee457e82e80ffeab1370962671">indexOf</a> (char c)</td></tr>
-<tr class="separator:ade42faee457e82e80ffeab1370962671"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a105051f694e6bf9f24b3e0d584b59056"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a105051f694e6bf9f24b3e0d584b59056">indexOfAny</a> (char[] needles, <a class="el" href="enumcom_1_1aworx_1_1lib_1_1lang_1_1Inclusion.html">Inclusion</a> inclusion, int startIdx)</td></tr>
 <tr class="separator:a105051f694e6bf9f24b3e0d584b59056"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08cd18532f275e3318387826b87245b7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a08cd18532f275e3318387826b87245b7">indexOfAny</a> (char[] needles, <a class="el" href="enumcom_1_1aworx_1_1lib_1_1lang_1_1Inclusion.html">Inclusion</a> inclusion)</td></tr>
@@ -1520,7 +1524,7 @@ Protected Fields</h2></td></tr>
  Parameter <code>numberFormat</code> defaults <code>null</code>. This denotes static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a> which is configured to not using - and therefore also not parsing - grouping characters.</p>
 <p>Sign literals <code>'-'</code> or <code>'+'</code> are <b>not</b> accepted and parsing will fail. For reading signed integer values, see methods <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#ad7bb6ddf3cc6e476cf9e618e88edc3ac">consumeInt</a>, for floating point numbers <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#ae26381fc92da70ebc488f98498ace9b7">consumeFloat</a>.</p>
 <p>For more information on number conversion, see class <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>.</p>
-<dl class="section note"><dt>Note</dt><dd>Because Java does not support unsigned integer, the value to read is limited to <code>Long.MAX_VALUE</code> in this language implementation of ALib.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Because Java does not support unsigned integer, the value to read is limited to <code>Long.MAX_VALUE</code> in this language implementation of <b>ALib</b>.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">numberFormat</td><td>Defines the input format. Optional and defaults to <code>null</code>.</td></tr>
@@ -3007,8 +3011,72 @@ Unlike with <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring
 
 </div>
 </div>
+<a id="a0b622a0c3c5b2336aef8add6acc51b26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b622a0c3c5b2336aef8add6acc51b26">&#9670;&nbsp;</a></span>indexOf() <span class="overload">[1/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int indexOf </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>needle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>startIdx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Search a character in the buffer.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">needle</td><td>The character to search. </td></tr>
+    <tr><td class="paramname">startIdx</td><td>The index to start the search at. Optional and defaults to <code>0</code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>-1 if the character is not found. Otherwise the index of first occurrence. </dd></dl>
+
+</div>
+</div>
+<a id="ade42faee457e82e80ffeab1370962671"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade42faee457e82e80ffeab1370962671">&#9670;&nbsp;</a></span>indexOf() <span class="overload">[2/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int indexOf </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Searches the given character. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>The character to search. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The index of the character within this substring, <code>-1</code> if the character is not found. </dd></dl>
+
+</div>
+</div>
 <a id="a992383100184777fa21ade7651d464e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a992383100184777fa21ade7651d464e8">&#9670;&nbsp;</a></span>indexOf() <span class="overload">[1/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a992383100184777fa21ade7651d464e8">&#9670;&nbsp;</a></span>indexOf() <span class="overload">[3/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3053,7 +3121,7 @@ Unlike with <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring
 </div>
 </div>
 <a id="aefe297ce15b20f4a9d517c769a088f69"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aefe297ce15b20f4a9d517c769a088f69">&#9670;&nbsp;</a></span>indexOf() <span class="overload">[2/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aefe297ce15b20f4a9d517c769a088f69">&#9670;&nbsp;</a></span>indexOf() <span class="overload">[4/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3091,7 +3159,7 @@ Unlike with <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring
 </div>
 </div>
 <a id="a42e25ea6c848edbbd49ee63def37b649"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a42e25ea6c848edbbd49ee63def37b649">&#9670;&nbsp;</a></span>indexOf() <span class="overload">[3/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a42e25ea6c848edbbd49ee63def37b649">&#9670;&nbsp;</a></span>indexOf() <span class="overload">[5/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3114,70 +3182,6 @@ Unlike with <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>-1 if the String is not found. Otherwise the index of first occurrence. </dd></dl>
-
-</div>
-</div>
-<a id="a0b622a0c3c5b2336aef8add6acc51b26"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0b622a0c3c5b2336aef8add6acc51b26">&#9670;&nbsp;</a></span>indexOf() <span class="overload">[4/5]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int indexOf </td>
-          <td>(</td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>needle</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>startIdx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Search a character in the buffer.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">needle</td><td>The character to search. </td></tr>
-    <tr><td class="paramname">startIdx</td><td>The index to start the search at. Optional and defaults to <code>0</code>.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>-1 if the character is not found. Otherwise the index of first occurrence. </dd></dl>
-
-</div>
-</div>
-<a id="ade42faee457e82e80ffeab1370962671"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade42faee457e82e80ffeab1370962671">&#9670;&nbsp;</a></span>indexOf() <span class="overload">[5/5]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int indexOf </td>
-          <td>(</td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Searches the given character. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">c</td><td>The character to search. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The index of the character within this substring, <code>-1</code> if the character is not found. </dd></dl>
 
 </div>
 </div>
@@ -3373,6 +3377,71 @@ Unlike with <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>-1 if the <em>String</em> is not found. Otherwise the index of first occurrence. </dd></dl>
+
+</div>
+</div>
+<a id="ab3c37ef206b54791224db576156a4962"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3c37ef206b54791224db576156a4962">&#9670;&nbsp;</a></span>indexOfOrLength() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int indexOfOrLength </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>needle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Like <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a0b622a0c3c5b2336aef8add6acc51b26">indexOf</a> but in case the character is not found, this method returns the length of this string instead of <code>-1</code>. Depending on the invocation context, the choice for the right version of this method may lead to shorter and more efficient code.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">needle</td><td>The character to search for. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This strings <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a3d0f4ae571310c6ed081daa3985ecb47">length</a> if the character <code>needle</code> is not found. Otherwise the index of first occurrence. </dd></dl>
+
+</div>
+</div>
+<a id="a7331a8a9bc28f5f1ce8bde74bca2ec21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7331a8a9bc28f5f1ce8bde74bca2ec21">&#9670;&nbsp;</a></span>indexOfOrLength() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int indexOfOrLength </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>needle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>startIdx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Like <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a0b622a0c3c5b2336aef8add6acc51b26">indexOf</a> but in case the character is not found, this method returns the length of this string instead of <code>-1</code>. Depending on the invocation context, the choice for the right version of this method may lead to shorter and more efficient code.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">needle</td><td>The character to search for. </td></tr>
+    <tr><td class="paramname">startIdx</td><td>The index in this to start searching the character. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This strings <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a3d0f4ae571310c6ed081daa3985ecb47">length</a> if the character <code>needle</code> is not found. Otherwise the index of first occurrence. </dd></dl>
 
 </div>
 </div>
@@ -4276,7 +4345,7 @@ Unlike with <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Reports an ALib error (using <a class="el" href="interfacecom_1_1aworx_1_1lib_1_1lang_1_1ReportWriter.html">ReportWriter</a>) and returns null. The reason for this behavior is to disallow the usage of <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> within (system) methods that create sub sequences. This would be in contrast to the design goal of <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>.</p>
+<p> Reports an <b>ALib</b> error (using <a class="el" href="interfacecom_1_1aworx_1_1lib_1_1lang_1_1ReportWriter.html">ReportWriter</a>) and returns null. The reason for this behavior is to disallow the usage of <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> within (system) methods that create sub sequences. This would be in contrast to the design goal of <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">beginIndex</td><td>The start of the sequence (not used) </td></tr>
@@ -4613,7 +4682,7 @@ Unlike with <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:29 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:01 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

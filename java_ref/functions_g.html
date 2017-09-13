@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -80,12 +80,6 @@ $(function() {
 <div class="textblock">Here is a list of all documented class members with links to the class documentation for each member:</div>
 
 <h3><a id="index_g"></a>- g -</h3><ul>
-<li>Get()
-: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html#aaee8965b5a1fbb0de440b3d36f53fa79">PathMap&lt; StoreT &gt;</a>
-</li>
-<li>get()
-: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html#a56871a64731d19e2ade22fdd1f1b5554">PathMap&lt; StoreT &gt;</a>
-</li>
 <li>GET
 : <a class="el" href="enumcom_1_1aworx_1_1lib_1_1lang_1_1ContainerOp.html#ad190d942df20d50724197816c107b848">ContainerOp</a>
 </li>
@@ -108,7 +102,10 @@ $(function() {
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af9271928e3d9733fbe9daca859eb1840">Variable</a>
 </li>
 <li>getAverage()
-: <a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1TickWatch.html#a7633e533abd202389d7caf8457d3010b">TickWatch</a>
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1TickWatch.html#a3f87481c7767bb98f308e24b4e569299">TickWatch</a>
+</li>
+<li>getChild()
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#aa5392ab4b3ff3c6d5ebbf68a91496354">StringTree&lt; T &gt;.Node</a>
 </li>
 <li>getClassName()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#a1154af71878b1f775317675ab161b0dd">ScopeInfo</a>
@@ -121,6 +118,9 @@ $(function() {
 </li>
 <li>getCurrentProcessName()
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1system_1_1ProcessInfo.html#ac49a0c8ccaf1e2c4ebc437276d8134fe">ProcessInfo</a>
+</li>
+<li>getCursor()
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a86d006a8c947a24a344b2f2351eace16">StringTree&lt; T &gt;.Walker</a>
 </li>
 <li>getDefault()
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1lang_1_1Report.html#ab1a5825e33c77f9413b0cc4a030b703c">Report</a>
@@ -170,11 +170,20 @@ $(function() {
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a78ee178b6a73658d65ca60da4d1e6683">Logger</a>
 , <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a78ee178b6a73658d65ca60da4d1e6683">Lox</a>
 </li>
+<li>getNode()
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a426cf162c2f2857e31a09ab6ce8053cd">StringTree&lt; T &gt;.Cursor</a>
+</li>
+<li>getOrCreateChild()
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#a435767f4a6445fd6bd3e6e952a575030">StringTree&lt; T &gt;.Node</a>
+</li>
 <li>getPackageName()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#a832c3f6dceab23eab5ba15beb4eb81cd">ScopeInfo</a>
 </li>
-<li>getPathMapNode()
-: <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#ac1caa12487494720c56e22b2cd33ee0f">ScopeStore&lt; T &gt;</a>
+<li>getPath()
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a14f6a9310c8c28307075f2d93ffdcc3b">StringTree&lt; T &gt;.Walker</a>
+</li>
+<li>getPathToNode()
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a1fd7230729af46dd71470a97582af906">StringTree&lt; T &gt;.Walker</a>
 </li>
 <li>getPriority()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html#a9d3a825b8e9fd7880299ee075dad8506">Domain</a>
@@ -199,7 +208,11 @@ $(function() {
 , <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a7c36befb4c7cff8accbac11ffe5c5b48">Lox</a>
 </li>
 <li>getString()
-: <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#acdb2f92104eff219c9f1900f1b365f0e">Variable</a>
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a7ed7993d80f56e26251114655ca4fc81">Variable</a>
+</li>
+<li>getStringTree()
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#aa9a856b254d61b8311029e6ee257e773">StringTree&lt; T &gt;.Cursor</a>
+, <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#aa9a856b254d61b8311029e6ee257e773">StringTree&lt; T &gt;.Walker</a>
 </li>
 <li>getThread()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#a8344905ebc11fbe76760f3102dc25a4f">ScopeInfo</a>
@@ -242,7 +255,7 @@ $(function() {
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:29 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:01 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

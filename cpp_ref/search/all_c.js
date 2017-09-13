@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['languagestore',['languageStore',['../classaworx_1_1lox_1_1core_1_1ScopeStore.html#a1251572d8e2460a60f89fd2372e71c63',1,'aworx::lox::core::ScopeStore']]],
+  ['languagestore',['languageStore',['../classaworx_1_1lox_1_1core_1_1ScopeStore.html#aba93a3fc3081b13d6589ae4677b08012',1,'aworx::lox::core::ScopeStore']]],
   ['lastindexof',['LastIndexOf',['../classaworx_1_1lib_1_1strings_1_1String.html#a8bb8c82267bbb72239c9d6559cdfbf24',1,'aworx::lib::strings::String']]],
   ['lastindexofany',['LastIndexOfAny',['../classaworx_1_1lib_1_1strings_1_1CString.html#a2a3e95ffcdc3552cbc46774efb84f87f',1,'aworx::lib::strings::CString::LastIndexOfAny()'],['../classaworx_1_1lib_1_1strings_1_1String.html#a73db69a072ace024e768ac4f3bbd0630',1,'aworx::lib::strings::String::LastIndexOfAny()']]],
   ['lastsourcefile',['lastSourceFile',['../classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a9ba54620ffa826824063ee32c71b1ae3',1,'aworx::lox::core::ScopeInfo']]],
@@ -27,6 +27,7 @@ var searchData=
   ['log_5facquire',['LOG_ACQUIRE',['../group__GrpALoxMacrosLowLevel.html#ga105a9f44250c23d6bb37df63aa9d9cbe',1,'alox_macros.hpp']]],
   ['log_5fadddebuglogger',['Log_AddDebugLogger',['../group__GrpMacrosDebugLog.html#gaa891e8485ea970f574971c6afd851218',1,'alox_macros.hpp']]],
   ['log_5fassert',['Log_Assert',['../group__GrpMacrosDebugLog.html#ga2797c2e9f997606c3c786fa68720ac71',1,'alox_macros.hpp']]],
+  ['log_5fci',['LOG_CI',['../group__GrpALoxMacrosLowLevel.html#gab22206221434dc470889fa39d451c5fb',1,'alox_macros.hpp']]],
   ['log_5fclearsourcepathtrimrules',['Log_ClearSourcePathTrimRules',['../group__GrpMacrosDebugLog.html#gaff8f037b778ce73b40e0c7a0506a8718',1,'alox_macros.hpp']]],
   ['log_5fentry',['Log_Entry',['../group__GrpMacrosDebugLog.html#ga9ac05a63013c784625c66685ad51aff3',1,'alox_macros.hpp']]],
   ['log_5ferror',['Log_Error',['../group__GrpMacrosDebugLog.html#ga8d8e6df0e755763bd471751235199baf',1,'alox_macros.hpp']]],
@@ -65,10 +66,11 @@ var searchData=
   ['lognumbermindigits',['LogNumberMinDigits',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a72c44479ec3d128c1208b49e4b8ede08',1,'aworx::lox::core::textlogger::MetaInfo']]],
   ['logsubstring',['logSubstring',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html#a869018ff2c9847315cbb843410f6234f',1,'aworx::lox::core::textlogger::PlainTextLogger::logSubstring()'],['../classaworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#ae3146c3d0e247c073a782e5deddbd1da',1,'aworx::lox::loggers::ConsoleLogger::logSubstring()'],['../classaworx_1_1lox_1_1loggers_1_1MemoryLogger.html#a2a00273ec0ba96302dca172820d480fb',1,'aworx::lox::loggers::MemoryLogger::logSubstring()'],['../classaworx_1_1lox_1_1loggers_1_1TextFileLogger.html#aedae1c2707263b80364c6f0d40a802d3',1,'aworx::lox::loggers::TextFileLogger::logSubstring()'],['../classaworx_1_1lox_1_1loggers_1_1VStudioLogger.html#aedae1c2707263b80364c6f0d40a802d3',1,'aworx::lox::loggers::VStudioLogger::logSubstring()']]],
   ['logtext',['logText',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html#aa7e70b90717f0429abf0990e5e12ad9f',1,'aworx::lox::core::textlogger::PlainTextLogger::logText()'],['../classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#ae272f3e7c4827d4ad3cd3e7822bf9aff',1,'aworx::lox::core::textlogger::TextLogger::logText()'],['../classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html#aa7e70b90717f0429abf0990e5e12ad9f',1,'aworx::lox::loggers::AnsiLogger::logText()'],['../classaworx_1_1lox_1_1loggers_1_1WindowsConsoleLogger.html#aa7e70b90717f0429abf0990e5e12ad9f',1,'aworx::lox::loggers::WindowsConsoleLogger::logText()']]],
-  ['lox',['Lox',['../classaworx_1_1lox_1_1Lox.html',1,'Lox'],['../classaworx_1_1lox_1_1ALoxReportWriter.html#a337184443073b338364d604916737ba8',1,'aworx::lox::ALoxReportWriter::lox()'],['../classaworx_1_1lox_1_1Lox.html#a1c1585d0800185380c13eb475249aa58',1,'aworx::lox::Lox::Lox()'],['../namespaceaworx.html#abf1258bbd9cf9772a1559f4ceb37fde4',1,'aworx::Lox()']]],
+  ['lox',['Lox',['../classaworx_1_1lox_1_1Lox.html',1,'Lox'],['../classaworx_1_1lox_1_1Lox.html#a1c1585d0800185380c13eb475249aa58',1,'aworx::lox::Lox::Lox()'],['../classaworx_1_1lox_1_1ALoxReportWriter.html#a337184443073b338364d604916737ba8',1,'aworx::lox::ALoxReportWriter::lox()'],['../namespaceaworx.html#abf1258bbd9cf9772a1559f4ceb37fde4',1,'aworx::Lox()']]],
   ['lox_2ehpp',['lox.hpp',['../lox_8hpp.html',1,'']]],
   ['lox_5facquire',['LOX_ACQUIRE',['../group__GrpALoxMacrosLowLevel.html#ga9ac629621d8152810e41e19931c990a1',1,'alox_macros.hpp']]],
   ['lox_5fassert',['Lox_Assert',['../group__GrpMacrosReleaseLog.html#ga4d9961312aab181a28b21724c3809184',1,'alox_macros.hpp']]],
+  ['lox_5fci',['LOX_CI',['../group__GrpALoxMacrosLowLevel.html#ga94ca091e7e2c3556c74473ff0615b587',1,'alox_macros.hpp']]],
   ['lox_5fclearsourcepathtrimrules',['Lox_ClearSourcePathTrimRules',['../group__GrpMacrosReleaseLog.html#ga1689da460f8040489689b3f45cf1e6b2',1,'alox_macros.hpp']]],
   ['lox_5fentry',['Lox_Entry',['../group__GrpMacrosReleaseLog.html#ga3ee12da39c3574baf4fb03f7f323c886',1,'alox_macros.hpp']]],
   ['lox_5ferror',['Lox_Error',['../group__GrpMacrosReleaseLog.html#ga5fa12e4bc99fd2ebed4fe90729f54a03',1,'alox_macros.hpp']]],

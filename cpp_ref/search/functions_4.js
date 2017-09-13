@@ -1,7 +1,7 @@
 var searchData=
 [
   ['dbgchecknewboxer',['dbgCheckNewBoxer',['../classaworx_1_1lib_1_1boxing_1_1Boxer.html#a325fbc7b58de3657fe353b4f3eea564b',1,'aworx::lib::boxing::Boxer']]],
-  ['dbgcountacquirements',['DbgCountAcquirements',['../classaworx_1_1lib_1_1threads_1_1ThreadLock.html#af99e21e2f05c81744d2e6b5b66d14951',1,'aworx::lib::threads::ThreadLock']]],
+  ['dbgcountacquirements',['DbgCountAcquirements',['../classaworx_1_1lib_1_1threads_1_1ThreadLock.html#aceed656a3e262a10e366de4969fa4003',1,'aworx::lib::threads::ThreadLock']]],
   ['dbggetboxertype',['DbgGetBoxerType',['../classaworx_1_1lib_1_1boxing_1_1Box.html#a4b392c2a1e4836b39e9dd06ff8cecf6c',1,'aworx::lib::boxing::Box']]],
   ['dbggetdefaultinterfaces',['DbgGetDefaultInterfaces',['../classaworx_1_1lib_1_1boxing_1_1Boxer.html#a2d7232559a770f142bd3e930a4e9fe61',1,'aworx::lib::boxing::Boxer']]],
   ['dbggetinterfaces',['DbgGetInterfaces',['../classaworx_1_1lib_1_1boxing_1_1Boxer.html#a84052e2906651204a5686664bc20b862',1,'aworx::lib::boxing::Boxer']]],
@@ -16,10 +16,13 @@ var searchData=
   ['definedefaultinterface',['DefineDefaultInterface',['../classaworx_1_1lib_1_1boxing_1_1Boxer.html#a6228b2d41176a6f8fd6489b150dfc5c3',1,'aworx::lib::boxing::Boxer::DefineDefaultInterface()'],['../namespaceaworx_1_1lib_1_1boxing.html#a37543d2ad623b3940e735b122fe5d586',1,'aworx::lib::boxing::DefineDefaultInterface()']]],
   ['defineinterface',['DefineInterface',['../classaworx_1_1lib_1_1boxing_1_1Boxer.html#ad4a321b8053fc083a3a91064e422795c',1,'aworx::lib::boxing::Boxer::DefineInterface()'],['../namespaceaworx_1_1lib_1_1boxing.html#aa1f769d5f1032bc1cc569f4353f9ccd8',1,'aworx::lib::boxing::DefineInterface()']]],
   ['delete',['Delete',['../classaworx_1_1lib_1_1strings_1_1AString.html#a451b1468724b27d8736d3f5aaa8f5e74',1,'aworx::lib::strings::AString']]],
+  ['deletechild',['deleteChild',['../structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#a0a3922cb188865f3e4f562fea816b97b',1,'aworx::lib::containers::StringTree::Node::deleteChild()'],['../classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a7a295ee417e1a43185684997b60c1d2c',1,'aworx::lib::containers::StringTree::Cursor::DeleteChild()']]],
+  ['deletechildren',['deleteChildren',['../structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#abf67d882cbea8b20d80544fe5f604e4a',1,'aworx::lib::containers::StringTree::Node::deleteChildren()'],['../classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a63f4720668cc61ddf555b470b9eec188',1,'aworx::lib::containers::StringTree::Cursor::DeleteChildren()']]],
   ['deleteend',['DeleteEnd',['../classaworx_1_1lib_1_1strings_1_1AString.html#a2d99a6acb60c31fc07df307dccf50bf6',1,'aworx::lib::strings::AString']]],
   ['deleteentry',['DeleteEntry',['../classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html#a6864635ebc7570ad6f32a0eb4743b331',1,'aworx::lib::config::InMemoryPlugin::Section']]],
   ['deletesingletons',['DeleteSingletons',['../namespaceaworx_1_1lib_1_1lang.html#a20cbd716cfc046a49f72978689279f29',1,'aworx::lib::lang']]],
   ['deletestart',['DeleteStart',['../classaworx_1_1lib_1_1strings_1_1AString.html#a5b40156b1a89b36f39df6eba210c6515',1,'aworx::lib::strings::AString']]],
+  ['depth',['depth',['../structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#acf8e2f791de955ccde3115b485b94dc9',1,'aworx::lib::containers::StringTree::Node::depth()'],['../classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a72fdcb31622fdd4b1197a207a6a6685e',1,'aworx::lib::containers::StringTree::StdIterator::Depth()'],['../classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a72fdcb31622fdd4b1197a207a6a6685e',1,'aworx::lib::containers::StringTree::Cursor::Depth()'],['../classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a72fdcb31622fdd4b1197a207a6a6685e',1,'aworx::lib::containers::StringTree::Walker::Depth()']]],
   ['directory',['Directory',['../classaworx_1_1lib_1_1system_1_1Directory.html#afb2dc4e4a36ed39171b54c55bc38d136',1,'aworx::lib::system::Directory::Directory(SpecialFolder special)'],['../classaworx_1_1lib_1_1system_1_1Directory.html#a3d2aef8216e51d8fea90c4f4b4f26959',1,'aworx::lib::system::Directory::Directory(const String &amp;path)']]],
   ['domain',['Domain',['../classaworx_1_1lox_1_1core_1_1Domain.html#a30f0d2a14dee624bd33d7852e9bb8670',1,'aworx::lox::core::Domain']]],
   ['domainsubstitutionrule',['DomainSubstitutionRule',['../structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html#a8c1e3c2737d4a8fc7cdba8ea546bf26d',1,'aworx::lox::Lox::DomainSubstitutionRule']]],

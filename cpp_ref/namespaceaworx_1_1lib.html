@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -94,10 +94,10 @@ $(function() {
 <p>Besides C++, this library is available in C# and Java, with language specific differences. The design goals are:</p><ul>
 <li>Be small, efficient and easy to understand</li>
 <li>Keep C++, C# and Java versions similar and mimic functionality of core classes of all three languages whenever this is appropriate, with the intent to keep source code building upon the library to a certain degree similar and exchangeable.</li>
-<li>Be non-intrusive in the sense that the use of ALib in projects (maybe just because some minor functionality is wanted) does not force to show up many ALib types.</li>
+<li>Be non-intrusive in the sense that the use of <b>ALib</b> in projects (maybe just because some minor functionality is wanted) does not force to show up many <b>ALib</b> types.</li>
 </ul>
 <p><a class="anchor" id="alib_namespace_organization_of_code"></a><b>Organization of Code:</b><br />
- The C++ version is the most complex language version of <b>ALib</b>. The reason is that Java and C# languages are equipped with many built-in classes that do not need a replacement. This comfortable situation is different with C++. Therefore, <b>"ALib for C++"</b> has a much more comprehensive mandate and it is more likely that <b>ALib for C++</b> is used in single language (hence C++ only) projects. In other words, the Java and C# versions of ALib are especially useful, if multi-language software is written (e.g. a phone device app, available as a set of different, native incarnations) to reach a certain degree of code compatibility.</p>
+ The C++ version is the most complex language version of <b>ALib</b>. The reason is that Java and C# languages are equipped with many built-in classes that do not need a replacement. This comfortable situation is different with C++. Therefore, <b>"ALib for C++"</b> has a much more comprehensive mandate and it is more likely that <b>ALib for C++</b> is used in single language (hence C++ only) projects. In other words, the Java and C# versions of <b>ALib</b> are especially useful, if multi-language software is written (e.g. a phone device app, available as a set of different, native incarnations) to reach a certain degree of code compatibility.</p>
 <p>Currently, the full version of <b>ALib</b> is <b>not</b> available as a "stand-alone library". With GitHub project</p><ul>
 <li><a href="http://alexworx.github.io/ALox-Logging-Library/index.html">ALox Logging Library</a>,</li>
 </ul>
@@ -121,7 +121,7 @@ $(function() {
 <p><b>Usage</b><br />
  Regardless of using full <b>ALib</b> or using an <b>ALib Module</b>, header file <a class="el" href="alib_8hpp.html">alib/alib.hpp</a> is to be to be included prior to including necessary specific other headers. The distribution-specific header file <code><a class="el" href="distribution_8hpp_source.html">alib/distribution.hpp</a></code> will select the right (available) module header files. In the case of modules, source files have to be <b>'manually'</b> added to the build process (either to a library or directly to a main executable) as demonstrated in the samples deployed with the modules.</p>
 <p>Furthermore, some initialization method specific to the <b>ALib Module</b> in question might be needed to be invoked during bootstrapping. With the complete distribution of <b>ALib</b>, such initialization is performed in aggregated method <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a>.</p>
-<dl class="section note"><dt>Note</dt><dd>When - as recommended - the full version of ALib is used bundled with ALox, then the correct header file and initialization method are <a class="el" href="alox_8hpp.html">alox/alox.hpp</a> and <a class="el" href="classaworx_1_1lox_1_1ALox.html#a4c4ba727bf8ffe104f310aca32519e36">ALox::Init</a>.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>When - as recommended - the full version of <b>ALib</b> is used bundled with <b>ALox</b>, then the correct header file and initialization method are <a class="el" href="alox_8hpp.html">alox/alox.hpp</a> and <a class="el" href="classaworx_1_1lox_1_1ALox.html#a4c4ba727bf8ffe104f310aca32519e36">ALox::Init</a>.</dd></dl>
 <p><b>Platforms/Toolchains:</b><br />
  As of today, <b>ALib for C++</b> is compiled and tested under the following platforms and compiler toolchains:</p><ul>
 <li>GNU/Linux, GNU C++ 11, 32-Bit / 64-Bit</li>
@@ -161,7 +161,7 @@ Classes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:26 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:47:57 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

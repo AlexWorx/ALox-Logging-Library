@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -94,7 +94,7 @@ $(function() {
 <div class="dynheader">
 Collaboration diagram for ScopeStore&lt; T &gt;:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore__coll__graph.svg" width="1011" height="530"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore__coll__graph.svg" width="1266" height="383"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
@@ -104,8 +104,8 @@ Collaboration diagram for ScopeStore&lt; T &gt;:</div>
 Public Fields</h2></td></tr>
 <tr class="memitem:af36769bffee28cc003eee0e1e7d1e858"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#af36769bffee28cc003eee0e1e7d1e858">globalStore</a></td></tr>
 <tr class="separator:af36769bffee28cc003eee0e1e7d1e858"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3cc97c81f5f73c882d4a1f5abbe41811"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html">PathMap</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a3cc97c81f5f73c882d4a1f5abbe41811">languageStore</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html">PathMap</a>&lt;T&gt;()</td></tr>
-<tr class="separator:a3cc97c81f5f73c882d4a1f5abbe41811"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9bed27deef69afbfa06dd8d6ae21f03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree.html">StringTree</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#af9bed27deef69afbfa06dd8d6ae21f03">languageStore</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree.html">StringTree</a>&lt;T&gt;()</td></tr>
+<tr class="separator:af9bed27deef69afbfa06dd8d6ae21f03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55e770ae79d703ab411566db9ac7bce5"><td class="memItemLeft" align="right" valign="top">HashMap&lt; Thread, ArrayList&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a55e770ae79d703ab411566db9ac7bce5">threadInnerStore</a> = new HashMap&lt;Thread, ArrayList&lt;T&gt;&gt;()</td></tr>
 <tr class="separator:a55e770ae79d703ab411566db9ac7bce5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93281603675b390de6446a2ea12f5a2f"><td class="memItemLeft" align="right" valign="top">HashMap&lt; Thread, ArrayList&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a93281603675b390de6446a2ea12f5a2f">threadOuterStore</a> = new HashMap&lt;Thread, ArrayList&lt;T&gt;&gt;()</td></tr>
@@ -134,24 +134,22 @@ Public Methods</h2></td></tr>
 Protected Fields</h2></td></tr>
 <tr class="memitem:a4c28e4823062c8f744be67dfadeda68f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a4c28e4823062c8f744be67dfadeda68f">actPackageLevel</a></td></tr>
 <tr class="separator:a4c28e4823062c8f744be67dfadeda68f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8032ce6cc2fb9ea0e10b5ea89dffe5e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html">PathMap</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a8032ce6cc2fb9ea0e10b5ea89dffe5e0">actPathMapNode</a></td></tr>
-<tr class="separator:a8032ce6cc2fb9ea0e10b5ea89dffe5e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab420b6d519025a485c6345895ad174ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#ab420b6d519025a485c6345895ad174ee">actScope</a></td></tr>
 <tr class="separator:ab420b6d519025a485c6345895ad174ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5fb3918a366ea7f8f86a12a7dccc3f9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree.html">StringTree</a>&lt; T &gt;.Cursor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#af5fb3918a366ea7f8f86a12a7dccc3f9">actStringTreeNode</a></td></tr>
+<tr class="separator:af5fb3918a366ea7f8f86a12a7dccc3f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64257a7b447d7633ab917c0096ea1f7b"><td class="memItemLeft" align="right" valign="top">Thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a64257a7b447d7633ab917c0096ea1f7b">actThread</a></td></tr>
 <tr class="separator:a64257a7b447d7633ab917c0096ea1f7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ca5693c62b74429f179fa806358cc01"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a6ca5693c62b74429f179fa806358cc01">cfgSingleThreadValue</a></td></tr>
 <tr class="separator:a6ca5693c62b74429f179fa806358cc01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afff48198d20f5acb5e3b9f526f3aa89b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#afff48198d20f5acb5e3b9f526f3aa89b">languageKey</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>(128)</td></tr>
 <tr class="separator:afff48198d20f5acb5e3b9f526f3aa89b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3bf60f6469b0c69c146a974a7a4c08e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a3bf60f6469b0c69c146a974a7a4c08e4">languageKeySubstr</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>()</td></tr>
-<tr class="separator:a3bf60f6469b0c69c146a974a7a4c08e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2f82669609a22787a232ccca579889c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#ac2f82669609a22787a232ccca579889c">languageKeySubs</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>()</td></tr>
+<tr class="separator:ac2f82669609a22787a232ccca579889c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf20d746bec29641f94f64972323990f"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#adf20d746bec29641f94f64972323990f">lazyLanguageNode</a></td></tr>
 <tr class="separator:adf20d746bec29641f94f64972323990f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a609ba5315772ded9cdb21726e54ff69d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html">ScopeInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a609ba5315772ded9cdb21726e54ff69d">scopeInfo</a></td></tr>
 <tr class="separator:a609ba5315772ded9cdb21726e54ff69d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf3c785f03af4e61a0b4f51bc3568635"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#abf3c785f03af4e61a0b4f51bc3568635">separators</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>( &quot;#.&quot; )</td></tr>
-<tr class="separator:abf3c785f03af4e61a0b4f51bc3568635"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7722550f3beb31970bb6f70819a71b0"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#ab7722550f3beb31970bb6f70819a71b0">walking</a></td></tr>
 <tr class="separator:ab7722550f3beb31970bb6f70819a71b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa335ab4366e76a5d9ce668fc4afb82ff"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#aa335ab4366e76a5d9ce668fc4afb82ff">walkLocalObject</a></td></tr>
@@ -165,8 +163,8 @@ Protected Fields</h2></td></tr>
 Protected Methods</h2></td></tr>
 <tr class="memitem:a4edabc9f41871e01feed07e778694764"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a4edabc9f41871e01feed07e778694764">access</a> (int cmd, T value)</td></tr>
 <tr class="separator:a4edabc9f41871e01feed07e778694764"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1caa12487494720c56e22b2cd33ee0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#ac1caa12487494720c56e22b2cd33ee0f">getPathMapNode</a> (boolean create)</td></tr>
-<tr class="separator:ac1caa12487494720c56e22b2cd33ee0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a724e347bae410728d7d41aeedc7f3f42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a724e347bae410728d7d41aeedc7f3f42">initCursor</a> (boolean create)</td></tr>
+<tr class="separator:a724e347bae410728d7d41aeedc7f3f42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a08a5115b742cb5cd94f87c852a136f63"></a>
@@ -289,39 +287,6 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="ac1caa12487494720c56e22b2cd33ee0f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac1caa12487494720c56e22b2cd33ee0f">&#9670;&nbsp;</a></span>getPathMapNode()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void getPathMapNode </td>
-          <td>(</td>
-          <td class="paramtype">boolean&#160;</td>
-          <td class="paramname"><em>create</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<hr/>
-<p> Retrieves and optionally creates an entry in the map that stores language-related scope information. The result is stored in field <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a8032ce6cc2fb9ea0e10b5ea89dffe5e0">actPathMapNode</a>. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">create</td><td>If <code>true</code>, a non-existing entry is created. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a1008f0a1310373bea762f3e081b2f3e0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1008f0a1310373bea762f3e081b2f3e0">&#9670;&nbsp;</a></span>InitAccess()</h2>
 
@@ -360,6 +325,39 @@ Protected Methods</h2></td></tr>
     <tr><td class="paramname">scope</td><td><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> to use. </td></tr>
     <tr><td class="paramname">packageLevel</td><td>Used with <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a> to determine outer level. </td></tr>
     <tr><td class="paramname">thread</td><td>The associated thread (for thread-related scopes only). If <code>0</code> is given, the ID from <code>scopeInfo</code> is used. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a724e347bae410728d7d41aeedc7f3f42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a724e347bae410728d7d41aeedc7f3f42">&#9670;&nbsp;</a></span>initCursor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initCursor </td>
+          <td>(</td>
+          <td class="paramtype">boolean&#160;</td>
+          <td class="paramname"><em>create</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Retrieves and optionally creates an entry in the map that stores language-related scope information. The result is stored in field <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#af5fb3918a366ea7f8f86a12a7dccc3f9">actStringTreeNode</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">create</td><td>If <code>true</code>, a non-existing entry is created. </td></tr>
   </table>
   </dd>
 </dl>
@@ -498,29 +496,6 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a8032ce6cc2fb9ea0e10b5ea89dffe5e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8032ce6cc2fb9ea0e10b5ea89dffe5e0">&#9670;&nbsp;</a></span>actPathMapNode</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html">PathMap</a>&lt;T&gt; actPathMapNode</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>The actual language related scopes' map node </p>
-
-</div>
-</div>
 <a id="ab420b6d519025a485c6345895ad174ee"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab420b6d519025a485c6345895ad174ee">&#9670;&nbsp;</a></span>actScope</h2>
 
@@ -541,6 +516,29 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>The actual scope of a walk (array, because it is used as second return value) </p>
+
+</div>
+</div>
+<a id="af5fb3918a366ea7f8f86a12a7dccc3f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5fb3918a366ea7f8f86a12a7dccc3f9">&#9670;&nbsp;</a></span>actStringTreeNode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree.html">StringTree</a>&lt;T&gt;.Cursor actStringTreeNode</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The actual language related scopes' map node </p>
 
 </div>
 </div>
@@ -628,8 +626,8 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a3bf60f6469b0c69c146a974a7a4c08e4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3bf60f6469b0c69c146a974a7a4c08e4">&#9670;&nbsp;</a></span>languageKeySubstr</h2>
+<a id="ac2f82669609a22787a232ccca579889c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2f82669609a22787a232ccca579889c">&#9670;&nbsp;</a></span>languageKeySubs</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -638,7 +636,7 @@ Protected Methods</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> languageKeySubstr = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>()</td>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> languageKeySubs = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>()</td>
         </tr>
       </table>
   </td>
@@ -647,22 +645,22 @@ Protected Methods</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>A temporary substring used for searching keys in the tree map </p>
+<p>Temporary substring for consuming the source key </p>
 
 </div>
 </div>
-<a id="a3cc97c81f5f73c882d4a1f5abbe41811"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3cc97c81f5f73c882d4a1f5abbe41811">&#9670;&nbsp;</a></span>languageStore</h2>
+<a id="af9bed27deef69afbfa06dd8d6ae21f03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9bed27deef69afbfa06dd8d6ae21f03">&#9670;&nbsp;</a></span>languageStore</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html">PathMap</a>&lt;T&gt; languageStore = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html">PathMap</a>&lt;T&gt;()</td>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree.html">StringTree</a>&lt;T&gt; languageStore = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree.html">StringTree</a>&lt;T&gt;()</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>PathMap store for language-related scopes (path,source,method) </p>
+<p>StringTree store for language-related scopes (path,source,method) </p>
 
 </div>
 </div>
@@ -709,29 +707,6 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>The <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html">ScopeInfo</a> singleton of our <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> </p>
-
-</div>
-</div>
-<a id="abf3c785f03af4e61a0b4f51bc3568635"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf3c785f03af4e61a0b4f51bc3568635">&#9670;&nbsp;</a></span>separators</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> separators = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>( &quot;#.&quot; )</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>The (constant) list of separators needed by the tree map </p>
 
 </div>
 </div>
@@ -864,7 +839,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:29 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:01 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

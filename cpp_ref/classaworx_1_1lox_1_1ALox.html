@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -97,11 +97,11 @@ $(function() {
 <div class="dynheader">
 Collaboration diagram for ALox:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lox_1_1ALox__coll__graph.svg" width="2767" height="1571"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lox_1_1ALox__coll__graph.svg" width="2734" height="1662"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> This is a 100% static class that holds constants and 'global' methods of the <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a> Logging Library. </p>
+<p> This is a 100% static class that holds constants and 'global' methods of the <b>ALox</b> Logging Library. </p>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Public Static Fields</h2></td></tr>
@@ -287,7 +287,7 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Checks if versions of ALib, <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a> and the actual compilation unit share compatible compilation symbols. This method is invoked automatically by method <a class="el" href="classaworx_1_1lox_1_1ALox.html#a4c4ba727bf8ffe104f310aca32519e36">Init</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Checks if versions of <b>ALib</b>, <b>ALox</b> and the actual compilation unit share compatible compilation symbols. This method is invoked automatically by method <a class="el" href="classaworx_1_1lox_1_1ALox.html#a4c4ba727bf8ffe104f310aca32519e36">Init</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">alibVersion</td><td>Defaults to a value defined by the currently included headers. </td></tr>
     <tr><td class="paramname">aloxVersion</td><td>Defaults to a value defined by the currently included headers. </td></tr>
@@ -333,7 +333,7 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Returns the <b><a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a></b> with the given name. A lox is only found if it was created and registered with <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a> using <a class="el" href="classaworx_1_1lox_1_1ALox.html#adf95bbd67aec5e9e71e14134b0924fcf">Register</a>. If not found, and parameter <code>create</code> is <code>true</code> (the default), a new <b><a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a></b> is created, registered and returned.</p>
+<p> Returns the <b><a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a></b> with the given name. A lox is only found if it was created and registered with <b>ALox</b> using <a class="el" href="classaworx_1_1lox_1_1ALox.html#adf95bbd67aec5e9e71e14134b0924fcf">Register</a>. If not found, and parameter <code>create</code> is <code>true</code> (the default), a new <b><a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a></b> is created, registered and returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>The name of the <b>Lox</b> to search and optionally to create. Comparison is case insensitive. </td></tr>
@@ -379,14 +379,14 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> This method must be called prior to using ALox, e.g. at the beginning of the <code>main()</code> method of an application. It is OK, to call this method more than once, which allows independent code blocks (e.g. libraries) to bootstrap ALox independently. However, only the first invocation is effective with the exclamation that if command line parameters are provided with a call, those are set. Also, the very first invocation should not be interrupted by a parallel invocation of a second thread. Consequently, it has to be assured that this method is invoked once on the real bootstrap an app.</p>
-<dl class="section note"><dt>Note</dt><dd>This method invokes <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a>, hence no explicit initialization of underlying ALib is needed.</dd></dl>
-<p>If command line parameters should be used for configuring <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a>, then the very first call to this method has to provide the argc and argv parameters. Subsequent calls to this method with different parameters do not change the setup.</p>
+<p> This method must be called prior to using <b>ALox</b>, e.g. at the beginning of the <code>main()</code> method of an application. It is OK, to call this method more than once, which allows independent code blocks (e.g. libraries) to bootstrap <b>ALox</b> independently. However, only the first invocation is effective with the exclamation that if command line parameters are provided with a call, those are set. Also, the very first invocation should not be interrupted by a parallel invocation of a second thread. Consequently, it has to be assured that this method is invoked once on the real bootstrap an app.</p>
+<dl class="section note"><dt>Note</dt><dd>This method invokes <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a>, hence no explicit initialization of underlying <b>ALib</b> is needed.</dd></dl>
+<p>If command line parameters should be used for configuring <b>ALox</b>, then the very first call to this method has to provide the argc and argv parameters. Subsequent calls to this method with different parameters do not change the setup.</p>
 <dl class="section note"><dt>Note</dt><dd>If other, custom configuration data sources should be used already with this method (to read the configuration variables as described in <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a>), according configuration plug-ins have to be added attached to public singleton <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ac7b578f72e6b1f48e14ad3a762c412db">Configuration::Default</a> prior to invoking this method.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>On the Windows platform, the Microsoft compiler provides the global variables <em>__argc</em> and <em>__argv</em> (respectively <em>__wargv</em> for wide character binaries. These variables a can be used if this method is invoked outside of the <em>main()</em> method.</dd></dl>
-<p>For convenience, several <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a> classes call this method implicitly on construction or when using them, e.g. <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> and Logger. Therefore, when using <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a>, there is no need to to call this method, unless aforementioned command line parameters should be passed.</p>
-<dl class="section note"><dt>Note</dt><dd><a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a> must not be used before all global/static variables are created. Hence, it is not allowed to initialize <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a> within static variable initialization code. This restriction is wanted by design, because different platforms and compilers implement the bootstrap of static and global data differently and it is not considered a good programming style to rely on C++ bootstrap. Using ALox/ALIB within C++ bootstrap is undefined behavior. (This is true for any C++ library.)</dd></dl>
-<dl class="section attention"><dt>Attention</dt><dd>If release logging is used, the explicit initialization of <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a> by invoking this method is mandatory. While debug logging 'automatically' invokes the method hidden in the background, release logging does not. If omitted, critical errors and undefined behavior in release builds might occur in the moment when debug-logging is pruned!</dd></dl>
+<p>For convenience, several <b>ALox</b> classes call this method implicitly on construction or when using them, e.g. <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> and Logger. Therefore, when using <b>ALox</b>, there is no need to to call this method, unless aforementioned command line parameters should be passed.</p>
+<dl class="section note"><dt>Note</dt><dd><b>ALox</b> must not be used before all global/static variables are created. Hence, it is not allowed to initialize <b>ALox</b> within static variable initialization code. This restriction is wanted by design, because different platforms and compilers implement the bootstrap of static and global data differently and it is not considered a good programming style to rely on C++ bootstrap. Using <b>ALox/ALIB</b> within C++ bootstrap is undefined behavior. (This is true for any C++ library.)</dd></dl>
+<dl class="section attention"><dt>Attention</dt><dd>If release logging is used, the explicit initialization of <b>ALox</b> by invoking this method is mandatory. While debug logging 'automatically' invokes the method hidden in the background, release logging does not. If omitted, critical errors and undefined behavior in release builds might occur in the moment when debug-logging is pruned!</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">argc</td><td>Parameter usually taken from <em>standard C</em> <code>main()</code> method (the number of arguments in <code>argv</code>). Defaults to 0. </td></tr>
@@ -394,7 +394,7 @@ Protected Methods</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns <code>true</code> if <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a> was initialized before, <code>false</code> if not. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns <code>true</code> if <b>ALox</b> was initialized before, <code>false</code> if not. </dd></dl>
 
 </div>
 </div>
@@ -440,7 +440,7 @@ Protected Methods</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns <code>true</code> if <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a> was initialized before, <code>false</code> if not. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns <code>true</code> if <b>ALox</b> was initialized before, <code>false</code> if not. </dd></dl>
 
 </div>
 </div>
@@ -494,7 +494,7 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Returns a singleton of class <b>Lox</b> used for debug logging </p><dl class="section return"><dt>Returns</dt><dd>The debug-logging <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> of <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a> :-) </dd></dl>
+<p> Returns a singleton of class <b>Lox</b> used for debug logging </p><dl class="section return"><dt>Returns</dt><dd>The debug-logging <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> of <b>ALox</b> </dd></dl>
 
 </div>
 </div>
@@ -532,8 +532,8 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Registers or un-registers a <b>Lox</b> object statically with <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a>. Once registered, any code entity of the same process is enabled to retrieve the <b>Lox</b> using <a class="el" href="classaworx_1_1lox_1_1ALox.html#a91162815924f9c2460b34836c39e1a50">Get</a>.<br />
- No two objects with the same name must be registered. If this is done, the latter will not be registered and not be found by <a class="el" href="classaworx_1_1lox_1_1ALox.html#a91162815924f9c2460b34836c39e1a50">Get</a>. In debug-compilations, an ALib error report is written (by default raises 'assert') if a name is registered twice.<br />
+<p> Registers or un-registers a <b>Lox</b> object statically with <b>ALox</b>. Once registered, any code entity of the same process is enabled to retrieve the <b>Lox</b> using <a class="el" href="classaworx_1_1lox_1_1ALox.html#a91162815924f9c2460b34836c39e1a50">Get</a>.<br />
+ No two objects with the same name must be registered. If this is done, the latter will not be registered and not be found by <a class="el" href="classaworx_1_1lox_1_1ALox.html#a91162815924f9c2460b34836c39e1a50">Get</a>. In debug-compilations, an <b>ALib</b> error report is written (by default raises 'assert') if a name is registered twice.<br />
  Note that name comparison is performed case <b>in</b>-sensitive.</p>
 <p>If debug-logging is enabled (depends on compilation symbols) and used, the singleton of type % <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> provided for debug-logging is registered. This uses the name <code>"Log"</code> </p>
 <p>Registration is <em>not</em> mandatory but done by default by the constructor of class <b>Lox</b>. Therefore, to keep a <b><a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a></b> private, an optional parameter is available.</p>
@@ -574,7 +574,7 @@ Protected Methods</h2></td></tr>
 <li>All <b>Lox</b> objects are removed.</li>
 <li>If the debug lox singleton exists, it is deleted.</li>
 </ul>
-<dl class="section attention"><dt>Attention</dt><dd>This method was introduced to support resetting <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a> in the unit tests. In real applications, this method should NOT be used. Side effects might appear using this method and it is not tested otherwise than used in tests! </dd></dl>
+<dl class="section attention"><dt>Attention</dt><dd>This method was introduced to support resetting <b>ALox</b> in the unit tests. In real applications, this method should NOT be used. Side effects might appear using this method and it is not tested otherwise than used in tests! </dd></dl>
 
 </div>
 </div>
@@ -601,7 +601,7 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Cleans up static/global <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a> memory on termination. This method is useful if using memory analysis tools (such as valgrind) to remove any internal allocations before a program terminates. </p>
+<p> Cleans up static/global <b>ALox</b> memory on termination. This method is useful if using memory analysis tools (such as valgrind) to remove any internal allocations before a program terminates. </p>
 
 </div>
 </div>
@@ -629,8 +629,8 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Verifies a given sets of <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a> compilation flags with the internal set <a class="el" href="classaworx_1_1lox_1_1ALox.html#ad3c1e7a231e88307d2484c7d6af833a4">ALox::CompilationFlags</a>. In case they are different in a way that alib gets incompatible (e.g. different class sizes, which results in errors that are very hard to debug), the flags are written to <em>cout</em> for comparison and <code>false</code> is returned.</p>
-<p>This method should be called on bootstrap to detect if incompatible library types were built. If several libraries that use ALib are linked together, each should invoke this test against separately. The macro <code>ALIB_COMPATIBILITY_VERIFYER</code> will provide the flags.</p>
+<p> Verifies a given sets of <b>ALox</b> compilation flags with the internal set <a class="el" href="classaworx_1_1lox_1_1ALox.html#ad3c1e7a231e88307d2484c7d6af833a4">ALox::CompilationFlags</a>. In case they are different in a way that alib gets incompatible (e.g. different class sizes, which results in errors that are very hard to debug), the flags are written to <em>cout</em> for comparison and <code>false</code> is returned.</p>
+<p>This method should be called on bootstrap to detect if incompatible library types were built. If several libraries that use <b>ALib</b> are linked together, each should invoke this test against separately. The macro <code>ALIB_COMPATIBILITY_VERIFYER</code> will provide the flags.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">flags</td><td>The flags externally grabbed using macro <code>ALIB_COMPATIBILITY_VERIFYER</code>.</td></tr>
@@ -661,7 +661,7 @@ Protected Methods</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>These flags are used internally to detect incompatibilities when linking <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a> to ALib (can only be different in the unusual case that ALib exists in a library independent from <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a>). </p>
+<p>These flags are used internally to detect incompatibilities when linking <b>ALox</b> to <b>ALib</b> (can only be different in the unusual case that <b>ALib</b> exists in a library independent from <b>ALox</b>). </p>
 
 </div>
 </div>
@@ -755,7 +755,7 @@ Protected Methods</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>These flags are used internally to detect incompatibilities when linking <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a> to binaries that use different compilation flags. </p>
+<p>These flags are used internally to detect incompatibilities when linking <b>ALox</b> to binaries that use different compilation flags. </p>
 
 </div>
 </div>
@@ -778,7 +778,7 @@ Protected Methods</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The name of the configuration category of configuration variables used by <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a>.<br />
+<p>The name of the configuration category of configuration variables used by <b>ALox</b>.<br />
  Defaults to "ALOX".<br />
  This value can be changed to avoid conflicts between applications (especially in respect to environment variable settings). Changes should be placed at very initial bootstrap code, before the invocation of <a class="el" href="classaworx_1_1lox_1_1ALox.html#a4c4ba727bf8ffe104f310aca32519e36">Init</a>.<br />
  See also <a class="el" href="classaworx_1_1lib_1_1ALIB.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALIB::ConfigCategoryName</a>. </p>
@@ -996,8 +996,8 @@ Protected Methods</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>This is the path for logging to the internal domain. By manipulating this <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Domains' Verbosity</em>, the verbosity of <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a> itself can be controlled. For example, with <em>Verbosity.INFO</em>, the 'on the fly' creation of <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Domains</em> are logged, which can be helpful to determine the <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Domains</em> that are created by libraries and larger projects.</p>
-<p>The following sub-domains are used by <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a>:</p>
+<p>This is the path for logging to the internal domain. By manipulating this <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Domains' Verbosity</em>, the verbosity of <b>ALox</b> itself can be controlled. For example, with <em>Verbosity.INFO</em>, the 'on the fly' creation of <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Domains</em> are logged, which can be helpful to determine the <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Domains</em> that are created by libraries and larger projects.</p>
+<p>The following sub-domains are used by <b>ALox</b>:</p>
 <table class="doxtable">
 <tr>
 <th>Sub-Domain </th><th>Description  </th></tr>
@@ -1037,7 +1037,7 @@ In addition used with method <b>Lox::SetStartTime</b>. </td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>flag indicating that <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a> has been initialized </p>
+<p>flag indicating that <b>ALox</b> has been initialized </p>
 
 </div>
 </div>
@@ -1202,7 +1202,7 @@ In addition used with method <b>Lox::SetStartTime</b>. </td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The revision number of this release. Each <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a> <a class="el" href="classaworx_1_1lox_1_1ALox.html#a8d88b5f159f3cd597cdd92f942340024">Version</a> is initially released as revision <em>0</em>. Pure maintenance releases that do not change the interface of <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a> are holding the same <a class="el" href="classaworx_1_1lox_1_1ALox.html#a8d88b5f159f3cd597cdd92f942340024">Version</a> but an increased number in this field. </p>
+<p>The revision number of this release. Each <b>ALox</b> <a class="el" href="classaworx_1_1lox_1_1ALox.html#a8d88b5f159f3cd597cdd92f942340024">Version</a> is initially released as revision <em>0</em>. Pure maintenance releases that do not change the interface of <b>ALox</b> are holding the same <a class="el" href="classaworx_1_1lox_1_1ALox.html#a8d88b5f159f3cd597cdd92f942340024">Version</a> but an increased number in this field. </p>
 
 </div>
 </div>
@@ -1320,7 +1320,7 @@ In addition used with method <b>Lox::SetStartTime</b>. </td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The version of <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a>. The versioning follows the scheme YYMM (2-digit year, 2-digit month) of the initial release date. Besides this version number, field <a class="el" href="classaworx_1_1lox_1_1ALox.html#a9c8cddb79a23b8e57370078da95de8ed">Revision</a> indicates if this is a revised version of a former release. </p>
+<p>The version of <b>ALox</b>. The versioning follows the scheme YYMM (2-digit year, 2-digit month) of the initial release date. Besides this version number, field <a class="el" href="classaworx_1_1lox_1_1ALox.html#a9c8cddb79a23b8e57370078da95de8ed">Revision</a> indicates if this is a revised version of a former release. </p>
 
 </div>
 </div>
@@ -1332,7 +1332,7 @@ In addition used with method <b>Lox::SetStartTime</b>. </td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:26 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

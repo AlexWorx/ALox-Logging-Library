@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['recursive',['Recursive',['../namespaceaworx_1_1lib_1_1lang.html#a00fc859257c8f09ff9198dde28121961a556c3dd912453ae5cb3095cd5054e6f4',1,'aworx::lib::lang']]],
-  ['remove',['Remove',['../namespaceaworx_1_1lib_1_1lang.html#af6d9cc1e6686eca6e60d57d959cf57fba1063e38cb53d94d386f21227fcd84717',1,'aworx::lib::lang']]],
-  ['right',['Right',['../namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726a92b09c7c48c520c3c55e497875da437c',1,'aworx::lib::lang']]],
-  ['root',['Root',['../classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0afa03eb688ad8aa1db593d33dabd89bad',1,'aworx::lib::system::Directory']]]
+  ['off',['Off',['../namespaceaworx_1_1lib_1_1lang.html#a9f3c28a2cb05bdcc618b542e49bfda3fad15305d7a4e34e02489c74a5ef542f36',1,'aworx::lib::lang::Off()'],['../namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313ad15305d7a4e34e02489c74a5ef542f36',1,'aworx::lox::Off()']]],
+  ['ok',['Ok',['../classaworx_1_1lib_1_1config_1_1IniFile.html#a67a0db04d321a74b7e7fcfd3f1a3f70baa60852f204ed8028c1c58808b746d115',1,'aworx::lib::config::IniFile::Ok()'],['../namespaceaworx_1_1lib_1_1lang.html#a28287671eaf7406afd604bd055ba4066ae0aa021e21dddbd6d8cecec71e9cf564',1,'aworx::lib::lang::OK()']]],
+  ['omit',['Omit',['../namespaceaworx_1_1lib_1_1lang.html#aeae0c2d4659a32ef54bd221d1a3da4e6a3f9823fc8c5bf8d5efbb0ad3be5f16c9',1,'aworx::lib::lang']]],
+  ['on',['On',['../namespaceaworx_1_1lib_1_1lang.html#a9f3c28a2cb05bdcc618b542e49bfda3fa521c36a31c2762741cf0f8890cbe05e3',1,'aworx::lib::lang']]]
 ];

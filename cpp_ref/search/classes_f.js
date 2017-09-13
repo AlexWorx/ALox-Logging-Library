@@ -28,6 +28,7 @@ var searchData=
   ['t_5fapply_3c_20lang_3a_3apropagation_20_3e',['T_Apply&lt; lang::Propagation &gt;',['../structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Propagation_01_4.html',1,'aworx::lib::strings::applyto']]],
   ['t_5fapply_3c_20lang_3a_3aresponsibility_20_3e',['T_Apply&lt; lang::Responsibility &gt;',['../structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Responsibility_01_4.html',1,'aworx::lib::strings::applyto']]],
   ['t_5fapply_3c_20lang_3a_3asafeness_20_3e',['T_Apply&lt; lang::Safeness &gt;',['../structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Safeness_01_4.html',1,'aworx::lib::strings::applyto']]],
+  ['t_5fapply_3c_20lang_3a_3asortorder_20_3e',['T_Apply&lt; lang::SortOrder &gt;',['../structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1SortOrder_01_4.html',1,'aworx::lib::strings::applyto']]],
   ['t_5fapply_3c_20lang_3a_3aswitch_20_3e',['T_Apply&lt; lang::Switch &gt;',['../structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Switch_01_4.html',1,'aworx::lib::strings::applyto']]],
   ['t_5fapply_3c_20lang_3a_3atimezone_20_3e',['T_Apply&lt; lang::Timezone &gt;',['../structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Timezone_01_4.html',1,'aworx::lib::strings::applyto']]],
   ['t_5fapply_3c_20lang_3a_3awhitespaces_20_3e',['T_Apply&lt; lang::Whitespaces &gt;',['../structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Whitespaces_01_4.html',1,'aworx::lib::strings::applyto']]],

@@ -1,0 +1,19 @@
+<map id="configuration.hpp" name="configuration.hpp">
+<area shape="rect" id="node2" href="$alox_8hpp.html" title="alox.hpp" alt="" coords="597,80,668,107"/>
+<area shape="rect" id="node3" href="$lox_8hpp.html" title="lox.hpp" alt="" coords="50,229,114,256"/>
+<area shape="rect" id="node4" href="$log_8hpp.html" title="log.hpp" alt="" coords="776,155,840,181"/>
+<area shape="rect" id="node5" href="$alox__console__loggers_8hpp.html" title="alox_console_loggers.hpp" alt="" coords="642,453,814,480"/>
+<area shape="rect" id="node6" href="$domain_8hpp.html" title="domain.hpp" alt="" coords="37,155,126,181"/>
+<area shape="rect" id="node7" href="$logger_8hpp.html" title="logger.hpp" alt="" coords="412,155,493,181"/>
+<area shape="rect" id="node8" href="$textlogger_8hpp.html" title="textlogger.hpp" alt="" coords="626,229,729,256"/>
+<area shape="rect" id="node9" href="$plaintextlogger_8hpp.html" title="plaintextlogger.hpp" alt="" coords="915,304,1046,331"/>
+<area shape="rect" id="node10" href="$consolelogger_8hpp.html" title="consolelogger.hpp" alt="" coords="1110,379,1237,405"/>
+<area shape="rect" id="node11" href="$memorylogger_8hpp.html" title="memorylogger.hpp" alt="" coords="814,379,942,405"/>
+<area shape="rect" id="node12" href="$textfilelogger_8hpp.html" title="textfilelogger.hpp" alt="" coords="966,379,1086,405"/>
+<area shape="rect" id="node13" href="$vstudiologger_8hpp.html" title="vstudiologger.hpp" alt="" coords="667,379,790,405"/>
+<area shape="rect" id="node14" href="$ansilogger_8hpp.html" title="ansilogger.hpp" alt="" coords="536,304,641,331"/>
+<area shape="rect" id="node15" href="$windowsconsolelogger_8hpp.html" title="windowsconsolelogger.hpp" alt="" coords="665,304,840,331"/>
+<area shape="rect" id="node16" href="$scopedump_8hpp.html" title="scopedump.hpp" alt="" coords="320,229,435,256"/>
+<area shape="rect" id="node17" href="$scopestore_8hpp.html" title="scopestore.hpp" alt="" coords="277,155,388,181"/>
+<area shape="rect" id="node18" href="$scopeinfo_8hpp.html" title="scopeinfo.hpp" alt="" coords="150,155,253,181"/>
+</map>

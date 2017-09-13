@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -85,9 +85,9 @@ $(function() {
 <div class="contents">
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Symbols (C++ preprocessor macros) listed here, are mostly generated out of <a class="el" href="group__GrpALoxCompilerSymbols.html">ALox Compilation Symbols</a>. In this case, their name corresponds to these symbols, excluding the suffixes "_ON" and "_OFF".</p>
-<p>These symbols must not be passed to the compiler and must also not be set manually from within code entities that use ALox libraries. They can be used in code entities that use ALox to select code depending on the same settings of the ALox library compilation. Selection takes place, using preprocessor directives:</p>
-<div class="fragment"><div class="line"><span class="preprocessor">#if defined(ALOX_XYZ_SELECTOR)</span></div><div class="line">  <span class="comment">// your selective code</span></div><div class="line"><span class="preprocessor">#endif</span></div></div><!-- fragment --><p>ALox inherits further compiler symbols from underlying library ALIB. These are documented in: <a class="el" href="group__GrpALibCodeSelectorSymbols.html">ALib Symbols To Select Code Fragments</a>.</p>
-<p>(Besides ALox specific symbols of that type, ALox internally uses also platform specific symbols to select code, e.g. __GLIBCXX__, _MSC_VER, etc.). </p>
+<p>These symbols must not be passed to the compiler and must also not be set manually from within code entities that use <b>ALox</b> libraries. They can be used in code entities that use ALox to select code depending on the same settings of the <b>ALox</b> library compilation. Selection takes place, using preprocessor directives:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#if defined(ALOX_XYZ_SELECTOR)</span></div><div class="line">  <span class="comment">// your selective code</span></div><div class="line"><span class="preprocessor">#endif</span></div></div><!-- fragment --><p><b>ALox</b> inherits further compiler symbols from underlying library ALIB. These are documented in: <a class="el" href="group__GrpALibCodeSelectorSymbols.html">ALib Symbols To Select Code Fragments</a>.</p>
+<p>(Besides <b>ALox</b> specific symbols of that type, <b>ALox</b> internally uses also platform specific symbols to select code, e.g. __GLIBCXX__, _MSC_VER, etc.). </p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -112,7 +112,7 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>If defined as <code>true</code>, debug <em>Log Statements</em> are enabled. Hence, users of ALox can conditionally compile special debug logging code that normally belongs to corresponding debug logging statements. This is useful for example, to conditionally compile code that calculates and gathers information to do some more complex log output.</p>
+<p>If defined as <code>true</code>, debug <em>Log Statements</em> are enabled. Hence, users of <b>ALox</b> can conditionally compile special debug logging code that normally belongs to corresponding debug logging statements. This is useful for example, to conditionally compile code that calculates and gathers information to do some more complex log output.</p>
 <p>See <a class="el" href="group__GrpALoxCompilerSymbols.html#ga1d6b17b1dc814c44f312baf8d6f56688">ALOX_DBG_LOG_ON</a> and <a class="el" href="group__GrpALoxCompilerSymbols.html#gaf2de46ee4b30ee640266f7ac5de25bb9">ALOX_DBG_LOG_OFF</a> for information about how to manipulate this symbol. </p>
 
 </div>
@@ -128,8 +128,8 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>If defined, scope information is passed to ALox on invocation of debug <em>Log Statements</em>. Hence, users of ALox can conditionally compile special debug logging code that normally belongs to corresponding debug logging statements based on this symbol. A sample would be the definition of different log line meta information formats, depending on the availability of scope information.</p>
-<dl class="section note"><dt>Note</dt><dd>The ALox <em>Scope Domain</em> mechanism as well as the ALox features <em>Lox.Once</em> and <em>Log Data</em> rely on caller information. These mechanisms are therefore not available to debug logging unless this symbol is set.</dd></dl>
+<p>If defined, scope information is passed to <b>ALox</b> on invocation of debug <em>Log Statements</em>. Hence, users of <b>ALox</b> can conditionally compile special debug logging code that normally belongs to corresponding debug logging statements based on this symbol. A sample would be the definition of different log line meta information formats, depending on the availability of scope information.</p>
+<dl class="section note"><dt>Note</dt><dd>The <b>ALox</b> <em>Scope Domain</em> mechanism as well as the ALox features <em>Lox.Once</em> and <em>Log Data</em> rely on caller information. These mechanisms are therefore not available to debug logging unless this symbol is set.</dd></dl>
 <p>See <a class="el" href="group__GrpALoxCompilerSymbols.html#ga9920512a7b2c48a248b5cfb1643c7cac">ALOX_DBG_LOG_CI_ON</a> and <a class="el" href="group__GrpALoxCompilerSymbols.html#gabf2ce25e392b218c30b6b0af8280ddf7">ALOX_DBG_LOG_CI_OFF</a> for information about how to manipulate this symbol. </p>
 
 </div>
@@ -145,7 +145,7 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>If defined, release <em>Log Statements</em> are enabled. Hence, users of ALox can conditionally compile special debug logging code that normally belongs to corresponding debug logging statements. This is useful for example, to conditionally compile code that calculates and gathers information to do some more complex log output.</p>
+<p>If defined, release <em>Log Statements</em> are enabled. Hence, users of <b>ALox</b> can conditionally compile special debug logging code that normally belongs to corresponding debug logging statements. This is useful for example, to conditionally compile code that calculates and gathers information to do some more complex log output.</p>
 <p>See <a class="el" href="group__GrpALoxCompilerSymbols.html#ga56671e8b3fa44f19acb0d9c4c4403682">ALOX_REL_LOG_ON</a> and <a class="el" href="group__GrpALoxCompilerSymbols.html#gae77944a12e0a9b9bc2657cb7298d70f4">ALOX_REL_LOG_OFF</a> for information about how to manipulate this symbol. </p>
 
 </div>
@@ -161,9 +161,9 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>If defined, scope information is passed to ALox on invocation of release log statements when using the <a class="el" href="group__GrpMacrosReleaseLog.html">ALox Macros For Release Logging</a>.<br />
- Hence, users of ALox can conditionally compile special debug logging code that normally belongs to corresponding debug logging statements based on this symbol. A sample would be the definition of different log line meta-information formats, depending on the availability of scope information.</p>
-<dl class="section note"><dt>Note</dt><dd>The ALox <em>Scope Domain</em> mechanism as well as the ALox features <em>Lox.Once</em> and <em>Log Data</em> rely on caller information. These mechanisms are therefore not available to debug logging unless this symbol is set.</dd></dl>
+<p>If defined, scope information is passed to <b>ALox</b> on invocation of release log statements when using the <a class="el" href="group__GrpMacrosReleaseLog.html">ALox Macros For Release Logging</a>.<br />
+ Hence, users of <b>ALox</b> can conditionally compile special debug logging code that normally belongs to corresponding debug logging statements based on this symbol. A sample would be the definition of different log line meta-information formats, depending on the availability of scope information.</p>
+<dl class="section note"><dt>Note</dt><dd>The <b>ALox</b> <em>Scope Domain</em> mechanism as well as the ALox features <em>Lox.Once</em> and <em>Log Data</em> rely on caller information. These mechanisms are therefore not available to debug logging unless this symbol is set.</dd></dl>
 <p>See <a class="el" href="group__GrpALoxCompilerSymbols.html#ga85c683ba401d4c9216c96a9a17a9e9a9">ALOX_REL_LOG_CI_ON</a> and <a class="el" href="group__GrpALoxCompilerSymbols.html#ga9723e112c2b491520922d1fdfef60504">ALOX_REL_LOG_CI_OFF</a> for information about how to manipulate this symbol. </p>
 
 </div>
@@ -172,7 +172,7 @@ Macros</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:26 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:47:57 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

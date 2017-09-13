@@ -20,6 +20,5 @@ var searchData=
   ['iisnull_5ffalse',['IIsNull_false',['../classaworx_1_1lib_1_1boxing_1_1IIsNull__false.html',1,'aworx::lib::boxing']]],
   ['inifile',['IniFile',['../classaworx_1_1lib_1_1config_1_1IniFile.html',1,'aworx::lib::config']]],
   ['inmemoryplugin',['InMemoryPlugin',['../classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html',1,'aworx::lib::config']]],
-  ['interface',['Interface',['../classaworx_1_1lib_1_1boxing_1_1Interface.html',1,'aworx::lib::boxing']]],
-  ['iterator',['Iterator',['../classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html',1,'aworx::lib::containers::PathMap']]]
+  ['interface',['Interface',['../classaworx_1_1lib_1_1boxing_1_1Interface.html',1,'aworx::lib::boxing']]]
 ];

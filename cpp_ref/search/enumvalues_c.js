@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['off',['Off',['../namespaceaworx_1_1lib_1_1lang.html#a9f3c28a2cb05bdcc618b542e49bfda3fad15305d7a4e34e02489c74a5ef542f36',1,'aworx::lib::lang::Off()'],['../namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313ad15305d7a4e34e02489c74a5ef542f36',1,'aworx::lox::Off()']]],
-  ['ok',['Ok',['../classaworx_1_1lib_1_1config_1_1IniFile.html#a67a0db04d321a74b7e7fcfd3f1a3f70baa60852f204ed8028c1c58808b746d115',1,'aworx::lib::config::IniFile::Ok()'],['../namespaceaworx_1_1lib_1_1lang.html#a28287671eaf7406afd604bd055ba4066ae0aa021e21dddbd6d8cecec71e9cf564',1,'aworx::lib::lang::OK()']]],
-  ['omit',['Omit',['../namespaceaworx_1_1lib_1_1lang.html#aeae0c2d4659a32ef54bd221d1a3da4e6a3f9823fc8c5bf8d5efbb0ad3be5f16c9',1,'aworx::lib::lang']]],
-  ['on',['On',['../namespaceaworx_1_1lib_1_1lang.html#a9f3c28a2cb05bdcc618b542e49bfda3fa521c36a31c2762741cf0f8890cbe05e3',1,'aworx::lib::lang']]]
+  ['method',['Method',['../namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4c3880bb027f159e801041b1021e88e8',1,'aworx::lox']]],
+  ['module',['Module',['../classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0ae55f75a29310d7b60f7ac1d390c8ae42',1,'aworx::lib::system::Directory']]],
+  ['move',['Move',['../namespaceaworx_1_1lib_1_1lang.html#ab0acd6daf9443d8b997f1035cfe08dd8a6bc362dbf494c61ea117fe3c71ca48a5',1,'aworx::lib::lang']]]
 ];

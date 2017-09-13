@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -93,13 +93,22 @@ $(function() {
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a08a5115b742cb5cd94f87c852a136f63">ScopeStore&lt; T &gt;</a>
 </li>
 <li>searchAndReplace()
-: <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a0f3006ffd51f0d0eb2d1193530d47b70">AString</a>
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a53a3de0a9d7adaf10e2159642b2e335f">AString</a>
 </li>
 <li>searchAndReplaceAll()
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a21e613f20dae050b6ccdb8305e54d5ec">AString</a>
 </li>
+<li>searchName()
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a44148d4b9e241e7b4dd7d55209deb34b">StringTree&lt; T &gt;.Cursor</a>
+</li>
+<li>searchNodeNameAndDeleteNode()
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a20079b7a000dbb35f189f9133bf25af5">StringTree&lt; T &gt;.Cursor</a>
+</li>
 <li>searchOrCreateSection()
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html#a3fcecd3d9d47993a99229c2372bbbcae">InMemoryPlugin</a>
+</li>
+<li>searchPath()
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#ace96c113a788953205b2fb259d92a997">StringTree&lt; T &gt;.Cursor</a>
 </li>
 <li>searchSection()
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html#a9d3828b743feb8acaf0f1430d8f13bbd">InMemoryPlugin</a>
@@ -109,9 +118,9 @@ $(function() {
 , <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html#a9fb550de131a341941f6ef720a0c1984">InMemoryPlugin.Section</a>
 </li>
 <li>set()
-: <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a62bbebcdc34a8056c32d0b1a26026717">NumberFormat</a>
-, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a7d301b20362e07f042cef36c46bfa028">Substring</a>
-, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1util_1_1Tokenizer.html#a1f16714d7f8a2ce61926860e05d4f6aa">Tokenizer</a>
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a55b5e32d90896bc53b305ec851e4f5bb">NumberFormat</a>
+, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a2f922cdc5b465eccdae88c7b72d9672a">Substring</a>
+, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1util_1_1Tokenizer.html#a92214f094afb0e6cb53556ae8f5e44be">Tokenizer</a>
 , <a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html#a62bbebcdc34a8056c32d0b1a26026717">Ticks</a>
 , <a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1TickSpan.html#a35b2744fac0082f5dc9762771af2c17a">TickSpan</a>
 , <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#a809aae882275f23217600faf8d4720b0">ScopeInfo</a>
@@ -180,27 +189,42 @@ $(function() {
 <li>setRaw()
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html#a6afb0871eff5553e3c13be96ef661441">Ticks</a>
 </li>
+<li>setRecursionDepth()
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#abdd775d3179c8cde4182a6eb908b8779">StringTree&lt; T &gt;.Walker</a>
+</li>
 <li>setReplacement()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a7beb88e31decf4e839c3c0bdb6aa6cb3">TextLogger</a>
 </li>
 <li>setSafeness()
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a7090fd12b34b064560dcef8900a3f31a">ThreadLock</a>
 </li>
+<li>setStart()
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#aa27eb74f212c3573dc0371295b27a03a">StringTree&lt; T &gt;.Walker</a>
+</li>
 <li>setStartTime()
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1TickWatch.html#a716c54b17686000232e9f877d0e18e4f">TickWatch</a>
 , <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#aca5f6a9fc5be0ff05f3bd7b3c2c22489">Log</a>
 , <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ad67deaf5d40c2bf2ae3dcc0c4e1fbd76">Lox</a>
 </li>
+<li>setValue()
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#afc2b9c60828a75f61849d20ff7c5d301">StringTree&lt; T &gt;.Cursor</a>
+, <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#afc2b9c60828a75f61849d20ff7c5d301">StringTree&lt; T &gt;.Walker</a>
+</li>
 <li>setVerbosity()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html#a56f31355e541142f60afd03757abee85">Domain</a>
-, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#aa1027f91ba42ed18f6ee0aa7c9460265">Log</a>
-, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a7bd595babcdfc2701e77a21238979840">Lox</a>
+, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a2bca93f1a811f91fa07aaed305e1e556">Log</a>
+, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a4e2d16fa19aa7291d0f1c602610d06f0">Lox</a>
 </li>
 <li>since()
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html#a82a83b63344a6d8ce07a33e0b692f012">Ticks</a>
 </li>
 <li>size()
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af4b57d21919c42d55af03391f91a1c08">Variable</a>
+, <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#af4b57d21919c42d55af03391f91a1c08">StringTree&lt; T &gt;.Cursor</a>
+, <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#af4b57d21919c42d55af03391f91a1c08">StringTree&lt; T &gt;.Walker</a>
+</li>
+<li>skip()
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a01920519131c2f02e69248a2d44fa113">StringTree&lt; T &gt;.Walker</a>
 </li>
 <li>sleep()
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a6d426a10c08ec8df066a784900ccc824">ALIB</a>
@@ -217,11 +241,17 @@ $(function() {
 <li>SmartLock()
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html#a90c2c49cbc4b52547424991f1665a8cb">SmartLock</a>
 </li>
+<li>sortByPathname()
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a64715df007500dd8799fcf392ac5ef4c">StringTree&lt; T &gt;.Walker</a>
+</li>
+<li>sortByValue()
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a1f2e43b3669a7111d50b4c3a276ca975">StringTree&lt; T &gt;.Walker</a>
+</li>
 <li>split()
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#abeb124bcc7753eb233167be4ab842a23">Substring</a>
 </li>
 <li>stackTrace()
-: <a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#abbb2e1ededf56ab88f2fbec62eb0cc6d">LogTools</a>
+: <a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a2d67ca3532def0dabea1195721e71ec2">LogTools</a>
 </li>
 <li>StandardConverter()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1StandardConverter.html#a002835b782b644fb4c119ed07fb05393">StandardConverter</a>
@@ -231,8 +261,8 @@ $(function() {
 , <a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1TickWatch.html#a60de64d75454385b23995437f1d72669">TickWatch</a>
 </li>
 <li>startsWith()
-: <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#ac55e720e9816cb7373a225ec2618e690">AString</a>
-, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a1544e588238b1fadb1f456fa11ed98fd">Substring</a>
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#aec9082863021ba38ed37e13662d7ba79">AString</a>
+, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#aec9082863021ba38ed37e13662d7ba79">Substring</a>
 </li>
 <li>startsWithCommentSymbol()
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a383ed26102ff873831fa7e2506238602">IniFile</a>
@@ -242,36 +272,39 @@ $(function() {
 </li>
 <li>state()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a228c1893ff61d2959ad9bec5713bf5f8">Log</a>
-, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ad0811a76c83beede4960c95ab5ca6630">Lox</a>
+, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#add477cb278a4c98e54e298a3133a73d7">Lox</a>
 </li>
 <li>store()
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a41a3d08fe694a0e5f72033016696be7a">Configuration</a>
-, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a9a29bfa1c311919ded7d4fea01094193">ConfigurationPlugin</a>
+, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#aaeb4a5795c46a7d33e20001319238d7b">ConfigurationPlugin</a>
 , <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a9a29bfa1c311919ded7d4fea01094193">IniFile</a>
 , <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html#a9a29bfa1c311919ded7d4fea01094193">InMemoryPlugin</a>
 , <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a726077123e0956b4ea50be806c48bb69">Variable</a>
 , <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#ac93da3bff197b20c13337f5be31ad47c">ScopeStore&lt; T &gt;</a>
 , <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a70753022df266052f2d446824881af00">Log</a>
-, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a5c0889cc7e10b5436d6988e9c7e1b4b7">Lox</a>
+, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a1395d70e6b7aba36175577864c5f0e10">Lox</a>
 </li>
 <li>storeDefault()
-: <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a6048c721952f08afa96982d63b4b13e3">Variable</a>
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a9f100f55267180681b79fb08050cddc5">Variable</a>
 </li>
 <li>storeKeyToScope()
-: <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html#a0e9467780271cc60d9c9c2353441bcf3">ScopeDump</a>
+: <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html#ad211a64c484e802357715c3948198a93">ScopeDump</a>
 </li>
 <li>storeThreadToScope()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html#abec54e4e22475d53dc9c2b7501243578">ScopeDump</a>
 </li>
+<li>StringTree()
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree.html#a12c63bb97dceeb994767995edb79b8c9">StringTree&lt; T &gt;</a>
+</li>
 <li>sub()
-: <a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html#affa932edf90bf1ba813477cd0abeee40">Ticks</a>
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html#a86b0576b03fc0c34e44ea6e8aff5660e">Ticks</a>
 </li>
 <li>subSequence()
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a49ac9531628120dc6c0c6d29f25c2cb6">AString</a>
 , <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a49ac9531628120dc6c0c6d29f25c2cb6">Substring</a>
 </li>
 <li>Substring()
-: <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a989b401c404ae6641a661ffb98f6c059">Substring</a>
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a664b3a9657aae4c1134d2a060859dcd4">Substring</a>
 </li>
 <li>sysInfo_IsAndroid()
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#ab606fbbaa85dfa82dba37adebb833448">ALIB</a>
@@ -281,7 +314,7 @@ $(function() {
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:29 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:01 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

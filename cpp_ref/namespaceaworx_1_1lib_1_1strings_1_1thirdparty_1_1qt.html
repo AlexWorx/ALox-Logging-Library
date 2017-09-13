@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -106,17 +106,17 @@ $(function() {
 <p><b>3. Conversion to QString:</b><br />
  Several overloaded methods <a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1qt.html#a883339efff1e4df28fc0eb60616c1a60">ToQString</a> are defined to convert <b>ALib Strings</b> to instances of class <b>QString</b>.</p>
 <p><b>General Information On ALib And QT String Compatibility:</b><br />
- ALib string classes are designed to support 3rd-party string types in a non-intrusive fashion. Template meta programming in two areas makes this possible:</p><ul>
+ <b>ALib</b> string classes are designed to support 3rd-party string types in a non-intrusive fashion. Template meta programming in two areas makes this possible:</p><ul>
 <li>Implicit conversion of external strings to class <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">aworx::String</a>, which allows to pass 3rd party strings to method accepting parameters of type <b>const aworx::String&amp;</b> without conversion.</li>
 <li><em>Application</em> of arbitrary types to objects of class <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">aworx::AString</a>. Here, the term <em>"application"</em> most means concatenating a string representation of an object to the <b><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a></b> object. (This is all documented in reference manual of namespace <a class="el" href="namespaceaworx_1_1lib_1_1strings.html">aworx::lib::strings</a>.)</li>
 </ul>
 <p>String classes of the <a href="https://www.qt.io">QT library</a> are supported trough header file <em>"alib/compatibility/qt.hpp"</em>.</p>
 <p><b>Implicit Conversion:</b><br />
- Unfortunately, objects of class <b>QString</b> can not be implicitly converted (embedded) in thin and lightweight class <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">aworx::String</a>. The reason for this is, that ALib strings are single byte strings, while <b>QString</b> represent (two byte) unicode strings. Therefore, template struct <a class="el" href="structaworx_1_1lib_1_1strings_1_1T__String.html">T_String</a> can not be implemented for class <b>QString</b> and objects of this class can not be simply passed to methods accepting parameters of type <b>const aworx::String&amp;</b>.</p>
+ Unfortunately, objects of class <b>QString</b> can not be implicitly converted (embedded) in thin and lightweight class <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">aworx::String</a>. The reason for this is, that <b>ALib</b> strings are single byte strings, while <b>QString</b> represent (two byte) unicode strings. Therefore, template struct <a class="el" href="structaworx_1_1lib_1_1strings_1_1T__String.html">T_String</a> can not be implemented for class <b>QString</b> and objects of this class can not be simply passed to methods accepting parameters of type <b>const aworx::String&amp;</b>.</p>
 <p>The way out is the use of classes <b>QByteArray</b> and <b>QLatin1String</b>. For these QT classes, an implicit conversion exists and this way objects of these types are implicitly converted to <b>aworx::String</b> types. Class <b>QString</b> provides methods to convert to these classes. Passing a <b>QString</b> object to a method expecting a <b>const aworx::String&amp;</b> can be done as follows </p><pre class="fragment"> MyMethodExpectingALibString( myQString.toLocal8Bit() );
  MyMethodExpectingALibString( myQString.toUtf8()      );
  MyMethodExpectingALibString( myQString.toLatin1()    );
-</pre><dl class="section note"><dt>Note</dt><dd>The encoding of strings represented by ALib strings is user defined. Therefore, it is up to the user to decide which of the above conversion methods of <b>QString</b> is to be used. In most cases, method <b>toLocal8Bit</b> should be the right choice. Also, ALib strings uses the current locale to convert characters of type wchar_t (or arrays of them) when <em>applying</em> to class <b>AString</b> as well.</dd></dl>
+</pre><dl class="section note"><dt>Note</dt><dd>The encoding of strings represented by <b>ALib</b> strings is user defined. Therefore, it is up to the user to decide which of the above conversion methods of <b>QString</b> is to be used. In most cases, method <b>toLocal8Bit</b> should be the right choice. Also, <b>ALib</b> strings uses the current locale to convert characters of type wchar_t (or arrays of them) when <em>applying</em> to class <b>AString</b> as well.</dd></dl>
 <p>The obvious drawback of this approach is that a conversion has to take place and that this conversion implies a temporary allocation of heap memory for the data stored in the (stack-allocated) <b>QByteArray</b> object.</p>
 <dl class="section attention"><dt>Attention</dt><dd>This is a non-existing namespace, exclusively defined for the <a href="http://www.stack.nl/~dimitri/doxygen">documentation parser</a>. All types and functions described in this namespace are residing in namespace <a class="el" href="namespaceaworx_1_1lib_1_1strings.html">aworx::lib::strings</a> (just as they have to in respect to C++ rules). This documentation is moved here to keep the original namespace documentation clean. </dd></dl>
 </div><table class="memberdecls">
@@ -200,7 +200,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Copies or appends a region of a given <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> into a QString. The region is adjusted to the length of the String.<br />
- See <a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1qt.html">aworx::lib::strings::thirdparty::qt</a> for general information about using QT strings with ALib.</p>
+ See <a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1qt.html">aworx::lib::strings::thirdparty::qt</a> for general information about using QT strings with <b>ALib</b>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">as</td><td>The <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> to convert into a QString. </td></tr>
@@ -256,7 +256,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Copies a region of a given <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> into a QString which is created. The region is adjusted to the length of the String.<br />
- See <a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1qt.html">aworx::lib::strings::thirdparty::qt</a> for general information about using QT strings with ALib.</p>
+ See <a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1qt.html">aworx::lib::strings::thirdparty::qt</a> for general information about using QT strings with <b>ALib</b>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">as</td><td>The <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> to convert into a QString. </td></tr>
@@ -294,7 +294,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Copies the contents of a given <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> into the given QString.<br />
- See <a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1qt.html">aworx::lib::strings::thirdparty::qt</a> for general information about using QT strings with ALib.</p>
+ See <a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1qt.html">aworx::lib::strings::thirdparty::qt</a> for general information about using QT strings with <b>ALib</b>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">as</td><td>The <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> to convert into a QString. </td></tr>
@@ -346,7 +346,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Copies the contents of a given <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> into the given QString.<br />
- See <a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1qt.html">aworx::lib::strings::thirdparty::qt</a> for general information about using QT strings with ALib.</p>
+ See <a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1qt.html">aworx::lib::strings::thirdparty::qt</a> for general information about using QT strings with <b>ALib</b>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">as</td><td>The <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> to convert into a QString. </td></tr>
@@ -363,7 +363,7 @@ Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:26 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

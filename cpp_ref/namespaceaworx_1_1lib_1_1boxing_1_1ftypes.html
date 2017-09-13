@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -91,7 +91,7 @@ $(function() {
 <div class="contents">
 <a name="details" id="details"></a><h2 class="groupheader">Namespace Description</h2>
 <div class="textblock"><p><b>ALib Boxing</b> allows to map C++ types to boxed types in a non-bijective way. As a consequence, there are different possibilities to implement such mapping and the mapping that <b>ALib Boxing</b> uses by default for boxing C++ fundamental types is considered to be just a proposal and a default behavior.</p>
-<p>To suppress the use of this built-in implementation of boxing C++ fundamental types, compilation symbol <a class="el" href="group__GrpALibCompilerSymbols.html#gaac13faf1a75cc977147511eca3c354cb">ALIB_FEAT_BOXING_FTYPES_OFF</a> may be passed to the compiler. This freedom of choice is <b>limited</b> when using the full distribution of <b>ALib</b> or a <a class="el" href="namespaceaworx_1_1lib.html#alib_namespace_organization_of_code">distribution module</a> of ALib that includes more <b>ALib</b> functionality than just boxing. In these cases, the default built-in implementation of boxing fundamental types is automatically chosen, because other parts of <b>ALib</b> rely on the default behavior. Using <a class="el" href="group__GrpALibCompilerSymbols.html#gaac13faf1a75cc977147511eca3c354cb">ALIB_FEAT_BOXING_FTYPES_OFF</a> with these distributions results in a compilation error.</p>
+<p>To suppress the use of this built-in implementation of boxing C++ fundamental types, compilation symbol <a class="el" href="group__GrpALibCompilerSymbols.html#gaac13faf1a75cc977147511eca3c354cb">ALIB_FEAT_BOXING_FTYPES_OFF</a> may be passed to the compiler. This freedom of choice is <b>limited</b> when using the full distribution of <b>ALib</b> or a <a class="el" href="namespaceaworx_1_1lib.html#alib_namespace_organization_of_code">distribution module</a> of <b>ALib</b> that includes more <b>ALib</b> functionality than just boxing. In these cases, the default built-in implementation of boxing fundamental types is automatically chosen, because other parts of <b>ALib</b> rely on the default behavior. Using <a class="el" href="group__GrpALibCompilerSymbols.html#gaac13faf1a75cc977147511eca3c354cb">ALIB_FEAT_BOXING_FTYPES_OFF</a> with these distributions results in a compilation error.</p>
 <p>The mapping of C++ fundamental types to boxed types is done as follows:</p><ul>
 <li>Character types <code>char</code>, <code>wchar_t</code>, <code>char16_t</code> and <code>char32_t</code> are mapped to identical boxed types.</li>
 <li>Arrays of character types are mapped to boxed arrays of the respective character type, e.g <code>char</code>[5] &rarr; <code>char</code>[] or <code>wchar_t</code>[10] &rarr; <code>wchar_t</code>[]. The array length is of-course stored in the box.</li>
@@ -333,7 +333,7 @@ Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:26 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:47:57 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

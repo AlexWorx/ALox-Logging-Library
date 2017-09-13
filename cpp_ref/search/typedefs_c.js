@@ -6,6 +6,8 @@ var searchData=
   ['singleton',['Singleton',['../namespaceaworx.html#a853db7b4d3eea2d12c2aef317b6110ee',1,'aworx']]],
   ['sliteral',['SLiteral',['../namespaceaworx.html#af631a26bf70ad6d6143973fadf779747',1,'aworx']]],
   ['smartlock',['SmartLock',['../namespaceaworx.html#aee1cd004a3010e8ee798517d96c1ffca',1,'aworx']]],
+  ['sortorder',['SortOrder',['../namespaceaworx.html#a086789c0b56e605b79bf57d0fd53b306',1,'aworx']]],
+  ['sourcedata',['SourceData',['../namespaceaworx.html#acdb8e25ed050d0001a0389e38aa5ef75',1,'aworx']]],
   ['spaces',['Spaces',['../namespaceaworx.html#a9f69e16cb165fb1d0263890b165a5613',1,'aworx']]],
   ['string',['String',['../namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d',1,'aworx']]],
   ['string128',['String128',['../namespaceaworx.html#a2841f1443c3b2f3d6066d5774cf69dbc',1,'aworx']]],
@@ -19,6 +21,7 @@ var searchData=
   ['string64',['String64',['../namespaceaworx.html#ac2fdc487456a994238ba4284b3859c41',1,'aworx']]],
   ['string8',['String8',['../namespaceaworx.html#ab35696c2e8d79567a528a4b6da788eb3',1,'aworx']]],
   ['strings',['Strings',['../namespaceaworx.html#abc46e42927a238007065da5265423816',1,'aworx']]],
+  ['stringtree',['StringTree',['../namespaceaworx.html#ada54a4f56e3fabc4516eba3749b7c7a2',1,'aworx']]],
   ['stringtuples',['StringTuples',['../namespaceaworx.html#aa0aafb6be60b02340000199f1a508044',1,'aworx']]],
   ['substring',['Substring',['../namespaceaworx.html#afed2e22d908094b0badbf8ac4d5f3900',1,'aworx']]],
   ['switch',['Switch',['../namespaceaworx.html#a68e1ec4ff4ca04def6fdd7fe217a245a',1,'aworx']]]

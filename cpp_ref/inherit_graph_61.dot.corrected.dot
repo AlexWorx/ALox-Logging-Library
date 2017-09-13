@@ -3,16 +3,6 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node182 [label="false_type",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-  Node0 [label="T_Boxing\<TBoxable\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1boxing_1_1T__Boxing.html"];
-  Node184 [label="T_Apply\<TApplicable\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1strings_1_1T__Apply.html"];
-  Node185 [label="T_IsTerminatable\<Type\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1strings_1_1T__IsTerminatable.html"];
-  Node186 [label="T_String\<TStringLike\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1strings_1_1T__String.html"];
-  Node187 [label="T_StringLiteral\<TLiteral\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1strings_1_1T__StringLiteral.html"];
-  Node182 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node182 -> Node184 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node182 -> Node185 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node182 -> Node186 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node182 -> Node187 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+
 }
 

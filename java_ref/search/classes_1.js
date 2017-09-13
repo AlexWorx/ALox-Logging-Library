@@ -8,5 +8,6 @@ var searchData=
   ['containerop',['ContainerOp',['../enumcom_1_1aworx_1_1lib_1_1lang_1_1ContainerOp.html',1,'com::aworx::lib::lang']]],
   ['create',['Create',['../enumcom_1_1aworx_1_1lib_1_1lang_1_1Create.html',1,'com::aworx::lib::lang']]],
   ['cstring',['CString',['../classcom_1_1aworx_1_1lib_1_1strings_1_1CString.html',1,'com::aworx::lib::strings']]],
-  ['currentdata',['CurrentData',['../enumcom_1_1aworx_1_1lib_1_1lang_1_1CurrentData.html',1,'com::aworx::lib::lang']]]
+  ['currentdata',['CurrentData',['../enumcom_1_1aworx_1_1lib_1_1lang_1_1CurrentData.html',1,'com::aworx::lib::lang']]],
+  ['cursor',['Cursor',['../classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html',1,'com::aworx::lib::containers::StringTree']]]
 ];

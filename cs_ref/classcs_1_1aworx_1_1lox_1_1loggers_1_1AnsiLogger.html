@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -106,7 +106,7 @@ Collaboration diagram for AnsiLogger:</div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
 <p> A logger that logs all messages to the <em>System.IO.TextWriter</em> instance provided in the constructor. The name of the <em>Logger</em> defaults to "ANSI_LOGGER".</p>
-<p><a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a> text logger escape sequences (see class <a class="el" href="classcs_1_1aworx_1_1lox_1_1ESC.html">ESC</a>) are translated to ANSI escape sequences. Support for ANSI escape sequences (also referred to as <em>VT100 terminal emulation</em>) is available on most unix terminal windows. Besides text colors, bold and italics font style can be set. ANSI escape sequences are also available in various IDE output windows.</p>
+<p><b>ALox</b> text logger escape sequences (see class <a class="el" href="classcs_1_1aworx_1_1lox_1_1ESC.html">ESC</a>) are translated to ANSI escape sequences. Support for ANSI escape sequences (also referred to as <em>VT100 terminal emulation</em>) is available on most unix terminal windows. Besides text colors, bold and italics font style can be set. ANSI escape sequences are also available in various IDE output windows.</p>
 <p>Foreground and background colors can be set to be either light/dark or dark/light. This improves the readability of log output a lot and even allows to read if foreground and background colors are the same (they then still differ). However, the right setting for this is dependent on the color scheme of the final output device (window). To manipulate the right setting, see field <a class="el" href="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#ab96a9606e7469811d93adb75f3a26ad4">UseLightColors</a> and also configuration variable <a href="../group__GrpALoxConfigVars.html">ALOX_CONSOLE_LIGHT_COLORS</a>.</p>
 <p>In the constructor, a default format string and some other definitions in member <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#adf1921db321da434a7a254222c174398">MetaInfo</a> get set to include color settings. Of-course, these publicly accessible format attributes can be customized after creation.</p>
 <p>There is not 100% match between the ANSI sequences and the definitions in <a class="el" href="classcs_1_1aworx_1_1lox_1_1ESC.html">ESC</a>. For example <a class="el" href="classcs_1_1aworx_1_1lox_1_1ESC.html">ESC</a> does not provide all ANSI colors and no blinking. On the other hand, ANSI does not allow to reset the style without resetting the colors. Of-course, it is no problem to log other ANSI codes directly into an <b>AnsiLogger</b>. In this case, other Loggers that might be attached to the same <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html">Lox</a> and that do not support ANSI must be equipped with corresponding replacement information. In other words: To support the same log output into different loggers, it is recommended to use <a class="el" href="classcs_1_1aworx_1_1lox_1_1ESC.html">ESC</a> sequences instead of directly using ANSI codes.</p>
@@ -455,6 +455,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html">AnsiLogger</a> </td>
@@ -486,6 +489,11 @@ Protected Methods</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Creates an <a class="el" href="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html">AnsiLogger</a>. </p><dl class="params"><dt>Parameters</dt><dd>
@@ -548,7 +556,7 @@ Protected Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -588,7 +596,7 @@ Protected Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -664,7 +672,7 @@ Protected Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Foreground and background colors chosen by this class might differ in their intensity. This increases the overall readability by increasing the contrast. If the background color of a console window is dark, then the background colors of colored log output should be darker colors than the foreground colors - and vice versa.</p>
-<p>Depending on the setting of this field, <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a> <a class="el" href="classcs_1_1aworx_1_1lox_1_1ESC.html">escape codes</a> for colors are translated to normal ANSI colors or lighter ones:</p><ul>
+<p>Depending on the setting of this field, <b>ALox</b> <a class="el" href="classcs_1_1aworx_1_1lox_1_1ESC.html">escape codes</a> for colors are translated to normal ANSI colors or lighter ones:</p><ul>
 <li>If this field is <a class="el" href="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#a2c0a0e233e4cc72e4c5655d595dde836">LightColorUsage.Never</a>, light colors are never used.</li>
 <li>If this field is <a class="el" href="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#a2c0a0e233e4cc72e4c5655d595dde836">LightColorUsage.ForegroundLight</a>, foreground colors will be light colors and background colors dark ones. This is the default.</li>
 <li>If <a class="el" href="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#a2c0a0e233e4cc72e4c5655d595dde836">LightColorUsage.ForegroundDark</a>, background colors will be light colors and foreground colors dark ones.</li>
@@ -680,7 +688,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:28 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:00 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

@@ -5,6 +5,7 @@ var searchData=
   ['config',['config',['../namespacecom_1_1aworx_1_1lib_1_1config.html',1,'com::aworx::lib']]],
   ['containers',['containers',['../namespacecom_1_1aworx_1_1lib_1_1containers.html',1,'com::aworx::lib']]],
   ['core',['core',['../namespacecom_1_1aworx_1_1lox_1_1core.html',1,'com::aworx::lox']]],
+  ['format',['format',['../namespacecom_1_1aworx_1_1lib_1_1strings_1_1format.html',1,'com::aworx::lib::strings']]],
   ['lang',['lang',['../namespacecom_1_1aworx_1_1lib_1_1lang.html',1,'com::aworx::lib']]],
   ['lib',['lib',['../namespacecom_1_1aworx_1_1lib.html',1,'com::aworx']]],
   ['loggers',['loggers',['../namespacecom_1_1aworx_1_1lox_1_1loggers.html',1,'com::aworx::lox']]],
@@ -14,5 +15,6 @@ var searchData=
   ['textlogger',['textlogger',['../namespacecom_1_1aworx_1_1lox_1_1core_1_1textlogger.html',1,'com::aworx::lox::core']]],
   ['threads',['threads',['../namespacecom_1_1aworx_1_1lib_1_1threads.html',1,'com::aworx::lib']]],
   ['time',['time',['../namespacecom_1_1aworx_1_1lib_1_1time.html',1,'com::aworx::lib']]],
-  ['tools',['tools',['../namespacecom_1_1aworx_1_1lox_1_1tools.html',1,'com::aworx::lox']]]
+  ['tools',['tools',['../namespacecom_1_1aworx_1_1lox_1_1tools.html',1,'com::aworx::lox']]],
+  ['util',['util',['../namespacecom_1_1aworx_1_1lib_1_1strings_1_1util.html',1,'com::aworx::lib::strings']]]
 ];

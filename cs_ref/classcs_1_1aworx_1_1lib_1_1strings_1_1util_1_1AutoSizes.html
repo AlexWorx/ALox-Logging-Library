@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -153,7 +153,7 @@ Protected Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -173,6 +173,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Export </td>
@@ -182,6 +185,11 @@ Protected Methods</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Exports the current session values by converting the stored numbers to a string representation and appending them to the given <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> object. The numbers in the string will be separated by ' ' characters (space).</p>
@@ -199,6 +207,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Import </td>
@@ -218,6 +229,11 @@ Protected Methods</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Imports values from the given substring by parsing it. The numbers in the string have to be separated by ' ' characters (space).</p>
@@ -236,6 +252,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Import </td>
@@ -255,6 +274,11 @@ Protected Methods</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Imports values from the given <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> by parsing it using <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html#ad801ae4a456f1a4fc4d3c936ed43d031">Export</a>.</p>
@@ -273,6 +297,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">int Next </td>
@@ -292,6 +319,11 @@ Protected Methods</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Returns the next auto value stored, respectively, if the given requested size is higher, then stores and returns the requested size. The given extra growth is added to the requested size if the currently stored value is unequal to 0. In other words, the extra size is added only with the second growth and each subsequent one.</p>
@@ -311,6 +343,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Reset </td>
@@ -319,6 +354,11 @@ Protected Methods</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Resets the whole object. All values get deleted. </p>
@@ -330,6 +370,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Start </td>
@@ -338,6 +381,11 @@ Protected Methods</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Initializes a new query sequence, which is a series of invocations of method <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html#aefa2cd1851ed40a5268c3896945a5872">Next</a>. </p>
@@ -349,6 +397,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">override String ToString </td>
@@ -357,6 +408,11 @@ Protected Methods</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> This is for debugging purposes. E.g. this enables the <em>Monodevelop</em> IDE to display object descriptions in the debugger. </p><dl class="section return"><dt>Returns</dt><dd>A human readable string representation of this object. </dd></dl>
@@ -455,7 +511,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:28 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:00 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['keep',['Keep',['../namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4a02bce93bff905887ad2233110bf9c49e',1,'aworx::lib::lang::Keep()'],['../namespaceaworx_1_1lib_1_1lang.html#ad4a46f9fb632511f6be7c53e05f330f7a02bce93bff905887ad2233110bf9c49e',1,'aworx::lib::lang::Keep()']]],
-  ['keepwithsender',['KeepWithSender',['../namespaceaworx_1_1lib_1_1lang.html#ab5305b978950ba3946cf79a4bccbf7afa2540530a938da82bfe62957f4aff599b',1,'aworx::lib::lang']]]
+  ['hashcode',['HashCode',['../classaworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a4660396d3d3ae4a0b0985d23df5c32e8a45aac9cc79c5bfca49db69348cacbb49',1,'aworx::lib::strings::format::FormatterStdImpl']]],
+  ['home',['Home',['../classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0a8cf04a9734132302f96da8e113e80ce5',1,'aworx::lib::system::Directory']]],
+  ['homeconfig',['HomeConfig',['../classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0ae94961474a646742838ed46f32f89a47',1,'aworx::lib::system::Directory']]]
 ];

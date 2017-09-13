@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -82,13 +82,7 @@ $(function() {
 <h3><a id="index_g"></a>- g -</h3><ul>
 <li>Get()
 : <a class="el" href="classaworx_1_1lib_1_1boxing_1_1BoxedAs.html#a537098908710aef42c22525ef1d81d49">BoxedAs&lt; Type &gt;</a>
-, <a class="el" href="classaworx_1_1lib_1_1containers_1_1PathMap.html#a7046c5973df23b42d51def0cc83ec30a">PathMap&lt; StoreT &gt;</a>
-</li>
-<li>get()
-: <a class="el" href="classaworx_1_1lib_1_1containers_1_1PathMap.html#ae5b636df31556bf9f00d3b88c769cbf1">PathMap&lt; StoreT &gt;</a>
-</li>
-<li>Get()
-: <a class="el" href="classaworx_1_1lib_1_1debug_1_1TypeDemangler.html#ace8e490dc4ffb9dc13699e8976441ab5">TypeDemangler</a>
+, <a class="el" href="classaworx_1_1lib_1_1debug_1_1TypeDemangler.html#ace8e490dc4ffb9dc13699e8976441ab5">TypeDemangler</a>
 , <a class="el" href="classaworx_1_1lib_1_1strings_1_1util_1_1Spaces.html#a4a835d60dc9c24d9021b1c7358a5b35e">Spaces</a>
 , <a class="el" href="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a148d2d2389c5ae499f4eea5c34781251">ProcessInfo</a>
 </li>
@@ -113,11 +107,17 @@ $(function() {
 <li>GetBoxingInfo()
 : <a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#af1f24407901f6084d1c0678648411373">Boxing</a>
 </li>
+<li>getChild()
+: <a class="el" href="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#afec5af9c58eadb62cfba0930c152974e">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Node</a>
+</li>
 <li>GetCount()
 : <a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html#a20db10bae0149b8f99461370b2b3fd48">Domain</a>
 </li>
 <li>GetCumulated()
 : <a class="el" href="classaworx_1_1lib_1_1time_1_1TickWatch.html#afa26a288553e5b8e69116f085d320564">TickWatch</a>
+</li>
+<li>GetCursor()
+: <a class="el" href="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a02d96da317082d42803794d2fbfe121f">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Walker</a>
 </li>
 <li>GetDefault()
 : <a class="el" href="classaworx_1_1lib_1_1lang_1_1Report.html#a1d9ac8f09122b5310b6776784882de6b">Report</a>
@@ -181,7 +181,7 @@ $(function() {
 , <a class="el" href="classaworx_1_1lox_1_1Lox.html#a829395dc991b4aed5a09ef5aa77e3e12">Lox</a>
 </li>
 <li>GetLoggerNo()
-: <a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html#aa47720e17d76f442124d5c279b9d0287">Domain</a>
+: <a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html#a2657f04b274350d1a8e01747e125ece4">Domain</a>
 </li>
 <li>GetLoxName()
 : <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#acda6a047a2327d0ef0819057a0e5c580">ScopeInfo</a>
@@ -193,21 +193,27 @@ $(function() {
 : <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a8bdcd510e436ae95bce067beae21b69a">ScopeInfo</a>
 </li>
 <li>GetMode()
-: <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a0268db1c6823138316436b214d486432">ThreadLock</a>
+: <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ad990be5d1f5256638b1ddcc842a6ceb5">ThreadLock</a>
 </li>
 <li>GetName()
 : <a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html#a93df9a0a2a5d0f8be3f287791dd837c3">Thread</a>
 , <a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html#a5bf41c888bd6020da88c1bb5460419a1">Logger</a>
 , <a class="el" href="classaworx_1_1lox_1_1Lox.html#acf83cc2cb9e495e07808a4aaa1bed50e">Lox</a>
 </li>
+<li>getOrCreateChild()
+: <a class="el" href="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#ad98567ca3dbb8150615c55c304d38f04">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Node</a>
+</li>
 <li>GetOrigFile()
 : <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#af4805883509db0aa99eb41e0e75b305d">ScopeInfo</a>
+</li>
+<li>GetPath()
+: <a class="el" href="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#acb1bd0f66888b3d9c10b573503fb9965">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Walker</a>
 </li>
 <li>getPathLength()
 : <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#aceecae7222f3a139dbab041737095882">ScopeInfo</a>
 </li>
-<li>getPathMapNode()
-: <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeStore.html#ad1305df36b6dfcde87eded99e9e9424b">ScopeStore&lt; StoreT &gt;</a>
+<li>GetPathToNode()
+: <a class="el" href="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#ad2bf1b9cd6730d20c29d23d3ff546472">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Walker</a>
 </li>
 <li>GetPriority()
 : <a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html#a6fd0d5e74c9ce237644735d17cbc7119">Domain</a>
@@ -219,7 +225,8 @@ $(function() {
 : <a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html#a3fbb171d3b615727af29167b4cb61c4b">Domain</a>
 </li>
 <li>GetSafeness()
-: <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a77946b26d73b3ba1ee0461f44dc66f1a">ThreadLock</a>
+: <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7b2ea79ab83658e6c8b5f803c9b22475">ThreadLock</a>
+, <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a7b2ea79ab83658e6c8b5f803c9b22475">ThreadLockNR</a>
 </li>
 <li>GetSampleCnt()
 : <a class="el" href="classaworx_1_1lib_1_1time_1_1TickWatch.html#a8f2deb29070eb959107e5d9ad3584635">TickWatch</a>
@@ -238,6 +245,10 @@ $(function() {
 </li>
 <li>GetString()
 : <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#a5fda2a3b3daa10d3a33f0403aea47635">Variable</a>
+</li>
+<li>GetStringTree()
+: <a class="el" href="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#aea0054286adc014b8b284ebfc31db385">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Cursor</a>
+, <a class="el" href="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#aea0054286adc014b8b284ebfc31db385">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Walker</a>
 </li>
 <li>GetThreadID()
 : <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a6ada61025e16fbfcd69fa53b531eb63a">ScopeInfo</a>
@@ -293,7 +304,7 @@ $(function() {
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:27 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

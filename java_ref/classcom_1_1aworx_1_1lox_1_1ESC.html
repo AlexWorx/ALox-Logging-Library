@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -94,7 +94,7 @@ $(function() {
 <p> This class defines "escape sequences" that influence the formatting of log output. Specific implementations of class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> have to convert or interpret this classes definitions of escape sequences when processing log data. If no formatting of the output is supported by a specific Logger implementation, such logger should filter and discard escape sequences defined here.</p>
 <p>The sequences are similar to ANSI Escape sequences and logger classes that log to 'VT100' compatible terminals will simply convert them.</p>
 <p>The name of the class was intentionally chosen to be short, because the escape codes defined with this class will be concatenated to log strings like that:</p>
-<div class="fragment"><div class="line">Log.info( <span class="stringliteral">&quot;The result is: &quot;</span>, ESC.RED, 42  );</div></div><!-- fragment --> <dl class="section note"><dt>Note</dt><dd>With the introduction of own, ALox-specific escape codes, software that uses <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> becomes independent from any underlying, platform-specific sequences. For example, <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> is not relying on ANSI color codes, which are not supported by colorful Windows consoles. Instead, on each platform, dedicated Loggers will perform the translation of <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> codes to platform-specific ones. </dd></dl>
+<div class="fragment"><div class="line">Log.info( <span class="stringliteral">&quot;The result is: &quot;</span>, ESC.RED, 42  );</div></div><!-- fragment --> <dl class="section note"><dt>Note</dt><dd>With the introduction of own, <b>ALox</b> specific escape codes, software that uses <b>ALox</b> becomes independent from any underlying, platform-specific sequences. For example, <b>ALox</b> is not relying on ANSI color codes, which are not supported by colorful Windows consoles. Instead, on each platform, dedicated Loggers will perform the translation of <b>ALox</b> codes to platform-specific ones. </dd></dl>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Public Static Fields</h2></td></tr>
@@ -290,7 +290,7 @@ Public Static Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:29 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:01 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

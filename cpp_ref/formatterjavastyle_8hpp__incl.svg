@@ -72,33 +72,33 @@
 <path fill="none" stroke="#191970" d="M194.2393,-56.2455C182.3448,-47.814 164.935,-35.4729 151.0915,-25.6598"/>
 <polygon fill="#191970" stroke="#191970" points="152.7854,-22.5704 142.6031,-19.6427 148.7372,-28.2811 152.7854,-22.5704"/>
 </g>
-<!-- Node48 -->
+<!-- Node46 -->
 <g id="node6" class="node">
-<title>Node48</title>
+<title>Node46</title>
 <g id="a_node6"><a xlink:href="numberformat_8hpp.html" target="_top" xlink:title="alib/strings/numberformat.hpp">
 <polygon fill="#ffffff" stroke="#000000" points="214,-.5 214,-19.5 360,-19.5 360,-.5 214,-.5"/>
 <text text-anchor="middle" x="287" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">alib/strings/numberformat.hpp</text>
 </a>
 </g>
 </g>
-<!-- Node2&#45;&gt;Node48 -->
+<!-- Node2&#45;&gt;Node46 -->
 <g id="edge5" class="edge">
-<title>Node2&#45;&gt;Node48</title>
+<title>Node2&#45;&gt;Node46</title>
 <path fill="none" stroke="#191970" d="M221.7607,-56.2455C233.6552,-47.814 251.065,-35.4729 264.9085,-25.6598"/>
 <polygon fill="#191970" stroke="#191970" points="267.2628,-28.2811 273.3969,-19.6427 263.2146,-22.5704 267.2628,-28.2811"/>
 </g>
-<!-- Node49 -->
+<!-- Node47 -->
 <g id="node7" class="node">
-<title>Node49</title>
+<title>Node47</title>
 <g id="a_node7"><a xlink:href="substring_8hpp.html" target="_top" xlink:title="alib/strings/substring.hpp">
 <polygon fill="#ffffff" stroke="#000000" points="378.5,-.5 378.5,-19.5 503.5,-19.5 503.5,-.5 378.5,-.5"/>
 <text text-anchor="middle" x="441" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">alib/strings/substring.hpp</text>
 </a>
 </g>
 </g>
-<!-- Node2&#45;&gt;Node49 -->
+<!-- Node2&#45;&gt;Node47 -->
 <g id="edge6" class="edge">
-<title>Node2&#45;&gt;Node49</title>
+<title>Node2&#45;&gt;Node47</title>
 <path fill="none" stroke="#191970" d="M247.7894,-56.4369C287.498,-46.8932 348.6104,-32.2052 391.4455,-21.9101"/>
 <polygon fill="#191970" stroke="#191970" points="392.4695,-25.2637 401.3747,-19.5237 390.8337,-18.4575 392.4695,-25.2637"/>
 </g>

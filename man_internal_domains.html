@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -70,7 +70,7 @@ $(function() {
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0"
+<iframe src="javascript:void(0)" frameborder="0" 
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -97,7 +97,7 @@ $(function() {
 <h1><a class="anchor" id="man_internal_domains_sub"></a>
 2. Sub-Domains used by ALox</h1>
 <p>For different topics, <b>ALox</b> uses different sub-domains for its internal logging. As usual, this allows to control the <em>Verbosity</em> of the internal log output more granular then by setting the internal root domain <code>"$/"</code>. For example, if a software uses wrong <em>Log Domains</em> evaluated from a more complex configuration of <em>Scope Domains</em>, then, to investigate into the problem, sub-domain <code>'DMN'</code> could be set to more verbose, while suppressing other internal messages:</p>
-<div class="fragment"><div class="line"><a class="codeRef" doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" href="./cpp_ref/classaworx_1_1lox_1_1Log.html">Log</a>.SetVerbosity( <span class="stringliteral">&quot;DEBUG_LOGGER&quot;</span>, <a class="codeRef" doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" href="./cpp_ref/namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Verbose, <span class="stringliteral">&quot;$/&quot;</span> );</div></div><!-- fragment --><p>The list of sub-domains used by <b>ALox</b> is given in the following table:</p>
+<div class="fragment"><div class="line"><a class="codeRef" doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" href="./cpp_ref/classaworx_1_1lox_1_1Log.html">Log</a>.SetVerbosity( <span class="stringliteral">&quot;DEBUG_LOGGER&quot;</span>, <a class="codeRef" doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" href="./cpp_ref/namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Off    , <a class="codeRef" doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" href="./cpp_ref/classaworx_1_1lox_1_1ALox.html">ALox</a>.<a class="codeRef" doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" href="./cpp_ref/classaworx_1_1lox_1_1ALox.html#a27e1cb674b3172d5696b38af8479755d">InternalDomains</a> );</div><div class="line"><a class="codeRef" doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" href="./cpp_ref/classaworx_1_1lox_1_1Log.html">Log</a>.SetVerbosity( <span class="stringliteral">&quot;DEBUG_LOGGER&quot;</span>, <a class="codeRef" doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" href="./cpp_ref/namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Verbose, <a class="codeRef" doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" href="./cpp_ref/classaworx_1_1lox_1_1ALox.html">ALox</a>.<a class="codeRef" doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" href="./cpp_ref/classaworx_1_1lox_1_1ALox.html#a27e1cb674b3172d5696b38af8479755d">InternalDomains</a> + <span class="stringliteral">&quot;DMN&quot;</span> );</div></div><!-- fragment --><p>The list of sub-domains used by <b>ALox</b> is given in the following table:</p>
 <table class="doxtable">
 <tr>
 <th>Sub-Domain </th><th>Description  </th></tr>
@@ -129,7 +129,7 @@ In addition used with method <b>Lox.SetStartTime</b>. </td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:29 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:02 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

@@ -1,0 +1,22 @@
+<map id="plugins.hpp" name="plugins.hpp">
+<area shape="rect" id="node2" href="$configuration_8hpp.html" title="configuration.hpp" alt="" coords="217,155,338,181"/>
+<area shape="rect" id="node3" href="$inmemoryplugin_8hpp.html" title="inmemoryplugin.hpp" alt="" coords="315,80,454,107"/>
+<area shape="rect" id="node4" href="$alox_8hpp.html" title="alox.hpp" alt="" coords="597,229,668,256"/>
+<area shape="rect" id="node5" href="$lox_8hpp.html" title="lox.hpp" alt="" coords="50,379,114,405"/>
+<area shape="rect" id="node21" href="$inifile_8hpp.html" title="inifile.hpp" alt="" coords="363,155,440,181"/>
+<area shape="rect" id="node6" href="$log_8hpp.html" title="log.hpp" alt="" coords="776,304,840,331"/>
+<area shape="rect" id="node7" href="$alox__console__loggers_8hpp.html" title="alox_console_loggers.hpp" alt="" coords="642,603,814,629"/>
+<area shape="rect" id="node8" href="$domain_8hpp.html" title="domain.hpp" alt="" coords="37,304,126,331"/>
+<area shape="rect" id="node9" href="$logger_8hpp.html" title="logger.hpp" alt="" coords="412,304,493,331"/>
+<area shape="rect" id="node10" href="$textlogger_8hpp.html" title="textlogger.hpp" alt="" coords="626,379,729,405"/>
+<area shape="rect" id="node11" href="$plaintextlogger_8hpp.html" title="plaintextlogger.hpp" alt="" coords="915,453,1046,480"/>
+<area shape="rect" id="node12" href="$consolelogger_8hpp.html" title="consolelogger.hpp" alt="" coords="1110,528,1237,555"/>
+<area shape="rect" id="node13" href="$memorylogger_8hpp.html" title="memorylogger.hpp" alt="" coords="814,528,942,555"/>
+<area shape="rect" id="node14" href="$textfilelogger_8hpp.html" title="textfilelogger.hpp" alt="" coords="966,528,1086,555"/>
+<area shape="rect" id="node15" href="$vstudiologger_8hpp.html" title="vstudiologger.hpp" alt="" coords="667,528,790,555"/>
+<area shape="rect" id="node16" href="$ansilogger_8hpp.html" title="ansilogger.hpp" alt="" coords="536,453,641,480"/>
+<area shape="rect" id="node17" href="$windowsconsolelogger_8hpp.html" title="windowsconsolelogger.hpp" alt="" coords="665,453,840,480"/>
+<area shape="rect" id="node18" href="$scopedump_8hpp.html" title="scopedump.hpp" alt="" coords="320,379,435,405"/>
+<area shape="rect" id="node19" href="$scopestore_8hpp.html" title="scopestore.hpp" alt="" coords="277,304,388,331"/>
+<area shape="rect" id="node20" href="$scopeinfo_8hpp.html" title="scopeinfo.hpp" alt="" coords="150,304,253,331"/>
+</map>

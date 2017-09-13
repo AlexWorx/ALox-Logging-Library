@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -297,9 +297,13 @@ CONSOLE_LIGHT_COLORS=    background
 <p>This logger does everything right to have clickable log lines in Visual Studio. No adjustments need to be done.</p>
 <h2><a class="anchor" id="cppsetup_clion"></a>
 4.3 Using ALox with JetBrains CLion</h2>
-<p><a href="https://www.jetbrains.com/clion/">CLion</a>s' build system relies on CMake. Hence, opening the projects provided with ALox is just about opening the corresponding CMake files, for example: </p><pre class="fragment">ALOX_LIB_PATH/build/cmake.cpp/alox.samples/CMakeLists.txt
-</pre><p>The ALox sample project is now ready to be build in <em>CLion</em></p>
-<p>When you run it, the output should look like suggested in chapter <a class="el" href="cppsetup.html#cppsetup_cmake">Using ALox with CMake</a>.</p>
+<p><a href="https://www.jetbrains.com/clion/">CLion</a>s' build system relies on <em>CMake</em>. Pre-configured project folders are provides with</p>
+<pre class="fragment">ALOX_LIB_PATH/build/ide.cpp.clion/alox.samples
+ALOX_LIB_PATH/build/ide.cpp.clion/unittests
+</pre><p>The <em>CMake</em> files within these directories are just including the the corresponding <em>CMake</em> files found in </p><pre class="fragment">ALOX_LIB_PATH/build/cmake.cpp/alox.samples
+ALOX_LIB_PATH/build/cmake.cpp/unittests
+</pre><p>The advantage of this approach is that the "generic" folders found in folder <em>cmake.cpp</em> are kept free from <em>CLion</em> project files.</p>
+<p>Therefore, <em>CLion</em> users should be ready to compile by just opening these project folders.</p>
 <p>For debugging ALib and ALox code, you might want to install the <a href="../tools.html#tools_debug_helpers_gdb">Pretty Printers for GNU Debugger</a>.</p>
 <p><b>Clickable Log Output with CLion:</b><br />
 </p>
@@ -316,7 +320,7 @@ DEBUG_LOGGER_FORMAT=    %SF:%SL:%A3%SM %A3[%TC +%TL][%tN][%D]%A1#%#: %V,    \
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:26 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:47:57 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

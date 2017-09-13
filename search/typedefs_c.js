@@ -6,6 +6,8 @@ var searchData=
   ['singleton',['Singleton',['.././cpp_ref/namespaceaworx.html#a853db7b4d3eea2d12c2aef317b6110ee',1,'aworx']]],
   ['sliteral',['SLiteral',['.././cpp_ref/namespaceaworx.html#af631a26bf70ad6d6143973fadf779747',1,'aworx']]],
   ['smartlock',['SmartLock',['.././cpp_ref/namespaceaworx.html#aee1cd004a3010e8ee798517d96c1ffca',1,'aworx']]],
+  ['sortorder',['SortOrder',['.././cpp_ref/namespaceaworx.html#a086789c0b56e605b79bf57d0fd53b306',1,'aworx']]],
+  ['sourcedata',['SourceData',['.././cpp_ref/namespaceaworx.html#acdb8e25ed050d0001a0389e38aa5ef75',1,'aworx']]],
   ['spaces',['Spaces',['.././cpp_ref/namespaceaworx.html#a9f69e16cb165fb1d0263890b165a5613',1,'aworx']]],
   ['string',['String',['.././cpp_ref/namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d',1,'aworx']]],
   ['string128',['String128',['.././cpp_ref/namespaceaworx.html#a2841f1443c3b2f3d6066d5774cf69dbc',1,'aworx']]],
@@ -19,6 +21,7 @@ var searchData=
   ['string64',['String64',['.././cpp_ref/namespaceaworx.html#ac2fdc487456a994238ba4284b3859c41',1,'aworx']]],
   ['string8',['String8',['.././cpp_ref/namespaceaworx.html#ab35696c2e8d79567a528a4b6da788eb3',1,'aworx']]],
   ['strings',['Strings',['.././cpp_ref/namespaceaworx.html#abc46e42927a238007065da5265423816',1,'aworx']]],
+  ['stringtree',['StringTree',['.././cpp_ref/namespaceaworx.html#ada54a4f56e3fabc4516eba3749b7c7a2',1,'aworx']]],
   ['stringtuples',['StringTuples',['.././cpp_ref/namespaceaworx.html#aa0aafb6be60b02340000199f1a508044',1,'aworx']]],
   ['substring',['Substring',['.././cpp_ref/namespaceaworx.html#afed2e22d908094b0badbf8ac4d5f3900',1,'aworx']]],
   ['switch',['Switch',['.././cpp_ref/namespaceaworx.html#a68e1ec4ff4ca04def6fdd7fe217a245a',1,'aworx']]]

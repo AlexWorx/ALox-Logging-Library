@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -99,10 +99,10 @@ $(function() {
 <p>This distinction is needed to avoid ambiguities within the documentation system (<a href="http://www.stack.nl/~dimitri/doxygen">Doxygen</a>) which is used in scenarios of mixed documentation of similar code written in different languages.</p>
 <p>Besides nested namespaces, there are no functions or types defined in this namespace. The C++ language, has one important exception to this rule, as described in the next paragraph.</p>
 <p><a class="anchor" id="CPP_AWORX_NS_SHORTCUTS"></a><b>Type Shortcuts of C++ Namespace aworx</b></p>
-<p>ALib and other software of A-Worx GmbH, <em>"mirror"</em> important types into <b>namespace aworx</b> with <code>using</code> statements. For example, by having </p><pre class="fragment"> using  String =  aworx::lib::strings::String;
+<p><b>ALib</b> and other software of A-Worx GmbH, <em>"mirror"</em> important types into <b>namespace aworx</b> with <code>using</code> statements. For example, by having </p><pre class="fragment"> using  String =  aworx::lib::strings::String;
           1
 </pre><p> stated within namespace <code>aworx</code> but in the header file of class String (!), this class is made available with just adding </p><pre class="fragment"> using aworx;
-</pre><p>to a source file. This is convenient when ALib is <em>used</em> in 3rd party code outside of the <code>aworx</code> namespace, and also for the classes of ALib itself and for 'sibling' libraries that reside next to each other underneath namespace <code>aworx</code>.<br />
+</pre><p>to a source file. This is convenient when <b>ALib</b> is <em>used</em> in 3rd party code outside of the <code>aworx</code> namespace, and also for the classes of <b>ALib</b> itself and for 'sibling' libraries that reside next to each other underneath namespace <code>aworx</code>.<br />
  For example logging library <b>ALox</b> with namespace <code>aworx::lox</code>. Such classes may refer to all mirrored sibling-classes already within the header files without providing any namespace, because in C++, code that is located inside a namespace 'sees' all types defined in parent namespaces.<br />
  Therefore, header files become clear and simple without using full qualified type names.</p>
 <p>In contrast to this, C++ sources that are "<em>using"</em> a sub-namespace do <b>not</b> automatically 'see' classes in parent namespaces of such used namespace. This is an important difference and a great design decision of the C++ language! As a conclusion, a user of libraries (types) residing in sub-namespaces of <b>aworx</b>, has different choices on selecting namespaces with <code>using</code> statement:</p><ul>
@@ -221,9 +221,6 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a10e9458c58956ec05a324232fc1cc9e4"><td class="memTemplParams" colspan="2">template&lt;aworx::lib::lang::integer TCapacity&gt; </td></tr>
 <tr class="memitem:a10e9458c58956ec05a324232fc1cc9e4"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a10e9458c58956ec05a324232fc1cc9e4">PAString</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">aworx::lib::strings::PreallocatedString</a>&lt; TCapacity &gt;</td></tr>
 <tr class="separator:a10e9458c58956ec05a324232fc1cc9e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40dd35c549af4dcf094f486d3f2dca1f"><td class="memTemplParams" colspan="2">template&lt;typename StoreT &gt; </td></tr>
-<tr class="memitem:a40dd35c549af4dcf094f486d3f2dca1f"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a40dd35c549af4dcf094f486d3f2dca1f">PathMap</a> = <a class="el" href="classaworx_1_1lib_1_1containers_1_1PathMap.html">aworx::lib::containers::PathMap</a>&lt; StoreT &gt;</td></tr>
-<tr class="separator:a40dd35c549af4dcf094f486d3f2dca1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c5a62df6ce3760e0672fb1f646327cc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a4c5a62df6ce3760e0672fb1f646327cc">Phase</a> = <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ae1c5184dc404edf057ed537bcfddef84">aworx::lib::lang::Phase</a></td></tr>
 <tr class="separator:a4c5a62df6ce3760e0672fb1f646327cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8644368b56cf61a16e37300584a1d4e2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a8644368b56cf61a16e37300584a1d4e2">ProcessInfo</a> = <a class="el" href="classaworx_1_1lib_1_1system_1_1ProcessInfo.html">aworx::lib::system::ProcessInfo</a></td></tr>
@@ -254,6 +251,10 @@ Typedefs</h2></td></tr>
 <tr class="separator:af631a26bf70ad6d6143973fadf779747"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee1cd004a3010e8ee798517d96c1ffca"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#aee1cd004a3010e8ee798517d96c1ffca">SmartLock</a> = <a class="el" href="classaworx_1_1lib_1_1threads_1_1SmartLock.html">aworx::lib::threads::SmartLock</a></td></tr>
 <tr class="separator:aee1cd004a3010e8ee798517d96c1ffca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a086789c0b56e605b79bf57d0fd53b306"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a086789c0b56e605b79bf57d0fd53b306">SortOrder</a> = <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad9be72f666a31b4318bbc8e8a16a9472">aworx::lib::lang::SortOrder</a></td></tr>
+<tr class="separator:a086789c0b56e605b79bf57d0fd53b306"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdb8e25ed050d0001a0389e38aa5ef75"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#acdb8e25ed050d0001a0389e38aa5ef75">SourceData</a> = <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab0acd6daf9443d8b997f1035cfe08dd8">aworx::lib::lang::SourceData</a></td></tr>
+<tr class="separator:acdb8e25ed050d0001a0389e38aa5ef75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f69e16cb165fb1d0263890b165a5613"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a9f69e16cb165fb1d0263890b165a5613">Spaces</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1util_1_1Spaces.html">aworx::lib::strings::util::Spaces</a></td></tr>
 <tr class="separator:a9f69e16cb165fb1d0263890b165a5613"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad13481d84c6e592a41d07c64f747c95d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">aworx::lib::strings::String</a></td></tr>
@@ -300,6 +301,9 @@ using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nam
 <tr class="separator:ab35696c2e8d79567a528a4b6da788eb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc46e42927a238007065da5265423816"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#abc46e42927a238007065da5265423816">Strings</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1util_1_1StringTuples.html">aworx::lib::strings::util::StringTuples</a>&lt;&gt;</td></tr>
 <tr class="separator:abc46e42927a238007065da5265423816"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada54a4f56e3fabc4516eba3749b7c7a2"><td class="memTemplParams" colspan="2">template&lt;typename T , typename TKeyAllocator  = aworx::lib::containers::StringTreeDefaultKeyAllocator&lt;T&gt;&gt; </td></tr>
+<tr class="memitem:ada54a4f56e3fabc4516eba3749b7c7a2"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#ada54a4f56e3fabc4516eba3749b7c7a2">StringTree</a> = <a class="el" href="classaworx_1_1lib_1_1containers_1_1StringTree.html">aworx::lib::containers::StringTree</a>&lt; T, TKeyAllocator &gt;</td></tr>
+<tr class="separator:ada54a4f56e3fabc4516eba3749b7c7a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0aafb6be60b02340000199f1a508044"><td class="memTemplParams" colspan="2">template&lt;typename... TAssociatedTypes&gt; </td></tr>
 <tr class="memitem:aa0aafb6be60b02340000199f1a508044"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#aa0aafb6be60b02340000199f1a508044">StringTuples</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1util_1_1StringTuples.html">aworx::lib::strings::util::StringTuples</a>&lt; TAssociatedTypes... &gt;</td></tr>
 <tr class="separator:aa0aafb6be60b02340000199f1a508044"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1007,21 +1011,6 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a40dd35c549af4dcf094f486d3f2dca1f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a40dd35c549af4dcf094f486d3f2dca1f">&#9670;&nbsp;</a></span>PathMap</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="namespaceaworx.html#a40dd35c549af4dcf094f486d3f2dca1f">PathMap</a> =  <a class="el" href="classaworx_1_1lib_1_1containers_1_1PathMap.html">aworx::lib::containers::PathMap</a>&lt;StoreT&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
-
-</div>
-</div>
 <a id="a4c5a62df6ce3760e0672fb1f646327cc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4c5a62df6ce3760e0672fb1f646327cc">&#9670;&nbsp;</a></span>Phase</h2>
 
@@ -1232,6 +1221,36 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a086789c0b56e605b79bf57d0fd53b306"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a086789c0b56e605b79bf57d0fd53b306">&#9670;&nbsp;</a></span>SortOrder</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad9be72f666a31b4318bbc8e8a16a9472">SortOrder</a> =  <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad9be72f666a31b4318bbc8e8a16a9472">aworx::lib::lang::SortOrder</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a id="acdb8e25ed050d0001a0389e38aa5ef75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdb8e25ed050d0001a0389e38aa5ef75">&#9670;&nbsp;</a></span>SourceData</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab0acd6daf9443d8b997f1035cfe08dd8">SourceData</a> =  <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab0acd6daf9443d8b997f1035cfe08dd8">aworx::lib::lang::SourceData</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
 <a id="a9f69e16cb165fb1d0263890b165a5613"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9f69e16cb165fb1d0263890b165a5613">&#9670;&nbsp;</a></span>Spaces</h2>
 
@@ -1274,6 +1293,21 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a> which provides an empty list of variadic arguments. Therefor, the string objects are the only element of the tuple stored. </p>
+
+</div>
+</div>
+<a id="ada54a4f56e3fabc4516eba3749b7c7a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada54a4f56e3fabc4516eba3749b7c7a2">&#9670;&nbsp;</a></span>StringTree</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#ada54a4f56e3fabc4516eba3749b7c7a2">StringTree</a> =  <a class="el" href="classaworx_1_1lib_1_1containers_1_1StringTree.html">aworx::lib::containers::StringTree</a>&lt;T, TKeyAllocator&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
 
 </div>
 </div>
@@ -1672,7 +1706,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>A constant empty (but not <em>nulled</em>) ALib string E.g. useful to provide as parameter to methods or to use as default value for method parameters. </p>
+<p>A constant empty (but not <em>nulled</em>) <b>ALib</b> string E.g. useful to provide as parameter to methods or to use as default value for method parameters. </p>
 
 </div>
 </div>
@@ -1710,7 +1744,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>A constant <em>nulled</em> ALib string. E.g. useful to provide as parameter to methods or to use as default value for method parameters. </p>
+<p>A constant <em>nulled</em> <b>ALib</b> string. E.g. useful to provide as parameter to methods or to use as default value for method parameters. </p>
 
 </div>
 </div>
@@ -1718,7 +1752,7 @@ Variables</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:26 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:47:57 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

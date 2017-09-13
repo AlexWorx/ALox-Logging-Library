@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -101,16 +101,16 @@ Collaboration diagram for TString:</div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> This class specializes class <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> to represent zero terminated or more precisely zero <em>terminatable</em> strings. Zero terminated strings are especially needed when string data has to be passed to system functions. Also, some efficient algorithms (platform dependent and mostly written in assembly language) exist. Hence, various functions and methods of ALib require a const reference to an object of this type <b>TString</b> instead to an object of class <b>String</b>.</p>
+<p> This class specializes class <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> to represent zero terminated or more precisely zero <em>terminatable</em> strings. Zero terminated strings are especially needed when string data has to be passed to system functions. Also, some efficient algorithms (platform dependent and mostly written in assembly language) exist. Hence, various functions and methods of <b>ALib</b> require a const reference to an object of this type <b>TString</b> instead to an object of class <b>String</b>.</p>
 <p><b>Implicit construction</b></p>
 <p>This class hides its parents' constructors and re-implements the template meta programming based "all-for-one" constructor <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a77570e9a3594a1e01a53da92a5f64c40">String(const TStringLike&amp;)</a> by introducing <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html#aeae91b7a3d77ac5d3d4f5d29f8b49024">TString(const TTerminatable&amp;)</a>.</p>
-<p>As it is not possible to implement compile time assertions for the save provision of terminatable types (without taking serious restrictions into account), this constructor performs a run time check (in debug compilations of ALib).<br />
+<p>As it is not possible to implement compile time assertions for the save provision of terminatable types (without taking serious restrictions into account), this constructor performs a run time check (in debug compilations of <b>ALib</b>).<br />
  It is checked whether</p><ul>
 <li>the string type passed is already terminated or</li>
 <li>can be terminated because a) the buffer reserved capacity for the termination value and b) the buffer is writable.</li>
 </ul>
 <p>The second check is done only if the first did not apply and is performed using partially implemented template struct <a class="el" href="structaworx_1_1lib_1_1strings_1_1T__IsTerminatable.html">T_IsTerminatable</a>. Consult this struct for information about how to enable external (user defined) string types to be used as parameters to implicitly construct objects of this class.</p>
-<dl class="section note"><dt>Note</dt><dd>While the good news is that C++ string literals, any zero terminated <em>char*</em> and objects of type <em>std::strings</em> or ALib's <b>AString</b>, are well suited to implicitly construct respectively directly serve as objects of this class, objects of type <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> itself and especially of type <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> are not. Therefore the latter are accepted only if they are terminated already. But obviously, this is especially unlikely for objects of type <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>.</dd>
+<dl class="section note"><dt>Note</dt><dd>While the good news is that C++ string literals, any zero terminated <em>char*</em> and objects of type <em>std::strings</em> or <b>ALib's</b> <b>AString</b>, are well suited to implicitly construct respectively directly serve as objects of this class, objects of type <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> itself and especially of type <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> are not. Therefore the latter are accepted only if they are terminated already. But obviously, this is especially unlikely for objects of type <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>.</dd>
 <dd>
 Therefore, for example to pass a <em><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a></em> as a parameter to functions accepting only terminatable strings, it is possible to wrap them into temporary objects of type <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> or, if maximum size is known at compile time, of type <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">PreallocatedString</a>. Of-course, a performance drawback (for creating the temporary copy of the contents) has to be taken into account.</dd>
 <dd>
@@ -261,12 +261,17 @@ Public Methods</h2></td></tr>
 <tr class="separator:a22b94d6b436e0098cf9d92ba846c02e9 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7365672c3c963ba88de5612e38e704bd inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a7365672c3c963ba88de5612e38e704bd">IndexOf</a> (char needle) const</td></tr>
 <tr class="separator:a7365672c3c963ba88de5612e38e704bd inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bcbc607a7c87baa70f6c2c739f3c218 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
-<tr class="memitem:a6bcbc607a7c87baa70f6c2c739f3c218 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a6bcbc607a7c87baa70f6c2c739f3c218">IndexOf</a> (char needle, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> regionStart) const</td></tr>
-<tr class="separator:a6bcbc607a7c87baa70f6c2c739f3c218 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac05a3241d30fde1e58d95ba1f44ee72d inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
+<tr class="memitem:ac05a3241d30fde1e58d95ba1f44ee72d inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#ac05a3241d30fde1e58d95ba1f44ee72d">IndexOf</a> (char needle, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> startIdx) const</td></tr>
+<tr class="separator:ac05a3241d30fde1e58d95ba1f44ee72d inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abacc41ba7e94890340a82233f2538ecc inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
 <tr class="memitem:abacc41ba7e94890340a82233f2538ecc inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#abacc41ba7e94890340a82233f2538ecc">IndexOf</a> (char needle, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> regionStart, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> regionLength) const</td></tr>
 <tr class="separator:abacc41ba7e94890340a82233f2538ecc inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe7d75de817ac17c9104f47991cc0ae6 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#abe7d75de817ac17c9104f47991cc0ae6">IndexOfOrLength</a> (char needle) const</td></tr>
+<tr class="separator:abe7d75de817ac17c9104f47991cc0ae6 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc0a1951d59db9306be459bddf0b4fbb inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
+<tr class="memitem:acc0a1951d59db9306be459bddf0b4fbb inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#acc0a1951d59db9306be459bddf0b4fbb">IndexOfOrLength</a> (char needle, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> startIdx) const</td></tr>
+<tr class="separator:acc0a1951d59db9306be459bddf0b4fbb inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8bb8c82267bbb72239c9d6559cdfbf24 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
 <tr class="memitem:a8bb8c82267bbb72239c9d6559cdfbf24 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a8bb8c82267bbb72239c9d6559cdfbf24">LastIndexOf</a> (char needle, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> startIndex=<a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a854222d062dd7b383aff419dac1b8481">CString::MaxLen</a>) const</td></tr>
 <tr class="separator:a8bb8c82267bbb72239c9d6559cdfbf24 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -637,7 +642,7 @@ This operator is marked explicit. Although implicit conversion would be quite co
 <hr/>
 <p> Reads a character at a given index.<br />
  Overrides <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a227e5bdf7a6d162da1ba47c39063b417">String::operator[]</a> to change the debug assertion to allow inclusion of the termination character.</p>
-<dl class="section attention"><dt>Attention</dt><dd>No parameter check is performed (other than an assertions in debug-compilation of ALib). See <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a227e5bdf7a6d162da1ba47c39063b417">String::operator[]</a> for details.</dd></dl>
+<dl class="section attention"><dt>Attention</dt><dd>No parameter check is performed (other than an assertions in debug-compilation of <b>ALib</b>). See <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a227e5bdf7a6d162da1ba47c39063b417">String::operator[]</a> for details.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">op</td><td>The index of the character within this objects' buffer. </td></tr>
@@ -1821,7 +1826,7 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html#ae6
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:26 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

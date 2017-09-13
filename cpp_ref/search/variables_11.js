@@ -3,6 +3,7 @@ var searchData=
   ['rawvalue',['RawValue',['../classaworx_1_1lib_1_1config_1_1IniFile_1_1Entry.html#a319279810337d3019a34ebd0876d09af',1,'aworx::lib::config::IniFile::Entry']]],
   ['readgroupchars',['ReadGroupChars',['../classaworx_1_1lib_1_1strings_1_1NumberFormat.html#aee7723fe1353a222ebf36638e542da8b',1,'aworx::lib::strings::NumberFormat']]],
   ['recursionblocker',['recursionBlocker',['../classaworx_1_1lib_1_1lang_1_1Report.html#acb62b28ab9467a03c940908b8f6649d3',1,'aworx::lib::lang::Report']]],
+  ['recursiondepth',['recursionDepth',['../classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a9a1951fdc18bdd21f3de11073fc7fcfa',1,'aworx::lib::containers::StringTree::StdIterator::recursionDepth()'],['../classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a9a1951fdc18bdd21f3de11073fc7fcfa',1,'aworx::lib::containers::StringTree::Walker::recursionDepth()']]],
   ['recursionformatters',['recursionFormatters',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1StandardConverter.html#af1d82d93e7659f196b8ecac14920be89',1,'aworx::lox::core::textlogger::StandardConverter']]],
   ['recursionwarningthreshold',['RecursionWarningThreshold',['../classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a2b35011c911bf00d065eba8af27620a7',1,'aworx::lib::threads::ThreadLock']]],
   ['red',['RED',['../classaworx_1_1lox_1_1ESC.html#aa039ed1389702c723320be5baae61ef9',1,'aworx::lox::ESC']]],
@@ -15,6 +16,7 @@ var searchData=
   ['reset',['RESET',['../classaworx_1_1lox_1_1ESC.html#aea1c3b6709bf24bb5abce06e3061fd7b',1,'aworx::lox::ESC']]],
   ['rest',['Rest',['../classaworx_1_1lib_1_1strings_1_1util_1_1Tokenizer.html#a5c8c6045e5fe301e78496fd5e9c7bfab',1,'aworx::lib::strings::util::Tokenizer']]],
   ['revision',['Revision',['../classaworx_1_1lib_1_1ALIB.html#a9c8cddb79a23b8e57370078da95de8ed',1,'aworx::lib::ALIB::Revision()'],['../classaworx_1_1lox_1_1ALox.html#a9c8cddb79a23b8e57370078da95de8ed',1,'aworx::lox::ALox::Revision()']]],
+  ['root',['root',['../classaworx_1_1lib_1_1containers_1_1StringTree.html#a3f7db53410d0f3007de60cc3d64a0c09',1,'aworx::lib::containers::StringTree']]],
   ['rte',['RTE',['../classaworx_1_1lib_1_1ALIB.html#a38d6e22b46c1ab9073da27ab65429111',1,'aworx::lib::ALIB']]],
   ['runnable',['runnable',['../classaworx_1_1lib_1_1threads_1_1Thread.html#af96dc80019779aec1839595c875b104e',1,'aworx::lib::threads::Thread']]]
 ];

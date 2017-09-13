@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -137,7 +137,7 @@ Collaboration diagram for NumberFormat:</div>
  There is no corresponding method defined that writes the literal prefix. When writing binary, hexadecimal or octal values, such prefixes have to be prepended 'manually'.</p>
 <p><b>ALib for Java Specifics:</b><br />
 </p><ul>
-<li>As Java does not support unsigned integer types, there is a limitation in reading unsigned values above <b>Long.MAX_INT</b> (e.g. written with other language implementations of ALib). From a 'bitwise' perspective, the methods are working well. For example, long value <b>-1</b> is written as <b>0xFFFF'FFFF'FFFF'FFFF</b></li>
+<li>As Java does not support unsigned integer types, there is a limitation in reading unsigned values above <b>Long.MAX_INT</b> (e.g. written with other language implementations of <b>ALib</b>). From a 'bitwise' perspective, the methods are working well. For example, long value <b>-1</b> is written as <b>0xFFFF'FFFF'FFFF'FFFF</b></li>
 <li>As Java is missing reference parameter passing (aka output parameters), the parsing methods accept an output parameter of type <b>int</b>[]. The return value will be stored in the first value of this array. </li>
 </ul>
 </div><table class="memberdecls">
@@ -395,7 +395,7 @@ Protected Methods</h2></td></tr>
 <hr/>
 <p> Reads an unsigned integer value in decimal format from the given character array at the given position.<br />
  Sign literals <code>'-'</code> or <code>'+'</code> are <b>not</b> accepted and parsing will fail if found. Whitespace and grouping characters, as defined in fields <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a770cc9eabce13d40acf8680199c8b2c2">whitespaces</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a233608e8b13b069a04a907205f1b73e9">thousandsGroupChar</a> will be ignored, regardless on their position between digits. To suppress the parsing of group characters set, field <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a233608e8b13b069a04a907205f1b73e9">thousandsGroupChar</a> to <code>'\0'</code>. To suppress whitespace consumption before reading the value, set field <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a770cc9eabce13d40acf8680199c8b2c2">whitespaces</a> to nulled or empty string.</p>
-<dl class="section note"><dt>Note</dt><dd>As Java does not support unsigned integer types, the value to read is limited to <code>Long.MAX_VALUE</code> in this implementation of ALib.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>As Java does not support unsigned integer types, the value to read is limited to <code>Long.MAX_VALUE</code> in this implementation of <b>ALib</b>.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">buffer</td><td>The character array to read the value from. </td></tr>
@@ -1962,7 +1962,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:28 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:01 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

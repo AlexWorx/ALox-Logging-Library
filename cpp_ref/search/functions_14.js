@@ -1,6 +1,7 @@
 var searchData=
 [
   ['walk',['Walk',['../classaworx_1_1lox_1_1core_1_1ScopeStore.html#a262f597e568a196dcb284fb1c859c8d6',1,'aworx::lox::core::ScopeStore']]],
+  ['walker',['Walker',['../classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#aed3db52fc5fb26185fddd3435aeb73ac',1,'aworx::lib::containers::StringTree::Walker']]],
   ['warning',['Warning',['../classaworx_1_1lox_1_1Lox.html#a9bd60e42f5dd47901101aad5c0e25f4d',1,'aworx::lox::Lox']]],
   ['windowsconsolelogger',['WindowsConsoleLogger',['../classaworx_1_1lox_1_1loggers_1_1WindowsConsoleLogger.html#aaff1939ae53f9ca2a08026eeea220284',1,'aworx::lox::loggers::WindowsConsoleLogger']]],
   ['write',['Write',['../classaworx_1_1lib_1_1strings_1_1util_1_1Spaces.html#a801e93234e9df77f585c993ee0a1a9a7',1,'aworx::lib::strings::util::Spaces::Write()'],['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a037523cdb14e8bae567b8fef2d102009',1,'aworx::lox::core::textlogger::MetaInfo::Write()']]],

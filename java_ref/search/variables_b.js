@@ -2,8 +2,8 @@ var searchData=
 [
   ['lamformatstring',['lamFormatString',['../classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html#a83ed0ec9ef8575acb9275f4a3981670b',1,'com::aworx::lib::strings::format::Formatter']]],
   ['languagekey',['languageKey',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#afff48198d20f5acb5e3b9f526f3aa89b',1,'com::aworx::lox::core::ScopeStore']]],
-  ['languagekeysubstr',['languageKeySubstr',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a3bf60f6469b0c69c146a974a7a4c08e4',1,'com::aworx::lox::core::ScopeStore']]],
-  ['languagestore',['languageStore',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a3cc97c81f5f73c882d4a1f5abbe41811',1,'com::aworx::lox::core::ScopeStore']]],
+  ['languagekeysubs',['languageKeySubs',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#ac2f82669609a22787a232ccca579889c',1,'com::aworx::lox::core::ScopeStore']]],
+  ['languagestore',['languageStore',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#af9bed27deef69afbfa06dd8d6ae21f03',1,'com::aworx::lox::core::ScopeStore']]],
   ['laststatus',['lastStatus',['../classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a4e7484c3265963f6797ad153dfe8fa02',1,'com::aworx::lib::config::IniFile']]],
   ['lazylanguagenode',['lazyLanguageNode',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#adf20d746bec29641f94f64972323990f',1,'com::aworx::lox::core::ScopeStore']]],
   ['lazystacktrace',['lazyStackTrace',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#afef8605e4755b09825cd2004064aa07d',1,'com::aworx::lox::core::ScopeInfo']]],

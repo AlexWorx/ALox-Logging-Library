@@ -2,8 +2,8 @@ var searchData=
 [
   ['lamformatstring',['lamFormatString',['../classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html#a83ed0ec9ef8575acb9275f4a3981670b',1,'cs::aworx::lib::strings::format::Formatter']]],
   ['languagekey',['languageKey',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#afff48198d20f5acb5e3b9f526f3aa89b',1,'cs::aworx::lox::core::ScopeStore']]],
-  ['languagekeysubstr',['languageKeySubstr',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a3bf60f6469b0c69c146a974a7a4c08e4',1,'cs::aworx::lox::core::ScopeStore']]],
-  ['languagestore',['languageStore',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a3cc97c81f5f73c882d4a1f5abbe41811',1,'cs::aworx::lox::core::ScopeStore']]],
+  ['languagekeysubs',['languageKeySubs',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#ac2f82669609a22787a232ccca579889c',1,'cs::aworx::lox::core::ScopeStore']]],
+  ['languagestore',['languageStore',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#af9bed27deef69afbfa06dd8d6ae21f03',1,'cs::aworx::lox::core::ScopeStore']]],
   ['lastindexof',['LastIndexOf',['../classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#ac6469cc04e3887be0e077b391a1fcb6b',1,'cs::aworx::lib::strings::AString']]],
   ['lastindexofany',['LastIndexOfAny',['../classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a2efb8093a3367df0c789eee107e85efd',1,'cs.aworx.lib.strings.AString.LastIndexOfAny()'],['../classcs_1_1aworx_1_1lib_1_1strings_1_1CString.html#a19fe6558aa402d3cb0284c6ac4ed7294',1,'cs.aworx.lib.strings.CString.LastIndexOfAny()'],['../classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a2efb8093a3367df0c789eee107e85efd',1,'cs.aworx.lib.strings.Substring.LastIndexOfAny()']]],
   ['lastsourcefile',['lastSourceFile',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#af36a30cf8807e1e08bc88e553715e866',1,'cs::aworx::lox::core::ScopeInfo']]],

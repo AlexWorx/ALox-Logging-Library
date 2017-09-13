@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -90,14 +90,14 @@ $(function() {
 <div class="contents">
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> This enum is used in ALox to control the 'verbosity' or 'verboseness' of the log output. The values herein - apart from special value 'OFF' - are sorted in the following order</p><ul>
+<p> This enum is used in <b>ALox</b> to control the 'verbosity' or 'verboseness' of the log output. The values herein - apart from special value 'OFF' - are sorted in the following order</p><ul>
 <li>VERBOSE (highest level)</li>
 <li>INFO</li>
 <li>WARNING</li>
 <li>ERROR (lowest level).</li>
 </ul>
-<p>A value of this set is provided to <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> in two different ways: First, all methods of class <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> that execute a log operation assign a value of this enum to the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em>. Secondly, methods <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aa8b1df498e4a9039c9b9a958f2186a05">Lox.setVerbosity</a>, are defining the 'accepted' <em>minimal</em> <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> for a pair of <em>&lt;Logger/Log Domain&gt;</em>.</p>
-<p>ALox, when executing a statement, checks both values against each other. A <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> is executed, when the <em>&lt;Logger/Log Domain&gt;</em> setting is set to the same or a 'higher level'. For example if a <em>&lt;Logger/Log Domain&gt;</em> setting is <b>WARNING</b>, then <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statements</em> with associated <em>Verbosity</em> <b>WARNING</b> and <b>ERROR</b> are executed and those with <b>INFO</b> and <b>VERBOSE</b> are suppressed.</p>
+<p>A value of this set is provided to <b>ALox</b> in two different ways: First, all methods of class <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> that execute a log operation assign a value of this enum to the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em>. Secondly, methods <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aa8b1df498e4a9039c9b9a958f2186a05">Lox.setVerbosity</a>, are defining the 'accepted' <em>minimal</em> <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> for a pair of <em>&lt;Logger/Log Domain&gt;</em>.</p>
+<p><b>ALox</b>, when executing a statement, checks both values against each other. A <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> is executed, when the <em>&lt;Logger/Log Domain&gt;</em> setting is set to the same or a 'higher level'. For example if a <em>&lt;Logger/Log Domain&gt;</em> setting is <b>WARNING</b>, then <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statements</em> with associated <em>Verbosity</em> <b>WARNING</b> and <b>ERROR</b> are executed and those with <b>INFO</b> and <b>VERBOSE</b> are suppressed.</p>
 <p>If special value <b>OFF</b> is used with <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aa8b1df498e4a9039c9b9a958f2186a05">Lox.setVerbosity</a>, all logging is switched OFF for this pair of <em>&lt;Logger/Log Domain&gt;</em>.</p>
 <p>Some of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statements</em> accept the parameter directly (e.g. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a869144d7847620a11da2c7796592d2fc">Lox.entry</a>, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a7347b1bdc9a7abe966bd812190f54db8">Lox.once</a> and <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ab4f9deec17d6cbbca1bee3c5f553c273">Lox.If</a>), others inherently use the right value as their method name suggests (e.g. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a7809842f65daf27000d4702967ffbaf4">Lox.error</a>, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a8fbf8d809444c24385d3a9dda4f82156">Lox.warning</a>, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a812aafed9e43ec2cbaf596fd41284c1c">Lox.info</a>, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a1eb7e35c8aa347da725f291aaea9fda7">Lox.verbose</a> and <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a605a4dff16f775da81792443bde401e3">Lox.Assert</a>). The latter group of methods do not support parameter <b>OFF</b>.</p>
 <p>If special value <b>OFF</b> is used with those <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statements</em>, that allow to specify the <em>Verbosity</em> as a parameter, the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> is never executed This is useful if the parameter is determined at runtime, depending on the state of an application. </p>
@@ -199,7 +199,7 @@ Public Fields</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:29 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:01 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

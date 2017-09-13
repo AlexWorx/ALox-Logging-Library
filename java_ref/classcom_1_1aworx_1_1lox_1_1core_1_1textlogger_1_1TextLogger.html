@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -103,7 +103,7 @@ Collaboration diagram for TextLogger:</div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> This class is a still abstract implementation of class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> which is used as the super class for all textual <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> implementations within <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a>, e.g. ConsoleLogger.</p>
+<p> This class is a still abstract implementation of class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> which is used as the super class for all textual <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> implementations within <b>ALox</b>, e.g. ConsoleLogger.</p>
 <p>The class uses two helper classes. One to convert the log message object into a string representation and a second to generate the textual representation of the meta information of a log call. These helpers can be extended and replaced to modify the behavior of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a>.</p>
 <p>The final log message is then passed to the abstract method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#ac695287fd565c875feb45c63c38237e2">logText()</a>. Hence, custom <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> classes that inherited from this class instead of directly from class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#ad5d85bd2edd6cf4e166d9744f6e97f16">Logger</a>, need to implement <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#ac695287fd565c875feb45c63c38237e2">logText()</a> instead of implementing <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a9e1196ab7e0b5d31dd0cca030667852f">log</a>.</p>
 <p>Class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a> supports multi line log outputs. Such multi line log outputs can be configured to be logged in different ways. See <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#accadd49b1318abe7fc5b7ae8dcb0f431">multiLineMsgMode</a> for more information. </p>
@@ -817,7 +817,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Used to avoid to repeatedly register with ALib <em>standard output stream</em> lockers when attached to multiple instances of class <b><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></b>. </p>
+<p>Used to avoid to repeatedly register with <b>ALib</b> <em>standard output stream</em> lockers when attached to multiple instances of class <b><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></b>. </p>
 
 </div>
 </div>
@@ -851,7 +851,7 @@ Additional Inherited Members</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:29 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:01 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

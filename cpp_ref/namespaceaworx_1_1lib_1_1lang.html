@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -94,9 +94,9 @@ $(function() {
 <div class="textblock"><hr/>
 <p> This namespace collects very basic utilities for <a class="el" href="namespaceaworx_1_1lib.html">ALib</a>, close to the C++ language.</p>
 <dl class="section note"><dt>Note</dt><dd>A list of <b>general enumerations</b> is found in this namespace. It is arguable and a matter of taste, whether enumerations should be declared near or inside the class which is using it, or in a separated place like this namespace introduced here.<br />
- ALib follows the second approach (not strictly, domain specific enums might appear also inside classes) and this has the following reasons:<ul>
+ <b>ALib</b> follows the second approach (not strictly, domain specific enums might appear also inside classes) and this has the following reasons:<ul>
 <li>To shorten the code when using the enums.</li>
-<li>To reach a maximum degree of source compatibility between the different programming language versions of ALib.</li>
+<li>To reach a maximum degree of source compatibility between the different programming language versions of <b>ALib</b>.</li>
 <li>To make the enums reusable with different classes. </li>
 </ul>
 </dd></dl>
@@ -195,6 +195,14 @@ Enumerations</h2></td></tr>
 <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a8c800527afe0a8a6c71ae4cceda6bf9dad3d57868b6ff9839eff631d2cc8acbce">Unsafe</a>
  }</td></tr>
 <tr class="separator:a8c800527afe0a8a6c71ae4cceda6bf9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9be72f666a31b4318bbc8e8a16a9472"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad9be72f666a31b4318bbc8e8a16a9472">SortOrder</a> { <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad9be72f666a31b4318bbc8e8a16a9472acf3fb1ff52ea1eed3347ac5401ee7f0c">Ascending</a>, 
+<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad9be72f666a31b4318bbc8e8a16a9472ae3cf5ac19407b1a62c6fccaff675a53b">Descending</a>
+ }</td></tr>
+<tr class="separator:ad9be72f666a31b4318bbc8e8a16a9472"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0acd6daf9443d8b997f1035cfe08dd8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab0acd6daf9443d8b997f1035cfe08dd8">SourceData</a> { <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab0acd6daf9443d8b997f1035cfe08dd8a5fb63579fc981698f97d55bfecb213ea">Copy</a>, 
+<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab0acd6daf9443d8b997f1035cfe08dd8a6bc362dbf494c61ea117fe3c71ca48a5">Move</a>
+ }</td></tr>
+<tr class="separator:ab0acd6daf9443d8b997f1035cfe08dd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f3c28a2cb05bdcc618b542e49bfda3f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9f3c28a2cb05bdcc618b542e49bfda3f">Switch</a> { <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9f3c28a2cb05bdcc618b542e49bfda3fad15305d7a4e34e02489c74a5ef542f36">Off</a>, 
 <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9f3c28a2cb05bdcc618b542e49bfda3fa521c36a31c2762741cf0f8890cbe05e3">On</a>
  }</td></tr>
@@ -274,7 +282,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Templated type definition for a hash map that stores objects of type <code>TMapped</code> with the key being a C++ <b>type_info</b> reference object.<br />
- This is mostly used by ALib internally to store pointers to objects to singletons of the provided type. </p>
+ This is mostly used by <b>ALib</b> internally to store pointers to objects to singletons of the provided type. </p>
 
 </div>
 </div>
@@ -668,7 +676,7 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Denotes result values across ALib functions </p>
+<p> Denotes result values across <b>ALib</b> functions </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a28287671eaf7406afd604bd055ba4066ae0aa021e21dddbd6d8cecec71e9cf564"></a>OK&#160;</td><td class="fielddoc"><p>Everything is fine. </p>
 </td></tr>
@@ -707,6 +715,66 @@ Functions</h2></td></tr>
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a8c800527afe0a8a6c71ae4cceda6bf9dac6eea0560cd6f377e78dff2c85cc9122"></a>Safe&#160;</td><td class="fielddoc"><p>Do it or treat it with safety. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a8c800527afe0a8a6c71ae4cceda6bf9dad3d57868b6ff9839eff631d2cc8acbce"></a>Unsafe&#160;</td><td class="fielddoc"><p>Omit checks or perform unsafe operations. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ad9be72f666a31b4318bbc8e8a16a9472"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9be72f666a31b4318bbc8e8a16a9472">&#9670;&nbsp;</a></span>SortOrder</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad9be72f666a31b4318bbc8e8a16a9472">SortOrder</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Denotes sort order. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ad9be72f666a31b4318bbc8e8a16a9472acf3fb1ff52ea1eed3347ac5401ee7f0c"></a>Ascending&#160;</td><td class="fielddoc"><p>Chooses ascending sort oder. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad9be72f666a31b4318bbc8e8a16a9472ae3cf5ac19407b1a62c6fccaff675a53b"></a>Descending&#160;</td><td class="fielddoc"><p>Chooses descending sort oder. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ab0acd6daf9443d8b997f1035cfe08dd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0acd6daf9443d8b997f1035cfe08dd8">&#9670;&nbsp;</a></span>SourceData</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab0acd6daf9443d8b997f1035cfe08dd8">SourceData</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Denotes if the source data should be moved or copied. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab0acd6daf9443d8b997f1035cfe08dd8a5fb63579fc981698f97d55bfecb213ea"></a>Copy&#160;</td><td class="fielddoc"><p>Chooses not to clear existing data. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ab0acd6daf9443d8b997f1035cfe08dd8a6bc362dbf494c61ea117fe3c71ca48a5"></a>Move&#160;</td><td class="fielddoc"><p>Chooses to clear existing data. </p>
 </td></tr>
 </table>
 
@@ -819,7 +887,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Deletes the singletons. Upon exit of the process, programmers might want to explicitly free the hash table to avoid the detection of memory leaks by metrics tools like <a href="http://valgrind.org/">Valgrind</a>. (Otherwise this can be omitted, as the memory is cleaned by the OS probably much faster when a process exits).</p>
-<p>When using singletons with the full implementation of ALib (in contrast in using just the module <b>ALib Singleton</b>), then the method <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a2a0bcae1f7341255492ebc90deab5f01">ALIB::TerminationCleanUp</a> invokes this method already.</p>
+<p>When using singletons with the full implementation of <b>ALib</b> (in contrast in using just the module <b>ALib Singleton</b>), then the method <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a2a0bcae1f7341255492ebc90deab5f01">ALIB::TerminationCleanUp</a> invokes this method already.</p>
 <dl class="section note"><dt>Note</dt><dd>This method is not thread-safe and hence must be called only on termination of the process when all threads which are using singletons are terminated. </dd></dl>
 
 </div>
@@ -909,7 +977,7 @@ Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:26 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

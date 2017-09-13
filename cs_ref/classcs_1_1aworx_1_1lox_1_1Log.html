@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -271,12 +271,12 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> In the case that the original ALib ReportWriterStdIO is still in place, <a class="el" href="classcs_1_1aworx_1_1lib_1_1lang_1_1Report.html#a67565ee05d7a6ab5ef72d936cd17b0cc">Report.PushWriter</a> is invoked to provide a ReportWriter of type <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALoxReportWriter.html">ALoxReportWriter</a>.</p>
+<p> In the case that the original <b>ALib</b> ReportWriterStdIO is still in place, <a class="el" href="classcs_1_1aworx_1_1lib_1_1lang_1_1Report.html#a67565ee05d7a6ab5ef72d936cd17b0cc">Report.PushWriter</a> is invoked to provide a ReportWriter of type <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALoxReportWriter.html">ALoxReportWriter</a>.</p>
 <dl class="section note"><dt>Note</dt><dd>This method is effective only in debug compilations. Usually it is invoked indirectly by using method <a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#a84533ce0f6a03f06e4c2b649f51792fd">AddDebugLogger</a>. Applications that do not use that method (e.g. because they are using release logging exclusively), should invoke this method on bootstrap providing their (release) lox. In this case, the <em>Verbosity</em> of the internal domain used by class <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALoxReportWriter.html">ALoxReportWriter</a> has to be set for the the logger(s) in given <code>lox</code> in question.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -331,13 +331,13 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <hr/>
 <p> This method creates an adequate/default debug logger (or multiple). Of-course, alternatively to using this method, a suitable set of debug loggers can be created manually. Also, before/after using this method additional debug loggers may be created.</p>
-<p>In the current version of <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a> (future changes are likely), this method does:</p><ul>
+<p>In the current version of <b>ALox</b> (future changes are likely), this method does:</p><ul>
 <li>use <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a8db44d29b6867559f393ad860a0a1782">Lox.CreateConsoleLogger</a> to create the best compatible console logger for the running platform</li>
 <li>If a CLR debug session is running (e.g. running in debug mode in Visual Studio or MonoDevelop IDE), adds a <a class="el" href="classcs_1_1aworx_1_1lox_1_1loggers_1_1CLRDebuggerLogger.html">CLRDebuggerLogger</a> in addition to the standard console logger. This can be suppressed using configuration variable <a href="../group__GrpALoxConfigVars.html">ALOX_NO_IDE_LOGGER</a>.</li>
 </ul>
@@ -424,7 +424,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -493,14 +493,14 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <hr/>
 <p> Removes all local trimming rules set with <a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#a143d84c0a6a10884b92b491eaa976795">SetSourcePathTrimRule</a>. If parameter <code>global</code> is set to <b>Inclusion.Include</b>, the global rules are cleared in addition.</p>
 <p>Setting parameter <code>allowAutoRule</code> to <code>false</code>, allows to suppress the creation of an automatic rule based on the executables path.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a> User Manual for more information.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="../manual.html">ALox User Manual</a> for more information.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">reach</td><td>Denotes whether only local rules are cleared or also global ones. Defaults to <b>Reach.Global</b>. </td></tr>
@@ -567,7 +567,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -649,7 +649,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -711,7 +711,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -777,7 +777,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -873,7 +873,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -968,7 +968,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1050,7 +1050,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1118,7 +1118,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1214,7 +1214,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1335,7 +1335,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1417,7 +1417,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1491,7 +1491,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1576,7 +1576,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1669,7 +1669,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1757,7 +1757,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1838,7 +1838,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1906,7 +1906,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1978,7 +1978,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -2075,7 +2075,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -2170,7 +2170,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -2252,7 +2252,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -2326,7 +2326,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -2411,7 +2411,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -2504,7 +2504,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -2592,7 +2592,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -2673,7 +2673,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -2741,7 +2741,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -2813,7 +2813,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -2868,7 +2868,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -2926,12 +2926,12 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Removes the <em>Logger(s)</em> which was/were created by <a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#a84533ce0f6a03f06e4c2b649f51792fd">AddDebugLogger</a>. This method also invokes <a class="el" href="classcs_1_1aworx_1_1lib_1_1lang_1_1Report.html#a7fb0c9cbe48e62060b8fa53408f2fcd5">Report.PopWriter</a> to install a default <a class="el" href="interfacecs_1_1aworx_1_1lib_1_1lang_1_1ReportWriter.html">ReportWriter</a> for ALib.</p>
+<p> Removes the <em>Logger(s)</em> which was/were created by <a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#a84533ce0f6a03f06e4c2b649f51792fd">AddDebugLogger</a>. This method also invokes <a class="el" href="classcs_1_1aworx_1_1lib_1_1lang_1_1Report.html#a7fb0c9cbe48e62060b8fa53408f2fcd5">Report.PopWriter</a> to install a default <a class="el" href="interfacecs_1_1aworx_1_1lib_1_1lang_1_1ReportWriter.html">ReportWriter</a> for <b>ALib</b>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lox</td><td>The lox to remove the debug logger(s) from. If null, the static debug object::LOX is used.</td></tr>
@@ -2985,7 +2985,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -3050,7 +3050,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -3110,7 +3110,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -3176,7 +3176,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -3249,7 +3249,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -3289,7 +3289,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -3351,14 +3351,14 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Retrieves <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a> <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> which was previously stored using <a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#a990fa78c8a0d25fc53915feb5f2d71d8">Store</a>. Optional parameters <code>key</code> and <code>scope</code> offer various possibilities to reference such objects.<br />
+<p> Retrieves <b>ALox</b> <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> which was previously stored using <a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#a990fa78c8a0d25fc53915feb5f2d71d8">Store</a>. Optional parameters <code>key</code> and <code>scope</code> offer various possibilities to reference such objects.<br />
 </p>
-<dl class="section note"><dt>Note</dt><dd><em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> is a feature provided by <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a> to support debug-logging. It is not advised to use <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> to implement application logic.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd><em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> is a feature provided by <b>ALox</b> to support debug-logging. It is not advised to use <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> to implement application logic.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">key</td><td>The optional key to the data. If omitted (or empty or null), the data is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is <a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope.Global</a>, then the data is unique to the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html">Lox</a></em>. </td></tr>
@@ -3421,13 +3421,13 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <hr/>
 <p> Overloaded version of <a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#a42dcdd8065f82f2459fe120220c4d752">Retrieve</a> which omits parameter <code>key</code>.</p>
-<dl class="section note"><dt>Note</dt><dd><em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> is a feature provided by <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a> to support debug-logging. It is not advised to use <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> to implement application logic.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd><em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> is a feature provided by <b>ALox</b> to support debug-logging. It is not advised to use <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> to implement application logic.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the data is bound to. </td></tr>
@@ -3495,7 +3495,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -3571,7 +3571,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -3639,7 +3639,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -3659,7 +3659,7 @@ Public Static Methods</h2></td></tr>
 <p><b>Application of Rules</b><br />
  Rules are applied in the order of their definition. After all rules have been applied this is repeated as long as at least one rule matched (up to ten times).</p>
 <p><b>Deletion of Rules</b> To delete a rule, invoke the method with same parameter <code>domainPath</code> and a 'nulled' or empty string for parameter <code>replacement</code>. To delete all rules, invoke the method with parameter <code>domainPath</code> 'nulled' or empty.</p>
-<p><b>Final remarks</b> Domain substitution is useful to permanently change ('redirect') domain paths of 3rd party code (e.g. libraries using <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a>) or log statements that must not be changed for other reasons. It is advised to not 'overuse' this feature, as side effects are inherent to the concept of <em>Domain Substitution</em>. For example, an unwanted side effect might be that <em>Prefix Logables</em> are not applicable to the substituted domain, while other <em>Prefix Logables</em> are bound to the resulting domain.</p>
+<p><b>Final remarks</b> Domain substitution is useful to permanently change ('redirect') domain paths of 3rd party code (e.g. libraries using <b>ALox</b>) or log statements that must not be changed for other reasons. It is advised to not 'overuse' this feature, as side effects are inherent to the concept of <em>Domain Substitution</em>. For example, an unwanted side effect might be that <em>Prefix Logables</em> are not applicable to the substituted domain, while other <em>Prefix Logables</em> are bound to the resulting domain.</p>
 <p>For <b>Lox</b> objects that should be protected of external manipulation, it is advisable, to remove all <em>Domain Substitution Rules</em> right after the <b>Lox</b> was created by invoking this method with a nulled value for parameter <code>domainPath</code>. The reason is, that otherwise, through configuration files or command line parameters, domains of the <b>Lox</b> can be substituted and then the resulting domains <em>Verbosities</em> be <em>overwritten</em> using further configuration variables. Any prioritized <em>'internal'</em> setting of <em>Verbosities</em> this way could be circumvented!</p>
 <p>For more information consult the <a href="../man_domain_substitution.html">ALox User Manual</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -3728,7 +3728,7 @@ Public Static Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -3737,8 +3737,8 @@ Public Static Methods</h2></td></tr>
 <p>To remove a previously set <em>Prefix Logable</em>, <code>null</code> has to be passed with parameter <code>logable</code>. For <em>Scope.ThreadOuter</em> and <em>Scope.ThreadInner</em>, passing <code>null</code> removes the most recently added <em>Prefix Logable</em>.</p>
 <dl class="section note"><dt>Note</dt><dd>Unlike other methods of this class which accept more than one logable, this method and its overloaded variants accept only one (the prefix). To supply several objects to be prefix logables at once, those may be passed as an Object[] like shown in the following sample: <div class="fragment"><div class="line">Log.SetPrefix( <span class="keyword">new</span> Object[] {<span class="stringliteral">&quot;One, &quot;</span>, <span class="stringliteral">&quot;two, &quot;</span>, 3 },  <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Global   );</div></div><!-- fragment --> </dd>
 <dd>
-The word 'prefix' in this methods' name and in the name of <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a> feature <em>Prefix Logables</em> is chosen for the fact that with text loggers (which is the most widely applied use case for <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a>) such objects are prefixes to the log message. Of-course, with using <em>Scope.ThreadInner</em>, this turns into a suffix!<br />
- When using <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a> to process objects instead of log messages, the concept of <em>Prefix Logables</em> is very useful. Just the name does not fit so well anymore. Think of 'SetContext' and <em>Context Objects</em> instead.</dd></dl>
+The word 'prefix' in this methods' name and in the name of <b>ALox</b> feature <em>Prefix Logables</em> is chosen for the fact that with text loggers (which is the most widely applied use case for <b>ALox</b>) such objects are prefixes to the log message. Of-course, with using <em>Scope.ThreadInner</em>, this turns into a suffix!<br />
+ When using <b>ALox</b> to process objects instead of log messages, the concept of <em>Prefix Logables</em> is very useful. Just the name does not fit so well anymore. Think of 'SetContext' and <em>Context Objects</em> instead.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logable</td><td>The <em>Prefix Logable</em> to set. </td></tr>
@@ -3806,7 +3806,7 @@ The word 'prefix' in this methods' name and in the name of <a class="el" href="c
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -3880,7 +3880,7 @@ The word 'prefix' in this methods' name and in the name of <a class="el" href="c
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -3979,7 +3979,7 @@ The word 'prefix' in this methods' name and in the name of <a class="el" href="c
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -4057,7 +4057,7 @@ The word 'prefix' in this methods' name and in the name of <a class="el" href="c
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -4136,7 +4136,7 @@ The word 'prefix' in this methods' name and in the name of <a class="el" href="c
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -4149,12 +4149,12 @@ The word 'prefix' in this methods' name and in the name of <a class="el" href="c
 <li>To 'lock' a verbosity setting against external manipulation.</li>
 <li>to 'break' the standard mechanism that an invocation of this method sets all sub-domains recursively. If a sub-domain was set with a higher priority (e.g. <code>Configuration.PrioDefault + 1</code>, then this sub-domain will not be affected by future invocations of this method with standard-priority given.</li>
 </ul>
-<dl class="section attention"><dt>Attention</dt><dd>The same as with most interface methods of this class, the given <code>domain</code> parameter is combined with <em>Scope Domains</em> set for the callers' <em>Scope</em>. In standard use cases of ALox, the <em>Verbosity</em> of a <em>Domain</em> is set using absolute domain path addressing. Therefore, it is recommended to have any domain path passed to this method starting with <code> '/'</code>, which suppresses the concatenation of <em>Scope Domains</em>.<br />
+<dl class="section attention"><dt>Attention</dt><dd>The same as with most interface methods of this class, the given <code>domain</code> parameter is combined with <em>Scope Domains</em> set for the callers' <em>Scope</em>. In standard use cases of <b>ALox</b>, the <em>Verbosity</em> of a <em>Domain</em> is set using absolute domain path addressing. Therefore, it is recommended to have any domain path passed to this method starting with <code> '/'</code>, which suppresses the concatenation of <em>Scope Domains</em>.<br />
  This is why this parameter with this method defaults to <code> '/'</code>, while with other methods of this class, it defaults to an empty string.</dd>
 <dd>
 Even when using an absolute domain path, <em>Scope Domains</em> of <em>Scope.ThreadInner</em>, will still apply. This means that from within a thread that has such <em>Scope Domain</em> set, this method is (almost) not usable! This all aligns with the concept (advice), that <em>Loggers</em> and their <em>Verbosity</em> are generally set outside of such scopes, hence in configuration sections of a process.</dd>
 <dd>
-Consequently, this method may be (mis-) used to modify the 'actual' (default) scope when explicitly giving an empty string with parameter <code>domain</code>. This is useful, to temporarily adjust a scope. But remember: ALox was designed to avoid temporary code lines...</dd></dl>
+Consequently, this method may be (mis-) used to modify the 'actual' (default) scope when explicitly giving an empty string with parameter <code>domain</code>. This is useful, to temporarily adjust a scope. But remember: <b>ALox</b> was designed to avoid temporary code lines...</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logger</td><td>The logger to be to be affected. </td></tr>
@@ -4229,7 +4229,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -4310,13 +4310,13 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <hr/>
 <p> This method logs the current configuration of this <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html">Lox</a> and its encapsulated objects. It uses method <a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#a6e62c374ebeba7ed0e15c1f186de29c5">GetState</a> to assemble the logable string.</p>
-<dl class="section note"><dt>Note</dt><dd>As an alternative to (temporarily) adding an invocation of <b>Lox.State</b> to your code, <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a> provides configuration variable <a href="group__GrpALoxConfigVars.html">ALOX_LOXNAME_DUMP_STATE_ON_EXIT</a>. This allows to enable an automatic invocation of this method using external configuration data like command line parameters, environment variables or INI files.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>As an alternative to (temporarily) adding an invocation of <b>Lox.State</b> to your code, <b>ALox</b> provides configuration variable <a href="group__GrpALoxConfigVars.html">ALOX_LOXNAME_DUMP_STATE_ON_EXIT</a>. This allows to enable an automatic invocation of this method using external configuration data like command line parameters, environment variables or INI files.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domain</td><td>Optional <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em> which is combined with <em>Scope Domains</em> set for the <em>Scope</em> of invocation. </td></tr>
@@ -4391,7 +4391,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -4400,8 +4400,8 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 </p>
 <p>To remove data from the store, pass <code>null</code> with parameter <code>data</code>.</p>
 <dl class="section attention"><dt>Attention</dt><dd>When data objects are 'overwritten', previous objects will be deleted internally. Hence, only pointers to heap-allocated objects (created with <code>new</code>) may be passed!<br />
- For more information, consult the <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a> user manual.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd><em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> is a feature provided by <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a> to support debug-logging. It is not advised to use <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> to implement application logic.</dd></dl>
+ For more information, consult the <a href="../manual.html">ALox User Manual</a>.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd><em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> is a feature provided by <b>ALox</b> to support debug-logging. It is not advised to use <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> to implement application logic.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>The data object to store. If <code>null</code>, currently stored data will be removed. </td></tr>
@@ -4470,7 +4470,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -4549,7 +4549,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -4588,7 +4588,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -4656,7 +4656,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -4720,7 +4720,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The ALib ReportWriter. This will be created and registered in method <a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#a84533ce0f6a03f06e4c2b649f51792fd">Log.AddDebugLogger</a> and removed in <a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#a0b343f71b357a93fe43b3c0cf4d36e86">Log.RemoveDebugLogger</a> in the case that the original ALib ReportWriterStdIO is in place. </p>
+<p>The <b>ALib</b> ReportWriter. This will be created and registered in method <a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#a84533ce0f6a03f06e4c2b649f51792fd">Log.AddDebugLogger</a> and removed in <a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#a0b343f71b357a93fe43b3c0cf4d36e86">Log.RemoveDebugLogger</a> in the case that the original <b>ALib</b> ReportWriterStdIO is in place. </p>
 
 </div>
 </div>
@@ -4777,7 +4777,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:28 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:00 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

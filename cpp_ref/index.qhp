@@ -5,7 +5,7 @@
   <filterSection>
     <filterAttribute>doxygen</filterAttribute>
     <toc>
-      <section title="ALox V. 1702 R. 1" ref="index.html">
+      <section title="ALox V. 1709 R. 0" ref="index.html">
         <section title="Overview" ref="cppmainpage.html" />
         <section title="Tutorial" ref="cpptutorial.html" />
         <section title="IDE/Build system setup" ref="cppsetup.html" />
@@ -345,31 +345,151 @@
                   </section>
                 </section>
                 <section title="containers" ref="namespaceaworx_1_1lib_1_1containers.html">
-                  <section title="PathMap" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html">
-                    <section title="Iterator" ref="classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html">
-                      <section title="NodeAndChild" ref="structaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator_1_1NodeAndChild.html">
-                        <section title="NodeAndChild" ref="structaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator_1_1NodeAndChild.html#a27186a9a80a880dc0fcc022155db0d0f" />
-                        <section title="childNo" ref="structaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator_1_1NodeAndChild.html#ac10cf46c3127cd5d178f7dafd27307eb" />
-                        <section title="node" ref="structaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator_1_1NodeAndChild.html#affa9990544a6dc2526546efc06c9d391" />
-                      </section>
-                      <section title="Iterator" ref="classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html#a1f703720e1f5d97a0386c2dfe803c763" />
-                      <section title="Iterator" ref="classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html#a7068350d054e5b6f4375389138dfd1d2" />
-                      <section title="operator!=" ref="classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html#a710b1a5c9f835b20b87a76ce12e4f305" />
-                      <section title="operator*" ref="classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html#ad97d683cf8326374172493c7627fc6b3" />
-                      <section title="operator++" ref="classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html#aef12ef33726bc591f569f822c7b5ac41" />
-                      <section title="operator==" ref="classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html#afa6d6a2524fd46358a3bb52adda04a97" />
-                      <section title="nodesAndChildren" ref="classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html#a5253ccc0099024a2803a330551523d3f" />
+                  <section title="StringTree" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html">
+                    <section title="Cursor" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html">
+                      <section title="Cursor" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a837dd68f9d999b0366354e09c1db4860" />
+                      <section title="Cursor" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#aac48d32ae03fdb956a08ecc8c36e9ca9" />
+                      <section title="Cursor" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a9d2203168bb2489b91572f716cf7ef02" />
+                      <section title="begin" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a7794c681cde49fe79ce350908e021046" />
+                      <section title="Clone" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a716af637049daa5f0a7c9ef4d68c4990" />
+                      <section title="createPathAndReturnLeaf" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#afd5858321e9f0ad6b314a9a054aa29f0" />
+                      <section title="DeleteChild" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a7a295ee417e1a43185684997b60c1d2c" />
+                      <section title="DeleteChildren" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a63f4720668cc61ddf555b470b9eec188" />
+                      <section title="Depth" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a72fdcb31622fdd4b1197a207a6a6685e" />
+                      <section title="end" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a9ea1f4bf0ddd2e732a5552084cdecc45" />
+                      <section title="followPath" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a932dda062ac3a04fa7d5edce7bc3c833" />
+                      <section title="GetStringTree" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#aea0054286adc014b8b284ebfc31db385" />
+                      <section title="IsInvalid" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#aad9bf43dc400b86b4afe746243f6d3fe" />
+                      <section title="IsRoot" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#ac8cbef7a1c768ebd43aa897165044ecf" />
+                      <section title="IsValid" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a9dcb9b43a3d0fa9003d4c1c9d921f6b2" />
+                      <section title="MoveTo" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a21206644be243178e0e95deade9b8414" />
+                      <section title="MoveToAndCreateNonExistingPart" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#acb8e5ddc037c4ff8db8150ed5ccbc890" />
+                      <section title="MoveToChild" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#ae96a4d518a6f17184d8e5a31565f8dfe" />
+                      <section title="MoveToChildCreate" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a3c8dc99948de5c8c6cb02ef31324547d" />
+                      <section title="MoveToExistingPart" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#aedaf3d8965224d5bee561a01fcb66929" />
+                      <section title="MoveToParent" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#af240df28a6292c10753b81de82f40b47" />
+                      <section title="MoveToParentUnchecked" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a92b32ed64afe9459f6b6673712e990f1" />
+                      <section title="operator!=" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a6493e37b9a61ba82726b9fb938bcc820" />
+                      <section title="operator*" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a7dec280fcc6cd89b58980bbd6ca0d275" />
+                      <section title="operator==" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#ae239ee88a87c5bb30f1a81c143a0e063" />
+                      <section title="Root" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a4fbe8b40cbff94ba584dec59d6e868f2" />
+                      <section title="SearchName" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#afb35c61dc3e6668614ce42afaede10cb" />
+                      <section title="SearchNodeNameAndDeleteNode" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a67b309c45890aeb5709b39ffdae0c89b" />
+                      <section title="SearchPath" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#aef2244cb6839ab29120afe9458c5b399" />
+                      <section title="SetIterator" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#af9bfedce967aba5eb6555765512bb65d" />
+                      <section title="Size" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#af40990b9bd3d70d30e8ce7cdda1ad56f" />
+                      <section title="StringTree" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#aa42c89c0eaa357d95820842673034eed" />
+                      <section title="node" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#ab88cd70dad2e152cea983610f2a16e68" />
+                      <section title="stringTree" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a836095184e69ee547f80ebf11de862d6" />
                     </section>
-                    <section title="PathMap" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html#aaccccfd0b10107ddbacf38c91f873caa" />
-                    <section title="~PathMap" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html#a822667eea97b87b37dd5bc7ac2604df2" />
-                    <section title="Clear" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html#aa71d36872f416feaa853788a7a7a7ef8" />
-                    <section title="Get" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html#a7046c5973df23b42d51def0cc83ec30a" />
-                    <section title="get" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html#ae5b636df31556bf9f00d3b88c769cbf1" />
-                    <section title="Remove" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html#a8f18aa974dae0df745dcb929542c462a" />
-                    <section title="Children" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html#afe6e54f5638b38180db181a521b86d81" />
-                    <section title="Parent" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html#ada6ee4f09fb99fb511bcab41e0e56a86" />
-                    <section title="Path" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html#a5e583dd1bf88abfb28487df2f676a6e8" />
-                    <section title="Value" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html#acc64411e4973d80d6983e983f9ce7f0e" />
+                    <section title="Node" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html">
+                      <section title="Node" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#ab8a9be2be80cb737fe017becff054cec" />
+                      <section title="~Node" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#a6fa6bf60f34f1e3efb0e59333428c9c8" />
+                      <section title="createChild" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#ac73b1e901363b189cd0edee4fc48c851" />
+                      <section title="createChildNoCheck" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#ae875d1a5a1d29cfcef7658ef760053b3" />
+                      <section title="deleteChild" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#a0a3922cb188865f3e4f562fea816b97b" />
+                      <section title="deleteChildren" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#abf67d882cbea8b20d80544fe5f604e4a" />
+                      <section title="depth" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#acf8e2f791de955ccde3115b485b94dc9" />
+                      <section title="getChild" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#afec5af9c58eadb62cfba0930c152974e" />
+                      <section title="getOrCreateChild" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#ad98567ca3dbb8150615c55c304d38f04" />
+                      <section title="isRoot" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#ad78e3dab6fc481769907b77419fe4bac" />
+                      <section title="children" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#ac37f26f9defa51c300e3f29fb591cfe4" />
+                      <section title="parent" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#a15358e51f4bc699859aef344484ae4a8" />
+                      <section title="value" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#a4fc7f59e3113e19697159919a5aad095" />
+                    </section>
+                    <section title="StdIterator" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html">
+                      <section title="RecursionDataIt" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator_1_1RecursionDataIt.html">
+                        <section title="actChild" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator_1_1RecursionDataIt.html#a33a3b3d407317c56bc1f31e88cec3539" />
+                        <section title="node" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator_1_1RecursionDataIt.html#ab88cd70dad2e152cea983610f2a16e68" />
+                        <section title="nodeName" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator_1_1RecursionDataIt.html#ac72c672187176a6a0d7ade3dc9e30a27" />
+                      </section>
+                      <section title="StdIterator" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a8bbe19884d7b0b273b0f2c630ade0125" />
+                      <section title="StdIterator" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a6f9b0dbe4fcad1c316c587a85b8be007" />
+                      <section title="actNode" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#ae62f2661d9a767ee0c15664c0d0a7c72" />
+                      <section title="Depth" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a72fdcb31622fdd4b1197a207a6a6685e" />
+                      <section title="Name" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a0e5b1128eca23e746052102f3f5da3bf" />
+                      <section title="operator!=" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a171fda2aad776b9308e1826ae103d8c7" />
+                      <section title="operator*" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#af7f8c6b921dca2b94f6e7ee14e762770" />
+                      <section title="operator++" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a4eabf8ee5a8dbd739b4a5fee6e67684b" />
+                      <section title="operator==" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a920c99480b9ad6dd2a45bef403be23fe" />
+                      <section title="setStart" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a11328fb94695252d3250bdab7a7aae80" />
+                      <section title="Size" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#af40990b9bd3d70d30e8ce7cdda1ad56f" />
+                      <section title="Skip" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a6f9a70e22db597ca69797f5cc7243f6e" />
+                      <section title="StringTree" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#aa42c89c0eaa357d95820842673034eed" />
+                      <section title="recursionDepth" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a9a1951fdc18bdd21f3de11073fc7fcfa" />
+                      <section title="stack" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#aa1ced8936ccae566a7f694ce09fdfe3f" />
+                      <section title="stringTree" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a836095184e69ee547f80ebf11de862d6" />
+                    </section>
+                    <section title="Walker" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html">
+                      <section title="RecursionData" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html">
+                        <section title="RecursionData" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html#a1f0cbe0e2d095a239a6a96980b527960" />
+                        <section title="~RecursionData" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html#a3224141064f9cbd37f59040b1b9e7cd4" />
+                        <section title="RecursionData" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html#af1c0e12c49f62b36a9a88539929adf98" />
+                        <section title="reset" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html#a0a77b8e5455e7ec503b1e3f6b5c18eb2" />
+                        <section title="actChild" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html#acabfd73c575d4f75e7a0762942f72050" />
+                        <section title="node" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html#ab88cd70dad2e152cea983610f2a16e68" />
+                        <section title="nodeName" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html#ac72c672187176a6a0d7ade3dc9e30a27" />
+                        <section title="sortedChildren" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html#a486550cff841363fff7119df20b52364" />
+                      </section>
+                      <section title="Sorter" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1Sorter.html">
+                        <section title="operator()" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1Sorter.html#a1754080aa84d0e3275d9fecfa0e0e22c" />
+                        <section title="pathSorter" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1Sorter.html#af19d8a1f55e65527398af11a02b7d584" />
+                        <section title="sortOrder" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1Sorter.html#a89cc0bdfe8580c2c4609bf66285c44c7" />
+                        <section title="sortSensitivity" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1Sorter.html#a09b9f96dba154680ea82de355bd07e06" />
+                        <section title="valueSorter" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1Sorter.html#ad329d04d192f4b4cb3c3ba6a6b0bc612" />
+                      </section>
+                      <section title="Walker" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#aed3db52fc5fb26185fddd3435aeb73ac" />
+                      <section title="~Walker" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#abda69cae6ab2acbb704b3123e425bd83" />
+                      <section title="actNode" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#ae62f2661d9a767ee0c15664c0d0a7c72" />
+                      <section title="Depth" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a72fdcb31622fdd4b1197a207a6a6685e" />
+                      <section title="GetCursor" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a02d96da317082d42803794d2fbfe121f" />
+                      <section title="GetPath" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#acb1bd0f66888b3d9c10b573503fb9965" />
+                      <section title="GetPathToNode" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#ad2bf1b9cd6730d20c29d23d3ff546472" />
+                      <section title="GetStringTree" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#aea0054286adc014b8b284ebfc31db385" />
+                      <section title="Invalidate" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#ab9adfea0e765ab447b8ce7730a6cd812" />
+                      <section title="IsInValid" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a45a55b577ab446624b703ff4bf726926" />
+                      <section title="IsValid" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#ac532c4b500b1a85ea22217f2c65a70ed" />
+                      <section title="Name" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a0e5b1128eca23e746052102f3f5da3bf" />
+                      <section title="Next" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a3947d19ac087ef2cd68c2409920339c4" />
+                      <section title="operator*" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a540e5588dffde890174a282451f73fb9" />
+                      <section title="PathGeneration" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a64e238d38a1f356bd6cea296bce93911" />
+                      <section title="SetIterator" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a99bcae7fcb22ef864d4117c7bff0aab8" />
+                      <section title="SetRecursionDepth" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a6c20c57704dd86f356475c00baa000ca" />
+                      <section title="setStart" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a9af457a291745d735711a8e2c95dbb82" />
+                      <section title="SetStart" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#abca5d5e1c5d92a7ed7ec223cdf2f24f5" />
+                      <section title="SetStart" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a801bc5e67c8af473e7d82001f5f53d34" />
+                      <section title="SetStart" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a9e7e87fb564e1188d0c90ee82a0895d5" />
+                      <section title="SetStart" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a5ed3ffdb311fab7a802993e37c0b2c57" />
+                      <section title="Size" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#af40990b9bd3d70d30e8ce7cdda1ad56f" />
+                      <section title="Skip" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a6f9a70e22db597ca69797f5cc7243f6e" />
+                      <section title="SortByPathname" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#aea47d131f21de7e5ad249dbef0392650" />
+                      <section title="SortByPathname" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a10e565569496ecb5e4388e6491bb82b5" />
+                      <section title="SortByValue" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#afa9982c792ea9f2f50cf94cb961b33fb" />
+                      <section title="StringTree" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#aa42c89c0eaa357d95820842673034eed" />
+                      <section title="actPath" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a59910a8fc21cdcafcd9e7ff1597014ed" />
+                      <section title="recursionDepth" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a9a1951fdc18bdd21f3de11073fc7fcfa" />
+                      <section title="sorter" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a8e66900276295535a5228ffb2aa9230a" />
+                      <section title="stack" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a666522b478075da983dd563dc99ee2cf" />
+                      <section title="stackSize" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a46e5dff29239c8fa0aa9a630df41494a" />
+                      <section title="stringTree" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a836095184e69ee547f80ebf11de862d6" />
+                    </section>
+                    <section title="TMap" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html#ad3a5e277feb31b2935875b70eef254c5" />
+                    <section title="StringTree" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html#a12c63bb97dceeb994767995edb79b8c9" />
+                    <section title="~StringTree" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html#a54346dff967e9fde7e8be616275f1f6d" />
+                    <section title="begin" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html#af76b3f0931ada73975a7d1dc15941f9e" />
+                    <section title="Clear" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html#aa71d36872f416feaa853788a7a7a7ef8" />
+                    <section title="end" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html#a9ea1f4bf0ddd2e732a5552084cdecc45" />
+                    <section title="operator()" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html#a26ba1ae3b47dffcf2673093ec30b087d" />
+                    <section title="Root" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html#aa82ebec74bb4a81000211e3dcdfdf9cc" />
+                    <section title="root" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html#a3f7db53410d0f3007de60cc3d64a0c09" />
+                  </section>
+                  <section title="StringTreeConstKeyAllocator" ref="structaworx_1_1lib_1_1containers_1_1StringTreeConstKeyAllocator.html">
+                    <section title="allocate" ref="structaworx_1_1lib_1_1containers_1_1StringTreeConstKeyAllocator.html#aa08d0bd0116f68e38afabf2de8e8547b" />
+                    <section title="free" ref="structaworx_1_1lib_1_1containers_1_1StringTreeConstKeyAllocator.html#ad3d7a5a43ac3c336642910e420d643f8" />
+                  </section>
+                  <section title="StringTreeDefaultKeyAllocator" ref="structaworx_1_1lib_1_1containers_1_1StringTreeDefaultKeyAllocator.html">
+                    <section title="allocate" ref="structaworx_1_1lib_1_1containers_1_1StringTreeDefaultKeyAllocator.html#a0fb6c02485fc184430b17929a37ad514" />
+                    <section title="free" ref="structaworx_1_1lib_1_1containers_1_1StringTreeDefaultKeyAllocator.html#a0dd07c008375ec74353ad866d92a4a49" />
                   </section>
                 </section>
                 <section title="debug" ref="namespaceaworx_1_1lib_1_1debug.html">
@@ -558,6 +678,9 @@
                     </section>
                     <section title="T_Apply&lt; lang::Safeness &gt;" ref="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Safeness_01_4.html">
                       <section title="Apply" ref="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Safeness_01_4.html#a527b10b5c1e6b3db9055628692b724c4" />
+                    </section>
+                    <section title="T_Apply&lt; lang::SortOrder &gt;" ref="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1SortOrder_01_4.html">
+                      <section title="Apply" ref="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1SortOrder_01_4.html#a63e55ad22ee3101a3b5099da78cd8d13" />
                     </section>
                     <section title="T_Apply&lt; lang::Switch &gt;" ref="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Switch_01_4.html">
                       <section title="Apply" ref="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Switch_01_4.html#a61da3bb97ef941f3a1708c00fd37832e" />
@@ -904,8 +1027,9 @@
                     <section title="operator[]" ref="classaworx_1_1lib_1_1strings_1_1AString.html#abfd3fe48201202d99c363ed273092540" />
                     <section title="ReplaceRegion" ref="classaworx_1_1lib_1_1strings_1_1AString.html#acdf4bf81ff03d3b84bc540d1856300cf" />
                     <section title="ReplaceSubstring" ref="classaworx_1_1lib_1_1strings_1_1AString.html#aeda9e1fea6e1f0edeef8b1f981d92e60" />
+                    <section title="SearchAndReplace" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a3dea5149dfa72d2f65829bed4bf3f86d" />
                     <section title="SearchAndReplace" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a770e00f028be0ce9b94fe850efd10de9" />
-                    <section title="SearchAndReplaceAll" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a55ef5d224c259a6ebe2f059f27db8f0e" />
+                    <section title="SearchAndReplaceAlx" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a77b0fe806bea96790ff7f27ff239685f" />
                     <section title="SetBuffer" ref="classaworx_1_1lib_1_1strings_1_1AString.html#af46aa90ed8d8900c4c6d19ef316efc2b" />
                     <section title="SetBuffer" ref="classaworx_1_1lib_1_1strings_1_1AString.html#ad9991b300e8a6f0b9a80b307ad4bf30b" />
                     <section title="SetCharAt" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a54fb0604a4fa956886055a2dee1e2cfa" />
@@ -1072,6 +1196,12 @@
                     <section title="operator=" ref="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html#a8d45c282eb1069917c4a0a1a5b76caac" />
                     <section title="preAllocBuf" ref="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html#a8b9dbb4b7dcd6efcb8275318c285f811" />
                   </section>
+                  <section title="std_Equals" ref="structaworx_1_1lib_1_1strings_1_1std__Equals.html">
+                    <section title="operator()" ref="structaworx_1_1lib_1_1strings_1_1std__Equals.html#a102cacda92d1f21f23a1cee7bce60aa3" />
+                  </section>
+                  <section title="std_Hash" ref="structaworx_1_1lib_1_1strings_1_1std__Hash.html">
+                    <section title="operator()" ref="structaworx_1_1lib_1_1strings_1_1std__Hash.html#a60a6a130773623fa03403ed3397f03be" />
+                  </section>
                   <section title="String" ref="classaworx_1_1lib_1_1strings_1_1String.html">
                     <section title="RandomAccessIteratorBase" ref="classaworx_1_1lib_1_1strings_1_1String_1_1RandomAccessIteratorBase.html">
                       <section title="RandomAccessIteratorBase" ref="classaworx_1_1lib_1_1strings_1_1String_1_1RandomAccessIteratorBase.html#a210929bd5a3d05843c11b2aeca89e9ed" />
@@ -1115,10 +1245,12 @@
                     <section title="EndsWith" ref="classaworx_1_1lib_1_1strings_1_1String.html#ad94f0e5b6be0fe047edc412b802bddc7" />
                     <section title="Equals" ref="classaworx_1_1lib_1_1strings_1_1String.html#af8afc22664fd3e83354780b3d3dd78cd" />
                     <section title="IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#a7365672c3c963ba88de5612e38e704bd" />
-                    <section title="IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#a6bcbc607a7c87baa70f6c2c739f3c218" />
+                    <section title="IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#ac05a3241d30fde1e58d95ba1f44ee72d" />
                     <section title="IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#abacc41ba7e94890340a82233f2538ecc" />
                     <section title="IndexOfAny" ref="classaworx_1_1lib_1_1strings_1_1String.html#a312ecf30301f4228a167052b58895ef5" />
                     <section title="IndexOfFirstDifference" ref="classaworx_1_1lib_1_1strings_1_1String.html#aa38812ea513734bb82f5eba9a87eedc3" />
+                    <section title="IndexOfOrLength" ref="classaworx_1_1lib_1_1strings_1_1String.html#abe7d75de817ac17c9104f47991cc0ae6" />
+                    <section title="IndexOfOrLength" ref="classaworx_1_1lib_1_1strings_1_1String.html#acc0a1951d59db9306be459bddf0b4fbb" />
                     <section title="IndexOfSubstring" ref="classaworx_1_1lib_1_1strings_1_1String.html#a0b2db8c097f2e27a96c64807c8d0edc4" />
                     <section title="IsEmpty" ref="classaworx_1_1lib_1_1strings_1_1String.html#a8e12342fc420701fbffd97025421575a" />
                     <section title="IsNotEmpty" ref="classaworx_1_1lib_1_1strings_1_1String.html#a6c546c3e5ed2e243ae839807fe633140" />
@@ -1144,6 +1276,8 @@
                     <section title="Copy" ref="classaworx_1_1lib_1_1strings_1_1StringLiteral.html#abe54b80eca850835aac62649d48de03c" />
                   </section>
                   <section title="Substring" ref="classaworx_1_1lib_1_1strings_1_1Substring.html">
+                    <section title="Substring" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#a5f56ec7bc62f19b85e690df023b8f1f8" />
+                    <section title="Substring" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#afbe72e673e9291a15be94c94157a195a" />
                     <section title="Clear" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#af3534dc253659982f8f5f646da7c951c" />
                     <section title="ConsumeBin" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#aa1489e0a893e57509f6ef5114c5070e4" />
                     <section title="consumeBinImpl" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#a664b047bdcd3364e4840b1b858ca5af7" />
@@ -1336,9 +1470,9 @@
                     <section title="ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ac1b7c80ef351b4ddeccf330b34121947" />
                     <section title="~ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a62d4d1d8df991fec098bbd8d5f19e34b" />
                     <section title="Acquire" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a607d6c96bfd21c3530e8a7fab9ca0395" />
-                    <section title="DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#af99e21e2f05c81744d2e6b5b66d14951" />
-                    <section title="GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a0268db1c6823138316436b214d486432" />
-                    <section title="GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a77946b26d73b3ba1ee0461f44dc66f1a" />
+                    <section title="DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#aceed656a3e262a10e366de4969fa4003" />
+                    <section title="GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ad990be5d1f5256638b1ddcc842a6ceb5" />
+                    <section title="GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7b2ea79ab83658e6c8b5f803c9b22475" />
                     <section title="Release" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c" />
                     <section title="SetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7610d5aa2df13cbaf64eb5ac17ddee71" />
                     <section title="cntAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a04735ee43ec4d1676e4e0eb3d6bebd73" />
@@ -1353,9 +1487,9 @@
                     <section title="ThreadLockNR" ref="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a5bb7c49696bda3229c1d118872a66e01" />
                     <section title="~ThreadLockNR" ref="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#ad2dd19f8e7eb364c570f32d320c470ff" />
                     <section title="Acquire" ref="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a07a42f9930e2b2f9b94a3d47d3088532" />
-                    <section title="Mode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#ac16f105ed992daecdfc46a7e3926c67d" />
+                    <section title="GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a7b2ea79ab83658e6c8b5f803c9b22475" />
                     <section title="Release" ref="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a84a1506acc1e04455ebc3bc724265872" />
-                    <section title="SetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#ace03bc4a7b698247b11b2b2cb16ae99d" />
+                    <section title="SetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a7610d5aa2df13cbaf64eb5ac17ddee71" />
                     <section title="dbgIsAcquired" ref="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a9426fc5fde1af618b0afd97ff21c1b6c" />
                     <section title="mutex" ref="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a925e97cfc2fb5e3b27bd06f805668a9d" />
                   </section>
@@ -1628,7 +1762,7 @@
                   </section>
                   <section title="ScopeDump" ref="classaworx_1_1lox_1_1core_1_1ScopeDump.html">
                     <section title="ScopeDump" ref="classaworx_1_1lox_1_1core_1_1ScopeDump.html#a62e1dda70b97ff9daa0b12f0e5670b80" />
-                    <section title="storeKeyToScope" ref="classaworx_1_1lox_1_1core_1_1ScopeDump.html#a5a2f983c8c5be78a45fbbeb8c4bde6a4" />
+                    <section title="storeKeyToScope" ref="classaworx_1_1lox_1_1core_1_1ScopeDump.html#a99e7583b06550214b1a6eede977c37bb" />
                     <section title="storeThreadToScope" ref="classaworx_1_1lox_1_1core_1_1ScopeDump.html#aa8e35644877b44cceea3c76ef1961b6c" />
                     <section title="writeStore" ref="classaworx_1_1lox_1_1core_1_1ScopeDump.html#a2ac85963ae7b731f047051b4d593b58e" />
                     <section title="writeStoreMap" ref="classaworx_1_1lox_1_1core_1_1ScopeDump.html#a0300c0e3bf0ca655848b1737e500a9f9" />
@@ -1709,19 +1843,19 @@
                     <section title="access" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a9d948185e80ad3706923867cfe608317" />
                     <section title="Clear" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a8276b692283d7725759466633f2c8211" />
                     <section title="Get" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a19b162b0d416fc5be7f1f6a91c718c3e" />
-                    <section title="getPathMapNode" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#ad1305df36b6dfcde87eded99e9e9424b" />
                     <section title="InitAccess" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a15cc8a2338769a04748e8964f2659b42" />
+                    <section title="initCursor" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a17a9a02a8a9868b496bcba471d2167dc" />
                     <section title="InitWalk" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a6c7957bf7f600d4bf0aaef683b2e6c3e" />
                     <section title="Remove" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a4b6e9ae247a950ed1b5d5d82c72b1440" />
                     <section title="Store" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a5361906d7ce4b2ca6c3f676c85cf01fd" />
                     <section title="Walk" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a262f597e568a196dcb284fb1c859c8d6" />
                     <section title="actPathLevel" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#aa5ede8468c729de0886d3bc84d31714e" />
-                    <section title="actPathMapNode" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a77c6ecbc68ffa22251428b4763a3d3b7" />
                     <section title="actScope" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#ab420b6d519025a485c6345895ad174ee" />
+                    <section title="actStringTreeNode" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#aaa7843809af7e19d81ee97aa858e154a" />
                     <section title="actThreadID" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#afd0f796ebbfae3564416016c197c27b1" />
                     <section title="cfgSingleThreadValue" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#ac8ebbb91a987a22c90eae5a4c72ecbc0" />
                     <section title="globalStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#ad5f544834c72f2e639cda32bfdf4914b" />
-                    <section title="languageStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a1251572d8e2460a60f89fd2372e71c63" />
+                    <section title="languageStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#aba93a3fc3081b13d6589ae4677b08012" />
                     <section title="lazyLanguageNode" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a531fce640b5915cd0496ba8c3c1058db" />
                     <section title="scopeInfo" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#aef20e807838c38a874e2952fa989535b" />
                     <section title="threadInnerStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a344205164cffc3c7c0a6191c9a716b8f" />
@@ -2091,6 +2225,7 @@
               </section>
             </section>
             <section title="CString" ref="classaworx_1_1lib_1_1strings_1_1CString.html" />
+            <section title="StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Cursor" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html" />
             <section title="Directory" ref="classaworx_1_1lib_1_1system_1_1Directory.html" />
             <section title="Domain" ref="classaworx_1_1lox_1_1core_1_1Domain.html" />
             <section title="Lox::DomainSubstitutionRule" ref="structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html" />
@@ -2140,14 +2275,14 @@
               </section>
             </section>
             <section title="iterator">
-              <section title="PathMap&lt; StoreT &gt;::Iterator" ref="classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html" />
+              <section title="StringTree&lt; T, TKeyAllocator, TSeparator &gt;::StdIterator" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html" />
               <section title="String::RandomAccessIteratorBase&lt; TPointer, TReference &gt;" ref="classaworx_1_1lib_1_1strings_1_1String_1_1RandomAccessIteratorBase.html" />
             </section>
             <section title="Log" ref="classaworx_1_1lox_1_1Log.html" />
             <section title="Domain::LoggerData" ref="structaworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html" />
             <section title="MemoryBlocks" ref="classaworx_1_1lib_1_1lang_1_1MemoryBlocks.html" />
             <section title="MetaInfo" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" />
-            <section title="PathMap&lt; StoreT &gt;::Iterator::NodeAndChild" ref="structaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator_1_1NodeAndChild.html" />
+            <section title="StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Node" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html" />
             <section title="NumberFormat" ref="classaworx_1_1lib_1_1strings_1_1NumberFormat.html" />
             <section title="ObjectConverter" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html">
               <section title="StandardConverter" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1StandardConverter.html" />
@@ -2177,13 +2312,10 @@
               <section title="ThreadLockNR" ref="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html" />
             </section>
             <section title="Owner" ref="structaworx_1_1lib_1_1lang_1_1Owner.html" />
-            <section title="PathMap&lt; StoreT &gt;" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html" />
-            <section title="PathMap&lt; aworx::lib::boxing::Box *&gt;" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html" />
-            <section title="PathMap&lt; aworx::lib::strings::AString *&gt;" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html" />
-            <section title="PathMap&lt; std::map&lt; aworx::lib::strings::AString, aworx::lib::boxing::Box &gt; *&gt;" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html" />
-            <section title="PathMap&lt; std::map&lt; aworx::lib::strings::AString, int &gt; *&gt;" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html" />
             <section title="ProcessInfo" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html" />
             <section title="ReadLineFromIStream" ref="classaworx_1_1lib_1_1strings_1_1thirdparty_1_1std_1_1ReadLineFromIStream.html" />
+            <section title="StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Walker::RecursionData" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html" />
+            <section title="StringTree&lt; T, TKeyAllocator, TSeparator &gt;::StdIterator::RecursionDataIt" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator_1_1RecursionDataIt.html" />
             <section title="Report" ref="classaworx_1_1lib_1_1lang_1_1Report.html" />
             <section title="ReportWriter" ref="classaworx_1_1lib_1_1lang_1_1ReportWriter.html">
               <section title="ReportWriterStdIO" ref="classaworx_1_1lib_1_1lang_1_1ReportWriterStdIO.html" />
@@ -2225,9 +2357,12 @@
             <section title="Singleton&lt; ReportWriterStdIO &gt;" ref="classaworx_1_1lib_1_1lang_1_1Singleton.html">
               <section title="ReportWriterStdIO" ref="classaworx_1_1lib_1_1lang_1_1ReportWriterStdIO.html" />
             </section>
+            <section title="StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Walker::Sorter" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1Sorter.html" />
             <section title="ScopeInfo::SourceFile" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html" />
             <section title="ScopeInfo::SourcePathTrimRule" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html" />
             <section title="Spaces" ref="classaworx_1_1lib_1_1strings_1_1util_1_1Spaces.html" />
+            <section title="std_Equals" ref="structaworx_1_1lib_1_1strings_1_1std__Equals.html" />
+            <section title="std_Hash" ref="structaworx_1_1lib_1_1strings_1_1std__Hash.html" />
             <section title="String" ref="classaworx_1_1lib_1_1strings_1_1String.html">
               <section title="Substring" ref="classaworx_1_1lib_1_1strings_1_1Substring.html" />
               <section title="TString" ref="classaworx_1_1lib_1_1strings_1_1TString.html">
@@ -2247,6 +2382,14 @@
                 <section title="StringLiteral&lt; 5 &gt;" ref="classaworx_1_1lib_1_1strings_1_1StringLiteral.html" />
               </section>
             </section>
+            <section title="StringTree&lt; T, TKeyAllocator, TSeparator &gt;" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html" />
+            <section title="StringTree&lt; aworx::lib::boxing::Box *&gt;" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html" />
+            <section title="StringTree&lt; aworx::lib::strings::AString *&gt;" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html" />
+            <section title="StringTree&lt; std::map&lt; aworx::lib::strings::AString, aworx::lib::boxing::Box &gt; *&gt;" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html" />
+            <section title="StringTree&lt; std::map&lt; aworx::lib::strings::AString, int &gt; *&gt;" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html" />
+            <section title="StringTree&lt; StoreT &gt;" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html" />
+            <section title="StringTreeConstKeyAllocator&lt; T &gt;" ref="structaworx_1_1lib_1_1containers_1_1StringTreeConstKeyAllocator.html" />
+            <section title="StringTreeDefaultKeyAllocator&lt; T &gt;" ref="structaworx_1_1lib_1_1containers_1_1StringTreeDefaultKeyAllocator.html" />
             <section title="Format::Tab" ref="structaworx_1_1lib_1_1strings_1_1Format_1_1Tab.html" />
             <section title="Ticks" ref="classaworx_1_1lib_1_1time_1_1Ticks.html" />
             <section title="TicksCalendarTime" ref="classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html" />
@@ -2283,6 +2426,7 @@
               <section title="T_Apply&lt; lang::Propagation &gt;" ref="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Propagation_01_4.html" />
               <section title="T_Apply&lt; lang::Responsibility &gt;" ref="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Responsibility_01_4.html" />
               <section title="T_Apply&lt; lang::Safeness &gt;" ref="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Safeness_01_4.html" />
+              <section title="T_Apply&lt; lang::SortOrder &gt;" ref="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1SortOrder_01_4.html" />
               <section title="T_Apply&lt; lang::Switch &gt;" ref="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Switch_01_4.html" />
               <section title="T_Apply&lt; lang::Timezone &gt;" ref="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Timezone_01_4.html" />
               <section title="T_Apply&lt; lang::Whitespaces &gt;" ref="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Whitespaces_01_4.html" />
@@ -2328,6 +2472,7 @@
               </section>
               <section title="StringTuples&lt; TAssociatedTypes &gt;" ref="classaworx_1_1lib_1_1strings_1_1util_1_1StringTuples.html" />
             </section>
+            <section title="StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Walker" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html" />
             <section title="XTernalizer" ref="classaworx_1_1lib_1_1config_1_1XTernalizer.html" />
           </section>
           <section title="Class Members" ref="functions.html">
@@ -2441,6 +2586,7 @@
       <keyword name="LOG_ACQUIRE" id="alox_macros.hpp::LOG_ACQUIRE" ref="alox__macros_8hpp.html#ga105a9f44250c23d6bb37df63aa9d9cbe" />
       <keyword name="Log_AddDebugLogger" id="alox_macros.hpp::Log_AddDebugLogger" ref="alox__macros_8hpp.html#gaa891e8485ea970f574971c6afd851218" />
       <keyword name="Log_Assert" id="alox_macros.hpp::Log_Assert" ref="alox__macros_8hpp.html#ga2797c2e9f997606c3c786fa68720ac71" />
+      <keyword name="LOG_CI" id="alox_macros.hpp::LOG_CI" ref="alox__macros_8hpp.html#gab22206221434dc470889fa39d451c5fb" />
       <keyword name="Log_ClearSourcePathTrimRules" id="alox_macros.hpp::Log_ClearSourcePathTrimRules" ref="alox__macros_8hpp.html#gaff8f037b778ce73b40e0c7a0506a8718" />
       <keyword name="Log_Entry" id="alox_macros.hpp::Log_Entry" ref="alox__macros_8hpp.html#ga9ac05a63013c784625c66685ad51aff3" />
       <keyword name="Log_Error" id="alox_macros.hpp::Log_Error" ref="alox__macros_8hpp.html#ga8d8e6df0e755763bd471751235199baf" />
@@ -2468,6 +2614,7 @@
       <keyword name="Log_Warning" id="alox_macros.hpp::Log_Warning" ref="alox__macros_8hpp.html#gaa9822f0eda4cc7e9c3f3e99d6238f2aa" />
       <keyword name="LOX_ACQUIRE" id="alox_macros.hpp::LOX_ACQUIRE" ref="alox__macros_8hpp.html#ga9ac629621d8152810e41e19931c990a1" />
       <keyword name="Lox_Assert" id="alox_macros.hpp::Lox_Assert" ref="alox__macros_8hpp.html#ga4d9961312aab181a28b21724c3809184" />
+      <keyword name="LOX_CI" id="alox_macros.hpp::LOX_CI" ref="alox__macros_8hpp.html#ga94ca091e7e2c3556c74473ff0615b587" />
       <keyword name="Lox_ClearSourcePathTrimRules" id="alox_macros.hpp::Lox_ClearSourcePathTrimRules" ref="alox__macros_8hpp.html#ga1689da460f8040489689b3f45cf1e6b2" />
       <keyword name="Lox_Entry" id="alox_macros.hpp::Lox_Entry" ref="alox__macros_8hpp.html#ga3ee12da39c3574baf4fb03f7f323c886" />
       <keyword name="Lox_Error" id="alox_macros.hpp::Lox_Error" ref="alox__macros_8hpp.html#ga5fa12e4bc99fd2ebed4fe90729f54a03" />
@@ -2585,6 +2732,8 @@
       <keyword name="Responsibility" id="enums.hpp::Responsibility" ref="enums_8hpp.html#a3671252255ccd69a9165a3cc752cb73e" />
       <keyword name="Result" id="enums.hpp::Result" ref="enums_8hpp.html#a20d057ff1a7079bfd81da875491fe3ef" />
       <keyword name="Safeness" id="enums.hpp::Safeness" ref="enums_8hpp.html#aa79d65dae6fee850c4a638c5bb26b1e3" />
+      <keyword name="SortOrder" id="enums.hpp::SortOrder" ref="enums_8hpp.html#a086789c0b56e605b79bf57d0fd53b306" />
+      <keyword name="SourceData" id="enums.hpp::SourceData" ref="enums_8hpp.html#acdb8e25ed050d0001a0389e38aa5ef75" />
       <keyword name="Switch" id="enums.hpp::Switch" ref="enums_8hpp.html#a68e1ec4ff4ca04def6fdd7fe217a245a" />
       <keyword name="Timezone" id="enums.hpp::Timezone" ref="enums_8hpp.html#a1502492c46a08f4f2c114afd9bb7604c" />
       <keyword name="Whitespaces" id="enums.hpp::Whitespaces" ref="enums_8hpp.html#a48b158f1a264112a9b35979d369647cf" />
@@ -2617,9 +2766,6 @@
       <keyword name="MemoryLogger" id="memorylogger.hpp::MemoryLogger" ref="memorylogger_8hpp.html#aff4e02a238ba03a98be3dd17d783f336" />
       <keyword name="NumberFormat" id="numberformat.hpp::NumberFormat" ref="numberformat_8hpp.html#a4105ad142b7282bab44c0f051d36e350" />
       <keyword name="OWN" id="ownable.hpp::OWN" ref="ownable_8hpp.html#ga428418e97842561b5fa5118c120954a9" />
-      <keyword name="PathMap" id="pathmap.hpp::PathMap" ref="pathmap_8hpp.html#a40dd35c549af4dcf094f486d3f2dca1f" />
-      <keyword name="begin" id="pathmap.hpp::begin" ref="pathmap_8hpp.html#a3c9cd89161562d9d1c346f6f82666108" />
-      <keyword name="end" id="pathmap.hpp::end" ref="pathmap_8hpp.html#a493642c7093a3913fb626ebd25eb4c7d" />
       <keyword name="PAString" id="preallocatedstring.hpp::PAString" ref="preallocatedstring_8hpp.html#a10e9458c58956ec05a324232fc1cc9e4" />
       <keyword name="String128" id="preallocatedstring.hpp::String128" ref="preallocatedstring_8hpp.html#a2841f1443c3b2f3d6066d5774cf69dbc" />
       <keyword name="String16" id="preallocatedstring.hpp::String16" ref="preallocatedstring_8hpp.html#a148a217c34a72b4360462205858b8f0e" />
@@ -2709,6 +2855,11 @@
       <keyword name="SLiteral" id="stringliteral.hpp::SLiteral" ref="stringliteral_8hpp.html#af631a26bf70ad6d6143973fadf779747" />
       <keyword name="DefaultWhitespaces" id="stringliteral.hpp::DefaultWhitespaces" ref="stringliteral_8hpp.html#a5feaaf6a8fb11e8ebbb0013ec9f27b01" />
       <keyword name="NewLine" id="stringliteral.hpp::NewLine" ref="stringliteral_8hpp.html#aa10e6e7d79efb2051b5e761d6980ab6e" />
+      <keyword name="StringTree" id="stringtree.hpp::StringTree" ref="stringtree_8hpp.html#ada54a4f56e3fabc4516eba3749b7c7a2" />
+      <keyword name="begin" id="stringtree.hpp::begin" ref="stringtree_8hpp.html#a7454324241afdb2b92daca88523fb437" />
+      <keyword name="begin" id="stringtree.hpp::begin" ref="stringtree_8hpp.html#a724e81d4d9de656506f4c9be7bcdf980" />
+      <keyword name="end" id="stringtree.hpp::end" ref="stringtree_8hpp.html#ab39178269c9c1686af2432855fbaaec4" />
+      <keyword name="end" id="stringtree.hpp::end" ref="stringtree_8hpp.html#a4d00613d7ad7a13d31df34c9b5ef1fd5" />
       <keyword name="StringTuples" id="stringtuples.hpp::StringTuples" ref="stringtuples_8hpp.html#aa0aafb6be60b02340000199f1a508044" />
       <keyword name="TextFileLogger" id="textfilelogger.hpp::TextFileLogger" ref="textfilelogger_8hpp.html#ae64ac3b33c7c180e92559a869977fda0" />
       <keyword name="TextLogger" id="textlogger.hpp::TextLogger" ref="textlogger_8hpp.html#a8d1a5942495395f77e31bb5d451c332b" />
@@ -2821,9 +2972,11 @@
       <keyword name="ALox Low level Macros" id="ALox Low level Macros" ref="group__GrpALoxMacrosLowLevel.html" />
       <keyword name="ALOX_API" id="alox.hpp::ALOX_API" ref="alox_8hpp.html#ga2cde43a12bd2be40baa4896e409d642c" />
       <keyword name="LOG_ACQUIRE" id="alox_macros.hpp::LOG_ACQUIRE" ref="alox__macros_8hpp.html#ga105a9f44250c23d6bb37df63aa9d9cbe" />
+      <keyword name="LOG_CI" id="alox_macros.hpp::LOG_CI" ref="alox__macros_8hpp.html#gab22206221434dc470889fa39d451c5fb" />
       <keyword name="LOG_LOX" id="alox_macros.hpp::LOG_LOX" ref="alox__macros_8hpp.html#ga71f7449b6ad8bbd0ba22f897d7338a22" />
       <keyword name="LOG_RELEASE" id="alox_macros.hpp::LOG_RELEASE" ref="alox__macros_8hpp.html#ga0d5795316ecfccc7b40b43c01bf62b0e" />
       <keyword name="LOX_ACQUIRE" id="alox_macros.hpp::LOX_ACQUIRE" ref="alox__macros_8hpp.html#ga9ac629621d8152810e41e19931c990a1" />
+      <keyword name="LOX_CI" id="alox_macros.hpp::LOX_CI" ref="alox__macros_8hpp.html#ga94ca091e7e2c3556c74473ff0615b587" />
       <keyword name="LOX_LOX" id="alox_macros.hpp::LOX_LOX" ref="alox__macros_8hpp.html#ga1f170b96d3ead37b7f530134e64bf121" />
       <keyword name="LOX_RELEASE" id="alox_macros.hpp::LOX_RELEASE" ref="alox__macros_8hpp.html#ga2ef98e816bdf36da37bb9bddbdfd635f" />
       <keyword name="ALox Macros For Debug Logging" id="ALox Macros For Debug Logging" ref="group__GrpMacrosDebugLog.html" />
@@ -2940,7 +3093,6 @@
       <keyword name="MemoryLogger" id="aworx::MemoryLogger" ref="namespaceaworx.html#aff4e02a238ba03a98be3dd17d783f336" />
       <keyword name="NumberFormat" id="aworx::NumberFormat" ref="namespaceaworx.html#a4105ad142b7282bab44c0f051d36e350" />
       <keyword name="PAString" id="aworx::PAString" ref="namespaceaworx.html#a10e9458c58956ec05a324232fc1cc9e4" />
-      <keyword name="PathMap" id="aworx::PathMap" ref="namespaceaworx.html#a40dd35c549af4dcf094f486d3f2dca1f" />
       <keyword name="Phase" id="aworx::Phase" ref="namespaceaworx.html#a4c5a62df6ce3760e0672fb1f646327cc" />
       <keyword name="ProcessInfo" id="aworx::ProcessInfo" ref="namespaceaworx.html#a8644368b56cf61a16e37300584a1d4e2" />
       <keyword name="Propagation" id="aworx::Propagation" ref="namespaceaworx.html#a50769d759702817f6ed82fcf71854408" />
@@ -2955,6 +3107,8 @@
       <keyword name="Singleton" id="aworx::Singleton" ref="namespaceaworx.html#a853db7b4d3eea2d12c2aef317b6110ee" />
       <keyword name="SLiteral" id="aworx::SLiteral" ref="namespaceaworx.html#af631a26bf70ad6d6143973fadf779747" />
       <keyword name="SmartLock" id="aworx::SmartLock" ref="namespaceaworx.html#aee1cd004a3010e8ee798517d96c1ffca" />
+      <keyword name="SortOrder" id="aworx::SortOrder" ref="namespaceaworx.html#a086789c0b56e605b79bf57d0fd53b306" />
+      <keyword name="SourceData" id="aworx::SourceData" ref="namespaceaworx.html#acdb8e25ed050d0001a0389e38aa5ef75" />
       <keyword name="Spaces" id="aworx::Spaces" ref="namespaceaworx.html#a9f69e16cb165fb1d0263890b165a5613" />
       <keyword name="String" id="aworx::String" ref="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d" />
       <keyword name="String128" id="aworx::String128" ref="namespaceaworx.html#a2841f1443c3b2f3d6066d5774cf69dbc" />
@@ -2968,6 +3122,7 @@
       <keyword name="String64" id="aworx::String64" ref="namespaceaworx.html#ac2fdc487456a994238ba4284b3859c41" />
       <keyword name="String8" id="aworx::String8" ref="namespaceaworx.html#ab35696c2e8d79567a528a4b6da788eb3" />
       <keyword name="Strings" id="aworx::Strings" ref="namespaceaworx.html#abc46e42927a238007065da5265423816" />
+      <keyword name="StringTree" id="aworx::StringTree" ref="namespaceaworx.html#ada54a4f56e3fabc4516eba3749b7c7a2" />
       <keyword name="StringTuples" id="aworx::StringTuples" ref="namespaceaworx.html#aa0aafb6be60b02340000199f1a508044" />
       <keyword name="Substring" id="aworx::Substring" ref="namespaceaworx.html#afed2e22d908094b0badbf8ac4d5f3900" />
       <keyword name="Switch" id="aworx::Switch" ref="namespaceaworx.html#a68e1ec4ff4ca04def6fdd7fe217a245a" />
@@ -3319,9 +3474,9 @@
       <keyword name="ThreadLock" id="aworx::lib::threads::ThreadLock::ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ac1b7c80ef351b4ddeccf330b34121947" />
       <keyword name="~ThreadLock" id="aworx::lib::threads::ThreadLock::~ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a62d4d1d8df991fec098bbd8d5f19e34b" />
       <keyword name="Acquire" id="aworx::lib::threads::ThreadLock::Acquire" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a607d6c96bfd21c3530e8a7fab9ca0395" />
-      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#af99e21e2f05c81744d2e6b5b66d14951" />
-      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a0268db1c6823138316436b214d486432" />
-      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a77946b26d73b3ba1ee0461f44dc66f1a" />
+      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#aceed656a3e262a10e366de4969fa4003" />
+      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ad990be5d1f5256638b1ddcc842a6ceb5" />
+      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7b2ea79ab83658e6c8b5f803c9b22475" />
       <keyword name="Release" id="aworx::lib::threads::ThreadLock::Release" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c" />
       <keyword name="SetSafeness" id="aworx::lib::threads::ThreadLock::SetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7610d5aa2df13cbaf64eb5ac17ddee71" />
       <keyword name="~Ownable" id="aworx::lib::lang::Ownable::~Ownable" ref="classaworx_1_1lib_1_1lang_1_1Ownable.html#a0cf51e767ecc62f4adc80e8d69e066df" />
@@ -3498,31 +3653,146 @@
       <keyword name="InternalizeValue" id="aworx::lib::config::XTernalizer::InternalizeValue" ref="classaworx_1_1lib_1_1config_1_1XTernalizer.html#a2a51acb7abba2b88df033efbcc356f92" />
       <keyword name="LoadFromString" id="aworx::lib::config::XTernalizer::LoadFromString" ref="classaworx_1_1lib_1_1config_1_1XTernalizer.html#adeb8b4a1df5c756294f6c354b5d185e4" />
       <keyword name="aworx::lib::containers" id="aworx::lib::containers" ref="namespaceaworx_1_1lib_1_1containers.html" />
-      <keyword name="begin" id="aworx::lib::containers::begin" ref="namespaceaworx_1_1lib_1_1containers.html#a3c9cd89161562d9d1c346f6f82666108" />
-      <keyword name="end" id="aworx::lib::containers::end" ref="namespaceaworx_1_1lib_1_1containers.html#a493642c7093a3913fb626ebd25eb4c7d" />
-      <keyword name="aworx::lib::containers::PathMap" id="aworx::lib::containers::PathMap" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html" />
-      <keyword name="Children" id="aworx::lib::containers::PathMap::Children" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html#afe6e54f5638b38180db181a521b86d81" />
-      <keyword name="Parent" id="aworx::lib::containers::PathMap::Parent" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html#ada6ee4f09fb99fb511bcab41e0e56a86" />
-      <keyword name="Path" id="aworx::lib::containers::PathMap::Path" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html#a5e583dd1bf88abfb28487df2f676a6e8" />
-      <keyword name="Value" id="aworx::lib::containers::PathMap::Value" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html#acc64411e4973d80d6983e983f9ce7f0e" />
-      <keyword name="PathMap" id="aworx::lib::containers::PathMap::PathMap" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html#aaccccfd0b10107ddbacf38c91f873caa" />
-      <keyword name="~PathMap" id="aworx::lib::containers::PathMap::~PathMap" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html#a822667eea97b87b37dd5bc7ac2604df2" />
-      <keyword name="Clear" id="aworx::lib::containers::PathMap::Clear" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html#aa71d36872f416feaa853788a7a7a7ef8" />
-      <keyword name="Get" id="aworx::lib::containers::PathMap::Get" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html#a7046c5973df23b42d51def0cc83ec30a" />
-      <keyword name="Remove" id="aworx::lib::containers::PathMap::Remove" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html#a8f18aa974dae0df745dcb929542c462a" />
-      <keyword name="get" id="aworx::lib::containers::PathMap::get" ref="classaworx_1_1lib_1_1containers_1_1PathMap.html#ae5b636df31556bf9f00d3b88c769cbf1" />
-      <keyword name="aworx::lib::containers::PathMap::Iterator" id="aworx::lib::containers::PathMap::Iterator" ref="classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html" />
-      <keyword name="Iterator" id="aworx::lib::containers::PathMap::Iterator::Iterator" ref="classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html#a1f703720e1f5d97a0386c2dfe803c763" />
-      <keyword name="Iterator" id="aworx::lib::containers::PathMap::Iterator::Iterator" ref="classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html#a7068350d054e5b6f4375389138dfd1d2" />
-      <keyword name="operator!=" id="aworx::lib::containers::PathMap::Iterator::operator!=" ref="classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html#a710b1a5c9f835b20b87a76ce12e4f305" />
-      <keyword name="operator*" id="aworx::lib::containers::PathMap::Iterator::operator*" ref="classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html#ad97d683cf8326374172493c7627fc6b3" />
-      <keyword name="operator++" id="aworx::lib::containers::PathMap::Iterator::operator++" ref="classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html#aef12ef33726bc591f569f822c7b5ac41" />
-      <keyword name="operator==" id="aworx::lib::containers::PathMap::Iterator::operator==" ref="classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html#afa6d6a2524fd46358a3bb52adda04a97" />
-      <keyword name="nodesAndChildren" id="aworx::lib::containers::PathMap::Iterator::nodesAndChildren" ref="classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html#a5253ccc0099024a2803a330551523d3f" />
-      <keyword name="aworx::lib::containers::PathMap::Iterator::NodeAndChild" id="aworx::lib::containers::PathMap::Iterator::NodeAndChild" ref="structaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator_1_1NodeAndChild.html" />
-      <keyword name="childNo" id="aworx::lib::containers::PathMap::Iterator::NodeAndChild::childNo" ref="structaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator_1_1NodeAndChild.html#ac10cf46c3127cd5d178f7dafd27307eb" />
-      <keyword name="node" id="aworx::lib::containers::PathMap::Iterator::NodeAndChild::node" ref="structaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator_1_1NodeAndChild.html#affa9990544a6dc2526546efc06c9d391" />
-      <keyword name="NodeAndChild" id="aworx::lib::containers::PathMap::Iterator::NodeAndChild::NodeAndChild" ref="structaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator_1_1NodeAndChild.html#a27186a9a80a880dc0fcc022155db0d0f" />
+      <keyword name="begin" id="aworx::lib::containers::begin" ref="namespaceaworx_1_1lib_1_1containers.html#a7454324241afdb2b92daca88523fb437" />
+      <keyword name="begin" id="aworx::lib::containers::begin" ref="namespaceaworx_1_1lib_1_1containers.html#a724e81d4d9de656506f4c9be7bcdf980" />
+      <keyword name="end" id="aworx::lib::containers::end" ref="namespaceaworx_1_1lib_1_1containers.html#ab39178269c9c1686af2432855fbaaec4" />
+      <keyword name="end" id="aworx::lib::containers::end" ref="namespaceaworx_1_1lib_1_1containers.html#a4d00613d7ad7a13d31df34c9b5ef1fd5" />
+      <keyword name="aworx::lib::containers::StringTree" id="aworx::lib::containers::StringTree" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html" />
+      <keyword name="StringTree" id="aworx::lib::containers::StringTree::StringTree" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html#a12c63bb97dceeb994767995edb79b8c9" />
+      <keyword name="~StringTree" id="aworx::lib::containers::StringTree::~StringTree" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html#a54346dff967e9fde7e8be616275f1f6d" />
+      <keyword name="begin" id="aworx::lib::containers::StringTree::begin" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html#af76b3f0931ada73975a7d1dc15941f9e" />
+      <keyword name="Clear" id="aworx::lib::containers::StringTree::Clear" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html#aa71d36872f416feaa853788a7a7a7ef8" />
+      <keyword name="end" id="aworx::lib::containers::StringTree::end" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html#a9ea1f4bf0ddd2e732a5552084cdecc45" />
+      <keyword name="operator()" id="aworx::lib::containers::StringTree::operator()" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html#a26ba1ae3b47dffcf2673093ec30b087d" />
+      <keyword name="Root" id="aworx::lib::containers::StringTree::Root" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html#aa82ebec74bb4a81000211e3dcdfdf9cc" />
+      <keyword name="TMap" id="aworx::lib::containers::StringTree::TMap" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html#ad3a5e277feb31b2935875b70eef254c5" />
+      <keyword name="root" id="aworx::lib::containers::StringTree::root" ref="classaworx_1_1lib_1_1containers_1_1StringTree.html#a3f7db53410d0f3007de60cc3d64a0c09" />
+      <keyword name="aworx::lib::containers::StringTree::Cursor" id="aworx::lib::containers::StringTree::Cursor" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html" />
+      <keyword name="Cursor" id="aworx::lib::containers::StringTree::Cursor::Cursor" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#aac48d32ae03fdb956a08ecc8c36e9ca9" />
+      <keyword name="Cursor" id="aworx::lib::containers::StringTree::Cursor::Cursor" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a9d2203168bb2489b91572f716cf7ef02" />
+      <keyword name="begin" id="aworx::lib::containers::StringTree::Cursor::begin" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a7794c681cde49fe79ce350908e021046" />
+      <keyword name="Clone" id="aworx::lib::containers::StringTree::Cursor::Clone" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a716af637049daa5f0a7c9ef4d68c4990" />
+      <keyword name="DeleteChild" id="aworx::lib::containers::StringTree::Cursor::DeleteChild" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a7a295ee417e1a43185684997b60c1d2c" />
+      <keyword name="DeleteChildren" id="aworx::lib::containers::StringTree::Cursor::DeleteChildren" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a63f4720668cc61ddf555b470b9eec188" />
+      <keyword name="Depth" id="aworx::lib::containers::StringTree::Cursor::Depth" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a72fdcb31622fdd4b1197a207a6a6685e" />
+      <keyword name="end" id="aworx::lib::containers::StringTree::Cursor::end" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a9ea1f4bf0ddd2e732a5552084cdecc45" />
+      <keyword name="GetStringTree" id="aworx::lib::containers::StringTree::Cursor::GetStringTree" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#aea0054286adc014b8b284ebfc31db385" />
+      <keyword name="IsInvalid" id="aworx::lib::containers::StringTree::Cursor::IsInvalid" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#aad9bf43dc400b86b4afe746243f6d3fe" />
+      <keyword name="IsRoot" id="aworx::lib::containers::StringTree::Cursor::IsRoot" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#ac8cbef7a1c768ebd43aa897165044ecf" />
+      <keyword name="IsValid" id="aworx::lib::containers::StringTree::Cursor::IsValid" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a9dcb9b43a3d0fa9003d4c1c9d921f6b2" />
+      <keyword name="MoveTo" id="aworx::lib::containers::StringTree::Cursor::MoveTo" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a21206644be243178e0e95deade9b8414" />
+      <keyword name="MoveToAndCreateNonExistingPart" id="aworx::lib::containers::StringTree::Cursor::MoveToAndCreateNonExistingPart" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#acb8e5ddc037c4ff8db8150ed5ccbc890" />
+      <keyword name="MoveToChild" id="aworx::lib::containers::StringTree::Cursor::MoveToChild" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#ae96a4d518a6f17184d8e5a31565f8dfe" />
+      <keyword name="MoveToChildCreate" id="aworx::lib::containers::StringTree::Cursor::MoveToChildCreate" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a3c8dc99948de5c8c6cb02ef31324547d" />
+      <keyword name="MoveToExistingPart" id="aworx::lib::containers::StringTree::Cursor::MoveToExistingPart" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#aedaf3d8965224d5bee561a01fcb66929" />
+      <keyword name="MoveToParent" id="aworx::lib::containers::StringTree::Cursor::MoveToParent" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#af240df28a6292c10753b81de82f40b47" />
+      <keyword name="MoveToParentUnchecked" id="aworx::lib::containers::StringTree::Cursor::MoveToParentUnchecked" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a92b32ed64afe9459f6b6673712e990f1" />
+      <keyword name="operator!=" id="aworx::lib::containers::StringTree::Cursor::operator!=" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a6493e37b9a61ba82726b9fb938bcc820" />
+      <keyword name="operator*" id="aworx::lib::containers::StringTree::Cursor::operator*" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a7dec280fcc6cd89b58980bbd6ca0d275" />
+      <keyword name="operator==" id="aworx::lib::containers::StringTree::Cursor::operator==" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#ae239ee88a87c5bb30f1a81c143a0e063" />
+      <keyword name="Root" id="aworx::lib::containers::StringTree::Cursor::Root" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a4fbe8b40cbff94ba584dec59d6e868f2" />
+      <keyword name="SearchName" id="aworx::lib::containers::StringTree::Cursor::SearchName" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#afb35c61dc3e6668614ce42afaede10cb" />
+      <keyword name="SearchNodeNameAndDeleteNode" id="aworx::lib::containers::StringTree::Cursor::SearchNodeNameAndDeleteNode" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a67b309c45890aeb5709b39ffdae0c89b" />
+      <keyword name="SearchPath" id="aworx::lib::containers::StringTree::Cursor::SearchPath" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#aef2244cb6839ab29120afe9458c5b399" />
+      <keyword name="SetIterator" id="aworx::lib::containers::StringTree::Cursor::SetIterator" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#af9bfedce967aba5eb6555765512bb65d" />
+      <keyword name="Size" id="aworx::lib::containers::StringTree::Cursor::Size" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#af40990b9bd3d70d30e8ce7cdda1ad56f" />
+      <keyword name="StringTree" id="aworx::lib::containers::StringTree::Cursor::StringTree" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#aa42c89c0eaa357d95820842673034eed" />
+      <keyword name="node" id="aworx::lib::containers::StringTree::Cursor::node" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#ab88cd70dad2e152cea983610f2a16e68" />
+      <keyword name="stringTree" id="aworx::lib::containers::StringTree::Cursor::stringTree" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a836095184e69ee547f80ebf11de862d6" />
+      <keyword name="createPathAndReturnLeaf" id="aworx::lib::containers::StringTree::Cursor::createPathAndReturnLeaf" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#afd5858321e9f0ad6b314a9a054aa29f0" />
+      <keyword name="followPath" id="aworx::lib::containers::StringTree::Cursor::followPath" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a932dda062ac3a04fa7d5edce7bc3c833" />
+      <keyword name="Cursor" id="aworx::lib::containers::StringTree::Cursor::Cursor" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a837dd68f9d999b0366354e09c1db4860" />
+      <keyword name="aworx::lib::containers::StringTree::Node" id="aworx::lib::containers::StringTree::Node" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html" />
+      <keyword name="children" id="aworx::lib::containers::StringTree::Node::children" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#ac37f26f9defa51c300e3f29fb591cfe4" />
+      <keyword name="parent" id="aworx::lib::containers::StringTree::Node::parent" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#a15358e51f4bc699859aef344484ae4a8" />
+      <keyword name="value" id="aworx::lib::containers::StringTree::Node::value" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#a4fc7f59e3113e19697159919a5aad095" />
+      <keyword name="Node" id="aworx::lib::containers::StringTree::Node::Node" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#ab8a9be2be80cb737fe017becff054cec" />
+      <keyword name="~Node" id="aworx::lib::containers::StringTree::Node::~Node" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#a6fa6bf60f34f1e3efb0e59333428c9c8" />
+      <keyword name="createChild" id="aworx::lib::containers::StringTree::Node::createChild" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#ac73b1e901363b189cd0edee4fc48c851" />
+      <keyword name="createChildNoCheck" id="aworx::lib::containers::StringTree::Node::createChildNoCheck" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#ae875d1a5a1d29cfcef7658ef760053b3" />
+      <keyword name="deleteChild" id="aworx::lib::containers::StringTree::Node::deleteChild" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#a0a3922cb188865f3e4f562fea816b97b" />
+      <keyword name="deleteChildren" id="aworx::lib::containers::StringTree::Node::deleteChildren" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#abf67d882cbea8b20d80544fe5f604e4a" />
+      <keyword name="depth" id="aworx::lib::containers::StringTree::Node::depth" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#acf8e2f791de955ccde3115b485b94dc9" />
+      <keyword name="getChild" id="aworx::lib::containers::StringTree::Node::getChild" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#afec5af9c58eadb62cfba0930c152974e" />
+      <keyword name="getOrCreateChild" id="aworx::lib::containers::StringTree::Node::getOrCreateChild" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#ad98567ca3dbb8150615c55c304d38f04" />
+      <keyword name="isRoot" id="aworx::lib::containers::StringTree::Node::isRoot" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#ad78e3dab6fc481769907b77419fe4bac" />
+      <keyword name="aworx::lib::containers::StringTree::StdIterator" id="aworx::lib::containers::StringTree::StdIterator" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html" />
+      <keyword name="StdIterator" id="aworx::lib::containers::StringTree::StdIterator::StdIterator" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a6f9b0dbe4fcad1c316c587a85b8be007" />
+      <keyword name="Depth" id="aworx::lib::containers::StringTree::StdIterator::Depth" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a72fdcb31622fdd4b1197a207a6a6685e" />
+      <keyword name="Name" id="aworx::lib::containers::StringTree::StdIterator::Name" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a0e5b1128eca23e746052102f3f5da3bf" />
+      <keyword name="operator!=" id="aworx::lib::containers::StringTree::StdIterator::operator!=" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a171fda2aad776b9308e1826ae103d8c7" />
+      <keyword name="operator*" id="aworx::lib::containers::StringTree::StdIterator::operator*" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#af7f8c6b921dca2b94f6e7ee14e762770" />
+      <keyword name="operator++" id="aworx::lib::containers::StringTree::StdIterator::operator++" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a4eabf8ee5a8dbd739b4a5fee6e67684b" />
+      <keyword name="operator==" id="aworx::lib::containers::StringTree::StdIterator::operator==" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a920c99480b9ad6dd2a45bef403be23fe" />
+      <keyword name="Size" id="aworx::lib::containers::StringTree::StdIterator::Size" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#af40990b9bd3d70d30e8ce7cdda1ad56f" />
+      <keyword name="Skip" id="aworx::lib::containers::StringTree::StdIterator::Skip" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a6f9a70e22db597ca69797f5cc7243f6e" />
+      <keyword name="StringTree" id="aworx::lib::containers::StringTree::StdIterator::StringTree" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#aa42c89c0eaa357d95820842673034eed" />
+      <keyword name="recursionDepth" id="aworx::lib::containers::StringTree::StdIterator::recursionDepth" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a9a1951fdc18bdd21f3de11073fc7fcfa" />
+      <keyword name="stack" id="aworx::lib::containers::StringTree::StdIterator::stack" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#aa1ced8936ccae566a7f694ce09fdfe3f" />
+      <keyword name="stringTree" id="aworx::lib::containers::StringTree::StdIterator::stringTree" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a836095184e69ee547f80ebf11de862d6" />
+      <keyword name="StdIterator" id="aworx::lib::containers::StringTree::StdIterator::StdIterator" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a8bbe19884d7b0b273b0f2c630ade0125" />
+      <keyword name="actNode" id="aworx::lib::containers::StringTree::StdIterator::actNode" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#ae62f2661d9a767ee0c15664c0d0a7c72" />
+      <keyword name="setStart" id="aworx::lib::containers::StringTree::StdIterator::setStart" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#a11328fb94695252d3250bdab7a7aae80" />
+      <keyword name="aworx::lib::containers::StringTree::StdIterator::RecursionDataIt" id="aworx::lib::containers::StringTree::StdIterator::RecursionDataIt" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator_1_1RecursionDataIt.html" />
+      <keyword name="actChild" id="aworx::lib::containers::StringTree::StdIterator::RecursionDataIt::actChild" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator_1_1RecursionDataIt.html#a33a3b3d407317c56bc1f31e88cec3539" />
+      <keyword name="node" id="aworx::lib::containers::StringTree::StdIterator::RecursionDataIt::node" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator_1_1RecursionDataIt.html#ab88cd70dad2e152cea983610f2a16e68" />
+      <keyword name="nodeName" id="aworx::lib::containers::StringTree::StdIterator::RecursionDataIt::nodeName" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator_1_1RecursionDataIt.html#ac72c672187176a6a0d7ade3dc9e30a27" />
+      <keyword name="aworx::lib::containers::StringTree::Walker" id="aworx::lib::containers::StringTree::Walker" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html" />
+      <keyword name="Walker" id="aworx::lib::containers::StringTree::Walker::Walker" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#aed3db52fc5fb26185fddd3435aeb73ac" />
+      <keyword name="~Walker" id="aworx::lib::containers::StringTree::Walker::~Walker" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#abda69cae6ab2acbb704b3123e425bd83" />
+      <keyword name="Depth" id="aworx::lib::containers::StringTree::Walker::Depth" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a72fdcb31622fdd4b1197a207a6a6685e" />
+      <keyword name="GetCursor" id="aworx::lib::containers::StringTree::Walker::GetCursor" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a02d96da317082d42803794d2fbfe121f" />
+      <keyword name="GetPath" id="aworx::lib::containers::StringTree::Walker::GetPath" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#acb1bd0f66888b3d9c10b573503fb9965" />
+      <keyword name="GetPathToNode" id="aworx::lib::containers::StringTree::Walker::GetPathToNode" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#ad2bf1b9cd6730d20c29d23d3ff546472" />
+      <keyword name="GetStringTree" id="aworx::lib::containers::StringTree::Walker::GetStringTree" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#aea0054286adc014b8b284ebfc31db385" />
+      <keyword name="Invalidate" id="aworx::lib::containers::StringTree::Walker::Invalidate" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#ab9adfea0e765ab447b8ce7730a6cd812" />
+      <keyword name="IsInValid" id="aworx::lib::containers::StringTree::Walker::IsInValid" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a45a55b577ab446624b703ff4bf726926" />
+      <keyword name="IsValid" id="aworx::lib::containers::StringTree::Walker::IsValid" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#ac532c4b500b1a85ea22217f2c65a70ed" />
+      <keyword name="Name" id="aworx::lib::containers::StringTree::Walker::Name" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a0e5b1128eca23e746052102f3f5da3bf" />
+      <keyword name="Next" id="aworx::lib::containers::StringTree::Walker::Next" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a3947d19ac087ef2cd68c2409920339c4" />
+      <keyword name="operator*" id="aworx::lib::containers::StringTree::Walker::operator*" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a540e5588dffde890174a282451f73fb9" />
+      <keyword name="PathGeneration" id="aworx::lib::containers::StringTree::Walker::PathGeneration" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a64e238d38a1f356bd6cea296bce93911" />
+      <keyword name="SetIterator" id="aworx::lib::containers::StringTree::Walker::SetIterator" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a99bcae7fcb22ef864d4117c7bff0aab8" />
+      <keyword name="SetRecursionDepth" id="aworx::lib::containers::StringTree::Walker::SetRecursionDepth" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a6c20c57704dd86f356475c00baa000ca" />
+      <keyword name="SetStart" id="aworx::lib::containers::StringTree::Walker::SetStart" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#abca5d5e1c5d92a7ed7ec223cdf2f24f5" />
+      <keyword name="SetStart" id="aworx::lib::containers::StringTree::Walker::SetStart" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a801bc5e67c8af473e7d82001f5f53d34" />
+      <keyword name="SetStart" id="aworx::lib::containers::StringTree::Walker::SetStart" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a9e7e87fb564e1188d0c90ee82a0895d5" />
+      <keyword name="SetStart" id="aworx::lib::containers::StringTree::Walker::SetStart" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a5ed3ffdb311fab7a802993e37c0b2c57" />
+      <keyword name="Size" id="aworx::lib::containers::StringTree::Walker::Size" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#af40990b9bd3d70d30e8ce7cdda1ad56f" />
+      <keyword name="Skip" id="aworx::lib::containers::StringTree::Walker::Skip" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a6f9a70e22db597ca69797f5cc7243f6e" />
+      <keyword name="SortByPathname" id="aworx::lib::containers::StringTree::Walker::SortByPathname" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#aea47d131f21de7e5ad249dbef0392650" />
+      <keyword name="SortByPathname" id="aworx::lib::containers::StringTree::Walker::SortByPathname" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a10e565569496ecb5e4388e6491bb82b5" />
+      <keyword name="SortByValue" id="aworx::lib::containers::StringTree::Walker::SortByValue" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#afa9982c792ea9f2f50cf94cb961b33fb" />
+      <keyword name="StringTree" id="aworx::lib::containers::StringTree::Walker::StringTree" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#aa42c89c0eaa357d95820842673034eed" />
+      <keyword name="actPath" id="aworx::lib::containers::StringTree::Walker::actPath" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a59910a8fc21cdcafcd9e7ff1597014ed" />
+      <keyword name="recursionDepth" id="aworx::lib::containers::StringTree::Walker::recursionDepth" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a9a1951fdc18bdd21f3de11073fc7fcfa" />
+      <keyword name="sorter" id="aworx::lib::containers::StringTree::Walker::sorter" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a8e66900276295535a5228ffb2aa9230a" />
+      <keyword name="stack" id="aworx::lib::containers::StringTree::Walker::stack" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a666522b478075da983dd563dc99ee2cf" />
+      <keyword name="stackSize" id="aworx::lib::containers::StringTree::Walker::stackSize" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a46e5dff29239c8fa0aa9a630df41494a" />
+      <keyword name="stringTree" id="aworx::lib::containers::StringTree::Walker::stringTree" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a836095184e69ee547f80ebf11de862d6" />
+      <keyword name="actNode" id="aworx::lib::containers::StringTree::Walker::actNode" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#ae62f2661d9a767ee0c15664c0d0a7c72" />
+      <keyword name="setStart" id="aworx::lib::containers::StringTree::Walker::setStart" ref="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a9af457a291745d735711a8e2c95dbb82" />
+      <keyword name="aworx::lib::containers::StringTree::Walker::RecursionData" id="aworx::lib::containers::StringTree::Walker::RecursionData" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html" />
+      <keyword name="actChild" id="aworx::lib::containers::StringTree::Walker::RecursionData::actChild" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html#acabfd73c575d4f75e7a0762942f72050" />
+      <keyword name="node" id="aworx::lib::containers::StringTree::Walker::RecursionData::node" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html#ab88cd70dad2e152cea983610f2a16e68" />
+      <keyword name="nodeName" id="aworx::lib::containers::StringTree::Walker::RecursionData::nodeName" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html#ac72c672187176a6a0d7ade3dc9e30a27" />
+      <keyword name="sortedChildren" id="aworx::lib::containers::StringTree::Walker::RecursionData::sortedChildren" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html#a486550cff841363fff7119df20b52364" />
+      <keyword name="RecursionData" id="aworx::lib::containers::StringTree::Walker::RecursionData::RecursionData" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html#a1f0cbe0e2d095a239a6a96980b527960" />
+      <keyword name="RecursionData" id="aworx::lib::containers::StringTree::Walker::RecursionData::RecursionData" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html#af1c0e12c49f62b36a9a88539929adf98" />
+      <keyword name="~RecursionData" id="aworx::lib::containers::StringTree::Walker::RecursionData::~RecursionData" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html#a3224141064f9cbd37f59040b1b9e7cd4" />
+      <keyword name="reset" id="aworx::lib::containers::StringTree::Walker::RecursionData::reset" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html#a0a77b8e5455e7ec503b1e3f6b5c18eb2" />
+      <keyword name="aworx::lib::containers::StringTree::Walker::Sorter" id="aworx::lib::containers::StringTree::Walker::Sorter" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1Sorter.html" />
+      <keyword name="pathSorter" id="aworx::lib::containers::StringTree::Walker::Sorter::pathSorter" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1Sorter.html#af19d8a1f55e65527398af11a02b7d584" />
+      <keyword name="sortOrder" id="aworx::lib::containers::StringTree::Walker::Sorter::sortOrder" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1Sorter.html#a89cc0bdfe8580c2c4609bf66285c44c7" />
+      <keyword name="sortSensitivity" id="aworx::lib::containers::StringTree::Walker::Sorter::sortSensitivity" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1Sorter.html#a09b9f96dba154680ea82de355bd07e06" />
+      <keyword name="valueSorter" id="aworx::lib::containers::StringTree::Walker::Sorter::valueSorter" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1Sorter.html#ad329d04d192f4b4cb3c3ba6a6b0bc612" />
+      <keyword name="operator()" id="aworx::lib::containers::StringTree::Walker::Sorter::operator()" ref="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1Sorter.html#a1754080aa84d0e3275d9fecfa0e0e22c" />
+      <keyword name="aworx::lib::containers::StringTreeConstKeyAllocator" id="aworx::lib::containers::StringTreeConstKeyAllocator" ref="structaworx_1_1lib_1_1containers_1_1StringTreeConstKeyAllocator.html" />
+      <keyword name="allocate" id="aworx::lib::containers::StringTreeConstKeyAllocator::allocate" ref="structaworx_1_1lib_1_1containers_1_1StringTreeConstKeyAllocator.html#aa08d0bd0116f68e38afabf2de8e8547b" />
+      <keyword name="free" id="aworx::lib::containers::StringTreeConstKeyAllocator::free" ref="structaworx_1_1lib_1_1containers_1_1StringTreeConstKeyAllocator.html#ad3d7a5a43ac3c336642910e420d643f8" />
+      <keyword name="aworx::lib::containers::StringTreeDefaultKeyAllocator" id="aworx::lib::containers::StringTreeDefaultKeyAllocator" ref="structaworx_1_1lib_1_1containers_1_1StringTreeDefaultKeyAllocator.html" />
+      <keyword name="allocate" id="aworx::lib::containers::StringTreeDefaultKeyAllocator::allocate" ref="structaworx_1_1lib_1_1containers_1_1StringTreeDefaultKeyAllocator.html#a0fb6c02485fc184430b17929a37ad514" />
+      <keyword name="free" id="aworx::lib::containers::StringTreeDefaultKeyAllocator::free" ref="structaworx_1_1lib_1_1containers_1_1StringTreeDefaultKeyAllocator.html#a0dd07c008375ec74353ad866d92a4a49" />
       <keyword name="aworx::lib::debug" id="aworx::lib::debug" ref="namespaceaworx_1_1lib_1_1debug.html" />
       <keyword name="DbgSimpleALibMsg_Plugin" id="aworx::lib::debug::DbgSimpleALibMsg_Plugin" ref="namespaceaworx_1_1lib_1_1debug.html#ab288b6405c105a6cd630619a8f35eea9" />
       <keyword name="ALib_Dbg_Report_Plugin" id="aworx::lib::debug::ALib_Dbg_Report_Plugin" ref="namespaceaworx_1_1lib_1_1debug.html#a7904348743a6e69a33cf5ab9899601b6" />
@@ -3596,6 +3866,10 @@
       <keyword name="InvalidPath" id="aworx::lib::lang::InvalidPath" ref="namespaceaworx_1_1lib_1_1lang.html#a28287671eaf7406afd604bd055ba4066a5d0744802b24f44a161d350c25d76c7b" />
       <keyword name="Safe" id="aworx::lib::lang::Safe" ref="namespaceaworx_1_1lib_1_1lang.html#a8c800527afe0a8a6c71ae4cceda6bf9dac6eea0560cd6f377e78dff2c85cc9122" />
       <keyword name="Unsafe" id="aworx::lib::lang::Unsafe" ref="namespaceaworx_1_1lib_1_1lang.html#a8c800527afe0a8a6c71ae4cceda6bf9dad3d57868b6ff9839eff631d2cc8acbce" />
+      <keyword name="Ascending" id="aworx::lib::lang::Ascending" ref="namespaceaworx_1_1lib_1_1lang.html#ad9be72f666a31b4318bbc8e8a16a9472acf3fb1ff52ea1eed3347ac5401ee7f0c" />
+      <keyword name="Descending" id="aworx::lib::lang::Descending" ref="namespaceaworx_1_1lib_1_1lang.html#ad9be72f666a31b4318bbc8e8a16a9472ae3cf5ac19407b1a62c6fccaff675a53b" />
+      <keyword name="Copy" id="aworx::lib::lang::Copy" ref="namespaceaworx_1_1lib_1_1lang.html#ab0acd6daf9443d8b997f1035cfe08dd8a5fb63579fc981698f97d55bfecb213ea" />
+      <keyword name="Move" id="aworx::lib::lang::Move" ref="namespaceaworx_1_1lib_1_1lang.html#ab0acd6daf9443d8b997f1035cfe08dd8a6bc362dbf494c61ea117fe3c71ca48a5" />
       <keyword name="Off" id="aworx::lib::lang::Off" ref="namespaceaworx_1_1lib_1_1lang.html#a9f3c28a2cb05bdcc618b542e49bfda3fad15305d7a4e34e02489c74a5ef542f36" />
       <keyword name="On" id="aworx::lib::lang::On" ref="namespaceaworx_1_1lib_1_1lang.html#a9f3c28a2cb05bdcc618b542e49bfda3fa521c36a31c2762741cf0f8890cbe05e3" />
       <keyword name="Local" id="aworx::lib::lang::Local" ref="namespaceaworx_1_1lib_1_1lang.html#a9b1d8f31e178e17a8fef3a9e94bc4b2ca509820290d57f333403f490dde7316f4" />
@@ -3721,8 +3995,9 @@
       <keyword name="_" id="aworx::lib::strings::AString::_" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a3dc8631e41b21a676ce5b4221c4e7df8" />
       <keyword name="operator&lt;&lt;" id="aworx::lib::strings::AString::operator&lt;&lt;" ref="classaworx_1_1lib_1_1strings_1_1AString.html#ac243bc3f2d0f61eb45d49f488ddbcb63" />
       <keyword name="NewLine" id="aworx::lib::strings::AString::NewLine" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a949cac7084e10566b50a195b60bff591" />
+      <keyword name="SearchAndReplace" id="aworx::lib::strings::AString::SearchAndReplace" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a3dea5149dfa72d2f65829bed4bf3f86d" />
       <keyword name="SearchAndReplace" id="aworx::lib::strings::AString::SearchAndReplace" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a770e00f028be0ce9b94fe850efd10de9" />
-      <keyword name="SearchAndReplaceAll" id="aworx::lib::strings::AString::SearchAndReplaceAll" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a55ef5d224c259a6ebe2f059f27db8f0e" />
+      <keyword name="SearchAndReplaceAlx" id="aworx::lib::strings::AString::SearchAndReplaceAlx" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a77b0fe806bea96790ff7f27ff239685f" />
       <keyword name="ToUpper" id="aworx::lib::strings::AString::ToUpper" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a8dad571b49b3662d587ef5265a62397b" />
       <keyword name="ToLower" id="aworx::lib::strings::AString::ToLower" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a99c440209106a3e01577c936c742c59a" />
       <keyword name="operator[]" id="aworx::lib::strings::TString::operator[]" ref="classaworx_1_1lib_1_1strings_1_1TString.html#ad01560cade1022b35a54f07183bfc50e" />
@@ -3785,8 +4060,10 @@
       <keyword name="operator==" id="aworx::lib::strings::String::operator==" ref="classaworx_1_1lib_1_1strings_1_1String.html#ace88722db3a272610fbc7f8fccd9e258" />
       <keyword name="operator!=" id="aworx::lib::strings::String::operator!=" ref="classaworx_1_1lib_1_1strings_1_1String.html#a22b94d6b436e0098cf9d92ba846c02e9" />
       <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#a7365672c3c963ba88de5612e38e704bd" />
-      <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#a6bcbc607a7c87baa70f6c2c739f3c218" />
+      <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#ac05a3241d30fde1e58d95ba1f44ee72d" />
       <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#abacc41ba7e94890340a82233f2538ecc" />
+      <keyword name="IndexOfOrLength" id="aworx::lib::strings::String::IndexOfOrLength" ref="classaworx_1_1lib_1_1strings_1_1String.html#abe7d75de817ac17c9104f47991cc0ae6" />
+      <keyword name="IndexOfOrLength" id="aworx::lib::strings::String::IndexOfOrLength" ref="classaworx_1_1lib_1_1strings_1_1String.html#acc0a1951d59db9306be459bddf0b4fbb" />
       <keyword name="LastIndexOf" id="aworx::lib::strings::String::LastIndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#a8bb8c82267bbb72239c9d6559cdfbf24" />
       <keyword name="IndexOfAny" id="aworx::lib::strings::String::IndexOfAny" ref="classaworx_1_1lib_1_1strings_1_1String.html#a312ecf30301f4228a167052b58895ef5" />
       <keyword name="LastIndexOfAny" id="aworx::lib::strings::String::LastIndexOfAny" ref="classaworx_1_1lib_1_1strings_1_1String.html#a73db69a072ace024e768ac4f3bbd0630" />
@@ -3995,8 +4272,9 @@
       <keyword name="_" id="aworx::lib::strings::AString::_" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a3dc8631e41b21a676ce5b4221c4e7df8" />
       <keyword name="operator&lt;&lt;" id="aworx::lib::strings::AString::operator&lt;&lt;" ref="classaworx_1_1lib_1_1strings_1_1AString.html#ac243bc3f2d0f61eb45d49f488ddbcb63" />
       <keyword name="NewLine" id="aworx::lib::strings::AString::NewLine" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a949cac7084e10566b50a195b60bff591" />
+      <keyword name="SearchAndReplace" id="aworx::lib::strings::AString::SearchAndReplace" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a3dea5149dfa72d2f65829bed4bf3f86d" />
       <keyword name="SearchAndReplace" id="aworx::lib::strings::AString::SearchAndReplace" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a770e00f028be0ce9b94fe850efd10de9" />
-      <keyword name="SearchAndReplaceAll" id="aworx::lib::strings::AString::SearchAndReplaceAll" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a55ef5d224c259a6ebe2f059f27db8f0e" />
+      <keyword name="SearchAndReplaceAlx" id="aworx::lib::strings::AString::SearchAndReplaceAlx" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a77b0fe806bea96790ff7f27ff239685f" />
       <keyword name="ToUpper" id="aworx::lib::strings::AString::ToUpper" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a8dad571b49b3662d587ef5265a62397b" />
       <keyword name="ToLower" id="aworx::lib::strings::AString::ToLower" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a99c440209106a3e01577c936c742c59a" />
       <keyword name="_dbgCheck" id="aworx::lib::strings::AString::_dbgCheck" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a7019ebc20c4e90566cc1f4235f0beec5" />
@@ -4062,8 +4340,10 @@
       <keyword name="operator==" id="aworx::lib::strings::String::operator==" ref="classaworx_1_1lib_1_1strings_1_1String.html#ace88722db3a272610fbc7f8fccd9e258" />
       <keyword name="operator!=" id="aworx::lib::strings::String::operator!=" ref="classaworx_1_1lib_1_1strings_1_1String.html#a22b94d6b436e0098cf9d92ba846c02e9" />
       <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#a7365672c3c963ba88de5612e38e704bd" />
-      <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#a6bcbc607a7c87baa70f6c2c739f3c218" />
+      <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#ac05a3241d30fde1e58d95ba1f44ee72d" />
       <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#abacc41ba7e94890340a82233f2538ecc" />
+      <keyword name="IndexOfOrLength" id="aworx::lib::strings::String::IndexOfOrLength" ref="classaworx_1_1lib_1_1strings_1_1String.html#abe7d75de817ac17c9104f47991cc0ae6" />
+      <keyword name="IndexOfOrLength" id="aworx::lib::strings::String::IndexOfOrLength" ref="classaworx_1_1lib_1_1strings_1_1String.html#acc0a1951d59db9306be459bddf0b4fbb" />
       <keyword name="LastIndexOf" id="aworx::lib::strings::String::LastIndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#a8bb8c82267bbb72239c9d6559cdfbf24" />
       <keyword name="IndexOfAny" id="aworx::lib::strings::String::IndexOfAny" ref="classaworx_1_1lib_1_1strings_1_1String.html#a312ecf30301f4228a167052b58895ef5" />
       <keyword name="LastIndexOfAny" id="aworx::lib::strings::String::LastIndexOfAny" ref="classaworx_1_1lib_1_1strings_1_1String.html#a73db69a072ace024e768ac4f3bbd0630" />
@@ -4088,6 +4368,10 @@
       <keyword name="debugIsTerminated" id="aworx::lib::strings::TString::debugIsTerminated" ref="classaworx_1_1lib_1_1strings_1_1TString.html#ac3615a067cb671e6b0cac6dbb26c9f3e" />
       <keyword name="AString" id="aworx::lib::strings::AString::AString" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a27d6a071b6dae8a5c2b11a6ee11c0984" />
       <keyword name="TString" id="aworx::lib::strings::TString::TString" ref="classaworx_1_1lib_1_1strings_1_1TString.html#ad96a578d58f81bda010ae0c0a06e696c" />
+      <keyword name="aworx::lib::strings::std_Equals" id="aworx::lib::strings::std_Equals" ref="structaworx_1_1lib_1_1strings_1_1std__Equals.html" />
+      <keyword name="operator()" id="aworx::lib::strings::std_Equals::operator()" ref="structaworx_1_1lib_1_1strings_1_1std__Equals.html#a102cacda92d1f21f23a1cee7bce60aa3" />
+      <keyword name="aworx::lib::strings::std_Hash" id="aworx::lib::strings::std_Hash" ref="structaworx_1_1lib_1_1strings_1_1std__Hash.html" />
+      <keyword name="operator()" id="aworx::lib::strings::std_Hash::operator()" ref="structaworx_1_1lib_1_1strings_1_1std__Hash.html#a60a6a130773623fa03403ed3397f03be" />
       <keyword name="aworx::lib::strings::String" id="aworx::lib::strings::String" ref="classaworx_1_1lib_1_1strings_1_1String.html" />
       <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#adcffeb665e497d8c0909063e4b5df871" />
       <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a1301d3ebeba443fd830a9617a15aac0b" />
@@ -4115,8 +4399,10 @@
       <keyword name="operator==" id="aworx::lib::strings::String::operator==" ref="classaworx_1_1lib_1_1strings_1_1String.html#ace88722db3a272610fbc7f8fccd9e258" />
       <keyword name="operator!=" id="aworx::lib::strings::String::operator!=" ref="classaworx_1_1lib_1_1strings_1_1String.html#a22b94d6b436e0098cf9d92ba846c02e9" />
       <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#a7365672c3c963ba88de5612e38e704bd" />
-      <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#a6bcbc607a7c87baa70f6c2c739f3c218" />
+      <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#ac05a3241d30fde1e58d95ba1f44ee72d" />
       <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#abacc41ba7e94890340a82233f2538ecc" />
+      <keyword name="IndexOfOrLength" id="aworx::lib::strings::String::IndexOfOrLength" ref="classaworx_1_1lib_1_1strings_1_1String.html#abe7d75de817ac17c9104f47991cc0ae6" />
+      <keyword name="IndexOfOrLength" id="aworx::lib::strings::String::IndexOfOrLength" ref="classaworx_1_1lib_1_1strings_1_1String.html#acc0a1951d59db9306be459bddf0b4fbb" />
       <keyword name="LastIndexOf" id="aworx::lib::strings::String::LastIndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#a8bb8c82267bbb72239c9d6559cdfbf24" />
       <keyword name="IndexOfAny" id="aworx::lib::strings::String::IndexOfAny" ref="classaworx_1_1lib_1_1strings_1_1String.html#a312ecf30301f4228a167052b58895ef5" />
       <keyword name="LastIndexOfAny" id="aworx::lib::strings::String::LastIndexOfAny" ref="classaworx_1_1lib_1_1strings_1_1String.html#a73db69a072ace024e768ac4f3bbd0630" />
@@ -4216,8 +4502,10 @@
       <keyword name="operator==" id="aworx::lib::strings::String::operator==" ref="classaworx_1_1lib_1_1strings_1_1String.html#ace88722db3a272610fbc7f8fccd9e258" />
       <keyword name="operator!=" id="aworx::lib::strings::String::operator!=" ref="classaworx_1_1lib_1_1strings_1_1String.html#a22b94d6b436e0098cf9d92ba846c02e9" />
       <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#a7365672c3c963ba88de5612e38e704bd" />
-      <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#a6bcbc607a7c87baa70f6c2c739f3c218" />
+      <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#ac05a3241d30fde1e58d95ba1f44ee72d" />
       <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#abacc41ba7e94890340a82233f2538ecc" />
+      <keyword name="IndexOfOrLength" id="aworx::lib::strings::String::IndexOfOrLength" ref="classaworx_1_1lib_1_1strings_1_1String.html#abe7d75de817ac17c9104f47991cc0ae6" />
+      <keyword name="IndexOfOrLength" id="aworx::lib::strings::String::IndexOfOrLength" ref="classaworx_1_1lib_1_1strings_1_1String.html#acc0a1951d59db9306be459bddf0b4fbb" />
       <keyword name="LastIndexOf" id="aworx::lib::strings::String::LastIndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#a8bb8c82267bbb72239c9d6559cdfbf24" />
       <keyword name="IndexOfAny" id="aworx::lib::strings::String::IndexOfAny" ref="classaworx_1_1lib_1_1strings_1_1String.html#a312ecf30301f4228a167052b58895ef5" />
       <keyword name="LastIndexOfAny" id="aworx::lib::strings::String::LastIndexOfAny" ref="classaworx_1_1lib_1_1strings_1_1String.html#a73db69a072ace024e768ac4f3bbd0630" />
@@ -4236,6 +4524,8 @@
       <keyword name="vbuffer" id="aworx::lib::strings::String::vbuffer" ref="classaworx_1_1lib_1_1strings_1_1String.html#ab060ffba71bd8a3d7067a38950b39a82" />
       <keyword name="TString" id="aworx::lib::strings::TString::TString" ref="classaworx_1_1lib_1_1strings_1_1TString.html#ad96a578d58f81bda010ae0c0a06e696c" />
       <keyword name="aworx::lib::strings::Substring" id="aworx::lib::strings::Substring" ref="classaworx_1_1lib_1_1strings_1_1Substring.html" />
+      <keyword name="Substring" id="aworx::lib::strings::Substring::Substring" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#a5f56ec7bc62f19b85e690df023b8f1f8" />
+      <keyword name="Substring" id="aworx::lib::strings::Substring::Substring" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#afbe72e673e9291a15be94c94157a195a" />
       <keyword name="Set" id="aworx::lib::strings::Substring::Set" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#a78e69b45cdcafe78919ef4394b946473" />
       <keyword name="Set" id="aworx::lib::strings::Substring::Set" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#a0ecb7ee6fe3a0f1bbfcaaa44262f3236" />
       <keyword name="SetNull" id="aworx::lib::strings::Substring::SetNull" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#a3805c0af8d0d8c718fabbfce10236da3" />
@@ -4270,8 +4560,10 @@
       <keyword name="operator==" id="aworx::lib::strings::String::operator==" ref="classaworx_1_1lib_1_1strings_1_1String.html#ace88722db3a272610fbc7f8fccd9e258" />
       <keyword name="operator!=" id="aworx::lib::strings::String::operator!=" ref="classaworx_1_1lib_1_1strings_1_1String.html#a22b94d6b436e0098cf9d92ba846c02e9" />
       <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#a7365672c3c963ba88de5612e38e704bd" />
-      <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#a6bcbc607a7c87baa70f6c2c739f3c218" />
+      <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#ac05a3241d30fde1e58d95ba1f44ee72d" />
       <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#abacc41ba7e94890340a82233f2538ecc" />
+      <keyword name="IndexOfOrLength" id="aworx::lib::strings::String::IndexOfOrLength" ref="classaworx_1_1lib_1_1strings_1_1String.html#abe7d75de817ac17c9104f47991cc0ae6" />
+      <keyword name="IndexOfOrLength" id="aworx::lib::strings::String::IndexOfOrLength" ref="classaworx_1_1lib_1_1strings_1_1String.html#acc0a1951d59db9306be459bddf0b4fbb" />
       <keyword name="LastIndexOf" id="aworx::lib::strings::String::LastIndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#a8bb8c82267bbb72239c9d6559cdfbf24" />
       <keyword name="IndexOfAny" id="aworx::lib::strings::String::IndexOfAny" ref="classaworx_1_1lib_1_1strings_1_1String.html#a312ecf30301f4228a167052b58895ef5" />
       <keyword name="LastIndexOfAny" id="aworx::lib::strings::String::LastIndexOfAny" ref="classaworx_1_1lib_1_1strings_1_1String.html#a73db69a072ace024e768ac4f3bbd0630" />
@@ -4393,8 +4685,10 @@
       <keyword name="operator==" id="aworx::lib::strings::String::operator==" ref="classaworx_1_1lib_1_1strings_1_1String.html#ace88722db3a272610fbc7f8fccd9e258" />
       <keyword name="operator!=" id="aworx::lib::strings::String::operator!=" ref="classaworx_1_1lib_1_1strings_1_1String.html#a22b94d6b436e0098cf9d92ba846c02e9" />
       <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#a7365672c3c963ba88de5612e38e704bd" />
-      <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#a6bcbc607a7c87baa70f6c2c739f3c218" />
+      <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#ac05a3241d30fde1e58d95ba1f44ee72d" />
       <keyword name="IndexOf" id="aworx::lib::strings::String::IndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#abacc41ba7e94890340a82233f2538ecc" />
+      <keyword name="IndexOfOrLength" id="aworx::lib::strings::String::IndexOfOrLength" ref="classaworx_1_1lib_1_1strings_1_1String.html#abe7d75de817ac17c9104f47991cc0ae6" />
+      <keyword name="IndexOfOrLength" id="aworx::lib::strings::String::IndexOfOrLength" ref="classaworx_1_1lib_1_1strings_1_1String.html#acc0a1951d59db9306be459bddf0b4fbb" />
       <keyword name="LastIndexOf" id="aworx::lib::strings::String::LastIndexOf" ref="classaworx_1_1lib_1_1strings_1_1String.html#a8bb8c82267bbb72239c9d6559cdfbf24" />
       <keyword name="IndexOfAny" id="aworx::lib::strings::String::IndexOfAny" ref="classaworx_1_1lib_1_1strings_1_1String.html#a312ecf30301f4228a167052b58895ef5" />
       <keyword name="LastIndexOfAny" id="aworx::lib::strings::String::LastIndexOfAny" ref="classaworx_1_1lib_1_1strings_1_1String.html#a73db69a072ace024e768ac4f3bbd0630" />
@@ -4470,6 +4764,8 @@
       <keyword name="Apply" id="aworx::lib::strings::applyto::T_Apply&lt; lang::Responsibility &gt;::Apply" ref="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Responsibility_01_4.html#a5f92e46cdeaedc497f6f801c006e0801" />
       <keyword name="aworx::lib::strings::applyto::T_Apply&lt; lang::Safeness &gt;" id="aworx::lib::strings::applyto::T_Apply&lt; lang::Safeness &gt;" ref="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Safeness_01_4.html" />
       <keyword name="Apply" id="aworx::lib::strings::applyto::T_Apply&lt; lang::Safeness &gt;::Apply" ref="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Safeness_01_4.html#a527b10b5c1e6b3db9055628692b724c4" />
+      <keyword name="aworx::lib::strings::applyto::T_Apply&lt; lang::SortOrder &gt;" id="aworx::lib::strings::applyto::T_Apply&lt; lang::SortOrder &gt;" ref="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1SortOrder_01_4.html" />
+      <keyword name="Apply" id="aworx::lib::strings::applyto::T_Apply&lt; lang::SortOrder &gt;::Apply" ref="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1SortOrder_01_4.html#a63e55ad22ee3101a3b5099da78cd8d13" />
       <keyword name="aworx::lib::strings::applyto::T_Apply&lt; lang::Switch &gt;" id="aworx::lib::strings::applyto::T_Apply&lt; lang::Switch &gt;" ref="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Switch_01_4.html" />
       <keyword name="Apply" id="aworx::lib::strings::applyto::T_Apply&lt; lang::Switch &gt;::Apply" ref="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Switch_01_4.html#a61da3bb97ef941f3a1708c00fd37832e" />
       <keyword name="aworx::lib::strings::applyto::T_Apply&lt; lang::Timezone &gt;" id="aworx::lib::strings::applyto::T_Apply&lt; lang::Timezone &gt;" ref="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Timezone_01_4.html" />
@@ -4943,9 +5239,9 @@
       <keyword name="RemoveAcquirer" id="aworx::lib::threads::SmartLock::RemoveAcquirer" ref="classaworx_1_1lib_1_1threads_1_1SmartLock.html#a2f480eaa76919774ba222225c952b874" />
       <keyword name="ThreadLock" id="aworx::lib::threads::ThreadLock::ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ac1b7c80ef351b4ddeccf330b34121947" />
       <keyword name="~ThreadLock" id="aworx::lib::threads::ThreadLock::~ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a62d4d1d8df991fec098bbd8d5f19e34b" />
-      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#af99e21e2f05c81744d2e6b5b66d14951" />
-      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a0268db1c6823138316436b214d486432" />
-      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a77946b26d73b3ba1ee0461f44dc66f1a" />
+      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#aceed656a3e262a10e366de4969fa4003" />
+      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ad990be5d1f5256638b1ddcc842a6ceb5" />
+      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7b2ea79ab83658e6c8b5f803c9b22475" />
       <keyword name="Release" id="aworx::lib::threads::ThreadLock::Release" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c" />
       <keyword name="SetSafeness" id="aworx::lib::threads::ThreadLock::SetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7610d5aa2df13cbaf64eb5ac17ddee71" />
       <keyword name="~Ownable" id="aworx::lib::lang::Ownable::~Ownable" ref="classaworx_1_1lib_1_1lang_1_1Ownable.html#a0cf51e767ecc62f4adc80e8d69e066df" />
@@ -4995,9 +5291,9 @@
       <keyword name="ThreadLock" id="aworx::lib::threads::ThreadLock::ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ac1b7c80ef351b4ddeccf330b34121947" />
       <keyword name="~ThreadLock" id="aworx::lib::threads::ThreadLock::~ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a62d4d1d8df991fec098bbd8d5f19e34b" />
       <keyword name="Acquire" id="aworx::lib::threads::ThreadLock::Acquire" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a607d6c96bfd21c3530e8a7fab9ca0395" />
-      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#af99e21e2f05c81744d2e6b5b66d14951" />
-      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a0268db1c6823138316436b214d486432" />
-      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a77946b26d73b3ba1ee0461f44dc66f1a" />
+      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#aceed656a3e262a10e366de4969fa4003" />
+      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ad990be5d1f5256638b1ddcc842a6ceb5" />
+      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7b2ea79ab83658e6c8b5f803c9b22475" />
       <keyword name="Release" id="aworx::lib::threads::ThreadLock::Release" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c" />
       <keyword name="SetSafeness" id="aworx::lib::threads::ThreadLock::SetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7610d5aa2df13cbaf64eb5ac17ddee71" />
       <keyword name="~Ownable" id="aworx::lib::lang::Ownable::~Ownable" ref="classaworx_1_1lib_1_1lang_1_1Ownable.html#a0cf51e767ecc62f4adc80e8d69e066df" />
@@ -5013,9 +5309,9 @@
       <keyword name="ThreadLockNR" id="aworx::lib::threads::ThreadLockNR::ThreadLockNR" ref="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a5bb7c49696bda3229c1d118872a66e01" />
       <keyword name="~ThreadLockNR" id="aworx::lib::threads::ThreadLockNR::~ThreadLockNR" ref="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#ad2dd19f8e7eb364c570f32d320c470ff" />
       <keyword name="Acquire" id="aworx::lib::threads::ThreadLockNR::Acquire" ref="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a07a42f9930e2b2f9b94a3d47d3088532" />
-      <keyword name="Mode" id="aworx::lib::threads::ThreadLockNR::Mode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#ac16f105ed992daecdfc46a7e3926c67d" />
+      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLockNR::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a7b2ea79ab83658e6c8b5f803c9b22475" />
       <keyword name="Release" id="aworx::lib::threads::ThreadLockNR::Release" ref="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a84a1506acc1e04455ebc3bc724265872" />
-      <keyword name="SetMode" id="aworx::lib::threads::ThreadLockNR::SetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#ace03bc4a7b698247b11b2b2cb16ae99d" />
+      <keyword name="SetSafeness" id="aworx::lib::threads::ThreadLockNR::SetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a7610d5aa2df13cbaf64eb5ac17ddee71" />
       <keyword name="~Ownable" id="aworx::lib::lang::Ownable::~Ownable" ref="classaworx_1_1lib_1_1lang_1_1Ownable.html#a0cf51e767ecc62f4adc80e8d69e066df" />
       <keyword name="dbgIsAcquired" id="aworx::lib::threads::ThreadLockNR::dbgIsAcquired" ref="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a9426fc5fde1af618b0afd97ff21c1b6c" />
       <keyword name="mutex" id="aworx::lib::threads::ThreadLockNR::mutex" ref="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a925e97cfc2fb5e3b27bd06f805668a9d" />
@@ -5341,9 +5637,9 @@
       <keyword name="writeVerbositiesOnLoggerRemoval" id="aworx::lox::Lox::writeVerbositiesOnLoggerRemoval" ref="classaworx_1_1lox_1_1Lox.html#ab3c4a57d89b36da0b63b92457de9a14b" />
       <keyword name="ThreadLock" id="aworx::lib::threads::ThreadLock::ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ac1b7c80ef351b4ddeccf330b34121947" />
       <keyword name="~ThreadLock" id="aworx::lib::threads::ThreadLock::~ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a62d4d1d8df991fec098bbd8d5f19e34b" />
-      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#af99e21e2f05c81744d2e6b5b66d14951" />
-      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a0268db1c6823138316436b214d486432" />
-      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a77946b26d73b3ba1ee0461f44dc66f1a" />
+      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#aceed656a3e262a10e366de4969fa4003" />
+      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ad990be5d1f5256638b1ddcc842a6ceb5" />
+      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7b2ea79ab83658e6c8b5f803c9b22475" />
       <keyword name="SetSafeness" id="aworx::lib::threads::ThreadLock::SetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7610d5aa2df13cbaf64eb5ac17ddee71" />
       <keyword name="~Ownable" id="aworx::lib::lang::Ownable::~Ownable" ref="classaworx_1_1lib_1_1lang_1_1Ownable.html#a0cf51e767ecc62f4adc80e8d69e066df" />
       <keyword name="StateInfo_Basic" id="aworx::lox::Lox::StateInfo_Basic" ref="classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a4f2ea67d97f96331439b0a1ca2d083db" />
@@ -5446,9 +5742,9 @@
       <keyword name="RemoveAcquirer" id="aworx::lib::threads::SmartLock::RemoveAcquirer" ref="classaworx_1_1lib_1_1threads_1_1SmartLock.html#a2f480eaa76919774ba222225c952b874" />
       <keyword name="ThreadLock" id="aworx::lib::threads::ThreadLock::ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ac1b7c80ef351b4ddeccf330b34121947" />
       <keyword name="~ThreadLock" id="aworx::lib::threads::ThreadLock::~ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a62d4d1d8df991fec098bbd8d5f19e34b" />
-      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#af99e21e2f05c81744d2e6b5b66d14951" />
-      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a0268db1c6823138316436b214d486432" />
-      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a77946b26d73b3ba1ee0461f44dc66f1a" />
+      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#aceed656a3e262a10e366de4969fa4003" />
+      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ad990be5d1f5256638b1ddcc842a6ceb5" />
+      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7b2ea79ab83658e6c8b5f803c9b22475" />
       <keyword name="Release" id="aworx::lib::threads::ThreadLock::Release" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c" />
       <keyword name="SetSafeness" id="aworx::lib::threads::ThreadLock::SetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7610d5aa2df13cbaf64eb5ac17ddee71" />
       <keyword name="~Ownable" id="aworx::lib::lang::Ownable::~Ownable" ref="classaworx_1_1lib_1_1lang_1_1Ownable.html#a0cf51e767ecc62f4adc80e8d69e066df" />
@@ -5474,7 +5770,7 @@
       <keyword name="noKey" id="aworx::lox::core::ScopeDump::noKey" ref="classaworx_1_1lox_1_1core_1_1ScopeDump.html#afa62f8675826f5b40444a202dac96e55" />
       <keyword name="targetBuffer" id="aworx::lox::core::ScopeDump::targetBuffer" ref="classaworx_1_1lox_1_1core_1_1ScopeDump.html#a90caf60ed8a2706cd05f8f52c3f299bf" />
       <keyword name="threadDict" id="aworx::lox::core::ScopeDump::threadDict" ref="classaworx_1_1lox_1_1core_1_1ScopeDump.html#acd3ef7d858b527370b1750b69387fda1" />
-      <keyword name="storeKeyToScope" id="aworx::lox::core::ScopeDump::storeKeyToScope" ref="classaworx_1_1lox_1_1core_1_1ScopeDump.html#a5a2f983c8c5be78a45fbbeb8c4bde6a4" />
+      <keyword name="storeKeyToScope" id="aworx::lox::core::ScopeDump::storeKeyToScope" ref="classaworx_1_1lox_1_1core_1_1ScopeDump.html#a99e7583b06550214b1a6eede977c37bb" />
       <keyword name="storeThreadToScope" id="aworx::lox::core::ScopeDump::storeThreadToScope" ref="classaworx_1_1lox_1_1core_1_1ScopeDump.html#aa8e35644877b44cceea3c76ef1961b6c" />
       <keyword name="writeStoreMapHelper" id="aworx::lox::core::ScopeDump::writeStoreMapHelper" ref="classaworx_1_1lox_1_1core_1_1ScopeDump.html#ace7178e93199df3704efdfbfaacad3af" />
       <keyword name="aworx::lox::core::ScopeInfo" id="aworx::lox::core::ScopeInfo" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html" />
@@ -5539,7 +5835,7 @@
       <keyword name="TrimReplacement" id="aworx::lox::core::ScopeInfo::SourcePathTrimRule::TrimReplacement" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#aab1aeee9def0c8b2181dd7ad92551cbc" />
       <keyword name="aworx::lox::core::ScopeStore" id="aworx::lox::core::ScopeStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html" />
       <keyword name="globalStore" id="aworx::lox::core::ScopeStore::globalStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#ad5f544834c72f2e639cda32bfdf4914b" />
-      <keyword name="languageStore" id="aworx::lox::core::ScopeStore::languageStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a1251572d8e2460a60f89fd2372e71c63" />
+      <keyword name="languageStore" id="aworx::lox::core::ScopeStore::languageStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#aba93a3fc3081b13d6589ae4677b08012" />
       <keyword name="threadInnerStore" id="aworx::lox::core::ScopeStore::threadInnerStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a344205164cffc3c7c0a6191c9a716b8f" />
       <keyword name="threadOuterStore" id="aworx::lox::core::ScopeStore::threadOuterStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#aaedb67f0bf7ce679a991c7ee988e1cc4" />
       <keyword name="ScopeStore" id="aworx::lox::core::ScopeStore::ScopeStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#ac7a74581c38faf240883a9a395547d5a" />
@@ -5552,8 +5848,8 @@
       <keyword name="Store" id="aworx::lox::core::ScopeStore::Store" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a5361906d7ce4b2ca6c3f676c85cf01fd" />
       <keyword name="Walk" id="aworx::lox::core::ScopeStore::Walk" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a262f597e568a196dcb284fb1c859c8d6" />
       <keyword name="actPathLevel" id="aworx::lox::core::ScopeStore::actPathLevel" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#aa5ede8468c729de0886d3bc84d31714e" />
-      <keyword name="actPathMapNode" id="aworx::lox::core::ScopeStore::actPathMapNode" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a77c6ecbc68ffa22251428b4763a3d3b7" />
       <keyword name="actScope" id="aworx::lox::core::ScopeStore::actScope" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#ab420b6d519025a485c6345895ad174ee" />
+      <keyword name="actStringTreeNode" id="aworx::lox::core::ScopeStore::actStringTreeNode" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#aaa7843809af7e19d81ee97aa858e154a" />
       <keyword name="actThreadID" id="aworx::lox::core::ScopeStore::actThreadID" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#afd0f796ebbfae3564416016c197c27b1" />
       <keyword name="cfgSingleThreadValue" id="aworx::lox::core::ScopeStore::cfgSingleThreadValue" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#ac8ebbb91a987a22c90eae5a4c72ecbc0" />
       <keyword name="lazyLanguageNode" id="aworx::lox::core::ScopeStore::lazyLanguageNode" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a531fce640b5915cd0496ba8c3c1058db" />
@@ -5563,7 +5859,7 @@
       <keyword name="walkNextThreadIdx" id="aworx::lox::core::ScopeStore::walkNextThreadIdx" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a9928f44e5399d356c4380ab105e48941" />
       <keyword name="walkThreadValues" id="aworx::lox::core::ScopeStore::walkThreadValues" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#abf7b7f408957d23da2c7b6fc692436cd" />
       <keyword name="access" id="aworx::lox::core::ScopeStore::access" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a9d948185e80ad3706923867cfe608317" />
-      <keyword name="getPathMapNode" id="aworx::lox::core::ScopeStore::getPathMapNode" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#ad1305df36b6dfcde87eded99e9e9424b" />
+      <keyword name="initCursor" id="aworx::lox::core::ScopeStore::initCursor" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a17a9a02a8a9868b496bcba471d2167dc" />
       <keyword name="aworx::lox::core::ScopeStoreType" id="aworx::lox::core::ScopeStoreType" ref="classaworx_1_1lox_1_1core_1_1ScopeStoreType.html" />
       <keyword name="AreEqual" id="aworx::lox::core::ScopeStoreType::AreEqual" ref="classaworx_1_1lox_1_1core_1_1ScopeStoreType.html#ad5516ec32df909883ecac628527d7e09" />
       <keyword name="IsNull" id="aworx::lox::core::ScopeStoreType::IsNull" ref="classaworx_1_1lox_1_1core_1_1ScopeStoreType.html#ae5573aa455900d85f7191f38710c09f5" />
@@ -5640,9 +5936,9 @@
       <keyword name="CntAcquirers" id="aworx::lib::threads::SmartLock::CntAcquirers" ref="classaworx_1_1lib_1_1threads_1_1SmartLock.html#a8d7f3cb41c747cf4c508db08fc60fe9f" />
       <keyword name="ThreadLock" id="aworx::lib::threads::ThreadLock::ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ac1b7c80ef351b4ddeccf330b34121947" />
       <keyword name="~ThreadLock" id="aworx::lib::threads::ThreadLock::~ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a62d4d1d8df991fec098bbd8d5f19e34b" />
-      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#af99e21e2f05c81744d2e6b5b66d14951" />
-      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a0268db1c6823138316436b214d486432" />
-      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a77946b26d73b3ba1ee0461f44dc66f1a" />
+      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#aceed656a3e262a10e366de4969fa4003" />
+      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ad990be5d1f5256638b1ddcc842a6ceb5" />
+      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7b2ea79ab83658e6c8b5f803c9b22475" />
       <keyword name="Release" id="aworx::lib::threads::ThreadLock::Release" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c" />
       <keyword name="SetSafeness" id="aworx::lib::threads::ThreadLock::SetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7610d5aa2df13cbaf64eb5ac17ddee71" />
       <keyword name="~Ownable" id="aworx::lib::lang::Ownable::~Ownable" ref="classaworx_1_1lib_1_1lang_1_1Ownable.html#a0cf51e767ecc62f4adc80e8d69e066df" />
@@ -5702,9 +5998,9 @@
       <keyword name="CntAcquirers" id="aworx::lib::threads::SmartLock::CntAcquirers" ref="classaworx_1_1lib_1_1threads_1_1SmartLock.html#a8d7f3cb41c747cf4c508db08fc60fe9f" />
       <keyword name="ThreadLock" id="aworx::lib::threads::ThreadLock::ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ac1b7c80ef351b4ddeccf330b34121947" />
       <keyword name="~ThreadLock" id="aworx::lib::threads::ThreadLock::~ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a62d4d1d8df991fec098bbd8d5f19e34b" />
-      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#af99e21e2f05c81744d2e6b5b66d14951" />
-      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a0268db1c6823138316436b214d486432" />
-      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a77946b26d73b3ba1ee0461f44dc66f1a" />
+      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#aceed656a3e262a10e366de4969fa4003" />
+      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ad990be5d1f5256638b1ddcc842a6ceb5" />
+      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7b2ea79ab83658e6c8b5f803c9b22475" />
       <keyword name="Release" id="aworx::lib::threads::ThreadLock::Release" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c" />
       <keyword name="SetSafeness" id="aworx::lib::threads::ThreadLock::SetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7610d5aa2df13cbaf64eb5ac17ddee71" />
       <keyword name="~Ownable" id="aworx::lib::lang::Ownable::~Ownable" ref="classaworx_1_1lib_1_1lang_1_1Ownable.html#a0cf51e767ecc62f4adc80e8d69e066df" />
@@ -5749,9 +6045,9 @@
       <keyword name="CntAcquirers" id="aworx::lib::threads::SmartLock::CntAcquirers" ref="classaworx_1_1lib_1_1threads_1_1SmartLock.html#a8d7f3cb41c747cf4c508db08fc60fe9f" />
       <keyword name="ThreadLock" id="aworx::lib::threads::ThreadLock::ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ac1b7c80ef351b4ddeccf330b34121947" />
       <keyword name="~ThreadLock" id="aworx::lib::threads::ThreadLock::~ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a62d4d1d8df991fec098bbd8d5f19e34b" />
-      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#af99e21e2f05c81744d2e6b5b66d14951" />
-      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a0268db1c6823138316436b214d486432" />
-      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a77946b26d73b3ba1ee0461f44dc66f1a" />
+      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#aceed656a3e262a10e366de4969fa4003" />
+      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ad990be5d1f5256638b1ddcc842a6ceb5" />
+      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7b2ea79ab83658e6c8b5f803c9b22475" />
       <keyword name="Release" id="aworx::lib::threads::ThreadLock::Release" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c" />
       <keyword name="SetSafeness" id="aworx::lib::threads::ThreadLock::SetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7610d5aa2df13cbaf64eb5ac17ddee71" />
       <keyword name="~Ownable" id="aworx::lib::lang::Ownable::~Ownable" ref="classaworx_1_1lib_1_1lang_1_1Ownable.html#a0cf51e767ecc62f4adc80e8d69e066df" />
@@ -5906,9 +6202,9 @@
       <keyword name="CntAcquirers" id="aworx::lib::threads::SmartLock::CntAcquirers" ref="classaworx_1_1lib_1_1threads_1_1SmartLock.html#a8d7f3cb41c747cf4c508db08fc60fe9f" />
       <keyword name="ThreadLock" id="aworx::lib::threads::ThreadLock::ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ac1b7c80ef351b4ddeccf330b34121947" />
       <keyword name="~ThreadLock" id="aworx::lib::threads::ThreadLock::~ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a62d4d1d8df991fec098bbd8d5f19e34b" />
-      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#af99e21e2f05c81744d2e6b5b66d14951" />
-      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a0268db1c6823138316436b214d486432" />
-      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a77946b26d73b3ba1ee0461f44dc66f1a" />
+      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#aceed656a3e262a10e366de4969fa4003" />
+      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ad990be5d1f5256638b1ddcc842a6ceb5" />
+      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7b2ea79ab83658e6c8b5f803c9b22475" />
       <keyword name="Release" id="aworx::lib::threads::ThreadLock::Release" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c" />
       <keyword name="SetSafeness" id="aworx::lib::threads::ThreadLock::SetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7610d5aa2df13cbaf64eb5ac17ddee71" />
       <keyword name="~Ownable" id="aworx::lib::lang::Ownable::~Ownable" ref="classaworx_1_1lib_1_1lang_1_1Ownable.html#a0cf51e767ecc62f4adc80e8d69e066df" />
@@ -5955,9 +6251,9 @@
       <keyword name="CntAcquirers" id="aworx::lib::threads::SmartLock::CntAcquirers" ref="classaworx_1_1lib_1_1threads_1_1SmartLock.html#a8d7f3cb41c747cf4c508db08fc60fe9f" />
       <keyword name="ThreadLock" id="aworx::lib::threads::ThreadLock::ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ac1b7c80ef351b4ddeccf330b34121947" />
       <keyword name="~ThreadLock" id="aworx::lib::threads::ThreadLock::~ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a62d4d1d8df991fec098bbd8d5f19e34b" />
-      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#af99e21e2f05c81744d2e6b5b66d14951" />
-      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a0268db1c6823138316436b214d486432" />
-      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a77946b26d73b3ba1ee0461f44dc66f1a" />
+      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#aceed656a3e262a10e366de4969fa4003" />
+      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ad990be5d1f5256638b1ddcc842a6ceb5" />
+      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7b2ea79ab83658e6c8b5f803c9b22475" />
       <keyword name="Release" id="aworx::lib::threads::ThreadLock::Release" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c" />
       <keyword name="SetSafeness" id="aworx::lib::threads::ThreadLock::SetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7610d5aa2df13cbaf64eb5ac17ddee71" />
       <keyword name="~Ownable" id="aworx::lib::lang::Ownable::~Ownable" ref="classaworx_1_1lib_1_1lang_1_1Ownable.html#a0cf51e767ecc62f4adc80e8d69e066df" />
@@ -6037,9 +6333,9 @@
       <keyword name="CntAcquirers" id="aworx::lib::threads::SmartLock::CntAcquirers" ref="classaworx_1_1lib_1_1threads_1_1SmartLock.html#a8d7f3cb41c747cf4c508db08fc60fe9f" />
       <keyword name="ThreadLock" id="aworx::lib::threads::ThreadLock::ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ac1b7c80ef351b4ddeccf330b34121947" />
       <keyword name="~ThreadLock" id="aworx::lib::threads::ThreadLock::~ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a62d4d1d8df991fec098bbd8d5f19e34b" />
-      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#af99e21e2f05c81744d2e6b5b66d14951" />
-      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a0268db1c6823138316436b214d486432" />
-      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a77946b26d73b3ba1ee0461f44dc66f1a" />
+      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#aceed656a3e262a10e366de4969fa4003" />
+      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ad990be5d1f5256638b1ddcc842a6ceb5" />
+      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7b2ea79ab83658e6c8b5f803c9b22475" />
       <keyword name="Release" id="aworx::lib::threads::ThreadLock::Release" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c" />
       <keyword name="SetSafeness" id="aworx::lib::threads::ThreadLock::SetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7610d5aa2df13cbaf64eb5ac17ddee71" />
       <keyword name="~Ownable" id="aworx::lib::lang::Ownable::~Ownable" ref="classaworx_1_1lib_1_1lang_1_1Ownable.html#a0cf51e767ecc62f4adc80e8d69e066df" />
@@ -6103,9 +6399,9 @@
       <keyword name="CntAcquirers" id="aworx::lib::threads::SmartLock::CntAcquirers" ref="classaworx_1_1lib_1_1threads_1_1SmartLock.html#a8d7f3cb41c747cf4c508db08fc60fe9f" />
       <keyword name="ThreadLock" id="aworx::lib::threads::ThreadLock::ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ac1b7c80ef351b4ddeccf330b34121947" />
       <keyword name="~ThreadLock" id="aworx::lib::threads::ThreadLock::~ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a62d4d1d8df991fec098bbd8d5f19e34b" />
-      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#af99e21e2f05c81744d2e6b5b66d14951" />
-      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a0268db1c6823138316436b214d486432" />
-      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a77946b26d73b3ba1ee0461f44dc66f1a" />
+      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#aceed656a3e262a10e366de4969fa4003" />
+      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ad990be5d1f5256638b1ddcc842a6ceb5" />
+      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7b2ea79ab83658e6c8b5f803c9b22475" />
       <keyword name="Release" id="aworx::lib::threads::ThreadLock::Release" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c" />
       <keyword name="SetSafeness" id="aworx::lib::threads::ThreadLock::SetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7610d5aa2df13cbaf64eb5ac17ddee71" />
       <keyword name="~Ownable" id="aworx::lib::lang::Ownable::~Ownable" ref="classaworx_1_1lib_1_1lang_1_1Ownable.html#a0cf51e767ecc62f4adc80e8d69e066df" />
@@ -6155,9 +6451,9 @@
       <keyword name="CntAcquirers" id="aworx::lib::threads::SmartLock::CntAcquirers" ref="classaworx_1_1lib_1_1threads_1_1SmartLock.html#a8d7f3cb41c747cf4c508db08fc60fe9f" />
       <keyword name="ThreadLock" id="aworx::lib::threads::ThreadLock::ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ac1b7c80ef351b4ddeccf330b34121947" />
       <keyword name="~ThreadLock" id="aworx::lib::threads::ThreadLock::~ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a62d4d1d8df991fec098bbd8d5f19e34b" />
-      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#af99e21e2f05c81744d2e6b5b66d14951" />
-      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a0268db1c6823138316436b214d486432" />
-      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a77946b26d73b3ba1ee0461f44dc66f1a" />
+      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#aceed656a3e262a10e366de4969fa4003" />
+      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ad990be5d1f5256638b1ddcc842a6ceb5" />
+      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7b2ea79ab83658e6c8b5f803c9b22475" />
       <keyword name="Release" id="aworx::lib::threads::ThreadLock::Release" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c" />
       <keyword name="SetSafeness" id="aworx::lib::threads::ThreadLock::SetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7610d5aa2df13cbaf64eb5ac17ddee71" />
       <keyword name="~Ownable" id="aworx::lib::lang::Ownable::~Ownable" ref="classaworx_1_1lib_1_1lang_1_1Ownable.html#a0cf51e767ecc62f4adc80e8d69e066df" />
@@ -6238,9 +6534,9 @@
       <keyword name="CntAcquirers" id="aworx::lib::threads::SmartLock::CntAcquirers" ref="classaworx_1_1lib_1_1threads_1_1SmartLock.html#a8d7f3cb41c747cf4c508db08fc60fe9f" />
       <keyword name="ThreadLock" id="aworx::lib::threads::ThreadLock::ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ac1b7c80ef351b4ddeccf330b34121947" />
       <keyword name="~ThreadLock" id="aworx::lib::threads::ThreadLock::~ThreadLock" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a62d4d1d8df991fec098bbd8d5f19e34b" />
-      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#af99e21e2f05c81744d2e6b5b66d14951" />
-      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a0268db1c6823138316436b214d486432" />
-      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a77946b26d73b3ba1ee0461f44dc66f1a" />
+      <keyword name="DbgCountAcquirements" id="aworx::lib::threads::ThreadLock::DbgCountAcquirements" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#aceed656a3e262a10e366de4969fa4003" />
+      <keyword name="GetMode" id="aworx::lib::threads::ThreadLock::GetMode" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ad990be5d1f5256638b1ddcc842a6ceb5" />
+      <keyword name="GetSafeness" id="aworx::lib::threads::ThreadLock::GetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7b2ea79ab83658e6c8b5f803c9b22475" />
       <keyword name="Release" id="aworx::lib::threads::ThreadLock::Release" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c" />
       <keyword name="SetSafeness" id="aworx::lib::threads::ThreadLock::SetSafeness" ref="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7610d5aa2df13cbaf64eb5ac17ddee71" />
       <keyword name="~Ownable" id="aworx::lib::lang::Ownable::~Ownable" ref="classaworx_1_1lib_1_1lang_1_1Ownable.html#a0cf51e767ecc62f4adc80e8d69e066df" />
@@ -6337,7 +6633,6 @@
       <file>memorylogger_8hpp_source.html</file>
       <file>numberformat_8hpp_source.html</file>
       <file>ownable_8hpp_source.html</file>
-      <file>pathmap_8hpp_source.html</file>
       <file>plaintextlogger_8hpp_source.html</file>
       <file>plugins_8hpp_source.html</file>
       <file>preallocatedstring_8hpp_source.html</file>
@@ -6359,6 +6654,7 @@
       <file>string_8hpp_source.html</file>
       <file>stringboxing_8hpp_source.html</file>
       <file>stringliteral_8hpp_source.html</file>
+      <file>stringtree_8hpp_source.html</file>
       <file>stringtuples_8hpp_source.html</file>
       <file>substring_8hpp_source.html</file>
       <file>textfilelogger_8hpp_source.html</file>
@@ -6393,7 +6689,6 @@
       <file>ansilogger_8hpp__incl.svg</file>
       <file>ansilogger_8hpp__dep__incl.svg</file>
       <file>applicables_8hpp.html</file>
-      <file>applicables_8hpp__incl.svg</file>
       <file>applicables_8hpp__dep__incl.svg</file>
       <file>astring_8hpp.html</file>
       <file>astring_8hpp__incl.svg</file>
@@ -6477,8 +6772,6 @@
       <file>ownable_8hpp.html</file>
       <file>ownable_8hpp__incl.svg</file>
       <file>ownable_8hpp__dep__incl.svg</file>
-      <file>pathmap_8hpp.html</file>
-      <file>pathmap_8hpp__incl.svg</file>
       <file>plaintextlogger_8hpp.html</file>
       <file>plaintextlogger_8hpp__incl.svg</file>
       <file>plaintextlogger_8hpp__dep__incl.svg</file>
@@ -6515,7 +6808,6 @@
       <file>smartlock_8hpp__incl.svg</file>
       <file>smartlock_8hpp__dep__incl.svg</file>
       <file>spaces_8hpp.html</file>
-      <file>spaces_8hpp__incl.svg</file>
       <file>std__iostream_8hpp.html</file>
       <file>std__iostream_8hpp__incl.svg</file>
       <file>std__string_8hpp.html</file>
@@ -6523,13 +6815,14 @@
       <file>std__vector_8hpp.html</file>
       <file>std__vector_8hpp__incl.svg</file>
       <file>string_8hpp.html</file>
-      <file>string_8hpp__incl.svg</file>
       <file>string_8hpp__dep__incl.svg</file>
       <file>stringboxing_8hpp.html</file>
       <file>stringboxing_8hpp__dep__incl.svg</file>
       <file>stringliteral_8hpp.html</file>
-      <file>stringliteral_8hpp__incl.svg</file>
       <file>stringliteral_8hpp__dep__incl.svg</file>
+      <file>stringtree_8hpp.html</file>
+      <file>stringtree_8hpp__incl.svg</file>
+      <file>stringtree_8hpp__dep__incl.svg</file>
       <file>stringtuples_8hpp.html</file>
       <file>stringtuples_8hpp__incl.svg</file>
       <file>substring_8hpp.html</file>
@@ -6718,15 +7011,34 @@
       <file>classaworx_1_1lib_1_1config_1_1XTernalizer.html</file>
       <file>classaworx_1_1lib_1_1config_1_1XTernalizer-members.html</file>
       <file>namespaceaworx_1_1lib_1_1containers.html</file>
-      <file>classaworx_1_1lib_1_1containers_1_1PathMap.html</file>
-      <file>classaworx_1_1lib_1_1containers_1_1PathMap__coll__graph.svg</file>
-      <file>classaworx_1_1lib_1_1containers_1_1PathMap-members.html</file>
-      <file>classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html</file>
-      <file>classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator__inherit__graph.svg</file>
-      <file>classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator__coll__graph.svg</file>
-      <file>classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator-members.html</file>
-      <file>structaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator_1_1NodeAndChild.html</file>
-      <file>structaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator_1_1NodeAndChild-members.html</file>
+      <file>classaworx_1_1lib_1_1containers_1_1StringTree.html</file>
+      <file>classaworx_1_1lib_1_1containers_1_1StringTree__coll__graph.svg</file>
+      <file>classaworx_1_1lib_1_1containers_1_1StringTree-members.html</file>
+      <file>classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html</file>
+      <file>classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor__coll__graph.svg</file>
+      <file>classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor-members.html</file>
+      <file>structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html</file>
+      <file>structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node__coll__graph.svg</file>
+      <file>structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node-members.html</file>
+      <file>classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html</file>
+      <file>classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator__inherit__graph.svg</file>
+      <file>classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator__coll__graph.svg</file>
+      <file>classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator-members.html</file>
+      <file>structaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator_1_1RecursionDataIt.html</file>
+      <file>structaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator_1_1RecursionDataIt__coll__graph.svg</file>
+      <file>structaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator_1_1RecursionDataIt-members.html</file>
+      <file>classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html</file>
+      <file>classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker__coll__graph.svg</file>
+      <file>classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker-members.html</file>
+      <file>structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html</file>
+      <file>structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData__coll__graph.svg</file>
+      <file>structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData-members.html</file>
+      <file>structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1Sorter.html</file>
+      <file>structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1Sorter-members.html</file>
+      <file>structaworx_1_1lib_1_1containers_1_1StringTreeConstKeyAllocator.html</file>
+      <file>structaworx_1_1lib_1_1containers_1_1StringTreeConstKeyAllocator-members.html</file>
+      <file>structaworx_1_1lib_1_1containers_1_1StringTreeDefaultKeyAllocator.html</file>
+      <file>structaworx_1_1lib_1_1containers_1_1StringTreeDefaultKeyAllocator-members.html</file>
       <file>namespaceaworx_1_1lib_1_1debug.html</file>
       <file>classaworx_1_1lib_1_1debug_1_1Boxing.html</file>
       <file>classaworx_1_1lib_1_1debug_1_1Boxing__coll__graph.svg</file>
@@ -6797,6 +7109,10 @@
       <file>classaworx_1_1lib_1_1strings_1_1PreallocatedString__inherit__graph.svg</file>
       <file>classaworx_1_1lib_1_1strings_1_1PreallocatedString__coll__graph.svg</file>
       <file>classaworx_1_1lib_1_1strings_1_1PreallocatedString-members.html</file>
+      <file>structaworx_1_1lib_1_1strings_1_1std__Equals.html</file>
+      <file>structaworx_1_1lib_1_1strings_1_1std__Equals-members.html</file>
+      <file>structaworx_1_1lib_1_1strings_1_1std__Hash.html</file>
+      <file>structaworx_1_1lib_1_1strings_1_1std__Hash-members.html</file>
       <file>classaworx_1_1lib_1_1strings_1_1String.html</file>
       <file>classaworx_1_1lib_1_1strings_1_1String__inherit__graph.svg</file>
       <file>classaworx_1_1lib_1_1strings_1_1String-members.html</file>
@@ -6962,6 +7278,10 @@
       <file>structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Safeness_01_4__inherit__graph.svg</file>
       <file>structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Safeness_01_4__coll__graph.svg</file>
       <file>structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Safeness_01_4-members.html</file>
+      <file>structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1SortOrder_01_4.html</file>
+      <file>structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1SortOrder_01_4__inherit__graph.svg</file>
+      <file>structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1SortOrder_01_4__coll__graph.svg</file>
+      <file>structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1SortOrder_01_4-members.html</file>
       <file>structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Switch_01_4.html</file>
       <file>structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Switch_01_4__inherit__graph.svg</file>
       <file>structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lang_1_1Switch_01_4__coll__graph.svg</file>
@@ -7304,8 +7624,8 @@
       <file>dir_08f885627474fb330dde0a077913c803.html</file>
       <file>dir_f084a130650aeadfa20a4eb0d3bb60a0.html</file>
       <file>dir_055cf117c773a949536c7a3a66983f12.html</file>
-      <file>dir_7ef9fc011e902d65776998777de3ace8.html</file>
       <file>dir_8df6b461fe463c5d79b73e08caa71c3d.html</file>
+      <file>dir_7ef9fc011e902d65776998777de3ace8.html</file>
       <file>dir_c5498061678cdf4ad899d1eb3f700219.html</file>
       <file>dir_63e86f4e3e4ce20e0d741aef05e6e888.html</file>
       <file>dir_0cc9a0aa963f9f83db92e515e609b616.html</file>
@@ -7396,6 +7716,16 @@
       <file>inherit_graph_68.svg</file>
       <file>inherit_graph_69.svg</file>
       <file>inherit_graph_70.svg</file>
+      <file>inherit_graph_71.svg</file>
+      <file>inherit_graph_72.svg</file>
+      <file>inherit_graph_73.svg</file>
+      <file>inherit_graph_74.svg</file>
+      <file>inherit_graph_75.svg</file>
+      <file>inherit_graph_76.svg</file>
+      <file>inherit_graph_77.svg</file>
+      <file>inherit_graph_78.svg</file>
+      <file>inherit_graph_79.svg</file>
+      <file>inherit_graph_80.svg</file>
       <file>functions.html</file>
       <file>functions_a.html</file>
       <file>functions_b.html</file>

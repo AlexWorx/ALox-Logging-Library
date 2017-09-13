@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -84,15 +84,15 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>The macros listed here, are provided to place release <em>Log Statements</em> within source code using ALox. Besides that, macros controlling and setting preferences for ALox exists.</p>
-<p>The exclusive use of these macros should be sufficient to support most of common release logging statements with ALox. Should some functionality be not available easily using the macros, of-course, the normal C++ API of ALox can be used in parallel to using the macros. Code that is using the C++ API might be enclosed by<br />
+<p>The macros listed here, are provided to place release <em>Log Statements</em> within source code using <b>ALox</b>. Besides that, macros controlling and setting preferences for ALox exists.</p>
+<p>The exclusive use of these macros should be sufficient to support most of common release logging statements with <b>ALox</b>. Should some functionality be not available easily using the macros, of-course, the normal C++ API of <b>ALox</b> can be used in parallel to using the macros. Code that is using the C++ API might be enclosed by<br />
  </p><pre class="fragment">#if ALOX_REL_LOG
    ...
 #endif
 </pre><p> lines, to remove them when compiling a release version of the software unit with pruned release log macros. Alternatively, such code might be embedded in macro <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>. (Such compilation would be made by passing <a class="el" href="group__GrpALoxCompilerSymbols.html#gae77944a12e0a9b9bc2657cb7298d70f4">ALOX_REL_LOG_OFF</a> to the compiler and could be useful in certain situations.) </p>
 <p>Prior to using the macros, each code entity has to set the preprocessor macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a> This can be done in a general header file of the software, (e.g. the same that exposes the release-Lox object to that source), or, in more complex scenarios with more than one release-Lox object, at any other appropriate source location.</p>
-<p>All macro names are prefixed with the term <b>Lox_</b>. This implies that they are macros to implement <em>release logging</em>. In contrast to this, a set of similar macros exists for <em>debug logging</em> (see <a class="el" href="group__GrpMacrosDebugLog.html">ALox Macros For Debug Logging</a>). Those are prefixed <b>Log_</b>. </p><dl class="section note"><dt>Note</dt><dd>The choice of the prefixes <b>Log_</b> and <b>Lox_</b> was made to provide maximum source code compatibility of <em>ALox for C++</em> log lines in comparison to other ALox implementations in other programming languages, which provide a class Log as a kind of 'mirror' class of class Lox. Invocations to class Log get pruned in these languages. </dd></dl>
-<p>Most macros make use of the macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>, which references a singleton object of class <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> that is used for all release logging. This singleton concept covers most uses cases for release logging. If more flexibility is wanted, then either the macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a> might be changed for different compilation units or the ALox C++ API might be used instead of the macros listed here. </p>
+<p>All macro names are prefixed with the term <b>Lox_</b>. This implies that they are macros to implement <em>release logging</em>. In contrast to this, a set of similar macros exists for <em>debug logging</em> (see <a class="el" href="group__GrpMacrosDebugLog.html">ALox Macros For Debug Logging</a>). Those are prefixed <b>Log_</b>. </p><dl class="section note"><dt>Note</dt><dd>The choice of the prefixes <b>Log_</b> and <b>Lox_</b> was made to provide maximum source code compatibility of <b>ALox for C++</b> log lines in comparison to other ALox implementations in other programming languages, which provide a class Log as a kind of 'mirror' class of class Lox. Invocations to class Log get pruned in these languages. </dd></dl>
+<p>Most macros make use of the macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>, which references a singleton object of class <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> that is used for all release logging. This singleton concept covers most uses cases for release logging. If more flexibility is wanted, then either the macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a> might be changed for different compilation units or the <b>ALox C++ API</b> might be used instead of the macros listed here. </p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -360,7 +360,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>This very simple macro is used for pruning release <em>Log Statements</em> in the moment release logging gets disabled (what in standard release scenarios is not done).</p>
-<p>While it is used as a building block of all other macros for release logging, for code entities using ALox, it provides an easy way to prune code lines that get inserted purely to support logging, e.g. to create ALox loggers or to prepare more complex log output. (The alternative way is to enclose such code within <code> #ifdef ALOX_REL_LOG </code> / <code> #endif </code> preprocessor lines. </p>
+<p>While it is used as a building block of all other macros for release logging, for code entities using <b>ALox</b>, it provides an easy way to prune code lines that get inserted purely to support logging, e.g. to create <b>ALox</b> loggers or to prepare more complex log output. (The alternative way is to enclose such code within <code> #ifdef ALOX_REL_LOG </code> / <code> #endif </code> preprocessor lines. </p>
 <p>Depends on <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga4d0c70512b17f1dd4fa3556f79dd2689">ALOX_REL_LOG</a>. If this is set, the macro just copies the code provided, else it does not copy it, hence removes the code. </p>
 
 </div>
@@ -447,7 +447,7 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a1b78fb31f62ec7e9f862417c5936e8ea">Lox::SetDomain</a> on the object of type Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>. </p><dl class="section attention"><dt>Attention</dt><dd>If <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga4b0e38e300ec824146da5e868f2c6290">ALOX_REL_LOG_CI</a> is not set, which is the default for release logging, and when used with language-related <em>Scopes</em>, this method will log an internal warning and will not be effective in respect to <em>Scope.Path</em>, <em>Scope.Filename</em>, and <em>Scope.Method</em>. See ALox user manual for detailed information. If Scope Domains based on source-related scopes should be supported in release logging, the software entity has to be compiled with precompiler symbol <a class="el" href="group__GrpALoxCompilerSymbols.html#ga85c683ba401d4c9216c96a9a17a9e9a9">ALOX_REL_LOG_CI_ON</a>. Note that one effect of setting this symbol is, that information on source code paths and file names, as well as method names make their way into the release executable. This may not be wanted. </dd></dl>
+<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a1b78fb31f62ec7e9f862417c5936e8ea">Lox::SetDomain</a> on the object of type Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>. </p><dl class="section attention"><dt>Attention</dt><dd>If <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga4b0e38e300ec824146da5e868f2c6290">ALOX_REL_LOG_CI</a> is not set, which is the default for release logging, and when used with language-related <em>Scopes</em>, this method will log an internal warning and will not be effective in respect to <em>Scope.Path</em>, <em>Scope.Filename</em>, and <em>Scope.Method</em>. See <a href="../manual.html">ALox User Manual</a> for detailed information. If Scope Domains based on source-related scopes should be supported in release logging, the software entity has to be compiled with precompiler symbol <a class="el" href="group__GrpALoxCompilerSymbols.html#ga85c683ba401d4c9216c96a9a17a9e9a9">ALOX_REL_LOG_CI_ON</a>. Note that one effect of setting this symbol is, that information on source code paths and file names, as well as method names make their way into the release executable. This may not be wanted. </dd></dl>
 
 </div>
 </div>
@@ -619,7 +619,7 @@ Macros</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:26 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:47:57 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

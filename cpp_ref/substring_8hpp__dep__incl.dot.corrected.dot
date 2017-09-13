@@ -50,6 +50,7 @@ digraph "substring.hpp"
   Node20 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node21 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node21 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node23 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node24 -> Node25 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node25 -> Node26 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node25 -> Node27 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
@@ -82,7 +83,7 @@ digraph "substring.hpp"
   Node20 [label="plugins.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$plugins_8hpp.html"];
   Node21 [label="inmemoryplugin.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$inmemoryplugin_8hpp.html"];
   Node22 [label="inifile.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$inifile_8hpp.html"];
-  Node23 [label="pathmap.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pathmap_8hpp.html"];
+  Node23 [label="stringtree.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$stringtree_8hpp.html"];
   Node24 [label="formatter.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$formatter_8hpp.html"];
   Node25 [label="formatterstdimpl.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$formatterstdimpl_8hpp.html"];
   Node26 [label="formatterjavastyle.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$formatterjavastyle_8hpp.html"];

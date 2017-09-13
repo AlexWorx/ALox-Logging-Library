@@ -13,6 +13,7 @@ var searchData=
   ['string_2ehpp',['string.hpp',['../string_8hpp.html',1,'']]],
   ['stringboxing_2ehpp',['stringboxing.hpp',['../stringboxing_8hpp.html',1,'']]],
   ['stringliteral_2ehpp',['stringliteral.hpp',['../stringliteral_8hpp.html',1,'']]],
+  ['stringtree_2ehpp',['stringtree.hpp',['../stringtree_8hpp.html',1,'']]],
   ['stringtuples_2ehpp',['stringtuples.hpp',['../stringtuples_8hpp.html',1,'']]],
   ['substring_2ehpp',['substring.hpp',['../substring_8hpp.html',1,'']]]
 ];

@@ -18,17 +18,19 @@ var searchData=
   ['loggers',['loggers',['.././cpp_ref/namespaceaworx_1_1lox_1_1loggers.html',1,'aworx::lox']]],
   ['lox',['lox',['.././cpp_ref/namespaceaworx_1_1lox.html',1,'aworx::lox'],['.././cpp_ref/structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html',1,'aworx::lox::Lox']]],
   ['memoryblocks',['MemoryBlocks',['.././cpp_ref/structaworx_1_1lib_1_1lang_1_1MemoryBlocks_1_1Block.html',1,'aworx::lib::lang']]],
-  ['pathmap',['PathMap',['.././cpp_ref/classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html',1,'aworx::lib::containers']]],
   ['qt',['qt',['.././cpp_ref/namespaceaworx_1_1lib_1_1boxing_1_1thirdparty_1_1qt.html',1,'aworx::lib::boxing::thirdparty::qt'],['.././cpp_ref/namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1qt.html',1,'aworx::lib::strings::thirdparty::qt']]],
   ['report',['Report',['.././cpp_ref/classaworx_1_1lib_1_1lang_1_1Report_1_1Message.html',1,'aworx::lib::lang']]],
   ['scopeinfo',['ScopeInfo',['.././cpp_ref/structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1Scope.html',1,'aworx::lox::core']]],
   ['std',['std',['.././cpp_ref/namespaceaworx_1_1lib_1_1boxing_1_1thirdparty_1_1std.html',1,'aworx::lib::boxing::thirdparty::std'],['.././cpp_ref/namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html',1,'aworx::lib::strings::thirdparty::std']]],
+  ['stditerator',['StdIterator',['.././cpp_ref/structaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator_1_1RecursionDataIt.html',1,'aworx::lib::containers::StringTree']]],
   ['string',['String',['.././cpp_ref/classaworx_1_1lib_1_1strings_1_1String_1_1RandomAccessIteratorBase.html',1,'aworx::lib::strings']]],
   ['strings',['strings',['.././cpp_ref/namespaceaworx_1_1lib_1_1strings.html',1,'aworx::lib']]],
+  ['stringtree',['StringTree',['.././cpp_ref/classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html',1,'aworx::lib::containers']]],
   ['system',['system',['.././cpp_ref/namespaceaworx_1_1lib_1_1system.html',1,'aworx::lib']]],
   ['textlogger',['textlogger',['.././cpp_ref/namespaceaworx_1_1lox_1_1core_1_1textlogger.html',1,'aworx::lox::core']]],
   ['thirdparty',['thirdparty',['.././cpp_ref/namespaceaworx_1_1lib_1_1boxing_1_1thirdparty.html',1,'aworx::lib::boxing::thirdparty'],['.././cpp_ref/namespaceaworx_1_1lib_1_1strings_1_1thirdparty.html',1,'aworx::lib::strings::thirdparty']]],
   ['threads',['threads',['.././cpp_ref/namespaceaworx_1_1lib_1_1threads.html',1,'aworx::lib']]],
   ['time',['time',['.././cpp_ref/namespaceaworx_1_1lib_1_1time.html',1,'aworx::lib']]],
-  ['util',['util',['.././cpp_ref/namespaceaworx_1_1lib_1_1strings_1_1util.html',1,'aworx::lib::strings']]]
+  ['util',['util',['.././cpp_ref/namespaceaworx_1_1lib_1_1strings_1_1util.html',1,'aworx::lib::strings']]],
+  ['walker',['Walker',['.././cpp_ref/structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html',1,'aworx::lib::containers::StringTree']]]
 ];

@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -105,7 +105,7 @@ Collaboration diagram for TextLogger:</div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> This class is a still abstract implementation of class <a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">Logger</a> which is used as the super class for all textual <a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">Logger</a> implementations within <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a>, e.g. ConsoleLogger.</p>
+<p> This class is a still abstract implementation of class <a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">Logger</a> which is used as the super class for all textual <a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">Logger</a> implementations within <b>ALox</b>, e.g. ConsoleLogger.</p>
 <p>The class uses a helper class to generate the textual representation of the meta information of a log call. This helper can be extended and replaced in <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a44ec0d8f6ee263114e758dd8d4cd8301">MetaInfo</a> to modify the behavior of <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a>.</p>
 <p>The final log message is then passed to the abstract method <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#ae272f3e7c4827d4ad3cd3e7822bf9aff">logText</a>. Hence, custom <a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">Logger</a> classes that inherited from this class instead of directly from class <a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html#aee3bfe16d6478e9f80bf37786712bfe9">Logger</a>, need to implement <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#ae272f3e7c4827d4ad3cd3e7822bf9aff">logText</a> instead of implementing <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a62a1627197acfbf5e05bfcc533086b9d">Log</a>.</p>
 <p>Class <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a> supports multi line log outputs. Such multi line log outputs can be configured to be logged in different ways. See <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a95ea94dee572eaac760d028ddcf3cf65">MultiLineMsgMode</a> for more information. </p>
@@ -178,12 +178,12 @@ Public Methods</h2></td></tr>
 <tr class="separator:ac1b7c80ef351b4ddeccf330b34121947 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62d4d1d8df991fec098bbd8d5f19e34b inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a62d4d1d8df991fec098bbd8d5f19e34b">~ThreadLock</a> ()</td></tr>
 <tr class="separator:a62d4d1d8df991fec098bbd8d5f19e34b inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af99e21e2f05c81744d2e6b5b66d14951 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#af99e21e2f05c81744d2e6b5b66d14951">DbgCountAcquirements</a> (<a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html">Thread</a> *thread=nullptr)</td></tr>
-<tr class="separator:af99e21e2f05c81744d2e6b5b66d14951 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0268db1c6823138316436b214d486432 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a00fc859257c8f09ff9198dde28121961">lang::LockMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a0268db1c6823138316436b214d486432">GetMode</a> ()</td></tr>
-<tr class="separator:a0268db1c6823138316436b214d486432 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77946b26d73b3ba1ee0461f44dc66f1a inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a8c800527afe0a8a6c71ae4cceda6bf9d">lang::Safeness</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a77946b26d73b3ba1ee0461f44dc66f1a">GetSafeness</a> ()</td></tr>
-<tr class="separator:a77946b26d73b3ba1ee0461f44dc66f1a inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aceed656a3e262a10e366de4969fa4003 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#aceed656a3e262a10e366de4969fa4003">DbgCountAcquirements</a> (<a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html">Thread</a> *thread=nullptr) const</td></tr>
+<tr class="separator:aceed656a3e262a10e366de4969fa4003 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad990be5d1f5256638b1ddcc842a6ceb5 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a00fc859257c8f09ff9198dde28121961">lang::LockMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ad990be5d1f5256638b1ddcc842a6ceb5">GetMode</a> () const</td></tr>
+<tr class="separator:ad990be5d1f5256638b1ddcc842a6ceb5 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b2ea79ab83658e6c8b5f803c9b22475 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a8c800527afe0a8a6c71ae4cceda6bf9d">lang::Safeness</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7b2ea79ab83658e6c8b5f803c9b22475">GetSafeness</a> () const</td></tr>
+<tr class="separator:a7b2ea79ab83658e6c8b5f803c9b22475 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94c93747c8daa99d65c2a04c6be0748c inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c">Release</a> ()</td></tr>
 <tr class="separator:a94c93747c8daa99d65c2a04c6be0748c inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7610d5aa2df13cbaf64eb5ac17ddee71 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7610d5aa2df13cbaf64eb5ac17ddee71">SetSafeness</a> (<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a8c800527afe0a8a6c71ae4cceda6bf9d">lang::Safeness</a> safeness)</td></tr>
@@ -899,7 +899,7 @@ Protected Methods</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Used to avoid to repeatedly register with ALib <em>standard output stream</em> lockers when attached to multiple instances of class <b><a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a></b>. </p>
+<p>Used to avoid to repeatedly register with <b>ALib</b> <em>standard output stream</em> lockers when attached to multiple instances of class <b><a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a></b>. </p>
 
 </div>
 </div>
@@ -934,7 +934,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:27 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

@@ -45,7 +45,7 @@ var searchData=
   ['trimoffset',['TrimOffset',['../structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a400a3c8a83ee22ccb635bb8a96a1d6ca',1,'aworx::lox::core::ScopeInfo::SourcePathTrimRule']]],
   ['trimreplacement',['TrimReplacement',['../structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#aab1aeee9def0c8b2181dd7ad92551cbc',1,'aworx::lox::core::ScopeInfo::SourcePathTrimRule']]],
   ['truevalues',['TrueValues',['../classaworx_1_1lib_1_1config_1_1Configuration.html#a5848fc835514e61005938ea4c9b9b772',1,'aworx::lib::config::Configuration']]],
-  ['type',['Type',['../classaworx_1_1lib_1_1lang_1_1Report_1_1Message.html#ae011432eaca3858364b05a111f4011d3',1,'aworx::lib::lang::Report::Message::Type()'],['../classaworx_1_1lib_1_1boxing_1_1Boxer.html#a0cb9a6a815046da9de1d8325a8db0e72',1,'aworx::lib::boxing::Boxer::type()'],['../structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html#ab6f4e6d3fde00ce906e46494f60dfe7a',1,'aworx::lox::Lox::DomainSubstitutionRule::type()']]],
+  ['type',['type',['../classaworx_1_1lib_1_1boxing_1_1Boxer.html#a0cb9a6a815046da9de1d8325a8db0e72',1,'aworx::lib::boxing::Boxer::type()'],['../structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html#ab6f4e6d3fde00ce906e46494f60dfe7a',1,'aworx::lox::Lox::DomainSubstitutionRule::type()'],['../classaworx_1_1lib_1_1lang_1_1Report_1_1Message.html#ae011432eaca3858364b05a111f4011d3',1,'aworx::lib::lang::Report::Message::Type()']]],
   ['typeinfo',['typeInfo',['../classaworx_1_1lib_1_1boxing_1_1Interface.html#a850d0a52a5a9215400d3f7e4d3b12025',1,'aworx::lib::boxing::Interface']]],
   ['typename',['TypeName',['../classaworx_1_1lox_1_1core_1_1Logger.html#a5a295fb1c491a3a0bc84efbe8ebe28c9',1,'aworx::lox::core::Logger']]]
 ];

@@ -1,8 +1,9 @@
 var searchData=
 [
   ['v',['v',['../classaworx_1_1lib_1_1strings_1_1Format.html#a382e9ea0d7bc529dee1b4a50ff8d10f2',1,'aworx::lib::strings::Format']]],
-  ['value',['Value',['../structaworx_1_1lib_1_1boxing_1_1BoxData.html#ae5cc2f97c501622beca5fdeffb7e755c',1,'aworx::lib::boxing::BoxData::Value()'],['../classaworx_1_1lib_1_1containers_1_1PathMap.html#acc64411e4973d80d6983e983f9ce7f0e',1,'aworx::lib::containers::PathMap::Value()'],['../classaworx_1_1lib_1_1boxing_1_1BoxedAs.html#a37970b24ff8115a54b5c57718f83fb10',1,'aworx::lib::boxing::BoxedAs::value()']]],
+  ['value',['Value',['../structaworx_1_1lib_1_1boxing_1_1BoxData.html#ae5cc2f97c501622beca5fdeffb7e755c',1,'aworx::lib::boxing::BoxData::Value()'],['../classaworx_1_1lib_1_1boxing_1_1BoxedAs.html#a37970b24ff8115a54b5c57718f83fb10',1,'aworx::lib::boxing::BoxedAs::value()'],['../structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#a4fc7f59e3113e19697159919a5aad095',1,'aworx::lib::containers::StringTree::Node::value()']]],
   ['values',['values',['../classaworx_1_1lib_1_1config_1_1Variable.html#a082c95cffd7b5ec8f2d19f8b8ba15575',1,'aworx::lib::config::Variable::values()'],['../classaworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html#a666b5dd3fd1a34b57a7ff77570f99986',1,'aworx::lib::strings::util::AutoSizes::values()'],['../classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html#ae034b91bcff57549de332664c053c1f3',1,'aworx::lib::config::InMemoryPlugin::Entry::Values()']]],
+  ['valuesorter',['valueSorter',['../structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1Sorter.html#ad329d04d192f4b4cb3c3ba6a6b0bc612',1,'aworx::lib::containers::StringTree::Walker::Sorter']]],
   ['valuetype',['valueType',['../classaworx_1_1lib_1_1strings_1_1Format.html#a8005d517c7a9e379314e1ce4f90a3dce',1,'aworx::lib::strings::Format']]],
   ['vbuffer',['vbuffer',['../classaworx_1_1lib_1_1strings_1_1String.html#ab060ffba71bd8a3d7067a38950b39a82',1,'aworx::lib::strings::String']]],
   ['verbosity',['VERBOSITY',['../classaworx_1_1lox_1_1ALox.html#aab2d3e17d5ce98f508c9439d95d41cca',1,'aworx::lox::ALox']]],

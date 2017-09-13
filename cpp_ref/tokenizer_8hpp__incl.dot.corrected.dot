@@ -4,8 +4,6 @@ digraph "tokenizer.hpp"
   node [fontname="Helvetica",fontsize="10",shape=record];
   Node0 [label="tokenizer.hpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
   Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node0 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 [label="alib/strings/substring.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$substring_8hpp.html"];
-  Node2 [label="iosfwd",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
 }
 

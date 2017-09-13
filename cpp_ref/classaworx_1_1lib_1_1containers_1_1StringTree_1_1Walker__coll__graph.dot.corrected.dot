@@ -1,0 +1,29 @@
+digraph "StringTree&lt;T, TKeyAllocator, TSeparator&gt;::Walker"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="StringTree\<T, TKeyAllocator, TSeparator\>::Walker",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node2 [label="vector\<StringTree::Walker::RecursionData\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node8 [label="vector\<pair\<String, StringTree::Node *\>\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node12 [label="StringTree\<T, TKeyAllocator, TSeparator\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1containers_1_1StringTree.html"];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" stack" ,fontname="Helvetica"];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
+  Node4 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" nodeName" ,fontname="Helvetica"];
+  Node4 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" node" ,fontname="Helvetica"];
+  Node5 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" parent" ,fontname="Helvetica"];
+  Node5 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" root" ,fontname="Helvetica"];
+  Node8 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" sortedChildren\nactChild" ,fontname="Helvetica"];
+  Node9 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" actPath" ,fontname="Helvetica"];
+  Node10 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" sorter" ,fontname="Helvetica"];
+  Node12 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" stringTree" ,fontname="Helvetica"];
+  Node3 [label="RecursionData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1RecursionData.html"];
+  Node4 [label="String",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1String.html"];
+  Node5 [label="Node",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html"];
+  Node9 [label="AString",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1AString.html"];
+  Node10 [label="TString",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1TString.html"];
+  Node11 [label="Sorter",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1Sorter.html"];
+}
+

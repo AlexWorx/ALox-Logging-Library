@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -99,8 +99,8 @@ Collaboration diagram for Report:</div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> This class provides a simple facility to collect what is called a <em>'report'</em>. Reports are maintenance messages, mostly error and warning messages, but is not aiming to replace any sort of error handling. (In ALib itself, sending a <em>'report'</em> usually precedes raising an error.) Also, <em>reports</em> are not replacing any debug or release logging facility, which is not part of ALib. Much more, logging libraries might provide a derived object of type <a class="el" href="interfacecom_1_1aworx_1_1lib_1_1lang_1_1ReportWriter.html">ReportWriter</a> to plug into ALib report facility. This way, the concepts of logging and reports get unified. (As a sample, <em>ALox Logging Library </em> which builds on ALib does so.)</p>
-<p>While a process can create different objects of this class, usually, the default instance, received by <a class="el" href="classcom_1_1aworx_1_1lib_1_1lang_1_1Report.html#ab1a5825e33c77f9413b0cc4a030b703c">getDefault</a>. is sufficient and all warnings and errors will be directed to this one. ALib itself directs all internal reports to the default instance.</p>
+<p> This class provides a simple facility to collect what is called a <em>'report'</em>. Reports are maintenance messages, mostly error and warning messages, but is not aiming to replace any sort of error handling. (In <b>ALib</b> itself, sending a <em>'report'</em> usually precedes raising an error.) Also, <em>reports</em> are not replacing any debug or release logging facility, which is not part of <b>ALib</b>. Much more, logging libraries might provide a derived object of type <a class="el" href="interfacecom_1_1aworx_1_1lib_1_1lang_1_1ReportWriter.html">ReportWriter</a> to plug into <b>ALib</b> report facility. This way, the concepts of logging and reports get unified. (As a sample, <b>ALox Logging Library </b> which builds on <b>ALib</b> does so.)</p>
+<p>While a process can create different objects of this class, usually, the default instance, received by <a class="el" href="classcom_1_1aworx_1_1lib_1_1lang_1_1Report.html#ab1a5825e33c77f9413b0cc4a030b703c">getDefault</a>. is sufficient and all warnings and errors will be directed to this one. <b>ALib</b> itself directs all internal reports to the default instance.</p>
 <p>This class uses a singleton of type <a class="el" href="interfacecom_1_1aworx_1_1lib_1_1lang_1_1ReportWriter.html">ReportWriter</a> to actually write the reports. By default, an object of type <a class="el" href="classcom_1_1aworx_1_1lib_1_1lang_1_1ReportWriterStdIO.html">ReportWriterStdIO</a> is attached.</p>
 <p>The reporting method, <a class="el" href="classcom_1_1aworx_1_1lib_1_1lang_1_1Report.html#a19d1ace0b2620616d5d1f7f910c66794">doReport</a> will check the flags provided with <a class="el" href="classcom_1_1aworx_1_1lib_1_1lang_1_1Report.html#aea2de6e616741d79b839d5f518388658">pushHaltFlags</a> for message types <code>0</code> (errors) and <code>1</code> (warnings), and may invoke <em>assert()</em>. Such assertions are effective only in the debug compilation of the library/executable. Custom <em>'ReportWriters'</em> might take action (e.g. for security reasons) and e.g. terminate the application also in release compilations.</p>
 <p>To simplify things, a set of static methods are defined in class <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html">ALIB</a> which are deemed to be pruned in release versions of the compilation unit. These are:</p>
@@ -238,7 +238,7 @@ Protected Fields</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Receives the default report object used by ALib and processes that rely on ALib. </p><dl class="section return"><dt>Returns</dt><dd>The default <b><a class="el" href="classcom_1_1aworx_1_1lib_1_1lang_1_1Report.html">Report</a></b>. </dd></dl>
+<p> Receives the default report object used by <b>ALib</b> and processes that rely on <b>ALib</b>. </p><dl class="section return"><dt>Returns</dt><dd>The default <b><a class="el" href="classcom_1_1aworx_1_1lib_1_1lang_1_1Report.html">Report</a></b>. </dd></dl>
 
 </div>
 </div>
@@ -389,7 +389,7 @@ Protected Fields</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The default <a class="el" href="classcom_1_1aworx_1_1lib_1_1lang_1_1Report.html">Report</a> used internally by ALib and usually by processes that rely on ALib. </p>
+<p>The default <a class="el" href="classcom_1_1aworx_1_1lib_1_1lang_1_1Report.html">Report</a> used internally by <b>ALib</b> and usually by processes that rely on <b>ALib</b>. </p>
 
 </div>
 </div>
@@ -469,7 +469,7 @@ Protected Fields</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:28 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:01 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

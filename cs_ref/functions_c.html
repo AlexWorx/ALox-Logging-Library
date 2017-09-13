@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -134,17 +134,14 @@ $(function() {
 , <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#ac234d3ac4e174daaccd319cb0e1b8b52">FormatterPythonStyle</a>
 , <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a2b2eead1a36f22f912353d36741bb884">FormatterStdImpl</a>
 </li>
-<li>childNo
-: <a class="el" href="classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap_1_1NodeAndChild.html#ac10cf46c3127cd5d178f7dafd27307eb">PathMap&lt; StoreT &gt;.NodeAndChild</a>
-</li>
-<li>Children
-: <a class="el" href="classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html#ad6f150bd838dd12431817ab9557a2866">PathMap&lt; StoreT &gt;</a>
+<li>children
+: <a class="el" href="classcs_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#a9a6ec3bab1a515fd54f1003d8509b651">StringTree&lt; T &gt;.Node</a>
 </li>
 <li>clear()
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#ac8bb3912a3ce86b15842e79d0b421204">Variable</a>
 </li>
 <li>Clear()
-: <a class="el" href="classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html#aa71d36872f416feaa853788a7a7a7ef8">PathMap&lt; StoreT &gt;</a>
+: <a class="el" href="classcs_1_1aworx_1_1lib_1_1containers_1_1StringTree.html#aa71d36872f416feaa853788a7a7a7ef8">StringTree&lt; T &gt;</a>
 , <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a34dd5d801f01e4f8d9f6a4cb435da6e1">AString</a>
 , <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#aa71d36872f416feaa853788a7a7a7ef8">Substring</a>
 , <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#aa71d36872f416feaa853788a7a7a7ef8">ScopeStore&lt; T &gt;</a>
@@ -158,6 +155,9 @@ $(function() {
 </li>
 <li>ClearValues()
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#a555d7c215a5e3b49a5a537b191e96c64">Variable</a>
+</li>
+<li>Clone()
+: <a class="el" href="classcs_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a716af637049daa5f0a7c9ef4d68c4990">StringTree&lt; T &gt;.Cursor</a>
 </li>
 <li>CloneSettings()
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a32f2c0134d40b3e5b93c5b1dcb06d6c7">FormatterStdImpl</a>
@@ -263,10 +263,10 @@ $(function() {
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a66df6c5cdb85f69e01b365d03cbc6e23">Substring</a>
 </li>
 <li>ConsumeInt()
-: <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#ab793b7c58cf183c65d8c8f33afad599e">Substring</a>
+: <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#aaf94c28bcd40ed4aa536c4c369f24976">Substring</a>
 </li>
 <li>ConsumeOct()
-: <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a53cf1510f102f87e77c6b800627dc440">Substring</a>
+: <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#aae55509e837d117055831ed9c3378078">Substring</a>
 </li>
 <li>ConsumePartOf()
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a1b50a54885636f46f3f2b5b5e0893b15">Substring</a>
@@ -275,12 +275,12 @@ $(function() {
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a660dd7bcebef2ab300e797e390ab1c7c">Substring</a>
 </li>
 <li>ConsumeStringFromEnd()
-: <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a2624a01489697c844627044784571e08">Substring</a>
+: <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#af2a9543ca8479e56a9ed48f01a61e1ac">Substring</a>
 </li>
 <li>ContainsAt()
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a6ff40679dc673975fd4b1dd4769a4307">AString</a>
 , <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1CString.html#a5d6f94d831646774ce3049291cc6920a">CString</a>
-, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a932a686a017e3717248e7fa80c416a57">Substring</a>
+, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a686926c3c76635cb4645b0a9880d566b">Substring</a>
 </li>
 <li>Contents
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1lang_1_1Report_1_1Message.html#a97ccb860e7237ed4ff78c6208ae443ee">Report.Message</a>
@@ -301,12 +301,21 @@ $(function() {
 <li>CountLoggers()
 : <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a99a4aca5fd12818f7a0718ff1bf37c9d">Domain</a>
 </li>
+<li>createChild()
+: <a class="el" href="classcs_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#a5aebf1f47d8470b30e2c87393a379cc1">StringTree&lt; T &gt;.Node</a>
+</li>
+<li>createChildNoCheck()
+: <a class="el" href="classcs_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#a4ce4809526090ca4f803facc8baa3970">StringTree&lt; T &gt;.Node</a>
+</li>
 <li>CreateConsoleLogger()
 : <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a8db44d29b6867559f393ad860a0a1782">Lox</a>
 </li>
 <li>createEntry()
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html#ac21232466e0dc590d4bce8b674df61a0">IniFile.Section</a>
 , <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html#ab6a0422ef8ca352cd3b93d7b27ee4a2b">InMemoryPlugin.Section</a>
+</li>
+<li>createPathAndReturnLeaf()
+: <a class="el" href="classcs_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a8a1b4086fa457799231ba1680c378d8c">StringTree&lt; T &gt;.Cursor</a>
 </li>
 <li>createSection()
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#ac38aad32e9fac18318148955f95ff5cc">IniFile</a>
@@ -324,6 +333,9 @@ $(function() {
 <li>currentProcessName
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1system_1_1ProcessInfo.html#a840b317bc432a5f438e8fca7a92a34a7">ProcessInfo</a>
 </li>
+<li>Cursor()
+: <a class="el" href="classcs_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a752719cde7fcaeec90ba5333a0b9d0bf">StringTree&lt; T &gt;.Cursor</a>
+</li>
 <li>CYAN
 : <a class="el" href="classcs_1_1aworx_1_1lox_1_1ESC.html#ae0400fcaf5cf17323f855100b495c9a7">ESC</a>
 </li>
@@ -332,7 +344,7 @@ $(function() {
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:28 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:00 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

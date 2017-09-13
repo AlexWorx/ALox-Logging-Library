@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -127,9 +127,8 @@ Protected Fields</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Methods</h2></td></tr>
-<tr class="memitem:a5a2f983c8c5be78a45fbbeb8c4bde6a4"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a5a2f983c8c5be78a45fbbeb8c4bde6a4"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeDump.html#a5a2f983c8c5be78a45fbbeb8c4bde6a4">storeKeyToScope</a> (const <a class="el" href="classaworx_1_1lib_1_1containers_1_1PathMap.html">lib::containers::PathMap</a>&lt; T &gt; &amp;map)</td></tr>
-<tr class="separator:a5a2f983c8c5be78a45fbbeb8c4bde6a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99e7583b06550214b1a6eede977c37bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeDump.html#a99e7583b06550214b1a6eede977c37bb">storeKeyToScope</a> (<a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> key)</td></tr>
+<tr class="separator:a99e7583b06550214b1a6eede977c37bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8e35644877b44cceea3c76ef1961b6c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeDump.html#aa8e35644877b44cceea3c76ef1961b6c">storeThreadToScope</a> (int threadID)</td></tr>
 <tr class="separator:aa8e35644877b44cceea3c76ef1961b6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace7178e93199df3704efdfbfaacad3af"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
@@ -196,8 +195,8 @@ Protected Methods</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a5a2f983c8c5be78a45fbbeb8c4bde6a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a2f983c8c5be78a45fbbeb8c4bde6a4">&#9670;&nbsp;</a></span>storeKeyToScope()</h2>
+<a id="a99e7583b06550214b1a6eede977c37bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99e7583b06550214b1a6eede977c37bb">&#9670;&nbsp;</a></span>storeKeyToScope()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -208,8 +207,8 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a>&amp; storeKeyToScope </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1containers_1_1PathMap.html">lib::containers::PathMap</a>&lt; T &gt; &amp;&#160;</td>
-          <td class="paramname"><em>map</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a>&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -220,9 +219,9 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Helper method to write a PathMaps' key as scope information. </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Helper method to write a StringTrees' key as scope information. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">map</td><td>The PathMap node to get scope information for. </td></tr>
+    <tr><td class="paramname">key</td><td>The key used for the StringTree. </td></tr>
   </table>
   </dd>
 </dl>
@@ -472,7 +471,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:26 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

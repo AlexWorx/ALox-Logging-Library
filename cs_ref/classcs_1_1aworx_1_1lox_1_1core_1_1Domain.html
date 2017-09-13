@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -100,7 +100,7 @@ Collaboration diagram for Domain:</div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> Objects of this class represent a <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a></em> of <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a>. This class is internally used by class <b><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html">Lox</a></b>. </p>
+<p> Objects of this class represent a <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a></em> of <b>ALox</b>. This class is internally used by class <b><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html">Lox</a></b>. </p>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Inner Classes</h2></td></tr>
@@ -192,6 +192,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> </td>
@@ -211,6 +214,11 @@ Protected Methods</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Constructor for domain. </p><dl class="params"><dt>Parameters</dt><dd>
@@ -229,6 +237,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">int AddLogger </td>
@@ -238,6 +249,11 @@ Protected Methods</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Adds a new entry in field <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a661e9caf3cdf02afbe7da9a0510ad11a">Data</a> and recursively demands the same from its sub-domains. Checks if a logger with the same name exists.</p>
@@ -270,7 +286,7 @@ Protected Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -289,6 +305,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">int CountLoggers </td>
@@ -297,6 +316,11 @@ Protected Methods</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Returns the number of loggers stored in this domain (the same for all domains within a tree). </p><dl class="section return"><dt>Returns</dt><dd>The number of loggers attached. </dd></dl>
@@ -308,6 +332,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> Find </td>
@@ -333,6 +360,11 @@ Protected Methods</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Searches a domain. If not found, the domain is (or path of domains are) created in the domain tree. If the path string starts with the character defined in <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a0cf664481a30f323ace16993466d9698">Separator</a>, then the search (and creation) is done starting from the root domain of this domain and not from this domain.</p>
@@ -383,7 +415,7 @@ Protected Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -406,6 +438,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">int GetCount </td>
@@ -415,6 +450,11 @@ Protected Methods</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Returns the number of log calls for this domain and logger. </p><dl class="params"><dt>Parameters</dt><dd>
@@ -432,6 +472,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> GetLogger </td>
@@ -441,6 +484,11 @@ Protected Methods</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Searches and returns the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> given by name. </p><dl class="params"><dt>Parameters</dt><dd>
@@ -458,6 +506,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> GetLogger </td>
@@ -467,6 +518,11 @@ Protected Methods</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Returns logger of given number. </p><dl class="params"><dt>Parameters</dt><dd>
@@ -484,6 +540,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">int GetLoggerNo </td>
@@ -493,6 +552,11 @@ Protected Methods</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Returns the number of the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> specified by name. </p><dl class="params"><dt>Parameters</dt><dd>
@@ -510,6 +574,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">int GetLoggerNo </td>
@@ -519,6 +586,11 @@ Protected Methods</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Returns the number of a <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em>. </p><dl class="params"><dt>Parameters</dt><dd>
@@ -536,6 +608,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">int GetPriority </td>
@@ -545,6 +620,11 @@ Protected Methods</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Returns the priority of the <em>Verbosity</em> setting for the given logger number. </p><dl class="params"><dt>Parameters</dt><dd>
@@ -562,6 +642,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> GetRoot </td>
@@ -570,6 +653,11 @@ Protected Methods</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Returns the root domain of this object. </p><dl class="section return"><dt>Returns</dt><dd>The root domain of this object </dd></dl>
@@ -581,6 +669,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> GetVerbosity </td>
@@ -590,6 +681,11 @@ Protected Methods</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Returns the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Domains' Verbosity</em> for the given logger number. </p><dl class="params"><dt>Parameters</dt><dd>
@@ -607,6 +703,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool IsActive </td>
@@ -626,6 +725,11 @@ Protected Methods</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Determines if the domain is active in respect to the given Verbosity.</p>
@@ -645,6 +749,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void RemoveLogger </td>
@@ -654,6 +761,11 @@ Protected Methods</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Removes an new entry in field <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a661e9caf3cdf02afbe7da9a0510ad11a">Data</a> and recursively demands the same from its sub-domains. </p><dl class="params"><dt>Parameters</dt><dd>
@@ -684,7 +796,7 @@ Protected Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -703,6 +815,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> SetVerbosity </td>
@@ -728,6 +843,11 @@ Protected Methods</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Sets the verbosity for a logger of this domain of all its sub domains to the specified value. If given priority is lower than those actually stored, nothing is set and recursion is stopped.</p>
@@ -748,6 +868,9 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">override String ToString </td>
@@ -756,6 +879,11 @@ Protected Methods</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> This is for debugging purposes and for configuration output. E.g. this enables the <em>Monodevelop</em> IDE to display object descriptions in the debugger. </p><dl class="section return"><dt>Returns</dt><dd>A human readable string representation of this object. </dd></dl>
@@ -985,7 +1113,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:28 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:00 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -89,7 +89,7 @@ $(function() {
 <div class="contents">
 <a name="details" id="details"></a><h2 class="groupheader">Namespace Description</h2>
 <div class="textblock"><hr/>
- <dl class="section note"><dt>Note</dt><dd>It may be helpful to read this namespace documentation and understand the concepts - even if you are not planning to use configuration variables in your own code. The reason is that with the knowledge of the principals described here, it is possible to influence the behavior of 3rd party code (code of other team members or ALib enabled libraries like for example <b>ALox Logging Library</b>).</dd></dl>
+ <dl class="section note"><dt>Note</dt><dd>It may be helpful to read this namespace documentation and understand the concepts - even if you are not planning to use configuration variables in your own code. The reason is that with the knowledge of the principals described here, it is possible to influence the behavior of 3rd party code (code of other team members or <b>ALib</b> enabled libraries like for example <b>ALox Logging Library</b>).</dd></dl>
 <h1>1. Introduction</h1>
 <p>This package provides tools to read and write configuration data using different mechanisms. In short, the features are:</p><ul>
 <li>A central class to retrieve external configuration data from various sources.</li>
@@ -116,7 +116,7 @@ $(function() {
 </pre><p>or, in section <code>MY:</code> </p><pre class="fragment">    [MY]
     VAR         =       my value
 </pre><h1>2. Command-Line parameters, Environment Variables and INI files</h1>
-<p>Three different standard plug-ins that collect external configuration variables are provided with ALib already:</p><ul>
+<p>Three different standard plug-ins that collect external configuration variables are provided with <b>ALib</b> already:</p><ul>
 <li>Class <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html">CommandLinePlugin</a>:<br />
  Reads parameter values of the form -[-]CategoryName_VariableName=value from the command line.</li>
 <li>Class <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html">EnvironmentPlugin</a>:<br />
@@ -132,7 +132,7 @@ $(function() {
 </ul>
 <p>With these default priorities set, whatever is stored in an INI file, can be overwritten by setting an environment variable. Both settings can in turn be overwritten by specifying a corresponding command line parameter when launching the process!</p>
 <h1>3. Default Variables</h1>
-<p>In addition to the three plug-ins described above, ALib implements a fourth one, class <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a>. As the name indicates, this class keeps configuration variables in memory. The special thing about it is that it does not read any external data source! The reason for having it, is twofold. The first use case are <em>Default variables</em>.<br />
+<p>In addition to the three plug-ins described above, <b>ALib</b> implements a fourth one, class <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a>. As the name indicates, this class keeps configuration variables in memory. The special thing about it is that it does not read any external data source! The reason for having it, is twofold. The first use case are <em>Default variables</em>.<br />
 </p>
 <p>An instance is plugged into class <b>Configuration</b> with a priority of</p><ul>
 <li><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#abdca3e572982b273c6edeb145cd6b92f">Configuration.PRIO_DEFAULT</a> (100),</li>
@@ -149,13 +149,13 @@ $(function() {
 </ul>
 <p>When setting a variable within this plug-in, no other plug-in can <em>'overrule'</em> this value. This way, it is possible to protect values against external modification.</p>
 <dl class="section note"><dt>Note</dt><dd>One might think: "If I do not want to allow external modification, I rather hard-code
-    everything". This of-course is true for code under control. However, for 3rd party code using ALib, this offers an easy way to disallow users of your software (which incorporates that 3rd party code) to configure things that you do not want to be configurable.</dd></dl>
+    everything". This of-course is true for code under control. However, for 3rd party code using <b>ALib</b>, this offers an easy way to disallow users of your software (which incorporates that 3rd party code) to configure things that you do not want to be configurable.</dd></dl>
 <h1>5. Using class Configuration</h1>
 <p>In normal use cases, there is no need to create an instance of class <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a>, as singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac7b578f72e6b1f48e14ad3a762c412db">Configuration.Default</a> should be used. The command line parameters (optionally) provided with <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#afaa45c957f86a4ff5d0939a80af4d2d3">ALIB.init</a> are passed to the command-line plug-in of this singleton.</p>
 <p>Class Configuration in the constructor sets up four plug-ins automatically: One for command-line, one for environment variables and two in-memory plug-ins used for default values and protected values. Each plug-in is publicly addressable (with fields <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#aa0949c7b0d9e84430dfedcb7cf260053">cmdLine</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a6e379b90eb011f9df5cac51cf4e6abce">environment</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#acd38e044ddc3f033abe3e69c51963e56">defaultValues</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a95212f1d747815836b0e1ff457b2148b">protectedValues</a>).</p>
 <p>If an application wants to suppress the use of one of the plug-ins, the plug-ins can be removed using method <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a6385670f80b62d9751bfb9fd80afb0d6">removePlugin</a>.<br />
  On the other hand, a plug-in of type <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html">IniFile</a> may be attached on bootstrap of a process using <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a84df1450d5fdbfd98e7bc29bb04957ea">Configuration.PRIO_INI_FILE</a> (200).</p>
-<p>In addition (or alternatively), custom plug-ins may be written and installed using arbitrary priorities. Especially, provided class <b>IniFile</b> is designed for simplicity and smaller applications. Instead of using it <b>IniFile</b>, it is recommended to use application/platform specific mechanisms for writing configuration data. In this case, write your own plug-in to grant ALib and other libraries which rely on ALib, access to your applications's configuration data. Again, ALib here follows its design principle to be non intrusive: The plug-in concept allows users of ALib (more important: users of ALib enabled libraries) to expose any external configuration source to these libraries. This way, the users can stick to his/her preferred way of implementation.</p>
+<p>In addition (or alternatively), custom plug-ins may be written and installed using arbitrary priorities. Especially, provided class <b>IniFile</b> is designed for simplicity and smaller applications. Instead of using it <b>IniFile</b>, it is recommended to use application/platform specific mechanisms for writing configuration data. In this case, write your own plug-in to grant <b>ALib</b> and other libraries which rely on <b>ALib</b>, access to your applications's configuration data. Again, <b>ALib</b> here follows its design principle to be non intrusive: The plug-in concept allows users of <b>ALib</b> (more important: users of <b>ALib</b> enabled libraries) to expose any external configuration source to these libraries. This way, the users can stick to his/her preferred way of implementation.</p>
 <p><a class="anchor" id="java_alib_namespace_config_substitution"></a></p><h1>6. Variable Substitution</h1>
 <p>Method <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a2222e544f04bdb04117b1c9b2e4e731f">Configuration.load</a> by default substitutes references to other configuration variables found in the value of the requested variable.</p>
 <p>For example, if two variables are defined as follows: </p><pre class="fragment">    MYCAT_RESULT= 42
@@ -212,7 +212,7 @@ Classes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:28 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:01 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

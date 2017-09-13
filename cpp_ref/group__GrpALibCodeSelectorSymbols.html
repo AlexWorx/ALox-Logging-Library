@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -85,8 +85,8 @@ $(function() {
 <div class="contents">
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Symbols (C++ preprocessor macros) listed here, are mostly generated out of <a class="el" href="group__GrpALibCompilerSymbols.html">ALib Compilation Symbols</a>. In this case, their name corresponds to these symbols, excluding the suffixes <em>_ON</em> and <em>_OFF</em>.</p>
-<p>These symbols must not be passed to the compiler and must also not be set manually from within code entities that use ALib libraries. They can be used in code entities that use ALib to select code depending on the same settings of ALib compilation. Selection takes place, using preprocessor directives:</p>
-<div class="fragment"><div class="line"><span class="preprocessor">#if ALIB_XYZ_SELECTOR</span></div><div class="line">  <span class="comment">// your selective code</span></div><div class="line"><span class="preprocessor">#endif</span></div></div><!-- fragment --><p>ALib Symbols are prefixed with <em>ALIB_</em>.</p>
+<p>These symbols must not be passed to the compiler and must also not be set manually from within code entities that use <b>ALib</b> libraries. They can be used in code entities that use <b>ALib</b> to select code depending on the same settings of <b>ALib</b> compilation. Selection takes place, using preprocessor directives:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#if ALIB_XYZ_SELECTOR</span></div><div class="line">  <span class="comment">// your selective code</span></div><div class="line"><span class="preprocessor">#endif</span></div></div><!-- fragment --><p><b>ALib</b> Symbols are prefixed with <em>ALIB_</em>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -147,7 +147,7 @@ ALib Module Selection</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>If true (1), plausibility checks and ALib assertions are enabled. See <a class="el" href="group__GrpALibCompilerSymbols.html#ga3afdbe5a480e0328d115f7b6fb17f5f9">ALIB_DEBUG_ON</a> and <a class="el" href="group__GrpALibCompilerSymbols.html#ga141eac004cc6915d6217ddd591b46b4c">ALIB_DEBUG_OFF</a> for information about how to manipulate this symbol. </p>
+<p>If true (1), plausibility checks and <b>ALib</b> assertions are enabled. See <a class="el" href="group__GrpALibCompilerSymbols.html#ga3afdbe5a480e0328d115f7b6fb17f5f9">ALIB_DEBUG_ON</a> and <a class="el" href="group__GrpALibCompilerSymbols.html#ga141eac004cc6915d6217ddd591b46b4c">ALIB_DEBUG_OFF</a> for information about how to manipulate this symbol. </p>
 
 </div>
 </div>
@@ -177,8 +177,8 @@ ALib Module Selection</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Selects code for boxing fundamental types. When using <b>ALib Boxing</b> as a module, built-in fundamental type boxing may be disabled and replaced by a custom implementation. When using full ALib, such disabling is not allowed as ALib classes rely on the default implementation.</p>
-<p>Use <a class="el" href="group__GrpALibCompilerSymbols.html#gaac13faf1a75cc977147511eca3c354cb">ALIB_FEAT_BOXING_FTYPES_OFF</a> to set this symbol to <code>0</code> and disable default fundamental types boxing provided by ALib.</p>
+<p>Selects code for boxing fundamental types. When using <b>ALib Boxing</b> as a module, built-in fundamental type boxing may be disabled and replaced by a custom implementation. When using full <b>ALib</b>, such disabling is not allowed as <b>ALib</b> classes rely on the default implementation.</p>
+<p>Use <a class="el" href="group__GrpALibCompilerSymbols.html#gaac13faf1a75cc977147511eca3c354cb">ALIB_FEAT_BOXING_FTYPES_OFF</a> to set this symbol to <code>0</code> and disable default fundamental types boxing provided by <b>ALib</b>.</p>
 <p>If built-in fundamental type boxing is suppressed, then either fundamental types are not boxable or boxing of fundamental types is implemented by the user of the library. The typical reason for providing a custom implementation for boxing fundamental types is that the default implementation provided with <b>ALib</b>, is not <b>injective</b> in a mathematical sense.</p>
 <dl class="section see"><dt>See also</dt><dd>Documentation of namespace <a class="el" href="namespaceaworx_1_1lib_1_1boxing_1_1ftypes.html">aworx::lib::boxing::ftypes</a> for more information. </dd></dl>
 
@@ -229,7 +229,7 @@ ALib Module Selection</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Selects code within ALib (or source entities that use ALib) that cares about threads and due locking of shared resources. See compiler symbol <a class="el" href="group__GrpALibCompilerSymbols.html#gac4bd86743dc96603b414fa7e517fdb9f">ALIB_FEAT_THREADS_OFF</a> for more information. </p>
+<p>Selects code within <b>ALib</b> (or source entities that use <b>ALib</b>) that cares about threads and due locking of shared resources. See compiler symbol <a class="el" href="group__GrpALibCompilerSymbols.html#gac4bd86743dc96603b414fa7e517fdb9f">ALIB_FEAT_THREADS_OFF</a> for more information. </p>
 
 </div>
 </div>
@@ -297,7 +297,7 @@ ALib Module Selection</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:26 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:47:57 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

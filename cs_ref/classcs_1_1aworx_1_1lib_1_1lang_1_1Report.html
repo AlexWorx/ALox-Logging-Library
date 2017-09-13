@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -163,6 +163,9 @@ Protected Fields</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1lang_1_1Report.html">Report</a> </td>
@@ -171,6 +174,11 @@ Protected Fields</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Constructor </p>
@@ -183,6 +191,9 @@ Protected Fields</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void DoReport </td>
@@ -238,6 +249,11 @@ Protected Fields</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Reports the given message to the current <a class="el" href="interfacecs_1_1aworx_1_1lib_1_1lang_1_1ReportWriter.html">ReportWriter</a> in place. The default <b><a class="el" href="interfacecs_1_1aworx_1_1lib_1_1lang_1_1ReportWriter.html">ReportWriter</a></b> will print the message on the process console. Furthermore, in debug execution the flags provided with <a class="el" href="classcs_1_1aworx_1_1lib_1_1lang_1_1Report.html#a7983ee7befb74df86990b506dfaaf6a0">PushHaltFlags</a> is checked. If this is set for the type of message, the program halts or suspends into the debugger (platform and language specific).</p>
@@ -276,7 +292,7 @@ Protected Fields</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -290,6 +306,9 @@ Protected Fields</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="interfacecs_1_1aworx_1_1lib_1_1lang_1_1ReportWriter.html">ReportWriter</a> PeekWriter </td>
@@ -298,6 +317,11 @@ Protected Fields</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Retrieves the actual report writer.</p>
@@ -311,6 +335,9 @@ Protected Fields</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void PopHaltFlags </td>
@@ -319,6 +346,11 @@ Protected Fields</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Restores the previous values after an invocation to <a class="el" href="classcs_1_1aworx_1_1lib_1_1lang_1_1Report.html#a7983ee7befb74df86990b506dfaaf6a0">PushHaltFlags</a>. </p>
@@ -330,6 +362,9 @@ Protected Fields</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void PopWriter </td>
@@ -339,6 +374,11 @@ Protected Fields</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Restores the previous writer after setting a new one using <a class="el" href="classcs_1_1aworx_1_1lib_1_1lang_1_1Report.html#a67565ee05d7a6ab5ef72d936cd17b0cc">PushWriter</a>. It is important to keep the right order when pushing and popping writers, as there lifetime is externally managed. (In standard use-cases, only one, app-specific writer should be pushed anyhow). To give a little assurance, this method <a class="el" href="classcs_1_1aworx_1_1lib_1_1lang_1_1Report.html#a7fb0c9cbe48e62060b8fa53408f2fcd5">PopWriter</a> takes the same parameter as <a class="el" href="classcs_1_1aworx_1_1lib_1_1lang_1_1Report.html#a67565ee05d7a6ab5ef72d936cd17b0cc">PushWriter</a> does, to verify if the one to be removed is really the topmost.</p>
@@ -356,6 +396,9 @@ Protected Fields</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void PushHaltFlags </td>
@@ -375,6 +418,11 @@ Protected Fields</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Writes new values to the internal flags that decide if calls to <a class="el" href="classcs_1_1aworx_1_1lib_1_1lang_1_1Report.html#af1878adc11a7ef4d03ae41ca3bd06973">DoReport</a> with report type <em>'0'</em> (errors), respectively report type '&gt;0' (warnings) cause to halt program execution by calling <em>assert(false)</em>. The previous values can be restored using <a class="el" href="classcs_1_1aworx_1_1lib_1_1lang_1_1Report.html#ade3d2cc17cc7c56d59b88a15ee247ca0">PopHaltFlags</a>. </p><dl class="params"><dt>Parameters</dt><dd>
@@ -392,6 +440,9 @@ Protected Fields</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void PushWriter </td>
@@ -401,6 +452,11 @@ Protected Fields</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Sets a new writer. The actual writer is implemented as a stack. It is important to keep the right order when pushing and popping writers, as there lifetime is externally managed. (In standard use-cases, only one, app-specific writer should be pushed anyhow). To give a little assurance, method <a class="el" href="classcs_1_1aworx_1_1lib_1_1lang_1_1Report.html#a7fb0c9cbe48e62060b8fa53408f2fcd5">PopWriter</a> takes the same parameter as this method does, to verify if if the one to be removed is really the topmost.</p>
@@ -536,7 +592,7 @@ Protected Fields</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:28 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:00 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

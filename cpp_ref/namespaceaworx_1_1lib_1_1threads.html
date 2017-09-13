@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -89,11 +89,11 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <a name="details" id="details"></a><h2 class="groupheader">Namespace Description</h2>
-<div class="textblock"><p>This namespace of ALib holds classes that are providing an interface into multi threaded programming. The design of the classes tries to mimic the basic thread interface of the Java language.</p>
-<p>It is important to understand that (following <a class="el" href="namespaceaworx_1_1lib.html">the principle design goals of ALib</a>) multi threading support of ALib is non intrusive in respect to multi-threading mechanisms of other C++ libraries and/or the underlying operating system. This means that a software entity that uses this library is not at all bound to use the thread classes found within this namespace.</p>
-<p>In contrast, using the classes found here, is of-course optional. ALib usually provides a certain level of "source compatibility" between the programming languages C#, Java and C++.</p>
-<p>It is no problem, to have threads started using different methods and libraries than the one found here, as long that such threads become "native" operation system threads. If later such a thread uses method <a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html#afbdb4b0df9aaf36f3ab6c4965178f0d6">Thread::CurrentThread()</a>, a corresponding <a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html">Thread</a> object of ALib is created internally and returned. This way, the externally created thread is automatically "registered" with ALib. If not stated differently in the detailed documentation, from this point in time, the thread can be interfaced with ALib classes in the same manner as if it was created using them. The same or similar should be <code>true</code> for the opposite situation.</p>
-<p><a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html">Thread</a> support of ALib can be disabled, respectively enabled, using compiler symbols <a class="el" href="group__GrpALibCompilerSymbols.html#gac4bd86743dc96603b414fa7e517fdb9f">ALIB_FEAT_THREADS_OFF</a> and <a class="el" href="group__GrpALibCompilerSymbols.html#ga1bed5257f25120726eb658164c482957">ALIB_FEAT_THREADS_ON</a>. When support is switched off, classes <a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html">Thread</a> and <a class="el" href="classaworx_1_1lib_1_1threads_1_1Runnable.html">Runnable</a> are not available. However, the classes <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html">ThreadLockNR</a> and <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a> are! Their interface remains the same, but they do not perform any locking. Due to this behavior, it is possible to write code that performs due locking while still, in single threaded compilation, the code does not suffer any performance drawbacks, because lock code will be <em>pruned</em>. </p>
+<div class="textblock"><p>This namespace of <b>ALib</b> holds classes that are providing an interface into multi threaded programming. The design of the classes tries to mimic the basic thread interface of the Java language.</p>
+<p>It is important to understand that (following <a class="el" href="namespaceaworx_1_1lib.html">the principle design goals of <b>%ALib</b> )</a>multi threading support of <b>ALib</b> is non intrusive in respect to multi-threading mechanisms of other C++ libraries and/or the underlying operating system. This means that a software entity that uses this library is not at all bound to use the thread classes found within this namespace.</p>
+<p>In contrast, using the classes found here, is of-course optional. <b>ALib</b> usually provides a certain level of "source compatibility" between the programming languages C#, Java and C++.</p>
+<p>It is no problem, to have threads started using different methods and libraries than the one found here, as long that such threads become "native" operation system threads. If later such a thread uses method <a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html#afbdb4b0df9aaf36f3ab6c4965178f0d6">Thread::CurrentThread()</a>, a corresponding <a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html">Thread</a> object of <b>ALib</b> is created internally and returned. This way, the externally created thread is automatically "registered" with <b>ALib</b>. If not stated differently in the detailed documentation, from this point in time, the thread can be interfaced with <b>ALib</b> classes in the same manner as if it was created using them. The same or similar should be <code>true</code> for the opposite situation.</p>
+<p><a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html">Thread</a> support of <b>ALib</b> can be disabled, respectively enabled, using compiler symbols <a class="el" href="group__GrpALibCompilerSymbols.html#gac4bd86743dc96603b414fa7e517fdb9f">ALIB_FEAT_THREADS_OFF</a> and <a class="el" href="group__GrpALibCompilerSymbols.html#ga1bed5257f25120726eb658164c482957">ALIB_FEAT_THREADS_ON</a>. When support is switched off, classes <a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html">Thread</a> and <a class="el" href="classaworx_1_1lib_1_1threads_1_1Runnable.html">Runnable</a> are not available. However, the classes <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html">ThreadLockNR</a> and <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a> are! Their interface remains the same, but they do not perform any locking. Due to this behavior, it is possible to write code that performs due locking while still, in single threaded compilation, the code does not suffer any performance drawbacks, because lock code will be <em>pruned</em>. </p>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -130,7 +130,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Initializes ALib thread logic. This method should not be called directly. use <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a> to initialize all <b>ALib Modules</b> included in the distribution. </p>
+<p>Initializes <b>ALib</b> thread logic. This method should not be called directly. use <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a> to initialize all <b>ALib Modules</b> included in the distribution. </p>
 <p>[DOX_ALIB_BOXING_SAMPLE_TEMPLATED_INTERFACE]</p>
 <p>[DOX_ALIB_BOXING_SAMPLE_TEMPLATED_INTERFACE] </p>
 
@@ -150,7 +150,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Frees resources and shuts down ALib thread logic. This method should not be called directly. Use <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a2a0bcae1f7341255492ebc90deab5f01">ALIB::TerminationCleanUp</a> to de-initialize all <b>ALib Modules</b> included in the distribution. </p>
+<p>Frees resources and shuts down <b>ALib</b> thread logic. This method should not be called directly. Use <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a2a0bcae1f7341255492ebc90deab5f01">ALIB::TerminationCleanUp</a> to de-initialize all <b>ALib Modules</b> included in the distribution. </p>
 
 </div>
 </div>
@@ -158,7 +158,7 @@ Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:26 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

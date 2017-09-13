@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -170,7 +170,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>This method is installed with <a class="el" href="namespaceaworx_1_1lib_1_1debug.html#ab288b6405c105a6cd630619a8f35eea9">aworx::lib::debug::DbgSimpleALibMsg_Plugin</a> in method <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a>.</p>
-<p>The message strings are simply passed to the default <a class="el" href="classaworx_1_1lib_1_1lang_1_1Report.html">Report</a>. This way, the essential assert, error and message macros are using the ALib report system in the moment that the complete ALib library is in place (instead of only one of the libraries' modules.</p>
+<p>The message strings are simply passed to the default <a class="el" href="classaworx_1_1lib_1_1lang_1_1Report.html">Report</a>. This way, the essential assert, error and message macros are using the <b>ALib</b> report system in the moment that the complete ALib library is in place (instead of only one of the libraries' modules.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">file</td><td>Information about the scope of invocation. </td></tr>
@@ -178,7 +178,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">method</td><td>Information about the scope of invocation. </td></tr>
     <tr><td class="paramname">type</td><td>The type of message. See <a class="el" href="classaworx_1_1lib_1_1lang_1_1Report_1_1Message.html">Report::Message</a>. </td></tr>
     <tr><td class="paramname">qtyMsgs</td><td>The number of messages in <code>msgs</code>. </td></tr>
-    <tr><td class="paramname">msgs</td><td>A list of strings (this is all that the essential versions of ALib reporting macros provide). </td></tr>
+    <tr><td class="paramname">msgs</td><td>A list of strings (this is all that the essential versions of <b>ALib</b> reporting macros provide). </td></tr>
   </table>
   </dd>
 </dl>
@@ -246,8 +246,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Some ALib modules do not (must not) rely on <a class="el" href="classaworx_1_1lib_1_1lang_1_1Report.html">Report</a> / <a class="el" href="classaworx_1_1lib_1_1lang_1_1ReportWriter.html">ReportWriter</a> mechanics. Therefore, this simple method is used for error handling in those portions of ALib that are exposed in such modules.<br />
- This method first checks if static function pointer <a class="el" href="namespaceaworx_1_1lib_1_1debug.html#ab288b6405c105a6cd630619a8f35eea9">aworx::lib::debug::DbgSimpleALibMsg_Plugin</a> is set and if yes, passes the parameters to this method and exits. If the complete ALib distribution is used, method <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a> sets this plug-in function to a custom one which passes the message(s) to a proper <a class="el" href="classaworx_1_1lib_1_1lang_1_1Report.html">ALib Report</a>.</p>
+<p>Some <b>ALib</b> modules do not (must not) rely on <a class="el" href="classaworx_1_1lib_1_1lang_1_1Report.html">Report</a> / <a class="el" href="classaworx_1_1lib_1_1lang_1_1ReportWriter.html">ReportWriter</a> mechanics. Therefore, this simple method is used for error handling in those portions of <b>ALib</b> that are exposed in such modules.<br />
+ This method first checks if static function pointer <a class="el" href="namespaceaworx_1_1lib_1_1debug.html#ab288b6405c105a6cd630619a8f35eea9">aworx::lib::debug::DbgSimpleALibMsg_Plugin</a> is set and if yes, passes the parameters to this method and exits. If the complete <b>ALib</b> distribution is used, method <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a> sets this plug-in function to a custom one which passes the message(s) to a proper <a class="el" href="classaworx_1_1lib_1_1lang_1_1Report.html">ALib Report</a>.</p>
 <p>Otherwise the method just writes to the standard output stream and then, if <code>type</code> equals <code>0</code>, invokes <code>assert(0)</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -437,7 +437,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This function pointer defaults to nullptr and may be set to replace function <a class="el" href="namespaceaworx_1_1lib_1_1debug.html#a218b50aedc2a3b02420c4f959d623d9c">DbgSimpleALibMsg</a>. When ALib complete library is used (instead of one or more single ALib modules), then <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a> sets this pointer to a small method which creates an <a class="el" href="classaworx_1_1lib_1_1lang_1_1Report.html">Report</a> on the default <a class="el" href="classaworx_1_1lib_1_1lang_1_1ReportWriter.html">ReportWriter</a>.</p>
+<p>This function pointer defaults to nullptr and may be set to replace function <a class="el" href="namespaceaworx_1_1lib_1_1debug.html#a218b50aedc2a3b02420c4f959d623d9c">DbgSimpleALibMsg</a>. When <b>ALib</b> complete library is used (instead of one or more single <b>ALib</b> modules), then <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a> sets this pointer to a small method which creates an <a class="el" href="classaworx_1_1lib_1_1lang_1_1Report.html">Report</a> on the default <a class="el" href="classaworx_1_1lib_1_1lang_1_1ReportWriter.html">ReportWriter</a>.</p>
 <ul>
 <li><code>file:</code> Information about the scope of invocation.</li>
 <li><code>line:</code> Information about the scope of invocation.</li>
@@ -453,7 +453,7 @@ Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:26 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

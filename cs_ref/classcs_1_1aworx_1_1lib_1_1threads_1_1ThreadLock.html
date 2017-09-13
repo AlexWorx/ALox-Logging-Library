@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -153,6 +153,9 @@ Protected Fields</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a> </td>
@@ -172,6 +175,11 @@ Protected Fields</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Create a <a class="el" href="classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a> that allows recursion. A warning will be given (<a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html">ALIB</a> Error) when the given recursion level is reached (and each multiple of it). In addition the lock can be initialized to be unsafe, which means the locking critical sections is disabled.</p>
@@ -221,7 +229,7 @@ Protected Fields</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -245,6 +253,9 @@ Protected Fields</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">int DbgCountAcquirements </td>
@@ -254,6 +265,11 @@ Protected Fields</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Returns the number of acquirements of this <a class="el" href="classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a>. The negative number (still providing the number of acquirements) is returned if the owning thread is not the same as the given one.</p>
@@ -273,6 +289,9 @@ Protected Fields</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="namespacecs_1_1aworx_1_1lib_1_1lang.html#a00fc859257c8f09ff9198dde28121961">LockMode</a> GetMode </td>
@@ -281,6 +300,11 @@ Protected Fields</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Query if this instance was set to work recursively. </p><dl class="section return"><dt>Returns</dt><dd>A value of type <a class="el" href="namespacecs_1_1aworx_1_1lib_1_1lang.html#a00fc859257c8f09ff9198dde28121961">cs::aworx::lib::lang::LockMode</a> "LockMode" </dd></dl>
@@ -292,6 +316,9 @@ Protected Fields</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="namespacecs_1_1aworx_1_1lib_1_1lang.html#a8c800527afe0a8a6c71ae4cceda6bf9d">Safeness</a> GetSafeness </td>
@@ -300,6 +327,11 @@ Protected Fields</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Query if this instance was set to unsafe mode. </p><dl class="section return"><dt>Returns</dt><dd>A value of type <a class="el" href="namespacecs_1_1aworx_1_1lib_1_1lang.html#a8c800527afe0a8a6c71ae4cceda6bf9d">cs::aworx::lib::lang::Safeness</a> "Safeness" </dd></dl>
@@ -324,7 +356,7 @@ Protected Fields</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -340,6 +372,9 @@ Protected Fields</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void SetSafeness </td>
@@ -349,6 +384,11 @@ Protected Fields</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> If parameter is true, the whole locking system is disabled. The only objective here is to to gain execution speed, as thread synchronization causes relatively expensive system calls. Use this method only if you are 100% sure that your (otherwise) critical section are executed in a single threaded environment. And: "relative expensive" means: they are not really expensive. This is provided only for the rare case that your critical section is very, very frequently executed.</p>
@@ -366,6 +406,9 @@ Protected Fields</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">override String ToString </td>
@@ -374,6 +417,11 @@ Protected Fields</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> This is for debugging purposes. E.g. this enables the <em>Monodevelop</em> IDE to display object descriptions in the debugger. </p><dl class="section return"><dt>Returns</dt><dd>A human readable string representation of this object. </dd></dl>
@@ -533,7 +581,7 @@ Protected Fields</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:28 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:00 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

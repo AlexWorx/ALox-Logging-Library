@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -98,7 +98,7 @@ Collaboration diagram for ALox:</div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> This is a 100% static class that holds constants and 'global' methods of the <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> Logging Library. </p>
+<p> This is a 100% static class that holds constants and 'global' methods of the <b>ALox Logging Library</b>. </p>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Public Static Fields</h2></td></tr>
@@ -130,13 +130,13 @@ Public Static Fields</h2></td></tr>
 <tr class="separator:a2e6906779fe0d7857868704f8760603b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a309444007ddd05f9a369fce89956409b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html">VariableDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a309444007ddd05f9a369fce89956409b">REPLACEMENTS</a></td></tr>
 <tr class="separator:a309444007ddd05f9a369fce89956409b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80915412cfca1d0f550c217f30d3083c"><td class="memItemLeft" align="right" valign="top">static final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a80915412cfca1d0f550c217f30d3083c">revision</a> =1</td></tr>
+<tr class="memitem:a80915412cfca1d0f550c217f30d3083c"><td class="memItemLeft" align="right" valign="top">static final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a80915412cfca1d0f550c217f30d3083c">revision</a> =0</td></tr>
 <tr class="separator:a80915412cfca1d0f550c217f30d3083c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9091ccfcdc56cf9659b81589ea583a24"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html">VariableDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a9091ccfcdc56cf9659b81589ea583a24">USE_SYSTEM_OUT_PRINT</a></td></tr>
 <tr class="separator:a9091ccfcdc56cf9659b81589ea583a24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe516e8679d9840b163f277b6520700e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html">VariableDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#abe516e8679d9840b163f277b6520700e">VERBOSITY</a></td></tr>
 <tr class="separator:abe516e8679d9840b163f277b6520700e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a450c392481245410c99fb560c206e824"><td class="memItemLeft" align="right" valign="top">static final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a450c392481245410c99fb560c206e824">version</a> =1702</td></tr>
+<tr class="memitem:a450c392481245410c99fb560c206e824"><td class="memItemLeft" align="right" valign="top">static final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a450c392481245410c99fb560c206e824">version</a> =1709</td></tr>
 <tr class="separator:a450c392481245410c99fb560c206e824"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
@@ -203,7 +203,7 @@ Private Static Fields</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Returns the <b><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></b> with the given name. A lox is only found if it was created and registered with <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> using <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a2392dd0e22a7978cdff4d0ae28c8105f">register</a>. If not found, and parameter <code>create</code> is <code>true</code> (the default), a new <b><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></b> is created, registered and returned.</p>
+<p> Returns the <b><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></b> with the given name. A lox is only found if it was created and registered with <b>ALox</b> using <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a2392dd0e22a7978cdff4d0ae28c8105f">register</a>. If not found, and parameter <code>create</code> is <code>true</code> (the default), a new <b><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></b> is created, registered and returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>The name of the <b>Lox</b> to search and optionally to create. Comparison is case insensitive. </td></tr>
@@ -274,8 +274,8 @@ Private Static Fields</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> This method must be called prior to using ALox, e.g. at the beginning of the <code>main()</code> method of an application. It is OK, to call this method more than once, which allows independent code blocks (e.g. libraries) to bootstrap ALox independently. However, only the first invocation is effective with the exclamation that if command line parameters are provided with a call, those are set. Also, the very first invocation should not be interrupted by a parallel invocation of a second thread. Consequently, it has to be assured that this method is invoked once on the real bootstrap an app.</p>
-<p>In the Java version of the <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> Logging Library, not invoking this method will not lead to severe problems, however, some options might fail. It is good practice to invoke this method in the main() method of a process and provide the command line arguments. See also <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#afaa45c957f86a4ff5d0939a80af4d2d3">ALIB.init</a> which is invoked by this method.</p>
+<p> This method must be called prior to using <b>ALox</b>, e.g. at the beginning of the <code>main()</code> method of an application. It is OK, to call this method more than once, which allows independent code blocks (e.g. libraries) to bootstrap <b>ALox</b> independently. However, only the first invocation is effective with the exclamation that if command line parameters are provided with a call, those are set. Also, the very first invocation should not be interrupted by a parallel invocation of a second thread. Consequently, it has to be assured that this method is invoked once on the real bootstrap an app.</p>
+<p>In the Java version of the <b>ALox</b> Logging Library, not invoking this method will not lead to severe problems, however, some options might fail. It is good practice to invoke this method in the main() method of a process and provide the command line arguments. See also <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#afaa45c957f86a4ff5d0939a80af4d2d3">ALIB.init</a> which is invoked by this method.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">args</td><td>Parameters taken from <em>standard Java</em> method <code>main()</code> (the list of command line arguments). Accepts <code>null</code> to ignore command line parameters. </td></tr>
@@ -353,8 +353,8 @@ Private Static Fields</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Registers or un-registers a <b>Lox</b> object statically with <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a>. Once registered, any code entity of the same process is enabled to retrieve the <b>Lox</b> using <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a3991620cb06ad677d52b1d463a73b2c8">get</a>.<br />
- No two objects with the same name must be registered. If this is done, the latter will not be registered and not be found by <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a3991620cb06ad677d52b1d463a73b2c8">get</a>. In debug-compilations, an ALib error report is written (by default raises 'assert') if a name is registered twice.<br />
+<p> Registers or un-registers a <b>Lox</b> object statically with <b>ALox</b>. Once registered, any code entity of the same process is enabled to retrieve the <b>Lox</b> using <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a3991620cb06ad677d52b1d463a73b2c8">get</a>.<br />
+ No two objects with the same name must be registered. If this is done, the latter will not be registered and not be found by <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a3991620cb06ad677d52b1d463a73b2c8">get</a>. In debug-compilations, an <b>ALib</b> error report is written (by default raises 'assert') if a name is registered twice.<br />
  Note that name comparison is performed case <b>in</b>-sensitive.</p>
 <p>If debug-logging is enabled (depends on compilation symbols) and used, the singleton of type % <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> provided for debug-logging is registered. This uses the name <code>"Log"</code> </p>
 <p>Registration is <em>not</em> mandatory but done by default by the constructor of class <b>Lox</b>. Therefore, to keep a <b><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></b> private, an optional parameter is available.</p>
@@ -395,7 +395,7 @@ Private Static Fields</h2></td></tr>
 <li>All <b>Lox</b> objects are removed.</li>
 <li>If the debug lox singleton exists, it is deleted.</li>
 </ul>
-<dl class="section attention"><dt>Attention</dt><dd>This method was introduced to support resetting <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> in the unit tests. In real applications, this method should NOT be used. Side effects might appear using this method and it is not tested otherwise than used in tests! </dd></dl>
+<dl class="section attention"><dt>Attention</dt><dd>This method was introduced to support resetting <b>ALox</b> in the unit tests. In real applications, this method should NOT be used. Side effects might appear using this method and it is not tested otherwise than used in tests! </dd></dl>
 
 </div>
 </div>
@@ -547,7 +547,7 @@ Private Static Fields</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The name of the configuration category of configuration variables used by <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a>.<br />
+<p>The name of the configuration category of configuration variables used by <b>ALox</b>.<br />
  Defaults to "ALOX".<br />
  This value can be changed to avoid conflicts between applications (especially in respect to environment variable settings). Changes should be placed at very initial bootstrap code, before the invocation of <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a6da749cfe46018196a565f2b4bfb1f27">init</a>.<br />
  See also <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a99bc0357098bd21444efbafe19704712">ALIB.configCategoryName</a>. </p>
@@ -757,8 +757,8 @@ Private Static Fields</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>This is the path for logging to the internal domain. By manipulating this <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domains' <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em>, the verbosity of <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> itself can be controlled. For example, with <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html#ab1764b91c3b44a5988564bbfe1d6e352">Verbosity.INFO</a></em>, the 'on the fly' creation of <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domains</em> are logged, which can be helpful to determine the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domains</em> that are created by libraries and larger projects.</p>
-<p>The following sub-domains are used by <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a>:</p>
+<p>This is the path for logging to the internal domain. By manipulating this <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domains' <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em>, the verbosity of <b>ALox</b> itself can be controlled. For example, with <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html#ab1764b91c3b44a5988564bbfe1d6e352">Verbosity.INFO</a></em>, the 'on the fly' creation of <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domains</em> are logged, which can be helpful to determine the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domains</em> that are created by libraries and larger projects.</p>
+<p>The following sub-domains are used by <b>ALox</b>:</p>
 <table class="doxtable">
 <tr>
 <th>Sub-Domain </th><th>Description  </th></tr>
@@ -904,7 +904,7 @@ In addition used with method <b>Lox.SetStartTime</b>. </td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">final int revision =1</td>
+          <td class="memname">final int revision =0</td>
         </tr>
       </table>
   </td>
@@ -913,7 +913,7 @@ In addition used with method <b>Lox.SetStartTime</b>. </td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The revision number of this release. Each <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a450c392481245410c99fb560c206e824">version</a> is initially released as revision <em>0</em>. Pure maintenance releases that do not change the interface of <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> are holding the same <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a450c392481245410c99fb560c206e824">version</a> but an increased number in this field. </p>
+<p>The revision number of this release. Each <b>ALox</b> <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a450c392481245410c99fb560c206e824">version</a> is initially released as revision <em>0</em>. Pure maintenance releases that do not change the interface of <b>ALox</b> are holding the same <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a450c392481245410c99fb560c206e824">version</a> but an increased number in this field. </p>
 
 </div>
 </div>
@@ -973,7 +973,7 @@ In addition used with method <b>Lox.SetStartTime</b>. </td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">final int version =1702</td>
+          <td class="memname">final int version =1709</td>
         </tr>
       </table>
   </td>
@@ -982,7 +982,7 @@ In addition used with method <b>Lox.SetStartTime</b>. </td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a>. The version number follows the scheme YYMM (2-digit year, 2-digit month) of the initial release date. Besides this version number, field <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a80915412cfca1d0f550c217f30d3083c">revision</a> indicates if this is a revised version of a former release. </p>
+<p>The version of <b>ALox</b>. The version number follows the scheme YYMM (2-digit year, 2-digit month) of the initial release date. Besides this version number, field <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a80915412cfca1d0f550c217f30d3083c">revision</a> indicates if this is a revised version of a former release. </p>
 
 </div>
 </div>
@@ -993,7 +993,7 @@ In addition used with method <b>Lox.SetStartTime</b>. </td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:29 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:01 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

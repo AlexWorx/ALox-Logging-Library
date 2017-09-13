@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -188,6 +188,9 @@ Protected Fields</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a> </td>
@@ -196,6 +199,11 @@ Protected Fields</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Constructs a <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a>. Registers the initial plug-ins <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a>, <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ada8187fc67d8f54a46aed3bf04542e08">CmdLine</a>, <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a3a317739ee132a40b625cafa2c5a8706">Environment</a> and <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a694607c106d5e636c5fc90d623c0dcef">ProtectedValues</a>. </p>
@@ -208,6 +216,9 @@ Protected Fields</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">int FetchFromDefault </td>
@@ -217,6 +228,11 @@ Protected Fields</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> This method fetches all values from <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a> which are not present in the given plug-in <code>dest</code> and stores them in. This is useful to collect all generated default values and store them in a users' configuration file. This way, the user can identify configurable options easily.</p>
@@ -236,6 +252,9 @@ Protected Fields</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void InsertPlugin </td>
@@ -255,6 +274,11 @@ Protected Fields</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Adds the given plug-in to the list of plug-ins used to query configuration values. Higher numbers for parameter priority, prioritize this plug-in against those with lower values. Default values are provided with static constant fields <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a7782ed756910f8f9910f8eabbbaa494c">PrioCmdLine</a>, <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ab592c568f9f8728e38684af9d258a2f7">PrioEnvironment</a> and <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a925f0708313b8a27defb4bf7983d7dd6">PrioIniFile</a>. </p><dl class="params"><dt>Parameters</dt><dd>
@@ -272,6 +296,9 @@ Protected Fields</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool IsTrue </td>
@@ -281,6 +308,11 @@ Protected Fields</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Utility method that checks if a given value represents boolean <b>true</b>. Uses field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a12369eaf915d9637d932edb3268d2e55">TrueValues</a>. Comparisons are made case insensitive.</p>
@@ -299,6 +331,9 @@ Protected Fields</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">int Load </td>
@@ -308,6 +343,11 @@ Protected Fields</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Receives and optionally creates configuration variable.</p>
@@ -327,6 +367,9 @@ Protected Fields</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">int loadImpl </td>
@@ -346,6 +389,11 @@ Protected Fields</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Implementation of get method. No locking is performed (has to be done before invoking this method)</p>
@@ -365,6 +413,9 @@ Protected Fields</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool RemovePlugin </td>
@@ -374,6 +425,11 @@ Protected Fields</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Remove the given plug-in from the list of plug-ins. Responsibility for deletion of removed plug-ins moves to the remover. Active (inserted) plug-ins get deleted by class' destructor. </p><dl class="params"><dt>Parameters</dt><dd>
@@ -391,6 +447,9 @@ Protected Fields</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void SetCommandLineArgs </td>
@@ -400,6 +459,11 @@ Protected Fields</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Sets the command line arguments for <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ada8187fc67d8f54a46aed3bf04542e08">CmdLine</a>.</p>
@@ -419,6 +483,9 @@ Protected Fields</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">int Store </td>
@@ -438,6 +505,11 @@ Protected Fields</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Writes the variable to the configuration. In general, this is done by asking each of our installed plug-ins - in the order of their priority - to do so. As soon as the first plug-in returns <code>true</code>, the variable is considered written and no other plug-in is asked. This way, the variable is stored by the plug-in with the highest priority.</p>
@@ -843,7 +915,7 @@ Protected Fields</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:28 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:00 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

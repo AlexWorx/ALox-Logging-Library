@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -109,7 +109,7 @@ Collaboration diagram for Lox:</div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> This class acts as a container for Loggers and provides a convenient interface to logging. Fore information how to use this class, checkout the <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> tutorials and the <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> manual. </p>
+<p> This class acts as a container for Loggers and provides a convenient interface to logging. Fore information how to use this class, checkout the <b>ALox</b> tutorials and the <a href="../manual.html">ALox User Manual</a>. </p>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Inner Classes</h2></td></tr>
@@ -496,7 +496,7 @@ Package Access Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Constructs a new, empty <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> with the given <code>name</code>. The name is immutable and all <b>Lox</b> objects registered with <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> must be unique. Lower case letters in the name are converted to upper case. The name <code>"Log"</code> is reserved for the internal default singleton used for debug-logging.</p>
+<p> Constructs a new, empty <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> with the given <code>name</code>. The name is immutable and all <b>Lox</b> objects registered with <b>ALox</b> must be unique. Lower case letters in the name are converted to upper case. The name <code>"Log"</code> is reserved for the internal default singleton used for debug-logging.</p>
 <p>If parameter <code>register</code> is <code>true</code> (the default), static method <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a2392dd0e22a7978cdff4d0ae28c8105f">ALox.register</a> is invoked and the object will be retrievable with static method <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a3991620cb06ad677d52b1d463a73b2c8">ALox.get</a>. In some situations, such 'registration' may not be wanted.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -662,7 +662,7 @@ Package Access Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> This static method creates an adequate/default console logger. Currently, there is no detection mechanism implemented in the Java implementation of <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a>. This might change in the future.</p>
+<p> This static method creates an adequate/default console logger. Currently, there is no detection mechanism implemented in the Java implementation of <b>ALox</b>. This might change in the future.</p>
 <p>Hence, unless configuration variable <a href="../group__GrpALoxConfigVars.html">ALOX_CONSOLE_TYPE</a> is set, this method creates a logger of type <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html">ConsoleLogger</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -968,7 +968,7 @@ Package Access Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Reads the verbosity for the given logger and domain from the ALib configuration system. This internal method is used when a new logger is added. Walks recursively for all existing domains.</p>
+<p> Reads the verbosity for the given logger and domain from the <b>ALib</b> configuration system. This internal method is used when a new logger is added. Walks recursively for all existing domains.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logger</td><td>The logger to set the verbosity for. </td></tr>
@@ -1004,7 +1004,7 @@ Package Access Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Reads a prefix string from the ALib configuration system. This internal method is used when a new domain is created,</p>
+<p> Reads a prefix string from the <b>ALib</b> configuration system. This internal method is used when a new domain is created,</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dom</td><td>The domain to set the verbosity for. </td></tr>
@@ -1138,7 +1138,7 @@ Package Access Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Reads the verbosity for the given logger and domain from the ALib configuration system. This internal method is used in two occasions:</p><ul>
+<p> Reads the verbosity for the given logger and domain from the <b>ALib</b> configuration system. This internal method is used in two occasions:</p><ul>
 <li>when a new logger is added: recursively for all existing domains (<code>configStr</code> is given)</li>
 <li>when a new domain is created on the fly(<code>configStr</code> is not given)</li>
 </ul>
@@ -1341,8 +1341,8 @@ Package Access Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Status of registration with <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a>. To keep a <b>Lox</b> "private" using parameter <code>doRegister</code> of the constructor, allows to suppress registration. Registered instances of this class can be statically received (by their name) using <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a3991620cb06ad677d52b1d463a73b2c8">ALox.get</a>.</p>
-<dl class="section return"><dt>Returns</dt><dd><code>true</code> if this instance was registered with <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a>, <code>false</code> if not. </dd></dl>
+<p> Status of registration with <b>ALox</b>. To keep a <b>Lox</b> "private" using parameter <code>doRegister</code> of the constructor, allows to suppress registration. Registered instances of this class can be statically received (by their name) using <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a3991620cb06ad677d52b1d463a73b2c8">ALox.get</a>.</p>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if this instance was registered with <b>ALox</b>, <code>false</code> if not. </dd></dl>
 
 </div>
 </div>
@@ -1784,7 +1784,7 @@ Package Access Methods</h2></td></tr>
 <li>Log only the first n statements of a group of statements executed by a specific thread.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>Unlike other methods of this class which accept more than one logable, this method and its overloaded variants accept only one object. To supply several objects at once, an <code>Object</code>[] may be passed with parameter <code>logables</code>, like in the following sample: <div class="fragment"><div class="line">Log.once( <span class="keyword">new</span> Object[] {<span class="stringliteral">&quot;One - {} - {}!&quot;</span>, <span class="stringliteral">&quot;two&quot;</span>, 3}  );</div></div><!-- fragment --> </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Due to the limitations of the Java language to dissolve ambiguities when invoking overloaded methods, most of the overloads provided await parameters <code>domain</code> and <code>verbosity</code> at the start. This is in difference to <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> for C++ and C#, where overloaded methods always default these parameters to <code>null</code> respectively <code>Verbosity.INFO</code>.<br />
+<dl class="section note"><dt>Note</dt><dd>Due to the limitations of the Java language to dissolve ambiguities when invoking overloaded methods, most of the overloads provided await parameters <code>domain</code> and <code>verbosity</code> at the start. This is in difference to <b><a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> for C++</b> and <b><a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> for C#</b>, where overloaded methods always default these parameters to <code>null</code> respectively <code>Verbosity.INFO</code>.<br />
  Fortunate exceptions are<ul>
 <li><b>once(Object logable)</b> and</li>
 <li><b>once(Object logable, int quantity)</b>.</li>
@@ -2710,7 +2710,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
 <p> Retrieves an object which was previously stored by invoking using <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a5c0889cc7e10b5436d6988e9c7e1b4b7">store</a>. Optional parameters <code>key</code> and <code>scope</code> offer various possibilities to reference such objects.<br />
 </p>
 <dl class="section note"><dt>Note</dt><dd>If no <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> object is found, an empty object is stored and returned.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd><em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> is a feature provided by <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> to support debug-logging. It is not advised to use <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> to implement application logic.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd><em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> is a feature provided by <b>ALox</b> to support debug-logging. It is not advised to use <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> to implement application logic.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">key</td><td>The optional key to the data. If omitted (or empty or <code>null</code>), the data is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a78d63915b0cc8b7545ac7e84c538896f">Scope.GLOBAL</a>, then the data is unique to the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></em>. </td></tr>
@@ -3109,7 +3109,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
 <p><b>Application of Rules</b><br />
  Rules are applied in the order of their definition. After all rules have been applied this is repeated as long as at least one rule matched (up to ten times).</p>
 <p><b>Deletion of Rules</b> To delete a rule, invoke the method with same parameter <code>domainPath</code> and a 'nulled' or empty string for parameter <code>replacement</code>. To delete all rules, invoke the method with parameter <code>domainPath</code> 'nulled' or empty.</p>
-<p><b>Final remarks</b> Domain substitution is useful to permanently change ('redirect') domain paths of 3rd party code (e.g. libraries using <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a>) or log statements that must not be changed for other reasons. It is advised to not 'overuse' this feature, as side effects are inherent to the concept of <em>Domain Substitution</em>. For example, an unwanted side effect might be that <em>Prefix Logables</em> are not applicable to the substituted domain, while other <em>Prefix Logables</em> are bound to the resulting domain.</p>
+<p><b>Final remarks</b> Domain substitution is useful to permanently change ('redirect') domain paths of 3rd party code (e.g. libraries using <b>ALox</b>) or log statements that must not be changed for other reasons. It is advised to not 'overuse' this feature, as side effects are inherent to the concept of <em>Domain Substitution</em>. For example, an unwanted side effect might be that <em>Prefix Logables</em> are not applicable to the substituted domain, while other <em>Prefix Logables</em> are bound to the resulting domain.</p>
 <p>For <b>Lox</b> objects that should be protected of external manipulation, it is advisable, to remove all <em>Domain Substitution Rules</em> right after the <b>Lox</b> was created by invoking this method with a nulled value for parameter <code>domainPath</code>. The reason is, that otherwise, through configuration files or command line parameters, domains of the <b>Lox</b> can be substituted and then the resulting domains <em>Verbosities</em> be <em>overwritten</em> using further configuration variables. Any prioritized <em>'internal'</em> setting of <em>Verbosities</em> this way could be circumvented!</p>
 <p>For more information consult the <a href="../man_domain_substitution.html">ALox User Manual</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -3158,8 +3158,8 @@ have been added. While their parameter order is 'wrong' and therefore need <code
 <p>To remove a previously set <em>Prefix Logable</em>, <code>null</code> has to be passed with parameter <code>logable</code>. For <em>Scope.THREAD_OUTER</em> and <em>Scope.THREAD_INNER</em>, passing <code>null</code> removes the most recently added <em>Prefix Logable</em>.</p>
 <dl class="section note"><dt>Note</dt><dd>Unlike other methods of this class which accept more than one logable, this method and its overloaded variants accept only one (the prefix). To supply several objects to be prefix logables at once, those may be passed as an Object[] like shown in the following sample: <div class="fragment"><div class="line">Log.setPrefix( <span class="keyword">new</span> Object[] {<span class="stringliteral">&quot;One, &quot;</span>, <span class="stringliteral">&quot;two, &quot;</span>, 3 },  Scope.GLOBAL   );</div></div><!-- fragment --> </dd>
 <dd>
-The word 'prefix' in this methods' name and in the name of <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> feature <em>Prefix Logables</em> is chosen for the fact that with text loggers (which is the most widely applied use case for <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a>) such objects are prefixes to the log message. Of-course, with using <em>Scope.THREAD_INNER</em>, this turns into a suffix!<br />
- When using <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> to process objects instead of log messages, the concept of <em>Prefix Logables</em> is very useful. Just the name does not fit so well anymore. Think of 'SetContext' and <em>Context Objects</em> instead.</dd></dl>
+The word 'prefix' in this methods' name and in the name of <b>ALox</b> feature <em>Prefix Logables</em> is chosen for the fact that with text loggers (which is the most widely applied use case for <b>ALox</b>) such objects are prefixes to the log message. Of-course, with using <em>Scope.THREAD_INNER</em>, this turns into a suffix!<br />
+ When using <b>ALox</b> to process objects instead of log messages, the concept of <em>Prefix Logables</em> is very useful. Just the name does not fit so well anymore. Think of 'SetContext' and <em>Context Objects</em> instead.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">prefix</td><td>The <em>Prefix Logable(s)</em> to set. </td></tr>
@@ -3551,13 +3551,13 @@ The word 'prefix' in this methods' name and in the name of <a class="el" href="c
 <li>To 'lock' a verbosity setting against external manipulation.</li>
 <li>to 'break' the standard mechanism that an invocation of this method sets all sub-domains recursively. If a sub-domain was set with a higher priority (e.g. <code>PRIO_DEFAULT + 1</code>, then this sub-domain will not be affected by future invocations of this method with standard-priority given.</li>
 </ul>
-<p>For more information on how to use external configuration variables with priority and on protecting verbosity settings, consult the <a href="../manual.html">ALox user manual</a>.</p>
-<dl class="section attention"><dt>Attention</dt><dd>The same as with most interface methods of this class, the given <code>domain</code> parameter is combined with <em>Scope Domains</em> set for the callers' <em>Scope</em>. In standard use cases of ALox, the <em>Verbosity</em> of a <em>Domain</em> is set using absolute domain path addressing. Therefore, it is recommended to have any domain path passed to this method starting with <code> '/'</code>, which suppresses the concatenation of <em>Scope Domains</em>.<br />
+<p>For more information on how to use external configuration variables with priority and on protecting verbosity settings, consult the <a href="../manual.html">ALox User Manual</a>.</p>
+<dl class="section attention"><dt>Attention</dt><dd>The same as with most interface methods of this class, the given <code>domain</code> parameter is combined with <em>Scope Domains</em> set for the callers' <em>Scope</em>. In standard use cases of <b>ALox</b>, the <em>Verbosity</em> of a <em>Domain</em> is set using absolute domain path addressing. Therefore, it is recommended to have any domain path passed to this method starting with <code> '/'</code>, which suppresses the concatenation of <em>Scope Domains</em>.<br />
  This is why this parameter with this method defaults to <code> '/'</code>, while with other methods of this class, it defaults to an empty string.</dd>
 <dd>
 Even when using an absolute domain path, <em>Scope Domains</em> of <em>Scope.THREAD_INNER</em>, will still apply. This means that from within a thread that has such <em>Scope Domain</em> set, this method is (almost) not usable! This all aligns with the concept (advice), that <em>Loggers</em> and their <em>Verbosity</em> are generally set outside of such scopes, hence in configuration sections of a process.</dd>
 <dd>
-Consequently, this method may be (mis-) used to modify the 'actual' (default) scope when explicitly giving an empty string with parameter <code>domain</code>. This is useful, to temporarily adjust a scope. But remember: ALox was designed to avoid temporary code lines...</dd></dl>
+Consequently, this method may be (mis-) used to modify the 'actual' (default) scope when explicitly giving an empty string with parameter <code>domain</code>. This is useful, to temporarily adjust a scope. But remember: <b>ALox</b> was designed to avoid temporary code lines...</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logger</td><td>The logger to be to be affected (case insensitive). </td></tr>
@@ -3829,7 +3829,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 </div><div class="memdoc">
 <hr/>
 <p> This method logs the current configuration of this <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> and its encapsulated objects. It uses method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a7c36befb4c7cff8accbac11ffe5c5b48">getState</a> to assemble the logable string.</p>
-<dl class="section note"><dt>Note</dt><dd>As an alternative to (temporarily) adding an invocation of <b>Lox.State</b> to your code, <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> provides configuration variable <a href="group__GrpALoxConfigVars.html">ALOX_LOXNAME_DUMP_STATE_ON_EXIT</a>. This allows to enable an automatic invocation of this method using external configuration data like command line parameters, environment variables or INI files.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>As an alternative to (temporarily) adding an invocation of <b>Lox.State</b> to your code, <b>ALox</b> provides configuration variable <a href="group__GrpALoxConfigVars.html">ALOX_LOXNAME_DUMP_STATE_ON_EXIT</a>. This allows to enable an automatic invocation of this method using external configuration data like command line parameters, environment variables or INI files.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domain</td><td>Optional <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em> which is combined with <em>Scope Domains</em> set for the <em>Scope</em> of invocation. </td></tr>
@@ -3928,8 +3928,8 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 </p>
 <p>To remove data from the store, pass <code>null</code> with parameter <code>data</code>.</p>
 <dl class="section attention"><dt>Attention</dt><dd>When data objects are 'overwritten', previous objects will be deleted internally. Hence, only pointers to heap-allocated objects (created with <code>new</code>) may be passed!<br />
- For more information, consult the <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> user manual.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd><em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> is a feature provided by <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> to support debug-logging. It is not advised to use <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> to implement application logic.</dd></dl>
+ For more information, consult the <a href="../manual.html">ALox User Manual</a>.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd><em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> is a feature provided by <b>ALox</b> to support debug-logging. It is not advised to use <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> to implement application logic.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>The data object to store. If <code>null</code>, currently stored data will be removed. </td></tr>
@@ -4835,7 +4835,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:29 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:01 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

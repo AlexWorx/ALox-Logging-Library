@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -155,7 +155,7 @@ $(function() {
 <div class="fragment"><div class="line">    Log.AddDebugLogger();</div><div class="line">    Log.Info( <span class="stringliteral">&quot;Hello ALox&quot;</span> );</div></div><!-- fragment --><h1><a class="anchor" id="tutcs_run"></a>
 5. Run the Application</h1>
 <p>When you run your project, output similar to this:</p>
-<pre class="fragment">UT_dox_tutorial.cs(192):Tut_Hello_ALox() [0.000 +306 µs][UT]     [/](001): Hello ALox</pre><p>should appear in your IDE or your console.</p>
+<pre class="fragment">UT_dox_tutorial.cs(192):Tut_Hello_ALox() [0.000 +327 µs][UT]     [/](001): Hello ALox</pre><p>should appear in your IDE or your console.</p>
 <dl class="section note"><dt>Note</dt><dd>From the meta information of the log output above you can see, that this tutorial has its sample code embedded in unit tests and the output is captured when running them and inserted here.</dd></dl>
 <h2><a class="anchor" id="tutcs_run_ide"></a>
 5.1. Run your application within your IDE</h2>
@@ -198,18 +198,18 @@ $(function() {
 </ul>
 <p>Let us see what happens when extending our sample as follows:</p>
 <div class="fragment"><div class="line">    Log.AddDebugLogger();</div><div class="line"></div><div class="line">    Log.Error  ( <span class="stringliteral">&quot;A severe error happened :-(&quot;</span> );</div><div class="line">    Log.Warning( <span class="stringliteral">&quot;This is a warning :-/ Maybe an error follows?&quot;</span> );</div><div class="line">    Log.Info   ( <span class="stringliteral">&quot;Just for your further information!&quot;</span> );</div><div class="line">    Log.Verbose( <span class="stringliteral">&quot;Today, I am in the mood to talk...&quot;</span> );</div></div><!-- fragment --><p> If you run your application now (in "Debug" mode), the following output should appear:</p>
-<pre class="fragment">UT_dox_tutorial.cs(218):Tut_Verbosity() [0.000 +274 µs][UT][ERR][/](001): A severe error happened :-(
-UT_dox_tutorial.cs(219):Tut_Verbosity() [0.015 +015 ms][UT][WRN][/](002): This is a warning :-/ Maybe an error follows?
-UT_dox_tutorial.cs(220):Tut_Verbosity() [0.034 +019 ms][UT]     [/](003): Just for your further information!
-UT_dox_tutorial.cs(221):Tut_Verbosity() [0.052 +017 ms][UT][***][/](004): Today, I am in the mood to talk...</pre><p>The little space in the meta information, right after the thread name [main] fills with text-markers <b>[ERR]</b>, <b>[WRN]</b> and <b>[***]</b>, giving info about which verbosity a <em>Log Statement</em> defines.<br />
+<pre class="fragment">UT_dox_tutorial.cs(218):Tut_Verbosity() [0.000 +234 µs][UT][ERR][/](001): A severe error happened :-(
+UT_dox_tutorial.cs(219):Tut_Verbosity() [0.018 +018 ms][UT][WRN][/](002): This is a warning :-/ Maybe an error follows?
+UT_dox_tutorial.cs(220):Tut_Verbosity() [0.058 +040 ms][UT]     [/](003): Just for your further information!
+UT_dox_tutorial.cs(221):Tut_Verbosity() [0.074 +015 ms][UT][***][/](004): Today, I am in the mood to talk...</pre><p>The little space in the meta information, right after the thread name [main] fills with text-markers <b>[ERR]</b>, <b>[WRN]</b> and <b>[***]</b>, giving info about which verbosity a <em>Log Statement</em> defines.<br />
  In this sample, we are using just one source file, thread name, etc. When more variety appears, ALox will automatically set tabulators in the meta information of the log output, so that this information is almost always at the same column. This makes it very easy for example to identify those log messages of <em>Verbosity</em> 'Error'.</p>
 <dl class="section note"><dt>Note</dt><dd>If on your machine, ALox detects a console that supports colorizing the log output, method <b>Log.AddDebugLogger</b> will choose a colorful implementation of class <b>Logger</b> and you will see the different output lines in different colors instead of these little text-markers. This helps 'visually filtering' log lines even better.</dd></dl>
 <p>Now, we want to control the <em>Verbosity</em> of the log output. Let's say we just want to see 'Error' and 'Warning' messages, and suppress those of <em>Verbosity</em> 'Info' and 'Verbose'. ALox allows to control this on a 'per <em>Logger'</em> basis using method <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#adf2c597f5476b71077fa93d8126631af">Lox.SetVerbosity</a>. We add the line:</p>
 <div class="fragment"><div class="line">    Log.SetVerbosity( Log.DebugLogger, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Warning );</div></div><!-- fragment --><p> Here, we are explicitly passing the <em>Logger</em> object that ALox creates as a static singleton for debug-logging purposes, with method <b>AddDebugLogger()</b>. Instead of passing the reference to the object, we could as well use a <em>Loggers'</em> name. The <em>Logger</em> that method <b>AddDebugLogger()</b> creates is named <code>"DEBUG_LOGGER"</code>. Therefore, the line of code shown above can alternatively stated as:</p>
 <div class="fragment"><div class="line">    Log.SetVerbosity( <span class="stringliteral">&quot;DEBUG_LOGGER&quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Warning );</div></div><!-- fragment --><p> Our sample now looks like this:</p>
 <div class="fragment"><div class="line">    Log.AddDebugLogger();</div><div class="line"></div><div class="line">    Log.SetVerbosity( Log.DebugLogger, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Warning );</div><div class="line"></div><div class="line">    Log.Error  ( <span class="stringliteral">&quot;A severe error happened :-(&quot;</span> );</div><div class="line">    Log.Warning( <span class="stringliteral">&quot;This is a warning :-/ Maybe an error follows?&quot;</span> );</div><div class="line">    Log.Info   ( <span class="stringliteral">&quot;Just for your further information!&quot;</span> );</div><div class="line">    Log.Verbose( <span class="stringliteral">&quot;Today, I am in the mood to talk...&quot;</span> );</div></div><!-- fragment --><p> and produces the following output:</p>
-<pre class="fragment">UT_dox_tutorial.cs(246):Tut_Verbosity() [0.070 +018 ms][UT][ERR][/](001): A severe error happened :-(
-UT_dox_tutorial.cs(247):Tut_Verbosity() [0.082 +012 ms][UT][WRN][/](002): This is a warning :-/ Maybe an error follows?</pre><p>As you see, only the <em>Log Statements</em> with <em>Verbosity</em> 'Error' and 'Warning' survived.</p>
+<pre class="fragment">UT_dox_tutorial.cs(246):Tut_Verbosity() [0.094 +020 ms][UT][ERR][/](001): A severe error happened :-(
+UT_dox_tutorial.cs(247):Tut_Verbosity() [0.112 +017 ms][UT][WRN][/](002): This is a warning :-/ Maybe an error follows?</pre><p>As you see, only the <em>Log Statements</em> with <em>Verbosity</em> 'Error' and 'Warning' survived.</p>
 <p>Obviously ALox uses the attribute <em>Verbosity</em>, defined in enum class <a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> two times:</p><ul>
 <li>every <em>Log Statement</em> has a <em>Verbosity</em> assigned.</li>
 <li>A <em>Logger</em> attached to a <em>Lox</em> has a <em>Verbosity</em> assigned.</li>
@@ -228,21 +228,21 @@ UT_dox_tutorial.cs(247):Tut_Verbosity() [0.082 +012 ms][UT][WRN][/](002): This i
 <p>Controlling the <em>Verbosity</em> of the log output, including switching it completely off, is of-course a core feature of any logging library. ALox allows to control such <em>Verbosity</em> for different <b>Log Domains</b>. A <em>Log Domain</em> can be seen like a key-word associated with just every <em>Log Statement</em>. This way, <em>Log Domains</em> are sorting each and every <em>Log Statement</em> used in an application into a specific <b>subset</b>.</p>
 <p>Until now, we have not used and set any <em>Log Domain</em> in our samples. We have just omitted the parameter in our <em>Log Statements</em> and this way the parameter defaulted to an empty string. Look at the following two <em>Log Statements</em>:</p>
 <div class="fragment"><div class="line">    Log.AddDebugLogger();</div><div class="line">    Log.SetVerbosity( Log.DebugLogger, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Verbose ); <span class="comment">// the default anyhow</span></div><div class="line">    <span class="comment">//...</span></div><div class="line">    Log.Verbose( <span class="stringliteral">&quot;HTTP&quot;</span>, <span class="stringliteral">&quot;Connected&quot;</span> );</div><div class="line">    <span class="comment">//...</span></div><div class="line">    <span class="comment">//...</span></div><div class="line">    <span class="comment">//...</span></div><div class="line">    Log.Verbose( <span class="stringliteral">&quot;UI&quot;</span>,   <span class="stringliteral">&quot;Somebody moved the mouse!&quot;</span> );</div><div class="line">    <span class="comment">//...</span></div></div><!-- fragment --><p> As you see, two parameters are given now. The first denotes the <em>Log Domain</em>. The string provided can be arbitrarily chosen. Let us quickly look at the log output:</p>
-<pre class="fragment">UT_dox_tutorial.cs(278):Tut_Domains() [0.000 +408 µs][UT][***][/HTTP](001): Connected
-UT_dox_tutorial.cs(282):Tut_Domains() [0.021 +021 ms][UT][***][/UI  ](002): Somebody moved the mouse!</pre><p>In the meta information of the log output, just before the line number, formerly appeared <code>[/]</code> (what we did not explain, yet). Now it says <code>[/HTTP]</code>, respectively <code>[/UI]</code>. Obviously this field of the meta information denotes the <em>Log Domain</em> associated with the <em>Log Statement</em>.</p>
+<pre class="fragment">UT_dox_tutorial.cs(278):Tut_Domains() [0.000 +285 µs][UT][***][/HTTP](001): Connected
+UT_dox_tutorial.cs(282):Tut_Domains() [0.016 +016 ms][UT][***][/UI  ](002): Somebody moved the mouse!</pre><p>In the meta information of the log output, just before the line number, formerly appeared <code>[/]</code> (what we did not explain, yet). Now it says <code>[/HTTP]</code>, respectively <code>[/UI]</code>. Obviously this field of the meta information denotes the <em>Log Domain</em> associated with the <em>Log Statement</em>.</p>
 <p>The <em>Log Domains</em> chosen in this sample obviously group the <em>Log Statements</em> of the application into two sets, one for <em>Log Statement</em> concerning information about the 'user interface', the other about HTTP communication. Now, we can control the <em>Verbosity</em> of the two sets independently. We are using another default parameter that we previously omitted. Imagine, the UI of your application works well, but you have some problems with HTTP connections:</p>
 <div class="fragment"><div class="line">    Log.AddDebugLogger();</div><div class="line"></div><div class="line">    Log.SetVerbosity( Log.DebugLogger, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Verbose,  <span class="stringliteral">&quot;HTTP&quot;</span> ); <span class="comment">// our interest</span></div><div class="line">    Log.SetVerbosity( Log.DebugLogger, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Error,    <span class="stringliteral">&quot;UI&quot;</span>   ); <span class="comment">// only if ouch!</span></div><div class="line">    <span class="comment">//...</span></div><div class="line">    Log.Verbose( <span class="stringliteral">&quot;HTTP&quot;</span>, <span class="stringliteral">&quot;Connected&quot;</span> );</div><div class="line">    <span class="comment">//...</span></div><div class="line">    <span class="comment">//...</span></div><div class="line">    <span class="comment">//...</span></div><div class="line">    Log.Verbose( <span class="stringliteral">&quot;UI&quot;</span>,   <span class="stringliteral">&quot;Somebody moved the mouse!&quot;</span> );</div><div class="line">    <span class="comment">//...</span></div></div><!-- fragment --><p> Now the output is:</p>
-<pre class="fragment">UT_dox_tutorial.cs(301):Tut_Domains() [0.046 +025 ms][UT][***][/HTTP](001): Connected</pre><p>Although both <em>Log Statement</em> share the same <em>Verbosity</em>, only the one that belongs to <em>Log Domain</em> "HTTP" is shown.</p>
+<pre class="fragment">UT_dox_tutorial.cs(301):Tut_Domains() [0.054 +037 ms][UT][***][/HTTP](001): Connected</pre><p>Although both <em>Log Statement</em> share the same <em>Verbosity</em>, only the one that belongs to <em>Log Domain</em> "HTTP" is shown.</p>
 <p>The next section tells us more about <em>Log Domains</em>. You might already guess what this is when looking at the meta information of the log output, showing <code>[/HTTP]</code>, <code>[/UI]</code> and <code>[/]</code> for the <em>Log Domains</em>!</p>
 <h1><a class="anchor" id="tutcs_logdomains_hierarchical"></a>
 8. Hierarchical Log Domains</h1>
 <p>ALox organizes <em>Log Domains</em> hierarchically. A first advantage of this is that it becomes easy to switch <em>Verbosity</em> of a whole set of <em>Log Domains</em> by controlling the parent.</p>
 <p>Look at the following sample:</p>
 <div class="fragment"><div class="line">    Log.AddDebugLogger();</div><div class="line">    Log.SetVerbosity( Log.DebugLogger, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Verbose ); <span class="comment">// the default anyhow</span></div><div class="line">    <span class="comment">//...</span></div><div class="line">    Log.Info   ( <span class="stringliteral">&quot;UI/MOUSE&quot;</span>,   <span class="stringliteral">&quot;A mouse click&quot;</span> );</div><div class="line">    <span class="comment">//...</span></div><div class="line">    Log.Verbose( <span class="stringliteral">&quot;UI/MOUSE&quot;</span>,   <span class="stringliteral">&quot;Somebody moved the mouse!&quot;</span> );</div><div class="line">    <span class="comment">//...</span></div><div class="line">    <span class="comment">//...</span></div><div class="line">    Log.Info   ( <span class="stringliteral">&quot;UI/DLG&quot;</span>,     <span class="stringliteral">&quot;About dialog opend&quot;</span> );</div><div class="line">    <span class="comment">//...</span></div><div class="line">    Log.Verbose( <span class="stringliteral">&quot;UI/DLG&quot;</span>,     <span class="stringliteral">&quot;About dialog, link to product page pressed.&quot;</span> );</div><div class="line">    <span class="comment">//...</span></div></div><!-- fragment --><p> and its output:</p>
-<pre class="fragment">UT_dox_tutorial.cs(335):Tut_HierDom() [0.000 +397 µs][UT]     [/UI/MOUSE](001): A mouse click
-UT_dox_tutorial.cs(337):Tut_HierDom() [0.031 +031 ms][UT][***][/UI/MOUSE](002): Somebody moved the mouse!
-UT_dox_tutorial.cs(340):Tut_HierDom() [0.061 +029 ms][UT]     [/UI/DLG  ](003): About dialog opend
-UT_dox_tutorial.cs(342):Tut_HierDom() [0.091 +030 ms][UT][***][/UI/DLG  ](004): About dialog, link to product page pressed.</pre><p>We can use a slash (<code> '/'</code>) to separate <em>Log Domains</em> and organize them in a tree structure, just as we do with directories in a file system. In the sample above, <em>Log Domains</em> <b>"DLG"</b> and <b>"MOUSE"</b> are Sub-<em>Log Domains</em> of <em>Log Domain</em> "UI".</p>
+<pre class="fragment">UT_dox_tutorial.cs(335):Tut_HierDom() [0.000 +638 µs][UT]     [/UI/MOUSE](001): A mouse click
+UT_dox_tutorial.cs(337):Tut_HierDom() [0.029 +028 ms][UT][***][/UI/MOUSE](002): Somebody moved the mouse!
+UT_dox_tutorial.cs(340):Tut_HierDom() [0.050 +021 ms][UT]     [/UI/DLG  ](003): About dialog opend
+UT_dox_tutorial.cs(342):Tut_HierDom() [0.069 +018 ms][UT][***][/UI/DLG  ](004): About dialog, link to product page pressed.</pre><p>We can use a slash (<code> '/'</code>) to separate <em>Log Domains</em> and organize them in a tree structure, just as we do with directories in a file system. In the sample above, <em>Log Domains</em> <b>"DLG"</b> and <b>"MOUSE"</b> are Sub-<em>Log Domains</em> of <em>Log Domain</em> "UI".</p>
 <p>With this information, it is important to understand that method <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#adf2c597f5476b71077fa93d8126631af">Lox.SetVerbosity</a> always sets the given <em>Log Domain</em> and <b>all its sub-domains</b> to the <em>Verbosity</em> value provided. Consequently, the following statement switches <em>Log Domains</em> <b>"UI"</b>, <b>"UI/MOUSE"</b> and <b>"UI/DLG"</b> to the same <em>Verbosity.Warning</em>:</p>
 <div class="fragment"><div class="line">    Log.SetVerbosity( Log.DebugLogger, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Warning, <span class="stringliteral">&quot;UI&quot;</span>  ); <span class="comment">// Always sets all sub-domains!</span></div></div><!-- fragment --><p> If we were interested how mouse events are processed in our application, we might do invoke:</p>
 <div class="fragment"><div class="line">    Log.SetVerbosity( Log.DebugLogger, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Warning, <span class="stringliteral">&quot;UI&quot;</span>       ); <span class="comment">// First set parent...</span></div><div class="line">    Log.SetVerbosity( Log.DebugLogger, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Verbose, <span class="stringliteral">&quot;UI/MOUSE&quot;</span> ); <span class="comment">// ...then children!</span></div></div><!-- fragment --><p> The order of these two statements is important: If they had been written the other way round, then the setting of <em>Log Domain</em> <b>"UI"</b> had overwritten that of <em>Log Domain</em> <b>"UI/MOUSE"</b>.</p>
@@ -268,26 +268,26 @@ UT_dox_tutorial.cs(342):Tut_HierDom() [0.091 +030 ms][UT][***][/UI/DLG  ](004): 
 <p>The term <em>Scope</em> is known from your programming language. For example, a variable declared within a class method, 'automatically' carries the scope of that method. This means, it is not visible outside of that method. ALox uses a similar approach: All <em>Log Statements</em> within a method might carry the same <em>Log Domain</em>. In other words, we can set a 'default value' for a <em>Log Domain</em> to be used for all <em>Log Statements</em> of a method.</p>
 <p>The interface in ALox which provides this feature is found with the set of overloaded versions of <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a280572b2c652d82ed88598586a267635">Lox.SetDomain</a>. Here is a sample:</p>
 <div class="fragment"><div class="line">    <span class="keyword">public</span> <span class="keywordtype">char</span>[] Extract( String fileName, <span class="keywordtype">char</span>[] buffer )</div><div class="line">    {</div><div class="line">        Log.SetDomain( <span class="stringliteral">&quot;ZIP/EXTRACT&quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Method ); <span class="comment">// set Scope Domain path for this method</span></div><div class="line">        <span class="comment">//...</span></div><div class="line">        Log.Info( <span class="stringliteral">&quot;Extracting &quot;</span> + fileName );</div><div class="line">        <span class="comment">//...</span></div><div class="line">        <span class="comment">//...</span></div><div class="line">        Log.Info( <span class="stringliteral">&quot;Success&quot;</span> ); <span class="comment">// a nice, clear, local, copyable log statement!</span></div><div class="line">        <span class="comment">//...</span></div><div class="line">        <span class="keywordflow">return</span> buffer;</div><div class="line">    }</div></div><!-- fragment --><p> and its output:</p>
-<pre class="fragment">UT_dox_tutorial.cs(46):Extract() [0.000 +362 µs][UT]     [/ZIP/EXTRACT](001): Extracting myfile.zip
-UT_dox_tutorial.cs(49):Extract() [0.013 +013 ms][UT]     [/ZIP/EXTRACT](002): Success</pre><p>You see, all disadvantages we just listed are blown away using <em>Scope Domains</em>.</p>
+<pre class="fragment">UT_dox_tutorial.cs(46):Extract() [0.000 +782 µs][UT]     [/ZIP/EXTRACT](001): Extracting myfile.zip
+UT_dox_tutorial.cs(49):Extract() [0.026 +025 ms][UT]     [/ZIP/EXTRACT](002): Success</pre><p>You see, all disadvantages we just listed are blown away using <em>Scope Domains</em>.</p>
 <p>In the sample above, we have used <em>Scope.Method</em>. Another type is <em>Scope.Filename</em> which "binds" a given <em>Log Domain</em> path to all <em>Log Statements</em> within a source file. As with scopes in your programming language, <em>Scopes</em> in ALox are nested and of-course <em>Scope.Filename</em> is an <b>'outer Scope'</b> of <em>Scope.Method</em>. For a single <em>Log Statement</em>, both <em>Scope Domains</em> might apply at the same time. With having hierarchically organized <em>Log Domains</em>, ALox concatenates all <em>Scope Domains</em> applicable. Look at the following sample:</p>
 <div class="fragment"><div class="line"><span class="keyword">class </span>Zipper</div><div class="line">{</div><div class="line">    <span class="keyword">public</span> Zipper()</div><div class="line">    {</div><div class="line">        Log.SetDomain( <span class="stringliteral">&quot;ZIP&quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Filename ); <span class="comment">// set Scope Domain path for this class (filename)</span></div><div class="line">        <span class="comment">//...</span></div><div class="line">        Log.Info( <span class="stringliteral">&quot;Zipper created&quot;</span> ); <span class="comment">// domain &quot;ZIP&quot;</span></div><div class="line">        <span class="comment">//...</span></div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keywordtype">char</span>[] Compress( String fileName, <span class="keywordtype">char</span>[] buffer )</div><div class="line">    {</div><div class="line">        Log.SetDomain( <span class="stringliteral">&quot;COMPRESS&quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Method ); <span class="comment">// set Scope Domain path for this method</span></div><div class="line">        <span class="comment">//...</span></div><div class="line">        Log.Info( <span class="stringliteral">&quot;Compressing &quot;</span> + fileName );</div><div class="line">        <span class="comment">//...</span></div><div class="line">        <span class="comment">//...</span></div><div class="line">        Log.Info( <span class="stringliteral">&quot;Success&quot;</span> ); <span class="comment">// domain &quot;ZIP/COMPRESS&quot;</span></div><div class="line">        <span class="comment">//...</span></div><div class="line">        <span class="keywordflow">return</span> buffer;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keywordtype">char</span>[] Extract( String fileName, <span class="keywordtype">char</span>[] buffer )</div><div class="line">    {</div><div class="line">        Log.SetDomain( <span class="stringliteral">&quot;EXTRACT&quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Method ); <span class="comment">// set Scope Domain path for this method</span></div><div class="line">        <span class="comment">//...</span></div><div class="line">        Log.Info( <span class="stringliteral">&quot;Extracting &quot;</span> + fileName );</div><div class="line">        <span class="comment">//...</span></div><div class="line">        <span class="comment">//...</span></div><div class="line">        Log.Info( <span class="stringliteral">&quot;Success&quot;</span> ); <span class="comment">// domain &quot;ZIP/EXTRACT&quot;</span></div><div class="line">        <span class="comment">//...</span></div><div class="line">        <span class="keywordflow">return</span> buffer;</div><div class="line">    }</div><div class="line">}</div></div><!-- fragment --><p> and its output when both sample methods are executed:</p>
-<pre class="fragment">UT_dox_tutorial.cs(63):.ctor()         [0.123 +015 ms][UT]     [/ZIP         ] (001): Zipper created
-UT_dox_tutorial.cs(71):Compress()      [0.136 +012 ms][UT]     [/ZIP/COMPRESS] (002): Compressing myfile.zip
-UT_dox_tutorial.cs(74):Compress()      [0.148 +012 ms][UT]     [/ZIP/COMPRESS] (003): Success
-UT_dox_tutorial.cs(83):Extract()       [0.159 +010 ms][UT]     [/ZIP/EXTRACT ] (004): Extracting myfile.zip
-UT_dox_tutorial.cs(86):Extract()       [0.174 +015 ms][UT]     [/ZIP/EXTRACT ] (005): Success</pre><p>Imagine, the source file of class Zipper resides in a source directory, together with other 'utility classes'. Somewhere in these classes, probably at the place where this 'utility library' is initialized (once, when bootstrapping a process), the following statement might be added:</p>
+<pre class="fragment">UT_dox_tutorial.cs(63):.ctor()         [0.213 +016 ms][UT]     [/ZIP         ] (001): Zipper created
+UT_dox_tutorial.cs(71):Compress()      [0.242 +029 ms][UT]     [/ZIP/COMPRESS] (002): Compressing myfile.zip
+UT_dox_tutorial.cs(74):Compress()      [0.259 +016 ms][UT]     [/ZIP/COMPRESS] (003): Success
+UT_dox_tutorial.cs(83):Extract()       [0.276 +017 ms][UT]     [/ZIP/EXTRACT ] (004): Extracting myfile.zip
+UT_dox_tutorial.cs(86):Extract()       [0.317 +040 ms][UT]     [/ZIP/EXTRACT ] (005): Success</pre><p>Imagine, the source file of class Zipper resides in a source directory, together with other 'utility classes'. Somewhere in these classes, probably at the place where this 'utility library' is initialized (once, when bootstrapping a process), the following statement might be added:</p>
 <div class="fragment"><div class="line">    Log.SetDomain( <span class="stringliteral">&quot;UTIL&quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Path );</div></div><!-- fragment --><p> This sets <em>Log Domain</em> "UTIL" for <em>Scope.Path</em>, which is again an <b>outer scope</b> of <em>Scope.Filename</em>. Without changing the code in class Zipper, invoking its methods then leads to the output:</p>
-<pre class="fragment">UT_dox_tutorial.cs(63):.ctor()         [0.262 +013 ms][UT]     [/UTIL/ZIP         ] (001): Zipper created
-UT_dox_tutorial.cs(71):Compress()      [0.275 +013 ms][UT]     [/UTIL/ZIP/COMPRESS] (002): Compressing myfile.zip
-UT_dox_tutorial.cs(74):Compress()      [0.287 +011 ms][UT]     [/UTIL/ZIP/COMPRESS] (003): Success
-UT_dox_tutorial.cs(83):Extract()       [0.297 +010 ms][UT]     [/UTIL/ZIP/EXTRACT ] (004): Extracting myfile.zip
-UT_dox_tutorial.cs(86):Extract()       [0.313 +016 ms][UT]     [/UTIL/ZIP/EXTRACT ] (005): Success</pre><p>What happens when <em>Scope Domains</em> are set and we still use optional parameter <code>domain</code> with a <em>Log Statement</em>? Let us just try out:</p>
-<div class="fragment"><div class="line">    Log.SetDomain( <span class="stringliteral">&quot;METHOD&quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Method );</div><div class="line">    Log.Info(          <span class="stringliteral">&quot;No domain parameter given&quot;</span> );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;PARAM&quot;</span>, <span class="stringliteral">&quot;Domain parameter \&quot;PARAM\&quot; given&quot;</span> );</div></div><!-- fragment --><pre class="fragment">UT_dox_tutorial.cs(454):Tut_ScopeDomains() [0.401 +017 ms][UT]     [/METHOD      ] (001): No domain parameter given
-UT_dox_tutorial.cs(455):Tut_ScopeDomains() [0.420 +019 ms][UT]     [/METHOD/PARAM] (002): Domain parameter "PARAM" given</pre><p>As you see, the path provided with parameter <code>domain</code> gets appended to the path of <em>Scope Domains</em> evaluated. You can consider this parameter being a 'local' <em>Scope</em>, or an <b>inner</b> scope of <em>Scope.Method!</em> </p>
+<pre class="fragment">UT_dox_tutorial.cs(63):.ctor()         [0.433 +016 ms][UT]     [/UTIL/ZIP         ] (001): Zipper created
+UT_dox_tutorial.cs(71):Compress()      [0.451 +017 ms][UT]     [/UTIL/ZIP/COMPRESS] (002): Compressing myfile.zip
+UT_dox_tutorial.cs(74):Compress()      [0.474 +022 ms][UT]     [/UTIL/ZIP/COMPRESS] (003): Success
+UT_dox_tutorial.cs(83):Extract()       [0.490 +016 ms][UT]     [/UTIL/ZIP/EXTRACT ] (004): Extracting myfile.zip
+UT_dox_tutorial.cs(86):Extract()       [0.528 +037 ms][UT]     [/UTIL/ZIP/EXTRACT ] (005): Success</pre><p>What happens when <em>Scope Domains</em> are set and we still use optional parameter <code>domain</code> with a <em>Log Statement</em>? Let us just try out:</p>
+<div class="fragment"><div class="line">    Log.SetDomain( <span class="stringliteral">&quot;METHOD&quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Method );</div><div class="line">    Log.Info(          <span class="stringliteral">&quot;No domain parameter given&quot;</span> );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;PARAM&quot;</span>, <span class="stringliteral">&quot;Domain parameter \&quot;PARAM\&quot; given&quot;</span> );</div></div><!-- fragment --><pre class="fragment">UT_dox_tutorial.cs(454):Tut_ScopeDomains() [0.663 +022 ms][UT]     [/METHOD      ] (001): No domain parameter given
+UT_dox_tutorial.cs(455):Tut_ScopeDomains() [0.686 +022 ms][UT]     [/METHOD/PARAM] (002): Domain parameter "PARAM" given</pre><p>As you see, the path provided with parameter <code>domain</code> gets appended to the path of <em>Scope Domains</em> evaluated. You can consider this parameter being a 'local' <em>Scope</em>, or an <b>inner</b> scope of <em>Scope.Method!</em> </p>
 <p>Finally, imagine you want to 'overwrite' current applicable <em>Scope Domains</em> and direct a certain <em>Log Statement</em> to a different <em>Log Domain</em>. All you need to do is to use an absolute domain path with parameter <code>domain:</code> </p>
-<div class="fragment"><div class="line">    Log.SetDomain( <span class="stringliteral">&quot;READ&quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Method );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;Reading file&quot;</span> );</div><div class="line">    <span class="comment">//...</span></div><div class="line">    <span class="comment">//...</span></div><div class="line">    Log.Info( <span class="stringliteral">&quot;/CONFIG&quot;</span>,   <span class="stringliteral">&quot;Path not found.&quot;</span> );</div><div class="line">    <span class="comment">//...</span></div></div><!-- fragment --><pre class="fragment">UT_dox_tutorial.cs(465):Tut_ScopeDomains() [0.468 +047 ms][UT]     [/READ        ] (001): Reading file
-UT_dox_tutorial.cs(468):Tut_ScopeDomains() [0.485 +017 ms][UT]     [/CONFIG      ] (002): Path not found.</pre><p>In this sample, the second <em>Log Statement</em> uses an absolute path. The reason is, that the error dectected in the code, obviously belongs to a different topic. The sample suggests, that it is not related to reading a file, but it is related to a wrong configuration. So, the log output goes directly to the corresponding domain.</p>
+<div class="fragment"><div class="line">    Log.SetDomain( <span class="stringliteral">&quot;READ&quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Method );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;Reading file&quot;</span> );</div><div class="line">    <span class="comment">//...</span></div><div class="line">    <span class="comment">//...</span></div><div class="line">    Log.Info( <span class="stringliteral">&quot;/CONFIG&quot;</span>,   <span class="stringliteral">&quot;Path not found.&quot;</span> );</div><div class="line">    <span class="comment">//...</span></div></div><!-- fragment --><pre class="fragment">UT_dox_tutorial.cs(465):Tut_ScopeDomains() [0.749 +063 ms][UT]     [/READ        ] (001): Reading file
+UT_dox_tutorial.cs(468):Tut_ScopeDomains() [0.777 +028 ms][UT]     [/CONFIG      ] (002): Path not found.</pre><p>In this sample, the second <em>Log Statement</em> uses an absolute path. The reason is, that the error dectected in the code, obviously belongs to a different topic. The sample suggests, that it is not related to reading a file, but it is related to a wrong configuration. So, the log output goes directly to the corresponding domain.</p>
 <p>This is enough about <em>Scope Domains</em> in the context of this tutorial. All details about <em>Log Domain</em> and <em>Scope Domains</em> are found in the <a href="../manual.html">ALox User Manual</a>. Among other things, you will find:</p><ul>
 <li>Information on a <em>Scope.Global</em> </li>
 <li>How to use outer <em>Scopes</em> of <em>Scope.Path</em>, addressing parent directories (alike namespace scoping)</li>
@@ -297,7 +297,7 @@ UT_dox_tutorial.cs(468):Tut_ScopeDomains() [0.485 +017 ms][UT]     [/CONFIG     
 <h1><a class="anchor" id="tutcs_formatting"></a>
 10. Formatting</h1>
 <p>While talking about rather complicated things like <em>Log Domains</em> and <em>Scopes</em>, we must not forget to talk about the log output itself. <b>ALox</b> is designed to be able to pass any type of data to one or more <em>Loggers</em>. In the default case, a textual output of these <em>"Logables"</em> is wanted. We have seen in previous samples already, that if two objects are passed, their textual representation is just concatenated:</p>
-<div class="fragment"><div class="line">    Log.Info( <span class="stringliteral">&quot;Value=&quot;</span>, 5 );</div></div><!-- fragment --><pre class="fragment">UT_dox_tutorial.cs(863):Tut_Format() [0.023 +023 ms][UT]     [/](001): Value=5</pre><p>But in fact, this concatenation is just the "fallback" strategy of a quite powerful formatting system coming with <b>ALox</b>. In short, <b>ALox</b> here relies on underlying library <b>ALib</b>, which provides abstract class <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html">Formatter</a> allowing to format a set of arguments in accordance with a given format string that contains placeholder symbols.</p>
+<div class="fragment"><div class="line">    Log.Info( <span class="stringliteral">&quot;Value=&quot;</span>, 5 );</div></div><!-- fragment --><pre class="fragment">UT_dox_tutorial.cs(863):Tut_Format() [0.030 +030 ms][UT]     [/](001): Value=5</pre><p>But in fact, this concatenation is just the "fallback" strategy of a quite powerful formatting system coming with <b>ALox</b>. In short, <b>ALox</b> here relies on underlying library <b>ALib</b>, which provides abstract class <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html">Formatter</a> allowing to format a set of arguments in accordance with a given format string that contains placeholder symbols.</p>
 <p>Now there are two tricks implemented: First, if no format string is recognized, a simple concatenation is performed. This is what we already saw. But secondly, if one formatter does not recognize a format string, a next formatter can be asked.</p>
 <p>Two formatters are provided by <b>ALib</b> and <b>ALox</b> (by default) installs both in parallel:</p><ol type="1">
 <li><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html">FormatterPythonStyle</a><br />
@@ -312,22 +312,22 @@ UT_dox_tutorial.cs(468):Tut_ScopeDomains() [0.485 +017 ms][UT]     [/CONFIG     
 <div class="fragment"><div class="line">    Log.Info( <span class="stringliteral">&quot;One-&quot;</span>, <span class="stringliteral">&quot;Two-&quot;</span>, <span class="stringliteral">&quot;Three&quot;</span> );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;{}-{}-{}&quot;</span>, <span class="stringliteral">&quot;One&quot;</span>, <span class="stringliteral">&quot;Two&quot;</span>, <span class="stringliteral">&quot;Three&quot;</span> );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;{}-{}-&quot;</span>  , <span class="stringliteral">&quot;One&quot;</span>, <span class="stringliteral">&quot;Two&quot;</span>, <span class="stringliteral">&quot;Three&quot;</span> );</div><div class="line">    Log.Info( <span class="keyword">new</span> Object[] { <span class="stringliteral">&quot;{}-&quot;</span>  , <span class="stringliteral">&quot;One&quot;</span>, <span class="stringliteral">&quot;{}-&quot;</span>, <span class="stringliteral">&quot;Two&quot;</span>, <span class="stringliteral">&quot;{}&quot;</span>, <span class="stringliteral">&quot;Three&quot;</span> } );</div></div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>The parameters of the last <em>Log Statement</em> in the sample above are collected in an <code>Object</code>[] prior to passing them to method <b>Log.Info</b>. This is necessary due to an unfortunate restriction that we have with <b>ALox for C#</b>! A maximum of four objects are allowed as "normal" logging parameters. If more should be provided, then they have to be passed packed in an array of type <code>Object</code>. This is due to the necessity to have hidden, trailing parameters in each method. These hidden parameters automatically collect caller information from the compiler.</dd></dl>
 <p>Of-course it is even allowed to mix Python style and Java style format strings in one log statement:</p>
 <div class="fragment"><div class="line">    Log.Info( <span class="keyword">new</span> Object[] { <span class="stringliteral">&quot;Python Style: {!s}&quot;</span>,<span class="stringliteral">&quot;PS&quot;</span>, <span class="stringliteral">&quot; - &quot;</span>, <span class="stringliteral">&quot;Java Style: \&quot;%s\&quot;&quot;</span>, <span class="stringliteral">&quot;JS&quot;</span> } );</div></div><!-- fragment --><p> The output is:</p>
-<pre class="fragment">UT_dox_tutorial.cs(886):Tut_Format() [0.133 +016 µs][UT]     [/](008): Python Style: "PS" - Java Style: "JS"</pre><p>However, please note that it is <b>not</b> allowed to mix Python and Java styles within one format string!</p>
+<pre class="fragment">UT_dox_tutorial.cs(886):Tut_Format() [0.149 +023 µs][UT]     [/](008): Python Style: "PS" - Java Style: "JS"</pre><p>However, please note that it is <b>not</b> allowed to mix Python and Java styles within one format string!</p>
 <p>In general, we are recommending to use Python style syntax with <b>ALox</b>, because it is more powerful and probably also better readable. The full documentation of the formats and how this is adopted within the C++ version of <b>ALib/ALox</b> is found with documentation of classes <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html">FormatterPythonStyle</a> and <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterJavaStyle.html">FormatterJavaStyle</a>. Let us conclude this chapter with some more samples:</p>
-<div class="fragment"><div class="line">    Log.Info( <span class="stringliteral">&quot;&gt;{:&lt;10}&lt;&quot;</span> , <span class="stringliteral">&quot;left&quot;</span> );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;&gt;{:&gt;10}&lt;&quot;</span> , <span class="stringliteral">&quot;right&quot;</span> );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;&gt;{:^10}&lt;&quot;</span> , <span class="stringliteral">&quot;center&quot;</span> );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;&gt;{:10.3}&lt;&quot;</span>, 12.3456789 );</div><div class="line"></div><div class="line">    Log.Info( <span class="stringliteral">&quot;Tab:{!Tab12}&quot;</span>, <span class="stringliteral">&quot;Stop&quot;</span> );</div><div class="line"></div><div class="line">    Log.Info( <span class="stringliteral">&quot;Auto Tab:{!ATab}&quot;</span>, <span class="stringliteral">&quot;Stop&quot;</span> );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;Auto Tab XXX:{!ATab}&quot;</span>, <span class="stringliteral">&quot;Stop&quot;</span> );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;Auto Tab:{!ATab}&quot;</span>, <span class="stringliteral">&quot;Stop&quot;</span> );</div><div class="line"></div><div class="line">    Log.Info( <span class="stringliteral">&quot;A quoted {!Q} string&quot;</span>, <span class="stringliteral">&quot;Placeholder&quot;</span> );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;A quoted {!Q} number&quot;</span>, 395 );</div><div class="line"></div><div class="line">    Log.Info( <span class="stringliteral">&quot;Upper {0!Q!up} and lower {0!Q!lo} conversion&quot;</span>, <span class="stringliteral">&quot;CaSe&quot;</span> );</div><div class="line"></div><div class="line">    Log.Info( <span class="stringliteral">&quot;Hex: {:#x}. With group chars: {0:x,}&quot;</span>, 0x11FF22EE );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;Oct: {:#o}. With group chars: {0:o,}&quot;</span>, 012345670 );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;Bin: {:#b}. With group chars: {0:b,}&quot;</span>, 145 );</div></div><!-- fragment --><pre class="fragment">UT_dox_tutorial.cs(892):Tut_Format() [0.155 +150 µs][UT]     [/](009): &gt;left      &lt;
-UT_dox_tutorial.cs(893):Tut_Format() [0.169 +017 µs][UT]     [/](010): &gt;     right&lt;
-UT_dox_tutorial.cs(894):Tut_Format() [0.196 +018 µs][UT]     [/](011): &gt;  center  &lt;
-UT_dox_tutorial.cs(895):Tut_Format() [0.212 +020 µs][UT]     [/](012): &gt;    12.346&lt;
-UT_dox_tutorial.cs(897):Tut_Format() [0.226 +017 µs][UT]     [/](013): Tab:        Stop
-UT_dox_tutorial.cs(899):Tut_Format() [0.242 +017 µs][UT]     [/](014): Auto Tab: Stop
-UT_dox_tutorial.cs(900):Tut_Format() [0.258 +018 µs][UT]     [/](015): Auto Tab XXX:    Stop
-UT_dox_tutorial.cs(901):Tut_Format() [0.273 +018 µs][UT]     [/](016): Auto Tab:        Stop
-UT_dox_tutorial.cs(903):Tut_Format() [0.290 +017 µs][UT]     [/](017): A quoted "Placeholder" string
-UT_dox_tutorial.cs(904):Tut_Format() [0.309 +021 µs][UT]     [/](018): A quoted "395" number
-UT_dox_tutorial.cs(906):Tut_Format() [0.325 +019 µs][UT]     [/](019): Upper "CASE" and lower "case" conversion
-UT_dox_tutorial.cs(908):Tut_Format() [0.346 +022 µs][UT]     [/](020): Hex: 0x11ff22ee. With group chars: 11ff'22ee
-UT_dox_tutorial.cs(909):Tut_Format() [0.365 +023 µs][UT]     [/](021): Oct: 0o57060506. With group chars: 57'060'506
-UT_dox_tutorial.cs(910):Tut_Format() [0.386 +022 µs][UT]     [/](022): Bin: 0b10010001. With group chars: 1001'0001</pre><h1><a class="anchor" id="tutcs_conditional"></a>
+<div class="fragment"><div class="line">    Log.Info( <span class="stringliteral">&quot;&gt;{:&lt;10}&lt;&quot;</span> , <span class="stringliteral">&quot;left&quot;</span> );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;&gt;{:&gt;10}&lt;&quot;</span> , <span class="stringliteral">&quot;right&quot;</span> );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;&gt;{:^10}&lt;&quot;</span> , <span class="stringliteral">&quot;center&quot;</span> );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;&gt;{:10.3}&lt;&quot;</span>, 12.3456789 );</div><div class="line"></div><div class="line">    Log.Info( <span class="stringliteral">&quot;Tab:{!Tab12}&quot;</span>, <span class="stringliteral">&quot;Stop&quot;</span> );</div><div class="line"></div><div class="line">    Log.Info( <span class="stringliteral">&quot;Auto Tab:{!ATab}&quot;</span>, <span class="stringliteral">&quot;Stop&quot;</span> );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;Auto Tab XXX:{!ATab}&quot;</span>, <span class="stringliteral">&quot;Stop&quot;</span> );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;Auto Tab:{!ATab}&quot;</span>, <span class="stringliteral">&quot;Stop&quot;</span> );</div><div class="line"></div><div class="line">    Log.Info( <span class="stringliteral">&quot;A quoted {!Q} string&quot;</span>, <span class="stringliteral">&quot;Placeholder&quot;</span> );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;A quoted {!Q} number&quot;</span>, 395 );</div><div class="line"></div><div class="line">    Log.Info( <span class="stringliteral">&quot;Upper {0!Q!up} and lower {0!Q!lo} conversion&quot;</span>, <span class="stringliteral">&quot;CaSe&quot;</span> );</div><div class="line"></div><div class="line">    Log.Info( <span class="stringliteral">&quot;Hex: {:#x}. With group chars: {0:x,}&quot;</span>, 0x11FF22EE );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;Oct: {:#o}. With group chars: {0:o,}&quot;</span>, 012345670 );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;Bin: {:#b}. With group chars: {0:b,}&quot;</span>, 145 );</div></div><!-- fragment --><pre class="fragment">UT_dox_tutorial.cs(892):Tut_Format() [0.175 +229 µs][UT]     [/](009): &gt;left      &lt;
+UT_dox_tutorial.cs(893):Tut_Format() [0.193 +015 µs][UT]     [/](010): &gt;     right&lt;
+UT_dox_tutorial.cs(894):Tut_Format() [0.209 +019 µs][UT]     [/](011): &gt;  center  &lt;
+UT_dox_tutorial.cs(895):Tut_Format() [0.235 +032 µs][UT]     [/](012): &gt;    12.346&lt;
+UT_dox_tutorial.cs(897):Tut_Format() [0.266 +024 µs][UT]     [/](013): Tab:        Stop
+UT_dox_tutorial.cs(899):Tut_Format() [0.278 +017 µs][UT]     [/](014): Auto Tab: Stop
+UT_dox_tutorial.cs(900):Tut_Format() [0.312 +018 µs][UT]     [/](015): Auto Tab XXX:    Stop
+UT_dox_tutorial.cs(901):Tut_Format() [0.347 +017 µs][UT]     [/](016): Auto Tab:        Stop
+UT_dox_tutorial.cs(903):Tut_Format() [0.363 +034 µs][UT]     [/](017): A quoted "Placeholder" string
+UT_dox_tutorial.cs(904):Tut_Format() [0.383 +023 µs][UT]     [/](018): A quoted "395" number
+UT_dox_tutorial.cs(906):Tut_Format() [0.403 +022 µs][UT]     [/](019): Upper "CASE" and lower "case" conversion
+UT_dox_tutorial.cs(908):Tut_Format() [0.421 +020 µs][UT]     [/](020): Hex: 0x11ff22ee. With group chars: 11ff'22ee
+UT_dox_tutorial.cs(909):Tut_Format() [0.447 +018 µs][UT]     [/](021): Oct: 0o57060506. With group chars: 57'060'506
+UT_dox_tutorial.cs(910):Tut_Format() [0.471 +023 µs][UT]     [/](022): Bin: 0b10010001. With group chars: 1001'0001</pre><h1><a class="anchor" id="tutcs_conditional"></a>
 11. Conditional logging</h1>
 <h2>11.1. Lox.Assert</h2>
 <p>Often log lines should only be displayed if a certain condition is met. Here is a sample:</p>
@@ -369,7 +369,7 @@ UT_dox_tutorial.cs(910):Tut_Format() [0.386 +022 µs][UT]     [/](022): Bin: 0b1
 </ul>
 <p>Often, it is simpler to assign a <em>Prefix Logable</em> to a <em>Log Domain</em>. Also this is possible with overloaded versions of the method.</p>
 <p>The real simple sample looks like this:</p>
-<div class="fragment"><div class="line">    Log.SetPrefix( <span class="stringliteral">&quot;ALOX TUTORIAL: &quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Method );</div><div class="line"></div><div class="line">    Log.Info( <span class="stringliteral">&quot;Well, just a sample&quot;</span> );</div></div><!-- fragment --> <pre class="fragment">UT_dox_tutorial.cs(498):Tut_Prefix() [0.000 +274 µs][UT]     [/](001): ALOX TUTORIAL: Well, just a sample</pre><p>For colorizing (depending on the availability of a console that supports colors) the following prefix would be suitable:</p>
+<div class="fragment"><div class="line">    Log.SetPrefix( <span class="stringliteral">&quot;ALOX TUTORIAL: &quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Method );</div><div class="line"></div><div class="line">    Log.Info( <span class="stringliteral">&quot;Well, just a sample&quot;</span> );</div></div><!-- fragment --> <pre class="fragment">UT_dox_tutorial.cs(498):Tut_Prefix() [0.000 +456 µs][UT]     [/](001): ALOX TUTORIAL: Well, just a sample</pre><p>For colorizing (depending on the availability of a console that supports colors) the following prefix would be suitable:</p>
 <div class="fragment"><div class="line">    Log.SetPrefix( ESC.BG_MAGENTA, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Filename );</div></div><!-- fragment --><p> We can not easily show colorful sample output in this tutorial. Try this yourself. ALox supports colorized output on ANSI consoles (GNU/Linux, etc.) and Windows OS command windows.</p>
 <p>More and more complex use cases are elaborated in the <a href="../manual.html">ALox User Manual</a>, for example it is explained how log output can be 'recursively indented' with very simple statements. Recursive indentation is very helpful when logging in recursive algorithms or when structured, composed data objects are logged.</p>
 <p>The next chapter shows that ALox has already built-in mechanics for logging out structured data!</p>
@@ -384,37 +384,37 @@ UT_dox_tutorial.cs(910):Tut_Format() [0.386 +022 µs][UT]     [/](022): Bin: 0b1
 <p>The given parameter "Actual Thread: " provides a headline for the log output. This allows you to save another line of code, which would be logging the headline explicitly.</p>
 <p>Here are the first lines of output of the above sample:</p>
 <pre class="fragment">&gt;&gt; Actual Thread:                                                    {Thread}
-&gt;&gt; &lt;01&gt;  ExecutionContextBelongsToCurrentScope: True                 {Boolean}
-&gt;&gt; &lt;02&gt;  ExecutionContext:                                           {ExecutionContext}
-&gt;&gt; &lt;03&gt;    isNewCapture:               False                         {Boolean}
-&gt;&gt; &lt;04&gt;    isFlowSuppressed:           False                         {Boolean}
-&gt;&gt; &lt;05&gt;    IsPreAllocatedDefault:      False                         {Boolean}
-&gt;&gt; &lt;06&gt;    LogicalCallContext:         (MAX REC)                     {LogicalCallContext}
-&gt;&gt; &lt;07&gt;    IllogicalCallContext:       (MAX REC)                     {IllogicalCallContext}
-&gt;&gt; &lt;08&gt;    SynchronizationContext:     &lt;null&gt;
-&gt;&gt; &lt;09&gt;    SynchronizationContextNoFlow: &lt;null&gt;
-&gt;&gt; &lt;10&gt;    _syncContext:               &lt;null&gt;
-&gt;&gt; &lt;11&gt;    _syncContextNoFlow:         &lt;null&gt;
-&gt;&gt; &lt;12&gt;    _logicalCallContext:        (MAX REC)                     {LogicalCallContext}
-&gt;&gt; &lt;13&gt;    _illogicalCallContext:      (MAX REC)                     {IllogicalCallContext}
-&gt;&gt; &lt;14&gt;    _flags:                     None                          {Flags}
-&gt;&gt; &lt;15&gt;    _localValues:               (MAX REC) System.Collections.Generic.Dictionary`2[System.Threading.IAsyncLocal,System.Object] {Dictionary`2}
-&gt;&gt; &lt;16&gt;    _localChangeNotifications:  (MAX REC) System.Collections.Generic.List`1[System.Threading.IAsyncLocal] {List`1}
-&gt;&gt; &lt;17&gt;  Priority:                     Normal                        {ThreadPriority}
-&gt;&gt; &lt;18&gt;  CurrentUICulture:                                           {CultureInfo}
-&gt;&gt; &lt;19&gt;    Territory:                  "DE"                          {String}
-&gt;&gt; &lt;20&gt;    CultureTypes:               AllCultures                   {CultureTypes}
-&gt;&gt; &lt;21&gt;    IetfLanguageTag:            "de-DE"                       {String}
-&gt;&gt; &lt;22&gt;    KeyboardLayoutId:           1031                          {Int32}
-&gt;&gt; &lt;23&gt;    LCID:                       1031                          {Int32}
-&gt;&gt; &lt;24&gt;    Name:                       "de-DE"                       {String}
-&gt;&gt; &lt;25&gt;    NativeName:                 "Deutsch (Deutschland)"       {String}
-&gt;&gt; &lt;26&gt;    NativeCalendarName:         "Gregorianischer Kalender"    {String}
-&gt;&gt; &lt;27&gt;    Calendar:                   (MAX REC)                     {GregorianCalendar}
-&gt;&gt; &lt;28&gt;    OptionalCalendars:          (MAX REC)                     {Calendar[]}
-&gt;&gt; &lt;29&gt;    Parent:                     (MAX REC) de                  {CultureInfo}
-&gt;&gt; &lt;30&gt;    TextInfo:                   (MAX REC) TextInfo - de-DE    {TextInfo}
-&gt;&gt; &lt;31&gt;    ThreeLetterISOLanguageName: "deu"                         {String}
+&gt;&gt; &lt;01&gt;  Internal:                                                   {InternalThread}
+&gt;&gt; &lt;02&gt;    lock_thread_id:             0                             {Int32}
+&gt;&gt; &lt;03&gt;    handle:                     140072439517200               {IntPtr}
+&gt;&gt; &lt;04&gt;    native_handle:              0                             {IntPtr}
+&gt;&gt; &lt;05&gt;    cached_culture_info:        &lt;null&gt;
+&gt;&gt; &lt;06&gt;    name:                       140072574340528               {IntPtr}
+&gt;&gt; &lt;07&gt;    name_len:                   13                            {Int32}
+&gt;&gt; &lt;08&gt;    state:                      Running                       {ThreadState}
+&gt;&gt; &lt;09&gt;    abort_exc:                  &lt;null&gt;
+&gt;&gt; &lt;10&gt;    abort_state_handle:         0                             {Int32}
+&gt;&gt; &lt;11&gt;    thread_id:                  140072728831744               {Int64}
+&gt;&gt; &lt;12&gt;    stack_ptr:                  140072728829408               {IntPtr}
+&gt;&gt; &lt;13&gt;    static_data:                140072439518704               {UIntPtr}
+&gt;&gt; &lt;14&gt;    runtime_thread_info:        140072439515920               {IntPtr}
+&gt;&gt; &lt;15&gt;    current_appcontext:         (MAX REC) ContextID: 1        {Context}
+&gt;&gt; &lt;16&gt;    root_domain_thread:         (MAX REC)                     {Thread}
+&gt;&gt; &lt;17&gt;    _serialized_principal:      &lt;null&gt;
+&gt;&gt; &lt;18&gt;    _serialized_principal_version: 0                          {Int32}
+&gt;&gt; &lt;19&gt;    appdomain_refs:             140072439518528               {IntPtr}
+&gt;&gt; &lt;20&gt;    interruption_requested:     0                             {Int32}
+&gt;&gt; &lt;21&gt;    synch_cs:                   140072575161440               {IntPtr}
+&gt;&gt; &lt;22&gt;    threadpool_thread:          False                         {Boolean}
+&gt;&gt; &lt;23&gt;    thread_interrupt_requested: False                         {Boolean}
+&gt;&gt; &lt;24&gt;    stack_size:                 2097152                       {Int32}
+&gt;&gt; &lt;25&gt;    apartment_state:            1                             {Byte}
+&gt;&gt; &lt;26&gt;    critical_region_level:      0                             {Int32}
+&gt;&gt; &lt;27&gt;    managed_id:                 6                             {Int32}
+&gt;&gt; &lt;28&gt;    small_id:                   70                            {Int32}
+&gt;&gt; &lt;29&gt;    manage_callback:            0                             {IntPtr}
+&gt;&gt; &lt;30&gt;    interrupt_on_stop:          0                             {IntPtr}
+&gt;&gt; &lt;31&gt;    flags:                      2                             {IntPtr}
 ...
 ...
 ...
@@ -465,23 +465,23 @@ UT_dox_tutorial.cs(910):Tut_Format() [0.386 +022 µs][UT]     [/](022): Bin: 0b1
 <p>Here is a sample code which sets a debug variable in ALox providing a version of a file that was read by an application:</p>
 <div class="fragment"><div class="line"><span class="keyword">class </span>FileIO</div><div class="line">{</div><div class="line">    <span class="keyword">public</span> <span class="keywordtype">void</span> Read(String fileName )</div><div class="line">    {</div><div class="line">        Log.SetDomain( <span class="stringliteral">&quot;READ&quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Method );</div><div class="line">        Log.Info( <span class="stringliteral">&quot;Reading &quot;</span> + fileName );</div><div class="line"></div><div class="line">        String fileVersion;</div><div class="line">        <span class="comment">//...</span></div><div class="line">        <span class="comment">//...</span></div><div class="line">        <span class="comment">// Identified file version</span></div><div class="line">        fileVersion= <span class="stringliteral">&quot;3.1&quot;</span>;</div><div class="line"></div><div class="line">        Log.Store( fileVersion , <span class="stringliteral">&quot;FILE_VERSION&quot;</span> );</div><div class="line"></div><div class="line">        <span class="comment">//...</span></div><div class="line">        <span class="comment">//...</span></div><div class="line">        Log.Info( <span class="stringliteral">&quot;Success&quot;</span> );</div><div class="line">    }</div><div class="line">};</div></div><!-- fragment --><p> Now, whenever it might be interesting, this file version can be accessed:</p>
 <div class="fragment"><div class="line">    Log.Info( <span class="stringliteral">&quot;Working on file version {!Q}&quot;</span>, Log.Retrieve( <span class="stringliteral">&quot;FILE_VERSION&quot;</span> ) );</div></div><!-- fragment --><p> The output will be:</p>
-<pre class="fragment">UT_dox_tutorial.cs(102):Read()        [0.118 +019 ms][UT]     [/READ] (002): Reading myfile.dat
-UT_dox_tutorial.cs(114):Read()        [0.345 +125 ms][UT]     [/READ] (003): Success
-UT_dox_tutorial.cs(831):Tut_LogData() [0.435 +064 ms][UT]     [/    ] (004): Working on file version "3.1"</pre><p>If method "Read()" of the sample above was not executed and therefore no variable was stored, ALox just creates an empty, default object. The output in this case would look like this:</p>
-<pre class="fragment">UT_dox_tutorial.cs(822):Tut_LogData() [0.077 +077 ms][UT]     [/](001): Working on file version "System.Object"</pre><h1><a class="anchor" id="tutcs_config"></a>
+<pre class="fragment">UT_dox_tutorial.cs(102):Read()        [0.132 +021 ms][UT]     [/READ] (002): Reading myfile.dat
+UT_dox_tutorial.cs(114):Read()        [0.274 +028 ms][UT]     [/READ] (003): Success
+UT_dox_tutorial.cs(831):Tut_LogData() [0.343 +041 ms][UT]     [/    ] (004): Working on file version "3.1"</pre><p>If method "Read()" of the sample above was not executed and therefore no variable was stored, ALox just creates an empty, default object. The output in this case would look like this:</p>
+<pre class="fragment">UT_dox_tutorial.cs(822):Tut_LogData() [0.084 +084 ms][UT]     [/](001): Working on file version "System.Object"</pre><h1><a class="anchor" id="tutcs_config"></a>
 16. ALox Configuration Information and Internal Log Messages</h1>
 <p>In complex projects it might get a little confusing to keep track about the <em>Loggers</em> and their <em>Verbosity</em>, <em>Scope Domains</em>, <em>Prefix Logables</em> and <em>Log Data</em> set.</p>
 <p>More importantly, when other software components of your project are using ALox as well (defining their own domains) then you might not know exactly which <em>Log Domains</em> get registered and used by those. The same applies when working in a team.</p>
 <p>Let us create a sample, do some ALox configuration and then invoke method <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a801d9784fa14e309a1889fd0afb09a36">Lox.State</a>:</p>
 <div class="fragment"><div class="line">    <span class="comment">// create two different loggers</span></div><div class="line">    Log.AddDebugLogger();</div><div class="line">    Log.SetVerbosity( <span class="keyword">new</span> MemoryLogger(),  <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Verbose );</div><div class="line"></div><div class="line">    <span class="comment">// reduce meta information to limit tutorial output width</span></div><div class="line"><span class="preprocessor">    #if ALOX_DBG_LOG</span></div><div class="line">        Log.DebugLogger                         .MetaInfo.Format._()._( <span class="stringliteral">&quot;[%tN]%V[%D](%#): &quot;</span> );</div><div class="line">        ((MemoryLogger) Log.GetLogger(<span class="stringliteral">&quot;MEMORY&quot;</span>)).MetaInfo.Format._()._( <span class="stringliteral">&quot;[%tN]%V[%D](%#): &quot;</span> );</div><div class="line">        ((MemoryLogger) Log.GetLogger(<span class="stringliteral">&quot;MEMORY&quot;</span>)).MultiLineMsgMode= 3;</div><div class="line"><span class="preprocessor">    #endif</span></div><div class="line">    <span class="comment">// OK, let&#39;s use ALox</span></div><div class="line">    Log.SetDomain( <span class="stringliteral">&quot;PNS&quot;</span>   ,   <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Path, 1 );</div><div class="line">    Log.SetDomain( <span class="stringliteral">&quot;PATH&quot;</span>,     <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Path );</div><div class="line">    Log.SetDomain( <span class="stringliteral">&quot;FN&quot;</span>,       <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Filename );</div><div class="line">    Log.SetDomain( <span class="stringliteral">&quot;THREAD&quot;</span>,   <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.ThreadOuter );</div><div class="line"></div><div class="line">    Log.SetVerbosity( <span class="stringliteral">&quot;MEMORY&quot;</span>,        <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Off      , <span class="stringliteral">&quot;/CON&quot;</span>    );</div><div class="line">    Log.SetVerbosity( <span class="stringliteral">&quot;DEBUG_LOGGER&quot;</span> , <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Verbose              );</div><div class="line">    Log.SetVerbosity( <span class="stringliteral">&quot;DEBUG_LOGGER&quot;</span> , <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Off      , <span class="stringliteral">&quot;/MEM&quot;</span>    );</div><div class="line">    Log.SetVerbosity( <span class="stringliteral">&quot;DEBUG_LOGGER&quot;</span> , <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Error    , <span class="stringliteral">&quot;/UI&quot;</span>     );</div><div class="line">    Log.SetVerbosity( <span class="stringliteral">&quot;DEBUG_LOGGER&quot;</span> , <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Info     , <span class="stringliteral">&quot;/UI/DLG&quot;</span> );</div><div class="line"></div><div class="line">    Log.Info( <span class="stringliteral">&quot;This goes to both loggers&quot;</span> );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;/MEM&quot;</span>, <span class="stringliteral">&quot;This goes only to the memory logger&quot;</span> );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;/CON&quot;</span>, <span class="stringliteral">&quot;This goes only to the console logger&quot;</span> );</div><div class="line"></div><div class="line">    Log.Once( <span class="stringliteral">&quot;Will we see this in the config?&quot;</span> );</div><div class="line">    Log.Once( <span class="stringliteral">&quot;Will we see this in the config?&quot;</span>, <span class="stringliteral">&quot;ONCEKEY&quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Filename );</div><div class="line"></div><div class="line">    Log.Store( <span class="stringliteral">&quot;MyData 1&quot;</span>,            <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Method );</div><div class="line">    Log.Store( <span class="stringliteral">&quot;MyData 2&quot;</span>, <span class="stringliteral">&quot;DataKey&quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Method );</div><div class="line">    Log.Store( <span class="stringliteral">&quot;MyData 3&quot;</span>, <span class="stringliteral">&quot;DataKey&quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Filename );</div><div class="line">    Log.Store( <span class="stringliteral">&quot;MyData 4&quot;</span>, <span class="stringliteral">&quot;DataKey&quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.ThreadOuter );</div><div class="line"></div><div class="line">    Log.SetPrefix( <span class="stringliteral">&quot;TPre: &quot;</span>  , <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.ThreadOuter );</div><div class="line">    Log.SetPrefix( <span class="stringliteral">&quot;MPre: &quot;</span>  , <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Method );</div><div class="line">    Log.SetPrefix( <span class="stringliteral">&quot;DomPre: &quot;</span> );</div><div class="line">    Log.SetPrefix( <span class="stringliteral">&quot;Mouse: &quot;</span>, <span class="stringliteral">&quot;/UI/MOUSE&quot;</span> );</div><div class="line">    Log.SetPrefix( ESC.RED,  <span class="stringliteral">&quot;/ERRORS&quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lib_1_1lang.html#a217539925b78b2eed40ae7817d5bee52">Inclusion</a>.Exclude );</div><div class="line"></div><div class="line">    Log.MapThreadName( <span class="stringliteral">&quot;TUTORIAL&quot;</span> );</div><div class="line"></div><div class="line">    <span class="comment">// now, log the current config</span></div><div class="line">    Log.State( null, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Info, <span class="stringliteral">&quot;The current configuration of this Lox is:&quot;</span> );</div></div><!-- fragment --><p> <b>Lox.State</b> gathers internal configuration information and logs it out. The output is quite self explanatory:</p>
-<pre class="fragment">[UT]     [/THREAD/PATH/FN](001): This goes to both loggers
-[UT]     [/MEM           ](002): This goes only to the memory logger
-[UT]     [/THREAD/PATH/FN](003): Will we see this in the config?
-[UT]     [/THREAD/PATH/FN](004): Will we see this in the config?
-[TUTORIAL]     [/THREAD/PATH/FN](005): ALox: Multi line message follows: 
+<pre class="fragment">[UT]     [/THREAD/PNS/PATH/FN](001): This goes to both loggers
+[UT]     [/MEM               ](002): This goes only to the memory logger
+[UT]     [/THREAD/PNS/PATH/FN](003): Will we see this in the config?
+[UT]     [/THREAD/PNS/PATH/FN](004): Will we see this in the config?
+[TUTORIAL]     [/THREAD/PNS/PATH/FN](005): ALox: Multi line message follows: 
 &gt;&gt; TPre: MPre: DomPre: The current configuration of this Lox is:
 &gt;&gt; Name:            "LOG"
-&gt;&gt; Version:         1702 (Rev. 1)
+&gt;&gt; Version:         1709 (Rev. 0)
 &gt;&gt; Thread-Safeness: Safe
 &gt;&gt; #Log Calls:      5
 &gt;&gt; 
@@ -492,7 +492,7 @@ UT_dox_tutorial.cs(831):Tut_LogData() [0.435 +064 ms][UT]     [/    ] (004): Wor
 &gt;&gt;   &lt;no rules set&gt;
 &gt;&gt; 
 &gt;&gt; Once() Counters: 
-&gt;&gt;   Scope.FileName    [Path="alox.unittests/" Filename="UT_dox_tutorial.cs"]:
+&gt;&gt;   Scope.FileName    [alox.unittests/UT_dox_tutorial.*]
 &gt;&gt;     "#703"    =1
 &gt;&gt;     "ONCEKEY" =1
 &gt;&gt; 
@@ -500,75 +500,76 @@ UT_dox_tutorial.cs(831):Tut_LogData() [0.435 +064 ms][UT]     [/    ] (004): Wor
 &gt;&gt;   Scope.ThreadOuter [Thread="TUTORIAL"]:
 &gt;&gt;     "DataKey" =MyData 4
 &gt;&gt; 
-&gt;&gt;   Scope.FileName    [Path="alox.unittests/" Filename="UT_dox_tutorial.cs"]:
+&gt;&gt;   Scope.FileName    [alox.unittests/UT_dox_tutorial.*]
 &gt;&gt;     "DataKey" =MyData 3
 &gt;&gt; 
-&gt;&gt;   Scope.Method      [Path="alox.unittests/" Filename="UT_dox_tutorial.cs" Method="Tut_LogState()"]:
+&gt;&gt;   Scope.Method      [alox.unittests/UT_dox_tutorial.* @Tut_LogState()]
 &gt;&gt;     &lt;global&gt;  =MyData 1
 &gt;&gt;     "DataKey" =MyData 2
 &gt;&gt; 
 &gt;&gt; Prefix Logables: 
 &gt;&gt;   "TPre: "               Scope.ThreadOuter [Thread="TUTORIAL"]
-&gt;&gt;   "MPre: "               Scope.Method      [Path="alox.unittests/" Filename="UT_dox_tutorial.cs" Method="Tut_LogState()"]
-&gt;&gt;   "{ESC.RED}" (Excl.)    &lt;domain&gt;           [/ERRORS]
-&gt;&gt;   "DomPre: "             &lt;domain&gt;           [/THREAD/PATH/FN]
-&gt;&gt;   "Mouse: "              &lt;domain&gt;           [/UI/MOUSE]
+&gt;&gt;   "MPre: "               Scope.Method      [alox.unittests/UT_dox_tutorial.* @Tut_LogState()]
+&gt;&gt;   "{ESC.RED}" (Excl.)    &lt;domain&gt;          [/ERRORS]
+&gt;&gt;   "DomPre: "             &lt;domain&gt;          [/THREAD/PNS/PATH/FN]
+&gt;&gt;   "Mouse: "              &lt;domain&gt;          [/UI/MOUSE]
 &gt;&gt; 
 &gt;&gt; Named Threads:   
 &gt;&gt;   (6):   "TUTORIAL"
 &gt;&gt; 
 &gt;&gt; Scope Domains: 
 &gt;&gt;   THREAD                 Scope.ThreadOuter [Thread="TUTORIAL"]
-&gt;&gt;   PNS                    Scope.Path        [Path="/"]
-&gt;&gt;   PATH                   Scope.Path        [Path="alox.unittests/"]
-&gt;&gt;   FN                     Scope.FileName    [Path="alox.unittests/" Filename="UT_dox_tutorial.cs"]
+&gt;&gt;   PNS                    Scope.Path        [/]
+&gt;&gt;   PATH                   Scope.Path        [alox.unittests/]
+&gt;&gt;   FN                     Scope.FileName    [alox.unittests/UT_dox_tutorial.*]
 &gt;&gt; 
 &gt;&gt; Loggers:
 &gt;&gt;   DEBUG_LOGGER (CONSOLE)
 &gt;&gt;     Lines logged:  4
-&gt;&gt;     Creation time: 2017-03-09 15:10:54
-&gt;&gt;     Last log time: 2017-03-09 15:10:54
-&gt;&gt;     Verbosities:   /               = Verbose (Default)  
-&gt;&gt;                    /MEM            = Off     (Default)  
-&gt;&gt;                    /UI             = Error   (Default)  
-&gt;&gt;                    /UI/DLG         = Info    (Default)  
+&gt;&gt;     Creation time: 2017-09-13 18:26:03
+&gt;&gt;     Last log time: 2017-09-13 18:26:03
+&gt;&gt;     Verbosities:   /                   = Verbose (Default)  
+&gt;&gt;                    /MEM                = Off     (Default)  
+&gt;&gt;                    /UI                 = Error   (Default)  
+&gt;&gt;                    /UI/DLG             = Info    (Default)  
 &gt;&gt; 
 &gt;&gt;   MEMORY
 &gt;&gt;     Lines logged:  4
-&gt;&gt;     Creation time: 2017-03-09 15:10:54
-&gt;&gt;     Last log time: 2017-03-09 15:10:54
-&gt;&gt;     Verbosities:   /               = Verbose (Default)  
-&gt;&gt;                    /CON            = Off     (Default)  
+&gt;&gt;     Creation time: 2017-09-13 18:26:03
+&gt;&gt;     Last log time: 2017-09-13 18:26:03
+&gt;&gt;     Verbosities:   /                   = Verbose (Default)  
+&gt;&gt;                    /CON                = Off     (Default)  
 &gt;&gt; 
 &gt;&gt; 
 &gt;&gt; Loggers on Internal Domains:
 &gt;&gt;   DEBUG_LOGGER (CONSOLE)
 &gt;&gt;     Lines logged:  4
-&gt;&gt;     Creation time: 2017-03-09 15:10:54
-&gt;&gt;     Last log time: 2017-03-09 15:10:54
-&gt;&gt;     Verbosities:   $/              = Warning (Default)  
+&gt;&gt;     Creation time: 2017-09-13 18:26:03
+&gt;&gt;     Last log time: 2017-09-13 18:26:03
+&gt;&gt;     Verbosities:   $/                  = Warning (Default)  
 &gt;&gt; 
 &gt;&gt; 
 &gt;&gt; Internal Domains:
-&gt;&gt;   $/                [002]  { ([000], Warning (Default)  ) }
-&gt;&gt;   $/DMN             [031]  { ([000], Warning (Default)  ) }
-&gt;&gt;   $/LGD             [004]  { ([000], Warning (Default)  ) }
-&gt;&gt;   $/LGR             [011]  { ([000], Warning (Default)  ) }
-&gt;&gt;   $/PFX             [005]  { ([000], Warning (Default)  ) }
-&gt;&gt;   $/THR             [002]  { ([000], Warning (Default)  ) }
-&gt;&gt;   $/VAR             [000]  { ([000], Warning (Default)  ) }
+&gt;&gt;   $/                    [002]  { ([000], Warning (Default)  ) }
+&gt;&gt;   $/DMN                 [034]  { ([000], Warning (Default)  ) }
+&gt;&gt;   $/LGD                 [004]  { ([000], Warning (Default)  ) }
+&gt;&gt;   $/LGR                 [011]  { ([000], Warning (Default)  ) }
+&gt;&gt;   $/PFX                 [005]  { ([000], Warning (Default)  ) }
+&gt;&gt;   $/THR                 [002]  { ([000], Warning (Default)  ) }
+&gt;&gt;   $/VAR                 [000]  { ([000], Warning (Default)  ) }
 &gt;&gt; 
 &gt;&gt; Domains:
-&gt;&gt;   /                 [000]  { ([000], Verbose (Default)  ), ([000], Verbose (Default)  ) }
-&gt;&gt;   /CON              [001]  { ([001], Verbose (Default)  ), ([000], Off     (Default)  ) }
-&gt;&gt;   /ERRORS           [000]  { ([000], Verbose (Default)  ), ([000], Verbose (Default)  ) }
-&gt;&gt;   /MEM              [001]  { ([000], Off     (Default)  ), ([001], Verbose (Default)  ) }
-&gt;&gt;   /THREAD           [000]  { ([000], Verbose (Default)  ), ([000], Verbose (Default)  ) }
-&gt;&gt;   /THREAD/PATH      [000]  { ([000], Verbose (Default)  ), ([000], Verbose (Default)  ) }
-&gt;&gt;   /THREAD/PATH/FN   [003]  { ([003], Verbose (Default)  ), ([003], Verbose (Default)  ) }
-&gt;&gt;   /UI               [000]  { ([000], Error   (Default)  ), ([000], Verbose (Default)  ) }
-&gt;&gt;   /UI/DLG           [000]  { ([000], Info    (Default)  ), ([000], Verbose (Default)  ) }
-&gt;&gt;   /UI/MOUSE         [000]  { ([000], Error   (Default)  ), ([000], Verbose (Default)  ) }
+&gt;&gt;   /                     [000]  { ([000], Verbose (Default)  ), ([000], Verbose (Default)  ) }
+&gt;&gt;   /CON                  [001]  { ([001], Verbose (Default)  ), ([000], Off     (Default)  ) }
+&gt;&gt;   /ERRORS               [000]  { ([000], Verbose (Default)  ), ([000], Verbose (Default)  ) }
+&gt;&gt;   /MEM                  [001]  { ([000], Off     (Default)  ), ([001], Verbose (Default)  ) }
+&gt;&gt;   /THREAD               [000]  { ([000], Verbose (Default)  ), ([000], Verbose (Default)  ) }
+&gt;&gt;   /THREAD/PNS           [000]  { ([000], Verbose (Default)  ), ([000], Verbose (Default)  ) }
+&gt;&gt;   /THREAD/PNS/PATH      [000]  { ([000], Verbose (Default)  ), ([000], Verbose (Default)  ) }
+&gt;&gt;   /THREAD/PNS/PATH/FN   [003]  { ([003], Verbose (Default)  ), ([003], Verbose (Default)  ) }
+&gt;&gt;   /UI                   [000]  { ([000], Error   (Default)  ), ([000], Verbose (Default)  ) }
+&gt;&gt;   /UI/DLG               [000]  { ([000], Info    (Default)  ), ([000], Verbose (Default)  ) }
+&gt;&gt;   /UI/MOUSE             [000]  { ([000], Error   (Default)  ), ([000], Verbose (Default)  ) }
 &gt;&gt; </pre><p>Besides this, there is a <b>second option</b> to inspect what happens internally in class <em>Lox</em>. ALox is equipped with an internal <em>Log Domain</em>. This domain is used by ALox to log messages about itself! All we have to do, is setting the <em>Verbosity</em> of the internal domain to verbose for our debug <em>Logger:</em> </p>
 <div class="fragment"><div class="line">    <span class="comment">// This is the very same code as above...</span></div><div class="line">    Log.AddDebugLogger();</div><div class="line">    Log.SetVerbosity( <span class="keyword">new</span> MemoryLogger(),  <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Verbose );</div><div class="line"></div><div class="line"><span class="preprocessor">    #if ALOX_DBG_LOG</span></div><div class="line">        Log.DebugLogger                         .MetaInfo.Format._()._( <span class="stringliteral">&quot;[%tN]%V[%D](%#): &quot;</span> );</div><div class="line">        ((MemoryLogger) Log.GetLogger(<span class="stringliteral">&quot;MEMORY&quot;</span>)).MetaInfo.Format._()._( <span class="stringliteral">&quot;[%tN]%V[%D](%#): &quot;</span> );</div><div class="line"><span class="preprocessor">    #endif</span></div><div class="line"></div><div class="line">    <span class="comment">// ... with one difference: we are activating the internal domain</span></div><div class="line">    Log.SetVerbosity( Log.GetLogger(<span class="stringliteral">&quot;MEMORY&quot;</span>), <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Verbose, ALox.InternalDomains );</div><div class="line">    Log.SetVerbosity( Log.DebugLogger,         <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Verbose, ALox.InternalDomains );</div><div class="line"></div><div class="line">    Log.SetDomain( <span class="stringliteral">&quot;PNS&quot;</span>   ,   <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Path, 1 );</div><div class="line">    Log.SetDomain( <span class="stringliteral">&quot;PATH&quot;</span>,     <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Path );</div><div class="line">    Log.SetDomain( <span class="stringliteral">&quot;FN&quot;</span>,       <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Filename );</div><div class="line">    Log.SetDomain( <span class="stringliteral">&quot;THREAD&quot;</span>,   <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.ThreadOuter );</div><div class="line"></div><div class="line">    Log.SetVerbosity( <span class="stringliteral">&quot;MEMORY&quot;</span>,        <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Off      , <span class="stringliteral">&quot;/CON&quot;</span>    );</div><div class="line">    Log.SetVerbosity( <span class="stringliteral">&quot;DEBUG_LOGGER&quot;</span> , <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Verbose              );</div><div class="line">    Log.SetVerbosity( <span class="stringliteral">&quot;DEBUG_LOGGER&quot;</span> , <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Off      , <span class="stringliteral">&quot;/MEM&quot;</span>    );</div><div class="line">    Log.SetVerbosity( <span class="stringliteral">&quot;DEBUG_LOGGER&quot;</span> , <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Error    , <span class="stringliteral">&quot;/UI&quot;</span>     );</div><div class="line">    Log.SetVerbosity( <span class="stringliteral">&quot;DEBUG_LOGGER&quot;</span> , <a class="code" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>.Info     , <span class="stringliteral">&quot;/UI/DLG&quot;</span> );</div><div class="line"></div><div class="line">    Log.Info( <span class="stringliteral">&quot;This goes to both loggers&quot;</span> );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;/MEM&quot;</span>, <span class="stringliteral">&quot;This goes only to the memory logger&quot;</span> );</div><div class="line">    Log.Info( <span class="stringliteral">&quot;/CON&quot;</span>, <span class="stringliteral">&quot;This goes only to the console logger&quot;</span> );</div><div class="line"></div><div class="line">    Log.Once( <span class="stringliteral">&quot;Will we see this in the config?&quot;</span> );</div><div class="line">    Log.Once( <span class="stringliteral">&quot;Will we see this in the config?&quot;</span>, <span class="stringliteral">&quot;ONCEKEY&quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Filename );</div><div class="line"></div><div class="line">    Log.Store( <span class="stringliteral">&quot;MyData 1&quot;</span>,            <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Method );</div><div class="line">    Log.Store( <span class="stringliteral">&quot;MyData 2&quot;</span>, <span class="stringliteral">&quot;DataKey&quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Method );</div><div class="line">    Log.Store( <span class="stringliteral">&quot;MyData 3&quot;</span>, <span class="stringliteral">&quot;DataKey&quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Filename );</div><div class="line">    Log.Store( <span class="stringliteral">&quot;MyData 4&quot;</span>, <span class="stringliteral">&quot;DataKey&quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.ThreadOuter );</div><div class="line"></div><div class="line">    Log.SetPrefix( <span class="stringliteral">&quot;TPre: &quot;</span>  , <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.ThreadOuter );</div><div class="line">    Log.SetPrefix( <span class="stringliteral">&quot;MPre: &quot;</span>  , <a class="code" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>.Method );</div><div class="line">    Log.SetPrefix( <span class="stringliteral">&quot;DomPre: &quot;</span> );</div><div class="line">    Log.SetPrefix( <span class="stringliteral">&quot;Mouse: &quot;</span>, <span class="stringliteral">&quot;/UI/MOUSE&quot;</span> );</div><div class="line">    Log.SetPrefix( ESC.RED,  <span class="stringliteral">&quot;/ERRORS&quot;</span>, <a class="code" href="namespacecs_1_1aworx_1_1lib_1_1lang.html#a217539925b78b2eed40ae7817d5bee52">Inclusion</a>.Exclude );</div><div class="line"></div><div class="line">    Log.MapThreadName( <span class="stringliteral">&quot;TUTORIAL&quot;</span> );</div></div><!-- fragment --><p> The output will be:</p>
 <pre class="fragment">[UT]     [$/LGR](001): Logger "MEMORY" added for internal log messages.
@@ -598,34 +599,37 @@ UT_dox_tutorial.cs(831):Tut_LogData() [0.435 +064 ms][UT]     [/    ] (004): Wor
 [UT]     [$/DMN](025): '/THREAD' registered.
 [UT][***][$/DMN](026):   "DEBUG_LOGGER": /THREAD = Verbose (Default)  
 [UT][***][$/DMN](027):   "MEMORY":       /THREAD = Verbose (Default)  
-[UT]     [$/DMN](028): '/THREAD/PATH' registered.
-[UT][***][$/DMN](029):   "DEBUG_LOGGER": /THREAD/PATH = Verbose (Default)  
-[UT][***][$/DMN](030):   "MEMORY":       /THREAD/PATH = Verbose (Default)  
-[UT]     [$/DMN](031): '/THREAD/PATH/FN' registered.
-[UT][***][$/DMN](032):   "DEBUG_LOGGER": /THREAD/PATH/FN = Verbose (Default)  
-[UT][***][$/DMN](033):   "MEMORY":       /THREAD/PATH/FN = Verbose (Default)  
-[UT]     [/THREAD/PATH/FN](034): This goes to both loggers
-[UT]     [/MEM           ](035): This goes only to the memory logger
-[UT]     [/THREAD/PATH/FN](036): Will we see this in the config?
-[UT]     [$/             ](037): Once() reached limit of 1 logs. No further logs for Scope.Filename.
-[UT]     [/THREAD/PATH/FN](038): Will we see this in the config?
-[UT]     [$/             ](039): Once() reached limit of 1 logs. No further logs for group "ONCEKEY" in Scope.Filename.
-[UT]     [$/LGD          ](040): Stored data in Scope.Method.
-[UT]     [$/LGD          ](041): Stored data  with key "ONCEKEY" in Scope.Method.
-[UT]     [$/LGD          ](042): Stored data  with key "ONCEKEY" in Scope.Filename.
-[UT]     [$/LGD          ](043): Stored data  with key "ONCEKEY" in Scope.ThreadOuter.
-[UT]     [$/PFX          ](044): Object "TPre: " set as prefix logable for Scope.ThreadOuter.
-[UT]     [$/PFX          ](045): Object "MPre: " set as prefix logable for Scope.Method.
-[UT]     [$/PFX          ](046): Object "DomPre: " added as prefix logable for domain '/THREAD/PATH/FN'.
-[UT]     [$/DMN          ](047): '/UI/MOUSE' registered.
-[UT][***][$/DMN          ](048):   "DEBUG_LOGGER": /UI/MOUSE = Error   (Default)  
-[UT][***][$/DMN          ](049):   "MEMORY":       /UI/MOUSE = Verbose (Default)  
-[UT]     [$/PFX          ](050): Object "Mouse: " added as prefix logable for domain '/UI/MOUSE'.
-[UT]     [$/DMN          ](051): '/ERRORS' registered.
-[UT][***][$/DMN          ](052):   "DEBUG_LOGGER": /ERRORS = Verbose (Default)  
-[UT][***][$/DMN          ](053):   "MEMORY":       /ERRORS = Verbose (Default)  
-[UT]     [$/PFX          ](054): Object "" added as prefix logable for domain '/ERRORS'.
-[UT]     [$/THR          ](055): Mapped thread ID 6 to "TUTORIAL". Original thread name: "Runner thread".</pre><p>This way, you can exactly observe what is going on inside ALox.</p>
+[UT]     [$/DMN](028): '/THREAD/PNS' registered.
+[UT][***][$/DMN](029):   "DEBUG_LOGGER": /THREAD/PNS = Verbose (Default)  
+[UT][***][$/DMN](030):   "MEMORY":       /THREAD/PNS = Verbose (Default)  
+[UT]     [$/DMN](031): '/THREAD/PNS/PATH' registered.
+[UT][***][$/DMN](032):   "DEBUG_LOGGER": /THREAD/PNS/PATH = Verbose (Default)  
+[UT][***][$/DMN](033):   "MEMORY":       /THREAD/PNS/PATH = Verbose (Default)  
+[UT]     [$/DMN](034): '/THREAD/PNS/PATH/FN' registered.
+[UT][***][$/DMN](035):   "DEBUG_LOGGER": /THREAD/PNS/PATH/FN = Verbose (Default)  
+[UT][***][$/DMN](036):   "MEMORY":       /THREAD/PNS/PATH/FN = Verbose (Default)  
+[UT]     [/THREAD/PNS/PATH/FN](037): This goes to both loggers
+[UT]     [/MEM               ](038): This goes only to the memory logger
+[UT]     [/THREAD/PNS/PATH/FN](039): Will we see this in the config?
+[UT]     [$/                 ](040): Once() reached limit of 1 logs. No further logs for Scope.Filename.
+[UT]     [/THREAD/PNS/PATH/FN](041): Will we see this in the config?
+[UT]     [$/                 ](042): Once() reached limit of 1 logs. No further logs for group "ONCEKEY" in Scope.Filename.
+[UT]     [$/LGD              ](043): Stored data in Scope.Method.
+[UT]     [$/LGD              ](044): Stored data  with key "ONCEKEY" in Scope.Method.
+[UT]     [$/LGD              ](045): Stored data  with key "ONCEKEY" in Scope.Filename.
+[UT]     [$/LGD              ](046): Stored data  with key "ONCEKEY" in Scope.ThreadOuter.
+[UT]     [$/PFX              ](047): Object "TPre: " set as prefix logable for Scope.ThreadOuter.
+[UT]     [$/PFX              ](048): Object "MPre: " set as prefix logable for Scope.Method.
+[UT]     [$/PFX              ](049): Object "DomPre: " added as prefix logable for domain '/THREAD/PNS/PATH/FN'.
+[UT]     [$/DMN              ](050): '/UI/MOUSE' registered.
+[UT][***][$/DMN              ](051):   "DEBUG_LOGGER": /UI/MOUSE = Error   (Default)  
+[UT][***][$/DMN              ](052):   "MEMORY":       /UI/MOUSE = Verbose (Default)  
+[UT]     [$/PFX              ](053): Object "Mouse: " added as prefix logable for domain '/UI/MOUSE'.
+[UT]     [$/DMN              ](054): '/ERRORS' registered.
+[UT][***][$/DMN              ](055):   "DEBUG_LOGGER": /ERRORS = Verbose (Default)  
+[UT][***][$/DMN              ](056):   "MEMORY":       /ERRORS = Verbose (Default)  
+[UT]     [$/PFX              ](057): Object "" added as prefix logable for domain '/ERRORS'.
+[UT]     [$/THR              ](058): Mapped thread ID 6 to "TUTORIAL". Original thread name: "Runner thread".</pre><p>This way, you can exactly observe what is going on inside ALox.</p>
 <p>To summarize: We have to ways to look into ALox:</p>
 <ol type="1">
 <li>Method <a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#ae11da4f0fea803dd5120175fa021aaa6">Log.State()</a> logs a "snapshot" of the current states. The advantage of this is, that it is all logged sequentially in one place and does not clutter your log output.</li>
@@ -653,7 +657,7 @@ Further Reading</h1>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:28 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:48:00 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

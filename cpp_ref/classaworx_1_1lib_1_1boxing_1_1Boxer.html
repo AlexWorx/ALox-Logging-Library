@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1702 R. 1</span>
+   &#160;<span id="projectnumber">V. 1709 R. 0</span>
    </div>
   </td>
  </tr>
@@ -500,7 +500,7 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Adds the given interface object to the list of default interfaces. Default interfaces are kept in a static collection and are used with boxable types that have no type-specific interface set.</p>
-<p>Adding a default interface is optional. As a sample, ALib provides interface <a class="el" href="classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply.html">IApply</a> to write a string representation of an object. Although, being the base to type specific interfaces, this class itself provides a default implementation for <em>'unknown'</em> types, writing the runtime type name and memory address of the object. That 'base' version of the interface is registered with this method.</p>
+<p>Adding a default interface is optional. As a sample, <b>ALib</b> provides interface <a class="el" href="classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply.html">IApply</a> to write a string representation of an object. Although, being the base to type specific interfaces, this class itself provides a default implementation for <em>'unknown'</em> types, writing the runtime type name and memory address of the object. That 'base' version of the interface is registered with this method.</p>
 <p>Default interfaces are not detectable with method <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Box.html#af00a56f400aaf960349d00e50d8effd5">Box::HasInterface</a>, but of-course they are used with <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Box.html#ae828c5649908bb8346f1187bb4187936">Box::Invoke</a> and <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Box.html#aff845e5a76eb0fab90db26cda997c70b">Box::GetInterface</a> in the moment no type-specific interface is available.</p>
 <dl class="section note"><dt>Note</dt><dd>This method should not be called directly. It is advised to use namespace function <a class="el" href="namespaceaworx_1_1lib_1_1boxing.html#a37543d2ad623b3940e735b122fe5d586">DefineDefaultInterface</a> instead.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -622,8 +622,8 @@ Protected Methods</h2></td></tr>
 </div><div class="memdoc">
 <p>De-initializes <b>ALib Boxing</b> system. This is (as of today) not necessary, but might be in the future. Also, some valgrind warnings might disappear when this is invoked properly.</p>
 <p>Frees resources of the <b>ALib String</b> namespace. In current version, all it does is deleting the global formatter object.</p>
-<p>Frees resources and shuts down ALib thread logic. This method should not be called directly. Use <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a2a0bcae1f7341255492ebc90deab5f01">ALIB::TerminationCleanUp</a> to de-initialize all <b>ALib Modules</b> included in the distribution.</p>
-<p>Frees resources and shuts down ALib time logic. This method should not be called directly. use <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a2a0bcae1f7341255492ebc90deab5f01">ALIB::TerminationCleanUp</a> to de-initialize all <b>ALib Modules</b> included in the distribution. </p>
+<p>Frees resources and shuts down <b>ALib</b> thread logic. This method should not be called directly. Use <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a2a0bcae1f7341255492ebc90deab5f01">ALIB::TerminationCleanUp</a> to de-initialize all <b>ALib Modules</b> included in the distribution.</p>
+<p>Frees resources and shuts down <b>ALib</b> time logic. This method should not be called directly. use <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a2a0bcae1f7341255492ebc90deab5f01">ALIB::TerminationCleanUp</a> to de-initialize all <b>ALib Modules</b> included in the distribution. </p>
 
 </div>
 </div>
@@ -820,7 +820,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 9 2017 16:16:26 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 13 2017 18:47:57 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
