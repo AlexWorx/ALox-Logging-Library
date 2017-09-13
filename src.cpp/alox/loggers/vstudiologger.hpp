@@ -32,7 +32,7 @@ namespace aworx { namespace lox { namespace loggers
  *  A logger that logs to the Visual Studio output pane using <em>OutputDebugString()</em>.
  *  The name of the \e Logger defaults to "VSTUDIO_CONSOLE".
  *
- *  ALox text logger escape sequences (see class \ref aworx::lox::ESC "ESC")
+ *  \b %ALox text logger escape sequences (see class \ref aworx::lox::ESC "ESC")
  *  are removed and ignored.
  *
  *  \note For the ease of use, class

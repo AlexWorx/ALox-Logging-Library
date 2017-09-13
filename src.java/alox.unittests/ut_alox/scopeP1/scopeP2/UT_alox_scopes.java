@@ -261,6 +261,8 @@ Log.info( "*msg*" ); PFXCHECK( "One, two, 3*msg*"    ,ml );
                                                                     UT_alox_scopes_helper.help(); SDCHECK( "@/GLOBAL/PO2/PO1/PACK/HCLASS/HMETHOD#" , ml );
                                                                     Log.info( "" );                SDCHECK( "@/GLOBAL/PO2/PO1/PACK/CLASS/METHOD#"   , ml );
 
+        //Log.state( "", Verbosity.INFO, "Configuration now is:" );          ml.memoryLog._();
+
 
         // remove all previous scope domains
         Log.setDomain( "",     Scope.GLOBAL      );

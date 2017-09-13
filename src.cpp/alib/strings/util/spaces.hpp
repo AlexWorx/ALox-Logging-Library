@@ -20,7 +20,6 @@
 //! @cond NO_DOX
 #define HPP_ALIB_STRINGS_UTIL_SPACES 1
 //! @endcond NO_DOX
-#include <iosfwd>
 
 namespace aworx { namespace lib { namespace strings { namespace util  {
 
@@ -66,6 +65,7 @@ class Spaces
          *                 AString
          * @return A const AString filled with spaces.
          ******************************************************************************************/
+        ALIB_API
         static const aworx::AString&  GetUnsafe(integer minSize);
 
         /** ****************************************************************************************
@@ -73,7 +73,8 @@ class Spaces
          * @param os    The output stream to write to
          * @param qty   The quantity of spaces to write
          ******************************************************************************************/
-        static void             Write( std::ostream& os, integer qty );
+        ALIB_API
+        static void                   Write( std::ostream& os, integer qty );
 };
 
 }}} // namespace aworx[::lib::strings::util]

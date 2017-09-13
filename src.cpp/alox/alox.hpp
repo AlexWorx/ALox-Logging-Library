@@ -30,14 +30,14 @@ namespace lox {
 /**
  * @addtogroup GrpALoxCompilerSymbols
  * @{ \def  ALOX_API_IS_DLL
- *  This compiler symbol has to be defined when compiling ALox as a DLL under Windows/MSC.
+ *  This compiler symbol has to be defined when compiling \b %ALox as a DLL under Windows/MSC.
  *  In addition, also \ref ALIB_API_IS_DLL has to be defined.
- *  Within code units that use the ALox DLL, both symbols must not be defined.
+ *  Within code units that use the \b %ALox DLL, both symbols must not be defined.
  * @}
  *
  * @addtogroup GrpALoxCompilerSymbols
  * @{ \def  ALOX_API_NO_DLL
- *  This compiler symbol has to be defined when compiling ALib classes directly into a project
+ *  This compiler symbol has to be defined when compiling \b %ALib classes directly into a project
  *  under Windows/MSC (not using a DLL).
  *  \see #ALOX_API_IS_DLL and #ALOX_API
  * @}
@@ -45,7 +45,7 @@ namespace lox {
  * @addtogroup GrpALoxMacrosLowLevel
  * @{ \def  ALOX_API
  *  Used to export/import C++ symbols into a dynamic link library.
- *  Defined when compiling ALox as a DLL under Windows/MSC. Dependent on \ref ALOX_API_IS_DLL.
+ *  Defined when compiling \b %ALox as a DLL under Windows/MSC. Dependent on \ref ALOX_API_IS_DLL.
  * @}
  */
 #if defined(DOX_PARSER)
@@ -97,7 +97,7 @@ namespace aworx { namespace lox {
 
 /** ************************************************************************************************
  * This is a 100% static class that holds constants and 'global' methods of the
- * ALox Logging Library.
+ * \b %ALox Logging Library.
  **************************************************************************************************/
 class ALox
 {
@@ -105,7 +105,7 @@ class ALox
     protected: ALox();
 
     protected:
-        /**  flag indicating that ALox has been initialized */
+        /**  flag indicating that \b %ALox has been initialized */
         ALOX_API static bool                    isInitialized;
 
         /** A lock  */
@@ -117,7 +117,7 @@ class ALox
     // #############################################################################################
     public:
         /**
-         * The version of ALox. The versioning follows the scheme YYMM (2-digit year, 2-digit month)
+         * The version of \b %ALox. The versioning follows the scheme YYMM (2-digit year, 2-digit month)
          * of the initial release date.
          * Besides this version number, field #Revision indicates if this is a revised version
          * of a former release.
@@ -125,14 +125,14 @@ class ALox
         ALIB_API static const int               Version;
 
         /**
-         * The revision number of this release. Each ALox #Version is initially released as
-         * revision \e 0. Pure maintenance releases that do not change the interface of ALox
+         * The revision number of this release. Each \b %ALox #Version is initially released as
+         * revision \e 0. Pure maintenance releases that do not change the interface of \b %ALox
          * are holding the same #Version but an increased number in this field.
          */
         ALIB_API static const int               Revision;
 
          /**
-         * These flags are used internally to detect incompatibilities when linking ALox to
+         * These flags are used internally to detect incompatibilities when linking \b %ALox to
          * binaries that use different compilation flags.
          */
         ALIB_API static    const uint64_t       CompilationFlags;
@@ -146,21 +146,21 @@ class ALox
 
 
          /**
-         * These flags are used internally to detect incompatibilities when linking ALox to
-         * ALib (can only be different in the unusual case that ALib exists in a library independent
-         * from ALox).
+         * These flags are used internally to detect incompatibilities when linking \b %ALox to
+         * \b %ALib (can only be different in the unusual case that \b %ALib exists in a library independent
+         * from \b %ALox).
          */
         ALIB_API static    const uint64_t       ALibCompilationFlags;
 
         /** ****************************************************************************************
-         * Verifies a given sets of ALox compilation flags with the internal set
+         * Verifies a given sets of \b %ALox compilation flags with the internal set
          * \ref ALox::CompilationFlags. In case they are different in a way
          * that alib gets incompatible (e.g. different class sizes, which results in errors that are
          * very hard to debug), the flags are written to \e cout for comparison and \c false is
          * returned.
          *
          * This method should be called on bootstrap to detect if incompatible library types were
-         * built. If several libraries that use ALib are linked together, each should invoke this
+         * built. If several libraries that use \b %ALib are linked together, each should invoke this
          * test against separately. The macro \c ALIB_COMPATIBILITY_VERIFYER will provide the
          * flags.
          *
@@ -177,12 +177,12 @@ class ALox
     public:
         /**
          * This is the path for logging to the internal domain. By manipulating this
-         *  <em>Log Domains' Verbosity</em>, the verbosity of ALox itself can be controlled.
+         *  <em>Log Domains' Verbosity</em>, the verbosity of \b %ALox itself can be controlled.
          * For example, with \e Verbosity.INFO, the 'on the fly' creation of <em>Log Domains</em>
          * are logged, which can be helpful to determine the <em>Log Domains</em> that are
          * created by libraries and larger projects.
          *
-         * The following sub-domains are used by ALox:
+         * The following sub-domains are used by \b %ALox:
          *
          *   Sub-Domain | Description
          *   - - - - - -| - - - - - - - - - - - - - - - - - - -
@@ -213,7 +213,7 @@ class ALox
         #endif
 
         /**
-         * The name of the configuration category of configuration variables used by ALox.<br>
+         * The name of the configuration category of configuration variables used by \b %ALox.<br>
          * Defaults to "ALOX".<br>
          * This value can be changed to avoid conflicts between applications (especially in
          * respect to environment variable settings). Changes should be placed at very initial
@@ -265,9 +265,9 @@ class ALox
     // #############################################################################################
     public:
         /** ****************************************************************************************
-         * This method must be called prior to using %ALox, e.g. at the beginning of
+         * This method must be called prior to using \b %ALox, e.g. at the beginning of
          * the \c main() method of an application. It is OK, to call this method more than once, which
-         * allows independent code blocks (e.g. libraries) to bootstrap %ALox independently.
+         * allows independent code blocks (e.g. libraries) to bootstrap \b %ALox independently.
          * However, only the first invocation is effective with the exclamation that if
          * command line parameters are provided with a call, those are set.
          * Also, the very first invocation should not be interrupted by a parallel invocation of a
@@ -276,9 +276,9 @@ class ALox
          *
          * \note This method invokes
          *       \ref aworx::lib::ALIB::Init "ALIB::Init", hence no explicit initialization of
-         *       underlying ALib is needed.
+         *       underlying \b %ALib is needed.
          *
-         * If command line parameters should be used for configuring ALox, then the very first
+         * If command line parameters should be used for configuring \b %ALox, then the very first
          * call to this method has to provide the argc and argv parameters.
          * Subsequent calls to this method with different parameters do not change the setup.
          *
@@ -296,20 +296,20 @@ class ALox
          *       character binaries. These variables a can be used if this method is invoked
          *       outside of the <em>main()</em> method.
          *
-         * For convenience, several ALox classes call this method implicitly on construction
-         * or when using them, e.g. Lox and Logger. Therefore, when using ALox, there is no need
+         * For convenience, several \b %ALox classes call this method implicitly on construction
+         * or when using them, e.g. Lox and Logger. Therefore, when using \b %ALox, there is no need
          * to to call this method, unless aforementioned command line parameters should be passed.
          *
          * \note
-         *  ALox must not be used before all global/static variables are created. Hence, it
-         *  is not allowed to initialize ALox within static variable initialization code. This
+         *  \b %ALox must not be used before all global/static variables are created. Hence, it
+         *  is not allowed to initialize \b %ALox within static variable initialization code. This
          *  restriction is wanted by design, because different platforms and compilers implement the
          *  bootstrap of static and global data differently and it is not considered a good
-         *  programming style to rely on C++ bootstrap. Using ALox/ALIB within C++ bootstrap is
+         *  programming style to rely on C++ bootstrap. Using \b %ALox/ALIB within C++ bootstrap is
          *  undefined behavior. (This is true for any C++ library.)
          *
          * \attention
-         *   If release logging is used, the explicit initialization of ALox by invoking
+         *   If release logging is used, the explicit initialization of \b %ALox by invoking
          *   this method is mandatory. While debug logging 'automatically' invokes the method
          *   hidden in the background, release logging does not.
          *   If omitted, critical errors and undefined behavior in release builds might occur
@@ -321,7 +321,7 @@ class ALox
          *  @param argv    Parameter usually taken from <em>standard C</em> \c main() method
          *                 (pointer to a list of command line arguments).
          *                 Defaults to nullptr.
-         * @returns Returns \c true if ALox was initialized before, \c false if not.
+         * @returns Returns \c true if \b %ALox was initialized before, \c false if not.
          ******************************************************************************************/
         inline static
         bool     Init( int argc =0, char** argv =nullptr )
@@ -339,7 +339,7 @@ class ALox
          * @param argc    Parameter usually taken from <em>standard C</em> \c main() method
          *                (the number of arguments in \p argv).
          * @param argv    The command line parameters as \c wchar_t.
-         * @returns Returns \c true if ALox was initialized before, \c false if not.
+         * @returns Returns \c true if \b %ALox was initialized before, \c false if not.
          ******************************************************************************************/
         inline static
         bool     Init( int  argc, wchar_t **argv )
@@ -352,7 +352,7 @@ class ALox
         }
 
         /** ****************************************************************************************
-         *  Cleans up static/global ALox memory on termination. This method is useful if using
+         *  Cleans up static/global \b %ALox memory on termination. This method is useful if using
          *  memory analysis tools (such as valgrind) to remove any internal allocations before a
          *  program terminates.
          ******************************************************************************************/
@@ -364,14 +364,14 @@ class ALox
     // #############################################################################################
         /** ****************************************************************************************
          * Returns a singleton of class \b %Lox used for debug logging
-         * @return The debug-logging Lox of ALox :-)
+         * @return The debug-logging Lox of \b %ALox
          ******************************************************************************************/
         ALOX_API static
         Lox*     Log();
 
         /** ****************************************************************************************
          * Returns the \b Lox with the given name.
-         * A lox is only found if it was created and registered with ALox using #Register.
+         * A lox is only found if it was created and registered with \b %ALox using #Register.
          * If not found, and parameter \p create is \c true (the default), a new \b Lox is created,
          * registered and returned.
          *
@@ -385,11 +385,11 @@ class ALox
         Lox*     Get( const String& name, Create create= Create::Never );
 
         /** ****************************************************************************************
-         * Registers or un-registers a \b %Lox object statically with ALox.
+         * Registers or un-registers a \b %Lox object statically with \b %ALox.
          * Once registered,  any code entity of the same process is enabled to retrieve
          * the \b %Lox using #Get.<br>
          * No two objects with the same name must be registered. If this is done, the latter
-         * will not be registered and not be found by #Get. In debug-compilations, an ALib
+         * will not be registered and not be found by #Get. In debug-compilations, an \b %ALib
          * error report is written (by default raises 'assert') if a name is registered twice.<br>
          * Note that name comparison is performed case <b>in</b>-sensitive.
          *
@@ -412,7 +412,7 @@ class ALox
          * - If the debug lox singleton exists, it is deleted.
          *
          * \attention
-         *   This method was introduced to support resetting ALox in the unit tests.
+         *   This method was introduced to support resetting \b %ALox in the unit tests.
          *   In real applications, this method should NOT be used.
          *   Side effects might appear using this method and it is not tested otherwise than
          *   used in tests!
@@ -432,7 +432,7 @@ class ALox
         void  initImpl();
 
         /** ****************************************************************************************
-         * Checks if versions of ALib, ALox and the actual compilation unit share compatible
+         * Checks if versions of \b %ALib, \b %ALox and the actual compilation unit share compatible
          * compilation symbols.
          * This method is invoked automatically by method #Init.
          * @param alibVersion Defaults to a value defined by the currently included headers.
@@ -448,9 +448,9 @@ class ALox
 };// class ALox
 
 /** ************************************************************************************************
- * The \b %ReportWriter for ALib when using ALox. An instance of this class is created
+ * The \b %ReportWriter for \b %ALib when using \b %ALox. An instance of this class is created
  * in method \ref aworx::lox::Log::AddDebugLogger "Log::AddDebugLogger"
- * and registered with ALib.<br>
+ * and registered with \b %ALib.<br>
  * Uses internal domain <c>'$/REPORT'</c> for logging.
  **************************************************************************************************/
 class    ALoxReportWriter : public aworx::lib::lang::ReportWriter
@@ -482,7 +482,7 @@ class    ALoxReportWriter : public aworx::lib::lang::ReportWriter
 
 
     /** ********************************************************************************************
-     * Write ALib reports using ALox.
+     * Write \b %ALib reports using \b %ALox.
      * @param msg The message to log.
      **********************************************************************************************/
      virtual void Report  ( const lib::lang::Report::Message& msg );

@@ -14,6 +14,10 @@ using System.Collections.Generic;
 using cs.aworx.lib.lang;
 using cs.aworx.lib.threads;
 
+/**
+ * This sub-namespace  provides some classes used for formatting data in string buffers of
+ * type \ref cs::aworx::lib::strings::AString "AString".
+ */
 namespace cs.aworx.lib.strings.format  {
 
 /** ************************************************************************************************

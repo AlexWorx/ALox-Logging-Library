@@ -61,7 +61,7 @@ class ReportWriter;
  * This class provides a simple facility to collect what is called a \e 'report'.
  * Reports are maintenance messages, mostly error and warning messages, but is not aiming to replace
  * any sort of error handling.
- * (In ALib itself, sending a \e 'report' usually precedes raising an error.)
+ * (In \b %ALib itself, sending a \e 'report' usually precedes raising an error.)
  *
  * While a process can create different objects of this class, usually, the default instance
  * available by inheriting from class
@@ -94,7 +94,7 @@ class ReportWriter;
  * - #ALIB_ASSERT_WARNING
  *
  * In fact, these macros exist in <b>ALib Modules</b> as well, but with the inclusion of
- * header <b>"alib/lang/report.hpp"</b>, these macros become redefined to use ALib reports.
+ * header <b>"alib/lang/report.hpp"</b>, these macros become redefined to use \b %ALib reports.
  *
  * For convenience, in debug compilations of the library, these macros provide the file name,
  * line number and method name of the invocation source, which can be used by more sophisticated
@@ -156,7 +156,7 @@ class Report
     // protected fields
     // #############################################################################################
     protected:
-        /** The default Report used internally by ALib and usually by processes that rely on ALib. */
+        /** The default Report used internally by \b %ALib and usually by processes that rely on \b %ALib. */
         ALIB_API static Report*         defaultReport;
 
         /**
@@ -195,7 +195,7 @@ class Report
     // #############################################################################################
     public:
         /** ****************************************************************************************
-         * Receives the default report object used by ALib and processes that rely on ALib.
+         * Receives the default report object used by \b %ALib and processes that rely on \b %ALib.
          * @returns The default \b Report.
          ******************************************************************************************/
         static

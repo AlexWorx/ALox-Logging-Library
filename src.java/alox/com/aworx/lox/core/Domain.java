@@ -16,7 +16,7 @@ import com.aworx.lox.ALox;
 import com.aworx.lox.Verbosity;
 
 /** ************************************************************************************************
- * Objects of this class represent a <em>Log Domain</em> of ALox. This class is internally used by
+ * Objects of this class represent a <em>Log Domain</em> of \b %ALox. This class is internally used by
  * class \b Lox.
  **************************************************************************************************/
 public class Domain

@@ -13,7 +13,7 @@ using cs.aworx.lib;
 
 /** ************************************************************************************************
  *  This is the C# namespace for the implementation of <em>logger classes</em> that are provided
- *  by default with <em>%ALox Logging Library</em>.
+ *  by default with <b>%ALox Logging Library</b>.
  *
  *  Developed by A-Worx GmbH and published under Boost Software License.
  **************************************************************************************************/
@@ -30,7 +30,7 @@ namespace cs.aworx.lox.loggers    {
  *  <em>System.Diagnostics.Debug.Write()</em>.
  *  The name of the \e Logger defaults to "CLR_DEBUGGER_LOGGER".
  *
- *  ALox text logger escape sequences (see class \ref cs::aworx::lox::ESC "ESC")
+ *  \b %ALox text logger escape sequences (see class \ref cs::aworx::lox::ESC "ESC")
  *  are removed and ignored.
  *
  *  \note For the ease of use, class \ref cs::aworx::lox::Log "Log" implements a method

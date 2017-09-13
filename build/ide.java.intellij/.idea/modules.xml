@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ALib.iml" filepath="$PROJECT_DIR$/ALib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ALib-ALox-UnitTests.iml" filepath="$PROJECT_DIR$/ALib-ALox-UnitTests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ALox.iml" filepath="$PROJECT_DIR$/ALox.iml" />
+      <module fileurl="file://$PROJECT_DIR$/alox.samples/ALox Samples.iml" filepath="$PROJECT_DIR$/alox.samples/ALox Samples.iml" />
+    </modules>
+  </component>
+</project>

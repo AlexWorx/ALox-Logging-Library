@@ -24,11 +24,6 @@ The following information is found here:
 - In addition, a complete [Java Reference Documentation](annotated.html) is available...
   created with marvelous [Doxygen](http://www.stack.nl/~dimitri/doxygen/)!
 
-  \note
-  As of ALox version 1604, with the introduction of static class \b %ALox, the term "ALox" in the reference
-  documentation is often erroneously linked to this class. This will be fixed in a next release.
-<p>
-
 ## Project Setup ##
 The steps to configure Eclipse or any other Java IDE to support ALox is described
 here: \ref javasetup.

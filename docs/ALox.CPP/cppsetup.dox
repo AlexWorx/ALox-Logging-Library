@@ -480,19 +480,26 @@ adjustments need to be done.
 \~Comment ####################################################################################### \~
 ## 4.3 Using ALox with JetBrains CLion ## {#cppsetup_clion}
 
-[CLion](https://www.jetbrains.com/clion/)s' build system relies on CMake.
-Hence, opening the projects provided with ALox
-is just about opening the corresponding CMake files, for example:
+[CLion](https://www.jetbrains.com/clion/)s' build system relies on \e CMake.
+Pre-configured project folders are provides with
 
-    ALOX_LIB_PATH/build/cmake.cpp/alox.samples/CMakeLists.txt
 
-The ALox sample project is now ready to be build in <em>CLion</em>
+    ALOX_LIB_PATH/build/ide.cpp.clion/alox.samples
+    ALOX_LIB_PATH/build/ide.cpp.clion/unittests
 
-When you run it, the output should look like suggested in chapter \ref cppsetup_cmake "Using ALox with CMake".
+The \e CMake files within these directories are just including the the corresponding \e CMake files
+found in
+
+    ALOX_LIB_PATH/build/cmake.cpp/alox.samples
+    ALOX_LIB_PATH/build/cmake.cpp/unittests
+
+The advantage of this approach is that the "generic" folders found in folder \e cmake.cpp are 
+kept free from \e CLion project files.
+
+Therefore, \e CLion users should be ready to compile by just opening these project folders.  
 
 For debugging ALib and ALox code, you might want to install the
 [Pretty Printers for GNU Debugger](../tools.html#tools_debug_helpers_gdb).
-
 
 
 <b>Clickable Log Output with CLion:</b><br>

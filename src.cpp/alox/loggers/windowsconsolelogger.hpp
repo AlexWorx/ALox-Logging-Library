@@ -31,7 +31,7 @@ namespace aworx { namespace lox { namespace loggers
  * A logger that logs all messages to the standard output <em>cout</em>.
  * The name of the \e Logger defaults to "WINDOWS_CONSOLE".
  *
- * ALox text logger escape sequences (see class \ref aworx::lox::ESC "ESC")
+ * \b %ALox text logger escape sequences (see class \ref aworx::lox::ESC "ESC")
  * are translated to Windows API calls (<em>SetConsoleTextAttribute</em>) which manipulates
  * colors the text output.
  * There is not 100% match between windows console capabilities and the definitions in
@@ -48,7 +48,7 @@ namespace aworx { namespace lox { namespace loggers
  * \ref MetaInfo get set to include ESC sequences. Of-course, these publicly accessible
  * format attributes can be customized after creation.
  *
- * \note This class can not enable the output console (which receives ALox
+ * \note This class can not enable the output console (which receives \b %ALox
  * log data) to support the windows API call <em>SetConsoleTextAttribute</em>.
  * The opposite is right: this class should be used only if the output console supports such calls.
  **************************************************************************************************/
@@ -82,7 +82,7 @@ class WindowsConsoleLogger : public aworx::lox::core::textlogger::TextLogger
          * If the background color of a console window is dark, then the background colors of
          * colored log output should be darker colors than the foreground colors - and vice versa.
          *
-         * Depending on the setting of this field, ALox
+         * Depending on the setting of this field, \b %ALox
          * \ref aworx::lox::ESC "escape codes" for colors are translated to normal ANSI colors or
          * lighter ones:
          * - If this field is \ref LightColorUsage "LightColorUsage::Never", light colors are

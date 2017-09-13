@@ -52,7 +52,7 @@ import com.aworx.lib.time.Ticks;
  * \ref com::aworx::lib "ALib".
  * Among the things implemented here are:
  * - Collecting information on the executed process and its environment.
- * - Initialization of several ALib components with methods #init and #terminationCleanUp.
+ * - Initialization of several \b %ALib components with methods #init and #terminationCleanUp.
  * - Thread sleep methods
  **************************************************************************************************/
 public final class ALIB
@@ -61,19 +61,19 @@ public final class ALIB
     // Public fields
     // #############################################################################################
         /**
-         * The version of ALib. The version number follows the scheme YYMM (2-digit year, 2-digit month)
+         * The version of \b %ALib. The version number follows the scheme YYMM (2-digit year, 2-digit month)
          * of the initial release date.
          * Besides this version number, field #revision indicates if this is a revised version
          * of a former release.
          */
-        public static final int         version                                               =1702;
+        public static final int         version                                               =1709;
 
         /**
-         * The revision number of this release. Each ALib #version is initially released as
-         * revision \e 0. Pure maintenance releases that do not change the interface of ALox
+         * The revision number of this release. Each \b %ALib #version is initially released as
+         * revision \e 0. Pure maintenance releases that do not change the interface of \b %ALox
          * are holding the same #version but an increased number in this field.
          */
-        public static final int         revision                                                 =1;
+        public static final int         revision                                                 =0;
 
 
         /**
@@ -99,7 +99,7 @@ public final class ALIB
          * writing, this object has to be acquired and after writing released.
          *
          * Because often, the standard \e output stream and standard \e error stream are identical,
-         * ALib provides one single lock for both, to protect also against interwoven
+         * \b %ALib provides one single lock for both, to protect also against interwoven
          * standard output and error information.
          *
          * If the 'entity' that is registering is not of type
@@ -124,7 +124,7 @@ public final class ALIB
          *   but it is for fast, buffered output streams.
          * <p>
          * \note
-         *   Logging library \b ALox, which is built on ALib, will register whenever a \e Logger
+         *   Logging library \b %ALox, which is built on \b %ALib, will register whenever a \e Logger
          *   is used that writes to the standard output stream. Hence, applications that in
          *   parallel use, e.g. 'std::cout', should register at bootstrap and \e acquire this
          *   instance prior to writing. This way, log output and other application output is
@@ -140,7 +140,7 @@ public final class ALIB
         protected static      boolean   isInitialized= false;
 
         /** ****************************************************************************************
-         * This method must be called prior to using ALib, e.g. at the beginning of
+         * This method must be called prior to using \b %ALib, e.g. at the beginning of
          * the \c main() method of an application. It is OK, to call this method more than once, which
          * allows independent code blocks (e.g. libraries) to bootstrap %ALIB independently.
          * However, only the first invocation is effective with the exclamation that if
@@ -149,7 +149,7 @@ public final class ALIB
          * second thread. Consequently, it has to be assured that this method is invoked once on
          * the real bootstrap an app.
          *
-         * In the Java version of the AWorx Library (ALib), the invocation of this method is optional.
+         * In the Java version of the AWorx Library (\b %ALib), the invocation of this method is optional.
          * However, it is good practice to invoke this method in the main() method of a process
          * and provide the command line arguments. If no invocation is performed, no
          * configuration plug-ins are set.
@@ -161,7 +161,7 @@ public final class ALIB
          * invoking this method.
          * In other words, currently it is irrelevant whether custom plug-ins are added prior
          * or after invoking this method. But in future versions this may change and in other
-         * language versions of ALib, some variables are read. Therefore, it is good practice
+         * language versions of \b %ALib, some variables are read. Therefore, it is good practice
          * to add custom plug-ins prior to invoking this method.
          *
          * @param args    Parameters taken from <em>standard Java</em> method \c main()

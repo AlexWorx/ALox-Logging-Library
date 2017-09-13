@@ -19,7 +19,7 @@
 /** ********************************************************************************************
  * @name Warning-, Error- and Assertion- Reports for Debug Compilations
  *
- * The macros listed here are defined in two different versions, depending on the ALib distribution.
+ * The macros listed here are defined in two different versions, depending on the \b %ALib distribution.
  * With single <b>ALib Modules</b> that do not incorporate class
  * \ref aworx::lib::lang::Report and family, namespace function
  * \ref aworx::lib::debug::DbgSimpleALibMsg (and overloads) are used to write the messages.
@@ -28,20 +28,20 @@
  * There is a very simple "plug-in" concept in place that allows to redirect this method to
  * a user defined one which may act differently.
  *
- * With the complete ALib library distribution two things happen:
- * - the aforementioned plug-in is implemented and an ALib Report is generated inside
+ * With the complete \b %ALib library distribution two things happen:
+ * - the aforementioned plug-in is implemented and an \b %ALib Report is generated inside
  *   the plug-in function.
- * - The macros themselves are redefined to directly use the ALib Report facility.
+ * - The macros themselves are redefined to directly use the \b %ALib Report facility.
  * Such redefinition happens "in the middle" of header inclusion (as early as possible), with
- * the effect that most classes of ALib are compiled using the simple version, but still use
- * the mechanics of ALib Reports. Other parts of ALib classes, and of-course all user code,
+ * the effect that most classes of \b %ALib are compiled using the simple version, but still use
+ * the mechanics of \b %ALib Reports. Other parts of \b %ALib classes, and of-course all user code,
  * will have the more sophisticated, report-based versions of the macros in place. The
  * huge advantage of them is, that those accept an arbitrary list of arguments which are boxed
  * and passed to a formatter. This allows to easily compose detailed and formatted debug messages.
  *
- * \note It is advised for users of complete ALib to rather use the
+ * \note It is advised for users of complete \b %ALib to rather use the
  *       [ALox Logging Library](http://alexworx.github.io/ALox-Logging-Library/index.html) instead
- *       of these macros for debug output. ALib uses these macros internally for the sole reason
+ *       of these macros for debug output. \b %ALib uses these macros internally for the sole reason
  *       to be lean in respect module deployment and to avoid cyclic dependencies with \b %ALox.
  *
  *
@@ -71,14 +71,14 @@
     namespace aworx { namespace lib { namespace debug {
 
     /**
-     * Some ALib modules do not (must not) rely on
+     * Some \b %ALib modules do not (must not) rely on
      * \ref aworx::lib::lang::Report "Report" /
      * \ref aworx::lib::lang::ReportWriter "ReportWriter" mechanics. Therefore, this simple method is
-     * used for error handling in those portions of ALib that are exposed in such modules.<br>
+     * used for error handling in those portions of \b %ALib that are exposed in such modules.<br>
      * This method first checks if static function pointer
      * \ref aworx::lib::debug::DbgSimpleALibMsg_Plugin is set and if yes, passes the parameters
      * to this method and exits.
-     * If the complete ALib distribution is used, method
+     * If the complete \b %ALib distribution is used, method
      * \ref aworx::lib::ALIB::Init "ALIB::Init"
      * sets this plug-in function to a custom one which passes the message(s) to a proper
      * \ref aworx::lib::lang::Report "ALib Report".
@@ -127,8 +127,8 @@
 
     /**
      * This function pointer defaults to nullptr and may be set to replace function
-     * #DbgSimpleALibMsg. When ALib complete library is used (instead of one or more
-     * single ALib modules), then
+     * #DbgSimpleALibMsg. When \b %ALib complete library is used (instead of one or more
+     * single \b %ALib modules), then
      * \ref aworx::lib::ALIB::Init         "ALIB::Init" sets this pointer to a small method which
      * creates an
      * \ref aworx::lib::lang::Report       "Report" on the default
@@ -250,7 +250,7 @@
  *
  * - <em>libdecl:</em><br>
  *   Must match a macro that defines the import/export declaration of the source code entity
- *   (see \ref ALIB_API for a sample of how this symbol is declared in ALib itself).
+ *   (see \ref ALIB_API for a sample of how this symbol is declared in \b %ALib itself).
  * - <em>identifier</em><br>
  *   Identifies the one-time warning. Has to apply to the rules of C++ variable names and can
  *   other wise be chosen freely.

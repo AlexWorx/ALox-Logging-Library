@@ -9,10 +9,12 @@ package com.aworx.lox.core;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.aworx.lib.containers.PathMap;
+import com.aworx.lib.*;
+import com.aworx.lib.containers.StringTree;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.Substring;
 import com.aworx.lox.Scope;
+import com.aworx.lox.core.ScopeInfo;
 
 /** ************************************************************************************************
  * This class is responsible for scope-related functionality of class Lox.
@@ -29,8 +31,8 @@ public class ScopeStore<T>
         /** The value to the global scope */
         public T                              globalStore;
 
-        /** PathMap store for language-related scopes (path,source,method) */
-        public PathMap<T>                     languageStore                      = new PathMap<T>();
+        /** StringTree store for language-related scopes (path,source,method) */
+        public StringTree<T> languageStore                      = new StringTree<T>();
 
         /** A list of domain paths of \e %Scope.THREAD_OUTER */
         public HashMap<Thread, ArrayList<T>>  threadOuterStore= new HashMap<Thread, ArrayList<T>>();
@@ -54,6 +56,9 @@ public class ScopeStore<T>
         /** Flag used to lazily create the key to language-related scope values */
         protected AString                             languageKey                = new AString(128);
 
+        /** Temporary substring for consuming the source key */
+        protected Substring                           languageKeySubs             = new Substring();
+
         /** Flag used to lazily create the key to source-related scope values */
         protected boolean                             lazyLanguageNode;
 
@@ -64,7 +69,7 @@ public class ScopeStore<T>
         protected Scope                               actScope;
 
         /** The actual language related scopes' map node */
-        protected PathMap<T>                          actPathMapNode;
+        protected StringTree<T>.Cursor                actStringTreeNode;
 
         /** The next package level of a walk during scope 'PACKAGE' */
         protected int                                 actPackageLevel;
@@ -81,11 +86,6 @@ public class ScopeStore<T>
         /** The list of values of \e %Scope.THREAD_OUTER/Inner during a walk */
         protected ArrayList<T>                        walkThreadValues;
 
-        /** The (constant) list of separators needed by the tree map */
-        protected AString                             separators              = new AString( "#." );
-
-        /** A temporary substring used for searching keys in the tree map */
-        protected Substring                           languageKeySubstr           = new Substring();
     // #############################################################################################
     // Public interface
     // #############################################################################################
@@ -100,6 +100,7 @@ public class ScopeStore<T>
             this.scopeInfo=             scopeInfo;
             this.cfgSingleThreadValue=  cfgSingleThreadValue;
             this.globalStore=           null;
+            this.actStringTreeNode=     languageStore.root();
         }
 
 
@@ -110,7 +111,7 @@ public class ScopeStore<T>
         {
             globalStore=    null;
             threadInnerStore.clear();
-            languageStore=  new PathMap<T>();
+            languageStore=  new StringTree<T>();
             threadOuterStore.clear();
         }
 
@@ -206,12 +207,12 @@ public class ScopeStore<T>
                 case METHOD:
                 {
                     if( lazyLanguageNode )
-                        getPathMapNode( false );
+                        initCursor( false );
 
-                    while( actPathMapNode != null )
+                while( actStringTreeNode.isValid() )
                     {
-                        T actValue= actPathMapNode.value;
-                        actPathMapNode= actPathMapNode.parent;
+                        T actValue= actStringTreeNode.value();
+                        actStringTreeNode.moveToParentUnchecked();
                         if( actValue != null )
                             return actValue;
                     }
@@ -282,55 +283,60 @@ public class ScopeStore<T>
 
         /** ****************************************************************************************
          * Retrieves and optionally creates an entry in the map that stores language-related
-         * scope information. The result is stored in field #actPathMapNode.
+         * scope information. The result is stored in field #actStringTreeNode.
          * @param create     If \c true, a non-existing entry is created.
          ******************************************************************************************/
-        protected void getPathMapNode( boolean create )
+        protected void initCursor( boolean create )
         {
-            lazyLanguageNode= false;
+            lazyLanguageNode=   false;
+            actStringTreeNode.root();
 
-            // key: package
+            // path key for the StringTree
             languageKey._()._( scopeInfo.getPackageName() );
+            languageKey.searchAndReplace( '.', '/' );
+            languageKeySubs.set( languageKey );
 
-            // key: package
-            if ( actScope == Scope.PACKAGE )
+            // read-only mode
+            if( !create )
             {
-                // Subtract folders at the back
-                int packageLevel= actPackageLevel;
-                while (packageLevel > 0 )
-                {
-                    int idx= languageKey.lastIndexOf( '.' );
-                    if (idx < 0 )
-                    {
-                        languageKey._();
-                        break;
-                    }
-                    languageKey.setLength_NC( idx );
-                    packageLevel--;
-                }
+                // in non-creation mode, it is always scope Method
+                ALIB_DBG.ASSERT(actScope == Scope.METHOD);
 
-                languageKey._( separators.charAt_NC(1) );
-                actPathMapNode= languageStore.Get( languageKeySubstr.set(languageKey), create, separators );
+                // in read only mode, we can leave as soon as a portion was not read
+                actStringTreeNode.moveToExistingPart( languageKeySubs );
+                if ( languageKeySubs.isNotEmpty() )
+                    return;
+
+                // filename: append '#' to distinguish from directories
+                if ( !actStringTreeNode.moveToChild( languageKey._()._NC( scopeInfo.getClassName() )._( '#' ).toString() ) )
+                    return;
+
+                // filename: prepend '#' to distinguish from filenames
+                actStringTreeNode.moveToChild( languageKey._()._NC( '#' )._NC( scopeInfo.getMethodName() ).toString() );
+
                 return;
             }
 
-            languageKey._( separators.charAt_NC(1) );
+            // create mode:
+            actStringTreeNode.moveToAndCreateNonExistingPart( languageKeySubs );
+            if ( actScope == Scope.PACKAGE )
+            {
+                // subtract folders at the back
+                int pathLevel= actPackageLevel;
+                while ( --pathLevel >= 0 && !actStringTreeNode.isRoot() )
+                    actStringTreeNode.moveToParent();
+                return;
+            }
 
+            // filename: append '#' to distinguish from directories
+            languageKey._()._( scopeInfo.getClassName() )._( '#' );
 
-            // key: class
-            languageKey._( '-' ) // we need a prefix to have all methods share one start node which is not
-                                 // a separator-node
-                       ._( scopeInfo.getClassName() )
-                       ._( separators.charAt_NC(0) );
-
-            // key: method
+            // filename: prepend '#' to distinguish from filenames
             if ( actScope == Scope.METHOD )
-                languageKey._( '-' ) // we need a prefix to have all methods share one start node which is not
-                                     // a separator-node
-                           ._( scopeInfo.getMethodName() )
-                           ._( separators.charAt_NC(0) );
+                languageKey._( "/#" )._( scopeInfo.getMethodName() );
+            languageKeySubs.set( languageKey );
 
-            actPathMapNode= languageStore.Get( languageKeySubstr.set(languageKey), create, separators );
+            actStringTreeNode.moveToAndCreateNonExistingPart( languageKeySubs );
         }
 
         /** ****************************************************************************************
@@ -438,18 +444,18 @@ public class ScopeStore<T>
                     cmd= 1;
 
                 if (    lazyLanguageNode
-                    ||  ( actPathMapNode == null && cmd == 0 ) ) // insert
-                    getPathMapNode( true ); // always create
+                    ||  ( actStringTreeNode == null && cmd == 0 ) ) // insert
+                    initCursor( true ); // always create
 
-                if ( actPathMapNode != null )
+                if ( actStringTreeNode.isValid() )
                 {
-                    oldValue = actPathMapNode.value;
+                    oldValue = actStringTreeNode.value();
 
                     if ( cmd == 0 ) // insert
-                        actPathMapNode.value= value;
+                        actStringTreeNode.setValue( value );
 
                     else if ( cmd == 1 ) // remove
-                        languageStore.Remove( actPathMapNode );
+                        actStringTreeNode.setValue( null );
                 }
 
                 return oldValue;

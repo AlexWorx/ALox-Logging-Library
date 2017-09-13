@@ -7,7 +7,7 @@
 
 /** ************************************************************************************************
  *  This is the Java package for classes that provide tools and extensions to the
- *  <em>%ALox Logging Library</em>.
+ *  <b>%ALox Logging Library</b>.
  *
  *  Developed by A-Worx GmbH and published under Boost Software License.
  **************************************************************************************************/

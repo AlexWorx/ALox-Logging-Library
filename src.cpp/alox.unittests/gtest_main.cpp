@@ -43,6 +43,7 @@ int main( int argc, char **argv )
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Boxing*";
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_AString.*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_AString.Conversions";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Substring.*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Format.*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Format.ConvertIntegers";
@@ -55,16 +56,23 @@ int main( int argc, char **argv )
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Threads.SmartLock";
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_System.Dir*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Containers.*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Config.IniFiles";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Config.ConfigDefaultAndProtected";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Config.ConfigReplacementVariables";
 
-//    ::testing::GTEST_FLAG(filter) = "CPP_Dox_Tutorial*";
-//    ::testing::GTEST_FLAG(filter) = "CPP_Dox_Tutorial.Tut_LogState";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Compatibility.*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Boxing.Boxing_D*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib__Dox.*";
+
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_Multiline*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_Recursive*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_ColorsAndStyles*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_TextLogger_RegisterStreamLocks*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_TextLogger_ObjectConverter*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_TextLogger_FormatConfig*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox.Log_MultipleLogables";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox.Log_DumpStateOnExit";
@@ -82,18 +90,13 @@ int main( int argc, char **argv )
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Log_Scopes.*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Log_Scopes.Log_ScopeDomains*";
-//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Log_Scopes.Lox_ScopeDomains*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Log_Scopes.Log_Once*";
-//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Log_Scopes.Log_Store*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Log_Scopes.Log_Store_Test*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Log_Scopes.Log_Prefix*";
 
-//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_TextLogger_RegisterStreamLocks*";
-//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_TextLogger_ObjectConverter*";
-//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_TextLogger_FormatConfig*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_Dox_Tutorial*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_Dox_Tutorial.Tut_LogState";
 
-//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Compatibility.*";
-//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Boxing.Boxing_D*";
-//    ::testing::GTEST_FLAG(filter) = "CPP_ALib__Dox.*";
 
     auto result= RUN_ALL_TESTS();
 

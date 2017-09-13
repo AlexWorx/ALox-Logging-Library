@@ -14,7 +14,7 @@ import com.aworx.lib.strings.AString;
  * \ref com::aworx::lib::config::Configuration "Configuration"
  * to provide configuration data from specific configuration data source.
  *
- * See documentation of namespace #com::aworx::lib::config for more information on ALib
+ * See documentation of namespace #com::aworx::lib::config for more information on \b %ALib
  * external configuration variables.
  *
  * The plug-in also may have the ability to write data. The default implementation for writing
@@ -22,7 +22,7 @@ import com.aworx.lib.strings.AString;
  * anything (e.g. command line parameter plug-in, environment variable plug-in).
  *
  * Category and Variable names are character case insensitive for the plug-ins predefined
- * with ALib.
+ * with \b %ALib.
  * It is recommended to to ignore character case in custom specializations of this class
  * as well.
  **************************************************************************************************/

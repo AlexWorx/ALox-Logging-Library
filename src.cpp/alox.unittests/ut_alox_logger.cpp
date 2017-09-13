@@ -352,7 +352,7 @@ UT_METHOD(Log_ColorsAndStyles)
 #if ALOX_DBG_LOG
 UT_METHOD(Log_TextLogger_RegisterStdStreamLocks)
 {
-    UT_INIT(); // This already registers the uint test logger. Therefore, the console lock in ALib
+    UT_INIT(); // This already registers the uint test logger. Therefore, the console lock in \b %ALib
                // is occupied once already, but not in Safe mode, yet
                                 UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Unsafe );
     Log_AddDebugLogger();
@@ -589,7 +589,6 @@ UT_METHOD(Log_Recursive)
         oldCntLogs= testML->CntLogs;
         Log_Info( "outer>{}<log", ut_reclog::ApplyLog("Test", 2) );
         UT_EQ( 2, testML->CntLogs - oldCntLogs );
-std::cout << "---- Memlog:" <<std::endl << testML->MemoryLog.ToCString() << std::endl;
         UT_TRUE( testML->MemoryLog.IndexOf( "outer>Test<log")  > 0 );
         testML->MemoryLog.Clear();
 

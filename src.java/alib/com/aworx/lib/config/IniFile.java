@@ -24,7 +24,7 @@ import com.aworx.lib.strings.util.Spaces;
  *
  * This class is provided for the case that no other configuration mechanism is available.
  * In general, application specific configuration mechanisms already exist in other libraries
- * used. Those should be adopted by creating a lean interface plug-in for ALib.
+ * used. Those should be adopted by creating a lean interface plug-in for \b %ALib.
  *
  * Some remarks on the functionality and supported format:
  * - Comments
@@ -254,7 +254,7 @@ public class IniFile extends InMemoryPlugin
             by invoking #writeFile. Defaults to false */
         public boolean                          autoSave                                    = false;
 
-        /** The standard file extension used for ALib configuration files. Defaults to "ini" */
+        /** The standard file extension used for \b %ALib configuration files. Defaults to "ini" */
         public static String                    DEFAULT_FILE_EXTENSION                     = ".ini";
 
         /** The file name. This might include a path or not. Should be set properly before
@@ -590,8 +590,8 @@ public class IniFile extends InMemoryPlugin
             int idx= value.indexOf( alignmentSeparator );
             if( idx > 0 )
             {
-                int idxQuote= value.indexOf( '"' );
-                if ( idxQuote < 0  || idxQuote > idx )
+                int idxQuote= value.indexOfOrLength( '"' );
+                if ( idxQuote > idx )
                     return idx;
             }
             return -1;
@@ -826,9 +826,9 @@ public class IniFile extends InMemoryPlugin
          ******************************************************************************************/
         protected boolean startsWithCommentSymbol( Substring subs )
         {
-            int i= commentChars.indexOf( subs.charAtStart() );
-            return      ( i >= 0 && i < 2)
-                    ||  ( i == 2 && subs.charAt(1) == '/'  );
+            int i= commentChars.indexOfOrLength( subs.charAtStart() );
+            return       i <  2
+                    || ( i == 2 && subs.length() > 1 && subs.charAt(1) == '/'  );
         }
 
         /** ****************************************************************************************

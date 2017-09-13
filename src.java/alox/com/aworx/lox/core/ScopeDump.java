@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.aworx.lib.containers.PathMap;
+import com.aworx.lib.*;
+import com.aworx.lib.lang.*;
+import com.aworx.lib.containers.*;
 import com.aworx.lib.lang.Alignment;
 import com.aworx.lib.strings.AString;
 import com.aworx.lox.ESC;
@@ -112,27 +114,33 @@ public class ScopeDump
             {
                 if ( thread.getValue().size() == 0 )
                     continue;
-                com.aworx.lib.ALIB_DBG.ASSERT( thread.getValue().size() == 1 );
+                ALIB_DBG.ASSERT( thread.getValue().size() == 1 );
                 if( firstEntry ) firstEntry= false; else   target.newLine();
                 target._NC("  Scope.THREAD_OUTER ");  storeThreadToScope( thread.getKey() )._( ':' ).newLine();
                 cnt+= thread.getValue().get( 0 ).size();
                 maxKeyLength= writeMap( thread.getValue().get( 0 ), "    " );
             }
 
-            for( PathMap<HashMap<AString, ?>> map : storeC.languageStore )
+            StringTree<HashMap<AString, ?>>.Walker walker= storeC.languageStore.new Walker();
+            walker.pathGeneration( Switch.ON );
+            walker.setRecursionDepth(-1);
+            for( walker.setStart() ;walker.isValid() ; walker.next() )
             {
+                HashMap<AString, ?> map= walker.value();
+                if( map == null )
+                    continue;
                 if( firstEntry ) firstEntry= false; else   target.newLine();
                 target._NC( "  " );
-                storeKeyToScope( map )      ._( ':' ).newLine();
-                cnt+= map.value.size();
-                maxKeyLength= writeMap( map.value, "    " );
+                storeKeyToScope(  walker.getPath(tempAS) ).newLine();
+                cnt+= map.size();
+                maxKeyLength= writeMap( map, "    " );
             }
 
             for( Map.Entry<Thread, ArrayList<HashMap<AString, ?>>> thread : storeC.threadInnerStore.entrySet() )
             {
                 if ( thread.getValue().size() == 0 )
                     continue;
-                com.aworx.lib.ALIB_DBG.ASSERT( thread.getValue().size() == 1 );
+                ALIB_DBG.ASSERT( thread.getValue().size() == 1 );
                 if( firstEntry ) firstEntry= false; else   target.newLine();
                 target._NC("  Scope.THREAD_INNER ");  storeThreadToScope( thread.getKey() )._( ':' ).newLine();
                 cnt+= thread.getValue().get( 0 ).size();
@@ -171,15 +179,20 @@ public class ScopeDump
                     storeThreadToScope( thread.getKey() ).newLine();
                 }
 
-            for( PathMap<AString> it : store.languageStore )
+            StringTree<AString>.Walker walker= store.languageStore.new Walker();
+            walker.pathGeneration( Switch.ON );
+            walker.setRecursionDepth(-1);
+            for( walker.setStart() ;walker.isValid() ; walker.next() )
             {
+                if( walker.value() == null )
+                    continue;
                 cnt++;
 
                 target.insertChars( ' ', indentSpaces );
-                target._NC( it.value );
+                target._NC( walker.value() );
                 target.tab( 25, -1 );
 
-                storeKeyToScope( it ).newLine();
+                storeKeyToScope(  walker.getPath(tempAS) ).newLine();
             }
 
             for( Map.Entry<Thread, ArrayList<AString>> thread : store.threadInnerStore.entrySet() )
@@ -235,19 +248,24 @@ public class ScopeDump
                     storeThreadToScope( thread.getKey() ).newLine();
                 }
 
-            for( PathMap<Object> it : store.languageStore )
+            StringTree<Object>.Walker walker= store.languageStore.new Walker();
+            walker.pathGeneration( Switch.ON );
+            walker.setRecursionDepth(-1);
+            for( walker.setStart() ;walker.isValid() ; walker.next() )
             {
+                if( walker.value() == null )
+                    continue;
                 cnt++;
 
                 target.insertChars( ' ', indentSpaces );
                     target._( '\"' );
                     int idx= target.length();
-                    target._NC( it.value.toString() );
+                    target._NC( walker.value().toString() );
                     ESC.replaceToReadable( target, idx );
                     target._( '\"' );
                 target.tab( 25, -1 );
 
-                storeKeyToScope( it ).newLine();
+                storeKeyToScope(  walker.getPath(tempAS) ).newLine();
             }
 
             for( Map.Entry<Thread, ArrayList<Object>> thread : store.threadInnerStore.entrySet() )
@@ -289,51 +307,32 @@ public class ScopeDump
 
         /** ****************************************************************************************
          * Helper method to write a ScopeStores' source related scope key as scope information.
-         * @param map  The PathMap node to get scope information for.
+         * @param key  The key of the StringTree that is to be "translated".
          * @return The target to allow concatenated calls.
          ******************************************************************************************/
-        protected AString storeKeyToScope( PathMap<?> map  )
+        protected AString storeKeyToScope( AString key  )
         {
-            key._();
-            PathMap<?> node= map;
-            while( node != null )
-            {
-                key.insertAt( node.path, 0 );
-                node= node.parent;
-            }
-
-            int classNameStart= 0;
-            int classNameEnd= key.indexOf('#');
-            if (classNameEnd > 0 )
-                classNameStart= key.lastIndexOf( '.', classNameEnd ) + 1;
-            int methodEnd=    classNameEnd >= 0 ? key.indexOf('#', classNameEnd + 1)  : -1;
+            int oldStart= target.length();
+            int fileNameEnd= key.indexOf('#');
+            int methodEnd=    fileNameEnd >= 0 ? key.indexOf('#', fileNameEnd + 1)  : -1;
 
             target._NC("Scope.");
-                 if ( methodEnd   >= 0 )   target._NC( "METHOD       [" );
-            else if ( classNameEnd >= 0 )  target._NC( "CLASS        [" );
-            else                           target._NC( "PACKAGE      [" );
+                 if ( methodEnd   >= 0 )  target._NC( "Method       [" );
+            else if ( fileNameEnd >= 0 )  target._NC( "CLASS        [" );
+            else                          target._NC( "PACKAGE      [" );
 
             int targetStart= target.length();
             target._NC( key );
-
-            if ( classNameEnd >= 0 )
-                target.deleteEnd(1);
+            target.searchAndReplace( '/', '.', oldStart );
 
             if ( methodEnd >= 0 )
             {
-                target._NC( "()\"" );
-                target.replaceSubstring( " METHOD=\"", targetStart + classNameEnd, 2 );
+                target.replaceSubstring( " @", targetStart + fileNameEnd +1, 2 ); // characters: "/#"
+                target._NC( "()" );
             }
 
-            if ( classNameEnd >= 0 )
-            {
-                target.insertAt        ( "\""           , targetStart + classNameEnd      );
-                target.replaceSubstring( " CLASS=\""    , targetStart + classNameStart, 1 );
-            }
-
-            int pos= classNameEnd > 0 ? classNameStart : target.length() - targetStart;
-            target.setCharAt( targetStart + pos -1, '\"' );
-            target.insertAt ( "PACKAGE=\"", targetStart );
+            if ( fileNameEnd >= 0 )
+                target.replaceSubstring("", targetStart + fileNameEnd,  1);
 
             target._(']');
 

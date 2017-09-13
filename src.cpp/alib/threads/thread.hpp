@@ -52,18 +52,18 @@
 namespace aworx { namespace lib {
 
 /**
- *  This namespace of ALib holds classes that are providing an interface into
+ *  This namespace of \b %ALib holds classes that are providing an interface into
  *  multi threaded programming. The design of the classes tries to mimic the basic thread
  *  interface of the Java language.
  *
  *  It is important to understand that
- *  (following \ref aworx::lib "the principle design goals of ALib")
- *  multi threading support of ALib is non intrusive in respect to multi-threading
+ *  (following \ref aworx::lib "the principle design goals of \b %ALib")
+ *  multi threading support of \b %ALib is non intrusive in respect to multi-threading
  *  mechanisms of other C++ libraries and/or the underlying operating system.
  *  This means that a software entity that uses this library is not at all bound to use the thread
  *  classes found within this namespace.
  *
- *  In contrast, using the classes found here, is of-course optional. ALib usually
+ *  In contrast, using the classes found here, is of-course optional. \b %ALib usually
  *  provides a certain level of "source compatibility" between the programming languages
  *  C#, Java and C++.
  *
@@ -71,14 +71,14 @@ namespace aworx { namespace lib {
  *  one found here, as long that such threads become "native" operation system threads.
  *  If later such a thread uses method
  *  \ref aworx::lib::threads::Thread::CurrentThread() "Thread::CurrentThread()",
- *  a corresponding \ref aworx::lib::threads::Thread "Thread" object of ALib
+ *  a corresponding \ref aworx::lib::threads::Thread "Thread" object of \b %ALib
  *  is created internally and returned.
- *  This way, the externally created thread is automatically "registered" with ALib.
+ *  This way, the externally created thread is automatically "registered" with \b %ALib.
  *  If not stated differently in the detailed documentation, from this point in time,
- *  the thread can be interfaced with ALib classes in the same manner as if it was created
+ *  the thread can be interfaced with \b %ALib classes in the same manner as if it was created
  *  using them. The same or similar should be \c true for the opposite situation.
  *
- *  Thread support of ALib can be disabled, respectively enabled, using compiler symbols
+ *  Thread support of \b %ALib can be disabled, respectively enabled, using compiler symbols
  *  #ALIB_FEAT_THREADS_OFF and #ALIB_FEAT_THREADS_ON.
  *  When support is switched off, classes
  *  \ref aworx::lib::threads::Thread "Thread" and
@@ -94,7 +94,7 @@ namespace aworx { namespace lib {
 namespace threads {
 
 /**
- * Initializes ALib thread logic.
+ * Initializes \b %ALib thread logic.
  * This method should not be called directly. use
  * \ref aworx::lib::ALIB::Init "ALIB::Init" to initialize all <b>%ALib Modules</b> included in the
  * distribution.
@@ -102,7 +102,7 @@ namespace threads {
 ALIB_API void Init();
 
 /**
- * Frees resources and shuts down ALib thread logic.
+ * Frees resources and shuts down \b %ALib thread logic.
  * This method should not be called directly. Use
  * \ref aworx::lib::ALIB::TerminationCleanUp "ALIB::TerminationCleanUp" to de-initialize all
  * <b>%ALib Modules</b> included in the distribution.
@@ -129,7 +129,7 @@ class Runnable
 
 /** ************************************************************************************************
  *  This class mimics class Thread of the Java runtime library. For general information of
- *  multi-threading support provided by ALib, see #aworx::lib::threads.
+ *  multi-threading support provided by \b %ALib, see #aworx::lib::threads.
  **************************************************************************************************/
 class Thread : public Runnable
 {
@@ -277,7 +277,7 @@ class Thread : public Runnable
          *  Returns the id of this Thread. Systems threads have IDs below 0, ALIB generated threads
          *  have positive IDs and start with 1.
          *
-         * @return    The ALib id of the thread.
+         * @return    The \b %ALib id of the thread.
          ******************************************************************************************/
         inline
         int            GetId()                              { return id;          }
@@ -306,7 +306,7 @@ class Thread : public Runnable
          * Returns \c true, if this thread was started and is still running. If \c false is
          * returned, the thread object can be safely deleted, without causing a blocking operation.
          * \note
-         *   For system threads (those not created using ALib thread features) \c true is
+         *   For system threads (those not created using \b %ALib thread features) \c true is
          *   returned. It can't be determined if the thread is still alive or not.
          *
          *

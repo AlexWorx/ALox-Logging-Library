@@ -60,7 +60,9 @@ namespace aworx { namespace lib { namespace lang {
     void  removeSingleton( const std::type_info& type )
     {
         auto it= singletonMap.find(type);
-        ALIB_ASSERT_ERROR( it != singletonMap.end(), "Can not remove singleton: Singleton not found" )
+        #if defined(ALIB_ASSERT_ERROR)
+            ALIB_ASSERT_ERROR( it != singletonMap.end(), "Can not remove singleton: Singleton not found" )
+        #endif
         singletonMap.erase( it );
     }
 #endif

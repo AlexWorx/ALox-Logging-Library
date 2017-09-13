@@ -265,7 +265,7 @@ class IApply : public Interface
 /**
  * Templated implementation of #IApply for boxable types which are \e 'applicable'
  * to AStrings. Applicable are all types that have a corresponding specialization of template struct
- * \ref aworx::lib::strings::T_Apply. Consult the ALib String module documentation for more
+ * \ref aworx::lib::strings::T_Apply. Consult the \b %ALib String module documentation for more
  * information.
  *
  * Once a type is made applicable, then on the boxing side of things, this interface class

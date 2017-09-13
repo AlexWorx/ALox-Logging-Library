@@ -113,10 +113,10 @@
     #define UT_FUNC_MACRO   __FUNCTION__
 
     #define  UT_CLASS()                   TEST_CLASS(TESTCLASSNAME)                                                 \
-                                           {  private:  const char* aworxTestName= ALIB_STRINGIFY(TESTCLASSNAME);   \
+                                          {   private:  const char* aworxTestName= ALIB_STRINGIFY(TESTCLASSNAME);   \
                                               public:
 
-    #define  UT_CLASS_END                  };
+    #define  UT_CLASS_END                 };
 
     // The prepro is never easy to understand. So do not think too long about why we have
     // to have the sub-macros "_X" and "_Y".
@@ -136,13 +136,13 @@
 
 #define UT_INIT(...)        aworx::AString utSC (__FILE__);                                        \
                             {                                                                      \
-                                aworx::integer idx= utSC.LastIndexOf( aworx::DirectorySeparator );\
+                                aworx::integer idx= utSC.LastIndexOf( aworx::DirectorySeparator ); \
                                 utSC.DeleteStart( idx + 1 );                                       \
                                 idx= utSC.LastIndexOf( '.' );                                      \
                                 if( idx > 0 )                                                      \
                                     utSC.Delete( idx );                                            \
                             }                                                                      \
-                            AWorxUnitTesting ut( utSC, UT_GET_TEST_NAME );                         \
+                            AWorxUnitTesting ut( UT_GET_TEST_NAME, UT_GET_TEST_NAME );             \
                             UT_PRINT( "################### Unit Test: {}.{}() ###################", utSC, UT_GET_TEST_NAME );
 
 
@@ -192,8 +192,10 @@ class AWorxUnitTesting : public aworx::lib::lang::ReportWriter
         aworx::AString          Domain;
         aworx::String           ActTestName;
         bool                    AssertOnFailure= true;
+        
         static aworx::String128 LastAutoSizes;
         static aworx::AString   GeneratedSamplesDir;
+        static aworx::AString   CustomMetaInfoFormat; // used if set from outside
 
         // defaults to "docs/ALox.CPP/".
         // Set this to a suitable value in your bootstrap code, before using this class with

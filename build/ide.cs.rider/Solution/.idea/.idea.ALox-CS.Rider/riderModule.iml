@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="RIDER_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../../../../../LICENSE.txt">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../LICENSE.txt" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../README.md">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../README.md" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../ALox-CS-.Net45-DLL">
+      <sourceFolder url="file://$MODULE_DIR$/../../../ALox-CS-.Net45-DLL" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../ALox-CS-.Net45-DLL-Release-Log">
+      <sourceFolder url="file://$MODULE_DIR$/../../../ALox-CS-.Net45-DLL-Release-Log" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../ALox-CS-.Net45-NUnit">
+      <sourceFolder url="file://$MODULE_DIR$/../../../ALox-CS-.Net45-NUnit" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../ALox-CS-.Net45-Samples">
+      <sourceFolder url="file://$MODULE_DIR$/../../../ALox-CS-.Net45-Samples" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../..">
+      <excludeFolder url="file://$MODULE_DIR$/../../packages" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib.unittests/AWorxUnitTesting.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib.unittests/AWorxUnitTesting.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib.unittests/UT_alib_config.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib.unittests/UT_alib_config.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib.unittests/UT_alib_containers.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib.unittests/UT_alib_containers.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib.unittests/UT_alib_strings_AString.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib.unittests/UT_alib_strings_AString.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib.unittests/UT_alib_strings_AStringAndSubstring.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib.unittests/UT_alib_strings_AStringAndSubstring.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib.unittests/UT_alib_strings_Format.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib.unittests/UT_alib_strings_Format.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib.unittests/UT_alib_strings_Substring.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib.unittests/UT_alib_strings_Substring.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib.unittests/UT_alib_threads.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib.unittests/UT_alib_threads.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib.unittests/UT_alib_time.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib.unittests/UT_alib_time.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/ALIB_DBG.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/ALIB_DBG.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/ALib.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/ALib.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/config/Configuration.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/config/Configuration.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/config/ConfigurationPlugin.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/config/ConfigurationPlugin.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/config/InMemoryPlugin.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/config/InMemoryPlugin.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/config/IniFile.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/config/IniFile.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/config/Variable.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/config/Variable.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/containers/StringTree.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/containers/StringTree.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/lang/Enums.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/lang/Enums.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/lang/Report.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/lang/Report.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/lang/ReportWriter.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/lang/ReportWriter.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/strings/AString.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/strings/AString.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/strings/CString.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/strings/CString.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/strings/NumberFormat.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/strings/NumberFormat.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/strings/Substring.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/strings/Substring.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/strings/format/Formatter.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/strings/format/Formatter.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/strings/format/FormatterJavaStyle.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/strings/format/FormatterJavaStyle.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/strings/format/FormatterPythonStyle.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/strings/format/FormatterPythonStyle.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/strings/format/FormatterStdImpl.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/strings/format/FormatterStdImpl.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/strings/util/AutoSizes.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/strings/util/AutoSizes.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/strings/util/Spaces.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/strings/util/Spaces.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/strings/util/Tokenizer.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/strings/util/Tokenizer.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/system/ProcessInfo.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/system/ProcessInfo.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/threads/SmartLock.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/threads/SmartLock.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/threads/ThreadLock.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/threads/ThreadLock.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alib/time/Ticks.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alib/time/Ticks.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox.samples/ALoxSamples.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox.samples/ALoxSamples.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox.unittests/UT_alox_domains.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox.unittests/UT_alox_domains.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox.unittests/UT_alox_logger.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox.unittests/UT_alox_logger.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox.unittests/UT_alox_logtools.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox.unittests/UT_alox_logtools.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox.unittests/UT_alox_lox.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox.unittests/UT_alox_lox.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox.unittests/UT_alox_release_log.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox.unittests/UT_alox_release_log.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox.unittests/UT_alox_scopes.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox.unittests/UT_alox_scopes.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox.unittests/UT_alox_scopes_helper.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox.unittests/UT_alox_scopes_helper.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox.unittests/UT_dox_manual.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox.unittests/UT_dox_manual.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox.unittests/UT_dox_reference_manual.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox.unittests/UT_dox_reference_manual.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox.unittests/UT_dox_tutorial.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox.unittests/UT_dox_tutorial.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox.unittests/UT_dox_tutorial_minimum.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox.unittests/UT_dox_tutorial_minimum.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox/ALox.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox/ALox.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox/ALoxTypesAndEnums.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox/ALoxTypesAndEnums.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox/Log.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox/Log.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox/Lox.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox/Lox.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox/core/Domain.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox/core/Domain.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox/core/Logger.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox/core/Logger.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox/core/ScopeDump.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox/core/ScopeDump.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox/core/ScopeInfo.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox/core/ScopeInfo.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox/core/ScopeStore.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox/core/ScopeStore.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox/core/textlogger/MetaInfo.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox/core/textlogger/MetaInfo.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox/core/textlogger/ObjectConverter.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox/core/textlogger/ObjectConverter.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox/core/textlogger/PlainTextLogger.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox/core/textlogger/PlainTextLogger.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox/core/textlogger/TextLogger.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox/core/textlogger/TextLogger.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox/loggers/AnsiLogger.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox/loggers/AnsiLogger.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox/loggers/CLRDebuggerLogger.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox/loggers/CLRDebuggerLogger.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox/loggers/ColorConsoleLogger.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox/loggers/ColorConsoleLogger.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox/loggers/ConsoleLogger.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox/loggers/ConsoleLogger.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox/loggers/MemoryLogger.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox/loggers/MemoryLogger.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox/loggers/TextFileLogger.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox/loggers/TextFileLogger.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox/tools/LogTools.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox/tools/LogTools.cs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../../src.cs/alox/tools/json/DynamicJSONDeserializer.cs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../src.cs/alox/tools/json/DynamicJSONDeserializer.cs" isTestSource="false" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

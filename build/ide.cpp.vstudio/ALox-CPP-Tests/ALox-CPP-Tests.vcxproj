@@ -189,6 +189,7 @@
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_boxing.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_compatiblity_qt.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_config.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_containers.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_strings.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_strings_astring.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_strings_format.cpp" />

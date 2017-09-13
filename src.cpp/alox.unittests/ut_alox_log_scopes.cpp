@@ -173,13 +173,13 @@ UT_METHOD(Log_LineFormat)
         df= ">yy-MM-dd<";    Log::DebugLogger->MetaInfo->DateFormat= df;                                                Log_Info( String128("Date test. Format: \"") << df << '\"' );
         testML->MemoryLog.Clear();
         df= ">yyyy/dd/MM<";  Log::DebugLogger->MetaInfo->DateFormat= df;  testML->MetaInfo->DateFormat= df;             Log_Info( "FMT", String128("Date test. Format: \"") << df << '\"' );
-        UT_TRUE( testML->MemoryLog.SearchAndReplace( "/", "@") == 4 );
+        UT_TRUE( testML->MemoryLog.SearchAndReplace( '/', '@') == 4 );
         Log::DebugLogger->MetaInfo->Format= "%TT@";
         testML->MetaInfo->Format= "%TT@";
         df= ">HH:mm:ss<";    Log::DebugLogger->MetaInfo->TimeOfDayFormat= df;                                           Log_Info( "FMT", String128("Time of day test Format: \"") << df << '\"' );
         testML->MemoryLog.Clear();
         df= ">HH-mm-ss<";    Log::DebugLogger->MetaInfo->TimeOfDayFormat= df;  testML->MetaInfo->TimeOfDayFormat= df;   Log_Info( "FMT", String128("Time of day test. Format: \"") << df << '\"' );
-        UT_TRUE( testML->MemoryLog.SearchAndReplace( "-", "@") == 4 );
+        UT_TRUE( testML->MemoryLog.SearchAndReplace( '-', '@') == 4 );
 
         Log::DebugLogger->MetaInfo->Format= "%tI@";
         testML->MetaInfo->Format= "%tI@";
@@ -422,6 +422,8 @@ UT_METHOD(Log_ScopeDomains)
     Log_SetDomain( "REPLACE",    Scope::Path, 50 );  DDCHECK( "","@/REPLACE/PO2/PO1/PATH/FILE/METHOD#"     ,ml );
     Log_SetDomain( "PO50",       Scope::Path, 50 );  DDCHECK( "","@/PO50/PO2/PO1/PATH/FILE/METHOD#"        ,ml );
 
+     Log_LogState( "", Verbosity::Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
+
     Log_SetDomain( "GLOBAL",     Scope::Global   );  DDCHECK( "","@/GLOBAL/PO50/PO2/PO1/PATH/FILE/METHOD#" , ml );
 
                                                      DDCHECK( "","@/GLOBAL/PO50/PO2/PO1/PATH/FILE/METHOD#" , ml );
@@ -448,6 +450,8 @@ UT_METHOD(Log_ScopeDomains)
     Log_SetDomain( "",     Scope::Path    ,45 ); // same as 50 above! (test)
     Log_SetDomain( "",     Scope::Filename    );
     Log_SetDomain( "",     Scope::Method      );  DDCHECK( "LOC", "@/LOC#"                ,ml );
+
+
 
     // Thread-related
     Log_SetDomain( "T_O",  Scope::ThreadOuter );  DDCHECK( ""   ,"@/T_O#"                 ,ml );

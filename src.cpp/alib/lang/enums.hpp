@@ -48,6 +48,15 @@ enum class Alignment
 };
 
 /** ************************************************************************************************
+ * Denotes sort order.
+ **************************************************************************************************/
+enum class SortOrder
+{
+    Ascending,   ///<  Chooses ascending sort oder.
+    Descending,  ///<  Chooses descending sort oder.
+};
+
+/** ************************************************************************************************
  * Denotes how members of a set something should be taken into account.
  **************************************************************************************************/
 enum class Inclusion
@@ -73,6 +82,15 @@ enum class CurrentData
 {
     Keep,    ///<  Chooses not no clear existing data.
     Clear,   ///<  Chooses to clear existing data.
+};
+
+/** ************************************************************************************************
+ * Denotes if the source data should be moved or copied.
+ **************************************************************************************************/
+enum class SourceData
+{
+    Copy,   ///<  Chooses not to clear existing data.
+    Move,   ///<  Chooses to clear existing data.
 };
 
 /** ************************************************************************************************
@@ -166,7 +184,7 @@ enum class ContainerOp
 
 
 /** ************************************************************************************************
- * Denotes result values across ALib functions
+ * Denotes result values across \b %ALib functions
  **************************************************************************************************/
 enum class Result
 {
@@ -262,6 +280,9 @@ using     Case=             aworx::lib::lang::Case;
 using     Alignment=        aworx::lib::lang::Alignment;
 
 /** Type alias name in namespace #aworx. */
+using     SortOrder=        aworx::lib::lang::SortOrder;
+
+/** Type alias name in namespace #aworx. */
 using     Inclusion=        aworx::lib::lang::Inclusion;
 
 /** Type alias name in namespace #aworx. */
@@ -269,6 +290,9 @@ using     Reach=            aworx::lib::lang::Reach;
 
 /** Type alias name in namespace #aworx. */
 using     CurrentData=      aworx::lib::lang::CurrentData;
+
+/** Type alias name in namespace #aworx. */
+using     SourceData=       aworx::lib::lang::SourceData;
 
 /** Type alias name in namespace #aworx. */
 using     Safeness=         aworx::lib::lang::Safeness;

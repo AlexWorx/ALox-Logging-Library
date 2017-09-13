@@ -152,7 +152,7 @@ namespace thirdparty { namespace std {
             return target;
 
         // copy our buffer into target
-        target.append( src.Buffer() , static_cast<size_t>(regionStart), static_cast<size_t>(regionLength ) );
+        target.append( src.Buffer() + static_cast<size_t>(regionStart), static_cast<size_t>(regionLength ) );
         return  target;
     }
 

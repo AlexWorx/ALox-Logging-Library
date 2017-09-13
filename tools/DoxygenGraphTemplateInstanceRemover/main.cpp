@@ -21,7 +21,6 @@
 #include <alox/alox.hpp>
 #include "alib/compatibility/std_iostream.hpp"
 #include "alib/config/inifile.hpp"
-#include "alib/system/directory.hpp"
 
 #include <fstream>
 #include <iostream>

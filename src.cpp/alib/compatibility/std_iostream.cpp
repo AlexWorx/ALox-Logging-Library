@@ -12,7 +12,6 @@
 
 #if ALIB_MODULE_STRINGS
 
-
 namespace aworx { namespace lib { namespace strings {
 
 #if defined(DOX_PARSER)

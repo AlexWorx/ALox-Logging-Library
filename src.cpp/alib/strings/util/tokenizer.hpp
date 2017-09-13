@@ -17,10 +17,6 @@
     #include "alib/strings/substring.hpp"
 #endif
 
-#if !defined (_GLIBCXX_IOSFWD ) && !defined(_IOSFWD_)
-    #include <iosfwd>
-#endif
-
 namespace aworx { namespace lib { namespace strings {
 
 /**

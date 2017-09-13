@@ -6,7 +6,7 @@
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
-// include ALox main header first...
+
 #if !defined (HPP_ALOX)
     #include "alox/alox.hpp"
 #endif
@@ -20,7 +20,7 @@
 // includes
 // #################################################################################################
 
-namespace aworx { namespace lib { namespace containers{ template<typename StoreT> class PathMap; }}}
+#include "alib/containers/stringtree.hpp"
 
 namespace aworx { namespace lox { namespace core
 {
@@ -77,8 +77,8 @@ class ScopeStore
         /** The value of the global scope */
         StoreT                                  globalStore;
 
-        /** PathMap store for language-related scopes (path,source,method) */
-        lib::containers::PathMap<StoreT>*      languageStore;
+        /** StringTree store for language-related scopes (path,source,method) */
+        lib::containers::StringTree<StoreT>*    languageStore;
 
         /** A list of domain paths of \e Scope::ThreadOuter */
         std::map<int, std::vector<StoreT>>      threadOuterStore;
@@ -110,7 +110,7 @@ class ScopeStore
         Scope                                   actScope;
 
         /** The actual language related scopes' map node */
-        lib::containers::PathMap<StoreT>*       actPathMapNode;
+        typename lib::containers::StringTree<StoreT>::Cursor    actStringTreeNode;
 
         /** The path level when using access methods */
         int                                     actPathLevel;
@@ -224,10 +224,10 @@ class ScopeStore
 
         /** ****************************************************************************************
          * Retrieves and optionally creates an entry in the map that stores language-related
-         * scope information. The result is stored in field #actPathMapNode.
+         * scope information. The result is stored in field #actStringTreeNode.
          * @param create     If \c true, a non-existing entry is created.
          ******************************************************************************************/
-        void getPathMapNode( bool create );
+        void initCursor( bool create );
 
         /** ****************************************************************************************
          * Receives, inserts or removes a value.
@@ -249,7 +249,7 @@ extern template   void                         ScopeStore<AString*>             
 extern template   void                         ScopeStore<AString*>                    ::InitWalk        (Scope,AString*);
 extern template   AString*                     ScopeStore<AString*>                    ::Walk            ();
 extern template   void                         ScopeStore<AString*>                    ::InitAccess      (Scope,int,int);
-extern template   void                         ScopeStore<AString*>                    ::getPathMapNode  (bool);
+extern template   void                         ScopeStore<AString*>                    ::initCursor  (bool);
 extern template   AString*                     ScopeStore<AString*>                    ::access          (int,AString*);
 extern template                                ScopeStore<Box*>                        ::ScopeStore      (ScopeInfo&, bool);
 extern template                                ScopeStore<Box*>                        ::~ScopeStore     ();
@@ -257,7 +257,7 @@ extern template   void                         ScopeStore<Box*>                 
 extern template   void                         ScopeStore<Box*>                        ::InitWalk        (Scope,Box*);
 extern template   Box*                         ScopeStore<Box*>                        ::Walk            ();
 extern template   void                         ScopeStore<Box*>                        ::InitAccess      (Scope,int,int);
-extern template   void                         ScopeStore<Box*>                        ::getPathMapNode  (bool);
+extern template   void                         ScopeStore<Box*>                        ::initCursor  (bool);
 extern template   Box*                         ScopeStore<Box*>                        ::access          (int,Box*);
 extern template                                ScopeStore<std::map<AString, int>*>     ::ScopeStore      (ScopeInfo&, bool);
 extern template                                ScopeStore<std::map<AString, int>*>     ::~ScopeStore     ();
@@ -265,7 +265,7 @@ extern template   void                         ScopeStore<std::map<AString, int>
 extern template   void                         ScopeStore<std::map<AString, int>*>     ::InitWalk        (Scope,std::map<AString, int>*);
 extern template   std::map<AString, int>*      ScopeStore<std::map<AString, int>*>     ::Walk            ();
 extern template   void                         ScopeStore<std::map<AString, int>*>     ::InitAccess      (Scope,int,int);
-extern template   void                         ScopeStore<std::map<AString, int>*>     ::getPathMapNode  (bool);
+extern template   void                         ScopeStore<std::map<AString, int>*>     ::initCursor  (bool);
 extern template   std::map<AString, int>*      ScopeStore<std::map<AString, int>*>     ::access          (int,std::map<AString, int>*);
 extern template                                ScopeStore<std::map<AString, Box>*>::ScopeStore      (ScopeInfo&, bool);
 extern template                                ScopeStore<std::map<AString, Box>*>::~ScopeStore     ();
@@ -273,7 +273,7 @@ extern template   void                         ScopeStore<std::map<AString, Box>
 extern template   void                         ScopeStore<std::map<AString, Box>*>::InitWalk        (Scope,std::map<AString, Box>*);
 extern template   std::map<AString, Box>* ScopeStore<std::map<AString, Box>*>::Walk            ();
 extern template   void                         ScopeStore<std::map<AString, Box>*>::InitAccess      (Scope,int,int);
-extern template   void                         ScopeStore<std::map<AString, Box>*>::getPathMapNode  (bool);
+extern template   void                         ScopeStore<std::map<AString, Box>*>::initCursor  (bool);
 extern template   std::map<AString, Box>* ScopeStore<std::map<AString, Box>*>::access          (int,std::map<AString, Box>*);
 #endif
 

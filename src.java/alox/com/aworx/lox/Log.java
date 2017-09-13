@@ -86,7 +86,7 @@ public abstract class Log
          * Removes the \e Logger(s) which was/were created by \ref addDebugLogger.
          *  This method also invokes
          *  \ref com::aworx::lib::lang::Report::popWriter "Report.popWriter(null)"
-         *  to install a default \ref com::aworx::lib::lang::ReportWriter "ReportWriter" for ALib.
+         *  to install a default \ref com::aworx::lib::lang::ReportWriter "ReportWriter" for \b %ALib.
          *
          * @param lox The lox to remove the debug logger from.
          *           If null, the static debug object#LOX is used.
@@ -118,7 +118,7 @@ public abstract class Log
 
 
         /** ************************************************************************************
-         * In the case that the original ALib ReportWriterStdIO is still in place,
+         * In the case that the original \b %ALib ReportWriterStdIO is still in place,
          * \ref com::aworx::lib::lang::Report::pushWriter "Report.pushWriter" is invoked to provide a
          * ReportWriter of type
          * \ref com::aworx::lox::ALoxReportWriter "ALoxReportWriter".
@@ -167,10 +167,10 @@ public abstract class Log
         public static TextLogger        debugLogger                                           =null;
 
         /**
-         * The ALib ReportWriter. This will be created and registered in method
+         * The \b %ALib ReportWriter. This will be created and registered in method
          * \ref com::aworx::lox::Log::addDebugLogger    "Log.addDebugLogger" and removed in
          * \ref com::aworx::lox::Log::removeDebugLogger "Log.removeDebugLogger" in the case that
-         * the original ALib ReportWriterStdIO is in place.
+         * the original \b %ALib ReportWriterStdIO is in place.
          */
         public static ALoxReportWriter  debugReportWriter                                     =null;
 
@@ -265,7 +265,7 @@ public abstract class Log
      * \attention
      *   The same as with most interface methods of this class, the given \p domain parameter is
      *   combined with <em>%Scope Domains</em> set for the callers' \e %Scope. In standard use
-     *   cases of %ALox, the \e %Verbosity of a \e Domain is set using absolute domain path
+     *   cases of \b %ALox, the \e %Verbosity of a \e Domain is set using absolute domain path
      *   addressing. Therefore, it is recommended to have any domain path passed to this method
      *   starting with <c> '/'</c>, which suppresses the concatenation of <em>%Scope Domains</em>.<br>
      *   This is why this parameter with this method defaults to <c> '/'</c>, while with other
@@ -280,7 +280,7 @@ public abstract class Log
      * \attention
      *   Consequently, this method may be (mis-) used to modify the 'actual' (default) scope
      *   when explicitly giving an empty string with parameter \p domain. This is useful, to
-     *   temporarily adjust a scope. But remember: %ALox was designed to avoid temporary code
+     *   temporarily adjust a scope. But remember: \b %ALox was designed to avoid temporary code
      *   lines...
      *
      * @param logger     The logger to be to be affected (case insensitive).
@@ -522,7 +522,7 @@ public abstract class Log
      *
      * <b>Final remarks</b>
      * Domain substitution is useful to permanently change ('redirect') domain paths of
-     * 3rd party code (e.g. libraries using ALox) or log statements that must not be changed
+     * 3rd party code (e.g. libraries using \b %ALox) or log statements that must not be changed
      * for other reasons. It is advised to not 'overuse' this feature, as side effects
      * are inherent to the concept of <em>Domain Substitution</em>. For example, an unwanted side effect might be
      * that <em>Prefix Logables</em> are not applicable to the substituted domain, while other <em>Prefix Logables</em> are
@@ -570,11 +570,11 @@ public abstract class Log
      *
      *<p>
      * \note
-     *   The word 'prefix' in this methods' name and in the name of ALox feature
+     *   The word 'prefix' in this methods' name and in the name of \b %ALox feature
      *   <em>Prefix Logables</em> is chosen for the fact that with text loggers (which is the
-     *   most widely applied use case for ALox) such objects are prefixes to the log
+     *   most widely applied use case for \b %ALox) such objects are prefixes to the log
      *   message. Of-course, with using \e %Scope.THREAD_INNER, this turns into a suffix!<br>
-     *   When using ALox to process objects instead of log messages, the concept of
+     *   When using \b %ALox to process objects instead of log messages, the concept of
      *   <em>Prefix Logables</em> is very useful. Just the name does not fit so well anymore.
      *   Think of 'SetContext' and <em>Context Objects</em> instead.
      *
@@ -756,9 +756,9 @@ public abstract class Log
      * \attention
      * When data objects are 'overwritten', previous objects will be deleted internally.
      * Hence, only pointers to heap-allocated objects (created with \c new) may be passed!<br>
-     * For more information, consult the ALox user manual.
+     * For more information, consult the [ALox User Manual](../manual.html).
      *
-     * \note <em>Log Data</em> is a feature provided by ALox to support debug-logging.
+     * \note <em>Log Data</em> is a feature provided by \b %ALox to support debug-logging.
      *       It is not advised to use <em>Log Data</em> to implement application logic.
      *
      * @param data      The data object to store.
@@ -849,7 +849,7 @@ public abstract class Log
      * Optional parameters \p key and \p scope offer various possibilities to reference
      * such objects.<br>
      *
-     * \note <em>Log Data</em> is a feature provided by ALox to support debug-logging.
+     * \note <em>Log Data</em> is a feature provided by \b %ALox to support debug-logging.
      *       It is not advised to use <em>Log Data</em> to implement application logic.
      *
      * @param key       The optional key to the data.
@@ -938,7 +938,7 @@ public abstract class Log
      *
      * \note
      *   As an alternative to (temporarily) adding an invocation of <b>%Lox.State</b> to
-     *   your code, ALox provides configuration variable
+     *   your code, \b %ALox provides configuration variable
      *   [ALOX_LOXNAME_DUMP_STATE_ON_EXIT](group__GrpALoxConfigVars.html).
      *   This allows to enable an automatic invocation of this method using external
      *   configuration data like command line parameters, environment variables or
@@ -1147,7 +1147,8 @@ public abstract class Log
      * \note
      *   Due to the limitations of the Java language to dissolve ambiguities when invoking
      *   overloaded methods, most of the overloads provided await parameters
-     *   \p domain and \p verbosity at the start. This is in difference to ALox for C++ and C#,
+     *   \p domain and \p verbosity at the start. This is in difference to <b>%ALox for C++</b> and 
+     *   <b>%ALox forC#</b>,
      *   where overloaded methods always default these parameters to \c null respectively
      *   \c %Verbosity.INFO.<br>
      *   Fortunate exceptions are

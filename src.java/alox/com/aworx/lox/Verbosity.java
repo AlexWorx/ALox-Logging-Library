@@ -7,20 +7,20 @@
 package com.aworx.lox;
 
 /** ************************************************************************************************
-* This enum is used in %ALox to control the 'verbosity' or 'verboseness' of the log output.
+* This enum is used in \b %ALox to control the 'verbosity' or 'verboseness' of the log output.
  * The values herein - apart from special value 'OFF' - are sorted in the following order
  * - VERBOSE (highest level)
  * - INFO
  * - WARNING
  * - ERROR (lowest level).
  *
- * A value of this set is provided to ALox in two different ways:
+ * A value of this set is provided to \b %ALox in two different ways:
  * First, all methods of class \ref com::aworx::lox::Lox "Lox" that execute a log operation
  * assign a value of this enum to the <em>Log Statement</em>. Secondly, methods
  * \ref com::aworx::lox::Lox::setVerbosity "Lox.setVerbosity", are defining the 'accepted' \e minimal
  * \e Verbosity for a pair of <em>\<Logger/%Log Domain\></em>.
  *
- * %ALox, when executing a statement, checks both values against each other. A <em>Log Statement</em>
+ * \b %ALox, when executing a statement, checks both values against each other. A <em>Log Statement</em>
  * is executed, when the <em>\<Logger/%Log Domain\></em> setting is set to the same or a 'higher level'.
  * For example if a <em>\<Logger/%Log Domain\></em> setting is \b %WARNING, then <em>Log Statements</em>
  * with associated \e %Verbosity \b %WARNING and \b %ERROR are executed and those with \b %INFO and

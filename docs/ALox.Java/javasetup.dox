@@ -41,34 +41,12 @@ We call this folder the *ALOX_LIB_PATH*. Within the folder you should find at le
 
 
 \~Comment ####################################################################################### \~
-## 1.2. For Eclipse Users: Link one of the following projects into your solution ## {#javasetup_eclipse}
+## 1.2. Eclipse ## {#javasetup_eclipse}
 
-To incorporate ALox into Eclipse, you will find the following ready to use projects in *ALOX_LIB_PATH*:
+Predefined projects for Eclipse IDE (compatible with Luna, Mars, Neon, Oxygen) are found in
 
-- Eclipse V.4.x (Luna, Mars, Neon) project, standard (Desktop) Java with Java compiler 1.6
+        ALOXLIBPATH/build/ide.java.eclipse
 
-        ALOXLIBPATH/build/ide.java.eclipse/ALox-Java-1.6
-
-
-- Eclipse V.4.x (Luna, Mars, Neon) project for Android development
-
-        ALOXLIBPATH/build/ide.java.eclipse/ALox-Java-Android
-
-
-If there is no appropriate predefined project available for you, skip the next section and continue reading
-\ref javasetup_addingsource.
-
-Otherwise, its just two quick steps:
-
-__Step 1:__ Import the predefined project into your eclipse workspace. Steps are:
-
-- Open Eclipse with the workspace that contains the project(s) that you want to enrich with ALox logging
-- In Eclipse main menu, choose "File" / "Import"
-- From the dialog choose "General" / "Existing Projects into Workspace"
-- Press next and provide the root directory as appropriate (see list above)
-- Continue the Wizard as needed.
-
-You should have the project now incorporated into your workspace without any compiler errors.
 
 \note
 The Java sources were coded using Eclipse with quite a high warning level setting. This led to
@@ -79,16 +57,17 @@ Preferences "Window/Preferences", Section "Java/Compiler/Errors/Warnings". Here,
 section, set "Unused '@SuppressWarnings' token:" to "Ignore".
 
 
-__Step 2:__ Set a build dependency from your project to the just added *ALox-Java-xxx* project. Steps are:
+## 1.3. Android Studio ## {#javasetup_android_studio}
 
-   - right click your project in Eclipse "Project Explorer" and choose "Properties"
-   - In section "Java Build Path" go to the tab named "Projects"
-   - Press the "Add..." button and tick "ALox-Java"
-   - For the Android projects: Also set the ALox project for Android as a library in the "Android" section
-     of the project properties.
+Predefined projects for Android Studio  are found in
+
+        ALOXLIBPATH/build/ide.java.android-studio
+
+The project includes a very basic sample, which is more or less a proof of concept.
+
 
 \~Comment ####################################################################################### \~
-## 1.3 Alternatively: Adding source code to your project ## {#javasetup_addingsource}
+## 1.4 Alternatively: Adding source code to your project ## {#javasetup_addingsource}
 If there is no pre-defined project provided that suits your IDE (or needs), then you might want to add
 the ALox source code directly to your project or to a library  project that you may want to create to
 separate the ALox code from your code. It should be fairly easy. The Java sources found in:
@@ -117,7 +96,7 @@ To stream ALox logging into LogCat create a logger of type [AndroidLogCatLogger]
 instead of type [ConsoleLogger](@ref com.aworx.lox.loggers.ConsoleLogger) as follows:
 
 \code{.cs}
-    Log.setVerbosity( new AndroidLogCatLogger("LogCat"), Verbosity.VERBOSE );
+    Log.setVerbosity( new AndroidLogCatLogger(), Verbosity.VERBOSE );
 \endcode
 
 Attention: The normal [ConsoleLogger](@ref com.aworx.lox.loggers.ConsoleLogger) will not produce
@@ -125,7 +104,7 @@ any visible output using the Android Emulator or a debugging device.
 
 
 \~Comment ####################################################################################### \~
-## 1.4 Test your setup ##  {#javasetup_testnow}
+## 1.5 Test your setup ##  {#javasetup_testnow}
 
 To test your setup, add minimum ALox functionality to your project as described in the first chapter
 of \ref javatutorial into your main method or anywhere you think it is appropriate:

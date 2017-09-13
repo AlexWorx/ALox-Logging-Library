@@ -24,7 +24,7 @@ import com.aworx.lib.strings.Substring;
  * by default points to.
  *
  * \note
- *   Replacing the converters is deemed to be an advanced usage of ALib. Consult the source code
+ *   Replacing the converters is deemed to be an advanced usage of \b %ALib. Consult the source code
  *   for detailed information about how to implement an application specific converter.
  *
  * This default implementation proceeds as follows:

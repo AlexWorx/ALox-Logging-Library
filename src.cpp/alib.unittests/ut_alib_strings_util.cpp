@@ -236,24 +236,6 @@ UT_METHOD( SimpleText )
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 UT_CLASS_END
 
 } //namespace

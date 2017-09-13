@@ -17,9 +17,9 @@ using System.Collections.Generic;
 
 /** ************************************************************************************************
  * This is the C# namespace for internal main classes and other things belonging to
- * the <em>%ALox Logging Library</em>.<p>
+ * the <b>%ALox Logging Library</b>.<p>
  * Types and interfaces found in this namespace are not designed for access by users of the
- * library. However, if extending ALox, e.g. by implementing new custom <em>loggers</em>, things
+ * library. However, if extending \b %ALox, e.g. by implementing new custom <em>loggers</em>, things
  * found here provide an important foundation.
  *
  * Developed by A-Worx GmbH and published under Boost Software License.
@@ -27,7 +27,7 @@ using System.Collections.Generic;
 namespace cs.aworx.lox.core {
 
 /** ************************************************************************************************
- * This is central class of the ALox logging implementation. It is **not** recommended to use this
+ * This is central class of the \b %ALox logging implementation. It is **not** recommended to use this
  * class directly for logging. Instead, use the simple and convenient static interface class
  * Log or, for release logging and other more complex operations use a Lox instance.
  * The class is abstract. To implement an own log stream, derive a new Logger class and implement

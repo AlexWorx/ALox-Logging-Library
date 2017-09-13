@@ -33,10 +33,10 @@ public class ALoxSamples
     public static void releaseLogging()
     {
         // create a lox for release logging
-        Lox lox= new Lox( "ReleaseLox" );
+        Lox lox= new Lox( "MyReleaseLox" );
 
         // let the system choose an appropriate console logger
-        TextLogger releaseLogger= Lox.createConsoleLogger();
+        TextLogger releaseLogger= Lox.createConsoleLogger( "MyReleaseLogger" );
 
         // In debug compilations, we still install a report writer.
         Log.addALibReportWriter( lox );
@@ -306,7 +306,7 @@ public class ALoxSamples
     // #############################################################################################
     /**
      *  In-between the different tests, we have to do some System.out.println() here to have at
-     *  least a minimum output after pruning ALox (as this software does not do anything but
+     *  least a minimum output after pruning \b %ALox (as this software does not do anything but
      *  logging).
      *
      * @param args
@@ -326,7 +326,6 @@ public class ALoxSamples
             "##################################################################################################\n"
             );
         }
-
 
         Configuration.Default.insertPlugin( iniFile, Configuration.PRIO_INI_FILE );
 

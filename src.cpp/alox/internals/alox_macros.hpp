@@ -91,7 +91,7 @@
  * The Lox instance used by all debug logging macros. This can be overwritten (prior or after
  * including alox.hpp) to allow different instances of class Lox for debug logging within
  * different source entities. However, other ways to structure log output and to separate
- * log information into different streams exists in ALox and overwriting this macro is not
+ * log information into different streams exists in \b %ALox and overwriting this macro is not
  * recommended for standard use cases.<p>
  *
  * Note: The definition must provide a reference (not a pointer) to the \b %Lox object.
@@ -101,7 +101,7 @@
  * including alox.hpp) to provide access to a, dedicated instance of class Lox created for
  * release logging within a software.<br>
  * It is of-course allowed to use different instances within different source entities.
- * However, other ways to structure log output and separate log streams exists in ALox and should
+ * However, other ways to structure log output and separate log streams exists in \b %ALox and should
  * be evaluated prior to introducing different instances of class Lox.<p>
  *
  * Note: The definition must provide a reference (not a pointer) to the \b %Lox object.
@@ -122,16 +122,35 @@
 
 
 /**
+ * \def  LOG_CI
+ * Dependent on #ALOX_DBG_LOG_CI, this macro provides comma delimited source information
+ * (sourcefile, line number, function name) or corresponding \c null values.
+ *
+ * \def  LOX_CI
+ * Dependent on #ALOX_REL_LOG_CI, this macro provides comma delimited source information
+ * (sourcefile, line number, function name) or corresponding \c null values.
+ */
+
+#ifdef  ALOX_DBG_LOG_CI
+    #define LOG_CI      ALIB_SRC_INFO_PARAMS
+#else
+    #define LOG_CI      nullptr, 0, nullptr
+#endif
+
+#ifdef  ALOX_REL_LOG_CI
+    #define LOX_CI      ALIB_SRC_INFO_PARAMS
+#else
+    #define LOX_CI      nullptr, 0, nullptr
+#endif
+
+
+/**
  * \def  LOG_ACQUIRE
  * Macro that is placed at the beginning of almost all macros of type \ref GrpMacrosDebugLog.
  * Provides scope information (provided that \ref ALOX_DBG_LOG_CI is set) to the lox and places
  * the debug lox instance access code using \ref LOG_LOX.
  */
-#ifdef  ALOX_DBG_LOG_CI
-    #define LOG_ACQUIRE     { aworx::Lox& _log= LOG_LOX; _log.Acquire( ALIB_SRC_INFO_PARAMS );
-#else
-    #define LOG_ACQUIRE     { aworx::Lox& _log= LOG_LOX; _log.Acquire( nullptr, 0, nullptr );
-#endif
+#define LOG_ACQUIRE     { aworx::Lox& _log= LOG_LOX; _log.Acquire( LOG_CI );
 
 /**
  * \def  LOG_RELEASE
@@ -146,11 +165,7 @@
  * Provides scope information (provided that \ref ALOX_REL_LOG_CI is set) to the lox and places
  * the release lox instance access code using \ref LOX_LOX.
  */
-#ifdef  ALOX_REL_LOG_CI
-    #define LOX_ACQUIRE     { aworx::Lox& _lox= LOX_LOX; _lox.Acquire( ALIB_SRC_INFO_PARAMS );
-#else
-    #define LOX_ACQUIRE     { aworx::Lox& _lox= LOX_LOX; _log.Acquire( nullptr, 0, nullptr );
-#endif
+#define LOX_ACQUIRE     { aworx::Lox& _lox= LOX_LOX; _lox.Acquire( LOX_CI );
 
 /**
  * \def  LOX_RELEASE
@@ -169,12 +184,13 @@
 /**
  * @defgroup GrpMacrosDebugLog ALox Macros For Debug Logging
  *
- * The macros listed here, are provided to place debug <em>Log Statements</em> within source code using ALox.
- * Besides that, macros controlling and setting preferences for ALox exists.<p>
+ * The macros listed here, are provided to place debug <em>Log Statements</em> within source code 
+ * using \b %ALox.
+ * Besides that, macros controlling and setting preferences for \b %ALox exists.<p>
  *
  * The exclusive use of these macros should be sufficient to support most of common debug logging
- * statements with ALox. Should some functionality be not available easily with using the macros,
- * of-course, the normal C++ API of ALox can be used in parallel to using the macros.
+ * statements with \b %ALox. Should some functionality be not available easily with using the macros,
+ * of-course, the normal C++ API of \b %ALox can be used in parallel to using the macros.
  * For proper pruning of code that is using the C++ API, such code has to be enclosed by<br>
  \verbatim
  #if ALOX_DBG_LOG
@@ -188,17 +204,17 @@
  * logging. In contrast to this, a set of similar macros exists for release logging
  * (see \ref GrpMacrosReleaseLog). Those are
  * prefixed "Lox_". (The choice of the prefixes *Log_* and *Lox* provide  maximum source code
- * compatibility of ALox for C++ log lines in comparison to ALox for C# and ALox for Java.<p>
+ * compatibility of <b>%ALox for C++</b> log lines in comparison to ALox for C# and ALox for Java.<p>
  *
  * Most macros make use of the macro \ref LOG_LOX, which references a singleton
  * object of class \ref aworx::lox::Lox "Lox" that is used for all debug logging.
  * This singleton concept covers most
- * uses cases for debug logging. If more flexibility is wanted, then either the macro
- * \ref LOG_LOX might be changed for different compilation units or the ALox C++
- * API might be used instead of the macros listed here.
+ * uses cases for debug logging. If more flexibility is wanted, then either macro
+ * \ref LOG_LOX might be changed for different compilation units or the <b>%ALox for C++ API</b> 
+ * might be used instead of the macros listed here.
  *
- * \note The ALox Scope Domain mechanism as well as other ALox functionality which relies on \e Scopes
- * rely on the information provided by ALib macro \ref ALIB_SRC_INFO_PARAMS.
+ * \note The <em>Scope Domain</em> mechanism of \b %ALox, as well as other \b %ALox functionality 
+ * which relies on \e Scopes use the information provided by \b %ALib macro \ref ALIB_SRC_INFO_PARAMS.
  * Changing this macro, might cause these mechanism to fail.
  * @{
  */
@@ -208,8 +224,8 @@
  * \def  Log_Prune
  * This very simple macro is used for pruning debug <em>Log Statements</em>.
  * While it is used as a building block of all other macros for debug logging, for code entities
- * using ALox, it provides an easy way to prune code lines that get inserted purely to support
- * logging, e.g. to create ALox loggers or to prepare more complex log output. (The alternative
+ * using \b %ALox, it provides an easy way to prune code lines that get inserted purely to support
+ * logging, e.g. to create \b %ALox loggers or to prepare more complex log output. (The alternative
  * way is to enclose such code within
  * <code> \#ifdef ALOX_DBG_LOG </code> / <code> \#endif </code> preprocessor lines.
  * <p>
@@ -307,11 +323,11 @@
  * @defgroup GrpMacrosReleaseLog        ALox Macros For Release Logging
  *
  * The macros listed here, are provided to place release <em>Log Statements</em> within source code using
- * ALox. Besides that, macros controlling and setting preferences for ALox exists.<p>
+ * \b %ALox. Besides that, macros controlling and setting preferences for ALox exists.<p>
  *
  * The exclusive use of these macros should be sufficient to support most of common release logging
- * statements with ALox. Should some functionality be not available easily using the macros,
- * of-course, the normal C++ API of ALox can be used in parallel to using the macros.
+ * statements with \b %ALox. Should some functionality be not available easily using the macros,
+ * of-course, the normal C++ API of \b %ALox can be used in parallel to using the macros.
  * Code that is using the C++ API might be enclosed by<br>
  \verbatim
  #if ALOX_REL_LOG
@@ -333,7 +349,7 @@
  * <em>debug logging</em> (see \ref GrpMacrosDebugLog). Those are
  * prefixed <b>Log_</b>.
  * \note The choice of the prefixes <b>Log_</b> and <b>Lox_</b> was made to provide  maximum source
- * code compatibility of <em>ALox for C++</em> log lines in comparison to other ALox implementations
+ * code compatibility of <b>%ALox for C++</b> log lines in comparison to other ALox implementations
  * in other programming languages, which provide a class Log as a kind of 'mirror' class of
  * class Lox. Invocations to class Log get pruned in these languages. <p>
  *
@@ -341,8 +357,8 @@
  * object of class \ref aworx::lox::Lox "Lox" that is used for all release logging.
  * This singleton concept covers most
  * uses cases for release logging. If more flexibility is wanted, then either the macro
- * \ref LOX_LOX might be changed for different compilation units or the ALox C++
- * API might be used instead of the macros listed here.
+ * \ref LOX_LOX might be changed for different compilation units or the <b>%ALox C++ API</b>
+ * might be used instead of the macros listed here.
  * @{
  */
 
@@ -353,8 +369,8 @@
  * gets disabled (what in standard release scenarios is not done).<p>
  *
  * While it is used as a building block of all other macros for release logging, for code entities
- * using ALox, it provides an easy way to prune code lines that get inserted purely to support
- * logging, e.g. to create ALox loggers or to prepare more complex log output. (The alternative
+ * using \b %ALox, it provides an easy way to prune code lines that get inserted purely to support
+ * logging, e.g. to create \b %ALox loggers or to prepare more complex log output. (The alternative
  * way is to enclose such code within
  * <code> \#ifdef ALOX_REL_LOG </code> / <code> \#endif </code> preprocessor lines.
  * <p>
@@ -388,7 +404,7 @@
  * \attention
  *  If \ref ALOX_REL_LOG_CI is not set, which is the default for release logging, and when used with language-related
  *  \e Scopes, this method will log an internal warning and will not be effective in respect to
- *  \e %Scope.Path, \e %Scope.Filename, and \e %Scope.Method. See ALox user manual for detailed information.
+ *  \e %Scope.Path, \e %Scope.Filename, and \e %Scope.Method. See [ALox User Manual](../manual.html) for detailed information.
  *  If Scope Domains based on source-related scopes should be supported in release logging, the
  *  software entity has to be compiled with precompiler symbol \ref ALOX_REL_LOG_CI_ON.
  *  Note that one effect of setting this symbol is, that information on source code paths and file names, as well as

@@ -121,13 +121,12 @@ class ScopeDump
         AString& storeThreadToScope( int threadID );
 
         /** ****************************************************************************************
-         * Helper method to write a PathMaps' key as scope information.
-         * @param map  The PathMap node to get scope information for.
+         * Helper method to write a StringTrees' key as scope information.
+         * @param key  The key used for the StringTree.
          * @return The target to allow concatenated calls.
          ******************************************************************************************/
-        template<typename T>
         ALOX_API
-        AString& storeKeyToScope( const lib::containers::PathMap<T>& map );
+        AString& storeKeyToScope( String key );
 
 }; // ScopeDump
 

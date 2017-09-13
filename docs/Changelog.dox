@@ -15,6 +15,101 @@ The first version released was V. 1.0.1 in **May 2013**.
 
 This change log is sorted reversely in respect to chronology.
 
+
+\~Comment ####################################################################################### \~
+\~Comment #############################       V. 1709        #################################### \~
+\~Comment ####################################################################################### \~
+
+## Version 1709, Revision 0, released September 13th, 2017 ##
+
+<b>Project Setup and Tools:</b><br>
+
+- Migrated various tools to new versions, i.E: GCC 7.2.0, Clang 4.0.1, CMake 3.92, valgrind 3.13.0,  
+  QT Creator 4.4.0, Rider 2017.1.1, IntelliJ 2017.2.4, CLion 2017.2, Eclipse Oxygen, VStudio 15.3.3
+  Android Studio 2.3.3  
+- Removed Android project for Eclipse. As a replacement, added Android Studio project.  
+- JetBrains IDE support: For IDEs \e CLion, \e Rider and \e IntelliJ, the files found in the
+  hidden \e .clion project folder are now included in the distribution. 
+  In the case of \e CLion, dedicated project folders have been added to the build folder. 
+
+
+<b>Changes in ALib:</b><br>
+- Added enum classes
+    <b>%SortOrder</b>
+      ([C++] (@ref      aworx::lib::lang::SortOrder),
+       [C#]  (@ref  cs::aworx::lib::lang::SortOrder),
+       [Java](@ref com::aworx::lib::lang::SortOrder)) and
+    <b>%SourceData</b>
+      ([C++] (@ref      aworx::lib::lang::SourceData),
+       [C#]  (@ref  cs::aworx::lib::lang::SourceData),
+       [Java](@ref com::aworx::lib::lang::SourceData)).
+
+- Added method
+    <b>%IndexOfOrLength</b>
+      ([C++] (@ref      aworx::lib::strings::String),
+       [C#]  (@ref  cs::aworx::lib::strings::AString),
+       [Java](@ref com::aworx::lib::strings::AString)) to class \b %AString (in C++ \b %String), 
+       which returns the length of the string instead \c -1 in the case that the search has no result. 
+       This is often more efficient and consequently, the use of method \b IndexOf has been replaced in
+       various places of the library.
+
+- Added overload method
+    <b>%SearchAndReplace</b>
+      ([C++] (@ref      aworx::lib::strings::AString),
+       [C#]  (@ref  cs::aworx::lib::strings::AString),
+       [Java](@ref com::aworx::lib::strings::AString)) to class \b %AString to search and replace
+       characters (in contrast to sub strings). 
+       This is often more efficient and consequently, the use of method \b SearchAndReplace has been 
+       replaced in various places of the library. 
+
+- Replaced former class \b %PathMap by a complete rewrite named
+    <b>%StringTree</b>
+      ([C++] (@ref      aworx::lib::containers::StringTree),
+       [C#]  (@ref  cs::aworx::lib::containers::StringTree),
+       [Java](@ref com::aworx::lib::containers::StringTree)). While good old \p %PathMap was a
+  "nice try" to have a lean and very fast implementation of "string path based trees", the new
+  implementation follows a slightly different concept and is much more powerful.
+
+- Various smaller documentation fixes.
+
+- C++ Version
+  - Renamed methods \b ThreadLockNR::SetMode and \b ThreadLockNR::Mode to
+    \ref aworx::lib::threads::ThreadLockNR::SetSafeness "ThreadLockNR::SetSafeness" and
+    \ref aworx::lib::threads::ThreadLockNR::GetSafeness "ThreadLockNR::GetSafeness".
+    Changed methods
+    \ref aworx::lib::threads::ThreadLock::GetMode              "ThreadLock::GetMode",
+    \ref aworx::lib::threads::ThreadLock::GetSafeness          "ThreadLock::GetSafeness" and
+    \ref aworx::lib::threads::ThreadLock::DbgCountAcquirements "ThreadLock::DbgCountAcquirements"
+    to \c const.
+  - Fixed display of test name in gtest version of unittests.
+  - Added structs
+    \ref aworx::lib::strings::std_Hash   "std_Hash" and
+    \ref aworx::lib::strings::std_Equals "std_Equals" to support ALib strings as key types
+    for \b std::unordered_map and similar classes.
+  - Fixed some analyzer warnings (\b valgrind), for example by adding missing \b ALIB_STRING_DBG_UNTERMINATE 
+    statement in method \ref aworx::lib::strings::AString::SetLength "AString::SetLength".
+
+
+
+<b>Changes in ALox:</b><br>
+- Fixed a bug that occurred in certain situations in respect to \b Scope::Path (in Java \b %Scope.Package)
+  leading to wrongly evaluated <em>Log Domains</em>.
+  This was fixed by using new \b %ALib class \b %StringTree (mentioned above) to manage
+  language-related scope information in \b %ALox.
+
+- Fixed a bug introduced with last revision concerning the output of
+  <b>%TextLogger.FmtMsgSuffix</b>
+   ([C++] (@ref      #aworx::lox::core::textlogger::TextLogger::FmtMsgSuffix),
+    [C#]  (@ref  #cs::aworx::lox::core::textlogger::TextLogger::FmtMsgSuffix),
+    [Java](@ref #com::aworx::lox::core::textlogger::TextLogger::fmtMsgSuffix)) with the last
+  line of multi-line log statements.
+  
+- Fixed a bug introduced with version 1702, which prevented the external use of internal log
+  domain (as described in manual section 11.3). 
+     
+- C++ Version
+  - Introduced macros #LOG_CI and #LOX_CI.
+
 \~Comment ####################################################################################### \~
 \~Comment #############################       V. 1702 R1     #################################### \~
 \~Comment ####################################################################################### \~

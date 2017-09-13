@@ -378,7 +378,7 @@ class MetaInfo
 
 /** ************************************************************************************************
  *  This class is a still abstract implementation of class Logger which is used as the super class
- *  for all textual Logger implementations within ALox, e.g. ConsoleLogger.
+ *  for all textual Logger implementations within \b %ALox, e.g. ConsoleLogger.
  *
  *  The class uses a helper class to generate the textual representation of the meta information
  *  of a log call.
@@ -407,7 +407,7 @@ class TextLogger : public Logger
         /** Denotes whether this logger writes to the <em>standard output streams</em>.  */
         bool                    usesStdStreams;
 
-        /** Used to avoid to repeatedly register with ALib <em>standard output stream</em> lockers
+        /** Used to avoid to repeatedly register with \b %ALib <em>standard output stream</em> lockers
             when attached to multiple instances of class \b Lox.   */
         int                     stdStreamLockRegistrationCounter                                 =0;
 

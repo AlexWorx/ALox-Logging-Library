@@ -29,13 +29,6 @@
     #error "ALib Include order error"
 #endif
 
-// #################################################################################################
-// includes
-// #################################################################################################
-#if !defined (_GLIBCXX_CCTYPE) && !defined (_CCTYPE_)
-    #include <cctype>
-#endif
-
 namespace aworx { namespace lib { namespace strings
 {
 
@@ -160,7 +153,7 @@ namespace applyto {
 #endif
 
 // #################################################################################################
-// struct T_Apply(): ALib enum types (mostly for debugging)
+// struct T_Apply(): \b %ALib enum types (mostly for debugging)
 // #################################################################################################
 
     /** Specialization of template struct \ref T_Apply for type \c lang::Switch.   */
@@ -207,8 +200,26 @@ namespace applyto {
         static inline integer Apply( AString& target, const lang::Alignment& value )
         {
             target._<false>( value == lang::Alignment::Left   ? "Left" :
-                      value == lang::Alignment::Center ? "Center" :
-                                                          "Right" );
+                             value == lang::Alignment::Center ? "Center" :
+                                                                "Right" );
+            return 1;
+        }
+    };
+
+
+    /** Specialization of template struct \ref T_Apply for type \c lang::SortOrder.   */
+    template<> struct       T_Apply<lang::SortOrder> : public std::true_type
+    {
+        /** ****************************************************************************************
+         * Writes the values of enum class \b SortOrder
+         * @param target The object that \b Apply was invoked on.
+         * @param value      The value to write to \p target.
+         * @return The number of characters appended to target.
+         ******************************************************************************************/
+        static inline integer Apply( AString& target, const lang::SortOrder& value )
+        {
+            target._<false>( value == lang::SortOrder::Ascending   ? "Ascending" :
+                                                                     "Descending"   );
             return 1;
         }
     };
@@ -501,7 +512,7 @@ namespace applyto {
         {
             public:
             const String&    theContent;   ///< the content of the field.
-            integer         theWidth;     ///< the width of the field.
+            integer          theWidth;     ///< the width of the field.
             lang::Alignment  theAlignment; ///< the alignment of the contents within the field.
             char             padChar;      ///< the characters used for padding the contents within the field.
 

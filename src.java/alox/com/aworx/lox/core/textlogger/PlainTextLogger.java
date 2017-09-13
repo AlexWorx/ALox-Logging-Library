@@ -15,7 +15,7 @@ import com.aworx.lox.core.ScopeInfo;
 
 
 /** ************************************************************************************************
- * A text logger that either removes or ignores (just writes through) ALox ESC sequences.
+ * A text logger that either removes or ignores (just writes through) \b %ALox ESC sequences.
  * Implements abstract method #logText and introduces two new abstract methods
  * #logSubstring and #notifyLogOp.
  **************************************************************************************************/

@@ -86,7 +86,7 @@ void DbgSimpleALibMsg( const char* file, int line, const char* method,
      *  This symbol may be passed to the compiler to control the behavior of pretty printers scripts
      *  for GDB. If defined, external symbol \e "ALIB_PP_SUPPRESS_CHILDREN"
      *  is created in debug compilations. This will be detected by pretty printer python script
-     *  provided with ALib/ALox.
+     *  provided with \b %ALib/\b %ALox.
      *
      *  \see Documentation of pretty printers in tools section of \b %ALib documentation.
      * @}
@@ -103,7 +103,7 @@ void DbgSimpleALibMsg( const char* file, int line, const char* method,
      *  This symbol may be passed to the compiler to control the behavior of pretty printers scripts
      *  for GDB. If defined, external symbol \e "ALIB_PP_FIND_POINTER_TYPES"
      *  is created in debug compilations. This will be detected by pretty printer python script
-     *  provided with ALib/ALox.
+     *  provided with \b %ALib/\b %ALox.
      *
      *  \see Documentation of pretty printers in tools section of \b %ALib documentation.
      * @}
@@ -154,7 +154,7 @@ static_assert(std::is_signed<aworx::uinteger>::value != std::is_signed<std::ptrd
  *
  *  \anchor CPP_AWORX_NS_SHORTCUTS
  * <b>Type Shortcuts of C++ Namespace aworx</b><p>
- * ALib and other software of A-Worx GmbH, \e \"mirror\" important types into <b>namespace %aworx</b>
+ * \b %ALib and other software of A-Worx GmbH, \e \"mirror\" important types into <b>namespace %aworx</b>
  * with \c using statements. For example, by having
  *
  *      using  String =  aworx::lib::strings::String;
@@ -164,8 +164,8 @@ static_assert(std::is_signed<aworx::uinteger>::value != std::is_signed<std::ptrd
  *
  *      using aworx;
  *
- * to a source file. This is convenient when ALib is \e used in 3rd party code outside of the
- * \c %aworx namespace, and also for the classes of ALib itself and for 'sibling'
+ * to a source file. This is convenient when \b %ALib is \e used in 3rd party code outside of the
+ * \c %aworx namespace, and also for the classes of \b %ALib itself and for 'sibling'
  * libraries that reside next to each other underneath namespace \c %aworx.<br>
  * For example logging library \b %ALox with namespace \c %aworx::lox. Such classes may refer to all
  * mirrored sibling-classes already within the header files without providing any namespace,
@@ -226,8 +226,8 @@ namespace aworx {
  * - Keep C++, C# and Java versions similar and mimic functionality of core classes of all
  *   three languages whenever this is appropriate, with the intent to keep source code building
  *   upon the library to a certain degree similar and exchangeable.
- * - Be non-intrusive in the sense that the use of ALib in projects (maybe just because
- *   some minor functionality is wanted) does not force to show up many ALib types.
+ * - Be non-intrusive in the sense that the use of \b %ALib in projects (maybe just because
+ *   some minor functionality is wanted) does not force to show up many \b %ALib types.
  *
  *  \anchor alib_namespace_organization_of_code
  * <b>Organization of Code:</b><br>
@@ -236,7 +236,7 @@ namespace aworx {
  * This comfortable situation is different with C++. Therefore, <b>"ALib for C++"</b> has a
  * much more comprehensive mandate and it is more likely that <b>%ALib for C++</b> is used in
  * single language (hence C++ only) projects. In other words, the
- * Java and C# versions of ALib are especially useful, if multi-language software is written
+ * Java and C# versions of \b %ALib are especially useful, if multi-language software is written
  * (e.g. a phone device app, available as a set of different, native incarnations)
  * to reach a certain degree of code compatibility.
  *
@@ -260,7 +260,7 @@ namespace aworx {
  *
  * The rational for this deployment strategy (to have either a subset of \b %ALib or a bundle with \b %ALox )
  * is that we anticipate users to either want to use just a specific \b %ALib innovation, or just
- * all of it. In the latter case, \b ALox is a perfect extension to what \b %ALib offers.<br>
+ * all of it. In the latter case, \b %ALox is a perfect extension to what \b %ALib offers.<br>
  *
  * \note
  *   In the rare case that full \b %ALib is wanted without \b %ALox, then it is quite simple to
@@ -285,7 +285,7 @@ namespace aworx {
  * \ref aworx::lib::ALIB::Init "ALIB::Init".
  *
  * \note
- *   When - as recommended - the full version of ALib is used bundled with ALox, then the
+ *   When - as recommended - the full version of \b %ALib is used bundled with \b %ALox, then the
  *   correct header file and initialization method are
  *   \ref alox/alox.hpp and
  *   \ref aworx::lox::ALox::Init "ALox::Init".

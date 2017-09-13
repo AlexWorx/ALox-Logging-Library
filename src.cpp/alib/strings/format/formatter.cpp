@@ -96,24 +96,27 @@ void Formatter::Format( AString& target, const Boxes&  args )
 // #############################################################################################
 //  static interface
 // #############################################################################################
-Formatter*      Formatter::defaultFormatter         = nullptr;
-ThreadLock      Formatter::defaultFormatterLock;
+#if ALIB_MODULE_ALL
+    Formatter*      Formatter::defaultFormatter         = nullptr;
+
+    ThreadLock      Formatter::defaultFormatterLock;
 
 
-Formatter& Formatter::AcquireDefault()
-{
-    ALIB_DEBUG_CODE( defaultFormatterLock.RecursionWarningThreshold= 1; )
-    defaultFormatterLock.Acquire( ALIB_DBG_SRC_INFO_PARAMS );
+    Formatter& Formatter::AcquireDefault()
+    {
+        ALIB_DEBUG_CODE( defaultFormatterLock.RecursionWarningThreshold= 1; )
+        defaultFormatterLock.Acquire( ALIB_DBG_SRC_INFO_PARAMS );
 
-    if (!Formatter::defaultFormatter)
-        Formatter::defaultFormatter= new FormatterPythonStyle();
+        if (!Formatter::defaultFormatter)
+            Formatter::defaultFormatter= new FormatterPythonStyle();
 
-    return *Formatter::defaultFormatter;
-}
+        return *Formatter::defaultFormatter;
+    }
 
-void Formatter::ReleaseDefault()
-{
-    defaultFormatterLock.Release();
-}
+    void Formatter::ReleaseDefault()
+    {
+        defaultFormatterLock.Release();
+    }
+#endif
 
 }}}} // namespace [aworx::lib::strings::format]

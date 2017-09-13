@@ -19,13 +19,6 @@
 // includes
 // #################################################################################################
 
-#if !defined (_GLIBCXX_IOSFWD )     && !defined(_IOSFWD_)
-    #include <iosfwd>
-#endif
-#if !defined (_GLIBCXX_CCTYPE) && !defined (_CCTYPE_)
-    #include <cctype>
-#endif
-
 // conditional expression is constant for using our constant template parameters to select
 // checking vs. non-checking method versions
 #if defined(_MSC_VER)
@@ -167,9 +160,9 @@ ALIB_API void TerminationCleanUp();
  * constructor parameter of \b %String.
  *
  * Hence, this template struct supports converting 'external' <em>user defined</em> to
- * \ref aworx::lib::strings::String "String". It has a central role for using ALib in a
+ * \ref aworx::lib::strings::String "String". It has a central role for using \b %ALib in a
  * \ref aworx::lib "non intrusive" way, by allowing to pass external string types just as
- * the are when invoking ALib functions and methods that expect parameters of type
+ * the are when invoking \b %ALib functions and methods that expect parameters of type
  * <c>const %String&</c>. Due to the implicit constructor invocation of C++
  * and the template meta programming in constructor of class \b %String, custom types
  * (that specialize this struct) may be passed "as is" to such methods.
@@ -348,7 +341,7 @@ struct T_StringLiteral<char[TCapacity]>  : public std::true_type
 #endif
 
 /** ************************************************************************************************
- * This class is the base class of all ALib string classes. It represents a character string
+ * This class is the base class of all \b %ALib string classes. It represents a character string
  * whose data is allocated outside the scope of objects of this class.
  *
  * Once constructed, objects
@@ -400,7 +393,7 @@ struct T_StringLiteral<char[TCapacity]>  : public std::true_type
  *       not exposed. It might be exposed by derived classes (and is by class \p %AString).
  *
  * <p>
- * \note For an introduction into the ALib string classes see
+ * \note For an introduction into the \b %ALib string classes see
  *       \ref aworx::lib::strings "namespace strings"
  **************************************************************************************************/
 class String
@@ -522,7 +515,7 @@ class String
          * - Classes derived from %String.
          * - User defined (external) types. See documentation of
          *   \ref aworx::lib::strings::T_String "T_String" on how to add support for implicit
-         *   construction of \b ALib strings from custom string types.
+         *   construction of  \b %ALib strings from custom string types.
          * - User defined literal types. See documentation of
          *   \ref aworx::lib::strings::T_StringLiteral "T_StringLiteral".
          *
@@ -547,7 +540,7 @@ class String
          ******************************************************************************************/
         template <typename TStringLike>
         inline
-        #if !defined(_MSC_VER)
+        #if !defined(_MSC_VER)                                                                               
             constexpr
         #endif
         String(const  TStringLike& src )
@@ -764,7 +757,7 @@ class String
          * Reads a character at a given index.
          *
          * \attention
-         *   Unlike other operator methods in the family of of ALib string classes, which are
+         *   Unlike other operator methods in the family of of \b %ALib string classes, which are
          *   performing parameter checks (in this case a range check), this operator does
          *   <em>not</em> do a check!<br>
          *   The rationale is that in derived class %AString, which overrides this operator
@@ -814,7 +807,7 @@ class String
                             :   CString::strncasecmp( buffer, needle.buffer,                     length  ) );
         }
 
-        /** ****************************************************************************************
+        /** *******************************************************************ł*********************
          * Returns \c true, if the given %String is found at the given position.
          *
          *  \note The following rules apply
@@ -1082,7 +1075,7 @@ class String
      ##@{ ########################################################################################*/
 
         /** ****************************************************************************************
-         *  Searches a character.
+         * Searches a character.
          *
          * @param needle  The character to search for.
          * @return  -1 if the character \p needle is not found.
@@ -1098,37 +1091,38 @@ class String
                                      : -1;
         }
 
+
         /** ****************************************************************************************
          * Searches a character starting from a given position.
          *
-         * @tparam TCheck      Defaults to \c true which is the normal invocation mode.
-         *                     If \c \<false\> is added to the method name, no range check is
-         *                     performed.
-         * @param needle       The character to search for.
-         * @param regionStart  The index in this to start searching the character.
+         * @tparam TCheck   Defaults to \c true which is the normal invocation mode.
+         *                  If \c \<false\> is added to the method name, no range check is
+         *                  performed.
+         * @param needle    The character to search for.
+         * @param startIdx  The index in this to start searching the character.
          *
          * @return  -1 if the character \p needle is not found.
          *          Otherwise the index of its first occurrence.
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        integer  IndexOf( char needle, integer regionStart ) const
+        integer  IndexOf( char needle, integer startIdx ) const
         {
             ALIB_STRING_DBG_CHK(this)
 
             if ( TCheck )
             {
                 // adjust range, if empty return -1
-                     if ( regionStart <  0      )  regionStart= 0;
-                else if ( regionStart >= length )  return -1;
+                     if ( startIdx <  0      )  startIdx= 0;
+                else if ( startIdx >= length )  return -1;
             }
             else
             {
-                ALIB_ASSERT_ERROR( regionStart >= 0 && regionStart < length,
+                ALIB_ASSERT_ERROR( startIdx >= 0 && startIdx < length,
                                  "Non checking and index out of range" );
             }
 
-            const char* result=  static_cast<const char*>( memchr( buffer + regionStart, needle, static_cast<size_t>(length - regionStart) ) );
+            const char* result=  static_cast<const char*>( memchr( buffer + startIdx, needle, static_cast<size_t>(length - startIdx) ) );
 
             return result != nullptr ? result  -  buffer
                                      : -1;
@@ -1176,6 +1170,59 @@ class String
         }
 
         /** ****************************************************************************************
+         * Like \ref aworx::lib::strings::String::IndexOf "IndexOf" but in case the character is not
+         * found, this method returns the length of this string instead of \c -1.
+         * Depending on the invocation context, the choice for the right version of this method may
+         * lead to shorter and more efficient code.
+         *
+         * @param needle  The character to search for.
+         * @return  This strings #Length if the character \p needle is not found.
+         *          Otherwise the index of first occurrence.
+         ******************************************************************************************/
+        inline
+        integer      IndexOfOrLength( char needle ) const
+        {
+            ALIB_STRING_DBG_CHK(this)
+            const char* result=   static_cast<const char*>( memchr( buffer, needle, static_cast<size_t>(length) ) );
+
+            return result != nullptr ? result  -  buffer
+                                     : length;
+        }
+
+        /** ****************************************************************************************
+         * Like \ref aworx::lib::strings::String::IndexOf "IndexOf" but in case the character is not
+         * found, this method returns the length of this string instead of \c -1.
+         * Depending on the invocation context, the choice for the right version of this method may
+         * lead to shorter and more efficient code.
+         *
+         * @param needle    The character to search for.
+         * @param startIdx  The index in this to start searching the character.
+         * @return  This strings #Length if the character \p needle is not found.
+         *          Otherwise the index of first occurrence.
+         ******************************************************************************************/
+        template <bool TCheck= true>
+        inline
+        integer      IndexOfOrLength( char needle, integer startIdx ) const
+        {
+            ALIB_STRING_DBG_CHK(this)
+            if ( TCheck )
+            {
+                // adjust range, if empty return -1
+                     if ( startIdx <  0      )  startIdx= 0;
+                else if ( startIdx >= length )  return length;
+            }
+            else
+            {
+                ALIB_ASSERT_ERROR( startIdx >= 0 && startIdx < length,
+                                 "Non checking and index out of range" );
+            }
+
+            const char* result=   static_cast<const char*>( memchr( buffer + startIdx, needle, static_cast<size_t>(length - startIdx) ) );
+            return result != nullptr ? result  -  buffer
+                                     : length;
+        }
+
+        /** ****************************************************************************************
          * Searches a character starting backwards from the end or a given start index.
          *
          * @tparam TCheck      Defaults to \c true which is the normal invocation mode.
@@ -1204,7 +1251,7 @@ class String
             else
             {
                 ALIB_ASSERT_ERROR( startIndex >= 0 && startIndex < length,
-                                 "Non checking and index out of range"  );
+                                  "Non checking and index out of range"   );
             }
 
             while( startIndex >= 0 && buffer[ startIndex ] != needle )
@@ -1706,6 +1753,53 @@ class String
 
 }; // class %String
 
+
+    /** ********************************************************************************************
+     * Implements a hash function  for class \ref aworx::lib::strings::String "String" usable
+     * with types found in namespace \b std.
+     * Instead of implementing \b std::hash inside namespace \b std, this struct can be
+     * provided as template parameter, e.g. to \b std::unordered_map.
+     **********************************************************************************************/
+    struct std_Hash
+    {
+        /**
+         * Calculates the hash code for class \b String.
+         * @param src The string object to hash.
+         * @return The hash code.
+         */
+        size_t operator()(const String src) const
+        {
+            integer result= 0xc70f6907UL;
+
+            for (int i = 0; i < src.Length(); i++)
+                result = 31*result + src.CharAt<false>(i++);
+
+            return static_cast<size_t>( result );
+        }
+    };
+
+    /** ********************************************************************************************
+     * Implements a comparison function for objects of class
+     * \ref aworx::lib::strings::String "String", usable with types found in namespace \b std.
+     * Instead of implementing the operator inside namespace \b std, this struct can be
+     * provided as template parameter, e.g. to \b std::unordered_map.
+     **********************************************************************************************/
+    struct std_Equals
+    {
+        /**
+         * Invokes \ref aworx::lib::strings::String::Equals "String::Equals" on \p lhs, passing
+         * \p rhs.
+         * @param lhs The first string object.
+         * @param rhs The second string object.
+         * @return The hash code.
+         */
+        bool operator()(const String lhs,
+                        const String rhs) const
+        {
+            return lhs.Equals( rhs );
+        }
+    };
+
 }} // namespace lib::strings
 
 
@@ -1717,14 +1811,14 @@ using     String    =   aworx::lib::strings::String;
 // aworx namespace string singletons
 // #################################################################################################
 /**
- * A constant \e nulled ALib string.
+ * A constant \e nulled \b %ALib string.
  * E.g. useful to provide as parameter to methods or to use as default value for method
  * parameters.
  */
 constexpr lib::strings::String   NullString;
 
 /**
- * A constant empty (but not \e nulled) ALib string
+ * A constant empty (but not \e nulled) \b %ALib string
  * E.g. useful to provide as parameter to methods or to use as default value for method
  * parameters.
  */

@@ -25,10 +25,10 @@ import com.aworx.lib.strings.AString;
  * \snippet "UT_dox_reference_manual.java"     DOC_SAMPLES_ALOX_ESC
  *
  * \note
- *   With the introduction of own, ALox-specific escape codes, software that uses ALox becomes
- *   independent from any underlying, platform-specific sequences. For example, ALox is not relying
+ *   With the introduction of own, \b %ALox specific escape codes, software that uses \b %ALox becomes
+ *   independent from any underlying, platform-specific sequences. For example, \b %ALox is not relying
  *   on ANSI color codes, which are not supported by colorful Windows consoles. Instead, on each
- *   platform, dedicated Loggers will perform the translation of ALox codes to platform-specific
+ *   platform, dedicated Loggers will perform the translation of \b %ALox codes to platform-specific
  *   ones.
  **************************************************************************************************/
 public class ESC

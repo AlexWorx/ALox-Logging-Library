@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------------------------------
 # set cache variables
 # --------------------------------------------------------------------------------------------------
-    set( ALIB_VERSION                   "1702R1"                                        CACHE STRING
+    set( ALIB_VERSION                   "1709R0"                                        CACHE STRING
          "The ALib version. Not modifiable (will be overwritten on generation!)"        FORCE )
 
     set( temp "${CMAKE_CURRENT_LIST_DIR}/../.." )

@@ -119,7 +119,7 @@ public class AWorxUnitTesting
 
 /** ****************************************************************************************
  * Used for writing messages is unit tests. Creates an own Lox and adds a text Logger.
- * In addition, implements ALib \b %ReportWriter interface and attaches to ALib.
+ * In addition, implements \b %ALib \b %ReportWriter interface and attaches to \b %ALib.
  *
  * Only one singleton of this class is (and should be) created in class \b UnitTest.
  ******************************************************************************************/
@@ -169,7 +169,7 @@ public class UTWriter : ReportWriter
     }
 
     /** ************************************************************************************
-     * Write ALib reports using ALox.
+     * Write \b %ALib reports using \b %ALox.
      * @param msg  The message to report.
      **************************************************************************************/
     public virtual void Report  (Report.Message msg)

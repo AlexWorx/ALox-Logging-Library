@@ -98,7 +98,7 @@ class Box
         }
 
         /** ****************************************************************************************
-         * Constructor using template meta programming to fetch any type of ALib Strings,
+         * Constructor using template meta programming to fetch any type of \b %ALib Strings,
          * unknown pointer types and nullptr.
          *
          * @tparam TBoxable  Any C++ type to be boxed.
@@ -458,7 +458,7 @@ class Box
         /** ****************************************************************************************
          * Returns the size in bytes of on element of the stored array.
          * This method is applicable only for array types. For non-array types, \c 0 is returned
-         * and in debug compilation an ALib assertion is raised.
+         * and in debug compilation an \b %ALib assertion is raised.
          *
          * @return The size of elements in the array.
          ******************************************************************************************/

@@ -5,6 +5,10 @@
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
+/**
+ * This sub-namespace  provides some utility classes which are related
+ * to string classes found in namespace \ref com::aworx::lib::strings.
+ */
 package com.aworx.lib.strings.util;
 
 import com.aworx.lib.strings.AString;

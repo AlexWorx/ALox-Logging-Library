@@ -35,7 +35,7 @@ namespace aworx { namespace lib { namespace lang
  * created.
  *
  * \note
- *   This class is new with ALib. It is not considered finished, optimized and stable in design.
+ *   This class is new with \b %ALib. It is not considered finished, optimized and stable in design.
  **************************************************************************************************/
 class MemoryBlocks
 {

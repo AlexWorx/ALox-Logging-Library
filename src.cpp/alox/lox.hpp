@@ -106,7 +106,7 @@ class PrefixLogable : public Box
 
 /** ************************************************************************************************
  * This class acts as a container for \e Loggers and provides a convenient interface to logging.
- * Fore information how to use this class, checkout the ALox tutorials and the ALox manual.
+ * Fore information how to use this class, checkout the \b %ALox tutorials and the ALox manual.
  *
  * If thread safeness is not needed for the logging system (see user manual),
  * the mutex can be switched of using inherited method
@@ -114,8 +114,8 @@ class PrefixLogable : public Box
  * The goal here would be to increase logging performance. This is really a very
  * seldom case when performance is absolutely key, and it is better to be kept in safe mode.
  *
- * <b>'Logable Objects' in <em>ALox for C++</em></b><br>
- * While other ALox implementations, like ALox for C# or ALox for Java use the 'runtime type
+ * <b>'Logable Objects' in <em>%ALox for C++</em></b><br>
+ * While other \b %ALox implementations, like ALox for C# or ALox for Java use the 'runtime type
  * information' feature of their underlying programming language to identify any object type,
  * in the C++ version
  * \ref aworx::lib::boxing "%ALib Boxing" is used to be able to log arbitrary object types.
@@ -152,7 +152,7 @@ class Lox : protected aworx::lib::threads::ThreadLock
            StateInfo_ThreadMappings           = 1 << 10, ///< Named threads
 
            StateInfo_SPTR                     = 1 << 20, ///< Source path trim rules
-           StateInfo_CompilationFlags         = 1 << 21, ///< ALib/ALox compilation flags
+           StateInfo_CompilationFlags         = 1 << 21, ///< \b %ALib/\b %ALox compilation flags
 
            StateInfo_All                      = ~0L,
         };
@@ -202,7 +202,7 @@ class Lox : protected aworx::lib::threads::ThreadLock
         core::ScopeStore<Box*>                          scopePrefixes;
 
         /** Log data store */
-        core::ScopeStore<std::map<AString, Box>*>  scopeLogData;
+        core::ScopeStore<std::map<AString, Box>*>       scopeLogData;
 
         /** Used for tabular output of logger lists */
         integer                                        maxLoggerNameLength                      =0;
@@ -299,7 +299,7 @@ class Lox : protected aworx::lib::threads::ThreadLock
 
         /** ****************************************************************************************
          * Constructs a new, empty Lox with the given \p name.
-         * The name is immutable and all \b %Lox objects registered with ALox must be unique.
+         * The name is immutable and all \b %Lox objects registered with \b %ALox must be unique.
          * Lower case letters in the name are converted to upper case.
          * The name \c "Log" is reserved for the internal default singleton used for debug-logging.
          * In addition, name \c "GLOBAL" is not allowed.
@@ -336,12 +336,12 @@ class Lox : protected aworx::lib::threads::ThreadLock
         const String    GetName()                        { return scopeInfo.loxName;              }
 
         /** ****************************************************************************************
-         * Status of registration with ALox. To keep a \b %Lox "private" using parameter
+         * Status of registration with \b %ALox. To keep a \b %Lox "private" using parameter
          * \p doRegister of the constructor, allows to suppress registration.
          * Registered instances of this class can be statically received (by their name) using
          * \ref aworx::lox::ALox::Get "ALox::Get".
          *
-         * @returns \c true if this instance was registered with ALox, \c false if not.
+         * @returns \c true if this instance was registered with \b %ALox, \c false if not.
          ******************************************************************************************/
         bool             IsRegistered()                   { return ALox::Get( GetName() ) == this; }
 
@@ -351,12 +351,12 @@ class Lox : protected aworx::lib::threads::ThreadLock
         /** ***************************************************************************************
          * Acquire s this \b %Lox and sets the scope information data for the next log.
          *
-         * @param file  The name of the source code file that the call is placed in. Usually
-         *              the predefined preprocessor macro __FILE__ is passed here.
+         * @param file  The name of the source code file that the call is placed in.
+         *              Usually the predefined preprocessor macro __FILE__ is passed here.
          * @param line  The line number within the source code file that the call is placed in.
-         *              Normally the predefined preprocessor macro __LINE__ is passed here.
-         * @param func  The name of the function that the call is placed in. Usually the
-         *              predefined preprocessor macro __func__ (or __FUNCTION__) is passed here.
+         *              Usually the predefined preprocessor macro __LINE__ is passed here.
+         * @param func  The name of the function that the call is placed in.
+         *              Usually the predefined preprocessor macro __func__ (or __FUNCTION__) is passed here.
          **************************************************************************************/
         virtual void Acquire( const TString& file, int line, const TString& func )
         #if ALIB_DEBUG
@@ -480,7 +480,7 @@ class Lox : protected aworx::lib::threads::ThreadLock
          * Setting parameter \p allowAutoRule to \c false, allows to suppress the creation of an
          * automatic rule based on the executables path.
          *
-         * \see ALox User Manual for more information.
+         * \see [ALox User Manual](../manual.html) for more information.
          *
          * @param reach         Denotes whether only local rules are cleared or also global ones.
          *                      Defaults to \b %Reach::Global.
@@ -578,7 +578,7 @@ class Lox : protected aworx::lib::threads::ThreadLock
          *   by future invocations of this method with standard-priority given.
          *
          * For more information on how to use external configuration variables with priority and
-         * on protecting verbosity settings, consult the [ALox user manual](../manual.html).
+         * on protecting verbosity settings, consult the [ALox User Manual](../manual.html).
          *
          * \attention
          *   The same as with most interface methods of this class, the given \p domain parameter is
@@ -599,7 +599,7 @@ class Lox : protected aworx::lib::threads::ThreadLock
          * \attention
          *   Consequently, this method may be (mis-) used to modify the 'actual' (default) scope
          *   when explicitly giving an empty string with parameter \p domain. This is useful, to
-         *   temporarily adjust a scope. But remember: %ALox was designed to avoid temporary
+         *   temporarily adjust a scope. But remember: \b %ALox was designed to avoid temporary
          *   code lines...
          *
          * @param logger     The logger to be to be affected (case insensitive).
@@ -655,7 +655,7 @@ class Lox : protected aworx::lib::threads::ThreadLock
          * domain path of \e %Scope.ThreadOuter and \e %Scope.ThreadInner use method
          * #RemoveThreadDomain.
          *
-         * \note  The C++ version of ALox implements scope mechanisms using scope information
+         * \note  The C++ version of \b %ALox implements scope mechanisms using scope information
          *        generated by the preprocessor. By default, debug logging supports such caller
          *        information, release logging does not. This can be changed. For more information
          *        on how to change such defaults, see \ref ALOX_DBG_LOG_CI and \ref ALOX_REL_LOG_CI
@@ -732,7 +732,7 @@ class Lox : protected aworx::lib::threads::ThreadLock
          *
          * <b>Final remarks</b>
          * Domain substitution is useful to permanently change ('redirect') domain paths of
-         * 3rd party code (e.g. libraries using ALox) or log statements that must not be changed
+         * 3rd party code (e.g. libraries using \b %ALox) or log statements that must not be changed
          * for other reasons. It is advised to not 'overuse' this feature, as side effects
          * are inherent to the concept of <em>Domain Substitution</em>. For example, an unwanted side effect might be
          * that <em>Prefix Logables</em> are not applicable to the substituted domain, while other <em>Prefix Logables</em> are
@@ -823,7 +823,7 @@ class Lox : protected aworx::lib::threads::ThreadLock
          *
          *<p>
          * \note
-         *   The C++ version of ALox implements scope mechanisms using scope information
+         *   The C++ version of \b %ALox implements scope mechanisms using scope information
          *   generated by the preprocessor. By default, debug logging supports such caller
          *   information, release logging does not. This can be changed. For more information
          *   on how to change such defaults, see \ref ALOX_DBG_LOG_CI and \ref ALOX_REL_LOG_CI
@@ -831,11 +831,11 @@ class Lox : protected aworx::lib::threads::ThreadLock
          *
          *<p>
          * \note
-         *   The word 'prefix' in this methods' name and in the name of ALox feature
+         *   The word 'prefix' in this methods' name and in the name of \b %ALox feature
          *   <em>Prefix Logables</em> is chosen for the fact that with text loggers (which is the
-         *   most widely applied use case for ALox) such objects are prefixes to the log
+         *   most widely applied use case for \b %ALox) such objects are prefixes to the log
          *   message. Of-course, with using \e %Scope.ThreadInner, this turns into a suffix!<br>
-         *   When using ALox to process arbitrary objects instead of text messages, the concept of
+         *   When using \b %ALox to process arbitrary objects instead of text messages, the concept of
          *   <em>Prefix Logables</em> is still very useful. Just the name does not fit so well anymore.
          *   Think of 'SetContext' and <em>Context Objects</em> instead.
          *
@@ -882,7 +882,7 @@ class Lox : protected aworx::lib::threads::ThreadLock
          * \c nullptr has to be passed with parameter \p prefix.
          *
          * \note
-         *   String-type \e Logables are duplicated internally by ALox when setting as
+         *   String-type \e Logables are duplicated internally by \b %ALox when setting as
          *   <em>Prefix Logables</em>.
          *   This means, different to <em>Prefix Logables</em> of type \b %AString or custom types,
          *   the life-cycle of the object passed in parameter \p prefix is allowed to end
@@ -981,9 +981,9 @@ class Lox : protected aworx::lib::threads::ThreadLock
          * \attention
          *  When data objects are 'overwritten', previous objects will be deleted internally.
          *  Hence, only pointers to heap-allocated objects (created with \c new) may be passed!<br>
-         *  For more information, consult the ALox user manual.
+         *  For more information, consult the [ALox User Manual](../manual.html).
          *
-         * \note <em>Log Data</em> is a feature provided by ALox to support debug-logging.
+         * \note <em>Log Data</em> is a feature provided by \b %ALox to support debug-logging.
          *       It is not advised to use <em>Log Data</em> to implement application logic.
          *
          * @param data      The data object to store.
@@ -1025,7 +1025,7 @@ class Lox : protected aworx::lib::threads::ThreadLock
         }
 
         /** ****************************************************************************************
-         * Retrieves ALox <em>Log Data</em>, an object type
+         * Retrieves \b %ALox <em>Log Data</em>, an object type
          * \ref aworx::lib::boxing::Box "Box" which had been stored in a prior call to
          * #Store. Using the optional \p key and \p scope offer various possibilities to reference
          * such objects.<br>
@@ -1034,7 +1034,7 @@ class Lox : protected aworx::lib::threads::ThreadLock
          *       \ref aworx::lib::boxing::Box::IsNull "Box::IsNull".
          *
          * <p>
-         * \note <em>Log Data</em> is a feature provided by ALox to support debug-logging.
+         * \note <em>Log Data</em> is a feature provided by \b %ALox to support debug-logging.
          *       It is not advised to use <em>Log Data</em> to implement application logic.
          *
          * @param key       The optional key to the data.
@@ -1057,7 +1057,7 @@ class Lox : protected aworx::lib::threads::ThreadLock
         /** ****************************************************************************************
          * * Overloaded version of #Retrieve which omits parameter \p key.
          *
-         * \note <em>Log Data</em> is a feature provided by ALox to support debug-logging.
+         * \note <em>Log Data</em> is a feature provided by \b %ALox to support debug-logging.
          *       It is not advised to use <em>Log Data</em> to implement application logic.
          *
          * @param scope     The \e %Scope that the data is bound to.
@@ -1078,7 +1078,7 @@ class Lox : protected aworx::lib::threads::ThreadLock
          *
          * \note
          *   As an alternative to (temporarily) adding an invocation of <b>%Lox.State</b> to
-         *   your code, ALox provides configuration variable
+         *   your code, \b %ALox provides configuration variable
          *   [ALOX_LOXNAME_DUMP_STATE_ON_EXIT](group__GrpALoxConfigVars.html).
          *   This allows to enable an automatic invocation of this method using external
          *   configuration data like command line parameters, environment variables or
@@ -1091,10 +1091,10 @@ class Lox : protected aworx::lib::threads::ThreadLock
          * @param flags         Flag bits that define which state information is logged.
          ******************************************************************************************/
         ALOX_API
-        void        State   ( const String&      domain,
-                              Verbosity           verbosity,
-                              const String&       headLine,
-                              int                 flags= StateInfo_All  );
+        void        State   ( const String&     domain,
+                              Verbosity         verbosity,
+                              const String&     headLine,
+                              int               flags= StateInfo_All  );
 
         /** ****************************************************************************************
          * This method collects state information about this lox in a formatted multi-line AString.
@@ -1120,6 +1120,7 @@ class Lox : protected aworx::lib::threads::ThreadLock
          *
          * With each recursive acquirement of this object, a different container is returned.
          * This is implemented to allow recursive log calls.
+         *
          * @return An empty list of boxes.
          ******************************************************************************************/
         ALOX_API
@@ -1128,8 +1129,8 @@ class Lox : protected aworx::lib::threads::ThreadLock
 
 
         /** ****************************************************************************************
-         * Logs the current list of \e Logables (those received with #GetLogableContainer)
-         * with the given \e %Verbosity.
+         * Logs the current list of \e Logables that previously have been received using
+         * #GetLogableContainer with the given \p verbosity.
          *
          * This method is usually \b not used directly. Instead, methods
          * #Info, #Verbose, #Warning and #Error provide simpler interfaces which take variadic
@@ -1826,7 +1827,7 @@ class Lox : protected aworx::lib::threads::ThreadLock
         void      clear();
 
         /** ****************************************************************************************
-         * Reads the verbosity for the given logger and domain from the ALib configuration system.
+         * Reads the verbosity for the given logger and domain from the \b %ALib configuration system.
          * This internal method is used in two occasions:
          * - when a new logger is added: recursively for all existing domains (\p configStr is
          *   given)
@@ -1841,7 +1842,7 @@ class Lox : protected aworx::lib::threads::ThreadLock
                                           Variable& variable );
 
         /** ****************************************************************************************
-         * Reads a prefix string from the ALib configuration system.
+         * Reads a prefix string from the \b %ALib configuration system.
          * This internal method is used when a new domain is created,
          *
          * @param dom         The domain to set the verbosity for.
@@ -1851,7 +1852,7 @@ class Lox : protected aworx::lib::threads::ThreadLock
 
 
         /** ****************************************************************************************
-         * Reads the verbosity for the given logger and domain from the ALib configuration system.
+         * Reads the verbosity for the given logger and domain from the \b %ALib configuration system.
          * This internal method is used when a new logger is added.
          * Walks recursively for all existing domains.
          *

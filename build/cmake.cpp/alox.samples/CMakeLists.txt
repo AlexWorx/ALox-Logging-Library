@@ -15,15 +15,8 @@
 # Prior to setting CMake project
 # -------------------------------------------------------------------------------------------------
 
-    ### uncomment to force a certain compiler (delete temporary output folder on change)
-    #set(CMAKE_C_COMPILER    "/usr/bin/clang")
-    #set(CMAKE_CXX_COMPILER  "/usr/bin/clang++")
-
-    #set(CMAKE_C_COMPILER    "/usr/bin/gcc")
-    #set(CMAKE_CXX_COMPILER  "/usr/bin/g++")
-
     ### uncomment to force cotire on clean cmake built
-    #set( ALIB_CMAKE_COTIRE_DEFAULT   "On" )
+    # set( ALIB_CMAKE_COTIRE_DEFAULT   "On" )
 
 
 # -------------------------------------------------------------------------------------------------
@@ -74,20 +67,20 @@
     if( ${ALIB_CMAKE_COTIRE} )
         set_target_properties( ALoxSamples     PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT   "${ALIB_SRC_DIR}/alib/alib.hpp" )
         cotire( ALoxSamples )
+
+        #--- dump cotire properties ---
+        #set ( _dumppname "ALoxSamples" )
+        #get_target_property( _unitySource        ${_dumppname}    COTIRE_CXX_UNITY_SOURCE      )
+        #get_target_property( _prefixHeader       ${_dumppname}    COTIRE_CXX_PREFIX_HEADER     )
+        #get_target_property( _precompiledHeader  ${_dumppname}    COTIRE_CXX_PRECOMPILED_HEADER)
+        #get_target_property( _unityTargetName    ${_dumppname}    COTIRE_UNITY_TARGET_NAME     )
+    
+        # message(STATUS "${_dumppname} unity source:       ${_unitySource}")
+        # message(STATUS "${_dumppname} prefix header:      ${_prefixHeader}")
+        # message(STATUS "${_dumppname} precompiled header: ${_precompiledHeader}")
+        # message(STATUS "${_dumppname} unity target:       ${_unityTargetName}")
+
     endif()
-
-    #--- dump cotire properties ---
-    #set ( _dumppname "ALoxSamples" )
-    #get_target_property( _unitySource        ${_dumppname}    COTIRE_CXX_UNITY_SOURCE      )
-    #get_target_property( _prefixHeader       ${_dumppname}    COTIRE_CXX_PREFIX_HEADER     )
-    #get_target_property( _precompiledHeader  ${_dumppname}    COTIRE_CXX_PRECOMPILED_HEADER)
-    #get_target_property( _unityTargetName    ${_dumppname}    COTIRE_UNITY_TARGET_NAME     )
-
-    # message(STATUS "${_dumppname} unity source:       ${_unitySource}")
-    # message(STATUS "${_dumppname} prefix header:      ${_prefixHeader}")
-    # message(STATUS "${_dumppname} precompiled header: ${_precompiledHeader}")
-    # message(STATUS "${_dumppname} unity target:       ${_unityTargetName}")
-
 
 # -------------------------------------------------------------------------------------------------
 # End

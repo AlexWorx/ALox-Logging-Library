@@ -43,7 +43,7 @@ namespace aworx { namespace lib { namespace config
  *
  * This class is provided for the case that no other configuration mechanism is available.
  * In general, application specific configuration mechanisms already exist in other libraries
- * used. Those should be adopted by creating a lean interface plug-in for ALib.
+ * used. Those should be adopted by creating a lean interface plug-in for \b %ALib.
  *
  * Some remarks on the functionality and supported format:
  * - Comments
@@ -199,7 +199,7 @@ namespace aworx { namespace lib { namespace config
             by invoking #WriteFile. Defaults to false */
         bool                             AutoSave                                           = false;
 
-        /** The standard file extension used for ALib configuration files. Defaults to ".ini" */
+        /** The standard file extension used for \b %ALib configuration files. Defaults to ".ini" */
         static String                    DefaultFileExtension;
 
         /** The file name. This might include a path or not. Should be set properly before

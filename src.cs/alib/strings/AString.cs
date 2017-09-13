@@ -2199,6 +2199,72 @@ public class AString
      ##@{ ########################################################################################*/
 
         /** ****************************************************************************************
+         * Search the given character in the buffer.
+         *
+         * @param needle        The character to search.
+         * @param startIdx  The index to start the search at. Optional and defaults to \c 0.
+         *
+         * @return    -1 if the character is not found. Otherwise the index of first occurrence.
+         ******************************************************************************************/
+        public int IndexOf( char needle, int startIdx= 0 )
+        {
+            // check
+            if      ( startIdx < 0 )          startIdx= 0;
+            else if ( startIdx >= length)     return -1;
+
+            // search
+            while ( startIdx < length )
+            {
+                if ( needle == buffer[ startIdx ] )
+                    return startIdx;
+                startIdx++;
+            }
+
+            // not found
+            return -1;
+        }
+
+        /** ****************************************************************************************
+         * Like #IndexOf but in case the character is not found, this method returns the length of
+         * this string instead of \c -1.
+         * Depending on the invocation context, the choice for the right version of this method may
+         * lead to shorter and more efficient code.
+         *
+         * @param needle  The character to search for.
+         * @return  This strings #Length if the character \p needle is not found.
+         *          Otherwise the index of first occurrence.
+         ******************************************************************************************/
+        public int    IndexOfOrLength( char needle )
+        {
+            int idx= 0;
+            while ( idx < length && needle != buffer[ idx ])
+                idx++;
+
+            return idx;
+        }
+
+        /** ****************************************************************************************
+         * Like #IndexOf but in case the character is not found, this method returns the length of
+         * this string instead of \c -1.
+         * Depending on the invocation context, the choice for the right version of this method may
+         * lead to shorter and more efficient code.
+         *
+         * @param needle    The character to search for.
+         * @param startIdx  The index in this to start searching the character.
+         * @return  This strings #Length if the character \p needle is not found.
+         *          Otherwise the index of first occurrence.
+         ******************************************************************************************/
+        public int    IndexOfOrLength( char needle, int startIdx )
+        {
+            if      ( startIdx < 0 )                startIdx= 0;
+            else if ( startIdx >= length )          return length;
+            while ( startIdx < length && needle != buffer[ startIdx ])
+                startIdx++;
+
+            return startIdx;
+        }
+
+        /** ****************************************************************************************
          * Search the given \e String in this.
          *
          * @param needle       The String to search.
@@ -2248,32 +2314,6 @@ public class AString
             return needle != null
                 ? CString.IndexOfString( needle.Buf, needle.Start, needle.Length(),  buffer, startIdx,  length - startIdx,  sensitivity )
                 : CString.IndexOfString( null,       0,            0,                buffer, startIdx,  length - startIdx,  sensitivity );
-        }
-
-        /** ****************************************************************************************
-         * Search the given character in the buffer.
-         *
-         * @param needle        The character to search.
-         * @param startIdx  The index to start the search at. Optional and defaults to \c 0.
-         *
-         * @return    -1 if the character is not found. Otherwise the index of first occurrence.
-         ******************************************************************************************/
-        public int IndexOf( char needle, int startIdx= 0 )
-        {
-            // check
-            if      ( startIdx < 0 )          startIdx= 0;
-            else if ( startIdx >= length)     return -1;
-
-            // search
-            while ( startIdx < length )
-            {
-                if ( needle == buffer[ startIdx ] )
-                    return startIdx;
-                startIdx++;
-            }
-
-            // not found
-            return -1;
         }
 
         /** ****************************************************************************************
@@ -2356,6 +2396,32 @@ public class AString
     /** ############################################################################################
      * @name Replace
      ##@{ ########################################################################################*/
+
+        /** ****************************************************************************************
+         * Replaces one or more occurrences of one character by another character.
+         *
+         * @param needle           The terminatable string to be replaced.
+         * @param replacement      The replacement string (does not need to be zero terminatable).
+         * @param startIdx         The index where the search starts. Optional and defaults 0.
+         *
+         * @return The number of replacements that where performed.
+         ******************************************************************************************/
+        public int SearchAndReplace( char needle, char replacement, int startIdx= 0 )
+        {
+                 if ( startIdx <  0      )  startIdx= 0;
+            else if ( startIdx >= length )  return 0;
+
+            // replacement loop
+            int cntReplacements=    0;
+            for(;;)
+            {
+                startIdx= IndexOfOrLength( needle, startIdx  );
+                if ( startIdx >= length  )
+                    return cntReplacements;
+                buffer[ startIdx ]= replacement;
+                cntReplacements++;
+            }
+        }
 
         /** ****************************************************************************************
          * Replace one or more occurrences of a string by another string. Returns the number

@@ -11,9 +11,9 @@ import com.aworx.lib.lang.Report;
 import com.aworx.lib.lang.ReportWriter;
 
 /** ************************************************************************************************
- * The \b %ReportWriter for ALib when using ALox. An instance of this class is
+ * The \b %ReportWriter for \b %ALib when using \b %ALox. An instance of this class is
  * created in method \ref com::aworx::lox::Log::addDebugLogger "Log.addDebugLogger"
- * and registered with ALib.<br>
+ * and registered with \b %ALib.<br>
  * Uses internal domain <c>'$/REPORT'</c> for logging.
  **************************************************************************************************/
 public class ALoxReportWriter implements ReportWriter
@@ -28,7 +28,7 @@ public class ALoxReportWriter implements ReportWriter
     public ALoxReportWriter ( Lox lox )
     {
         this.lox= lox;
-        lox.verbose( ALoxReportWriter.logDomain(), "ALoxReportWriter set" );
+        lox.entry( ALoxReportWriter.logDomain(), Verbosity.VERBOSE,  new Object[] {"ALoxReportWriter set"} );
     }
 
     /** ********************************************************************************************
@@ -42,7 +42,7 @@ public class ALoxReportWriter implements ReportWriter
     }
 
     /** ********************************************************************************************
-     * Log an ALib report using ALox.
+     * Log an \b %ALib report using \b %ALox.
      * @param msg The message to report.
      **********************************************************************************************/
     @Override

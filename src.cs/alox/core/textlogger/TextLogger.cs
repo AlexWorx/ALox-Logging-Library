@@ -28,7 +28,7 @@ namespace cs.aworx.lox.core.textlogger
 
 /** ************************************************************************************************
  *  This class is a still abstract implementation of class Logger which is used as the super class
- *  for all textual Logger implementations within ALox, e.g. ConsoleLogger.
+ *  for all textual Logger implementations within \b %ALox, e.g. ConsoleLogger.
  *
  *  The class uses two helper classes. One to convert the log message object into a string representation
  *  and a second to generate the textual representation of the meta information of a log call.
@@ -69,7 +69,7 @@ public abstract class TextLogger : Logger
     /** Denotes whether this logger writes to the <em>standard output streams</em>.  */
     protected bool                      usesStdStreams;
 
-    /** Used to avoid to repeatedly register with ALib <em>standard output stream</em> lockers
+    /** Used to avoid to repeatedly register with \b %ALib <em>standard output stream</em> lockers
         when attached to multiple instances of class \b Lox.   */
     protected int                       stdStreamLockRegistrationCounter                                         =0;
 
@@ -689,10 +689,12 @@ public abstract class TextLogger : Logger
                 logBuf._( FmtMultiLinePrefix );
                 logBuf._NC( msgBuf, actStart, actEnd - actStart  );
                 logBuf._( FmtMultiLineSuffix );
+                actStart= actEnd + delimLen;
+                if ( actStart >= msgBuf.Length() )
+                    logBuf._NC( FmtMsgSuffix );
                 logText( domain, verbosity, logBuf, scope, lineNo );
 
                 // next
-                actStart= actEnd + delimLen;
                 lineNo++;
             }
 

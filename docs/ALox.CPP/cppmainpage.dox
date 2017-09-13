@@ -29,23 +29,21 @@ The following information is found in the C++ sub pages:
 - In addition, a complete [C++ Reference Documentation](annotated.html) is available...
   created with marvelous [Doxygen](http://www.stack.nl/~dimitri/doxygen/)!
 
-  \note
-  As of ALox version 1604, with the introduction of static class \b %ALox, the term "ALox" in the reference
-  documentation is often erroneously linked to this class. This will be fixed in a next release.
 <p>
 
 
 ## IDE / Build System Setup ##
 The C++ Version got tested on the following platform combinations:
 - GNU/Linux (Arch Linux)
-    - GNU Compiler Collection 6.3
-    - clang compiler 3.9
-    - CMake 3.7
-    - CLion 2016.3
-    - QT Creator V. 4.2
+    - GNU Compiler Collection 7.2.0
+    - clang compiler 4.0.1
+    - CMake 3.92
+    - CLion 2017.2
+    - QT Creator V. 4.4.0
+    - valgrind V. 3.13.0
 
 - Windows 10
-    - Visual Studio 2015 Update 2
+    - Visual Studio 2017 Update 1 (Version 15.3.3)
 
 - macOS Sierra (V.10.12)
     - CLion 2016.3

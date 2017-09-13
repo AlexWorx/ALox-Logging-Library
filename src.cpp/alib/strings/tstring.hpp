@@ -90,7 +90,7 @@ class NumberFormat;
  * not.
  * The 'default implementation' inherits from std::false_type
  *
- * For all user defined string types (from an ALib perspective external types), which
+ * For all user defined string types (from an \b %ALib perspective external types), which
  * - implement template stuct
  *   \ref aworx::lib::strings::T_String "T_String"
  *   to be able to serve as a string argument for implicit construction of class
@@ -124,7 +124,7 @@ template<typename Type> struct  T_IsTerminatable : public std::false_type { };
  * zero \e terminatable strings.
  * Zero terminated strings are especially needed when string data has to be passed to system
  * functions. Also, some efficient algorithms (platform dependent and mostly written in assembly
- * language) exist.  Hence, various functions and methods of ALib require a const reference
+ * language) exist.  Hence, various functions and methods of \b %ALib require a const reference
  * to an object of this type \b %TString instead to an object of class \b %String.
  *
  * <b>Implicit construction</b><p>
@@ -135,7 +135,7 @@ template<typename Type> struct  T_IsTerminatable : public std::false_type { };
  *
  * As it is not possible to implement compile time assertions for the save provision of
  * terminatable types (without taking serious restrictions into account), this constructor
- * performs a run time check (in debug compilations of ALib).<br>
+ * performs a run time check (in debug compilations of \b %ALib).<br>
  * It is checked whether
  * - the string type passed is already terminated or
  * - can be terminated because a) the buffer reserved capacity for the termination value and b)
@@ -149,7 +149,7 @@ template<typename Type> struct  T_IsTerminatable : public std::false_type { };
  *
  *  \note
  *   While the good news is that C++ string literals, any zero terminated <em>char*</em> and
- *   objects of type <em>std::strings</em> or ALib's \b %AString,
+ *   objects of type <em>std::strings</em> or \b %ALib's \b %AString,
  *   are well suited to implicitly construct respectively directly serve as objects of this class,
  *   objects of type
  *   \ref aworx::lib::strings::String "String" itself and especially of type
@@ -288,7 +288,7 @@ class TString : public String
          * to allow inclusion of the termination character.
          *
          * \attention
-         *   No parameter check is performed (other than an assertions in debug-compilation of ALib).
+         *   No parameter check is performed (other than an assertions in debug-compilation of \b %ALib).
          *   See \ref aworx::lib::strings::String::operator[] "String::operator[]" for details.
          *
          * @param   op    The index of the character within this objects' buffer.
@@ -318,7 +318,7 @@ class TString : public String
             ALIB_ASSERT_ERROR(  buffer != nullptr ,"Can't terminated nulled object." );
 
             // Note:
-            // The following read may cause memory tools to detect access to unitialized memory.
+            // The following read may cause memory tools to detect access to uninitialized memory.
             // This is OK and should be ignored/suppressed.
             // For the 'valgrind' tool, add a suppression rule as follows:
             //   {
@@ -328,7 +328,7 @@ class TString : public String
             //   }
             //
             // (Tested with valgrind version 3.11)
-            // See project folder "tools" for a complete valgrind suppression file for ALib.
+            // See project folder "tools" for a complete valgrind suppression file for \b %ALib.
 
             if (buffer[ length ] != '\0' )
             {

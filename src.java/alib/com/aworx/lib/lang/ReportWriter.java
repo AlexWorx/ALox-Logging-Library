@@ -11,7 +11,7 @@ import com.aworx.lib.lang.Phase;
 
 
 /** ************************************************************************************************
- * Interface that defines a writer for for %ALib \ref com::aworx::lib::lang::Report "Report".
+ * Interface that defines a writer for for %\b %ALib \ref com::aworx::lib::lang::Report "Report".
  * By default, an instance of \ref com::aworx::lib::lang::ReportWriterStdIO "ReportWriterStdIO"
  * is installed.
  * Applications may implement their own ReportWriter.

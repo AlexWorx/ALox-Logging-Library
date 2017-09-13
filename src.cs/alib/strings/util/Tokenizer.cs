@@ -9,6 +9,10 @@ using System;
 using System.Text;
 using cs.aworx.lib.lang;
 
+/**
+ * This sub-namespace  provides some utility classes which are related
+ * to string classes found in namespace \ref cs::aworx::lib::strings.
+ */
 namespace cs.aworx.lib.strings.util  {
 
 

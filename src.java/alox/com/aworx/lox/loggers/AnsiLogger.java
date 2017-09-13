@@ -28,7 +28,7 @@ import com.aworx.lox.core.textlogger.TextLogger;
  * A logger that logs all messages to the <em>PrintStream</em> instance provided in the constructor.
  * The name of the \e Logger defaults to "ANSI_LOGGER".
  *
- * ALox text logger escape sequences (see class \ref com::aworx::lox::ESC "ESC")
+ * \b %ALox text logger escape sequences (see class \ref com::aworx::lox::ESC "ESC")
  * are translated to ANSI escape sequences.
  * Support for ANSI escape sequences (also referred to as <em>VT100 terminal emulation</em>)
  * is available on most unix terminal windows. Besides text colors, bold and italics font style
@@ -154,7 +154,7 @@ public class AnsiLogger extends TextLogger
          * If the background color of a console window is dark, then the background colors of
          * colored log output should be darker colors than the foreground colors - and vice versa.
          *
-         * Depending on the setting of this field, ALox
+         * Depending on the setting of this field, \b %ALox
          * \ref com::aworx::lox::ESC "escape codes" for colors are translated to normal ANSI colors or
          * lighter ones:
          * - If this field is \ref LightColorUsage "LightColorUsageNEVER", light colors are

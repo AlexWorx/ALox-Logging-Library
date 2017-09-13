@@ -16,8 +16,8 @@
 #if !defined (HPP_ALOX_CORE_SCOPEDUMP)
     #include "core/scopedump.hpp"
 #endif
-#if !defined (HPP_ALIB_CONTAINERS_PATHMAP)
-    #include "alib/containers/pathmap.hpp"
+#if !defined (HPP_ALIB_CONTAINERS_STRINGTREE)
+    #include "alib/containers/stringtree.hpp"
 #endif
 
 
@@ -153,8 +153,9 @@ void  Lox::clear()
     if ( scopeDomains.globalStore )
         delete scopeDomains.globalStore;
 
-    for ( auto& it : *scopeDomains.languageStore )
-        delete it.Value;
+    for ( auto it : *scopeDomains.languageStore )
+        if( it )
+            delete it;
 
     scopeDomains.languageStore->Clear();
 
@@ -171,8 +172,9 @@ void  Lox::clear()
     if ( scopePrefixes.globalStore )
         delete static_cast<PrefixLogable*>( scopePrefixes.globalStore );
 
-    for ( auto& it : *scopePrefixes.languageStore )
-        delete static_cast<PrefixLogable*>( it.Value );
+    for ( auto it : *scopePrefixes.languageStore )
+        if( it )
+            delete static_cast<PrefixLogable*>( it );
 
     scopePrefixes.languageStore->Clear();
 
@@ -191,9 +193,9 @@ void  Lox::clear()
     if ( scopeLogOnce.globalStore )
         delete scopeLogOnce.globalStore;
 
-
-    for ( auto& it : *scopeLogOnce.languageStore )
-        delete it.Value;
+    for ( auto it : *scopeLogOnce.languageStore )
+        if( it )
+            delete it;
     scopeLogOnce.languageStore->Clear();
 
 
@@ -208,27 +210,22 @@ void  Lox::clear()
 
     // delete LogData objects
     if ( scopeLogData.globalStore )
-    {
         delete scopeLogData.globalStore;
-    }
 
-    for ( auto& map : *scopeLogData.languageStore )
-    {
-        delete map.Value;
-    }
+    for ( auto map : *scopeLogData.languageStore )
+        if( map )
+            delete map;
     scopeLogData.languageStore->Clear();
 
 
     for ( auto& thread : scopeLogData.threadOuterStore )
         for ( auto& vec : (thread.second) )
-        {
             delete vec;
-        }
+
     for ( auto& thread : scopeLogData.threadInnerStore )
         for ( auto& vec : (thread.second) )
-        {
             delete vec;
-        }
+
     scopeLogData.Clear();
 
     // other things
@@ -717,7 +714,7 @@ void Lox::SetVerbosity( const String& loggerName, Verbosity verbosity, const Str
 }
 
 void Lox::setDomainImpl( const String& scopeDomain, Scope   scope, int pathLevel,
-                         bool           removeNTRSD, Thread* thread )
+                         bool          removeNTRSD, Thread* thread )
 {
     //note: the public class interface assures that \p removeNTRSD (named thread related scope domain)
     // only evaluates true for thread related scopes
@@ -1344,16 +1341,23 @@ void Lox::entryDetectDomainImpl( Verbosity verbosity )
             String firstArg= logables[0].Unbox<String>();
 
             bool illegalCharacterFound= false;
-            for( int i= 0; i< firstArg.Length() ; ++i )
+            
+            // accept internal domain at the start
+            int idx= 0;
+            if( firstArg.StartsWith( ALox::InternalDomains ) )
+                idx+= ALox::InternalDomains.Length();
+                
+            // loop over domain and check for illegal characters
+            for( ;  idx< firstArg.Length() ; ++idx )
             {
-                char c= firstArg[i];
-                if (!(    isdigit( c )
-                       || ( c >= 'A' && c <= 'Z' )
-                       || c == '-'
-                       || c == '_'
-                       || c == '/'
-                       || c == '.'
-                ))
+                char c= firstArg[idx];
+                if (!    (    isdigit( c )
+                           || ( c >= 'A' && c <= 'Z' )
+                           || c == '-'
+                           || c == '_'
+                           || c == '/'
+                           || c == '.'
+                  )      )
                 {
                     illegalCharacterFound= true;
                     break;

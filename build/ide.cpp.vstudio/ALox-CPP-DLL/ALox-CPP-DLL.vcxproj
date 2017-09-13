@@ -183,7 +183,7 @@
     <ClInclude Include="..\..\..\src.cpp\alib\config\inmemoryplugin.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\config\plugins.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\config\variable.hpp" />
-    <ClInclude Include="..\..\..\src.cpp\alib\containers\pathmap.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\containers\stringtree.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\distribution.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\lang\enums.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\lang\memoryblocks.hpp" />

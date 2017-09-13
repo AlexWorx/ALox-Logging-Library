@@ -32,7 +32,7 @@ class Tokenizer;
  * Objects of this class will not manipulate the underlying data.
  * In particular, there is no terminating zero written.
  *
- * Unlike in the \e C# and \e Java versions of ALib, the represented region is defined
+ * Unlike in the \e C# and \e Java versions of \b %ALib, the represented region is defined
  * by the protected fields inherited from class #String.
  * The difference to base class \ref aworx::lib::strings::String "String" is, that class \b %Substring
  * allows to change the buffer's start and its length.  Otherwise, this class has the
@@ -62,7 +62,28 @@ class Substring : public String
      ##@{ ########################################################################################*/
 
     public:
+        /** Import parent constructors */
         using String::String;
+
+        /** ****************************************************************************************
+         * Parameterless constructor.
+         * (Note: This constructor is needed with some compilers only.)
+         ******************************************************************************************/
+        inline
+        Substring()
+        : String()
+        {}
+
+        /** ****************************************************************************************
+         * Constructor using a string reference.
+         * (Note: This constructor is needed with some compilers only.)
+         * @param src   The source string.
+         ******************************************************************************************/
+        inline
+        Substring( const String& src )
+        : String(src)
+        {}
+
 
     /** ############################################################################################
      * @name Set Data

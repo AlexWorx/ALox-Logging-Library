@@ -124,7 +124,7 @@ import com.aworx.lib.lang.Inclusion;
  *
  * <b>ALib for Java Specifics:</b><br>
  * - As Java does not support unsigned integer types, there is a limitation in reading unsigned
- *   values above \b Long.MAX_INT (e.g. written with other language implementations of ALib).
+ *   values above \b Long.MAX_INT (e.g. written with other language implementations of \b %ALib).
  *   From a 'bitwise' perspective, the methods are working well. For example, long value
  *   \b -1 is written as <b>0xFFFF'FFFF'FFFF'FFFF</b>
  * - As Java is missing reference parameter passing (aka output parameters), the parsing
@@ -796,7 +796,7 @@ public class NumberFormat
      * consumption before reading the value, set field #whitespaces to nulled or empty string.
      *
      * \note As Java does not support unsigned integer types, the value to read is limited to
-     *       <c>Long.MAX_VALUE</c> in this implementation of ALib.
+     *       <c>Long.MAX_VALUE</c> in this implementation of \b %ALib.
      *
      * @param buffer        The character array to read the value from.
      * @param idx           The start point for parsing within \p buffer.

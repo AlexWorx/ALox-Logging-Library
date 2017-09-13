@@ -1222,7 +1222,12 @@ As a result, there are two ways of implementing interface \b %IApply for a custo
 
         aworx::lib::boxing::DefineInterface<MyType*, false, aworx::lib::strings::boxing::IApply_TApplicable<MyType*>>();
 
-   (Replace \e 'MyType' with the name of your type.)
+   A simple preprocessor macro is defined with #ALIB_BOXING_DEFINE_IAPPLY_FOR_APPLICABLE_TYPE, which 
+   allows to shorten this definition code to:
+
+         ALIB_BOXING_DEFINE_IAPPLY_FOR_APPLICABLE_TYPE(MyType*)
+
+   (Replace \e 'MyType' with the name of your type in both cases.)
 
 
 The second approach has the advantage, that this way, the custom type is then directly applicable
@@ -1541,7 +1546,7 @@ to be logged, method
 \ref aworx::lox::Lox::Once "Lox::Once" is more complicated: Various overloaded versions exist
 that interpret the term "once" differently. Therefore, each overloaded version accepts only one
 object to log - which is often enough for a simple log message.
-However, this is no restriction of ALox: If multiple objects should be logged "once", e.g. to
+However, this is no restriction of \b %ALox: If multiple objects should be logged "once", e.g. to
 provide a formatted output of custom objects, then those multiple objects may be passed by wrapping
 them in class \b %Boxes.
 

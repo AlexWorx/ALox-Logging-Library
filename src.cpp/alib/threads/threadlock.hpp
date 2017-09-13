@@ -75,7 +75,7 @@ class ThreadLock : public lang::Ownable
              * Limit of recursions. If limit is reached or a multiple of it, an error is is passed to
              * \ref aworx::lib::lang::ReportWriter "ReportWriter". Defaults is \c 10 in case of recursive
              * instances, to \c 1 otherwise.
-             * Available only in debug versions of ALib.
+             * Available only in debug versions of \b %ALib.
              */
             int                       RecursionWarningThreshold                                 =10;
         #endif
@@ -183,7 +183,7 @@ class ThreadLock : public lang::Ownable
          * @return The number of (recursive) acquirements, negative if acquired by a different
          *         thread than provided.
          ******************************************************************************************/
-        ALIB_API  int             DbgCountAcquirements( Thread* thread= nullptr );
+        ALIB_API  int             DbgCountAcquirements( Thread* thread= nullptr )   const;
 
 
         /** ****************************************************************************************
@@ -205,15 +205,18 @@ class ThreadLock : public lang::Ownable
          * @return A value of type aworx::lib::lang::Safeness "Safeness"
          ******************************************************************************************/
         inline
-        lang::Safeness           GetSafeness() { return mutex == nullptr ? lang::Safeness::Unsafe
-                                                                         : lang::Safeness::Safe;  }
+        lang::Safeness            GetSafeness()  const
+        {
+            return mutex == nullptr ? lang::Safeness::Unsafe
+                                    : lang::Safeness::Safe;
+        }
 
         /** ****************************************************************************************
          *  Query if this instance was set to work recursively.
          * @return A value of type aworx::lib::lang::LockMode "LockMode"
          ******************************************************************************************/
         inline
-        lang::LockMode           GetMode()     { return lockMode; }
+        lang::LockMode            GetMode()     const           { return lockMode; }
 
 };
 

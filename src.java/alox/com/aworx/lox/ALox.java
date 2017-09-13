@@ -22,7 +22,7 @@ import com.aworx.lib.strings.Substring;
 
 /** ************************************************************************************************
  * This is a 100% static class that holds constants and 'global' methods of the
- * ALox Logging Library.
+ * <b>%ALox Logging Library</b>.
  **************************************************************************************************/
 public abstract class ALox
 {
@@ -103,22 +103,22 @@ public abstract class ALox
     // #############################################################################################
 
         /**
-         * The version of ALox. The version number follows the scheme YYMM (2-digit year, 2-digit month)
+         * The version of \b %ALox. The version number follows the scheme YYMM (2-digit year, 2-digit month)
          * of the initial release date.
          * Besides this version number, field #revision indicates if this is a revised version
          * of a former release.
          */
-        public static final int         version                                               =1702;
+        public static final int         version                                               =1709;
 
         /**
-         * The revision number of this release. Each ALox #version is initially released as
-         * revision \e 0. Pure maintenance releases that do not change the interface of ALox
+         * The revision number of this release. Each \b %ALox #version is initially released as
+         * revision \e 0. Pure maintenance releases that do not change the interface of \b %ALox
          * are holding the same #version but an increased number in this field.
          */
-        public static final int         revision                                                 =1;
+        public static final int         revision                                                 =0;
 
         /**
-         * The name of the configuration category of configuration variables used by ALox.<br>
+         * The name of the configuration category of configuration variables used by \b %ALox.<br>
          * Defaults to "ALOX".<br>
          * This value can be changed to avoid conflicts between applications (especially in
          * respect to environment variable settings). Changes should be placed at very initial
@@ -327,12 +327,12 @@ public abstract class ALox
 
         /**
          * This is the path for logging to the internal domain. By manipulating this
-         *  <em>Log Domains' Verbosity</em>, the verbosity of ALox itself can be controlled.
+         *  <em>Log Domains' Verbosity</em>, the verbosity of \b %ALox itself can be controlled.
          * For example, with \e Verbosity.INFO, the 'on the fly' creation of <em>Log Domains</em>
          * are logged, which can be helpful to determine the <em>Log Domains</em> that are
          * created by libraries and larger projects.
          *
-         * The following sub-domains are used by ALox:
+         * The following sub-domains are used by \b %ALox:
          *
          *   Sub-Domain | Description
          *   - - - - - -| - - - - - - - - - - - - - - - - - - -
@@ -361,16 +361,16 @@ public abstract class ALox
         protected static      boolean   isInitialized= false;
 
         /** ****************************************************************************************
-         * This method must be called prior to using %ALox, e.g. at the beginning of
+         * This method must be called prior to using \b %ALox, e.g. at the beginning of
          * the \c main() method of an application. It is OK, to call this method more than once, which
-         * allows independent code blocks (e.g. libraries) to bootstrap %ALox independently.
+         * allows independent code blocks (e.g. libraries) to bootstrap \b %ALox independently.
          * However, only the first invocation is effective with the exclamation that if
          * command line parameters are provided with a call, those are set.
          * Also, the very first invocation should not be interrupted by a parallel invocation of a
          * second thread. Consequently, it has to be assured that this method is invoked once on
          * the real bootstrap an app.
          *
-         * In the Java version of the ALox Logging Library, not invoking this method will not lead to
+         * In the Java version of the \b %ALox Logging Library, not invoking this method will not lead to
          * severe problems, however, some options might fail.
          * It is good practice to invoke this method in the main() method of a process
          * and provide the command line arguments.
@@ -399,7 +399,7 @@ public abstract class ALox
 
         /** ****************************************************************************************
          * Returns the \b Lox with the given name.
-         * A lox is only found if it was created and registered with ALox using #register.
+         * A lox is only found if it was created and registered with \b %ALox using #register.
          * If not found, and parameter \p create is \c true (the default), a new \b Lox is created,
          * registered and returned.
          *
@@ -444,11 +444,11 @@ public abstract class ALox
         }
 
         /** ****************************************************************************************
-         * Registers or un-registers a \b %Lox object statically with ALox.
+         * Registers or un-registers a \b %Lox object statically with \b %ALox.
          * Once registered,  any code entity of the same process is enabled to retrieve
          * the \b %Lox using #get.<br>
          * No two objects with the same name must be registered. If this is done, the latter
-         * will not be registered and not be found by #get. In debug-compilations, an ALib
+         * will not be registered and not be found by #get. In debug-compilations, an \b %ALib
          * error report is written (by default raises 'assert') if a name is registered twice.<br>
          * Note that name comparison is performed case <b>in</b>-sensitive.
          *
@@ -504,7 +504,7 @@ public abstract class ALox
          * - If the debug lox singleton exists, it is deleted.
          *
          * \attention
-         *   This method was introduced to support resetting ALox in the unit tests.
+         *   This method was introduced to support resetting \b %ALox in the unit tests.
          *   In real applications, this method should NOT be used.
          *   Side effects might appear using this method and it is not tested otherwise than
          *   used in tests!

@@ -6,7 +6,7 @@
 // #################################################################################################
 
 /** ************************************************************************************************
- *  This is the Java package for code of the <em>%ALox Logging Library</em>.
+ *  This is the Java package for code of the <b>%ALox Logging Library</b>.
  *  Developed by A-Worx GmbH and published under Boost Software License.
  **************************************************************************************************/
 package com.aworx.lox;
@@ -44,7 +44,8 @@ import com.aworx.lox.loggers.ConsoleLogger;
 
 /** ************************************************************************************************
  * This class acts as a container for Loggers and provides a convenient interface to logging.
- * Fore information how to use this class, checkout the ALox tutorials and the ALox manual.
+ * Fore information how to use this class, checkout the \b %ALox tutorials and the 
+ * [ALox User Manual](../manual.html).
  **************************************************************************************************/
 public class Lox extends ThreadLock
 {
@@ -258,7 +259,7 @@ public class Lox extends ThreadLock
 
     /** ********************************************************************************************
      * Constructs a new, empty Lox with the given \p name.
-     * The name is immutable and all \b %Lox objects registered with ALox must be unique.
+     * The name is immutable and all \b %Lox objects registered with \b %ALox must be unique.
      * Lower case letters in the name are converted to upper case.
      * The name \c "Log" is reserved for the internal default singleton used for debug-logging.
      *
@@ -368,19 +369,19 @@ public class Lox extends ThreadLock
     public String    getName()                      { return scopeInfo.getLoxName();               }
 
     /** ********************************************************************************************
-     * Status of registration with ALox. To keep a \b %Lox "private" using parameter
+     * Status of registration with \b %ALox. To keep a \b %Lox "private" using parameter
      * \p doRegister of the constructor, allows to suppress registration.
      * Registered instances of this class can be statically received (by their name) using
      * \ref com::aworx::lox::ALox::get "ALox.get".
      *
-     * @returns \c true if this instance was registered with ALox, \c false if not.
+     * @returns \c true if this instance was registered with \b %ALox, \c false if not.
      **********************************************************************************************/
     public boolean   isRegistered()                 { return ALox.get( getName() ) == this;        }
 
     /** ************************************************************************************
      *  This static method creates an adequate/default console logger.
      *  Currently, there is no detection mechanism implemented in the Java implementation
-     *  of ALox. This might change in the future.
+     *  of \b %ALox. This might change in the future.
      *
      *  Hence, unless configuration variable
      *  [ALOX_CONSOLE_TYPE](../group__GrpALoxConfigVars.html) is set, this method creates
@@ -737,12 +738,12 @@ public class Lox extends ThreadLock
      *   future invocations of this method with standard-priority given.
      *
      * For more information on how to use external configuration variables with priority and
-     * on protecting verbosity settings, consult the [ALox user manual](../manual.html).
+     * on protecting verbosity settings, consult the [ALox User Manual](../manual.html).
      *
      * \attention
      *   The same as with most interface methods of this class, the given \p domain parameter is
      *   combined with <em>%Scope Domains</em> set for the callers' \e %Scope. In standard use
-     *   cases of %ALox, the \e %Verbosity of a \e Domain is set using absolute domain path
+     *   cases of \b %ALox, the \e %Verbosity of a \e Domain is set using absolute domain path
      *   addressing. Therefore, it is recommended to have any domain path passed to this method
      *   starting with <c> '/'</c>, which suppresses the concatenation of <em>%Scope Domains</em>.<br>
      *   This is why this parameter with this method defaults to <c> '/'</c>, while with other
@@ -757,7 +758,7 @@ public class Lox extends ThreadLock
      * \attention
      *   Consequently, this method may be (mis-) used to modify the 'actual' (default) scope
      *   when explicitly giving an empty string with parameter \p domain. This is useful, to
-     *   temporarily adjust a scope. But remember: %ALox was designed to avoid temporary code
+     *   temporarily adjust a scope. But remember: \b %ALox was designed to avoid temporary code
      *   lines...
      *
      * @param logger     The logger to be to be affected (case insensitive).
@@ -1153,7 +1154,7 @@ public class Lox extends ThreadLock
      *
      * <b>Final remarks</b>
      * Domain substitution is useful to permanently change ('redirect') domain paths of
-     * 3rd party code (e.g. libraries using ALox) or log statements that must not be changed
+     * 3rd party code (e.g. libraries using \b %ALox) or log statements that must not be changed
      * for other reasons. It is advised to not 'overuse' this feature, as side effects
      * are inherent to the concept of <em>Domain Substitution</em>. For example, an unwanted side effect might be
      * that <em>Prefix Logables</em> are not applicable to the substituted domain, while other <em>Prefix Logables</em> are
@@ -1266,11 +1267,11 @@ public class Lox extends ThreadLock
      *
      *<p>
      * \note
-     *   The word 'prefix' in this methods' name and in the name of ALox feature
+     *   The word 'prefix' in this methods' name and in the name of \b %ALox feature
      *   <em>Prefix Logables</em> is chosen for the fact that with text loggers (which is the
-     *   most widely applied use case for ALox) such objects are prefixes to the log
+     *   most widely applied use case for \b %ALox) such objects are prefixes to the log
      *   message. Of-course, with using \e %Scope.THREAD_INNER, this turns into a suffix!<br>
-     *   When using ALox to process objects instead of log messages, the concept of
+     *   When using \b %ALox to process objects instead of log messages, the concept of
      *   <em>Prefix Logables</em> is very useful. Just the name does not fit so well anymore.
      *   Think of 'SetContext' and <em>Context Objects</em> instead.
      *
@@ -1548,9 +1549,9 @@ public class Lox extends ThreadLock
      * \attention
      * When data objects are 'overwritten', previous objects will be deleted internally.
      * Hence, only pointers to heap-allocated objects (created with \c new) may be passed!<br>
-     * For more information, consult the ALox user manual.
+     * For more information, consult the [ALox User Manual](../manual.html).
      *
-     * \note <em>Log Data</em> is a feature provided by ALox to support debug-logging.
+     * \note <em>Log Data</em> is a feature provided by \b %ALox to support debug-logging.
      *       It is not advised to use <em>Log Data</em> to implement application logic.
      *
      * @param data      The data object to store.
@@ -1705,7 +1706,7 @@ public class Lox extends ThreadLock
      * \note If no <em>Log Data</em> object is found, an empty object is stored and returned.
      *
      * <p>
-     * \note <em>Log Data</em> is a feature provided by ALox to support debug-logging.
+     * \note <em>Log Data</em> is a feature provided by \b %ALox to support debug-logging.
      *       It is not advised to use <em>Log Data</em> to implement application logic.
      *
      * @param key       The optional key to the data.
@@ -1829,7 +1830,7 @@ public class Lox extends ThreadLock
      *
      * \note
      *   As an alternative to (temporarily) adding an invocation of <b>%Lox.State</b> to
-     *   your code, ALox provides configuration variable
+     *   your code, \b %ALox provides configuration variable
      *   [ALOX_LOXNAME_DUMP_STATE_ON_EXIT](group__GrpALoxConfigVars.html).
      *   This allows to enable an automatic invocation of this method using external
      *   configuration data like command line parameters, environment variables or
@@ -2110,7 +2111,7 @@ public class Lox extends ThreadLock
             if ( pfl.includeOtherPLs == Inclusion.EXCLUDE )
                 target._NC( " (Excl.)" );
             target.tab( 25 );
-            target._NC( "<domain>            [" )._( domain.fullPath )._(']').newLine();
+            target._NC( "<domain>           [" )._( domain.fullPath )._(']').newLine();
         }
 
         for( Domain it : domain.subDomains )
@@ -2162,7 +2163,8 @@ public class Lox extends ThreadLock
             ALox.init( null );
 
             // auto-initialization of debug loggers
-            if (domains.countLoggers() == 0 && this == Log.LOX) Log.addDebugLogger( this );
+            if (domains.countLoggers() == 0 && this == Log.LOX) 
+                Log.addDebugLogger( this );
 
             cntLogCalls++;
             if ( domains.countLoggers() == 0 )
@@ -2207,22 +2209,40 @@ public class Lox extends ThreadLock
                 CharSequence firstArg= (CharSequence) logables[0];
 
                 boolean illegalCharacterFound= false;
-                for( int i= 0; i< firstArg.length() ; ++i )
+                
+                if( firstArg.length() > 0 )
                 {
-                    char c= firstArg.charAt(i);
-                    if (!(    ( c >= '0' && c <= '9' )
-                           || ( c >= 'A' && c <= 'Z' )
-                           || c == '-'
-                           || c == '_'
-                           || c == '/'
-                           || c == '.'
-                    ))
+                
+                    // accept internal domain at the start
+                    int idx= 0;
+                    if( firstArg.charAt(0) == ALox.INTERNAL_DOMAINS.charAt( 0 ) )
                     {
-                        illegalCharacterFound= true;
-                        break;
+                        while(      ++idx < ALox.INTERNAL_DOMAINS.length() 
+                                &&    idx < firstArg.length()
+                                &&  firstArg.charAt( idx ) == ALox.INTERNAL_DOMAINS.charAt( idx ) 
+                             );
+                        if( idx !=  ALox.INTERNAL_DOMAINS.length() )
+                            idx= 0;
+                    }
+                                            
+                    // loop over domain and check for illegal characters
+                    for( ; idx < firstArg.length() ; ++idx )
+                    {
+                        char c= firstArg.charAt(idx);
+                        if (   !(    ( c >= '0' && c <= '9' )
+                                  || ( c >= 'A' && c <= 'Z' )
+                                  || c == '-'
+                                  || c == '_'
+                                  || c == '/'
+                                  || c == '.'
+                                )
+                           )
+                        {
+                            illegalCharacterFound= true;
+                            break;
+                        }
                     }
                 }
-
                 if ( illegalCharacterFound )
                 {
                     entry( null, verbosity, logables );
@@ -2452,9 +2472,9 @@ public class Lox extends ThreadLock
      * \note
      *   Due to the limitations of the Java language to dissolve ambiguities when invoking
      *   overloaded methods, most of the overloads provided await parameters
-     *   \p domain and \p verbosity at the start. This is in difference to ALox for C++ and C#,
-     *   where overloaded methods always default these parameters to \c null respectively
-     *   \c %Verbosity.INFO.<br>
+     *   \p domain and \p verbosity at the start. This is in difference to <b>ALox for C++</b>
+     *   and <b>ALox for C#</b>, where overloaded methods always default these parameters to \c null 
+     *   respectively \c %Verbosity.INFO.<br>
      *   Fortunate exceptions are
      *   - <b>%once(Object logable)</b> and
      *   - <b>%once(Object logable, int quantity)</b>.
@@ -3343,7 +3363,7 @@ public class Lox extends ThreadLock
     }
 
     /** ********************************************************************************************
-     * Reads the verbosity for the given logger and domain from the ALib configuration system.
+     * Reads the verbosity for the given logger and domain from the \b %ALib configuration system.
      * This internal method is used in two occasions:
      * - when a new logger is added: recursively for all existing domains (\p configStr is
      *   given)
@@ -3406,7 +3426,7 @@ public class Lox extends ThreadLock
     }
 
     /** ********************************************************************************************
-     * Reads a prefix string from the ALib configuration system.
+     * Reads a prefix string from the \b %ALib configuration system.
      * This internal method is used when a new domain is created,
      *
      * @param dom         The domain to set the verbosity for.
@@ -3471,7 +3491,7 @@ public class Lox extends ThreadLock
 
 
     /** ********************************************************************************************
-     * Reads the verbosity for the given logger and domain from the ALib configuration system.
+     * Reads the verbosity for the given logger and domain from the \b %ALib configuration system.
      * This internal method is used when a new logger is added.
      * Walks recursively for all existing domains.
      *

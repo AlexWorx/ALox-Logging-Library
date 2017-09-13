@@ -15,8 +15,6 @@
     #include <cstring>
 #endif
 
-#include "alib/containers/pathmap.hpp"
-
 // For code compatibility with ALox Java/C++
 // We have to use underscore as the start of the name and for this have to disable a compiler
 // warning. But this is a local code (cpp file) anyhow.
@@ -35,9 +33,7 @@
 using namespace aworx;
 
 
-namespace aworx {
-        namespace lox {
-                namespace core {
+namespace aworx { namespace lox { namespace core {
 
 //! @cond NO_DOX
 
@@ -52,7 +48,7 @@ template   int ScopeDump::writeStoreMap( ScopeStore<std::map<AString, Box>* >* s
 // #################################################################################################
 // local helper functions (non members)
 // #################################################################################################
-template<typename T> void write( T        val, AString& target )
+template<typename T> void write( T  val, AString& target )
 {
     // prefix logable?
     if( std::is_same<T, Box*>::value )
@@ -71,23 +67,10 @@ template<typename T> void write( T        val, AString& target )
 // #################################################################################################
 // protected methods
 // #################################################################################################
-template<typename T>
-AString& ScopeDump::storeKeyToScope( const lib::containers::PathMap<T>& map )
+AString& ScopeDump::storeKeyToScope( String key )
 {
-//target._();
-    String512 key;
-    const PathMap<T>* node= &map;
-    while( node != nullptr )
-    {
-        key.InsertAt( node->Path, 0 );
-        node= node->Parent;
-    }
-
-    integer fileNameStart= 0;
     integer fileNameEnd= key.IndexOf('#');
-    if (fileNameEnd > 0 )
-        fileNameStart= key.LastIndexOf( '/', fileNameEnd ) + 1;
-    integer methodEnd=    fileNameEnd >= 0 ? key.IndexOf('#', fileNameEnd + 1)  : -1;
+    integer methodEnd=   fileNameEnd >= 0 ? key.IndexOf('#', fileNameEnd + 1)  : -1;
 
     targetBuffer._NC("Scope::");
          if ( methodEnd   >= 0 )  targetBuffer._NC( "Method      [" );
@@ -97,24 +80,16 @@ AString& ScopeDump::storeKeyToScope( const lib::containers::PathMap<T>& map )
     integer targetStart= targetBuffer.Length();
     targetBuffer._NC( key );
 
-    if ( fileNameEnd >= 0 )
-        targetBuffer.DeleteEnd(1);
-
     if ( methodEnd >= 0 )
     {
-        targetBuffer._NC( "()\"" );
-        targetBuffer.ReplaceSubstring( " Method=\"", targetStart + fileNameEnd, 2 );
+        targetBuffer.ReplaceSubstring( " @", targetStart + fileNameEnd +1, 2 ); // characters: "/#"
+        targetBuffer._NC( "()" );
     }
 
     if ( fileNameEnd >= 0 )
-    {
-        targetBuffer.InsertAt        ( ".*\""            , targetStart + fileNameEnd      );
-        targetBuffer.ReplaceSubstring( " Filename=\""    , targetStart + fileNameStart, 1 );
-    }
-
-    integer pos= fileNameEnd > 0 ? fileNameStart : targetBuffer.Length() - targetStart;
-    targetBuffer.InsertAt( "\""     , targetStart + pos );
-    targetBuffer.InsertAt( "Path=\"", targetStart );
+        targetBuffer.ReplaceSubstring(".*", targetStart + fileNameEnd,  1);
+    else
+        targetBuffer._('/');
 
     targetBuffer._(']');
 
@@ -182,13 +157,19 @@ int ScopeDump::writeStoreMap( ScopeStore<T>* store )
         maximumKeyLength= writeStoreMapHelper( *thread.second[0], "    " );
     }
 
-    for ( auto& map : *store->languageStore )
+    String512 keyStr;
+    typename StringTree<T>::Walker walker( store->languageStore );
+    walker.PathGeneration( Switch::On );
+    walker.SetRecursionDepth(-1);
+    for( walker.SetStart( store->languageStore) ;walker.IsValid() ; walker.Next() )
     {
-        cnt+= static_cast<int>( map.Value->size() );
+        if( *walker == ScopeStoreType<T>::NullValue() )
+            continue;
+        cnt+= static_cast<int>( (*walker)->size() );
         if( firstEntry ) firstEntry= false; else   targetBuffer.NewLine();
         targetBuffer._NC( "  " );
-        storeKeyToScope   ( map )   ._( ':' ).NewLine();
-        maximumKeyLength= writeStoreMapHelper( *map.Value, "    " );
+        storeKeyToScope( walker.GetPath(keyStr) ).NewLine();
+        maximumKeyLength= writeStoreMapHelper( **walker, "    " );
     }
 
     for ( auto& thread : store->threadInnerStore )
@@ -227,16 +208,21 @@ int ScopeDump::writeStore( ScopeStore<T>* store, int indentSpaces )
             storeThreadToScope( thread.first ).NewLine();
         }
 
-
-    for ( auto& it : *store->languageStore )
     {
-        cnt++;
-        targetBuffer.InsertChars( ' ', indentSpaces );
-
-        write( it.Value, targetBuffer );
-        targetBuffer._NC(Format::Tab( 25, -1 ) );
-
-        storeKeyToScope( it ).NewLine();
+        String512 keyStr;
+        typename StringTree<T>::Walker walker( store->languageStore );
+        walker.PathGeneration( Switch::On );
+        walker.SetRecursionDepth(-1);
+        for( walker.SetStart( store->languageStore) ;walker.IsValid() ; walker.Next() )
+        {
+            if( *walker == ScopeStoreType<T>::NullValue() )
+                continue;
+            cnt++;
+            targetBuffer.InsertChars( ' ', indentSpaces );
+            write( *walker, targetBuffer );
+            targetBuffer._NC(Format::Tab( 25, -1 ) );
+            storeKeyToScope( walker.GetPath(keyStr) ).NewLine();
+        }
     }
 
     for ( auto& thread : store->threadInnerStore )

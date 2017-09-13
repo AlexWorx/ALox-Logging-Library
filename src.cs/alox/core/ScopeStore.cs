@@ -33,8 +33,8 @@ public class ScopeStore<T>
         /** The value to the global scope */
         public T                                   globalStore;
 
-        /** PathMap store for language-related scopes (path,source,method) */
-        public PathMap<T>                          languageStore                 = new PathMap<T>();
+        /** StringTree store for language-related scopes (path,source,method) */
+        public StringTree<T>                       languageStore              = new StringTree<T>();
 
         /** A list of domain paths of \e %Scope.ThreadOuter */
         public Dictionary<Thread, List<T>>         threadOuterStore=new Dictionary<Thread, List<T>>();
@@ -55,7 +55,10 @@ public class ScopeStore<T>
         protected ScopeInfo                        scopeInfo;
 
         /** Temporary string for assembling source key */
-        protected AString                          languageKey                     = new AString(128);
+        protected AString                          languageKey                   = new AString(128);
+
+        /** Temporary substring for consuming the source key */
+        protected Substring                        languageKeySubs                = new Substring();
 
         /** Flag used to lazily create the key to language-related scope values */
         protected bool                             lazyLanguageNode;
@@ -67,7 +70,7 @@ public class ScopeStore<T>
         protected Scope                            actScope;
 
         /** The actual language related scopes' map node */
-        protected PathMap<T>                       actPathMapNode;
+        protected StringTree<T>.Cursor             actStringTreeNode;
 
         /** The next path level of a walk during scope 'Path' */
         protected int                              actPathLevel;
@@ -85,12 +88,6 @@ public class ScopeStore<T>
         /** The list of values of \e %Scope.ThreadOuter/Inner during a walk */
         protected List<T>                          walkThreadValues;
 
-        /** The (constant) list of separators needed by the tree map */
-        protected AString                          separators= new AString( "#" )._(Path.DirectorySeparatorChar);
-
-        /** A temporary substring used for searching keys in the tree map */
-        protected Substring                        languageKeySubstr              = new Substring();
-
     // #############################################################################################
     // Public interface
     // #############################################################################################
@@ -105,6 +102,7 @@ public class ScopeStore<T>
             this.scopeInfo=             scopeInfo;
             this.cfgSingleThreadValue=  cfgSingleThreadValue;
             this.globalStore=           default(T);
+            actStringTreeNode=          languageStore.Root();
         }
 
         /** ****************************************************************************************
@@ -114,7 +112,7 @@ public class ScopeStore<T>
         {
             globalStore=    default(T);
             threadInnerStore.Clear();
-            languageStore=  new PathMap<T>();
+            languageStore=  new StringTree<T>();
             threadOuterStore.Clear();
         }
 
@@ -211,12 +209,12 @@ public class ScopeStore<T>
                 case Scope.Method:
                 {
                     if( lazyLanguageNode )
-                        getPathMapNode( false );
+                        initCursor( false );
 
-                    while( actPathMapNode != null )
+                    while( actStringTreeNode.IsValid() )
                     {
-                        T actValue= actPathMapNode.Value;
-                        actPathMapNode= actPathMapNode.Parent;
+                        T actValue = actStringTreeNode.Value();
+                        actStringTreeNode.MoveToParentUnchecked();
                         if( actValue != null )
                             return actValue;
                     }
@@ -286,53 +284,60 @@ public class ScopeStore<T>
 
         /** ****************************************************************************************
          * Retrieves and optionally creates an entry in the map that stores language-related
-         * scope information. The result is stored in field #actPathMapNode.
+         * scope information. The result is stored in field #actStringTreeNode.
          * @param create     If \c true, a non-existing entry is created.
          ******************************************************************************************/
-        protected void getPathMapNode( bool create )
+        protected void initCursor( bool create )
         {
-            lazyLanguageNode= false;
+            lazyLanguageNode=   false;
+            actStringTreeNode.Root();
 
-            // key: Path
+            // path key for the StringTree
             languageKey._()._( scopeInfo.GetTrimmedPath() );
+            languageKey.SearchAndReplace( '\\', '/' );
+            languageKeySubs.Set(languageKey);
 
-            if ( actScope == Scope.Path )
+            // read-only mode
+            if( !create )
             {
-                // substract folders at the back
-                int pathLevel= actPathLevel;
-                while (pathLevel > 0 )
-                {
-                    int idx= languageKey.LastIndexOf( Path.DirectorySeparatorChar );
-                    if (idx < 0 )
-                    {
-                        languageKey._();
-                        break;
-                    }
-                    languageKey.SetLength_NC( idx );
-                    pathLevel--;
-                }
+                // in non-creation mode, it is always scope Method
+                ALIB_DBG.ASSERT(actScope == Scope.Method);
 
-                languageKey._( separators[1] );
-                actPathMapNode= languageStore.Get( languageKeySubstr.Set(languageKey), create, separators );
+                // in read only mode, we can leave as soon as a portion was not read
+                actStringTreeNode.MoveToExistingPart( languageKeySubs );
+                if ( languageKeySubs.IsNotEmpty() )
+                    return;
+
+                // filename: append '#' to distinguish from directories
+                if ( !actStringTreeNode.MoveToChild( languageKey._()._NC( scopeInfo.GetFileNameWithoutExtension() )._( '#' ).ToString() ) )
+                    return;
+
+                // filename: prepend '#' to distinguish from filenames
+                actStringTreeNode.MoveToChild( languageKey._()._NC( '#' )._NC( scopeInfo.GetMethod() ).ToString() );
+
                 return;
             }
 
-            languageKey._( separators[1] );
+            // create mode:
+            actStringTreeNode.MoveToAndCreateNonExistingPart( languageKeySubs );
+            if ( actScope == Scope.Path )
+            {
+                // subtract folders at the back
+                int pathLevel= actPathLevel;
+                while ( --pathLevel >= 0 && !actStringTreeNode.IsRoot() )
+                    actStringTreeNode.MoveToParent();
+                return;
+            }
 
-            // key: filename
-            languageKey._( '-' ) // we need a prefix to have all classes share one start node which is not
-                                 // a separator-node
-                       ._( scopeInfo.GetFileName() )
-                       ._( separators[0] );
+            // filename: append '#' to distinguish from directories
+            languageKey._()._( scopeInfo.GetFileNameWithoutExtension() )._( '#' );
 
-            // key: method
+            // filename: prepend '#' to distinguish from filenames
             if ( actScope == Scope.Method )
-                languageKey._( '-' ) // we need a prefix to have all methods share one start node which is not
-                                     // a separator-node
-                           ._( scopeInfo.GetMethod() )
-                           ._( separators[0] );
+                languageKey._( "/#" )._( scopeInfo.GetMethod() );
+            languageKeySubs.Set(languageKey);
 
-            actPathMapNode= languageStore.Get( languageKeySubstr.Set(languageKey), create, separators );
+            actStringTreeNode.MoveToAndCreateNonExistingPart( languageKeySubs );
         }
 
         /** ****************************************************************************************
@@ -364,7 +369,7 @@ public class ScopeStore<T>
                 // choose outer/inner store
                 Dictionary<Thread, List<T>>  threadStore=
                     actScope == Scope.ThreadInner  ? threadInnerStore
-                                                    : threadOuterStore;
+                                                   : threadOuterStore;
 
                 // check if empty (to avoid key creation/thread detection )
                 if ( cmd != 0 && threadStore.Count == 0 )
@@ -442,18 +447,18 @@ public class ScopeStore<T>
                     cmd= 1;
 
                 if (    lazyLanguageNode
-                    ||  ( actPathMapNode == null && cmd == 0 ) ) // insert
-                    getPathMapNode( true ); // always create
+                    ||  ( actStringTreeNode == null && cmd == 0 ) ) // insert
+                    initCursor( true ); // always create
 
-                if ( actPathMapNode != null )
+                if ( actStringTreeNode.IsValid() )
                 {
-                    oldValue = actPathMapNode.Value;
+                    oldValue = actStringTreeNode.Value();
 
                     if ( cmd == 0 ) // insert
-                        actPathMapNode.Value= value;
+                        actStringTreeNode.SetValue( value );
 
                     else if ( cmd == 1 ) // remove
-                        languageStore.Remove( actPathMapNode );
+                        actStringTreeNode.SetValue( default(T) );
                 }
 
                 return oldValue;

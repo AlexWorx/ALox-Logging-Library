@@ -418,12 +418,12 @@ public class UT_alox_logger extends AWorxUnitTesting
         lf= new AString(         "(%SF) %SM():%A3[%TC +%TL][%tN]%V[%D]<%#>: ");             Log.debugLogger.metaInfo.format= lf;    Log.info( "LineFormat set to= \"" + lf + "\"" );
         lf= new AString(         "(%SF) %SM():%A3[+%TL][%tN]%V[%D]<%#>: ");                 Log.debugLogger.metaInfo.format= lf;    Log.info( "LineFormat set to= \"" + lf + "\"" );
         lf= new AString(         "(%SF) %SM():%A3[%tN]%V[%D]<%#>: ");                       Log.debugLogger.metaInfo.format= lf;    Log.info( "LineFormat set to= \"" + lf + "\"" );
-        lf= new AString(         "(%SF) %SM():%A3 %V[%D]<%#>: ");                          Log.debugLogger.metaInfo.format= lf;    Log.info( "LineFormat set to= \"" + lf + "\"" );
-        lf= new AString(         "(%SF) %SM():%A3[%D]<%#>: ");                             Log.debugLogger.metaInfo.format= lf;    Log.info( "LineFormat set to= \"" + lf + "\"" );
-        lf= new AString(         "(%SF) %SM():%A3[%D]: ");                                 Log.debugLogger.metaInfo.format= lf;    Log.info( "LineFormat set to= \"" + lf + "\"" );
-        lf= new AString(         "(%SF):%A3[%D]: ");                                       Log.debugLogger.metaInfo.format= lf;    Log.info( "LineFormat set to= \"" + lf + "\"" );
-        lf= new AString( "[%D]: ");                                                        Log.debugLogger.metaInfo.format= lf;    Log.info( "LineFormat set to= \"" + lf + "\"" );
-        lf= new AString( "");                                                              Log.debugLogger.metaInfo.format= lf;    Log.info( "LineFormat set to= \"" + lf + "\"" );
+        lf= new AString(         "(%SF) %SM():%A3 %V[%D]<%#>: ");                           Log.debugLogger.metaInfo.format= lf;    Log.info( "LineFormat set to= \"" + lf + "\"" );
+        lf= new AString(         "(%SF) %SM():%A3[%D]<%#>: ");                              Log.debugLogger.metaInfo.format= lf;    Log.info( "LineFormat set to= \"" + lf + "\"" );
+        lf= new AString(         "(%SF) %SM():%A3[%D]: ");                                  Log.debugLogger.metaInfo.format= lf;    Log.info( "LineFormat set to= \"" + lf + "\"" );
+        lf= new AString(         "(%SF):%A3[%D]: ");                                        Log.debugLogger.metaInfo.format= lf;    Log.info( "LineFormat set to= \"" + lf + "\"" );
+        lf= new AString( "[%D]: ");                                                         Log.debugLogger.metaInfo.format= lf;    Log.info( "LineFormat set to= \"" + lf + "\"" );
+        lf= new AString( "");                                                               Log.debugLogger.metaInfo.format= lf;    Log.info( "LineFormat set to= \"" + lf + "\"" );
 
         Log.debugLogger.metaInfo.format._()._( "%TD@" );
         testML.metaInfo.format._()._( "%TD@" );
@@ -431,13 +431,13 @@ public class UT_alox_logger extends AWorxUnitTesting
         df= ">yy-MM-dd<";    Log.debugLogger.metaInfo.dateFormat= df;                                              Log.info( "Date test. Format: \""+ df + '\"' );
         testML.memoryLog.clear();
         df= ">yyyy/dd/MM<";  Log.debugLogger.metaInfo.dateFormat= df;  testML.metaInfo.dateFormat= df;             Log.info( "FMT", "Date test. Format: \""+ df + '\"' );
-        UT_TRUE( testML.memoryLog.searchAndReplace( "/", "@") == 4 );
+        UT_TRUE( testML.memoryLog.searchAndReplace( '/', '@') == 4 );
         Log.debugLogger.metaInfo.format._()._( "%TT@" );
         testML.metaInfo.format._()._( "%TT@" );
         df= ">HH:mm:ss<";    Log.debugLogger.metaInfo.timeOfDayFormat= df;                                         Log.info( "FMT", "Time of day test Format: \""+ df + '\"' );
         testML.memoryLog.clear();
         df= ">HH-mm-ss<";    Log.debugLogger.metaInfo.timeOfDayFormat= df;  testML.metaInfo.timeOfDayFormat= df;   Log.info( "FMT", "Time of day test. Format: \"" + df + '\"' );
-        UT_TRUE( testML.memoryLog.searchAndReplace( "-", "@") == 4 );
+        UT_TRUE( testML.memoryLog.searchAndReplace( '-', '@') == 4 );
 
         Log.debugLogger.metaInfo.format._( "%tI@" );
         testML.metaInfo.format._()._( "%tI@" );
@@ -449,9 +449,11 @@ public class UT_alox_logger extends AWorxUnitTesting
 
         Log.debugLogger.metaInfo.format._()._( "%P" );
                  testML.metaInfo.format._()._( "%P" );
-        testML.memoryLog.clear(); testML.autoSizes.reset(); Log.info("");  UT_TRUE(    testML.memoryLog.equals("RemoteTestRunner")    // eclipse
-                                                                                    || testML.memoryLog.equals("AppMain"         )    // intellij
-                                                                                  );
+        testML.memoryLog.clear(); testML.autoSizes.reset(); Log.info("");
+        UT_TRUE(    testML.memoryLog.equals("RemoteTestRunner"  )  // eclipse
+                 || testML.memoryLog.equals("AppMain"           )  // intellij old?
+                 || testML.memoryLog.equals("JUnitStarter"      )  // intellij
+            );
 
         Log.debugLogger.metaInfo.format._()._( "%LX" );
                  testML.metaInfo.format._()._( "%LX" );

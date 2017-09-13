@@ -25,14 +25,15 @@ using cs.aworx.lox.loggers;
 using cs.aworx.lox.core.textlogger;
 
 /** ************************************************************************************************
- * This is the C++ namespace for code of the <em>%ALox Logging Library</em>.
+ * This is the C++ namespace for code of the <b>%ALox Logging Library</b>.
  * Developed by A-Worx GmbH and published under Boost Software License.
  **************************************************************************************************/
 namespace cs.aworx.lox {
 
 /** ************************************************************************************************
  * This class acts as a container for Loggers and provides a convenient interface to logging.
- * Fore information how to use this class, checkout the ALox tutorials and the ALox manual.
+ * Fore information how to use this class, checkout the \b %ALox tutorials and the 
+ * [ALox User Manual](../manual.html).
  **************************************************************************************************/
 public class Lox : ThreadLock
 {
@@ -233,7 +234,7 @@ public class Lox : ThreadLock
 
         /** ****************************************************************************************
          * Constructs a new, empty Lox with the given \p name.
-         * The name is immutable and all \b %Lox objects registered with ALox must be unique.
+         * The name is immutable and all \b %Lox objects registered with \b %ALox must be unique.
          * The name \c "Log" is reserved for the internal default singleton used for debug-logging.
          * In addition, name \c "GLOBAL" is not allowed.
          *
@@ -355,12 +356,12 @@ public class Lox : ThreadLock
     }
 
     /** ********************************************************************************************
-     * Status of registration with ALox. To keep a \b %Lox "private" using parameter
+     * Status of registration with \b %ALox. To keep a \b %Lox "private" using parameter
      * \p doRegister of the constructor, allows to suppress registration.
      * Registered instances of this class can be statically received (by their name) using
      * \ref cs::aworx::lox::ALox::Get "ALox.Get".
      *
-     * @returns \c true if this instance was registered with ALox, \c false if not.
+     * @returns \c true if this instance was registered with \b %ALox, \c false if not.
      **********************************************************************************************/
         public bool      IsRegistered()
         {
@@ -461,7 +462,7 @@ public class Lox : ThreadLock
      * Setting parameter \p allowAutoRule to \c false, allows to suppress the creation of an
      * automatic rule based on the executables path.
      *
-     * \see ALox User Manual for more information.
+     * \see [ALox User Manual](../manual.html) for more information.
      *
      * @param reach         Denotes whether only local rules are cleared or also global ones.
      *                      Defaults to \b %Reach.Global.
@@ -929,7 +930,7 @@ public class Lox : ThreadLock
      * \attention
      *   The same as with most interface methods of this class, the given \p domain parameter is
      *   combined with <em>%Scope Domains</em> set for the callers' \e %Scope. In standard use
-     *   cases of %ALox, the \e %Verbosity of a \e Domain is set using absolute domain path
+     *   cases of \b %ALox, the \e %Verbosity of a \e Domain is set using absolute domain path
      *   addressing. Therefore, it is recommended to have any domain path passed to this method
      *   starting with <c> '/'</c>, which suppresses the concatenation of <em>%Scope Domains</em>.<br>
      *   This is why this parameter with this method defaults to <c> '/'</c>, while with other
@@ -944,7 +945,7 @@ public class Lox : ThreadLock
      * \attention
      *   Consequently, this method may be (mis-) used to modify the 'actual' (default) scope
      *   when explicitly giving an empty string with parameter \p domain. This is useful, to
-     *   temporarily adjust a scope. But remember: %ALox was designed to avoid temporary code
+     *   temporarily adjust a scope. But remember: \b %ALox was designed to avoid temporary code
      *   lines...
      *
      * @param logger     The logger to be to be affected (case insensitive).
@@ -1304,7 +1305,7 @@ public class Lox : ThreadLock
      *
      * <b>Final remarks</b>
      * Domain substitution is useful to permanently change ('redirect') domain paths of
-     * 3rd party code (e.g. libraries using ALox) or log statements that must not be changed
+     * 3rd party code (e.g. libraries using \b %ALox) or log statements that must not be changed
      * for other reasons. It is advised to not 'overuse' this feature, as side effects
      * are inherent to the concept of <em>Domain Substitution</em>. For example, an unwanted side effect might be
      * that <em>Prefix Logables</em> are not applicable to the substituted domain, while other <em>Prefix Logables</em> are
@@ -1424,11 +1425,11 @@ public class Lox : ThreadLock
      *
      *<p>
      * \note
-     *   The word 'prefix' in this methods' name and in the name of ALox feature
+     *   The word 'prefix' in this methods' name and in the name of \b %ALox feature
      *   <em>Prefix Logables</em> is chosen for the fact that with text loggers (which is the
-     *   most widely applied use case for ALox) such objects are prefixes to the log
+     *   most widely applied use case for \b %ALox) such objects are prefixes to the log
      *   message. Of-course, with using \e %Scope.ThreadInner, this turns into a suffix!<br>
-     *   When using ALox to process objects instead of log messages, the concept of
+     *   When using \b %ALox to process objects instead of log messages, the concept of
      *   <em>Prefix Logables</em> is very useful. Just the name does not fit so well anymore.
      *   Think of 'SetContext' and <em>Context Objects</em> instead.
      *
@@ -1663,9 +1664,9 @@ public class Lox : ThreadLock
      * \attention
      * When data objects are 'overwritten', previous objects will be deleted internally.
      * Hence, only pointers to heap-allocated objects (created with \c new) may be passed!<br>
-     * For more information, consult the ALox user manual.
+     * For more information, consult the [ALox User Manual](../manual.html).
      *
-     * \note <em>Log Data</em> is a feature provided by ALox to support debug-logging.
+     * \note <em>Log Data</em> is a feature provided by \b %ALox to support debug-logging.
      *       It is not advised to use <em>Log Data</em> to implement application logic.
      *
      * @param data      The data object to store.
@@ -1789,7 +1790,7 @@ public class Lox : ThreadLock
      * \note If no <em>Log Data</em> object is found, an empty object is stored and returned.
      *
      * <p>
-     * \note <em>Log Data</em> is a feature provided by ALox to support debug-logging.
+     * \note <em>Log Data</em> is a feature provided by \b %ALox to support debug-logging.
      *       It is not advised to use <em>Log Data</em> to implement application logic.
      *
      * @param key       The optional key to the data.
@@ -1856,7 +1857,7 @@ public class Lox : ThreadLock
     /** ****************************************************************************************
      * Overloaded version of #Retrieve which omits parameter \p key.
      *
-     * \note <em>Log Data</em> is a feature provided by ALox to support debug-logging.
+     * \note <em>Log Data</em> is a feature provided by \b %ALox to support debug-logging.
      *       It is not advised to use <em>Log Data</em> to implement application logic.
      *
      * @param scope     The \e %Scope that the data is bound to.
@@ -1886,7 +1887,7 @@ public class Lox : ThreadLock
      *
      * \note
      *   As an alternative to (temporarily) adding an invocation of <b>%Lox.State</b> to
-     *   your code, ALox provides configuration variable
+     *   your code, \b %ALox provides configuration variable
      *   [ALOX_LOXNAME_DUMP_STATE_ON_EXIT](group__GrpALoxConfigVars.html).
      *   This allows to enable an automatic invocation of this method using external
      *   configuration data like command line parameters, environment variables or
@@ -2210,7 +2211,7 @@ public class Lox : ThreadLock
             if ( pfl.IncludeOtherPLs == Inclusion.Exclude )
                 target._NC( " (Excl.)" );
             target.Tab( 25 );
-            target._NC( "<domain>           [" )._NC( domain.FullPath )._(']').NewLine();
+            target._NC( "<domain>          [" )._NC( domain.FullPath )._(']').NewLine();
         }
 
         foreach( Domain it in domain.SubDomains )
@@ -2311,7 +2312,7 @@ public class Lox : ThreadLock
      *   parameter.
      *   The little drawback of the auto detection is the possibility of ambiguous invocations.
      *
-     * In the C# Version of ALox, the number of logables that might be directly passed
+     * In the C# Version of \b %ALox, the number of logables that might be directly passed
      * to this method (respectively to methods #Info, #Verbose, etc.) is limited to \b four.
      * The reason is of technical nature: In the C# we can not work with variadic argument
      * lists, as the end of the argument list, the "hidden" parameters that collect caller
@@ -2355,19 +2356,23 @@ public class Lox : ThreadLock
                 bool illegalCharacterFound= false;
                 if( firstArg != null )
                 {
-                    ALIB_DBG.ASSERT_ERROR( !firstArg.StartsWith(ALox.InternalDomains),
-                                       "Method EntryDetectDomain should not be used with internal domains"  );
-
-                    for( int i= 0; i< firstArg.Length ; ++i )
+                    // accept internal domain at the start
+                    int idx= 0;
+                    if( firstArg.StartsWith( ALox.InternalDomains ) )
+                        idx+= ALox.InternalDomains.Length;
+                        
+                    // loop over domain and check for illegal characters
+                    for( ; idx< firstArg.Length ; ++idx )
                     {
-                        char c= firstArg[i];
-                        if (!(    ( c >= '0' && c <= '9' )
-                               || ( c >= 'A' && c <= 'Z' )
-                               || c == '-'
-                               || c == '_'
-                               || c == '/'
-                               || c == '.'
-                        ))
+                        char c= firstArg[idx];
+                        if (   !(    ( c >= '0' && c <= '9' )
+                                  || ( c >= 'A' && c <= 'Z' )
+                                  || c == '-'
+                                  || c == '_'
+                                  || c == '/'
+                                  || c == '.'
+                                )
+                           )
                         {
                             illegalCharacterFound= true;
                             break;
@@ -4011,7 +4016,7 @@ public class Lox : ThreadLock
     }
 
     /** ****************************************************************************************
-     * Reads the verbosity for the given logger and domain from the ALib configuration system.
+     * Reads the verbosity for the given logger and domain from the \b %ALib configuration system.
      * This internal method is used in two occasions:
      * - when a new logger is added: recursively for all existing domains (\p configStr is
      *   given)
@@ -4074,7 +4079,7 @@ public class Lox : ThreadLock
     }
 
     /** ****************************************************************************************
-     * Reads a prefix string from the ALib configuration system.
+     * Reads a prefix string from the \b %ALib configuration system.
      * This internal method is used when a new domain is created,
      *
      * @param dom         The domain to set the verbosity for.
@@ -4139,7 +4144,7 @@ public class Lox : ThreadLock
 
 
     /** ****************************************************************************************
-     * Reads the verbosity for the given logger and domain from the ALib configuration system.
+     * Reads the verbosity for the given logger and domain from the \b %ALib configuration system.
      * This internal method is used when a new logger is added.
      * Walks recursively for all existing domains.
      *

@@ -229,7 +229,7 @@ class Boxer
          * are kept in a static collection and are used with boxable types that have no
          * type-specific  interface set.
          *
-         * Adding a default interface is optional. As a sample, ALib provides interface
+         * Adding a default interface is optional. As a sample, \b %ALib provides interface
          * \ref aworx::lib::strings::boxing::IApply "IApply" to write a string
          * representation of an object. Although, being the base to type specific interfaces,
          * this class itself provides a default implementation for \e 'unknown' types,
@@ -312,7 +312,7 @@ class Boxer
 // #################################################################################################
 
 /**
- * This is a templated internal helper class for ALib boxing, with the only means to provide a
+ * This is a templated internal helper class for \b %ALib boxing, with the only means to provide a
  * singleton of a derived boxer type used for boxing arrays types.
  */
 template<typename TBoxable>
@@ -332,7 +332,7 @@ class BoxerT  : public Boxer   , public Singleton<BoxerT<TBoxable>>
 };
 
 /**
- * This is a templated internal helper class for ALib boxing, with the only means to provide a
+ * This is a templated internal helper class for \b %ALib boxing, with the only means to provide a
  * singleton of a derived boxer type used for arrays of a certain element type.
  */
 template<typename TElementType>

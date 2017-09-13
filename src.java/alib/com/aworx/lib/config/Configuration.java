@@ -10,8 +10,8 @@
   It may be helpful to read this namespace documentation and understand the concepts - even if you
   are not planning to use configuration variables in your own code.
   The reason is that with the knowledge of the principals described here, it is possible to influence
-  the behavior of 3rd party code (code of other team members or ALib enabled libraries
-  like for example <b>ALox Logging Library</b>).
+  the behavior of 3rd party code (code of other team members or \b %ALib enabled libraries
+  like for example <b>%ALox Logging Library</b>).
 
 # 1. Introduction #
 
@@ -87,7 +87,7 @@ or, in section \c MY:
 # 2. Command-Line parameters, Environment Variables and INI files #
 
 Three different standard plug-ins that collect external configuration variables are provided
-with ALib already:
+with \b %ALib already:
 - Class \ref com::aworx::lib::config::CommandLinePlugin "CommandLinePlugin":<br>
   Reads parameter values of the form -[-]CategoryName_VariableName=value from the command line.
 - Class \ref com::aworx::lib::config::EnvironmentPlugin "EnvironmentPlugin":<br>
@@ -112,7 +112,7 @@ overwritten by specifying a corresponding command line parameter when launching 
 
 # 3. Default Variables #
 
-In addition to the three plug-ins described above, ALib implements a fourth one,
+In addition to the three plug-ins described above, \b %ALib implements a fourth one,
 class \ref com::aworx::lib::config::InMemoryPlugin "InMemoryPlugin". As the name indicates, this
 class keeps configuration variables in memory. The special thing about it is that it does not
 read any external data source! The reason for having it, is twofold. The first use case
@@ -142,7 +142,7 @@ This way, it is possible to protect values against external modification.
 \note
     One might think: "If I do not want to allow external modification, I rather hard-code
     everything". This of-course is true for code under control. However, for 3rd party
-    code using ALib, this offers an easy way to disallow users of your software (which incorporates
+    code using \b %ALib, this offers an easy way to disallow users of your software (which incorporates
     that 3rd party code) to configure things that you do not want to be configurable.
 
 
@@ -172,9 +172,9 @@ In addition (or alternatively), custom plug-ins may be written and installed usi
 priorities. Especially, provided class \b %IniFile is designed for simplicity and smaller applications.
 Instead of using it \b %IniFile, it is recommended to use application/platform
 specific mechanisms for writing configuration data. In this case, write your own plug-in
-to grant ALib and other libraries which rely on ALib, access to your applications's configuration
-data. Again, ALib here follows its design principle to be non intrusive: The plug-in concept
-allows users of ALib (more important:  users of ALib enabled libraries) to expose any external
+to grant \b %ALib and other libraries which rely on \b %ALib, access to your applications's configuration
+data. Again, \b %ALib here follows its design principle to be non intrusive: The plug-in concept
+allows users of \b %ALib (more important:  users of \b %ALib enabled libraries) to expose any external
 configuration source to these libraries.
 This way, the users can stick to his/her preferred way of implementation.
 
@@ -289,13 +289,13 @@ import com.aworx.lib.strings.Substring;
  * Interface methods are implemented <em>synchronized</em>.
  *
  * By default, all category and variable names are case insensitive. This is at least true for the
- * default plug-ins delivered with ALib.
+ * default plug-ins delivered with \b %ALib.
  *
  * Variables by default can contain other variables, which are recursively substituted
  * by this method. For more information about the (adjustable) syntax, see
  * \ref java_alib_namespace_config_substitution "Variable Substitution".
  *
- * See documentation of namespace #com::aworx::lib::config for more information on ALib
+ * See documentation of namespace #com::aworx::lib::config for more information on \b %ALib
  * external configuration variables.
  **************************************************************************************************/
 public class Configuration
@@ -410,7 +410,7 @@ public class Configuration
 
         /**
          * Constant providing a priority which is even lower than default. This priority is
-         * not used by any standard plug-ins and currently not even anywhere in core ALib.
+         * not used by any standard plug-ins and currently not even anywhere in core \b %ALib.
          * The rational to provide it is for third party libraries that may use this value
          * in cases where values are estimated or detected. A user of the library may then
          * overwrite such auto-detection by setting a default value in the configuration.

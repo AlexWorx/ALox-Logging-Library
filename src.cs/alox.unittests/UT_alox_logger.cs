@@ -596,14 +596,14 @@ namespace ut_cs_aworx_lox
         df= ">yy-MM-dd<";    Log.DebugLogger.MetaInfo.DateFormat= df;                                                Log.Info( "Date test. Format: \""+ df + '\"' );
         testML.MemoryLog.Clear();
         df= ">yyyy/dd/MM<";  Log.DebugLogger.MetaInfo.DateFormat= df;  testML.MetaInfo.DateFormat= df;             Log.Info( "FMT", "Date test. Format: \""+ df + '\"' );
-        UT_TRUE( testML.MemoryLog.SearchAndReplace( "/", "@") == 4 );
+        UT_TRUE( testML.MemoryLog.SearchAndReplace( '/', '@') == 4 );
 
         Log.DebugLogger.MetaInfo.Format._()._( "%TT@" );
         testML.MetaInfo.Format._()._( "%TT@" );
         df= ">HH:mm:ss<";    Log.DebugLogger.MetaInfo.TimeOfDayFormat= df;                                           Log.Info( "FMT", "Time of day test Format: \""+ df + '\"' );
         testML.MemoryLog.Clear();
         df= ">HH-mm-ss<";    Log.DebugLogger.MetaInfo.TimeOfDayFormat= df;  testML.MetaInfo.TimeOfDayFormat= df;   Log.Info( "FMT", "Time of day test. Format: \"" + df + '\"' );
-        UT_TRUE( testML.MemoryLog.SearchAndReplace( "-", "@") == 4 );
+        UT_TRUE( testML.MemoryLog.SearchAndReplace( '-', '@') == 4 );
 
 
         Log.DebugLogger.MetaInfo.Format._()._( "%P" );

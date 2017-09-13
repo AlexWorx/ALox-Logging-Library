@@ -6,7 +6,12 @@
 // #################################################################################################
 
 
+/**
+ * This sub-namespace  provides some classes used for formatting data in string buffers of
+ * type \ref com::aworx::lib::strings::AString "AString".
+ */
 package com.aworx.lib.strings.format;
+
 import com.aworx.lib.strings.*;
 import com.aworx.lib.threads.*;
 import java.util.ArrayList;
@@ -154,7 +159,7 @@ public abstract class Formatter
         protected           Substring           lamFormatString               = new Substring();
 
         /**
-         * A static, global instance which is used by ALib internally (e.g. for formatting
+         * A static, global instance which is used by \b %ALib internally (e.g. for formatting
          * \ref com::aworx::lib::lang::Report "Report" messages).
          * Applications can acquire and use this instance using #acquireDefault and #releaseDefault.
          */

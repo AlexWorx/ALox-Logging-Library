@@ -88,7 +88,7 @@ threads::SmartLock   ALIB::StdOutputStreamsLock;
 // #################################################################################################
 const uint64_t       ALIB::CompilationFlags=                            ALIB_COMPATIBILITY_VERIFYER;
 const int            ALIB::Version=                                           ALIB_VERSION_VERYFIER;
-const int            ALIB::Revision=                                                              1;
+const int            ALIB::Revision=                                                              0;
 
 
 bool                 ALIB::initialized                                                       =false;
@@ -142,7 +142,7 @@ bool ALIB::VerifyCompilationFlags( uint64_t flags )
      *
      * The message strings are simply passed to the default
      * \ref aworx::lib::lang::Report "Report".
-     * This way, the essential assert, error and message macros are using the ALib report system
+     * This way, the essential assert, error and message macros are using the \b %ALib report system
      * in the moment that the complete %ALib library is in place (instead of only one of the
      * libraries' modules.
      *
@@ -151,7 +151,7 @@ bool ALIB::VerifyCompilationFlags( uint64_t flags )
      * @param method  Information about the scope of invocation.
      * @param type    The type of message. See \ref aworx::lib::lang::Report::Message "Report::Message".
      * @param qtyMsgs The number of messages in \p msgs.
-     * @param msgs    A list of strings (this is all that the essential versions of ALib reporting
+     * @param msgs    A list of strings (this is all that the essential versions of \b %ALib reporting
      *                macros provide).
      */
     void ALib_Dbg_Report_Plugin(const char* file, int line, const char* method, int type, int qtyMsgs, const char** msgs);

@@ -158,7 +158,7 @@ class ThreadLockNR : public lang::Ownable
          *  section is very, very frequently executed.
          * @param safeness   Denotes the safeness mode.
          ******************************************************************************************/
-        void SetMode( lang::Safeness safeness )
+        void SetSafeness( lang::Safeness safeness )
         {
             #if ALIB_FEAT_THREADS
                 if( safeness == lang::Safeness::Unsafe && mutex != nullptr )
@@ -182,7 +182,7 @@ class ThreadLockNR : public lang::Ownable
          * Query if this instance was set to unsafe mode.
          * @return   The safeness mode of this object.
          ******************************************************************************************/
-        lang::Safeness Mode()
+        lang::Safeness GetSafeness()    const
         {
             return  mutex == nullptr ? lang::Safeness::Unsafe
                                      : lang::Safeness::Safe;

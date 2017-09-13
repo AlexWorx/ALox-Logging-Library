@@ -30,7 +30,7 @@
 
 #include <fstream>
 #if defined(_MSC_VER)
-    #include <algorithm> 
+    #include <algorithm>
 #endif
 
 
@@ -175,9 +175,9 @@ void  IniFile::Reset()
 bool startsWithCommentSymbol( Substring& subs );
 bool startsWithCommentSymbol( Substring& subs )
 {
-    integer i= String("#;/").IndexOf( subs.CharAtStart() );
-    return      ( i >= 0 && i < 2)
-            ||  ( i == 2 && subs[1] == '/'  );
+    integer i= String("#;/").IndexOfOrLength( subs.CharAtStart() );
+    return       i <  2
+            || ( i == 2 && subs.Length() > 1 && subs[1] == '/'  );
 }
 //! @endcond NO_DOX
 
@@ -338,8 +338,8 @@ int getAssignmentPos( const AString& value, const String& alignmentSeparator )
     integer idx= value.IndexOf( alignmentSeparator );
     if( idx > 0 )
     {
-        integer idxQuote= value.IndexOf( '"' );
-        if ( idxQuote < 0  || idxQuote > idx )
+        integer idxQuote= value.IndexOfOrLength( '"' );
+        if (  idxQuote > idx )
             return static_cast<int>(idx);
     }
     return -1;

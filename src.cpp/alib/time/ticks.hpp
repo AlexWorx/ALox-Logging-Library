@@ -34,7 +34,7 @@
 
 namespace aworx { namespace lib {
 /**
- * This namespace of ALib holds classes that are providing methods for
+ * This namespace of \b %ALib holds classes that are providing methods for
  * measuring time spans and conversion of dates and time values.
  */
 namespace time {
@@ -48,7 +48,7 @@ using   rawtime =   int64_t;
 // #############################################################################################
 
 /**
- * Initializes ALib time  logic.
+ * Initializes \b %ALib time  logic.
  * This method should not be called directly. use
  * \ref aworx::lib::ALIB::Init "ALIB::Init" to initialize all <b>%ALib Modules</b> included in the
  * distribution.
@@ -57,7 +57,7 @@ ALIB_API void Init();
 
 
 /**
- * Frees resources and shuts down ALib time logic.
+ * Frees resources and shuts down \b %ALib time logic.
  * This method should not be called directly. use
  * \ref aworx::lib::ALIB::TerminationCleanUp "ALIB::TerminationCleanUp" to de-initialize all
  * <b>%ALib Modules</b> included in the distribution.

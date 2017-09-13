@@ -19,10 +19,9 @@
 #if !defined (HPP_ALOX_CORE_SCOPEDUMP)
     #include "core/scopedump.hpp"
 #endif
-#if !defined (HPP_ALIB_CONTAINERS_PATHMAP)
-    #include "alib/containers/pathmap.hpp"
+#if !defined (HPP_ALIB_CONTAINERS_STRINGTREE)
+    #include "alib/containers/stringtree.hpp"
 #endif
-
 
 #if !defined (_GLIBCXX_ALGORITHM) && !defined(_ALGORITHM_)
     #include <algorithm>

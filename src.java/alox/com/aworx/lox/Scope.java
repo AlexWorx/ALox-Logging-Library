@@ -7,12 +7,12 @@
 package com.aworx.lox;
 
 /** ************************************************************************************************
- * These are definitions which are used as a parameter to certain ALox methods to denote
+ * These are definitions which are used as a parameter to certain \b %ALox methods to denote
  * the \e Scope of a setting. \e Scopes are dependent of the programming language
- * and hence differ slightly from each other in the different versions of ALox.
+ * and hence differ slightly from each other in the different versions of \b %ALox.
  *
  * \note
- *   ALox for Java implements scope mechanisms by collecting information from the current
+ *   <b>%ALox for Java</b> implements scope mechanisms by collecting information from the current
  *   execution stack.
  *   By default, debug logging works well in respect to collecting such 'caller information',
  *   while release logging, when code gets 'obfuscated' problems may arise.

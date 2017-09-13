@@ -7,7 +7,6 @@
 #include "alib/alib.hpp"
 
 #include "alib/strings/util/spaces.hpp"
-#include "alib/threads/threadlocknr.hpp"
 
 #include <iostream>
 
@@ -30,6 +29,7 @@ const aworx::AString&  Spaces::GetUnsafe( integer minSize )
 
     return theSpaces;
 }
+
 void Spaces::Write( std::ostream& os, integer qty )
 {
     const AString& spaces= Spaces::Get();

@@ -519,8 +519,8 @@ public class IniFile : InMemoryPlugin
             int idx= value.IndexOf( alignmentSeparator );
             if( idx > 0 )
             {
-                int idxQuote= value.IndexOf( '"' );
-                if ( idxQuote < 0  || idxQuote > idx )
+                int idxQuote= value.IndexOfOrLength( '"' );
+                if (idxQuote > idx )
                     return idx;
             }
             return -1;
@@ -750,9 +750,9 @@ public class IniFile : InMemoryPlugin
          ******************************************************************************************/
         protected bool startsWithCommentSymbol( Substring subs )
         {
-            int i= commentChars.IndexOf( subs.CharAtStart() );
-            return      ( i >= 0 && i < 2)
-                    ||  ( i == 2 && subs.CharAt(1) == '/'  );
+            int i= commentChars.IndexOfOrLength( subs.CharAtStart() );
+            return       i <  2
+                    || ( i == 2 && subs.Length() > 1 && subs.CharAt(1) == '/'  );
         }
 
         /** ****************************************************************************************

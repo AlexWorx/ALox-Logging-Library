@@ -394,6 +394,26 @@ AString& AString::Trim( const TString& trimChars )
 // #################################################################################################
 //  Replace()
 // #################################################################################################
+integer AString::SearchAndReplace(  char       needle,
+                                    char       replacement,
+                                    integer    startIdx        )
+{
+    ALIB_STRING_DBG_CHK(this)
+         if ( startIdx < 0  )       startIdx= 0;
+    else if ( startIdx >= length )  return 0;
+
+    // replacement loop
+    integer cntReplacements=    0;
+    for(;;)
+    {
+        startIdx= IndexOfOrLength<false>( needle, startIdx  );
+        if ( startIdx >= length  )
+            return cntReplacements;
+        vbuffer[ startIdx ]= replacement;
+        cntReplacements++;
+    }
+}
+
 integer AString::SearchAndReplace(  const TString&  needle,
                                     const String&   replacement,
                                     integer         startIdx,
@@ -465,8 +485,11 @@ integer AString::SearchAndReplace(  const TString&  needle,
             target.SearchAndReplace("aworx::lib::boxing::ftypes::"     , "" );
             target.SearchAndReplace("aworx::lib::boxing::"             , "" );
             target.SearchAndReplace("aworx::lib::strings::boxing::"    , "" );
+            target.SearchAndReplace("aworx::lib::strings::util::"      , "" );
+            target.SearchAndReplace("aworx::lib::strings::format::"    , "" );
             target.SearchAndReplace("aworx::lib::strings::"            , "" );
             target.SearchAndReplace("aworx::lib::threads::"            , "" );
+            target.SearchAndReplace("aworx::lib::system::"             , "" );
             target.SearchAndReplace("aworx::lib::config::"             , "" );
             target.SearchAndReplace("aworx::lib::time::"               , "" );
             target.SearchAndReplace("aworx::lib::containers::"         , "" );

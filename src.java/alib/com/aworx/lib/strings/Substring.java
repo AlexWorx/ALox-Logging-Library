@@ -37,10 +37,10 @@ import com.aworx.lib.lang.Whitespaces;
  *  <p>
  *
  *  \note
- *    In the Java and C# versions of ALib, due to the language design, fields #start and #end have
+ *    In the Java and C# versions of \b %ALib, due to the language design, fields #start and #end have
  *    to be used to define the substring on a field #buf, the character buffer. This forces
  *    a \e reimplementation of a bigger portion of the interface of class
- *    \ref com::aworx::lib::strings::AString "AString". In the C++ version of ALib, there is a
+ *    \ref com::aworx::lib::strings::AString "AString". In the C++ version of \b %ALib, there is a
  *    richer family of string classes that fully integrates with zero terminated <em>C strings</em>,
  *    standard C++ strings and 3rd party string libraries. Neither the fields \e %start and \e %end
  *    are necessary, nor the aforementioned reimplementation. Consequently, when directly accessing
@@ -1518,6 +1518,88 @@ public class Substring implements CharSequence
      ##@{ ########################################################################################*/
 
         /** ****************************************************************************************
+         * Search a character in the buffer.
+         *
+         * @param needle        The character to search.
+         * @param startIdx      The index to start the search at. Optional and defaults to \c 0.
+         *
+         * @return  -1 if the character is not found. Otherwise the index of first occurrence.
+         ******************************************************************************************/
+        public int indexOf( char needle, int startIdx )
+        {
+            // check
+            if ( startIdx < 0 )
+                startIdx= 0;
+            else if ( startIdx >= length() )
+                return -1;
+
+            // search
+            startIdx+= start;
+            while ( startIdx <= end )
+            {
+                if ( needle == buf[ startIdx ] )
+                    return startIdx - start;
+                startIdx++;
+            }
+
+            // not found
+            return -1;
+        }
+
+        /** ****************************************************************************************
+         * Searches the given character.
+         * @param  c The character to search.
+         * @return  The index of the character within this substring, \c -1 if the character is not
+         *          found.
+         ******************************************************************************************/
+        public int  indexOf( char c )
+        {
+            return indexOf( c, 0 );
+        }
+
+        /** ****************************************************************************************
+         * Like #indexOf but in case the character is not found, this method returns the length of
+         * this string instead of \c -1.
+         * Depending on the invocation context, the choice for the right version of this method may
+         * lead to shorter and more efficient code.
+         *
+         * @param needle  The character to search for.
+         * @return  This strings #length if the character \p needle is not found.
+         *          Otherwise the index of first occurrence.
+         ******************************************************************************************/
+        public int    indexOfOrLength( char needle )
+        {
+            int idx= start;
+            while ( idx <= end && needle != buf[ idx ])
+                idx++;
+
+            return idx - start;
+        }
+
+        /** ****************************************************************************************
+         * Like #indexOf but in case the character is not found, this method returns the length of
+         * this string instead of \c -1.
+         * Depending on the invocation context, the choice for the right version of this method may
+         * lead to shorter and more efficient code.
+         *
+         * @param needle    The character to search for.
+         * @param startIdx  The index in this to start searching the character.
+         * @return  This strings #length if the character \p needle is not found.
+         *          Otherwise the index of first occurrence.
+         ******************************************************************************************/
+        public int    indexOfOrLength( char needle, int startIdx )
+        {
+            int length = length();
+
+            if      ( startIdx < 0 )              startIdx= 0;
+            else if ( startIdx >= length )        return length;
+            while ( startIdx < length && needle != buf[ startIdx ])
+                startIdx++;
+
+            return startIdx;
+        }
+
+        /** ****************************************************************************************
          * Search the given String in the buffer starting at a given position.
          *
          * @param needle        The CharSequence to search.
@@ -1603,46 +1685,6 @@ public class Substring implements CharSequence
         public int indexOfFirstDifference(CharSequence needle   )
         {
             return  indexOfFirstDifference( needle, Case.SENSITIVE, 0 );
-        }
-
-
-        /** ****************************************************************************************
-         * Search a character in the buffer.
-         *
-         * @param needle        The character to search.
-         * @param startIdx      The index to start the search at. Optional and defaults to \c 0.
-         *
-         * @return  -1 if the character is not found. Otherwise the index of first occurrence.
-         ******************************************************************************************/
-        public int indexOf( char needle, int startIdx )
-        {
-            // check
-            if ( startIdx < 0 )
-                startIdx= 0;
-            else if ( startIdx >= length() )
-                return -1;
-
-            // search
-            startIdx+= start;
-            while ( startIdx <= end )
-            {
-                if ( needle == buf[ startIdx ] )
-                    return startIdx - start;
-                startIdx++;
-            }
-
-            // not found
-            return -1;
-        }
-        /** ****************************************************************************************
-         * Searches the given character.
-         * @param  c The character to search.
-         * @return  The index of the character within this substring, \c -1 if the character is not
-         *          found.
-         ******************************************************************************************/
-        public int  indexOf( char c )
-        {
-            return indexOf( c, 0 );
         }
 
         /** ****************************************************************************************
@@ -1967,7 +2009,7 @@ public class Substring implements CharSequence
          * \ref com::aworx::lib::strings::NumberFormat "NumberFormat".
          *
          * \note Because Java does not support unsigned integer, the value to read is limited to
-         *       <c>Long.MAX_VALUE</c> in this language implementation of ALib.
+         *       <c>Long.MAX_VALUE</c> in this language implementation of \b %ALib.
          *
          *
          * @param numberFormat Defines the input format. Optional and defaults to \c null.
@@ -2201,7 +2243,7 @@ public class Substring implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Reports an ALib error (using \ref com::aworx::lib::lang::ReportWriter "ReportWriter") and
+         * Reports an \b %ALib error (using \ref com::aworx::lib::lang::ReportWriter "ReportWriter") and
          * returns null. The reason for this behavior is to disallow the usage of AString within
          * (system) methods that create sub sequences.
          * This would be in contrast to the design goal of AString.

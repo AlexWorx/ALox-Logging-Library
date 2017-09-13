@@ -24,11 +24,6 @@ The following information is found here:
 - In addition, a complete [C# Reference Documentation](annotated.html) is available...
   created with marvelous [Doxygen](http://www.stack.nl/~dimitri/doxygen/)!
 
-  \note
-  As of ALox version 1604, with the introduction of static class \b %ALox, the term "ALox" in the reference
-  documentation is often erroneously linked to this class. This will be fixed in a next release.
-<p>
-
 
 ## IDE / Build System Setup ##
 The C# Version has been developed and tested on the operating systems

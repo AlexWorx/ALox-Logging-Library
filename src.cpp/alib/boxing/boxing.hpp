@@ -43,11 +43,11 @@
  *  \def  ALIB_FEAT_BOXING_FTYPES
  *    Selects code for boxing fundamental types. When using <b>ALib %Boxing</b> as a module, built-in
  *    fundamental type boxing may be disabled and replaced by a custom implementation.
- *    When using full ALib, such disabling is not allowed as ALib classes rely on the default
+ *    When using full \b %ALib, such disabling is not allowed as \b %ALib classes rely on the default
  *    implementation.
  *
  *    Use \ref ALIB_FEAT_BOXING_FTYPES_OFF to set this symbol to \c 0 and disable default fundamental types
- *    boxing provided by ALib.
+ *    boxing provided by \b %ALib.
  *
  *    If built-in fundamental type boxing is suppressed, then either fundamental types are not boxable
  *    or boxing of fundamental types is implemented by the user of the library.
@@ -422,8 +422,8 @@ template<typename TBoxable>  struct T_Boxing    : std::false_type
      *
      * If method #HasCustomUnboxing is specialized to return \c false, only the declaration
      * of this method is needed, because namespace function
-     * \ref aworx::lib::boxing::DefaultUnboxing "DefaultUnboxing" us used in this case.
-     * However, the declaration is stil necessary, the implementation is not.
+     * \ref aworx::lib::boxing::DefaultUnboxing "DefaultUnboxing" is used in this case.
+     * However, while the declaration is still necessary, the implementation is not.
      *
      * @param box   The box object to unbox the data from
      * @return \c The unboxed object.
@@ -458,7 +458,7 @@ template<typename TBoxable>  struct T_Boxing    : std::false_type
  *
  * @tparam TPlain      The value type of the array (e.g. \c int, \c char or \c MyType) excluding
  *                     const/volatile and array extends.
- * @param arrayExtent  The array extened as deducted using TMP in constructor of class
+ * @param arrayExtent  The array extent as deducted using TMP in constructor of class
  *                     \ref aworx::lib::boxing::Box "Box".
  * @returns The length as given by \p arrayExtent. Specializations of this method may return
  *          something different.
@@ -512,20 +512,20 @@ namespace aworx { namespace lib { namespace boxing {
  * efficiency reasons, both are not initialized otherwise.
  *
  * However, specializing this method for custom boxable types is seldom necessary, because
- * complex custom types (structs and classes) usually get announced to the ALib boxing system as
+ * complex custom types (structs and classes) usually get announced to the \b %ALib boxing system as
  * pointer types.
  * The default implementation of this function, as well as corresponding function
  * \ref aworx::lib::boxing::DefaultUnboxing "DefaultUnboxing", are using \c memcpy for reading
  *  and writing the value. This is necessary to avoid de-referencing type-punned pointers which
  * breaks the strict-aliasing rule when compiling the code with higher optimization levels.
  *
- * Typically, a custom version of boxing is needed for fundamental types (value typs), when a type
+ * Typically, a custom version of boxing is needed for fundamental types (value types), when a type
  * is stored as a different type in a box. For example, custom string types might be stored as
  * pointer to the array of characters and the string length.
  * The advantage is, that this way all custom string classes are  stored in the same way, and code
  * that is processing a \b %Box does not need to check for more than one type.
  *
- * See \ref aworx::lib::boxing "documentation of ALib %Boxing" for more information.
+ * See \ref aworx::lib::boxing "documentation of \b %ALib %Boxing" for more information.
  *
  * @param box    The \b %Box to set the data vor
  * @param value  The 'native' data value
@@ -575,7 +575,7 @@ template<typename TBoxable> inline  TBoxable     DefaultUnboxing( const Box& box
  * template struct \ref aworx::lib::boxing::T_Boxing is defined to store objects of this class
  * as references.
  *
- * The purpose of this class is to provida a mechanism to box a type "as is", hence to suppress
+ * The purpose of this class is to provide a mechanism to box a type "as is", hence to suppress
  * the conversion of types when they are boxed.
  *
  * As a sample, with the use of default, built-in

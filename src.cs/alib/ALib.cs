@@ -65,14 +65,14 @@ public static class ALIB
          * Besides this version number, field #Revision indicates if this is a revised version
          * of a former release.
          */
-        public static readonly  int                    Version                                =1702;
+        public static readonly  int                    Version                                =1709;
 
         /**
          * The revision number of this release. Each ALib #Version is initially released as
          * revision \e 0. Pure bug-fix releases that do not change the interface of ALib
          * are holding the same #Version but an increased number in this field.
          */
-        public static readonly  int                    Revision                                  =1;
+        public static readonly  int                    Revision                                  =0;
 
         /**
          * The name of the configuration category of configuration variables used by the AWorx

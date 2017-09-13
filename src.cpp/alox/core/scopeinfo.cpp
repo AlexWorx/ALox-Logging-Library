@@ -95,9 +95,9 @@ ScopeInfo::ScopeInfo( const TString& pName, const std::map<int, String32>&  pThr
                 }
 
                 if( DirectorySeparator == '/' )
-                    rule.Path.SearchAndReplaceAll( "\\", "/"  );
+                    rule.Path.SearchAndReplace( '\\', '/'  );
                 else
-                    rule.Path.SearchAndReplaceAll( "/" , "\\" );
+                    rule.Path.SearchAndReplace( '/' , '\\' );
 
                 rule.IncludeString =    lib::lang::ReadInclusion( ruleTknzr.Next() );
                 ruleTknzr.Next().ConsumeInt( rule.TrimOffset );
@@ -219,18 +219,18 @@ void  ScopeInfo::SetSourcePathTrimRule( const TString&  path,
     }
 
     if( DirectorySeparator == '/' )
-        rule.Path.SearchAndReplaceAll( "\\", "/"  );
+        rule.Path.SearchAndReplace( '\\', '/'  );
     else
-        rule.Path.SearchAndReplaceAll( "/" , "\\" );
+        rule.Path.SearchAndReplace( '/' , '\\' );
 
     rule.IncludeString=   includeString;
     rule.TrimOffset=      trimOffset;
     rule.Sensitivity=     sensitivity;
     rule.TrimReplacement= trimReplacement;
     if( DirectorySeparator == '/' )
-        rule.TrimReplacement.SearchAndReplaceAll( "\\", "/"  );
+        rule.TrimReplacement.SearchAndReplace( '\\', '/'  );
     else
-        rule.TrimReplacement.SearchAndReplaceAll( "/" , "\\" );
+        rule.TrimReplacement.SearchAndReplace( '/' , '\\' );
 }
 
 

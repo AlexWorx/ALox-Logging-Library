@@ -31,7 +31,7 @@
  * @addtogroup GrpALibMacros
  * @{
  * @name Macros Supporting ALib Classes Owner And Ownable
- * The macros listed here have a direct relationship with classes defined in ALib
+ * The macros listed here have a direct relationship with classes defined in \b %ALib
  * and with their use.
  * @{
  *

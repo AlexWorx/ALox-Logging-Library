@@ -7,7 +7,7 @@
 
 /** ************************************************************************************************
  *  This is the Java package for the implementation of <em>logger classes</em> that are provided
- *  by default with <em>%ALox Logging Library</em>.<p>
+ *  by default with <b>%ALox Logging Library</b>.<p>
  *  Developed by A-Worx GmbH and published under Boost Software License.
  **************************************************************************************************/
 package com.aworx.lox.loggers;

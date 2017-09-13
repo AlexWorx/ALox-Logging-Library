@@ -30,11 +30,11 @@ namespace aworx { namespace lib {
  *   A list of <b>general enumerations</b> is found in this namespace.
  *   It is arguable and a matter of taste, whether enumerations should be declared near or inside
  *   the class which is using it, or in a separated place like this namespace introduced here.<br>
- *   ALib follows the second approach (not strictly, domain specific enums might appear also inside
+ *   \b %ALib follows the second approach (not strictly, domain specific enums might appear also inside
  *   classes) and this has the following reasons:
  *   - To shorten the code when using the enums.
  *   - To reach a maximum degree of source compatibility between the different programming language
- *     versions of ALib.
+ *     versions of \b %ALib.
  *   - To make the enums reusable with different classes.
  **************************************************************************************************/
 namespace lang

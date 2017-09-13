@@ -15,7 +15,7 @@ package com.aworx.lox.loggers;
  *
  *  The name of the \e Logger defaults to "ANSI_CONSOLE".
  *
- *  \note This class can not enable the output console (which receives ALox
+ *  \note This class can not enable the output console (which receives \b %ALox
  *  log data) to support ANSI Escape Codes. The opposite is right: this class should be used only if
  *  the console supports ANSI Escape Codes.
  **************************************************************************************************/

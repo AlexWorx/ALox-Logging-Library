@@ -116,13 +116,14 @@ class AloxSamples
     public static void ReleaseLogging()
     {
         // create a lox for release logging
-        Lox lox= new Lox( "ReleaseLox" );
+        Lox lox= new Lox( "MyReleaseLox" );
 
         // let the system choose an appropriate console logger
-        TextLogger releaseLogger=  Lox.CreateConsoleLogger();
+        TextLogger releaseLogger=  Lox.CreateConsoleLogger("MyReleaseLogger");
 
         // In debug compilations, we still install a report writer.
         Log.AddALibReportWriter( lox );
+        
         #if ALOX_DBG_LOG
             lox.SetVerbosity( releaseLogger, Verbosity.Verbose, ALoxReportWriter.LogDomain() );
         #endif

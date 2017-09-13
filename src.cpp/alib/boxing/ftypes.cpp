@@ -34,7 +34,7 @@ namespace aworx { namespace lib { namespace boxing {
  * compilation symbol \ref ALIB_FEAT_BOXING_FTYPES_OFF may be passed to the compiler.
  * This freedom of choice is \b limited when using the full distribution of \b %ALib or a
  * \ref alib_namespace_organization_of_code "distribution module"
- * of ALib that includes more \b %ALib functionality than just boxing. In these cases,
+ * of \b %ALib that includes more \b %ALib functionality than just boxing. In these cases,
  * the default built-in implementation of boxing fundamental types is automatically chosen, because
  * other parts of \b %ALib rely on the default behavior. Using \ref ALIB_FEAT_BOXING_FTYPES_OFF
  * with these distributions results in a compilation error.

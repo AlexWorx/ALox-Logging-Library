@@ -19,7 +19,7 @@ import com.aworx.lib.strings.AString;
 /** ************************************************************************************************
  * Information about processes.
  * \note
- *   In the Java Version of ALib, this class is very reduced, because java core classes provide
+ *   In the Java Version of \b %ALib, this class is very reduced, because java core classes provide
  *   enough functionality.
  **************************************************************************************************/
 public class ProcessInfo
@@ -36,7 +36,7 @@ public class ProcessInfo
 
         /** ****************************************************************************************
          * Receives the name of the current process. Evaluated only once, can't change.
-         * \note In the Java version of ALib, this is the name of the class whose \c main() method
+         * \note In the Java version of \b %ALib, this is the name of the class whose \c main() method
          *       was started.
          * @return The name of the process.
          ******************************************************************************************/

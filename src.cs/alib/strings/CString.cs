@@ -44,9 +44,9 @@ public class CString
     /** ********************************************************************************************
      * Static method that adjusts a given region to fit into the range [0 .. referenceLength].
      *
-     * @param referenceLength   Length of the string that the given region will be adjusted to.
-     * @param regionStart       [in,out] The start of the region to be adjusted.
-     * @param regionLength      [in,out] The length of the region to be adjusted.
+     * @param referenceLength       Length of the string that the given region will be adjusted to.
+     * @param[in,out] regionStart   The start of the region to be adjusted.
+     * @param[in,out] regionLength  The length of the region to be adjusted.
      *
      * @return True if adjusted range is empty.
      **********************************************************************************************/

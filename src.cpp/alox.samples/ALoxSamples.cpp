@@ -11,7 +11,6 @@
 #include "alox/loggers/memorylogger.hpp"
 #include "alox/loggers/textfilelogger.hpp"
 #include "alib/config/inifile.hpp"
-//#include "alib/system/system.hpp"
 
 #include <iostream>
 
@@ -454,7 +453,6 @@ int main( int argc, char *argv[] )
     ALox::Init( argc, argv );
 
     Log_SetSourcePathTrimRule( "*/src.cpp/", Inclusion::Include );
-
 
     // Suppress setting "writeback" for verbosities. We need to do this as this main()
     // method invokes a list of independent samples. Those would now read from the INI file wrong

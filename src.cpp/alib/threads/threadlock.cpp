@@ -33,7 +33,7 @@ ThreadLock::~ThreadLock()
     #endif
 }
 
-int ThreadLock::DbgCountAcquirements( Thread* thread )
+int ThreadLock::DbgCountAcquirements( Thread* thread ) const
 {
     #if ALIB_FEAT_THREADS
         if ( GetSafeness() == Safeness::Unsafe )

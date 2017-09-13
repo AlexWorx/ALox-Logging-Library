@@ -114,6 +114,9 @@
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_time.cpp">
       <Filter>tests.alib</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_containers.cpp">
+      <Filter>tests.alib</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="stdafx_alox_unittests.cpp.vsspell" />

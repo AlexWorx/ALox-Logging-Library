@@ -35,6 +35,7 @@ namespace ut_aworx {
 String128 AWorxUnitTesting::LastAutoSizes;
 AString   AWorxUnitTesting::GeneratedSamplesDir;
 String    AWorxUnitTesting::GeneratedSamplesSearchDir= "docs/ALox.CPP/";
+AString   AWorxUnitTesting::CustomMetaInfoFormat;
 
 // #################################################################################################
 // Constructors/destructor
@@ -86,11 +87,12 @@ AWorxUnitTesting::AWorxUnitTesting( const TString& pdomain, const TString& testN
                 dynamic_cast<AnsiConsoleLogger*>(utl)->UseLightColors= AnsiLogger::LightColorUsage::Never;
         }
     #endif
+        
+    if ( CustomMetaInfoFormat.IsNotEmpty() )
+        utl->MetaInfo->Format= CustomMetaInfoFormat;
 
     if ( LastAutoSizes.IsNotEmpty() )
-    {
         utl->AutoSizes.Import( LastAutoSizes, CurrentData::Keep );
-    }
 
     lox.Acquire(ALIB_SRC_INFO_PARAMS);
         lox.SetVerbosity( utl, Verbosity::Verbose, Domain);

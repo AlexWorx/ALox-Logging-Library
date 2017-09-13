@@ -46,12 +46,21 @@ public enum Alignment
 }
 
 /** ************************************************************************************************
+ * Denotes sort order.
+ **************************************************************************************************/
+public enum SortOrder
+{
+    Ascending,   ///<  Chooses ascending sort oder.
+    Descending   ///<  Chooses descending sort oder.
+}
+
+/** ************************************************************************************************
  * Denotes how members of a set something should be taken into account.
  **************************************************************************************************/
 public enum Inclusion
 {
     Include,  ///<  Chooses inclusion.
-    Exclude,  ///<  Chooses exclusion.
+    Exclude   ///<  Chooses exclusion.
 }
 
 /** ************************************************************************************************
@@ -103,8 +112,7 @@ public enum Whitespaces
 };
 
 /** ************************************************************************************************
- * Denotes if current, existing data should be cleared or if new data should be
- * appended or otherwise added.
+ * Denotes if the source data should be moved or copied.
  **************************************************************************************************/
 public enum CurrentData
 {
@@ -112,6 +120,15 @@ public enum CurrentData
     Clear    ///<  Chooses to clear existing data.
 }
 
+/** ************************************************************************************************
+ * Denotes if current, existing data should be cleared or if new data should be
+ * appended or otherwise added.
+ **************************************************************************************************/
+public enum SourceData
+{
+    Copy,   ///<  Chooses not to clear existing data.
+    Move,   ///<  Chooses to clear existing data.
+}
 
 /** ************************************************************************************************
  * Denotes whether something should be created if it does not exist.

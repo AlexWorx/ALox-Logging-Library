@@ -33,7 +33,7 @@ namespace aworx { namespace lib { namespace strings { class Substring; } } }
 namespace aworx { namespace lox { namespace core { namespace textlogger{
 
 /** ************************************************************************************************
- * A text logger that either removes or ignores (just writes through) ALox ESC sequences.
+ * A text logger that either removes or ignores (just writes through) \b %ALox ESC sequences.
  * Implements abstract method #logText and introduces two new abstract methods
  * #logSubstring and #notifyLogOp.
  **************************************************************************************************/

@@ -15,14 +15,6 @@
 # Prior to setting CMake project
 # -------------------------------------------------------------------------------------------------
 
-    ### uncomment to force a certain compiler (delete temporary output folder on change)
-
-    #set(CMAKE_C_COMPILER    "/usr/bin/clang")
-    #set(CMAKE_CXX_COMPILER  "/usr/bin/clang++")
-
-    #set(CMAKE_C_COMPILER    "/usr/bin/gcc")
-    #set(CMAKE_CXX_COMPILER  "/usr/bin/g++")
-
     ### uncomment to force cotire on clean cmake built
     #set( ALIB_CMAKE_COTIRE_DEFAULT   "On" )
 
@@ -145,8 +137,15 @@
                                                 ${ALIB_UTESTS_INCS}  ${ALOX_UTESTS_INCS}
                                                 ${ALIB_UTESTS_SRCS}  ${ALOX_UTESTS_SRCS}    )
 
-    set_target_properties     ( ALib_ALox_UT    PROPERTIES  COMPILE_FLAGS
-                                                "${AWORX_COMPILE_FLAGS}  -Wno-conversion-null" ) # for GTEST
+    set_target_properties     ( ALib_ALox_UT    PROPERTIES  COMPILE_FLAGS ${AWORX_COMPILE_FLAGS}  )
+
+    # for GTEST, option available only up to gcc 7.2
+    if     ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU"    )
+      if   (CMAKE_CXX_COMPILER_VERSION VERSION_LESS "7.2")
+        set_target_properties ( ALib_ALox_UT    PROPERTIES  COMPILE_FLAGS "-Wno-gnu-statement-expression" ) 
+      endif()
+    endif()
+
 
     target_compile_definitions( ALib_ALox_UT    PRIVATE  ${ALIB_COMPILER_SYMBOLS}
                                                          ${ALOX_COMPILER_SYMBOLS}           )

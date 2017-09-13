@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "About ALox", "About ALox", "{AD564FDF-6E9A-4E6A-8E7F-AC05FC493904}"
 	ProjectSection(SolutionItems) = preProject
@@ -18,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALox-CS-.Net45-Tests-ReleaseLog", "..\ALox-CS-.Net45-Test-Release-Log\ALox-CS-.Net45-Tests-ReleaseLog.csproj", "{49A54123-433C-4B65-9214-F69831D7A53E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALox-CS-.Net45-Tests", "..\ALox-CS-.Net45-Test\ALox-CS-.Net45-Tests.csproj", "{FEC499F1-05FE-429D-87A2-9352FFD29F12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALox-CS-.Net45-Samples", "..\ALox-CS-.Net45-Samples\ALox-CS-.Net45-Samples.csproj", "{A7B50F22-6485-41FF-B04A-8EA19A072CB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -112,8 +114,31 @@ Global
 		{FEC499F1-05FE-429D-87A2-9352FFD29F12}.Release|Win32.ActiveCfg = Release|Any CPU
 		{FEC499F1-05FE-429D-87A2-9352FFD29F12}.Release|x86.ActiveCfg = Release|Any CPU
 		{FEC499F1-05FE-429D-87A2-9352FFD29F12}.Release|x86.Build.0 = Release|Any CPU
+		{A7B50F22-6485-41FF-B04A-8EA19A072CB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7B50F22-6485-41FF-B04A-8EA19A072CB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7B50F22-6485-41FF-B04A-8EA19A072CB1}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{A7B50F22-6485-41FF-B04A-8EA19A072CB1}.Debug|ARM.Build.0 = Debug|Any CPU
+		{A7B50F22-6485-41FF-B04A-8EA19A072CB1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A7B50F22-6485-41FF-B04A-8EA19A072CB1}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A7B50F22-6485-41FF-B04A-8EA19A072CB1}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{A7B50F22-6485-41FF-B04A-8EA19A072CB1}.Debug|Win32.Build.0 = Debug|Any CPU
+		{A7B50F22-6485-41FF-B04A-8EA19A072CB1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A7B50F22-6485-41FF-B04A-8EA19A072CB1}.Debug|x86.Build.0 = Debug|Any CPU
+		{A7B50F22-6485-41FF-B04A-8EA19A072CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7B50F22-6485-41FF-B04A-8EA19A072CB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7B50F22-6485-41FF-B04A-8EA19A072CB1}.Release|ARM.ActiveCfg = Release|Any CPU
+		{A7B50F22-6485-41FF-B04A-8EA19A072CB1}.Release|ARM.Build.0 = Release|Any CPU
+		{A7B50F22-6485-41FF-B04A-8EA19A072CB1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A7B50F22-6485-41FF-B04A-8EA19A072CB1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A7B50F22-6485-41FF-B04A-8EA19A072CB1}.Release|Win32.ActiveCfg = Release|Any CPU
+		{A7B50F22-6485-41FF-B04A-8EA19A072CB1}.Release|Win32.Build.0 = Release|Any CPU
+		{A7B50F22-6485-41FF-B04A-8EA19A072CB1}.Release|x86.ActiveCfg = Release|Any CPU
+		{A7B50F22-6485-41FF-B04A-8EA19A072CB1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {18107D5A-98E3-4407-B392-947AC48E44C2}
 	EndGlobalSection
 EndGlobal

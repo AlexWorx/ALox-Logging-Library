@@ -353,7 +353,7 @@ class FormatterStdImpl : public Formatter
          */
         NumberFormat            AlternativeNumberFormat;
 
-        /** Flag that causes the creation of ALib error reports on format syntax errors, argument
+        /** Flag that causes the creation of \b %ALib error reports on format syntax errors, argument
          *  type errors, etc.
          *  Defaults to \c true. (Ignored in release compilations. see class
          *  \ref aworx::lib::lang::Report "Report" for more information.)                */
@@ -541,7 +541,7 @@ class FormatterStdImpl : public Formatter
 
         /** ****************************************************************************************
          * Helper method (overridable) that optionally
-         * - creates an ALib error report (debug compilations only, dependent on field
+         * - creates an \b %ALib error report (debug compilations only, dependent on field
          *   #WriteALibErrorReports).
          * - writes an error message to the target string (dependent on field
          *   #WriteErrorsToTargetString).

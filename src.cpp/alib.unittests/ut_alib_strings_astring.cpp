@@ -6,12 +6,6 @@
 // #################################################################################################
 #include "alox/alox.hpp"
 
-#if defined(_MSC_VER)
-#pragma warning( disable : 4244 ) //  '=': conversion from 'int' to 'char', possible loss of data
-#endif
-
-
-
 #define TESTCLASSNAME       CPP_ALib_Strings_AString
 #include "aworx_unittests.hpp"
 #include "alib/compatibility/std_string.hpp"
@@ -19,8 +13,8 @@
 
 #include <iostream>
 #include <sstream>
-#include <algorithm>
 
+#include <clocale>
 
 // Windows.h might bring in max/min macros
 #if defined( max )
@@ -361,6 +355,7 @@ UT_METHOD( Conversions )
     AString   ms;
     string        s;
     ms= "0123456789";
+
     s= ToStdString(ms  );                     UT_EQ( s.c_str(), "0123456789" );
     s= ToStdString(ms,  5);                   UT_EQ( s.c_str(), "56789" );
     s= ToStdString(ms,  5, 100);              UT_EQ( s.c_str(), "56789" );
@@ -805,7 +800,7 @@ UT_METHOD( CapacityLength )
             UT_PRINT( "A warning should follow" );
             ms64._( '@' );
             UT_TRUE ( ms64 != orig );
-            UT_TRUE ( ms64.SearchAndReplace( "@", "X" ) == 64 );
+            UT_TRUE ( ms64.SearchAndReplace( '@', 'X' ) == 64 );
         lib::lang::Report::GetDefault().PopHaltFlags();
     }
 }
@@ -1649,9 +1644,8 @@ UT_METHOD( ConvertCase )
         for ( int i= testCharRangeStart; i <= testCharRangeEnd ; i++ )
             sb.append( 1, static_cast<char>( i ) );
 
-
-        string tUpper= sb;    transform( tUpper.begin(), tUpper.end(), tUpper.begin(), ::toupper );
-        string tLower= sb;    transform( tLower.begin(), tLower.end(), tLower.begin(), ::tolower );
+        string tUpper= sb;    std::transform( tUpper.begin(), tUpper.end(), tUpper.begin(), [](char c) { return  (char) ::toupper(c); } );
+        string tLower= sb;    std::transform( tLower.begin(), tLower.end(), tLower.begin(), [](char c) { return  (char) ::tolower(c); } );
 
         ms.Clear()._( sb ).ToLower(); UT_EQ( tLower.c_str(), ms );
         ms.Clear()._( sb ).ToUpper(); UT_EQ( tUpper.c_str(), ms );
@@ -1668,7 +1662,6 @@ UT_METHOD( ConvertCase )
         ms.Clear()._( t ).ToUpper( -2     );        UT_EQ( ms, "AAABBB" );
     }
 }
-
 
 //--------------------------------------------------------------------------------------------------
 //--- Test ConvertCase

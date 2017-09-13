@@ -50,7 +50,7 @@ namespace aworx { namespace lib { namespace strings
      * \see
      * - \ref operator>>(::std::istream&, AString&)            "operator>>(std::istream&, AString&)" and
      *   \ref operator<<(::std::ostream& os, const String& as) "operator<<(ostream& os, const String& as)"
-     * - For a sample, refer to source code of ALib class \b %IniFile, method
+     * - For a sample, refer to source code of \b %ALib class \b %IniFile, method
      *   \ref aworx::lib::config::IniFile::ReadFile "IniFile::ReadFile".
      ******************************************************************************************/
     class ReadLineFromIStream

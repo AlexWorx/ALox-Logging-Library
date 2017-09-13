@@ -50,6 +50,9 @@
     <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_config.cs">
       <Link>ut.ALib\UT_alib_config.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_containers.cs">
+      <Link>ut.ALib\UT_alib_containers.cs</Link>
+    </Compile>
     <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_strings_AString.cs">
       <Link>ut.ALib\UT_alib_strings_AString.cs</Link>
     </Compile>

@@ -15,13 +15,6 @@
 # Prior to setting CMake project
 # -------------------------------------------------------------------------------------------------
 
-    ### uncomment to force a certain compiler (delete temporary output folder on change)
-    #set(CMAKE_C_COMPILER    "/usr/bin/clang")
-    #set(CMAKE_CXX_COMPILER  "/usr/bin/clang++")
-
-    #set(CMAKE_C_COMPILER    "/usr/bin/gcc")
-    #set(CMAKE_CXX_COMPILER  "/usr/bin/g++")
-
     ### uncomment to force cotire on clean cmake built
     # set( ALIB_CMAKE_COTIRE_DEFAULT   "On" )
 

@@ -18,7 +18,7 @@
     <Optimize>false</Optimize>
     <BaseIntermediateOutputPath>..\..\_builds_\ide.cs.rider\</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
-    <OutputPath>..\..\_builds_\ide.cs.rider\ALox-CS-.Net45-SimpleTest\bin\Debug\</OutputPath>
+    <OutputPath>..\..\_builds_\ide.cs.rider\ALox-CS-.Net45-Samples\bin\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;ALIB_IDE_RIDER;ALOX_DBG_LOG;ALOX_REL_LOG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -28,7 +28,7 @@
     <Optimize>true</Optimize>
     <BaseIntermediateOutputPath>..\..\_builds_\ide.cs.rider\</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
-    <OutputPath>..\..\_builds_\ide.cs.rider\ALox-CS-.Net45-SimpleTest\bin\Release\</OutputPath>
+    <OutputPath>..\..\_builds_\ide.cs.rider\ALox-CS-.Net45-Samples\bin\Release\</OutputPath>
     <DefineConstants>TRACE;ALIB_IDE_RIDER;ALOX_REL_LOG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

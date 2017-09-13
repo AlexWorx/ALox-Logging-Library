@@ -37,7 +37,7 @@ namespace aworx { namespace lib { namespace strings
  * Of-course, for performance critical code sections, the predefined size should be chosen large
  * enough to allow the internal buffer to survive the use.<br>
  *
- * In debug compilations of ALib, parent class #AString optionally raises an one-time warning
+ * In debug compilations of \b %ALib, parent class #AString optionally raises an one-time warning
  * (using
  * \ref aworx::lib::lang::Report::DoReport "Report::DoReport") if an external buffer is replaced by a
  * new (heap) allocation. (From an \b %AString perspective, this classes' internal buffer is an

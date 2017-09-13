@@ -14,17 +14,17 @@ import java.util.LinkedList;
  * This class provides a simple facility to collect what is called a \e 'report'.
  * Reports are maintenance messages, mostly error and warning messages, but is not aiming to replace
  * any sort of error handling.
- * (In ALib itself, sending a \e 'report' usually precedes raising an error.)
+ * (In \b %ALib itself, sending a \e 'report' usually precedes raising an error.)
  * Also, \e reports are not replacing any debug or release logging facility, which is not
- * part of ALib. Much more, logging libraries might provide a derived object of type
- * \ref com::aworx::lib::lang::ReportWriter "ReportWriter" to plug into ALib report facility.
+ * part of \b %ALib. Much more, logging libraries might provide a derived object of type
+ * \ref com::aworx::lib::lang::ReportWriter "ReportWriter" to plug into \b %ALib report facility.
  * This way, the concepts of logging and reports get unified. (As a sample,
- * <em>ALox Logging Library </em> which builds on ALib does so.)
+ * <b>%ALox Logging Library </b> which builds on \b %ALib does so.)
  *
  * While a process can create different objects of this class, usually, the default instance,
  * received by
  * \ref com::aworx::lib::lang::Report::getDefault "getDefault".
- * is sufficient and all warnings and errors will be directed to this one. ALib itself directs
+ * is sufficient and all warnings and errors will be directed to this one. \b %ALib itself directs
  * all internal reports to the default instance.
  *
  * This class uses a singleton of type
@@ -86,7 +86,7 @@ public class Report
     // Internal fields
     // #############################################################################################
 
-        /** The default Report used internally by ALib and usually by processes that rely on ALib. */
+        /** The default Report used internally by \b %ALib and usually by processes that rely on \b %ALib. */
         protected static  Report            defaultReport                             =new Report();
 
         /** This is a flag that avoids recursion. Recursion might occur when a more sophisticated
@@ -124,7 +124,7 @@ public class Report
         }
 
         /** ****************************************************************************************
-         * Receives the default report object used by ALib and processes that rely on ALib.
+         * Receives the default report object used by \b %ALib and processes that rely on \b %ALib.
          * @returns The default \b Report.
          ******************************************************************************************/
         public static Report  getDefault()           { return defaultReport; }

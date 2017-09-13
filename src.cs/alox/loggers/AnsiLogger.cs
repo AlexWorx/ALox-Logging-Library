@@ -22,7 +22,7 @@ namespace cs.aworx.lox.loggers    {
  * A logger that logs all messages to the <em>System.IO.TextWriter</em> instance provided in the
  * constructor. The name of the \e Logger defaults to "ANSI_LOGGER".
  *
- * ALox text logger escape sequences (see class \ref cs::aworx::lox::ESC "ESC")
+ * \b %ALox text logger escape sequences (see class \ref cs::aworx::lox::ESC "ESC")
  * are translated to ANSI escape sequences.
  * Support for ANSI escape sequences (also referred to as <em>VT100 terminal emulation</em>)
  * is available on most unix terminal windows. Besides text colors, bold and italics font style
@@ -158,7 +158,7 @@ public class AnsiLogger : TextLogger
          * If the background color of a console window is dark, then the background colors of
          * colored log output should be darker colors than the foreground colors - and vice versa.
          *
-         * Depending on the setting of this field, ALox
+         * Depending on the setting of this field, \b %ALox
          * \ref cs::aworx::lox::ESC "escape codes" for colors are translated to normal ANSI colors or
          * lighter ones:
          * - If this field is \ref LightColorUsage "LightColorUsage.Never", light colors are
@@ -386,7 +386,7 @@ public class AnsiLogger : TextLogger
  *
  * \note Due to the fact that mono libraries under Linux do not support light colors (they
  * can be used, but they are equal to the dark colors), this logger is preferred over
- * \ref cs.aworx.lox.loggers.ConsoleLogger "ConsoleLogger" when running ALox under Linux.
+ * \ref cs.aworx.lox.loggers.ConsoleLogger "ConsoleLogger" when running \b %ALox under Linux.
  * The readability of colorful output is better if light foreground colors are used on
  * console windows with dark background (and vice versa).
  *
@@ -394,7 +394,7 @@ public class AnsiLogger : TextLogger
  * constructor, class Console is still used to identify whether the background of the console
  * attached to the current process has a dark or light background.
  *
- * \note This class can not enable the output console (which receives ALox
+ * \note This class can not enable the output console (which receives \b %ALox
  * log data) to support ANSI Escape Codes. The opposite is right: this class should be used only if
  * the console supports ANSI Escape Codes.
  **************************************************************************************************/

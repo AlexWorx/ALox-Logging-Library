@@ -1077,7 +1077,7 @@ public class Substring
      ##@{ ########################################################################################*/
 
         /** ****************************************************************************************
-         * @return Searches the given character.
+         * Searches the given character.
          * @param needle        The character to search.
          * @param startIdx      The index to start the search at. Optional and defaults to \c 0.
          * @return  The index of the character within this substring, -1 if the character is not
@@ -1100,6 +1100,48 @@ public class Substring
 
             // not found
             return -1;
+        }
+
+        /** ****************************************************************************************
+         * Like #IndexOf but in case the character is not found, this method returns the length of
+         * this string instead of \c -1.
+         * Depending on the invocation context, the choice for the right version of this method may
+         * lead to shorter and more efficient code.
+         *
+         * @param needle  The character to search for.
+         * @return  This strings #Length if the character \p needle is not found.
+         *          Otherwise the index of first occurrence.
+         ******************************************************************************************/
+        public int    IndexOfOrLength( char needle )
+        {
+            int idx= Start;
+            while ( idx <= End && needle != Buf[ idx ])
+                idx++;
+
+            return idx - Start;
+        }
+
+        /** ****************************************************************************************
+         * Like #IndexOf but in case the character is not found, this method returns the length of
+         * this string instead of \c -1.
+         * Depending on the invocation context, the choice for the right version of this method may
+         * lead to shorter and more efficient code.
+         *
+         * @param needle    The character to search for.
+         * @param startIdx  The index in this to start searching the character.
+         * @return  This strings #Length if the character \p needle is not found.
+         *          Otherwise the index of first occurrence.
+         ******************************************************************************************/
+        public int    IndexOfOrLength( char needle, int startIdx )
+        {
+            int length = Length();
+
+            if      ( startIdx < 0 )              startIdx= 0;
+            else if ( startIdx >= length )        return length;
+            while ( startIdx < length && needle != Buf[ startIdx ])
+                startIdx++;
+
+            return startIdx;
         }
 
         /** ****************************************************************************************

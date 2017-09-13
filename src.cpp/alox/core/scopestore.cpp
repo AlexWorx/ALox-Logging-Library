@@ -15,9 +15,6 @@
     #include <cstring>
 #endif
 
-#include "alib/containers/pathmap.hpp"
-
-
 using namespace aworx;
 
 namespace aworx {
@@ -32,44 +29,44 @@ namespace core {
 //! @cond NO_DOX
 
 // AString*
-template                                ScopeStore<AString*>                    ::ScopeStore      (ScopeInfo&, bool);
-template                                ScopeStore<AString*>                    ::~ScopeStore     ();
-template   void                         ScopeStore<AString*>                    ::Clear           ();
-template   void                         ScopeStore<AString*>                    ::InitWalk        (Scope,AString*);
-template   AString*                     ScopeStore<AString*>                    ::Walk            ();
-template   void                         ScopeStore<AString*>                    ::InitAccess      (Scope,int,int);
-template   void                         ScopeStore<AString*>                    ::getPathMapNode  (bool);
-template   AString*                     ScopeStore<AString*>                    ::access          (int,AString*);
+template                                ScopeStore<AString*>                    ::ScopeStore (ScopeInfo&, bool);
+template                                ScopeStore<AString*>                    ::~ScopeStore();
+template   void                         ScopeStore<AString*>                    ::Clear      ();
+template   void                         ScopeStore<AString*>                    ::InitWalk   (Scope,AString*);
+template   AString*                     ScopeStore<AString*>                    ::Walk       ();
+template   void                         ScopeStore<AString*>                    ::InitAccess (Scope,int,int);
+template   void                         ScopeStore<AString*>                    ::initCursor (bool);
+template   AString*                     ScopeStore<AString*>                    ::access     (int,AString*);
 
 // Logable*
-template                                ScopeStore<Box*>                        ::ScopeStore      (ScopeInfo&, bool);
-template                                ScopeStore<Box*>                        ::~ScopeStore     ();
-template   void                         ScopeStore<Box*>                        ::Clear           ();
-template   void                         ScopeStore<Box*>                        ::InitWalk        (Scope,Box*);
-template   Box*                         ScopeStore<Box*>                        ::Walk            ();
-template   void                         ScopeStore<Box*>                        ::InitAccess      (Scope,int,int);
-template   void                         ScopeStore<Box*>                        ::getPathMapNode  (bool);
-template   Box*                         ScopeStore<Box*>                        ::access          (int,Box*);
+template                                ScopeStore<Box*>                        ::ScopeStore (ScopeInfo&, bool);
+template                                ScopeStore<Box*>                        ::~ScopeStore();
+template   void                         ScopeStore<Box*>                        ::Clear      ();
+template   void                         ScopeStore<Box*>                        ::InitWalk   (Scope,Box*);
+template   Box*                         ScopeStore<Box*>                        ::Walk       ();
+template   void                         ScopeStore<Box*>                        ::InitAccess (Scope,int,int);
+template   void                         ScopeStore<Box*>                        ::initCursor (bool);
+template   Box*                         ScopeStore<Box*>                        ::access     (int,Box*);
 
 // std::map<AString, int>*
-template                                ScopeStore<std::map<AString, int>*>     ::ScopeStore      (ScopeInfo&, bool);
-template                                ScopeStore<std::map<AString, int>*>     ::~ScopeStore     ();
-template   void                         ScopeStore<std::map<AString, int>*>     ::Clear           ();
-template   void                         ScopeStore<std::map<AString, int>*>     ::InitWalk        (Scope,std::map<AString, int>*);
-template   std::map<AString, int>*      ScopeStore<std::map<AString, int>*>     ::Walk            ();
-template   void                         ScopeStore<std::map<AString, int>*>     ::InitAccess      (Scope,int,int);
-template   void                         ScopeStore<std::map<AString, int>*>     ::getPathMapNode  (bool);
-template   std::map<AString, int>*      ScopeStore<std::map<AString, int>*>     ::access          (int,std::map<AString, int>*);
+template                                ScopeStore<std::map<AString, int>*>     ::ScopeStore (ScopeInfo&, bool);
+template                                ScopeStore<std::map<AString, int>*>     ::~ScopeStore();
+template   void                         ScopeStore<std::map<AString, int>*>     ::Clear      ();
+template   void                         ScopeStore<std::map<AString, int>*>     ::InitWalk   (Scope,std::map<AString, int>*);
+template   std::map<AString, int>*      ScopeStore<std::map<AString, int>*>     ::Walk       ();
+template   void                         ScopeStore<std::map<AString, int>*>     ::InitAccess (Scope,int,int);
+template   void                         ScopeStore<std::map<AString, int>*>     ::initCursor (bool);
+template   std::map<AString, int>*      ScopeStore<std::map<AString, int>*>     ::access     (int,std::map<AString, int>*);
 
 // std::map<AString, Box>*
-template                                ScopeStore<std::map<AString, Box>*>     ::ScopeStore      (ScopeInfo&, bool);
-template                                ScopeStore<std::map<AString, Box>*>     ::~ScopeStore     ();
-template   void                         ScopeStore<std::map<AString, Box>*>     ::Clear           ();
-template   void                         ScopeStore<std::map<AString, Box>*>     ::InitWalk        (Scope,std::map<AString, Box>*);
-template   std::map<AString, Box>*      ScopeStore<std::map<AString, Box>*>     ::Walk            ();
-template   void                         ScopeStore<std::map<AString, Box>*>     ::InitAccess      (Scope,int,int);
-template   void                         ScopeStore<std::map<AString, Box>*>     ::getPathMapNode  (bool);
-template   std::map<AString, Box>*      ScopeStore<std::map<AString, Box>*>     ::access          (int,std::map<AString, Box>*);
+template                                ScopeStore<std::map<AString, Box>*>     ::ScopeStore (ScopeInfo&, bool);
+template                                ScopeStore<std::map<AString, Box>*>     ::~ScopeStore();
+template   void                         ScopeStore<std::map<AString, Box>*>     ::Clear      ();
+template   void                         ScopeStore<std::map<AString, Box>*>     ::InitWalk   (Scope,std::map<AString, Box>*);
+template   std::map<AString, Box>*      ScopeStore<std::map<AString, Box>*>     ::Walk       ();
+template   void                         ScopeStore<std::map<AString, Box>*>     ::InitAccess (Scope,int,int);
+template   void                         ScopeStore<std::map<AString, Box>*>     ::initCursor (bool);
+template   std::map<AString, Box>*      ScopeStore<std::map<AString, Box>*>     ::access     (int,std::map<AString, Box>*);
 
 #define CMD_INSERT 0
 #define CMD_REMOVE 1
@@ -87,7 +84,7 @@ ScopeStore<StoreT>::ScopeStore(ScopeInfo& pScopeInfo,  bool pCfgSingleThreadValu
   , scopeInfo   ( pScopeInfo   )
   , cfgSingleThreadValue( pCfgSingleThreadValue )
 {
-    languageStore= new PathMap<StoreT>();
+    languageStore= new StringTree<StoreT>();
 }
 
 template<typename StoreT>
@@ -165,12 +162,12 @@ StoreT ScopeStore<StoreT>::Walk()
         case Scope::Path:
         {
             if( lazyLanguageNode )
-                getPathMapNode( false );
+                initCursor( false );
 
-            while( actPathMapNode != nullptr )
+            while( actStringTreeNode.IsValid() )
             {
-                StoreT actValue= actPathMapNode->Value;
-                actPathMapNode= actPathMapNode->Parent;
+                StoreT actValue= *actStringTreeNode;
+                actStringTreeNode.MoveToParentUnchecked();
                 if( actValue != ScopeStoreType<StoreT>::NullValue() )
                     return actValue;
             }
@@ -222,59 +219,59 @@ StoreT ScopeStore<StoreT>::Walk()
 // #################################################################################################
 // internals
 // #################################################################################################
-#if defined(_WIN32)
-    const TString separators= "#\\";
-#else
-    const TString separators= "#/";
-#endif
-
 template<typename StoreT>
-void ScopeStore<StoreT>::getPathMapNode( bool create )
+void ScopeStore<StoreT>::initCursor( bool create )
 {
-    lazyLanguageNode= false;
+    lazyLanguageNode=   false;
+    actStringTreeNode=  languageStore->Root();
 
-    // key: path
-    String512 key;
-    scopeInfo.GetTrimmedPath( key );
+    // path key for the StringTree
+    String512 path;
+    scopeInfo.GetTrimmedPath( path );
+    #if defined( _WIN32 )
+        path.SearchAndReplace( '\\', '/' );
+    #endif
 
+    // read-only mode
+    if( !create )
+    {
+        // in non-creation mode, it is always scope Method
+        ALIB_ASSERT( actScope == Scope::Method )
+
+        // in read only mode, we can leave as soon as a portion was not read
+        auto remainingPath= actStringTreeNode.MoveToExistingPart( path );
+        if ( remainingPath.IsNotEmpty() )
+            return;
+
+        // filename: append '#' to distinguish from directories
+        if ( !actStringTreeNode.MoveToChild( path._()._<false>( scopeInfo.GetFileNameWithoutExtension() )._( '#' ) ) )
+            return;
+
+        // filename: prepend '#' to distinguish from filenames
+        actStringTreeNode.MoveToChild( path._()._<false>( '#' )._<false>( scopeInfo.GetMethod() ) );
+
+        return;
+    }
+
+    // create mode:
+    actStringTreeNode.MoveToAndCreateNonExistingPart( path );
     if ( actScope == Scope::Path )
     {
         // subtract folders at the back
         int pathLevel= actPathLevel;
-        while ( pathLevel > 0 )
-        {
-            integer idx= key.LastIndexOf( aworx::DirectorySeparator );
-            if (idx < 0 )
-            {
-                key.SetLength<false>( 0 );
-                break;
-            }
-
-            key.SetLength<false>( idx );
-            pathLevel--;
-        }
-
-        key._<false>( separators[1] );
-        actPathMapNode= languageStore->Get( key, create, separators );
+        while ( --pathLevel >= 0 && !actStringTreeNode.IsRoot() )
+            actStringTreeNode.MoveToParent();
         return;
     }
 
-    key._<false>( separators[1] );
+    // filename: append '#' to distinguish from directories
+    path._()._( scopeInfo.GetFileNameWithoutExtension() )._( '#' );
 
-    // key: filename
-    key._( '-' ) // we need a prefix to have all files share one start node which is not
-                 // a separator-node
-       ._( scopeInfo.GetFileNameWithoutExtension() );
-    key._<false>( separators[0] );
-
-    // key: method
+    // filename: prepend '#' to distinguish from filenames
     if ( actScope == Scope::Method )
-        key._( '-' ) // we need a prefix to have all methods share one start node which is not
-                     // a separator-node
-           ._( scopeInfo.GetMethod() )
-           ._( separators[0] );
+        path._( "/#" )._( scopeInfo.GetMethod() );
 
-    actPathMapNode= languageStore->Get( key, create, separators );
+    actStringTreeNode.MoveToAndCreateNonExistingPart( path );
 }
 
 template<typename StoreT>
@@ -391,18 +388,20 @@ StoreT ScopeStore<StoreT>::access(  int cmd, StoreT value  )
             cmd= CMD_REMOVE;
 
         if (    lazyLanguageNode
-            ||  ( actPathMapNode == nullptr && cmd == CMD_INSERT ) )
-            getPathMapNode( true ); // always create
+            ||  ( actStringTreeNode.IsInvalid() && cmd == CMD_INSERT ) )
+            initCursor( true ); // always create
 
-        if ( actPathMapNode != nullptr )
+        if ( actStringTreeNode.IsValid() )
         {
-            oldValue = actPathMapNode->Value;
+            oldValue= *actStringTreeNode;
 
             if ( cmd == CMD_INSERT )
-                actPathMapNode->Value= value;
+                *actStringTreeNode= value;
 
             else if ( cmd == CMD_REMOVE )
-                languageStore->Remove( actPathMapNode );
+            {
+                *actStringTreeNode= ScopeStoreType<StoreT>::NullValue();
+            }
         }
 
         return oldValue;

@@ -49,7 +49,7 @@ namespace aworx { namespace lib { namespace strings { namespace util  {
  * to whatever the strings represent.
  *
  * \note
- *   This class is new with ALib. It is not considered finished, optimized and stable in design.
+ *   This class is new with \b %ALib. It is not considered finished, optimized and stable in design.
  **************************************************************************************************/
 template< typename... TAssociatedTypes >
 class StringTuples  : public std::vector<std::tuple<String, TAssociatedTypes...>>

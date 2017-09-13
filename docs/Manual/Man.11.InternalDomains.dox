@@ -80,7 +80,7 @@ complex configuration of <em>Scope Domains</em>, then, to investigate into the p
 sub-domain <c>'DMN'</c> could be set to more verbose, while
 suppressing other internal messages:
 
-\snippet "UT_dox_manual.cs"        Man_InternalDomains___3
+\snippet "UT_dox_manual.cs"        Man_InternalDomains___4
 
 
 The list of sub-domains used by \b %ALox is given in the following table:

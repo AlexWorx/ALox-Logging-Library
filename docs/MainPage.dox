@@ -38,8 +38,7 @@ Finally, get it all *pruned* out of your release executable, same as your source
 On the other end of the list, \b %ALox  enables **release logging** for productive applications
 to collect mission critical **metrics from the field**.
 
-This is **Version 1702 Revision 1**, which builds on new C++ feature <b>%ALib Boxing</b> and this way comes
-with a new logging interface based on format strings in all supported languages of \b %ALox.
+This is **Version 1709 Revision 0**, which incorporates only minor changes and fixes.
 
 We are optimistic that the simple [Bauhaus Style](\ref faq_bauhaus) architecture of the library allows you
 to easily use it and even to extend it with logging features you need.

@@ -67,7 +67,7 @@ namespace thirdparty {
  * instances of class \b QString.
  *
  * <b>General Information On ALib And QT %String Compatibility:</b><br>
- * ALib string classes are designed to support 3rd-party string types in a non-intrusive
+ * \b %ALib string classes are designed to support 3rd-party string types in a non-intrusive
  * fashion. Template meta programming in two areas makes this possible:
  * - Implicit conversion of external strings to class
  *   \ref aworx::lib::strings::String "aworx::String", which allows to pass 3rd party strings to
@@ -83,7 +83,7 @@ namespace thirdparty {
  * <b>Implicit Conversion:</b><br>
  * Unfortunately, objects of class \b %QString can not be implicitly converted (embedded) in
  * thin and lightweight class \ref aworx::lib::strings::String "aworx::String". The reason
- * for this is, that ALib strings are single byte strings, while \b QString represent
+ * for this is, that \b %ALib strings are single byte strings, while \b QString represent
  * (two byte) unicode strings. Therefore, template struct
  * \ref aworx::lib::strings::T_String "T_String" can not be implemented for class \b QString
  * and objects of this class can not be simply passed to methods accepting parameters of type
@@ -100,10 +100,10 @@ namespace thirdparty {
  *      MyMethodExpectingALibString( myQString.toLatin1()    );
  *
  * \note
- *   The encoding of strings represented by ALib strings is user defined. Therefore, it
+ *   The encoding of strings represented by \b %ALib strings is user defined. Therefore, it
  *   is up to the user to decide which of the above conversion methods of \b QString
  *   is to be used. In most cases, method \b toLocal8Bit should be the right choice. Also,
- *   ALib strings uses the current locale to convert characters of type wchar_t (or arrays of them)
+ *   \b %ALib strings uses the current locale to convert characters of type wchar_t (or arrays of them)
  *   when \e applying to class \b %AString as well.
  *
  * The obvious drawback of this approach is that a conversion has to take place and
@@ -280,7 +280,7 @@ namespace qt {
      * Copies or appends a region of a given \ref aworx::lib::strings::String "String" into a QString.
      * The region is adjusted to the length of the %String.<br>
      * See \ref aworx::lib::strings::thirdparty::qt for general information about using QT
-     * strings with ALib.
+     * strings with \b %ALib.
      *
      * @param as            The \ref aworx::lib::strings::String "String" to convert into a QString.
      * @param target        A result QString to copy the specified region into.
@@ -316,7 +316,7 @@ namespace qt {
      * is created.
      * The region is adjusted to the length of the %String.<br>
      * See \ref aworx::lib::strings::thirdparty::qt for general information about using QT
-     * strings with ALib.
+     * strings with \b %ALib.
      *
      * @param as            The \ref aworx::lib::strings::String "String" to convert into a QString.
      * @param regionStart   The start index of the region in this to create the QString from.
@@ -336,7 +336,7 @@ namespace qt {
     /** ********************************************************************************************
      * Copies the contents of a given \ref aworx::lib::strings::String "String" into the given QString.<br>
      * See \ref aworx::lib::strings::thirdparty::qt for general information about using QT
-     * strings with ALib.
+     * strings with \b %ALib.
      *
      * @param as            The \ref aworx::lib::strings::String "String" to convert into a QString.
      * @return A QString that represents this object.
@@ -351,7 +351,7 @@ namespace qt {
     /** ********************************************************************************************
      * Copies the contents of a given \ref aworx::lib::strings::String "String" into the given QString.<br>
      * See \ref aworx::lib::strings::thirdparty::qt for general information about using QT
-     * strings with ALib.
+     * strings with \b %ALib.
      *
      * @param as           The \ref aworx::lib::strings::String "String" to convert into a QString.
      * @param target       A target QString to copy the contents of this %String into.

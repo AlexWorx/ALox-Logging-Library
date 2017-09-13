@@ -100,13 +100,19 @@ public class ScopeDump
                 maxKeyLength= writeStoreMapHelper( thread.Value[0], "    " );
             }
 
-            foreach( PathMap<Dictionary<AString, T>> map in store.languageStore )
+            var walker= new StringTree<Dictionary<AString, T>>.Walker( store.languageStore );
+            walker.PathGeneration( Switch.On );
+            walker.SetRecursionDepth(-1);
+            for( walker.SetStart( store.languageStore) ;walker.IsValid() ; walker.Next() )
             {
+                Dictionary<AString, T> map = walker.Value();
+                if (map == null)
+                    continue;
+                cnt+= map.Count;
                 if( firstEntry ) firstEntry= false; else   target.NewLine();
                 target._NC( "  " );
-                storeKeyToScope( map )      ._( ':' ).NewLine();
-                cnt+= map.Value.Count;
-                maxKeyLength= writeStoreMapHelper( map.Value, "    " );
+                storeKeyToScope( walker.GetPath(tempAS) ).NewLine();
+                maxKeyLength= writeStoreMapHelper( map, "    " );
             }
 
             foreach( KeyValuePair<Thread, List<Dictionary<AString, T>>> thread in store.threadInnerStore )
@@ -152,15 +158,20 @@ public class ScopeDump
                     storeThreadToScope( thread.Key ).NewLine();
                 }
 
-            foreach( PathMap<AString> it in store.languageStore )
+            var walker= new StringTree<AString>.Walker( store.languageStore );
+            walker.PathGeneration( Switch.On );
+            walker.SetRecursionDepth(-1);
+            for( walker.SetStart( store.languageStore) ;walker.IsValid() ; walker.Next() )
             {
+                if( walker.Value() == null )
+                    continue;
                 cntScopeDomains++;
 
                 target.InsertChars( ' ', indentSpaces );
-                target._NC( it.Value );
+                target._NC( walker.Value() );
                 target.Tab( 25, -1 );
 
-                storeKeyToScope( it ).NewLine();
+                storeKeyToScope( walker.GetPath(tempAS) ).NewLine();
             }
 
             foreach( KeyValuePair<Thread, List<AString>> thread in store.threadInnerStore )
@@ -215,19 +226,24 @@ public class ScopeDump
                     storeThreadToScope( thread.Key ).NewLine();
                 }
 
-            foreach( PathMap<Object> it in store.languageStore )
+            var walker= new StringTree<Object>.Walker( store.languageStore );
+            walker.PathGeneration( Switch.On );
+            walker.SetRecursionDepth(-1);
+            for( walker.SetStart( store.languageStore) ;walker.IsValid() ; walker.Next() )
             {
+                if( walker.Value() == null )
+                    continue;
                 cntScopeDomains++;
 
                 target.InsertChars( ' ', indentSpaces );
                 target._( '\"' );
                 int idx= target.Length();
-                target._NC( it.Value.ToString() );
+                target._NC( walker.Value().ToString() );
                 ESC.ReplaceToReadable( target, idx );
                 target._( '\"' );
                 target.Tab( 25, -1 );
 
-                storeKeyToScope( it ).NewLine();
+                storeKeyToScope( walker.GetPath(tempAS) ).NewLine();
             }
 
             foreach( KeyValuePair<Thread, List<Object>> thread in store.threadInnerStore )
@@ -269,23 +285,12 @@ public class ScopeDump
 
         /** ****************************************************************************************
          * Helper method to write a ScopeStores' source related scope key as scope information.
-         * @param map  The PathMap node to get scope information for.
+         * @param key  The key of the StringTree that is to be "translated".
          * @return The target to allow concatenated calls.
          ******************************************************************************************/
-        protected AString storeKeyToScope<T>( PathMap<T> map  )
+        protected AString storeKeyToScope( AString  key  )
         {
-            key._();
-            PathMap<T> node= map;
-            while( node != null )
-            {
-                key.InsertAt( node.Path, 0 );
-                node= node.Parent;
-            }
-
-            int fileNameStart= 0;
             int fileNameEnd= key.IndexOf('#');
-            if (fileNameEnd > 0 )
-                fileNameStart= key.LastIndexOf( '/', fileNameEnd ) + 1;
             int methodEnd=    fileNameEnd >= 0 ? key.IndexOf('#', fileNameEnd + 1)  : -1;
 
             target._NC("Scope.");
@@ -293,28 +298,19 @@ public class ScopeDump
             else if ( fileNameEnd >= 0 )  target._NC( "FileName    [" );
             else                          target._NC( "Path        [" );
 
-
             int targetStart= target.Length();
             target._NC( key );
 
-            if ( fileNameEnd >= 0 )
-                target.DeleteEnd(1);
-
             if ( methodEnd >= 0 )
             {
-                target._NC( "()\"" );
-                target.ReplaceSubstring( " Method=\"", targetStart + fileNameEnd, 2 );
+                target.ReplaceSubstring( " @", targetStart + fileNameEnd +1, 2 ); // characters: "/#"
+                target._NC( "()" );
             }
 
             if ( fileNameEnd >= 0 )
-            {
-                target.InsertAt        ( "\""            , targetStart + fileNameEnd      );
-                target.ReplaceSubstring( " Filename=\""  , targetStart + fileNameStart, 1 );
-            }
-
-            int pos= fileNameEnd > 0 ? fileNameStart : target.Length() - targetStart;
-            target.InsertAt( "\""     , targetStart + pos );
-            target.InsertAt( "Path=\"", targetStart );
+                target.ReplaceSubstring(".*", targetStart + fileNameEnd,  1);
+            else
+                target._('/');
 
             target._(']');
 

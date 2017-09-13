@@ -59,7 +59,7 @@ ALIB_DEBUG_CODE( ALIB_API void appendErrorToAString( AString& target ); )
  *
  * This concept of specializing this struct "once" and then being able to pass custom types
  * to objects of class
- * \ref aworx::lib::strings::AString "AString" has a central role for using ALib in a
+ * \ref aworx::lib::strings::AString "AString" has a central role for using \b %ALib in a
  * \ref aworx::lib "non intrusive" way: Methods of \b %ALib classes (or third-party code that uses
  * \b %ALib) may offer APIs that can be fed with custom types without the prior need of conversion.
  *
@@ -74,7 +74,7 @@ ALIB_DEBUG_CODE( ALIB_API void appendErrorToAString( AString& target ); )
  * parameter \p target. For string types, simple append operations are predefined. More
  * complex operations format the string, convert integer and floating point numbers, etc.
  *
- * For basic user defined string types that get adopted to ALib string system using a specialization
+ * For basic user defined string types that get adopted to \b %ALib string system using a specialization
  * of struct
  * \ref aworx::lib::strings::T_String "T_String", no specialization of this struct is needed,
  * because method \ref aworx::lib::strings::AString::Apply "AString::Apply" will detect that and
@@ -91,7 +91,7 @@ ALIB_DEBUG_CODE( ALIB_API void appendErrorToAString( AString& target ); )
  * which produces:
  * \snippet "DOX_ALIB_APPLYTO_FIELD.txt"     OUTPUT
  *
- * The next sample implements this function for ALib class
+ * The next sample implements this function for \b %ALib class
  * \ref aworx::lib::time::Ticks "Ticks" to print out a formatted date:
  * \snippet "DOX_ALIB_APPLYTO.cpp"     DOX_ALIB_APPLYTO_DEFINITION
  * With this definition included, user code might now do this:
@@ -343,12 +343,12 @@ aworx::lib::lang::integer aworx::lib::strings::T_Apply<TYPE>::Apply(AString& tar
  * <b>Nullable AStrings</b><p>
  * As discussed in the namespace documentation (\ref alib_namespace_strings_nullable)
  * parent class
- * \ref aworx::lib::strings::String "String" provides an interface to detect <em>\e nulled</em> objects.
- * This concept is duly implemented in this class. An object of type #AString is <em>\e nulled</em>
+ * \ref aworx::lib::strings::String "String" provides an interface to detect \e nulled objects.
+ * This concept is duly implemented in this class. An object of type #AString is \e nulled
  * when no internal buffer is allocated or external buffer is set.
  *
  * If default constructed, constructed  with zero size, \c nullptr or any other string type
- * object which is \e nulled, no buffer is created and hence the new object is in <em>\e nulled</em>
+ * object which is \e nulled, no buffer is created and hence the new object is in \e nulled
  * state and inherited method
  * aworx::lib::strings::String::IsNull "IsNull" will return \c true for that object.
  * Consequently, it makes a difference if an \b %AString is constructed using <em>AString()</em> or
@@ -358,8 +358,8 @@ aworx::lib::lang::integer aworx::lib::strings::T_Apply<TYPE>::Apply(AString& tar
  * either assigning a \c nullptr, by invoking \ref SetBuffer "SetBuffer(0)" or by invoking
  * #SetNull on the instance. (See also methods #IsNull, #IsNotNull and #Capacity.)
  * The methods #Equals, #CompareTo and the overloaded comparison #operator== and
- * #operator!= allow nullptr comparisons. e.g. a <em>\e nulled</em> \b %AString equals to another
- * <em>\e nulled</em> \b %AString but not to an empty but not <em>\e nulled</em> AString.
+ * #operator!= allow nullptr comparisons. e.g. a \e nulled \b %AString equals to another
+ * \e nulled \b %AString but not to an empty but not \e nulled AString.
  *
  * To make this more clear, note the following <b>sample code</b> which does not throw an assertion:
  * \snippet "DOX_ALIB_ASTRING.cpp"    DOX_ALIB_ASTRING_NULLED
@@ -367,7 +367,7 @@ aworx::lib::lang::integer aworx::lib::strings::T_Apply<TYPE>::Apply(AString& tar
  * \note
  *   - As mentioned above, to avoid loosing an allocated buffer, use a combination of
  *     #Clear and append \ref _ "_()" to perform assignments with other string types instead of
- *     using one of the assignment operators (#operator=). No check for <em>\e nulled</em> string
+ *     using one of the assignment operators (#operator=). No check for \e nulled string
  *     is needed when appending them to an object of this type.
  *
  *   - Even if an \b %AString object is \e nulled, inherited method #ToCString will return a
@@ -380,7 +380,7 @@ aworx::lib::lang::integer aworx::lib::strings::T_Apply<TYPE>::Apply(AString& tar
  * <b>Applying Objects to AStrings</b><p>
  * The concept of appending things to a string is generalized in the C++
  * implementation of this class and named <em>applying</em> instead. While applying string
- * types is the same as appending string types in other language versions of ALib, the
+ * types is the same as appending string types in other language versions of \b %ALib, the
  * '<em>application</em>' of non-string types allows flexible and well readable code design.
  *
  * The central mechanism used to apply arbitrary types is similar to what is used by class
@@ -404,9 +404,9 @@ aworx::lib::lang::integer aworx::lib::strings::T_Apply<TYPE>::Apply(AString& tar
  * \anchor alib_namespace_strings_astring_application_vs_interface
  * <b>Application Instead of Explicit Interface Methods</b><p>
  * Various methods that exist in the implementations of class \b %AString in different programming
- * languages versions of ALib, are missing in this C++ implementation.
+ * languages versions of \b %ALib, are missing in this C++ implementation.
  * Here, they have been replaced by  the concept of <em>applying</em> types.
- * The following provides a list of predefined applicable types found in ALib:
+ * The following provides a list of predefined applicable types found in \b %ALib:
  *
  * - Character types \c char, \c wchar_t, \c char16_t or \c char32_t, and strings of those
  *   (pointers to the types or arrays of them) will be appended.<br>
@@ -770,7 +770,7 @@ class AString : public TString
          *    the external buffers' size. In other words, the only case when this method does not
          *    replace the current buffer is when the current buffers' life-cycle is (already)
          *    internally managed and it has the same size than what is requested.
-         *  - In the C++ version of ALib, the \c true allocation size is + 1 of what is given
+         *  - In the C++ version of \b %ALib, the \c true allocation size is + 1 of what is given
          *    in parameter \p newCapacity. This is is to duly apply to a constraint given by parent
          *    #TString.
          *
@@ -853,7 +853,7 @@ class AString : public TString
          *
          * Furthermore, if \ref ALIB_DEBUG_STRINGS is \c true, the non-checking version applies
          * \ref  ALIB_STRING_DBG_UNTERMINATE to this object, after the new length was
-         * set. Only the, a \ref ALIB_STRING_DBG_CHK is executed.
+         * set and before \ref ALIB_STRING_DBG_CHK is executed.
          *
          * @tparam TCheck    Defaults to \c true which is the normal invocation mode.
          *                   If \c \<false\> is added to the method name, no parameter checks are
@@ -1042,7 +1042,7 @@ class AString : public TString
          * object with this operator as lvalue.
          *
          * \attention
-         *   Unlike other operator methods in the family of string classes of ALib,  which are doing
+         *   Unlike other operator methods in the family of string classes of \b %ALib,  which are doing
          *   parameter checks (in this case a range check), this operator does <em>not</em> do a
          *   check!
          *   The rationale is that, no reference to a character can be given if \p op is out
@@ -1549,6 +1549,7 @@ class AString : public TString
             EnsureRemainingCapacity( srcLength );
             memcpy( vbuffer + length,  src, static_cast<size_t>(srcLength) );
             length+= srcLength;
+            ALIB_STRING_DBG_UNTERMINATE(*this, 0)
 
             return *this;
         }
@@ -1687,7 +1688,7 @@ class AString : public TString
          *
          * <b>Sample</b><p>
          * Besides the implementations of <em>T_Apply</em> for various types like integer or double,
-         * ALib provides class \ref aworx::lib::strings::Format "Format" having public
+         * \b %ALib provides class \ref aworx::lib::strings::Format "Format" having public
          * inner classes with simple constructors that are useful to pass to the methods
          * listed above like in the following sample:
          *
@@ -1893,7 +1894,7 @@ class AString : public TString
                         result= T_Apply<TPlain>::Apply   ( *this, (TPlain&) **(int**) &src );
                 }
 
-                // pointer to ALib String type
+                // pointer to \b %ALib String type
                 else if ( std::is_base_of<String, typename std::remove_pointer<TApplicable>::type>::value )
                 {
                     if ( TCheck && (*(String**) &src)->IsNull() )
@@ -1914,7 +1915,7 @@ class AString : public TString
                 if ( std::is_arithmetic<TPlain>::value )
                     result= T_Apply<TPlain>::Apply   ( *this, (TPlain&) *(int*) &src );
 
-                // reference to ALib String type
+                // reference to \b %ALib String type
                 else if ( std::is_base_of<String, typename std::remove_reference<TApplicable>::type>::value )
                 {
                     if ( TCheck && ((String&) *(int*) &src).IsNull() )
@@ -2050,9 +2051,22 @@ class AString : public TString
      ##@{ ########################################################################################*/
 
         /** ****************************************************************************************
+         * Replaces one or more occurrences of one character by another character.
+         *
+         * @param needle           The terminatable string to be replaced.
+         * @param replacement      The replacement string (does not need to be zero terminatable).
+         * @param startIdx         The index where the search starts. Optional and defaults 0.
+         *
+         * @return The number of replacements that where performed.
+         ******************************************************************************************/
+        ALIB_API
+        integer SearchAndReplace( char           needle,
+                                  char           replacement,
+                                  integer        startIdx            = 0  );
+
+        /** ****************************************************************************************
          * Replaces one or more occurrences of a terminatable string (
          * \ref aworx::lib::strings::TString "TString") by a replacement string.
-         *
          *
          * @param needle           The terminatable string to be replaced.
          * @param replacement      The replacement string (does not need to be zero terminatable).
@@ -2066,17 +2080,16 @@ class AString : public TString
          ******************************************************************************************/
         ALIB_API
         integer SearchAndReplace( const TString& needle,
-                                   const String&  replacement,
-                                   integer          startIdx            = 0,
-                                   integer       maxReplacements     = CString::MaxLen,
-                                   lang::Case    sensitivity         = lang::Case::Sensitive );
+                                  const String&  replacement,
+                                  integer        startIdx            = 0,
+                                  integer        maxReplacements     = CString::MaxLen,
+                                  lang::Case     sensitivity         = lang::Case::Sensitive );
 
         /** ****************************************************************************************
          * Replaces one or more occurrences of a terminatable string (
          * \ref aworx::lib::strings::TString "TString") by a replacement string.
          * \note The difference to #SearchAndReplace is that this method returns \b *this to allow
          *       concatenated calls.
-         *
          *
          * @param needle           The terminatable string to be replaced.
          * @param replacement      The replacement string (does not need to be zero terminatable).
@@ -2089,11 +2102,11 @@ class AString : public TString
          * @return \c *this to allow concatenated calls.
          ******************************************************************************************/
         inline
-        AString& SearchAndReplaceAll( const TString   needle,
+        AString& SearchAndReplaceAlx( const TString   needle,
                                       const String&   replacement,
-                                      integer           startIdx            = 0,
-                                      integer        maxReplacements     = CString::MaxLen,
-                                      lang::Case     sensitivity         = lang::Case::Sensitive )
+                                      integer         startIdx            = 0,
+                                      integer         maxReplacements     = CString::MaxLen,
+                                      lang::Case      sensitivity         = lang::Case::Sensitive )
         {
             SearchAndReplace( needle, replacement, startIdx, maxReplacements, sensitivity );
             return *this;

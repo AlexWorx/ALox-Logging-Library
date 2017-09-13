@@ -46,21 +46,22 @@ SOURCES += ../../../../src.cpp/alib/alib.cpp                                \
            ../../../../src.cpp/alib/system/directory.cpp                    \
            ../../../../src.cpp/alib/system/environment.cpp                  \
            ../../../../src.cpp/alib/system/process.cpp                      \
-           ../../../../src.cpp/alib/strings/applyformat.cpp                 \
+           ../../../../src.cpp/alib/strings/applicables.cpp                 \
            ../../../../src.cpp/alib/strings/astring.cpp                     \
-           ../../../../src.cpp/alib/strings/autosizes.cpp                   \
            ../../../../src.cpp/alib/strings/cstring.cpp                     \
-           ../../../../src.cpp/alib/strings/formatter.cpp                   \
-           ../../../../src.cpp/alib/strings/formatterjavastyle.cpp          \
-           ../../../../src.cpp/alib/strings/formatterpythonstyle.cpp        \
-           ../../../../src.cpp/alib/strings/formatterstdimpl.cpp            \
            ../../../../src.cpp/alib/strings/numberformat.cpp                \
-           ../../../../src.cpp/alib/strings/spaces.cpp                      \
            ../../../../src.cpp/alib/strings/string.cpp                      \
-           ../../../../src.cpp/alib/strings/stringboxing.cpp                \
            ../../../../src.cpp/alib/strings/substring.cpp                   \
-           ../../../../src.cpp/alib/strings/tokenizer.cpp                   \
            ../../../../src.cpp/alib/strings/tstring.cpp                     \
+           ../../../../src.cpp/alib/strings/boxing/stringboxing.cpp         \
+           ../../../../src.cpp/alib/strings/format/formatter.cpp            \
+           ../../../../src.cpp/alib/strings/format/formatterjavastyle.cpp   \
+           ../../../../src.cpp/alib/strings/format/formatterpythonstyle.cpp \
+           ../../../../src.cpp/alib/strings/format/formatterstdimpl.cpp     \
+           ../../../../src.cpp/alib/strings/util/autosizes.cpp                 \
+           ../../../../src.cpp/alib/strings/util/simpletext.cpp                \
+           ../../../../src.cpp/alib/strings/util/spaces.cpp                    \
+           ../../../../src.cpp/alib/strings/util/tokenizer.cpp              \
            ../../../../src.cpp/alib/config/configuration.cpp                \
            ../../../../src.cpp/alib/config/variable.cpp                     \
            ../../../../src.cpp/alib/config/plugins.cpp                      \
@@ -117,28 +118,25 @@ HEADERS += ../../../../src.cpp/alib/alib.hpp                                \
            ../../../../src.cpp/alib/system/directory.hpp                    \
            ../../../../src.cpp/alib/system/environment.hpp                  \
            ../../../../src.cpp/alib/system/process.hpp                      \
-           ../../../../src.cpp/alib/strings/applyformat.hpp                 \
-           ../../../../src.cpp/alib/strings/applyto.hpp                     \
-           ../../../../src.cpp/alib/strings/autosizes.hpp                   \
+           ../../../../src.cpp/alib/strings/applicables.hpp                 \
            ../../../../src.cpp/alib/strings/astring.hpp                     \
            ../../../../src.cpp/alib/strings/cstring.hpp                     \
-           ../../../../src.cpp/alib/strings/formatter.hpp                   \
-           ../../../../src.cpp/alib/strings/formatterjavastyle.hpp          \
-           ../../../../src.cpp/alib/strings/formatterpythonstyle.hpp        \
-           ../../../../src.cpp/alib/strings/formatterstdimpl.hpp            \
            ../../../../src.cpp/alib/strings/numberformat.hpp                \
            ../../../../src.cpp/alib/strings/preallocatedstring.hpp          \
            ../../../../src.cpp/alib/strings/string.hpp                      \
-           ../../../../src.cpp/alib/strings/spaces.hpp                      \
-           ../../../../src.cpp/alib/strings/string.hpp                      \
-           ../../../../src.cpp/alib/strings/stringboxing.hpp                \
-           ../../../../src.cpp/alib/strings/stringliteral.hpp               \
-           ../../../../src.cpp/alib/strings/stringtuples.hpp                \
            ../../../../src.cpp/alib/strings/stringliteral.hpp               \
            ../../../../src.cpp/alib/strings/substring.hpp                   \
-           ../../../../src.cpp/alib/strings/tokenizer.hpp                   \
-           ../../../../src.cpp/alib/strings/formatter.hpp                   \
            ../../../../src.cpp/alib/strings/tstring.hpp                     \
+           ../../../../src.cpp/alib/strings/boxing/stringboxing.hpp         \
+           ../../../../src.cpp/alib/strings/format/formatter.hpp            \
+           ../../../../src.cpp/alib/strings/format/formatterjavastyle.hpp   \
+           ../../../../src.cpp/alib/strings/format/formatterpythonstyle.hpp \
+           ../../../../src.cpp/alib/strings/format/formatterstdimpl.hpp     \
+           ../../../../src.cpp/alib/strings/util/autosizes.hpp                 \
+           ../../../../src.cpp/alib/strings/util/simpletext.hpp                \
+           ../../../../src.cpp/alib/strings/util/spaces.hpp                    \
+           ../../../../src.cpp/alib/strings/util/stringtuples.hpp              \
+           ../../../../src.cpp/alib/strings/util/tokenizer.hpp              \
            ../../../../src.cpp/alib/config/configuration.hpp                \
            ../../../../src.cpp/alib/config/variable.hpp                     \
            ../../../../src.cpp/alib/config/plugins.hpp                      \

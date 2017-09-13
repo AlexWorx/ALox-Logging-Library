@@ -19,12 +19,6 @@
 // includes
 // #################################################################################################
 
-#if !defined (_GLIBCXX_IOSFWD )     && !defined(_IOSFWD_)
-    #include <iosfwd>
-#endif
-#if !defined (_GLIBCXX_CCTYPE) && !defined (_CCTYPE_)
-    #include <cctype>
-#endif
 
 // conditional expression is constant for using our constant template parameters to select
 // checking vs. non-checking method versions
@@ -57,7 +51,7 @@ namespace aworx { namespace lib { namespace strings
  * \note
  *   This class \b %StringLiteral, when used in source code as well as in documentations, is
  *   often referred to using the synonym '<b>%SLiteral</b>'. For more information about
- *   the synonymous names of ALib string classes, refer to
+ *   the synonymous names of \b %ALib string classes, refer to
  *   \ref alib_namespace_strings_class_overview "String Classes Overview" and
  *   \ref CPP_AWORX_NS_SHORTCUTS "Type Shortcuts of Namespace aworx".
  *

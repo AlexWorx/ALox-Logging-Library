@@ -46,6 +46,9 @@
     <Compile Include="..\..\..\src.cs\alib\ALIB_DBG.cs">
       <Link>ALib/ALIB_DBG.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\src.cs\alib\containers\StringTree.cs">
+      <Link>ALib/containers/StringTree.cs</Link>
+    </Compile>
     <Compile Include="..\..\..\src.cs\alib\strings\format\Formatter.cs">
       <Link>ALib/strings/format/Formatter.cs</Link>
     </Compile>
@@ -163,9 +166,6 @@
     </Compile>
     <Compile Include="..\..\..\src.cs\alox\ALoxTypesAndEnums.cs">
       <Link>ALox\ALoxTypesAndEnums.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src.cs\alib\containers\PathMap.cs">
-      <Link>ALib\containers\PathMap.cs</Link>
     </Compile>
     <Compile Include="..\..\..\src.cs\alib\config\InMemoryPlugin.cs">
       <Link>ALib\config\InMemoryPlugin.cs</Link>

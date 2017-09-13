@@ -61,10 +61,10 @@ class Log
         /**  An (additional) IDE specific logger, that might be created by AddDebugLogger. */
         ALOX_API static core::textlogger::TextLogger*   IDELogger;
 
-        /**  The ALib ReportWriter. This will be created and registered in method
+        /**  The \b %ALib ReportWriter. This will be created and registered in method
          *   \ref aworx::lox::Log::AddDebugLogger    "Log::AddDebugLogger" and removed and deleted in
          *   \ref aworx::lox::Log::RemoveDebugLogger "Log::RemoveDebugLogger" in the case that
-         * the original ALib \b ReportWriterStdIO is in place.
+         * the original \b %ALib \b ReportWriterStdIO is in place.
          */
         static ALoxReportWriter*                        DebugReportWriter;
 
@@ -83,7 +83,7 @@ class Log
          * debug logger(s) can be created manually. Also, before or after using this method
          * additional debug loggers may be created.
          *
-         * In the current version of ALox (future changes are likely), this method does:
+         * In the current version of \b %ALox (future changes are likely), this method does:
          * - use
          *   \ref aworx::lox::Lox::CreateConsoleLogger "Lox::CreateConsoleLogger"
          *   to create the best compatible console logger for the
@@ -119,7 +119,7 @@ class Log
         ALOX_API static void      RemoveDebugLogger( Lox* lox );
 
         /** ****************************************************************************************
-         * In the case that the original ALib \b ReportWriterStdIO is still in place,
+         * In the case that the original \b %ALib \b ReportWriterStdIO is still in place,
          * \ref aworx::lib::lang::Report::PushWriter "Report::PushWriter" is invoked to provide a
          * ReportWriter of type
          * \ref aworx::lox::ALoxReportWriter "ALoxReportWriter".

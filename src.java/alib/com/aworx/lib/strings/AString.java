@@ -2275,6 +2275,86 @@ public class AString implements CharSequence
      ##@{ ########################################################################################*/
 
         /** ****************************************************************************************
+         * Search a character in the buffer.
+         *
+         * @param c             The character to search.
+         * @param startIdx      The index to start the search at. Optional and defaults to \c 0.
+         *
+         * @return  -1 if the character is not found. Otherwise the index of first occurrence.
+         ******************************************************************************************/
+        public int indexOf( char c, int startIdx )
+        {
+            // check
+                 if ( startIdx < 0 )
+                startIdx= 0;
+            else if ( startIdx >= length)
+                return -1;
+
+            // search
+            while ( startIdx < length )
+            {
+                if ( c == buffer[ startIdx ] )
+                    return startIdx;
+                startIdx++;
+            }
+
+            // not found
+            return -1;
+        }
+
+        /** ****************************************************************************************
+         * Search a character in the buffer.
+         *
+         * @param c    The character to search.
+         *
+         * @return  -1 if the character is not found. Otherwise the index of first occurrence.
+         ******************************************************************************************/
+        public int indexOf( char c )
+        {
+            return indexOf( c, 0 );
+        }
+
+        /** ****************************************************************************************
+         * Like #indexOf but in case the character is not found, this method returns the length of
+         * this string instead of \c -1.
+         * Depending on the invocation context, the choice for the right version of this method may
+         * lead to shorter and more efficient code.
+         *
+         * @param needle  The character to search for.
+         * @return  This strings #length if the character \p needle is not found.
+         *          Otherwise the index of first occurrence.
+         ******************************************************************************************/
+        public int    indexOfOrLength( char needle )
+        {
+            int idx= 0;
+            while ( idx < length && needle != buffer[ idx ])
+                idx++;
+
+            return idx;
+        }
+
+        /** ****************************************************************************************
+         * Like #indexOf but in case the character is not found, this method returns the length of
+         * this string instead of \c -1.
+         * Depending on the invocation context, the choice for the right version of this method may
+         * lead to shorter and more efficient code.
+         *
+         * @param needle    The character to search for.
+         * @param startIdx  The index in this to start searching the character.
+         * @return  This strings #length if the character \p needle is not found.
+         *          Otherwise the index of first occurrence.
+         ******************************************************************************************/
+        public int    indexOfOrLength( char needle, int startIdx )
+        {
+            if      ( startIdx < 0 )                startIdx= 0;
+            else if ( startIdx >= length )          return length;
+            while ( startIdx < length && needle != buffer[ startIdx ])
+                startIdx++;
+
+            return startIdx;
+        }
+
+        /** ****************************************************************************************
          * Search the given String in the buffer starting at a given position.
          *
          * @param needle        The CharSequence to search.
@@ -2314,46 +2394,6 @@ public class AString implements CharSequence
         public int indexOf( CharSequence cs )
         {
             return indexOf( cs, 0, Case.SENSITIVE );
-        }
-
-        /** ****************************************************************************************
-         * Search a character in the buffer.
-         *
-         * @param c             The character to search.
-         * @param startIdx      The index to start the search at. Optional and defaults to \c 0.
-         *
-         * @return  -1 if the character is not found. Otherwise the index of first occurrence.
-         ******************************************************************************************/
-        public int indexOf( char c, int startIdx )
-        {
-            // check
-                 if ( startIdx < 0 )
-                startIdx= 0;
-            else if ( startIdx >= length)
-                return -1;
-
-            // search
-            while ( startIdx < length )
-            {
-                if ( c == buffer[ startIdx ] )
-                    return startIdx;
-                startIdx++;
-            }
-
-            // not found
-            return -1;
-        }
-
-        /** ****************************************************************************************
-         * Search a character in the buffer.
-         *
-         * @param c    The character to search.
-         *
-         * @return  -1 if the character is not found. Otherwise the index of first occurrence.
-         ******************************************************************************************/
-        public int indexOf( char c )
-        {
-            return indexOf( c, 0 );
         }
 
         /** ****************************************************************************************
@@ -2493,6 +2533,45 @@ public class AString implements CharSequence
     /** ############################################################################################
      * @name Replace
      ##@{ ########################################################################################*/
+
+        /** ****************************************************************************************
+         * Replaces one or more occurrences of one character by another character.
+         *
+         * @param needle           The terminatable string to be replaced.
+         * @param replacement      The replacement string (does not need to be zero terminatable).
+         * @param startIdx         The index where the search starts. Optional and defaults 0.
+         *
+         * @return The number of replacements that where performed.
+         ******************************************************************************************/
+        public int searchAndReplace( char needle, char replacement, int startIdx )
+        {
+                 if ( startIdx <  0      )  startIdx= 0;
+            else if ( startIdx >= length )  return 0;
+
+            // replacement loop
+            int cntReplacements=    0;
+            for(;;)
+            {
+                startIdx= indexOfOrLength( needle, startIdx  );
+                if ( startIdx >= length  )
+                    return cntReplacements;
+                buffer[ startIdx ]= replacement;
+                cntReplacements++;
+            }
+        }
+
+        /** ****************************************************************************************
+         * Replaces one or more occurrences of one character by another character.
+         *
+         * @param needle           The terminatable string to be replaced.
+         * @param replacement      The replacement string (does not need to be zero terminatable).
+         *
+         * @return The number of replacements that where performed.
+         ******************************************************************************************/
+        public int searchAndReplace( char needle, char replacement )
+        {
+            return searchAndReplace( needle, replacement, 0 );
+        }
 
         /** ****************************************************************************************
          * Replace one or more occurrences of a string by another string. Returns the number
@@ -3590,7 +3669,7 @@ public class AString implements CharSequence
          * have a corresponding implementation within class \b %AString.
          *
          * \note Because Java does not support unsigned integer, the value to read is limited to
-         *       <c>Long.MAX_VALUE</c> in this language implementation of ALib.
+         *       <c>Long.MAX_VALUE</c> in this language implementation of \b %ALib.
          *
          *
          * @param startIdx     The start index for parsing.
@@ -4337,7 +4416,7 @@ public class AString implements CharSequence
         // note: charAt() already implemented in standard interface
 
         /** ****************************************************************************************
-         * Reports an ALib error (using \ref com::aworx::lib::lang::ReportWriter "ReportWriter")
+         * Reports an \b %ALib error (using \ref com::aworx::lib::lang::ReportWriter "ReportWriter")
          * and returns null. The reason for this behavior is to disallow the usage of AString
          * within (system) methods that create sub sequences. This would be in contrast to the
          * design goal of AString.

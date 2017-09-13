@@ -71,7 +71,10 @@ StandardConverter::StandardConverter()
 
 StandardConverter::~StandardConverter()
 {
-    ALIB_ASSERT( cntRecursion == 0  )
+    ALIB_ASSERT_ERROR( cntRecursion == 0,  "Objectconverter recursion counter > 0."
+    "\n  Note: This error indicates, that a previous format operation (log statement) containted\n"
+      "        corrupt format values, which caused the formatter to behave undefined, including\n"
+      "        the corruption of the the execution stack."                                          )
     for( auto elem : recursionFormatters )
     {
         delete elem->Next;
@@ -959,10 +962,12 @@ void TextLogger::Log( Domain& domain, Verbosity verbosity, Boxes& logables, Scop
         logBuf._NC( FmtMultiLinePrefix );
           logBuf._NC( msgBuf,  actStart, actEnd - actStart  );
         logBuf._NC( FmtMultiLineSuffix );
+        actStart= actEnd + delimLen;
+        if ( actStart >= msgBuf.Length() )
+            logBuf._NC( FmtMsgSuffix );
         logText( domain, verbosity, logBuf, scope, lineNo );
 
         // next
-        actStart= actEnd + delimLen;
         lineNo++;
     }
 

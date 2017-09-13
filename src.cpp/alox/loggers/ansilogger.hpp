@@ -23,10 +23,6 @@
     #include "alox/core/textlogger/textlogger.hpp"
 #endif
 
-#if !defined (_GLIBCXX_IOSFWD )
-    #include <iosfwd>
-#endif
-
 
 namespace aworx { namespace lox { namespace loggers {
 
@@ -205,7 +201,7 @@ class AnsiLogger : public aworx::lox::core::textlogger::TextLogger
          * If the background color of a console window is dark, then the background colors of
          * colored log output should be darker colors than the foreground colors - and vice versa.
          *
-         * Depending on the setting of this field, ALox
+         * Depending on the setting of this field, \b %ALox
          * \ref aworx::lox::ESC "escape codes" for colors are translated to normal ANSI colors or
          * lighter ones:
          * - If this field is \ref LightColorUsage "LightColorUsage::Never", light colors are
@@ -255,7 +251,7 @@ class AnsiLogger : public aworx::lox::core::textlogger::TextLogger
         /** ****************************************************************************************
          * Implementation of the abstract method of parent class TextLogger.
          * Logs messages to the basic output stream provided in the constructor. Replaces
-         * ALox ESC escape sequences with ANSI escape sequences.
+         * \b %ALox ESC escape sequences with ANSI escape sequences.
          *
          * @param domain      The <em>Log Domain</em>.
          * @param verbosity   The verbosity. This has been checked to be active already on this
@@ -289,7 +285,7 @@ class AnsiLogger : public aworx::lox::core::textlogger::TextLogger
  * See class #AnsiLogger for more information on ANSI escape sequences and their use.
  *
  * \note To avoid misunderstandings: This class can not enable the output console (which receives
- *       ALox log data) to support ANSI Escape Codes. The opposite is right: this class should be
+ *       \b %ALox log data) to support ANSI Escape Codes. The opposite is right: this class should be
  *       used only if the console supports ANSI Escape Codes.
  **************************************************************************************************/
 class AnsiConsoleLogger : public AnsiLogger

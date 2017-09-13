@@ -63,8 +63,8 @@
     <Compile Include="..\..\..\src.cs\alib\config\Variable.cs">
       <Link>ALib\config\Variable.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alib\containers\PathMap.cs">
-      <Link>ALib\containers\PathMap.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib\containers\StringTree.cs">
+      <Link>ALib\containers\StringTree.cs</Link>
     </Compile>
     <Compile Include="..\..\..\src.cs\alib\lang\Enums.cs">
       <Link>ALib\lang\Enums.cs</Link>

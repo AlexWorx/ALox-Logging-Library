@@ -11,11 +11,6 @@
     #include "alib/strings/substring.hpp"
 #endif
 
-#if !defined (HPP_ALIB_STRINGS_FORMAT_FORMATTER)
-    #include "alib/strings/format/formatter.hpp"
-#endif
-
-
 #if !defined (_GLIBCXX_CSTRING)  && !defined(_CSTRING_)
     #include <cstring>
 #endif
@@ -35,6 +30,12 @@
     #undef min
 #endif
 
+#if ALIB_MODULE_BOXING
+    #if !defined (HPP_ALIB_STRINGS_FORMAT_FORMATTER)
+        #include "alib/strings/format/formatter.hpp"
+    #endif
+#endif
+
 
 namespace aworx { namespace lib {
 
@@ -50,23 +51,23 @@ namespace aworx { namespace lib {
   - [Functions](#func-members)
 
 
-This namespace of ALib provides classes that operate on character strings
-(following \ref aworx::lib "the principle design goals of ALib").
+This namespace of \b %ALib provides classes that operate on character strings
+(following \ref aworx::lib "the principle design goals of \b %ALib").
 As the given C#/Java StringBuilder/Buffer classes are either "sealed" and/or do not provide
 direct access to the internal buffer, to avoid conversion to new immutable strings in certain
-situations, ALib implements its own string class.
+situations, \b %ALib implements its own string class.
 
-In contrast to the Java and C# versions of ALib, which merely provide a central string class named
-\b %AString along with \b %Substring, things became a little more complex in ALib for C++.
+In contrast to the Java and C# versions of \b %ALib, which merely provide a central string class named
+\b %AString along with \b %Substring, things became a little more complex in \b %ALib for C++.
 The following feature overview illustrate the reasons for this:
 
-- Implicit conversion of external, user defined string types when passing data into ALib. This
+- Implicit conversion of external, user defined string types when passing data into \b %ALib. This
   includes of-course compatibility with <em>std::string</em> and <em>cstrings</em> (<em>char*</em>),
   but also 3rd party types like e.g. \e QString<br>
   The conversion/construction is implemented with template meta programming, resulting in
   minimum (almost no) runtime overhead.
 - Support for user defined types that get 'applied' to strings. (Mostly concatenated, but also
-  more complex string algorithms can be implemented without changing ALib sources.)
+  more complex string algorithms can be implemented without changing \b %ALib sources.)
 - Stack allocated strings that avoid overhead of dynamic memory allocation, but in case of
   unexpected capacity demands, automatically switch to a dynamic data model.
 - Fast processing of C++ string literals and other string types whose length is known at compile
@@ -77,11 +78,11 @@ The following feature overview illustrate the reasons for this:
 - Conversion to and from wide character strings.
 - 'Non-checking' versions of many string methods are available to avoid redundant parameter checks.
 - Built-in debugging mechanics.
-- But still: as much as possible/reasonable compatibility with strings in ALib for JAVA/C#.
+- But still: as much as possible/reasonable compatibility with strings in \b %ALib for JAVA/C#.
 
 ALib strings in C++ are single byte strings. Conversion to and from unicode strings are
 available. It is the users responsibility that any internal encoding (e.g. UTF8) is consistently
-applied when using ALib strings.
+applied when using \b %ALib strings.
 
 # Classes overview # {#alib_namespace_strings_class_overview}
 To understand the rationale behind introducing different string types, it is easiest to
@@ -94,7 +95,7 @@ go quickly through them one by one. The classes are:
 - \ref aworx::lib::strings::Substring "Substring"
 
 \note As described in \ref CPP_AWORX_NS_SHORTCUTS "Type Shortcuts of Namespace aworx",
-      the type names of ALib are 'mirrored' into namespace \b aworx. As there is a limitation
+      the type names of \b %ALib are 'mirrored' into namespace \b aworx. As there is a limitation
       with template types, classes
       \ref  aworx::lib::strings::StringLiteral      "StringLiteral" and
       \ref  aworx::lib::strings::PreallocatedString "PreallocatedString" got renamed in
@@ -120,12 +121,12 @@ Objects of type \b %String are implicitly constructed or assigned to from other 
 The use cases of the class concentrate on two scenarios:
 
 <em>1. Using class String for String Constants:</em><p>
-Often, some constant string data is needed. For example, let's look at class ALib and it's
+Often, some constant string data is needed. For example, let's look at class \b %ALib and it's
 field \ref aworx::lib::ALIB::ConfigCategoryName "ALIB::ConfigCategoryName". This field is used
-by ALib when getting configuration parameters, e.g. from environment variables.
+by \b %ALib when getting configuration parameters, e.g. from environment variables.
 By default, this field is set to "ALIB", but an application might want to change it to
 something like "MYAPP". By having this field of type \c %String, just any string type can be
-assigned to it. The user of ALib must not explicitly convert '\e his' string type to ALib types
+assigned to it. The user of \b %ALib must not explicitly convert '\e his' string type to \b %ALib types
 but just using the assignment operator \e '='.
 Furthermore, in advantage to type <em>const char*</em>, along with the pointer, the length of
 the string is stored. This gives a good performance improvement, as e.g. no \e strlen() call
@@ -134,7 +135,7 @@ has to be made prior to copying this string to some other place.<br>
            to be made sure that this string is kept intact during the life-time of the target.
 
 <em>2. Using 'const String&' as Method Parameter Type:</em><p>
-All ALib interface methods that need some string input use a constant reference to \c %String
+All \b %ALib interface methods that need some string input use a constant reference to \c %String
 as parameter type (or to derived type \c %TString, discussed later).
 Again, the using code does not need to care about conversion. References
 or pointers to any sort of string classes might be passed.
@@ -150,7 +151,7 @@ Directory( const aworx::String& path );
 With this declaration, it is possible to invoke that constructor passing using just any type of strings:
 \snippet "DOX_ALIB_TOAS.cpp"     DOX_ALIB_AS_DIRECTORY
 
-\note ALib methods that continue to need the string data after their execution will create a copy
+\note \b %ALib methods that continue to need the string data after their execution will create a copy
       of it. In other words, they will never expect that the buffer received in a parameter of type \c %String
       still exists after the method exits.
 
@@ -161,14 +162,14 @@ string types (or types from other 3rd party library) can be made compatible easi
 template meta programming, variations of these types, like pointers or references, const or
 non-const, etc. will be accepted with minimum (mostly no) runtime impact, because TMP hooks
 in at compile time.<br>
-For more information on how to make ALib support user defined types see partially specialized
+For more information on how to make \b %ALib support user defined types see partially specialized
 template function
 \ref aworx::lib::strings::T_String "T_String".<br>
 
 \anchor alib_namespace_strings_nullable
 ### Nullable Strings ###
 Another important note is the fact that class \b %String are 'nullable'. This term means here, that
-when they got constructed with no value, with <em>nullptr</em>, with other \e nulled ALib strings,
+when they got constructed with no value, with <em>nullptr</em>, with other \e nulled \b %ALib strings,
 etc., this state is detectable and is different from representing an empty string of zero length.
 This is very important for lean and clean user code.
 
@@ -311,7 +312,7 @@ is exceeded, a regular allocated buffer from the <em>free memory</em> (aka '\e h
 allocated. The slight disadvantage then is, that the memory of the internal buffer is (of-course)
 not freed.
 
-In debug compilations of ALib, already parent class
+In debug compilations of \b %ALib, already parent class
 \ref aworx::lib::strings::AString "AString" provides warning mechanism that enables the easy
 detection of such probably unwanted replacements of external buffers
 (in this case the '\e member-allocated' buffer).
@@ -324,7 +325,7 @@ is replaced. There are two scenarios how a this mechanism might be used during d
   should be switched off for this specific object, as it is explained in
   \ref aworx::lib::strings::AString::ReplaceExternalBuffer "AString::ReplaceExternalBuffer".
 
-\note Again, all warnings are effective only with debug compilations of ALib.
+\note Again, all warnings are effective only with debug compilations of \b %ALib.
 
 ### Aliases For Frequently Used Sizes ###
 For commonly used sizes, some convenient alias names are defined. See aliases
@@ -338,7 +339,7 @@ the common constructors of \b %AString and exposes them as <em>implicit</em>.
 The rationale here is that although the data is copied (which might not be a very lightweight task),
 still the performance impact is far less compared to constructing an \b %AString and
 it is taken into account that an \b %PreallocatedString is created without explicit exposure of this creation. <p>
-The following method, as a sample, takes three different ALib string types as parameters:
+The following method, as a sample, takes three different \b %ALib string types as parameters:
 \snippet "DOX_ALIB_STRINGS.cpp"     DOX_ALIB_STRINGS_AS_PARAMETERS_1
 The following code will \e not compile:
 \snippet "DOX_ALIB_STRINGS.cpp"     DOX_ALIB_STRINGS_AS_PARAMETERS_2
@@ -392,7 +393,7 @@ will simply inline the correct number of copy operations into the object code (a
 smaller sizes which are typically used).
 
 \note
-  ALib string classes, try to preserve this performance improvement using C++ string
+  \b %ALib string classes, try to preserve this performance improvement using C++ string
   literals directly. But, when C++ string literals get passed to methods, usually such passing will convert
   them to <em>const char*</em> type (unless template methods are in place). From this moment on, the
   information about the length is lost. Therefore, class \b %StringLiteral should be used whenever
@@ -402,16 +403,16 @@ smaller sizes which are typically used).
 \note
   It is possible to enable 'external', user defined types to act as string literals as well.
   This is a rather unlikely scenario, but if requested, optionally and solely
-  for a (potentially small) performance gain, these types can get adopted to ALib by implementing
+  for a (potentially small) performance gain, these types can get adopted to \b %ALib by implementing
   class \ref aworx::lib::strings::T_StringLiteral "T_StringLiteral". This process is not further documented
-  or demonstrated by a sample. Interested users should consult the source code of ALib for
+  or demonstrated by a sample. Interested users should consult the source code of \b %ALib for
   doing it. The mechanism used is similar to what is used with template structs
   \ref aworx::lib::strings::T_String "T_String" and
   \ref aworx::lib::strings::T_Apply  "T_Apply".
 
 
 # 'Non-Checking' Methods of ALib String Classes# {#alib_namespace_strings_nonchecking}
-Many of the methods found in the different string classes of ALib are template methods with
+Many of the methods found in the different string classes of \b %ALib are template methods with
 a boolean template parameter named <em>TCheck</em>. This template parameter is defaulted with
 the value \c true which is sort of 'hiding' it in normal code. Consider the following
 piece of code:
@@ -431,7 +432,7 @@ method \b ConsumeChars by providing template parameter \p TCheck with value \c f
   are many occasions where the compiler is lacking the information and the possibility to detect
   such redundancy.
 
-In the C# and Java versions of ALib, where such template methods are not available,
+In the C# and Java versions of \b %ALib, where such template methods are not available,
 still some non-checking methods are provided, but less than in the C++ implementation. In these
 languages, these methods exist twice with the same name, the non-checking one with
 suffix <em>_NC</em>.
@@ -445,7 +446,7 @@ The following general rules apply for all non-checking methods:
   state in the case that an empty string or string region is appended, are not confirming
   to this  principle in their non-checking version.<br>
   In other words, \e nulled strings keep being \e nulled if empty strings are appended.
-- In the Java and C# versions of ALib, the hash value of an \b %AString object keeps
+- In the Java and C# versions of \b %ALib, the hash value of an \b %AString object keeps
   being cached when invoking an <em>_NC</em> method. This may lead to wrong behavior, e.g. when
   an \b %AString object is used as a key of a hash table. To avoid errors, within a context that
   makes use of an \b %AStrings' hash value, before each hash code retrieval
@@ -503,7 +504,7 @@ extensions are provided:
 - %String classes of the [QT library](https://www.qt.io) are
   supported trough header file <em>"alib/compatibility/qt.hpp"</em>.
 
-  General information about the use of QT strings with ALox is given in documentation of
+  General information about the use of QT strings with \b %ALox is given in documentation of
   sub-namespace   \ref aworx::lib::strings::thirdparty::qt "thirdparty::qt".
 
 
@@ -511,9 +512,9 @@ extensions are provided:
 \note Support for other Libraries to come... Feel free to send us your work!
 
 # Debugging ALib String Classes # {#alib_namespace_strings_debugging}
-In some situations during the development using ALib string classes, some additional debug
+In some situations during the development using \b %ALib string classes, some additional debug
 checking is helpful. Among such situations are:
-- development of types derived from ALib string types
+- development of types derived from \b %ALib string types
 - specializing template structs
   \ref aworx::lib::strings::T_String "T_String" or
   \ref aworx::lib::strings::T_Apply "T_Apply" to add support for user defined string types or
@@ -522,10 +523,10 @@ checking is helpful. Among such situations are:
 - provision of external data buffers to class \b %AString
 
 In these and similar situations, it is advised to using the compiler symbol
-\ref ALIB_DEBUG_STRINGS_ON. This enables internal consistency checks with almost any method ALib
+\ref ALIB_DEBUG_STRINGS_ON. This enables internal consistency checks with almost any method \b %ALib
 string invoked. By default this is disabled, as it generates a quite huge drop of runtime
 performance. When string debugging is enabled, macro ALIB_STRING_DBG_CHK can be used to check
-the consistency of ALib string classes. Furthermore, macro #ALIB_STRING_DBG_UNTERMINATE <em>has
+the consistency of \b %ALib string classes. Furthermore, macro #ALIB_STRING_DBG_UNTERMINATE <em>has
 to</em> be used when changing the length of a terminatable string without using method
 \ref aworx::lib::strings::AString::SetLength "AString::SetLength<false>" (e.g. in custom, derived
 classes).
@@ -590,7 +591,7 @@ void Init()
 
 void TerminationCleanUp()
 {
-    #if ALIB_MODULE_BOXING
+    #if ALIB_MODULE_ALL
         if ( format::Formatter::defaultFormatter )
             delete format::Formatter::defaultFormatter;
         format::Formatter::defaultFormatter= nullptr;

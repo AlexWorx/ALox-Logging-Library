@@ -69,13 +69,13 @@ namespace aworx { namespace lib { namespace config {
  * <em>synchronized</em>.
  *
  * By default, all category and variable names are case insensitive. This is at least true for the
- * default plug-ins delivered with ALib.
+ * default plug-ins delivered with \b %ALib.
  *
  * Variables by default can contain other variables, which are recursively substituted
  * by this method. For more information about the (adjustable) syntax, see
  * \ref cpp_alib_namespace_config_substitution "Variable Substitution".
  *
- * See documentation of namespace #aworx::lib::config for more information on ALib
+ * See documentation of namespace #aworx::lib::config for more information on \b %ALib
  * external configuration variables.
  **************************************************************************************************/
 class Configuration : public threads::ThreadLock
@@ -172,7 +172,7 @@ class Configuration : public threads::ThreadLock
 
         /**
          * Constant providing a priority which is even lower than default. This priority is
-         * not used by any standard plug-ins and currently not even anywhere in core ALib.
+         * not used by any standard plug-ins and currently not even anywhere in core \b %ALib.
          * The rational to provide it is for third party libraries that may use this value
          * in cases where values are estimated or detected. A user of the library may then
          * overwrite such auto-detection by setting a default value in the configuration.

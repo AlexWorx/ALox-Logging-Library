@@ -31,8 +31,10 @@
     #include <vector>
 #endif
 
-#if !defined (HPP_ALIB_THREADS_THREADLOCK)
-    #include "alib/threads/threadlock.hpp"
+#if ALIB_MODULE_ALL
+    #if !defined (HPP_ALIB_THREADS_THREADLOCK)
+        #include "alib/threads/threadlock.hpp"
+    #endif
 #endif
 
 #if !defined(HPP_ALIB_STRINGS_NUMBERFORMAT)
@@ -170,7 +172,7 @@ namespace format {
  * Finally, there is the option to implement an own, custom formatter. For the undecided, the
  * recommendation is to use <b>Java Style</b> for simple, quick <c>printf-</c> like formatting
  * and to choose <b>Python Style</b> in the moment formatting requirements get more complex.
- * A special case and good sample for the use of \b ALib formatting features is found in the
+ * A special case and good sample for the use of  \b %ALib formatting features is found in the
  * [ALox Logging Library](https://github.com/AlexWorx/ALox-Logging-Library). Here the special
  * situation is that \b %ALox itself is a library and hence exposes its formatters used to
  * users. Therefore \b %ALox (by default) uses a <b>Python Style</b> formatter and a concatenated
@@ -219,23 +221,25 @@ class Formatter
     //  static interface
     // #############################################################################################
     public:
-        /**
-         * Locks and returns the global, default formatter for general purpose use.
-         * A subsequent call to #ReleaseDefault has to follow.
-         * The formatter is of type
-         * \ref aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle". Other formatters
-         * might be attached to the one returned (chained) to support different format
-         * standards.
-         *
-         * @return The global formatter singleton.
-         */
-        ALIB_API
-        static Formatter&           AcquireDefault();
+        #if ALIB_MODULE_ALL
+            /**
+             * Locks and returns the global, default formatter for general purpose use.
+             * A subsequent call to #ReleaseDefault has to follow.
+             * The formatter is of type
+             * \ref aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle". Other formatters
+             * might be attached to the one returned (chained) to support different format
+             * standards.
+             *
+             * @return The global formatter singleton.
+             */
+            ALIB_API
+            static Formatter&           AcquireDefault();
 
-        /** Releases the previously default formatter singleton, previously retrieved with
-         *  #AcquireDefault */
-        ALIB_API
-        static void                 ReleaseDefault();
+            /** Releases the previously default formatter singleton, previously retrieved with
+             *  #AcquireDefault */
+            ALIB_API
+            static void                 ReleaseDefault();
+        #endif
 
     // #############################################################################################
     //  public fields
@@ -243,21 +247,23 @@ class Formatter
     protected:
         /** A list of boxes. This is reset with every new invocation of variadic template method
          *  #Format   */
-        Boxes                       boxes;
+        Boxes                           boxes;
 
         /** A buffer for conversion of multi-byte format strings to char-strings. */
-        AString                     mbsFormatString;
+        AString                         mbsFormatString;
 
-        /**
-         * A static, global instance which is used by ALib internally (e.g. for formatting
-         * \ref aworx::lib::lang::Report "Report" messages).
-         * Applications can acquire and use this instance using #AcquireDefault and #ReleaseDefault.
-         */
-        static Formatter*           defaultFormatter;
+        #if ALIB_MODULE_ALL
+            /**
+             * A static, global instance which is used by \b %ALib internally (e.g. for formatting
+             * \ref aworx::lib::lang::Report "Report" messages).
+             * Applications can acquire and use this instance using #AcquireDefault and #ReleaseDefault.
+             */
+            static Formatter*           defaultFormatter;
 
-        /** Lock to protect access to #defaultFormatter. Used by #AcquireDefault and
-         * #ReleaseDefault. */
-        static ThreadLock           defaultFormatterLock;
+            /** Lock to protect access to #defaultFormatter. Used by #AcquireDefault and
+             * #ReleaseDefault. */
+            static ThreadLock           defaultFormatterLock;
+        #endif
 
     // #############################################################################################
     //  public fields

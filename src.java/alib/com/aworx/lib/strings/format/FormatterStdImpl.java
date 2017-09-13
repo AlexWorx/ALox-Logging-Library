@@ -351,13 +351,13 @@ public abstract class FormatterStdImpl extends Formatter
          */
         public NumberFormat            alternativeNumberFormat                 = new NumberFormat();
 
-        /** Flag that causes the creation of ALib error reports on format syntax errors, argument
+        /** Flag that causes the creation of \b %ALib error reports on format syntax errors, argument
          *  type errors, etc.
          *  Defaults to \c true. (Ignored in release compilations. see class
          *  \ref com::aworx::lib::lang::Report "Report" for more information.)                */
         public SimpleDateFormat        dateTimeFormat       = new SimpleDateFormat("", Locale.ROOT);
 
-        /** Flag that causes the creation of ALib error reports on format syntax errors, argument
+        /** Flag that causes the creation of \b %ALib error reports on format syntax errors, argument
          *  type errors, etc.
          *  Defaults to \c true. (Ignored in release compilations. see class
          *  \ref com::aworx::lib::lang::Report "Report" for more information.)                */
@@ -963,8 +963,7 @@ public abstract class FormatterStdImpl extends Formatter
 
         /** ****************************************************************************************
          * Helper method (overridable) that optionally
-         * - creates an ALib error report (debug compilations only, dependent on field
-         *   #writeALibErrorReports).
+         * - creates an \b %ALib error report (dependent on field #writeALibErrorReports).
          * - writes an error message to the target string (dependent on field
          *   #writeErrorsToTargetString).
          *
@@ -975,28 +974,19 @@ public abstract class FormatterStdImpl extends Formatter
          ******************************************************************************************/
         protected  void          errorFormatString( String msg )
         {
-            //#if DEBUG
             if ( !writeErrorsToTargetString && !writeALibErrorReports )
                 return;
-            //#else
-            //if ( !writeErrorsToTargetString )
-            //    return;
-            //#endif
 
             AString repMsg= new AString();
             repMsg._NC( msg )
                   ._NC( " at index " )._( pformatString.length() - parser.length() - 1 )
                   ._NC( " in format String \"" )._NC( pformatString )._NC("\".");
 
-            //#if ALIB_DEBUG
             if ( writeErrorsToTargetString )
-            //#endif
                 ptargetString._NC(repMsg);
 
-            //#if DEBUG
-              if( writeALibErrorReports )
-                  com.aworx.lib.ALIB_DBG.ERROR( repMsg.toString() );
-            //#endif
+            if( writeALibErrorReports )
+                com.aworx.lib.ALIB_DBG.ERROR( repMsg.toString() );
         }
 
         /** ****************************************************************************************

@@ -15,7 +15,7 @@ using cs.aworx.lib.strings.util;
 
 /** ************************************************************************************************
  *  This is the C# namespace for the implementation of <em>logger classes</em> that are provided
- *  by default with <em>%ALox Logging Library</em>.
+ *  by default with <b>%ALox Logging Library</b>.
  *
  *  Developed by A-Worx GmbH and published under Boost Software License.
  **************************************************************************************************/
@@ -78,7 +78,7 @@ public class ColorConsoleLogger : TextLogger
          * If the background color of a console window is dark, then the background colors of
          * colored log output should be darker colors than the foreground colors - and vice versa.
          *
-         * Depending on the setting of this field, ALox
+         * Depending on the setting of this field, \b %ALox
          * \ref cs::aworx::lox::ESC "escape codes" for colors are translated to normal ANSI colors or
          * lighter ones:
          * - If this field is \ref LightColorUsage "LightColorUsage.Never", light colors are
