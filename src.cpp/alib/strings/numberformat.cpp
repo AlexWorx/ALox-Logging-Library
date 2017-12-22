@@ -59,7 +59,7 @@ constexpr const uint8_t binSizeToDecSize[]
 };
 #endif
 
-//! @endcond NO_DOX
+//! @endcond
 
 // #################################################################################################
 // static fields
@@ -180,7 +180,7 @@ int64_t   NumberFormat::ParseInt( const String& src, integer& startIdx )
 
     // get buffer and index behind whitespaces
     const char* buffer= src.Buffer();
-    integer idx= src.IndexOfAny<false>( Whitespaces, Inclusion::Exclude, startIdx );
+    integer idx= src.IndexOfAny<Inclusion::Exclude, false>( Whitespaces, startIdx );
     if ( idx < 0 )
         return 0;
 
@@ -188,7 +188,7 @@ int64_t   NumberFormat::ParseInt( const String& src, integer& startIdx )
     bool negative;
     if ( (negative= (buffer[idx] == '-')) == true || buffer[idx] == '+' )
     {
-        if( (idx= src.IndexOfAny<false>( Whitespaces, Inclusion::Exclude, idx + 1 ) ) == -1 )
+        if( (idx= src.IndexOfAny<Inclusion::Exclude, false>( Whitespaces, idx + 1 ) ) == -1 )
             return 0;
     }
 
@@ -255,7 +255,7 @@ uint64_t NumberFormat::ParseDec( const String& src, integer& startIdx )
     uint64_t result=    0;
 
     // read whitespaces
-    integer idx= src.IndexOfAny( Whitespaces, Inclusion::Exclude, startIdx );
+    integer idx= src.IndexOfAny<Inclusion::Exclude>( Whitespaces, startIdx );
     if ( idx < 0 )
         return 0;
 
@@ -292,7 +292,7 @@ uint64_t NumberFormat::ParseBin( const String& src, integer& startIdx )
     uint64_t result=    0;
 
     // read whitespaces
-    integer idx= src.IndexOfAny( Whitespaces, Inclusion::Exclude, startIdx );
+    integer idx= src.IndexOfAny<Inclusion::Exclude>( Whitespaces, startIdx );
     if ( idx < 0 )
         return 0;
 
@@ -345,7 +345,7 @@ uint64_t NumberFormat::ParseHex( const String& src, integer& startIdx )
     uint64_t result=    0;
 
     // read whitespaces
-    integer idx= src.IndexOfAny( Whitespaces, Inclusion::Exclude, startIdx );
+    integer idx= src.IndexOfAny<Inclusion::Exclude>( Whitespaces, startIdx );
     if ( idx < 0 )
         return 0;
 
@@ -408,7 +408,7 @@ uint64_t NumberFormat::ParseOct( const String& src, integer& startIdx )
     uint64_t result=    0;
 
     // read whitespaces
-    integer idx= src.IndexOfAny( Whitespaces, Inclusion::Exclude, startIdx );
+    integer idx= src.IndexOfAny<Inclusion::Exclude>( Whitespaces, startIdx );
     if ( idx < 0 )
         return 0;
 
@@ -457,7 +457,7 @@ double NumberFormat::ParseFloat( const String& src, integer& startIdx )
 
     // read whitespaces
     {
-        integer skip= src.IndexOfAny( Whitespaces, Inclusion::Exclude, startIdx );
+        integer skip= src.IndexOfAny<Inclusion::Exclude>( Whitespaces, startIdx );
         if ( skip < 0 )
             return 0.0;
         buf+= skip - startIdx;
@@ -468,9 +468,8 @@ double NumberFormat::ParseFloat( const String& src, integer& startIdx )
     if  ( (negative= (*buf == '-')) == true || *buf == '+' )
     {
         buf++;
-        integer skip= CString::IndexOfAny( buf, bufEnd - buf,
-                                       Whitespaces.Buffer(), Whitespaces.Length(),
-                                       Inclusion::Exclude );
+        integer skip= CString::IndexOfAnyExcluded(             buf     , bufEnd - buf,
+                                                   Whitespaces.Buffer(), Whitespaces.Length()  );
         if( skip < 0 )
             return 0.0;
         buf+= skip;
@@ -478,14 +477,14 @@ double NumberFormat::ParseFloat( const String& src, integer& startIdx )
 
     // NaN, Infinite
     if(     buf + NANLiteral.Length() - 1 <= bufEnd
-        &&  NANLiteral.CompareTo( String( buf, NANLiteral.Length() ), Case::Ignore ) == 0    )
+        &&  NANLiteral.CompareTo<true, Case::Ignore>( String( buf, NANLiteral.Length() ) ) == 0    )
     {
         startIdx= buf - src.Buffer()  + NANLiteral.Length();
         return std::numeric_limits<double>::quiet_NaN();
     }
 
     if(     buf + INFLiteral.Length() - 1 <= bufEnd
-        &&  INFLiteral.CompareTo( String( buf, INFLiteral.Length() ), Case::Ignore ) == 0    )
+        &&  INFLiteral.CompareTo<true, Case::Ignore>( String( buf, INFLiteral.Length() ) ) == 0    )
     {
         startIdx= buf -  src.Buffer() + INFLiteral.Length();
         return negative ? -std::numeric_limits<double>::infinity()
@@ -1268,4 +1267,4 @@ integer NumberFormat::WriteFloat( double value,  char* buffer, integer idx, int 
 }
 
 
-}}}// namespace aworx::lib::strings
+}}}// namespace [aworx::lib::strings]

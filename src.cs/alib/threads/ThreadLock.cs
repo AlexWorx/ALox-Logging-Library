@@ -59,7 +59,7 @@ public class ThreadLock
 
     /**
      * This is a threshold that causes Acquire() to send a warning to
-     * \ref cs::aworx::lib::lang::ReportWriter "ReportWriter"
+     * \ref cs.aworx.lib.lang.ReportWriter "ReportWriter"
      * if acquiring the access takes longer than the given number of milliseconds.
      * To disable such messages, set this value to 0. Default is 1 second.
      */
@@ -67,7 +67,7 @@ public class ThreadLock
 
     /**
      * Limit of recursions. If limit is reached or a multiple of it, an error is passed to
-     * \ref cs::aworx::lib::lang::ReportWriter "ReportWriter". Defaults is 10.
+     * \ref cs.aworx.lib.lang.ReportWriter "ReportWriter". Defaults is 10.
      */
     public    int               RecursionWarningThreshold                                   =10;
 
@@ -79,7 +79,7 @@ public class ThreadLock
     protected LockMode          lockMode;
 
     /**  Counter for the number of Acquire() calls of the current thread.  */
-    protected int               lockCount;
+    protected int               cntAcquirements;
 
     /**  The current owner of the ThreadLock.  */
     protected Thread            owner;
@@ -151,15 +151,15 @@ public class ThreadLock
         if ( mutex == null )
         {
             // we are still increasing the lockCount
-            lockCount=  lockMode == LockMode.Recursive ? lockCount + 1
+            cntAcquirements=  lockMode == LockMode.Recursive ? cntAcquirements + 1
                                                        : 1;
 
             // reached warning limit
-            if ( lockCount <= 0 )
+            if ( cntAcquirements <= 0 )
                 ALIB_DBG.ERROR( "Unsafe mode: Counter invalid (<= 0): This should never happen. Set lock to safe mode!" );
 
-            else if ( lockCount % RecursionWarningThreshold == 0 )
-                ALIB_DBG.WARNING( "Recursion depth " + lockCount + ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code!");
+            else if ( cntAcquirements % RecursionWarningThreshold == 0 )
+                ALIB_DBG.WARNING( "Recursion depth " + cntAcquirements + ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code!");
 
             // end of unsafe version of this method
             return;
@@ -175,11 +175,11 @@ public class ThreadLock
             if( owner == thisThread )
             {
                 // we are still increasing the lockCount
-                lockCount=  lockMode == LockMode.Recursive ? lockCount + 1
+                cntAcquirements=  lockMode == LockMode.Recursive ? cntAcquirements + 1
                                                            : 1;
                 // reached warning limit
-                if ( lockCount % RecursionWarningThreshold == 0 )
-                    ALIB_DBG.WARNING( "Recursion depth " + lockCount + ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code!");
+                if ( cntAcquirements % RecursionWarningThreshold == 0 )
+                    ALIB_DBG.WARNING( "Recursion depth " + cntAcquirements + ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code!");
 
                 return;
             }
@@ -227,7 +227,7 @@ public class ThreadLock
                 acquirementMethodName= cmn;
             #endif
 
-            lockCount=    1;
+            cntAcquirements=    1;
 
         } // synchronized
     }
@@ -243,11 +243,11 @@ public class ThreadLock
         if ( mutex == null )
         {
             // not locked
-            if( lockMode == LockMode.Recursive && lockCount == 0 )
+            if( lockMode == LockMode.Recursive && cntAcquirements == 0 )
                  ALIB_DBG.ERROR( "Release() without Acquire() (unsafe mode). This must never happen, check your code, set lock to safe mode!" );
 
             // we are still decreasing the lockCount
-            lockCount=  lockMode == LockMode.Recursive  ? lockCount - 1
+            cntAcquirements=  lockMode == LockMode.Recursive  ? cntAcquirements - 1
                                                         : 0;
             // end of unsafe version of this method
             return;
@@ -257,15 +257,15 @@ public class ThreadLock
         lock ( mutex )
         {
             // not locked
-            if( lockCount == 0 )
+            if( cntAcquirements == 0 )
                 ALIB_DBG.ERROR( "Release() without Acquire(). This must never happen, check your code!" );
 
             // decreasing the lockCount
-            lockCount=  lockMode == LockMode.Recursive ? lockCount - 1
+            cntAcquirements=  lockMode == LockMode.Recursive ? cntAcquirements - 1
                                                        : 0;
 
             // release and notify next waiting thread
-            if( lockCount == 0 )
+            if( cntAcquirements == 0 )
             {
                 owner= null;
                 Monitor.Pulse( mutex );
@@ -278,6 +278,18 @@ public class ThreadLock
             }
         } // synchronized
     }
+
+    /** ****************************************************************************************
+     * Returns \c true if the next invocation of #Release will release the lock.
+     * Returns \c false, if recursive acquirements have been performed.
+     *
+     * @return \c true if locked exactly once.
+     ******************************************************************************************/
+    public bool WillRelease()
+    {
+        return cntAcquirements == 1;
+    }
+
 
     /** ********************************************************************************************
      * Returns the number of acquirements of this ThreadLock. The negative number (still
@@ -299,14 +311,14 @@ public class ThreadLock
     public int DbgCountAcquirements( Thread thread= null )
     {
         if ( GetSafeness() == Safeness.Unsafe )
-            return lockCount;
+            return cntAcquirements;
 
         if ( owner == null )
             return 0;
 
         return  (owner == ( thread != null ? thread : Thread.CurrentThread ))
-                ?  lockCount
-                : -lockCount;
+                ?  cntAcquirements
+                : -cntAcquirements;
     }
 
 
@@ -327,7 +339,7 @@ public class ThreadLock
         if ( mutex == null )
         {
             // already locked? ALIB Error
-            if( lockCount != 0 )
+            if( cntAcquirements != 0 )
             {
                 ALIB_DBG.ERROR( "Cannot switch safeness mode while already locked. Current mode: unsafe, requested mode: "
                                 +  safeness.ToString() );
@@ -361,7 +373,7 @@ public class ThreadLock
 
     /** ********************************************************************************************
      * Query if this instance was set to unsafe mode.
-     * @return A value of type cs::aworx::lib::lang::Safeness "Safeness"
+     * @return A value of type cs.aworx.lib.lang.Safeness "Safeness"
      **********************************************************************************************/
     public Safeness GetSafeness()
     {
@@ -370,7 +382,7 @@ public class ThreadLock
 
     /** ****************************************************************************************
      *  Query if this instance was set to work recursively.
-     * @return A value of type cs::aworx::lib::lang::LockMode "LockMode"
+     * @return A value of type cs.aworx.lib.lang.LockMode "LockMode"
      ******************************************************************************************/
     public LockMode GetMode()
     {
@@ -385,16 +397,16 @@ public class ThreadLock
     public override String ToString()
     {
         String result= "";
-             if ( lockCount == 0 )  result+= "Unlocked";
-        else if ( lockCount == 1 )  result+= "Locked";
-        else if ( lockCount >  1 )  result+= "Locked (" + lockCount + ")";
-        else if ( lockCount <  0 )  result+= "Illegal State. lockCount=" + lockCount;
+             if ( cntAcquirements == 0 )  result+= "Unlocked";
+        else if ( cntAcquirements == 1 )  result+= "Locked";
+        else if ( cntAcquirements >  1 )  result+= "Locked (" + cntAcquirements + ")";
+        else if ( cntAcquirements <  0 )  result+= "Illegal State. lockCount=" + cntAcquirements;
 
              if ( lockMode == LockMode.SingleLocks )
                                     result+= " (Non-Recursive)";
 
              if ( mutex == null  )  result+= " (Unsafe Mode)";
-        else if ( lockCount >  0 )  result+= ", Owner: (" + owner.ManagedThreadId + ") \"" + owner.Name + "\"";
+        else if ( cntAcquirements >  0 )  result+= ", Owner: (" + owner.ManagedThreadId + ") \"" + owner.Name + "\"";
 
         return result;
     }

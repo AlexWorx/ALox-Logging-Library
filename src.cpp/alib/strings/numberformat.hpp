@@ -12,9 +12,8 @@
 
 // to preserve the right order, we are not includable directly from outside.
 #if !defined(HPP_ALIB_STRINGS_STRING)
-    #error "include 'alib/alib.hpp' or 'alib/alib_strings.hpp' instead of this header"
+    #error "include 'alib/alib.hpp' instead of this header"
 #endif
-
 
 namespace aworx { namespace lib { namespace strings
 {
@@ -37,11 +36,11 @@ namespace aworx { namespace lib { namespace strings
  * is needed as a parameter:
  * - #Global<br>
  *   This is initialized with method
- *   \ref aworx::lib::ALIB::Init "ALIB::Init" and reflects local specific settings.
+ *   \ref aworx::lib::ALib::Init "ALib::Init" and reflects local specific settings.
  *
  * - #Computational<br>
  *   This is also initialized with method
- *   \ref aworx::lib::ALIB::Init "ALIB::Init" and should be used for writing and parsing
+ *   \ref aworx::lib::ALib::Init "ALib::Init" and should be used for writing and parsing
  *   numbers which are intended to be readable by software. Its' decimal point character
  *   is set to \c '.', the international standard. Furthermore no group separators are set for
  *   decimal and decimal floating point as well as for binary, hexadecimal and octal conversion.
@@ -137,7 +136,7 @@ class NumberFormat
      * The default static number format object that acts as the
      * default settings of the currently running process.<br>
      * Method
-     * \ref aworx::lib::ALIB::Init "ALIB::Init" invokes #SetFromLocale() on this object and
+     * \ref aworx::lib::ALib::Init "ALib::Init" invokes #SetFromLocale() on this object and
      * switches grouping on.
      *
      * Classes providing functionality based on this class, might use this as a default
@@ -150,7 +149,7 @@ class NumberFormat
      * use, which means, that grouping is switched off and decimal point character
      * is \c '.'.<br>
      * Method
-     * \ref aworx::lib::ALIB::Init "ALIB::Init" invokes #SetComputational on this object.
+     * \ref aworx::lib::ALib::Init "ALib::Init" invokes #SetComputational on this object.
      * Note that using code that use this field without having invoked <b>ALIB.init</b> may
      * behave wrongly.
      *
@@ -493,7 +492,7 @@ class NumberFormat
      *   Static (global) object
      *   \ref aworx::lib::strings::NumberFormat::Global "NumberFormat::Global",
      *   implements an instance which has the right locale set (provided that
-     *   \ref aworx::lib::ALIB::Init "ALIB::Init"
+     *   \ref aworx::lib::ALib::Init "ALib::Init"
      *   was duly invoked by the process).
      *   Otherwise, this method might be used to initialize a custom object with default values
      *   to afterwards make some specific changes.

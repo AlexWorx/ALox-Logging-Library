@@ -6,16 +6,16 @@
 // #################################################################################################
 
 /**
-\page man_logdomains          04 - Log Domains
+\page alox_man_logdomains          04 - Log Domains
 
 \tableofcontents
 
 This chapter provides all details on <em>Log Domains</em>. Before reading it, be sure that
-you have read and understood the chapter \ref man_alox_terminology.
+you have read and understood the chapter \ref alox_man_terminology.
 
 
 \~Comment ####################################################################################### \~
-# 1. Why Log Domains? # {#man_logdomains_intro}
+# 1. Why Log Domains? # {#alox_man_logdomains_intro}
 
 Let us quickly recapture what was explained already on <em>Log Domains</em> in the previous chapter
 and the tutorials.
@@ -47,7 +47,7 @@ the <em>Log Domain</em> defaults to "/" if not given. Omitting parameter \p doma
 tells ALox to set \e all <em>Log Domains</em> to the same \b Verbosity.
 
 \note The fourth parameter of method \b SetVerbosity found in the reference documentation is not
-      covered in this chapter. The impatient reader might refer to \ref man_external_verbosity_configuration.
+      covered in this chapter. The impatient reader might refer to \ref alox_man_external_verbosity_configuration.
 
 This probably sounds more complex than it is. If you think about it for a second, it should become obvious.
 As a sample, this mechanism allows to log warning and error messages of an application
@@ -60,7 +60,7 @@ You may collect these severe errors in a special domain "/ADMIN" (real-time admi
 and exclusively activate this domain for this Email-sending \e Logger.
 
 \~Comment ####################################################################################### \~
-## 1.1 Allowed Characters ## {#man_logdomains_chars_allowed}
+## 1.1 Allowed Characters ## {#alox_man_logdomains_chars_allowed}
 
 Domain names may only consist of the following characters:
 - Upper case letters \c 'A' to \c 'Z'
@@ -74,7 +74,7 @@ the same domain name \c "ABC###".
 
 
 \~Comment ####################################################################################### \~
-# 2. Hierarchical Log Domains # {#man_logdomains_hierarchical_domains}
+# 2. Hierarchical Log Domains # {#alox_man_logdomains_hierarchical_domains}
 
 One of the major design goals of ALox is simplicity. By nature simplicity is sometimes in
 in competition with flexibility or feature richness of an API. One way to resolve such conflicting
@@ -149,7 +149,7 @@ the setting for domain '/UI/DIALOGS' to \e All  would be overwritten by the sett
   it 'immune' against subsequent settings of parent domains. This is especially important when
   configuration is done 'outside' the source code, hence using configuration files, command line
   parameters and such, but could be also helpful otherwise. This protection mechanism is explained
-  in chapter \ref man_external_verbosity_configuration.
+  in chapter \ref alox_man_external_verbosity_configuration.
 
 
 The advantages of hierarchical domains so far are:
@@ -163,7 +163,7 @@ becomes only obvious in the next chapter!
 
 
 \~Comment ####################################################################################### \~
-# 3. Scope Domains # {#man_logdomains_default_domains}
+# 3. Scope Domains # {#alox_man_logdomains_default_domains}
 
 People might argue that providing a <em>Log Domain</em> to each <em>Log Statement</em> is an overhead of
 typing. That is true. For this reason - and many more - ALox provides the concept
@@ -171,7 +171,7 @@ of *Scope Domains*.
 
 <em>Scope Domains</em> are set using method
 <b>%Lox.SetDomain</b>
-([C++] (@ref      #aworx::lox::Lox::SetDomain(const String&, Scope, int)),
+([C++] (@ref      #aworx::lox::Lox::SetDomain(const String&, Scope)),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
  [Java](@ref #com::aworx::lox::Lox::setDomain)). This method,
 along with parameter \p scopeDomain, requires a parameter of type
@@ -189,7 +189,7 @@ is related to <b>the thread that is executing the <em>Log Statement</em></b>, he
 \attention
   For this chapter, explaining the benefit of being able to assign <em>Scope Domains</em> to \e Scopes, we are
   simplifying ALox \e Scope features to a bare minimum.
-  We are deferring the full explanation of possible \e Scope settings to chapter \ref man_scopes.
+  We are deferring the full explanation of possible \e Scope settings to chapter \ref alox_man_scopes.
 
 We start really simple and look at
 <b>%Scope.Method</b>
@@ -198,7 +198,7 @@ We start really simple and look at
  [Java](@ref #com::aworx::lox::Scope::METHOD)) which denotes that the <em>Scope Domain</em>
 given with method
 <b>%Lox.SetDomain</b>
-([C++] (@ref      #aworx::lox::Lox::SetDomain(const String&, Scope, int)),
+([C++] (@ref      #aworx::lox::Lox::SetDomain(const String&, Scope)),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
  [Java](@ref #com::aworx::lox::Lox::setDomain)) should apply to all <em>Log Statements</em>
 of the current method. Here is a sample:
@@ -223,7 +223,7 @@ We have already gained some advantages from this most simple use of a <em>Scope 
 
 
 \~Comment ####################################################################################### \~
-# 4. Absolute and Relative Domain Paths# {#man_logdomains_absolut_and_relative}
+# 4. Absolute and Relative Domain Paths# {#alox_man_logdomains_absolut_and_relative}
 
 As we have learned above, the following two <em>Log Statements</em> are the same when a <em>Scope Domain</em>
 was set for \b %Scope.Method:
@@ -266,7 +266,7 @@ The output would be:
 
 
 \~Comment ####################################################################################### \~
-# 5. Inner and Outer Scopes# {#man_logdomains_inner_outer_scopes}
+# 5. Inner and Outer Scopes# {#alox_man_logdomains_inner_outer_scopes}
 
 The previous samples used <b>%Scope.Method</b>. Another important \e Scope 'level' is
 <b>%Scope.Filename</b>
@@ -276,7 +276,7 @@ The previous samples used <b>%Scope.Method</b>. Another important \e Scope 'leve
 ([Java] (@ref #com::aworx::lox::Scope::CLASS)).
 
 As mentioned before, we are not going into the details of the extended \e Scope definition of
-ALox (those are given in \ref man_scopes), but what is very important to understand is that
+ALox (those are given in \ref alox_man_scopes), but what is very important to understand is that
 scopes are nested into each other. We talk about <em>outer scopes</em> and
 <em>inner scopes</em>. As you might guess, <b>%Scope.Filename</b> (resp. in Java
 <b>%Scope.CLASS</b>) is an outer \e Scope of <b>%Scope.Method</b>.
@@ -351,10 +351,10 @@ Some remarks:
 
 \~Comment ####################################################################################### \~
 <br>
-# 6. Further Information and Wrap-Up # {#man_logdomains_further_wrapup}
+# 6. Further Information and Wrap-Up # {#alox_man_logdomains_further_wrapup}
 
 \~Comment ####################################################################################### \~
-## 6.1 Where to set the Verbosity## {#man_logdomains_bootstrap}
+## 6.1 Where to set the Verbosity## {#alox_man_logdomains_bootstrap}
 
 The usual way to use ALox is to separate the code that sets the \e Verbosity of <em>Log Domains</em>
 into a single location, normally somewhere in the 'boot-strapping part of a process. This is
@@ -378,17 +378,17 @@ Verbosity of any domain from within the code, but by using external configuratio
   To keep this chapter as simple as possible, all samples herein exclusively
   used the method \e %Lox.SetVerbosity and you may not even have heard, yet, about other possibilities.
   Information about how ALox is configured externally, is completely separated into an own chapter
-  of this manual: \ref man_external_verbosity_configuration.
+  of this manual: \ref alox_man_external_verbosity_configuration.
 
 The separation has good reasons: A portion of the code that logs using a certain set of domains
 should not modify these <em>Log Domains' Verbosity</em>. One day such code could be moved into a library and then
 such changes are merely irreversible (well, in-fact this misbehavior can be 'healed', but this is also only explained in
-chapter \ref man_external_verbosity_configuration).
+chapter \ref alox_man_external_verbosity_configuration).
 
 \~Comment ####################################################################################### \~
-## 6.2 Why Does Verbosity Setting Always Work Recursively? ## {#man_logdomains_recursive}
+## 6.2 Why Does Verbosity Setting Always Work Recursively? ## {#alox_man_logdomains_recursive}
 
-It was explained in section \ref man_logdomains_hierarchical_domains "Hierarchical Log Domains",
+It was explained in section \ref alox_man_logdomains_hierarchical_domains "Hierarchical Log Domains",
 that setting the \e Verbosity is always done recursively for all sub-domains of the
 given <em>Log Domain</em>. The reason for this is to avoid 'random' settings as much as possible.
 
@@ -407,7 +407,7 @@ could have different values:
 Therefore, the order of the use of a <em>Log Domain</em> would decide about its \e Verbosity.
 
 One of ALoxs' design goals is to hide features that are not used and which are unnecessarily
-increasing complexity of using ALox if they are not needed (Further explained in \ref man_apdx_auto_config).
+increasing complexity of using ALox if they are not needed (Further explained in \ref alox_man_apdx_auto_config).
 For this reason, within this chapter of the manual (which is all about understand what domains
 <em>Log Domain</em> just are), a parameter of method
 <b>%Lox.SetVerbosity</b>
@@ -422,10 +422,10 @@ each \e Verbosity setting.
 Apart from lifting the always recursive \e Verbosity setting, the main motivation for introducing
 this concept resulted from the general need to prioritize conflicting settings which may come
 from different sources of configuration data. Therefore, if non-recursive settings are needed for any reason,
-refer to chapter \ref man_external_verbosity_configuration for explanations about how to achieve this.
+refer to chapter \ref alox_man_external_verbosity_configuration for explanations about how to achieve this.
 
 \~Comment ####################################################################################### \~
-## 6.3 Absolute or Relative Domain Paths? ## {#man_logdomains_absorrel}
+## 6.3 Absolute or Relative Domain Paths? ## {#alox_man_logdomains_absorrel}
 
 As we learned, ALox allows to use absolute or relative <em>Log Domain</em> paths. This is true for <em>Scope Domains</em> as well
 as for parameter \p domain in a <em>Log Statement</em>.
@@ -434,13 +434,13 @@ The general recommendation is to use relative paths. There are several advantage
 all arise from the fact that ALox assembles the <em>Scope Domain</em> path by looping through all \e Scopes from
 the most inner to the most outer. As soon as an absolute path is found, the loop is aborted and
 concatenation stops. The benefits of keeping all <em>Log Domain</em> paths relative are highlighted in the
-next chapter (\ref man_scopes) when all about \e Scopes is explained - including an important use
+next chapter (\ref alox_man_scopes) when all about \e Scopes is explained - including an important use
 case that justifies absolute <em>Log Domain</em> paths!
 
 
 
 \~Comment ####################################################################################### \~
-## 6.4 ALox Internal Log Domains ## {#man_logdomains_internal}
+## 6.4 ALox Internal Log Domains ## {#alox_man_logdomains_internal}
 
 ALox uses 'itself' to log information about its use. This is helpful e.g. to observe where
 and when a <em>Log Domain</em> is used for the first time or where and when a \e Verbosity
@@ -451,12 +451,12 @@ To keep the 'tree of <em>Log Domains</em>' clean and reserved exclusively for ap
 manages the internal <em>Log Domains</em> in a separated tree.
 
 Information about how to 'address' this tree and when to use it, is explained in chapter
-\ref man_internal_domains.
+\ref alox_man_internal_domains.
 
 
 <br>
 
 --------------------------------------------------------------------
-<center>Next chapter: \ref man_scopes </center> <center> \ref manual "Back to index" </center>
+<center>Next chapter: \ref alox_man_scopes </center> <center> \ref manual "Back to index" </center>
 
 */

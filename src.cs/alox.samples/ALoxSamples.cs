@@ -33,10 +33,12 @@ class AloxSamples
     {
         // first attach INI file to config system...
         IniFile iniFile= new IniFile();
-        Configuration.Default.InsertPlugin( iniFile, Configuration.PrioIniFile );
+        Configuration config= new Configuration();
+        config.SetCommandLineArgs( args );
+        config.InsertPlugin( iniFile, Configuration.PrioStandard );
 
         // .. then initialize ALox Logging Library
-        ALox.Init( args );
+        ALox.Init( config );
         //...
 //! [DOXYGEN_CREATE_INIFILE]
 
@@ -57,11 +59,11 @@ class AloxSamples
         // values written in other sample methods and thus the samples would not work any more
         // (because INI file settings overrules settings in the code)
         Variable var= new Variable();
-        var.Define( "ALOX", "LOG_DEBUG_LOGGER_VERBOSITY"  ).Store( "" );
-        var.Define( "ALOX", "RELEASELOX_CONSOLE_VERBOSITY").Store( "" );
-        var.Define( "ALOX", "LOG_MEMORY_VERBOSITY"        ).Store( "" );
-        var.Define( "ALOX", "RELEASELOX_MEMORY_VERBOSITY" ).Store( "" );
-        var.Define( "ALOX", "LOG_TEXTFILE_VERBOSITY"      ).Store( "" );
+        ALox.Config.Store( var.Declare( "ALOX", "LOG_DEBUG_LOGGER_VERBOSITY"  ),  "" );
+        ALox.Config.Store( var.Declare( "ALOX", "RELEASELOX_CONSOLE_VERBOSITY"),  "" );
+        ALox.Config.Store( var.Declare( "ALOX", "LOG_MEMORY_VERBOSITY"        ),  "" );
+        ALox.Config.Store( var.Declare( "ALOX", "RELEASELOX_MEMORY_VERBOSITY" ),  "" );
+        ALox.Config.Store( var.Declare( "ALOX", "LOG_TEXTFILE_VERBOSITY"      ),  "" );
 
         Console.WriteLine( "PRINT: Debug logging:" );
             AloxSamples.DebugLogging();
@@ -100,8 +102,8 @@ class AloxSamples
 
 //! [DOXYGEN_REMOVE_INIFILE]
         //...
-        Configuration.Default.RemovePlugin( iniFile );
-        Configuration.Default.FetchFromDefault( iniFile );
+        ALIB.Config.RemovePlugin( iniFile );
+        ALIB.Config.FetchFromDefault( iniFile );
         iniFile.WriteFile();
 
         ALIB.TerminationCleanUp();
@@ -123,7 +125,7 @@ class AloxSamples
 
         // In debug compilations, we still install a report writer.
         Log.AddALibReportWriter( lox );
-        
+
         #if ALOX_DBG_LOG
             lox.SetVerbosity( releaseLogger, Verbosity.Verbose, ALoxReportWriter.LogDomain() );
         #endif
@@ -147,8 +149,8 @@ class AloxSamples
         MemoryLogger ml= new MemoryLogger();
 
         Log.SetVerbosity( Log.DebugLogger, Verbosity.Off );
-        Log.SetVerbosity( Log.DebugLogger, Verbosity.Info   , "/CON", Configuration.PrioProtected );
-        Log.SetVerbosity( ml,              Verbosity.Verbose, "/MEM", Configuration.PrioProtected );
+        Log.SetVerbosity( Log.DebugLogger, Verbosity.Info   , "/CON", Configuration.PrioProtectedValues );
+        Log.SetVerbosity( ml,              Verbosity.Verbose, "/MEM", Configuration.PrioProtectedValues );
 
         Log.Info( "/CON", "Logging simple info lines into a memory logger" );
 
@@ -199,8 +201,8 @@ class AloxSamples
         MemoryLogger ml       = new MemoryLogger();
 
 
-        lox.SetVerbosity( relLogger, Verbosity.Info   , "/CON", Configuration.PrioProtected );
-        lox.SetVerbosity( ml       , Verbosity.Verbose, "/MEM", Configuration.PrioProtected );
+        lox.SetVerbosity( relLogger, Verbosity.Info   , "/CON", Configuration.PrioProtectedValues );
+        lox.SetVerbosity( ml       , Verbosity.Verbose, "/MEM", Configuration.PrioProtectedValues );
 
 
         lox.Info( "/CON", "Logging simple info lines into a memory logger" );

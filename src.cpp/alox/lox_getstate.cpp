@@ -97,9 +97,9 @@ void getStateCollectPrefixes( Domain* dom, integer indentSpaces, AString& target
     for( auto it : dom->SubDomains )
         getStateCollectPrefixes( it, indentSpaces, target );
 }
-//! @endcond NO_DOX
+//! @endcond
 
-void Lox::GetState( AString& buf, int flags )
+void Lox::GetState( AString& buf, StateInfo flags )
 {
     ALIB_ASSERT_ERROR ( this->GetSafeness() == Safeness::Unsafe || this->DbgCountAcquirements() > 0,
                         "Lox not acquired" );
@@ -107,25 +107,25 @@ void Lox::GetState( AString& buf, int flags )
 
     ScopeDump scopeDump( threadDictionary, noKeyHashKey, buf );
 
-    if ( flags & Lox::StateInfo_CompilationFlags )
+    if ( EnumContains( flags, StateInfo::CompilationFlags ) )
     {
-        buf._NC( "ALib Version:      " )._NC( ALIB::Version)._NC(" (Rev. ")._( ALIB::Revision)._(')').NewLine();
+        buf._NC( "ALib Version:      " )._NC( lib::ALIB.Version)._NC(" (Rev. ")._( lib::ALIB.Revision)._(')').NewLine();
         buf._NC( "ALib compilation symbols:" ).NewLine();
         {
-            for( auto& p : ALIB::CompilationFlagMeanings )
+            for( auto& p : lib::ALIB.CompilationFlagMeanings )
             {
                 buf << "  " << Format::Field( p.first, 28, Alignment::Left ) << ':'
-                    << (ALIB::CompilationFlags & p.second  ? " On" : " Off")
+                    << (lib::ALIB.CompilationFlags & p.second  ? " On" : " Off")
                     << NewLine;
             }
         }
 
         buf._NC( "ALox compilation symbols:" ).NewLine();
         {
-            for( auto& p : ALox::CompilationFlagMeanings )
+            for( auto& p : lox::ALOX.CompilationFlagMeanings )
             {
                 buf << "  " << Format::Field( p.first, 28, Alignment::Left ) << ':'
-                    << (ALox::CompilationFlags & p.second  ? " On" : " Off")
+                    << (lox::ALOX.CompilationFlags & p.second  ? " On" : " Off")
                     << NewLine;
             }
         }
@@ -133,20 +133,24 @@ void Lox::GetState( AString& buf, int flags )
     }
 
     // basic lox info
-    if( flags & Lox::StateInfo_Basic )
+    if( EnumContains( flags,  StateInfo::Basic ) )
         buf._NC( "Name:            \"" )._( scopeInfo.GetLoxName() )._('\"').NewLine();
-    if( flags & Lox::StateInfo_Version )
+
+    if( EnumContains( flags,  StateInfo::Version ) )
     {
-        buf._NC( "Version:         " )._NC( ALox::Version)._NC(" (Rev. ")._( ALox::Revision)._(')').NewLine();
+        buf._NC( "Version:         " )._NC( ALOX.Version)._NC(" (Rev. ")._( ALOX.Revision)._(')').NewLine();
         buf._NC( "Thread Safeness: " )._NC( GetSafeness()   ).NewLine();
     }
-    if( flags & Lox::StateInfo_Basic )
+
+    if( EnumContains( flags,  StateInfo::Basic ) )
         buf._NC( "#Log Calls:      " )._NC( CntLogCalls     ).NewLine();
-    if( flags & Lox::StateInfo_Basic || flags & Lox::StateInfo_Version )
+
+    if(    EnumContains( flags,  StateInfo::Basic )
+        || EnumContains( flags,  StateInfo::Version )  )
         buf.NewLine();
 
     //  source path trim info
-    if( flags & Lox::StateInfo_SPTR )
+    if( EnumContains( flags,  StateInfo::SPTR ) )
     {
         buf._NC( "Source Path Trimming Rules: " ).NewLine();
 
@@ -171,7 +175,7 @@ void Lox::GetState( AString& buf, int flags )
                 buf._NC( ti.IncludeString );
                 if ( ti.TrimOffset != 0 )
                     buf._NC( ti.Path )._NC( "\", Offset: " )._NC( ti.TrimOffset );
-                buf._NC( ", Priority: " ); ToStringPriority( ti.Priority, buf );
+                buf._NC( ", Priority: " )._( ti.Priority );
                 buf.NewLine();
             }
         }
@@ -183,7 +187,7 @@ void Lox::GetState( AString& buf, int flags )
     }
 
     //  domain substitutions
-    if( flags & Lox::StateInfo_DSR )
+    if( EnumContains( flags,  StateInfo::DSR ) )
     {
         buf._NC( "Domain Substitution Rules: " ).NewLine();
         if( domainSubstitutions.size() > 0 )
@@ -220,7 +224,7 @@ void Lox::GetState( AString& buf, int flags )
     }
 
     // Log Once Counters
-    if( flags & Lox::StateInfo_Once )
+    if( EnumContains( flags,  StateInfo::Once ) )
     {
         buf._NC( "Once() Counters: " ).NewLine();
         if ( scopeDump.writeStoreMap( &scopeLogOnce ) == 0 )
@@ -229,7 +233,7 @@ void Lox::GetState( AString& buf, int flags )
     }
 
     // Log Data
-    if( flags & Lox::StateInfo_LogData )
+    if( EnumContains( flags,  StateInfo::LogData ) )
     {
         buf._NC( "Log Data: " ).NewLine();
         if ( scopeDump.writeStoreMap( &scopeLogData ) == 0 )
@@ -238,7 +242,7 @@ void Lox::GetState( AString& buf, int flags )
     }
 
     // Prefix Logables
-    if( flags & Lox::StateInfo_PrefixLogables )
+    if( EnumContains( flags,  StateInfo::PrefixLogables ) )
     {
         buf._NC( "Prefix Logables: " ).NewLine();
         integer oldLength= buf.Length();
@@ -250,7 +254,7 @@ void Lox::GetState( AString& buf, int flags )
     }
 
     // thread mappings
-    if( flags & Lox::StateInfo_ThreadMappings )
+    if( EnumContains( flags,  StateInfo::ThreadMappings ) )
     {
         buf._NC( "Named Threads:   " ).NewLine();
         if ( threadDictionary.size() == 0 )
@@ -266,7 +270,7 @@ void Lox::GetState( AString& buf, int flags )
     }
 
     // Scope Domains
-    if( flags & Lox::StateInfo_ScopeDomains )
+    if( EnumContains( flags,  StateInfo::ScopeDomains ) )
     {
         buf._NC( "Scope Domains: " ).NewLine();
         if ( scopeDump.writeStore( &scopeDomains, 2 ) == 0 )
@@ -275,7 +279,7 @@ void Lox::GetState( AString& buf, int flags )
     }
 
     // Loggers
-    if( flags & Lox::StateInfo_Loggers )
+    if( EnumContains( flags,  StateInfo::Loggers ) )
     {
         vector<Domain*> domainsWithDiffVerb;
         for (int treeNo= 0; treeNo < 2; ++treeNo )
@@ -314,8 +318,8 @@ void Lox::GetState( AString& buf, int flags )
                     integer tabRef= buf.Length();
                     buf << dom->FullPath << Format::Tab( maxDomainPathLength +1, tabRef);
 
-                    buf << "= "; ToString(  dom->GetVerbosity( loggerNo ), dom->GetPriority(loggerNo), buf )
-                        .NewLine();
+                    buf << "= " << std::make_pair(dom->GetVerbosity( loggerNo ), dom->GetPriority(loggerNo) )
+                        << NewLine;
                 }
             }
             if ( cnt == 0 )
@@ -325,7 +329,7 @@ void Lox::GetState( AString& buf, int flags )
     }
 
     // Internal Domains
-    if( flags & Lox::StateInfo_InternalDomains )
+    if( EnumContains( flags,  StateInfo::InternalDomains ) )
     {
         buf._NC( "Internal Domains:" ).NewLine();
         getStateDomainRecursive( internalDomains, maxDomainPathLength, buf );
@@ -333,7 +337,7 @@ void Lox::GetState( AString& buf, int flags )
     }
 
     // Domains
-    if( flags & Lox::StateInfo_Domains )
+    if( EnumContains( flags,  StateInfo::Domains ) )
     {
         buf._NC( "Domains:" ).NewLine();
         getStateDomainRecursive( domains,  maxDomainPathLength,  buf );
@@ -343,4 +347,4 @@ void Lox::GetState( AString& buf, int flags )
 
 
 
-}}// namespace aworx::lox
+}}// namespace [aworx::lox]

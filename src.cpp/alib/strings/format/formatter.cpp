@@ -96,27 +96,44 @@ void Formatter::Format( AString& target, const Boxes&  args )
 // #############################################################################################
 //  static interface
 // #############################################################################################
-#if ALIB_MODULE_ALL
-    Formatter*      Formatter::defaultFormatter         = nullptr;
+//! @cond NO_DOX
 
+Formatter*      Formatter::defaultFormatter         = nullptr;
+#if ALIB_MODULE_ALL && !defined(DOX_PARSER)
     ThreadLock      Formatter::defaultFormatterLock;
-
-
-    Formatter& Formatter::AcquireDefault()
-    {
-        ALIB_DEBUG_CODE( defaultFormatterLock.RecursionWarningThreshold= 1; )
-        defaultFormatterLock.Acquire( ALIB_DBG_SRC_INFO_PARAMS );
-
-        if (!Formatter::defaultFormatter)
-            Formatter::defaultFormatter= new FormatterPythonStyle();
-
-        return *Formatter::defaultFormatter;
-    }
-
-    void Formatter::ReleaseDefault()
-    {
-        defaultFormatterLock.Release();
-    }
 #endif
+
+ALIB_REL_DBG(
+Formatter& Formatter::AcquireDefault() ,
+Formatter& Formatter::AcquireDefault(  const TString& file, int line, const TString& func  )
+)
+{
+#if ALIB_MODULE_ALL
+ALIB_REL_DBG(
+    Formatter::defaultFormatterLock.Acquire();
+    ,
+    defaultFormatterLock.RecursionWarningThreshold= 4;
+    Formatter::defaultFormatterLock.Acquire( file, line, func );
+)
+#endif
+    if (!Formatter::defaultFormatter)
+        Formatter::defaultFormatter= new FormatterPythonStyle();
+
+    return *Formatter::defaultFormatter;
+}
+
+void Formatter::ReleaseDefault()
+{
+#if ALIB_MODULE_ALL
+    if( Formatter::defaultFormatterLock.WillRelease() )
+#endif
+        Formatter::defaultFormatter->Reset();
+
+#if ALIB_MODULE_ALL
+    Formatter::defaultFormatterLock.Release();
+#endif
+}
+
+//! @endcond
 
 }}}} // namespace [aworx::lib::strings::format]

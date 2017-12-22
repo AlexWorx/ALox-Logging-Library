@@ -10,8 +10,8 @@
  * This namespace collects very basic utilities, close to the Java language.
  * In other words, elements found in this namespace are not complex enough to justify a
  * dedicated sub-namespace, but are also not essential enough to be placed in
- * #com::aworx::lib itself. The latter namespace is reserved for elements that are essential to
- * and included by separated <b>ALib Modules</b>. (Modules are available in the C++ version
+ * #com.aworx.lib itself. The latter namespace is reserved for elements that are essential to
+ * and included by separated <b>%ALib Modules</b>. (Modules are available in the C++ version
  * of \b %ALib only.
  *
  * \note

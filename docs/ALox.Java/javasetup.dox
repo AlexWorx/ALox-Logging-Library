@@ -6,13 +6,13 @@
 // #################################################################################################
 
 /**
-\page javasetup         IDE Setup for ALox for Java
+\page alox_java_setup         IDE Setup for ALox for Java
 
 \tableofcontents
 
 
 \~Comment ####################################################################################### \~
-# 1. Setting up your IDE # {#javasetup_1}
+# 1. Setting up your IDE # {#alox_java_setup_1}
 
 To use ALox logging in your Java project, some few preparatory steps have to be taken.
 
@@ -28,7 +28,7 @@ have a first look into ALox, then create a new Java project in your IDE.
 Be sure to create an executable and that the typical "hello world" sample prints to the console.
 
 \~Comment ####################################################################################### \~
-## 1.1 Download ##  {#javasetup_download}
+## 1.1 Download ##  {#alox_java_setup_download}
 Unpack the ALox distribution (e.g. as zip) from [Alox at GitHub](https://github.com/AlexWorx/ALox-Logging-Library)
 and move all its contents to a place where you safely store 3rd party libraries.
 
@@ -41,7 +41,7 @@ We call this folder the *ALOX_LIB_PATH*. Within the folder you should find at le
 
 
 \~Comment ####################################################################################### \~
-## 1.2. Eclipse ## {#javasetup_eclipse}
+## 1.2. Eclipse ## {#alox_java_setup_eclipse}
 
 Predefined projects for Eclipse IDE (compatible with Luna, Mars, Neon, Oxygen) are found in
 
@@ -57,7 +57,7 @@ Preferences "Window/Preferences", Section "Java/Compiler/Errors/Warnings". Here,
 section, set "Unused '@SuppressWarnings' token:" to "Ignore".
 
 
-## 1.3. Android Studio ## {#javasetup_android_studio}
+## 1.3. Android Studio ## {#alox_java_setup_android_studio}
 
 Predefined projects for Android Studio  are found in
 
@@ -67,7 +67,7 @@ The project includes a very basic sample, which is more or less a proof of conce
 
 
 \~Comment ####################################################################################### \~
-## 1.4 Alternatively: Adding source code to your project ## {#javasetup_addingsource}
+## 1.4 Alternatively: Adding source code to your project ## {#alox_java_setup_addingsource}
 If there is no pre-defined project provided that suits your IDE (or needs), then you might want to add
 the ALox source code directly to your project or to a library  project that you may want to create to
 separate the ALox code from your code. It should be fairly easy. The Java sources found in:
@@ -104,10 +104,10 @@ any visible output using the Android Emulator or a debugging device.
 
 
 \~Comment ####################################################################################### \~
-## 1.5 Test your setup ##  {#javasetup_testnow}
+## 1.5 Test your setup ##  {#alox_java_setup_testnow}
 
 To test your setup, add minimum ALox functionality to your project as described in the first chapter
-of \ref javatutorial into your main method or anywhere you think it is appropriate:
+of \ref alox_java_tutorial into your main method or anywhere you think it is appropriate:
 
 \snippet ut_alox/UT_dox_tutorial.java        Tut_Hello_ALox
 
@@ -125,16 +125,16 @@ from "release" versions of your software.
 
 
 \~Comment ####################################################################################### \~
-# 2. Pruning ALox Code in Java#  {#javasetup_pruning}
+# 2. Pruning ALox Code in Java#  {#alox_java_setup_pruning}
 
 \~Comment ####################################################################################### \~
-## 2.1 What is Pruning? ##  {#javasetup_pruning_what_is_pruning}
+## 2.1 What is Pruning? ##  {#alox_java_setup_pruning_what_is_pruning}
 
 An introduction to the concept of pruning is given in
 [FAQ: What is Pruning?](../faq.html#faq_pruning).
 
 \~Comment ####################################################################################### \~
-## 2.2 How Pruning in ALox for Java works ##  {#javasetup_pruning_basics}
+## 2.2 How Pruning in ALox for Java works ##  {#alox_java_setup_pruning_basics}
 
 Unfortunately, Java does not provide conditional compiler statements. (For example, the languages
 C, C++ and C# allow \c \#if \c ... \c \#endif statements and C#, since Version 5, supports methods to be
@@ -164,7 +164,7 @@ The disadvantages are:
 
 
 \~Comment ####################################################################################### \~
-## 2.3 What to Prune ##  {#javasetup_pruning_breadth}
+## 2.3 What to Prune ##  {#alox_java_setup_pruning_breadth}
 
 There are two possible configurations that differ in the breadth of pruning:
 - _Pruning with release logging enabled_<br>
@@ -182,19 +182,19 @@ For quick information on the terms "debug and release logging", [read the FAQ](.
 
 
 \~Comment ####################################################################################### \~
-## 2.3.1 ProGuard configuration for different platforms##  {#javasetup_pruning_proguard_platforms}
+## 2.3.1 ProGuard configuration for different platforms##  {#alox_java_setup_pruning_proguard_platforms}
 
 Depending on your Java target platform, choose one of the following subchapters to read further:
 
-- \ref javasetup_pruning_proguard_config_standard     "Standard Java, desktop and libraries"
-- \ref javasetup_pruning_proguard_config_android      "Android Apps"
+- \ref alox_java_setup_pruning_proguard_config_standard     "Standard Java, desktop and libraries"
+- \ref alox_java_setup_pruning_proguard_config_android      "Android Apps"
 
 \note The configuration provided here was tested with
 - ProGuard Version 4.11, release, Dec. 2013
 - ProGuard Version 5.2, released Jan 2015
 
 \~Comment ####################################################################################### \~
-## 2.3.2 ProGuard configuration for standard Java ##  {#javasetup_pruning_proguard_config_standard}
+## 2.3.2 ProGuard configuration for standard Java ##  {#alox_java_setup_pruning_proguard_config_standard}
 
 In the distribution folder of ALox, you will find a sample project in subfolder:
 
@@ -292,7 +292,7 @@ and check the output of the test with all logging pruned
   as this way, the current Java environment activated on your machine is used.
 
 \~Comment ####################################################################################### \~
-## 2.3.3 ProGuard configuration for Android ##  {#javasetup_pruning_proguard_config_android}
+## 2.3.3 ProGuard configuration for Android ##  {#alox_java_setup_pruning_proguard_config_android}
 
 As *ProGuard* is a part of the Android SDK, there is plenty of documentation and help found
 in the internet on how to configure *ProGuard* and how the post compilation step is
@@ -360,7 +360,7 @@ Also, you might want to have a quick look this projects sample code found in:
 to get a first understanding of ALox release logging.
 
 \~Comment ####################################################################################### \~
-## 2.4 Obfuscating the code ##  {#javasetup_pruning_obfuscating}
+## 2.4 Obfuscating the code ##  {#alox_java_setup_pruning_obfuscating}
 
 As mentioned already, *ProGuard* provides an optional feature to obfuscate your code.
 Again, this is only optional and obfuscation has benefits but also some disadvantages.
@@ -391,7 +391,7 @@ Finally, it is obvious that [LogTools.instance()](@ref com::aworx::lox::tools::L
 not show readable results when your classes become obfuscated.
 
 \~Comment ####################################################################################### \~
-## 2.5 Mission accomplished: Perfect Auto Pruning of ALox code! ##  {#javasetup_pruning_result}
+## 2.5 Mission accomplished: Perfect Auto Pruning of ALox code! ##  {#alox_java_setup_pruning_result}
 
 The result of the things said above incorporate **six great news** for you:
 
@@ -416,7 +416,7 @@ The Android SDK documentation suggests to "remove all your logging code" releasi
 From now on you can just ignore this advice!
 
 \~Comment ####################################################################################### \~
-# 3. Tweaking The Log Output #  {#javasetup_logformat}
+# 3. Tweaking The Log Output #  {#alox_java_setup_logformat}
 
 In addition to setting up the project, the format of the log output of \b %ALox should be
 recognizable by your IDE: the source code file name and line number that generated
@@ -430,7 +430,7 @@ Otherwise, it may need a little testing, maybe some trial and error process, to 
 needs to be done to be properly consumed by your IDE.
 
 \~Comment ####################################################################################### \~
-## 3.1 Eclipse ## {#javasetup_logformat_eclipse}
+## 3.1 Eclipse ## {#alox_java_setup_logformat_eclipse}
 
 While the eclipse application output pane \b "Console" does not support colorful output
 (e.g. ANSI code), Java file names and line numbers of of log statements are recognized by Eclipse
@@ -448,7 +448,7 @@ Therefore, these or similar configuration variable settings are recommended:
 
 
 \~Comment ####################################################################################### \~
-## 3.2 IntelliJ IDEA  ## {#javasetup_logformat_jr}
+## 3.2 IntelliJ IDEA  ## {#alox_java_setup_logformat_jr}
 
 [JetBrains IntelliJ IDEA](https://www.jetbrains.com/idea/) has an intelligent output console that
 supports ANSI colors and detects links to files when they are given in the right format.

@@ -18,7 +18,7 @@
 #ifndef HPP_ALIB_CONFIG_PLUGINS
 //! @cond NO_DOX
 #define HPP_ALIB_CONFIG_PLUGINS 1
-//! @endcond NO_DOX
+//! @endcond
 
 
 #if !defined (HPP_ALIB_CONFIG_VARIABLE)
@@ -29,8 +29,7 @@
     #include "alib/strings/substring.hpp"
 #endif
 
-namespace aworx { namespace lib { namespace config
-{
+namespace aworx { namespace lib { namespace config {
 
 
 // #################################################################################################
@@ -158,23 +157,35 @@ class ConfigurationPlugin
         XTernalizer*            StringConverter;
 
     // #############################################################################################
-    // protected constructor/destructor
+    // protected constructor, public destructor
     // #############################################################################################
     protected:
         /** ****************************************************************************************
          * Constructor which is protected, as this is an abstract class.
          ******************************************************************************************/
-        ConfigurationPlugin() { StringConverter= &defaultStringConverter; }
+        ConfigurationPlugin()
+        {
+            StringConverter= &defaultStringConverter;
+        }
 
         /** ****************************************************************************************
          * Virtual Destructor.
          ******************************************************************************************/
+    public:
         virtual ~ConfigurationPlugin() {}
 
     // #############################################################################################
     // abstract/virtual interface
     // #############################################################################################
     public:
+        /** ****************************************************************************************
+         * Abstract method to return a plug-in name. The name may be used in human readable
+         * output, e.g. log-files or exception messages to tell a user for example, which plug-in
+         * loaded a variable containing a syntax error.
+         * @return The name of the plug-in.
+         ******************************************************************************************/
+        virtual String  Name()                                           const                   =0;
+
 
         /** ****************************************************************************************
          * Abstract method that has to be overwritten by descendants.
@@ -186,7 +197,7 @@ class ConfigurationPlugin
          * @return \c true if variable was found within this configuration source, \c false if not.
          ******************************************************************************************/
         ALIB_API
-        virtual bool  Load( Variable& variable, bool searchOnly= false )  const  =0;
+        virtual bool  Load( Variable& variable, bool searchOnly= false )  const                  =0;
 
         /** ****************************************************************************************
          * Writes a variable to the configuration.
@@ -204,6 +215,7 @@ class ConfigurationPlugin
             return false;
         }
 
+
         /** ****************************************************************************************
          * Convenience method that parses the values from the given string using field
          * #StringConverter and then invokes \ref Store(Variable&) "Store".
@@ -220,52 +232,163 @@ class ConfigurationPlugin
                 StringConverter->LoadFromString( variable, externalizedValue );
             return Store( variable );
         }
+
+    // #############################################################################################
+    // Iteration.
+    // #############################################################################################
+    public:
+        /** ****************************************************************************************
+         * Iterator interface class returned by #GetIterator.
+         *
+         * \note Method \alib{config,Configuration::GetIterator} returns an iterator that allows
+         *       to iterate across all variables of a section found in all plug-ins
+         ******************************************************************************************/
+        class Iterator
+        {
+            public:
+
+            /**
+             * Virtual destructor.
+             */
+            virtual                ~Iterator()
+            {}
+
+            /**
+             * Searches and loads the next variable from the iterated section. On success, the
+             * variable data is stored in \p variable.
+             *
+             * @param variable  The variable to load from this plug-in on success.
+             * @return \c true, if a next variable was found. \c false otherwise.
+             */
+            virtual bool            Next( Variable& variable )                                  = 0;
+        };
+
+        /** ****************************************************************************************
+         * Creates an iterator object to return all variables within a section.
+         * The iterator object returned, needs to be deleted by the caller.
+         *
+         * If a plug-in can not perform iteration, it will return \c nullptr. This is for example
+         * true for plug-in class \alib{config,Environment}.
+         *
+         * \note Method \alib{config,Configuration::GetIterator} returns an iterator that allows
+         *       to iterate across all variables of a section found in all plug-ins
+         *
+         * @param sectionName  The name of the section to iterate.
+         *
+         * @returns The iterator requested or \c nullptr if the plug-in does not support section
+         *          iteration.
+         ******************************************************************************************/
+        virtual Iterator*   GetIterator( const String& sectionName )
+        {
+            (void) sectionName;
+            return nullptr;
+        }
 };
+
+
+class CLIArgs;
+
+/**
+ * Internal details of namespace #aworx::lib::config.
+ */
+namespace detail
+{
+    /**
+     * Internal friend function of \alib{config,CLIArgs} used for iteration.
+     * @param cliArgs       The command line args plug-in.
+     * @param nextArgNo     The argument to continue the search with.
+     * @param sectionName   The name of the section to search for.
+     * @param variable      The variable to load
+     * @return \c true on success, otherwise \c false.
+     */
+    bool nextCLIArg( CLIArgs& cliArgs, size_t& nextArgNo, const String& sectionName,
+                     Variable& variable );
+}
 
 /** ************************************************************************************************
  * Specialization of abstract interface class #ConfigurationPlugin, which takes all command line
  * parameters in the constructor and reads variable values from those parameters on request.
- * Its priority value is fixed to 10.
+ * Its priority value usually is \alib{config,Priorities::CLI}, which is higher
+ * than all other default plug-ins provided.
  *
- * Variable categories are used as a prefix together with an underscore '_'.
+ * Variable categories are used as a prefix together with an underscore \c '_'.
  * This means, if variable <em>LOCALE</em> in category <em>ALIB</em> is accessed, the command line
  * parameter <em>--ALIB_LOCALE=xyz</em> is read.
+ *
+ * Category and Variable names are insensitive in respect to character case.
  *
  * Command line variables may be passed with either one hyphen ('-') or two ('--').
  * Both are accepted.
  *
- * Category and Variable names are insensitive in respect to character case.
+ * An application can specify one or more "default categories" by adding their string names to
+ * public field #DefaultCategories. Variables of these categories are recognized by the plug-in
+ * also when given without the prefix of category name and underscore \c '_'.
+ *
+ * Furthermore, an application may set public field #AllowedMinimumShortCut to a value greater than
+ * \c 0. In this case, the plug-in recognizes variables in CLI arguments already when at least
+ * this amount of characters is provided. In other words, when reading an argument as many
+ * characters of the variable name as possible are 'consumed' and if a minimum number is given with
+ * #AllowedMinimumShortCut, such minimum is sufficient. If the remaining part of the argument
+ * string is either empty or continues with an equal sign \c '=', then the variable is recognized
+ * (with an empty value or the value after the equal sign).<br>
+ * Fields #AllowedMinimumShortCut and #DefaultCategories may also be used in combination.
  **************************************************************************************************/
-class CommandLinePlugin : public ConfigurationPlugin
+class CLIArgs : public ConfigurationPlugin
 {
+    /** Friend detail function used for implementation of iterator. */
+    friend bool detail::nextCLIArg( CLIArgs&, size_t&, const String&, Variable&);
+
     protected:
-        int         argCount;   ///< the number of command line arguments
-        void**      argVector;  ///< the list of command line arguments
-        bool        wArgs;      ///< determines if argv is of type '<em>wchar_t **</em>'
-                                ///< or '<em>char **</em>'
+        size_t      argCount  = 0;        ///< The number of command line arguments
+        void**      argVector = nullptr;  ///< The list of command line arguments
+        bool        wArgs     = false;    ///< Determines if argv is of type '<em>wchar_t **</em>'
+                                          ///< or '<em>char **</em>'
+
+        /**
+         * This vector may be set with method #SetArgs(std::vector<String>*). If set, it is used
+         * as the source of options instead of using fields #argCount and #argVector.
+         */
+        std::vector<String>*                args                                          = nullptr;
 
     public:
+
+        /**
+         * An application can specify one or more "default categories" by adding the category names
+         * here. Variables of these categories are recognized by the plug-in
+         * also when given without the prefix of <c>category_</c>.
+         */
+        std::vector<String>                 DefaultCategories;
+
+        /**
+         * If this field is set to a value greater than \c 0, this plug-in recognizes variables in
+         * CLI arguments already when at least this amount of characters is provided.
+         * If the remaining part of the argument string is either empty or continues with an equal
+         * sign \c '=', then the variable is recognized.
+         */
+        int                                 AllowedMinimumShortCut                              = 0;
 
         /** ****************************************************************************************
          * Constructor. After creation, method #SetArgs should be called to equip this instance
          * with the command line arguments.
          ******************************************************************************************/
-                 CommandLinePlugin() {}
+                 CLIArgs() : ConfigurationPlugin() {}
 
         /** ****************************************************************************************
          * Virtual Destructor.
          ******************************************************************************************/
-        virtual ~CommandLinePlugin() {}
+        virtual ~CLIArgs() {}
 
         /** ****************************************************************************************
          * Sets the command line argument list. Needs to be called once after construction.
          * Should not be invoked directly. Rather use
          * \ref aworx::lib::config::Configuration::SetCommandLineArgs "Configuration::SetCommandLineArgs".
          *
-         *\note In standard application scenarios, this method is invoked by method
-         *      \ref aworx::lib::ALIB::Init "ALIB::Init" for the singleton
-         *      \ref aworx::lib::config::Configuration::Default "Configuration::Default".
+         *\note
+         *   In standard application scenarios, this method is invoked with corresponding
+         *   \alib{lang,Library,"library initialization"} on singleton
+         *   \ref aworx::lib::ALIB.
          *
+         * <p>
          *\note On the Windows platform, the Microsoft compiler provides the global variables
          *      <em>__argc</em> and <em>__argv</em> (respectively <em>__wargv</em> for wide
          *      character binaries. These variables a can be used if this method is invoked
@@ -279,10 +402,38 @@ class CommandLinePlugin : public ConfigurationPlugin
          ******************************************************************************************/
         void SetArgs( int argc, void** argv= nullptr, bool areWideChar= false )
         {
-            this->argCount=     argc;
+            this->argCount= static_cast<size_t>( argc );
             this->argVector=    argv;
             this->wArgs=        areWideChar;
         }
+
+        /** ****************************************************************************************
+         * Alternative method to set the command line argument list. This version can be used
+         * by applications that have a dedicated (more sophisticated) CLI interface that
+         * do more complex processing of CLI arguments. Such processing might detect which
+         * CLI arguments are remaining as potential configuration variables in the overall list
+         * of options. In this case, only those arguments should be processed by this class.
+         *
+         * If this method is invoked (and parameter \p unrecognizedOptions is not \c nullptr), then
+         * the arguments that previously had been set with #SetArgs(int,void**,bool) are ignored.
+         *
+         * @param unrecognizedOptions  A vector of argument strings that were not recognized by a
+         *                             CLI argument processor and thus left to this class to
+         *                             be consume as potential configuration variables.
+         ******************************************************************************************/
+        void                    SetArgs( std::vector<String>* unrecognizedOptions )
+        {
+            this->args=     unrecognizedOptions;
+        }
+
+         /** ****************************************************************************************
+          * Return the plug-in name, in this case, we read resource variable CfgPlgCLI.
+          * @return The name of the plug-in.
+          ******************************************************************************************/
+         virtual String         Name()   const
+         {
+            return lib::CONFIG.Get( "CfgPlgCLI" );
+         }
 
         /** ****************************************************************************************
          * Searches the variable in the command line parameters.
@@ -291,14 +442,30 @@ class CommandLinePlugin : public ConfigurationPlugin
          * @param searchOnly   If \c true, the variable is not set. Defaults to \c false.
          * @return \c true if variable was found, \c false if not.
          ******************************************************************************************/
-        ALIB_API virtual bool  Load( Variable& variable, bool searchOnly= false ) const;
+        ALIB_API virtual bool   Load( Variable& variable, bool searchOnly= false ) const;
+
+        /** ****************************************************************************************
+         * Creates an iterator object to return all variables within a section.
+         *
+         * The iterator object returned, needs to be deleted by the caller.
+         *
+         * \note Method \alib{config,Configuration::GetIterator} returns an iterator that allows
+         *       to iterate across all variables of a section found in all plug-ins
+         *
+         * @param sectionName  The name of the section to iterate.
+         *
+         * @returns The iterator requested.
+         ******************************************************************************************/
+        ALIB_API
+        virtual Iterator*       GetIterator( const String& sectionName );
 };
 
 /** ************************************************************************************************
  * Specialization of abstract interface class #ConfigurationPlugin, retrieves configuration
  * data from the system environment.
  *
- * This plug-ins' priority value is fixed to 10.
+ * Its priority value usually is \alib{config,Priorities::Environment}, which is higher
+ * than \alib{config,Priorities::Standard} but lower than \alib{config,Priorities::CLI}.
  *
  * Variable categories are used as a prefix together with an underscore '_'.
  * This means, if variable <em>LOCALE</em> in category <em>ALIB</em> is accessed, the environment
@@ -306,7 +473,7 @@ class CommandLinePlugin : public ConfigurationPlugin
  *
  * Category and Variable names are insensitive in respect to character case.
 **************************************************************************************************/
-class EnvironmentPlugin : public ConfigurationPlugin
+class Environment : public ConfigurationPlugin
 {
     protected:
 
@@ -315,12 +482,21 @@ class EnvironmentPlugin : public ConfigurationPlugin
         /** ****************************************************************************************
          * Constructor.
          ******************************************************************************************/
-        EnvironmentPlugin();
+        Environment();
 
         /** ****************************************************************************************
          * Virtual Destructor.
          ******************************************************************************************/
-        virtual ~EnvironmentPlugin() {}
+        virtual ~Environment() {}
+
+         /** ****************************************************************************************
+          * Return the plug-in name, in this case, we read resource variable CfgPlgEnv.
+          * @return The name of the plug-in.
+          ******************************************************************************************/
+         virtual String  Name()   const
+         {
+            return lib::CONFIG.Get( "CfgPlgEnv" );
+         }
 
         /** ****************************************************************************************
          * Searches the variable in the environment.
@@ -333,6 +509,6 @@ class EnvironmentPlugin : public ConfigurationPlugin
 };
 
 
-}}}  // namespace aworx::lib::config
+}}}// namespace [aworx::lib::config]
 
 #endif // HPP_ALIB_CONFIG_PLUGINS

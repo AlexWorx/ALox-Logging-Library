@@ -7,7 +7,7 @@
 /** @file */ // Hello Doxygen
 
 
-#if !defined (HPP_ALIB_BOXING)
+#if !defined (HPP_ALIB_BOXING_LIB)
     #include "alib/boxing/boxing.hpp"
 #endif
 
@@ -17,7 +17,7 @@
 #ifndef HPP_ALIB_BOXING_BOXES
 //! @cond NO_DOX
 #define HPP_ALIB_BOXING_BOXES 1
-//! @endcond NO_DOX
+//! @endcond
 
 
 namespace aworx { namespace lib { namespace boxing
@@ -81,7 +81,7 @@ class Boxes : public std::vector<Box>
         template <typename TBoxable>
         inline void Add( TBoxable&& src )
         {
-            ALIB_WARNINGS_START_TMP
+            ALIB_WARNINGS_ALLOW_TEMPLATE_META_PROGRAMMING
 
             // add another list of Boxes
             using TPlain= typename std::remove_const    <

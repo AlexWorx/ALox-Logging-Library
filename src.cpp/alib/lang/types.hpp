@@ -21,24 +21,7 @@
 // #################################################################################################
 
 
-namespace aworx { namespace lib {
-/** ************************************************************************************************
- * This namespace collects very basic utilities for \ref aworx::lib "ALib", close to the C++
- * language.
- *
- *  \note
- *   A list of <b>general enumerations</b> is found in this namespace.
- *   It is arguable and a matter of taste, whether enumerations should be declared near or inside
- *   the class which is using it, or in a separated place like this namespace introduced here.<br>
- *   \b %ALib follows the second approach (not strictly, domain specific enums might appear also inside
- *   classes) and this has the following reasons:
- *   - To shorten the code when using the enums.
- *   - To reach a maximum degree of source compatibility between the different programming language
- *     versions of \b %ALib.
- *   - To make the enums reusable with different classes.
- **************************************************************************************************/
-namespace lang
-{
+namespace aworx { namespace lib { namespace lang {
 
 
 // #################################################################################################
@@ -112,7 +95,7 @@ using uinteger =                    platform_specific;
  *
  * When overloading functions with integer types, similar rules apply: To have the complete set
  * of integer types covered, 10 overloads are needed: from type \b int8_t to type \b int64_t,
- * type \b %intGap_t and then those 5 types in 2 versions, signed and unsigned.
+ * type \b %intGap_t and then those five types in two versions, signed and unsigned.
  * Only with all overloads in place, compiler warnings (on high warning levels) and/or the
  * necessity of explicit type conversions are avoided.
  */
@@ -165,7 +148,7 @@ using uintGap_t=                    platform_specific;
     #error "Can not detect size of pointer"
 #endif
 
-}}} // namespace aworx::lib::lang
+}}}// namespace [aworx::lib::lang]
 
 
 namespace aworx {
@@ -206,7 +189,7 @@ inline namespace literals {
     {
         return static_cast<aworx::lib::lang::integer>( value );
     }
-}} // namespace aworx::literals
+}} // namespace [aworx::literals]
 
 
 
@@ -225,7 +208,7 @@ using intGap_t=         aworx::lib::lang::intGap_t;
 using uintGap_t=        aworx::lib::lang::uintGap_t;
 
 
-} // namespace aworx
+} // namespace [aworx]
 
 
 

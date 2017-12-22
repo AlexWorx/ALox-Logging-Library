@@ -19,11 +19,101 @@
 #ifndef HPP_ALIB_STRINGS_UTIL_STRINGTUPLES
 //! @cond NO_DOX
 #define HPP_ALIB_STRINGS_UTIL_STRINGTUPLES 1
-//! @endcond NO_DOX
+//! @endcond
 
-#include "alib/lang/memoryblocks.hpp"
+#if !defined (HPP_ALIB_LANG_MEMORYBLOCKS)
+#   include "alib/util/memoryblocks.hpp"
+#endif
 
 namespace aworx { namespace lib { namespace strings { namespace util  {
+
+/**
+ * Finds a tuple in a vector of those by performing a comparison of a given string with
+ * string data provided in one of the tuple elements.
+ *
+ * The first template parameter T_StringColumn denotes
+ * the index of the tuple elements that provides the string to search parameter \p needle in.
+ *
+ * The other template types are fetched with the second, variadic template parameter
+ * \p T_TupleTypes and and denote the types of the tuples. These template parameters do not
+ * need to be specified with invocations of the function, as they are inferred by the compiler
+ * from parameter \p haystack.
+ *
+ *
+ * @param  haystack         Vector of tuples to search in.
+ * @param  needle           The string to search.
+ * @tparam sensitivity      Character case sensitivity of the comparison.
+ *                          Defaults to \b Case::Sensitive.
+ * @tparam T_StringColumn   The tuple element number of the comparison string.
+ * @tparam T_TupleTypes     The template type of the tuple. (Inferred by the compiler.)
+ *
+ * @return A pointer to the tuple found. \b nullptr on failure.
+ */
+template< Case        sensitivity,
+          int         T_StringColumn,
+          typename... T_TupleTypes >
+std::tuple<T_TupleTypes...> const * FindStringInTupleVector( const std::vector<std::tuple<T_TupleTypes...>>& haystack,
+                                                             const String&                                   needle    )
+{
+
+    for( auto& entry : haystack )
+    {
+        if ( std::get<T_StringColumn>(entry). template Equals<sensitivity>( needle )  )
+            return  &entry;
+    }
+    return nullptr;
+}
+
+/**
+ * Finds a tuple in a vector of those by performing a comparison of a given string with
+ * string data provided in one of the tuple elements.
+ *
+ * The function has two integer template parameters. The first, \p T_StringColumn denotes
+ * the index of the tuple elements that provides the string to search method parameter \p needle in.
+ *
+ * The second, \p T_MinCharIndex,give the index of an element of the tuple that
+ * holds an \c int value. This value is used to determine possible
+ * "abbreviations" in the search. For example, if this template parameter is set to \c 1, then
+ * the second column of the table is interpreted as this minimum value. If then a value of
+ * for example \c 3 is found in an entry, then a match is returned if just the first three
+ * characters of the string are provided with method parameter \p needle.
+ * This allows to search for identifiers in a table which are abbreviated up to a mimimum length.
+ *
+ * The other template types are fetched with the second, variadic template parameter
+ * \p T_TupleTypes and and denote the types of the tuples. These template parameters do not
+ * need to be specified with invocations of the function, as they are inferred by the compiler
+ * from parameter \p haystack.
+ *
+ * @param  haystack         Vector of tuples to search in.
+ * @param  needle           The string to search.
+ *
+ * @tparam sensitivity      Character case sensitivity of the comparison.
+ *                          Defaults to \b Case::Sensitive.
+ * @tparam T_StringColumn   The tuple element number of the comparison string.
+ * @tparam T_MinCharColumn  The element number of the column providing a minimum length
+ *                          of the given search string \p needle.
+ * @tparam T_TupleTypes     The template type of the tuple. (Inferred by the compiler.)
+ *
+ * @return A pointer to the tuple found. \b nullptr on failure.
+ */
+template< Case         sensitivity,
+          int          T_StringColumn,
+          size_t       T_MinCharColumn,
+          typename...  T_TupleTypes >
+std::tuple<T_TupleTypes...> const * FindStringStartInTupleVector( const std::vector<std::tuple<T_TupleTypes...>>& haystack,
+                                                                  const String&                                   needle
+                                                                   )
+{
+    for( auto& entry : haystack )
+    {
+        String identifier= std::get<T_StringColumn>(entry);
+        int    minChars=   std::get<T_MinCharColumn>(entry);
+
+        if ( Substring(needle).ConsumePartOf<sensitivity>(  identifier,  minChars ) == needle.Length() )
+                return  &entry;
+    }
+    return nullptr;
+}
 
 /** ************************************************************************************************
  * Variadic Template class implementing a vector of tuples whose first element is of type
@@ -39,20 +129,15 @@ namespace aworx { namespace lib { namespace strings { namespace util  {
  * In other words, it is allowed to store string objects which are pointing to string data that
  * is \b not allocated in the internal chunks.
  *
- * As with other types of \b %ALib, a (templated) alias name #aworx::StringTuples exists.
- * In addition, non-templated alias name #aworx::Strings is defined which has an empty
- * variadic type list. Therefore, the latter can be used to create simple string vectors without
- * associated values.
- *
  * The associated values are especially useful when the vector is sorted (e.g. using
  * \c std::sort), because such associations will be kept intact and allow referencing back
- * to whatever the strings represent.
+ * to whatever the strings represents.
  *
  * \note
  *   This class is new with \b %ALib. It is not considered finished, optimized and stable in design.
  **************************************************************************************************/
 template< typename... TAssociatedTypes >
-class StringTuples  : public std::vector<std::tuple<String, TAssociatedTypes...>>
+class StringTable  : public std::vector<std::tuple<String, TAssociatedTypes...>>
 {
     // #############################################################################################
     // Type definitions
@@ -87,11 +172,11 @@ class StringTuples  : public std::vector<std::tuple<String, TAssociatedTypes...>
          * Constructor.
          * Accepts a value \c stdBlockSize to manipulate the standard size of allocated memory
          * chunks. (This value, is forwarded to the constructor of class
-         * \ref aworx::lib::lang::MemoryBlocks "MemoryBlocks".)
+         * \alib{util,MemoryBlocks}.)
          *
          * @param stdBlockSize The standard size of memory blocks allocated.
          ******************************************************************************************/
-        StringTuples( int stdBlockSize = 8 * 1024 )
+        StringTable( int stdBlockSize = 8 * 1024 )
         : blocks( stdBlockSize )
         {
         }
@@ -106,6 +191,11 @@ class StringTuples  : public std::vector<std::tuple<String, TAssociatedTypes...>
          * field #blocks.<br>
          * The other members of the tuple added are forwarded from variadic parameter block \p args.
          *
+         * \note
+         *   With some compilers (as the type of writing this with \b clang), a compilation error
+         *   might occur. To avoid this, the tuple type used needs to be fixed with using macro
+         *   \ref ALIB_STRING_CONSTRUCTOR_FIX "ALIB_STRING_CONSTRUCTOR_FIX( std::tuple<String ALIB_COMMA ...<yourtypes>... )"
+
          * @param src   The string to copy into the first member of the tuple.
          * @param args  Variadic arguments to fill the rest of the inserted tuple.
          *
@@ -114,6 +204,7 @@ class StringTuples  : public std::vector<std::tuple<String, TAssociatedTypes...>
         String& Add( const String& src, TAssociatedTypes... args )
         {
             char* mem= blocks.GetMemory(src.Length());
+            // on errors, see note above!
             VectorType::emplace_back( String( mem, src.CopyTo( mem ) ), args...  );
             return std::get<0>(VectorType::back());
         }
@@ -138,13 +229,7 @@ class StringTuples  : public std::vector<std::tuple<String, TAssociatedTypes...>
 
 /** Type alias name in namespace #aworx. */
 template< typename... TAssociatedTypes >
-using     StringTuples  =   aworx::lib::strings::util::StringTuples<TAssociatedTypes...>;
-
-/**
- * Type alias name in namespace #aworx which provides an empty list of variadic arguments.
- * Therefor, the string objects are the only element of the tuple stored.
- */
-using     Strings       =   aworx::lib::strings::util::StringTuples<>;
+using     StringTable  =   aworx::lib::strings::util::StringTable<TAssociatedTypes...>;
 
 
 } // namespace aworx

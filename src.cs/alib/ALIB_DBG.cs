@@ -21,19 +21,19 @@ namespace cs.aworx.lib {
 
 /** ************************************************************************************************
  * This class contains static shortcuts to to methods of class
- * \ref cs::aworx::lib::lang::Report "Report".
+ * \ref cs.aworx.lib.lang.Report "Report".
  * All invocations of the static methods get "pruned" (removed) from release compilations due to
  * the method annotation <c>"[Conditional( "DEBUG" )]"</c>
  **************************************************************************************************/
 public static class ALIB_DBG
 {
         /** ****************************************************************************************
-         * Invokes \ref cs::aworx::lib::lang::Report::DoReport "Report.DoReport".
+         * Invokes \ref cs.aworx.lib.lang.Report.DoReport "Report.DoReport".
          * This method is pruned from release code.
          *
          * @param type  The msg type.
          * @param msg   The msg to be passed to the
-         *              \ref cs::aworx::lib::lang::ReportWriter "ReportWriter".
+         *              \ref cs.aworx.lib.lang.ReportWriter "ReportWriter".
          * @param optMsg2  An optional additional report object.
          * @param optMsg3  An optional additional report object.
          * @param optMsg4  An optional additional report object.
@@ -50,11 +50,11 @@ public static class ALIB_DBG
         }
 
         /** ****************************************************************************************
-         * Invokes \ref cs::aworx::lib::lang::Report::DoReport "Report.DoReport".
+         * Invokes \ref cs.aworx.lib.lang.Report.DoReport "Report.DoReport".
          * This method is pruned from release code.
          *
          * @param msg  The msg to be passed to the
-         *             \ref cs::aworx::lib::lang::ReportWriter "ReportWriter".
+         *             \ref cs.aworx.lib.lang.ReportWriter "ReportWriter".
          * @param optMsg2  An optional additional report object.
          * @param optMsg3  An optional additional report object.
          * @param optMsg4  An optional additional report object.
@@ -71,11 +71,11 @@ public static class ALIB_DBG
         }
 
         /** ****************************************************************************************
-         * Invokes \ref cs::aworx::lib::lang::Report::DoReport "Report.DoReport".
+         * Invokes \ref cs.aworx.lib.lang.Report.DoReport "Report.DoReport".
          * This method is pruned from release code.
          *
          * @param msg  The msg to be passed to the
-         *             \ref cs::aworx::lib::lang::ReportWriter "ReportWriter".
+         *             \ref cs.aworx.lib.lang.ReportWriter "ReportWriter".
          * @param optMsg2  An optional additional report object.
          * @param optMsg3  An optional additional report object.
          * @param optMsg4  An optional additional report object.
@@ -93,12 +93,12 @@ public static class ALIB_DBG
 
         /** ****************************************************************************************
          * If given condition is false, method
-         * \ref cs::aworx::lib::lang::Report::DoReport "Report.DoReport" gets invoked with the standard message
+         * \ref cs.aworx.lib.lang.Report.DoReport "Report.DoReport" gets invoked with the standard message
          * "Internal Error".
          * This method is pruned from release code.
          *
          * @param cond The condition that has to be met to prevent
-         *             \ref cs::aworx::lib::lang::ReportWriter "ReportWriter" call.
+         *             \ref cs.aworx.lib.lang.ReportWriter "ReportWriter" call.
          * @param cln (Optional) Caller info, compiler generated. Please omit.
          * @param csf (Optional) Caller info, compiler generated. Please omit.
          * @param cmn (Optional) Caller info, compiler generated. Please omit.
@@ -114,13 +114,13 @@ public static class ALIB_DBG
 
         /** ****************************************************************************************
          * If given condition is false, method
-         * \ref cs::aworx::lib::lang::Report::DoReport "Report.DoReport" gets invoked with the given message.
+         * \ref cs.aworx.lib.lang.Report.DoReport "Report.DoReport" gets invoked with the given message.
          * This method is pruned from release code.
          *
          * @param cond The condition that has to be met to prevent
-         *             \ref cs::aworx::lib::lang::ReportWriter "ReportWriter" call.
+         *             \ref cs.aworx.lib.lang.ReportWriter "ReportWriter" call.
          * @param msg  The msg to be passed to the
-         *             \ref cs::aworx::lib::lang::ReportWriter "ReportWriter".
+         *             \ref cs.aworx.lib.lang.ReportWriter "ReportWriter".
          * @param optMsg2  An optional additional report object.
          * @param optMsg3  An optional additional report object.
          * @param optMsg4  An optional additional report object.
@@ -139,13 +139,13 @@ public static class ALIB_DBG
 
         /** ****************************************************************************************
          * If given condition is false, method
-         * \ref cs::aworx::lib::lang::Report::DoReport "Report.DoReport" gets invoked with the given message.
+         * \ref cs.aworx.lib.lang.Report.DoReport "Report.DoReport" gets invoked with the given message.
          * This method is pruned from release code.
          *
          * @param cond The condition that has to be met to prevent
-         *             \ref cs::aworx::lib::lang::ReportWriter "ReportWriter" call.
+         *             \ref cs.aworx.lib.lang.ReportWriter "ReportWriter" call.
          * @param msg  The msg to be passed to the
-         *             \ref cs::aworx::lib::lang::ReportWriter "ReportWriter".
+         *             \ref cs.aworx.lib.lang.ReportWriter "ReportWriter".
          * @param optMsg2  An optional additional report object.
          * @param optMsg3  An optional additional report object.
          * @param optMsg4  An optional additional report object.

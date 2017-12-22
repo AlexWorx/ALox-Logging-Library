@@ -17,7 +17,7 @@
 
 
 #if !ALIB_MODULE_BOXING
-    #error "class Formatter of library ALib can not be used without the use of ALib %Boxing."
+    #error "class Formatter of library ALib can not be used without the use of %ALib %Boxing."
 #endif
 
 #if !ALIB_FEAT_BOXING_FTYPES
@@ -125,6 +125,19 @@ namespace aworx { namespace lib { namespace strings { namespace format {
  *   - The following time conversion suffix characters are \b not supported:
  *     \c 'L', \c 'N', \c 'p', \c 'z', \c 'Z', \c 's', \c 'Q', \c 'C', \c 'j', \c 'r' and \c 'c'.
  *
+\~Comment ####################################################################################### \~
+ * # Reference Documentation #
+ * @throws aworx::lib::strings::format::Exceptions
+ *   - \alib{strings::format::Exceptions,ArgumentIndexIs0}
+ *   - \alib{strings::format::Exceptions,ArgumentIndexOutOfBounds}
+ *   - \alib{strings::format::Exceptions,IncompatibleTypeCode}
+ *   - \alib{strings::format::Exceptions,NegativeValuesInBracketsNotSupported}
+ *   - \alib{strings::format::Exceptions,MissingPrecisionValueJS}
+ *   - \alib{strings::format::Exceptions,HexadecimalFloatFormatNotSupported}
+ *   - \alib{strings::format::Exceptions,NoAlternateFormOfConversion}
+ *   - \alib{strings::format::Exceptions,NoPrecisionWithConversion}
+ *   - \alib{strings::format::Exceptions,UnknownDateTimeConversionSuffix}
+ *   - \alib{strings::format::Exceptions,UnknownConversionJS}
  **************************************************************************************************/
 class FormatterJavaStyle : public FormatterStdImpl
 {
@@ -173,7 +186,7 @@ class FormatterJavaStyle : public FormatterStdImpl
          * default in the Java string format specification.
          ******************************************************************************************/
         ALIB_API
-        virtual void    resetPHAs()                                                   ALIB_OVERRIDE;
+        virtual void    resetPHAs()                                                        override;
 
         /** ****************************************************************************************
          * Searches for \c '%' which is not '%%' or '%n'.
@@ -181,7 +194,7 @@ class FormatterJavaStyle : public FormatterStdImpl
          * @return The index found, -1 if not found.
          ******************************************************************************************/
         ALIB_API
-        virtual integer findPlaceholder()                                             ALIB_OVERRIDE;
+        virtual integer findPlaceholder()                                                  override;
 
         /** ****************************************************************************************
          * Parses placeholder field in Java syntax. The portion \p format_spec is not set as this
@@ -190,14 +203,14 @@ class FormatterJavaStyle : public FormatterStdImpl
          * @return \c true on success, \c false on errors.
          ******************************************************************************************/
         ALIB_API
-        virtual bool    parsePlaceholder()                                            ALIB_OVERRIDE;
+        virtual bool    parsePlaceholder()                                                 override;
 
         /** ****************************************************************************************
          * Does nothing. Java does not support custom format specifications.
          *
          * @return \c true to indicate success.
          ******************************************************************************************/
-        virtual bool    parseStdFormatSpec()                                           ALIB_OVERRIDE
+        virtual bool    parseStdFormatSpec()                                                override
         {
             return true;
         }
@@ -211,23 +224,28 @@ class FormatterJavaStyle : public FormatterStdImpl
          * @param startIdx The start of the region to replace
          ******************************************************************************************/
         ALIB_API
-        virtual void    replaceEscapeSequences( integer startIdx )                      ALIB_OVERRIDE;
+        virtual void    replaceEscapeSequences( integer startIdx )                           override;
 
         /** ****************************************************************************************
-         * Converts strings to upper case.
+         * All that this formatter does with this overridden method is to convert strings to
+         * upper case.
          *
          * @param startIdx  The index of the start of the field written in #targetString.
          *                  \c -1 indicates pre-phase.
+         * @param target    The target string, only if different from field #targetString, which
+         *                  indicates intermediate phase.
+         * @return \c false, if the placeholder should be skipped (nothing is written for it).
+         *         \c true otherwise.
          ******************************************************************************************/
         ALIB_API
-        virtual void    preAndPostProcess( integer startIdx)                            ALIB_OVERRIDE;
+        virtual bool    preAndPostProcess( integer startIdx, AString* target )             override;
 
         /** ****************************************************************************************
          * Makes some attribute adjustments and invokes standard implementation
          * @return \c true if OK, \c false if replacement should be aborted.
          ******************************************************************************************/
         ALIB_API
-        virtual bool    checkStdFieldAgainstArgument()                                ALIB_OVERRIDE;
+        virtual bool    checkStdFieldAgainstArgument()                                     override;
 };
 
 

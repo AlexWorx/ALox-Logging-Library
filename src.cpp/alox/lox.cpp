@@ -54,14 +54,14 @@ namespace aworx {
 // #################################################################################################
 
 Lox::Lox(const String& name, bool doRegister )
-       : ThreadLock( lib::lang::LockMode::Recursive, lib::lang::Safeness::Safe)
-       , scopeInfo( name, threadDictionary )
-       , domains        ( nullptr, ""  )
-       , internalDomains( nullptr, "$" )
-       , scopeDomains ( scopeInfo, false )
-       , scopeLogOnce ( scopeInfo, true )
-       , scopePrefixes( scopeInfo, false )
-       , scopeLogData ( scopeInfo, true )
+: ThreadLock( lib::lang::LockMode::Recursive, lib::lang::Safeness::Safe)
+, scopeInfo( name, threadDictionary )
+, domains        ( nullptr, ""  )
+, internalDomains( nullptr, "$" )
+, scopeDomains ( scopeInfo, false )
+, scopeLogOnce ( scopeInfo, true )
+, scopePrefixes( scopeInfo, false )
+, scopeLogData ( scopeInfo, true )
 {
     // create internal sub-domains
     const char* internalDomainList[]= {"LGR", "DMN", "PFX", "THR", "LGD", "VAR" };
@@ -71,15 +71,17 @@ Lox::Lox(const String& name, bool doRegister )
 
     // register with ALox
     if( doRegister )
-        ALox::Register( this, ContainerOp::Insert );
+        ALOX.Register( this, ContainerOp::Insert );
 
     // read domain substitution rules from configuration
-    Variable variable( ALox::DOMAIN_SUBSTITUTION, GetName() );
-    if ( variable.Load() != 0 )
+    Variable variable( Variables::DOMAIN_SUBSTITUTION, GetName() );
+    if ( ALOX.Config->Load( variable ) != Priorities::NONE )
     {
         for( int ruleNo= 0; ruleNo< variable.Size(); ruleNo++ )
         {
             AString* rule= variable.GetString( ruleNo );
+            if( rule->IsEmpty() )
+                continue;
 
             integer idx= rule->IndexOfSubstring( "->" );
             if ( idx > 0 )
@@ -100,7 +102,7 @@ Lox::Lox(const String& name, bool doRegister )
 Lox::~Lox()
 {
     if( IsRegistered() )
-        ALox::Register( this, ContainerOp::Remove );
+        ALOX.Register( this, ContainerOp::Remove );
     clear();
 }
 
@@ -256,16 +258,16 @@ TextLogger* Lox::CreateConsoleLogger(const String& name)
 {
     //--- check configuration setting "CONSOLE_TYPE"  ---
 
-    Variable variable( ALox::CONSOLE_TYPE );
-    variable.Load();
+    Variable variable( Variables::CONSOLE_TYPE );
+    ALOX.Config->Load( variable );
     AString& val= variable.GetString()->Trim();
     if( val.IsEmpty() ||
-        val.Equals( "default"  , Case::Ignore ) ) goto DEFAULT;
+        val.Equals<Case::Ignore>( "default" ) ) goto DEFAULT;
 
-    if( val.Equals( "plain"    , Case::Ignore ) ) return new ConsoleLogger    ( name );
-    if( val.Equals( "Ansi"     , Case::Ignore ) ) return new AnsiConsoleLogger( name );
+    if( val.Equals<Case::Ignore>( "plain"   ) ) return new ConsoleLogger    ( name );
+    if( val.Equals<Case::Ignore>( "Ansi"    ) ) return new AnsiConsoleLogger( name );
 
-    if( val.Equals( "WINDOWS"  , Case::Ignore ) )
+    if( val.Equals<Case::Ignore>( "WINDOWS" ) )
                                                     #if defined( _WIN32 )
                                                         return new WindowsConsoleLogger( name );
                                                     #else
@@ -280,7 +282,7 @@ TextLogger* Lox::CreateConsoleLogger(const String& name)
 
     #if defined( _WIN32 )
         // if there is no console window we do not do colors
-        if ( !ALIB::HasConsoleWindow() )
+        if ( !lib::ALIB.HasConsoleWindow() )
             return new ConsoleLogger( name );
         else
             return new WindowsConsoleLogger( name );
@@ -313,27 +315,27 @@ void verbositySettingToVariable( Domain& domain, int loggerNo, Variable& var )
 {
     var.Add()._( domain.FullPath )
              ._('=')
-             ._( ToString( domain.GetVerbosity( loggerNo ) ) );
+             ._( domain.GetVerbosity( loggerNo ) );
 
     // loop over all sub domains (recursion)
     for ( Domain* subDomain : domain.SubDomains )
         verbositySettingToVariable( *subDomain, loggerNo, var );
 }
-//! @endcond NO_DOX
+//! @endcond
 
 void Lox::writeVerbositiesOnLoggerRemoval( Logger* logger )
 {
     // When writing back we will use this priority as the maximum to write. This way, if this was
     // an automatic default value, we will not write back into the user's variable store.
     // As always, only if the app fetches new variables on termination, this is entry is copied.
-    Variable variable( ALox::VERBOSITY, GetName(), logger->GetName() );
+    Variable variable( Variables::VERBOSITY, GetName(), logger->GetName() );
 
     // first token is "writeback" ?
-    variable.Load();
+    ALOX.Config->Load( variable );
     if ( variable.Size() == 0 )
         return;
     Substring firstArg( variable.GetString() );
-    if ( !firstArg.ConsumeString( "writeback", Case::Ignore, Whitespaces::Trim ) )
+    if ( !firstArg.ConsumeString<Case::Ignore, Whitespaces::Trim>( "writeback" ) )
         return;
 
     // optionally read a destination variable name
@@ -374,8 +376,8 @@ void Lox::writeVerbositiesOnLoggerRemoval( Logger* logger )
     else
     {
         destVar= &destVarLocalObject;
-        destVar->Define( destVarCategory, destVarName, ALox::VERBOSITY.Delim );
-        destVar->FormatHints=         variable.FormatHints;
+        destVar->Declare( destVarCategory, destVarName, VariableDecl(Variables::VERBOSITY).Delim() );
+        destVar->FmtHints=            variable.FmtHints;
         destVar->FormatAttrAlignment= variable.FormatAttrAlignment;
         destVar->Comments._("Created at runtime through config option 'writeback' in variable \"")._(variable.Fullname)._("\".");
     }
@@ -391,7 +393,7 @@ void Lox::writeVerbositiesOnLoggerRemoval( Logger* logger )
 
     // now store using the same plug-in as original variable has
     destVar->Priority= variable.Priority;
-    destVar->Store();
+    ALOX.Config->Store( *destVar );
 
     // internal logging
     Boxes& logables= acquireInternalLogables();
@@ -421,64 +423,63 @@ void Lox::dumpStateOnLoggerRemoval()
         return;
     loggerAddedSinceLastDebugState= false;
 
-    Variable variable( ALox::DUMP_STATE_ON_EXIT, GetName() );
-    variable.Load();
+    Variable variable( Variables::DUMP_STATE_ON_EXIT, GetName() );
+    ALOX.Config->Load( variable );
 
     String64   domain;
     Verbosity  verbosity= Verbosity::Info;
-
-    int flags= 0;
+    Substring  tok;
+    bool error= false;
+    StateInfo flags= StateInfo::NONE;
     for( int tokNo= 0; tokNo< variable.Size(); tokNo++ )
     {
-        Substring tok( variable.GetString( tokNo ) );
+        tok=  variable.GetString( tokNo );
         if( tok.IsEmpty() )
             continue;
 
-        // state flags
-             if( tok.Equals( "NONE"            , Case::Ignore ) )  { flags= 0; break; }
-        else if( tok.Equals( "Basic"           , Case::Ignore ) )  flags|= Lox::StateInfo_Basic           ;
-        else if( tok.Equals( "Version"         , Case::Ignore ) )  flags|= Lox::StateInfo_Version         ;
-        else if( tok.Equals( "Loggers"         , Case::Ignore ) )  flags|= Lox::StateInfo_Loggers         ;
 
-        else if( tok.Equals( "Domains"         , Case::Ignore ) )  flags|= Lox::StateInfo_Domains         ;
-        else if( tok.Equals( "InternalDomains" , Case::Ignore ) )  flags|= Lox::StateInfo_InternalDomains ;
-        else if( tok.Equals( "ScopeDomains"    , Case::Ignore ) )  flags|= Lox::StateInfo_ScopeDomains    ;
-        else if( tok.Equals( "DSR"             , Case::Ignore ) )  flags|= Lox::StateInfo_DSR             ;
-        else if( tok.Equals( "PrefixLogables"  , Case::Ignore ) )  flags|= Lox::StateInfo_PrefixLogables  ;
-        else if( tok.Equals( "Once"            , Case::Ignore ) )  flags|= Lox::StateInfo_Once            ;
-        else if( tok.Equals( "LogData"         , Case::Ignore ) )  flags|= Lox::StateInfo_LogData         ;
-        else if( tok.Equals( "ThreadMappings"  , Case::Ignore ) )  flags|= Lox::StateInfo_ThreadMappings  ;
-
-        else if( tok.Equals( "SPTR"            , Case::Ignore ) )  flags|= Lox::StateInfo_SPTR            ;
-        else if( tok.Equals( "CompilationFlags", Case::Ignore ) )  flags|= Lox::StateInfo_CompilationFlags;
-
-        else if( tok.Equals( "All"             , Case::Ignore ) )  flags|= Lox::StateInfo_All             ;
-
-        // domain and verbosity
-        else if( tok.ConsumeString( "domain", Case::Ignore, Whitespaces::Trim ) )
+        // read log domain and verbosity
+        if( tok.IndexOf( '=' ) > 0 )
         {
-            if( tok.ConsumeChar( '=', Case::Sensitive, Whitespaces::Trim ) )
-                domain= tok.Trim();
-        }
-        else if( tok.ConsumeString( "verbosity", Case::Ignore, Whitespaces::Trim ) )
-        {
-            if( tok.ConsumeChar( '=', Case::Sensitive, Whitespaces::Trim ) )
-                verbosity= ReadVerbosity( tok.Trim() );
+            if( tok.ConsumePartOf<Case::Ignore, Whitespaces::Trim>( "verbosity", 1) )
+            {
+                if( tok.ConsumeChar<Case::Sensitive, Whitespaces::Trim>( '=' ) )
+                    tok.ConsumeEnum<Verbosity>( verbosity );
+                continue;
+            }
+            if( tok.ConsumePartOf<Case::Ignore, Whitespaces::Trim>( "domain", 1) )
+            {
+                if( tok.ConsumeChar<Case::Sensitive, Whitespaces::Trim>( '=' ) )
+                    domain= tok.Trim();
+                continue;
+            }
+            error= true;
+            break;
         }
 
-        // unknown argument
-        else
+        // read and add state
+        StateInfo stateInfo;
+        if( !tok.ConsumeEnum<StateInfo>( stateInfo ) )
         {
-            Boxes& logables= acquireInternalLogables();
-            logables.Add( "Unknown argument {!Q} in variable {} = {!Q}.",
-                          tok, variable.Fullname, variable.GetString() );
-            logInternal( Verbosity::Error, "VAR", logables);
-
+            error= true;
+            break;
         }
+
+        // as soon as this flag is found, we quit
+        if( stateInfo == StateInfo::NONE )
+            return;
+
+        flags|= stateInfo;
+    }
+    if( error )
+    {
+        Boxes& logables= acquireInternalLogables();
+        logables.Add( "Unknown argument {!Q} in variable {} = {!Q}.",
+                      tok, variable.Fullname, variable.GetString() );
+        logInternal( Verbosity::Error, "VAR", logables);
     }
 
-
-    if ( flags != 0 )
+    if ( flags != StateInfo::NONE )
     {
         State( domain, verbosity, "Auto dump state on exit requested: ", flags );
     }
@@ -554,7 +555,7 @@ Logger* Lox::RemoveLogger( const String& loggerName )
     return nullptr;
 }
 
-void Lox::SetVerbosity( Logger* logger, Verbosity verbosity, const String& domain, int priority )
+void Lox::SetVerbosity( Logger* logger, Verbosity verbosity, const String& domain, Priorities priority )
 {
     ALIB_ASSERT_ERROR ( this->GetSafeness() == Safeness::Unsafe || this->DbgCountAcquirements() > 0,
                         "Lox not acquired" );
@@ -589,7 +590,7 @@ void Lox::SetVerbosity( Logger* logger, Verbosity verbosity, const String& domai
 
             logables= acquireInternalLogables();
             logables.Add( "  Request was: SetVerbosity({!Q}, {!Q}, Verbosity::{}, {}). ",
-                          logger, dom->FullPath, ToString( verbosity ), priority           );
+                          logger, dom->FullPath, verbosity, priority   );
             logInternal( Verbosity::Verbose, "LGR", logables );
 
             Logger* existingLogger= dom->GetLogger( logger->GetName() );
@@ -635,8 +636,8 @@ void Lox::SetVerbosity( Logger* logger, Verbosity verbosity, const String& domai
         logInternal( Verbosity::Info, "LGR",  logables );
 
         // we have to get all verbosities of already existing domains
-        Variable variable( ALox::VERBOSITY, GetName(), logger->GetName() );
-        if( variable.Load() != 0 )
+        Variable variable( Variables::VERBOSITY, GetName(), logger->GetName() );
+        if( ALOX.Config->Load( variable ) != Priorities::NONE )
         {
             getAllVerbosities( logger, &domains         , variable );
             getAllVerbosities( logger, &internalDomains , variable );
@@ -646,8 +647,8 @@ void Lox::SetVerbosity( Logger* logger, Verbosity verbosity, const String& domai
     String128 msg;  msg._("Logger \"")._( logger->GetName() )._NC( "\":")._(Format::Tab(11 + maxLoggerNameLength))
                        ._('\'')._NC( dom->FullPath )
                        ._( '\'' ).InsertChars(' ', maxDomainPathLength - dom->FullPath.Length() + 1 )
-                       ._( "= Verbosity::" );
-                       ToString( verbosity, priority, msg ).TrimEnd()._('.');
+                       ._( "= Verbosity::" )
+                       ._( std::make_pair(verbosity, priority) ).TrimEnd()._('.');
 
     Boxes& logables= acquireInternalLogables();
     logables.Add( msg );
@@ -655,12 +656,12 @@ void Lox::SetVerbosity( Logger* logger, Verbosity verbosity, const String& domai
     Verbosity actVerbosity= dom->GetVerbosity( no );
     if( actVerbosity != verbosity )
         logables.Add( " Lower priority ({} < {}). Remains {}.",
-                      priority, dom->GetPriority(no), ToString( actVerbosity ) );
+                      priority, dom->GetPriority(no), actVerbosity );
 
     logInternal( Verbosity::Info, "LGR", logables );
 }
 
-void Lox::SetVerbosity( const String& loggerName, Verbosity verbosity, const String& domain, int priority )
+void Lox::SetVerbosity( const String& loggerName, Verbosity verbosity, const String& domain, Priorities priority )
 {
     ALIB_ASSERT_ERROR ( this->GetSafeness() == Safeness::Unsafe || this->DbgCountAcquirements() > 0,
                         "Lox not acquired" );
@@ -680,7 +681,7 @@ void Lox::SetVerbosity( const String& loggerName, Verbosity verbosity, const Str
         if ( no >= 0 )
         {
             // register the logger with us
-            SetVerbosity( otherTree->GetLogger( no ), Verbosity::Off, actualTree->FullPath, Configuration::PrioDefault );
+            SetVerbosity( otherTree->GetLogger( no ), Verbosity::Off, actualTree->FullPath, Priorities::DefaultValues );
             no= dom->GetLoggerNo( loggerName );
             ALIB_ASSERT( no >= 0 );
         }
@@ -688,7 +689,7 @@ void Lox::SetVerbosity( const String& loggerName, Verbosity verbosity, const Str
         {
             Boxes& logables= acquireInternalLogables();
             logables.Add( "Logger not found. Request was: SetVerbosity({!Q}, {!Q}, Verbosity::{}, {}).",
-                          loggerName, dom->FullPath, ToString( verbosity ), priority );
+                          loggerName, dom->FullPath, verbosity, priority );
             logInternal( Verbosity::Warning, "LGR",  logables );
             return;
         }
@@ -702,18 +703,18 @@ void Lox::SetVerbosity( const String& loggerName, Verbosity verbosity, const Str
     String128 msg;  msg._("Logger \"")._( dom->GetLogger(no) )._NC( "\":")._(Format::Tab(11 + maxLoggerNameLength))
                        ._('\'')._NC( dom->FullPath )
                        ._( '\'' ).InsertChars(' ', maxDomainPathLength - dom->FullPath.Length() + 1 )
-                       ._( "= Verbosity::" );
-                       ToString( verbosity, priority, msg ).TrimEnd()._('.');
+                       ._( "= Verbosity::" )
+                       ._( std::make_pair(verbosity, priority) ).TrimEnd()._('.');
     logables.Add(msg);
 
     Verbosity actVerbosity= dom->GetVerbosity( no );
     if( actVerbosity != verbosity )
     logables.Add( " Lower priority ({} < {}). Remains {}.",
-                  priority, dom->GetPriority(no), ToString( actVerbosity ) );
+                  priority, dom->GetPriority(no), actVerbosity );
     logInternal( Verbosity::Info, "LGR", logables );
 }
 
-void Lox::setDomainImpl( const String& scopeDomain, Scope   scope, int pathLevel,
+void Lox::setDomainImpl( const String& scopeDomain, Scope   scope,
                          bool          removeNTRSD, Thread* thread )
 {
     //note: the public class interface assures that \p removeNTRSD (named thread related scope domain)
@@ -723,10 +724,11 @@ void Lox::setDomainImpl( const String& scopeDomain, Scope   scope, int pathLevel
                         "Lox not acquired" );
 
     // check
-    if( !checkScopeInformation( scope, pathLevel, "DMN" ) )
+    int pathLevel= checkScopeInformation( scope, "DMN" );
+    if( pathLevel < 0 )
         return;
 
-    int threadID= thread != nullptr ? thread->GetId() : Thread::NullThreadId;
+    int threadID= thread != nullptr ? thread->GetId() : lib::threads::NullThreadId;
 
     AString* previousScopeDomain;
 
@@ -753,7 +755,7 @@ void Lox::setDomainImpl( const String& scopeDomain, Scope   scope, int pathLevel
     if ( !removeNTRSD && scopeDomain.IsNotEmpty() )
     {
         msg << '\'' << scopeDomain
-            << "\' set as default for "; ToString(scope, pathLevel, msg); msg  << '.' ;
+            << "\' set as default for "<< (scope + pathLevel)  << '.' ;
 
         if ( previousScopeDomain  == nullptr )
             logInternal( Verbosity::Info,    "DMN", msg );
@@ -777,7 +779,7 @@ void Lox::setDomainImpl( const String& scopeDomain, Scope   scope, int pathLevel
         if ( previousScopeDomain  != nullptr )
         {
             msg << '\'' << previousScopeDomain
-                << "\' removed from " ; ToString(scope, pathLevel, msg); msg  << '.';
+                << "\' removed from " << (scope + pathLevel)  << '.';
             logInternal( Verbosity::Info, "DMN", msg );
         }
         else
@@ -786,7 +788,7 @@ void Lox::setDomainImpl( const String& scopeDomain, Scope   scope, int pathLevel
                 msg << '\'' << scopeDomain << "\' not found. Nothing removed for ";
             else
                 msg  << "Empty Scope Domain given, nothing registered for ";
-            ToString(scope, pathLevel, msg); msg  << '.';
+            msg << (scope + pathLevel) << '.';
 
             logInternal( Verbosity::Warning, "DMN", msg );
         }
@@ -806,8 +808,8 @@ void Lox::RemoveThreadDomain( const String& scopeDomain, Scope scope, Thread* th
     if (  scopeDomain.IsEmpty() )
     {
         String128 msg;
-        msg  << "Illegal parameter. No scope domain path given. Nothing removed for ";
-             ToString(scope, 0, msg); msg  << '.';
+        msg  << "Illegal parameter. No scope domain path given. Nothing removed for "
+             << scope <<  '.';
         logInternal( Verbosity::Warning, "DMN", msg );
 
         // do nothing
@@ -815,7 +817,7 @@ void Lox::RemoveThreadDomain( const String& scopeDomain, Scope scope, Thread* th
     }
 
     // invoke internal master
-    setDomainImpl( scopeDomain, scope, 0, true, thread);
+    setDomainImpl( scopeDomain, scope, true, thread);
 }
 
 void Lox::SetDomainSubstitutionRule( const String& domainPath, const String& replacement )
@@ -881,16 +883,17 @@ void Lox::SetDomainSubstitutionRule( const String& domainPath, const String& rep
     logInternal( Verbosity::Info, "DMN", logables );
 }
 
-void Lox::setPrefixImpl( const Box& prefix, Scope scope, int pathLevel, Thread* thread  )
+void Lox::setPrefixImpl( const Box& prefix, Scope scope, Thread* thread  )
 {
     ALIB_ASSERT_ERROR ( this->GetSafeness() == Safeness::Unsafe || this->DbgCountAcquirements() > 0,
                         "Lox not acquired" );
 
     // check
-    if( !checkScopeInformation( scope, pathLevel, "PFX" ) )
+    int pathLevel= checkScopeInformation( scope, "PFX" );
+    if( pathLevel < 0 )
         return;
 
-    int threadID= thread != nullptr ? thread->GetId() : Thread::NullThreadId;
+    int threadID= thread != nullptr ? thread->GetId() : lib::threads::NullThreadId;
 
     scopePrefixes.InitAccess( scope, pathLevel, threadID );
     bool isNullOrEmpty=  prefix.Invoke<IIsEmpty, bool>();
@@ -904,7 +907,7 @@ void Lox::setPrefixImpl( const Box& prefix, Scope scope, int pathLevel, Thread* 
     if ( !isNullOrEmpty )
     {
         intMsg << prefix
-               << " added as prefix logable for "; ToString(scope, pathLevel, intMsg); intMsg  << '.' ;
+               << " added as prefix logable for " << (scope + pathLevel)  << '.' ;
 
         if ( previousLogable  != nullptr )
         {
@@ -926,17 +929,15 @@ void Lox::setPrefixImpl( const Box& prefix, Scope scope, int pathLevel, Thread* 
         if ( previousLogable  != nullptr )
         {
             intMsg << previousLogable
-                   << " removed from list of prefix logables for " ; ToString(scope, pathLevel, intMsg);
-            intMsg << '.';
+                   << " removed from list of prefix logables for ";
         }
         else
         {
             intMsg  << "<nullptr> given but no prefix logable to remove for ";
-            ToString(scope, pathLevel, intMsg);
-            intMsg  << '.';
 
             intMsgVerbosity= Verbosity::Warning;
         }
+        intMsg  << (scope + pathLevel) << '.';
     }
     logInternal( intMsgVerbosity, "PFX", intMsg );
 
@@ -1056,7 +1057,7 @@ void Lox::MapThreadName( const String& threadName, int id )
     String origThreadName;
     if ( id == 0 )
     {
-        Thread*         t= Thread::CurrentThread();
+        Thread*         t= lib::THREADS.CurrentThread();
         id=             t->GetId();
         origThreadName= t->GetName();
     }
@@ -1075,9 +1076,13 @@ void Lox::MapThreadName( const String& threadName, int id )
 void Lox::once(  const String&  domain,   Verbosity verbosity,
                  const Box&     logable,
                  const String&  pGroup,
-                 Scope          scope,    int       pathLevel,
+                 Scope          scope,
                  int            quantity                                                            )
 {
+    int pathLevel= checkScopeInformation( scope, "DMN" );
+    if( pathLevel < 0 )
+        return;
+
     // We need a group. If none is given, there are two options:
     String512 group(pGroup);
     bool groupWasEmtpy= group.IsEmpty();
@@ -1098,7 +1103,7 @@ void Lox::once(  const String&  domain,   Verbosity verbosity,
     }
 
     // get the store
-    scopeLogOnce.InitAccess( scope, pathLevel, Thread::NullThreadId );
+    scopeLogOnce.InitAccess( scope, pathLevel, lib::threads::NullThreadId );
 
     std::map<AString, int>* map= scopeLogOnce.Get();
     if( map == nullptr )
@@ -1135,16 +1140,13 @@ void Lox::once(  const String&  domain,   Verbosity verbosity,
                     if ( scope == Scope::Global )
                         msg << "this line";
                     else
-                        ToString(scope, pathLevel, msg);
+                        msg  << (scope + pathLevel);
                 }
                 else
                 {
                     msg << "group \"" << group << '\"';
                     if ( scope != Scope::Global )
-                    {
-                        msg << " in ";
-                        ToString(scope, pathLevel, msg);
-                    }
+                        msg << " in "  << (scope + pathLevel);
                 }
                 msg << '.';
 
@@ -1164,8 +1166,7 @@ void Lox::once(  const String&  domain,   Verbosity verbosity,
     }
 }
 
-void Lox::storeImpl( const Box& data,  const String&  pKey,
-                     Scope      scope, int            pathLevel )
+void Lox::storeImpl( const Box& data,  const String& pKey,  Scope scope )
 {
     // We need a key. If none is given, we use a constant one indicating that storage is
     // associated exclusively with scope
@@ -1174,8 +1175,16 @@ void Lox::storeImpl( const Box& data,  const String&  pKey,
     if ( keyWasEmtpy )
         key._( noKeyHashKey );
 
+    // get path level
+    int pathLevel= 0;
+    if ( scope > Scope::Path )
+    {
+        pathLevel= EnumValue( scope - Scope::Path );
+        scope= Scope::Path;
+    }
+
     // get the store
-    scopeLogData.InitAccess( scope, pathLevel, Thread::NullThreadId );
+    scopeLogData.InitAccess( scope, pathLevel, lib::threads::NullThreadId );
     std::map<AString, Box>* map= scopeLogData.Get();
     if( map == nullptr )
     {
@@ -1203,9 +1212,7 @@ void Lox::storeImpl( const Box& data,  const String&  pKey,
 
         if ( !keyWasEmtpy )
             msg << " with key \"" << key << "\" ";
-        msg << "in ";
-        ToString(scope, pathLevel, msg);
-        msg << '.';
+        msg << "in "  << (scope + pathLevel) << '.';
         if ( replacedPrevious )
             msg << " (Replaced and deleted previous.)";
     }
@@ -1228,16 +1235,14 @@ void Lox::storeImpl( const Box& data,  const String&  pKey,
 
         if ( !keyWasEmtpy )
             msg << " with key \"" << key << "\" ";
-        msg << "in ";
-        ToString(scope, pathLevel, msg);
-        msg << '.';
+        msg << "in "  << (scope + pathLevel) << '.';
     }
 
     logInternal( Verbosity::Info, "LGD", msg );
 }
 
 
-Box Lox::retrieveImpl( const String& pKey, Scope scope, int  pathLevel )
+Box Lox::retrieveImpl( const String& pKey, Scope scope )
 {
     // We need a key. If none is given, we use a constant one indicating that storage is
     // associated exclusively with scope
@@ -1246,8 +1251,14 @@ Box Lox::retrieveImpl( const String& pKey, Scope scope, int  pathLevel )
     if ( keyWasEmtpy )
         key._( noKeyHashKey );
 
+    int pathLevel= 0;
+    if ( scope > Scope::Path )
+    {
+        pathLevel= EnumValue( scope - Scope::Path );
+        scope= Scope::Path;
+    }
     // get the data (create if not found)
-    scopeLogData.InitAccess( scope, pathLevel, Thread::NullThreadId );
+    scopeLogData.InitAccess( scope, pathLevel, lib::threads::NullThreadId );
     Box returnValue;
     for( int i= 0; i < 2 ; i++ )
     {
@@ -1260,7 +1271,7 @@ Box Lox::retrieveImpl( const String& pKey, Scope scope, int  pathLevel )
         }
 
         if ( returnValue.IsNull() )
-            storeImpl( Box(), pKey, scope, pathLevel );
+            storeImpl( Box(), pKey, scope + pathLevel );
         else
             break;
     }
@@ -1271,9 +1282,8 @@ Box Lox::retrieveImpl( const String& pKey, Scope scope, int  pathLevel )
 
     if ( !keyWasEmtpy )
         msg << " with key \"" << key << "\" ";
-    msg << "in ";
-    ToString(scope, pathLevel, msg);
-    msg << ( !returnValue.IsNull() ? " received." : " not found." );
+    msg << "in "  << (scope + pathLevel)
+        << ( !returnValue.IsNull() ? " received." : " not found." );
 
     logInternal( Verbosity::Info, "LGD", msg );
     return returnValue;
@@ -1283,7 +1293,7 @@ Box Lox::retrieveImpl( const String& pKey, Scope scope, int  pathLevel )
 void Lox::State( const String&    domain,
                  Verbosity        verbosity,
                  const String&    headLine,
-                 int              flags      )
+                 StateInfo        flags      )
 {
     ALIB_ASSERT_ERROR ( this->GetSafeness() == Safeness::Unsafe || this->DbgCountAcquirements() > 0,
                         "Lox not acquired" );
@@ -1317,11 +1327,11 @@ void Lox::Entry( const String& domain, Verbosity verbosity )
 
     // auto-initialization of debug loggers
     #if ALOX_DBG_LOG
-        if( domains.CountLoggers() == 0 && this == ALox::Log() )
+        if( domains.CountLoggers() == 0 && this == ALOX.Log() )
             Log::AddDebugLogger( this );
     #endif
 
-    ALIB_ASSERT_ERROR(!ALox::Init(), "ALox not initialized" );
+    ALIB_ASSERT_ERROR(ALOX.IsInitialized(), "ALox not initialized" );
 
     CntLogCalls++;
 
@@ -1341,12 +1351,12 @@ void Lox::entryDetectDomainImpl( Verbosity verbosity )
             String firstArg= logables[0].Unbox<String>();
 
             bool illegalCharacterFound= false;
-            
+
             // accept internal domain at the start
             int idx= 0;
             if( firstArg.StartsWith( ALox::InternalDomains ) )
-                idx+= ALox::InternalDomains.Length();
-                
+                idx+= static_cast<int>( ALox::InternalDomains.Length() );
+
             // loop over domain and check for illegal characters
             for( ;  idx< firstArg.Length() ; ++idx )
             {
@@ -1388,7 +1398,7 @@ Domain* Lox::evaluateResultDomain( const String& domainPath )
     String128 resDomain;
 
     // 0. internal domain tree?
-    if ( domainPath.StartsWith( ALox::InternalDomains, Case::Sensitive ) )
+    if ( domainPath.StartsWith( ALox::InternalDomains ) )
     {
         // cut "$/" from the path
         resDomain._( domainPath, ALox::InternalDomains.Length() );
@@ -1433,7 +1443,7 @@ void Lox::getVerbosityFromConfig( core::Logger*  logger, core::Domain*  dom,
 
         Substring domainStr= verbosityTknzr.Next();
         String128 domainStrBuf;
-        if ( domainStr.StartsWith( "INTERNAL_DOMAINS", Case::Ignore ) )
+        if ( domainStr.StartsWith<Case::Ignore>( "INTERNAL_DOMAINS") )
         {
             domainStrBuf._( domainStr, 16 );
             while ( domainStrBuf.CharAtStart() == '/' )
@@ -1442,28 +1452,29 @@ void Lox::getVerbosityFromConfig( core::Logger*  logger, core::Domain*  dom,
             domainStr.Set( domainStrBuf );
         }
 
-        String    verbosityStr= verbosityTknzr.Next();
+        Substring    verbosityStr= verbosityTknzr.Next();
         if ( verbosityStr.IsEmpty() )
             continue;
 
         int searchMode= 0;
         if ( domainStr.ConsumeChar       ( '*' ) )    searchMode+= 2;
         if ( domainStr.ConsumeCharFromEnd( '*' ) )    searchMode+= 1;
-        if(     ( searchMode == 0 && dom->FullPath.Equals          ( domainStr,    Case::Ignore )     )
-            ||  ( searchMode == 1 && dom->FullPath.StartsWith      ( domainStr,    Case::Ignore )     )
-            ||  ( searchMode == 2 && dom->FullPath.EndsWith        ( domainStr,    Case::Ignore )     )
-            ||  ( searchMode == 3 && dom->FullPath.IndexOfSubstring( domainStr, 0, Case::Ignore ) >=0 )
+        if(     ( searchMode == 0 && dom->FullPath.Equals          <Case::Ignore>( domainStr    )     )
+            ||  ( searchMode == 1 && dom->FullPath.StartsWith      <Case::Ignore>( domainStr    )     )
+            ||  ( searchMode == 2 && dom->FullPath.EndsWith        <Case::Ignore>( domainStr    )     )
+            ||  ( searchMode == 3 && dom->FullPath.IndexOfSubstring<Case::Ignore>( domainStr) >=0 )
             )
         {
-            Verbosity verbosity= ReadVerbosity( verbosityStr );
+            Verbosity verbosity;
+            verbosityStr.ConsumeEnum<Verbosity>( verbosity );
             dom->SetVerbosity( loggerNo, verbosity, variable.Priority );
 
             // log info on this
             String128 msg;  msg._NC( "Logger \"" )._NC( logger->GetName() ) ._NC( "\":" )._(Format::Tab(11 + maxLoggerNameLength))
                                ._NC( '\'' )._NC( dom->FullPath )
                                ._( '\'' ).InsertChars(' ', maxDomainPathLength - dom->FullPath.Length() + 1 )
-                               ._( "= Verbosity::" );
-                               ToString( verbosity , dom->GetPriority( loggerNo ), msg ).TrimEnd()
+                               ._( "= Verbosity::" )
+                               ._( std::make_pair(verbosity, dom->GetPriority( loggerNo )) ).TrimEnd()
                                ._NC( '.' );
 
             logInternal( Verbosity::Info, "LGR", msg );
@@ -1473,8 +1484,8 @@ void Lox::getVerbosityFromConfig( core::Logger*  logger, core::Domain*  dom,
 
 void Lox::getDomainPrefixFromConfig( core::Domain*  dom )
 {
-    Variable variable( ALox::PREFIXES, GetName() );
-    if( variable.Load() == 0 )
+    Variable variable( Variables::PREFIXES, GetName() );
+    if( ALOX.Config->Load( variable ) == Priorities::NONE )
         return;
 
     for( int varNo= 0; varNo< variable.Size(); varNo++ )
@@ -1483,7 +1494,7 @@ void Lox::getDomainPrefixFromConfig( core::Domain*  dom )
 
         Substring domainStr= prefixTok.Next();
         String128 domainStrBuf;
-        if ( domainStr.StartsWith( "INTERNAL_DOMAINS", Case::Ignore ) )
+        if ( domainStr.StartsWith<Case::Ignore>( "INTERNAL_DOMAINS" ) )
         {
             domainStrBuf._( domainStr, 16 );
             while ( domainStrBuf.CharAtStart() == '/' )
@@ -1502,15 +1513,15 @@ void Lox::getDomainPrefixFromConfig( core::Domain*  dom )
         Inclusion otherPLs= Inclusion::Include;
         prefixTokInner.Next();
         if ( prefixTokInner.Actual.IsNotEmpty() )
-            otherPLs= lib::lang::ReadInclusion( prefixTokInner.Actual  );
+            prefixTokInner.Actual.ConsumeEnumOrBool( otherPLs, Inclusion::Exclude, Inclusion::Include );
 
         int searchMode= 0;
         if ( domainStr.ConsumeChar       ( '*' ) )    searchMode+= 2;
         if ( domainStr.ConsumeCharFromEnd( '*' ) )    searchMode+= 1;
-        if(     ( searchMode == 0 && dom->FullPath.Equals          ( domainStr,    Case::Ignore )     )
-            ||  ( searchMode == 1 && dom->FullPath.StartsWith      ( domainStr,    Case::Ignore )     )
-            ||  ( searchMode == 2 && dom->FullPath.EndsWith        ( domainStr,    Case::Ignore )     )
-            ||  ( searchMode == 3 && dom->FullPath.IndexOfSubstring( domainStr, 0, Case::Ignore ) >=0 )
+        if(     ( searchMode == 0 && dom->FullPath.Equals          <Case::Ignore>( domainStr )     )
+            ||  ( searchMode == 1 && dom->FullPath.StartsWith      <Case::Ignore>( domainStr )     )
+            ||  ( searchMode == 2 && dom->FullPath.EndsWith        <Case::Ignore>( domainStr )     )
+            ||  ( searchMode == 3 && dom->FullPath.IndexOfSubstring<Case::Ignore>( domainStr ) >=0 )
             )
         {
             dom->PrefixLogables.emplace_back( new PrefixLogable( prefixStr ), otherPLs );
@@ -1562,7 +1573,7 @@ Domain* Lox::findDomain( Domain& rootDomain, String domainPath )
                 logInternal( Verbosity::Info, "DMN", logables );
             }
 
-            // read domain from Config
+            // read domain from config
             if ( !dom->ConfigurationRead )
             {
                 dom->ConfigurationRead= true;
@@ -1571,7 +1582,7 @@ Domain* Lox::findDomain( Domain& rootDomain, String domainPath )
                 for ( int i= 0; i < dom->CountLoggers(); ++i )
                 {
                     Logger* logger= dom->GetLogger(i);
-                    if ( 0 != variable.Define(ALox::VERBOSITY, GetName(), logger->GetName()).Load() )
+                    if ( Priorities::NONE != ALOX.Config->Load( variable.Declare(Variables::VERBOSITY, GetName(), logger->GetName()) ) )
                         getVerbosityFromConfig( logger, dom, variable );
                 }
 
@@ -1588,8 +1599,8 @@ Domain* Lox::findDomain( Domain& rootDomain, String domainPath )
                     {
                         String256 msg; msg._("  \"")._( dom->GetLogger(i)->GetName() )._("\": ");
                                        msg.InsertChars( ' ', maxLoggerNameLength  + 6 - msg.Length() );
-                                       msg._( dom->FullPath )._(" = " );
-                                          ToString( dom->GetVerbosity(i), dom->GetPriority(i), msg );
+                                       msg._( dom->FullPath )._(" = " )
+                                       ._(std::make_pair(dom->GetVerbosity(i), dom->GetPriority(i)));
                         logInternal( Verbosity::Verbose, "DMN", msg );
                     }
                 }
@@ -1613,7 +1624,7 @@ Domain* Lox::findDomain( Domain& rootDomain, String domainPath )
                         case DomainSubstitutionRule::Type::StartsWith:
                             if( substPath.IsEmpty() )
                             {
-                                if ( dom->FullPath.StartsWith( rule.Search, Case::Sensitive ) )
+                                if ( dom->FullPath.StartsWith( rule.Search ) )
                                 {
                                     substPath._( rule.Replacement )._( dom->FullPath, rule.Search.Length() );
                                     substituted= true;
@@ -1622,7 +1633,7 @@ Domain* Lox::findDomain( Domain& rootDomain, String domainPath )
                             }
                             else
                             {
-                                if ( substPath.StartsWith( rule.Search, Case::Sensitive ) )
+                                if ( substPath.StartsWith( rule.Search ) )
                                 {
                                     substPath.ReplaceSubstring( rule.Replacement, 0, rule.Search.Length()  );
                                     substituted= true;
@@ -1634,7 +1645,7 @@ Domain* Lox::findDomain( Domain& rootDomain, String domainPath )
                         case DomainSubstitutionRule::Type::EndsWith:
                             if( substPath.IsEmpty() )
                             {
-                                if ( dom->FullPath.EndsWith( rule.Search, Case::Sensitive ) )
+                                if ( dom->FullPath.EndsWith( rule.Search ) )
                                 {
                                     substPath._( dom->FullPath, 0, dom->FullPath.Length() - rule.Search.Length() )._( rule.Replacement );
                                     substituted= true;
@@ -1643,7 +1654,7 @@ Domain* Lox::findDomain( Domain& rootDomain, String domainPath )
                             }
                             else
                             {
-                                if ( substPath.EndsWith( rule.Search, Case::Sensitive ) )
+                                if ( substPath.EndsWith( rule.Search ) )
                                 {
                                     substPath.DeleteEnd( rule.Search.Length() )._( rule.Replacement );
                                     substituted= true;
@@ -1657,7 +1668,7 @@ Domain* Lox::findDomain( Domain& rootDomain, String domainPath )
                         {
                             if( substPath.IsEmpty() )
                             {
-                                integer idx= dom->FullPath.IndexOf( rule.Search, 0, Case::Sensitive );
+                                integer idx= dom->FullPath.IndexOf( rule.Search );
                                 if ( idx >= 0 )
                                 {
                                     substPath._( dom->FullPath, 0, idx )._( rule.Replacement)._( dom->FullPath, idx + rule.Search.Length() );
@@ -1667,7 +1678,7 @@ Domain* Lox::findDomain( Domain& rootDomain, String domainPath )
                             }
                             else
                             {
-                                integer idx= substPath.IndexOf( rule.Search, 0, Case::Sensitive );
+                                integer idx= substPath.IndexOf<Case::Sensitive>( rule.Search, 0 );
                                 if ( idx >= 0 )
                                 {
                                     substPath.ReplaceSubstring( rule.Replacement, idx, rule.Search.Length()  );
@@ -1732,20 +1743,25 @@ Domain* Lox::findDomain( Domain& rootDomain, String domainPath )
     }
 }
 
-bool Lox::checkScopeInformation( Scope scope, int pathLevel, const String& internalDomain )
+int Lox::checkScopeInformation( Scope& scope, const String& internalDomain )
 {
+    int pathLevel= 0;
+    if ( scope > Scope::Path )
+    {
+        pathLevel= EnumValue( scope - Scope::Path );
+        scope= Scope::Path;
+    }
+
     if (     ( scope == Scope::Path     &&  scopeInfo.GetFullPath().IsEmpty() )
          ||  ( scope == Scope::Filename &&  scopeInfo.GetFileName().IsEmpty() )
          ||  ( scope == Scope::Method   &&  scopeInfo.GetMethod()  .IsEmpty() ) )
     {
         String256 msg;
-            msg << "Missing scope information. Cant use ";
-            ToString(scope, pathLevel, msg);
-            msg << '.';
+            msg << "Missing scope information. Cant use "  << (scope + pathLevel) << '.';
         logInternal( Verbosity::Error, internalDomain, msg );
-        return false;
+        return -1;
     }
-    return true;
+    return pathLevel;
 }
 
 bool Lox::isThreadRelatedScope( Scope scope )
@@ -1757,15 +1773,13 @@ bool Lox::isThreadRelatedScope( Scope scope )
 
     String128 msg;
     msg  << "Illegal parameter, only Scope::ThreadOuter and Scope::ThreadInner allowed."
-         << " Given: " ;
-         ToString(scope, 0, msg); msg  << '.';
+         << " Given: " << scope  << '.';
     logInternal( Verbosity::Error, "DMN", msg );
 
-    ALIB_DEBUG_CODE(
-        aworx::lib::lang::Report::GetDefault()
-        .DoReport(  scopeInfo.GetOrigFile(), scopeInfo.GetLineNumber(), scopeInfo.GetMethod(),
-                     0, "Illegal parameter, only Scope::ThreadOuter and Scope::ThreadInner allowed." );
-                   )
+    ALIB_DBG( aworx::lib::lang::Report::GetDefault()
+                .DoReport(  scopeInfo.GetOrigFile(), scopeInfo.GetLineNumber(), scopeInfo.GetMethod(),
+                            0, "Illegal parameter, only Scope::ThreadOuter and Scope::ThreadInner allowed." );
+            )
 
     return false;
 }
@@ -1852,7 +1866,7 @@ void Lox::log( core::Domain* dom, Verbosity verbosity, Boxes& logables, Inclusio
             } // end of collection
 
             Logger* logger= dom->GetLogger(i);
-            OWN(*logger);
+            LOCK_HERE_WITH(*logger)
                 logger->CntLogs++;
                 logger->Log( *dom, verbosity, logables, scopeInfo );
                 logger->TimeOfLastLog.Set();
@@ -1861,7 +1875,7 @@ void Lox::log( core::Domain* dom, Verbosity verbosity, Boxes& logables, Inclusio
 
 void Lox::logInternal( Verbosity verbosity, const String& subDomain, Boxes& msg )
 {
-    ALIB_ASSERT_ERROR(!ALox::Init(), "ALox not initialized" );
+    ALIB_ASSERT_ERROR(ALOX.IsInitialized(), "ALox not initialized" );
     log( findDomain( internalDomains, subDomain ), verbosity, msg, Inclusion::Exclude );
 
     internalLogables[--internalLogRecursionCounter]->clear();
@@ -1874,4 +1888,4 @@ void Lox::logInternal( Verbosity verbosity, const String& subDomain, const Strin
     logInternal( verbosity, subDomain, logables );
 }
 
-}}// namespace aworx::lox
+}}// namespace [aworx::lox]

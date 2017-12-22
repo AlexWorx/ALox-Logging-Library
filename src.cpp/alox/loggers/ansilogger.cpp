@@ -136,17 +136,14 @@ AnsiLogger::AnsiLogger( std::basic_ostream<char>* pOStream, bool usesStdStreams,
     FmtMsgSuffix=   ANSI_RESET;
 
     // evaluate environment variable "ALOX_CONSOLE_LIGHT_COLORS"
-    UseLightColors= LightColorUsage::_Undefined;
-    Variable variable( ALox::CONSOLE_LIGHT_COLORS );
-    if ( variable.Load() && variable.Size() > 0)
+    UseLightColors= LightColorUsage::Auto;
+    Variable variable( Variables::CONSOLE_LIGHT_COLORS );
+    if ( ALOX.Config->Load( variable ) != Priorities::NONE && variable.Size() > 0)
     {
         Substring p= *variable.GetString();
         if(p.Trim().IsNotEmpty())
         {
-                 if( p.ConsumePartOf( "foreground", 1, Case::Ignore ) > 0)  UseLightColors=  LightColorUsage::ForegroundLight;
-            else if( p.ConsumePartOf( "background", 1, Case::Ignore ) > 0)  UseLightColors=  LightColorUsage::ForegroundDark;
-            else if( p.ConsumePartOf( "never"     , 1, Case::Ignore ) > 0)  UseLightColors=  LightColorUsage::Never;
-            else
+            if( !p.ConsumeEnum<LightColorUsage>( UseLightColors ) )
             {
                 ALIB_WARNING( "Unknown value specified in variable: {} = '{}'.",
                               variable.Fullname, variable.GetString() );
@@ -154,10 +151,10 @@ AnsiLogger::AnsiLogger( std::basic_ostream<char>* pOStream, bool usesStdStreams,
         }
     }
 
-    if( UseLightColors == LightColorUsage::_Undefined )
+    if( UseLightColors == LightColorUsage::Auto )
     {
         // default: dark background, hence use light color on foreground
-        UseLightColors= LightColorUsage::ForegroundLight;
+        UseLightColors= LightColorUsage::Foreground;
     }
 
     // move verbosity information to the end to colorize the whole line
@@ -240,7 +237,7 @@ void AnsiLogger::logText( core::Domain&      ,    Verbosity         ,
             colNo+=  isForeGround ? 0 : 10;
 
             // add light
-            if( UseLightColors != LightColorUsage::Never && ( (UseLightColors == LightColorUsage::ForegroundLight) == isForeGround ) )
+            if( UseLightColors != LightColorUsage::Never && ( (UseLightColors == LightColorUsage::Foreground) == isForeGround ) )
                 colNo+= 20;
 
 
@@ -330,7 +327,7 @@ void AnsiLogger::logText( core::Domain&      ,    Verbosity         ,
         {
             if ( rest.ConsumeChar() == 'S' )
             {
-                if (UseLightColors == LightColorUsage::ForegroundLight ) oStream << ANSI_LIGHT_BLUE;
+                if (UseLightColors == LightColorUsage::Foreground ) oStream << ANSI_LIGHT_BLUE;
                 else                      oStream << ANSI_BLUE;
             }
             else

@@ -63,9 +63,6 @@
     <Compile Include="..\..\..\src.cs\alib\config\Variable.cs">
       <Link>ALib\config\Variable.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alib\containers\StringTree.cs">
-      <Link>ALib\containers\StringTree.cs</Link>
-    </Compile>
     <Compile Include="..\..\..\src.cs\alib\lang\Enums.cs">
       <Link>ALib\lang\Enums.cs</Link>
     </Compile>
@@ -119,6 +116,9 @@
     </Compile>
     <Compile Include="..\..\..\src.cs\alib\time\Ticks.cs">
       <Link>ALib\time\Ticks.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\util\StringTree.cs">
+      <Link>ALib\util\StringTree.cs</Link>
     </Compile>
     <Compile Include="..\..\..\src.cs\alox\ALox.cs">
       <Link>ALox\ALox.cs</Link>

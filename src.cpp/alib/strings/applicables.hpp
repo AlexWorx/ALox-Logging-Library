@@ -14,7 +14,7 @@
 
 // to preserve the right order, we are not includable directly from outside.
 #if !defined(ALIB_PROPER_INCLUSION)
-    #error "include 'alib/alib.hpp' or 'alib/alib_strings.hpp' instead of this header"
+    #error "include 'alib/alib.hpp' instead of this header"
 #endif
 
 
@@ -23,9 +23,6 @@
     #error "ALib Include order error"
 #endif
 #if defined(HPP_ALIB_STRINGS_UTIL_TOKENIZER)
-    #error "ALib Include order error"
-#endif
-#if defined(HPP_ALIB_STRINGS_SUBSTRING)
     #error "ALib Include order error"
 #endif
 
@@ -43,7 +40,7 @@ namespace aworx { namespace lib { namespace strings
 namespace applyto {
 #endif
 
-    /** Specialization of template struct \ref T_Apply for type \c char*.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c char*.   */
     template<> struct       T_Apply<char*> : public std::true_type
     {
         /** ****************************************************************************************
@@ -60,7 +57,7 @@ namespace applyto {
         }
     };
 
-    /** Specialization of template struct \ref T_Apply for type \c wchar_t*.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c wchar_t*.   */
     template<> struct       T_Apply<wchar_t*> : public std::true_type
     {
         /** ****************************************************************************************
@@ -79,7 +76,7 @@ namespace applyto {
         }
     };
 
-    /** Specialization of template struct \ref T_Apply for type \c char16_t*.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c char16_t*.   */
     template<> struct       T_Apply<char16_t*> : public std::true_type
     {
         /** ****************************************************************************************
@@ -93,12 +90,12 @@ namespace applyto {
          ******************************************************************************************/
         static inline integer Apply( AString& target, const char16_t* src)
         {
-            target.Append( src, static_cast<integer>( ALIB::strlen16( src ) ) );
+            target.Append( src, static_cast<integer>( detail::strlen16( src ) ) );
             return 0; // nullptr treatment already done
         }
     };
 
-    /** Specialization of template struct \ref T_Apply for type \c char32_t*.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c char32_t*.   */
     template<> struct       T_Apply<char32_t*> : public std::true_type
     {
         /** ****************************************************************************************
@@ -112,12 +109,12 @@ namespace applyto {
          ******************************************************************************************/
         static inline integer Apply( AString& target, const char32_t* src)
         {
-            target.Append( src, static_cast<integer>( ALIB::strlen32( src ) ) );
+            target.Append( src, static_cast<integer>( detail::strlen32( src ) ) );
             return 0; // nullptr treatment already done
         }
     };
 
-    /** Specialization of template struct \ref T_Apply for type \c bool.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c bool.   */
     template<> struct       T_Apply<bool> : public std::true_type
     {
         /** ****************************************************************************************
@@ -135,7 +132,7 @@ namespace applyto {
 
 
 #if ALIB_DEBUG
-    /** Specialization of template struct \ref T_Apply for type \c std::type_info.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c std::type_info.   */
     template<> struct       T_Apply<std::type_info> : public std::true_type
     {
         /** ****************************************************************************************
@@ -152,233 +149,12 @@ namespace applyto {
     };
 #endif
 
-// #################################################################################################
-// struct T_Apply(): \b %ALib enum types (mostly for debugging)
-// #################################################################################################
-
-    /** Specialization of template struct \ref T_Apply for type \c lang::Switch.   */
-    template<> struct       T_Apply<lang::Switch> : public std::true_type
-    {
-        /** ****************************************************************************************
-         * Writes the values of enum class \b Switch
-         * @param target  The object that \b Apply was invoked on.
-         * @param value   The value to write to \p target.
-         * @return The number of characters appended to target.
-         ******************************************************************************************/
-        static inline integer Apply( AString& target, const lang::Switch& value )
-        {
-            target._<false>( value == lang::Switch::On ? "On" : "Off" );
-            return 1;
-        }
-    };
-
-    /** Specialization of template struct \ref T_Apply for type \c lang::Case.   */
-    template<> struct       T_Apply<lang::Case> : public std::true_type
-    {
-        /** ****************************************************************************************
-         * Writes the values of enum class \b Case
-         * @param target  The object that \b Apply was invoked on.
-         * @param value   The value to write to \p target.
-         * @return The number of characters appended to target.
-         ******************************************************************************************/
-        static inline integer Apply( AString& target, const lang::Case& value )
-        {
-            target._<false>( value == lang::Case::Ignore ? "Ignore" : "Sensitive" );
-            return 1;
-        }
-    };
-
-    /** Specialization of template struct \ref T_Apply for type \c lang::Alignment.   */
-    template<> struct       T_Apply<lang::Alignment> : public std::true_type
-    {
-        /** ****************************************************************************************
-         * Writes the values of enum class \b Alignment
-         * @param target The object that \b Apply was invoked on.
-         * @param value      The value to write to \p target.
-         * @return The number of characters appended to target.
-         ******************************************************************************************/
-        static inline integer Apply( AString& target, const lang::Alignment& value )
-        {
-            target._<false>( value == lang::Alignment::Left   ? "Left" :
-                             value == lang::Alignment::Center ? "Center" :
-                                                                "Right" );
-            return 1;
-        }
-    };
-
-
-    /** Specialization of template struct \ref T_Apply for type \c lang::SortOrder.   */
-    template<> struct       T_Apply<lang::SortOrder> : public std::true_type
-    {
-        /** ****************************************************************************************
-         * Writes the values of enum class \b SortOrder
-         * @param target The object that \b Apply was invoked on.
-         * @param value      The value to write to \p target.
-         * @return The number of characters appended to target.
-         ******************************************************************************************/
-        static inline integer Apply( AString& target, const lang::SortOrder& value )
-        {
-            target._<false>( value == lang::SortOrder::Ascending   ? "Ascending" :
-                                                                     "Descending"   );
-            return 1;
-        }
-    };
-
-    /** Specialization of template struct \ref T_Apply for type \c lang::Inclusion.   */
-    template<> struct       T_Apply<lang::Inclusion> : public std::true_type
-    {
-        /** ****************************************************************************************
-         * Writes the values of enum class \b Inclusion
-         * @param target The object that \b Apply was invoked on.
-         * @param value      The value to write to \p target.
-         * @return The number of characters appended to target.
-         ******************************************************************************************/
-        static inline integer Apply( AString& target, const lang::Inclusion& value )
-        {
-            target._<false>( value == lang::Inclusion::Include ? "Include" : "Exclude" );
-            return 1;
-        }
-    };
-
-    /** Specialization of template struct \ref T_Apply for type \c lang::CurrentData.   */
-    template<> struct       T_Apply<lang::CurrentData> : public std::true_type
-    {
-        /** ****************************************************************************************
-         * Writes the values of enum class
-         * \ref aworx::lib::lang::CurrentData "CurrentData".
-         *
-         * @param target The object that \b Apply was invoked on.
-         * @param value  The value to write to \p target.
-         * @return The number of characters appended to target.
-         ******************************************************************************************/
-        static inline integer Apply( AString& target, const lang::CurrentData& value )
-        {
-            target._<false>( value == lang::CurrentData::Keep ? "Keep" : "Clear" );
-            return 1;
-        }
-    };
-
-    /** Specialization of template struct \ref T_Apply for type \c lang::Safeness.   */
-    template<> struct       T_Apply<lang::Safeness> : public std::true_type
-    {
-        /** ****************************************************************************************
-         * Writes the values of enum class \b Safeness
-         * @param target The object that \b Apply was invoked on.
-         * @param value      The value to write to \p target.
-         * @return The number of characters appended to target.
-         ******************************************************************************************/
-        static inline integer Apply( AString& target, const lang::Safeness& value )
-        {
-            target._<false>( value == lang::Safeness::Safe ? "Safe" : "Unsafe" );
-            return 1;
-        }
-    };
-
-    /** Specialization of template struct \ref T_Apply for type \c lang::Responsibility.   */
-    template<> struct       T_Apply<lang::Responsibility> : public std::true_type
-    {
-        /** ****************************************************************************************
-         * Writes the values of enum class \b Responsibility
-         * @param target The object that \b Apply was invoked on.
-         * @param value      The value to write to \p target.
-         * @return The number of characters appended to target.
-         ******************************************************************************************/
-        static inline integer Apply( AString& target, const lang::Responsibility& value )
-        {
-            target._<false>( value == lang::Responsibility::KeepWithSender ? "KeepWithSender" : "Transfer" );
-            return 1;
-        }
-    };
-
-    /** Specialization of template struct \ref T_Apply for type \c lang::Timezone.   */
-    template<> struct       T_Apply<lang::Timezone> : public std::true_type
-    {
-        /** ****************************************************************************************
-         * Writes the values of enum class \b Timezone
-         * @param target The object that \b Apply was invoked on.
-         * @param value      The value to write to \p target.
-         * @return The number of characters appended to target.
-         ******************************************************************************************/
-        static inline integer Apply( AString& target, const lang::Timezone& value )
-        {
-            target._<false>( value == lang::Timezone::Local ? "Local" : "UTC" );
-            return 1;
-        }
-    };
-
-    /** Specialization of template struct \ref T_Apply for type \c lang::LockMode.   */
-    template<> struct       T_Apply<lang::LockMode> : public std::true_type
-    {
-        /** ****************************************************************************************
-         * Writes the values of enum class \b LockMode
-         * @param target The object that \b Apply was invoked on.
-         * @param value      The value to write to \p target.
-         * @return The number of characters appended to target.
-         ******************************************************************************************/
-        static inline integer Apply( AString& target, const lang::LockMode& value )
-        {
-            target._<false>( value == lang::LockMode::Recursive ? "Recursive" : "SingleLocks" );
-            return 1;
-        }
-    };
-
-    /** Specialization of template struct \ref T_Apply for type \c lang::Whitespaces.   */
-    template<> struct       T_Apply<lang::Whitespaces> : public std::true_type
-    {
-        /** ****************************************************************************************
-         * Writes the values of enum class \b Whitespaces
-         * @param target The object that \b Apply was invoked on.
-         * @param value      The value to write to \p target.
-         * @return The number of characters appended to target.
-         ******************************************************************************************/
-        static inline integer Apply( AString& target, const lang::Whitespaces& value )
-        {
-            target._<false>( value == lang::Whitespaces::Trim ? "Trim" : "Keep" );
-            return 1;
-        }
-    };
-
-    /** Specialization of template struct \ref T_Apply for type \c lang::Create.   */
-    template<> struct       T_Apply<lang::Create> : public std::true_type
-    {
-        /** ****************************************************************************************
-         * Writes the values of enum class \b Create
-         * @param target The object that \b Apply was invoked on.
-         * @param value      The value to write to \p target.
-         * @return The number of characters appended to target.
-         ******************************************************************************************/
-        static inline integer Apply( AString& target, const lang::Create& value )
-        {
-            target._<false>( value == lang::Create::Never ? "Never" : "IfNotExistent" );
-            return 1;
-        }
-    };
-
-    /** Specialization of template struct \ref T_Apply for type \c lang::Propagation.   */
-    template<> struct       T_Apply<lang::Propagation> : public std::true_type
-    {
-        /** ****************************************************************************************
-         * Writes the values of enum class \b Propagation
-         * @param target The object that \b Apply was invoked on.
-         * @param value      The value to write to \p target.
-         * @return The number of characters appended to target.
-         ******************************************************************************************/
-        static inline integer Apply( AString& target, const lang::Propagation& value )
-        {
-            target._<false>( value == lang::Propagation::Omit ? "Omit" : "ToDescendants" );
-            return 1;
-        }
-    };
-
-    //! @endcond NO_DOX
 
 // We are faking all template specializations of namespace strings for doxygen into namespace
 // strings::apply to keep the documentation of namespace string clean!
 #if defined(DOX_PARSER)
 }
 #endif
-
-
 
 
 // #################################################################################################
@@ -389,14 +165,14 @@ namespace applyto {
      * This is a type applicable to objects of type
      * \ref aworx::lib::strings::AString "AString". Various constructors consume integer and
      * floating point types, along with formatting options. The specialization of struct
-     * \ref T_Apply "T_Apply<Format>"
+     * \alib{strings,T_Apply} "T_Apply<Format>"
      *  will use a given (or defaulted) instance of class
      * \ref aworx::lib::strings::NumberFormat "NumberFormat" to append the value to the
      * \b %AString in question.
      *
      * \note
      *   Within the same header file that this class in declared in, there are several
-     *   specializations of \ref T_Apply defined for plain integer and
+     *   specializations of \alib{strings,T_Apply} defined for plain integer and
      *   floating point types. These specializations create an object of this type, providing the
      *   value only, hence, using this classes constructors' default values. The number format
      *   used as default by the constructors of this class is
@@ -426,7 +202,7 @@ namespace applyto {
      * - \ref aworx::lib::strings::Format::Oct   "Format::Oct".
      *
      * Each of these classes has partial implementations of template function
-     * \ref T_Apply and provide certain formatting options.
+     * \alib{strings,T_Apply} and provide certain formatting options.
      *
      * \note The types are not 'physically' related to this class. Instead, they have been
      *       aggregated here for 'esthetical' reasons.
@@ -500,21 +276,38 @@ namespace applyto {
          * \ref aworx::lib::strings::AString "AString" with specialization of template struct
          * \ref aworx::lib::strings::applyto::T_Apply<Format::Field> "T_Apply<Format::Field>".
          *
-         * Appends the contents of a string to to the AString using a
-         * defined 'field'-width.
-         * If given string \p value is shorter than parameter \p width specifies, the field is
+         * Appends the given object to the AString using a defined 'field'-width.
+         * If the contents of the field is shorter than parameter \p width specifies, the field is
          * filled with a corresponding amount of \p padChar characters.<br>
          * Parameter \p alignment of type
          * \ref aworx::lib::lang::Alignment "Alignment" allows to left-, right- or center-align
          * the contents of the field.
+         *
+         * \note In case, module <b>%ALib %Boxing</b> is not available, the field content
+         *       parameter will be of type <c>const String&</c>.<br>
+         *       Otherwise, boxing interface \alib{strings::boxing,IApply} will be invoked on
+         *       the given box internally to receive the string representation.
+         *
+         * \note Therefore, it is mandatory, that for any type that is used with this class
+         *       to be formatted in a field, this boxing interface has to be implemented. As
+         *       documented with that interface, for types that are applicable to \b %AString
+         *       objects already, all that is needed is to use macro
+         *       \ref ALIB_BOXING_DEFINE_IAPPLY_FOR_APPLICABLE_TYPE with the type in the bootstrap
+         *       section of an application.
          ******************************************************************************************/
         struct Field
         {
             public:
-            const String&    theContent;   ///< the content of the field.
-            integer          theWidth;     ///< the width of the field.
-            lang::Alignment  theAlignment; ///< the alignment of the contents within the field.
-            char             padChar;      ///< the characters used for padding the contents within the field.
+            #if ALIB_MODULE_BOXING
+              Box            theContent;   ///< The content of the field. If module
+                                           ///< <b>%ALib %Boxing</b> is not available, this field
+                                           ///< is of type <c>const String&</c>
+            #else
+              const String&  theContent;
+            #endif
+            integer          theWidth;     ///< The width of the field.
+            lang::Alignment  theAlignment; ///< The alignment of the contents within the field.
+            char             padChar;      ///< The characters used for padding the contents within the field.
 
             /**
              * Constructor, copying the values into this 'delegate' object. They will be used
@@ -532,39 +325,26 @@ namespace applyto {
              * @param fillChar  The character used to fill the field up to its size.
              *                  Defaults to ' ' (space).
              */
-            Field(  const String&     content,
-                    int32_t           width,
+            Field(
+                    #if ALIB_MODULE_BOXING
+                      Box            content,
+                    #else
+                      const String&  content,
+                    #endif
+
+                    integer           width,
                     lang::Alignment   alignment  =lang::Alignment::Right,
                     char              fillChar   = ' '                       )
+            #if ALIB_MODULE_BOXING
+            : theContent(content),
+            #else
             : theContent(content.IsNotNull() ? content : EmptyString ),
+            #endif
               theWidth(width),
               theAlignment(alignment),
-              padChar(fillChar)                                  {}
+              padChar(fillChar)
+            {}
 
-            /**
-             * Constructor, copying the values into this 'delegate' object. They will be used
-             * with method \b %Apply of specialized template struct
-             * \ref applyto::T_Apply<Format::Field> "T_Apply<Format::Field>".
-             *
-             * @param content   The contents of the field.
-             * @param width     The width of the field
-             * @param alignment The alignment of the contents within the field.
-             *                  Defaults to
-             *                  \ref aworx::lib::lang::Alignment "Alignment::Right"
-             *                  Other options are
-             *                  \ref aworx::lib::lang::Alignment "Alignment::Left" and
-             *                  \ref aworx::lib::lang::Alignment "Alignment::Center".
-             * @param fillChar  The character used to fill the field up to its size.
-             *                  Defaults to ' ' (space).
-             */
-            Field(  const String&    content,
-                    int64_t          width,
-                    lang::Alignment  alignment  =lang::Alignment::Right,
-                    char             fillChar   = ' '                       )
-            : theContent(content.IsNotNull() ? content : EmptyString ),
-              theWidth(static_cast<integer>(width)),
-              theAlignment(alignment),
-              padChar(fillChar)                                  {}
         };
 
         /** ****************************************************************************************
@@ -1185,15 +965,13 @@ namespace applyto {
 // We are faking all template specializations of namespace strings for doxygen into namespace
 // strings::applyto to keep the documentation of namespace string clean!
 #if defined(DOX_PARSER)
-namespace applyto {
+    namespace applyto {
+#else
+    ALIB_WARNINGS_ALLOW_TEMPLATE_META_PROGRAMMING
 #endif
 
-#if !defined(DOX_PARSER)
-    ALIB_WARNINGS_START_TMP
-#endif
 
-
-    /** Specialization of template struct \ref T_Apply for type \c Format.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c Format.   */
     template<> struct T_Apply<Format> : public std::true_type
     {
         /** ****************************************************************************************
@@ -1207,7 +985,7 @@ namespace applyto {
         ALIB_API static integer Apply( AString& target,  const Format& fmt );
     };
 
-    /** Specialization of template struct \ref T_Apply for type \c Format::Tab.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c Format::Tab.   */
     template<> struct T_Apply<Format::Tab> : public std::true_type
     {
         /** ****************************************************************************************
@@ -1221,7 +999,7 @@ namespace applyto {
         ALIB_API static   integer Apply( AString& target, const Format::Tab& tab);
     };
 
-    /** Specialization of template struct \ref T_Apply for type \c Format::Field.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c Format::Field.   */
     template<> struct T_Apply<Format::Field> : public std::true_type
     {
         /** ****************************************************************************************
@@ -1235,7 +1013,7 @@ namespace applyto {
         ALIB_API static   integer Apply( AString& target, const Format::Field& field);
     };
 
-    /** Specialization of template struct \ref T_Apply for type \c Format::Escape.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c Format::Escape.   */
     template<> struct T_Apply<Format::Escape> : public std::true_type
     {
         /** ****************************************************************************************
@@ -1249,13 +1027,13 @@ namespace applyto {
         ALIB_API static   integer Apply( AString& target, const Format::Escape& field);
     };
 
-    /** Specialization of template struct \ref T_Apply for type \c int8_t.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c int8_t.   */
     template<> struct T_Apply<int8_t> : public std::true_type
     {
         /**
          * Applies type \c int8_t. Creates an object of type
          * \ref aworx::lib::strings::Format "Format" with default values
-         * and passes this to the corresponding \ref T_Apply<Format> specialization.
+         * and passes this to the corresponding \alib{strings,T_Apply}\<Format\> specialization.
          *
          * @param target The object that \b Apply was invoked on.
          * @param value  The value to write.
@@ -1267,13 +1045,13 @@ namespace applyto {
         }
     };
 
-    /** Specialization of template struct \ref T_Apply for type \c uint8_t.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c uint8_t.   */
     template<> struct T_Apply<uint8_t> : public std::true_type
     {
         /**
          * Applies type \c uint8_t. Creates an object of type
          * \ref aworx::lib::strings::Format "Format" with default values
-         * and passes this to the corresponding \ref T_Apply<Format> specialization.
+         * and passes this to the corresponding \alib{strings,T_Apply}\<Format\> specialization.
          *
          * @param target The object that \b Apply was invoked on.
          * @param value  The value to write.
@@ -1285,13 +1063,13 @@ namespace applyto {
         }
     };
 
-    /** Specialization of template struct \ref T_Apply for type \c int16_t.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c int16_t.   */
     template<> struct T_Apply<int16_t> : public std::true_type
     {
         /**
          * Applies type \c int16_t. Creates an object of type
          * \ref aworx::lib::strings::Format "Format" with default values
-         * and passes this to the corresponding \ref T_Apply<Format> specialization.
+         * and passes this to the corresponding \alib{strings,T_Apply}\<Format\> specialization.
          *
          * @param target The object that \b Apply was invoked on.
 
@@ -1304,13 +1082,13 @@ namespace applyto {
         }
     };
 
-    /** Specialization of template struct \ref T_Apply for type \c uint16_t.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c uint16_t.   */
     template<> struct T_Apply<uint16_t> : public std::true_type
     {
         /**
          * Applies type \c uint16_t. Creates an object of type
          * \ref aworx::lib::strings::Format "Format" with default values
-         * and passes this to the corresponding \ref T_Apply<Format> specialization.
+         * and passes this to the corresponding \alib{strings,T_Apply}\<Format\> specialization.
          *
          * @param target The object that \b Apply was invoked on.
          * @param value  The value to write.
@@ -1322,13 +1100,13 @@ namespace applyto {
         }
     };
 
-    /** Specialization of template struct \ref T_Apply for type \c int32_t.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c int32_t.   */
     template<> struct T_Apply<int32_t> : public std::true_type
     {
         /**
          * Applies type \c int32_t. Creates an object of type
          * \ref aworx::lib::strings::Format "Format" with default values
-         * and passes this to the corresponding \ref T_Apply<Format> specialization.
+         * and passes this to the corresponding \alib{strings,T_Apply}\<Format\> specialization.
          *
          * @param target The object that \b Apply was invoked on.
          * @param value  The value to write.
@@ -1340,13 +1118,13 @@ namespace applyto {
         }
     };
 
-    /** Specialization of template struct \ref T_Apply for type \c uint32_t.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c uint32_t.   */
     template<> struct T_Apply<uint32_t> : public std::true_type
     {
         /**
          * Applies type \c uint32_t. Creates an object of type
          * \ref aworx::lib::strings::Format "Format" with default values
-         * and passes this to the corresponding \ref T_Apply<Format> specialization.
+         * and passes this to the corresponding \alib{strings,T_Apply}\<Format\> specialization.
          *
          * @param target The object that \b Apply was invoked on.
          * @param value  The value to write.
@@ -1359,13 +1137,13 @@ namespace applyto {
     };
 
 
-    /** Specialization of template struct \ref T_Apply for type \c int64_t.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c int64_t.   */
     template<> struct T_Apply<int64_t> : public std::true_type
     {
         /**
          * Applies type \c int64_t. Creates an object of type
          * \ref aworx::lib::strings::Format "Format" with default values
-         * and passes this to the corresponding \ref T_Apply<Format> specialization.
+         * and passes this to the corresponding \alib{strings,T_Apply}\<Format\> specialization.
          *
          * @param target The object that \b Apply was invoked on.
          * @param value  The value to write.
@@ -1377,13 +1155,13 @@ namespace applyto {
         }
     };
 
-    /** Specialization of template struct \ref T_Apply for type \c uint64_t.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c uint64_t.   */
     template<> struct T_Apply<uint64_t> : public std::true_type
     {
         /**
          * Applies type \c uint64_t. Creates an object of type
          * \ref aworx::lib::strings::Format "Format" with default values
-         * and passes this to the corresponding \ref T_Apply<Format> specialization.
+         * and passes this to the corresponding \alib{strings,T_Apply}\<Format\> specialization.
          *
          * @param target The object that \b Apply was invoked on.
          * @param value  The value to write.
@@ -1395,13 +1173,13 @@ namespace applyto {
         }
     };
 
-    /** Specialization of template struct \ref T_Apply for type \c intGap_t.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c intGap_t.   */
     template<> struct T_Apply<intGap_t> : public std::true_type
     {
         /**
          * Applies type  #aworx::intGap_t. Creates an object of type
          * \ref aworx::lib::strings::Format "Format" with default values
-         * and passes this to the corresponding \ref T_Apply<Format> specialization.
+         * and passes this to the corresponding \alib{strings,T_Apply}\<Format\> specialization.
          *
          * @param target The object that \b Apply was invoked on.
          * @param value  The value to write.
@@ -1414,13 +1192,13 @@ namespace applyto {
     };
 
 
-    /** Specialization of template struct \ref T_Apply for type \c uintGap_t.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c uintGap_t.   */
     template<> struct T_Apply<uintGap_t> : public std::true_type
     {
         /**
          * Applies type #aworx::uintGap_t. Creates an object of type
          * \ref aworx::lib::strings::Format "Format" with default values
-         * and passes this to the corresponding \ref T_Apply<Format> specialization.
+         * and passes this to the corresponding \alib{strings,T_Apply}\<Format\> specialization.
          *
          * @param target The object that \b Apply was invoked on.
          * @param value  The value to write.
@@ -1432,13 +1210,13 @@ namespace applyto {
         }
     };
 
-    /** Specialization of template struct \ref T_Apply for type \c float.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c float.   */
     template<> struct T_Apply<float> : public std::true_type
     {
         /**
          * Applies type \c float. Creates an object of type
          * \ref aworx::lib::strings::Format "Format" with default values
-         * and passes this to the corresponding \ref T_Apply<Format> specialization.
+         * and passes this to the corresponding \alib{strings,T_Apply}\<Format\> specialization.
          *
          * @param target The object that \b Apply was invoked on.
          * @param value  The value to write.
@@ -1450,13 +1228,13 @@ namespace applyto {
         }
     };
 
-    /** Specialization of template struct \ref T_Apply for type \c double.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c double.   */
     template<> struct T_Apply<double> : public std::true_type
     {
         /**
          * Applies type \c double. Creates an object of type
          * \ref aworx::lib::strings::Format "Format" with default values
-         * and passes this to the corresponding \ref T_Apply<Format> specialization.
+         * and passes this to the corresponding \alib{strings,T_Apply}\<Format\> specialization.
          *
          * @param target The object that \b Apply was invoked on.
          * @param value  The value to write.
@@ -1468,7 +1246,7 @@ namespace applyto {
         }
     };
 
-    /** Specialization of template struct \ref T_Apply for type \c Format::Bin.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c Format::Bin.   */
     template<> struct T_Apply<Format::Bin> : public std::true_type
     {
         /** ****************************************************************************************
@@ -1482,7 +1260,7 @@ namespace applyto {
         ALIB_API static integer Apply( AString& target,  const Format::Bin& fmt );
     };
 
-    /** Specialization of template struct \ref T_Apply for type \c Format::Hex.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c Format::Hex.   */
     template<> struct T_Apply<Format::Hex> : public std::true_type
     {
         /** ****************************************************************************************
@@ -1496,7 +1274,7 @@ namespace applyto {
         ALIB_API static integer Apply( AString& target,  const Format::Hex& fmt );
     };
 
-    /** Specialization of template struct \ref T_Apply for type \c Format::Oct.   */
+    /** Specialization of template struct \alib{strings,T_Apply} for type \c Format::Oct.   */
     template<> struct T_Apply<Format::Oct> : public std::true_type
     {
         /** ****************************************************************************************

@@ -18,7 +18,7 @@
 #ifndef HPP_ALIB_THREADS_THREADLOCKNR
 //! @cond NO_DOX
 #define HPP_ALIB_THREADS_THREADLOCKNR 1
-//! @endcond NO_DOX
+//! @endcond
 
 // #################################################################################################
 // includes
@@ -31,8 +31,14 @@
     #include <mutex>
 #endif
 
-namespace aworx { namespace lib { namespace threads
-{
+// #################################################################################################
+// Macros (for technical reasons, doxed in file alib.cpp)
+// #################################################################################################
+#define   LOCK_HERE                     OWN(*this)
+#define   LOCK_HERE_WITH(lock)          OWN(lock)
+
+
+namespace aworx { namespace lib { namespace threads {
 /** ************************************************************************************************
  * This class is a simple wrapper around std::mutex (provided solely to reach compatibility of ALIB
  * across programming languages) and hence allows *mutual exclusive access* to resources, by
@@ -132,7 +138,7 @@ class ThreadLockNR : public lang::Ownable
                         mutex->lock();
                 #endif
 
-                ALIB_DEBUG_CODE( dbgIsAcquired= true; )
+                ALIB_DBG( dbgIsAcquired= true; )
             }
 
         /** ****************************************************************************************
@@ -146,7 +152,7 @@ class ThreadLockNR : public lang::Ownable
                 if ( mutex != nullptr )
                         mutex->unlock();
             #endif
-            ALIB_DEBUG_CODE( dbgIsAcquired= false; )
+            ALIB_DBG( dbgIsAcquired= false; )
         }
 
         /** ****************************************************************************************

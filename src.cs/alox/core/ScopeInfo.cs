@@ -106,7 +106,7 @@ public class ScopeInfo
         /**
          *  If true, next time a source path can not be trimmed successfully with custom
          *  trim information provided with
-         *  \ref cs::aworx::lox::Lox::SetSourcePathTrimRule "Lox.SetSourcePathTrimRule"
+         *  \ref cs.aworx.lox.Lox.SetSourcePathTrimRule "Lox.SetSourcePathTrimRule"
          *  some trim information is automatically created by comparing such source files' path
          *  with the path of the executable of the current process.
          */
@@ -201,7 +201,7 @@ public class ScopeInfo
                 if ( trimInfoNo == 0 )
                 {
                     trimInfoList= LocalSPTRs;
-                    variable.Define(ALox.SPTR_LOX, loxName).Load();
+                    variable.Declare(ALox.SPTR_LOX, loxName);
                 }
                 else
                 {
@@ -209,8 +209,9 @@ public class ScopeInfo
                         continue;
                     GlobalSPTRsReadFromConfig= true;
                     trimInfoList= GlobalSPTRs;
-                    variable.Define(ALox.SPTR_GLOBAL).Load();
+                    variable.Declare(ALox.SPTR_GLOBAL);
                 }
+                ALox.Config.Load(variable);
 
                 if( variable.Priority != 0 )
                 {
@@ -360,8 +361,8 @@ public class ScopeInfo
 
         /** ****************************************************************************************
          * Does the job for
-         * \ref cs::aworx::lox::Lox::SetSourcePathTrimRule    "Lox.SetSourcePathTrimRule" and
-         * \ref cs::aworx::lox::Lox::ClearSourcePathTrimRules "Lox.ClearSourcePathTrimRules".
+         * \ref cs.aworx.lox.Lox.SetSourcePathTrimRule    "Lox.SetSourcePathTrimRule" and
+         * \ref cs.aworx.lox.Lox.ClearSourcePathTrimRules "Lox.ClearSourcePathTrimRules".
          *
          * @param path            The path to search for. If not starting with <c> '*'</c>,
          *                        a prefix is searched.
@@ -545,7 +546,7 @@ public class ScopeInfo
                 AutoDetectTrimableSourcePath= false; // do this only once
 
                 // get system execution path and compare to file path
-                String currentDir= Environment.CurrentDirectory;
+                String currentDir= System.Environment.CurrentDirectory;
 
                 // Get the prefix that is the same in both paths
                 int i= 0;
@@ -559,7 +560,7 @@ public class ScopeInfo
                 if ( i > 1 )
                 {
                     SetSourcePathTrimRule( currentDir.Substring( 0, i ), Inclusion.Include, 0, Case.Ignore,  "", Reach.Local,
-                                           Configuration.PrioDefault - 1 );
+                                           Configuration.PrioDefaultValues - 1 );
 
                     // one recursive call
                     actual.lazyTrimmedPath= false;

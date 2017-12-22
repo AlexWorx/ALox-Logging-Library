@@ -216,7 +216,7 @@ public class MetaInfo
      * @param verbosity The verbosity. This has been checked to be active already on this
      *                  stage and is provided to be able to be logged out only.
      * @param scope     Information about the scope of the <em>Log Statement</em>..
-     * @return The number of tab sequences that were written (by adding ESC::TAB to the buffer).
+     * @return The number of tab sequences that were written (by adding ESC.TAB to the buffer).
      **********************************************************************************************/
     protected int write( TextLogger logger, AString buf, Domain domain, Verbosity verbosity, ScopeInfo scope )
     {
@@ -263,7 +263,7 @@ public class MetaInfo
      * @param dest      The buffer to write meta information into.
      * @param variable  The variable to read (may have more characters appended)
      *
-     * @return The number of tab sequences that were written (by adding ESC::TAB to the buffer).
+     * @return The number of tab sequences that were written (by adding ESC.TAB to the buffer).
      **********************************************************************************************/
     protected int processVariable( TextLogger logger, Domain domain, Verbosity verbosity, ScopeInfo scope, AString dest, Substring variable )
     {

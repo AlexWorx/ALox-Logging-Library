@@ -33,14 +33,14 @@ import com.aworx.lib.lang.Whitespaces;
  *  \note
  *    To generate Substrings which are separated by a delimiter character within a
  *    character array, use class
- *    \ref com::aworx::lib::strings::util::Tokenizer "Tokenizer".
+ *    \ref com.aworx.lib.strings.util.Tokenizer "Tokenizer".
  *  <p>
  *
  *  \note
  *    In the Java and C# versions of \b %ALib, due to the language design, fields #start and #end have
  *    to be used to define the substring on a field #buf, the character buffer. This forces
  *    a \e reimplementation of a bigger portion of the interface of class
- *    \ref com::aworx::lib::strings::AString "AString". In the C++ version of \b %ALib, there is a
+ *    \ref com.aworx.lib.strings.AString "AString". In the C++ version of \b %ALib, there is a
  *    richer family of string classes that fully integrates with zero terminated <em>C strings</em>,
  *    standard C++ strings and 3rd party string libraries. Neither the fields \e %start and \e %end
  *    are necessary, nor the aforementioned reimplementation. Consequently, when directly accessing
@@ -506,50 +506,6 @@ public class Substring implements CharSequence
                                :  buf[end--];
         }
 
-        /** ****************************************************************************************
-         * Cuts the given number of characters from the beginning of the Substring and optionally
-         * places the portion that was cut in parameter \p target (if provided).<br>
-         * Parameter \p regionLength is checked to be between 0 and length. If negative, nothing
-         * is cut and \p target is set empty. If \p regionLength is greater than this
-         * objects' length, all contents is 'moved' to \p target.
-         *
-         * @param regionLength  The length of the region at the start to delete.
-         * @param target        An optional target \b %Substring that receives the portion that
-         *                      is cut from this object. Defaults to null.
-         *
-         * @return The new length of the substring.
-         ******************************************************************************************/
-        public int consumeChars(int regionLength, Substring target )
-        {
-            if ( regionLength < 0 )
-            {
-                if ( target != null )
-                    target.clear();
-                return  length();
-            }
-            if ( regionLength > length() )
-                regionLength= length();
-
-            if ( target != null )
-                target.set( this, 0, regionLength );
-
-            start+= regionLength;
-            return length();
-        }
-
-        /** ****************************************************************************************
-         * Cuts the given number of characters from the beginning of the Substring.<br>
-         * Parameter \p regionLength is checked to be between 0 and length. If negative, nothing
-         * is cut. If \p regionLength is greater than this objects' length, all contents cleared.
-         *
-         * @param regionLength  The length of the region at the start to delete.
-         *
-         * @return The new length of the substring.
-         ******************************************************************************************/
-        public int consumeChars(int regionLength )
-        {
-            return consumeChars( regionLength, null );
-        }
 
         /** ****************************************************************************************
          * Cuts the given number of characters from the end of the Substring and optionally
@@ -708,6 +664,75 @@ public class Substring implements CharSequence
         }
 
         /** ****************************************************************************************
+         * Cuts the given number of characters from the beginning of the Substring and optionally
+         * places the portion that was cut in parameter \p target (if provided).<br>
+         * Parameter \p regionLength is checked to be between 0 and length. If negative, nothing
+         * is cut and \p target is set empty. If \p regionLength is greater than this
+         * objects' length, all contents is 'moved' to \p target.
+         *
+         * @param regionLength  The length of the region at the start to delete.
+         * @param target        An optional target \b %Substring that receives the portion that
+         *                      is cut from this object. Defaults to null.
+         *
+         * @return The new length of the substring.
+         ******************************************************************************************/
+        public int consumeChars(int regionLength, Substring target )
+        {
+            if ( regionLength < 0 )
+            {
+                if ( target != null )
+                    target.clear();
+                return  length();
+            }
+            if ( regionLength > length() )
+                regionLength= length();
+
+            if ( target != null )
+                target.set( this, 0, regionLength );
+
+            start+= regionLength;
+            return length();
+        }
+
+        /** ****************************************************************************************
+         * Cuts the given number of characters from the beginning of the Substring.<br>
+         * Parameter \p regionLength is checked to be between 0 and length. If negative, nothing
+         * is cut. If \p regionLength is greater than this objects' length, all contents cleared.
+         *
+         * @param regionLength  The length of the region at the start to delete.
+         *
+         * @return The new length of the substring.
+         ******************************************************************************************/
+        public int consumeChars(int regionLength )
+        {
+            return consumeChars( regionLength, null );
+        }
+
+        /** ****************************************************************************************
+         * Searches \p separator and cuts the beginning of this string, including the separator.
+         * What was consumed is returned, excluding the separator.
+         *
+         * If the separator is not found, all of this string is consumed and returned.
+         *
+         * @param target     The target substring.
+         * @param separator  The separator to search. Defaults to <c>','</c>.
+         *
+         * @return The number of characters consumed.
+         ******************************************************************************************/
+        public int  consumeToken( Substring target, char separator )
+        {
+            int separatorPos= indexOfOrLength( separator );
+            target.buf=   buf;
+            target.start= start;
+            target.end=   start + separatorPos - 1;
+
+            start+= separatorPos + 1;
+            if (start > end + 1)
+                start= end + 1;
+            return target.length();
+        }
+
+        /** ****************************************************************************************
          * Checks if this object starts with the given string \p consumable. If it does, this
          * string is cut from this object.
          *
@@ -725,7 +750,7 @@ public class Substring implements CharSequence
             if ( trimBeforeConsume == Whitespaces.TRIM )
                 trimStart();
 
-            if ( !startsWith( consumable ) )
+            if ( !startsWith( consumable, sensitivity ) )
                 return false;
 
             start+= consumable.length();
@@ -820,10 +845,11 @@ public class Substring implements CharSequence
          * abbreviated.
          *
          * @param consumable        The consumable string.
-         * @param minChars          The minimum amount of characters to consume.
-         *                          Optional and defaults to \c 1
+         * @param minChars          The minimum amount of characters to consume. If \c 0 or
+         *                          negative, the length of \p consumable is chosen.
+         *                          Optional and defaults to \c 1.
          * @param sensitivity       The sensitivity of the comparison.
-         *                          Defaults to \b Case.SENSITIVE.
+         *                          Defaults to \b Case.Ignore.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
          *                          first character consume operation.
          *                          Defaults to \b Whitespaces.KEEP.
@@ -836,6 +862,9 @@ public class Substring implements CharSequence
         {
             if ( trimBeforeConsume == Whitespaces.TRIM )
                 trimStart();
+
+            if ( minChars <= 0 )
+                minChars= consumable.length();
 
             if ( minChars == 0 || minChars > consumable.length() )
                 return 0;
@@ -877,7 +906,7 @@ public class Substring implements CharSequence
         public int consumePartOf(String           consumable,
                                  int              minChars     )
         {
-            return consumePartOf( consumable, minChars, Case.SENSITIVE, Whitespaces.KEEP );
+            return consumePartOf( consumable, minChars, Case.IGNORE, Whitespaces.KEEP );
         }
 
         /** ****************************************************************************************
@@ -890,7 +919,68 @@ public class Substring implements CharSequence
          ******************************************************************************************/
         public int consumePartOf(String           consumable   )
         {
-            return consumePartOf( consumable, 1, Case.SENSITIVE, Whitespaces.KEEP );
+            return consumePartOf( consumable, 1, Case.IGNORE, Whitespaces.KEEP );
+        }
+
+        /** ****************************************************************************************
+         * Consumes a field from the beginning of this substring, which is surrounded by
+         * given start end end character identifiers. If both are the same, e.g. \c '"', then
+         * the first occurrence of the end character is used. If they are not the same, e.g.
+         * \c '<' and \c '>', then repeated start characters are counted and consumption only ends
+         * when a corresponding amount of end characters has been found.
+         *
+         * @param  startChar  The start character of the field to consume.
+         * @param  endChar    The end character of the field to consume.
+         * @param  target     The target string to place the field in.
+         * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
+         *                          consume operation. Defaults to \b Whitespaces.Keep.
+         * @return The string consumed. \b NullString on error (start/end character not found)
+         ******************************************************************************************/
+        public Substring  consumeField( char startChar, char endChar, Substring target,
+                                        Whitespaces trimBeforeConsume )
+        {
+            if ( trimBeforeConsume == Whitespaces.TRIM )
+                trimStart();
+
+            target.setNull();
+
+            if ( charAtStart() != startChar )
+                return target;
+
+            int cntStartChars= 1;
+            for ( int i= start + 1; i <= end ; i++ )
+            {
+                char actChar= buf[i];
+                if( actChar == endChar )
+                {
+                    if( --cntStartChars == 0 )
+                    {
+                        target.buf=   buf;
+                        target.start= start + 1;
+                        target.end=   i - 1;
+                        start=        i + 1;
+                        return target;
+                    }
+                }
+                else if( actChar == startChar )
+                    cntStartChars++;
+            }
+
+            return target;
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of original method
+         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP.
+         *
+         * @param  startChar  The start character of the field to consume.
+         * @param  endChar    The end character of the field to consume.
+         * @param  target     The target string to place the field in.
+         * @return The string consumed. \b NullString on error (start/end character not found)
+         ******************************************************************************************/
+        public Substring  consumeField( char startChar, char endChar, Substring target )
+        {
+            return consumeField( startChar, endChar, target, Whitespaces.KEEP );
         }
 
         /** ****************************************************************************************
@@ -1142,8 +1232,8 @@ public class Substring implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Tests and returns true, if the given \ref com::aworx::lib::strings::Substring "Substring"
-         * equals to what this object represents.
+         * Tests and returns true, if the given other \b %Substring equals to what this object
+         * represents.
          * True is returned if both are zero length or \c null.
          *
          * @param cmpString A Substring that is compared to this %AString.
@@ -1166,8 +1256,8 @@ public class Substring implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Tests and returns true, if the given \ref com::aworx::lib::strings::Substring "Substring"
-         * equals to what this object represents.
+         * Tests and returns true, if the given other \b %Substring equals to what this object
+         * represents.
          * True is returned if both are zero length or \c null.
          *
          * @param cmpString A Substring that is compared to this %AString.
@@ -1793,7 +1883,7 @@ public class Substring implements CharSequence
         /** ****************************************************************************************
          * Moves the start marker to the first character not found in parameter \p whiteSpaces.
          * @param whiteSpaces  The characters used for trimming. Defaults to
-         *                     \ref com::aworx::lib::strings::CString::DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
+         *                     \ref com.aworx.lib.strings.CString.DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
         public Substring trimStart( char[] whiteSpaces )
@@ -1812,7 +1902,7 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Invokes #trimStart(char[] whiteSpaces) providing default parameter
-         * \ref com::aworx::lib::strings::CString::DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
+         * \ref com.aworx.lib.strings.CString.DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
         public Substring trimStart()
@@ -1823,7 +1913,7 @@ public class Substring implements CharSequence
         /** ****************************************************************************************
          * Moves the start marker to the first character not found in parameter \p whiteSpaces.
          * @param whiteSpaces  The characters used for trimming. Defaults to
-         *                     \ref com::aworx::lib::strings::CString::DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
+         *                     \ref com.aworx.lib.strings.CString.DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
         public Substring trimEnd( char[] whiteSpaces )
@@ -1835,7 +1925,7 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Invokes #trimEnd(char[] whiteSpaces) providing default parameter
-         * \ref com::aworx::lib::strings::CString::DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
+         * \ref com.aworx.lib.strings.CString.DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
         public Substring trimEnd()
@@ -1846,7 +1936,7 @@ public class Substring implements CharSequence
         /** ****************************************************************************************
          * Invokes #trimStart and #trimEnd.
          * @param whiteSpaces  The characters used for trimming. Defaults to
-         *                     \ref com::aworx::lib::strings::CString::DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
+         *                     \ref com.aworx.lib.strings.CString.DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
         public Substring   trim( char[] whiteSpaces )
@@ -1856,7 +1946,7 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Invokes #trim(char[] whiteSpaces) providing default parameter
-         * \ref com::aworx::lib::strings::CString::DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
+         * \ref com.aworx.lib.strings.CString.DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
         public Substring   trim()
@@ -1956,10 +2046,10 @@ public class Substring implements CharSequence
         /** ****************************************************************************************
          * Consumes a long integer value in decimal, binary, hexadecimal or octal format from
          * the start of the string by invoking method
-         * \ref com::aworx::lib::strings::NumberFormat::parseInt "NumberFormat.parseInt"
+         * \ref com.aworx.lib.strings.NumberFormat.parseInt "NumberFormat.parseInt"
          * on the given \p numberFormat instance.<br>
          Parameter \p numberFormat defaults \c null. This denotes static singleton
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to 'international' settings (not using the locale) and therefore
          * also not parsing grouping characters.
          *
@@ -1983,7 +2073,7 @@ public class Substring implements CharSequence
         /** ****************************************************************************************
          * Overloaded version of #consumeInt(NumberFormat) providing default value \c null for
          * parameter \p numberFormat (which selects gloabl object
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational").
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational").
          *
          * @return  \c true if an value could be parsed, \c false otherwise.
          ******************************************************************************************/
@@ -1995,10 +2085,10 @@ public class Substring implements CharSequence
         /** ****************************************************************************************
          * Consumes an unsigned 64-bit integer in standard decimal format at the given position
          * from the start of this string. This is done, by invoking
-         * \ref com::aworx::lib::strings::NumberFormat::parseDec "NumberFormat.parseDec"
+         * \ref com.aworx.lib.strings.NumberFormat.parseDec "NumberFormat.parseDec"
          * on the given \p numberFormat instance.<br>
          Parameter \p numberFormat defaults \c null. This denotes static singleton
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
          * Sign literals \c '-' or \c '+' are \b not accepted and parsing will fail.
@@ -2006,7 +2096,7 @@ public class Substring implements CharSequence
          * #consumeFloat.
          *
          * For more information on number conversion, see class
-         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat".
+         * \ref com.aworx.lib.strings.NumberFormat "NumberFormat".
          *
          * \note Because Java does not support unsigned integer, the value to read is limited to
          *       <c>Long.MAX_VALUE</c> in this language implementation of \b %ALib.
@@ -2032,7 +2122,7 @@ public class Substring implements CharSequence
         /** ****************************************************************************************
          * Overloaded version of #consumeDec(NumberFormat) providing default value \c null for
          * parameter \p numberFormat (which selects gloabl object
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational").
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational").
          *
          * @return  \c true if an value could be parsed, \c false otherwise.
          ******************************************************************************************/
@@ -2044,14 +2134,14 @@ public class Substring implements CharSequence
         /** ****************************************************************************************
          * Consumes an unsigned 64-bit integer in binary format at the given position
          * from this string. This is done, by invoking
-         * \ref com::aworx::lib::strings::NumberFormat::parseBin "NumberFormat.parseBin"
+         * \ref com.aworx.lib.strings.NumberFormat.parseBin "NumberFormat.parseBin"
          * on the given \p numberFormat instance.<br>
          Parameter \p numberFormat defaults \c null. This denotes static singleton
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
          * For more information on number conversion, see class
-         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat".
+         * \ref com.aworx.lib.strings.NumberFormat "NumberFormat".
          *
          * \note Although Java does not support unsigned integer, the value that is read with this
          *       method is correct in respect to the bits set in the signed value returned.
@@ -2078,7 +2168,7 @@ public class Substring implements CharSequence
         /** ****************************************************************************************
          * Overloaded version of #consumeBin(NumberFormat) providing default value \c null for
          * parameter \p numberFormat (which selects gloabl object
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational").
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational").
          *
          * @return  \c true if an value could be parsed, \c false otherwise.
          ******************************************************************************************/
@@ -2090,14 +2180,14 @@ public class Substring implements CharSequence
         /** ****************************************************************************************
          * Reads an unsigned 64-bit integer in hexadecimal format at the given position
          * from this \b %AString. This is done, by invoking
-         * \ref com::aworx::lib::strings::NumberFormat::parseHex "NumberFormat.parseHex"
+         * \ref com.aworx.lib.strings.NumberFormat.parseHex "NumberFormat.parseHex"
          * on the given \p numberFormat instance.<br>
          Parameter \p numberFormat defaults \c null. This denotes static singleton
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
          * For more information on number conversion, see class
-         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat".
+         * \ref com.aworx.lib.strings.NumberFormat "NumberFormat".
          *
          * \note Although Java does not support unsigned integer, the value that is read with this
          *       method is correct in respect to the bits set in the signed value returned.
@@ -2125,7 +2215,7 @@ public class Substring implements CharSequence
         /** ****************************************************************************************
          * Overloaded version of #consumeHex(NumberFormat) providing default value \c null for
          * parameter \p numberFormat (which selects gloabl object
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational").
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational").
          *
          * @return  \c true if an value could be parsed, \c false otherwise.
          ******************************************************************************************/
@@ -2137,14 +2227,14 @@ public class Substring implements CharSequence
         /** ****************************************************************************************
          * Consumes an unsigned 64-bit integer in octal format at the given position
          * from this string. This is done, by invoking
-         * \ref com::aworx::lib::strings::NumberFormat::parseOct "NumberFormat.parseOct"
+         * \ref com.aworx.lib.strings.NumberFormat.parseOct "NumberFormat.parseOct"
          * on the given \p numberFormat instance.<br>
          Parameter \p numberFormat defaults \c null. This denotes static singleton
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
          * For more information on number conversion, see class
-         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat".
+         * \ref com.aworx.lib.strings.NumberFormat "NumberFormat".
          *
          * \note Although Java does not support unsigned integer, the value that is read with this
          *       method is correct in respect to the bits set in the signed value returned.
@@ -2171,7 +2261,7 @@ public class Substring implements CharSequence
         /** ****************************************************************************************
          * Overloaded version of #consumeOct(NumberFormat) providing default value \c null for
          * parameter \p numberFormat (which selects gloabl object
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational").
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational").
          *
          * @return  \c true if an value could be parsed, \c false otherwise.
          ******************************************************************************************/
@@ -2183,16 +2273,16 @@ public class Substring implements CharSequence
         /** ****************************************************************************************
          * Consumes a floating point number at the given position from this \b %AString.
          * This is done, by invoking
-         * \ref com::aworx::lib::strings::NumberFormat::parseFloat "NumberFormat.parseFloat"
+         * \ref com.aworx.lib.strings.NumberFormat.parseFloat "NumberFormat.parseFloat"
          * on the given \p numberFormat instance.<br>
          Parameter \p numberFormat defaults \c null. This denotes static singleton
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to 'international' settings (not using the locale) and therefore
          * also not parsing - grouping characters.
          *
          * For more information on parsing options for floating point numbers and number
          * conversion in general, see class
-         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat".
+         * \ref com.aworx.lib.strings.NumberFormat "NumberFormat".
          *
          * @param numberFormat Defines the input format. Optional and defaults to \c null.
          *
@@ -2214,7 +2304,7 @@ public class Substring implements CharSequence
         /** ****************************************************************************************
          * Overloaded version of #consumeFloat(NumberFormat) providing default value \c null for
          * parameter \p numberFormat (which selects gloabl object
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational").
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational").
          *
          * @return  \c true if an value could be parsed, \c false otherwise.
          ******************************************************************************************/
@@ -2243,7 +2333,7 @@ public class Substring implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Reports an \b %ALib error (using \ref com::aworx::lib::lang::ReportWriter "ReportWriter") and
+         * Reports an \b %ALib error (using \ref com.aworx.lib.lang.ReportWriter "ReportWriter") and
          * returns null. The reason for this behavior is to disallow the usage of AString within
          * (system) methods that create sub sequences.
          * This would be in contrast to the design goal of AString.

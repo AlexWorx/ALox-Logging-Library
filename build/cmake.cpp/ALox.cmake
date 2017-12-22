@@ -64,30 +64,30 @@
 # Set ALox conditional compilation symbols
 # -------------------------------------------------------------------------------------------------
 
-    set( ALOX_COMPILER_SYMBOLS   "" )
+    set( ALOX_COMPILER_DEFINITIONS   "" )
 
 
-    # write compilations symbols into ${ALOX_COMPILER_SYMBOLS}
+    # write compilations symbols into ${ALOX_COMPILER_DEFINITIONS}
     if ( ${ALOX_DBG_LOG} )
-        set( ALOX_COMPILER_SYMBOLS  ${ALOX_COMPILER_SYMBOLS}    "ALOX_DBG_LOG_ON"          )
+        set( ALOX_COMPILER_DEFINITIONS  ${ALOX_COMPILER_DEFINITIONS}    "ALOX_DBG_LOG_ON"          )
         if ( ${ALOX_DBG_LOG_CI} )
-            set( ALOX_COMPILER_SYMBOLS  ${ALOX_COMPILER_SYMBOLS}    "ALOX_DBG_LOG_CI_ON"   )
+            set( ALOX_COMPILER_DEFINITIONS  ${ALOX_COMPILER_DEFINITIONS}    "ALOX_DBG_LOG_CI_ON"   )
         else()
-            set( ALOX_COMPILER_SYMBOLS  ${ALOX_COMPILER_SYMBOLS}    "ALOX_DBG_LOG_CI_OFF"  )
+            set( ALOX_COMPILER_DEFINITIONS  ${ALOX_COMPILER_DEFINITIONS}    "ALOX_DBG_LOG_CI_OFF"  )
         endif()
     else()
-        set( ALOX_COMPILER_SYMBOLS  ${ALOX_COMPILER_SYMBOLS}    "ALOX_DBG_LOG_OFF"         )
+        set( ALOX_COMPILER_DEFINITIONS  ${ALOX_COMPILER_DEFINITIONS}    "ALOX_DBG_LOG_OFF"         )
     endif()
 
     if ( ${ALOX_REL_LOG} )
-        set( ALOX_COMPILER_SYMBOLS  ${ALOX_COMPILER_SYMBOLS}    "ALOX_REL_LOG_ON"          )
+        set( ALOX_COMPILER_DEFINITIONS  ${ALOX_COMPILER_DEFINITIONS}    "ALOX_REL_LOG_ON"          )
         if ( ${ALOX_REL_LOG_CI} )
-            set( ALOX_COMPILER_SYMBOLS  ${ALOX_COMPILER_SYMBOLS}    "ALOX_REL_LOG_CI_ON"   )
+            set( ALOX_COMPILER_DEFINITIONS  ${ALOX_COMPILER_DEFINITIONS}    "ALOX_REL_LOG_CI_ON"   )
         else()
-            set( ALOX_COMPILER_SYMBOLS  ${ALOX_COMPILER_SYMBOLS}    "ALOX_REL_LOG_CI_OFF"  )
+            set( ALOX_COMPILER_DEFINITIONS  ${ALOX_COMPILER_DEFINITIONS}    "ALOX_REL_LOG_CI_OFF"  )
         endif()
     else()
-        set( ALOX_COMPILER_SYMBOLS  ${ALOX_COMPILER_SYMBOLS}    "ALOX_REL_LOG_OFF"         )
+        set( ALOX_COMPILER_DEFINITIONS  ${ALOX_COMPILER_DEFINITIONS}    "ALOX_REL_LOG_OFF"         )
     endif()
 
 
@@ -132,40 +132,60 @@
     #ALibCMake_DumpStatus()
 
 # -------------------------------------------------------------------------------------------------
+# ALoxCompilerAndLinkerFlags(target)
+#
+# Simple CMake functin that sets
+# - ALIB_COMPILER_DEFINITIONS
+# - AWORX_COMPILER_FEATURES
+# - AWORX_COMPILE_FLAGS
+# - AWORX_COMPILER_WARNINGS
+# - AWORX_LINKER_FLAGS
+#
+# In addition, postion independent compile (-fPic) is enabled (for static libraries its default
+# is off with CMake).
+# -------------------------------------------------------------------------------------------------
+function( ALoxCompilerAndLinkerFlags  target )
+
+    # compiler flags
+    target_compile_features   ( ${target}    PRIVATE         ${AWORX_COMPILER_FEATURES}      )
+    target_compile_options    ( ${target}    PRIVATE         ${AWORX_COMPILE_FLAGS}          )
+    target_compile_options    ( ${target}    PRIVATE         ${AWORX_COMPILER_WARNINGS}      )
+    set_property              ( TARGET ${target}   PROPERTY POSITION_INDEPENDENT_CODE ON     )
+
+    #definitions
+    target_compile_definitions( ${target}    PUBLIC          ${ALIB_COMPILER_DEFINITIONS}
+                                                             ${ALOX_COMPILER_DEFINITIONS}    )
+
+    # linker flags
+    set_target_properties     ( ${target}    PROPERTIES  LINK_FLAGS     ${AWORX_LINKER_FLAGS})
+
+endfunction(ALoxCompilerAndLinkerFlags)
+
+# -------------------------------------------------------------------------------------------------
 # Targets
 # -------------------------------------------------------------------------------------------------
 
 # Static library
     # sources
-    add_library               ( ALox_StaticLib                               ${ALIB_INCS}    ${ALOX_INCS}
-                                                                             ${ALIB_SRCS}    ${ALOX_SRCS}    )
-    target_include_directories( ALox_StaticLib    PUBLIC                     ${ALIB_SRC_DIR} ${ALOX_SRC_DIR} )
+    add_library                ( ALox_StaticLib                    ${ALIB_INCS}    ${ALOX_INCS}
+                                                                   ${ALIB_SRCS}    ${ALOX_SRCS}    )
+    target_include_directories ( ALox_StaticLib    PUBLIC          ${ALIB_SRC_DIR} ${ALOX_SRC_DIR} )
 
-    # compiler/linker flags
-    set_target_properties     ( ALox_StaticLib    PROPERTIES  COMPILE_FLAGS  ${AWORX_COMPILE_FLAGS}          )
-
-    target_compile_definitions( ALox_StaticLib    PUBLIC                     ${ALIB_COMPILER_SYMBOLS}
-                                                                             ${ALOX_COMPILER_SYMBOLS}        )
-    set_target_properties     ( ALox_StaticLib    PROPERTIES  LINK_FLAGS     ${AWORX_LINK_FLAGS}             )
+    ALoxCompilerAndLinkerFlags( ALox_StaticLib )
 
     # library output path/name (for static libs this is 'ARCHIVE_...', for dynamic libs 'LIBRARY_...'
-    set_target_properties     ( ALox_StaticLib    PROPERTIES  ARCHIVE_OUTPUT_NAME  ${ALOX_LIBRARY_FILENAME}  )
+    set_target_properties      ( ALox_StaticLib    PROPERTIES  ARCHIVE_OUTPUT_NAME  ${ALOX_LIBRARY_FILENAME}  )
 
 # Shared library
     # sources
-    add_library               ( ALox_SharedLib    SHARED                     ${ALIB_INCS}    ${ALOX_INCS}
-                                                                             ${ALIB_SRCS}    ${ALOX_SRCS}    )
-    target_include_directories( ALox_SharedLib    PUBLIC                     ${ALIB_SRC_DIR} ${ALOX_SRC_DIR} )
+    add_library                ( ALox_SharedLib    SHARED          ${ALIB_INCS}    ${ALOX_INCS}
+                                                                   ${ALIB_SRCS}    ${ALOX_SRCS}    )
+    target_include_directories ( ALox_SharedLib    PUBLIC          ${ALIB_SRC_DIR} ${ALOX_SRC_DIR} )
 
-    # compiler/linker flags
-    set_target_properties     ( ALox_SharedLib    PROPERTIES  COMPILE_FLAGS  ${AWORX_COMPILE_FLAGS}          )
-
-    target_compile_definitions( ALox_SharedLib    PUBLIC                     ${ALIB_COMPILER_SYMBOLS}
-                                                                             ${ALOX_COMPILER_SYMBOLS}        )
-    set_target_properties     ( ALox_SharedLib    PROPERTIES  LINK_FLAGS     ${AWORX_LINK_FLAGS}             )
+    ALoxCompilerAndLinkerFlags( ALox_SharedLib )
 
     # library output path/name (for static libs this is 'ARCHIVE_...', for dynamic libs 'LIBRARY_...'
-    set_target_properties     ( ALox_SharedLib    PROPERTIES  LIBRARY_OUTPUT_NAME  ${ALOX_LIBRARY_FILENAME}  )
+    set_target_properties      ( ALox_SharedLib    PROPERTIES  LIBRARY_OUTPUT_NAME  ${ALOX_LIBRARY_FILENAME}  )
 
 # -------------------------------------------------------------------------------------------------
 # Precompiled headers with 'cotire' CMake script.
@@ -180,9 +200,9 @@ if ( ${ALIB_CMAKE_COTIRE} )
     set_target_properties( ALox_StaticLib  PROPERTIES COTIRE_UNITY_SOURCE_MAXIMUM_NUMBER_OF_INCLUDES "-j" )
     set_target_properties( ALox_SharedLib  PROPERTIES COTIRE_UNITY_SOURCE_MAXIMUM_NUMBER_OF_INCLUDES "-j" )
 
-    # header for precomp is "alib/alib.hpp"
-    set_target_properties( ALox_StaticLib  PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT  "${ALIB_SRC_DIR}/alib/alib.hpp" )
-    set_target_properties( ALox_SharedLib  PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT  "${ALIB_SRC_DIR}/alib/alib.hpp" )
+    # header for precomp is "alox/alox.hpp"
+    set_target_properties( ALox_StaticLib  PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT  "${ALIB_SRC_DIR}/alox/alox.hpp" )
+    set_target_properties( ALox_SharedLib  PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT  "${ALIB_SRC_DIR}/alox/alox.hpp" )
 
     # add cotire to projects
     cotire               ( ALox_StaticLib ALox_SharedLib )

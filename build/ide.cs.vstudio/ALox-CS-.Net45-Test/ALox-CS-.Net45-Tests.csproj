@@ -65,9 +65,6 @@
     <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_config.cs">
       <Link>ut.AWorx.Lib\UT_alib_config.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_containers.cs">
-      <Link>ut.AWorx.Lib\UT_alib_containers.cs</Link>
-    </Compile>
     <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_strings_AString.cs">
       <Link>ut.AWorx.Lib\UT_alib_strings_AString.cs</Link>
     </Compile>
@@ -85,6 +82,9 @@
     </Compile>
     <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_time.cs">
       <Link>ut.AWorx.Lib\UT_alib_time.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_util_stringtree.cs">
+      <Link>ut.ALib\UT_alib_util_stringtree.cs</Link>
     </Compile>
     <Compile Include="..\..\..\src.cs\alox.samples\ALoxSamples.cs">
       <Link>ALoxSamples.cs</Link>

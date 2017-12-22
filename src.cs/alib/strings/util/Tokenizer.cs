@@ -11,16 +11,16 @@ using cs.aworx.lib.lang;
 
 /**
  * This sub-namespace  provides some utility classes which are related
- * to string classes found in namespace \ref cs::aworx::lib::strings.
+ * to string classes found in namespace \ref cs.aworx.lib.strings.
  */
 namespace cs.aworx.lib.strings.util  {
 
 
 /** ************************************************************************************************
  *  This class splits a given character array (e.g. a <em>const char*</em> or an
- *  \ref cs::aworx::lib::strings::AString "AString" object),
+ *  \ref cs.aworx.lib.strings.AString "AString" object),
  *  which contains data separated by a delimiter character, into tokens of type
- *  \ref cs::aworx::lib::strings::Substring "Substring".
+ *  \ref cs.aworx.lib.strings.Substring "Substring".
  *
  *  After an instance of this class is constructed, there are three methods available:
  *  - #HasNext: <br>
@@ -36,7 +36,7 @@ namespace cs.aworx.lib.strings.util  {
  *    After this method was invoked, #HasNext() will return false.
  *
  *  After a token was retrieved, it might be modified using the interface of class
- *  \ref cs::aworx::lib::strings::Substring "Substring".
+ *  \ref cs.aworx.lib.strings.Substring "Substring".
  *  (In other words, the tokenizer does not rely on the bounds of the current token when receiving
  *  the next.) Consequently, it is allowed to recursively tokenize a token by creating a
  *  different instance of class Tokenizer providing the returned token as input.
@@ -117,7 +117,7 @@ public class Tokenizer
 
         /** ****************************************************************************************
          *  Constructs a tokenizer to work on a given
-         *  \ref cs::aworx::lib::strings::AString "AString".
+         *  \ref cs.aworx.lib.strings.AString "AString".
          *
          * @param  src             The string to be tokenized.
          * @param  delim           The delimiter that separates the tokens. Can be changed with
@@ -132,7 +132,7 @@ public class Tokenizer
 
         /** ****************************************************************************************
          *  Constructs a tokenizer to work on a given
-         *  \ref cs::aworx::lib::strings::Substring "Substring".
+         *  \ref cs.aworx.lib.strings.Substring "Substring".
          *
          * @param  src             The string to be tokenized.
          * @param  delim           The delimiter that separates the tokens. Can be changed with
@@ -202,8 +202,8 @@ public class Tokenizer
         /** ****************************************************************************************
          * Returns the next token, which is afterwards also available through field #Actual.
          * If no further token  was available, the returned
-         * \ref cs::aworx::lib::strings::Substring "Substring" will be 'nulled'
-         * (see \ref cs::aworx::lib::strings::Substring::IsNull "Substring.IsNull").
+         * \ref cs.aworx.lib.strings.Substring "Substring" will be 'nulled'
+         * (see \ref cs.aworx.lib.strings.Substring.IsNull "Substring.IsNull").
          * To prevent this, the availability of a next token should be
          * checked using method #HasNext().
          *

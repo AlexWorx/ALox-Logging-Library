@@ -17,7 +17,7 @@
 #ifndef HPP_ALIB_COMPATIBILITY_STD_STRING
 //! @cond NO_DOX
 #define HPP_ALIB_COMPATIBILITY_STD_STRING 1
-//! @endcond NO_DOX
+//! @endcond
 #include <string>
 
 // #################################################################################################
@@ -222,7 +222,7 @@ namespace thirdparty { namespace std {
 #endif // ALIB_MODULE_STRINGS
 
 // #################################################################################################
-// ALib %Boxing / std::string compatibility support
+// %ALib %Boxing / std::string compatibility support
 // #################################################################################################
 
 #if ALIB_MODULE_BOXING
@@ -232,52 +232,52 @@ namespace thirdparty { namespace std {
                      "boxing of fundamental types is activated."
 #endif
 
-#if !defined(DOX_PARSER)
-ALIB_WARNINGS_START_TMP
-#endif
 namespace aworx { namespace lib { namespace boxing
 {
 
+#if !defined(DOX_PARSER)
+    ALIB_WARNINGS_ALLOW_TEMPLATE_META_PROGRAMMING
+
 // We are faking all template specializations of namespace boxing for doxygen into namespace
 // boxing::thirdparty to keep the documentation of namespace string clean!
-#if defined(DOX_PARSER)
-/**
- * \attention
- *   This is a non-existing namespace! It is exclusively defined for the
- *   [documentation parser](http://www.stack.nl/~dimitri/doxygen).
- *
- * \attention
- *   In this <b>"documentation namespace"</b>, you will find sub namespaces
- *   which in turn are purely created for documentation.
- */
-namespace thirdparty {
-/**
- * Implements <b>ALib %Boxing</b> for string types of the standard library.
- * On boxing, the string types are mapped to boxing arrays of the corresponding character types.
- *
- * \note The boxing definitions described here are available through header file <br>
- *       <b>"alib/compatiblity/std_string.hpp"</b>.
- *
- *  The following customizations are made:
- *  - Type \c std::string is boxed as \c char[]
- *  - Type \c std::wstring is boxed as \c wchar_[]
- *  - Type \c std::u16string is boxed as \c char16_t[]
- *  - Type \c std::u32string is boxed as \c char32_t[]
- *
- *  The same mapping applies for pointer types of named std types.
- *
- *  All types are unboxable als values.
- *
- * \note
- *   Namespace function  #InitStdString is to be invoked on bootstrap to complete the support
- *   of <c>std::string</c>-type boxing.
- *
- * \attention
- *   This is a non-existing namespace, exclusively defined for the
- *   [documentation parser](http://www.stack.nl/~dimitri/doxygen).
- *   This documentation is moved here to keep the original namespace documentation clean.
- */
-namespace std {
+#else
+    /**
+     * \attention
+     *   This is a non-existing namespace! It is exclusively defined for the
+     *   [documentation parser](http://www.stack.nl/~dimitri/doxygen).
+     *
+     * \attention
+     *   In this <b>"documentation namespace"</b>, you will find sub namespaces
+     *   which in turn are purely created for documentation.
+     */
+    namespace thirdparty {
+    /**
+     * Implements <b>%ALib %Boxing</b> for string types of the standard library.
+     * On boxing, the string types are mapped to boxing arrays of the corresponding character types.
+     *
+     * \note The boxing definitions described here are available through header file <br>
+     *       <b>"alib/compatiblity/std_string.hpp"</b>.
+     *
+     *  The following customizations are made:
+     *  - Type \c std::string is boxed as \c char[]
+     *  - Type \c std::wstring is boxed as \c wchar_[]
+     *  - Type \c std::u16string is boxed as \c char16_t[]
+     *  - Type \c std::u32string is boxed as \c char32_t[]
+     *
+     *  The same mapping applies for pointer types of named std types.
+     *
+     *  All types are unboxable als values.
+     *
+     * \note
+     *   Namespace function  #InitStdString is to be invoked on bootstrap to complete the support
+     *   of <c>std::string</c>-type boxing.
+     *
+     * \attention
+     *   This is a non-existing namespace, exclusively defined for the
+     *   [documentation parser](http://www.stack.nl/~dimitri/doxygen).
+     *   This documentation is moved here to keep the original namespace documentation clean.
+     */
+    namespace std {
 #endif
 #if !defined(DOX_PARSER)
 
@@ -341,7 +341,7 @@ inline  std::string    T_Boxing<std::string>::Unboxing( const Box& box )
     {
         return  std::u16string( (const char16_t*) box.data.Value,
                                 box.data.Length >= 0 ? static_cast<size_t>(box.data.Length)
-                                                     : aworx::lib::ALIB::strlen16( (const char16_t*) box.data.Value )
+                                                     : aworx::lib::detail::strlen16( (const char16_t*) box.data.Value )
                               );
 
     }
@@ -350,7 +350,7 @@ inline  std::string    T_Boxing<std::string>::Unboxing( const Box& box )
     {
         return  std::u32string( (const char32_t*) box.data.Value,
                                 box.data.Length >= 0 ? static_cast<size_t>(box.data.Length)
-                                                     : aworx::lib::ALIB::strlen32( (const char32_t*) box.data.Value )
+                                                     : aworx::lib::detail::strlen32( (const char32_t*) box.data.Value )
                               );
     }
 #endif
@@ -358,10 +358,10 @@ inline  std::string    T_Boxing<std::string>::Unboxing( const Box& box )
 
 void InitStdString();
 /**
- * Initializes <b>ALib %Boxing</b> system in respect to boxing <c>std::string</c>-types.
+ * Initializes <b>%ALib %Boxing</b> system in respect to boxing <c>std::string</c>-types.
  *
  * This method is \b not automatically invoked with
- * \ref aworx::lib::ALIB::Init "ALIB::Init", because the support for boxing
+ * \ref aworx::lib::ALib::Init "ALib::Init", because the support for boxing
  * <c>std::string</c>-types is optional and due to the inclusion of header
  * <b>"alib/compatibility/std_string.hpp"</b>.
  *
@@ -391,8 +391,9 @@ aworx::lib::boxing::DefineInterface<BoxedAs<std::string   >  , false , strings::
 #endif
 
 }}} // namespace [aworx::lib::boxing]
+
 #if !defined(DOX_PARSER)
-ALIB_WARNINGS_RESTORE
+    ALIB_WARNINGS_RESTORE
 #endif
 
 #endif // ALIB_MODULE_BOXING

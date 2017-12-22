@@ -45,19 +45,20 @@ FormatterStdImpl::FormatterStdImpl( const String& formatterClassName )
 }
 
 int  FormatterStdImpl::format(  AString&        pTargetString,
-                                  const String&   pFormatString,
-                                  const Boxes&    pArguments,
-                                  int             pArgOffset        )
+                                const String&   pFormatString,
+                                const Boxes&    pArguments,
+                                int             pArgOffset        )
 {
     // check for newline. This indicates that this is not a formatString string
     if( pFormatString.IndexOf('\n') >= 0 )
         return 0;
 
     // save parameters/init state
-    targetString=       &pTargetString;
-    formatString=       &pFormatString;
-    arguments=          &pArguments;
-    argOffset=           pArgOffset;
+    targetString=             &pTargetString;
+    targetStringStartLength=  pTargetString.Length();
+    formatString=             &pFormatString;
+    arguments=                &pArguments;
+    argOffset=                 pArgOffset;
 
     // initialize state info
     nextAutoIdx=        0;
@@ -87,7 +88,7 @@ int  FormatterStdImpl::format(  AString&        pTargetString,
             parser.ConsumeChars<false>(1);
         else
         {
-            parser.ConsumeChars<false>( escStart, pTargetString, 1, CurrentData::Keep );
+            parser.ConsumeChars<false, CurrentData::Keep >( escStart, pTargetString, 1 );
             replaceEscapeSequences( actLength );
         }
 
@@ -100,29 +101,28 @@ int  FormatterStdImpl::format(  AString&        pTargetString,
 
         // If no position was set in the field format string, automatically use next parameter
         if ( phaArgumentIdx < 0 )
-            if ( !setArgument( -1, false ) )
+            if ( !setArgument( -1 ) )
                 return argsConsumed;
         ALIB_ASSERT( phaArgument != nullptr );
 
 
 
         // write field
-        preAndPostProcess( -1 );
-        integer actIdx= targetString->Length();
-        if ( !writeCustomFormat() )
+        if( preAndPostProcess( -1 ) )
         {
-            // standard format
-            if (    ( phaFormatSpec.IsNotEmpty()  && !parseStdFormatSpec() )
-                 || !checkStdFieldAgainstArgument() )
-                return argsConsumed;
+            integer actIdx= targetString->Length();
+            if ( !writeCustomFormat() )
+            {
+                // standard format
+                if (    ( phaFormatSpec.IsNotEmpty()  && !parseStdFormatSpec() )
+                     || !checkStdFieldAgainstArgument() )
+                    return argsConsumed;
 
-            // write argument
-            writeStdArgument();
+                // write argument
+                writeStdArgument();
+            }
+            preAndPostProcess( actIdx );
         }
-
-        preAndPostProcess( actIdx );
-
-
     }// main loop searching next escape sequence
 }
 
@@ -130,9 +130,6 @@ void FormatterStdImpl::CloneSettings( FormatterStdImpl& reference )
 {
     DefaultNumberFormat    .Set( &reference.DefaultNumberFormat     );
     AlternativeNumberFormat.Set( &reference.AlternativeNumberFormat );
-
-    WriteALibErrorReports=        reference.WriteALibErrorReports;
-    WriteErrorsToTargetString=    reference.WriteErrorsToTargetString;
 }
 
 void FormatterStdImpl::resetPHAs()
@@ -153,19 +150,19 @@ void FormatterStdImpl::resetPHAs()
     phaWriteBinOctHexPrefix=    false;
     phaIsPercentage=            false;
     phaTypeCode=                '\0';
+    phaTypeCodePosition=        -1;
     phaFormatSpec.SetNull();
 }
 
-bool    FormatterStdImpl::setArgument( int pos, bool countStartsWith1 )
+bool    FormatterStdImpl::setArgument( int pos )
 {
-    if( countStartsWith1 )
+    if( argumentCountStartsWith1 )
     {
         if( pos == 0 )
-        {
-            errorFormatString( "Wrong argument index '0'" );
-            return false;
-        }
-        else if( pos > 0 )
+        throw Exception(ALIB_SRCPOS_REL_NULLED, Exceptions::ArgumentIndexIs0,
+                        formatString, formatString->Length() - parser.Length() - 2 );
+
+        if( pos > 0 )
             pos--;
     }
 
@@ -179,11 +176,10 @@ bool    FormatterStdImpl::setArgument( int pos, bool countStartsWith1 )
     // get corresponding argument
     size_t  argIdx= static_cast<size_t>( argOffset + phaArgumentIdx );
     if( argIdx >= arguments->size() )
-    {
-        String64 msg; msg._NC("Missing argument #" )._NC( phaArgumentIdx + (countStartsWith1 ? 1 : 0) );
-        errorFormatString( msg );
-        return false;
-    }
+        throw Exception(ALIB_SRCPOS_REL_NULLED, Exceptions::ArgumentIndexOutOfBounds,
+                        phaArgumentIdx    + argumentCountStartsWith1,
+                        arguments->size(),
+                        formatString, formatString->Length() - parser.Length() - 1 );
 
     phaArgument= &(*arguments)[argIdx];
     return true;
@@ -194,6 +190,9 @@ bool    FormatterStdImpl::setArgument( int pos, bool countStartsWith1 )
 bool    FormatterStdImpl::checkStdFieldAgainstArgument()
 {
     const Box* arg= phaArgument;
+
+    if( phaTypeCodePosition < 0 )
+        phaTypeCodePosition= formatString->Length() - parser.Length() - 1;
 
 
     // types bool and hashcode always works!
@@ -210,11 +209,10 @@ bool    FormatterStdImpl::checkStdFieldAgainstArgument()
         if(  phaType == PHType::Float )
             return true;
 
-        errorFormatString( String128("Incompatible format code '") << phaTypeCode
-                                  << "' for argument #"            << phaArgumentIdx
-                                  << " which is of floating point type" );
-
-        return false;
+        throw Exception( ALIB_SRCPOS_REL_NULLED, Exceptions::IncompatibleTypeCode,
+                         phaTypeCode, phaArgumentIdx + argumentCountStartsWith1,
+                         "floating point",
+                         formatString, phaTypeCodePosition                           );
     }
 
     if(    arg->IsType<boxed_int >()
@@ -228,15 +226,15 @@ bool    FormatterStdImpl::checkStdFieldAgainstArgument()
             ||  phaType == PHType::IntHex
             ||  phaType == PHType::Float
             ||  phaType == PHType::Character
+            ||  phaType == PHType::Fill
             )
         {
             return true;
         }
-
-        errorFormatString( String128("Incompatible format code '") << phaTypeCode
-                                  << "' for argument #"            << phaArgumentIdx
-                                  << " which is of integer type" );
-        return false;
+        throw Exception(ALIB_SRCPOS_REL_NULLED, Exceptions::IncompatibleTypeCode,
+                        phaTypeCode, phaArgumentIdx + argumentCountStartsWith1,
+                        "integer",
+                         formatString, phaTypeCodePosition                           );
 
     }
 
@@ -248,10 +246,10 @@ bool    FormatterStdImpl::checkStdFieldAgainstArgument()
         if( phaType == PHType::Character )
             return true;
 
-        errorFormatString( String128("Incompatible format code '") << phaTypeCode
-                                  << "' for argument #"            << phaArgumentIdx
-                                  << " which is of character type" );
-        return false;
+        throw Exception(ALIB_SRCPOS_REL_NULLED, Exceptions::IncompatibleTypeCode,
+                        phaTypeCode, phaArgumentIdx + argumentCountStartsWith1,
+                        "character",
+                         formatString, phaTypeCodePosition                           );
     }
 
     if( phaType == PHType::NotGiven )
@@ -312,6 +310,16 @@ void    FormatterStdImpl::writeStdArgument()
             target->_NC( wc );
         }
         break;
+
+        case PHType::Fill:
+        {
+            integer qty=  phaArgument->IsType<boxed_int>() ? static_cast<integer>( phaArgument->Unbox<boxed_int >() )
+                                                           : static_cast<integer>( phaArgument->Unbox<boxed_uint>() );
+
+            target->InsertChars( phaFillChar, qty );
+        }
+        break;
+
 
         case PHType::IntBase10:
         {
@@ -422,11 +430,14 @@ void    FormatterStdImpl::writeStdArgument()
         break;
     }
 
+    // now do an 'intermediate post phase' processing
+    preAndPostProcess( fieldStartIdx, target );
+
     // apply cutting
     if ( phaCutContent >= 0 )
     {
         integer addedLength= CString::LengthWhenConvertedToWChar( target->Buffer() + oldTargetLength,
-                                                                   target->Length() - oldTargetLength );
+                                                                  target->Length() - oldTargetLength );
 
         // too much added?
         if( addedLength > phaCutContent )
@@ -450,7 +461,6 @@ void    FormatterStdImpl::writeStdArgument()
     }
 
 
-
     // if field mode, we have to apply the field buffer as a field to the real target now
     if( target ==  &fieldBuffer )
         targetString->_NC( Format::Field( fieldBuffer, phaWidth, phaAlignment, phaFillChar ) );
@@ -465,33 +475,6 @@ bool    FormatterStdImpl::writeCustomFormat()
     phaArgument->Invoke<boxing::IFormat>( phaFormatSpec, *targetString );
     return true;
 }
-
-void    FormatterStdImpl::errorFormatString( const String& msg )
-{
-    #if ALIB_DEBUG
-    if ( !WriteErrorsToTargetString && !WriteALibErrorReports )
-        return;
-    #else
-    if ( !WriteErrorsToTargetString )
-        return;
-    #endif
-
-    String512 repMsg;
-    repMsg._NC( msg )
-          ._NC( " at index " )._NC( formatString->Length() - parser.Length() - 1 )
-          ._NC( " in format String \"" )._NC( formatString )._NC("\".");
-
-    #if ALIB_DEBUG
-    if ( WriteErrorsToTargetString )
-    #endif
-        targetString->_NC(repMsg);
-
-    #if ALIB_DEBUG
-      if( WriteALibErrorReports )
-          ALIB_ERROR( repMsg.ToCString() );
-    #endif
-}
-
 
 
 }}}} // namespace [aworx::lib::strings::format]

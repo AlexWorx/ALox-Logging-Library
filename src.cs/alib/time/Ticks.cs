@@ -32,7 +32,7 @@ namespace cs.aworx.lib.time  {
  * As Ticks are system dependent, they should not be stored in system independent data files or
  * otherwise shared between systems. In general such values should only be used by methods of
  * this class and class
- * \ref cs::aworx::lib::time::TickWatch "TickWatch".
+ * \ref cs.aworx.lib.time.TickWatch "TickWatch".
  *
  * The resolution and accuracy of the values is platform dependent. Especially nanoseconds are
  * deemed to be not accurate and above 100 ns (this was written and fact in 2013).

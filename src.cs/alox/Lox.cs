@@ -32,7 +32,7 @@ namespace cs.aworx.lox {
 
 /** ************************************************************************************************
  * This class acts as a container for Loggers and provides a convenient interface to logging.
- * Fore information how to use this class, checkout the \b %ALox tutorials and the 
+ * Fore information how to use this class, checkout the \b %ALox tutorials and the
  * [ALox User Manual](../manual.html).
  **************************************************************************************************/
 public class Lox : ThreadLock
@@ -239,13 +239,13 @@ public class Lox : ThreadLock
          * In addition, name \c "GLOBAL" is not allowed.
          *
          * If parameter \p register is \c true (the default), static method
-         * \ref cs::aworx::lox::ALox::Register "ALox.Register" is invoked and the object will be
+         * \ref cs.aworx.lox.ALox.Register "ALox.Register" is invoked and the object will be
          * retrievable with static method
-         * \ref cs::aworx::lox::ALox::Get "ALox.Get". In some situations, such 'registration'
+         * \ref cs.aworx.lox.ALox.Get "ALox.Get". In some situations, such 'registration'
          * may not be wanted.
          * @param name       The name of the Lox. Will be converted to upper case.
          * @param doRegister If \c true, this object is registered with static class
-         *                   \ref cs::aworx::lox::ALox "ALox".
+         *                   \ref cs.aworx.lox.ALox "ALox".
          *                   Optional and defaults to \c true.
          ******************************************************************************************/
         public Lox( String name, bool doRegister = true )   : base()
@@ -257,7 +257,7 @@ public class Lox : ThreadLock
                 scopeInfo=      new ScopeInfo( name, threadDictionary );
                 scopeDomains=   new ScopeStore<AString                     >( scopeInfo, false );
                 scopePrefixes=  new ScopeStore<Object                      >( scopeInfo, false );
-                scopeLogData=   new ScopeStore<Dictionary<AString, Object>>( scopeInfo, true  );
+                scopeLogData=   new ScopeStore<Dictionary<AString, Object> >( scopeInfo, true  );
                 scopeLogOnce=   new ScopeStore<Dictionary<AString, int[]>  >( scopeInfo, true  );
 
 
@@ -283,7 +283,7 @@ public class Lox : ThreadLock
 
                 // read domain substitution rules from configuration
                 Variable variable= new Variable( ALox.DOMAIN_SUBSTITUTION, GetName() );
-                if ( variable.Load() != 0 )
+                if ( ALox.Config.Load(variable) != 0 )
                 {
                     for( int ruleNo= 0; ruleNo< variable.Size(); ruleNo++ )
                     {
@@ -359,7 +359,7 @@ public class Lox : ThreadLock
      * Status of registration with \b %ALox. To keep a \b %Lox "private" using parameter
      * \p doRegister of the constructor, allows to suppress registration.
      * Registered instances of this class can be statically received (by their name) using
-     * \ref cs::aworx::lox::ALox::Get "ALox.Get".
+     * \ref cs.aworx.lox.ALox.Get "ALox.Get".
      *
      * @returns \c true if this instance was registered with \b %ALox, \c false if not.
      **********************************************************************************************/
@@ -405,7 +405,7 @@ public class Lox : ThreadLock
      *   independent way.
      *
      * \attention
-     *   Setting global rules (when parameter \p global equals \c Inclusion::Include) is not
+     *   Setting global rules (when parameter \p global equals \c Inclusion.Include) is not
      *   protected by a \c mutex against concurrent access. Therefore, global rules have
      *   to be either at bootstrap of a process, before threads are created, or such creation
      *   has to 'manually' be protected by locking all existing instances of this class!
@@ -426,7 +426,7 @@ public class Lox : ThreadLock
      *                        or applies to all instances of class \b %Lox.
      *                        Defaults to \b %Reach.Global.
      * @param priority        The priority of the setting. Defaults to
-     *                        \ref cs::aworx::lib::config::Configuration::PrioDefault "Configuration.PrioDefault",
+     *                        \ref cs.aworx.lib.config.Configuration.PrioDefaultValues "Configuration.PrioDefaultValues",
      *                        which is a lower priority than standard plug-ins of external
      *                        configuration have.
      *
@@ -441,7 +441,7 @@ public class Lox : ThreadLock
                                             Case      sensitivity       = Case.Ignore,
                                             String    trimReplacement   = null,
                                             Reach     reach             = Reach.Global,
-                                            int       priority          = Configuration.PrioDefault,
+                                            int       priority          = Configuration.PrioDefaultValues,
             [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
@@ -493,11 +493,11 @@ public class Lox : ThreadLock
      * configuration variable [ALOX_CONSOLE_TYPE](../group__GrpALoxConfigVars.html) is checked.
      * If this variable is not set, then the decision is made as follows:
      * - On GNU/Linux OS, a
-     *   \ref cs::aworx::lox::loggers::AnsiConsoleLogger "AnsiConsoleLogger" is chosen.
+     *   \ref cs.aworx.lox.loggers.AnsiConsoleLogger "AnsiConsoleLogger" is chosen.
      * - On Windows OS, if a console window is attached, type
-     *   \ref cs::aworx::lox::loggers::ColorConsoleLogger "ColorConsoleLogger" is chosen. If
+     *   \ref cs.aworx.lox.loggers.ColorConsoleLogger "ColorConsoleLogger" is chosen. If
      *   no console is attached to the process, instead a
-     *   \ref cs::aworx::lox::loggers::ConsoleLogger "ConsoleLogger" is returned.
+     *   \ref cs.aworx.lox.loggers.ConsoleLogger "ConsoleLogger" is returned.
      *
      * @param name (Optional) The name of the \e Logger.
      *             Defaults to null, which implies standard logger names defined
@@ -509,7 +509,7 @@ public class Lox : ThreadLock
         #if ALOX_DBG_LOG || ALOX_REL_LOG
             //--- first: check environment "ALOX_DBG_CONSOLE_TYPE". They have precedence ---
             Variable variable= new Variable(ALox.CONSOLE_TYPE);
-            variable.Load();
+            ALox.Config.Load(variable);
             AString val= variable.GetString().Trim();
 
             if( val.Equals( "PLAIN",    Case.Ignore ) )   return new ConsoleLogger     ( name );
@@ -597,7 +597,7 @@ public class Lox : ThreadLock
         // an automatic default value, we will not write back into the user's variable store.
         // As always, only if the app fetches new variables on termination, this is entry is copied.
         Variable variable= new Variable( ALox.VERBOSITY, GetName(), logger.GetName() );
-        variable.Load();
+        ALox.Config.Load(variable);
 
         // first token is "writeback" ?
         if ( variable.Size() == 0 )
@@ -659,7 +659,7 @@ public class Lox : ThreadLock
 
         // now store using the same plug-in as original variable has
         destVar.Priority= variable.Priority;
-        destVar.Store();
+        ALox.Config.Store( destVar );
 
         // internal logging
         intMsg._()._( "Argument 'writeback' in variable " )._( variable.Fullname )
@@ -691,7 +691,7 @@ public class Lox : ThreadLock
         loggerAddedSinceLastDebugState= false;
 
         Variable variable= new Variable( ALox.DUMP_STATE_ON_EXIT, GetName() );
-        variable.Load();
+        ALox.Config.Load(variable);
 
         String      domain=         null;
         Verbosity   verbosity=      Verbosity.Info;
@@ -916,7 +916,7 @@ public class Lox : ThreadLock
      * \b %Verbosity.Off and \p domain to \c "/".
      *
      * Optional parameter \p priority defaults to
-     * \ref cs::aworx::lib::config::Configuration::PrioDefault "Configuration.PrioDefault",
+     * \ref cs.aworx.lib.config.Configuration.PrioDefaultValues "Configuration.PrioDefaultValues",
      * which is a lower priority than those of the standard plug-ins of external configuration data.
      * Therefore, external configuration by default 'overwrite' settings made from 'within the
      * source code', which simply means by invoking this method.<br>
@@ -924,7 +924,7 @@ public class Lox : ThreadLock
      * - To 'lock' a verbosity setting against external manipulation.
      * - to 'break' the standard mechanism that an invocation of this method sets all
      *   sub-domains recursively. If a sub-domain was set with a higher priority
-     *   (e.g. <c>%Configuration.PrioDefault + 1</c>, then this sub-domain will not be affected by
+     *   (e.g. <c>%Configuration.PrioDefaultValues + 1</c>, then this sub-domain will not be affected by
      *   future invocations of this method with standard-priority given.
      *
      * \attention
@@ -954,7 +954,7 @@ public class Lox : ThreadLock
      *                   starting with <c> '/'</c> are recommended.
      *                   Defaults to root domain \"/\".
      * @param priority   The priority of the setting. Defaults to
-     *                   \ref cs::aworx::lib::config::Configuration::PrioDefault "Configuration.PrioDefault".
+     *                   \ref cs.aworx.lib.config.Configuration.PrioDefaultValues "Configuration.PrioDefaultValues".
      *
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
@@ -962,7 +962,7 @@ public class Lox : ThreadLock
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
     public void        SetVerbosity( Logger logger, Verbosity verbosity, String domain = "/",
-                                     int priority = Configuration.PrioDefault,
+                                     int priority = Configuration.PrioDefaultValues,
     [CallerLineNumber] int cln=0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
@@ -1039,7 +1039,7 @@ public class Lox : ThreadLock
 
                 // we have to get all verbosities of already existing domains
                 Variable variable= new Variable( ALox.VERBOSITY, GetName(), logger.GetName() );
-                if( 0 != variable.Load() )
+                if( 0 != ALox.Config.Load(variable) )
                 {
                     getAllVerbosities( logger, domains         , variable );
                     getAllVerbosities( logger, internalDomains , variable );
@@ -1076,7 +1076,7 @@ public class Lox : ThreadLock
      *                   starting with <c> '/'</c> are recommended.
      *                   Defaults to root domain \"/\".
      * @param priority   The priority of the setting. Defaults to
-     *                   \ref cs::aworx::lib::config::Configuration::PrioDefault "Configuration.PrioDefault".
+     *                   \ref cs.aworx.lib.config.Configuration.PrioDefaultValues "Configuration.PrioDefaultValues".
      *
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
@@ -1086,7 +1086,7 @@ public class Lox : ThreadLock
     public  void SetVerbosity(  String     loggerName,
                                 Verbosity  verbosity,
                                 String     domain        ="/",
-                                int        priority      = Configuration.PrioDefault,
+                                int        priority      = Configuration.PrioDefaultValues,
     [CallerLineNumber] int cln=0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
@@ -1107,7 +1107,7 @@ public class Lox : ThreadLock
                 if ( no >= 0 )
                 {
                     SetVerbosity( otherTree.GetLogger( no ), Verbosity.Off,
-                                  actualTree.FullPath.ToString(), Configuration.PrioDefault    ,cln,csf,cmn );
+                                  actualTree.FullPath.ToString(), Configuration.PrioDefaultValues    ,cln,csf,cmn );
                     no= dom.GetLoggerNo( loggerName );
                     ALIB_DBG.ASSERT( no >= 0 );
                 }
@@ -1166,27 +1166,23 @@ public class Lox : ThreadLock
      * @param scopeDomain    The domain path to register.
      * @param scope     The scope that should the given \p domain be registered for.
      *                  Available Scope definitions are platform/language dependent.
-     * @param pathLevel Used only with
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path".
-     *                  Cuts the given number of directories from the end of the source path.
-     *                  Optional and defaults to \c 0.
      *
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-        public  void SetDomain( String scopeDomain, Scope scope, int pathLevel= 0,
+        public  void SetDomain( String scopeDomain, Scope scope,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            setDomainImpl( scopeDomain, scope, pathLevel, false, null, cln,csf,cmn );
+            setDomainImpl( scopeDomain, scope, false, null, cln,csf,cmn );
         #endif
     }
 
     /** ****************************************************************************************
      * This overloaded version of
-     * \ref SetDomain(String,Scope,int,int,String,String) "SetDomain"
+     * \ref SetDomain(String,Scope,int,String,String) "SetDomain"
      * is applicable only for \e %Scope.ThreadOuter and \e %Scope.ThreadInner and allows to
      * specify the thread that the setting should be associated with.
      *
@@ -1211,7 +1207,7 @@ public class Lox : ThreadLock
             if ( !isThreadRelatedScope( scope, cln,csf,cmn) )
                 return;
 
-            setDomainImpl( scopeDomain, scope, 0, false, thread, cln,csf,cmn );
+            setDomainImpl( scopeDomain, scope, false, thread, cln,csf,cmn );
         #endif
     }
 
@@ -1263,7 +1259,7 @@ public class Lox : ThreadLock
             }
 
             // invoke internal master
-            setDomainImpl( scopeDomain, scope, 0, true, thread,  cln,csf,cmn );
+            setDomainImpl( scopeDomain, scope, true, thread,  cln,csf,cmn );
         } finally { Release(); }
         #endif
     }
@@ -1319,7 +1315,7 @@ public class Lox : ThreadLock
      * variables. Any prioritized \e 'internal' setting of \e Verbosities this way could be
      * circumvented!
      *
-     * For more information consult the [ALox User Manual](../man_domain_substitution.html).
+     * For more information consult the [ALox User Manual](../alox_man_domain_substitution.html).
      *
      * @param domainPath  The path to search. Has to start with either  <c> '/'</c> or <c> '*'</c>.
      * @param replacement The replacement path.
@@ -1436,26 +1432,23 @@ public class Lox : ThreadLock
      * @param logable     The <em>Prefix Logable</em> to set.
      * @param scope       The scope that should the given \p logable be registered for.
      *                    Available Scope definitions are platform/language dependent.
-     * @param pathLevel   Used only if parameter \p scope equals
-     *                    \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                    to reference parent directories. Optional and defaults to \c 0.
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      ******************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public void        SetPrefix( Object logable, Scope scope, int pathLevel = 0,
+    public void        SetPrefix( Object logable, Scope scope,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            setPrefixImpl( logable, scope, pathLevel, null ,cln,csf,cmn );
+            setPrefixImpl( logable, scope, null ,cln,csf,cmn );
         #endif
     }
 
 
     /** ****************************************************************************************
      * This overloaded version of
-     * \ref SetPrefix(Object,Scope,int, int,String,String) "SetPrefix" is applicable only for
+     * \ref SetPrefix(Object,Scope, int,String,String) "SetPrefix" is applicable only for
      * \e %Scope.ThreadOuter and \e %Scope.ThreadInner and allows to specify the thread that
      * the setting should be associated with.
      *
@@ -1474,7 +1467,7 @@ public class Lox : ThreadLock
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            setPrefixImpl( logable, scope, 0, thread ,cln,csf,cmn );
+            setPrefixImpl( logable, scope, thread ,cln,csf,cmn );
         #endif
     }
 
@@ -1676,9 +1669,6 @@ public class Lox : ThreadLock
      *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  data is unique to the \e Lox.
      * @param scope     The \e %Scope that the data is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                  to reference parent directories. Optional and defaults to \c 0.
      *
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
@@ -1686,7 +1676,7 @@ public class Lox : ThreadLock
      ******************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
     public void Store( Object  data,                 String    key,
-                       Scope    scope= Scope.Global , int       pathLevel= 0,
+                       Scope    scope= Scope.Global,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
@@ -1700,6 +1690,14 @@ public class Lox : ThreadLock
             bool keyWasEmtpy;
             if ( (keyWasEmtpy= aKey.IsEmpty()) )
                 aKey._NC( noKeyHashKey );
+
+            // get path level
+            int pathLevel= 0;
+            if ( scope > Scope.Path )
+            {
+                pathLevel=  scope - Scope.Path;
+                scope= Scope.Path;
+            }
 
             // get the store
             scopeLogData.InitAccess( scope, pathLevel, null );
@@ -1759,14 +1757,11 @@ public class Lox : ThreadLock
 
     /** ****************************************************************************************
      * Overloaded version of
-     * #Store(Object,const String,Scope,int, int,String,String) "Store" which omits parameter \p key.
+     * #Store(Object,const String,Scope, int,String,String) "Store" which omits parameter \p key.
      *
      * @param data      The data object to store.
      *                  If \c null, currently stored data will be removed.
      * @param scope     The \e %Scope that the data is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                  to reference parent directories. Optional and defaults to \c 0.
      *
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
@@ -1774,11 +1769,11 @@ public class Lox : ThreadLock
      ******************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
     public void Store( Object  data,
-                       Scope scope= Scope.Global , int  pathLevel= 0,
+                       Scope scope= Scope.Global ,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            Store( data, null, scope, pathLevel    ,cln,csf,cmn);
+            Store( data, null, scope    ,cln,csf,cmn);
         #endif
     }
 
@@ -1798,21 +1793,26 @@ public class Lox : ThreadLock
      *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  data is unique to the \e Lox.
      * @param scope     The \e %Scope that the data is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                  to reference parent directories. Optional and defaults to \c 0.
      *
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      * @return The \b Object object, \c null if nothing was found.
      ******************************************************************************************/
-    public Object  Retrieve( String key, Scope scope= Scope.Global,  int pathLevel= 0,
+    public Object  Retrieve( String key, Scope scope= Scope.Global,
 
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
         try { Acquire(cln,csf,cmn);
+
+            // get path level
+            int pathLevel= 0;
+            if ( scope > Scope.Path )
+            {
+                pathLevel=  scope - Scope.Path;
+                scope= Scope.Path;
+            }
 
             // get the data (create if not found)
             Object returnValue= null;
@@ -1831,7 +1831,7 @@ public class Lox : ThreadLock
                     map.TryGetValue( tmpAS, out returnValue );
 
                 if( returnValue == null )
-                    Store( new Object(), key, scope, pathLevel,  cln,csf,cmn);
+                    Store( new Object(), key, scope + pathLevel,  cln,csf,cmn);
                 else
                     break;
             }
@@ -1861,21 +1861,18 @@ public class Lox : ThreadLock
      *       It is not advised to use <em>Log Data</em> to implement application logic.
      *
      * @param scope     The \e %Scope that the data is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                  to reference parent directories. Optional and defaults to \c 0.
      *
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      * @return The \b Object object, \c null if nothing was found.
      ******************************************************************************************/
-    public Object  Retrieve( Scope scope= Scope.Global, int pathLevel= 0,
+    public Object  Retrieve( Scope scope= Scope.Global,
 
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            return Retrieve( null, scope, pathLevel    ,cln,csf,cmn);
+            return Retrieve( null, scope   ,cln,csf,cmn);
         #else
             return null;
         #endif
@@ -2360,7 +2357,7 @@ public class Lox : ThreadLock
                     int idx= 0;
                     if( firstArg.StartsWith( ALox.InternalDomains ) )
                         idx+= ALox.InternalDomains.Length;
-                        
+
                     // loop over domain and check for illegal characters
                     for( ; idx< firstArg.Length ; ++idx )
                     {
@@ -2402,7 +2399,7 @@ public class Lox : ThreadLock
     }
 
     /** ********************************************************************************************
-     * Logs the given \e Logables using \ref Verbosity::Verbose.
+     * Logs the given \e Logables using \ref Verbosity.Verbose.
      *
      * The first object provided may be a domain name. All values are passed to
      * #EntryDetectDomain. See documentation of this method for information on how to avoid
@@ -2439,7 +2436,7 @@ public class Lox : ThreadLock
     }
 
     /** ********************************************************************************************
-     * Logs the given \e Logables using \ref Verbosity::Info.
+     * Logs the given \e Logables using \ref Verbosity.Info.
      *
      * The first object provided may be a domain name. All values are passed to
      * #EntryDetectDomain. See documentation of this method for information on how to avoid
@@ -2477,7 +2474,7 @@ public class Lox : ThreadLock
 
 
     /** ********************************************************************************************
-     * Logs the given \e Logables using \ref Verbosity::Warning.
+     * Logs the given \e Logables using \ref Verbosity.Warning.
      *
      * The first object provided may be a domain name. All values are passed to
      * #EntryDetectDomain. See documentation of this method for information on how to avoid
@@ -2515,7 +2512,7 @@ public class Lox : ThreadLock
 
 
     /** ********************************************************************************************
-     * Logs the given \e Logables using \ref Verbosity::Error.
+     * Logs the given \e Logables using \ref Verbosity.Error.
      *
      * The first object provided may be a domain name. All values are passed to
      * #EntryDetectDomain. See documentation of this method for information on how to avoid
@@ -2698,10 +2695,10 @@ public class Lox : ThreadLock
      * Using parameter \p group, a set of <em>Log Statements</em> that share the same group key,
      * can be grouped and of such set, only the one which is first executed actually logs.<br>
      * Alternatively, when \p key is omitted (or null or empty), but a
-     * \ref cs::aworx::lox::Scope "Scope" is given with parameter \p scope, then the
+     * \ref cs.aworx.lox.Scope "Scope" is given with parameter \p scope, then the
      * counter is associated with the scope.<br>
      * Finally, parameters \p key and \p scope can also be used in combination. The key is
-     * then unique in respect to the \ref cs::aworx::lox::Scope "Scope" provided.
+     * then unique in respect to the \ref cs.aworx.lox.Scope "Scope" provided.
      *
      * Using, none, one or both of the parameters \p group and \p scope, among others, the
      * following use cases can be achieved.
@@ -2748,12 +2745,9 @@ public class Lox : ThreadLock
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope::Global, then the
+     *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *                  If negative, the first and every "-quantity-th" statement is executed.
@@ -2764,13 +2758,11 @@ public class Lox : ThreadLock
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
     public void Once( String domain, Verbosity verbosity, Object logables,
-                      String group,
-                      Scope scope= Scope.Global , int pathLevel= 0,
-                      int quantity= 1,
+                      String group, Scope scope= Scope.Global, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( domain, verbosity, logables, group, scope, pathLevel, quantity,   cln,csf,cmn );
+            once( domain, verbosity, logables, group, scope, quantity,   cln,csf,cmn );
         #endif
     }
 
@@ -2786,9 +2778,6 @@ public class Lox : ThreadLock
      *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -2798,13 +2787,11 @@ public class Lox : ThreadLock
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
     public void Once(                        Verbosity verbosity, Object logables,
-                      String group,
-                      Scope scope, int pathLevel= 0,
-                      int quantity= 1,
+                      String group, Scope scope, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, verbosity, logables, group, scope, pathLevel, quantity,   cln,csf,cmn );
+            once( null, verbosity, logables, group, scope, quantity,   cln,csf,cmn );
         #endif
     }
 
@@ -2833,7 +2820,7 @@ public class Lox : ThreadLock
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, verbosity, logables, group, Scope.Global, 0, quantity ,   cln,csf,cmn );
+            once( null, verbosity, logables, group, Scope.Global, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -2855,7 +2842,7 @@ public class Lox : ThreadLock
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, verbosity, logables, null, Scope.Global, 0, quantity ,   cln,csf,cmn );
+            once( null, verbosity, logables, null, Scope.Global, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -2870,9 +2857,6 @@ public class Lox : ThreadLock
      *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -2882,13 +2866,11 @@ public class Lox : ThreadLock
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
     public void Once(                                          Object logables,
-                      String group,
-                      Scope scope, int pathLevel= 0,
-                      int quantity= 1,
+                      String group, Scope scope, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, Verbosity.Info, logables, group, scope, pathLevel, quantity ,   cln,csf,cmn );
+            once( null, Verbosity.Info, logables, group, scope, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -2900,9 +2882,6 @@ public class Lox : ThreadLock
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -2912,12 +2891,11 @@ public class Lox : ThreadLock
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
     public void Once( String domain, Verbosity verbosity, Object logables,
-                      Scope scope= Scope.Global , int pathLevel= 0,
-                      int quantity= 1,
+                      Scope scope= Scope.Global, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( domain, verbosity, logables, null, scope, pathLevel, quantity ,   cln,csf,cmn );
+            once( domain, verbosity, logables, null, scope, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -2927,9 +2905,6 @@ public class Lox : ThreadLock
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -2939,12 +2914,11 @@ public class Lox : ThreadLock
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
     public void Once(                        Verbosity verbosity, Object logables,
-                      Scope scope, int pathLevel= 0,
-                      int quantity= 1,
+                      Scope scope, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, verbosity, logables, null, scope, pathLevel, quantity ,   cln,csf,cmn );
+            once( null, verbosity, logables, null, scope, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -2953,9 +2927,6 @@ public class Lox : ThreadLock
      *
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -2965,12 +2936,11 @@ public class Lox : ThreadLock
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
     public void Once(                                          Object logables,
-                      Scope scope, int pathLevel= 0,
-                      int quantity= 1,
+                      Scope scope, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, Verbosity.Info, logables, null, scope, pathLevel, quantity ,   cln,csf,cmn );
+            once( null, Verbosity.Info, logables, null, scope, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -2991,7 +2961,7 @@ public class Lox : ThreadLock
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, Verbosity.Info, logables, null, Scope.Global, 0, quantity ,   cln,csf,cmn );
+            once( null, Verbosity.Info, logables, null, Scope.Global, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -3018,7 +2988,7 @@ public class Lox : ThreadLock
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, Verbosity.Info, logables, group, Scope.Global, 0, quantity ,   cln,csf,cmn );
+            once( null, Verbosity.Info, logables, group, Scope.Global, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -3033,12 +3003,9 @@ public class Lox : ThreadLock
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope::Global, then the
+     *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -3049,12 +3016,11 @@ public class Lox : ThreadLock
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
     public void Once( String domain, Verbosity verbosity, String logable,
                       String group,
-                      Scope scope= Scope.Global , int pathLevel= 0,
-                      int quantity= 1,
+                      Scope scope= Scope.Global, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( domain, verbosity, logable, group, scope, pathLevel, quantity,   cln,csf,cmn );
+            once( domain, verbosity, logable, group, scope, quantity,   cln,csf,cmn );
         #endif
     }
 
@@ -3070,9 +3036,6 @@ public class Lox : ThreadLock
      *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -3083,12 +3046,11 @@ public class Lox : ThreadLock
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
     public void Once(                        Verbosity verbosity, String logable,
                       String group,
-                      Scope scope, int pathLevel= 0,
-                      int quantity= 1,
+                      Scope scope, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, verbosity, logable, group, scope, pathLevel, quantity,   cln,csf,cmn );
+            once( null, verbosity, logable, group, scope, quantity,   cln,csf,cmn );
         #endif
     }
 
@@ -3117,7 +3079,7 @@ public class Lox : ThreadLock
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, verbosity, logable, group, Scope.Global, 0, quantity ,   cln,csf,cmn );
+            once( null, verbosity, logable, group, Scope.Global, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -3139,7 +3101,7 @@ public class Lox : ThreadLock
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, verbosity, logable, null, Scope.Global, 0, quantity ,   cln,csf,cmn );
+            once( null, verbosity, logable, null, Scope.Global, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -3154,9 +3116,6 @@ public class Lox : ThreadLock
      *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -3167,12 +3126,11 @@ public class Lox : ThreadLock
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
     public void Once(                                          String logable,
                       String group,
-                      Scope scope, int pathLevel= 0,
-                      int quantity= 1,
+                      Scope scope, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, Verbosity.Info, logable, group, scope, pathLevel, quantity ,   cln,csf,cmn );
+            once( null, Verbosity.Info, logable, group, scope, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -3184,9 +3142,6 @@ public class Lox : ThreadLock
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
      * @param logable   The string message to log.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -3196,12 +3151,11 @@ public class Lox : ThreadLock
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
     public void Once( String domain, Verbosity verbosity, String logable,
-                      Scope scope= Scope.Global , int pathLevel= 0,
-                      int quantity= 1,
+                      Scope scope= Scope.Global, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( domain, verbosity, logable, null, scope, pathLevel, quantity ,   cln,csf,cmn );
+            once( domain, verbosity, logable, null, scope, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -3211,9 +3165,6 @@ public class Lox : ThreadLock
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
      * @param logable   The string message to log.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -3223,12 +3174,11 @@ public class Lox : ThreadLock
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
     public void Once(                        Verbosity verbosity, String logable,
-                      Scope scope, int pathLevel= 0,
-                      int quantity= 1,
+                      Scope scope, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, verbosity, logable, null, scope, pathLevel, quantity ,   cln,csf,cmn );
+            once( null, verbosity, logable, null, scope, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -3237,9 +3187,6 @@ public class Lox : ThreadLock
      *
      * @param logable   The string message to log.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -3249,12 +3196,11 @@ public class Lox : ThreadLock
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
     public void Once(                                          String logable,
-                      Scope scope, int pathLevel= 0,
-                      int quantity= 1,
+                      Scope scope, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, Verbosity.Info, logable, null, scope, pathLevel, quantity ,   cln,csf,cmn );
+            once( null, Verbosity.Info, logable, null, scope, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -3275,7 +3221,7 @@ public class Lox : ThreadLock
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, Verbosity.Info, logable, null, Scope.Global, 0, quantity ,   cln,csf,cmn );
+            once( null, Verbosity.Info, logable, null, Scope.Global, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -3302,7 +3248,7 @@ public class Lox : ThreadLock
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            once( null, Verbosity.Info, logable, group, Scope.Global, 0, quantity ,   cln,csf,cmn );
+            once( null, Verbosity.Info, logable, group, Scope.Global, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -3317,13 +3263,13 @@ public class Lox : ThreadLock
          * The resulting full domain string is assembled from inner to outer scope.
          * If \p domainPath, respectively as soon as any of the scope levels' Scope Domain paths
          * starts with the character defined in
-         * \ref cs::aworx::lox::core::Domain::Separator "Domain.Separator",
+         * \ref cs.aworx.lox.core.Domain.Separator "Domain.Separator",
          * the evaluation is stopped (the path is interpreted as absolute).
          *
          * @param domainPath The domain path. If starting with the character defined in
-         *                   \ref cs::aworx::lox::core::Domain::Separator "Domain.Separator",
+         *                   \ref cs.aworx.lox.core.Domain.Separator "Domain.Separator",
          *                   no Scope Domains are applied.
-         * @return The resulting \ref cs::aworx::lox::core::Domain "Domain".
+         * @return The resulting \ref cs.aworx.lox.core.Domain "Domain".
          ******************************************************************************************/
         protected  Domain evaluateResultDomain( String domainPath )
         {
@@ -3361,7 +3307,7 @@ public class Lox : ThreadLock
          *
          * @param domainSystem  The domain system. Either the standard or the internal one.
          * @param domainPath    The domain path.
-         * @return The resulting \ref cs::aworx::lox::core::Domain "Domain".
+         * @return The resulting \ref cs.aworx.lox.core.Domain "Domain".
          ******************************************************************************************/
         Domain findDomain( Domain domainSystem, AString domainPath )
         {
@@ -3389,7 +3335,7 @@ public class Lox : ThreadLock
                         logInternal( Verbosity.Info, "DMN", intMsg );
                     }
 
-                    // read domain from Config
+                    // read domain from config
                     if ( !dom.ConfigurationRead )
                     {
                         dom.ConfigurationRead= true;
@@ -3398,7 +3344,7 @@ public class Lox : ThreadLock
                         for ( int i= 0; i < dom.CountLoggers(); ++i )
                         {
                             Logger logger= dom.GetLogger(i);
-                            if ( 0 != variable.Define( ALox.VERBOSITY, GetName(), logger.GetName() ).Load() )
+                            if ( 0 != ALox.Config.Load( variable.Declare( ALox.VERBOSITY, GetName(), logger.GetName() )) )
                                 getVerbosityFromConfig( logger, dom, variable );
                         }
 
@@ -3592,9 +3538,9 @@ public class Lox : ThreadLock
             dom.CntLogCalls++;
 
             // get a logable list (reuse, one per recursive log)
-            while( logableLists.Count < lockCount )
+            while( logableLists.Count < cntAcquirements )
                 logableLists.Add( new List<Object>() );
-            List<Object> logableList= logableLists[lockCount - 1 ];
+            List<Object> logableList= logableLists[cntAcquirements - 1 ];
 
             for ( int i= 0; i < dom.CountLoggers() ; i++ )
                 if( dom.IsActive( i, verbosity ) )
@@ -3664,7 +3610,7 @@ public class Lox : ThreadLock
 
         /** ****************************************************************************************
          * Logs an internal error message using the internal domain tree as defined in
-         * \ref cs::aworx::lox::ALox::InternalDomains "ALox.InternalDomains".
+         * \ref cs.aworx.lox.ALox.InternalDomains "ALox.InternalDomains".
          *
          * @param verbosity The verbosity.
          * @param subDomain The sub-domain of the internal domain to log into.
@@ -3682,9 +3628,6 @@ public class Lox : ThreadLock
      * @param scopeDomain The domain path to register.
      * @param scope       The scope that the given \p domain should be registered for.
      *                    Available Scope definitions are platform/language dependent.
-     * @param pathLevel   Used only with
-     *                    \ref cs::aworx::lox::Scope::Path "Scope.Path".
-     *                    Cuts the given number of directories from the end of the source path.
      * @param removeNTRSD Used to remove thread-related Scope Domains (and is true only when
      *                    invoked by interface method #RemoveThreadDomain.
      * @param thread      The thread to set/unset a thread-related Scope Domain for.
@@ -3693,7 +3636,7 @@ public class Lox : ThreadLock
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
-    protected void setDomainImpl( String scopeDomain,  Scope    scope,   int pathLevel,
+    protected void setDomainImpl( String scopeDomain,  Scope    scope,
                                   bool   removeNTRSD,  Thread   thread,
                                   int cln,String csf,String cmn )
     {
@@ -3701,7 +3644,9 @@ public class Lox : ThreadLock
         //      scope domain) only evaluates true for thread related scopes
         try { Acquire(cln,csf,cmn);
 
-            if( !checkScopeInformation( scope, pathLevel, "DMN" ) )
+            // check scope and get path level
+            int pathLevel= checkScopeInformation( ref scope, "DMN" );
+            if( pathLevel < 0 )
                 return;
 
             bool newValueIsNotEmpty =     scopeDomain != null
@@ -3780,21 +3725,19 @@ public class Lox : ThreadLock
      * @param logable     The <em>Prefix Logable</em> to set.
      * @param scope       The scope that the given \p logable should be registered for.
      *                    Available Scope definitions are platform/language dependent.
-     * @param pathLevel   Used only if parameter \p scope equals
-     *                    \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                    to reference parent directories.
      * @param thread      The thread to set/unset a thread-related <em>Prefix Logable</em> for.
      *
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
-    protected void setPrefixImpl( Object  logable, Scope scope, int pathLevel, Thread thread,
+    protected void setPrefixImpl( Object  logable, Scope scope, Thread thread,
                                   int cln,String csf,String cmn )
     {
         try { Acquire(cln,csf,cmn);
 
-            if( !checkScopeInformation( scope, pathLevel, "PFX" ) )
+            int pathLevel= checkScopeInformation( ref scope, "PFX" );
+            if( pathLevel < 0 )
                 return;
 
             // store new prefix for this scope (and get current)
@@ -3873,18 +3816,25 @@ public class Lox : ThreadLock
     }
 
     /** ********************************************************************************************
-     * Checks if given scope needs information that is not available.
+     * Checks if given scope needs information that is not available. In addition, the
+     * in/out parameter \p scope is changed to \b Scope.Path, in case a level was added.
+     * That level is returned.
      *
-     * @param scope            The scope that is to be checked.
-     * @param pathLevel        Used only with
-     *                         \ref cs::aworx::lox::Scope::Path "Scope.Path".
-     *                         Cuts the given number of directories from the end of the source path.
+     * @param[in,out] scope    The scope that is to be checked.
      * @param internalDomain   The internal sub-domain to log any error/warning into.
      *
-     * @return \c true if all is fine, \c false else.
+     * @return A posititve value providing the path level deducted from \p scope if all is fine,
+     *        \c -1 else.
      **********************************************************************************************/
-    protected bool checkScopeInformation( Scope scope, int pathLevel, String internalDomain )
+    protected int checkScopeInformation( ref Scope scope , String internalDomain )
     {
+        int pathLevel= 0;
+        if ( scope > Scope.Path )
+        {
+            pathLevel=  scope - Scope.Path;
+            scope= Scope.Path;
+        }
+
         if (     ( scope == Scope.Path     &&  scopeInfo.GetTrimmedPath().IsEmpty() )
              ||  ( scope == Scope.Filename &&  scopeInfo.GetFileName()   .IsEmpty() )
              ||  ( scope == Scope.Method   &&  scopeInfo.GetMethod().Length == 0    ) )
@@ -3894,9 +3844,9 @@ public class Lox : ThreadLock
                 ALox.ToString(scope, pathLevel, intMsg);
             intMsg._( '.' );
             logInternal( Verbosity.Error, internalDomain, intMsg );
-            return false;
+            return -1;
         }
-        return true;
+        return pathLevel;
     }
 
     /** ********************************************************************************************
@@ -3910,12 +3860,9 @@ public class Lox : ThreadLock
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope::Global, then the
+     *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -3924,7 +3871,7 @@ public class Lox : ThreadLock
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     protected void once( String domain, Verbosity verbosity, Object logable,
-                         String group, Scope scope, int pathLevel,int quantity,
+                         String group, Scope scope, int quantity,
                          int cln,String csf,String cmn )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
@@ -3944,6 +3891,14 @@ public class Lox : ThreadLock
                 // not GOBAL scope: Unique tempAS per Scope
                 else
                     tmpAS._( noKeyHashKey );
+            }
+
+            // get path level
+            int pathLevel= 0;
+            if ( scope > Scope.Path )
+            {
+                pathLevel=  scope - Scope.Path;
+                scope= Scope.Path;
             }
 
             // get the store
@@ -4087,7 +4042,7 @@ public class Lox : ThreadLock
     protected void  getDomainPrefixFromConfig( Domain  dom )
     {
         Variable variable= new Variable( ALox.PREFIXES, GetName() );
-        if( 0 == variable.Load() )
+        if( 0 == ALox.Config.Load(variable) )
             return;
 
         Tokenizer prefixTok=        new Tokenizer();

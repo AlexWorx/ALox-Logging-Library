@@ -6,19 +6,19 @@
 // #################################################################################################
 
 /**
-\page man_multi_threaded   09 - Multi-Threaded Processes
+\page alox_man_multi_threaded   09 - Multi-Threaded Processes
 
 \~Comment ####################################################################################### \~
-# 1. Introduction # {#man_multi_threaded_intro}
+# 1. Introduction # {#alox_man_multi_threaded_intro}
 
 What does "logging" have to do with multi-threaded applications? Quite a bit, as we will see
 in this chapter.
 
 As a prerequisite the differences of accessing thread information with the different language
 incarnations of \b %ALox, namely
-[ALox for C++](cpp_ref/cppmainpage.html),
-[ALox for C#](cs_ref/csmainpage.html) and
-[ALox for Java](java_ref/javamainpage.html) should be highlighted.
+[ALox for C++](cpp_ref/alox_cpp_mainpage.html),
+[ALox for C#](cs_ref/alox_cs_mainpage.html) and
+[ALox for Java](java_ref/alox_java_mainpage.html) should be highlighted.
 
 C# and Java provide thread management with their standard library, which simplifies
 things a lot. Any "native" 3rd party thread library which might be used by C# and Java
@@ -38,7 +38,7 @@ Roughly it works as follows:
 - classes \b %Thread and \b %Runnable exist which have a similar interface to their Java-based
   counterparts.
 - Each \b %Thread instance created is hashed in a static table for future reference.
-- Static method \b %Thread::CurrentThread uses <b>std::this_thread::get_id()</b> to identify
+- Static method \b %Threads::CurrentThread uses <b>std::this_thread::get_id()</b> to identify
   the current thread. If no corresponding \b %Thread instance is found in the aforementioned
   static list of threads, then a new object is created, added to the list and returned.
 
@@ -54,7 +54,7 @@ ALib available). But the latter is a quite simplified limited piece of art - eno
 applications, but not more!
 
 \~Comment ####################################################################################### \~
-# 2. Mapping Thread Names # {#man_multi_threaded_mapping}
+# 2. Mapping Thread Names # {#alox_man_multi_threaded_mapping}
 ALox collects information about the thread that was executing a <em>Log Statement</em>. For textual logging, class
 <b>%MetaInfo</b>
   ([C++] (@ref      #aworx::lox::core::textlogger::MetaInfo),
@@ -80,12 +80,12 @@ not rename a thread, you just tell the \b %Lox to provide a different name to th
 
 A sample for using this method is given in the tutorial chapter
 <b>Name Your Threads</b>
-(\ref tutcpp_threadnames "C++",
+(\ref alox_tutcpp_threadnames "C++",
  \ref   tutcs_threadnames "C#",
- \ref tutjava_threadnames "Java").
+ \ref alox_java_tut_threadnames "Java").
 
 \~Comment ####################################################################################### \~
-# 3. Thread-Related Scopes # {#man_multi_threaded_scopes}
+# 3. Thread-Related Scopes # {#alox_man_multi_threaded_scopes}
 
 With the fundamental concept of having \e %Scopes in \b %ALox, and in particular with the fact
 that \b %ALox "interweaves" so called \b %Scope.ThreadInner and \b %Scope.ThreadOuter with other
@@ -93,10 +93,10 @@ language-related scopes (e.g. \b %Scope.Method) and the global \e Scope, \b %ALo
 of multi-threaded applications than just mapping new names to threads!
 
 This is a complex topic and there is a whole bunch of chapters we have to refer you to:
-- \ref man_scopes
-- \ref man_log_once,
-- \ref man_prefix_logables and
-- \ref man_log_data.
+- \ref alox_man_scopes
+- \ref alox_man_log_once,
+- \ref alox_man_prefix_logables and
+- \ref alox_man_log_data.
 
 To name just a few "applications" of the features described in the chapters above:
 
@@ -113,6 +113,6 @@ To name just a few "applications" of the features described in the chapters abov
 
 
 --------------------------------------------------------------------
-<center>Next chapter: \ref man_debug_and_release_logging </center> <center> \ref manual "Back to index" </center>
+<center>Next chapter: \ref alox_man_debug_and_release_logging </center> <center> \ref manual "Back to index" </center>
 
 */

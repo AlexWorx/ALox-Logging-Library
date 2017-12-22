@@ -5,7 +5,10 @@
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
-#include "alib/system/environment.hpp"
+
+#if !defined (HPP_ALIB_SYSTEM_ENVIRONMENT)
+#   include "alib/system/environment.hpp"
+#endif
 
 
 
@@ -17,8 +20,7 @@
     #pragma message ("Unknown Platform in file: " __FILE__ )
 #endif
 
-namespace aworx { namespace lib { namespace system
-{
+namespace aworx { namespace lib { namespace system {
 
 bool GetEnvironmentVariable( const TString&  name,
                              AString&        target,
@@ -94,5 +96,5 @@ bool GetEnvironmentVariable( const TString&  name,
 }
 
 
-}}}// namespace aworx::lib::system
+}}}// namespace [aworx::lib::system]
 

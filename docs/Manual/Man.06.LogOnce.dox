@@ -6,15 +6,15 @@
 // #################################################################################################
 
 /**
-\page man_log_once 06 - Lox.Once()
+\page alox_man_log_once 06 - Lox.Once()
 
 \tableofcontents
 
 \~Comment ####################################################################################### \~
-# 1. Introduction #  {#man_logonce_intro}
+# 1. Introduction #  {#alox_man_logonce_intro}
 
 For a better understanding of what is explained in this chapter, it might be advisable to have read chapter
-\ref man_scopes before continuing with this one. In short, at that place it is explained how ALox defines
+\ref alox_man_scopes before continuing with this one. In short, at that place it is explained how ALox defines
 language-related \e Scopes (including the 'global' \e Scope) and thread-related \e Scopes.
 Both types are 'interwoven' and form the complete set, as denoted in enum-class
 <b>%Scope</b>
@@ -24,7 +24,7 @@ Both types are 'interwoven' and form the complete set, as denoted in enum-class
 
 The most important use of \e Scopes in ALox is for setting and using <em>Scope Domains</em>
 which helps sorting and controlling the log output tremendously. Further information on
-this topic is found in chapter \ref man_logdomains.
+this topic is found in chapter \ref alox_man_logdomains.
 This chapter provides details about a feature that we simple call \b %Lox.Once.
 
 Using ALox, you have probably come across method
@@ -86,7 +86,7 @@ other variations of this method:
 
 
 \~Comment ####################################################################################### \~
-# 2. Grouping #  {#man_logonce_grouping}
+# 2. Grouping #  {#alox_man_logonce_grouping}
 
 In the introduction we have seen use cases like:
 - Is a certain piece of code reached?
@@ -132,7 +132,7 @@ For a short time, this is all to know about using \e Groups. But we will come ba
 to \e Groups after the next section.
 
 \~Comment ####################################################################################### \~
-# 3. Log.Once and Scopes #  {#man_logonce_scopes}
+# 3. Log.Once and Scopes #  {#alox_man_logonce_scopes}
 
 Instead of 'grouping' a set of \e Log.Once statements by manually assigning them a
 group name, ALox \e Scopes can 'automatically' group statements which in a 'natural' way belong
@@ -144,7 +144,7 @@ the very same that was achieved using \e Groups, can be achieved using \e Scopes
 
 Comparing the samples, it can be observed, that parameter \p group of type \e String was replaced by
 parameter \p scope of type \b %Scope, with value \b Scope.Filename. For other possible
-values, see \ref man_scopes.
+values, see \ref alox_man_scopes.
 
 From a birds' perspective, the advantages of \e Scopes are:
 - No need to 'invent' a group name and no risk of accidentally using the same name twice (e.g.
@@ -169,7 +169,7 @@ Why not combining them?
 
 
 \~Comment ####################################################################################### \~
-# 4. Combining Groups and Scopes #  {#man_logonce_gs_combined}
+# 4. Combining Groups and Scopes #  {#alox_man_logonce_gs_combined}
 
 The parameter list of
 <b>%Lox.Once</b>
@@ -182,7 +182,7 @@ To understand the consequence, its best to explain how ALox internally handles \
 and their value contains the counter. Now, ALox (to be precise, class \b Lox), creates a
 hash-table for \e Group keys for each 'instance of a scope' where \b Log.Once is used.<br>
 When parameter \p scope is omitted with \b Log.Once, it simply defaults to \e %Scope.Global, which
-is, as explained in \ref man_scopes, a singleton for each \b Lox. Consequently, each and every
+is, as explained in \ref alox_man_scopes, a singleton for each \b Lox. Consequently, each and every
 statement belongs to \e %Scope.Global and this is why \e Groups of default \e %Scope.Global
 seem to work independently from any scope.<br>
 The other way round, if parameter \p group is omitted, then there are two options for ALox: If
@@ -221,7 +221,7 @@ It is up to the reader of this manual and user of ALox to adopt his/her own use 
 list.
 
 \~Comment ####################################################################################### \~
-# 5. Passing Multiple Logables To Lox.Once#  {#man_logonce_multiple_logables}
+# 5. Passing Multiple Logables To Lox.Once#  {#alox_man_logonce_multiple_logables}
 Unlike other methods of class \b %Lox that comprise <em>Log Statements</em> which accept an
 arbitrary amount of logables, method \b %Once and its overloaded variants accept only one object.
 This restriction is caused by the otherwise complicated set of parameters and overloads of this
@@ -242,7 +242,7 @@ and the very same in JAVA:
 
 
 \~Comment ####################################################################################### \~
-# 6. Wrap-Up #  {#man_logonce_wrapup}
+# 6. Wrap-Up #  {#alox_man_logonce_wrapup}
 
 Some combinations of \e Scope 'levels' and using \e Groups probably do not make too much sense.
 For example: Grouping different \b LogOnce statements together within \e %Scope.Method? Well, you rather
@@ -257,15 +257,15 @@ If this gets all to complicated for you being new to ALox, here are some hints:
 
 - Like with other features of ALox, if parameters are omitted, you don't even see the more complex
   options and you are not bothered too much.
-  See \ref man_apdx_auto_config for a summary of this.
+  See \ref alox_man_apdx_auto_config for a summary of this.
 
 - If, especially in decent release-logging scenarios, a more complex setup troubles you,
   switch on ALox internal logging and see exactly what is happening where, when and why!
-  Information on how to do this is found in \ref man_internal_domains.
+  Information on how to do this is found in \ref alox_man_internal_domains.
 
 
 
 --------------------------------------------------------------------
-<center>Next chapter: \ref man_prefix_logables </center> <center> \ref manual "Back to index" </center>
+<center>Next chapter: \ref alox_man_prefix_logables </center> <center> \ref manual "Back to index" </center>
 
 */

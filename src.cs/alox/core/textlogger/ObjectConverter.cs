@@ -39,17 +39,17 @@ public abstract class ObjectConverter
 
 /** ************************************************************************************************
  * Implements the interface
- * \ref cs::aworx::lox::core::textlogger::ObjectConverter "ObjectConverter". Class
- * \ref cs::aworx::lox::core::textlogger::TextLogger      "TextLogger" creates an instance of this
+ * \ref cs.aworx.lox.core.textlogger.ObjectConverter "ObjectConverter". Class
+ * \ref cs.aworx.lox.core.textlogger.TextLogger      "TextLogger" creates an instance of this
  * type in the moment no other (custom) type was set prior to the first log statement.
  *
  * This implementation uses
  * two specialisations of class
- * \ref cs::aworx::lib::strings::format::Formatter "Formatter" to format the given logables to a textual
+ * \ref cs.aworx.lib.strings.format.Formatter "Formatter" to format the given logables to a textual
  * representation. The formatters (and their sequence!) are:
  *
- * 1. \ref cs::aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle"
- * 2. \ref cs::aworx::lib::strings::format::FormatterJavaStyle   "FormatterJavaStyle"
+ * 1. \ref cs.aworx.lib.strings.format.FormatterPythonStyle "FormatterPythonStyle"
+ * 2. \ref cs.aworx.lib.strings.format.FormatterJavaStyle   "FormatterJavaStyle"
  *
  * This way, standard text logging supports format strings in Python style as well as in Java style.
  **************************************************************************************************/

@@ -7,7 +7,7 @@
 /** @file */ // Hello Doxygen
 
 
-#if !defined (HPP_ALIB_BOXING)
+#if !defined (HPP_ALIB_BOXING_LIB)
     #include "alib/boxing/boxing.hpp"
 #endif
 
@@ -15,21 +15,20 @@
 #ifndef HPP_ALIB_BOXING_BOX
 //! @cond NO_DOX
 #define HPP_ALIB_BOXING_BOX 1
-//! @endcond NO_DOX
+//! @endcond
 
 
-namespace aworx { namespace lib { namespace boxing
-{
+namespace aworx { namespace lib { namespace boxing {
 
 /** ************************************************************************************************
- * This is the central class of <b>ALib %Boxing</b>. By using template meta programming, an object
+ * This is the central class of <b>%ALib %Boxing</b>. By using template meta programming, an object
  * of this class can be created by passing just any C++ type to the constructor. The passed
  * value will be "boxed" within the instance of this class.
  *
  * Then, the instances of this class support type checking, value extraction ("unboxing") and the
  * invocation of "virtual methods". All features are customizable in detail per "boxable type".
  *
- * A thorough introduction to and documentation of all aspects of <b>ALib %Boxing</b> is given
+ * A thorough introduction to and documentation of all aspects of <b>%ALib %Boxing</b> is given
  * with namespace documentation \ref aworx::lib::boxing.
  **************************************************************************************************/
 class Box
@@ -67,19 +66,18 @@ class Box
     public:
 
         #if !defined(DOX_PARSER)
-            ALIB_WARNINGS_START_TMP
+            ALIB_WARNINGS_ALLOW_TEMPLATE_META_PROGRAMMING
         #endif
 
         /** ****************************************************************************************
          * Default constructor. Created a nulled box (method #IsNull will return \c true after
          * construction). The box is equivalent to a box that is constructed with \c nullptr.
          *****************************************************************************************/
-        inline Box()
-        {
-            boxer= BoxerT<decltype(nullptr)>::GetSingleton();
-            data.Value=  (boxvalue) 0;
-            data.Length= 0;
-        }
+        inline
+        Box()
+        : boxer( BoxerT<decltype(nullptr)>::GetSingleton() )
+        , data (0)
+        {}
 
 
         /** ****************************************************************************************
@@ -87,14 +85,28 @@ class Box
          *
          * @param src The \p void* value to be boxed.
          *****************************************************************************************/
-        inline Box( void* src ) // void* would not compile if passed through the TMP constructor.
+        inline
+        Box( void* src ) // void* would not compile if passed through the TMP constructor.
+        : boxer( T_Boxing<void*>::value ? BoxerT<T_Boxing<void*>::Type>::GetSingleton()
+                                        : BoxerT<void *>::GetSingleton()                     )
+        , data ((boxvalue) src)
+        {}
+
+        /** ****************************************************************************************
+         * Constructor for enum elements.
+         *
+         * @tparam TEnum  Enum type
+         * @param  src    Enum element.
+         *****************************************************************************************/
+        template <typename TEnum,
+                  typename TEnableIf= typename std::enable_if<std::is_enum<TEnum>::value>::type >
+        inline
+        Box( TEnum src )
         {
-            if( T_Boxing<void*>::value )
-                boxer= BoxerT<T_Boxing<void*>::Type>::GetSingleton();
-            else
-                boxer= BoxerT<void *>::GetSingleton();
-            data.Value=  (boxvalue) src;
+            boxer=       BoxerT<TEnum>::GetSingleton();
+            data.Value= static_cast<boxvalue>( src );
             data.Length= 0;
+            return;
         }
 
         /** ****************************************************************************************
@@ -104,7 +116,8 @@ class Box
          * @tparam TBoxable  Any C++ type to be boxed.
          * @param  src       The src of (template) type \c T.
          *****************************************************************************************/
-        template <typename TBoxable>
+        template <typename TBoxable,
+                  typename TEnableIf= typename std::enable_if< !std::is_enum<TBoxable>::value  >::type >
         inline
         Box(const  TBoxable& src )
         {
@@ -126,7 +139,7 @@ class Box
             //ALIB_TMP_SHOW_TYPE_IN_DEBUGGER(TPlain)
 
             // array types
-            if( std::is_array<TPlain>::value )
+            if( std::is_array<TBoxable>::value )
             {
                 using TAElem= typename std::remove_extent<TPlain>::type;
                 //ALIB_TMP_SHOW_TYPE_IN_DEBUGGER(TAElem)
@@ -276,18 +289,19 @@ class Box
         public:
         #if ALIB_DEBUG
             /**
-             * Returns type information of the boxer of this instance.
+             * Returns a \c std::type_info that can be used to query information on the boxer
+             * of this instance.
              * Available only in debug compilations. See also static methods
-             * \ref aworx::lib::boxing::Boxer::DbgGetInterfaces         "Boxer::DbgGetInterfaces",
-             * \ref aworx::lib::boxing::Boxer::DbgGetKnownBoxers        "Boxer::DbgGetKnownBoxers",
-             * \ref aworx::lib::boxing::Boxer::DbgGetKnownInterfaces    "Boxer::DbgGetKnownInterfaces",
-             * \ref aworx::lib::boxing::Boxer::DbgGetDefaultInterfaces  "Boxer::DbgGetDefaultInterfaces"  and
-             * \ref aworx::lib::boxing::Boxer::DbgGetKnownInterfaceImpl "Boxer::DbgGetKnownInterfaceImpl".
+             * \alib{boxing,Boxing::DbgGetInterfaces},
+             * \alib{boxing,Boxing::DbgGetKnownBoxers},
+             * \alib{boxing,Boxing::DbgGetKnownInterfaces},
+             * \alib{boxing,Boxing::DbgGetDefaultInterfaces} and
+             * \alib{boxing,Boxing::DbgGetKnownInterfaceImpl},
              *
              * @return Type information of the boxer of this instance.
              */
             inline
-            const std::type_info&    DbgGetBoxerType() const
+            const std::type_info&    DbgGetReferenceType() const
             {
                 return boxer->type;
             }
@@ -303,6 +317,7 @@ class Box
         bool            IsType()        const
         {
             static_assert(     (     T_Boxing<TBoxable>::value && T_Boxing<TBoxable>::IsUnboxable() )
+                            || (    std::is_enum<TBoxable>::value )
                             || (    !T_Boxing<TBoxable>::value
                                  && std::is_pointer<TBoxable>::value
                                  && !T_Boxing<typename std::remove_pointer<TBoxable>::type >::value )
@@ -372,7 +387,7 @@ class Box
         template<typename TElementType> inline
         bool            IsArrayOf()     const
         {
-            return boxer->elemType == typeid(TElementType);
+            return  IsArray() &&  boxer->elemType == typeid(TElementType);
         }
 
         /** ****************************************************************************************
@@ -388,8 +403,10 @@ class Box
         }
 
         #if !defined(DOX_PARSER)
-            ALIB_WARNINGS_START_TMP
+            ALIB_WARNINGS_ALLOW_TEMPLATE_META_PROGRAMMING
         #endif
+
+
         /** ****************************************************************************************
          * Returns the contents of this box converted to type \p TBoxable.
          * By default this is done by invoking template method
@@ -410,6 +427,7 @@ class Box
         TBoxable         Unbox()           const
         {
             static_assert(     (     T_Boxing<TBoxable>::value && T_Boxing<TBoxable>::IsUnboxable() )
+                            || (    std::is_enum<TBoxable>::value )
                             || (    !T_Boxing<TBoxable>::value
                                  && std::is_pointer<TBoxable>::value
                                  && !T_Boxing<typename std::remove_pointer<TBoxable>::type >::value )
@@ -422,10 +440,6 @@ class Box
             else
                 return DefaultUnboxing<TBoxable>(*this);
         }
-
-        #if !defined(DOX_PARSER)
-            ALIB_WARNINGS_RESTORE
-        #endif
 
         /** ****************************************************************************************
          * Returns the length of the boxed object. The length is only applicable for array-type
@@ -454,6 +468,35 @@ class Box
         {
             return data.Value;
         }
+
+        /** ****************************************************************************************
+         * Returns the \c std::type_info struct describing the boxed type. In case of
+         * arrays, the info of the element type is returned.
+         *
+         * \attention This method is provided for "completeness" and only be used in special
+         *            situations.
+         *
+         * @return The \c std::type_info of the boxed value. In case of arrays, the type info of
+         *         the array elements.
+         * @tparam TIsArray  May be used to omit internal check for box being an array type or not:
+         *                   - If it is known to be \b no array type, set this to \c 0,
+         *                   - if it is known to be an array type, set this to \c 1 and
+         *                   - if it is not known, leave it to the default value \c -1.
+         ******************************************************************************************/
+        template<int TIsArray= -1 >
+        inline
+        const std::type_info&   GetTypeInfo()     const
+        {
+            if( TIsArray < 0 )
+                return  IsArray() ? boxer->elemType
+                                  : boxer->type;
+            return  TIsArray  ? boxer->elemType
+                              : boxer->type;
+        }
+
+        #if !defined(DOX_PARSER)
+            ALIB_WARNINGS_RESTORE
+        #endif
 
         /** ****************************************************************************************
          * Returns the size in bytes of on element of the stored array.
@@ -545,7 +588,7 @@ class Box
 
             // not found: In debug mode, check if this interface exists anywhere
             #if ALIB_DEBUG
-                if ( Boxer::dbgKnownInterfaces.find( typeid(TInterface) ) == Boxer::dbgKnownInterfaces.end() )
+                if ( BOXING.dbgKnownInterfaces.find( typeid(TInterface) ) == BOXING.dbgKnownInterfaces.end() )
                 {
                     ALIB_ERROR( "Unknown interface type: ",         debug::TypeDemangler(typeid(TInterface)).Get(),
                                 ". Note: Invoked on box of type: ", debug::TypeDemangler(boxer->type       ).Get()
@@ -603,6 +646,84 @@ class Box
 
             return interface;
         }
+
+        // #########################################################################################
+        // Comparison operators
+        // #########################################################################################
+
+        /** ****************************************************************************************
+         * Comparison operator. Returns the result of invocation of built-in boxing interface
+         * \alib{boxing,IEquals}.
+         *
+         * @param rhs The right hand side argument of the comparison.
+         * @return \c true if this object equals \p lhs, \c false otherwise.
+         ******************************************************************************************/
+        ALIB_API
+        bool operator==(Box const& rhs) const;
+
+        /** ****************************************************************************************
+         * Comparison operator. Returns the negated result of #operator==.
+         *
+         * @param rhs The right hand side argument of the comparison.
+         * @return \c true if this object equals \p lhs, \c false otherwise.
+         ******************************************************************************************/
+        inline
+        bool operator!=(const Box& rhs) const
+        {
+            return  ! ((*this) == rhs);
+        }
+
+        /** ****************************************************************************************
+         * Comparison operator. Returns the result of invocation of built-in boxing interface
+         * \alib{boxing,IIsLess}.
+         *
+         * \see
+         *   Sample code provided with documentation of %boxing interface \alib{boxing,IIsLess}.
+         *
+         * @param rhs The right hand side argument of the comparison.
+         * @return \c true if this object is smaller than \p lhs, otherwise \c false.
+         ******************************************************************************************/
+        ALIB_API
+        bool operator< (const Box& rhs)  const;
+
+        /** ****************************************************************************************
+         * Comparison operator. Uses a combination of #operator< and #operator==.
+         *
+         * @param rhs The right hand side argument of the comparison.
+         * @return \c true if this object is smaller than \p lhs, otherwise \c false.
+         ******************************************************************************************/
+        inline
+        bool operator<= (const Box& rhs) const
+        {
+            return     ((*this) <  rhs)
+                    || ((*this) == rhs);
+        }
+
+        /** ****************************************************************************************
+         * Comparison operator. Uses a combination of #operator< and #operator==.
+         *
+         * @param rhs The right hand side argument of the comparison.
+         * @return \c true if this object is smaller than \p lhs, otherwise \c false.
+         ******************************************************************************************/
+        inline
+        bool operator> (const Box& rhs)  const
+        {
+            return      !((*this) <  rhs)
+                    &&  !((*this) == rhs);
+        }
+
+        /** ****************************************************************************************
+         * Comparison operator. Returns the negated result of of #operator<.
+         *
+         * @param rhs The right hand side argument of the comparison.
+         * @return \c true if this object is smaller than \p lhs, otherwise \c false.
+         *****************************************************************************************/
+        inline
+        bool operator>= (const Box& rhs)  const
+        {
+            return   !( ((*this) < rhs) );
+        }
+
 
 }; // class Box
 

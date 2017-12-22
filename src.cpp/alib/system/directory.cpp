@@ -6,9 +6,15 @@
 // #################################################################################################
 #include "alib/alib.hpp"
 
-#include "alib/system/directory.hpp"
-#include "alib/system/process.hpp"
-#include "alib/system/environment.hpp"
+#if !defined (HPP_ALIB_SYSTEM_DIRECTORY)
+#   include "alib/system/directory.hpp"
+#endif
+#if !defined (HPP_ALIB_SYSTEM_PROCESSINFO)
+#   include "alib/system/process.hpp"
+#endif
+#if !defined (HPP_ALIB_SYSTEM_ENVIRONMENT)
+#   include "alib/system/environment.hpp"
+#endif
 
 #if   defined(__GLIBCXX__)  || defined(__APPLE__)
     #include <unistd.h>
@@ -29,8 +35,7 @@
 #include <fstream>
 
 
-namespace aworx { namespace lib { namespace system
-{
+namespace aworx { namespace lib { namespace system {
 
 // #################################################################################################
 // Static variables
@@ -54,7 +59,7 @@ void createTempFolderInHomeDir( const String& folderName, AString& resultPath, c
     bool exists= Directory::Exists( homeTemp.Path );
     if( !exists )
     {
-        if( Directory::Create( homeTemp.Path ) == Result::OK )
+        if( Directory::Create( homeTemp.Path ) == SystemErrors::OK )
         {
             exists= true;
             AString fileName( homeTemp.Path ); fileName._( DirectorySeparator )._( "readme.txt" );
@@ -77,7 +82,7 @@ void createTempFolderInHomeDir( const String& folderName, AString& resultPath, c
     if( exists )
         resultPath=   homeTemp.Path;
 }
-//! @endcond NO_DOX
+//! @endcond
 
 void Directory::Change( SpecialFolder special )
 {
@@ -313,34 +318,14 @@ bool Directory::Exists( const TString& path )
     #endif
 }
 
-Result Directory::Create( const TString& path )
+SystemErrors Directory::Create( const TString& path )
 {
     #if defined (__GLIBC__)  || defined(__APPLE__)
 
-        if ( mkdir( path.ToCString(), S_IRWXU | S_IRGRP | S_IROTH
-                                              | S_IXGRP | S_IXOTH  ) == 0 )
-            return Result::OK;
+        int errCode= mkdir( path.ToCString(), S_IRWXU | S_IRGRP | S_IROTH
+                                                      | S_IXGRP | S_IXOTH  );
 
-        switch( errno )
-        {
-              case ENOENT      : return Result::InvalidPath                  ;
-              case EEXIST      : return Result::FileExists                   ;
-
-              case EACCES      : return Result::Directory_Create_EACCES      ;
-              case EDQUOT      : return Result::Directory_Create_EDQUOT      ;
-              case EFAULT      : return Result::Directory_Create_EFAULT      ;
-              case ELOOP       : return Result::Directory_Create_ELOOP       ;
-              case EMLINK      : return Result::Directory_Create_EMLINK      ;
-              case ENAMETOOLONG: return Result::Directory_Create_ENAMETOOLONG;
-              case ENOMEM      : return Result::Directory_Create_ENOMEM      ;
-              case ENOSPC      : return Result::Directory_Create_ENOSPC      ;
-              case ENOTDIR     : return Result::Directory_Create_ENOTDIR     ;
-              case EPERM       : return Result::Directory_Create_EPERM       ;
-              case EROFS       : return Result::Directory_Create_EROFS       ;
-
-              default:           ALIB_ERROR( "Unknown Error code returned by 'mkdir'" );
-                                 return Result::Error;
-        }
+        return SystemErrors(errCode);
 
     #elif defined(_WIN32)
         wchar_t* wcharPath= new wchar_t[ path.Length() + 1];
@@ -350,15 +335,8 @@ Result Directory::Create( const TString& path )
 
 
         if( result )
-            return Result::OK;
-        switch ( GetLastError() )
-        {
-            case  ERROR_ALREADY_EXISTS: return Result::FileExists;
-            case  ERROR_PATH_NOT_FOUND: return Result::InvalidPath;
-            default:                    ALIB_ASSERT( "Unknown Error code returned by 'CreateDirectory' (Win32)" );
-                                        return Result::Error;
-        }
-
+            return SystemErrors::OK;
+        return SystemErrors( GetLastError() );
     #else
         #pragma message ("Unknown Platform in file: " __FILE__ )
     #endif
@@ -366,5 +344,5 @@ Result Directory::Create( const TString& path )
 
 
 
-}}}// namespace aworx::lib::system
+}}}// namespace [aworx::lib::system]
 

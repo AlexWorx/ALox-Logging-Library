@@ -19,7 +19,7 @@
 #ifndef HPP_ALIB_SYSTEM_ENVIRONMENT
 //! @cond NO_DOX
 #define HPP_ALIB_SYSTEM_ENVIRONMENT 1
-//! @endcond NO_DOX
+//! @endcond
 
 namespace aworx { namespace lib { namespace system
 {

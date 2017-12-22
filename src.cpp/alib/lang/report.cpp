@@ -21,8 +21,7 @@
 #endif
 
 
-namespace aworx { namespace lib { namespace lang
-{
+namespace aworx { namespace lib { namespace lang {
 
 // #################################################################################################
 // static objects
@@ -56,37 +55,35 @@ void Report::TerminationCleanUp()
 
 void Report::PushHaltFlags( bool haltOnErrors, bool haltOnWarnings )
 {
-    OWN(*lock);
+    LOCK_HERE_WITH(*lock)
     haltAfterReport.push(    (haltOnErrors   ? 1 : 0)
                            + (haltOnWarnings ? 2 : 0));
 }
 void Report::PopHaltFlags()
 {
-    #if ALIB_DEBUG
+    ALIB_DBG(
         bool stackEmptyError;
-    #endif
+    )
 
     {
-        OWN(*lock);
+        LOCK_HERE_WITH(*lock)
         haltAfterReport.pop();
 
-        #if ALIB_DEBUG
-            stackEmptyError= haltAfterReport.size() == 0;
-        #endif
+        ALIB_DBG(  stackEmptyError= haltAfterReport.size() == 0; )
     }
 
-    #if ALIB_DEBUG
+    ALIB_DBG(
         if ( stackEmptyError )
         {
             PushHaltFlags( true, true );
             ALIB_ERROR( "Stack empty, too many pop operations" );
         }
-    #endif
+    )
 }
 
 void Report::PushWriter( ReportWriter* newReportWriter )
 {
-    OWN(*lock);
+    LOCK_HERE_WITH(*lock)
     if ( writers.size() > 0 )
         writers.top()->NotifyActivation( Phase::End );
     writers.push( newReportWriter );
@@ -95,7 +92,7 @@ void Report::PushWriter( ReportWriter* newReportWriter )
 
 void Report::PopWriter( ReportWriter* checkWriter )
 {
-    OWN(*lock);
+    LOCK_HERE_WITH(*lock)
     if ( writers.size() == 0 )             {  ALIB_ERROR( "No Writer to remove" );         return; }
     if ( writers.top()  != checkWriter )   {  ALIB_ERROR( "Report Writer is not actual" ); return; }
     writers.top()->NotifyActivation( Phase::End );
@@ -106,13 +103,13 @@ void Report::PopWriter( ReportWriter* checkWriter )
 
 ReportWriter* Report::PeekWriter()
 {
-    OWN(*lock);
+    LOCK_HERE_WITH(*lock)
     return writers.top();
 }
 
 void Report::DoReport( const Message& message )
 {
-    OWN(*lock);
+    LOCK_HERE_WITH(*lock)
     if (recursionBlocker)
         return;
     recursionBlocker= true;
@@ -128,7 +125,7 @@ void Report::DoReport( const Message& message )
             #if defined( _WIN32 )
                 if( halt )
                 {
-                    if ( ALIB::IsDebuggerPresent() )
+                    if ( lib::ALIB.IsDebuggerPresent() )
                         DebugBreak();
                     else
                         assert( false );
@@ -145,15 +142,15 @@ void Report::DoReport( const Message& message )
 void ReportWriterStdIO::NotifyActivation( lang::Phase phase )
 {
     if ( phase == Phase::Begin )
-        ALIB::StdOutputStreamsLock.AddAcquirer   ( nullptr );
+        lib::ALIB.StdOutputStreamsLock.AddAcquirer   ( nullptr );
     else
-        ALIB::StdOutputStreamsLock.RemoveAcquirer( nullptr );
+        lib::ALIB.StdOutputStreamsLock.RemoveAcquirer( nullptr );
 }
 
 
 void ReportWriterStdIO::Report( const Report::Message& msg )
 {
-    ALIB::StdOutputStreamsLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
+    lib::ALIB.StdOutputStreamsLock.Acquire(ALIB_SRCPOS_REL_EMPTY);
 
         String512 buffer( "ALib " );
              if (  msg.Type == 0 )   buffer._( "Error:   " );
@@ -164,7 +161,7 @@ void ReportWriterStdIO::Report( const Report::Message& msg )
         auto& out   = msg.Type == 0 || msg.Type == 1 ? std::cerr : std::cout;
         auto& other = msg.Type == 0 || msg.Type == 1 ? std::cout : std::cerr;
 
-        Formatter::AcquireDefault().Format( buffer, dynamic_cast<const Boxes&>( msg ) );
+        Formatter::AcquireDefault( ALIB_SRCPOS_REL_EMPTY ).Format( buffer, dynamic_cast<const Boxes&>( msg ) );
         Formatter::ReleaseDefault();
 
         out  .flush();
@@ -177,15 +174,15 @@ void ReportWriterStdIO::Report( const Report::Message& msg )
 
 
         #if defined( _WIN32 )
-            if ( ALIB::IsDebuggerPresent() )
+            if ( lib::ALIB.IsDebuggerPresent() )
             {
                 OutputDebugStringA( buffer.ToCString() );
                 OutputDebugStringA( "\r\n" );
             }
         #endif
-    ALIB::StdOutputStreamsLock.Release();
+    lib::ALIB.StdOutputStreamsLock.Release();
 }
 
 
-}}}// namespace aworx::lib::lang
+}}}// namespace [aworx::lib::lang]
 

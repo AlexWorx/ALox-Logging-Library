@@ -103,9 +103,9 @@ void PerformanceTest()
     // use this till the end
     Log_Prune( Log::DebugLogger->AutoSizes.Import( Substring(autoSizes), CurrentData::Keep );  )
 
-                                    Log_SetVerbosity( Log::DebugLogger, Verbosity::Off    , "/MEM", Configuration::PrioProtected   );
-    Log_Prune( if (Log::IDELogger ) Log_SetVerbosity( Log::IDELogger  , Verbosity::Off    , "/MEM", Configuration::PrioProtected   ) );
-                                    Log_SetVerbosity( &ml,              Verbosity::Verbose, "/MEM", Configuration::PrioProtected   );
+                                    Log_SetVerbosity( Log::DebugLogger, Verbosity::Off    , "/MEM", Priorities::ProtectedValues   );
+    Log_Prune( if (Log::IDELogger ) Log_SetVerbosity( Log::IDELogger  , Verbosity::Off    , "/MEM", Priorities::ProtectedValues   ) );
+                                    Log_SetVerbosity( &ml,              Verbosity::Verbose, "/MEM", Priorities::ProtectedValues   );
 
     Log_Info( "Logging simple info lines" );
 
@@ -120,7 +120,7 @@ void PerformanceTest()
         int qtyLoops=   10;
     #endif
 
-    if ( ALIB::IsDebuggerPresent() )
+    if ( lib::ALIB.IsDebuggerPresent() )
         qtyLoops= 10;
 
 
@@ -173,10 +173,10 @@ void PerformanceTestRL()
         Lox_Prune( ml.            MetaInfo->Format= "[%TC+%TL][%tN]%V[%D]%A1(%#): "; )
     #endif
 
-//Lox_SetVerbosity( releaseLogger, Verbosity::Verbose,  ALox::InternalDomains, Configuration::PrioProtected );
-    Lox_SetVerbosity( releaseLogger, Verbosity::Verbose,   "/CON", Configuration::PrioProtected );
-    Lox_SetVerbosity( releaseLogger, Verbosity::Off,       "/MEM", Configuration::PrioProtected );
-    Lox_SetVerbosity( &ml,           Verbosity::Verbose,   "/MEM", Configuration::PrioProtected );
+//Lox_SetVerbosity( releaseLogger, Verbosity::Verbose,  ALox::InternalDomains, Config::PriorityOf(Priorities::ProtectedValues) );
+    Lox_SetVerbosity( releaseLogger, Verbosity::Verbose,   "/CON", Priorities::ProtectedValues );
+    Lox_SetVerbosity( releaseLogger, Verbosity::Off,       "/MEM", Priorities::ProtectedValues );
+    Lox_SetVerbosity( &ml,           Verbosity::Verbose,   "/MEM", Priorities::ProtectedValues );
 
     // to align all samples nicely, we are manually adding the autosizes from the config.
     // This is not needed for standard applications that create one debug logger at the start and
@@ -197,7 +197,7 @@ void PerformanceTestRL()
         int qtyLines=  100;
         int qtyLoops=   10;
     #endif
-    if ( ALIB::IsDebuggerPresent() )
+    if ( lib::ALIB.IsDebuggerPresent() )
         qtyLoops= 10;
 
     for ( int i= 0 ; i < qtyLoops ; i++ )
@@ -432,6 +432,10 @@ int main( int argc, char *argv[] )
         #pragma message ("Info: MS Compiler (not a warning, just for an information)")
     #endif
 
+    // Partly initialize ALox/ALib, to have configuration and default resources in place
+    lox::ALOX.Init( Library::InitLevels::PrepareConfig );
+
+
     // first attach INI file to config system...
     IniFile iniFile;
     if ( iniFile.FileComments.IsEmpty() )
@@ -446,11 +450,10 @@ int main( int argc, char *argv[] )
         );
     }
 
+    lox::ALOX.Config->InsertPlugin( &iniFile, Priorities::Standard );
 
-    Configuration::Default.InsertPlugin( &iniFile, Configuration::PrioIniFile );
-
-    //... and then initialize ALox Logging Library
-    ALox::Init( argc, argv );
+    //... and then initialize ALox Logging Library completely
+    lox::ALOX.Init( argc, argv );
 
     Log_SetSourcePathTrimRule( "*/src.cpp/", Inclusion::Include );
 
@@ -459,11 +462,11 @@ int main( int argc, char *argv[] )
     // values written in other sample methods and thus the samples would not work any more
     // (because INI file settings overrules settings in the code)
     Variable var;
-    var.Define( "ALOX", "LOG_DEBUG_LOGGER_VERBOSITY"  ).Store( "" );
-    var.Define( "ALOX", "RELEASELOX_CONSOLE_VERBOSITY").Store( "" );
-    var.Define( "ALOX", "LOG_MEMORY_VERBOSITY"        ).Store( "" );
-    var.Define( "ALOX", "RELEASELOX_MEMORY_VERBOSITY" ).Store( "" );
-    var.Define( "ALOX", "LOG_TEXTFILE_VERBOSITY"      ).Store( "" );
+    lox::ALOX.Config->Store( var.Declare( "ALOX", "LOG_DEBUG_LOGGER_VERBOSITY"  ),  "" );
+    lox::ALOX.Config->Store( var.Declare( "ALOX", "RELEASELOX_CONSOLE_VERBOSITY"),  "" );
+    lox::ALOX.Config->Store( var.Declare( "ALOX", "LOG_MEMORY_VERBOSITY"        ),  "" );
+    lox::ALOX.Config->Store( var.Declare( "ALOX", "RELEASELOX_MEMORY_VERBOSITY" ),  "" );
+    lox::ALOX.Config->Store( var.Declare( "ALOX", "LOG_TEXTFILE_VERBOSITY"      ),  "" );
 
     DebugLog();                 ALoxSampleReset();
     ReleaseLog();               ALoxSampleReset();
@@ -476,11 +479,11 @@ int main( int argc, char *argv[] )
     textFileLogger();           ALoxSampleReset();
 
     // cleanup resources to make Valgrind happy
-    Configuration::Default.RemovePlugin( &iniFile );
-    Configuration::Default.FetchFromDefault( iniFile );
+    lox::ALOX.Config->RemovePlugin( &iniFile );
+    lox::ALOX.Config->FetchFromDefault( iniFile );
     iniFile.WriteFile();
 
-    ALox::TerminationCleanUp();
+    lox::ALOX.TerminationCleanUp();
     cout << "ALox Samples finished" << endl;
     return 0;
 }

@@ -109,7 +109,7 @@ class MemoryLogger : public aworx::lox::core::textlogger::PlainTextLogger
          * @param length   The length of the portion in \p buffer to write out.
          * @return The number of characters written, -1 on error.
          ******************************************************************************************/
-        virtual integer logSubstring( const AString& buffer, integer start, integer length )
+        virtual integer logSubstring( const String& buffer, integer start, integer length )
         {
             MemoryLog._<false>( buffer, start, length );
             return UseWCharLengthForTabAdjustments

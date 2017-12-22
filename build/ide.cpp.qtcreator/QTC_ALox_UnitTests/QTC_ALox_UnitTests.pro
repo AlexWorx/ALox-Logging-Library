@@ -42,16 +42,18 @@ SOURCES+=   ../../../../src.cpp/alib.unittests/aworx_unittests.cpp              
             ../../../../src.cpp/alib.unittests/ut_alib_config.cpp                           \
             ../../../../src.cpp/alib.unittests/ut_alib_strings.cpp                          \
             ../../../../src.cpp/alib.unittests/ut_alib_strings_astring.cpp                  \
-            ../../../../src.cpp/alib.unittests/ut_alib_strings_substring.cpp                \
             ../../../../src.cpp/alib.unittests/ut_alib_strings_format.cpp                   \
+            ../../../../src.cpp/alib.unittests/ut_alib_strings_substring.cpp                \
+            ../../../../src.cpp/alib.unittests/ut_alib_strings_util.cpp                     \
             ../../../../src.cpp/alib.unittests/ut_alib_system.cpp                           \
             ../../../../src.cpp/alib.unittests/ut_alib_threads.cpp                          \
             ../../../../src.cpp/alib.unittests/ut_alib_time.cpp                             \
+            ../../../../src.cpp/alib.unittests/ut_alib_util_stringtree.cpp                  \
             ../../../../src.cpp/alib.unittests/docsamples/DOX_ALIB_APPLYTO.cpp              \
             ../../../../src.cpp/alib.unittests/docsamples/DOX_ALIB_ASTRING.cpp              \
             ../../../../src.cpp/alib.unittests/docsamples/DOX_ALIB_BOXING.cpp               \
-            ../../../../src.cpp/alib.unittests/docsamples/DOX_ALIB_LANG_SINGLETON.cpp       \
             ../../../../src.cpp/alib.unittests/docsamples/DOX_ALIB_LANG.cpp                 \
+            ../../../../src.cpp/alib.unittests/docsamples/DOX_ALIB_LANG_SINGLETON.cpp       \
             ../../../../src.cpp/alib.unittests/docsamples/DOX_ALIB_STRINGS.cpp              \
             ../../../../src.cpp/alib.unittests/docsamples/DOX_ALIB_TOAS.cpp                 \
             ../../../../src.cpp/alib.unittests/docsamples/DOX_ALIB_TOKENIZER.cpp            \

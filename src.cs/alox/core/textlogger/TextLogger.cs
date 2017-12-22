@@ -86,7 +86,7 @@ public abstract class TextLogger : Logger
     /**
      * A helper object to get textual representation of logable objects.
      * If no converter is set when this logger is used, a converter of type
-     * \ref cs::aworx::lox::core::textlogger::StandardConverter "StandardConverter" is created and used.
+     * \ref cs.aworx.lox.core.textlogger.StandardConverter "StandardConverter" is created and used.
      * In the destructor of this class, the current object converter will be deleted.
      *
      * To extend class \b %TextLogger to support logging custom objects, custom converters can
@@ -206,7 +206,7 @@ public abstract class TextLogger : Logger
         /** ****************************************************************************************
          * Invokes grand-parent's method and in addition, if field #usesStdStreams is set,
          * registers with
-         * \ref cs::aworx::lib::ALIB::StdOutputStreamsLock "ALIB.StdOutputStreamsLock", respectively
+         * \ref cs.aworx.lib.ALIB.StdOutputStreamsLock "ALIB.StdOutputStreamsLock".
          *
          * @param newAcquirer The acquirer to add.
          * @return The new number of \e acquirers set.
@@ -228,11 +228,11 @@ public abstract class TextLogger : Logger
             Variable variable= new Variable();
 
             // import autosizes from configuration (last session)
-            if ( variable.Define( ALox.AUTO_SIZES, GetName()).Load() != 0 )
+            if ( ALox.Config.Load(variable.Declare( ALox.AUTO_SIZES, GetName())) != 0 )
                 AutoSizes.Import( variable.GetString() );
 
             // import "max elapsed time" from configuration (last session)
-            if ( variable.Define( ALox.MAX_ELAPSED_TIME, GetName()).Load()  != 0 )
+            if ( ALox.Config.Load(variable.Declare( ALox.MAX_ELAPSED_TIME, GetName()))  != 0 )
             {
                 long maxInSecs= variable.GetInteger();
                 Substring attrValue= new Substring();
@@ -249,18 +249,18 @@ public abstract class TextLogger : Logger
             // Variable  <name>_FORMAT / <typeName>_FORMAT:
             ALIB_DBG.ASSERT_WARNING( ALox.FORMAT.DefaultValue == null,
                                  "Default value of variable FORMAT should be kept null" );
-            if(    0 ==  variable.Define( ALox.FORMAT, GetName()     ).Load()
-                && 0 ==  variable.Define( ALox.FORMAT, GetTypeName() ).Load() )
+            if(    0 ==  ALox.Config.Load(variable.Declare( ALox.FORMAT, GetName()     ))
+                && 0 ==  ALox.Config.Load(variable.Declare( ALox.FORMAT, GetTypeName() )) )
             {
                 // no variable created, yet. Let's create a 'personal' one on our name
-                variable.Define( ALox.FORMAT, GetName() );
+                variable.Declare( ALox.FORMAT, GetName() );
                 variable.Add( MetaInfo.Format            );
                 variable.Add( MetaInfo.VerbosityError    );
                 variable.Add( MetaInfo.VerbosityWarning  );
                 variable.Add( MetaInfo.VerbosityInfo     );
                 variable.Add( MetaInfo.VerbosityVerbose  );
                 variable.Add( FmtMsgSuffix               );
-                variable.Store();
+                ALox.Config.Store(variable);
             }
             else
             {
@@ -275,15 +275,15 @@ public abstract class TextLogger : Logger
             // Variable  <name>_FORMAT_DATE_TIME / <typeName>_FORMAT_DATE_TIME:
             ALIB_DBG.ASSERT_WARNING( ALox.FORMAT_DATE_TIME.DefaultValue == null,
                                  "Default value of variable FORMAT_DATE_TIME should be kept null" );
-            if(    0 ==  variable.Define( ALox.FORMAT_DATE_TIME, GetName()     ).Load()
-                && 0 ==  variable.Define( ALox.FORMAT_DATE_TIME, GetTypeName() ).Load() )
+            if(    0 ==  ALox.Config.Load(variable.Declare( ALox.FORMAT_DATE_TIME, GetName()     ))
+                && 0 ==  ALox.Config.Load(variable.Declare( ALox.FORMAT_DATE_TIME, GetTypeName() )) )
             {
                 // no variable created, yet. Let's create a 'personal' one on our name
-                variable.Define( ALox.FORMAT_DATE_TIME, GetName() );
+                variable.Declare( ALox.FORMAT_DATE_TIME, GetName() );
                 variable.Add( MetaInfo.DateFormat        );
                 variable.Add( MetaInfo.TimeOfDayFormat   );
                 variable.Add( MetaInfo.TimeElapsedDays   );
-                variable.Store();
+                ALox.Config.Store(variable);
             }
             else
             {
@@ -295,11 +295,11 @@ public abstract class TextLogger : Logger
             // Variable  <name>FORMAT_TIME_DIFF / <typeName>FORMAT_TIME_DIFF:
             ALIB_DBG.ASSERT_WARNING( ALox.FORMAT_TIME_DIFF.DefaultValue == null,
                                  "Default value of variable FORMAT_TIME_DIFF should be kept null" );
-            if(    0 ==  variable.Define( ALox.FORMAT_TIME_DIFF, GetName()     ).Load()
-                && 0 ==  variable.Define( ALox.FORMAT_TIME_DIFF, GetTypeName() ).Load() )
+            if(    0 ==  ALox.Config.Load(variable.Declare( ALox.FORMAT_TIME_DIFF, GetName()     ))
+                && 0 ==  ALox.Config.Load(variable.Declare( ALox.FORMAT_TIME_DIFF, GetTypeName() )) )
             {
                 // no variable created, yet. Let's create a 'personal' one on our name
-                variable.Define( ALox.FORMAT_TIME_DIFF, GetName() );
+                variable.Declare( ALox.FORMAT_TIME_DIFF, GetName() );
                 variable.Add( MetaInfo.TimeDiffMinimum);
                 variable.Add( MetaInfo.TimeDiffNone   );
                 variable.Add( MetaInfo.TimeDiffNanos  );
@@ -309,7 +309,7 @@ public abstract class TextLogger : Logger
                 variable.Add( MetaInfo.TimeDiffMins   );
                 variable.Add( MetaInfo.TimeDiffHours  );
                 variable.Add( MetaInfo.TimeDiffDays   );
-                variable.Store();
+                ALox.Config.Store(variable);
             }
             else
             {
@@ -327,16 +327,16 @@ public abstract class TextLogger : Logger
             // Variable  <name>FORMAT_MULTILINE / <typeName>FORMAT_MULTILINE:
             ALIB_DBG.ASSERT_WARNING( ALox.FORMAT_MULTILINE.DefaultValue == null,
                                  "Default value of variable FORMAT_MULTILINE should be kept null" );
-            if(    0 ==  variable.Define( ALox.FORMAT_MULTILINE, GetName()     ).Load()
-                && 0 ==  variable.Define( ALox.FORMAT_MULTILINE, GetTypeName() ).Load() )
+            if(    0 ==  ALox.Config.Load(variable.Declare( ALox.FORMAT_MULTILINE, GetName()     ))
+                && 0 ==  ALox.Config.Load(variable.Declare( ALox.FORMAT_MULTILINE, GetTypeName() )) )
             {
                 // no variable created, yet. Let's create a 'personal' one on our name
-                variable.Define( ALox.FORMAT_MULTILINE, GetName() );
+                variable.Declare( ALox.FORMAT_MULTILINE, GetName() );
                 variable.Add( MultiLineMsgMode );
                 variable.Add ( FmtMultiLineMsgHeadline   );
                 variable.Add ( FmtMultiLinePrefix  );
                 variable.Add ( FmtMultiLineSuffix );
-                variable.Store();
+                ALox.Config.Store(variable);
             }
             else
             {
@@ -355,8 +355,8 @@ public abstract class TextLogger : Logger
             // Variable  <name>FORMAT_REPLACEMENTS / <typeName>FORMAT_REPLACEMENTS:
             ALIB_DBG.ASSERT_WARNING( ALox.REPLACEMENTS.DefaultValue == null,
                                  "Default value of variable FORMAT_MULTILINE should be kept null" );
-            if(    0 !=  variable.Define( ALox.REPLACEMENTS, GetName()     ).Load()
-                || 0 !=  variable.Define( ALox.REPLACEMENTS, GetTypeName() ).Load() )
+            if(    0 !=  ALox.Config.Load(variable.Declare( ALox.REPLACEMENTS, GetName()     ))
+                || 0 !=  ALox.Config.Load(variable.Declare( ALox.REPLACEMENTS, GetTypeName() )) )
             {
                 for( int i= 0; i< variable.Size() / 2 ; i++ )
                 {
@@ -373,7 +373,8 @@ public abstract class TextLogger : Logger
 
         /** ****************************************************************************************
          * Invokes grand-parent's method and in addition, de-registers with
-         * \ref cs::aworx::lib::ALIB::StdOutputStreamsLock "ALIB.StdOutputStreamsLock"
+         * \ref cs.aworx.lib.ALIB.StdOutputStreamsLock "ALIB.StdOutputStreamsLock".
+         *
          * @param acquirer The acquirer to remove.
          * @return The new number of \e acquirers set.
          ******************************************************************************************/
@@ -394,16 +395,16 @@ public abstract class TextLogger : Logger
             Variable variable= new Variable();
 
             // export autosizes to configuration
-            variable.Define( ALox.AUTO_SIZES, GetName() );
+            variable.Declare( ALox.AUTO_SIZES, GetName() );
             AutoSizes.Export( variable.Add() );
-            variable.Store();
+            ALox.Config.Store(variable);
 
             // export "max elapsed time" to configuration
-            variable.Define( ALox.MAX_ELAPSED_TIME, GetName() );
-            AString destVal=  variable.Load() != 0  ?  variable.GetString()
-                                                    :  variable.Add();
+            variable.Declare( ALox.MAX_ELAPSED_TIME, GetName() );
+            AString destVal=  ALox.Config.Load(variable) != 0  ?  variable.GetString()
+                                                               :  variable.Add();
             destVal._()._( MetaInfo.MaxElapsedTime.InSeconds() );
-            variable.Store();
+            ALox.Config.Store(variable);
 
             // call parents' implementation
             return base.RemoveAcquirer( acquirer );
@@ -536,7 +537,7 @@ public abstract class TextLogger : Logger
                 msgBuf.SearchAndReplace( replacements[i],
                                          replacements[i + 1], msgBufStartLength );
 
-            // setup log buffer with meta info << ESC::EOMETA
+            // setup log buffer with meta info << ESC.EOMETA
             logBuf.Clear();
             AutoSizes.Start();
             int qtyESCTabsWritten=  MetaInfo.Write( this, logBuf, domain, verbosity, scope );

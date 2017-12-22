@@ -6,10 +6,10 @@
 // #################################################################################################
 
 /**
-\page man_domain_substitution  15 - Log Domain Substitution
+\page alox_man_domain_substitution  15 - Log Domain Substitution
 
 \~Comment ####################################################################################### \~
-# 1. Introduction # {#man_domain_substitution_intro}
+# 1. Introduction # {#alox_man_domain_substitution_intro}
 
 <em>Domain Substitution</em> is a concept of \b %ALox that allows to manipulate the effective domain of <em>Log Statements</em> without changing
 neither these statements nor the <em>Scope Domains</em> that apply to them. Therefore, <em>Domain Substitution</em> is useful when
@@ -43,7 +43,7 @@ for clearing the rules given, because the designers of \b %ALox do not see a use
 
 
 \~Comment ####################################################################################### \~
-# 2. How Class Lox Processes the Rules # {#man_domain_substitution_processing}
+# 2. How Class Lox Processes the Rules # {#alox_man_domain_substitution_processing}
 
 Rules for <em>Domain Substitution</em> are applied after any other evaluation of the resulting domain is performed.
 The rules are applied in the order of their definition. Therefore, rules that are passed from
@@ -67,9 +67,9 @@ This amount of loops should be more than enough for all major use cases. Even a 
 loop is necessary very seldom.
 
 \~Comment ####################################################################################### \~
-# 3. Substitution Rules and External Configuration # {#man_domain_substitution_config}
+# 3. Substitution Rules and External Configuration # {#alox_man_domain_substitution_config}
 
-## 3.1 Using External Configuration ## {#man_domain_substitution_config_using}
+## 3.1 Using External Configuration ## {#alox_man_domain_substitution_config_using}
 
 Setting <em>Domain Substitution Rules</em> <em>'from within the source code'</em> is easy and straightforward. However, when
 working in a team such changes might not be appreciated by other team members. In this and
@@ -110,12 +110,12 @@ would receive the two rules specified.
 
 
 \~Comment ####################################################################################### \~
-## 3.2 Preventing The Use Of External Configuration ## {#man_domain_substitution_config_prevent}
+## 3.2 Preventing The Use Of External Configuration ## {#alox_man_domain_substitution_config_prevent}
 
 Sometimes it might be wanted that <em>Domain Substitution Rules</em> are not manipulable externally. A reason could be that
 by the nature of these rules, unauthorized users are enabled to change the <em>Log Domains</em> and hence
 also to change their \e Verbosity, which otherwise can be prevented for protection
-(see \ref man_external_verbosity_configuration).
+(see \ref alox_man_external_verbosity_configuration).
 
 ALox does not provide an explicit interface to prevent reading the rules
 from the configuration. The simple way out, is to delete all rules after the creation of the
@@ -125,7 +125,7 @@ from the configuration. The simple way out, is to delete all rules after the cre
 
 
 \~Comment ####################################################################################### \~
-# 4. Final Remarks # {#man_domain_substitution_wrapup}
+# 4. Final Remarks # {#alox_man_domain_substitution_wrapup}
 
 <em>Domain Substitution</em> rules are always applied to all \e %Loggers within a \b %Lox.
 
@@ -146,6 +146,6 @@ domain tree with those of the internal tree or vice versa.
 
 
 --------------------------------------------------------------------
-<center>Next chapter: \ref man_colorful_loggers </center> <center> \ref manual "Back to index" </center>
+<center>Next chapter: \ref alox_man_colorful_loggers </center> <center> \ref manual "Back to index" </center>
 */
 

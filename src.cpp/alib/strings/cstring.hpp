@@ -12,7 +12,7 @@
 
 // to preserve the right order, we are not includable directly from outside.
 #if !defined(ALIB_PROPER_INCLUSION)
-    #error "include 'alib/alib.hpp' or 'alib/alib_strings.hpp' instead of this header"
+    #error "include 'alib/alib.hpp' instead of this header"
 #endif
 
 // #################################################################################################
@@ -57,7 +57,7 @@ class CString
          *   On GNU/Linux and Mac OS, it might be necessary to invoke std c method
          *   <em>setlocale()</em> once, prior to using this method, to successfully calculate
          *   the length.
-         *   This, by default, is done in \ref aworx::lib::ALIB::Init "ALIB::Init".
+         *   This, by default, is done in \ref aworx::lib::ALib::Init "ALib::Init".
          *
          * @param cs         Pointer to the start of the cstring.
          * @param csLength   The length of the sequence in \p cs to examine.
@@ -143,7 +143,7 @@ class CString
 
         /** ************************************************************************************
          * Static method that returns the index of the first character which is included
-         * (alternatively not included) in a given set of characters.
+         * in a given set of characters.
          *
          * This method searches up to a given maximum index. For a search to the end of the
          * zero terminated string, use faster method provided with class
@@ -157,23 +157,44 @@ class CString
          * @param needlesLength   The length of the string of needles.
          *                        If -1 is provided, the length is determined using % C function
          *                        strlen (which needs needles to be zero terminated).
-         * @param inclusion       Denotes whether the search returns the first index that holds
-         *                        a value that is included or that is not excluded in the set of
-         *                        needle characters.
          *
          * @return The index of the first character found which is included, respectively not
          *         included, in the given set of characters.
          *         If nothing is found, -1 is returned.
          **************************************************************************************/
         ALIB_API
-        static integer IndexOfAny( const char*  haystack,   integer  haystackLength,
-                                   const char*  needles,    integer  needlesLength,
-                                   lang::Inclusion inclusion                             );
+        static integer IndexOfAnyIncluded( const char*  haystack,   integer  haystackLength,
+                                           const char*  needles,    integer  needlesLength      );
+
+        /** ************************************************************************************
+         * Static method that returns the index of the first character which is not included
+         * in a given set of characters.
+         *
+         * This method searches up to a given maximum index. For a search to the end of the
+         * zero terminated string, use faster method provided with class
+         * \ref aworx::lib::strings::TString "TString".
+
+         * @param haystack        Pointer to the start of the string.
+         * @param haystackLength  The length of the string or the maximum position to search.
+         *                        If -1 is provided, the length is determined using % C function
+         *                        strlen (which needs haystack to be zero terminated).
+         * @param needles         Pointer to a set of characters to be searched for.
+         * @param needlesLength   The length of the string of needles.
+         *                        If -1 is provided, the length is determined using % C function
+         *                        strlen (which needs needles to be zero terminated).
+         *
+         * @return The index of the first character found which is included, respectively not
+         *         included, in the given set of characters.
+         *         If nothing is found, -1 is returned.
+         **************************************************************************************/
+        ALIB_API
+        static integer IndexOfAnyExcluded( const char*  haystack,   integer  haystackLength,
+                                           const char*  needles,    integer  needlesLength       );
 
 
         /** ************************************************************************************
-         * Static method that returns the index of the first character which is included
-         * (alternatively not included) in a given set of characters.
+         * Static method that returns the index of the last character which is included
+         * in a given set of characters.
          *
          * This method searches backwards from the end of the string.
          *
@@ -184,17 +205,34 @@ class CString
          * @param needlesLength   The length of the string of needles.
          *                        If -1 is provided, the length is determined using % C function
          *                        strlen (which needs needles to be zero terminated).
-         * @param inclusion       Denotes whether the search returns the first index that holds
-         *                        a value that is included or that is not excluded in the set of
-         *                        needle characters.
          *
          * @return The index of the first character found which is included in the given set
          *         of characters. If nothing is found, -1 is returned.
          **************************************************************************************/
         ALIB_API
-        static integer LastIndexOfAny( const char*  haystack,    integer  startIdx,
-                                       const char*  needles,     integer  needlesLength,
-                                       lang::Inclusion inclusion                               );
+        static integer LastIndexOfAnyInclude( const char*  haystack,    integer  startIdx,
+                                              const char*  needles,     integer  needlesLength   );
+
+        /** ************************************************************************************
+         * Static method that returns the index of the last character which is not included
+         * in a given set of characters.
+         *
+         * This method searches backwards from the end of the string.
+         *
+         * @param haystack        Pointer to the start of the string.
+         * @param startIdx        The position to start the search from. This must be smaller than
+         *                        the length of the string and greater or equal to  zero.
+         * @param needles         Pointer to a set of characters to be searched for.
+         * @param needlesLength   The length of the string of needles.
+         *                        If -1 is provided, the length is determined using % C function
+         *                        strlen (which needs needles to be zero terminated).
+         *
+         * @return The index of the first character found which is included in the given set
+         *         of characters. If nothing is found, -1 is returned.
+         **************************************************************************************/
+        ALIB_API
+        static integer LastIndexOfAnyExclude( const char*  haystack,    integer  startIdx,
+                                              const char*  needles,     integer  needlesLength   );
 
         /** ************************************************************************************
          * Static method that returns the index of the first character which not equal

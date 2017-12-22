@@ -85,10 +85,6 @@ namespace lox {
 #include "internals/alox_macros.hpp"
 
 // #### other includes ####
-#if !defined (_GLIBCXX_VECTOR) && !defined(_VECTOR_)
-    #include <vector>
-#endif
-
 #if !defined(HPP_ALIB_CONFIG_CONFIGURATION)
     #include "alib/config/configuration.hpp"
 #endif
@@ -96,80 +92,25 @@ namespace lox {
 namespace aworx { namespace lox {
 
 /** ************************************************************************************************
- * This is a 100% static class that holds constants and 'global' methods of the
- * \b %ALox Logging Library.
+ * This is the library class for \alox logging library residing in namespace \ref aworx::lox.
+ *
+ * Apart from implementing class \b %Library, this class is a 100% static and that holds
+ * constants and 'global' methods.
+ *
+ * \attention
+ *   If release logging is used, the explicit initialization of \b %ALox by invoking
+ *   \alib{lang,Library::Init} on singleton #aworx::lox::ALOX is mandatory.
+ *   While debug logging 'automatically' invokes the method hidden in the background,
+ *   release logging does not.
+ *   If omitted, critical errors and undefined behavior in release builds might occur
+ *   in the moment when debug-logging is pruned!
  **************************************************************************************************/
-class ALox
+class ALox : public lib::lang::Library
 {
-    /** Protected constructor to avoid users to instantiate this class */
-    protected: ALox();
-
     protected:
-        /**  flag indicating that \b %ALox has been initialized */
-        ALOX_API static bool                    isInitialized;
+        /** A lock for Lox creation and registration. */
+        ThreadLockNR              loxManagement;
 
-        /** A lock  */
-        ALOX_API static ThreadLockNR            lock;
-
-
-    // #############################################################################################
-    // Version, Compilation flags and verification
-    // #############################################################################################
-    public:
-        /**
-         * The version of \b %ALox. The versioning follows the scheme YYMM (2-digit year, 2-digit month)
-         * of the initial release date.
-         * Besides this version number, field #Revision indicates if this is a revised version
-         * of a former release.
-         */
-        ALIB_API static const int               Version;
-
-        /**
-         * The revision number of this release. Each \b %ALox #Version is initially released as
-         * revision \e 0. Pure maintenance releases that do not change the interface of \b %ALox
-         * are holding the same #Version but an increased number in this field.
-         */
-        ALIB_API static const int               Revision;
-
-         /**
-         * These flags are used internally to detect incompatibilities when linking \b %ALox to
-         * binaries that use different compilation flags.
-         */
-        ALIB_API static    const uint64_t       CompilationFlags;
-
-        /**
-         * This is for the creation of (debug) output information about the bits found in
-         * field #CompilationFlags.
-         */
-        ALIB_API static
-        std::pair <const char*, uint64_t>       CompilationFlagMeanings[4];
-
-
-         /**
-         * These flags are used internally to detect incompatibilities when linking \b %ALox to
-         * \b %ALib (can only be different in the unusual case that \b %ALib exists in a library independent
-         * from \b %ALox).
-         */
-        ALIB_API static    const uint64_t       ALibCompilationFlags;
-
-        /** ****************************************************************************************
-         * Verifies a given sets of \b %ALox compilation flags with the internal set
-         * \ref ALox::CompilationFlags. In case they are different in a way
-         * that alib gets incompatible (e.g. different class sizes, which results in errors that are
-         * very hard to debug), the flags are written to \e cout for comparison and \c false is
-         * returned.
-         *
-         * This method should be called on bootstrap to detect if incompatible library types were
-         * built. If several libraries that use \b %ALib are linked together, each should invoke this
-         * test against separately. The macro \c ALIB_COMPATIBILITY_VERIFYER will provide the
-         * flags.
-         *
-         * @param flags The flags externally grabbed using macro \c ALIB_COMPATIBILITY_VERIFYER.
-         *
-         * @return \c true if compatible, \c false else.
-         ******************************************************************************************/
-        ALIB_API  static
-        bool      VerifyCompilationFlags( uint64_t flags );
 
     // #############################################################################################
     // Public fields
@@ -212,39 +153,8 @@ class ALox
             static constexpr    SLiteral<2>  InternalDomains                        {"$/"};
         #endif
 
-        /**
-         * The name of the configuration category of configuration variables used by \b %ALox.<br>
-         * Defaults to "ALOX".<br>
-         * This value can be changed to avoid conflicts between applications (especially in
-         * respect to environment variable settings). Changes should be placed at very initial
-         * bootstrap code, before the invocation of #Init.<br>
-         * See also \ref aworx::lib::ALIB::ConfigCategoryName "ALIB::ConfigCategoryName".
-         */
-        ALIB_API static  String              ConfigCategoryName;
-
-        ALIB_API static  lib::config::VariableDefinition NO_IDE_LOGGER;         ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by \ref aworx::lox::Log::AddDebugLogger "Log::AddDebugLogger".
-        ALIB_API static  lib::config::VariableDefinition CONSOLE_TYPE;          ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by \ref aworx::lox::Lox::CreateConsoleLogger "Lox::CreateConsoleLogger".
-
-        ALIB_API static  lib::config::VariableDefinition AUTO_SIZES;            ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::core::textlogger::TextLogger "TextLogger".
-        ALIB_API static  lib::config::VariableDefinition FORMAT;                ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::core::textlogger::TextLogger "TextLogger".
-        ALIB_API static  lib::config::VariableDefinition FORMAT_DATE_TIME;      ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::core::textlogger::TextLogger "TextLogger".
-        ALIB_API static  lib::config::VariableDefinition FORMAT_MULTILINE;      ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::core::textlogger::TextLogger "TextLogger".
-        ALIB_API static  lib::config::VariableDefinition FORMAT_TIME_DIFF;      ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::core::textlogger::TextLogger "TextLogger".
-        ALIB_API static  lib::config::VariableDefinition MAX_ELAPSED_TIME;      ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::core::textlogger::TextLogger "TextLogger".
-        ALIB_API static  lib::config::VariableDefinition REPLACEMENTS;          ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::core::textlogger::TextLogger "TextLogger".
-
-        ALIB_API static  lib::config::VariableDefinition CONSOLE_LIGHT_COLORS;  ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by colorful specializations of class \ref aworx::lox::core::textlogger::TextLogger "TextLogger".
-
-        ALIB_API static  lib::config::VariableDefinition VERBOSITY;             ///< Attributes of corresponding configuration variable [ALOX_LOXNAME_LOGGERNAME_VERBOSITY](../group__GrpALoxConfigVars.html).
-        ALIB_API static  lib::config::VariableDefinition SPTR_GLOBAL;           ///< Attributes of corresponding configuration variable [ALOX_GLOBAL_SOURCE_PATH_TRIM_RULES](../group__GrpALoxConfigVars.html).
-
-        ALIB_API static  lib::config::VariableDefinition SPTR_LOX;              ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::Lox "Lox".
-        ALIB_API static  lib::config::VariableDefinition DOMAIN_SUBSTITUTION;   ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::Lox "Lox".
-        ALIB_API static  lib::config::VariableDefinition PREFIXES;              ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::Lox "Lox".
-        ALIB_API static  lib::config::VariableDefinition DUMP_STATE_ON_EXIT;    ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::Lox "Lox".
-
         #if defined(_WIN32)
-        ALIB_API static  lib::config::VariableDefinition CODEPAGE;      ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::loggers::WindowsConsoleLogger "WindowsConsoleLogger".
+        ALIB_API static  lib::config::VariableDecl CODEPAGE;      ///< Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html) used by class \ref aworx::lox::loggers::WindowsConsoleLogger "WindowsConsoleLogger".
         #endif
 
     // #############################################################################################
@@ -253,125 +163,33 @@ class ALox
     protected:
         #if ALOX_DBG_LOG
             /** The Lox singleton for debug logging. Created on request. */
-            ALIB_API static Lox*             theLog;
+            Lox*                            theLog                                        = nullptr;
 
         #endif
 
         /** The Lox objects registered with us. */
-        ALIB_API static std::vector<Lox*>    loxes;
+        std::vector<Lox*>                   loxes;
 
     // #############################################################################################
-    // Initialization
+    // Constructor
     // #############################################################################################
     public:
-        /** ****************************************************************************************
-         * This method must be called prior to using \b %ALox, e.g. at the beginning of
-         * the \c main() method of an application. It is OK, to call this method more than once, which
-         * allows independent code blocks (e.g. libraries) to bootstrap \b %ALox independently.
-         * However, only the first invocation is effective with the exclamation that if
-         * command line parameters are provided with a call, those are set.
-         * Also, the very first invocation should not be interrupted by a parallel invocation of a
-         * second thread. Consequently, it has to be assured that this method is invoked once on
-         * the real bootstrap an app.
-         *
-         * \note This method invokes
-         *       \ref aworx::lib::ALIB::Init "ALIB::Init", hence no explicit initialization of
-         *       underlying \b %ALib is needed.
-         *
-         * If command line parameters should be used for configuring \b %ALox, then the very first
-         * call to this method has to provide the argc and argv parameters.
-         * Subsequent calls to this method with different parameters do not change the setup.
-         *
-         * \note If other, custom configuration data sources should be used already with this method
-         *       (to read the configuration variables as described in
-         *       \ref aworx::lib::ALIB::Init "ALIB::Init"),
-         *       according configuration plug-ins have to be added attached to public singleton
-         *       \ref aworx::lib::config::Configuration::Default "Configuration::Default"
-         *       prior to invoking this method.
-         *
-         * <p>
-         *
-         * \note On the Windows platform, the Microsoft compiler provides the global variables
-         *       <em>__argc</em> and <em>__argv</em> (respectively <em>__wargv</em> for wide
-         *       character binaries. These variables a can be used if this method is invoked
-         *       outside of the <em>main()</em> method.
-         *
-         * For convenience, several \b %ALox classes call this method implicitly on construction
-         * or when using them, e.g. Lox and Logger. Therefore, when using \b %ALox, there is no need
-         * to to call this method, unless aforementioned command line parameters should be passed.
-         *
-         * \note
-         *  \b %ALox must not be used before all global/static variables are created. Hence, it
-         *  is not allowed to initialize \b %ALox within static variable initialization code. This
-         *  restriction is wanted by design, because different platforms and compilers implement the
-         *  bootstrap of static and global data differently and it is not considered a good
-         *  programming style to rely on C++ bootstrap. Using \b %ALox/ALIB within C++ bootstrap is
-         *  undefined behavior. (This is true for any C++ library.)
-         *
-         * \attention
-         *   If release logging is used, the explicit initialization of \b %ALox by invoking
-         *   this method is mandatory. While debug logging 'automatically' invokes the method
-         *   hidden in the background, release logging does not.
-         *   If omitted, critical errors and undefined behavior in release builds might occur
-         *   in the moment when debug-logging is pruned!
-         *
-         *  @param argc    Parameter usually taken from <em>standard C</em> \c main() method
-         *                 (the number of arguments in \p argv).
-         *                 Defaults to 0.
-         *  @param argv    Parameter usually taken from <em>standard C</em> \c main() method
-         *                 (pointer to a list of command line arguments).
-         *                 Defaults to nullptr.
-         * @returns Returns \c true if \b %ALox was initialized before, \c false if not.
-         ******************************************************************************************/
-        inline static
-        bool     Init( int argc =0, char** argv =nullptr )
-        {
-            if ( isInitialized )  return false;
-            ALox::checkLibraryVersions(); // this call has to stay in the header file
-            ALIB::Init( argc, argv );
-            initImpl();
-            return true;
-        }
-
-        /** ****************************************************************************************
-         * Variant of method #Init, accepting command line arguments of type \c wchar_t.
-         *
-         * @param argc    Parameter usually taken from <em>standard C</em> \c main() method
-         *                (the number of arguments in \p argv).
-         * @param argv    The command line parameters as \c wchar_t.
-         * @returns Returns \c true if \b %ALox was initialized before, \c false if not.
-         ******************************************************************************************/
-        inline static
-        bool     Init( int  argc, wchar_t **argv )
-        {
-            if ( isInitialized )  return false;
-            ALox::checkLibraryVersions(); // this call has to stay in the header file
-            ALIB::Init( argc, argv );
-            initImpl();
-            return true;
-        }
-
-        /** ****************************************************************************************
-         *  Cleans up static/global \b %ALox memory on termination. This method is useful if using
-         *  memory analysis tools (such as valgrind) to remove any internal allocations before a
-         *  program terminates.
-         ******************************************************************************************/
-        ALOX_API static
-        void      TerminationCleanUp();
+        ALIB_API                            ALox();
 
     // #############################################################################################
     // Lox management
     // #############################################################################################
+    public:
         /** ****************************************************************************************
          * Returns a singleton of class \b %Lox used for debug logging
          * @return The debug-logging Lox of \b %ALox
          ******************************************************************************************/
-        ALOX_API static
+        ALOX_API
         Lox*     Log();
 
         /** ****************************************************************************************
-         * Returns the \b Lox with the given name.
-         * A lox is only found if it was created and registered with \b %ALox using #Register.
+         * Returns a \b %Lox with the given name.
+         * A \b %Lox is only found if it was created and registered with \b %ALox using #Register.
          * If not found, and parameter \p create is \c true (the default), a new \b Lox is created,
          * registered and returned.
          *
@@ -381,7 +199,7 @@ class ALox
          *                  Optional and defaults to \b %Create::Never.
          * @return The \b Lox found, \c nullptr in case of failure.
          ******************************************************************************************/
-        ALOX_API static
+        ALOX_API
         Lox*     Get( const String& name, Create create= Create::Never );
 
         /** ****************************************************************************************
@@ -403,7 +221,7 @@ class ALox
          * @param operation If \b %ContainerOp::Remove, the given \p Lox is deregistered.
          *                  Defaults to \b %ContainerOp::Insert.
          ******************************************************************************************/
-        ALOX_API static
+        ALOX_API
         void     Register( Lox* lox, ContainerOp operation );
 
         /** ****************************************************************************************
@@ -417,35 +235,66 @@ class ALox
          *   Side effects might appear using this method and it is not tested otherwise than
          *   used in tests!
          ******************************************************************************************/
-        ALOX_API static
+        ALOX_API
         void     Reset();
 
-
     // #############################################################################################
-    // Internals
+    // Internals4
     // #############################################################################################
     protected:
         /** ****************************************************************************************
-         * The part of #Init that is allowed to go to the cpp file.
+         * Implementation of \alib{lang,Library::init}.
+         *
+         * In phase \alib{lang,Library::Phases::final} performs:
+         * - Adds boxing interface \alib{strings::boxing,IApply_TApplicable} for type
+         *   \alox{core,Logger}.
+         * @param phase  The initialization phase to perform.
          ******************************************************************************************/
-        ALOX_API static
-        void  initImpl();
+        virtual void        init( Phases phase )                                           override;
 
         /** ****************************************************************************************
-         * Checks if versions of \b %ALib, \b %ALox and the actual compilation unit share compatible
-         * compilation symbols.
-         * This method is invoked automatically by method #Init.
-         * @param alibVersion Defaults to a value defined by the currently included headers.
-         * @param aloxVersion Defaults to a value defined by the currently included headers.
-         * @param flagsALib   Defaults to a value defined by the currently included headers.
-         * @param flagsALox   Defaults to a value defined by the currently included headers.
+         * Implementation of \alib{lang,Library::terminationCleanUp}.
          ******************************************************************************************/
-        ALOX_API static
-        void     checkLibraryVersions( int      alibVersion   = ALIB_VERSION_VERYFIER,
-                                       int      aloxVersion   = ALIB_VERSION_VERYFIER,
-                                       uint64_t flagsALib     = ALIB_COMPATIBILITY_VERIFYER,
-                                       uint64_t flagsALox     = ALOX_COMPATIBILITY_VERYFIER  );
+        virtual void        terminationCleanUp()                                           override;
+
 };// class ALox
+
+
+/** ************************************************************************************************
+ * The static library singleton of namespace #aworx::lox.
+ **************************************************************************************************/
+ALIB_API
+extern ALox   ALOX;
+
+/** ************************************************************************************************
+ * Configuration variables uses by ALox
+ **************************************************************************************************/
+enum class Variables
+{
+    NO_IDE_LOGGER        = 1,  ///< [Configuration variable](../group__GrpALoxConfigVars.html) used by \alox{Log::AddDebugLogger}.
+    CONSOLE_TYPE         = 2,  ///< [Configuration variable](../group__GrpALoxConfigVars.html) used by \alox{Lox::CreateConsoleLogger}.
+    VERBOSITY            = 3,  ///< Configuration variable [ALOX_LOXNAME_LOGGERNAME_VERBOSITY](../group__GrpALoxConfigVars.html).
+    SPTR_GLOBAL          = 4,  ///< Configuration variable [ALOX_GLOBAL_SOURCE_PATH_TRIM_RULES](../group__GrpALoxConfigVars.html).
+    SPTR_LOX             = 5,  ///< [Configuration variable](../group__GrpALoxConfigVars.html) used by class \alox{Lox}.
+    DOMAIN_SUBSTITUTION  = 6,  ///< [Configuration variable](../group__GrpALoxConfigVars.html) used by class \alox{Lox}.
+    PREFIXES             = 7,  ///< [Configuration variable](../group__GrpALoxConfigVars.html) used by class \alox{Lox}.
+    DUMP_STATE_ON_EXIT   = 8,  ///< [Configuration variable](../group__GrpALoxConfigVars.html) used by class \alox{Lox}.
+    AUTO_SIZES           = 20, ///< [Configuration variable](../group__GrpALoxConfigVars.html) used by class \alox{core::textlogger,TextLogger}.
+    FORMAT               = 21, ///< [Configuration variable](../group__GrpALoxConfigVars.html) used by class \alox{core::textlogger,TextLogger}.
+    FORMAT_DATE_TIME     = 22, ///< [Configuration variable](../group__GrpALoxConfigVars.html) used by class \alox{core::textlogger,TextLogger}.
+    FORMAT_MULTILINE     = 23, ///< [Configuration variable](../group__GrpALoxConfigVars.html) used by class \alox{core::textlogger,TextLogger}.
+    FORMAT_TIME_DIFF     = 24, ///< [Configuration variable](../group__GrpALoxConfigVars.html) used by class \alox{core::textlogger,TextLogger}.
+    MAX_ELAPSED_TIME     = 25, ///< [Configuration variable](../group__GrpALoxConfigVars.html) used by class \alox{core::textlogger,TextLogger}.
+    REPLACEMENTS         = 26, ///< [Configuration variable](../group__GrpALoxConfigVars.html) used by class \alox{core::textlogger,TextLogger}.
+    CONSOLE_LIGHT_COLORS = 27, ///< [Configuration variable](../group__GrpALoxConfigVars.html) used by colorful specializations of class \alox{core::textlogger,TextLogger}.
+
+    #if defined(_WIN32)
+      CODEPAGE           = 28, ///< [Configuration variable](../group__GrpALoxConfigVars.html) used by class \alox{loggers,WindowsConsoleLogger}.
+    #endif
+};
+
+
+
 
 /** ************************************************************************************************
  * The \b %ReportWriter for \b %ALib when using \b %ALox. An instance of this class is created
@@ -508,6 +357,7 @@ using     ALoxReportWriter=     aworx::lox::ALoxReportWriter;
 }  // namespace aworx
 
 
+ALIB_CONFIG_VARIABLES( aworx::lox::Variables, aworx::lox::ALOX, "Var" )
 
 // #################################################################################################
 // include Log and Lox classes

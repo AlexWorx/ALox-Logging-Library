@@ -17,9 +17,9 @@
 ALox is a software library that provides an ecosystem to support structured and organized log output.
 
 ALox has three language incarnations:
-- [ALox for C++ 11](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/cppmainpage.html),
-- [ALox for C#](http://alexworx.github.io/ALox-Logging-Library/cs_ref/csmainpage.html) and
-- [ALox for Java](http://alexworx.github.io/ALox-Logging-Library/java_ref/javamainpage.html).
+- [ALox for C++ 11](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/alox_cpp_mainpage.html),
+- [ALox for C#](http://alexworx.github.io/ALox-Logging-Library/cs_ref/alox_cs_mainpage.html) and
+- [ALox for Java](http://alexworx.github.io/ALox-Logging-Library/java_ref/alox_java_mainpage.html).
 
 To reach this goal, \b %ALox is featured by **ALib**, which is a basic utility library that among other
 goals provides <em>\"source-compatible\"</em> types for the three languages.
@@ -38,7 +38,8 @@ Finally, get it all *pruned* out of your release executable, same as your source
 On the other end of the list, \b %ALox  enables **release logging** for productive applications
 to collect mission critical **metrics from the field**.
 
-This is **Version 1709 Revision 0**, which incorporates only minor changes and fixes.
+This is **Version 1712 Revision 0**, which incorporates only minor changes and fixes on the JAVA
+and C# side of things, but quite some new stuff in underlying <b>%ALib for C++</b>.
 
 We are optimistic that the simple [Bauhaus Style](\ref faq_bauhaus) architecture of the library allows you
 to easily use it and even to extend it with logging features you need.
@@ -48,7 +49,7 @@ We would be happy to receive your feedback and feature requests.
 
 \section mainpage_features        Features and Limitations
 
-To get an overview about what \b %ALox offers, read \ref man_features_and_limitations.
+To get an overview about what \b %ALox offers, read \ref alox_man_features_and_limitations.
 
 
 \section mainpage_documentation   Documentation
@@ -58,9 +59,9 @@ This manual is <b>programming language agnostic</b>.
 
 Language specific documentation is given with:
 - The <b>Tutorials</b>
-  ([C++] ( cpp_ref/cpptutorial.html  ),
-   [C#]  (  cs_ref/cstutorial.html   ),
-   [Java](java_ref/javatutorial.html ))
+  ([C++] ( cpp_ref/alox_cpp_tutorial.html  ),
+   [C#]  (  cs_ref/alox_cs_tutorial.html   ),
+   [Java](java_ref/alox_java_tutorial.html ))
 
 - The <b>Reference Documentation</b>
   ([C++] ( cpp_ref/annotated.html ),
@@ -68,9 +69,9 @@ Language specific documentation is given with:
    [Java](java_ref/annotated.html ))
 
 - The <b>IDE/Build System Setup</b>
-  ([C++] ( cpp_ref/cppsetup.html  ),
-   [C#]  (  cs_ref/cssetup.html   ),
-   [Java](java_ref/javasetup.html ))
+  ([C++] ( cpp_ref/alox_cpp_setup.html  ),
+   [C#]  (  cs_ref/alox_cs_setup.html   ),
+   [Java](java_ref/alox_java_setup.html ))
 
 
 \note
@@ -81,22 +82,19 @@ Language specific documentation is given with:
   If one of the language specific versions is selected the main menu, then the search box
   finds results exclusively from the reference documentation of the selected language.
 
+A <b>version history</b> is provided in the \ref changelog.
+
 All documentation is created with marvelous [Doxygen](http://www.stack.nl/~dimitri/doxygen/)!
 
 \section mainpage_faq            FAQ
 This is the \ref faq
 
-\section mainpage_changelog      Version history
-A version history is provided in the \ref changelog.
-
 
 \section mainpage_contribution    How to contribute
 
-If you want to contribute by adding functionality or repairing bugs, please use
+If you want to contribute by adding functionality or fixing bugs, please use
 Github standard procedures.
 For other types of contribution or questions, please contact <b>alox at a-worx dotcom</b>.
-\note We would be especially happy to find support for creating a 4th version of \b %ALib and \b %ALox,
-      supporting the Apple/iOS language [Swift](https://developer.apple.com/swift)!
 
 
 \section mainpage_copyright        Copyright
@@ -104,31 +102,7 @@ For other types of contribution or questions, please contact <b>alox at a-worx d
 ALox is open source software, can be [downloaded at Github](http://github.com/AlexWorx/ALox-Logging-Library)
 and sources are published under Boost Software License:
 
-\verbatim
-  Boost Software License - Version 1.0 - August 17th, 2003
-
-  Permission is hereby granted, free of charge, to any person or organization
-  obtaining a copy of the software and accompanying documentation covered by
-  this license (the "Software") to use, reproduce, display, distribute,
-  execute, and transmit the Software, and to prepare derivative works of the
-  Software, and to permit third-parties to whom the Software is furnished to
-  do so, all subject to the following:
-
-  The copyright notices in the Software and this entire statement, including
-  the above license grant, this restriction and the following disclaimer,
-  must be included in all copies of the Software, in whole or in part, and
-  all derivative works of the Software, unless such copies or derivative
-  works are solely in the form of machine-executable object code generated by
-  a source language processor.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT
-  SHALL THE COPYRIGHT HOLDERS OR ANYONE DISTRIBUTING THE SOFTWARE BE LIABLE
-  FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE,
-  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-  DEALINGS IN THE SOFTWARE.
-\endverbatim
+\verbinclude "../../LICENSE.txt"
 
 
 \section mainpage_thanks        Thanks
@@ -145,13 +119,12 @@ Our thanks go to all supporters to that did and do help realizing this project, 
   - The [QT Creator](http://doc.qt.io/qtcreator) team,
   - Microsoft for providing [Visual Studio Community Edition](https://www.visualstudio.com/vs/community/) project,
   - Mr. Lafortune to provide [ProGuard](http://http://proguard.sourceforge.net),
-
-- To [JetBrains](www.jetbrains.com) for the supporting of \b %ALox development by providing a free
-  [Open Source License](https://www.jetbrains.com/buy/opensource/)
-  of their absolutely superb set of IDEs.
-- To Mr. van Heesch for providing [Doxygen](http://www.stack.nl/~dimitri/doxygen/) software.
+  - To Mr. van Heesch for providing [Doxygen](http://www.stack.nl/~dimitri/doxygen/) software.
+  - To [JetBrains](www.jetbrains.com) for the supporting of \b %ALox development by providing a free
+    [Open Source License](https://www.jetbrains.com/buy/opensource/)
+    of their absolutely superb set of IDEs.
 - Special thanks also to C. Darwin, who created life on earth hundreds of millions of years ago,
-  but unfortunately passed away in 1882!
+  until he died 1882 - when things became too crazy!
 
 
 \section mainpage_alternatives        Alternatives

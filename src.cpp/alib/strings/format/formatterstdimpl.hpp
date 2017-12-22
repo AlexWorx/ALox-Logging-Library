@@ -31,21 +31,14 @@ namespace aworx { namespace lib { namespace strings { namespace format {
  * a custom formatter.
  *
  * ## Documentation For Users Of Derived Classes ##
- * The following public fields may be modified with descendent types:
  *
- * - Derived formatter types will set attributes in fields #DefaultNumberFormat and
- *   #AlternativeNumberFormat to reflect the default behavior of their formatting syntax.<br>
- *   Users of derived formatters may modify these attributes prior to performing a format operation
- *   to change those defaults. While this leads to a deviation of the formatting standard, it may be
- *   used instead of providing corresponding syntactic information within each and every replacement
- *   field of the format strings. Some modifications may not even be possible with just using
- *   the format specification.
- *
- * - Field #WriteALibErrorReports defaults to \c true and may be used to disable
- *   \ref aworx::lib::lang::Report "ALib error reports" on illegal formed format strings.
- *
- * - Field #WriteErrorsToTargetString defaults to \c true and may be used to disable
- *   the writing of of error messages about illegal formed format strings to the target string.
+ * Derived formatter types will set attributes in fields #DefaultNumberFormat and
+ * #AlternativeNumberFormat to reflect the default behavior of their formatting syntax.<br>
+ * Users of derived formatters may modify these attributes prior to performing a format operation
+ * to change those defaults. While this leads to a deviation of the formatting standard, it may be
+ * used instead of providing corresponding syntactic information within each and every replacement
+ * field of the format strings. Some modifications may not even be possible with just using
+ * the format specification.
  *
  *
  * ## Documentation For Implementing Derived, Custom Formatters ##
@@ -66,7 +59,7 @@ namespace aworx { namespace lib { namespace strings { namespace format {
  * When parsing a placeholder of a format string, abstract method #parsePlaceholder
  * may set field #phaFormatSpec to reflect a format-specific portion the placeholder string.
  * If it does, it will be checked if the argument supports
- * <b>ALib Boxing</b> interface \ref aworx::lib::strings::boxing::IFormat "IFormat"
+ * <b>%ALib %Boxing</b> interface \ref aworx::lib::strings::boxing::IFormat "IFormat"
  * and if so, the boxing interface is invoked with this string as parameter.
  * If the argument does not support the interface, method #parseStdFormatSpec is invoked to
  * now parse this portion of the placeholder string in a default way.<br>
@@ -173,6 +166,9 @@ class FormatterStdImpl : public Formatter
         /** The target string as provided with method #Format. */
         AString*                targetString;
 
+        /** The length of the target string before adding the formatted contents.*/
+        integer                 targetStringStartLength;
+
         /** The format string as provided with method #Format. */
         const String*           formatString;
 
@@ -193,6 +189,10 @@ class FormatterStdImpl : public Formatter
 
         /** A buffer to be used when writing aligned fields.   */
         AString                 fieldBuffer;
+
+        /** If \c false the formatters specification expects argument to be numbered from
+         * <c>0..N</c>. If \c true from <c>1..N</c>.                                              */
+        int                     argumentCountStartsWith1                                    = false;
 
     // #############################################################################################
     //  Placeholder attribute members
@@ -217,8 +217,12 @@ class FormatterStdImpl : public Formatter
             Float           , ///< Outputs a number in floating point format.
 
             // Bool
-            Bool            , ///< Writes 'true' or 'false'.
+            Bool            , ///< Writes "true" or "false".
             HashCode        , ///< Writes raw box data as hex.
+
+            // special
+            Fill            , ///< Writes #phaFillChar x-times. Used with python-style conversion
+                              ///< <b>{!Fill[C]}</b>
         };
 
         /** The type of the attribute as specified in the placeholder.
@@ -303,6 +307,12 @@ class FormatterStdImpl : public Formatter
          *  Is nulled in default implementation of #resetPHAs. */
         char                        phaTypeCode;
 
+        /** This is the position in the format string where the actual type code was read from.
+         *  Used for exception argument generation (Exceptions::IncompatibleTypeCode).
+         *  If -1, the actual parse position is used.  */
+        integer                     phaTypeCodePosition;
+
+
     // #############################################################################################
     //  public fields
     // #############################################################################################
@@ -353,16 +363,6 @@ class FormatterStdImpl : public Formatter
          */
         NumberFormat            AlternativeNumberFormat;
 
-        /** Flag that causes the creation of \b %ALib error reports on format syntax errors, argument
-         *  type errors, etc.
-         *  Defaults to \c true. (Ignored in release compilations. see class
-         *  \ref aworx::lib::lang::Report "Report" for more information.)                */
-        bool                    WriteALibErrorReports                                        = true;
-
-        /** Flag that causes error messages to be written into the target string.
-         *  Defaults to \c true. */
-        bool                    WriteErrorsToTargetString                                    = true;
-
     // #############################################################################################
     //  Constructor/destructor
     // #############################################################################################
@@ -405,7 +405,7 @@ class FormatterStdImpl : public Formatter
         virtual int     format( AString&        targetString,
                                 const String&   formatString,
                                 const Boxes&    arguments,
-                                int             argOffset )                           ALIB_OVERRIDE;
+                                int             argOffset )                                override;
 
 
     // #############################################################################################
@@ -451,7 +451,7 @@ class FormatterStdImpl : public Formatter
          * Virtual method that may write an argument using a custom method/format.
          * The default implementation checks if #phaFormatSpec is set and object
          * \ref aworx::lib::strings::format::FormatterStdImpl::phaArgument "phaArgument"
-         * supports an own format specifier by providing <b>ALib Boxing</b> interface
+         * supports an own format specifier by providing <b>%ALib %Boxing</b> interface
          * \ref aworx::lib::strings::boxing::IFormat "IFormat".
          * If so, the result of the formatting is written directly into the #targetString
          * and \c true is returned which causes method #format (which invokes this method) to
@@ -482,8 +482,9 @@ class FormatterStdImpl : public Formatter
          * If type and format information is missing in the format string, reasonable default
          * values are set depending on the type of the argument.
          *
-         * If the argument type contradicts the replacement field type, #errorFormatString is
-         * invoked.
+         * @throws
+         *   If the argument type contradicts the replacement field type, exception
+         *   \alib{strings::format::Exceptions,IncompatibleTypeCode} is thrown.
          *
          * @return \c true if OK, \c false if replacement should be aborted.
          ******************************************************************************************/
@@ -497,10 +498,14 @@ class FormatterStdImpl : public Formatter
 
         /** ****************************************************************************************
          * Virtual method to do pre- and post- processing of the field written.
-         * Pre-processing could for example be adding tabulator spaces. A sample for post-processing
-         * is case conversion.<br>
+         * Pre-processing could for example be adding tabulator spaces, letter case conversions,
+         *
          * A negative given index \p startIdx indicates the pre-processing phase.
-         * This default implementation does nothing.
+         * If \p target is given, this indicates an "intermediate phase": The argument has been
+         * written, but no alignment or cutting has been done, yet. This phase should usually
+         * be ignored, but is for example important for search and replacement actions.
+         * If a field has a custom format implementation (e.g. time and date values), then
+         * the intermediate phase is never called.
          *
          * \note
          *   The reason why this method is \b not implemented as two different ones is that
@@ -511,10 +516,16 @@ class FormatterStdImpl : public Formatter
          *
          * @param startIdx  If \c -1 pre-processing is indicated, otherwise post-processing and
          *                  the index of the start of the field written in #targetString is given.
+         * @param target    The target string, only if different from field #targetString, which
+         *                  indicates intermediate phase.
+         * @return \c false, if the placeholder should be skipped (nothing is written for it).
+         *         \c true otherwise.
          ******************************************************************************************/
-        virtual void            preAndPostProcess(integer startIdx)
+        virtual bool           preAndPostProcess(integer startIdx, AString* target= nullptr )
         {
             (void) startIdx;
+            (void) target;
+            return true;
         }
 
         /** ****************************************************************************************
@@ -533,25 +544,9 @@ class FormatterStdImpl : public Formatter
          *
          * @param pos   The index of the argument.
          *              If \c -1 is given, the index is auto-incremented using field #nextAutoIdx.
-         * @param countStartsWith_1 If \c true, given \p pos is counting arguments with \c 1 being
-         *                         the first. Otherwise with \c 0.
          * @return \c true on success, \c false on errors.
          ******************************************************************************************/
-        virtual bool            setArgument( int pos, bool countStartsWith_1 );
-
-        /** ****************************************************************************************
-         * Helper method (overridable) that optionally
-         * - creates an \b %ALib error report (debug compilations only, dependent on field
-         *   #WriteALibErrorReports).
-         * - writes an error message to the target string (dependent on field
-         *   #WriteErrorsToTargetString).
-         *
-         * This method can (and should) be invoked by descendent types in case of format string
-         * syntax errors, argument index errors, etc.
-         *
-         * @param msg             The error message.
-         ******************************************************************************************/
-        virtual void            errorFormatString( const String&   msg);
+        virtual bool            setArgument( int pos );
 
         /** ****************************************************************************************
          * Replace "escaped" placeholder field characters. For example these are \c "{{" in
@@ -565,9 +560,9 @@ class FormatterStdImpl : public Formatter
 };
 
 
-}}} // namespace aworx[::lib::strings::format]
+}}}} // namespace [aworx::lib::strings::format]
 
 
-}  // namespace aworx
+
 
 #endif // HPP_ALIB_STRINGS_FORMAT_FORMATTER_STD_IMPL

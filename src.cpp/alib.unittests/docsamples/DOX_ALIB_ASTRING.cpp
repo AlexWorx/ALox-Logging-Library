@@ -7,7 +7,7 @@
 #include "alox/alox.hpp"
 
 
-#define TESTCLASSNAME       CPP_ALib__Dox
+#define TESTCLASSNAME       CPP_ALib_Dox_AString
 
 #include <iostream>
 #include <sstream>

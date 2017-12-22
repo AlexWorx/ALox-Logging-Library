@@ -41,17 +41,11 @@
     <Filter Include="alib\compatibility">
       <UniqueIdentifier>{c0d27242-d598-4f3d-aa47-f620b3f8efde}</UniqueIdentifier>
     </Filter>
-    <Filter Include="alib\containers">
-      <UniqueIdentifier>{a07a4873-4514-4b05-af72-b3a896ea6e7a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="alib\boxing">
       <UniqueIdentifier>{553730eb-fac5-40b7-ad66-1b83a5ba6d0b}</UniqueIdentifier>
     </Filter>
     <Filter Include="alib\lang">
       <UniqueIdentifier>{d72b1954-a969-44a7-a607-384c357a080e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="alib\alib">
-      <UniqueIdentifier>{7b890037-8348-4e06-af64-575ab0335738}</UniqueIdentifier>
     </Filter>
     <Filter Include="alib\strings\util">
       <UniqueIdentifier>{c94c7483-dd94-4fe9-8b87-af42f6b9f987}</UniqueIdentifier>
@@ -61,6 +55,12 @@
     </Filter>
     <Filter Include="alib\strings\boxing">
       <UniqueIdentifier>{567f3a8b-d74b-4624-8f42-129e81eff2c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="alib\debug">
+      <UniqueIdentifier>{7b890037-8348-4e06-af64-575ab0335738}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="alib\util">
+      <UniqueIdentifier>{a07a4873-4514-4b05-af72-b3a896ea6e7a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -80,9 +80,6 @@
       <Filter>alib\system</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src.cpp\alib\threads\threadlock.hpp">
-      <Filter>alib\threads</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\threads\thread.hpp">
       <Filter>alib\threads</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src.cpp\alib\time\ticks.hpp">
@@ -175,9 +172,6 @@
     <ClInclude Include="..\..\..\src.cpp\alib\boxing\boxer.hpp">
       <Filter>alib\boxing</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\boxing\boxing.hpp">
-      <Filter>alib\boxing</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src.cpp\alib\boxing\interface.hpp">
       <Filter>alib\boxing</Filter>
     </ClInclude>
@@ -186,24 +180,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src.cpp\alib\compatibility\qt.hpp">
       <Filter>alib\compatibility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\lang\enums.hpp">
-      <Filter>alib\lang</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\lang\ownable.hpp">
-      <Filter>alib\lang</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\lang\report.hpp">
-      <Filter>alib\lang</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\lang\singleton.hpp">
-      <Filter>alib\lang</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\lang\types.hpp">
-      <Filter>alib\lang</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\lang\rtti.hpp">
-      <Filter>alib\lang</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src.cpp\alib\system\environment.hpp">
       <Filter>alib\system</Filter>
@@ -225,15 +201,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src.cpp\alib\boxing\boxes.hpp">
       <Filter>alib\boxing</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\lang\memoryblocks.hpp">
-      <Filter>alib\lang</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\alib\prepro.hpp">
-      <Filter>alib\alib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\alib\debug.hpp">
-      <Filter>alib\alib</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src.cpp\alib\distribution.hpp">
       <Filter>alib</Filter>
@@ -293,7 +260,103 @@
       <Filter>alib\strings\boxing</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src.cpp\alib\containers\stringtree.hpp">
-      <Filter>alib\containers</Filter>
+      <Filter>alib\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\boxing\debug.hpp">
+      <Filter>alib\strings\boxing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\debug\assert.hpp">
+      <Filter>alib\debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\format\propertyformatter.hpp">
+      <Filter>alib\strings\format</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\format\propertyformattermap.hpp">
+      <Filter>alib\strings\format</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\types.hpp">
+      <Filter>alib\lang</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\enum.hpp">
+      <Filter>alib\lang</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\enumarithmetical.hpp">
+      <Filter>alib\lang</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\enumbitwise.hpp">
+      <Filter>alib\lang</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\enumiterators.hpp">
+      <Filter>alib\lang</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\enummetadata.hpp">
+      <Filter>alib\lang</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\enums.hpp">
+      <Filter>alib\lang</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\exception.hpp">
+      <Filter>alib\lang</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\library.hpp">
+      <Filter>alib\lang</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\ownable.hpp">
+      <Filter>alib\lang</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\prepro.hpp">
+      <Filter>alib\lang</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\report.hpp">
+      <Filter>alib\lang</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\resourcedtupleloader.hpp">
+      <Filter>alib\lang</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\resources.hpp">
+      <Filter>alib\lang</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\rtti.hpp">
+      <Filter>alib\lang</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\singleton.hpp">
+      <Filter>alib\lang</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\resourcestring.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alox\logtools.hpp">
+      <Filter>alox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\enummetadataspec.hpp">
+      <Filter>alib\lang</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\boxing\boxinglib.hpp">
+      <Filter>alib\boxing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\config\configlib.hpp">
+      <Filter>alib\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\stringlib.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\langlib.hpp">
+      <Filter>alib\lang</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\system\systemlib.hpp">
+      <Filter>alib\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\threads\threadlib.hpp">
+      <Filter>alib\threads</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\time\timelib.hpp">
+      <Filter>alib\time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\util\memoryblocks.hpp">
+      <Filter>alib\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\format\simpletext.hpp">
+      <Filter>alib\strings\format</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -317,9 +380,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib\system\directory.cpp">
       <Filter>alib\system</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\threads\thread.cpp">
-      <Filter>alib\threads</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib\threads\threadlock.cpp">
       <Filter>alib\threads</Filter>
@@ -387,26 +447,11 @@
     <ClCompile Include="..\..\..\src.cpp\alox\lox_getstate.cpp">
       <Filter>alox</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\boxing\boxing.cpp">
-      <Filter>alib\boxing</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib\boxing\ftypes.cpp">
       <Filter>alib\boxing</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib\alib.cpp">
       <Filter>alib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\lang\enums.cpp">
-      <Filter>alib\lang</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\lang\report.cpp">
-      <Filter>alib\lang</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\lang\singleton.cpp">
-      <Filter>alib\lang</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\lang\rtti.cpp">
-      <Filter>alib\lang</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib\system\environment.cpp">
       <Filter>alib\system</Filter>
@@ -420,12 +465,6 @@
     <ClCompile Include="..\..\..\src.cpp\alib\time\calendartime.cpp">
       <Filter>alib\time</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\lang\memoryblocks.cpp">
-      <Filter>alib\lang</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\alib\debug.cpp">
-      <Filter>alib\alib</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib\strings\applicables.cpp">
       <Filter>alib\strings</Filter>
     </ClCompile>
@@ -436,9 +475,6 @@
       <Filter>alib\strings</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib\strings\numberformat.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\string.cpp">
       <Filter>alib\strings</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib\strings\substring.cpp">
@@ -471,5 +507,67 @@
     <ClCompile Include="..\..\..\src.cpp\alib\strings\boxing\stringboxing.cpp">
       <Filter>alib\strings\boxing</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\boxing\debug.cpp">
+      <Filter>alib\strings\boxing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\debug\assert.cpp">
+      <Filter>alib\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\lang\enummetadata.cpp">
+      <Filter>alib\lang</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\lang\exception.cpp">
+      <Filter>alib\lang</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\lang\library.cpp">
+      <Filter>alib\lang</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\lang\report.cpp">
+      <Filter>alib\lang</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\lang\resources.cpp">
+      <Filter>alib\lang</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\lang\rtti.cpp">
+      <Filter>alib\lang</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\lang\singleton.cpp">
+      <Filter>alib\lang</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\resourcestring.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox\logtools.cpp">
+      <Filter>alox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\boxing\boxinglib.cpp">
+      <Filter>alib\boxing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\config\configlib.cpp">
+      <Filter>alib\config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\stringlib.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\lang\langlib.cpp">
+      <Filter>alib\lang</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\system\systemlib.cpp">
+      <Filter>alib\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\threads\threadlib.cpp">
+      <Filter>alib\threads</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\util\memoryblocks.cpp">
+      <Filter>alib\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\format\simpletext.cpp">
+      <Filter>alib\strings\format</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\src.cpp\alib\system\directory.mm">
+      <Filter>alib\system</Filter>
+    </None>
   </ItemGroup>
 </Project>

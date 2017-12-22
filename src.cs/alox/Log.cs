@@ -43,14 +43,14 @@ public static class Log
          *  This is a static singleton of type class Lox which is used for standard
          *  debug logging statements.
          */
-        public static   Lox              LOX                                  =new Lox("Log", true );
+        public static   Lox              LOX                                                  =null;
 
         /**  An (additional) IDE specific logger, that might be created by AddDebugLogger. */
         public static   TextLogger       IDELogger                                            =null;
         /**
          * The \b %ALib ReportWriter. This will be created and registered in method
-         * \ref cs::aworx::lox::Log::AddDebugLogger    "Log.AddDebugLogger" and removed in
-         * \ref cs::aworx::lox::Log::RemoveDebugLogger "Log.RemoveDebugLogger" in the case that
+         * \ref cs.aworx.lox.Log.AddDebugLogger    "Log.AddDebugLogger" and removed in
+         * \ref cs.aworx.lox.Log.RemoveDebugLogger "Log.RemoveDebugLogger" in the case that
          * the original \b %ALib ReportWriterStdIO is in place.
          */
         public static   ALoxReportWriter DebugReportWriter                                    =null;
@@ -98,12 +98,12 @@ public static class Log
          *
          * In the current version of \b %ALox (future changes are likely), this method does:
          * - use
-         *   \ref cs::aworx::lox::Lox::CreateConsoleLogger "Lox.CreateConsoleLogger"
+         *   \ref cs.aworx.lox.Lox.CreateConsoleLogger "Lox.CreateConsoleLogger"
          *   to create the best compatible console logger for the
          *   running platform
          * - If a CLR debug session is running (e.g. running in debug mode in Visual Studio or
          *   MonoDevelop IDE), adds a
-         *   \ref cs.aworx.lox::loggers::CLRDebuggerLogger "CLRDebuggerLogger"
+         *   \ref cs.aworx.lox.loggers.CLRDebuggerLogger "CLRDebuggerLogger"
          *   in addition to the standard console logger. This can be suppressed using
          *   configuration variable [ALOX_NO_IDE_LOGGER](../group__GrpALoxConfigVars.html).
          *
@@ -141,22 +141,22 @@ public static class Log
                 if( System.Diagnostics.Debugger.IsAttached )
                 {
                     Variable variable= new Variable(ALox.NO_IDE_LOGGER);
-                    variable.Load();
+                    ALox.Config.Load(variable);
                     if( !variable.IsTrue() )
                     {
                         IDELogger= new CLRDebuggerLogger( "IDE_LOGGER" );
 
                         // add logger
-                        lox.SetVerbosity( IDELogger  , Verbosity.Verbose, "/"                 , Configuration.PrioDefault ,cln,csf,cmn );
-                        lox.SetVerbosity( IDELogger  , Verbosity.Warning, ALox.InternalDomains, Configuration.PrioDefault ,cln,csf,cmn );
+                        lox.SetVerbosity( IDELogger  , Verbosity.Verbose, "/"                 , Configuration.PrioDefaultValues ,cln,csf,cmn );
+                        lox.SetVerbosity( IDELogger  , Verbosity.Warning, ALox.InternalDomains, Configuration.PrioDefaultValues ,cln,csf,cmn );
                     }
                 }
 
                 // add a default console logger
                 DebugLogger= Lox.CreateConsoleLogger("DEBUG_LOGGER");
 
-                lox.SetVerbosity( DebugLogger, Verbosity.Verbose, "/"                 , Configuration.PrioDefault ,cln,csf,cmn );
-                lox.SetVerbosity( DebugLogger, Verbosity.Warning, ALox.InternalDomains, Configuration.PrioDefault ,cln,csf,cmn );
+                lox.SetVerbosity( DebugLogger, Verbosity.Verbose, "/"                 , Configuration.PrioDefaultValues ,cln,csf,cmn );
+                lox.SetVerbosity( DebugLogger, Verbosity.Warning, ALox.InternalDomains, Configuration.PrioDefaultValues ,cln,csf,cmn );
 
                 // replace the ReportWriter
                 Log.AddALibReportWriter( lox );
@@ -167,8 +167,8 @@ public static class Log
         /** ************************************************************************************
          * Removes the \e Logger(s) which was/were created by \ref AddDebugLogger.
          * This method also invokes
-         * \ref cs::aworx::lib::lang::Report::PopWriter "Report.PopWriter"
-         * to install a default \ref cs::aworx::lib::lang::ReportWriter "ReportWriter" for \b %ALib.
+         * \ref cs.aworx.lib.lang.Report.PopWriter "Report.PopWriter"
+         * to install a default \ref cs.aworx.lib.lang.ReportWriter "ReportWriter" for \b %ALib.
          *
          * @param lox The lox to remove the debug logger(s) from.
          *            If null, the static debug object#LOX is used.
@@ -208,9 +208,9 @@ public static class Log
 
         /** ************************************************************************************
          * In the case that the original \b %ALib ReportWriterStdIO is still in place,
-         * \ref cs::aworx::lib::lang::Report::PushWriter "Report.PushWriter" is invoked to provide a
+         * \ref cs.aworx.lib.lang.Report.PushWriter "Report.PushWriter" is invoked to provide a
          * ReportWriter of type
-         * \ref cs::aworx::lox::ALoxReportWriter "ALoxReportWriter".
+         * \ref cs.aworx.lox.ALoxReportWriter "ALoxReportWriter".
          *
          * \note
          * This method is effective only in debug compilations. Usually it is invoked indirectly by
@@ -218,11 +218,11 @@ public static class Log
          * they are using release logging exclusively), should invoke this method on bootstrap
          * providing their (release) lox.
          * In this case, the \e Verbosity of the internal domain used by class
-         * \ref cs::aworx::lox::ALoxReportWriter "ALoxReportWriter" has to be set for the
+         * \ref cs.aworx.lox.ALoxReportWriter "ALoxReportWriter" has to be set for the
          * the logger(s) in given \p lox in question.
          *
          * @param lox  The lox that the
-         *             \ref cs::aworx::lox::ALoxReportWriter "ALoxReportWriter" created will be using.
+         *             \ref cs.aworx.lox.ALoxReportWriter "ALoxReportWriter" created will be using.
          *
          * @param cln (Optional) Caller info, compiler generated. Please omit.
          * @param csf (Optional) Caller info, compiler generated. Please omit.
@@ -322,7 +322,7 @@ public static class Log
      *   independent way.
      *
      * \attention
-     *   Setting global rules (when parameter \p global equals \c Inclusion::Include) is not
+     *   Setting global rules (when parameter \p global equals \c Inclusion.Include) is not
      *   protected by a \c mutex against concurrent access. Therefore, global rules have
      *   to be either at bootstrap of a process, before threads are created, or such creation
      *   has to 'manually' be protected by locking all existing instances of this class!
@@ -343,7 +343,7 @@ public static class Log
      * @param trimReplacement Replacement string for trimmed portion of the path.
      *                        Optional and defaults to \b %NullString.
      * @param priority        The priority of the setting. Defaults to
-     *                        \ref cs::aworx::lib::config::Configuration::PrioDefault "Configuration.PrioDefault".
+     *                        \ref cs.aworx.lib.config.Configuration.PrioDefaultValues "Configuration.PrioDefaultValues".
      *
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
@@ -356,7 +356,7 @@ public static class Log
                                                    Case         sensitivity     = Case.Ignore,
                                                    Reach        reach           = Reach.Global,
                                                    String       trimReplacement = null ,
-                                                   int          priority        = Configuration.PrioDefault,
+                                                   int          priority        = Configuration.PrioDefaultValues,
         [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
@@ -410,7 +410,7 @@ public static class Log
             Log.ClearSourcePathTrimRules( Reach.Global, true );
             Log.DebugLogger= null;
             Log.IDELogger  = null;
-            ALox.ConfigCategoryName._()._( "ALOX" );
+            ALox.ConfigCategory._()._( "ALOX" );
         #endif
     }
 
@@ -428,7 +428,7 @@ public static class Log
      * \b %Verbosity.Off and \p domain to \c "/".
      *
      * Optional parameter \p priority defaults to
-     * \ref cs::aworx::lib::config::Configuration::PrioDefault "Configuration.PrioDefault", which
+     * \ref cs.aworx.lib.config.Configuration.PrioDefaultValues "Configuration.PrioDefaultValues", which
      * is a lower priority than those of the standard plug-ins of external configuration data.
      * Therefore, external configuration by default 'overwrite' settings made from
      * 'within the source code', which simply means by invoking this method.<br>
@@ -436,7 +436,7 @@ public static class Log
      * - To 'lock' a verbosity setting against external manipulation.
      * - to 'break' the standard mechanism that an invocation of this method sets all
      *   sub-domains recursively. If a sub-domain was set with a higher priority
-     *   (e.g. <c>%Configuration.PrioDefault + 1</c>, then this sub-domain will not be affected by
+     *   (e.g. <c>%Configuration.PrioDefaultValues + 1</c>, then this sub-domain will not be affected by
      *   future invocations of this method with standard-priority given.
      *
      * \attention
@@ -465,7 +465,7 @@ public static class Log
      *                   Defaults to root domain \"/\".
      * @param verbosity  The 'level of verboseness' to be set.
      * @param priority   The priority of the setting. Defaults to
-     *                   \ref cs::aworx::lib::config::Configuration::PrioDefault "Configuration.PrioDefault".
+     *                   \ref cs.aworx.lib.config.Configuration.PrioDefaultValues "Configuration.PrioDefaultValues".
      *
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
@@ -473,7 +473,7 @@ public static class Log
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static  void        SetVerbosity( Logger logger, Verbosity verbosity, String domain= "/",
-                                             int priority = Configuration.PrioDefault,
+                                             int priority = Configuration.PrioDefaultValues,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
@@ -493,7 +493,7 @@ public static class Log
      *                   Defaults to root domain \"/\".
      * @param verbosity  The 'level of verboseness' to be set.
      * @param priority   The priority of the setting. Defaults to
-     *                   \ref cs::aworx::lib::config::Configuration::PrioDefault "Configuration.PrioDefault".
+     *                   \ref cs.aworx.lib.config.Configuration.PrioDefaultValues "Configuration.PrioDefaultValues".
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
@@ -502,7 +502,7 @@ public static class Log
     public static   void SetVerbosity( String       loggerName,
                                        Verbosity    verbosity,
                                        String       domain        = "/",
-                                       int          priority      = Configuration.PrioDefault,
+                                       int          priority      = Configuration.PrioDefaultValues,
     [CallerLineNumber] int cln=0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
@@ -623,27 +623,23 @@ public static class Log
      * @param scopeDomain    The domain path to register.
      * @param scope     The scope that should the given \p domain be registered for.
      *                  Available Scope definitions are platform/language dependent.
-     * @param pathLevel Used only with
-     *                  \ref aworx.lox::Scope::Path "Scope.Path".
-     *                  Cuts the given number of directories from the end of the source path.
-     *                  Optional and defaults to \c 0.
      *
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
-    public static   void SetDomain( String scopeDomain, Scope scope, int pathLevel = 0,
+    public static   void SetDomain( String scopeDomain, Scope scope,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.SetDomain( scopeDomain, scope, pathLevel, cln,csf,cmn );
+            LOX.SetDomain( scopeDomain, scope,  cln,csf,cmn );
         #endif
     }
 
     /** ****************************************************************************************
      * This overloaded version of
-     * \ref SetDomain(String,Scope,int,int,String, String) "SetDomain"
+     * \ref SetDomain(String,Scope,int,String, String) "SetDomain"
      * is applicable only for \e %Scope.ThreadOuter and \e %Scope.ThreadInner and allows to
      * specify the thread that the setting should be associated with.
      *
@@ -756,7 +752,7 @@ public static class Log
      * variables. Any prioritized \e 'internal' setting of \e Verbosities this way could be
      * circumvented!
      *
-     * For more information consult the [ALox User Manual](../man_domain_substitution.html).
+     * For more information consult the [ALox User Manual](../alox_man_domain_substitution.html).
      *
      * @param domainPath  The path to search. Has to start with either  <c> '/'</c> or <c> '*'</c>.
      * @param replacement The replacement path.
@@ -808,26 +804,23 @@ public static class Log
      * @param logable     The <em>Prefix Logable</em> to set.
      * @param scope       The scope that should the given \p logable be registered for.
      *                    Available Scope definitions are platform/language dependent.
-     * @param pathLevel   Used only if parameter \p scope equals
-     *                    \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                    to reference parent directories. Optional and defaults to \c 0.
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      ******************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
-    public static void SetPrefix( Object logable, Scope scope, int pathLevel = 0,
+    public static void SetPrefix( Object logable, Scope scope,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.SetPrefix( logable, scope, pathLevel ,cln,csf,cmn);
+            LOX.SetPrefix( logable, scope  ,cln,csf,cmn);
         #endif
     }
 
 
     /** ****************************************************************************************
      * This overloaded version of
-     * \ref SetPrefix(Object,Scope,int, int,String,String) "SetPrefix" is applicable only for
+     * \ref SetPrefix(Object,Scope, int,String,String) "SetPrefix" is applicable only for
      * \e %Scope.ThreadOuter and \e %Scope.ThreadInner and allows to specify the thread that
      * the setting should be associated with.
      *
@@ -958,9 +951,6 @@ public static class Log
      *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  data is unique to the \e Lox.
      * @param scope     The \e %Scope that the data is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                  to reference parent directories. Optional and defaults to \c 0.
      *
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
@@ -968,11 +958,11 @@ public static class Log
      ******************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static void Store( Object  data,       String    key,
-                       Scope scope= Scope.Global , int       pathLevel= 0,
+                       Scope scope= Scope.Global ,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.Store( data, key, scope, pathLevel,  cln,csf,cmn);
+            LOX.Store( data, key, scope,   cln,csf,cmn);
         #endif
     }
 
@@ -983,9 +973,6 @@ public static class Log
      * @param data      The data object to store.
      *                  If \c null, currently stored data will be removed.
      * @param scope     The \e %Scope that the data is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                  to reference parent directories. Optional and defaults to \c 0.
      *
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
@@ -993,11 +980,11 @@ public static class Log
      ******************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static void Store( Object data,
-                              Scope scope= Scope.Global , int            pathLevel= 0,
+                              Scope scope= Scope.Global,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.Store( data, null, scope, pathLevel,  cln,csf,cmn);
+            LOX.Store( data, null, scope,   cln,csf,cmn);
         #endif
     }
 
@@ -1014,20 +1001,17 @@ public static class Log
      *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  data is unique to the \e Lox.
      * @param scope     The \e %Scope that the data is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                  to reference parent directories. Optional and defaults to \c 0.
      *
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      * @return The \b Object object, \c null if nothing was found.
      ******************************************************************************************/
-    public static Object  Retrieve( String key, Scope scope= Scope.Global,  int pathLevel= 0,
+    public static Object  Retrieve( String key, Scope scope= Scope.Global,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            return LOX.Retrieve( key, scope, pathLevel,  cln,csf,cmn);
+            return LOX.Retrieve( key, scope,   cln,csf,cmn);
         #else
             return null;
         #endif
@@ -1040,20 +1024,17 @@ public static class Log
      *       It is not advised to use <em>Log Data</em> to implement application logic.
      *
      * @param scope     The \e %Scope that the data is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                  to reference parent directories. Optional and defaults to \c 0.
      *
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      * @return The \b Object object, \c null if nothing was found.
      ******************************************************************************************/
-    public static Object  Retrieve( Scope scope= Scope.Global , int pathLevel= 0,
+    public static Object  Retrieve( Scope scope= Scope.Global,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            return LOX.Retrieve( null, scope, pathLevel    ,cln,csf,cmn);
+            return LOX.Retrieve( null, scope    ,cln,csf,cmn);
         #else
             return null;
         #endif
@@ -1097,7 +1078,7 @@ public static class Log
     /** ********************************************************************************************
      * This method collects state information about this lox in a formatted multi-line AString.
      * Parameter \p flags is a bit field with bits defined in enum
-     * \ref cs::aworx::lox::Lox::StateInfo "Lox.StateInfo".
+     * \ref cs.aworx.lox.Lox.StateInfo "Lox.StateInfo".
      *
      * @param buf       The target string.
      * @param flags     Flag bits that define which state information is collected.
@@ -1151,9 +1132,9 @@ public static class Log
     }
 
     /** ********************************************************************************************
-     * Logs the given \e Logables using \ref Verbosity::Verbose.
-     * For this, \ref cs::aworx::lox::Lox::Verbose "Lox.Verbose" is invoked on static object
-     * \ref cs::aworx::lox::Log::LOX "LOX" used for debug logging.
+     * Logs the given \e Logables using \ref Verbosity.Verbose.
+     * For this, \ref cs.aworx.lox.Lox.Verbose "Lox.Verbose" is invoked on static object
+     * \ref cs.aworx.lox.Log.LOX "LOX" used for debug logging.
      *
      * @param logableOrDomain  The first logable or the domain path.
      * @param optLog2          Optional logable
@@ -1179,9 +1160,9 @@ public static class Log
     }
 
     /** ********************************************************************************************
-     * Logs the given \e Logables using \ref Verbosity::Info.
-     * For this, \ref cs::aworx::lox::Lox::Info "Lox.Info" is invoked on static object
-     * \ref cs::aworx::lox::Log::LOX "LOX" used for debug logging.
+     * Logs the given \e Logables using \ref Verbosity.Info.
+     * For this, \ref cs.aworx.lox.Lox.Info "Lox.Info" is invoked on static object
+     * \ref cs.aworx.lox.Log.LOX "LOX" used for debug logging.
      *
      * @param logableOrDomain  The first logable or the domain path.
      * @param optLog2          Optional logable
@@ -1208,9 +1189,9 @@ public static class Log
 
 
     /** ********************************************************************************************
-     * Logs the given \e Logables using \ref Verbosity::Warning.
-     * For this, \ref cs::aworx::lox::Lox::Warning "Lox.Warning" is invoked on static object
-     * \ref cs::aworx::lox::Log::LOX "LOX" used for debug logging.
+     * Logs the given \e Logables using \ref Verbosity.Warning.
+     * For this, \ref cs.aworx.lox.Lox.Warning "Lox.Warning" is invoked on static object
+     * \ref cs.aworx.lox.Log.LOX "LOX" used for debug logging.
      *
      * @param logableOrDomain  The first logable or the domain path.
      * @param optLog2          Optional logable
@@ -1237,9 +1218,9 @@ public static class Log
 
 
     /** ********************************************************************************************
-     * Logs the given \e Logables using \ref Verbosity::Error.
-     * For this, \ref cs::aworx::lox::Lox::Error "Lox.Error" is invoked on static object
-     * \ref cs::aworx::lox::Log::LOX "LOX" used for debug logging.
+     * Logs the given \e Logables using \ref Verbosity.Error.
+     * For this, \ref cs.aworx.lox.Lox.Error "Lox.Error" is invoked on static object
+     * \ref cs.aworx.lox.Log.LOX "LOX" used for debug logging.
      *
      * @param logableOrDomain  The first logable or the domain path.
      * @param optLog2          Optional logable
@@ -1267,8 +1248,8 @@ public static class Log
 
     /** ********************************************************************************************
      * Logs given logables only if the parameter \p condition is not \c true.
-     * For this, \ref cs::aworx::lox::Lox::Assert "Lox.Assert" is invoked on static object
-     * \ref cs::aworx::lox::Log::LOX "LOX" used for debug logging.
+     * For this, \ref cs.aworx.lox.Lox.Assert "Lox.Assert" is invoked on static object
+     * \ref cs.aworx.lox.Log.LOX "LOX" used for debug logging.
      *
      * @param condition If \c false, the <em>Log Statement</em> is executed.
      * @param logableOrDomain  The first logable or the domain path.
@@ -1297,8 +1278,8 @@ public static class Log
 
     /** ********************************************************************************************
      * Logs a \e Logable only if the parameter \p condition is \c true.
-     * For this, \ref cs::aworx::lox::Lox::If "Lox.If" is invoked on static object
-     * \ref cs::aworx::lox::Log::LOX "LOX" used for debug logging.
+     * For this, \ref cs.aworx.lox.Lox.If "Lox.If" is invoked on static object
+     * \ref cs.aworx.lox.Log.LOX "LOX" used for debug logging.
      *
      * @param condition  If \c false, the <em>Log Statement</em> is executed.
      * @param domain     Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
@@ -1327,8 +1308,8 @@ public static class Log
 
     /** ********************************************************************************************
      * Logs a \e Logable only if the parameter \p condition is \c true.
-     * For this, \ref cs::aworx::lox::Lox::If "Lox.If" is invoked on static object
-     * \ref cs::aworx::lox::Log::LOX "LOX" used for debug logging.
+     * For this, \ref cs.aworx.lox.Lox.If "Lox.If" is invoked on static object
+     * \ref cs.aworx.lox.Log.LOX "LOX" used for debug logging.
      * This overloaded version omits parameter \p domain.
      *
      * @param condition  If \c false, the <em>Log Statement</em> is executed.
@@ -1362,10 +1343,10 @@ public static class Log
      * Using parameter \p group, a set of <em>Log Statements</em> that share the same group key,
      * can be grouped and of such set, only the one which is first executed actually logs.<br>
      * Alternatively, when \p key is omitted (or null or empty), but a
-     * \ref cs::aworx::lox::Scope "Scope" is given with parameter \p scope, then the
+     * \ref cs.aworx.lox.Scope "Scope" is given with parameter \p scope, then the
      * counter is associated with the scope.<br>
      * Finally, parameters \p key and \p scope can also be used in combination. The key is
-     * then unique in respect to the \ref cs::aworx::lox::Scope "Scope" provided.
+     * then unique in respect to the \ref cs.aworx.lox.Scope "Scope" provided.
      *
      * Using, none, one or both of the parameters \p group and \p scope, among others, the
      * following use cases can be achieved.
@@ -1412,12 +1393,9 @@ public static class Log
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope::Global, then the
+     *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *                  If negative, the first and every "-quantity-th" statement is executed.
@@ -1428,14 +1406,12 @@ public static class Log
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static
-    void Once( String domain, Verbosity verbosity, Object logables,
-               String group,
-               Scope scope= Scope.Global , int pathLevel= 0,
-               int quantity= 1,
+    void Once( String domain, Verbosity verbosity, Object logables, String group,
+               Scope scope= Scope.Global , int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.Once( domain, verbosity, logables, group, scope, pathLevel, quantity,   cln,csf,cmn );
+            LOX.Once( domain, verbosity, logables, group, scope,  quantity,   cln,csf,cmn );
         #endif
     }
 
@@ -1451,9 +1427,6 @@ public static class Log
      *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -1463,14 +1436,11 @@ public static class Log
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static
-    void Once(                        Verbosity verbosity, Object logables,
-               String group,
-               Scope scope, int pathLevel= 0,
-               int quantity= 1,
+    void Once( Verbosity verbosity, Object logables, String group, Scope scope, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.Once( null, verbosity, logables, group, scope, pathLevel, quantity,   cln,csf,cmn );
+            LOX.Once( null, verbosity, logables, group, scope,  quantity,   cln,csf,cmn );
         #endif
     }
 
@@ -1494,13 +1464,11 @@ public static class Log
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static
-    void Once(                        Verbosity verbosity, Object logables,
-               String group,
-               int quantity= 1,
+    void Once( Verbosity verbosity, Object logables, String group, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.Once( null, verbosity, logables, group, Scope.Global, 0, quantity ,   cln,csf,cmn );
+            LOX.Once( null, verbosity, logables, group, Scope.Global, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -1518,12 +1486,11 @@ public static class Log
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static
-    void Once(                        Verbosity verbosity, Object logables,
-               int quantity= 1,
+    void Once( Verbosity verbosity, Object logables, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.Once( null, verbosity, logables, null, Scope.Global, 0, quantity ,   cln,csf,cmn );
+            LOX.Once( null, verbosity, logables, null, Scope.Global, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -1538,9 +1505,6 @@ public static class Log
      *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -1550,14 +1514,11 @@ public static class Log
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static
-    void Once(                                          Object logables,
-               String group,
-               Scope scope, int pathLevel= 0,
-               int quantity= 1,
+    void Once( Object logables, String group, Scope scope, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.Once( null, Verbosity.Info, logables, group, scope, pathLevel, quantity ,   cln,csf,cmn );
+            LOX.Once( null, Verbosity.Info, logables, group, scope,  quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -1569,9 +1530,6 @@ public static class Log
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].).
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -1582,12 +1540,11 @@ public static class Log
     [Conditional("ALOX_DBG_LOG")]
     public static
     void Once( String domain, Verbosity verbosity, Object logables,
-               Scope scope= Scope.Global , int pathLevel= 0,
-               int quantity= 1,
+               Scope scope= Scope.Global, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.Once( domain, verbosity, logables, null, scope, pathLevel, quantity ,   cln,csf,cmn );
+            LOX.Once( domain, verbosity, logables, null, scope,  quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -1597,9 +1554,6 @@ public static class Log
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].).
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -1609,13 +1563,11 @@ public static class Log
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static
-    void Once(                        Verbosity verbosity, Object logables,
-               Scope scope, int pathLevel= 0,
-               int quantity= 1,
+    void Once( Verbosity verbosity, Object logables, Scope scope, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.Once( null, verbosity, logables, null, scope, pathLevel, quantity ,   cln,csf,cmn );
+            LOX.Once( null, verbosity, logables, null, scope,  quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -1624,9 +1576,6 @@ public static class Log
      *
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].).
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -1636,13 +1585,11 @@ public static class Log
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static
-    void Once(                                          Object logables,
-               Scope scope, int pathLevel= 0,
-               int quantity= 1,
+    void Once( Object logables, Scope scope, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.Once( null, Verbosity.Info, logables, null, scope, pathLevel, quantity ,   cln,csf,cmn );
+            LOX.Once( null, Verbosity.Info, logables, null, scope,  quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -1659,12 +1606,11 @@ public static class Log
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static
-    void Once(                                          Object logables,
-               int quantity= 1,
+    void Once( Object logables, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.Once( null, Verbosity.Info, logables, null, Scope.Global, 0, quantity ,   cln,csf,cmn );
+            LOX.Once( null, Verbosity.Info, logables, null, Scope.Global, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -1687,12 +1633,11 @@ public static class Log
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static
-    void Once(                                          Object logables,
-               String group, int quantity= 1,
+    void Once( Object logables,String group, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.Once( null, Verbosity.Info, logables, group, Scope.Global, 0, quantity ,   cln,csf,cmn );
+            LOX.Once( null, Verbosity.Info, logables, group, Scope.Global, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -1707,12 +1652,9 @@ public static class Log
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope::Global, then the
+     *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -1722,14 +1664,12 @@ public static class Log
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static
-    void Once( String domain, Verbosity verbosity, String logable,
-               String group,
-               Scope scope= Scope.Global , int pathLevel= 0,
-               int quantity= 1,
+    void Once( String domain, Verbosity verbosity, String logable, String group,
+               Scope scope= Scope.Global, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.Once( domain, verbosity, logable, group, scope, pathLevel, quantity,   cln,csf,cmn );
+            LOX.Once( domain, verbosity, logable, group, scope,  quantity,   cln,csf,cmn );
         #endif
     }
 
@@ -1745,9 +1685,6 @@ public static class Log
      *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -1757,14 +1694,11 @@ public static class Log
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static
-    void Once(                        Verbosity verbosity, String logable,
-               String group,
-               Scope scope, int pathLevel= 0,
-               int quantity= 1,
+    void Once( Verbosity verbosity, String logable, String group, Scope scope, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.Once( null, verbosity, logable, group, scope, pathLevel, quantity,   cln,csf,cmn );
+            LOX.Once( null, verbosity, logable, group, scope,  quantity,   cln,csf,cmn );
         #endif
     }
 
@@ -1788,13 +1722,11 @@ public static class Log
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static
-    void Once(                        Verbosity verbosity, String logable,
-               String group,
-               int quantity= 1,
+    void Once( Verbosity verbosity, String logable, String group, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.Once( null, verbosity, logable, group, Scope.Global, 0, quantity ,   cln,csf,cmn );
+            LOX.Once( null, verbosity, logable, group, Scope.Global, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -1812,12 +1744,11 @@ public static class Log
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static
-    void Once(                        Verbosity verbosity, String logable,
-               int quantity= 1,
+    void Once( Verbosity verbosity, String logable, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.Once( null, verbosity, logable, null, Scope.Global, 0, quantity ,   cln,csf,cmn );
+            LOX.Once( null, verbosity, logable, null, Scope.Global, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -1832,9 +1763,6 @@ public static class Log
      *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -1844,14 +1772,11 @@ public static class Log
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static
-    void Once(                                          String logable,
-               String group,
-               Scope scope, int pathLevel= 0,
-               int quantity= 1,
+    void Once( String logable, String group, Scope scope, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.Once( null, Verbosity.Info, logable, group, scope, pathLevel, quantity ,   cln,csf,cmn );
+            LOX.Once( null, Verbosity.Info, logable, group, scope,  quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -1863,9 +1788,6 @@ public static class Log
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
      * @param logable   The string message to log.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -1876,12 +1798,11 @@ public static class Log
     [Conditional("ALOX_DBG_LOG")]
     public static
     void Once( String domain, Verbosity verbosity, String logable,
-               Scope scope= Scope.Global , int pathLevel= 0,
-               int quantity= 1,
+               Scope scope= Scope.Global, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.Once( domain, verbosity, logable, null, scope, pathLevel, quantity ,   cln,csf,cmn );
+            LOX.Once( domain, verbosity, logable, null, scope,  quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -1891,9 +1812,6 @@ public static class Log
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
      * @param logable   The string message to log.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -1903,13 +1821,11 @@ public static class Log
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static
-    void Once(                        Verbosity verbosity, String logable,
-               Scope scope, int pathLevel= 0,
-               int quantity= 1,
+    void Once( Verbosity verbosity, String logable, Scope scope, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.Once( null, verbosity, logable, null, scope, pathLevel, quantity ,   cln,csf,cmn );
+            LOX.Once( null, verbosity, logable, null, scope,  quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -1918,9 +1834,6 @@ public static class Log
      *
      * @param logable   The string message to log.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pathLevel Used only if parameter \p scope equals
-     *                  \ref cs::aworx::lox::Scope::Path "Scope.Path"
-     *                   to reference parent directories. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      *
@@ -1930,13 +1843,11 @@ public static class Log
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static
-    void Once(                                          String logable,
-               Scope scope, int pathLevel= 0,
-               int quantity= 1,
+    void Once( String logable, Scope scope, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.Once( null, Verbosity.Info, logable, null, scope, pathLevel, quantity ,   cln,csf,cmn );
+            LOX.Once( null, Verbosity.Info, logable, null, scope,  quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -1953,12 +1864,11 @@ public static class Log
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static
-    void Once(                                          String logable,
-               int quantity= 1,
+    void Once( String logable, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.Once( null, Verbosity.Info, logable, null, Scope.Global, 0, quantity ,   cln,csf,cmn );
+            LOX.Once( null, Verbosity.Info, logable, null, Scope.Global, quantity ,   cln,csf,cmn );
         #endif
     }
 
@@ -1981,12 +1891,11 @@ public static class Log
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static
-    void Once(                                          String logable,
-               String group, int quantity= 1,
+    void Once( String logable, String group, int quantity= 1,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.Once( null, Verbosity.Info, logable, group, Scope.Global, 0, quantity ,   cln,csf,cmn );
+            LOX.Once( null, Verbosity.Info, logable, group, Scope.Global, quantity ,   cln,csf,cmn );
         #endif
     }
 

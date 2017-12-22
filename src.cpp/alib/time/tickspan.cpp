@@ -17,8 +17,7 @@
 #endif
 
 
-namespace aworx { namespace lib { namespace time
-{
+namespace aworx { namespace lib { namespace time {
 void TickSpan::Clear()
 {
     Days=
@@ -30,7 +29,7 @@ void TickSpan::Clear()
     Nanoseconds=    0;
 }
 
-void TickSpan::Set( rawtime ticks )
+void TickSpan::Set( Time::TRaw ticks )
 {
     Clear();
 
@@ -40,23 +39,23 @@ void TickSpan::Set( rawtime ticks )
         ticks= toNanos.InNanos();
     #endif
 
-    rawtime fract=    0;
-    if ( ticks > ALIB_NANOS_PER_DAY )          { fract= ticks / ALIB_NANOS_PER_DAY;         Days=         static_cast<int>( fract ); ticks-= fract * ALIB_NANOS_PER_DAY;         }
-    if ( ticks > ALIB_NANOS_PER_HOUR )         { fract= ticks / ALIB_NANOS_PER_HOUR;        Hours=        static_cast<int>( fract ); ticks-= fract * ALIB_NANOS_PER_HOUR;        }
-    if ( ticks > ALIB_NANOS_PER_MINUTE )       { fract= ticks / ALIB_NANOS_PER_MINUTE;      Minutes=      static_cast<int>( fract ); ticks-= fract * ALIB_NANOS_PER_MINUTE;      }
-    if ( ticks > ALIB_NANOS_PER_SECOND )       { fract= ticks / ALIB_NANOS_PER_SECOND;      Seconds=      static_cast<int>( fract ); ticks-= fract * ALIB_NANOS_PER_SECOND;      }
-    if ( ticks > ALIB_NANOS_PER_MILLISECOND )  { fract= ticks / ALIB_NANOS_PER_MILLISECOND; Milliseconds= static_cast<int>( fract ); ticks-= fract * ALIB_NANOS_PER_MILLISECOND; }
-    if ( ticks > ALIB_NANOS_PER_MICROSECOND )  { fract= ticks / ALIB_NANOS_PER_MICROSECOND; Microseconds= static_cast<int>( fract );                                             }
+    Time::TRaw fract=    0;
+    if ( ticks > Time::NanosPerDay )          { fract= ticks / Time::NanosPerDay;         Days=         static_cast<int>( fract ); ticks-= fract * Time::NanosPerDay;         }
+    if ( ticks > Time::NanosPerHour )         { fract= ticks / Time::NanosPerHour;        Hours=        static_cast<int>( fract ); ticks-= fract * Time::NanosPerHour;        }
+    if ( ticks > Time::NanosPerMinute )       { fract= ticks / Time::NanosPerMinute;      Minutes=      static_cast<int>( fract ); ticks-= fract * Time::NanosPerMinute;      }
+    if ( ticks > Time::NanosPerSecond )       { fract= ticks / Time::NanosPerSecond;      Seconds=      static_cast<int>( fract ); ticks-= fract * Time::NanosPerSecond;      }
+    if ( ticks > Time::NanosPerMillisecond )  { fract= ticks / Time::NanosPerMillisecond; Milliseconds= static_cast<int>( fract ); ticks-= fract * Time::NanosPerMillisecond; }
+    if ( ticks > Time::NanosPerMicrosecond )  { fract= ticks / Time::NanosPerMicrosecond; Microseconds= static_cast<int>( fract );                                             }
 }
 
-rawtime        TickSpan::Get()
+Time::TRaw        TickSpan::Get()
 {
-    rawtime ticks=     Days          * ALIB_NANOS_PER_DAY
-                    +  Hours         * ALIB_NANOS_PER_HOUR
-                    +  Minutes       * ALIB_NANOS_PER_MINUTE
-                    +  Seconds       * ALIB_NANOS_PER_SECOND
-                    +  Milliseconds  * ALIB_NANOS_PER_MILLISECOND
-                    +  Microseconds  * ALIB_NANOS_PER_MICROSECOND
+    Time::TRaw ticks=     Days          * Time::NanosPerDay
+                    +  Hours         * Time::NanosPerHour
+                    +  Minutes       * Time::NanosPerMinute
+                    +  Seconds       * Time::NanosPerSecond
+                    +  Milliseconds  * Time::NanosPerMillisecond
+                    +  Microseconds  * Time::NanosPerMicrosecond
                     +  Nanoseconds;
 
     #if defined( _WIN32 )
@@ -69,5 +68,5 @@ rawtime        TickSpan::Get()
 
 
 
-}}}// namespace aworx::lib::time
+}}}// namespace [aworx::lib::time]
 

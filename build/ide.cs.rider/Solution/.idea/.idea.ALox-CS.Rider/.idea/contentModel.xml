@@ -1,5 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/.Rider2017.3/system/resharper-host/local/Transient/ReSharperHost/v11/SolutionCaches/_ALox-CS.Rider.1734369862.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$/../../../LICENSE.txt" t="Include" />
+    <e p="$PROJECT_DIR$/../../../README.md" t="Include" />
+    <e p="$PROJECT_DIR$/../../_builds_/ide.cs.rider/ALox-CS-.Net45-DLL/bin/Debug" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$/../../_builds_/ide.cs.rider/ALox-CS-.Net45-DLL-Release-Log/bin/Debug" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$/../../_builds_/ide.cs.rider/ALox-CS-.Net45-NUnit/bin/Debug" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$/../../_builds_/ide.cs.rider/ALox-CS-.Net45-Samples/bin/Debug" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$/../../_builds_/ide.cs.rider/Debug" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$/../ALox-CS-.Net45-DLL" t="IncludeRecursive">
+      <e p="ALib" t="Include">
+        <e p="config" t="Include" />
+        <e p="lang" t="Include" />
+        <e p="strings" t="Include">
+          <e p="format" t="Include" />
+          <e p="util" t="Include" />
+        </e>
+        <e p="system" t="Include" />
+        <e p="threads" t="Include" />
+        <e p="time" t="Include" />
+        <e p="util" t="Include" />
+      </e>
+      <e p="ALox" t="Include">
+        <e p="core" t="Include">
+          <e p="textlogger" t="Include" />
+        </e>
+        <e p="loggers" t="Include" />
+        <e p="tools" t="Include">
+          <e p="json" t="Include" />
+        </e>
+      </e>
+      <e p="ALox-CS-.Net45-DLL.csproj" t="IncludeRecursive" />
+      <e p="Properties" t="Include">
+        <e p="AssemblyInfo.cs" t="Include" />
+      </e>
+      <e p="packages.config" t="Include" />
+    </e>
+    <e p="$PROJECT_DIR$/../ALox-CS-.Net45-DLL-Release-Log" t="IncludeRecursive">
+      <e p="ALib" t="Include">
+        <e p="config" t="Include" />
+        <e p="lang" t="Include" />
+        <e p="strings" t="Include">
+          <e p="format" t="Include" />
+          <e p="util" t="Include" />
+        </e>
+        <e p="system" t="Include" />
+        <e p="threads" t="Include" />
+        <e p="time" t="Include" />
+        <e p="util" t="Include" />
+      </e>
+      <e p="ALox" t="Include">
+        <e p="core" t="Include">
+          <e p="textlogger" t="Include" />
+        </e>
+        <e p="loggers" t="Include" />
+        <e p="tools" t="Include">
+          <e p="json" t="Include" />
+        </e>
+      </e>
+      <e p="ALox-CS-.Net45-DLL-ReleaseLog.csproj" t="IncludeRecursive" />
+      <e p="Properties" t="Include">
+        <e p="AssemblyInfo.cs" t="Include" />
+      </e>
+    </e>
+    <e p="$PROJECT_DIR$/../ALox-CS-.Net45-NUnit" t="IncludeRecursive">
+      <e p="ALox-CS-.Net45-NUnit.csproj" t="IncludeRecursive" />
+      <e p="packages.config" t="Include" />
+      <e p="ut.ALib" t="Include" />
+      <e p="ut.ALox" t="Include" />
+    </e>
+    <e p="$PROJECT_DIR$/../ALox-CS-.Net45-Samples" t="IncludeRecursive">
+      <e p="ALox-CS-.Net45-Samples.csproj" t="IncludeRecursive" />
+      <e p="App.config" t="Include" />
+      <e p="Properties" t="Include">
+        <e p="AssemblyInfo.cs" t="Include" />
+      </e>
+    </e>
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p="ALox-CS.Rider.sln" t="IncludeFlat" />
+      <e p="Solution Items" t="Include" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/ALIB_DBG.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/ALib.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/config/Configuration.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/config/ConfigurationPlugin.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/config/InMemoryPlugin.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/config/IniFile.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/config/Variable.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/lang/Enums.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/lang/Report.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/lang/ReportWriter.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/strings/AString.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/strings/CString.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/strings/NumberFormat.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/strings/Substring.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/strings/format/Formatter.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/strings/format/FormatterJavaStyle.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/strings/format/FormatterPythonStyle.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/strings/format/FormatterStdImpl.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/strings/util/AutoSizes.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/strings/util/Spaces.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/strings/util/Tokenizer.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/system/ProcessInfo.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/threads/SmartLock.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/threads/ThreadLock.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/time/Ticks.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib/util/StringTree.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib.unittests/AWorxUnitTesting.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib.unittests/UT_alib_config.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib.unittests/UT_alib_strings_AString.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib.unittests/UT_alib_strings_AStringAndSubstring.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib.unittests/UT_alib_strings_Format.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib.unittests/UT_alib_strings_Substring.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib.unittests/UT_alib_threads.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib.unittests/UT_alib_time.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alib.unittests/UT_alib_util_stringtree.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox/ALox.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox/ALoxTypesAndEnums.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox/Log.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox/Lox.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox/core/Domain.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox/core/Logger.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox/core/ScopeDump.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox/core/ScopeInfo.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox/core/ScopeStore.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox/core/textlogger/MetaInfo.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox/core/textlogger/ObjectConverter.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox/core/textlogger/PlainTextLogger.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox/core/textlogger/TextLogger.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox/loggers/AnsiLogger.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox/loggers/CLRDebuggerLogger.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox/loggers/ColorConsoleLogger.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox/loggers/ConsoleLogger.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox/loggers/MemoryLogger.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox/loggers/TextFileLogger.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox/tools/LogTools.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox/tools/json/DynamicJSONDeserializer.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox.samples/ALoxSamples.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox.unittests/UT_alox_domains.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox.unittests/UT_alox_logger.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox.unittests/UT_alox_logtools.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox.unittests/UT_alox_lox.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox.unittests/UT_alox_release_log.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox.unittests/UT_alox_scopes.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox.unittests/UT_alox_scopes_helper.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox.unittests/UT_dox_manual.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox.unittests/UT_dox_reference_manual.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox.unittests/UT_dox_tutorial.cs" t="Include" />
+    <e p="$PROJECT_DIR$/../../../src.cs/alox.unittests/UT_dox_tutorial_minimum.cs" t="Include" />
+  </component>
   <component name="RiderRiderContentModelStore">
     <excludedPaths />
   </component>

@@ -26,8 +26,8 @@
 #include "scopestore.hpp"
 
 
-namespace aworx { namespace lox { namespace core
-{
+namespace aworx { namespace lox { namespace core {
+
 /** ************************************************************************************************
  * This class is an internal helper to export current scope values.
  * It was extracted from class \b %Lox to keep that class clean from this somehow 'cluttered' code.
@@ -137,10 +137,10 @@ extern template   int ScopeDump::writeStore   ( ScopeStore<AString*             
 extern template   int ScopeDump::writeStore   ( ScopeStore<Box*                    >* store, int indentSpaces );
 extern template   int ScopeDump::writeStoreMap( ScopeStore<std::map<AString, int>* >* store );
 extern template   int ScopeDump::writeStoreMap( ScopeStore<std::map<AString, Box>* >* store );
-//! @endcond NO_DOX
+//! @endcond
 
 
-}}} // namespace aworx::lox::core
+}}}// namespace [aworx::lox::core]
 
 
 

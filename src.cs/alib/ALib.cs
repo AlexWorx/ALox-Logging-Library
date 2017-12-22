@@ -47,7 +47,7 @@ namespace cs.aworx.lib {
 
 /** ************************************************************************************************
  *  This class is a 100% static placeholder for global methods and fields of
- * \ref cs::aworx::lib "ALib".
+ * \ref cs.aworx.lib "ALib".
  *   Among the things implemented here are:
  * - Collecting information on the executed process and its environment.
  * - Initialization of several ALib components with methods #Init and #TerminationCleanUp.
@@ -65,7 +65,7 @@ public static class ALIB
          * Besides this version number, field #Revision indicates if this is a revised version
          * of a former release.
          */
-        public static readonly  int                    Version                                =1709;
+        public static readonly  int                    Version                                =1712;
 
         /**
          * The revision number of this release. Each ALib #Version is initially released as
@@ -75,6 +75,20 @@ public static class ALIB
         public static readonly  int                    Revision                                  =0;
 
         /**
+         * The configuration used by \alox. This is received or created with overloaded
+         * #Init methods. It might be shared with other libraries or can be an instance
+         * explicitly dedicated to the \alox library.<br>
+         * The option to use an exclusive one may be used to store \alox configuration
+         * variables in different configuration files, e.g. to reduce "clutter" of an
+         * applications' then "main" configuration file.<br>
+         * Changes should only be made at very initial, single threaded bootstrap code,
+         * with the invocation of the according method \ref #Init(Configuration).
+         *
+         * \see  Field #ConfigCategory.
+         */
+        public static      Configuration               Config                                 =null;
+
+        /**
          * The name of the configuration category of configuration variables used by the AWorx
          * library.<br>
          * Defaults to "ALIB".<br>
@@ -82,13 +96,12 @@ public static class ALIB
          * respect to environment variable settings). Changes should be placed at very initial
          * bootstrap code, before the invocation of #Init.
          */
+        public  static      AString                    ConfigCategory   = new AString( "ALIB" );
 
-        public  static      AString                 ConfigCategoryName      = new AString( "ALIB" );
+        /** Configuration variable declaration */
+        public static       VariableDecl      WAIT_FOR_KEY_PRESS = new VariableDecl(
 
-        /** Configuration variable definition */
-        public static       VariableDefinition      WAIT_FOR_KEY_PRESS = new VariableDefinition(
-
-            ALIB.ConfigCategoryName,   null,     "WAIT_FOR_KEY_PRESS",
+            ALIB.ConfigCategory,   null,     "WAIT_FOR_KEY_PRESS",
             "",
             '\0', null, Variable.FormatHint.None,
             "If true, the process waits for a key stroke on termination. If empty, under Windows \n"
@@ -114,7 +127,7 @@ public static class ALIB
          * this smart lock might be used by any \e entity that writes data to the streams.
          * Before it can be used (acquired and released), it is needed to register with the object
          * using
-         * \ref cs::aworx::lib::threads::SmartLock::AddAcquirer "SmartLock.AddAcquirer".
+         * \ref cs.aworx.lib.threads.SmartLock.AddAcquirer "SmartLock.AddAcquirer".
          * This has to be done once per thread that aims to write to the stream. Then, prior to
          * writing, this object has to be acquired and after writing released.
          *
@@ -123,7 +136,7 @@ public static class ALIB
          * standard output and error information.
          *
          * If the 'entity' that is registering is not of type
-         * \ref cs::aworx::lib::threads::ThreadLock "ThreadLock" it is allowed to provide \c null
+         * \ref cs.aworx.lib.threads.ThreadLock "ThreadLock" it is allowed to provide \c null
          * in the parameter of method \b AddAcquirer. In this case, the process of adding and
          * removing \e acquirers is not performed in a thread safe way. Therefore it is advised
          * to register so called anonymous (\c null) \e acquirers only at bootstrap time, when
@@ -184,26 +197,26 @@ public static class ALIB
         private static      bool                    isInitialized= false;
 
         /** ****************************************************************************************
-         * This method must be called prior to using ALib, e.g. at the beginning of
-         * the \c main() method of an application. It is OK, to call this method more than once, which
-         * allows independent code blocks (e.g. libraries) to bootstrap %ALIB independently.
-         * However, only the first invocation is effective with the exclamation that if
-         * command line parameters are provided with a call, those are set.
-         * Also, the very first invocation should not be interrupted by a parallel invocation of a
-         * second thread. Consequently, it has to be assured that this method is invoked once on
-         * the real bootstrap an app.
+         * This method must be called prior to using \alib, e.g. at the beginning of
+         * the \c main() method of an application. It is OK, to call this method more than once,
+         * which allows independent code blocks (e.g. libraries) to bootstrap %ALIB independently.
+         * However, only the first invocation is effective
          *
-         * In the C# version of the AWorx library, the invocation of this method is optional.
-         * However, it is good practice to invoke this method in the main() method of a process
-         * and provide the command line arguments. If no invocation is performed, no
-         * configuration plug-ins are set.
+         * The very first invocation should not be interrupted by a parallel invocation of a
+         * second thread. Consequently, with more complex applications it is recommended to
+         * explicitly invoke this method once when the software is bootstrapped.
+         *
+         * If command line parameters should be used for configuring \b %ALox, then the very first
+         * call to this method has to provide the argc and argv parameters.
+         * Subsequent calls to this method with different parameters do not change the setup.
+         *
+         * If other, custom configuration data sources should be used already with this method
+         * use overloaded method
+         * \ref aworx.lib.ALIB.Init(Configuration) "ALIB.Init(Configuration)".
          *
          * \note
-         *   If other, custom configuration data sources should be used already with this method
-         *   (in the current implementation, the only configuration variable read with this method
-         *   is \c WAIT_FOR_KEY_PRESS), then such plug-in(s) have to be added to
-         *   singleton \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default"
-         *   prior to invoking this method.
+             In the current implementation, the only configuration variable read with this method
+         *   is \c WAIT_FOR_KEY_PRESS.
          *
          * @param args    Parameters taken from <em>standard C#</em> method \c main()
          *                (the list of command line arguments).
@@ -211,13 +224,37 @@ public static class ALIB
          ******************************************************************************************/
         public static void     Init( String[] args= null )
         {
-            Configuration.Default.SetCommandLineArgs( args );
-
             if ( isInitialized )
                 return;
             isInitialized= true;
 
+            Config= new Configuration();
+            Config.SetCommandLineArgs( args );
+            init();
+        }
 
+        /** ****************************************************************************************
+         * Variant of method #Init, accepting a configuration.
+         * This will be stored in field #Config and used for loading and storing \alib
+         * variables.
+         *
+         * @param config  The configuration object to use with \alib variables.
+         ******************************************************************************************/
+        public static void Init( Configuration config )
+        {
+            if ( isInitialized )
+                return;
+            isInitialized= true;
+
+            Config= config;
+            init();
+        }
+
+        /** ****************************************************************************************
+         * Used by #Init functions.
+         ******************************************************************************************/
+        private static void init( )
+        {
             // set the system's locale as the default for our static default number format
             NumberFormat.Global.SetFromLocale();
             NumberFormat.Global.WriteGroupChars= true;
@@ -225,7 +262,7 @@ public static class ALIB
             // --- determine if we want to wait for a keypress upon termination ---
             {
                 Variable variable= new Variable( ALIB.WAIT_FOR_KEY_PRESS );
-                variable.Load();
+                Config.Load( variable );
                 if ( variable.Size() > 0 )
                     WaitForKeyPressOnTermination= variable.IsTrue();
                 else
@@ -237,7 +274,8 @@ public static class ALIB
                     #endif // WIN32
                 }
             }
-         }
+        }
+
 
         /** ****************************************************************************************
          * Got nothing to do in C#.
@@ -267,7 +305,7 @@ public static class ALIB
          ******************************************************************************************/
         public static bool IsWindowsOS()
         {
-            var os= Environment.OSVersion.Platform;
+            var os= System.Environment.OSVersion.Platform;
             return      os==PlatformID.Win32NT
                     ||  os==PlatformID.Win32S
                     ||  os==PlatformID.Win32Windows;
@@ -339,7 +377,7 @@ public static class ALIB
 
         /** ****************************************************************************************
          * Interprets given \p src as a boolean value.
-         * \ref cs::aworx::lib::lang::Inclusion "enums.Inclusion".
+         * \ref cs.aworx.lib.lang.Inclusion "enums.Inclusion".
          * If the case insensitive comparison of the first non-whitespace characters of the string with
          * with values "t", "1", "y", "on", "ok"
          * matches, \c true is returned.
@@ -371,7 +409,7 @@ public static class ALIB
 
         /** ****************************************************************************************
          * Interprets given \p src as a value of enum type
-         * \ref aworx.lib::lang::Case "enums.Case".
+         * \ref aworx.lib.lang.Case "enums.Case".
          * If the case insensitive comparison of the first non-whitespace characters of the string
          * with values "s", "y", "t", "1"
          * matches, \b %Case.Sensitive is returned.
@@ -399,7 +437,7 @@ public static class ALIB
 
         /** ****************************************************************************************
          * Interprets given \p src as a value of enum type
-         * \ref cs::aworx::lib::lang::Inclusion "enums.Inclusion".
+         * \ref cs.aworx.lib.lang.Inclusion "enums.Inclusion".
          * If the case insensitive comparison of the first non-whitespace characters of the string
          * with values "i", "y", "t", "1"
          * matches, \b %Inclusion.Include is returned.

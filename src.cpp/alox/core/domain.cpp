@@ -138,7 +138,7 @@ Domain* Domain::findRecursive( Substring& domainPath, int maxCreate, bool* wasCr
             subDomainIt=  SubDomains.begin();
             while ( subDomainIt != SubDomains.end() )
             {
-                int comparison= (*subDomainIt)->Name.CompareTo<false>( domainPath, Case::Sensitive );
+                int comparison= (*subDomainIt)->Name.CompareTo<false, Case::Sensitive>( domainPath );
 
                 if( comparison >= 0 )
                 {
@@ -209,8 +209,8 @@ void Domain::ToString( AString& tAString )
             LoggerData& ld= Data[i];
             tAString._(i!=0 ? ", " : "" )
                     ._('(')
-                        ._('[')._( Format(ld.LogCallsPerDomain, 3) )._( "], " );
-                        aworx::lox::ToString( ld.LoggerVerbosity, ld.Priority, tAString )
+                        ._('[')._( Format(ld.LogCallsPerDomain, 3) )._( "], " )
+                        ._( std::make_pair( ld.LoggerVerbosity, ld.Priority) )
                     ._( ')' );
         }
     tAString._(" }");

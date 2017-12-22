@@ -11,7 +11,6 @@
 
 
 // the variable 'declarations' to be read by doxygen (doxygen is sometimes funny)
-Configuration Variable ALIB_RTE;
 Configuration Variable ALIB_LOCALE;
 Configuration Variable ALIB_HAS_CONSOLE_WINDOW;
 Configuration Variable ALIB_WAIT_FOR_KEY_PRESS;
@@ -57,7 +56,7 @@ While this is a reference appendix chapter, for general information refer to
         ([C++] (@ref #aworx::lib::config),
         [C#]  (@ref #cs::aworx::lib::config),
         [Java](@ref #com::aworx::lib::config)) and to
-- The ALox user manual chapter \ref man_external_configuration.
+- The ALox user manual chapter \ref alox_man_external_configuration.
 
 <br>
 <p>
@@ -92,43 +91,14 @@ get an overview, refer to [Wikipedia](https://en.wikipedia.org/wiki/Environment_
 // ------------------------------------- ALIB variables -------------------------------------------
 
 /**
-\var  ALIB_RTE
-\e Declaration:
-<b>%ALib::RTE</b>
- ([C++] (@ref      #aworx::lib::ALIB::RTE),
-  C#, Java: not applicable).<br>
-\e Default Value: \c "auto"<br>
-
-Overwrites the runtime environment returned by method
-[ALIB::RTE] (@ref #aworx::lib::ALIB::RTE).
-If this variable is set, then no auto detection of the environment is performed,
-unless its value is "auto".
-
-
-Possible values are:
-<center>Value</center>   | <center>Value returned by %System::RTE</center>
-- - - - - - - - - - - - -| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-auto                     | Auto detect (same as if variable was not set).
-none                     | RuntimeEnvironment::UNKNOWN
-eclipse                  | RuntimeEnvironment::ECLIPSE_CDT
-qtcreator                | RuntimeEnvironment::QT_CREATOR
-vstudio                  | RuntimeEnvironment::VSTUDIO
-shell                    | RuntimeEnvironment::SHELL
-desktop                  | RuntimeEnvironment::DESKTOP
-device                   | RuntimeEnvironment::MOBILE_DEVICE
-
-
-*/
-
-/**
 \var  ALIB_LOCALE
 \e Declaration:
 <b>%ALib::LOCALE</b>
- ([C++,GLIBC version only] (@ref      #aworx::lib::ALIB::LOCALE),
+ ([C++,GLIBC version only] (@ref      #aworx::lib::ALib::LOCALE),
   C#, Java: not applicable).<br>
 \e Default Value: \c "" (empty string)<br>
 
-This variable is evaluated within [ALIB::Init] (@ref #aworx::lib::ALIB::Init). The behavior is
+This variable is evaluated within [ALIB::init] (@ref #aworx::lib::ALib::init). The behavior is
 as follows:
 - if not set, the environment variables <em>LANG</em> and <em>LANGUAGE</em> are evaluated and
   if set, their value is passed to glibc method <em>setlocale()</em>.
@@ -149,25 +119,25 @@ multi-byte character strings to wide character strings.
 \e Default Value: \c "" (empty string)<br>
 
 This boolean configuration variable overwrites the value determined in method
-\ref  aworx::lib::ALIB::HasConsoleWindow "ALIB::HasConsoleWindow".
+\ref  aworx::lib::ALib::HasConsoleWindow "ALIB::HasConsoleWindow".
 */
 
 /**
 \var  ALIB_WAIT_FOR_KEY_PRESS
 \e Declaration:
 <b>%ALib::WAIT_FOR_KEY_PRESS</b>
- ([C++] (@ref      #aworx::lib::ALIB::WAIT_FOR_KEY_PRESS),
+ ([C++] (@ref      #aworx::lib::ALib::WAIT_FOR_KEY_PRESS),
   [C#]  (@ref  #cs::aworx::lib::ALIB::WAIT_FOR_KEY_PRESS),
   Java: not applicable).<br>
 \e Default Value: \c "" (empty string)<br>
 This boolean variable is evaluated within
 <b>%ALIB::Init</b>
- ([C++] (@ref #aworx::lib::ALIB::Init),
+ ([C++] (@ref #aworx::lib::ALib::Init),
   [C#]  (@ref #cs::aworx::lib::ALIB::Init)).
 
 If set, it overrules the default behavior of detecting an appropriate value for field
 <b>ALIB::WaitForKeyPressOnTermination</b>
- ([C++] (@ref #aworx::lib::ALIB::WaitForKeyPressOnTermination),
+ ([C++] (@ref #aworx::lib::ALib::WaitForKeyPressOnTermination),
   [C#]  (@ref #cs::aworx::lib::ALIB::WaitForKeyPressOnTermination)).
 */
 
@@ -360,7 +330,7 @@ This variable is used by \e Loggers of type
 It is read when a \b %TextLogger is registered with a \b %Lox and written back when it is
 removed.<br>
 The value stores the maximum elapsed time span of any <em>Log Statement</em> executed, measured
-in seconds. Those maximum values are preserved accross different sessions of an application.
+in seconds. Those maximum values are preserved across different sessions of an application.
 If a subsequent run of a process takes more time than any previous, then this new time span
 is stored as the new maximum of all sessions.<br>
  The value is used to determine the number of 'digits' displayed in the meta information output
@@ -623,7 +593,7 @@ the name of the instance of class \b %Lox in question.
 
 Format: <c> ALOX_\<LOXNAME\>_DOMAIN_SUBSTITUTION = [*]domainpath[*] -> replacement [ ; &hellip; ] </c>
 
-Details are described in \ref man_domain_substitution_config "Substitution Rules and External Configuration".
+Details are described in \ref alox_man_domain_substitution_config "Substitution Rules and External Configuration".
 
 */
 
@@ -641,7 +611,7 @@ This variable is used to define global <em>Source Path Trim Rules</em>.
 Format: <c> ALOX_GLOBAL_SOURCE_PATH_TRIM_RULES = [*]sourcepath [, inclusion, trimoffset, sensitivity, replacement] [ ; &hellip; ] </c>
 
 
-Details are described in \ref man_trim_source_path_set_config "External Configuration of Trim Rules".
+Details are described in \ref alox_man_trim_source_path_set_config "External Configuration of Trim Rules".
 
 
 */
@@ -661,7 +631,7 @@ the name of the instance of class \b %Lox in question.
 
 Format: <c> ALOX_\<LOXNAME\>_SOURCE_PATH_TRIM_RULES = [*]sourcepath [, inclusion, trimoffset, sensitivity, replacement] [ ; &hellip; ] </c>
 
-Details are described in \ref man_trim_source_path_set_config "External Configuration of Trim Rules".
+Details are described in \ref alox_man_trim_source_path_set_config "External Configuration of Trim Rules".
 
 */
 
@@ -680,7 +650,7 @@ the names of the instances of \b %Lox and \b %Logger in question.
 
 Format: <c> ALOX_\<LOXNAME\>_\<LOGGERNAME\>_VERBOSITY = [ writeback [ VAR_NAME ] ; ]   [*]domainpath[*] = verbosity [ ; &hellip; ] </c>
 
-Details are described in \ref man_external_verbosity_configuration "External Verbosity Configuration".
+Details are described in \ref alox_man_external_verbosity_configuration "External Verbosity Configuration".
 */
 
 /**
@@ -768,20 +738,21 @@ in this variables' arguments are:
 
 <center>Identifier</center>   | <center>Description</center>
 - - - - - - - - - - - - -| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- \c all                  | Selects everything
- \c basic                | Name of the %Lox and number of log calls
- \c version              | Library version and thread safeness
- \c loggers              | Loggers
- \c domains              | Log domains currently registered
- \c internaldomains      | Internal domains
- \c scopedomains         | Scope domains
- \c dsr                  | Domain substitution rules
- \c prefixlogables       | Prefix logables
- \c once                 | Log once counters
- \c logdata              | Log data objects
- \c threadmappings       | Named threads
- \c sptr                 | Source path trim rules (<b>C++ and C# only</b>)
- \c compilationflags     | ALib/ALox compilation flags (<b>C++ only</b>)
+ \c None                 | Selects nothing. This identifier overrules all others. If found, nothing is done.
+ \c All                  | Selects everything
+ \c Basic                | Name of the %Lox and number of log calls
+ \c Version              | Library version and thread safeness
+ \c Loggers              | Loggers
+ \c Domains              | Log domains currently registered
+ \c Internaldomains      | Internal domains
+ \c Scopedomains         | Scope domains
+ \c DSR                  | Domain substitution rules
+ \c PrefixLogables       | Prefix logables
+ \c Once                 | Log once counters
+ \c Logdata              | Log data objects
+ \c Threadmappings       | Named threads
+ \c SPTR                 | Source path trim rules (<b>C++ and C# only</b>)
+ \c Compilationflags     | ALib/ALox compilation flags (<b>C++ only</b>)
 
 <br>
 <p>

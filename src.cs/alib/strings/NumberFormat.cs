@@ -23,9 +23,9 @@ namespace cs.aworx.lib.strings  {
  * \attention
  *   The methods of this class are not intended for the common use. Instead, use interface of
  *   classes
- *      \ref cs::aworx::lib::strings::AString   "AString",
- *      \ref cs::aworx::lib::strings::Substring "Substring" or
- *      \ref cs::aworx::lib::strings::format::Formatter "Formatter"
+ *      \ref cs.aworx.lib.strings.AString   "AString",
+ *      \ref cs.aworx.lib.strings.Substring "Substring" or
+ *      \ref cs.aworx.lib.strings.format.Formatter "Formatter"
  *   to write and parse numbers, which accept an object of this type as parameters.
  *
  * <b>Defined Singletons and User-Defined Instances:</b><br>
@@ -33,11 +33,11 @@ namespace cs.aworx.lib.strings  {
  * is needed as a parameter:
  * - #Global<br>
  *   This is initialized with method
- *   \ref cs::aworx::lib::ALIB::Init "ALIB.Init" and reflects local specific settings.
+ *   \ref cs.aworx.lib.ALIB.Init "ALIB.Init" and reflects local specific settings.
  *
  * - #Computational<br>
  *   This is also initialized with method
- *   \ref cs::aworx::lib::ALIB::Init "ALIB.Init" and should be used for writing and parsing
+ *   \ref cs.aworx.lib.ALIB.Init "ALIB.Init" and should be used for writing and parsing
  *   numbers which are intended to be readable by software. Its' decimal point character
  *   is set to \c '.', the international standard. Furthermore no group separators are set for
  *   decimal and decimal floating point as well as for binary, hexadecimal and octal conversion.
@@ -159,7 +159,7 @@ public class NumberFormat
      * The default static number format object that acts as the
      * default settings of the currently running process.<br>
      * Method
-     * \ref cs::aworx::lib::ALIB::Init "ALIB.Init" invokes #SetFromLocale() on this object and
+     * \ref cs.aworx.lib.ALIB.Init "ALIB.Init" invokes #SetFromLocale() on this object and
      * switches grouping on.
      *
      * Classes providing functionality based on this class, might use this as a default
@@ -172,7 +172,7 @@ public class NumberFormat
      * use, which means, that grouping is switched off and decimal point character
      * is \c '.'.<br>
      * Method
-     * \ref cs::aworx::lib::ALIB::Init "ALIB.Init" invokes #SetComputational on this object.
+     * \ref cs.aworx.lib.ALIB.Init "ALIB.Init" invokes #SetComputational on this object.
      * Note that using code that use this field without having invoked <b>ALIB.Init</b> may
      * behave wrongly.
      *
@@ -502,11 +502,11 @@ public class NumberFormat
      * #WriteExponentPlusSign         |  \c false
      * #OmitTrailingFractionalZeros   |  \c false
      * #HexLowerCase                  |  \c false
-     * #Whitespaces                   |  \ref cs::aworx::lib::strings::CString::DefaultWhitespaces "DefaultWhitespaces"
+     * #Whitespaces                   |  \ref cs.aworx.lib.strings.CString.DefaultWhitespaces "DefaultWhitespaces"
      *
      * \note
      *   With static object
-     *   \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational",
+     *   \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational",
      *   there is a global singleton existing which can be used but must not be changed.
      **********************************************************************************************/
     public void SetComputational()
@@ -605,9 +605,9 @@ public class NumberFormat
      *
      * \note
      *   Static (global) object
-     *   \ref cs::aworx::lib::strings::NumberFormat::Global "NumberFormat.Global",
+     *   \ref cs.aworx.lib.strings.NumberFormat.Global "NumberFormat.Global",
      *   implements an instance which has the right locale set (provided that
-     *   \ref cs::aworx::lib::ALIB::Init "ALIB.Init"
+     *   \ref cs.aworx.lib.ALIB.Init "ALIB.Init"
      *   was duly invoked by the process).
      *   Otherwise, this method might be used to initialize a custom object with default values
      *   to afterwards make some specific changes.

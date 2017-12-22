@@ -17,10 +17,7 @@
 
 using namespace aworx;
 
-namespace aworx {
-namespace lox {
-namespace core {
-
+namespace aworx { namespace lox { namespace core {
 
 // #################################################################################################
 // template instantiations
@@ -315,7 +312,7 @@ StoreT ScopeStore<StoreT>::access(  int cmd, StoreT value  )
             return oldValue;
 
         // thread given?
-        if ( actThreadID == Thread::NullThreadId )
+        if ( actThreadID == lib::threads::NullThreadId )
             actThreadID= scopeInfo.GetThreadID();
 
         // find (create) the vector of values
@@ -408,6 +405,6 @@ StoreT ScopeStore<StoreT>::access(  int cmd, StoreT value  )
     }
 }
 
-//! @endcond NO_DOX
+//! @endcond
 
-}}} // namespace aworx::lox::core
+}}}// namespace [aworx::lox::core]

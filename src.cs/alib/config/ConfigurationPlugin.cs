@@ -6,6 +6,8 @@
 // #################################################################################################
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using cs.aworx.lib.strings;
 using cs.aworx.lib.lang;
@@ -17,16 +19,13 @@ namespace cs.aworx.lib.config  {
 // #################################################################################################
 
 /** ************************************************************************************************
- * This virtual class is used by classes derived from
- * \ref cs::aworx::lib::config::ConfigurationPlugin "ConfigurationPlugin"
+ * This virtual class is used by classes derived from \alib{config,ConfigurationPlugin}
  * to convert external string to internal values and vice versa, and for parsing lists of values
  * from an external string.
  *
  * Class \b %ConfigurationPlugin owns a default object with field
- * \ref cs::aworx::lib::config::ConfigurationPlugin::defaultStringConverter "ConfigurationPlugin.defaultStringConverter",
- * to which field
- * \ref cs::aworx::lib::config::ConfigurationPlugin::StringConverter "ConfigurationPlugin.StringConverter"
- * by default points to.
+ * \alib{config.ConfigurationPlugin.defaultStringConverter}, to which field
+ * \alib{config.ConfigurationPlugin.StringConverter} by default points to.
  *
  * \note
  *   Replacing the converters is deemed to be an advanced usage of ALib. Consult the source code
@@ -54,13 +53,13 @@ namespace cs.aworx.lib.config  {
 public class XTernalizer
 {
     /** a reusable AString */
-    protected       AString         tmpAS           = new AString();
+    protected       AString         tmpAS                                           = new AString();
 
     /** a reusable Substring */
-    protected       Substring       tmpSubs         = new Substring();
+    protected       Substring       tmpSubs                                       = new Substring();
 
     /** a reusable Substring */
-    protected       Substring       tmpSubs2        = new Substring();
+    protected       Substring       tmpSubs2                                      = new Substring();
 
     /** ********************************************************************************************
      * Parses values found in string \p src and adds them to \p variable.
@@ -262,12 +261,12 @@ public class XTernalizer
     }
 }
 
-/** ********************************************************************************************
+/** ************************************************************************************************
  * Abstract class that represents a plug in for class
- * \ref cs::aworx::lib::config::Configuration "Configuration"
+ * \ref cs.aworx.lib.config.Configuration "Configuration"
  * to provide configuration data from specific configuration data source.
  *
- * See documentation of namespace #cs::aworx::lib::config for more information on ALib
+ * See documentation of namespace #cs.aworx.lib.config for more information on ALib
  * external configuration variables.
  *
  * The plug-in also may have the ability to write data. The default implementation for writing
@@ -282,36 +281,20 @@ public class XTernalizer
  * \note
  *   In the C# version, some method of this class accept parameters of type <em>Object</em>.
  *   In this case, the object is converted to a string (if not of string type already).
- **********************************************************************************************/
+ **************************************************************************************************/
 public abstract class ConfigurationPlugin
 {
-    // #############################################################################################
-    // internal fields
-    // #############################################################################################
-
         /** The default external string converter */
         protected  XTernalizer    defaultStringConverter= new XTernalizer();
-
-    // #############################################################################################
-    // public fields
-    // #############################################################################################
 
         /** The external string converter.
          *  By default this points to field #defaultStringConverter.                 */
         public XTernalizer        StringConverter;
 
-    // #############################################################################################
-    // protected Constructor
-    // #############################################################################################
-
         /** ****************************************************************************************
          * Constructor which is protected, as this is an abstract class.
          ******************************************************************************************/
         protected ConfigurationPlugin() { StringConverter= defaultStringConverter; }
-
-    // #############################################################################################
-    // abstract/virtual interface
-    // #############################################################################################
 
         /** ****************************************************************************************
          * Abstract method that has to be overwritten by descendants.
@@ -359,121 +342,163 @@ public abstract class ConfigurationPlugin
         }
 }
 
-/** ********************************************************************************************
- * Specialization of abstract interface class #ConfigurationPlugin, which takes all command
- * line parameters in the constructor and reads variable values from those parameters
- * on request. Its priority value is fixed to 10.
+/** ************************************************************************************************
+ * Specialization of abstract interface class #ConfigurationPlugin, which takes all command line
+ * parameters in the constructor and reads variable values from those parameters on request.
+ * Its priority value usually is \alib{config,Configuration.PrioCLIArgs}, which is higher
+ * than all other default plug-ins provided.
  *
- * Variable categories are used as a prefix together with an underscore '_'.
- * This means, if variable <em>LOCALE</em> in category <em>ALIB</em> is accessed, the command
- * line parameter <em>--ALIB_LOCALE=xyz</em> is read.
+ * Variable categories are used as a prefix together with an underscore \c '_'.
+ * This means, if variable <em>LOCALE</em> in category <em>ALIB</em> is accessed, the command line
+ * parameter <em>--ALIB_LOCALE=xyz</em> is read.
+ *
+ * Category and Variable names are insensitive in respect to character case.
  *
  * Command line variables may be passed with either one hyphen ('-') or two ('--').
  * Both are accepted.
  *
- * Category and Variable names are insensitive in respect to character case.
- **********************************************************************************************/
-public class CommandLinePlugin : ConfigurationPlugin
+ * An application can specify one or more "default categories" by adding their string names to
+ * public field #DefaultCategories. Variables of these categories are recognized by the plug-in
+ * also when given without the prefix of category name and underscore \c '_'.
+ *
+ * Furthermore, an application may set public field #AllowedMinimumShortCut to a value greater than
+ * \c 0. In this case, the plug-in recognizes variables in CLI arguments already when at least
+ * this amount of characters is provided. In other words, when reading an argument as many
+ * characters of the variable name as possible are 'consumed' and if a minimum number is given with
+ * #AllowedMinimumShortCut, such minimum is sufficient. If the remaining part of the argument
+ * string is either empty or continues with an equal sign \c '=', then the variable is recognized
+ * (with an empty value or the value after the equal sign).<br>
+ * Fields #AllowedMinimumShortCut and #DefaultCategories may also be used in combination.
+ **************************************************************************************************/
+public class CLIArgs : ConfigurationPlugin
 {
 
-    protected  String[]   args;                    ///< The list of command line arguments.
+    /** The list of command line arguments. */
+    protected  String[]             args;
 
-    /** ****************************************************************************************
+
+    /**
+     * An application can specify one or more "default categories" by adding the category names
+     * here. Variables of these categories are recognized by the plug-in
+     * also when given without the prefix of <c>category_</c>.
+     */
+    public     List<String>         DefaultCategories                          = new List<String>();
+
+    /**
+     * If this field is set to a value greater than \c 0, this plug-in recognizes variables in
+     * CLI arguments already when at least this amount of characters is provided.
+     * If the remaining part of the argument string is either empty or continues with an equal
+     * sign \c '=', then the variable is recognized.
+     */
+    public     int                  AllowedMinimumShortCut                                      = 0;
+
+    /** ********************************************************************************************
      * Sets the command line argument list. Needs to be called once after construction.
      * Should not be invoked directly. Rather use
-     * \ref cs::aworx::lib::config::Configuration::SetCommandLineArgs "Configuration.SetCommandLineArgs".
+     * \ref cs.aworx.lib.config.Configuration.SetCommandLineArgs "Configuration.SetCommandLineArgs".
      *
      *\note In standard application scenarios, this method is invoked by method
-     *      \ref cs::aworx::lib::ALIB::Init "ALIB.Init" for the singleton of this class found in
-     *      \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default".
+     *      \ref cs.aworx.lib.ALIB.Init   "ALIB.Init" for the singleton of this class found in
+     *      \ref cs.aworx.lib.ALIB.Config "ALIB.Config".
      *
      * @param args    Parameters taken from <em>standard C#</em> method \c main()
      *                (the list of command line arguments).
      *                Defaults to null.
-     ******************************************************************************************/
+     **********************************************************************************************/
     public void SetArgs( String[] args )   { this.args= args; }
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Searches the variable in the command line parameters.
      *
      * @param variable     The variable to retrieve.
      * @param searchOnly   If \c true, the variable is not read. Defaults to \c false.
      * @return \c true if variable was found, \c false if not.
-     ******************************************************************************************/
+     **********************************************************************************************/
     public override
     bool  Load( Variable variable, bool searchOnly= false )
     {
         if ( args == null )
             return false;
 
-        int   optionLength=   variable.Fullname.Length();
-        Substring actVar=     new Substring();
+        // check if category may me left out
+        bool allowWithoutCategory= false;
+        foreach (var defaultCategory in DefaultCategories )
+            if( (allowWithoutCategory= variable.Category.Equals( defaultCategory )) )
+                break;
+        String    variableFullname= variable.Fullname.ToString();
+        String    variableName=     variable.Name.ToString();
+        Substring cliArg=           new Substring();
 
         for ( int i= 0; i < args.Length ; i++ )
         {
             // remove whitespaces (if somebody would work with quotation marks...)
             // and request '-' and allow a second '-'
-            if ( !actVar.Set( args[i] ).Trim().ConsumeChar('-') )
+            if ( !cliArg.Set( args[i] ).Trim().ConsumeChar('-') )
                 continue;
-            actVar.ConsumeChar( '-' );
+            cliArg.ConsumeChar( '-' );
 
-            if ( variable.Fullname.CompareTo( args[i], Case.Ignore, actVar.Start, optionLength, 0, optionLength ) == 0)
+
+            // try names
+            if (    !                          cliArg.ConsumeString( variableFullname, Case.Ignore )
+                 && !( allowWithoutCategory && cliArg.ConsumeString( variableName    , Case.Ignore )  )
+                 && !(    AllowedMinimumShortCut > 0
+                       && (                            0 < cliArg.ConsumePartOf( variableFullname, AllowedMinimumShortCut + 1 + variable.Category.Length() )
+                           ||( allowWithoutCategory && 0 < cliArg.ConsumePartOf( variableName    , AllowedMinimumShortCut ) )
+                          )
+                     )
+               )
+                continue; // next arg
+
+            // found --CAT_NAME. If rest is empty or continues with '=', we set
+            if ( cliArg.IsEmpty() )
             {
-                //again, lets trim before searching the = sign (really almost unnecessary)
-                actVar.Start+= optionLength;
-                if ( actVar.IsEmpty() )
-                {
-                    if ( !searchOnly )
-                        variable.Add();
-                    return true;
-                }
+                if ( !searchOnly )
+                    variable.Add();
+                return true;
+            }
 
-                if ( actVar.ConsumeChar( '=', Case.Sensitive, Whitespaces.Trim ) )
-                {
-                    if ( !searchOnly )
-                    {
-                        actVar.Trim();
-                        StringConverter.LoadFromString( variable, actVar );
-
-                    }
-                    return true;
-                }
-             }
+            if ( cliArg.ConsumeChar( '=', Case.Sensitive, Whitespaces.Trim ) )
+            {
+                if ( !searchOnly )
+                    StringConverter.LoadFromString( variable, cliArg );
+                return true;
+            }
         }
 
         return false;
     }
 
-};
+}
 
-/** ********************************************************************************************
+/** ************************************************************************************************
  * Specialization of abstract interface class #ConfigurationPlugin, retrieves configuration
  * data from the system environment.
- *
- * This plug-ins' priority value is fixed to 10.
+ * Its priority value usually is \alib{config,Configuration.PrioEnvironment}, which is higher
+ * than \alib{config,Configuration.PrioStandard} but lower than
+ * \alib{config,Configuration.PrioCLIArgs}.
  *
  * Variable categories are used as a prefix together with an underscore '_'.
  * This means, if variable <em>LOCALE</em> in category <em>ALIB</em> is accessed, the
  * environment variable <em>ALIB_LOCALE</em> is read.
  *
  * Category and Variable names are insensitive in respect to character case.
- **********************************************************************************************/
-public class EnvironmentPlugin : ConfigurationPlugin
+ **************************************************************************************************/
+public class Environment : ConfigurationPlugin
 {
     protected  AString    tmpAS= new AString();    ///< A temporary string to reuse.
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Constructor.
-     ******************************************************************************************/
-    public EnvironmentPlugin() {}
+     **********************************************************************************************/
+    public Environment() {}
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Searches the variable in the environment.
      *
      * @param variable      The variable to retrieve.
      * @param searchOnly    If \c true, the variable is not set. Defaults to \c false.
      * @return \c true if variable was found, \c false if not.
-     ******************************************************************************************/
+     **********************************************************************************************/
     public override
     bool  Load( Variable variable, bool searchOnly= false )
     {

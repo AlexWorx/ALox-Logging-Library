@@ -70,7 +70,7 @@ public class ConsoleLogger extends PlainTextLogger
 
         // checks a config variable to suppress using the system console instead of system.out
         Variable variable= new Variable( ALox.USE_SYSTEM_OUT_PRINT );
-        variable.load();
+        ALox.config.load(variable);
         writer=  !variable.isTrue() && System.console() != null  ?  System.console().writer()
                                                                  :  null;
     }

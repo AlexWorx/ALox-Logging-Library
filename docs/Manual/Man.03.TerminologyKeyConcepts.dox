@@ -6,7 +6,7 @@
 // #################################################################################################
 
 /**
-\page man_alox_terminology   03 - Terminology and Key Concepts
+\page alox_man_terminology   03 - Terminology and Key Concepts
 
 
 
@@ -16,17 +16,17 @@ This chapter introduces to the major concepts of \b %ALox.
 
 Before we explain those, we want to start with defining terms used by this manual and by the
 <b>reference documentation</b>
-  ([C++] (cpp_ref/cppmainpage.html),
-   [C#]  (cs_ref/csmainpage.html),
-   [Java](java_ref/javamainpage.html)).
+  ([C++] (cpp_ref/alox_cpp_mainpage.html),
+   [C#]  (cs_ref/alox_cs_mainpage.html),
+   [Java](java_ref/alox_java_mainpage.html)).
 
 
 \~Comment ####################################################################################### \~
-# 1. Terminology # {#man_alox_tak_terminology}
+# 1. Terminology # {#alox_man_alox_tak_terminology}
 
 
 \~Comment ####################################################################################### \~
-## 1.1 Loggers ## {#man_alox_tak_terminology_logger}
+## 1.1 Loggers ## {#alox_man_alox_tak_terminology_logger}
 
 ALox is designed to support different log streams. A log stream is a destination of log messages
 and can be the IDE console, the terminal console, a file, a web service or anything that accepts
@@ -51,7 +51,7 @@ following:
 - Optional configuration of a \e %Logger (e.g. details on the output format, etc.)
 - Registration of the \e %Logger with \b %ALox.
 
-## 1.2. Logables ## {#man_alox_tak_terminology_logables}
+## 1.2. Logables ## {#alox_man_alox_tak_terminology_logables}
 
 
 What can be described as "the data that is logged", is called a \b 'Logable' or, as it may be more
@@ -99,10 +99,10 @@ in the different language versions:
   Once a parameter is boxed, it can be passed further (in our case to the \e Loggers) and
   then processed in a type-safe way.
   Besides the ability of getting type information from the "boxes" and to "unbox" their values,
-  <b>%ALib Boxing</b> allows to define and invoke some sort of "virtual interface methods" on
+  <b>%ALib %Boxing</b> allows to define and invoke some sort of "virtual interface methods" on
   boxed values. And all this can be done on arbitrary types, without modifying (preparing) the types for that.
 
-  In short, <b>%ALib Boxing</b> allows a user of \b %ALox to pass just any type of objects to the
+  In short, <b>%ALib %Boxing</b> allows a user of \b %ALox to pass just any type of objects to the
   logging system without prior conversion. Also it is irrelevant if pointers or references are
   passed, just anything may be "thrown in"!  An \b %ALox user does not need to know how this works,
   it is all hidden behind the scenes. Only for very advanced use, the knowledge of the
@@ -142,7 +142,7 @@ different syntactical type!
 
 
 \~Comment ####################################################################################### \~
-## 1.3. Log Statements ## {#man_alox_tak_terminology_statements}
+## 1.3. Log Statements ## {#alox_man_alox_tak_terminology_statements}
 
 When this manual and the reference documentation of \b %ALox are referring to a <b>'Log Statement'</b>,
 this means a piece of (user) code that invokes an %ALox interface method that potentially performs
@@ -154,7 +154,7 @@ of those, named \p 'logables') can easily be identified as methods that comprise
 
 
 \~Comment ####################################################################################### \~
-## 1.4. Log Domains ## {#man_alox_tak_terminology_domains}
+## 1.4. Log Domains ## {#alox_man_alox_tak_terminology_domains}
 The term <b>'Log Domain'</b> in \b %ALox denotes a sort of 'key' that is used to group
 <em>Log Statements</em> into different sets. Each <em>Log Statement</em> belongs to exactly one
 specific set of <em>Log Statements</em> by having a <em>Log Domain</em> associated.
@@ -189,7 +189,7 @@ without the need for the user to be explicit about it, is one of the features th
 More about this will be explained in later chapters of this manual.
 
 
-## 1.5. Verbosity# {#man_alox_terminology_verbosity}
+## 1.5. Verbosity# {#alox_man_terminology_verbosity}
 
 It is very common for logging eco-systems, to implement the concept of 'verbosity levels',
 and \b %ALox is no exclamation to this. First of all, the term <b>%Verbosity</b> denotes an attribute
@@ -217,7 +217,7 @@ other <em>Log Domains</em> are switched off or are reduced to real error message
 As described later in this manual, the possibilities of \b %ALox to filter the log output
 are even more granular and flexible.
 
-## 1.6. Scopes ## {#man_alox_terminology_scopes}
+## 1.6. Scopes ## {#alox_man_terminology_scopes}
 The \b '%Scope' is a next attribute any <em>Log Statement</em> possesses. The different types of scopes are nested into
 each other and some of the possible values are similar to what the programming languages that
 %ALox is written in provide. For example \e %Scope.Method is similar to what a variable that
@@ -246,13 +246,13 @@ an 'outer' \e Scope of the language-related set of \e Scopes, the other is an 'i
 of those.
 
 All information about this topic is found in chapter
-\ref man_scopes. The corresponding enum type in the reference documentation is
+\ref alox_man_scopes. The corresponding enum type in the reference documentation is
 <b>%Scope</b>
 ([C++] (@ref      #aworx::lox::Scope),
  [C#]  (@ref  #cs::aworx::lox::Scope),
  [Java](@ref #com::aworx::lox::Scope)).
 
-## 1.7. Scope Domains ## {#man_alox_terminology_scopedomains}
+## 1.7. Scope Domains ## {#alox_man_terminology_scopedomains}
 Attention: now it becomes tricky! Each <em>Log Statement</em> belongs to
 a \e Scope, precisely, even to a set of nested \e Scope values. The grouping of the statements
 into \e Scopes is done automatically by \b %ALox. The \e Scope is detected from the position
@@ -274,7 +274,7 @@ As you see, there are two ways to assign a <em>Scope Domain</em> to a <em>Log St
 by providing optional parameter \p domain with a <em>Log Statement</em>, or by setting a <em>Scope Domain</em>
 and omitting the parameter.
 
-## 1.8. Tree of Log Domains and Domain Path ## {#man_alox_terminology_logdomaintree}
+## 1.8. Tree of Log Domains and Domain Path ## {#alox_man_terminology_logdomaintree}
 By having <em>Scope Domains</em> which associate a 'default domain' with a <em>Log Statement</em> that resides in a certain \e Scope
 and knowing that the \e Scopes are nested into each other, the question is what happens if multiple
 <em>Scope Domains</em> apply to the same <em>Log Statement</em>? Or, a similar question: what happens if a <em>Scope Domain</em> is set for a \e Scope that a
@@ -290,11 +290,11 @@ Besides 'mixing' <em>Scope Domains</em> and parameter \p domain, \b %ALox also a
 <em>Scope Domains</em> with parameter \p domain.
 
 Using the techniques in the right manner, is one of the keys to efficiently use \b %ALox.
-The details of how this is done is explained in a dedicated chapter: \ref man_logdomains.
+The details of how this is done is explained in a dedicated chapter: \ref alox_man_logdomains.
 
 
 \~Comment ####################################################################################### \~
-# 2. Class Lox - Managing it all# {#man_alox_tak_lox}
+# 2. Class Lox - Managing it all# {#alox_man_alox_tak_lox}
 
 The definitions and terminology that were introduced in this chapter so far should be
 quickly summarized. We have:
@@ -333,8 +333,8 @@ This class keeps it all together! This is what class  \b %Lox does:
   This is done on a per-\e Logger basis.
 - It automatically determines the \e Scope of a <em>Log Statement</em> and manages the associated
   nested <em>Scope Domains</em>.
-- It provides other nice features related to \e Scopes, like \ref man_log_once, \ref man_prefix_logables
-  or \ref man_log_data
+- It provides other nice features related to \e Scopes, like \ref alox_man_log_once, \ref alox_man_prefix_logables
+  or \ref alox_man_log_data
 - It collects some meta information like timestamps or counters.
 - It provides a dictionary to translate thread IDs in human readable (logable) thread names.
 
@@ -354,7 +354,7 @@ dedicated for debug-logging that streams into an output window of an IDE, would 
 be generally more verbose and also switch \e Verbosity more frequently, than a
 <em>Logger</em> that in parallel logs into a file which is storing also logs of earlier debug sessions.
 
-## 2.1 Prefix Logables ## {#man_alox_tak_lox_prefixlogables}
+## 2.1 Prefix Logables ## {#alox_man_alox_tak_lox_prefixlogables}
 While those interface methods in class
 <b>Lox</b>
   ([C++] (@ref      #aworx::lox::Lox),
@@ -373,9 +373,9 @@ such <em>Prefix Logables</em> which were defined to any of the nested \e Scopes 
 them to the \e %Logger. We could have named them <em>Scope Logables</em> or <em>Context Logables</em>,
 however, the word 'prefix' makes perfect sense with the most important type of \e Logables, namely strings!
 With logging text messages, <em>Prefix Logables</em> act like a prefix to a log message.
-All about this topic is found in chapter \ref man_prefix_logables.
+All about this topic is found in chapter \ref alox_man_prefix_logables.
 
-## 2.2 Log Once ## {#man_alox_tak_lox_logonce}
+## 2.2 Log Once ## {#alox_man_alox_tak_lox_logonce}
 Another feature of \b %ALox which leverages the concept of \e Scopes, is found with overloaded methods
 <b>%Lox.Once</b>
   ([C++] (@ref      #aworx::lox::Lox::Once),
@@ -385,9 +385,9 @@ Another feature of \b %ALox which leverages the concept of \e Scopes, is found w
 They are really 'heavily' overloaded, therefore the most simple version just accepts a \e Logable.
 With this version \b %ALox hides the use of \e Scopes and offers what you would expect from the methods'
 name: logging a statement only the first time it is executed. The different parameters allow to
-cover more complex uses cases than this. All about this <em>Log Statement</em> is found in chapter  \ref man_log_once.
+cover more complex uses cases than this. All about this <em>Log Statement</em> is found in chapter  \ref alox_man_log_once.
 
-## 2.2 Log Data ## {#man_alox_tak_lox_logdata}
+## 2.2 Log Data ## {#alox_man_alox_tak_lox_logdata}
 As being able to 'prune' \b %ALox debug-<em>Log Statements</em> from release code, a low hanging fruit for the \b %ALox
 feature list is to offer a concept for storing and using data, that otherwise would be
 temporary debug variables during the development process. Again, \b %ALox \e Scopes are leveraged
@@ -401,12 +401,12 @@ which makes the otherwise simple methods
    [C#]  (@ref  #cs::aworx::lox::Lox::Retrieve),
    [Java](@ref #com::aworx::lox::Lox::retrieve)) quite powerful.
 
-All about <em>Log Data</em> is found in chapter  \ref man_log_data.
+All about <em>Log Data</em> is found in chapter  \ref alox_man_log_data.
 
 
 
 \~Comment ####################################################################################### \~
-# 3. Using Multiple Lox Instances # {#man_alox_tak_multiple_loxes}
+# 3. Using Multiple Lox Instances # {#alox_man_alox_tak_multiple_loxes}
 
 While \b %ALox claims to be lean, easy and [Bauhaus code style](\ref faq_bauhaus),
 besides these concepts explained in this chapter, it was decided that a next
@@ -419,7 +419,7 @@ Each class is populated with \e Loggers and of-course uses an own dedicated tree
 
 The following paragraphs gives use cases and further background on using multiple \e Loggers.
 
-## 3.1 A Dedicated Lox Singleton for Debug Logging ## {#man_alox_tak_multiple_loxes_dbg_rel_log}
+## 3.1 A Dedicated Lox Singleton for Debug Logging ## {#alox_man_alox_tak_multiple_loxes_dbg_rel_log}
 
 There are two fundamental logging scenarios that we call **debug logging** and **release logging**.
 (For information, see \ref faq_debug_vs_release_logging.)
@@ -470,13 +470,13 @@ each stream accordingly.
 \note
   For more details on pruning and the use of class *Log*, consult the language specific
   documentation:
-  [C++] (@ref cppprepro_macros),
-  [C#]  (@ref cspruning) and
-  [Java](@ref javasetup_pruning).<br>
-  For a more details on debug and release logging see chapter \ref man_debug_and_release_logging.
+  [C++] (@ref alox_cpp_prepro_macros),
+  [C#]  (@ref alox_cs_pruning) and
+  [Java](@ref alox_java_setup_pruning).<br>
+  For a more details on debug and release logging see chapter \ref alox_man_debug_and_release_logging.
 
 
-## 3.2 Separating Mission Critical Log statements ## {#man_alox_tak_multiple_loxes_missioncritical}
+## 3.2 Separating Mission Critical Log statements ## {#alox_man_alox_tak_multiple_loxes_missioncritical}
 
 Another motivation for using separated instances of class \b Lox may be understood when thinking
 about use cases where things start getting critical from different point of views. For example:
@@ -494,7 +494,7 @@ about use cases where things start getting critical from different point of view
   in an inappropriate manner, and it would be advised to use a separated Lox that is not touched
   outside its scope of activity.
 
-## 3.3 Multiple Registration of a Logger ## {#man_alox_tak_multiple_logger_registration}
+## 3.3 Multiple Registration of a Logger ## {#alox_man_alox_tak_multiple_logger_registration}
 
 It is explicitly allowed  to attach a \e %Logger to more than one \b Lox object.
 class \b %Logger implements a mechanism to protect
@@ -505,7 +505,7 @@ release log file, can be attached to the 'mission-critical' \b Lox which holds t
 'mission-critical' \e %Logger. Now, the standard release log automatically receives a copy of the
 'mission-critical' <em>Log Statements</em>.
 
-# 4. Class ALox and Registration of Lox Instances # {#man_alox_tak_lox_registration}
+# 4. Class ALox and Registration of Lox Instances # {#alox_man_alox_tak_lox_registration}
 
 Pure static class
 <b>%ALox</b>
@@ -531,13 +531,13 @@ when invoking constructor
 \note
   Descriptions of other \e 'protection' mechanisms against unwanted manipulation of
   class \b %Lox are described in:
-  - Section \ref man_domain_substitution_config and
-  - Section \ref man_external_verbosity_configuration
+  - Section \ref alox_man_domain_substitution_config and
+  - Section \ref alox_man_external_verbosity_configuration
 
 
 <p>
 
 --------------------------------------------------------------------
-<center>Next chapter: \ref man_logdomains </center> <center> \ref manual "Back to index" </center>
+<center>Next chapter: \ref alox_man_logdomains </center> <center> \ref manual "Back to index" </center>
 
 */

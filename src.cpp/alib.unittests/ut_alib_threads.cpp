@@ -62,17 +62,17 @@ class Test_ThreadLock_TestThread : public Thread
     public: void Run()
     {
         AWorxUnitTesting &ut= *UT;
-        UT_EQ( GetId(), Thread::CurrentThread()->GetId() );
+        UT_EQ( GetId(), lib::THREADS.CurrentThread()->GetId() );
 
         for ( int i= 0; i < Repeats ; i++ )
         {
             if (Verbose) { UT_PRINT( "Thread {!Q} acquiring lock...",GetName() ); }
-            Mutex->Acquire(ALIB_DBG_SRC_INFO_PARAMS);
+            Mutex->Acquire(ALIB_SRCPOS_REL_EMPTY);
             if (Verbose) { UT_PRINT( "Thread {!Q} has lock.", GetName() ); }
 
                 int sVal= ++Shared->val;
 
-                ALIB::SleepMillis( HoldTime );
+                ALib::SleepMillis( HoldTime );
 
                 Shared->val= sVal -1;
 
@@ -127,7 +127,7 @@ UT_METHOD( ThreadSimple )
         virtual void Run()
         {
             AWorxUnitTesting& ut= *pUT;
-            UT_PRINT( "Runnable running in thread ", Thread::CurrentThread()->GetId() );  ALIB::SleepMillis(1); a++;
+            UT_PRINT( "Runnable running in thread ", lib::THREADS.CurrentThread()->GetId() );  ALib::SleepMillis(1); a++;
         }
     };
     #if defined(__clang__)
@@ -151,8 +151,8 @@ UT_METHOD( ThreadSimple )
             int cntWait= 0;
             while( t.IsAlive() )
             {
-                UT_PRINT( "  {} waiting for {} to finish", Thread::CurrentThread()->GetId(), t.GetId() );
-                ALIB::SleepMicros(250);
+                UT_PRINT( "  {} waiting for {} to finish", lib::THREADS.CurrentThread()->GetId(), t.GetId() );
+                ALib::SleepMicros(250);
                 cntWait++;
             }
             UT_TRUE( cntWait < 5 );
@@ -175,14 +175,14 @@ UT_METHOD( ThreadLockSimple )
     // lock a recursive lock
     {
         ThreadLock aLock;
-        aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);    UT_EQ ( 1, aLock.DbgCountAcquirements() );
+        aLock.Acquire(ALIB_SRCPOS_REL_EMPTY);    UT_EQ ( 1, aLock.DbgCountAcquirements() );
         aLock.Release();                UT_EQ ( 0, aLock.DbgCountAcquirements() );
 
-        aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);    UT_EQ ( 1, aLock.DbgCountAcquirements() );
-        aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);    UT_EQ ( 2, aLock.DbgCountAcquirements() );
+        aLock.Acquire(ALIB_SRCPOS_REL_EMPTY);    UT_EQ ( 1, aLock.DbgCountAcquirements() );
+        aLock.Acquire(ALIB_SRCPOS_REL_EMPTY);    UT_EQ ( 2, aLock.DbgCountAcquirements() );
         aLock.Release();                            UT_EQ ( 1, aLock.DbgCountAcquirements() );
 
-        aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);    UT_EQ ( 2, aLock.DbgCountAcquirements() );
+        aLock.Acquire(ALIB_SRCPOS_REL_EMPTY);    UT_EQ ( 2, aLock.DbgCountAcquirements() );
         aLock.Release();                            UT_EQ ( 1, aLock.DbgCountAcquirements() );
         aLock.Release();                            UT_EQ ( 0, aLock.DbgCountAcquirements() );
 
@@ -191,11 +191,11 @@ UT_METHOD( ThreadLockSimple )
         aLock.SetSafeness( Safeness::Safe   );      UT_EQ ( 0, aLock.DbgCountAcquirements() );
 
         aLock.SetSafeness( Safeness::Unsafe );      UT_EQ ( 0, aLock.DbgCountAcquirements() );
-        aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);    UT_EQ ( 1, aLock.DbgCountAcquirements() );
+        aLock.Acquire(ALIB_SRCPOS_REL_EMPTY);    UT_EQ ( 1, aLock.DbgCountAcquirements() );
         aLock.Release();                            UT_EQ ( 0, aLock.DbgCountAcquirements() );
 
         // unsafe
-        aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);    UT_EQ ( 1, aLock.DbgCountAcquirements() );
+        aLock.Acquire(ALIB_SRCPOS_REL_EMPTY);    UT_EQ ( 1, aLock.DbgCountAcquirements() );
         UT_PRINT( "Expecting error: set unsafe when already locked" );
         aLock.SetSafeness( Safeness::Safe   );      UT_EQ ( 1, aLock.DbgCountAcquirements() );
         UT_PRINT( "Expecting error: destruction while locked" );
@@ -204,7 +204,7 @@ UT_METHOD( ThreadLockSimple )
     // safe (new lock)
     {
         ThreadLock aLock;
-        aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS); UT_EQ ( 1, aLock.DbgCountAcquirements() );
+        aLock.Acquire(ALIB_SRCPOS_REL_EMPTY); UT_EQ ( 1, aLock.DbgCountAcquirements() );
         UT_PRINT( "Expecting error: set unsafe when already locked" );
         aLock.SetSafeness( Safeness::Unsafe );   UT_EQ ( 1, aLock.DbgCountAcquirements() );
         aLock.Release();                         UT_EQ ( 0, aLock.DbgCountAcquirements() );
@@ -217,7 +217,7 @@ UT_METHOD( ThreadLockSimple )
         ThreadLock aLock;
         UT_PRINT( "Two warnings should come now: " );
         for (int i= 0; i<20; i++)
-            aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
+            aLock.Acquire(ALIB_SRCPOS_REL_EMPTY);
         UT_TRUE ( aLock.DbgCountAcquirements() > 0 );
         for (int i= 0; i<20; i++)
             aLock.Release();
@@ -227,8 +227,8 @@ UT_METHOD( ThreadLockSimple )
     // test a non-recursive lock
     {
         ThreadLock aLock( LockMode::SingleLocks );
-        aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);    UT_EQ ( 1, aLock.DbgCountAcquirements() );
-        aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);    UT_EQ ( 1, aLock.DbgCountAcquirements() );
+        aLock.Acquire(ALIB_SRCPOS_REL_EMPTY);    UT_EQ ( 1, aLock.DbgCountAcquirements() );
+        aLock.Acquire(ALIB_SRCPOS_REL_EMPTY);    UT_EQ ( 1, aLock.DbgCountAcquirements() );
         aLock.Release();                            UT_EQ ( 0, aLock.DbgCountAcquirements() );
 
         UT_PRINT( "One Error should come now: " );
@@ -250,30 +250,30 @@ UT_METHOD( ThreadLockThreaded )
         ThreadLock aLock;
         Test_ThreadLock_SharedInt* shared= new Test_ThreadLock_SharedInt();
         UT_PRINT( "starting thread locked" );
-        aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
+        aLock.Acquire(ALIB_SRCPOS_REL_EMPTY);
         Test_ThreadLock_TestThread* t= new Test_ThreadLock_TestThread( &ut, "A Thread", &aLock, 10, 1, true, shared );
         t->Start();
         UT_PRINT( "We wait 1100 ms. This should give a warning! " );
-        ALIB::SleepMillis( 1100 );
+        ALib::SleepMillis( 1100 );
         aLock.Release();
 
         // wait until t ended
         while (t->IsAlive())
-            ALIB::SleepMillis( 1 );
+            ALib::SleepMillis( 1 );
 
         // now we do the same with a lower wait limit, no error should come
         aLock.WaitWarningTimeLimitInMillis= 5;
-        aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
+        aLock.Acquire(ALIB_SRCPOS_REL_EMPTY);
         delete t;
         t= new Test_ThreadLock_TestThread( &ut, "A Thread", &aLock, 10, 1, true, shared );
         t->Start();
         UT_PRINT( "We wait 1 ms. This should NOT give a warning! " );
-        ALIB::SleepMillis( 1 );
+        ALib::SleepMillis( 1 );
         aLock.Release();
 
         // wait until t ended
         while (t->IsAlive())
-            ALIB::SleepMillis( 1 );
+            ALib::SleepMillis( 1 );
         delete t;
         delete shared;
 
@@ -380,7 +380,7 @@ UT_METHOD( HeavyLoad )
 
     // wait until all ended
     while ( t1->IsAlive() || t2->IsAlive() || t3->IsAlive() )
-        ALIB::SleepMillis( 1 );
+        ALib::SleepMillis( 1 );
 
     UT_PRINT( "All threads ended. Shared value=", shared.val );
     UT_EQ( 0, shared.val );
@@ -411,7 +411,7 @@ UT_METHOD( LockSpeedTest )
         stopwatch.Set();
         for ( int i= 0; i < repeats; i++ )
         {
-            aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
+            aLock.Acquire(ALIB_SRCPOS_REL_EMPTY);
             aLock.Release();
         }
         auto time= stopwatch.Age().InMicros();
@@ -422,7 +422,7 @@ UT_METHOD( LockSpeedTest )
         volatile int ii= 0;
         for ( int i= 0; i < repeats; i++ )
         {
-            aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
+            aLock.Acquire(ALIB_SRCPOS_REL_EMPTY);
             aLock.Release();
 
             // in java, adding the following two loops, results in similar execution speed
@@ -443,7 +443,7 @@ UT_METHOD( LockSpeedTest )
         stopwatch.Set();
         for ( int i= 0; i < repeats; i++ )
         {
-            tNR.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
+            tNR.Acquire(ALIB_SRCPOS_REL_EMPTY);
             tNR.Release();
         }
         time= stopwatch.Age().InMicros();

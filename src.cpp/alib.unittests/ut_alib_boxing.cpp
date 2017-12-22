@@ -14,6 +14,7 @@
 #define TESTCLASSNAME       CPP_ALib_Boxing
 #include "aworx_unittests.hpp"
 #include "alox/loggers/memorylogger.hpp"
+#include "alib/strings/boxing/debug.hpp"
 
 
 namespace std
@@ -27,9 +28,9 @@ using namespace aworx;
 
 
 
-namespace dox_boxing_implicit_conversion_sample  {  extern void test();  }
-namespace dox_boxing_implicit_conversion_sample2 {  extern void test();  }
-namespace dox_boxing_implicit_conversion_sample2 {  extern void test2(); }
+namespace dox_boxing_implicit_conversion_sample  {  extern void test();        }
+namespace dox_boxing_implicit_conversion_sample2 {  extern void test();        }
+namespace dox_boxing_implicit_conversion_sample2 {  extern void test2();       }
 namespace dox_boxing_sample_1                    {  extern void sampleFunc();  }
 namespace dox_boxing_sample_2                    {  extern void sampleFunc();  }
 namespace dox_boxing_sample_2                    {  extern void sampleFunc2(); }
@@ -47,9 +48,10 @@ namespace dox_boxing_sample_boxes                {  extern void sampleFunc2(); }
 namespace dox_boxing_sample_boxes                {  extern void sampleFunc3(); }
 namespace dox_boxing_sample_boxes_box            {  extern void sampleFunc();  }
 namespace dox_boxing_sample_debug                {  extern void sampleFunc();  }
-namespace dox_boxing_sample_debug                {  extern void sampleFunc2();  }
-namespace dox_boxing_sample_debug                {  extern void sampleFunc3();  }
-namespace dox_boxing_sample_debug                {  extern void sampleFunc4();  }
+namespace dox_boxing_sample_debug                {  extern void sampleFunc2(); }
+namespace dox_boxing_sample_debug                {  extern void sampleFunc3(); }
+namespace dox_boxing_sample_debug                {  extern void sampleFunc4(); }
+namespace dox_boxing_sample_compare              {  extern void sampleFunc();  }
 
 
 class ClassWithStdBoxing
@@ -170,10 +172,10 @@ UT_METHOD(Boxing_Dox)
 
         MemoryLogger ml;
         ml.MetaInfo->Format.Clear();
-        ut.lox.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
+        ut.lox.Acquire(ALIB_SRCPOS_REL_EMPTY);
             ut.lox.SetVerbosity( &ml, Verbosity::Verbose, String64() << ALox::InternalDomains << "UT_REPORT" );
         ut.lox.Release();
-        ut.lox.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
+        ut.lox.Acquire(ALIB_SRCPOS_REL_EMPTY);
             ut.lox.RemoveLogger(&ml);
         ut.lox.Release();
 
@@ -264,6 +266,12 @@ UT_METHOD(Boxing_Dox)
     dox_boxing_sample_debug::sampleFunc4();
     ut.WriteResultFile( "DOX_ALIB_BOXING_DEBUG_4.txt", testOutputStream.str(), "//! [OUTPUT]" );
     testOutputStream.str("");
+
+
+    dox_boxing_sample_compare::sampleFunc();
+    ut.WriteResultFile( "DOX_ALIB_BOXING_COMPARE.txt", testOutputStream.str(), "//! [OUTPUT]" );
+    testOutputStream.str("");
+
 }
 #endif
 
@@ -436,27 +444,27 @@ UT_METHOD(Boxing_Strings)
 
     AString test;
     {
-        PAString<64> pa64("64");        Box bpa64(&pa64);
-        PAString<73> pa73("73");        Box bpa73(pa73);
+        PreallocatedString<64> pa64("64");        Box bpa64(&pa64);
+        PreallocatedString<73> pa73("73");        Box bpa73(pa73);
 
-        test._() << bpa64;      UT_EQ( test, "64");
-        test._() << bpa73;      UT_EQ( test, "73");
+        test._() << bpa64;      UT_EQ( "64", test );
+        test._() << bpa73;      UT_EQ( "73", test );
     }
 
     {
         aworx::lib::strings::PreallocatedString<64> pa64("64");     Box bpa64(&pa64);
         aworx::lib::strings::PreallocatedString<73> pa73("73");     Box bpa73(pa73);
 
-        test._() << bpa64;      UT_EQ( test, "64");
-        test._() << bpa73;      UT_EQ( test, "73");
+        test._() << bpa64;      UT_EQ( "64", test);
+        test._() << bpa73;      UT_EQ( "73", test);
     }
 
     {
         SLiteral<2> sl2("64");        Box bsl64(&sl2);
         SLiteral<3> sl3("123");       Box bsl123(sl3);
 
-        test._() << bsl64;      UT_EQ( test, "64");
-        test._() << bsl123;     UT_EQ( test, "123");
+        test._() << bsl64;      UT_EQ( "64" , test );
+        test._() << bsl123;     UT_EQ( "123", test );
     }
 
 }

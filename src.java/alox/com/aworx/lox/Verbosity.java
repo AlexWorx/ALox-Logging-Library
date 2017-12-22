@@ -15,9 +15,9 @@ package com.aworx.lox;
  * - ERROR (lowest level).
  *
  * A value of this set is provided to \b %ALox in two different ways:
- * First, all methods of class \ref com::aworx::lox::Lox "Lox" that execute a log operation
+ * First, all methods of class \ref com.aworx.lox.Lox "Lox" that execute a log operation
  * assign a value of this enum to the <em>Log Statement</em>. Secondly, methods
- * \ref com::aworx::lox::Lox::setVerbosity "Lox.setVerbosity", are defining the 'accepted' \e minimal
+ * \ref com.aworx.lox.Lox.setVerbosity "Lox.setVerbosity", are defining the 'accepted' \e minimal
  * \e Verbosity for a pair of <em>\<Logger/%Log Domain\></em>.
  *
  * \b %ALox, when executing a statement, checks both values against each other. A <em>Log Statement</em>
@@ -26,19 +26,19 @@ package com.aworx.lox;
  * with associated \e %Verbosity \b %WARNING and \b %ERROR are executed and those with \b %INFO and
  * \b %VERBOSE are suppressed.
  *
- * If special value \b %OFF is used with \ref com::aworx::lox::Lox::setVerbosity "Lox.setVerbosity",
+ * If special value \b %OFF is used with \ref com.aworx.lox.Lox.setVerbosity "Lox.setVerbosity",
  * all logging is switched OFF for this pair of <em>\<Logger/%Log Domain\></em>.
  *
  * Some of the <em>Log Statements</em> accept the parameter directly (e.g.
- * \ref com::aworx::lox::Lox::entry "Lox.entry",
- * \ref com::aworx::lox::Lox::once  "Lox.once" and
- * \ref com::aworx::lox::Lox::If "Lox.If"), others inherently use the right value as their method
+ * \ref com.aworx.lox.Lox.entry "Lox.entry",
+ * \ref com.aworx.lox.Lox.once  "Lox.once" and
+ * \ref com.aworx.lox.Lox.If "Lox.If"), others inherently use the right value as their method
  * name suggests (e.g.
- * \ref com::aworx::lox::Lox::error      "Lox.error",
- * \ref com::aworx::lox::Lox::warning    "Lox.warning",
- * \ref com::aworx::lox::Lox::info       "Lox.info",
- * \ref com::aworx::lox::Lox::verbose    "Lox.verbose" and
- * \ref com::aworx::lox::Lox::Assert     "Lox.Assert"). The latter group of methods do not support
+ * \ref com.aworx.lox.Lox.error      "Lox.error",
+ * \ref com.aworx.lox.Lox.warning    "Lox.warning",
+ * \ref com.aworx.lox.Lox.info       "Lox.info",
+ * \ref com.aworx.lox.Lox.verbose    "Lox.verbose" and
+ * \ref com.aworx.lox.Lox.Assert     "Lox.Assert"). The latter group of methods do not support
  * parameter \b %OFF.
  *
  * If special value \b %OFF is used with those <em>Log Statements</em>, that allow to specify the \e %Verbosity

@@ -16,6 +16,7 @@
 #include "alib/strings/format/formatterpythonstyle.hpp"
 #include "alib/strings/format/formatterjavastyle.hpp"
 #include "alib/time/calendartime.hpp"
+#include "alox/logtools.hpp"
 
 #undef min
 #undef max
@@ -31,6 +32,7 @@
 
 using namespace std;
 using namespace aworx;
+using namespace aworx::lib::strings::format;
 
 namespace ut_aworx {
 
@@ -52,6 +54,7 @@ UT_METHOD( Unsorted )
     // parse on empty
     as._();
     {
+ut.EQ( __FILE__, __LINE__,  0,  as.ParseInt()   );
         UT_EQ(   0,  as.ParseInt()   );
 
         posOrig= pos= 0;    UT_EQ(   0,  as.ParseInt( pos, &pos )  );     UT_EQ( pos, posOrig );
@@ -482,7 +485,7 @@ void floatTest( AWorxUnitTesting& ut, double d, char decimalPoint, int minDigits
     ms._( Format(d, &nf) );
     if ( expectedString != nullptr )
     {
-        UT_EQ(  expectedString, ms );
+        UT_EQ(  expectedString, String(ms) );
     }
 
     double precision= digitsAfterDot < 0 ?  pow ( 10, (d != 0.0 ? static_cast<int>( floor((log10( d ) )) ) : 0 )   - 14 )
@@ -840,7 +843,7 @@ UT_METHOD( ConvertFloats )
             String64 s;
             double v= 7.5E42;
             s._( Format(v, &nf) );
-            UT_EQ( s, "7.5*10^42" );
+            UT_EQ( "7.5*10^42", String(s)  );
             double back= s.ParseFloat( &nf );
             UT_NEAR( v, back, 0.0000000001 );
         }
@@ -863,21 +866,35 @@ AString     testAS;
 Formatter*  testFormatter;
 
 template <typename... BoxedObjects>
-void    checkError (AWorxUnitTesting& ut, const String& exp, BoxedObjects&&... args )
+void    checkError (AWorxUnitTesting& ut, Enum expectedException, BoxedObjects&&... args )
 {
     // create argument objects using implicit constructor invocation
     Boxes boxes( std::forward<BoxedObjects>(args) ... );
 
-    testAS._();
-    testAS.SetBuffer(1);
-
     // invoke format
-    UT_PRINT( "An error/warning should follow" );
-    lib::lang::Report::GetDefault().PushHaltFlags( false, false );
-    testFormatter->Format( testAS, boxes );
-    lib::lang::Report::GetDefault().PopHaltFlags();
-
-    UT_TRUE( testAS.IndexOf(exp) >= 0);
+    bool caught= false;
+    try
+    {
+        testAS.Clear();
+        testFormatter->Format( testAS, boxes );
+    }
+    catch (Exception& e)
+    {
+        caught= true;
+        UT_PRINT( "Exception caught as expected: " );
+        LogTools::Exception( ut.lox, e, Verbosity::Info, ut.Domain, "  " );
+        if( e.Code() != expectedException  )
+        {
+          UT_PRINT( "But wrong type: caught: {}, expected: {}", e.Code(), expectedException );
+          UT_TRUE( false );
+        }
+    }
+    if( !caught )
+    {
+        UT_PRINT( "No Exception caught. Expected: ", expectedException );
+        UT_PRINT( "Instead, formatting result is {!Q}", testAS );
+        UT_TRUE( caught );
+    }
 }
 
 
@@ -922,14 +939,24 @@ UT_METHOD( FormatterJavaStyle )
     nfBackup.Set( &formatterJS.DefaultNumberFormat );
 
     //===== Simple initial tests =========
-    checkFormat(ut,   "No JSF"                 , ""                 , "No JSF"        );
-    checkFormat(ut, "%%No JSF"                 , "%%"               , "No JSF"        );
-    checkError (ut,  "Format Conversion Ex"    , "% %"              , "Hello JSF"     );
-    checkFormat(ut, "Hello JSF"                , "%1$s"             , "Hello JSF"     );
-    checkFormat(ut, "Hello JSF"                , "%1$s %2$s"        , "Hello", "JSF"  );
-    checkFormat(ut, "Hello HelloJSF"           , "%1$s %1$s"        , "Hello", "JSF"  );
-    checkFormat(ut, "JSF Hello"                , "%2$s %1$s"        , "Hello", "JSF"  );
-    checkError (ut,  "Missing decimal value"   , "%.s"          , "x"          );
+    checkError (ut, Exceptions::IncompatibleTypeCode     , "FLoat as int: %d", 3.1    );
+
+    checkFormat(ut,   "No JSF"                           , ""               , "No JSF"        );
+    checkFormat(ut, "%%No JSF"                           , "%%"             , "No JSF"        );
+    checkError (ut, Exceptions::UnknownConversionJS      , "% %"            , "Hello JSF"     );
+    checkError (ut, Exceptions::UnknownConversionJS      , "%U"             , "Hello JSF"     );
+    checkError (ut, Exceptions::ArgumentIndexIs0         , "Test %0$d %d %d", 1,2,3 );
+    checkError (ut, Exceptions::ArgumentIndexOutOfBounds , "Test %4$d %d %d", 1,2,3 );
+    checkFormat(ut, "Test 3 1 2"                         , "Test %3$d %d %d", 1,2,3 );
+    checkFormat(ut, "Test 2 1 23"                        , "Test %2$d %d %d", 1,2,3 );
+    checkFormat(ut, "Test 1 1 23"                        , "Test %1$d %d %d", 1,2,3 );
+    checkError (ut, Exceptions::ArgumentIndexOutOfBounds , "Test %d %d %d"  , 1,2 );
+
+    checkFormat(ut, "Hello JSF"                          , "%1$s"           , "Hello JSF"     );
+    checkFormat(ut, "Hello JSF"                          , "%1$s %2$s"      , "Hello", "JSF"  );
+    checkFormat(ut, "Hello HelloJSF"                     , "%1$s %1$s"      , "Hello", "JSF"  );
+    checkFormat(ut, "JSF Hello"                          , "%2$s %1$s"      , "Hello", "JSF"  );
+    checkError (ut,  Exceptions::MissingPrecisionValueJS , "%.s"            , "x"             );
 
     //===== replace %% and new line =========
     checkFormat(ut, "repl. percents% X"   , "repl. percents%% %s"              , "X" );
@@ -1020,6 +1047,8 @@ UT_METHOD( FormatterJavaStyle )
     ctPM.Second   =   22;
     Ticks ticksPM( ctPM.Get() );
 
+    checkError (ut, Exceptions::UnknownDateTimeConversionSuffix, "Test %tX"     , ticksAM );
+
     checkFormat(ut,  "05"                         , "%tH"         ,ticksAM );
     checkFormat(ut,  "14"                         , "%tH"         ,ticksPM );
     checkFormat(ut,  "5"                          , "%tk"         ,ticksAM );
@@ -1066,15 +1095,15 @@ UT_METHOD( FormatterJavaStyle )
     //======================================= Characters ===========================================
 
     // alignment
-    checkFormat(ut,  "x"                        , "%s"           , 'x'          );
+    checkFormat(ut,  "x"                        , "%s"           , 'x'    );
     checkFormat(ut,  "#x  #"                    , "#%-3c#"       , 'x'    );
     checkFormat(ut,  "#  x#"                    , "#%3c#"        , 'x'    );
     checkFormat(ut,  "# x #"                    , "#%^3c#"       , 'x'    );
-    checkFormat(ut,  "    x"                    , "%5c"          , 'x'          );
+    checkFormat(ut,  "    x"                    , "%5c"          , 'x'    );
 
     // errors
-    checkError (ut, "Precision = .2"           , "%5.2c"         , 'x'          );
-    checkError (ut, "Flags = #"                , "%#c"           , 'x'          );
+    checkError (ut, Exceptions::NoPrecisionWithConversion    , "%5.2c"   , 'x' );
+    checkError (ut, Exceptions::NoAlternateFormOfConversion  , "%#c"     , 'x' );
 
     // wchar
     checkFormat(ut,  String64()._(L"\u03B1")      , "%c"         , L'\u03B1'    ); //greek alpha
@@ -1109,14 +1138,14 @@ UT_METHOD( FormatterJavaStyle )
     checkFormat(ut,  "0"                    , "%d"              ,  0U   );
     checkFormat(ut,  "1"                    , "%d"              ,  1U   );
     checkFormat(ut,  "5"                    , "%d"              ,  5U   );
-    checkFormat(ut,  "-2147483648"          , "%d"              ,  std::numeric_limits< int32_t>::min()   );
-    checkFormat(ut,  "2147483647"           , "%d"              ,  std::numeric_limits< int32_t>::max()   );
-    checkFormat(ut,  "-2147483647"          , "%d"              ,  std::numeric_limits< int32_t>::min() +1);
-    checkFormat(ut,  "2147483646"           , "%d"              ,  std::numeric_limits< int32_t>::max() -1);
-    checkFormat(ut,  "0"                    , "%d"              ,  std::numeric_limits<uint32_t>::min()   );
-    checkFormat(ut,  "4294967295"           , "%d"              ,  std::numeric_limits<uint32_t>::max()   );
-    checkFormat(ut,  "1"                    , "%d"              ,  std::numeric_limits<uint32_t>::min() +1);
-    checkFormat(ut,  "4294967294"           , "%d"              ,  std::numeric_limits<uint32_t>::max() -1);
+    checkFormat(ut,  "-2147483648"          , "%d"              ,  std::numeric_limits< int32_t >::min()   );
+    checkFormat(ut,  "2147483647"           , "%d"              ,  std::numeric_limits< int32_t >::max()   );
+    checkFormat(ut,  "-2147483647"          , "%d"              ,  std::numeric_limits< int32_t >::min() +1);
+    checkFormat(ut,  "2147483646"           , "%d"              ,  std::numeric_limits< int32_t >::max() -1);
+    checkFormat(ut,  "0"                    , "%d"              ,  std::numeric_limits<uint32_t >::min()   );
+    checkFormat(ut,  "4294967295"           , "%d"              ,  std::numeric_limits<uint32_t >::max()   );
+    checkFormat(ut,  "1"                    , "%d"              ,  std::numeric_limits<uint32_t >::min() +1);
+    checkFormat(ut,  "4294967294"           , "%d"              ,  std::numeric_limits<uint32_t >::max() -1);
     checkFormat(ut,  "-9223372036854775808" , "%d"              ,  std::numeric_limits< int64_t >::min()   );
     checkFormat(ut,  "9223372036854775807"  , "%d"              ,  std::numeric_limits< int64_t >::max()   );
     checkFormat(ut,  "-9223372036854775807" , "%d"              ,  std::numeric_limits< int64_t >::min() +1);
@@ -1154,11 +1183,14 @@ UT_METHOD( FormatterJavaStyle )
     checkFormat(ut,  " 01"                 , "% 03d"          ,  1    );
     checkFormat(ut,  "-01"                 , "% 03d"          , -1    );
 
+    checkError (ut, Exceptions::NegativeValuesInBracketsNotSupported  , "No negative: %(d"     , -1 );
+
 
 
 
     //========================================= Floats =============================================
     // mixed tests
+    checkError (ut,  Exceptions::HexadecimalFloatFormatNotSupported, "Hex float: %a"      , 0.0  );
     checkFormat(ut,                     "0.0", "%s"                 , 0.0          ) ;
     checkFormat(ut,      "0.3333333333333333", "%s"                 , 1.0/3.0      ) ;
     checkFormat(ut,       "3.333333333333334", "%s"                 , 10.0/3.0     ) ;
@@ -1482,6 +1514,9 @@ UT_METHOD( FormatterPythonStyle )
     checkFormat(ut, "Hello PX"                   , "Hello {}", 'P', nullptr, nullptr, "X", nullptr);
 
     //===== Conversion '!'  =========
+    checkFormat(ut, "Hello world"                , "{}{!X} {}"                 , "Hello", "freaking", "world"  );
+    checkFormat(ut, "world"                      , "{!X}{!X}{}"                , "Hello", "freaking", "world"  );
+    checkFormat(ut, ""                           , "{!X}{!X}{!X}"              , "Hello", "freaking", "world"  );
     checkFormat(ut, "HELLO world"                , "{!U} {!L}"                 , "hELlo", "WorlD"  );
     checkFormat(ut, "HELLO hello"                , "{!U} {0!L}"                , "hELlo"           );
     checkFormat(ut, "ABC abc"                    , "{1!U} {1!L}"               , "hELlo", "abc"    );
@@ -1493,6 +1528,11 @@ UT_METHOD( FormatterPythonStyle )
     checkFormat(ut, "This is \"quotedlower\""    , "This is {!Up!Qu!Lo}"       , "quotedLOWER"      );
     checkFormat(ut, "This is \"quotedlower\""    , "This is {!Qu!Lo}"          , "quotedLOWER"      );
 
+    checkFormat(ut, "X   Y"                      , "X{!Fill}Y"                 , 3      );
+    checkFormat(ut, "XY"                         , "X{!Fill}Y"                 , 0      );
+    checkFormat(ut, "X@@@Y"                      , "X{!FillC@}Y"               , 3      );
+    checkFormat(ut, "X   Y"                      , "X{!FillC}Y"                , 3      );
+
     checkFormat(ut, "Tab     X"                  , "Tab{!Tab}"                 , "X"      );
     checkFormat(ut, "Tab10     X"                , "Tab10{!Tab10}"             , "X"      );
     checkFormat(ut, "Tab10x    X"                , "Tab10x{!Tab10}"            , "X"      );
@@ -1500,7 +1540,7 @@ UT_METHOD( FormatterPythonStyle )
     checkFormat(ut, "Tab10xxxx X"                , "Tab10xxxx{!Tab10}"         , "X"      );
     checkFormat(ut, "Tab10xxxxx          X"      , "Tab10xxxxx{!Tab10}"        , "X"      );
     checkFormat(ut, "Tab10xxxxxx         X"      , "Tab10xxxxxx{!Tab10}"       , "X"      );
-    checkFormat(ut, "Tab10xxxxxx*********X"      , "Tab10xxxxxx{!TabC*10}"       , "X"      );
+    checkFormat(ut, "Tab10xxxxxx*********X"      , "Tab10xxxxxx{!TabC*10}"     , "X"      );
 
     checkFormat(ut, "ATab2 X"                    , "ATab2{!ATab2}"            , "X"           );
     checkFormat(ut, "ATab2x  X"                  , "ATab2x{!ATab2}"           , "X"           );
@@ -1516,6 +1556,7 @@ UT_METHOD( FormatterPythonStyle )
     checkFormat(ut, "==========abc---123"        , "{!ATabC=2!L}{!ATabC-3}"   , "ABC" , "123" );
     checkFormat(ut, " X Y"                       , "{!ATabRes!ATab2}{!ATab3}" , "X"   , "Y"   );
     checkFormat(ut, "   X\n   Y"                 , "{!Tab3}\\n{!Tab3}"        , "X", "Y" );
+    formatterPS.Reset();
 
     checkFormat(ut, "\\r\\n\\t"                   , "{!ESC<}"                  , "\r\n\t" );
     checkFormat(ut, "\t\\r\\n\\t\t"               , "\t{!ESC<}\t"              , "\r\n\t" );
@@ -1529,6 +1570,15 @@ UT_METHOD( FormatterPythonStyle )
     checkFormat(ut, "\xFF"                        , "{!ESC>}"                  , "\\xFF"        );
     checkFormat(ut, "\xE5"                        , "{!ESC>}"                  , "\\xE5"        );
     checkFormat(ut, "\033\t"                      , "{!ESC>}"                  , "\\033\\t"     );
+
+
+    checkFormat(ut, "This is right"              , "This is {!Repl<wrong><right>}" , "wrong"  );
+    checkFormat(ut, "Never empty: abc"           , "Never empty: {!Repl<><N/A>}"   , "abc"    );
+    checkFormat(ut, "Never empty: N/A"           , "Never empty: {!Repl<><N/A>}"   , ""       );
+
+    checkFormat(ut, "Auto width"                 , "Auto {!AWidth:>}"         , "width"  );
+    checkFormat(ut, "Auto     w"                 , "Auto {!AWidth:>}"         , "w"      );
+    formatterPS.Reset();
 
     //============================ Samples taken from Python docs ==================================
     checkFormat(ut,  "a, b, c"          , "{0}, {1}, {2}"           ,  'a', 'b', 'c' );
@@ -1605,9 +1655,25 @@ UT_METHOD( FormatterPythonStyle )
 
     //======================================= Errors ===========================================
 
-    checkError (ut,  "Duplicate type code"      , "{:df}"        , 'x'    ); // double type code
-    checkError (ut,  "Incompatible format code" , "{:f}"         , 'x'    ); // wrong type
-    checkError (ut,  "Missing argument #1"      , "{}{}"         , 'x'    ); // to few arguments
+    checkError (ut,  Exceptions::DuplicateTypeCode         , "{:df}"             , 'x'  );
+    checkError (ut,  Exceptions::DuplicateTypeCode         , "{:dfdf}"           , 'x'  );
+    checkError (ut,  Exceptions::IncompatibleTypeCode      , "{:f}"              , 'x'  );
+    checkError (ut,  Exceptions::ArgumentIndexOutOfBounds  , "{}{}"              , 'x'  );
+    checkError (ut,  Exceptions::ArgumentIndexOutOfBounds  , "{2}"               , 'x'  );
+    checkError (ut,  Exceptions::ArgumentIndexOutOfBounds  , "{1}"               , 'x'  );
+    checkFormat(ut,  "x"                                   , "{0}"               , 'x'  );
+    checkError (ut,  Exceptions::MissingClosingBracket     , "abc {-1}"          , 'x'  );
+    checkError (ut,  Exceptions::MissingClosingBracket     , "abc {"             , 'x'  );
+    checkError (ut,  Exceptions::MissingClosingBracket     , "abc {!Q:<"         , 'x'  );
+    checkError (ut,  Exceptions::UnknownConversionPS       , "abc {!P}"          , 'x'  );
+    checkError (ut,  Exceptions::ExclamationMarkExpected   , "abc {!Qack}"       , 'x'  );
+    checkError (ut,  Exceptions::ExclamationMarkExpected   , "abc {!Quo!UppR}"   , 'x'  );
+
+    checkError (ut,  Exceptions::UnknownTypeCode           , "abc {:t}"          , 'x'  );
+    checkError (ut,  Exceptions::UnknownTypeCode           , "abc {:<.5t}"       , 'x'  );
+
+    checkError (ut,  Exceptions::MissingPrecisionValuePS   , "abc {:<.g}"       , 3.154  );
+    checkError (ut,  Exceptions::MissingPrecisionValuePS   , "abc {:-.<g}"      , 3.154  );
 
 
     //======================================= Characters ===========================================
@@ -1759,7 +1825,8 @@ UT_METHOD( FormatterPythonStyle )
     checkFormat(ut,   " 01"                 , "{:03 }"          ,  1    );
     checkFormat(ut,   "-01"                 , "{:03 }"          , -1    );
 
-    checkError (ut,  "Precision not allowed", "{:.3}"         ,  123456);
+    checkError (ut,  Exceptions::PrecisionSpecificationWithInteger, "Test {:.3}"    ,  123456);
+    checkError (ut,  Exceptions::PrecisionSpecificationWithInteger, "Test {!Q:.3}"  ,  123456);
 
 
     //======================================= Binary ===========================================

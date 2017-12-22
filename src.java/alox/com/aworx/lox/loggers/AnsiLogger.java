@@ -28,7 +28,7 @@ import com.aworx.lox.core.textlogger.TextLogger;
  * A logger that logs all messages to the <em>PrintStream</em> instance provided in the constructor.
  * The name of the \e Logger defaults to "ANSI_LOGGER".
  *
- * \b %ALox text logger escape sequences (see class \ref com::aworx::lox::ESC "ESC")
+ * \b %ALox text logger escape sequences (see class \ref com.aworx.lox.ESC "ESC")
  * are translated to ANSI escape sequences.
  * Support for ANSI escape sequences (also referred to as <em>VT100 terminal emulation</em>)
  * is available on most unix terminal windows. Besides text colors, bold and italics font style
@@ -47,14 +47,14 @@ import com.aworx.lox.core.textlogger.TextLogger;
  * Of-course, these publicly accessible format attributes can be customized after creation.
  *
  * There is not 100% match between the ANSI sequences and the definitions in
- * \ref com::aworx::lox::ESC "ESC".
+ * \ref com.aworx.lox.ESC "ESC".
  * For example ESC does not provide all ANSI colors and no blinking. On the other hand,
  * ANSI does not allow to reset the style without resetting the colors.
  * Of-course, it is no problem to log other ANSI codes directly into an \b %AnsiLogger.
  * In this case, other Loggers that might be attached to the same Lox and that do not
  * support ANSI must be equipped with corresponding replacement information.
  * In other words: To support the same log output into different loggers, it is
- * recommended to use \ref com::aworx::lox::ESC "ESC"  sequences instead of
+ * recommended to use \ref com.aworx.lox.ESC "ESC"  sequences instead of
  * directly using ANSI codes.
  *
  * The ANSI codes used by this class are exposed through a list of fields.
@@ -155,7 +155,7 @@ public class AnsiLogger extends TextLogger
          * colored log output should be darker colors than the foreground colors - and vice versa.
          *
          * Depending on the setting of this field, \b %ALox
-         * \ref com::aworx::lox::ESC "escape codes" for colors are translated to normal ANSI colors or
+         * \ref com.aworx.lox.ESC "escape codes" for colors are translated to normal ANSI colors or
          * lighter ones:
          * - If this field is \ref LightColorUsage "LightColorUsageNEVER", light colors are
          *   never used.
@@ -227,14 +227,14 @@ public class AnsiLogger extends TextLogger
         // evaluate environment variable "ALOX_CONSOLE_LIGHT_COLORS"
         useLightColors= LightColorUsage._UNDEFINED;
         Variable variable= new Variable( ALox.CONSOLE_LIGHT_COLORS );
-        if ( variable.load() > 0 && variable.size() > 0)
+        if ( ALox.config.load(variable) > 0 && variable.size() > 0)
         {
             Substring p= new Substring(variable.getString());
             if(p.trim().isNotEmpty())
             {
-                     if( p.consumePartOf( "foreground", 1, Case.IGNORE ) > 0)  useLightColors=  LightColorUsage.FOREGROUND_LIGHT;
-                else if( p.consumePartOf( "background", 1, Case.IGNORE ) > 0)  useLightColors=  LightColorUsage.FOREGROUND_DARK;
-                else if( p.consumePartOf( "never"     , 1, Case.IGNORE ) > 0)  useLightColors=  LightColorUsage.NEVER;
+                     if( p.consumePartOf( "foreground" ) > 0)  useLightColors=  LightColorUsage.FOREGROUND_LIGHT;
+                else if( p.consumePartOf( "background" ) > 0)  useLightColors=  LightColorUsage.FOREGROUND_DARK;
+                else if( p.consumePartOf( "never"      ) > 0)  useLightColors=  LightColorUsage.NEVER;
                 else
                 {
                     com.aworx.lib.ALIB_DBG.WARNING( "Unknown value specified in variable: " + variable.fullname

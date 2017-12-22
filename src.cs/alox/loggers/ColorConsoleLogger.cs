@@ -30,7 +30,7 @@ namespace cs.aworx.lox.loggers    {
 /** ************************************************************************************************
  * A logger that logs all messages using the .Net class <em>System.Console</em>. Converts color
  * sequences defined in class
- * \ref cs::aworx::lox::ESC "ESC"
+ * \ref cs.aworx.lox.ESC "ESC"
  * that are found within the log messages (and meta info format strings) to a corresponding
  * color setting of class <em>System.Console</em>.
  *
@@ -79,7 +79,7 @@ public class ColorConsoleLogger : TextLogger
          * colored log output should be darker colors than the foreground colors - and vice versa.
          *
          * Depending on the setting of this field, \b %ALox
-         * \ref cs::aworx::lox::ESC "escape codes" for colors are translated to normal ANSI colors or
+         * \ref cs.aworx.lox.ESC "escape codes" for colors are translated to normal ANSI colors or
          * lighter ones:
          * - If this field is \ref LightColorUsage "LightColorUsage.Never", light colors are
          *   never used.
@@ -134,14 +134,14 @@ public class ColorConsoleLogger : TextLogger
             // evaluate environment variable "ALOX_CONSOLE_LIGHT_COLORS"
             UseLightColors= LightColorUsage._Undefined;
             Variable variable= new Variable( ALox.CONSOLE_LIGHT_COLORS );
-            if ( variable.Load() > 0 && variable.Size() > 0)
+            if ( ALox.Config.Load(variable) > 0 && variable.Size() > 0)
             {
                 Substring p= new Substring(variable.GetString());
                 if(p.Trim().IsNotEmpty())
                 {
-                         if( p.ConsumePartOf( "foreground", 1, Case.Ignore ) > 0)  UseLightColors=  LightColorUsage.ForegroundLight;
-                    else if( p.ConsumePartOf( "background", 1, Case.Ignore ) > 0)  UseLightColors=  LightColorUsage.ForegroundDark;
-                    else if( p.ConsumePartOf( "never"     , 1, Case.Ignore ) > 0)  UseLightColors=  LightColorUsage.Never;
+                         if( p.ConsumePartOf( "foreground" ) > 0)  UseLightColors=  LightColorUsage.ForegroundLight;
+                    else if( p.ConsumePartOf( "background" ) > 0)  UseLightColors=  LightColorUsage.ForegroundDark;
+                    else if( p.ConsumePartOf( "never"      ) > 0)  UseLightColors=  LightColorUsage.Never;
                     else
                     {
                         ALIB_DBG.WARNING( "Unknown value specified in variable: " + variable.Fullname

@@ -13,7 +13,7 @@ using cs.aworx.lib.lang;
 
 /** ************************************************************************************************
  *  This namespace of the A-Worx Library provides classes for character string operations
- *  (following \ref cs::aworx::lib "the principle design goals of the A-Worx Library").
+ *  (following \ref cs.aworx.lib "the principle design goals of the A-Worx Library").
  **************************************************************************************************/
 namespace cs.aworx.lib.strings  {
 
@@ -22,7 +22,7 @@ namespace cs.aworx.lib.strings  {
  *  A mutable string, that provides public access to its internal buffer and fields.
  *  First of all, the existence of this class is motivated to reach a certain level of compatibility
  *  between source code that uses the
- *  \ref cs::aworx::lib "ALib" across different languages (currently Java, C# and C++) whose
+ *  \ref cs.aworx.lib "ALib" across different languages (currently Java, C# and C++) whose
  *  implementations share a similar %AString class.
  *
  *  As the given C#/Java StringBuilder/Buffer classes are either "sealed" and/or do not provide
@@ -154,7 +154,7 @@ public class AString
         }
 
         /** ****************************************************************************************
-         * Constructor copying a \ref cs::aworx::lib::strings::Substring "Substring".
+         * Constructor copying a \ref cs.aworx.lib.strings.Substring "Substring".
          *
          * @param src  The source Substring to copy from.
          ******************************************************************************************/
@@ -2348,7 +2348,7 @@ public class AString
          *
          * @param needle       The character to search for.
          * @param startIndex   The index in this to start searching the character.
-         *                     Defaults to CString::MaxLen.
+         *                     Defaults to CString.MaxLen.
          *
          * @return  -1 if the character \p needle is not found.
          *          Otherwise the index of its last occurrence relative to the start index.
@@ -2643,8 +2643,8 @@ public class AString
          * If the new region length is needed to be known, it can be calculated as the sum of
          * the old region length and the difference of the string before and after the operation.
          *
-         * @param escape        \b Switch::On escapes ascii characters (the default),
-         *                      \b Switch::Off converts  escaped strings to ascii codes.
+         * @param escape        \b Switch.On escapes ascii characters (the default),
+         *                      \b Switch.Off converts  escaped strings to ascii codes.
          * @param regionStart   The start of the region to convert.
          * @param regionLength  The length of the region to convert.
          * @return \c this to allow concatenated calls.
@@ -2803,18 +2803,18 @@ public class AString
          *
          * Parameter \p numberFormat defaults to \c null, which denotes this method to use
          * the static singleton found in
-         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational".
+         * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational".
          * To generate output better readable for humans, provide
-         * \ref cs::aworx::lib::strings::NumberFormat::Global "NumberFormat.Global", or a
+         * \ref cs.aworx.lib.strings.NumberFormat.Global "NumberFormat.Global", or a
          * customized object of that type.
          *
-         * See \ref cs::aworx::lib::strings::NumberFormat "NumberFormat"
+         * See \ref cs.aworx.lib.strings.NumberFormat "NumberFormat"
          * for more information on formatting options.
          *
          * @param value         The value to append.
          * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
          *                      specified in field
-         *                      \ref cs::aworx::lib::strings::NumberFormat::DecMinimumFieldWidth "NumberFormat.DecMinimumFieldWidth".
+         *                      \ref cs.aworx.lib.strings.NumberFormat.DecMinimumFieldWidth "NumberFormat.DecMinimumFieldWidth".
          * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
          **********************************************************************************************/
@@ -2851,18 +2851,18 @@ public class AString
          *
          * Parameter \p numberFormat defaults to \c null, which denotes this method to use
          * the static singleton found in
-         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational".
+         * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational".
          * To generate output better readable for humans, provide
-         * \ref cs::aworx::lib::strings::NumberFormat::Global "NumberFormat.Global", or a
+         * \ref cs.aworx.lib.strings.NumberFormat.Global "NumberFormat.Global", or a
          * customized object of that type.
          *
-         * See \ref cs::aworx::lib::strings::NumberFormat "NumberFormat"
+         * See \ref cs.aworx.lib.strings.NumberFormat "NumberFormat"
          * for more information on formatting options.
          *
          * @param value         The value to append.
          * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
          *                      specified in field
-         *                      \ref cs::aworx::lib::strings::NumberFormat::DecMinimumFieldWidth "NumberFormat.DecMinimumFieldWidth".
+         *                      \ref cs.aworx.lib.strings.NumberFormat.DecMinimumFieldWidth "NumberFormat.DecMinimumFieldWidth".
          * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
          **********************************************************************************************/
@@ -2900,18 +2900,18 @@ public class AString
          *
          * Parameter \p numberFormat defaults to \c null, which denotes this method to use
          * the static singleton found in
-         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational".
+         * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational".
          * To generate output better readable for humans, provide
-         * \ref cs::aworx::lib::strings::NumberFormat::Global "NumberFormat.Global", or a
+         * \ref cs.aworx.lib.strings.NumberFormat.Global "NumberFormat.Global", or a
          * customized object of that type.
          *
-         * See \ref cs::aworx::lib::strings::NumberFormat "NumberFormat"
+         * See \ref cs.aworx.lib.strings.NumberFormat "NumberFormat"
          * for more information on formatting options.
          *
          * @param value         The value to append.
          * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
          *                      specified in field
-         *                      \ref cs::aworx::lib::strings::NumberFormat::DecMinimumFieldWidth "NumberFormat.DecMinimumFieldWidth".
+         *                      \ref cs.aworx.lib.strings.NumberFormat.DecMinimumFieldWidth "NumberFormat.DecMinimumFieldWidth".
          * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
          **********************************************************************************************/
@@ -2948,18 +2948,18 @@ public class AString
          *
          * Parameter \p numberFormat defaults to \c null, which denotes this method to use
          * the static singleton found in
-         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational".
+         * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational".
          * To generate output better readable for humans, provide
-         * \ref cs::aworx::lib::strings::NumberFormat::Global "NumberFormat.Global", or a
+         * \ref cs.aworx.lib.strings.NumberFormat.Global "NumberFormat.Global", or a
          * customized object of that type.
          *
-         * See \ref cs::aworx::lib::strings::NumberFormat "NumberFormat"
+         * See \ref cs.aworx.lib.strings.NumberFormat "NumberFormat"
          * for more information on formatting options.
          *
          * @param value         The value to append.
          * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
          *                      specified in field
-         *                      \ref cs::aworx::lib::strings::NumberFormat::DecMinimumFieldWidth "NumberFormat.DecMinimumFieldWidth".
+         *                      \ref cs.aworx.lib.strings.NumberFormat.DecMinimumFieldWidth "NumberFormat.DecMinimumFieldWidth".
          * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
          **********************************************************************************************/
@@ -2996,18 +2996,18 @@ public class AString
          *
          * Parameter \p numberFormat defaults to \c null, which denotes this method to use
          * the static singleton found in
-         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational".
+         * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational".
          * To generate output better readable for humans, provide
-         * \ref cs::aworx::lib::strings::NumberFormat::Global "NumberFormat.Global", or a
+         * \ref cs.aworx.lib.strings.NumberFormat.Global "NumberFormat.Global", or a
          * customized object of that type.
          *
-         * See \ref cs::aworx::lib::strings::NumberFormat "NumberFormat"
+         * See \ref cs.aworx.lib.strings.NumberFormat "NumberFormat"
          * for more information on formatting options.
          *
          * @param value         The value to append.
          * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
          *                      specified in field
-         *                      \ref cs::aworx::lib::strings::NumberFormat::BinFieldWidth "NumberFormat.BinFieldWidth".
+         *                      \ref cs.aworx.lib.strings.NumberFormat.BinFieldWidth "NumberFormat.BinFieldWidth".
          * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
          **********************************************************************************************/
@@ -3045,18 +3045,18 @@ public class AString
          *
          * Parameter \p numberFormat defaults to \c null, which denotes this method to use
          * the static singleton found in
-         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational".
+         * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational".
          * To generate output better readable for humans, provide
-         * \ref cs::aworx::lib::strings::NumberFormat::Global "NumberFormat.Global", or a
+         * \ref cs.aworx.lib.strings.NumberFormat.Global "NumberFormat.Global", or a
          * customized object of that type.
          *
-         * See \ref cs::aworx::lib::strings::NumberFormat "NumberFormat"
+         * See \ref cs.aworx.lib.strings.NumberFormat "NumberFormat"
          * for more information on formatting options.
          *
          * @param value         The value to append.
          * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
          *                      specified in field
-         *                      \ref cs::aworx::lib::strings::NumberFormat::HexFieldWidth "NumberFormat.HexFieldWidth".
+         *                      \ref cs.aworx.lib.strings.NumberFormat.HexFieldWidth "NumberFormat.HexFieldWidth".
          * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
          **********************************************************************************************/
@@ -3094,18 +3094,18 @@ public class AString
          *
          * Parameter \p numberFormat defaults to \c null, which denotes this method to use
          * the static singleton found in
-         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational".
+         * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational".
          * To generate output better readable for humans, provide
-         * \ref cs::aworx::lib::strings::NumberFormat::Global "NumberFormat.Global", or a
+         * \ref cs.aworx.lib.strings.NumberFormat.Global "NumberFormat.Global", or a
          * customized object of that type.
          *
-         * See \ref cs::aworx::lib::strings::NumberFormat "NumberFormat"
+         * See \ref cs.aworx.lib.strings.NumberFormat "NumberFormat"
          * for more information on formatting options.
          *
          * @param value         The value to append.
          * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
          *                      specified in field
-         *                      \ref cs::aworx::lib::strings::NumberFormat::OctFieldWidth "NumberFormat.OctFieldWidth".
+         *                      \ref cs.aworx.lib.strings.NumberFormat.OctFieldWidth "NumberFormat.OctFieldWidth".
          * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
          **********************************************************************************************/
@@ -3143,18 +3143,18 @@ public class AString
          *
          * Parameter \p numberFormat defaults to \c null, which denotes this method to use
          * the static singleton found in
-         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational".
+         * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational".
          * To generate output better readable for humans, provide
-         * \ref cs::aworx::lib::strings::NumberFormat::Global "NumberFormat.Global", or a
+         * \ref cs.aworx.lib.strings.NumberFormat.Global "NumberFormat.Global", or a
          * customized object of that type.
          *
-         * See \ref cs::aworx::lib::strings::NumberFormat "NumberFormat"
+         * See \ref cs.aworx.lib.strings.NumberFormat "NumberFormat"
          * for more information on formatting options.
          *
          * @param value         The value to append.
          * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
          *                      specified in field
-         *                      \ref cs::aworx::lib::strings::NumberFormat::IntegralPartMinimumWidth "NumberFormat.IntegralPartMinimumWidth".
+         *                      \ref cs.aworx.lib.strings.NumberFormat.IntegralPartMinimumWidth "NumberFormat.IntegralPartMinimumWidth".
          * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
@@ -3281,10 +3281,10 @@ public class AString
         /** ****************************************************************************************
          * Parses a long integer value in decimal, binary, hexadecimal or octal format from
          * the string by invoking method
-         * \ref cs::aworx::lib::strings::NumberFormat::ParseInt "NumberFormat.ParseInt"
+         * \ref cs.aworx.lib.strings.NumberFormat.ParseInt "NumberFormat.ParseInt"
          * on the given \p numberFormat instance.<br>
          * Parameter \p numberFormat defaults to \c null. This denotes static singleton
-         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
          * Optional output parameter \p newIdx may be used to detect if parsing was successful.
@@ -3292,7 +3292,7 @@ public class AString
          * read.
          *
          * For more information on number conversion, see class
-         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * \ref cs.aworx.lib.strings.NumberFormat "NumberFormat". All of its interface methods
          * have a corresponding implementation within class \b %AString.
          *
          *
@@ -3401,10 +3401,10 @@ public class AString
         /** ****************************************************************************************
          * Reads an unsigned 64-bit integer in standard decimal format at the given position
          * from this %AString. This is done, by invoking
-         * \ref cs::aworx::lib::strings::NumberFormat::ParseDec "NumberFormat.ParseDec"
+         * \ref cs.aworx.lib.strings.NumberFormat.ParseDec "NumberFormat.ParseDec"
          * on the given \p numberFormat instance.<br>
          * Parameter \p numberFormat defaults to \c null. This denotes static singleton
-         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
          * Optional output parameter \p newIdx may be used to detect if parsing was successful.
@@ -3416,7 +3416,7 @@ public class AString
          * #ParseFloat.
          *
          * For more information on number conversion, see class
-         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * \ref cs.aworx.lib.strings.NumberFormat "NumberFormat". All of its interface methods
          * have a corresponding implementation within class \b %AString.
          *
          *
@@ -3525,10 +3525,10 @@ public class AString
         /** ****************************************************************************************
          * Reads an unsigned 64-bit integer in binary format at the given position
          * from this \b %AString. This is done, by invoking
-         * \ref cs::aworx::lib::strings::NumberFormat::ParseBin "NumberFormat.ParseBin"
+         * \ref cs.aworx.lib.strings.NumberFormat.ParseBin "NumberFormat.ParseBin"
          * on the given \p numberFormat instance.<br>
          * Parameter \p numberFormat defaults to \c null. This denotes static singleton
-         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
          * Optional output parameter \p newIdx may be used to detect if parsing was successful.
@@ -3536,7 +3536,7 @@ public class AString
          * read.
          *
          * For more information on number conversion, see class
-         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * \ref cs.aworx.lib.strings.NumberFormat "NumberFormat". All of its interface methods
          * have a corresponding implementation within class \b %AString.
          *
          * @param startIdx     The start index for parsing.
@@ -3644,10 +3644,10 @@ public class AString
         /** ****************************************************************************************
          * Reads an unsigned 64-bit integer in hexadecimal format at the given position
          * from this \b %AString. This is done, by invoking
-         * \ref cs::aworx::lib::strings::NumberFormat::ParseHex "NumberFormat.ParseHex"
+         * \ref cs.aworx.lib.strings.NumberFormat.ParseHex "NumberFormat.ParseHex"
          * on the given \p numberFormat instance.<br>
          * Parameter \p numberFormat defaults to \c null. This denotes static singleton
-         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
          * Optional output parameter \p newIdx may be used to detect if parsing was successful.
@@ -3655,7 +3655,7 @@ public class AString
          * read.
          *
          * For more information on number conversion, see class
-         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * \ref cs.aworx.lib.strings.NumberFormat "NumberFormat". All of its interface methods
          * have a corresponding implementation within class \b %AString.
          *
          * @param startIdx     The start index for parsing.
@@ -3763,10 +3763,10 @@ public class AString
         /** ****************************************************************************************
          * Reads an unsigned 64-bit integer in octal format at the given position
          * from this \b %AString. This is done, by invoking
-         * \ref cs::aworx::lib::strings::NumberFormat::ParseOct "NumberFormat.ParseOct"
+         * \ref cs.aworx.lib.strings.NumberFormat.ParseOct "NumberFormat.ParseOct"
          * on the given \p numberFormat instance.<br>
          * Parameter \p numberFormat defaults to \c null. This denotes static singleton
-         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
          * Optional output parameter \p newIdx may be used to detect if parsing was successful.
@@ -3774,7 +3774,7 @@ public class AString
          * read.
          *
          * For more information on number conversion, see class
-         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * \ref cs.aworx.lib.strings.NumberFormat "NumberFormat". All of its interface methods
          * have a corresponding implementation within class \b %AString.
          *
          * @param startIdx     The start index for parsing.
@@ -3882,10 +3882,10 @@ public class AString
         /** ****************************************************************************************
          * Reads a floating point number at the given position from this \b %AString.
          * This is done, by invoking
-         * \ref cs::aworx::lib::strings::NumberFormat::ParseFloat "NumberFormat.ParseFloat"
+         * \ref cs.aworx.lib.strings.NumberFormat.ParseFloat "NumberFormat.ParseFloat"
          * on the given \p numberFormat instance.<br>
          * Parameter \p numberFormat defaults to \c null. This denotes static singleton
-         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to 'international' settings (not using the locale) and therefore
          * also not parsing grouping characters.
          *
@@ -3895,7 +3895,7 @@ public class AString
          *
          * For more information on parsing options for floating point numbers and number
          * conversion in general, see class
-         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * \ref cs.aworx.lib.strings.NumberFormat "NumberFormat". All of its interface methods
          * have a corresponding implementation within class \b %AString.
          *
          * @param startIdx     The start index for parsing.

@@ -12,20 +12,14 @@
 
 // to preserve the right order, we are not includable directly from outside.
 #if !defined(HPP_ALIB_STRINGS_STRING)
-    #error "include 'alib/alib.hpp' or 'alib/alib_strings.hpp' before including this header"
+    #error "include 'alib/alib.hpp' before including this header"
 #endif
 
+#if !defined (HPP_ALIB_LANG_ENUM_BITWISE)
+#   include "alib/lang/enumbitwise.hpp"
+#endif
 
-namespace aworx { namespace lib { namespace strings
-{
-// #################################################################################################
-// Forward declarations
-// #################################################################################################
-class Tokenizer;
-
-// #################################################################################################
-// Substring
-// #################################################################################################
+namespace aworx { namespace lib { namespace strings {
 
 /** ************************************************************************************************
  * This class is used for defining a region (sub-string) on an existing character array.
@@ -49,11 +43,6 @@ class Tokenizer;
  *
  * Objects of this class can be reused by freshly initializing them using of method
  * #Set(const String&) and #Set(const String&,integer,integer).
- *
- *<p>
- * \note To generate \b %Substring objects which are separated by a delimiter character within a
- *       character array, use class
- *       \ref aworx::lib::strings::util::Tokenizer "Tokenizer".
  **************************************************************************************************/
 class Substring : public String
 {
@@ -218,12 +207,8 @@ class Substring : public String
         {
             if ( length > 0 )
             {
-                integer idx= CString::IndexOfAny(              buffer,
-                                                                 length,
-                                                     whiteSpaces.Buffer(),
-                                                     whiteSpaces.Length(),
-                                                     lang::Inclusion::Exclude
-                                                   );
+                integer idx= CString::IndexOfAnyExcluded(            buffer,                length,
+                                                         whiteSpaces.Buffer(),  whiteSpaces.Length() );
                 if(  idx < 0 )
                     idx= length;
                 buffer+= idx;
@@ -244,12 +229,11 @@ class Substring : public String
         {
             if ( length > 0 )
             {
-                length= CString::LastIndexOfAny(                 buffer,
-                                                                 length - 1,
-                                                     whiteSpaces.Buffer(),
-                                                     whiteSpaces.Length(),
-                                                     lang::Inclusion::Exclude
-                                                    ) + 1;
+                length= CString::LastIndexOfAnyExclude(             buffer,
+                                                                    length - 1,
+                                                        whiteSpaces.Buffer(),
+                                                        whiteSpaces.Length()
+                                                       ) + 1;
             }
             return *this;
         }
@@ -273,26 +257,27 @@ class Substring : public String
     /** ############################################################################################
      * @name Consume
      ##@{ ########################################################################################*/
-
+        ALIB_WARNINGS_ALLOW_TEMPLATE_META_PROGRAMMING
         /** ****************************************************************************************
          * Retrieve and remove the first character from the substring.
          *
+         * @tparam TTrimBeforeConsume Determines if the string should be (left-) trimmed before the
+         *                            consume operation. Defaults to \b Whitespaces::Keep.
          * @tparam TCheck  Defaults to \c true which is the normal invocation mode.
          *                 If \c \<false\> is added to the method name, no parameter check is
          *                 performed.
          *
-         * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
-         *                          consume operation. Defaults to \b Whitespaces::Keep.
          * @return The character at the start of the represented region.
          *         If this \b %Substring is empty or \e nulled, '\0' is returned.
          ******************************************************************************************/
-        template <bool TCheck= true>
+        template < bool              TCheck            = true,
+                   lang::Whitespaces TTrimBeforeConsume= lang::Whitespaces::Keep  >
         inline
-        char        ConsumeChar(lang::Whitespaces trimBeforeConsume= lang::Whitespaces::Keep)
+        char        ConsumeChar()
         {
             if ( TCheck )
             {
-                if ( trimBeforeConsume == lang::Whitespaces::Trim )
+                if ( TTrimBeforeConsume == lang::Whitespaces::Trim )
                     TrimStart();
                 if( IsEmpty() )
                     return '\0';
@@ -300,7 +285,7 @@ class Substring : public String
             else
             {
                 ALIB_ASSERT_ERROR( !IsEmpty(), "NC: empty string" );
-                if ( trimBeforeConsume == lang::Whitespaces::Trim )
+                if ( TTrimBeforeConsume == lang::Whitespaces::Trim )
                     TrimStart();
             }
 
@@ -312,24 +297,25 @@ class Substring : public String
          * Checks if this object starts with the given character \p consumable. If it does, this
          * character is cut from this object.
          *
-         * @param consumable        The consumable character
-         * @param sensitivity       The sensitivity of the comparison.
-         * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
-         *                          consume operation. Defaults to \b Whitespaces::Keep.
+         * @param  consumable         The consumable character
+         *
+         * @tparam TSensitivity       The sensitivity of the comparison.
+         * @tparam TTrimBeforeConsume Determines if the string should be (left-) trimmed before the
+         *                           consume operation. Defaults to \b Whitespaces::Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut by one.
          ******************************************************************************************/
+        template< lang::Case        TSensitivity=        lang::Case::Sensitive,
+                  lang::Whitespaces TTrimBeforeConsume= lang::Whitespaces::Keep>
         inline
-        bool        ConsumeChar( char              consumable,
-                                 lang::Case        sensitivity=       lang::Case::Sensitive,
-                                 lang::Whitespaces trimBeforeConsume= lang::Whitespaces::Keep )
+        bool        ConsumeChar( char   consumable )
 
         {
-            if ( trimBeforeConsume == lang::Whitespaces::Trim )
+            if ( TTrimBeforeConsume == lang::Whitespaces::Trim )
                 TrimStart();
 
-            if (    ( sensitivity == lang::Case::Sensitive &&         CharAtStart()  !=         consumable  )
-                 || ( sensitivity == lang::Case::Ignore    && toupper(CharAtStart()) != toupper(consumable) ) )
+            if (    ( TSensitivity == lang::Case::Sensitive &&         CharAtStart()  !=         consumable  )
+                 || ( TSensitivity == lang::Case::Ignore    && toupper(CharAtStart()) != toupper(consumable) ) )
                 return false;
             buffer++;
             length--;
@@ -340,23 +326,23 @@ class Substring : public String
          * Checks if this object ends with the given character \p consumable. If it does, this
          * character is cut from the end of object.
          *
-         * @param consumable        The consumable character
-         * @param sensitivity       The sensitivity of the comparison.
-         * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
-         *                          consume operation. Defaults to \b Whitespaces::Keep.
+         * @param consumable          The consumable character
+         * @tparam TSensitivity       The sensitivity of the comparison.
+         * @tparam TTrimBeforeConsume Determines if the string should be (left-) trimmed before the
+         *                            consume operation. Defaults to \b Whitespaces::Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut by one.
          ******************************************************************************************/
+        template< lang::Case        TSensitivity=       lang::Case::Sensitive,
+                  lang::Whitespaces TTrimBeforeConsume= lang::Whitespaces::Keep>
         inline
-        bool        ConsumeCharFromEnd( char               consumable,
-                                        lang::Case        sensitivity=       lang::Case::Sensitive,
-                                        lang::Whitespaces trimBeforeConsume= lang::Whitespaces::Keep )
+        bool        ConsumeCharFromEnd( char  consumable )
         {
-            if ( trimBeforeConsume == lang::Whitespaces::Trim )
+            if ( TTrimBeforeConsume == lang::Whitespaces::Trim )
                 TrimEnd();
 
-            if (    ( sensitivity == lang::Case::Sensitive &&         CharAtEnd()  !=         consumable  )
-                 || ( sensitivity == lang::Case::Ignore    && toupper(CharAtEnd()) != toupper(consumable) ) )
+            if (    ( TSensitivity == lang::Case::Sensitive &&         CharAtEnd()  !=         consumable  )
+                 || ( TSensitivity == lang::Case::Ignore    && toupper(CharAtEnd()) != toupper(consumable) ) )
                 return false;
             length--;
             return true;
@@ -369,18 +355,19 @@ class Substring : public String
          *                 If \c \<false\> is added to the method name, no parameter check is
          *                 performed.
          *
-         * @param trimBeforeConsume Determines if the string should be (right-) trimmed before the
-         *                          consume operation. Defaults to \b Whitespaces::Keep.
+         * @tparam TTrimBeforeConsume Determines if the string should be (right-) trimmed before the
+         *                            consume operation. Defaults to \b Whitespaces::Keep.
          * @return The character at the start of the represented region.
          *         If this \b %Substring is empty or \e nulled, '\0' is returned.
          ******************************************************************************************/
-        template <bool TCheck= true>
+        template <bool TCheck= true,
+                  lang::Whitespaces TTrimBeforeConsume= lang::Whitespaces::Keep >
         inline
-        char        ConsumeCharFromEnd(lang::Whitespaces trimBeforeConsume= lang::Whitespaces::Keep)
+        char        ConsumeCharFromEnd()
         {
             if ( TCheck )
             {
-                if ( trimBeforeConsume == lang::Whitespaces::Trim )
+                if ( TTrimBeforeConsume == lang::Whitespaces::Trim )
                     TrimEnd();
                 if( IsEmpty() )
                     return '\0';
@@ -388,7 +375,7 @@ class Substring : public String
             else
             {
                 ALIB_ASSERT_ERROR( !IsEmpty(), "NC: empty string" );
-                if ( trimBeforeConsume == lang::Whitespaces::Trim )
+                if ( TTrimBeforeConsume == lang::Whitespaces::Trim )
                     TrimEnd();
             }
             return *(buffer + --length );
@@ -489,7 +476,9 @@ class Substring : public String
          * Cuts the given number of characters from the beginning of the Substring and optionally
          * places the portion that was cut in parameter \p target.<br>
          * Parameter \p regionLength is checked to be between 0 and length. If negative, nothing
-         * is cut and \p target is set empty, respectively left untouched depending on \p
+         * is cut and \p target is set empty, respectively left untouched depending on
+         * \p TTargetData.
+         *
          * If \p regionLength is greater than this  objects' length, all contents is 'moved'
          * to \p target.
          *
@@ -503,19 +492,19 @@ class Substring : public String
          * @param separatorWidth  This width is added to what is cut from this string, while
          *                        \p target still receives the portion defined by \p regionLength.
          *                        Defaults to 0.
-         * @param targetData      If \c CurrentData::Keep, the parameter \p target is not cleared
+         * @tparam TTargetData    If \c CurrentData::Keep, the parameter \p target is not cleared
          *                        before the result is written. Defaults to \c CurrentData::Clear.
          *
          * @return The new length of the substring.
          ******************************************************************************************/
-        template <bool TCheck= true>
+        template <bool               TCheck           = true,
+                  lang::CurrentData  TTargetData      = lang::CurrentData::Clear>
         inline
         integer ConsumeChars( integer            regionLength,
-                               AString&            target,
-                               integer            separatorWidth   =0,
-                               lang::CurrentData  targetData       =lang::CurrentData::Clear)
+                              AString&           target,
+                              integer            separatorWidth   =0         )
         {
-            if ( targetData == lang::CurrentData::Clear  )
+            if ( TTargetData == lang::CurrentData::Clear  )
                 target.Clear();
 
             if ( TCheck )
@@ -558,19 +547,19 @@ class Substring : public String
          * @param separatorWidth  This width is added to what is cut from this string, while
          *                        \p target still receives the portion defined by \p regionLength.
          *                        Defaults to 0.
-         * @param targetData      If \c CurrentData::Keep, the parameter \p target is not cleared
+         * @tparam TTargetData    If \c CurrentData::Keep, the parameter \p target is not cleared
          *                        before the result is written. Defaults to \c CurrentData::Clear.
          *
          * @return The new length of the substring.
          ******************************************************************************************/
-        template <bool TCheck= true>
+        template <bool                  TCheck           = true,
+                  lang::CurrentData     TTargetData      =lang::CurrentData::Clear>
         inline
-        integer ConsumeCharsFromEnd( integer            regionLength,
-                                      AString&            target,
-                                      integer            separatorWidth   =0,
-                                      lang::CurrentData  targetData       =lang::CurrentData::Clear)
+        integer ConsumeCharsFromEnd( integer             regionLength,
+                                     AString&            target,
+                                     integer             separatorWidth   =0      )
         {
-            if ( targetData == lang::CurrentData::Clear  )
+            if ( TTargetData == lang::CurrentData::Clear  )
                 target.Clear();
 
             if ( TCheck )
@@ -594,25 +583,53 @@ class Substring : public String
         }
 
         /** ****************************************************************************************
+         * Searches \p separator and cuts the beginning of this string, including the separator.
+         * What was consumed is returned, excluding the separator.
+         *
+         * If the separator is not found, all of this string is consumed and returned.
+         *
+         * @param separator  The separator to search.
+         *                   Defaults to <c>','</c>.
+         *
+         * @return The token consumed.
+         ******************************************************************************************/
+        inline
+        String  ConsumeToken( char separator= ',' )
+        {
+            ALIB_ASSERT_ERROR( IsNotNull() , "ConsumeToken on nulled Substring"  )
+            integer separatorPos= IndexOfOrLength( separator );
+            String result= String( buffer, separatorPos );
+
+            buffer+= separatorPos;
+            length-= separatorPos;
+            if( length > 0 )
+            {
+                buffer++;
+                length--;
+            }
+            return result;
+        }
+
+        /** ****************************************************************************************
          * Checks if this object starts with the given string \p consumable. If it does, this
          * string is cut from this object.
          *
-         * @param consumable        The consumable string.
-         * @param sensitivity       The sensitivity of the comparison.
-         * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
-         *                          consume operation. Defaults to \b Whitespaces::Keep.
+         * @param  consumable         The consumable string.
+         * @tparam TSensitivity       The sensitivity of the comparison.
+         * @tparam TTrimBeforeConsume Determines if the string should be (left-) trimmed before the
+         *                            consume operation. Defaults to \b Whitespaces::Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
+        template< lang::Case        TSensitivity=       lang::Case::Sensitive,
+                  lang::Whitespaces TTrimBeforeConsume= lang::Whitespaces::Keep >
         inline
-        bool        ConsumeString( const String&     consumable,
-                                   lang::Case        sensitivity=       lang::Case::Sensitive,
-                                   lang::Whitespaces trimBeforeConsume= lang::Whitespaces::Keep )
+        bool        ConsumeString( const String&     consumable  )
         {
-            if ( trimBeforeConsume == lang::Whitespaces::Trim )
+            if ( TTrimBeforeConsume == lang::Whitespaces::Trim )
                 TrimStart();
 
-            if ( !StartsWith( consumable, sensitivity ) )
+            if ( !StartsWith<TSensitivity>( consumable ) )
                 return false;
 
             buffer+= consumable.Length();
@@ -624,22 +641,22 @@ class Substring : public String
          * Checks if this object ends with the given string \p consumable. If it does, this
          * string is cut from the end of object.
          *
-         * @param consumable        The consumable string
-         * @param sensitivity       The sensitivity of the comparison.
-         * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
-         *                          consume operation. Defaults to \b Whitespaces::Keep.
+         * @param  consumable         The consumable string
+         * @tparam TSensitivity       The sensitivity of the comparison.
+         * @tparam TTrimBeforeConsume Determines if the string should be (left-) trimmed before the
+         *                           consume operation. Defaults to \b Whitespaces::Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
+        template< lang::Case        TSensitivity=       lang::Case::Sensitive,
+                  lang::Whitespaces TTrimBeforeConsume= lang::Whitespaces::Keep >
         inline
-        bool        ConsumeStringFromEnd( const String&      consumable,
-                                   lang::Case        sensitivity=       lang::Case::Sensitive,
-                                   lang::Whitespaces trimBeforeConsume= lang::Whitespaces::Keep )
+        bool        ConsumeStringFromEnd( const String&  consumable )
         {
-            if ( trimBeforeConsume == lang::Whitespaces::Trim )
+            if ( TTrimBeforeConsume == lang::Whitespaces::Trim )
                 TrimEnd();
 
-            if ( !EndsWith( consumable, sensitivity ) )
+            if ( !EndsWith<TSensitivity>( consumable ) )
                 return false;
             length-= consumable.Length();
             return true;
@@ -652,21 +669,258 @@ class Substring : public String
          * This method is useful for example to read commands from a string that may be
          * abbreviated.
          *
-         * @param consumable        The consumable string.
-         * @param minChars          The minimum amount of characters to consume.
-         *                          Optional and defaults to \c 1
-         * @param sensitivity       The sensitivity of the comparison.
-         *                          Defaults to \b Case::Sensitive.
-         * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
-         *                          first character consume operation.
-         *                          Defaults to \b Whitespaces::Keep.
+         * @param  consumable         The consumable string.
+         * @param  minChars           The minimum amount of characters to consume. If \c 0 or
+         *                            negative, the length of \p consumable is chosen.
+         *                            Optional and defaults to \c 1.
+         * @tparam TSensitivity       The sensitivity of the comparison.
+         *                            Defaults to \b Case::Ignore.
+         * @tparam TTrimBeforeConsume Determines if the string should be (left-) trimmed before the
+         *                            first character consume operation.
+         *                            Defaults to \b Whitespaces::Keep.
          * @return The amount of characters consumed.
          ******************************************************************************************/
-        ALIB_API
+        template< lang::Case        TSensitivity=       lang::Case::Ignore,
+                  lang::Whitespaces TTrimBeforeConsume= lang::Whitespaces::Keep >
         integer    ConsumePartOf(  const String&     consumable,
-                                   int               minChars           = 1,
-                                   lang::Case        sensitivity        = lang::Case::Sensitive,
-                                   lang::Whitespaces trimBeforeConsume  = lang::Whitespaces::Keep );
+                                   int               minChars           = 1 )
+        {
+            if ( TTrimBeforeConsume == lang::Whitespaces::Trim )
+                TrimStart();
+            if ( minChars <= 0 )
+                minChars= static_cast<int>( consumable.Length() );
+
+            if ( minChars == 0 || minChars > consumable.Length() )
+                return 0;
+
+            integer diff= IndexOfFirstDifference( consumable, TSensitivity );
+            if( diff < static_cast<integer>( minChars ) )
+                return 0;
+            ConsumeChars( diff );
+            return diff;
+        }
+
+        /** ****************************************************************************************
+         * Consumes a field from the beginning of this substring, which is surrounded by
+         * given start end end character identifiers. If both are the same, e.g. \c '"', then
+         * the first occurrence of the end character is used. If they are not the same, e.g.
+         * \c '<' and \c '>', then repeated start characters are counted and consumption only ends
+         * when a corresponding amount of end characters has been found.
+         *
+         * @param  startChar  The start character of the field to consume.
+         * @param  endChar    The end character of the field to consume.
+         * @tparam TTrimBeforeConsume Determines if the string should be (left-) trimmed before the
+         *                            consume operation. Defaults to \b Whitespaces::Keep.
+         * @return The string consumed. \b NullString on error (start/end character not found)
+         ******************************************************************************************/
+        template< lang::Whitespaces TTrimBeforeConsume= lang::Whitespaces::Keep >
+        inline
+        String  ConsumeField( char startChar, char endChar  )
+        {
+            if ( TTrimBeforeConsume == lang::Whitespaces::Trim )
+                TrimStart();
+
+            if ( CharAtStart() != startChar )
+                return NullString;
+
+            int cntStartChars= 1;
+            for ( integer i= 1; i < length ; i++ )
+            {
+                char actChar= buffer[i];
+                if( actChar == endChar )
+                {
+                    if( --cntStartChars == 0 )
+                    {
+                        String result= String( buffer + 1, i - 1 );
+                        buffer+= (i + 1);
+                        length-= (i + 1);
+                        return result;
+                    }
+                }
+                else if( actChar == startChar )
+                    cntStartChars++;
+            }
+
+            return NullString;
+        }
+
+        /** ****************************************************************************************
+         * Consumes an element of an C++ enum which is equipped with "\alib enum meta data".
+         * For more information consult
+         * \ref anchor_T_EnumMetaDataDecl_read_enum "T_EnumMetaDataDecl documentation".
+         *
+         * \note
+         *   This method is applicable to bitwise enums as well. However, only one element name is
+         *   parsed. To parse multiple elements (ored to one enum value), use method
+         *   #ConsumeEnumBitwise.
+         *
+         *
+         * @param[out] result         The result enum element given as reference.
+         * @tparam TEnum              The enumeration type.
+         * @tparam TSensitivity       The sensitivity of the comparison.
+         *                            Defaults to \b Case::Sensitive.
+         * @tparam TTrimBeforeConsume Determines if the string should be (left-) trimmed before the
+         *                            consume operation.<br>
+         *                            Defaults to \b Whitespaces::Trim.
+         * @tparam TEnableIf          Internal. Do \b not specify!<br>
+         *                            (Defaults to \c std::enable_if type, to enable the compiler to
+         *                            select this method only for types that have specialized member
+         *                            \alib{lang,T_EnumMetaDataDeclReadWrite::MinParseLengthIndex}
+         *                            evaluating to a value different to \c 0.
+         * @return \c true if an enum element was read, \c false otherwise.
+         ******************************************************************************************/
+        template<typename          TEnum,
+                 lang::Case        TSensitivity        = lang::Case::Ignore,
+                 lang::Whitespaces TTrimBeforeConsume  = lang::Whitespaces::Trim,
+                 typename TEnableIf= typename std::enable_if<T_EnumMetaDataDeclReadWrite<TEnum>::MinParseLengthIndex
+                                                             != 0 >::type>
+        bool    ConsumeEnum(  TEnum&  result )
+        {
+            auto& enumMetaData= *EnumMetaData<TEnum>::GetSingleton();
+            enumMetaData.CheckLoad();
+
+            if ( TTrimBeforeConsume == lang::Whitespaces::Trim )
+                TrimStart();
+
+            for( auto& entry : enumMetaData.Table )
+            {
+                if ( ConsumePartOf<TSensitivity>( EnumReadWriteInfo<TEnum>::Name( entry ),
+                                                 std::get<lang::T_EnumMetaDataDeclReadWrite<TEnum>::MinParseLengthIndex>( entry )
+                                                 )  > 0 )
+                {
+                    result= enumMetaData.Enum( entry );
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /** ****************************************************************************************
+         * Repeatedly invokes #ConsumeEnum until \p delim is not found. The enum element values
+         * are or'ed in \p result.
+         *
+         * \note
+         *   This method is applicable to \alib{lang,T_EnumIsBitwise,bitwise enums} only.
+         *
+         *
+         * @param[out] result         The result enum element given as reference.
+         * @tparam TSensitivity       The sensitivity of the comparison.
+         *                            Defaults to \b Case::Sensitive.
+         * @tparam TTrimBeforeConsume Determines if the string should be (left-) trimmed before and
+         *                            after each consume operation.<br>
+         *                            Defaults to \b Whitespaces::Trim.
+         * @tparam delimiter          The delimiter character of the enum elements.<br>
+         *                            Defaults to <c>','</c>.
+         * @tparam keepLastDelim      If \c true , the delimiter will be kept in this substring, if
+         *                            after the delimiter no further enum element was found.
+         *                            If \c false, the delimiter will be kept.<br>
+         *                            Defaults to \c true.
+         * @tparam TEnum              The enumeration type.
+         * @tparam TEnableIf          Internal. Do \b not specify!<br>
+         *                            (Defaults to \c std::enable_if type, to enable the compiler to
+         *                            select this operator only for types that have specialized
+         *                            \alib{lang,T_EnumIsBitwise} and also specialized member
+         *                            \alib{lang,T_EnumMetaDataDeclReadWrite::MinParseLengthIndex}
+         *                            evaluating to a value different to \c 0.)
+         * @return \c true if an enum element was read, \c false otherwise.
+         ******************************************************************************************/
+        template<typename          TEnum,
+                 lang::Case        TSensitivity       = lang::Case::Ignore,
+                 lang::Whitespaces TTrimBeforeConsume = lang::Whitespaces::Trim,
+                 char              delimiter          = ',',
+                 bool              keepLastDelim      = true,
+                 typename TEnableIf= typename std::enable_if< ( T_EnumMetaDataDeclReadWrite<TEnum>::MinParseLengthIndex
+                                                                !=  0 )
+                                                              && lang::T_EnumIsBitwise<TEnum>::value
+                                                            >::type>
+        bool    ConsumeEnumBitwise( TEnum&  result )
+        {
+            bool mResult= false;
+            result= TEnum(0);
+            Substring restoreBeforeDelim;
+            if( keepLastDelim )
+                restoreBeforeDelim= *this;
+            for(;;)
+            {
+                if ( TTrimBeforeConsume == lang::Whitespaces::Trim )
+                    TrimStart();
+                TEnum actEnum;
+                if ( !ConsumeEnum<TEnum, TSensitivity, TTrimBeforeConsume>( actEnum ) )
+                {
+                    if( keepLastDelim )
+                        *this= restoreBeforeDelim;
+                    return mResult;
+                }
+                result|=  actEnum;
+                mResult=  true;
+                if( TTrimBeforeConsume == lang::Whitespaces::Trim )
+                    TrimStart();
+                if( keepLastDelim )
+                    restoreBeforeDelim=  *this;
+                if( !ConsumeChar<TSensitivity, TTrimBeforeConsume>( delimiter ) )
+                    return mResult;
+
+            }
+        }
+
+        /** ****************************************************************************************
+         * Convenience method that first uses #ConsumeEnum to try and read an element of an C++
+         * enum. If this is not successful, an enum of type \alib{lang,Bool} is tried to be read.
+         * If this is successful, depending on the value read, the \p TEnum values given
+         * as parameters \p falseValue and \p trueValue are assigned.
+         * Otherwise false is returned.
+         *
+         * For more information consult
+         * \ref anchor_T_EnumMetaDataDecl_read_enum "T_EnumMetaDataDecl documentation".
+         *
+         * \note
+         *   This method is applicable to bitwise enums as well. However, only one element name is
+         *   parsed. To parse multiple elements (ored to one enum value), use method
+         *   #ConsumeEnumBitwise.
+         *
+         *
+         * @param[out] result         The result enum element given as reference.
+         * @tparam TEnum              The enumeration type.
+         * @param  trueValue          The \p TEnum value to use in case of \c Bool::True was read.
+         * @param  falseValue         The \p TEnum value to use in case of \c Bool::False was read.
+         * @tparam TTrimBeforeConsume Determines if the string should be (left-) trimmed before the
+         *                            consume operation. Passed to #ConsumeEnum.<br>
+         *                            Defaults to \b Whitespaces::Trim.
+         * @tparam TSensitivity       The sensitivity of the comparison.
+         * @tparam TEnableIf          Internal. Do \b not specify!<br>
+         *                            (Defaults to \c std::enable_if type, to enable the compiler to
+         *                            select this method only for types that have specialized member
+         *                            \alib{lang,T_EnumMetaDataDeclReadWrite::MinParseLengthIndex}
+         *                            evaluating to a value different to \c 0.
+         * @return \c true if an element of \p TEnum or \alib{lang,Bool} could be read,
+         *         \c false otherwise.
+         ******************************************************************************************/
+        template<typename          TEnum,
+                 lang::Case        TSensitivity       = lang::Case::Ignore,
+                 lang::Whitespaces TTrimBeforeConsume = lang::Whitespaces::Trim,
+                 typename          TEnableIf= typename std::enable_if< T_EnumMetaDataDeclReadWrite<TEnum>::MinParseLengthIndex
+                                                                       !=  0 >::type>
+        bool    ConsumeEnumOrBool(  TEnum&            result,
+                                    TEnum             falseValue,
+                                    TEnum             trueValue         )
+        {
+            // first try to read a TEnum
+            if( ConsumeEnum<TEnum, TSensitivity, TTrimBeforeConsume>( result ) )
+                return true;
+
+            // if failed, read boolean
+            Bool boolEnum;
+            if( ConsumeEnum<Bool,  TSensitivity, TTrimBeforeConsume>( boolEnum ) )
+            {
+                result= boolEnum == Bool::True ? trueValue : falseValue;
+                return true;
+            }
+
+            // failed
+            return false;
+        }
+
+        ALIB_WARNINGS_RESTORE
 
         /** ****************************************************************************************
          * Consumes all characters \c '0' to \c '9' at the start of this object and stores the
@@ -677,10 +931,15 @@ class Substring : public String
          * @param [out] result    A reference to the result value.
          * @tparam    TInteger    The output type.
          *                        Must be statically castable from \b uint64_t.
+         * @tparam TEnableIf      Internal. Do \b not specify!<br>
+         *                        (Defaults to \c std::enable_if type, to enable the compiler to
+         *                        select this method only for integer types.
          *
          * @return  \c true if a number was found and consumed, \c false otherwise.
          ******************************************************************************************/
-        template<typename TInteger>
+        template<typename TInteger,
+                 typename TEnableIf= typename std::enable_if<    std::is_integral<TInteger>::value
+                                                            >::type>
         inline
         bool     ConsumeDecDigits( TInteger& result )
         {
@@ -703,13 +962,18 @@ class Substring : public String
          * \ref aworx::lib::strings::NumberFormat "NumberFormat".
          *
          * @param [out] result    A reference to the result value.
-         * @param numberFormat    The number format to use. Defaults to \c nullptr.
-         * @tparam    TInteger    The output type.
+         * @param  numberFormat   The number format to use. Defaults to \c nullptr.
+         * @tparam TInteger       The output type.
          *                        Must be statically castable from \b uint64_t.
-         *
+         * @tparam TEnableIf      Internal. Do \b not specify!<br>
+         *                        (Defaults to \c std::enable_if type, to enable the compiler to
+         *                        select this method only for integer types.
          * @return  \c true if a number was found and consumed, \c false otherwise.
          ******************************************************************************************/
-        template<typename TInteger>
+        template<typename TInteger,
+                 typename TEnableIf= typename std::enable_if<    std::is_integral<TInteger>::value
+                                                            >::type
+                >
         inline
         bool   ConsumeInt( TInteger& result, NumberFormat* numberFormat= nullptr )
         {
@@ -737,12 +1001,17 @@ class Substring : public String
          *
          * @param [out] result    A reference to the result value.
          * @param numberFormat    The number format to use. Defaults to \c nullptr.
-         * @tparam    TInteger    The output type.
+         * @tparam TInteger       The output type.
          *                        Must be statically castable from \b uint64_t.
-         *
+         * @tparam TEnableIf      Internal. Do \b not specify!<br>
+         *                        (Defaults to \c std::enable_if type, to enable the compiler to
+         *                        select this method only for integer types.
          * @return  \c true if a number was found and consumed, \c false otherwise.
          ******************************************************************************************/
-        template<typename TInteger>
+        template<typename TInteger,
+                 typename TEnableIf= typename std::enable_if<    std::is_integral<TInteger>::value
+                                                            >::type
+                >
         inline
         bool   ConsumeDec( TInteger& result, NumberFormat* numberFormat= nullptr )
         {
@@ -768,10 +1037,16 @@ class Substring : public String
          * @param numberFormat    The number format to use. Defaults to \c nullptr.
          * @tparam    TInteger    The output type.
          *                        Must be statically castable from \b uint64_t.
+         * @tparam TEnableIf      Internal. Do \b not specify!<br>
+         *                        (Defaults to \c std::enable_if type, to enable the compiler to
+         *                        select this method only for integer types.
          *
          * @return  \c true if a number was found and consumed, \c false otherwise.
          ******************************************************************************************/
-        template<typename TInteger>
+        template<typename TInteger,
+                 typename TEnableIf= typename std::enable_if<    std::is_integral<TInteger>::value
+                                                            >::type
+                >
         inline
         bool   ConsumeBin( TInteger& result, NumberFormat* numberFormat= nullptr )
         {
@@ -797,10 +1072,16 @@ class Substring : public String
          * @param numberFormat    The number format to use. Defaults to \c nullptr.
          * @tparam    TInteger    The output type.
          *                        Must be statically castable from \b uint64_t.
+         * @tparam TEnableIf      Internal. Do \b not specify!<br>
+         *                        (Defaults to \c std::enable_if type, to enable the compiler to
+         *                        select this method only for integer types.
          *
          * @return  \c true if a number was found and consumed, \c false otherwise.
          ******************************************************************************************/
-        template<typename TInteger>
+        template<typename TInteger,
+                 typename TEnableIf= typename std::enable_if<    std::is_integral<TInteger>::value
+                                                            >::type
+                >
         inline
         bool   ConsumeHex( TInteger& result, NumberFormat* numberFormat= nullptr )
         {
@@ -826,10 +1107,16 @@ class Substring : public String
          * @param numberFormat    The number format to use. Defaults to \c nullptr.
          * @tparam    TInteger    The output type.
          *                        Must be statically castable from \b uint64_t.
+         * @tparam TEnableIf      Internal. Do \b not specify!<br>
+         *                        (Defaults to \c std::enable_if type, to enable the compiler to
+         *                        select this method only for integer types.
          *
          * @return  \c true if a number was found and consumed, \c false otherwise.
          ******************************************************************************************/
-        template<typename TInteger>
+        template<typename TInteger,
+                 typename TEnableIf= typename std::enable_if<    std::is_integral<TInteger>::value
+                                                            >::type
+                >
         inline
         bool   ConsumeOct( TInteger& result, NumberFormat* numberFormat= nullptr )
         {
@@ -965,7 +1252,6 @@ class Substring : public String
          * @return  \c true if a number was found and consumed, \c false otherwise.
          ******************************************************************************************/
         ALIB_API  bool   consumeOctImpl( uint64_t& result, NumberFormat* numberFormat );
-
 
 
 }; // class Substring

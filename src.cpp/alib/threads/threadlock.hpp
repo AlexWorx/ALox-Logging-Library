@@ -18,7 +18,7 @@
 #ifndef HPP_ALIB_THREADS_THREADLOCK
 //! @cond NO_DOX
 #define HPP_ALIB_THREADS_THREADLOCK 1
-//! @endcond NO_DOX
+//! @endcond
 
 // #################################################################################################
 // includes
@@ -26,12 +26,14 @@
 #if !defined (HPP_ALIB_THREADS_THREADLOCKNR)
     #include "alib/threads/threadlocknr.hpp"
 #endif
-#if !defined ( HPP_ALIB_THREADS_THREAD )
-    #include "thread.hpp"
+#if !defined ( HPP_ALIB_THREADS_LIB )
+    #include "threadlib.hpp"
 #endif
 
-namespace aworx { namespace lib { namespace threads
-{
+
+
+namespace aworx { namespace lib { namespace threads {
+
 /** ************************************************************************************************
  * This class allows *mutual exclusive access* to resources shared by different threads.
  * In other words, access to certain data that is accessed by different threads, can
@@ -145,9 +147,9 @@ class ThreadLock : public lang::Ownable
          * \note
          *   In the debug-compilation of an application, this method accepts the parameters,
          *   providing information about the caller. In the release version these parameters do not
-         *   exist. Therefore use macro #ALIB_DBG_SRC_INFO_PARAMS to provide the parameters:
+         *   exist. Therefore use macro #ALIB_SRCPOS_REL_EMPTY to provide the parameters:
          *
-         *          sample.Acquire( ALIB_DBG_SRC_INFO_PARAMS );
+         *          sample.Acquire( ALIB_SRCPOS_REL_EMPTY );
          *
          * @param file  Caller information. Available only in debug compilations.
          * @param line  Caller information. Available only in debug compilations.
@@ -167,6 +169,14 @@ class ThreadLock : public lang::Ownable
         ALIB_API  virtual void    Release();
 
         /** ****************************************************************************************
+         * Returns \c true if the next invocation of #Release will release the lock.
+         * Returns \c false, if recursive acquirements have been performed.
+         *
+         * @return \c true if locked exactly once.
+         ******************************************************************************************/
+        inline    bool            WillRelease()   const   { return cntAcquirements == 1; }
+
+        /** ****************************************************************************************
          * Returns the number of acquirements of this ThreadLock. The negative number (still
          * providing the number of acquirements) is returned if the owning thread is not the same
          * as the given one.
@@ -179,11 +189,11 @@ class ThreadLock : public lang::Ownable
          *       performed instead.
          *
          * @param thread The thread to test current ownership of this.
-         *               Defaults to the current (invoking) thread.
+         *               Defaults to  \c nullptr, which chooses the current thread.
          * @return The number of (recursive) acquirements, negative if acquired by a different
          *         thread than provided.
          ******************************************************************************************/
-        ALIB_API  int             DbgCountAcquirements( Thread* thread= nullptr )   const;
+        ALIB_API  int             DbgCountAcquirements( Thread* thread = nullptr )   const;
 
 
         /** ****************************************************************************************

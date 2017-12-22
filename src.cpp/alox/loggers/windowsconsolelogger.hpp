@@ -67,14 +67,6 @@ class WindowsConsoleLogger : public aworx::lox::core::textlogger::TextLogger
     // public fields
     // #############################################################################################
     public:
-        /** Denotes states of field #UseLightColors.  */
-        enum class LightColorUsage
-        {
-            _Undefined,      ///< Internal, temporary state
-            Never,           ///< Never use light colors
-            ForegroundLight, ///< Use light colors for foreground
-            ForegroundDark   ///< Use light colors for background
-        };
 
         /**
          * Foreground and background colors chosen by this class might differ in their intensity.

@@ -320,9 +320,9 @@ public class IniFile : InMemoryPlugin
             }
             else
             {
-                String path= Environment.GetFolderPath( Environment.SpecialFolder.ApplicationData );
+                String path= System.Environment.GetFolderPath( System.Environment.SpecialFolder.ApplicationData );
                 if ( !Directory.Exists( path ) )
-                    path=  Environment.GetFolderPath( Environment.SpecialFolder.UserProfile );
+                    path=  System.Environment.GetFolderPath( System.Environment.SpecialFolder.UserProfile );
 
                 FileName._( path )
                         ._( Path.DirectorySeparatorChar )

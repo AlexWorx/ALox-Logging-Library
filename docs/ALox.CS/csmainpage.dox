@@ -6,7 +6,7 @@
 // #################################################################################################
 
 /**
-\page csmainpage    C# Reference
+\page alox_cs_mainpage    C# Reference
 
 
 # Welcome to ALox for C#! #
@@ -15,7 +15,7 @@ This part of the ALox Logging library documentation is specific to its C# Implem
 The following information is found here:
 
 ## Documentation ##
-- Walk yourself through the [ALox for C# Tutorial ](cstutorial.html). This is allows you a fast overview and intro
+- Walk yourself through the [ALox for C# Tutorial ](alox_cs_tutorial.html). This is allows you a fast overview and intro
   if you are new to ALox.
 
 - Consult the general (language agnostic) [ALox User Manual](../manual.html) for in-depth information
@@ -37,13 +37,13 @@ Project files for the IDEs:
 - Microsoft Visual Studio <p>
 are provided.
 
-Check out \ref cssetup for details of how to compile and setup ALox.
+Check out \ref alox_cs_setup for details of how to compile and setup ALox.
 
 
 ## Pruning Debug Logging Statements   ##
 After working yourself through the tutorial and after having set up your projects to use
 ALox, it is recommended to read some information about <em>pruning</em>.
-Such information is provided here: \ref cspruning
+Such information is provided here: \ref alox_cs_pruning
 
 ## Organization of code ##
 

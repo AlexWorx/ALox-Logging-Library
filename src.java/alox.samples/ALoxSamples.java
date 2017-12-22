@@ -94,8 +94,8 @@ public class ALoxSamples
         MemoryLogger  ml= new MemoryLogger( "Memory");
 
         Log.setVerbosity( Log.debugLogger, Verbosity.OFF);
-        Log.setVerbosity( Log.debugLogger, Verbosity.INFO   , "/CON", Configuration.PRIO_PROTECTED);
-        Log.setVerbosity( ml,              Verbosity.VERBOSE, "/MEM", Configuration.PRIO_PROTECTED );
+        Log.setVerbosity( Log.debugLogger, Verbosity.INFO   , "/CON", Configuration.PRIO_PROTECTED_VALUES);
+        Log.setVerbosity( ml,              Verbosity.VERBOSE, "/MEM", Configuration.PRIO_PROTECTED_VALUES);
 
         Log.info( "Logging simple info lines" );
         long  fastest=    Long.MAX_VALUE;
@@ -135,9 +135,9 @@ public class ALoxSamples
 
         TextLogger    relLogger= Lox.createConsoleLogger( "Console" );
         MemoryLogger  ml=        new MemoryLogger( "Memory");
-        lox.setVerbosity( relLogger, Verbosity.INFO   , "/CON", Configuration.PRIO_PROTECTED );
-        lox.setVerbosity( relLogger, Verbosity.OFF    , "/MEM", Configuration.PRIO_PROTECTED );
-        lox.setVerbosity( ml,        Verbosity.VERBOSE, "/MEM", Configuration.PRIO_PROTECTED );
+        lox.setVerbosity( relLogger, Verbosity.INFO   , "/CON", Configuration.PRIO_PROTECTED_VALUES);
+        lox.setVerbosity( relLogger, Verbosity.OFF    , "/MEM", Configuration.PRIO_PROTECTED_VALUES);
+        lox.setVerbosity( ml,        Verbosity.VERBOSE, "/MEM", Configuration.PRIO_PROTECTED_VALUES);
 
 
         lox.info( "Logging simple info lines (release logging)" );
@@ -327,21 +327,23 @@ public class ALoxSamples
             );
         }
 
-        Configuration.Default.insertPlugin( iniFile, Configuration.PRIO_INI_FILE );
+        Configuration config= new Configuration();
+        config.setCommandLineArgs(args);
+        config.insertPlugin( iniFile, Configuration.PRIO_STANDARD );
 
         // .. then initialize ALox Logging Library
-        ALox.init( args );
+        ALox.init( config );
 
         // Suppress setting "writeback" for verbosities. We need to do this as this main()
         // method invokes a list of independent samples. Those would now read from the INI file wrong
         // values written in other sample methods and thus the samples would not work any more
         // (because INI file settings overrules settings in the code)
         Variable var= new Variable();
-        var.define( "ALOX", "LOG_DEBUG_LOGGER_VERBOSITY"  ).store( "" );
-        var.define( "ALOX", "RELEASELOX_CONSOLE_VERBOSITY").store( "" );
-        var.define( "ALOX", "LOG_MEMORY_VERBOSITY"        ).store( "" );
-        var.define( "ALOX", "RELEASELOX_MEMORY_VERBOSITY" ).store( "" );
-        var.define( "ALOX", "LOG_TEXTFILE_VERBOSITY"      ).store( "" );
+        config.store( var.declare( "ALOX", "LOG_DEBUG_LOGGER_VERBOSITY"  ), "" );
+        config.store( var.declare( "ALOX", "RELEASELOX_CONSOLE_VERBOSITY"), "" );
+        config.store( var.declare( "ALOX", "LOG_MEMORY_VERBOSITY"        ), "" );
+        config.store( var.declare( "ALOX", "RELEASELOX_MEMORY_VERBOSITY" ), "" );
+        config.store( var.declare( "ALOX", "LOG_TEXTFILE_VERBOSITY"      ), "" );
 
 
         System.out.println( "PRINT: Hello world debug logging" );
@@ -394,8 +396,8 @@ public class ALoxSamples
         System.out.println();
 
         System.out.println( "PRINT: Thats it!" );
-        Configuration.Default.removePlugin( iniFile );
-        Configuration.Default.fetchFromDefault( iniFile );
+        config.removePlugin( iniFile );
+        config.fetchFromDefault( iniFile );
         iniFile.writeFile();
 
         ALIB.terminationCleanUp();

@@ -119,12 +119,12 @@ UT_METHOD( Constructor )
     }
 }
 
-UT_METHOD( Operators )
+UT_METHOD( BinaryOps )
 {
     UT_INIT();
 
 
-    String32 as;
+    AString as;
     Substring subs( " word   " );
     as << subs.Trim() << '@' << subs;
 
@@ -245,13 +245,13 @@ UT_METHOD( Consume )
         Substring s;
         Substring r("oldval");
         UT_EQ(  '\0',      s.ConsumeChar        ( )         );
-        UT_EQ(  0,     s.ConsumeChars       (  0  , &r) ); UT_TRUE(r.IsNull());
-        UT_EQ(  0,    s.ConsumeChars       (  5  , &r) ); UT_TRUE(r.IsNull());
+        UT_EQ(  0,         s.ConsumeChars       (  0  , &r) ); UT_TRUE(r.IsNull());
+        UT_EQ(  0,         s.ConsumeChars       (  5  , &r) ); UT_TRUE(r.IsNull());
         UT_EQ(  false,     s.ConsumeChar        ( 'a' )     );
         UT_EQ(  false,     s.ConsumeString      ( "word" )  );
         UT_EQ(  '\0',      s.ConsumeCharFromEnd ( )         );
-        UT_EQ(  0,    s.ConsumeCharsFromEnd(  0  )     );
-        UT_EQ(  0,    s.ConsumeCharsFromEnd(  5  )     );
+        UT_EQ(  0,         s.ConsumeCharsFromEnd(  0  )     );
+        UT_EQ(  0,         s.ConsumeCharsFromEnd(  5  )     );
         UT_EQ(  false,     s.ConsumeCharFromEnd ( 'a' )     );
         UT_EQ(  false,     s.ConsumeStringFromEnd      ( "word" )  );
     }
@@ -260,36 +260,36 @@ UT_METHOD( Consume )
     {
         Substring s("");
         Substring r("oldval");
-        UT_EQ(  '\0',      s.ConsumeChar        ( )         );
-        UT_EQ(  0,    s.ConsumeChars       (  0   ,&r) ); UT_TRUE( r.IsNotNull()); UT_TRUE(r.IsEmpty());
-        UT_EQ(  0,    s.ConsumeChars       (  5   ,&r) ); UT_TRUE( r.IsNotNull()); UT_TRUE(r.IsEmpty());
-        UT_EQ(  false,     s.ConsumeChar        ( 'a' )     );
-        UT_EQ(  false,     s.ConsumeString      ( "word" )  );
-        UT_EQ(  '\0',      s.ConsumeCharFromEnd ( )         );
-        UT_EQ(  0,    s.ConsumeCharsFromEnd(  0  )     );
-        UT_EQ(  0,    s.ConsumeCharsFromEnd(  5  )     );
-        UT_EQ(  false,     s.ConsumeCharFromEnd ( 'a' )     );
-        UT_EQ(  false,     s.ConsumeStringFromEnd      ( "word" )  );
+        UT_EQ(  '\0',  s. ConsumeChar        ( )         );
+        UT_EQ(  0,     s. ConsumeChars       (  0   ,&r) ); UT_TRUE( r.IsNotNull()); UT_TRUE(r.IsEmpty());
+        UT_EQ(  0,     s. ConsumeChars       (  5   ,&r) ); UT_TRUE( r.IsNotNull()); UT_TRUE(r.IsEmpty());
+        UT_EQ(  false, s. ConsumeChar        ( 'a' )     );
+        UT_EQ(  false, s. ConsumeString      ( "word" )  );
+        UT_EQ(  '\0',  s. ConsumeCharFromEnd ( )         );
+        UT_EQ(  0,     s. ConsumeCharsFromEnd(  0  )     );
+        UT_EQ(  0,     s. ConsumeCharsFromEnd(  5  )     );
+        UT_EQ(  false, s. ConsumeCharFromEnd ( 'a' )     );
+        UT_EQ(  false,  s.ConsumeStringFromEnd      ( "word" )  );
     }
 
     // substring of length 1
     {
         Substring s;
         Substring r("oldval");
-        s= "a"; UT_EQ(  'a',       s.ConsumeChar        ( )         ); UT_EQ( 0,s.Length() );
-        s= "a"; UT_EQ(  1,    s.ConsumeChars       (  0  )     ); UT_EQ( 1,s.Length() );
-        s= "a"; UT_EQ(  0,    s.ConsumeChars       (  1  , &r) ); UT_EQ( 0,s.Length() ); UT_TRUE(r.Equals("a"));
-        s= "a"; UT_EQ(  0,    s.ConsumeChars       (  5  , &r) ); UT_EQ( 0,s.Length() ); UT_TRUE(r.Equals("a"));
-        s= "a"; UT_EQ(  true,      s.ConsumeChar        ( 'a' )     ); UT_EQ( 0,s.Length() );
-        s= "a"; UT_EQ(  false,     s.ConsumeChar        ( 'b' )     ); UT_EQ( 1,s.Length() );
-        s= "a"; UT_EQ(  false,     s.ConsumeString      ( "word" )  ); UT_EQ( 1,s.Length() );
-        s= "a"; UT_EQ(  'a',       s.ConsumeCharFromEnd ( )         ); UT_EQ( 0,s.Length() );
-        s= "a"; UT_EQ(  1,    s.ConsumeCharsFromEnd(  0  )     ); UT_EQ( 1,s.Length() );
-        s= "a"; UT_EQ(  0,    s.ConsumeCharsFromEnd(  1  )     ); UT_EQ( 0,s.Length() );
-        s= "a"; UT_EQ(  0,    s.ConsumeCharsFromEnd(  5  )     ); UT_EQ( 0,s.Length() );
-        s= "a"; UT_EQ(  true,      s.ConsumeCharFromEnd ( 'a' )     ); UT_EQ( 0,s.Length() );
-        s= "a"; UT_EQ(  false,     s.ConsumeCharFromEnd ( 'b' )     ); UT_EQ( 1,s.Length() );
-        s= "a"; UT_EQ(  false,     s.ConsumeStringFromEnd      ( "word" )  ); UT_EQ( 1,s.Length() );
+        s= "a"; UT_EQ ( 'a',   s. ConsumeChar          (         ) ) ; UT_EQ ( 0,        s. Length ( ) ) ;
+        s= "a"; UT_EQ ( 1,     s. ConsumeChars         ( 0       ) ) ; UT_EQ ( 1,        s. Length ( ) ) ;
+        s= "a"; UT_EQ ( 0,     s. ConsumeChars         ( 1  , &r ) ) ; UT_EQ ( 0,        s. Length ( ) ) ; UT_TRUE ( r.Equals ( "a" ) ) ;
+        s= "a"; UT_EQ ( 0,     s. ConsumeChars         ( 5  , &r ) ) ; UT_EQ ( 0,        s. Length ( ) ) ; UT_TRUE ( r.Equals ( "a" ) ) ;
+        s= "a"; UT_EQ ( true,  s. ConsumeChar          ( 'a'     ) ) ; UT_EQ ( 0,        s. Length ( ) ) ;
+        s= "a"; UT_EQ ( false, s. ConsumeChar          ( 'b'     ) ) ; UT_EQ ( 1,        s. Length ( ) ) ;
+        s= "a"; UT_EQ ( false, s. ConsumeString        ( "word"  ) ) ; UT_EQ ( 1,        s. Length ( ) ) ;
+        s= "a"; UT_EQ ( 'a',   s. ConsumeCharFromEnd   ( ) ) ; UT_EQ         ( 0,        s. Length ( ) ) ;
+        s= "a"; UT_EQ ( 1,     s. ConsumeCharsFromEnd  ( 0       ) ) ; UT_EQ ( 1,        s. Length ( ) ) ;
+        s= "a"; UT_EQ ( 0,     s. ConsumeCharsFromEnd  ( 1       ) ) ; UT_EQ ( 0,        s. Length ( ) ) ;
+        s= "a"; UT_EQ ( 0,     s. ConsumeCharsFromEnd  ( 5       ) ) ; UT_EQ ( 0,        s. Length ( ) ) ;
+        s= "a"; UT_EQ ( true,  s. ConsumeCharFromEnd   ( 'a'     ) ) ; UT_EQ ( 0,        s. Length ( ) ) ;
+        s= "a"; UT_EQ ( false, s. ConsumeCharFromEnd   ( 'b'     ) ) ; UT_EQ ( 1,        s. Length ( ) ) ;
+        s= "a"; UT_EQ ( false, s. ConsumeStringFromEnd ( "word"  ) ) ; UT_EQ ( 1, s. Length        ( ) ) ;
     }
 
     // substring of length 2
@@ -297,10 +297,10 @@ UT_METHOD( Consume )
         Substring s;
         Substring r("oldval");
 
-        s= "ab"; UT_EQ(  'a',       s.ConsumeChar       ( )         ); UT_EQ( 1,s.Length() );
-                 UT_EQ(  'b',       s.ConsumeChar       ( )         ); UT_EQ( 0,s.Length() );
-        s= "ab"; UT_EQ(  'b',       s.ConsumeCharFromEnd( )         ); UT_EQ( 1,s.Length() );
-                 UT_EQ(  'a',       s.ConsumeCharFromEnd( )         ); UT_EQ( 0,s.Length() );
+        s= "ab"; UT_EQ( 'a',   s.ConsumeChar        ( )         ); UT_EQ( 1,s.Length() );
+                 UT_EQ( 'b',   s.ConsumeChar        ( )         ); UT_EQ( 0,s.Length() );
+        s= "ab"; UT_EQ( 'b',   s.ConsumeCharFromEnd ( )         ); UT_EQ( 1,s.Length() );
+                 UT_EQ( 'a',   s.ConsumeCharFromEnd ( )         ); UT_EQ( 0,s.Length() );
 
         s= "ab"; UT_EQ(  2,    s.ConsumeChars       (  0  ,&r)  ); UT_EQ( 2,s.Length() ); UT_TRUE(r.IsNotNull()); UT_TRUE(r.IsEmpty());
         s= "ab"; UT_EQ(  1,    s.ConsumeChars       (  1  ,&r)  ); UT_EQ( 1,s.Length() ); UT_TRUE(r.Equals("a" ));
@@ -340,14 +340,14 @@ UT_METHOD( Consume )
         UT_EQ(  'd',       s.ConsumeChar   ( )         );
         UT_EQ(  '1',       s.ConsumeChar   ( )         );
 
-        UT_EQ(  false    , s.ConsumeChar   ('w'                         )   );
-        UT_EQ(  true     , s.ConsumeChar   ('w'     ,Case::Sensitive, Whitespaces::Trim )   );
-        UT_EQ(  true     , s.ConsumeChar   ('o'     ,Case::Sensitive, Whitespaces::Trim )   );
-        UT_EQ(  false    , s.ConsumeChar   ('o'     ,Case::Sensitive, Whitespaces::Trim )   );
-        UT_EQ(  true     , s.ConsumeChar   ('r'     ,Case::Sensitive, Whitespaces::Trim )   );
-        UT_EQ(  false    , s.ConsumeString ("D2"    ,Case::Sensitive, Whitespaces::Trim )   );
-        UT_EQ(  false    , s.ConsumeString ("D2"                        )   );
-        UT_EQ(  true     , s.ConsumeString ("d2"                        )   );
+        UT_EQ(  false    , s.ConsumeChar                                       ('w'  ) );
+        UT_EQ(  true     , s.ConsumeChar  <Case::Sensitive ALIB_COMMA Whitespaces::Trim>   ('w'  ) );
+        UT_EQ(  true     , s.ConsumeChar  <Case::Sensitive ALIB_COMMA Whitespaces::Trim>   ('o'  ) );
+        UT_EQ(  false    , s.ConsumeChar  <Case::Sensitive ALIB_COMMA Whitespaces::Trim>   ('o'  ) );
+        UT_EQ(  true     , s.ConsumeChar  <Case::Sensitive ALIB_COMMA Whitespaces::Trim>   ('r'  ) );
+        UT_EQ(  false    , s.ConsumeString<Case::Sensitive ALIB_COMMA Whitespaces::Trim>   ("D2" ) );
+        UT_EQ(  false    , s.ConsumeString                                                 ("D2" ) );
+        UT_EQ(  true     , s.ConsumeString                                                 ("d2" ) );
 
         UT_EQ(  2   , s.ConsumeChars  ( 4 )   );
         UT_EQ(  "d3"     , s );
@@ -360,18 +360,29 @@ UT_METHOD( Consume )
         UT_EQ(  'o',       s.ConsumeCharFromEnd( )         );
         UT_EQ(  'w',       s.ConsumeCharFromEnd( )         );
 
-        UT_EQ(  false    , s.ConsumeCharFromEnd('2'                         )   );
-        UT_EQ(  true     , s.ConsumeCharFromEnd('2'     ,Case::Sensitive, Whitespaces::Trim )   );
-        UT_EQ(  true     , s.ConsumeCharFromEnd('d'     ,Case::Sensitive, Whitespaces::Trim )   );
-        UT_EQ(  false    , s.ConsumeCharFromEnd('d'     ,Case::Sensitive, Whitespaces::Trim )   );
-        UT_EQ(  true     , s.ConsumeCharFromEnd('r'     ,Case::Sensitive, Whitespaces::Trim )   );
-        UT_EQ(  false    , s.ConsumeStringFromEnd     ("WO"    ,Case::Sensitive, Whitespaces::Trim )   );
-        UT_EQ(  false    , s.ConsumeStringFromEnd     ("WO"                        )   );
-        UT_EQ(  true     , s.ConsumeStringFromEnd     ("wo"                        )   );
+        UT_EQ(  false    , s.ConsumeCharFromEnd                                    ('2')   );
+        UT_EQ(  true     , s.ConsumeCharFromEnd  <Case::Sensitive ALIB_COMMA Whitespaces::Trim>('2')  );
+        UT_EQ(  true     , s.ConsumeCharFromEnd  <Case::Sensitive ALIB_COMMA Whitespaces::Trim>('d')  );
+        UT_EQ(  false    , s.ConsumeCharFromEnd  <Case::Sensitive ALIB_COMMA Whitespaces::Trim>('d')  );
+        UT_EQ(  true     , s.ConsumeCharFromEnd  <Case::Sensitive ALIB_COMMA Whitespaces::Trim>('r')  );
+        UT_EQ(  false    , s.ConsumeStringFromEnd<Case::Sensitive ALIB_COMMA Whitespaces::Trim>("WO") );
+        UT_EQ(  false    , s.ConsumeStringFromEnd<Case::Sensitive ALIB_COMMA Whitespaces::Trim>("WO") );
+        UT_EQ(  true     , s.ConsumeStringFromEnd<Case::Sensitive ALIB_COMMA Whitespaces::Trim>("wo") );
 
         UT_EQ(  2   , s.ConsumeCharsFromEnd( 4 )   );
         UT_EQ(  "wo"     , s );
     }
+
+    // Tokens
+    {
+        Substring s("word1 word2 word3");
+        UT_EQ( "word1", s.ConsumeToken(' ') );    UT_EQ( "word2 word3", s );
+        UT_EQ( "word2", s.ConsumeToken(' ') );    UT_EQ( "word3"      , s );
+        UT_EQ( "word3", s.ConsumeToken(' ') );    UT_EQ( 0, s.Length() );
+        UT_EQ( ""     , s.ConsumeToken(' ') );    UT_EQ( 0, s.Length() );
+        UT_EQ( ""     , s.ConsumeToken(' ') );    UT_EQ( 0, s.Length() );
+    }
+
 
     {
         Substring subs("1234567890");
@@ -392,18 +403,18 @@ UT_METHOD( Consume )
 
     {
         Substring subs("abcdef");
-        UT_EQ( 0, subs.ConsumePartOf("ABC")                      );
-        UT_EQ( 0, subs.ConsumePartOf("aBC", 2)                   );
-        UT_EQ( 0, subs.ConsumePartOf("aBC", 5, Case::Ignore)     );
-        UT_EQ( 0, subs.ConsumePartOf("aBX", 3, Case::Ignore)     );       UT_EQ( "abcdef", subs );
-        UT_EQ( 0, subs.ConsumePartOf("aBX", 2, Case::Sensitive)  );       UT_EQ( "abcdef", subs );
-        UT_EQ( 2, subs.ConsumePartOf("aBX", 2, Case::Ignore)     );       UT_EQ(   "cdef", subs );
-        UT_EQ( 0, subs.ConsumePartOf("CXX", 2, Case::Ignore)     );       UT_EQ(   "cdef", subs );
-        UT_EQ( 1, subs.ConsumePartOf("CXX", 1, Case::Ignore)     );       UT_EQ(    "def", subs );
-        UT_EQ( 3, subs.ConsumePartOf("def", 2, Case::Ignore)     );       UT_EQ(       "", subs );
-        UT_EQ( 0, subs.ConsumePartOf("def", 2, Case::Ignore)     );       UT_EQ(       "", subs );
-        UT_EQ( 0, subs.ConsumePartOf("",    2, Case::Ignore)     );       UT_EQ(       "", subs );
-        UT_EQ( 0, subs.ConsumePartOf("",    0, Case::Ignore)     );       UT_EQ(       "", subs );
+        UT_EQ( 0, subs.ConsumePartOf<Case::Sensitive>("ABC", 1)  );
+        UT_EQ( 0, subs.ConsumePartOf<Case::Sensitive>("aBC", 2)  );
+        UT_EQ( 0, subs.ConsumePartOf<Case::Ignore   >("aBC", 5)  );
+        UT_EQ( 0, subs.ConsumePartOf<Case::Ignore   >("aBX", 3)  );       UT_EQ( "abcdef", subs );
+        UT_EQ( 0, subs.ConsumePartOf<Case::Sensitive>("aBX", 2)  );       UT_EQ( "abcdef", subs );
+        UT_EQ( 2, subs.ConsumePartOf<Case::Ignore   >("aBX", 2)  );       UT_EQ(   "cdef", subs );
+        UT_EQ( 0, subs.ConsumePartOf<Case::Ignore   >("CXX", 2)  );       UT_EQ(   "cdef", subs );
+        UT_EQ( 1, subs.ConsumePartOf<Case::Ignore   >("CXX", 1)  );       UT_EQ(    "def", subs );
+        UT_EQ( 3, subs.ConsumePartOf<Case::Ignore   >("def", 2)  );       UT_EQ(       "", subs );
+        UT_EQ( 0, subs.ConsumePartOf<Case::Ignore   >("def", 2)  );       UT_EQ(       "", subs );
+        UT_EQ( 0, subs.ConsumePartOf<Case::Ignore   >("",    2)  );       UT_EQ(       "", subs );
+        UT_EQ( 0, subs.ConsumePartOf<Case::Ignore   >("",    0)  );       UT_EQ(       "", subs );
     }
 
 
@@ -458,20 +469,20 @@ UT_METHOD( Tokenize )
 
     // tokenizing
     {
-        tokenizerTest( "abc",                   res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( res, "abc@"                );
-        tokenizerTest( "a,bc",                  res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( res, "a@bc@"               );
-        tokenizerTest( "a,bc",                  res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( res, "a@bc@"               );
-        tokenizerTest( ",",                     res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( res, "@@"                  );
-        tokenizerTest( ",,",                    res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( res, "@@@"                 );
-        tokenizerTest( "a,b,c,,",               res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( res, "a@b@c@@@"            );
-        tokenizerTest( "a,b,c",                 res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( res, "a@b@c@"              );
-        tokenizerTest( ",a,b,c",                res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( res, "@a@b@c@"             );
-        tokenizerTest( "123567",                res, ',', '@',   Whitespaces::Trim,   2,   2 );   UT_EQ( res, "3@"                  );
-        tokenizerTest( "123567",                res, ',', '@',   Whitespaces::Trim,   2,   1 );   UT_EQ( res, "@"                   );
-        tokenizerTest( "  abc , def , ghe ",    res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( res, "abc@def@ghe@"        );
-        tokenizerTest( "abc , def,ghe,",        res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( res, "abc@def@ghe@@"       );
-        tokenizerTest( "  abc , def , ghe ",    res, ',', '@',   Whitespaces::Keep,  -1,  -1 );   UT_EQ( res, "  abc @ def @ ghe @" );
-        tokenizerTest( "abc , def,ghe,",        res, ',', '@',   Whitespaces::Keep,  -1,  -1 );   UT_EQ( res, "abc @ def@ghe@@"     );
+        tokenizerTest( "abc",                   res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( "abc@"                , res );
+        tokenizerTest( "a,bc",                  res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( "a@bc@"               , res );
+        tokenizerTest( "a,bc",                  res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( "a@bc@"               , res );
+        tokenizerTest( ",",                     res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( "@@"                  , res );
+        tokenizerTest( ",,",                    res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( "@@@"                 , res );
+        tokenizerTest( "a,b,c,,",               res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( "a@b@c@@@"            , res );
+        tokenizerTest( "a,b,c",                 res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( "a@b@c@"              , res );
+        tokenizerTest( ",a,b,c",                res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( "@a@b@c@"             , res );
+        tokenizerTest( "123567",                res, ',', '@',   Whitespaces::Trim,   2,   2 );   UT_EQ( "3@"                  , res );
+        tokenizerTest( "123567",                res, ',', '@',   Whitespaces::Trim,   2,   1 );   UT_EQ( "@"                   , res );
+        tokenizerTest( "  abc , def , ghe ",    res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( "abc@def@ghe@"        , res );
+        tokenizerTest( "abc , def,ghe,",        res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( "abc@def@ghe@@"       , res );
+        tokenizerTest( "  abc , def , ghe ",    res, ',', '@',   Whitespaces::Keep,  -1,  -1 );   UT_EQ( "  abc @ def @ ghe @" , res );
+        tokenizerTest( "abc , def,ghe,",        res, ',', '@',   Whitespaces::Keep,  -1,  -1 );   UT_EQ( "abc @ def@ghe@@"     , res );
     }
 
     // tokenizing with different delimiters

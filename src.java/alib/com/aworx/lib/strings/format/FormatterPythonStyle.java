@@ -7,6 +7,7 @@
 
 
 package com.aworx.lib.strings.format;
+import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.Substring;
 import com.aworx.lib.strings.util.AutoSizes;
 import com.aworx.lib.lang.Inclusion;
@@ -16,13 +17,13 @@ import com.aworx.lib.lang.Case;
 
 
 /** ************************************************************************************************
- * Implements a \ref com::aworx::lib::strings::format::Formatter "Formatter" according to the
+ * Implements a \ref com.aworx.lib.strings.format.Formatter "Formatter" according to the
  * [formatting standards of the Python language](https://docs.python.org/3.5/library/string.html#format-string-syntax).
  *
  * \note
  *   Inherited, public fields of parent class \b FormatterStdImpl provide important possibilities
  *   for changing the formatting behavior of instances of this class. Therefore, do not forget
- *   to consult the \ref com::aworx::lib::strings::format::FormatterStdImpl "parent classes documentation".
+ *   to consult the \ref com.aworx.lib.strings.format.FormatterStdImpl "parent classes documentation".
  *
  * In general, the original \b Python specification is covered quite well. However, there are
  * some differences, some things are not possible (considering python being a scripting language)
@@ -50,7 +51,7 @@ import com.aworx.lib.lang.Case;
  *     it allows <c>{:11.5,}</c> where Python allows only <c>{:11,.5}</c>
  *
  *   - With this class being derived from
- *     \ref com::aworx::lib::strings::format::FormatterStdImpl "FormatterStdImpl", features of the parent are
+ *     \ref com.aworx.lib.strings.format.FormatterStdImpl "FormatterStdImpl", features of the parent are
  *     available to this formatter as well. This is especially true and sometimes useful in respect to
  *     setting default values number formatting. For example, this allows to modify all number output
  *     without explicitly repeating the settings in each placeholder of format strings. Other options
@@ -77,18 +78,18 @@ import com.aworx.lib.lang.Case;
  *     Changing the separator symbols, is not possible with the format fields of the format strings
  *     (if it was, this would become very incompatible to Python standards). Changes have to be made
  *     prior to the format operation by modifying field
- *     \ref com::aworx::lib::strings::format::FormatterStdImpl::alternativeNumberFormat "alternativeNumberFormat"
+ *     \ref com.aworx.lib.strings.format.FormatterStdImpl.alternativeNumberFormat "alternativeNumberFormat"
  *     which is provided through parent class \b %FormatterStdImpl.
  *
  *   - Alternative form (\c '#') adds prefixes as specified in members
- *     - \ref com::aworx::lib::strings::NumberFormat::binLiteralPrefix "binLiteralPrefix",
- *     - \ref com::aworx::lib::strings::NumberFormat::hexLiteralPrefix "hexLiteralPrefix" and
- *     - \ref com::aworx::lib::strings::NumberFormat::octLiteralPrefix "octLiteralPrefix".
+ *     - \ref com.aworx.lib.strings.NumberFormat.binLiteralPrefix "binLiteralPrefix",
+ *     - \ref com.aworx.lib.strings.NumberFormat.hexLiteralPrefix "hexLiteralPrefix" and
+ *     - \ref com.aworx.lib.strings.NumberFormat.octLiteralPrefix "octLiteralPrefix".
  *
  *     For upper case formats,  those are taken from field
- *     \ref com::aworx::lib::strings::format::FormatterStdImpl::defaultNumberFormat "defaultNumberFormat",
+ *     \ref com.aworx.lib.strings.format.FormatterStdImpl.defaultNumberFormat "defaultNumberFormat",
  *     for lower case formats from
- *     \ref com::aworx::lib::strings::format::FormatterStdImpl::alternativeNumberFormat "alternativeNumberFormat".
+ *     \ref com.aworx.lib.strings.format.FormatterStdImpl.alternativeNumberFormat "alternativeNumberFormat".
  *     However, in a alignment with the \b Python specification, \b both default to lower case
  *     literals \c "0b", \c "0o" and \c "0x". All defaults may be changed by the user.
  *
@@ -97,18 +98,18 @@ import com.aworx.lib.lang.Case;
  * - <b>Floating point values:</b>
  *   - If floating point values are provided without a type specification in the format string, then
  *     all values of
- *     \ref com::aworx::lib::strings::format::FormatterStdImpl::defaultNumberFormat "defaultNumberFormat"
+ *     \ref com.aworx.lib.strings.format.FormatterStdImpl.defaultNumberFormat "defaultNumberFormat"
  *     are used to format the number
  *   - For lower case floating point format types (\c 'f' and \c 'e'), the values specified in
  *     attributes \b %ExponentSeparator, \b %NANLiteral and \b %INFLiteral of object
- *     \ref com::aworx::lib::strings::format::FormatterStdImpl::alternativeNumberFormat "alternativeNumberFormat"
+ *     \ref com.aworx.lib.strings.format.FormatterStdImpl.alternativeNumberFormat "alternativeNumberFormat"
  *     are used. For upper case   types (\c 'F' and \c 'E') the corresponding attributes in
- *     \ref com::aworx::lib::strings::format::FormatterStdImpl::defaultNumberFormat "defaultNumberFormat" apply.
+ *     \ref com.aworx.lib.strings.format.FormatterStdImpl.defaultNumberFormat "defaultNumberFormat" apply.
  *   - Fixed point formats (\c 'f' and 'F' types) are not supported to use arbitrary length.
- *     See class \ref com::aworx::lib::strings::NumberFormat "NumberFormat" for the limits.
+ *     See class \ref com.aworx.lib.strings.NumberFormat "NumberFormat" for the limits.
  *     Also, very high values and values close to zero may be converted to scientific format.
  *     Finally, if flag
- *     \ref com::aworx::lib::strings::NumberFormat::forceScientific "forceScientific"
+ *     \ref com.aworx.lib.strings.NumberFormat.forceScientific "forceScientific"
  *     of field #defaultNumberFormat is \c true, types \c 'f' and 'F' behave like types \c 'e' and 'E'.
  *   - When both, a \p width and a \p precision is given, then the \p precision determines the
  *     fractional part, even if the type is \b 'g' or \b 'G'. This is different than specified with
@@ -174,7 +175,7 @@ import com.aworx.lib.lang.Case;
  *   interface used for formatting values with custom format strings. As such method is not
  *   available in Java, no similar concept is implemented here. Instead, only date/time formats
  *   are "hardcoded" within method
- *   \ref com::aworx::lib::strings::format::FormatterStdImpl::writeCustomFormat "FormatterStdImpl.writeCustomFormat".
+ *   \ref com.aworx.lib.strings.format.FormatterStdImpl.writeCustomFormat "FormatterStdImpl.writeCustomFormat".
  *   This is a little unfortunate: To customize the formatting of custom types, a dedicated wrapper
  *   class has to be written which implements method \b %toString and writes the wrapped custom object.
  *   Then, when formatting, the custom types have to passed wrapped in such wrapper class dedicated to
@@ -199,53 +200,79 @@ import com.aworx.lib.lang.Case;
  *
  *   - <b>!Upper</b><br>
  *     Converts the contents of the field to upper case.
+ *
  *   - <b>!Lower</b><br>
  *     Converts the contents of the field to lower case.
+ *
  *   - <b>!Quote</b><br>
  *     Puts quote characters \c '"' around the field.
  *     Note that these characters are not respecting any optional given field width but instead
  *     are added to such.<br>
  *     An alias name for \!Quote is given with \b !Str. As the alias can be abbreviated to \b !s,
  *     this provides compatibility with the \b Python specification.
+ *
  *   - <b>!ESC[\<|\>]</b><br>
  *     In its default behavior or if \c '<' is specified, certain characters are converted to escape
- *     sequences. If \c '>' is given, escape sequences are converted to their (ascii) value. See
- *     If \c '>' is given, escape sequences are converted to their (ascii) value. See
- *     \ref com::aworx::lib::strings::AString::escape "AString.escape" for details about the conversion
- *     that is performed.<br>
+ *     sequences. If \c '>' is given, escape sequences are converted to their (ascii) value.
+ *     See \ref com.aworx.lib.strings.AString.escape "AString.escape" for details about the
+ *     conversion that is performed.<br>
  *     An alias name for \b !ESC< is given with \b !a which provides compatibility
  *     with the \b Python specification.
  *     \note If \b !ESC\< is used in combination with \b !Quote, then \b !ESC\< should be the first
  *           conversion specifier. Otherwise, the quotes inserted might be escaped as well.
+ *
+ *   - <b>!Fill[Cc]</b><br>
+ *     Inserts as many characters as denoted by the integer type argument.
+ *     By default the fill character is space <c>' '</c>. It can be changed with optional character
+ *     'C' plus the character wanted.
+ *
  *   - <b>!Tab[Cc][NNN]</b><br>
  *     Inserts fill characters to extend the length of the string to be a multiple of a tab width.
  *     By default the fill character is space <c>' '</c>. It can be changed with optional character
  *     'C' plus the character wanted. The tab width defaults to \c 8. It can be changed by adding
  *     an unsigned decimal number.
- *     Converts the contents of the field to lower case.
+ *
  *   - <b>!ATab[[Cc][NNN]|Reset]</b><br>
- *     Inserts an "automatic tab". These are tabulator positions that are stored internally
- *     and are automatically extend their tab-position in the moment the actual contents exceeds the
- *     currently stored tab-position. An arbitrary amount of auto tab stops are maintained by
- *     the formatter. Which each new invocation of
- *     \ref com::aworx::lib::strings::format::Formatter::format "Formatter.format" the
- *     first auto tab stop is chosen and with each use of \c !ATab the next tab stop is used.<br>
- *     By default the fill character is space <c>' '</c>. It can be changed with optional character
+ *     Inserts an "automatic tabulator stop". These are tabulator positions that are stored
+ *     internally and are automatically extended in the moment the actual contents exceeds the
+ *     currently stored tab-position. An arbitrary amount of auto tab stop and field width
+ *     (see <b>!AWith</b> below) values is maintained by the formatter.
+ *
+ *     Which each new invocation of \alib{strings.format,Formatter.format}, the first auto value
+ *     is chosen and with each use of \c !ATab or \c !AWidth, the next value is used.<br>
+ *     By default, the fill character is space <c>' '</c>. It can be changed with optional character
  *     'C' plus the character wanted. The optional number provided gives the growth value by which
  *     the tab will grow if its position is exceeded. This value defaults to \c 3.
  *     The positions currently stored with the formatter can be reset with providing argument
  *     \c Reset. Alternatively to this, outside of a formatting process, the tab stops can be reset
- *     by invoking method
- *     \ref com::aworx::lib::strings::util::AutoSizes::reset "reset" on field #TabSizes.
+ *     by invoking method \alib{strings.format,Formatter.reset}.
+ *
+ *     Both, auto tab and auto width conversions may be used to increase readability of multiple
+ *     output lines. Of-course, output is not completely tabular, only if those values that result
+ *     in the biggest sizes are formatted first. If a perfect tabular output is desired, the data
+ *     to be formatted may be processed twice: Once to temporary buffer which is disposed and then
+ *     a second time to the desired output stream.
+ *
+ *     \note Method \alib{strings.format,Formatter.releaseDefault} resets the auto size values
+ *           in case no multiple (recursive) acquirements had been performed.
+ *
+ *   - <b>!AWidth[NNN|Reset]</b><br>
+ *     Increases field width with repetitive invocations of format whenever a field value did not
+ *     fit to the actually stored width. Optional decimal number \b NNN is added as a padding value.
+ *     for more information, see <b>!ATab</b> above.
+ *
+ *   - <b>!Xtinguish</b><br>
+ *     Does not print anything. This is useful if format strings are externalized.
+ *     Modifications of such resources might use this conversion to suppress the display of
+ *     arguments (which usually are hard-coded).
+ *
+ *   - <b>!Replace\<search\>\<replace\></b><br>
+ *     Searches string \p search and replaces with \p replace. Both values have to be given
+ *     enclosed by characters \c ’<' and \c ’>'. In the special case that \p search is empty
+ *     (<c>\<\></c>), string \p replace will be inserted if the field argument is an empty string.
  **************************************************************************************************/
 public class FormatterPythonStyle extends FormatterStdImpl
 {
-    // #############################################################################################
-    // Public fields
-    // #############################################################################################
-        /** Storage of sizes for auto-tabulator feature ("!ATab")  */
-        public AutoSizes                      TabSizes                            = new AutoSizes();
-
     // #############################################################################################
     // Protected fields
     // #############################################################################################
@@ -257,7 +284,7 @@ public class FormatterPythonStyle extends FormatterStdImpl
         protected Substring                   phaExtConversion                    = new Substring();
 
         /** Reused object used to parse #phaExtConversion in method #preAndPostProcess. */
-        protected Substring                   parseExtConversion                  = new Substring();
+        protected Substring conversion = new Substring();
 
         /** The value read from the precision field.
          *  This is set to \c -1 in #resetPHAs. */
@@ -269,6 +296,9 @@ public class FormatterPythonStyle extends FormatterStdImpl
 
         /** Constant string array */
         protected static char[]               constColonAndClosingBracket      = ":}".toCharArray();
+
+        /** Storage of sizes for auto-tabulator feature ("!ATab")  */
+        protected AutoSizes                   autoSizes                           = new AutoSizes();
 
 
     // #############################################################################################
@@ -302,13 +332,23 @@ public class FormatterPythonStyle extends FormatterStdImpl
     //  Implementation of FormatterStdImpl interface
     // #############################################################################################
         /** ****************************************************************************************
+         * Resets #autoSizes.
+         ******************************************************************************************/
+        @Override
+        public void                reset()
+        {
+            super.reset();
+            autoSizes.reset();
+        }
+
+        /** ****************************************************************************************
          * Sets the actual auto tab stop index to \c 0.
          ******************************************************************************************/
         @Override
         protected void                initializeFormat()
         {
             super.initializeFormat();
-            TabSizes.start();
+            autoSizes.start();
         }
 
         /** ****************************************************************************************
@@ -363,12 +403,12 @@ public class FormatterPythonStyle extends FormatterStdImpl
             FORMAT_SPEC   ,
             END           ,
         }
-        //! @endcond NO_DOX
+        //! @endcond
 
         /** ****************************************************************************************
          * Parses placeholder field in python notation. The portion \p format_spec is not
          * parsed but stored in member
-         * \ref com::aworx::lib::strings::format::FormatterStdImpl::phaFormatSpec "Formatter.phaFormatSpec".
+         * \ref com.aworx.lib.strings.format.FormatterStdImpl.phaFormatSpec "Formatter.phaFormatSpec".
          *
          * @return \c true on success, \c false on errors.
          ******************************************************************************************/
@@ -634,7 +674,7 @@ public class FormatterPythonStyle extends FormatterStdImpl
         /** ****************************************************************************************
          * Implementation of abstract method.<br>
          * Replaces \c "{{" with \c "{" and \c "}}" with \c "}". In addition applies
-         * \ref com::aworx::lib::strings::AString::escape "AString.escape" on \p target which
+         * \ref com.aworx.lib.strings.AString.escape "AString.escape" on \p target which
          * replaces standard codes like \c "\\n", \c "\\r" or \c "\\t" with corresponding ascii
          * codes.
          *
@@ -654,89 +694,145 @@ public class FormatterPythonStyle extends FormatterStdImpl
          *
          * @param startIdx  The int of the start of the field written in #ptargetString.
          *                  \c -1 indicates pre-phase.
+         * @param target    The target string, only if different from field #ptargetString, which
+         *                  indicates intermediate phase.
+         * @return \c false, if the placeholder should be skipped (nothing is written for it).
+         *         \c true otherwise.
          ******************************************************************************************/
         @Override
-        protected void    preAndPostProcess( int startIdx)
+        protected boolean preAndPostProcess( int startIdx, AString target )
         {
-            boolean isPostProcess= startIdx>= 0;
-            parseExtConversion.set( phaExtConversion );
+            boolean isPreProcess=  startIdx<  0;
+            boolean isPostProcess= startIdx>= 0 && target == null;
+            conversion.set( phaExtConversion );
 
-            while( parseExtConversion.isNotEmpty() )
+            while( conversion.isNotEmpty() )
             {
-                if( !parseExtConversion.consumeChar('!') )
+                if( !conversion.consumeChar('!') )
                 {
-                    errorFormatString( "Expected '!' in (rest of) conversion string \"!" + parseExtConversion + '"'  );
-                    return;
+                    errorFormatString( "Expected '!' in (rest of) conversion string \"!" + conversion + '"'  );
+                    return false;
                 }
 
-                     if( parseExtConversion.consumePartOf("Upper", 1, Case.IGNORE) > 0 )   { if (isPostProcess) ptargetString.toUpper( startIdx );                 }
-                else if( parseExtConversion.consumePartOf("Lower", 1, Case.IGNORE) > 0 )   { if (isPostProcess) ptargetString.toLower( startIdx );                 }
-                else if( parseExtConversion.consumePartOf("str"  , 1, Case.IGNORE) > 0
-                       ||parseExtConversion.consumePartOf("Quote", 1, Case.IGNORE) > 0 )   { if (isPostProcess) ptargetString.insertAt("\"", startIdx)._NC( "\"" );  }
-                else if( parseExtConversion.consumePartOf("Tab"  , 1, Case.IGNORE) > 0 )
+                     if(   conversion.consumePartOf("Xtinguish") > 0 )   { return false;  }
+                     if(   conversion.consumePartOf("Upper"    ) > 0 )   { if (isPostProcess) ptargetString.toUpper( startIdx );                 }
+                else if(   conversion.consumePartOf("Upper"    ) > 0 )   { if (isPostProcess) ptargetString.toUpper( startIdx );                 }
+                else if(   conversion.consumePartOf("Lower"    ) > 0 )   { if (isPostProcess) ptargetString.toLower( startIdx );                 }
+                else if(   conversion.consumePartOf("str"      ) > 0
+                        || conversion.consumePartOf("Quote"    ) > 0 )   { if (isPostProcess) ptargetString.insertAt("\"", startIdx)._NC( "\"" );  }
+
+                else if( conversion.consumePartOf( "Fill"     ) > 0 )
                 {
-                    char tabChar= ' ';
-                    if( parseExtConversion.consumeChar('C', Case.IGNORE ) )
-                        tabChar= parseExtConversion.consumeChar();
-                    if (tabChar == '\0' )
-                        tabChar= ' ';
-                    int tabSize = parseExtConversion.consumeDecDigits()
-                                  ? (int) parseExtConversion.consumedLong
+                    phaType= PHType.Fill;
+                    phaFillChar=  conversion.consumeChar('C', Case.IGNORE ) && conversion.length() > 0
+                                    ? conversion.consumeChar()
+                                    : ' ';
+
+                }
+
+                else if(  conversion.consumePartOf("Tab"      ) > 0 )
+                {
+                    char tabChar= conversion.consumeChar('C', Case.IGNORE ) && conversion.length() > 0
+                                    ? conversion.consumeChar()
+                                    : ' ';
+                    int tabSize = conversion.consumeDecDigits()
+                                  ? (int) conversion.consumedLong
                                   : 8;
 
-                    if( !isPostProcess )
+                    if( isPreProcess )
                         ptargetString.tab( tabSize, 1, tabChar );
 
                 }
-
-                else if( parseExtConversion.consumePartOf("ATab"  , 2, Case.IGNORE) > 0 )
+                else if( conversion.consumePartOf("ATab"  , 2) > 0 )
                 {
 
-                    if( parseExtConversion.consumePartOf("Reset"  , 1, Case.IGNORE) > 0 )
+                    if( conversion.consumePartOf("Reset"  , 1) > 0 )
                     {
-                        if(!isPostProcess)
-                            TabSizes.reset();
+                        if(isPreProcess)
+                            autoSizes.reset();
                     }
                     else
                     {
-                        char tabChar= ' ';
-                        if( parseExtConversion.consumeChar('C', Case.IGNORE ) )
-                            tabChar= parseExtConversion.consumeChar();
-                        if (tabChar == '\0' )
-                            tabChar= ' ';
+                        char tabChar= conversion.consumeChar('C', Case.IGNORE ) && conversion.length() > 0
+                                          ? conversion.consumeChar()
+                                          : ' ';
 
-                        int growth= parseExtConversion.consumeDecDigits()
-                                    ? (int) parseExtConversion.consumedLong - 1
+                        int growth= conversion.consumeDecDigits()
+                                    ? (int) conversion.consumedLong - 1
                                     : 3;
 
-                        if( !isPostProcess )
+                        if( isPreProcess )
                         {
-                            int tabStop= TabSizes.next( ptargetString.length() + 1, growth );
-                            ptargetString.insertChars( tabChar, tabStop - ptargetString.length() );
+                            int actPos= ptargetString.length() - targetStringStartLength;
+                            int tabStop= autoSizes.next( actPos + 1, growth );
+                            ptargetString.insertChars( tabChar, tabStop - actPos );
                         }
                     }
                 }
 
-                else if(    parseExtConversion.consumePartOf("Esc"  , 1, Case.IGNORE) > 0
-                         || parseExtConversion.consumePartOf("A"    , 1, Case.IGNORE) > 0)
+                else if( conversion.consumePartOf("AWidth"  , 2 ) > 0 )
+                {
+                    if( conversion.consumePartOf("Reset"      ) > 0 )
+                    {
+                        if(isPreProcess)
+                            autoSizes.reset();
+                    }
+                    else
+                    {
+                        int extraPadding= conversion.consumeDecDigits()
+                                    ? (int) conversion.consumedLong
+                                    : 0;
+
+                        if( isPreProcess )
+                            phaWidth= autoSizes.actual( 0, extraPadding );
+                        else if( isPostProcess )
+                            autoSizes.next( ptargetString.length() - startIdx, extraPadding );
+                    }
+                }
+
+                else if(    conversion.consumePartOf( "Esc" ) > 0
+                         || conversion.consumePartOf( "A"   ) > 0)
                 {
                     Switch toESC= Switch.ON;
-                    parseExtConversion.consumeChar('<');
-                    if(parseExtConversion.consumeChar('>') )
+                    conversion.consumeChar('<');
+                    if(conversion.consumeChar('>') )
                         toESC=  Switch.OFF;
 
                     if (isPostProcess)
                         ptargetString.escape(toESC, startIdx);
                 }
 
+                else if( conversion.consumePartOf("Replace"  , 2 ) > 0 )
+                {
+                    Substring search=  new Substring(); conversion.consumeField( '<', '>', search  );
+                    Substring replace= new Substring(); conversion.consumeField( '<', '>', replace );
+                    if( search.isNull() || replace.isNull() )
+                    {
+                        errorFormatString( "Missing search and replace arguments of conversion \"!Replace\""  );
+                        return false;
+                    }
+
+                    if( target != null )
+                    {
+                        // special case: fill empty fields
+                        if( search.isEmpty() && target.length() - startIdx == 0 )
+                        {
+                            target._( replace );
+                        }
+                        else
+                            target.searchAndReplace( search.toString(), replace.toString(), startIdx );
+                    }
+                }
+
                 // error (not recognized)
                 else
                 {
-                    errorFormatString( "Unknown conversion string \"!" + parseExtConversion + '"'  );
-                    return;
+                    errorFormatString( "Unknown conversion string \"!" + conversion + '"'  );
+                    return false;
                 }
 
             }
+            return true;
         }
 
 

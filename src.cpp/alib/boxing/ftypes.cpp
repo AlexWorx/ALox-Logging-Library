@@ -12,6 +12,10 @@
 
 #include <algorithm>
 #include <cmath>
+#if !defined(_GLIBCXX_TYPEINDEX) && !defined(_TYPEINDEX_)
+#   include <typeindex>
+#endif
+
 
 #if !defined(_GLIBCXX_CSTRING) && !defined(_CSTRING_)
     #include <cstring>
@@ -25,9 +29,9 @@ namespace aworx { namespace lib { namespace boxing {
 
 /**
  *
- * <b>ALib %Boxing</b> allows to map C++ types to boxed types in a non-bijective way. As a
+ * <b>%ALib %Boxing</b> allows to map C++ types to boxed types in a non-bijective way. As a
  * consequence, there are different possibilities to implement such mapping and the mapping
- * that <b>ALib %Boxing</b> uses by default for boxing C++ fundamental types is considered to
+ * that <b>%ALib %Boxing</b> uses by default for boxing C++ fundamental types is considered to
  * be just a proposal and a default behavior.
  *
  * To suppress the use of this built-in implementation of boxing C++ fundamental types,
@@ -75,25 +79,7 @@ namespace aworx { namespace lib { namespace boxing {
  *   show these specialization in this namespace, to keep namespace \b %boxing
  *   clean and to have all specializations related to this namespace in one place.
  */
-namespace ftypes
-{
-
-ALIB_NAMESPACE_INIT_FLAG
-void Init()
-{
-    ALIB_NAMESPACE_INIT_DEDUP
-
-    DefineInterface<double         , false, IEquals_Tdouble     >();
-    DefineInterface<char           , true , IEquals_TcharArr    >();
-    DefineInterface<wchar_t        , true , IEquals_Twchar_tArr >();
-    DefineInterface<char16_t       , true , IEquals_Tchar16_tArr>();
-    DefineInterface<char32_t       , true , IEquals_Tchar32_tArr>();
-
-    DefineInterface<boxed_int      , false, IIsNull_false       >();
-    DefineInterface<boxed_uint     , false, IIsNull_false       >();
-    DefineInterface<double         , false, IIsNull_false       >();
-
-}
+namespace ftypes {
 
 // #################################################################################################
 // IEquals_Tdouble
@@ -183,9 +169,9 @@ bool    IEquals_Tchar16_tArr::Invoke ( const Box& box, const Box& comp )
             return false;
 
     size_t compLen= comp.Length() >= 0 ? static_cast<size_t>( comp.Length() )
-                                       : aworx::lib::ALIB::strlen16( compBuf );
+                                       : aworx::lib::detail::strlen16( compBuf );
     size_t boxLen=   box.Length() >= 0 ? static_cast<size_t>(  box.Length() )
-                                       : aworx::lib::ALIB::strlen16(  boxBuf );
+                                       : aworx::lib::detail::strlen16(  boxBuf );
     if ( boxLen != compLen )
         return false;
 
@@ -210,9 +196,9 @@ bool    IEquals_Tchar32_tArr::Invoke ( const Box& box, const Box& comp )
             return false;
 
     size_t compLen= comp.Length() >= 0 ? static_cast<size_t>( comp.Length() )
-                                       : aworx::lib::ALIB::strlen32( compBuf );
+                                       : aworx::lib::detail::strlen32( compBuf );
     size_t boxLen=   box.Length() >= 0 ? static_cast<size_t>(  box.Length() )
-                                       : aworx::lib::ALIB::strlen32(  boxBuf );
+                                       : aworx::lib::detail::strlen32(  boxBuf );
     if ( boxLen != compLen )
         return false;
 
@@ -226,6 +212,32 @@ bool    IEquals_Tchar32_tArr::Invoke ( const Box& box, const Box& comp )
     return  true;
 }
 
-}}}}// namespace aworx::lib::boxing
+bool    IIsLess_boxed_uint::Invoke ( const Box& lhs, const Box& rhs )
+{
+    if( lhs.IsSameType( rhs )   )     return                         lhs.UnboxRaw        ()  <                           rhs.UnboxRaw         ()  ;
+    if( rhs.IsType<boxed_int>() )     return static_cast<boxed_int>( lhs.UnboxRaw        ()) <                           rhs.Unbox<boxed_int> ()  ;
+    if( rhs.IsType<double>()    )     return                         lhs.UnboxRaw        ()  <  static_cast<boxed_uint>( rhs.Unbox<double    >() );
+    return std::type_index( lhs.GetTypeInfo() ) < std::type_index( rhs.GetTypeInfo() );
+}
+
+bool    IIsLess_boxed_int ::Invoke ( const Box& lhs, const Box& rhs )
+{
+    if( lhs.IsSameType( rhs )    )    return                         lhs.Unbox<boxed_int>()  <                           rhs.Unbox<boxed_int >()  ;
+    if( rhs.IsType<boxed_uint>() )    return                         lhs.Unbox<boxed_int>()  <  static_cast<boxed_int> ( rhs.Unbox<boxed_uint>() );
+    if( rhs.IsType<double>()     )    return                         lhs.Unbox<boxed_int>()  <  static_cast<boxed_int> ( rhs.Unbox<double    >() );
+    return std::type_index( lhs.GetTypeInfo() ) < std::type_index( rhs.GetTypeInfo() );
+}
+
+bool    IIsLess_double    ::Invoke ( const Box& lhs, const Box& rhs )
+{
+    if( lhs.IsSameType( rhs )    )    return                         lhs.Unbox<double>   ()  <                           rhs.Unbox<double    >()  ;
+    if( rhs.IsType<boxed_uint>() )    return                         lhs.Unbox<double>   ()  <  static_cast<double>    ( rhs.Unbox<boxed_uint>() );
+    if( rhs.IsType<boxed_int>()  )    return                         lhs.Unbox<double>   ()  <  static_cast<double>    ( rhs.Unbox<boxed_int >() );
+    return std::type_index( lhs.GetTypeInfo() ) < std::type_index( rhs.GetTypeInfo() );
+}
+
+
+
+}}}}// namespace [aworx::lib::boxing::ftypes]
 
 #endif // ALIB_FEAT_BOXING_FTYPES

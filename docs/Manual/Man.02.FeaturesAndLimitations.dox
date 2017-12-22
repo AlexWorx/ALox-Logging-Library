@@ -6,7 +6,7 @@
 // #################################################################################################
 
 /**
-\page man_features_and_limitations     02 - Features and Limitations
+\page alox_man_features_and_limitations     02 - Features and Limitations
 
 ### Current Features ###
 
@@ -15,7 +15,7 @@
 
 - <b>Free software</b>, published under Boost Software License.
 
-- Jump-start **tutorials** for [ALox for C++](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/cpptutorial.html),[ALox for C#](http://alexworx.github.io/ALox-Logging-Library/cs_ref/cstutorial.html) and [ALox for Java](http://alexworx.github.io/ALox-Logging-Library/java_ref/javatutorial.html), <b>Sample Projects</b> and pre-configured project files for <b>different IDEs</b> and <b>CMake</b>.
+- Jump-start **tutorials** for [ALox for C++](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/alox_cpp_tutorial.html),[ALox for C#](http://alexworx.github.io/ALox-Logging-Library/cs_ref/alox_cs_tutorial.html) and [ALox for Java](http://alexworx.github.io/ALox-Logging-Library/java_ref/alox_java_tutorial.html), <b>Sample Projects</b> and pre-configured project files for <b>different IDEs</b> and <b>CMake</b>.
 
 - Formatted, **colorful, configurable log output** with support for ANSI compatible consoles and Windows OS consoles.
 
@@ -88,7 +88,7 @@
 <p>
 
 --------------------------------------------------------------------
-<center>Next chapter: \ref man_alox_terminology </center> <center> \ref manual "Back to index" </center>
+<center>Next chapter: \ref alox_man_terminology </center> <center> \ref manual "Back to index" </center>
 
 
 */

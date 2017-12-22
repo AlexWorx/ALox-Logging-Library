@@ -24,7 +24,7 @@
 #ifndef HPP_ALIB_COMPATIBILITY_QT
 //! @cond NO_DOX
 #define HPP_ALIB_COMPATIBILITY_QT 1
-//! @endcond NO_DOX
+//! @endcond
 
 #if ALIB_MODULE_STRINGS
 
@@ -43,7 +43,7 @@ namespace aworx { namespace lib { namespace strings
 namespace thirdparty {
 /**
  * With the inclusion of header file <c>alib/compatibility/qt.hpp</c>
- * some compatibility between <b>ALib Strings</b> and types of
+ * some compatibility between <b>%ALib Strings</b> and types of
  * [QT Class Library](https://www.qt.io) is given.
  *
  *
@@ -63,7 +63,7 @@ namespace thirdparty {
  * - QString
  *
  * <b>3. Conversion to QString:</b><br>
- * Several overloaded methods #ToQString are defined to convert <b>ALib Strings</b> to
+ * Several overloaded methods #ToQString are defined to convert <b>%ALib Strings</b> to
  * instances of class \b QString.
  *
  * <b>General Information On ALib And QT %String Compatibility:</b><br>
@@ -377,7 +377,7 @@ namespace qt {
 #endif //ALIB_MODULE_STRINGS
 
 // #################################################################################################
-// ALib %Boxing / QTString types compatibility support
+// %ALib %Boxing / QTString types compatibility support
 // #################################################################################################
 
 #if ALIB_MODULE_BOXING
@@ -388,7 +388,7 @@ namespace qt {
 #endif
 
 #if !defined(DOX_PARSER)
-ALIB_WARNINGS_START_TMP
+ALIB_WARNINGS_ALLOW_TEMPLATE_META_PROGRAMMING
 #endif
 namespace aworx { namespace lib { namespace boxing
 {
@@ -484,10 +484,10 @@ namespace qt {
 
 void InitQTString();
 /**
- * Initializes <b>ALib %Boxing</b> system in respect to boxing QT string types.
+ * Initializes <b>%ALib %Boxing</b> system in respect to boxing QT string types.
  *
  * This method is \b not automatically invoked with
- * \ref aworx::lib::ALIB::Init "ALIB::Init", because the support for boxing
+ * \ref aworx::lib::ALib::Init "ALib::Init", because the support for boxing
  * QT string types is optional and due to the inclusion of header
  * <b>"alib/compatiblity/qt.hpp"</b>.
  *

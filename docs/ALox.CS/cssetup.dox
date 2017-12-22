@@ -6,12 +6,12 @@
 // #################################################################################################
 
 /**
-\page cssetup         IDE Setup for ALox for C#
+\page alox_cs_setup         IDE Setup for ALox for C#
 
 \tableofcontents
 
 \~Comment ####################################################################################### \~
-# 1. Introduction # {#cssetup_1}
+# 1. Introduction # {#alox_cs_setup_1}
 
 To use ALox, you need to
 - compile the ALox library and
@@ -28,10 +28,10 @@ Currently, ALox provides ready to use IDE projects for
 
 If you compile your C# code with a different build system, all you need to know is two things:
 - the list of source files and
-- which \ref csmacros need to be set on compilation of debug and release configurations.
+- which \ref alox_cs_macros need to be set on compilation of debug and release configurations.
 
 \~Comment ####################################################################################### \~
-# 2. Download #      {#cssetup_vs_download}
+# 2. Download #      {#alox_cs_setup_vs_download}
 Unpack the ALox distribution (e.g. as zip) from
 [Alox at GitHub](https://github.com/AlexWorx/ALox-Logging-Library)
 and move all its contents to a place where you commonly store 3rd party libraries your projects
@@ -45,7 +45,7 @@ within the folder  *ALOX_LIB_PATH* you should find at least the following subfol
         ALOX_LIB_PATH\html
 
 \~Comment ####################################################################################### \~
-# 3. Set up the Build System # {#cssetup_setup}
+# 3. Set up the Build System # {#alox_cs_setup_setup}
 
 As mentioned above, for three different IDEs pre-configured projects exists.
 
@@ -90,7 +90,7 @@ If you do not know the difference between debug and release logging, [see the FA
 The difference between the project versions with or without the release logging options are:
 
 \note
-- Those projects named *ALox-CS-???-DLL-Release-Log* have the \ref csmacros *ALOX_REL_LOG* set in their
+- Those projects named *ALox-CS-???-DLL-Release-Log* have the \ref alox_cs_macros *ALOX_REL_LOG* set in their
   release configuration.
 - Due to this, ALox features are still included in the release version of these projects' assemblies.
   (Only, class [Log](@ref #cs::aworx::lox::Log) gets its  interface replaced by thin
@@ -106,7 +106,7 @@ The difference between the project versions with or without the release logging 
 \note The windows phone projects should support the Windows Phone 8.1 as well.
 Until ALox Version 1.1.2, support for Windows Phone 7.1 was officially provided.
 Due to problems in installing and  testing this outdated platform, support was dropped.
-Nevertheless, there are still the appropriate \ref csmacros_conditional_compile_symbols
+Nevertheless, there are still the appropriate \ref alox_cs_macros_conditional_compile_symbols
 in the C# source files.
 Although not tested, we are optimistic that this platform still compiles nicely.
 So, if you are in need for Windows Phone 7.1 logging, have a try.
@@ -120,7 +120,7 @@ add the ALox-CS-DLL project as a reference to your project.
 
 
 \~Comment ####################################################################################### \~
-## 3.1. Alternatively: Working with the sources ## {#cssetup_using_sources}
+## 3.1. Alternatively: Working with the sources ## {#alox_cs_setup_using_sources}
 If
 - there is no appropriate predefined project for your target and platform or
 - for any reason you want to setup your own library project for ALox or
@@ -137,13 +137,13 @@ Unit tests (which do not belong into the library) are found in:
         ALOX_LIB_PATH/src.cs/alox.unittests
 
 \~Comment ####################################################################################### \~
-## 3.2. Conditional Compilation Symbols## {#cssetup_condcompsym}
+## 3.2. Conditional Compilation Symbols## {#alox_cs_setup_condcompsym}
 
 Now, as ALox is a part of your IDEs solution or build system, the final step is to
 set compilation symbols within your own project (!), hence the one that is supposed to use ALox.
 Different settings are needed for the debug and release configurations.
 
-Please find an overview over all compilation symbols introduced by ALox here: \ref csmacros.
+Please find an overview over all compilation symbols introduced by ALox here: \ref alox_cs_macros.
 
 The following step by step guide examples this for __Visual Studio__:
 \note In addition, the right system libraries may have to be chosen to successfully compile ALox
@@ -176,10 +176,10 @@ and your project!
   Using the NuGet package manager as described on the libraries' page. This should be a matter of just a minute.
 
 \~Comment ####################################################################################### \~
-## 3.3. Test your setup ##  {#cssetup_testsetup}
+## 3.3. Test your setup ##  {#alox_cs_setup_testsetup}
 
 To test your setup, add minimum ALox functionality to your project as described in the first chapter
-of \ref cstutorial into your main method or anywhere you think it is appropriate:
+of \ref alox_cs_tutorial into your main method or anywhere you think it is appropriate:
 
         Log.Info( "Hello ALox" );
 
@@ -189,7 +189,7 @@ You are set if:
 - you do not see the log output when running the release version
 
 \~Comment ####################################################################################### \~
-# 4. Tweaking The Log Output #  {#cssetup_logformat}
+# 4. Tweaking The Log Output #  {#alox_cs_setup_logformat}
 
 In addition to setting up the project, the format of the log output of \b %ALox should be
 recognizable by your IDE: the source code file name and line number that generated
@@ -203,7 +203,7 @@ Otherwise, it may need a little testing, maybe some trial and error process, to 
 needs to be done to be properly consumed by your IDE.
 
 \~Comment ####################################################################################### \~
-## 4.1 Microsoft Visual Studio ## {#cssetup_logformat_vs}
+## 4.1 Microsoft Visual Studio ## {#alox_cs_setup_logformat_vs}
 
 As far as we know, clickable log output is only possible to have when launching a project
 in debug mode. In this case, ALox automatically adds a second logger of type
@@ -214,7 +214,7 @@ in debug mode. In this case, ALox automatically adds a second logger of type
 This logger does everything right to have clickable log lines in Visual Studio. No
 adjustments need to be done.
 
-## 4.2 MonoDevelop ## {#cssetup_logformat_md}
+## 4.2 MonoDevelop ## {#alox_cs_setup_logformat_md}
 
 [MonoDevelop](http://www.monodevelop.com) does not support linking log output back to source code.
 Also, no colorful log output is supported.
@@ -224,7 +224,7 @@ The configuration should reflect this and suppress colorful loggers by setting v
     CONSOLE_TYPE=           plain
 
 \~Comment ####################################################################################### \~
-## 4.2 Rider ## {#cssetup_logformat_jr}
+## 4.2 Rider ## {#alox_cs_setup_logformat_jr}
 
 [JetBrains Rider](https://www.jetbrains.com/rider/) has an intelligent output console that supports
 ANSI colors and detects links to files when they are given with full path name.

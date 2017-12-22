@@ -19,7 +19,7 @@ namespace cs.aworx.lib.strings.format  {
 /** ************************************************************************************************
  * Base class for \b %ALib built-in formatters.
  * This class implements abstract method
- * \ref cs::aworx::lib::strings::format::Formatter::format "Formatter.format" and introduces a set of
+ * \ref cs.aworx.lib.strings.format.Formatter.format "Formatter.format" and introduces a set of
  * new abstract methods that have to be implemented by descendants.
  *
  * The documentation of the class is split into two sections: The first addresses users of
@@ -41,7 +41,7 @@ namespace cs.aworx.lib.strings.format  {
  *   values to respect the current locale. By default, "invariant" format is used.
  *
  * - Field #WriteALibErrorReports defaults to \c true and may be used to disable
- *   \ref cs::aworx::lib::lang::Report "ALib error reports" on illegal formed format strings.
+ *   \ref cs.aworx.lib.lang.Report "ALib error reports" on illegal formed format strings.
  *
  * - Field #WriteErrorsToTargetString defaults to \c true and may be used to disable
  *   the writing of of error messages about illegal formed format strings to the target string.
@@ -79,9 +79,9 @@ namespace cs.aworx.lib.strings.format  {
  * like \c "yyyy-MM-dd HH:mm:ss".
  * \note
  *   This concept is implemented with class
- *   \ref cs::aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle" as the
+ *   \ref cs.aworx.lib.strings.format.FormatterPythonStyle "FormatterPythonStyle" as the
  *   "Python format mini language" supports such custom format specifications. Class
- *   \ref cs::aworx::lib::strings::format::FormatterJavaStyle "FormatterJavaStyle" does \b not support
+ *   \ref cs.aworx.lib.strings.format.FormatterJavaStyle "FormatterJavaStyle" does \b not support
  *   this mechanism.
  *
  * The following describes the formatting process in detail (the implementation of method #format)
@@ -118,7 +118,7 @@ namespace cs.aworx.lib.strings.format  {
  *     If the format syntax of the formatter contains a separated format specification string
  *     (a substring of the placeholder string),  then the method may store such format
  *     substring in field
- *     \ref cs::aworx::lib::strings::format::FormatterStdImpl::phaFormatSpec "phaFormatSpec".
+ *     \ref cs.aworx.lib.strings.format.FormatterStdImpl.phaFormatSpec "phaFormatSpec".
  *
  * 8.  Next, it is checked if an argument was set by \b %parsePlaceholder. If not, #setArgument
  *     is invoked providing \c -1 for the index to indicate auto-indexing.
@@ -127,8 +127,8 @@ namespace cs.aworx.lib.strings.format  {
  *       #setArgument, then a custom formatter might either override the method or,
  *       in the case no index is given in the format string, just
  *       set fields
- *       \ref cs::aworx::lib::strings::format::FormatterStdImpl::phaArgument    "phaArgument" and
- *       \ref cs::aworx::lib::strings::format::FormatterStdImpl::phaArgumentIdx "phaArgumentIdx"
+ *       \ref cs.aworx.lib.strings.format.FormatterStdImpl.phaArgument    "phaArgument" and
+ *       \ref cs.aworx.lib.strings.format.FormatterStdImpl.phaArgumentIdx "phaArgumentIdx"
  *       already in \b %parsePlaceholder according to its own strategy
  *
  * 9.  Method #preAndPostProcess is invoked with parameter \p startIdx equalling \c -1
@@ -144,7 +144,7 @@ namespace cs.aworx.lib.strings.format  {
  *     If this is true, the interface is invoked and \c true is returned.
  *
  * 11. Again, if a format specification was stored in
- *     \ref cs::aworx::lib::strings::format::FormatterStdImpl::phaFormatSpec "phaFormatSpec"
+ *     \ref cs.aworx.lib.strings.format.FormatterStdImpl.phaFormatSpec "phaFormatSpec"
  *     method #parseStdFormatSpec is invoked which needs to set further attributes
  *     in the \b %Placeholder object according to to the standard format specification of the formatter.
  *
@@ -176,6 +176,9 @@ public abstract class FormatterStdImpl : Formatter
 
         /** The target string as provided with method #Format. */
         protected AString                targetString;
+
+        /** The length of the target string before adding the formatted contents.*/
+        protected int                    targetStringStartLength;
 
         /** The format string as provided with method #Format. */
         protected Substring              formatString                             = new Substring();
@@ -222,13 +225,17 @@ public abstract class FormatterStdImpl : Formatter
             Float           , ///< Outputs a number in floating point format.
 
             // Bool
-            Bool            , ///< Writes 'true' or 'false'.
+            Bool            , ///< Writes "true" or "false".
             HashCode        , ///< Writes raw box data as hex.
+
+            // special
+            Fill            , ///< Writes #phaFillChar x-times. Used with python-style conversion
+                              ///< <b>{!Fill[C]}</b>
         };
 
         /** The type of the attribute as specified in the placeholder.
          *  This is set to
-         *  \ref cs::aworx::lib::strings::format::FormatterStdImpl::PHType::NotGiven "PHType.NotGiven"
+         *  \ref cs.aworx.lib.strings.format.FormatterStdImpl.PHType.NotGiven "PHType.NotGiven"
          *  in default implementation of #resetPHAs. */
         protected PHType                      phaType;
 
@@ -275,7 +282,7 @@ public abstract class FormatterStdImpl : Formatter
         protected bool                        phaAlignmentSpecified;
 
         /** The alignment of the contents within a field.
-         *  This is set to \ref cs::aworx::lib::lang::Alignment::Left "Alignment.Left" in default
+         *  This is set to \ref cs.aworx.lib.lang.Alignment.Left "Alignment.Left" in default
          *  implementation of #resetPHAs. */
         protected Alignment                   phaAlignment;
 
@@ -291,9 +298,9 @@ public abstract class FormatterStdImpl : Formatter
 
         /** Used with binary, octal, or hexadecimal output. Specifies that the output will be
          *  prefixed by strings found in fields
-         *  \ref cs::aworx::lib::strings::NumberFormat::BinLiteralPrefix "BinLiteralPrefix",
-         *  \ref cs::aworx::lib::strings::NumberFormat::HexLiteralPrefix "HexLiteralPrefix" or
-         *  \ref cs::aworx::lib::strings::NumberFormat::OctLiteralPrefix "OctLiteralPrefix" which
+         *  \ref cs.aworx.lib.strings.NumberFormat.BinLiteralPrefix "BinLiteralPrefix",
+         *  \ref cs.aworx.lib.strings.NumberFormat.HexLiteralPrefix "HexLiteralPrefix" or
+         *  \ref cs.aworx.lib.strings.NumberFormat.OctLiteralPrefix "OctLiteralPrefix" which
          *  default to  \c "0b", \c "0o" and \c "0x".
          *  Set to \c false in default implementation of #resetPHAs. */
         protected bool                        phaWriteBinOctHexPrefix;
@@ -340,21 +347,21 @@ public abstract class FormatterStdImpl : Formatter
          * Not all fields in this object are used. The ones used are:
          * <p>
          * - Locale-specific versions of floating point separators:
-         *   - \ref cs::aworx::lib::strings::NumberFormat::DecimalPointChar   "DecimalPointChar"
-         *   - \ref cs::aworx::lib::strings::NumberFormat::ThousandsGroupChar "ThousandsGroupChar"
+         *   - \ref cs.aworx.lib.strings.NumberFormat.DecimalPointChar   "DecimalPointChar"
+         *   - \ref cs.aworx.lib.strings.NumberFormat.ThousandsGroupChar "ThousandsGroupChar"
          *
          *   These are retrieved according to the current locale once in the constructor. To
          *   change the locale, these fields can be changed.
          *
          * - Lower case versions of floating point literals:
-         *   - \ref cs::aworx::lib::strings::NumberFormat::ExponentSeparator "ExponentSeparator"
-         *   - \ref cs::aworx::lib::strings::NumberFormat::INFLiteral        "INFLiteral"
-         *   - \ref cs::aworx::lib::strings::NumberFormat::NANLiteral        "NANLiteral"
+         *   - \ref cs.aworx.lib.strings.NumberFormat.ExponentSeparator "ExponentSeparator"
+         *   - \ref cs.aworx.lib.strings.NumberFormat.INFLiteral        "INFLiteral"
+         *   - \ref cs.aworx.lib.strings.NumberFormat.NANLiteral        "NANLiteral"
          *
          * - Lower case versions of prefix literals that indicate the base of integer values:
-         *   - \ref cs::aworx::lib::strings::NumberFormat::BinLiteralPrefix "BinLiteralPrefix"
-         *   - \ref cs::aworx::lib::strings::NumberFormat::HexLiteralPrefix "HexLiteralPrefix"
-         *   - \ref cs::aworx::lib::strings::NumberFormat::OctLiteralPrefix "OctLiteralPrefix"
+         *   - \ref cs.aworx.lib.strings.NumberFormat.BinLiteralPrefix "BinLiteralPrefix"
+         *   - \ref cs.aworx.lib.strings.NumberFormat.HexLiteralPrefix "HexLiteralPrefix"
+         *   - \ref cs.aworx.lib.strings.NumberFormat.OctLiteralPrefix "OctLiteralPrefix"
          */
         public NumberFormat            AlternativeNumberFormat                 = new NumberFormat();
 
@@ -370,7 +377,7 @@ public abstract class FormatterStdImpl : Formatter
         /** Flag that causes the creation of ALib error reports on format syntax errors, argument
          *  type errors, etc.
          *  Defaults to \c true. (Ignored in release compilations. see class
-         *  \ref cs::aworx::lib::lang::Report "Report" for more information.)                */
+         *  \ref cs.aworx.lib.lang.Report "Report" for more information.)                */
         public bool                    WriteALibErrorReports                                 = true;
 
         /** Flag that causes error messages to be written into the target string.
@@ -438,10 +445,11 @@ public abstract class FormatterStdImpl : Formatter
                 return 0;
 
             // save parameters/init state
-            this.targetString=     targetString;
+            this.targetString=             targetString;
+            this.targetStringStartLength=  targetString.Length();
             this.formatString.Set( formatString );
-            this.arguments=        arguments;
-            this.argOffset=        argOffset;
+            this.arguments=                arguments;
+            this.argOffset=                argOffset;
 
             // initialize state info
             nextAutoIdx=        0;
@@ -489,21 +497,22 @@ public abstract class FormatterStdImpl : Formatter
                         return argsConsumed;
 
                 // write field
-                preAndPostProcess( -1 );
-                int actIdx= targetString.Length();
-                if ( !writeCustomFormat() )
+                if( preAndPostProcess( -1 ) )
                 {
-                    // standard format
-                    if (    ( phaFormatSpec.IsNotEmpty()  && !parseStdFormatSpec() )
-                         || !checkStdFieldAgainstArgument() )
-                        return argsConsumed;
+                    int actIdx= targetString.Length();
+                    if ( !writeCustomFormat() )
+                    {
+                        // standard format
+                        if (    ( phaFormatSpec.IsNotEmpty()  && !parseStdFormatSpec() )
+                             || !checkStdFieldAgainstArgument() )
+                            return argsConsumed;
 
-                    // write argument
-                    writeStdArgument();
+                        // write argument
+                        writeStdArgument();
+                    }
+
+                    preAndPostProcess( actIdx );
                 }
-
-                preAndPostProcess( actIdx );
-
 
             }// main loop searching next escape sequence
         }
@@ -627,7 +636,7 @@ public abstract class FormatterStdImpl : Formatter
         /** ****************************************************************************************
          * Virtual method that may write an argument using a custom method/format.
          * The default implementation checks if #phaFormatSpec is set and object
-         * \ref cs::aworx::lib::strings::format::FormatterStdImpl::phaArgument "phaArgument"
+         * \ref cs.aworx.lib.strings.format.FormatterStdImpl.phaArgument "phaArgument"
          * supports an own format specifier by providing <b>C#</b> interface
          * [IFormattable](https://msdn.microsoft.com/en-us/library/system.iformattable(v=vs.110).aspx).
          * If so, the result of the formatting is written directly into the #targetString
@@ -723,6 +732,7 @@ public abstract class FormatterStdImpl : Formatter
                     ||  phaType == PHType.IntHex
                     ||  phaType == PHType.Float
                     ||  phaType == PHType.Character
+                    ||  phaType == PHType.Fill
                     )
                 {
                     return true;
@@ -811,6 +821,12 @@ public abstract class FormatterStdImpl : Formatter
                                   : '?';
                     target._( asChar );
                 }
+                break;
+
+
+                case PHType.Fill:
+                    target.InsertChars( phaFillChar, isSIntegral() ? (int) getSIntegral()
+                                                                   : (int) getUIntegral() );
                 break;
 
                 case PHType.IntBase10:
@@ -926,6 +942,9 @@ public abstract class FormatterStdImpl : Formatter
                 break;
             }
 
+            // now do an 'intermediate post phase' processing
+            preAndPostProcess( fieldStartIdx, target );
+
             // apply cutting
             if ( phaCutContent >= 0  &&   target.Length() - oldTargetLength > phaCutContent  )
                 target.SetLength( oldTargetLength + phaCutContent );
@@ -937,10 +956,14 @@ public abstract class FormatterStdImpl : Formatter
         }
         /** ****************************************************************************************
          * Virtual method to do pre- and post- processing of the field written.
-         * Pre-processing could for example be adding tabulator spaces. A sample for post-processing
-         * is case conversion.<br>
+         * Pre-processing could for example be adding tabulator spaces, letter case conversions,
+         *
          * A negative given index \p startIdx indicates the pre-processing phase.
-         * This default implementation does nothing.
+         * If \p target is given, this indicates an "intermediate phase": The argument has been
+         * written, but no alignment or cutting has been done, yet. This phase should usually
+         * be ignored, but is for example important for search and replacement actions.
+         * If a field has a custom format implementation (e.g. time and date values), then
+         * the intermediate phase is never called.
          *
          * \note
          *   The reason why this method is \b not implemented as two different ones is that
@@ -951,10 +974,14 @@ public abstract class FormatterStdImpl : Formatter
          *
          * @param startIdx  If \c -1 pre-processing is indicated, otherwise post-processing and
          *                  the index of the start of the field written in #targetString is given.
+         * @param target    The target string, only if different from field #targetString, which
+         *                  indicates intermediate phase.
+         * @return \c false, if the placeholder should be skipped (nothing is written for it).
+         *         \c true otherwise.
          ******************************************************************************************/
-        protected virtual void         preAndPostProcess(int startIdx)
+        protected virtual bool         preAndPostProcess(int startIdx, AString target = null)
         {
-
+            return true;
         }
 
         /** ****************************************************************************************
@@ -965,8 +992,8 @@ public abstract class FormatterStdImpl : Formatter
          * value of parameter \p pos to automatically choose the next argument.
          *
          * Consequently, this method sets the fields
-         * \ref cs::aworx::lib::strings::format::FormatterStdImpl::phaArgument    "Argument" and
-         * \ref cs::aworx::lib::strings::format::FormatterStdImpl::phaArgumentIdx "ArgumentIdx"
+         * \ref cs.aworx.lib.strings.format.FormatterStdImpl.phaArgument    "Argument" and
+         * \ref cs.aworx.lib.strings.format.FormatterStdImpl.phaArgumentIdx "ArgumentIdx"
          * in given \p field.
          * For auto-values, it increments #nextAutoIdx.
          * Finally, this method is responsible for the correct book-keeping of #argsConsumed.

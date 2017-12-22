@@ -131,9 +131,9 @@ class FileIO
 * UT_CLASS
 **********************************************************************************************/
 // with GTEST macros it all gets wild. Fix the method name
-#undef  ALIB_SRC_INFO_PARAMS
+#undef  ALIB_SRCPOS
 #if ALOX_DBG_LOG
-  #define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, UT_GET_TEST_NAME
+  #define ALIB_SRCPOS     __FILE__, __LINE__, UT_GET_TEST_NAME
 #endif
 
 UT_CLASS()
@@ -487,9 +487,9 @@ UT_METHOD(Tut_ThreadName )
 // #################################################################################################
 
 // restore original ALib param macro
-#undef  ALIB_SRC_INFO_PARAMS
+#undef  ALIB_SRCPOS
 #if ALOX_DBG_LOG
-    #define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, __func__
+    #define ALIB_SRCPOS     __FILE__, __LINE__, __func__
 #endif
 
 void process(int) {}
@@ -531,9 +531,9 @@ void notCompiledConditionalLogging()
 
 
 // with GTEST macros it all gets wild. Fix the method name
-#undef  ALIB_SRC_INFO_PARAMS
+#undef  ALIB_SRCPOS
 #if ALOX_DBG_LOG
-    #define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, UT_GET_TEST_NAME
+    #define ALIB_SRCPOS     __FILE__, __LINE__, UT_GET_TEST_NAME
 #endif
 
 // #################################################################################################
@@ -555,7 +555,7 @@ UT_METHOD(Tut_LogState)
     Log_SetVerbosity( &memLogger, Verbosity::Verbose );
 
     // OK, let's use ALox
-    Log_SetDomain( "PNS"   ,   Scope::Path, 1 );
+    Log_SetDomain( "PNS"   ,   Scope::Path + 1 );
     Log_SetDomain( "PATH",     Scope::Path );
     Log_SetDomain( "FN",       Scope::Filename );
     Log_SetDomain( "THREAD",   Scope::ThreadOuter );
@@ -614,9 +614,9 @@ UT_METHOD(Tut_LogInternalDomains)
     Log_SetVerbosity( &memLogger,       Verbosity::Verbose, ALox::InternalDomains );
     Log_SetVerbosity( Log::DebugLogger, Verbosity::Verbose, ALox::InternalDomains );
 
-    Log_SetDomain( "PNS"   ,   Scope::Path, 1 );
-    Log_SetDomain( "PATH",     Scope::Path );
-    Log_SetDomain( "FN",       Scope::Filename );
+    Log_SetDomain( "PNS"   ,   Scope::Path + 1    );
+    Log_SetDomain( "PATH",     Scope::Path        );
+    Log_SetDomain( "FN",       Scope::Filename    );
     Log_SetDomain( "THREAD",   Scope::ThreadOuter );
 
     Log_SetVerbosity( "MEMORY",        Verbosity::Off      , "/CON"    );

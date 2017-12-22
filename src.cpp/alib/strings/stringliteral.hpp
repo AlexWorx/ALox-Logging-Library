@@ -12,7 +12,7 @@
 
 // to preserve the right order, we are not includable directly from outside.
 #if !defined(ALIB_PROPER_INCLUSION)
-    #error "include 'alib/alib.hpp' or 'alib/alib_strings.hpp' instead of this header"
+    #error "include 'alib/alib.hpp' instead of this header"
 #endif
 
 // #################################################################################################

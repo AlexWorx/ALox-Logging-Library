@@ -44,7 +44,7 @@ import com.aworx.lox.loggers.ConsoleLogger;
 
 /** ************************************************************************************************
  * This class acts as a container for Loggers and provides a convenient interface to logging.
- * Fore information how to use this class, checkout the \b %ALox tutorials and the 
+ * Fore information how to use this class, checkout the \b %ALox tutorials and the
  * [ALox User Manual](../manual.html).
  **************************************************************************************************/
 public class Lox extends ThreadLock
@@ -264,14 +264,14 @@ public class Lox extends ThreadLock
      * The name \c "Log" is reserved for the internal default singleton used for debug-logging.
      *
      * If parameter \p register is \c true (the default), static method
-     * \ref com::aworx::lox::ALox::register "ALox.register" is invoked and the object will be
+     * \ref com.aworx.lox.ALox.register "ALox.register" is invoked and the object will be
      * retrievable with static method
-     * \ref com::aworx::lox::ALox::get "ALox.get". In some situations, such 'registration'
+     * \ref com.aworx.lox.ALox.get "ALox.get". In some situations, such 'registration'
      * may not be wanted.
      *
      * @param name       The name of the Lox. Will be converted to upper case.
      * @param doRegister If \c true, this object is registered with static class
-     *                   \ref com::aworx::lox::ALox "ALox".
+     *                   \ref com.aworx.lox.ALox "ALox".
      *                   Optional and defaults to \c true.
      **********************************************************************************************/
     public Lox( String name, boolean doRegister )
@@ -292,7 +292,7 @@ public class Lox extends ThreadLock
      * Protected constructor helper method
      * @param name       The name of the Lox. Will be converted to upper case.
      * @param doRegister If \c true, this object is registered with static class
-     *                   \ref com::aworx::lox::ALox "ALox".
+     *                   \ref com.aworx.lox.ALox "ALox".
      *                   Optional and defaults to \c true.
      **********************************************************************************************/
     protected void construct( String name, boolean doRegister )
@@ -335,7 +335,7 @@ public class Lox extends ThreadLock
 
         // read domain substitution rules from configuration
         Variable variable= new Variable( ALox.DOMAIN_SUBSTITUTION, getName() );
-        if ( variable.load() != 0 )
+        if ( ALox.config.load(variable) != 0 )
         {
             for( int ruleNo= 0; ruleNo< variable.size(); ruleNo++ )
             {
@@ -372,7 +372,7 @@ public class Lox extends ThreadLock
      * Status of registration with \b %ALox. To keep a \b %Lox "private" using parameter
      * \p doRegister of the constructor, allows to suppress registration.
      * Registered instances of this class can be statically received (by their name) using
-     * \ref com::aworx::lox::ALox::get "ALox.get".
+     * \ref com.aworx.lox.ALox.get "ALox.get".
      *
      * @returns \c true if this instance was registered with \b %ALox, \c false if not.
      **********************************************************************************************/
@@ -386,7 +386,7 @@ public class Lox extends ThreadLock
      *  Hence, unless configuration variable
      *  [ALOX_CONSOLE_TYPE](../group__GrpALoxConfigVars.html) is set, this method creates
      *  a logger of type
-     *  \ref com::aworx::lox::loggers::ConsoleLogger "ConsoleLogger".
+     *  \ref com.aworx.lox.loggers.ConsoleLogger "ConsoleLogger".
      *
      *  @param name  The name of the \e Logger.  A value of null implies standard logger names
      *               defined in the \e Logger sub-classes.
@@ -397,7 +397,7 @@ public class Lox extends ThreadLock
     {
         //--- check environment "ALOX_CONSOLE_TYPE". They have precedence ---
         Variable variable= new Variable(ALox.CONSOLE_TYPE);
-        variable.load();
+        ALox.config.load(variable);
         AString val= variable.getString().trim();
 
         if ( val.equals( "PLAIN",   Case.IGNORE ) ) return new ConsoleLogger    ( name );
@@ -471,7 +471,7 @@ public class Lox extends ThreadLock
         // an automatic default value, we will not write back into the user's variable store.
         // As always, only if the app fetches new variables on termination, this is entry is copied.
         Variable variable= new Variable( ALox.VERBOSITY, getName(), logger.getName() );
-        variable.load();
+        ALox.config.load(variable);
 
         // first token is "writeback" ?
         if ( variable.size() == 0 )
@@ -533,7 +533,7 @@ public class Lox extends ThreadLock
 
         // now store using the same plug-in as original variable has
         destVar.priority= variable.priority;
-        destVar.store();
+        ALox.config.store(destVar);
 
         // internal logging
         intMsg._()._( "Argument 'writeback' in variable " )._( variable.fullname )
@@ -565,7 +565,7 @@ public class Lox extends ThreadLock
         loggerAddedSinceLastDebugState= false;
 
         Variable variable= new Variable( ALox.DUMP_STATE_ON_EXIT, getName() );
-        variable.load();
+        ALox.config.load(variable);
 
         String      domain=         null;
         Verbosity   verbosity=      Verbosity.INFO;
@@ -726,7 +726,7 @@ public class Lox extends ThreadLock
      * \b %Verbosity.Off and \p domain to \c "/".
      *
      * Optional parameter \p priority defaults to
-     * \ref com::aworx::lib::config::Configuration::PRIO_DEFAULT "Configuration.PRIO_DEFAULT",
+     * \ref com.aworx.lib.config.Configuration.PRIO_DEFAULT_VALUES "Configuration.PRIO_DEFAULT_VALUES",
      * which is a lower priority than those of the standard plug-ins of external configuration data. Therefore, external
      * configuration by default 'overwrite' settings made from 'within the source code', which
      * simply means by invoking this method.<br>
@@ -734,7 +734,7 @@ public class Lox extends ThreadLock
      * - To 'lock' a verbosity setting against external manipulation.
      * - to 'break' the standard mechanism that an invocation of this method sets all
      *   sub-domains recursively. If a sub-domain was set with a higher priority
-     *   (e.g. <c>%PRIO_DEFAULT + 1</c>, then this sub-domain will not be affected by
+     *   (e.g. <c>%PRIO_DEFAULT_VALUES + 1</c>, then this sub-domain will not be affected by
      *   future invocations of this method with standard-priority given.
      *
      * For more information on how to use external configuration variables with priority and
@@ -767,7 +767,7 @@ public class Lox extends ThreadLock
      *                   starting with <c> '/'</c> are recommended.
      *                   Defaults to root domain \"/\".
      * @param priority   The priority of the setting. Defaults to
-     *                   \ref com::aworx::lib::config::Configuration::PRIO_DEFAULT "Configuration.PRIO_DEFAULT".
+     *                   \ref com.aworx.lib.config.Configuration.PRIO_DEFAULT_VALUES "Configuration.PRIO_DEFAULT_VALUES".
      **********************************************************************************************/
     public void setVerbosity(Logger logger, Verbosity verbosity, String domain, int priority )
     {
@@ -845,7 +845,7 @@ public class Lox extends ThreadLock
 
                 // we have to get all verbosities of already existing domains
                 Variable variable= new Variable( ALox.VERBOSITY, getName(), logger.getName() );
-                if( 0 != variable.load() )
+                if( 0 != ALox.config.load(variable) )
                 {
                     getAllVerbosities( logger, domains         , variable );
                     getAllVerbosities( logger, internalDomains , variable );
@@ -880,7 +880,7 @@ public class Lox extends ThreadLock
      **********************************************************************************************/
     public void setVerbosity(Logger logger, Verbosity verbosity, String domain)
     {
-        setVerbosity( logger, verbosity, domain, Configuration.PRIO_DEFAULT );
+        setVerbosity( logger, verbosity, domain, Configuration.PRIO_DEFAULT_VALUES);
     }
 
     /** ********************************************************************************************
@@ -893,7 +893,7 @@ public class Lox extends ThreadLock
      **********************************************************************************************/
     public void setVerbosity(Logger logger, Verbosity verbosity)
     {
-        setVerbosity( logger, verbosity, "/" , Configuration.PRIO_DEFAULT );
+        setVerbosity( logger, verbosity, "/" , Configuration.PRIO_DEFAULT_VALUES);
     }
 
     /** ********************************************************************************************
@@ -909,7 +909,7 @@ public class Lox extends ThreadLock
      *                   starting with <c> '/'</c> are recommended.
      *                   Defaults to root domain \"/\".
      * @param priority   The priority of the setting. Defaults to
-     *                   \ref com::aworx::lib::config::Configuration::PRIO_DEFAULT "Configuration.PRIO_DEFAULT".
+     *                   \ref com.aworx.lib.config.Configuration.PRIO_DEFAULT_VALUES "Configuration.PRIO_DEFAULT_VALUES".
      **********************************************************************************************/
     public void setVerbosity(String loggerName, Verbosity verbosity, String domain, int priority)
     {
@@ -930,7 +930,7 @@ public class Lox extends ThreadLock
                 if ( no >= 0 )
                 {
                     setVerbosity( otherTree.getLogger( no ),      Verbosity.OFF,
-                                  actualTree.fullPath.toString(), Configuration.PRIO_DEFAULT      );
+                                  actualTree.fullPath.toString(), Configuration.PRIO_DEFAULT_VALUES);
                     no= dom.getLoggerNo( loggerName );
                     com.aworx.lib.ALIB_DBG.ASSERT( no >= 0 );
                 }
@@ -977,7 +977,7 @@ public class Lox extends ThreadLock
      **********************************************************************************************/
     public void setVerbosity(String loggerName, Verbosity verbosity, String domain)
     {
-        setVerbosity( loggerName, verbosity, domain, Configuration.PRIO_DEFAULT );
+        setVerbosity( loggerName, verbosity, domain, Configuration.PRIO_DEFAULT_VALUES);
     }
 
 
@@ -992,7 +992,7 @@ public class Lox extends ThreadLock
      **********************************************************************************************/
     public void setVerbosity(String loggerName, Verbosity verbosity)
     {
-        setVerbosity( loggerName, verbosity, "/", Configuration.PRIO_DEFAULT );
+        setVerbosity( loggerName, verbosity, "/", Configuration.PRIO_DEFAULT_VALUES);
     }
 
     /** ********************************************************************************************
@@ -1020,7 +1020,7 @@ public class Lox extends ThreadLock
      * @param scope        The scope that should the given \p domain be registered for.
      *                     Available Scope definitions are platform/language dependent.
      * @param packageLevel Used only if parameter \p scope equals
-     *                     \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
+     *                     \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                    to reference parent packages. Optional and defaults to \c 0.
      **********************************************************************************************/
     public void setDomain(String scopeDomain, Scope scope, int packageLevel)
@@ -1279,7 +1279,7 @@ public class Lox extends ThreadLock
      * @param scope        The scope that should the given \p logable be registered for.
      *                     Available Scope definitions are platform/language dependent.
      * @param packageLevel Used only with
-     *                     \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE".
+     *                     \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE".
      *                     Cuts the given number of package parts (separated with '.') from the end
      *                     of the packages. Optional and defaults to \c 0.
      **********************************************************************************************/
@@ -1562,7 +1562,7 @@ public class Lox extends ThreadLock
      *                  data is unique to the \e Lox.
      * @param scope     The \e %Scope that the data is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
-     *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
+     *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      **********************************************************************************************/
     public void store( Object data, String key, Scope scope, int pkgLevel )
@@ -1678,7 +1678,7 @@ public class Lox extends ThreadLock
      *                  If \c null, currently stored data will be removed.
      * @param scope     The \e %Scope that the data is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
-     *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
+     *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      **********************************************************************************************/
     public void store( Object  data, Scope scope, int  pkgLevel )
@@ -1715,7 +1715,7 @@ public class Lox extends ThreadLock
      *                  data is unique to the \e Lox.
      * @param scope     The \e %Scope that the data is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
-     *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
+     *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      * @return The object, \c null if nothing was found.
      **********************************************************************************************/
@@ -1804,7 +1804,7 @@ public class Lox extends ThreadLock
      *
      * @param scope     The \e %Scope that the data is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
-     *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
+     *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      * @return The object, \c null if nothing was found.
      **********************************************************************************************/
@@ -2160,10 +2160,10 @@ public class Lox extends ThreadLock
         try { acquire();
 
             // auto-initialization of ALox
-            ALox.init( null );
+            ALox.init();
 
             // auto-initialization of debug loggers
-            if (domains.countLoggers() == 0 && this == Log.LOX) 
+            if (domains.countLoggers() == 0 && this == Log.LOX)
                 Log.addDebugLogger( this );
 
             cntLogCalls++;
@@ -2209,22 +2209,22 @@ public class Lox extends ThreadLock
                 CharSequence firstArg= (CharSequence) logables[0];
 
                 boolean illegalCharacterFound= false;
-                
+
                 if( firstArg.length() > 0 )
                 {
-                
+
                     // accept internal domain at the start
                     int idx= 0;
                     if( firstArg.charAt(0) == ALox.INTERNAL_DOMAINS.charAt( 0 ) )
                     {
-                        while(      ++idx < ALox.INTERNAL_DOMAINS.length() 
+                        while(      ++idx < ALox.INTERNAL_DOMAINS.length()
                                 &&    idx < firstArg.length()
-                                &&  firstArg.charAt( idx ) == ALox.INTERNAL_DOMAINS.charAt( idx ) 
+                                &&  firstArg.charAt( idx ) == ALox.INTERNAL_DOMAINS.charAt( idx )
                              );
                         if( idx !=  ALox.INTERNAL_DOMAINS.length() )
                             idx= 0;
                     }
-                                            
+
                     // loop over domain and check for illegal characters
                     for( ; idx < firstArg.length() ; ++idx )
                     {
@@ -2261,7 +2261,7 @@ public class Lox extends ThreadLock
     }
 
     /** ********************************************************************************************
-     * Logs a list of \e Logables using \ref Verbosity::VERBOSE "Verbosity.VERBOSE".
+     * Logs a list of \e Logables using \ref Verbosity.VERBOSE "Verbosity.VERBOSE".
      *
      * The first \e logable provided may be a domain name. All values are passed to
      * #entryDetectDomain. See documentation of this method for information on how to avoid
@@ -2282,7 +2282,7 @@ public class Lox extends ThreadLock
     }
 
     /** ********************************************************************************************
-     * Logs a list of \e Logables using \ref Verbosity::INFO "Verbosity.INFO".
+     * Logs a list of \e Logables using \ref Verbosity.INFO "Verbosity.INFO".
      *
      * The first \e logable provided may be a domain name. All values are passed to
      * #entryDetectDomain. See documentation of this method for information on how to avoid
@@ -2303,7 +2303,7 @@ public class Lox extends ThreadLock
     }
 
     /** ********************************************************************************************
-     * Logs a list of \e Logables using \ref Verbosity::WARNING "Verbosity.WARNING".
+     * Logs a list of \e Logables using \ref Verbosity.WARNING "Verbosity.WARNING".
      *
      * The first \e logable provided may be a domain name. All values are passed to
      * #entryDetectDomain. See documentation of this method for information on how to avoid
@@ -2324,7 +2324,7 @@ public class Lox extends ThreadLock
     }
 
     /** ********************************************************************************************
-     * Logs a list of \e Logables using \ref Verbosity::ERROR "Verbosity.ERROR".
+     * Logs a list of \e Logables using \ref Verbosity.ERROR "Verbosity.ERROR".
      *
      * The first \e logable provided may be a domain name. All values are passed to
      * #entryDetectDomain. See documentation of this method for information on how to avoid
@@ -2437,10 +2437,10 @@ public class Lox extends ThreadLock
      * Using parameter \p group, a set of <em>Log Statements</em> that share the same group key, can be
      * grouped and of such set, only the one which is first executed actually logs.<br>
      * Alternatively, when \p key is omitted (or null or empty), but a
-     * \ref com::aworx::lox::Scope "Scope" is given with parameter \p scope, then the
+     * \ref com.aworx.lox.Scope "Scope" is given with parameter \p scope, then the
      * counter is associated with the scope.<br>
      * Finally, parameters \p key and \p scope can also be used in combination. The key is
-     * then unique in respect to the \ref com::aworx::lox::Scope "Scope" provided.
+     * then unique in respect to the \ref com.aworx.lox.Scope "Scope" provided.
      *
      * Using, none, one or both of the parameters \p group and \p scope, among others, the
      * following use cases can be achieved.
@@ -2473,7 +2473,7 @@ public class Lox extends ThreadLock
      *   Due to the limitations of the Java language to dissolve ambiguities when invoking
      *   overloaded methods, most of the overloads provided await parameters
      *   \p domain and \p verbosity at the start. This is in difference to <b>ALox for C++</b>
-     *   and <b>ALox for C#</b>, where overloaded methods always default these parameters to \c null 
+     *   and <b>ALox for C#</b>, where overloaded methods always default these parameters to \c null
      *   respectively \c %Verbosity.INFO.<br>
      *   Fortunate exceptions are
      *   - <b>%once(Object logable)</b> and
@@ -2501,11 +2501,11 @@ public class Lox extends ThreadLock
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope::Global, then the
+     *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
-     *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
+     *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
@@ -2602,11 +2602,11 @@ public class Lox extends ThreadLock
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope::Global, then the
+     *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
-     *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
+     *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      **********************************************************************************************/
     public void once(String domain, Verbosity verbosity, Object logables, String group, Scope scope, int pkgLevel)
@@ -2625,7 +2625,7 @@ public class Lox extends ThreadLock
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope::Global, then the
+     *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
      **********************************************************************************************/
@@ -2645,7 +2645,7 @@ public class Lox extends ThreadLock
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope::Global, then the
+     *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      **********************************************************************************************/
     public void once(String domain, Verbosity verbosity, Object logables, String group )
@@ -2664,7 +2664,7 @@ public class Lox extends ThreadLock
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope::Global, then the
+     *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
@@ -2683,7 +2683,7 @@ public class Lox extends ThreadLock
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
-     *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
+     *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
@@ -2702,7 +2702,7 @@ public class Lox extends ThreadLock
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
-     *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
+     *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      **********************************************************************************************/
     public void once(String domain, Verbosity verbosity, Object logables, Scope scope, int pkgLevel)
@@ -2784,7 +2784,7 @@ public class Lox extends ThreadLock
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope::Global, then the
+     *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
     **********************************************************************************************/
     public void once( Object logables, int quantity, String group  )
@@ -2800,7 +2800,7 @@ public class Lox extends ThreadLock
      *                  this defaults to \c 1.
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
-     *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
+     *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
     **********************************************************************************************/
     public void once( Object logables, int quantity, Scope scope, int pkgLevel  )
@@ -2832,13 +2832,13 @@ public class Lox extends ThreadLock
      * The resulting full domain string is assembled from inner to outer scope.
      * If \p domainPath, respectively as soon as any of the scope levels' Scope Domain paths
      * starts with the character defined in
-     * \ref com::aworx::lox::core::Domain::PATH_SEPARATOR "Domain.PATH_SEPARATOR",
+     * \ref com.aworx.lox.core.Domain.PATH_SEPARATOR "Domain.PATH_SEPARATOR",
      * the evaluation is stopped (the path is interpreted as absolute).
      *
      * @param domainPath The domain path. If starting with the character defined in
-     *                   \ref com::aworx::lox::core::Domain::PATH_SEPARATOR "Domain.PATH_SEPARATOR",
+     *                   \ref com.aworx.lox.core.Domain.PATH_SEPARATOR "Domain.PATH_SEPARATOR",
      *                   no Scope Domains are applied.
-     * @return The resulting \ref com::aworx::lox::core::Domain "Domain".
+     * @return The resulting \ref com.aworx.lox.core.Domain "Domain".
      **********************************************************************************************/
     protected Domain evaluateResultDomain(String domainPath)
     {
@@ -2872,7 +2872,7 @@ public class Lox extends ThreadLock
      * not known before.
      * @param domainSystem The domain system. Either the standard or the internal one.
      * @param domainPath   The domain path.
-     * @return The resulting \ref com::aworx::lox::core::Domain "Domain".
+     * @return The resulting \ref com.aworx.lox.core.Domain "Domain".
      **********************************************************************************************/
     @SuppressWarnings ("null")
     Domain findDomain(Domain domainSystem, AString domainPath)
@@ -2901,7 +2901,7 @@ public class Lox extends ThreadLock
                     logInternal( Verbosity.INFO, "DMN", intMsg );
                 }
 
-                // read domain from Config
+                // read domain from config
                 if ( !dom.configurationRead )
                 {
                     dom.configurationRead= true;
@@ -2910,7 +2910,7 @@ public class Lox extends ThreadLock
                     for ( int i= 0; i < dom.countLoggers(); ++i )
                     {
                         Logger logger= dom.getLogger(i);
-                        if ( 0 != variable.define( ALox.VERBOSITY, getName(), logger.getName() ).load() )
+                        if ( 0 != ALox.config.load(variable.declare( ALox.VERBOSITY, getName(), logger.getName() )) )
                             getVerbosityFromConfig( logger, dom, variable );
                     }
 
@@ -3107,9 +3107,9 @@ public class Lox extends ThreadLock
         dom.cntLogCalls++;
 
         // get a logable list (reuse, one per recursive log)
-        while( logableLists.size() < lockCount )
+        while( logableLists.size() < cntAcquirements )
             logableLists.add( new ArrayList<Object>() );
-        ArrayList<Object> logableList= logableLists.get( lockCount - 1 );
+        ArrayList<Object> logableList= logableLists.get( cntAcquirements - 1 );
 
         for ( int i= 0; i < dom.countLoggers() ; i++ )
             if( dom.isActive( i, verbosity ) )
@@ -3177,7 +3177,7 @@ public class Lox extends ThreadLock
 
     /** ********************************************************************************************
      * Logs an internal error message using the internal domain tree as defined in
-     * \ref com::aworx::lox::ALox::INTERNAL_DOMAINS "ALox.INTERNAL_DOMAINS".
+     * \ref com.aworx.lox.ALox.INTERNAL_DOMAINS "ALox.INTERNAL_DOMAINS".
      *
      * @param verbosity The verbosity.
      * @param subDomain The sub-domain of the internal domain to log into.
@@ -3196,7 +3196,7 @@ public class Lox extends ThreadLock
      * @param scope        The scope that the given \p domain should be registered for.
      *                     Available Scope definitions are platform/language dependent.
      * @param packageLevel Used only if parameter \p scope equals
-     *                     \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
+     *                     \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                     to reference parent packages. Optional and defaults to \c 0.
      * @param removeNTRSD  Used to remove thread-related Scope Domains (and is true only when
      *                     invoked by interface method #removeThreadDomain.
@@ -3283,7 +3283,7 @@ public class Lox extends ThreadLock
      * @param scope        The scope that the given \p logable should be registered for.
      *                     Available Scope definitions are platform/language dependent.
      * @param packageLevel Used only with
-     *                     \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE".
+     *                     \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE".
      *                     Cuts the given number of package parts (separated with '.') from the end
      *                     of the packages. Optional and defaults to \c 0.
      * @param thread       The thread to set/unset a thread-related <em>Prefix Logable</em> for.
@@ -3434,7 +3434,7 @@ public class Lox extends ThreadLock
     protected void  getDomainPrefixFromConfig( Domain  dom )
     {
         Variable variable= new Variable( ALox.PREFIXES, getName());
-        if( 0 == variable.load() )
+        if( 0 == ALox.config.load(variable) )
             return;
 
         Tokenizer prefixTok=        new Tokenizer();

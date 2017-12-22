@@ -12,7 +12,7 @@ import com.aworx.lib.lang.ReportWriter;
 
 /** ************************************************************************************************
  * The \b %ReportWriter for \b %ALib when using \b %ALox. An instance of this class is
- * created in method \ref com::aworx::lox::Log::addDebugLogger "Log.addDebugLogger"
+ * created in method \ref com.aworx.lox.Log.addDebugLogger "Log.addDebugLogger"
  * and registered with \b %ALib.<br>
  * Uses internal domain <c>'$/REPORT'</c> for logging.
  **************************************************************************************************/

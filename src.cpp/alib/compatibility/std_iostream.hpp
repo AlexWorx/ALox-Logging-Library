@@ -17,7 +17,7 @@
 #ifndef HPP_ALIB_COMPATIBILITY_STD_IOSTREAM
 //! @cond NO_DOX
 #define HPP_ALIB_COMPATIBILITY_STD_IOSTREAM 1
-//! @endcond NO_DOX
+//! @endcond
 
 #if ALIB_MODULE_STRINGS
 
@@ -48,8 +48,8 @@ namespace aworx { namespace lib { namespace strings
      * and used inside.
      * In this case, the 'output parameter' #IsEOF, can be used e.g. as a loop criteria.
      * \see
-     * - \ref operator>>(::std::istream&, AString&)            "operator>>(std::istream&, AString&)" and
-     *   \ref operator<<(::std::ostream& os, const String& as) "operator<<(ostream& os, const String& as)"
+     * - \alib{strings::thirdparty::std,operator>>(std::istream&, AString&)}  and
+     *   \alib{strings::thirdparty::std,operator<<(std::ostream&, const String& as)}
      * - For a sample, refer to source code of \b %ALib class \b %IniFile, method
      *   \ref aworx::lib::config::IniFile::ReadFile "IniFile::ReadFile".
      ******************************************************************************************/
@@ -58,10 +58,10 @@ namespace aworx { namespace lib { namespace strings
         public:
 
         /** The input stream to read from.*/
-        ::std::istream&         IStream;
+        ::std::istream&        IStream;
 
         /** If \c CurrentData::KEEP, the target \c %AString is not cleared before the read operation. */
-        lang::CurrentData       TargetData;
+        lang::CurrentData      TargetData;
 
         /** The amount of characters that the buffer is increased while reading parts of the line.*/
         integer                BufferSize;
@@ -90,8 +90,8 @@ namespace aworx { namespace lib { namespace strings
          ******************************************************************************************/
         ReadLineFromIStream( ::std::istream&   istream,
                              lang::CurrentData targetData   = lang::CurrentData::Clear,
-                             integer          bufferSize   = 256,
-                             integer          maxLineWidth = 4096                        )
+                             integer           bufferSize   = 256,
+                             integer           maxLineWidth = 4096                        )
         : IStream     (istream),
           TargetData  (targetData),
           BufferSize  (bufferSize),
@@ -107,12 +107,12 @@ namespace aworx { namespace lib { namespace strings
 
 
     /** ********************************************************************************************
-     * Copies the contents of the given %String to into the std::ostream given as reference.
+     * Copies the contents of the given %String to into the \c std::ostream given as reference.
      * @param  stream The ostream object to write the given  String into.
      * @param  string The String to write into the given ostream.
      * @returns The ostream to allow concatenated operations.
      **********************************************************************************************/
-    inline ::std::ostream& operator<<( ::std::ostream& stream, const String& string )
+    inline std::ostream& operator<<( std::ostream& stream, const String& string )
     {
         if ( string.IsNotEmpty() )
             stream.write( string.Buffer(), string.Length() );
@@ -120,16 +120,17 @@ namespace aworx { namespace lib { namespace strings
     }
 
     /** ********************************************************************************************
-     * Copies the contents of the given %String to into the std::ostream given as pointer.
+     * Copies the contents of the given %String to into the \c std::ostream given as pointer.
      * @param  stream The ostream object to write the given  String into.
      * @param  string The String to write into the given ostream.
      * @returns The ostream to allow concatenated operations.
      **********************************************************************************************/
-    inline ::std::ostream* operator<<( ::std::ostream* stream, const String& string )
+    inline std::ostream* operator<<( std::ostream* stream, const String& string )
     {
         stream->write( string.Buffer(), string.Length() );
         return stream;
     }
+
 
     /** ********************************************************************************************
      * Clears the given %AString and extracts data from the std::istream into it. The extractions
@@ -138,7 +139,7 @@ namespace aworx { namespace lib { namespace strings
      * @param  string The AString to receive data.
      * @returns The ostream to allow concatenated operations.
      **********************************************************************************************/
-    inline ::std::istream& operator>>( ::std::istream& stream, AString& string )
+    inline std::istream& operator>>( std::istream& stream, AString& string )
     {
         string << thirdparty::std::ReadLineFromIStream( stream, lang::CurrentData::Clear );
         return stream;
@@ -151,7 +152,7 @@ namespace aworx { namespace lib { namespace strings
      * @param  string The AString to receive data.
      * @returns The ostream to allow concatenated operations.
      **********************************************************************************************/
-    inline ::std::istream* operator>>( ::std::istream* stream, AString& string )
+    inline std::istream* operator>>( std::istream* stream, AString& string )
     {
         ALIB_ASSERT_WARNING ( stream != nullptr, "Given std::IStream is nullptr" );
 
@@ -162,7 +163,7 @@ namespace aworx { namespace lib { namespace strings
 
 
     /** Specialization of template struct \ref T_Apply for type \c thirdparty::std::ReadLineFromIStream.   */
-    template<> struct T_Apply<thirdparty::std::ReadLineFromIStream> : public ::std::true_type
+    template<> struct T_Apply<thirdparty::std::ReadLineFromIStream> : public std::true_type
     {
         /** ****************************************************************************************
          * Reads a line from a text file and appends the contents to \p target.
@@ -183,13 +184,65 @@ namespace aworx { namespace lib { namespace strings
         static  ALIB_API   integer Apply( AString& target, const thirdparty::std::ReadLineFromIStream& reader);
     };
 
+    // We are faking all template specializations of namespace strings for doxygen into namespace
+    // aworx::lib::strings::thirdparty::std to keep the documentation of namespace string clean!
+
+    #if !defined(DOX_PARSER)
+    }} // namespace aworx[::lib::strings]
+    #endif
+
+    /** ********************************************************************************************
+     * Copies the contents of the given \alib{strings,T_Apply,applicable type}
+     * the \c std::ostream given as reference.
+     *
+     * \note Unlike this documentation states, this operator is defined in namespace #aworx.
+     *
+     * @param  stream     The \c std::ostream object to write the given  String into.
+     * @param  applicable The object whose contents is to be written into the given \p stream.
+     * @returns The ostream to allow concatenated operations.
+     **********************************************************************************************/
+    template<typename TApplicable,
+             typename  TEnableIf= typename  std::enable_if<aworx::lib::strings::T_Apply<TApplicable>::value>::type >
+
+    std::ostream& operator<<( std::ostream& stream, const TApplicable& applicable )
+    {
+        String256 buf;
+        ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( buf, ReplaceExternalBuffer );
+
+        if ( buf._(applicable).IsNotEmpty() )
+            stream.write( buf.Buffer(), buf.Length() );
+        return stream;
+    }
+
+    /** ********************************************************************************************
+     * Copies the contents of the given \alib{strings,T_Apply,applicable type}
+     * the \c std::ostream given as pointer.
+     *
+     * \note Unlike this documentation states, this operator is defined in namespace #aworx.
+     *
+     * @param  stream     The \c std::ostream object to write the given  String into.
+     * @param  applicable The object whose contents is to be written into the given \p stream.
+     * @returns The ostream to allow concatenated operations.
+     **********************************************************************************************/
+    template<typename TApplicable,
+             typename  TEnableIf= typename  std::enable_if<aworx::lib::strings::T_Apply<TApplicable>::value>::type >
+
+    std::ostream* operator<<( std::ostream* stream, const TApplicable& applicable )
+    {
+        if (stream != nullptr)
+            aworx::operator<<( * stream, applicable );
+        return stream;
+    }
+
+
+
 // We are faking all template specializations of namespace strings for doxygen into namespace
 // strings::apply to keep the documentation of namespace string clean!
 #if defined(DOX_PARSER)
-}}
+}}}} // for doxygen this is now aworx[::lib::strings::thirdparty::std]
 #endif
 
-}}}
+} // namespace [aworx]
 
 #endif // ALIB_MODULE_STRINGS
 

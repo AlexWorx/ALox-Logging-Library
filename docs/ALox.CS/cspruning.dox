@@ -6,17 +6,17 @@
 // #################################################################################################
 
 /**
-\page cspruning   Pruning ALox Code in C# from Release Builts
+\page alox_cs_pruning   Pruning ALox Code in C# from Release Builts
 
 \tableofcontents
 
 
-# 1. What is Pruning? #  {#cssetup_pruning_what_is_pruning}
+# 1. What is Pruning? #  {#alox_cs_setup_pruning_what_is_pruning}
 
 An introduction to the concept of pruning is given in
 [FAQ: What is Pruning?](../faq.html#faq_pruning).
 
-# 2. How Pruning in ALox for C# works #  {#cssetup_pruning_how}
+# 2. How Pruning in ALox for C# works #  {#alox_cs_setup_pruning_how}
 
 Since Version 5, the Microsoft C# compiler supports methods to be annotated with class "ConditionalAttribute".
 This attribute uses a conditional compilation symbol which causes the compiler to ignore the invocation of methods
@@ -82,7 +82,7 @@ This sample shows, that only for the configuration/bootstrap part your code gets
 the release version, you can trust ALox that the impact of remaining configuration code
 is minimal. Again: standard logging code is always removed 100%!
 
-# 3. Mission accomplished: Perfect Auto Pruning with ALox! #  {#cssetup_pruning_result}
+# 3. Mission accomplished: Perfect Auto Pruning with ALox! #  {#alox_cs_setup_pruning_result}
 
 The result of the things said above incorporate **six great news** for you:
 

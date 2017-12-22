@@ -12,7 +12,7 @@
 
 // to preserve the right order, we are not includable directly from outside.
 #if !defined(ALIB_PROPER_INCLUSION)
-    #error "include 'alib/alib.hpp' or 'alib/alib_strings.hpp' instead of this header"
+    #error "include 'alib/alib.hpp' instead of this header"
 #endif
 
 
@@ -364,16 +364,16 @@ class TString : public String
          *                     performed and the needle must not be empty.
          * @param needle       The String to search for.
          * @param startIdx     The index to start the search at. Optional and defaults to \c 0.
-         * @param sensitivity  Case sensitivity of the comparison.
+         * @tparam sensitivity Case sensitivity of the comparison.
          *                     Optional and defaults to Case::Sensitive.
          *
          * @return    -1 if the string is not found. Otherwise the index of first occurrence.
          ******************************************************************************************/
-        template <bool TCheck= true>
+        template < lang::Case   sensitivity    =  lang::Case::Sensitive,
+                   bool         TCheck         = true                     >
         inline
         integer    IndexOf( const TString&   needle,
-                            integer          startIdx= 0,
-                            lang::Case       sensitivity=  lang::Case::Sensitive )
+                            integer          startIdx= 0 )
         const
         {
             if (TCheck)
@@ -402,7 +402,7 @@ class TString : public String
                 }
                 else
                     // there is no strcasestr in windows, we use the slower String version, non-checking
-                    return IndexOfSubstring<false>( needle, startIdx , lang::Case::Ignore );
+                    return IndexOfSubstring<lang::Case::Ignore, false>( needle, startIdx );
             #endif
         }
 
@@ -422,25 +422,27 @@ class TString : public String
          *       terminated needles needs to be invoked. This is possible, for example
          *       by writing e.g. <em>mystring.String::IndexOf()</em>.
          *
-         * @tparam TCheck   Defaults to \c true which is the normal invocation mode.
-         *                  If \c <false\> is added to the method name, no parameter checks are
-         *                  performed and the needles must not be empty.
-         * @param needles   Pointer to a zero terminated set of characters to be taken into account.
-         * @param inclusion Denotes whether the search returns the first index that holds a value
-         *                  that is included or that is not excluded in the set of needle
-         *                  characters.
-         * @param startIdx  The index to start the search at. If the given value is less than 0,
-         *                  it is set to 0. If it exceeds the length of the string, the length of
-         *                  the string is returned.
-         *                  Defaults to 0.
+         * @param needles    Pointer to a zero terminated set of characters to be taken into 
+         *                   account.
+         * @param startIdx   The index to start the search at. If the given value is less than 0,
+         *                   it is set to 0. If it exceeds the length of the string, the length of
+         *                   the string is returned.
+         *                   Defaults to 0.
+         * @tparam TCheck    Defaults to \c true which is the normal invocation mode.
+         *                   If \c <false\> is added to the method name, no parameter checks are
+         *                   performed and the needles must not be empty.
+         * @tparam inclusion Denotes whether the search returns the first index that holds a value
+         *                   that is included or that is not excluded in the set of needle
+         *                   characters.
          *
          * @return The index of the first character found which is included, respectively not
          *         included, in the given set of characters.
          *         If nothing is found, -1 is returned.
          ******************************************************************************************/
-        template <bool TCheck= true>
+        template <lang::Inclusion   inclusion,
+                  bool              TCheck= true >
         inline
-        integer  IndexOfAny( const TString& needles, lang::Inclusion inclusion, integer startIdx= 0 )
+        integer  IndexOfAny( const TString& needles, integer startIdx= 0 )
         const
         {
             if (TCheck)
@@ -732,7 +734,7 @@ class TString : public String
          ******************************************************************************************/
         ALIB_API
         uint64_t  ParseBin( integer startIdx =0, NumberFormat* numberFormat= nullptr,
-                                integer* newIdx= nullptr ) const;
+                            integer* newIdx= nullptr ) const;
 
 
         /** ****************************************************************************************

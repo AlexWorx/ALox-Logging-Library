@@ -96,18 +96,20 @@ class PlainTextLogger : public aworx::lox::core::textlogger::TextLogger
 
         /** ****************************************************************************************
          * Abstract method to be implemented by descendants. Has to write the given region of
-         * the given AString to the destination.
+         * the given string to the destination.
          * Has to return the number of characters written, which might be different from the
-         * substrings' length, e.g. in case of character set conversions. If an error occurs, \c -1
-         * can be returned to indicate that the current log should be aborted. In this case, no
-         * invocation of \ref notifyLogOp "notifyLogOp(Phase::End)" will be performed.
+         * region length requested, e.g. in case of character set conversions.
+         *
+         * If an error occurs, \c -1 can be returned to indicate that the current log should be
+         * aborted. In this case, no invocation of \ref notifyLogOp "notifyLogOp(Phase::End)"
+         * will be performed.
          *
          * @param buffer   The string to write a portion of.
          * @param start    The start of the portion in \p buffer to write out.
          * @param length   The length of the portion in \p buffer to write out.
          * @return The number of characters written, -1 on error.
          ******************************************************************************************/
-        virtual integer logSubstring( const AString& buffer, integer start, integer length )       = 0;
+        virtual integer logSubstring( const String& buffer, integer start, integer length )     = 0;
 
 
     // #############################################################################################

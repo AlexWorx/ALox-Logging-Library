@@ -24,57 +24,19 @@
 #ifndef HPP_ALIB_LANG_OWNABLE
 //! @cond NO_DOX
 #define HPP_ALIB_LANG_OWNABLE 1
-//! @endcond NO_DOX
-
-
-/**
- * @addtogroup GrpALibMacros
- * @{
- * @name Macros Supporting ALib Classes Owner And Ownable
- * The macros listed here have a direct relationship with classes defined in \b %ALib
- * and with their use.
- * @{
- *
- * \def  OWN
- * This preprocessor defines an object of class
- * \ref aworx::lib::lang::Owner "Owner". The special thing about it is, that using this macro
- * there is no need to invent an (otherwise useless) identifier for that definition.
- * Basically, this macro exists, because C++ does not support anonymous objects.<br>
- * As a sample, without using this macros a piece of code code using classes
- * \ref aworx::lib::lang::Owner   "Owner"/
- * \ref aworx::lib::lang::Ownable "Ownable"
- * could look like this:<br>
-\verbatim
-{
-    Owner myOwner( myOwnable );
-
-    // do stuff
-    ...
-}
-\endverbatim
- *  With the use of this macro, the code changes to:<br>
-\verbatim
-{
-    OWN( myOwnable );
-
-    // do stuff
-    ...
-}
-\endverbatim
- *
- * @}
- * @} */ // GrpALibMacros
-
-#if ALIB_DEBUG
-    #define   OWN(ownable) aworx::lib::lang::Owner ALIB_IDENTIFIER(owner) (ownable, ALIB_SRC_INFO_PARAMS);
-#else
-    #define   OWN(ownable) aworx::lib::lang::Owner ALIB_IDENTIFIER(owner) (ownable);
-#endif
+//! @endcond
 
 
 
-namespace aworx { namespace lib { namespace lang
-{
+// #################################################################################################
+// Macros (for technical reasons, doxed in file alib.cpp)
+// #################################################################################################
+#define   OWN(ownable)                                                                             \
+aworx::lib::lang::Owner ALIB_IDENTIFIER(owner)                                                     \
+   (ownable  ALIB_COMMA_DBG   ALIB_SRCPOS_REL_EMPTY);                              \
+
+namespace aworx { namespace lib { namespace lang {
+
 /** ************************************************************************************************
  * This abstract class represents objects that can be owned by some other instances.
  * 'To own' means an abstract concept of getting 'acquired' and getting 'released' later on.
@@ -136,8 +98,15 @@ class Ownable
 /** ************************************************************************************************
  *  Ensures that an object of type \ref Ownable is acquired and properly released when unwinding the
  *  stack.  This class is meant to be allocated only on the stack and not on the heap. Therefore,
- *  the new operators are declared private.<br>
- *  See preprocessor macro \ref OWN for a convenient way to use this class.
+ *  the new operators are declared private.
+ *
+ *  In debug compilations the constructor expects caller source information parameters
+ *  \p file, \p line and \p func. It is convenient to use macro
+ *  \ref ALIB_SRCPOS_REL_EMPTY to provide those.
+ *
+ *  \see
+ *    Preprocessor macros \ref OWN, \ref LOCK_HERE and \ref LOCK_HERE_WITH for a convenient way to
+ *    use this class.
  **************************************************************************************************/
 struct Owner
 {
@@ -184,6 +153,6 @@ struct Owner
          ~Owner()                                        { theOwnable.Release(); }
 };
 
-}}} // namespace aworx::lib::lang
+}}}// namespace [aworx::lib::lang]
 
 #endif // HPP_ALIB_LANG_OWNABLE

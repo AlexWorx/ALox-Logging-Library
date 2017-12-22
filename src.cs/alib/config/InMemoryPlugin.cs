@@ -20,14 +20,14 @@ namespace cs.aworx.lib.config  {
  * configuration variables in memory. Instances of this class are used to create two plug-ins
  * within standard configurations:
  * - One with priority
- *   \ref cs::aworx::lib::config::Configuration::PrioDefault "PrioDefault" (low priority)
+ *   \ref cs.aworx.lib.config.Configuration.PrioDefaultValues "PrioDefaultValues" (low priority)
  *   to store default values not found in other configuration plug-ins and
  * - a second with priority
- *   \ref cs::aworx::lib::config::Configuration::PrioProtected "PrioProtected" (highest priority),
+ *   \ref cs.aworx.lib.config.Configuration.PrioProtectedValues "PrioProtectedValues" (highest priority),
  *   which can be used protect configuration values from external change.
  *
  * This class in addition acts as the parent of class
- * \ref cs::aworx::lib::config::IniFile "IniFile" and potentially other (custom) classes.
+ * \ref cs.aworx.lib.config.IniFile "IniFile" and potentially other (custom) classes.
  * For this reason, it divides the set of variables into sections (according to the category),
  * allows comment strings for variables and sections, and virtualizes the some key methods to
  * allow descendants to take specific actions.
@@ -177,7 +177,7 @@ public class InMemoryPlugin : ConfigurationPlugin
             /** ************************************************************************************
              * Virtual method to create an Entry.
              * (Provided to allow descendant classes to created extended versions of an entry. See
-             * also \ref cs::aworx::lib::config::InMemoryPlugin::createSection "InMemoryPlugin.createSection".)
+             * also \ref cs.aworx.lib.config.InMemoryPlugin.createSection "InMemoryPlugin.createSection".)
              *
              * @param  name The name of the entry.
              * @return An object of type \ref Entry "InMemoryPlugin.Entry".
@@ -267,7 +267,7 @@ public class InMemoryPlugin : ConfigurationPlugin
 
 
         /** ****************************************************************************************
-         * Searches the \ref cs::aworx::lib::config::InMemoryPlugin::Section "Section" with the given name.
+         * Searches the \ref cs.aworx.lib.config.InMemoryPlugin.Section "Section" with the given name.
          *
          * @param name      The name of the section to be retrieved.
          * @return Returns the section if it was found, \c null otherwise.
@@ -282,12 +282,12 @@ public class InMemoryPlugin : ConfigurationPlugin
         }
 
         /** ****************************************************************************************
-         * Searches the \ref cs::aworx::lib::config::InMemoryPlugin::Section "Section" with the given name.
+         * Searches the \ref cs.aworx.lib.config.InMemoryPlugin.Section "Section" with the given name.
          * If the section was not found, it is created.
          * If the section is found and has no comments, then the provided comments are appended.
          * @param name      The name of the section to be retrieved.
          * @param comments  The comment lines for the section, in the case the section is not
-         *                  found. If this is null, no section is created.
+         *                  found. If this is null, no section comments are created.
          * @return Returns the section if it was found or created. \c null otherwise.
          ******************************************************************************************/
         public Section  SearchOrCreateSection( Object name, AString comments )

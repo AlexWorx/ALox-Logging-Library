@@ -17,7 +17,7 @@
 
 
 #if !ALIB_MODULE_BOXING
-    #error "class Formatter of library ALib can not be used without the use of ALib %Boxing."
+    #error "class Formatter of library ALib can not be used without the use of %ALib %Boxing."
 #endif
 
 #if !ALIB_FEAT_BOXING_FTYPES
@@ -51,22 +51,14 @@ namespace aworx { namespace lib { namespace strings { namespace format {
  * some differences, some things are not possible (considering python being a scripting language)
  * but then there are also found some very helpful extensions to that standard. Instead of repeating
  * a complete documentation, please refer to the
- * [Python Documentation](https://docs.python.org/3.5/library/string.html#format-string-syntax) as the foundation
- * and then take note of the following list of differences, extensions and general hints:
+ * [Python Documentation](https://docs.python.org/3.5/library/string.html#format-string-syntax)
+ * as the foundation and then take note of the following list of differences, extensions and
+ * general hints:
  *
  * - <b>General Notes:</b>
  *   \b Python defines a placeholder field as follows
  *
  *          "{" [field_name] ["!" conversion] [":" format_spec] "}"
- *
- *   - By the nature of the implementation language of this class, \b field_name can not be the
- *     name of an identifier, an attribute name or an array element index.
- *     It can only be a positional argument index.
- *
- *   - Python formatter does not allow to switch from <b>automatic field indexing</b> to explicit
- *     indexing. This implementation does allow it. The automatic index always starts with index
- *     \c 0 and is incremented each time automatic indexing is used.
- *     Occurrences of explict indexing have no influence on the automatic indexing.
  *
  *
  *   - This formatter is <b>less strict</b> in respect to the order of the format symbols. E.g.
@@ -85,14 +77,41 @@ namespace aworx { namespace lib { namespace strings { namespace format {
  *     language) \b not supported.
  *
  * <p>
- *   - <b>Binary, Hexadecimal and Octal Numbers:</b>
- *     Binary, hexadecimal and octal output is <b>cut in size</b> (!) when a field width is given that
+ * - <b>Positional arguments and field name:</b>
+ *   - By the nature of the implementation language (<em>C++, no introspection</em>) of this class,
+ *     \b field_name can \b not be the name of an identifier, an attribute name or an array element
+ *     index. It can only be a positional argument index, hence a number that chooses a different
+ *     index in the provided argument list.<br>
+ *     However, the use of field names is often a requirement in use cases that offer configurable
+ *     format string setup to the "end user". Therefore, there are two alternatives to cope
+ *     with the limitation:
+ *     - In simple cases, it is possible to just add all optionally needed data in the argument list,
+ *       document their index position and let the user use positional argument notation to choose
+ *       the right value from the list.
+ *     - More elegant however, is the use of class
+ *       \ref aworx::lib::strings::format::PropertyFormatter "PropertyFormatter"
+ *       which extends the format specification by custom identifiers which control the placement
+ *       of corresponding data in the format argument list. This class uses a translator table from
+ *       identifier strings to custom callback functions. This way, much more than just simple
+ *       field names are allowed.
+ *
+ *   - When using positional arguments in a format string placeholders, the Python formatter
+ *     implementation does not allow to switch from <b>automatic field indexing</b> to explicit
+ *     indexing. This \b %Aib implementation does allow it. The automatic index (aka no positional
+ *     argument is given for a next placeholder) always starts with index \c 0 and is incremented
+ *     each time automatic indexing is used.   Occurrences of explict indexing have no influence
+ *     on the automatic indexing.
+ *
+ *
+ * <p>
+ * - <b>Binary, Hexadecimal and Octal Numbers:</b>
+ *   - Binary, hexadecimal and octal output is <b>cut in size</b> (!) when a field width is given that
  *     is smaller than the resulting amount of digits of the number arguments provided.
- *       \note  This implies that a value written might not be equal to the value given.
- *              This is not a bug but a design decision. The rational behind this is that with this
- *              behavior, there is no need to mask lower digits when passing the arguments to the
- *              format invocation. In other words, the formatter "assumes" that the given field width
- *              indicates that only a corresponding number of lower digits are of interest.
+ *      \note  This implies that a value written might not be equal to the value given.
+ *             This is not a bug but a design decision. The rational behind this is that with this
+ *             behavior, there is no need to mask lower digits when passing the arguments to the
+ *             format invocation. In other words, the formatter "assumes" that the given field width
+ *             indicates that only a corresponding number of lower digits are of interest.
  *
  *   - The number <b>grouping option</b> (<c>','</c>) can also be used with binary, hexadecimal and octal
  *     output.
@@ -157,7 +176,7 @@ namespace aworx { namespace lib { namespace strings { namespace format {
  *   for custom types appends the type name and the memory address of the object in hexadecimal
  *   format. To support custom string representations (for custom types), this boxing interface
  *   needs to be implemented for the type in question. Information and sample code on how to do this
- *   is found in the documentation of <b>ALib Boxing</b>, chapter
+ *   is found in the documentation of <b>%ALib %Boxing</b>, chapter
  *   \ref alib_namespace_boxing_strings_iapply "6.3 Interface IApply".
  *
  * - <b>Hash-Value Output:</b><br>
@@ -195,13 +214,13 @@ namespace aworx { namespace lib { namespace strings { namespace format {
  *   But before processing \b format_spec, this class will check if an argument provides a custom
  *   implementation for formatting.
  *
- *   <br>In \b C++, again an <b>ALib Boxing</b> interface class is used.
+ *   <br>In \b C++, again an <b>%ALib %Boxing</b> interface class is used.
  *   If a given boxed argument provides boxing interface
  *   \ref aworx::lib::strings::boxing::IFormat "IFormat", this interface is invoked and string
  *   \b format_spec is passed for custom processing.
  *
  *   Information and sample code on how to adopt custom types to support this interface is
- *   found in the documentation of <b>ALib Boxing</b>, chapter
+ *   found in the documentation of <b>%ALib %Boxing</b>, chapter
  *   \ref alib_namespace_boxing_strings_iformat   "6.4 Interface IFormat".
  *
  *   Built-in class
@@ -228,55 +247,93 @@ namespace aworx { namespace lib { namespace strings { namespace format {
  *
  *   - <b>!Upper</b><br>
  *     Converts the contents of the field to upper case.
+ *
  *   - <b>!Lower</b><br>
  *     Converts the contents of the field to lower case.
+ *
  *   - <b>!Quote</b><br>
  *     Puts quote characters \c '"' around the field.
  *     Note that these characters are not respecting any optional given field width but instead
  *     are added to such.<br>
  *     An alias name for \!Quote is given with \b !Str. As the alias can be abbreviated to \b !s,
  *     this provides compatibility with the \b Python specification.
+ *
  *   - <b>!ESC[\<|\>]</b><br>
  *     In its default behavior or if \c '<' is specified, certain characters are converted to escape
- *     sequences. If \c '>' is given, escape sequences are converted to their (ascii) value. See
- *     If \c '>' is given, escape sequences are converted to their (ascii) value. See
- *     \ref aworx::lib::strings::Format::Escape "Format::Escape" for details about the conversion
+ *     sequences.
+ *     If \c '>' is given, escape sequences are converted to their (ascii) value.
+ *     See \ref aworx::lib::strings::Format::Escape "Format::Escape" for details about the conversion
  *     that is performed.<br>
  *     An alias name for \b !ESC< is given with \b !a which provides compatibility
  *     with the \b Python specification.
  *     \note If \b !ESC\< is used in combination with \b !Quote, then \b !ESC\< should be the first
  *           conversion specifier. Otherwise, the quotes inserted might be escaped as well.
  *
+ *   - <b>!Fill[Cc]</b><br>
+ *     Inserts as many characters as denoted by the integer type argument.
+ *     By default the fill character is space <c>' '</c>. It can be changed with optional character
+ *     'C' plus the character wanted.
+ *
  *   - <b>!Tab[Cc][NNN]</b><br>
  *     Inserts fill characters to extend the length of the string to be a multiple of a tab width.
  *     By default the fill character is space <c>' '</c>. It can be changed with optional character
  *     'C' plus the character wanted. The tab width defaults to \c 8. It can be changed by adding
  *     an unsigned decimal number.
- *     Converts the contents of the field to lower case.
+ *
  *   - <b>!ATab[[Cc][NNN]|Reset]</b><br>
- *     Inserts an "automatic tab". These are tabulator positions that are stored internally
- *     and are automatically extend their tab-position in the moment the actual contents exceeds the
- *     currently stored tab-position. An arbitrary amount of auto tab stops are maintained by
- *     the formatter. Which each new invocation of
- *     \ref aworx::lib::strings::format::Formatter::Format "Formatter::Format" the
- *     first auto tab stop is chosen and with each use of \c !ATab the next tab stop is used.<br>
- *     By default the fill character is space <c>' '</c>. It can be changed with optional character
+ *     Inserts an "automatic tabulator stop". These are tabulator positions that are stored
+ *     internally and are automatically extended in the moment the actual contents exceeds the
+ *     currently stored tab-position. An arbitrary amount of auto tab stop and field width
+ *     (see <b>!AWith</b> below) values is maintained by the formatter.
+ *
+ *     Which each new invocation of \alib{strings::format,Formatter::Format}, the first auto value
+ *     is chosen and with each use of \c !ATab or \c !AWidth, the next value is used.<br>
+ *     By default, the fill character is space <c>' '</c>. It can be changed with optional character
  *     'C' plus the character wanted. The optional number provided gives the growth value by which
  *     the tab will grow if its position is exceeded. This value defaults to \c 3.
  *     The positions currently stored with the formatter can be reset with providing argument
  *     \c Reset. Alternatively to this, outside of a formatting process, the tab stops can be reset
- *     by invoking method
- *     \ref aworx::lib::strings::util::AutoSizes::Reset "Reset" on field #TabSizes.
+ *     by invoking method \alib{strings::format,Formatter::Reset}.
+ *
+ *     Both, auto tab and auto width conversions may be used to increase readability of multiple
+ *     output lines. Of-course, output is not completely tabular, only if those values that result
+ *     in the biggest sizes are formatted first. If a perfect tabular output is desired, the data
+ *     to be formatted may be processed twice: Once to temporary buffer which is disposed and then
+ *     a second time to the desired output stream.
+ *
+ *     \note Method \alib{strings::format,Formatter::ReleaseDefault} resets the auto size values
+ *           in case no multiple (recursive) acquirements had been performed.
+ *
+ *   - <b>!AWidth[NNN|Reset]</b><br>
+ *     Increases field width with repetitive invocations of format whenever a field value did not
+ *     fit to the actually stored width. Optional decimal number \b NNN is added as a padding value.
+ *     for more information, see <b>!ATab</b> above.
+ *
+ *   - <b>!Xtinguish</b><br>
+ *     Does not print anything. This is useful if format strings are externalized, e.g defined
+ *     in \alib{lang,Library::Res,library resources}. Modifications of such resources might use this
+ *     conversion to suppress the display of arguments (which usually are hard-coded).
+ *
+ *   - <b>!Replace\<search\>\<replace\></b><br>
+ *     Searches string \p search and replaces with \p replace. Both values have to be given
+ *     enclosed by characters \c ’<' and \c ’>'. In the special case that \p search is empty
+ *     (<c>\<\></c>), string \p replace will be inserted if the field argument is an empty string.
+ *
+\~Comment ####################################################################################### \~
+ * # Reference Documentation #
+ * @throws aworx::lib::strings::format::Exceptions
+ *   - \alib{strings::format::Exceptions,ArgumentIndexOutOfBounds}
+ *   - \alib{strings::format::Exceptions,IncompatibleTypeCode}
+ *   - \alib{strings::format::Exceptions,MissingClosingBracket}
+ *   - \alib{strings::format::Exceptions,MissingPrecisionValuePS}
+ *   - \alib{strings::format::Exceptions,DuplicateTypeCode}
+ *   - \alib{strings::format::Exceptions,UnknownTypeCode}
+ *   - \alib{strings::format::Exceptions,ExclamationMarkExpected}
+ *   - \alib{strings::format::Exceptions,UnknownConversionPS}
+ *   - \alib{strings::format::Exceptions,PrecisionSpecificationWithInteger}
  **************************************************************************************************/
 class FormatterPythonStyle : public FormatterStdImpl
 {
-    // #############################################################################################
-    // Public fields
-    // #############################################################################################
-    public:
-        /** Storage of sizes for auto-tabulator feature ("!ATab")  */
-        AutoSizes                   TabSizes;
-
     // #############################################################################################
     // Protected fields
     // #############################################################################################
@@ -288,13 +345,22 @@ class FormatterPythonStyle : public FormatterStdImpl
          */
         Substring                   phaExtConversion;
 
-        /** The value read from the precision field.
-         *  This is set to \c -1 in #resetPHAs. */
+        /** The position where the conversion was read. This is set to \c -1 in #resetPHAs. */
+        integer                     phaExtConversionPos;
+
+
+        /** The value read from the precision field.   This is set to \c -1 in #resetPHAs. */
         int                         phaExtPrecision;
+
+        /** The position where the precision was read. This is set to \c -1 in #resetPHAs. */
+        integer                     phaExtPrecisionPos;
 
         /** The default precision if not given.
          *  This is set to \c 6 in #resetPHAs, but is changed when specific. */
         int                         phaExtDefaultPrecision;
+
+        /** Storage of sizes for auto-tabulator feature ("!ATab")  */
+        AutoSizes                   autoSizes;
 
 
 
@@ -302,35 +368,37 @@ class FormatterPythonStyle : public FormatterStdImpl
     //  Constructor/Destructor
     // #############################################################################################
     public:
-    /** ********************************************************************************************
-     * Constructs this formatter.
-     * Inherited field #DefaultNumberFormat is initialized to meet the formatting defaults of
-     * Python.
-     **********************************************************************************************/
-     ALIB_API
-     FormatterPythonStyle();
-
-
+        /** ****************************************************************************************
+         * Constructs this formatter.
+         * Inherited field #DefaultNumberFormat is initialized to meet the formatting defaults of
+         * Python.
+         ******************************************************************************************/
+         ALIB_API
+         FormatterPythonStyle();
 
     // #############################################################################################
     //  Implementation of FormatterStdImpl interface
     // #############################################################################################
+    public:
+        /** ****************************************************************************************
+         * Resets #autoSizes.
+         ******************************************************************************************/
+        ALIB_API
+        virtual void    Reset()                                                            override;
+
     protected:
         /** ****************************************************************************************
          * Sets the actual auto tab stop index to \c 0.
          ******************************************************************************************/
-        virtual void                initializeFormat()                                 ALIB_OVERRIDE
-        {
-            FormatterStdImpl::initializeFormat();
-            TabSizes.Start();
-        }
+        ALIB_API
+        virtual void    initializeFormat()                                                 override;
 
         /** ****************************************************************************************
          * Invokes parent implementation and then applies some changes to reflect what is defined as
          * default in the Python string format specification.
          ******************************************************************************************/
         ALIB_API
-        virtual void    resetPHAs()                                                   ALIB_OVERRIDE;
+        virtual void    resetPHAs()                                                        override;
 
         /** ****************************************************************************************
          * Searches for \c '{'  which is not '{{'.
@@ -338,7 +406,7 @@ class FormatterPythonStyle : public FormatterStdImpl
          * @return The index found, -1 if not found.
          ******************************************************************************************/
         ALIB_API
-        virtual integer  findPlaceholder()                                           ALIB_OVERRIDE;
+        virtual integer findPlaceholder()                                                  override;
 
         /** ****************************************************************************************
          * Parses placeholder field in python notation. The portion \p format_spec is not
@@ -348,7 +416,7 @@ class FormatterPythonStyle : public FormatterStdImpl
          * @return \c true on success, \c false on errors.
          ******************************************************************************************/
         ALIB_API
-        virtual bool    parsePlaceholder()                                            ALIB_OVERRIDE;
+        virtual bool    parsePlaceholder()                                                 override;
 
         /** ****************************************************************************************
          * Parses the format specification for standard types as specified in
@@ -357,7 +425,7 @@ class FormatterPythonStyle : public FormatterStdImpl
          * @return \c true on success, \c false on errors.
          ******************************************************************************************/
         ALIB_API
-        virtual bool    parseStdFormatSpec()                                          ALIB_OVERRIDE;
+        virtual bool    parseStdFormatSpec()                                               override;
 
         /** ****************************************************************************************
          * Implementation of abstract method.<br>
@@ -369,16 +437,20 @@ class FormatterPythonStyle : public FormatterStdImpl
          * @param startIdx The start of the region to replace
          ******************************************************************************************/
         ALIB_API
-        virtual void    replaceEscapeSequences( integer startIdx )                   ALIB_OVERRIDE;
+        virtual void    replaceEscapeSequences( integer startIdx )                         override;
 
         /** ****************************************************************************************
          * Processes "conversions" which are specified with \c '!'.
          *
          * @param startIdx  The index of the start of the field written in #targetString.
          *                  \c -1 indicates pre-phase.
+         * @param target    The target string, only if different from field #targetString, which
+         *                  indicates intermediate phase.
+         * @return \c false, if the placeholder should be skipped (nothing is written for it).
+         *         \c true otherwise.
          ******************************************************************************************/
         ALIB_API
-        virtual void    preAndPostProcess( integer startIdx)                         ALIB_OVERRIDE;
+        virtual bool    preAndPostProcess( integer startIdx, AString* target )             override;
 
 
         /** ****************************************************************************************
@@ -386,7 +458,7 @@ class FormatterPythonStyle : public FormatterStdImpl
          * @return \c true if OK, \c false if replacement should be aborted.
          ******************************************************************************************/
         ALIB_API
-        virtual bool    checkStdFieldAgainstArgument()                                ALIB_OVERRIDE;
+        virtual bool    checkStdFieldAgainstArgument()                                     override;
 
 };
 

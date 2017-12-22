@@ -18,83 +18,17 @@
 #ifndef HPP_ALIB_CONFIG_VARIABLE
 //! @cond NO_DOX
 #define HPP_ALIB_CONFIG_VARIABLE 1
-//! @endcond NO_DOX
+//! @endcond
 
 #include <vector>
 
 // forward declarations
 namespace aworx {namespace lib {namespace strings{ class Substring; }}}
 
-namespace aworx { namespace lib { namespace config
-{
+namespace aworx { namespace lib { namespace config {
 // Forward declarations
 class Configuration;
 
-/** ************************************************************************************************
- * A data record used to define an
- * \ref aworx::lib::config::Variable "ALib Configuration Variable".
- * While variables can also defined by setting their attributes individually, it is recommended to
- * define all external configuration variables in a central place, using statically or dynamically
- * allocated objects of this type.<br>
- * Objects of class \b %Variable can be constructed and existing objects can be reused by invoking
- * \ref aworx::lib::config::Variable::Define "Variable::Define". Both construction and
- * re-definition support to pass objects of this type.
- *
- * All fields (except #Delim) support placeholders \c "%1", \c "%2" ... \c "%N", which are
- * replaced with the constructor of class \b %Variable and method
- * \ref aworx::lib::config::Variable::Define "Variable::Define".
- * This allows to define a series of variables whose category, name, description and value is
- * dependent on runtime information.
- *
- * Besides the use for passing parameters into objects of type Variable, this struct does not
- * provide further logic.
- **************************************************************************************************/
-struct VariableDefinition
-{
-    /**
-     * Pointer to a category string which is used as fallback if field #Category is nulled.
-     * This is useful as usually most variables share one general application specific
-     * category. With the combination of fields #CategoryFallback and #Category,
-     * the user (of a library) is be entitled to change single variables
-     * or all at once. In the latter case, field #Category is left nulled, while this field
-     * is set to a global default value (which also can be changed, therefore a pointer).
-     */
-    String*     CategoryFallback;
-
-    /** The category for this value. May be left nulled in which case field
-     *  #CategoryFallback is applied. */
-    String      Category;
-
-    /** The name of the variable. */
-    String      Name;
-
-    /**
-     * The default value. If this is \c nullptr, no variable will be created with method
-     * \ref aworx::lib::config::Configuration::Load "Configuration::Load".
-     * \note
-     *   The field is ignored when using the plug-in interface
-     *   \ref aworx::lib::config::ConfigurationPlugin::Load "ConfigurationPlugin::Load".
-     */
-    String      DefaultValue;
-
-    /** The delimiter passed to the plug-in as a hint on how to separate values.
-     *  (May or may not be used by a plug-in)  */
-    char        Delim;
-
-    /** If set attributes written in multi-lines are vertically aligned by this character or
-     *  string. Use cases are "=", ":" or "->".<br> Used by
-     *  \ref aworx::lib::config::IniFile "IniFile" and potentially by custom plug-ins. */
-    String16    FormatAttrAlignment;
-
-    /** Hints for formatting textual configuration files. (Used by class
-        \ref aworx::lib::config::IniFile "IniFile" and potentially by custom plug-ins.*/
-    int         FormatHints;
-
-    /** Comments for the variable. Some plug-ins allow to store comments along with the
-     *  variable (e.g. class \ref aworx::lib::config::IniFile).*/
-    String      Comments;
-
-};
 
 /** ************************************************************************************************
  * This class is used to load and store external configuration data with objects of class
@@ -105,15 +39,15 @@ struct VariableDefinition
  *   For general information about external configuration variables, see namespace documentation
  *   \ref aworx::lib::config "aworx::lib::config".
  *
- * <b>Construction/Redefinition:</b><br>
+ * <b>Construction/Redeclaration:</b><br>
  * While constructors accepting attributes of a variable exist, it is recommended to
- * define all external configuration variables in a central place, using statically or dynamically
+ * declare all external configuration variables in a central place, using statically or dynamically
  * allocated objects of type
- * \ref aworx::lib::config::VariableDefinition "VariableDefinition" and pass such record
+ * \ref aworx::lib::config::VariableDecl "VariableDecl" and pass such record
  * to the constructor of a variable.
  *
  * The class is designed to be 'reused' to avoid repeated allocation/de-allocation of memory.
- * After invoking one of the overloaded methods #Define, which share the same signatures as
+ * After invoking one of the overloaded methods #Declare, which share the same signatures as
  * the overloaded constructors, a variable is freshly initialized. Internally, the memory
  * allocated for values remains allocated.
  *
@@ -135,28 +69,20 @@ struct VariableDefinition
  *   with custom configuration plug-in types which
  *   for example might store the values in a database.<br>
  *   However, with the default plug-ins
- *   \ref aworx::lib::config::CommandLinePlugin "CommandLinePlugin",
- *   \ref aworx::lib::config::EnvironmentPlugin "EnvironmentPlugin" and
+ *   \ref aworx::lib::config::CLIArgs "CLIArgs",
+ *   \ref aworx::lib::config::Environment "Environment" and
  *   \ref aworx::lib::config::IniFile "IniFile"
  *   the delimiter is needed! Therefore, it is best practice to always define a proper delimiter if
  *   a variable is multi-valued.
  *
  * <b>Loading and Storing:</b><br>
- * There are three ways of loading and storing a variable:
+ * There are two ways of loading and storing a variable:
  * - Using the interface of class \ref aworx::lib::config::Configuration "Configuration"
  *   which allows to load and store variables from different sources (plug-ins) in a prioritized
  *   way.
  * - Using the interface of class \ref aworx::lib::config::ConfigurationPlugin "ConfigurationPlugin"
- *   which may be used if the decision about the source or drain of a load/store operation is explicitly
- *   made by a code unit.
- * - Using the interface methods #Load,#Store, #StoreDefault and #Protect found in this class
- *   itself which are provided for convenience. Those simply invoke the interface of the static global singleton
- *   \ref aworx::lib::config::Configuration::Default "Configuration::Default".
- *
- * Using the interface of this class itself is the most convenient way of loading and storing
- * variables, setting default values or protecting variables.
- * Only very few use cases demand for the creation and use of an instance of class
- * \b %Configuration different to the static singleton \b %Configuration::Default.
+ *   which may be used if the decision about the source or drain of a load/store operation is
+ *   explicitly made by a code unit - instead of by the configuration.
  *
  * Storing empty variables (method #Size returns \c 0) deletes a variable from the those
  * configuration plug-ins that are write enabled.
@@ -167,21 +93,6 @@ class Variable
     // Public fields
     // #############################################################################################
     public:
-        /** Denotes hints for formatting variables when storing in external configuration files  */
-        enum
-        {
-            /* No hints **/
-            FormatHint_None                    = 0      ,
-
-            /* Write each argument in a new line **/
-            FormatHint_MultLine                = 1 <<  0,
-
-            /* Suppress spaces around the delimiter (only used in single line mode) **/
-            FormatHint_NoDelimSpaces           = 1 <<  1,
-
-            /* This and upward bits are reserved for custom plug-ins **/
-            FormatHint_Custom                  = 1 <<  16,
-        };
 
         /** The \b %Configuration that was recently used to request or store the value.  */
         Configuration*  Config;
@@ -202,9 +113,9 @@ class Variable
 
         /** Hints for formatting textual configuration files. (Used by class
             \ref aworx::lib::config::IniFile "IniFile" and potentially by custom plug-ins.*/
-        int             FormatHints;
+        FormatHints     FmtHints;
 
-        /** If set attributes written in multi-lines are vertically aligned by this character or
+        /** If set, attributes written in multi-lines are vertically aligned by this character or
          *  string. Use cases are "=", ":" or "->".<br> Used by
          *  \ref aworx::lib::config::IniFile "IniFile" and potentially by custom plug-ins. */
         String16        FormatAttrAlignment;
@@ -223,11 +134,10 @@ class Variable
          *
          * The only occasion that this value is used is with method
          * \ref aworx::lib::config::Configuration::Load   "Configuration::Load".
-         * If no plug-in has this variable defined and this field is not \e nulled, then
-         * the value is written into plug-in
-         * \ref aworx::lib::config::Configuration::DefaultValues   "Configuration::DefaultValues",
-         * respectively - if this was replaced by the user - into a plug-in found at or below priority
-         * \ref aworx::lib::config::Configuration::PrioDefault   "Configuration::PrioDefault".
+         * If no plug-in has this variable defined and this field is not \e nulled, then the value
+         * is written into plug-in of priority \alib{config,Priorities::DefaultValues},
+         * respectively - if this default plug-in was replaced by the user - into a plug-in found at
+         * or below this priority.
          *
          * In this case, the value is parsed using method
          * \ref aworx::lib::config::XTernalizer::LoadFromString  "XTernalizer::LoadFromString"
@@ -247,7 +157,7 @@ class Variable
         /**
          * A value related to the priority of a configuration plug-in.
          * The following values apply:
-         * - \c -1 after creation or definition (reuse).
+         * - \alib{config,Priorities::NONE} after creation or declaration (reuse).
          * - The priority of the plug-in that loaded the value (after calling
          *   \ref aworx::lib::config::Configuration::Load   "Configuration::Load").
          * - The priority of the plug-in that stored the value (after calling
@@ -257,7 +167,7 @@ class Variable
          * documentation of
          * \ref aworx::lib::config::Configuration::Store "Configuration::Store") for details.
          */
-        int             Priority;
+        Priorities   Priority;
 
     // #############################################################################################
     // Protected fields
@@ -276,37 +186,37 @@ class Variable
     // #############################################################################################
     public:
         /** ****************************************************************************************
-         * Constructs an undefined Variable. Prior to using this, #Define has to be invoked.
+         * Constructs an undefined Variable. Prior to using this, #Declare has to be invoked.
          ******************************************************************************************/
          Variable()    { clear(); }
 
         /** ****************************************************************************************
-         * Constructs a variable from a definition.
+         * Constructs a variable from a declaration.
          * Strings named \c "%1", \c "%2" ... \c "%N" found in the fields #Category, #Name,
          * #Comments and #DefaultValue are replaced with given replacement strings found
          * in variadic argument list \p replacements.
          *
-         * @param definition     The definition data of the variable.
+         * @param declaration    The declaration data of the variable.
          * @param replacements   List of arguments. Must be of types that are accepted by constructor
          *                       of class \ref aworx::lib::strings::String "String".
          * @tparam StringTypes   The variadic argument types.
          ******************************************************************************************/
         template<typename... StringTypes>
-        Variable( const VariableDefinition& definition,  const StringTypes&... replacements )
+        Variable( const VariableDecl& declaration,  const StringTypes&... replacements )
         {
-            Define( definition, replacements... );
+            Declare( declaration, replacements... );
         }
 
         /** ****************************************************************************************
-         * Constructs a variable using the definition of another variable. The values are not
+         * Constructs a variable using the declaration of another variable. The values are not
          * copied.
          *
-         * @param variable  A variable to copy the definition (which is comprised with fields
+         * @param variable  A variable to copy the declaration (which is comprised with fields
          *                  #Category, #Name, #Fullname, #Delim, #Comments and #DefaultValue) from.
          ******************************************************************************************/
         Variable( const Variable& variable )
         {
-            Define( variable );
+            Declare( variable );
         }
 
         /** ****************************************************************************************
@@ -322,28 +232,77 @@ class Variable
         Variable( const String& category,  const String& name,  char delim= '\0',
                   const String& comments  = nullptr      )
         {
-            Define( category, name, delim, comments );
+            Declare( category, name, delim, comments );
+        }
+
+
+        /** ****************************************************************************************
+         * Constructs a variable from a \ref ALIB_CONFIG_VARIABLES "resourced variable declaration".
+         *
+         * \see Description of class \alib{config,VariableDecl} and
+         *      macro \ref ALIB_CONFIG_VARIABLES.
+         *
+         * @param declaration    Element of an enum class that is representing configuration
+         *                       variables.
+         * @tparam TEnum         The type of parameter \p declaration
+         * @tparam TEnableIf     Not to be specified. Used by the compiler to select this
+         *                       constructor only for associated custom C++ enum types.
+         ******************************************************************************************/
+        template<typename TEnum,
+                 typename TEnableIf= typename std::enable_if<
+                        std::is_same< VariableDecl::TTuple, typename lang::T_EnumMetaDataDecl<TEnum>::TTuple >::value
+                                                             >::type>
+        Variable( TEnum declaration )
+        {
+            Declare( declaration );
         }
 
         /** ****************************************************************************************
-         * Re-initializes a variable from a definition. Strings named \c "%1", \c "%2" ... \c "%N"
+         * Constructs a variable from a \ref ALIB_CONFIG_VARIABLES "resourced variable declaration".
+         *
+         * Strings named \c "%1", \c "%2" ... \c "%N" found in the fields #Category, #Name,
+         * #Comments and #DefaultValue are replaced with given replacement strings found
+         * in variadic argument list \p replacements.
+         *
+         * @param declaration    Element of an enum class that is representing configuration
+         *                       variables.
+         * @param replacements   List of arguments. Must be of types that are accepted by constructor
+         *                       of class \ref aworx::lib::strings::String "String".
+         * @tparam TEnum         The type of parameter \p declaration
+         * @tparam TEnableIf     Not to be specified. Used by the compiler to select this
+         *                       constructor only for associated custom C++ enum types.
+         ******************************************************************************************/
+        template<typename TEnum,
+                 typename... StringTypes,
+                 typename TEnableIf= typename std::enable_if<
+                        std::is_same< VariableDecl::TTuple, typename lang::T_EnumMetaDataDecl<TEnum>::TTuple >::value
+                                                             >::type>
+        Variable( TEnum declaration,  const StringTypes&... replacements )
+        {
+            Declare( declaration, replacements... );
+        }
+
+        /** ****************************************************************************************
+         * Re-initializes a variable from a declaration. Strings named \c "%1", \c "%2" ... \c "%N"
          * found in the fields  #Category, #Name, #Comments and #DefaultValue are replaced with
          * given replacement string arguments in vector \p replacements.
          *
-         * @param definition     The definition data of the variable.
+         * @param declaration    The declaration data of the variable.
          * @param replacements   List of replacement strings.
          * @return \c *this to allow concatenated operations.
          ******************************************************************************************/
         ALIB_API
-        Variable&   Define( const VariableDefinition&    definition,
-                            std::vector<String>&         replacements );
+        Variable&   Declare( const  VariableDecl&   declaration,
+                             std::vector<String>&   replacements );
 
         /** ****************************************************************************************
-         * Re-initializes a variable from a definition. Strings named \c "%1", \c "%2" ... \c "%N"
-         * found in the fields  #Category, #Name, #Comments and #DefaultValue are replaced with
-         * given replacement string arguments in variadic argument list \p replacements.
+         * Re-initializes a variable from a declaration.
          *
-         * @param definition     The definition data of the variable.
+         * Strings named \c "%1", \c "%2" ... \c "%N" found in fields #Category, #Name,
+         * #Comments and #DefaultValue are replaced with given replacement string arguments in
+         * variadic argument list \p replacements.
+         *
+         * @param declaration    The declaration data of the variable.
          * @param replacements   Replacement strings. Must be of types that are accepted by
          *                       constructor of class
          *                       \ref aworx::lib::strings::String "String".
@@ -351,22 +310,78 @@ class Variable
          * @return \c *this to allow concatenated operations.
          ******************************************************************************************/
         template<typename... StringTypes>
-        Variable&   Define( const VariableDefinition& definition, const StringTypes&... replacements )
+        Variable&   Declare( const VariableDecl& declaration, const StringTypes&... replacements )
         {
             std::vector<String> argsAsVector= {replacements...};
 
-            return Define( definition, argsAsVector );
+            return Declare( declaration, argsAsVector );
         }
 
         /** ****************************************************************************************
-         * Constructs a variable using the definition of another variable. The values are not
+         * \ref clear "Clears" the variable resets its declaration.
+         * Internally uses an instance of class \alib{config,VariableDecl} constructed with
+         * enum element \p declaration.
+         *
+         * @param declaration    Element of an enum class that is representing configuration
+         *                       variables.
+         * @tparam TEnum         The type of parameter \p declaration
+         * @tparam TEnableIf     Not to be specified. Used by the compiler to select this
+         *                       method only for associated custom C++ enum types.
+         *
+         * @return \c *this to allow concatenated operations.
+         ******************************************************************************************/
+        template<typename TEnum,
+                 typename TEnableIf= typename std::enable_if<
+                        std::is_same< VariableDecl::TTuple, typename lang::T_EnumMetaDataDecl<TEnum>::TTuple >::value
+                                                             >::type>
+        Variable&   Declare( TEnum declaration )
+        {
+            VariableDecl decl( declaration );
+            return Declare( decl );
+        }
+
+
+        /** ****************************************************************************************
+         * \ref clear "Clears" the variable resets its declaration.
+         * Internally uses an instance of class \alib{config,VariableDecl} constructed with
+         * enum element \p declaration.
+         *
+         * Strings named \c "%1", \c "%2" ... \c "%N" found in fields #Category, #Name,
+         * #Comments and #DefaultValue are replaced with given replacement string arguments in
+         * variadic argument list \p replacements.
+         *
+         * @param declaration    Element of an enum class that is representing configuration
+         *                       variables.
+         * @param replacements   Replacement strings. Must be of types that are accepted by
+         *                       constructor of class
+         *                       \ref aworx::lib::strings::String "String".
+         * @tparam TEnum         The type of parameter \p declaration
+         * @tparam TEnableIf     Not to be specified. Used by the compiler to select this
+         *                       method only for associated custom C++ enum types.
+         *
+         * @return \c *this to allow concatenated operations.
+         ******************************************************************************************/
+        template<typename TEnum,
+                 typename... StringTypes,
+                 typename TEnableIf= typename std::enable_if<
+                        std::is_same< VariableDecl::TTuple, typename lang::T_EnumMetaDataDecl<TEnum>::TTuple >::value
+                                                             >::type>
+        Variable&   Declare( TEnum declaration, const StringTypes&... replacements )
+        {
+            VariableDecl decl( declaration );
+            std::vector<String> argsAsVector= {replacements...};
+            return Declare( decl, argsAsVector );
+        }
+
+        /** ****************************************************************************************
+         * Constructs a variable using the declaration of another variable. The values are not
          * copied.
          *
-         * @param variable  A variable to copy the definition (which is comprised with fields
+         * @param variable  A variable to copy the declaration (which is comprised with fields
          *                  #Category, #Name, #Fullname, #Delim, #Comments and #DefaultValue) from.
          * @return \c *this to allow concatenated operations.
          ******************************************************************************************/
-        Variable& Define ( const Variable& variable )
+        Variable& Declare ( const Variable& variable )
         {
             clear();
 
@@ -379,7 +394,7 @@ class Variable
         }
 
         /** ****************************************************************************************
-         * Re-initializes the variable with the new definition
+         * Re-initializes the variable using resources.
          *
          * @param category  The category of the variable.
          * @param name      The name of the variable
@@ -393,9 +408,11 @@ class Variable
          * @return \c *this to allow concatenated operations.
          ******************************************************************************************/
         ALIB_API
-        Variable&   Define( const String& category,  const String& name,
-                            char          delim    = '\0',
-                            const String& comments = nullptr                  );
+        Variable&   Declare( const String& category,  const String& name,
+                             char          delim    = '\0',
+                             const String& comments = nullptr                  );
+
+
 
 
     // #############################################################################################
@@ -494,8 +511,7 @@ class Variable
          * Returns the value at \p idx interpreted as a double value.
          * If the index is invalid, \c 0.0 is returned.
          * Parsing is done using field \c NumberFormat of field #Config, respectively, if this is
-         * not set, the static singleton
-         * \ref aworx::lib::config::Configuration::Default "Configuration::Default".
+         * not set, the static singleton \alib{strings,NumberFormat::Global}.
          *
          * @param  idx  The index of the value to be retrieved.  Defaults to \c 0.
          * @return The value at \p idx interpreted as a double value.
@@ -506,8 +522,7 @@ class Variable
         /** ****************************************************************************************
          * Returns \c true if the first value represents a boolean 'true'.
          * Evaluation is done using field #Config, respectively if this is not set, the static
-         * singleton
-         * \ref aworx::lib::config::Configuration::Default "Configuration::Default".
+         * singleton \alib{strings,NumberFormat::Global}.
          *
          * @param  idx  The index of the value to be retrieved.  Defaults to \c 0.
          * @return The value at \p idx interpreted as a boolean value.
@@ -529,118 +544,19 @@ class Variable
         bool    GetAttribute( const String& attrName, strings::Substring& result, char attrDelim= '=' );
 
 
-        /** ****************************************************************************************
-         * Convenience method that loads the values of a variable from the static singleton
-         * \ref aworx::lib::config::Configuration::Default "Configuration::Default", using method
-         * \ref aworx::lib::config::Configuration::Load "Configuration::Load".
-         *
-         * @returns The priority of the configuration plug-in that provided the result.
-         *          \c 0 if not found,
-         *          \ref aworx::lib::config::Configuration::PrioDefault "Configuration::PrioDefault"
-         *          if either found or created in
-         *          \ref aworx::lib::config::Configuration::DefaultValues "Configuration::Default::DefaultValues"
-         ******************************************************************************************/
-        ALIB_API
-        int     Load();
-
-        /** ****************************************************************************************
-         * Convenience method that stores the values of a variable using the static singleton
-         * \ref aworx::lib::config::Configuration::Default "Configuration::Default", and method
-         * \ref aworx::lib::config::Configuration::Store "Configuration::Store".
-         *
-         * Optional parameter \p externalizedValue allows to provide a string that is parsed
-         * by the storing plug-in to reset the variables' values prior to writing.
-         *
-         * @param externalizedValue     Optional externalized value string. If given, the variable
-         *                              is set prior to writing.
-         * @returns The result of
-         *          \ref aworx::lib::config::Configuration::Store "Configuration::Default::Store(*this)".
-         ******************************************************************************************/
-        ALIB_API
-        int     Store( const String& externalizedValue= nullptr );
-
-        /** ****************************************************************************************
-         * Convenience method that stores the variable with priority
-         * \ref aworx::lib::config::Configuration::PrioDefault "Configuration::PrioDefault"
-         * using the static singleton found in
-         * \ref aworx::lib::config::Configuration::Default "Configuration::Default".
-         *
-         * The variable value is determined as follows:
-         * - If optional parameter \p externalizedValue is provided and not \e nulled, the values
-         *   are loaded from that string.
-         * - Otherwise, if the variable has no values set but field #DefaultValue is not \e nulled
-         *   then values are loaded from this field.
-         * - If all is unset (the variable values, parameter \p externalizedValue and field
-         *   #DefaultValue), then the unset variable is stored, which results in removing a
-         *   an existing default value from the configuration.
-         *
-         *
-         * @param externalizedValue     Optional externalized value string. If given, the variable
-         *                              is set prior to writing.
-         * @returns The result of
-         *          \ref aworx::lib::config::Configuration::Store "Configuration::Default::Store(*this)".
-         ******************************************************************************************/
-        ALIB_API
-        int     StoreDefault( const String& externalizedValue= nullptr );
-
-        /** ****************************************************************************************
-         * Convenience method that stores the variable with priority
-         * \ref aworx::lib::config::Configuration::PrioProtected "Configuration::PrioProtected"
-         * using the static singleton found in
-         * \ref aworx::lib::config::Configuration::Default "Configuration::Default".
-         *
-         * The variable value is determined as follows:
-         * - If optional parameter \p externalizedValue is provided and not \e nulled, the values
-         *   are loaded from that string.
-         * - Otherwise, if the variable has no values set but field #DefaultValue is not \e nulled
-         *   then values are loaded from this field.
-         * - If all is unset (the variable values, parameter \p externalizedValue and field
-         *   #DefaultValue), then the unset variable is stored, which results in removing a
-         *   an existing protection value from the configuration.
-         *
-         * @param externalizedValue     Optional externalized value string. If given, the variable
-         *                              is set prior to writing.
-         * @returns The result of
-         *          \ref aworx::lib::config::Configuration::Store "Configuration::Default::Store(*this)".
-         ******************************************************************************************/
-        ALIB_API
-        int     Protect( const String& externalizedValue= nullptr );
-
-
-        /** ****************************************************************************************
-         * Convenience method to set values according to the provided string.
-         * For the conversion of the "externalized" string, method
-         * \ref aworx::lib::config::XTernalizer::LoadFromString "XTernalizer::LoadFromString"
-         * of field
-         * \ref aworx::lib::config::ConfigurationPlugin::StringConverter "ConfigurationPlugin::StringConverter"
-         * of default plug-in
-         * \ref aworx::lib::config::Configuration::DefaultValues "Configuration::DefaultValues"
-         * of static singleton
-         * \ref aworx::lib::config::Configuration::Default "Configuration::Default" is used.
-         *
-         * @param externalizedValue     The new value to write.
-         *
-         * @returns The #Size of the variable after parsing.
-         ******************************************************************************************/
-        ALIB_API
-        int   LoadFromString( const String& externalizedValue );
-
-
     // #############################################################################################
     // protected methods
     // #############################################################################################
-
+    protected:
         /** Clears all values.  */
         ALIB_API
         void   clear();
 
-};
+};  // class Variable
+
+}} // namespace aworx[::lib::config]
 
 
-}} // namespace lib::config
-
-// /** Type alias name in namespace #aworx. */
-using     VariableDefinition= aworx::lib::config::VariableDefinition;
 
 // /** Type alias name in namespace #aworx. */
 using     Variable=           aworx::lib::config::Variable;

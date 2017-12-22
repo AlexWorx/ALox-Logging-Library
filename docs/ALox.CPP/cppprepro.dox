@@ -6,38 +6,38 @@
 // #################################################################################################
 
 ####################################################################################################
-### Page cppprepro
+### Page alox_cpp_prepro
 ####################################################################################################
 
 /**
-\page cppprepro    ALox and the C++ Preprocessor
+\page alox_cpp_prepro    ALox and the C++ Preprocessor
 
 \tableofcontents
 
 # 1. Reference Guide #
 This is a reference list to the preprocessor symbols discussed in the following sections:
 
-\ref cppprepro_compsymbols            "1. Compilation Symbols"
+\ref alox_cpp_prepro_compsymbols            "3. Compilation Symbols"
 - \ref GrpALibCompilerSymbols
 - \ref GrpALoxCompilerSymbols
 
-\ref cppprepro_code_selection_symbols "2. Code Selection Symbols"
+\ref alox_cpp_prepro_code_selection_symbols "4. Code Selection Symbols"
 - \ref GrpALibCodeSelectorSymbols
 - \ref GrpALoxCodeSelectorSymbols
 
-\ref cppprepro_macros                 "3. C++ Macros"
+\ref alox_cpp_prepro_macros                 "5. C++ Macros"
 - \ref GrpALibMacros
-- \ref GrpALoxMacrosLowLevel
 - \ref GrpMacrosDebugLog
 - \ref GrpMacrosReleaseLog
+- \ref GrpALoxMacrosLowLevel
 
 
-# 2. Introduction  # {#cppprepro_intro}
-## 2.1. Structure of ALox Preprocessor Usage ## {#cppprepro_intro1}
+# 2. Introduction  # {#alox_cpp_prepro_intro}
+## 2.1. Structure of ALox Preprocessor Usage ## {#alox_cpp_prepro_intro1}
 Generally, the (mis-)use of the C/C++ preprocessor can lead to confusion and hard to understand
-compile time errors. For all softwares, it is advisable to restrict the use of the preprocessor
+compile time errors. For all software, it is advisable to restrict the use of the preprocessor
 facilities of C++ to achieve the following:
-- Provide project specific configuration information to the compiler using the compilers' options
+- Provide project specific configuration information to the compiler using the compiler's options
 to pass symbol definitions to the compile process from 'outside' (from the make process).
 - Select different versions of the code dependent on the platform
 - Select different versions of the code dependent on the type of \e 'build' that is to be achieved
@@ -75,7 +75,7 @@ because all macros are introduced for one reason: to select different C++ code d
 the type of build that compiled (which can not be achieved differently).
 
 
-## 1.2. Preprocessor symbols introduced by ALib## {#cppprepro_intro2}
+## 1.2. Preprocessor symbols introduced by ALib## {#alox_cpp_prepro_intro2}
 ALox for C++ builds on
 \ref aworx::lib "A-Worx Library" (aka \e ALib) which provides classes that are not related to logging
 but are general purpose utility classes. To keep things simple, ALib is not compiled into a
@@ -86,7 +86,7 @@ other code that uses Alox).
 
 Consequently, some of the preprocessor symbols documented here are originating from ALib.
 
-# 3. Compilation Symbols #  {#cppprepro_compsymbols}
+# 3. Compilation Symbols #  {#alox_cpp_prepro_compsymbols}
 As stated above, ALox volunteers to separate everything that is related to the C++ preprocessor
 into three different categories. This section is about symbols that can be passed to the compiler.<p>
 
@@ -104,7 +104,7 @@ and <em>_DEBUG</em> used by other libraries. These default settings include:
 
 - extra debug code is switched off.
 - multi threading support is switched on.
-- debug logging is switched on in debug builts and switched off in release builts.
+- debug logging is switched on in debug builds and switched off in release builds.
 - debug logging scope information is switched on.
 - release logging is switched on.
 - release logging scope information is switched off.
@@ -118,7 +118,7 @@ never easy to understand and to debug. So it is advised to be careful modifying 
 make sure that those symbols whose documentation hints to the fact that they change the footprint of
 the code, share the same value across all compilation units and the ALox library itself.<br>
 A mechanism to detect compilation setup problems exists with method
-\ref aworx::lib::ALIB::VerifyCompilationFlags "ALIB::VerifyCompilationFlags" which is called
+\ref aworx::lib::ALib::VerifyCompilationFlags "ALib::VerifyCompilationFlags" which is called
 automatically when invoking
 \ref aworx::lox::ALox::Init "ALox::Init", which should be done explicitly on bootstrap, but which
 is also be done implicitly, when ALox is used (and no explicit invocation was made before).
@@ -129,7 +129,7 @@ The compilation symbols for ALox and ALib are listed here:
 - \ref GrpALoxCompilerSymbols
 
 <br>
-# 4. Code Selection Symbols # {#cppprepro_code_selection_symbols}
+# 4. Code Selection Symbols # {#alox_cpp_prepro_code_selection_symbols}
 
 These symbols are mostly derived (by the ALib/ALox header files) from the
 <b>Compilation Symbols </b>(\ref GrpALibCompilerSymbols "ALib", \ref GrpALoxCompilerSymbols "ALox")
@@ -160,7 +160,17 @@ For a complete reference, please refer to:
 - \ref GrpALoxCodeSelectorSymbols.
 
 
-# 5. C++ Macros# {#cppprepro_macros}
+# 5. C++ Macros# {#alox_cpp_prepro_macros}
+
+## 5.1. ALib Macros ## {#alox_cpp_prepro_44}
+As mentioned already, the ALox class library includes some utility classes, packaged into ALib.
+There are also a few macros available that are provided by ALib. These are not related to
+logging but might be useful in general.<p>
+For people who are interested in and may want to use these macros within projects that use
+ALib/ALox anyhow, the documentation is found here: \ref GrpALibMacros.
+
+
+## 5.2. ALox Logging Macros ## {#alox_cpp_prepro_42}
 
 As stated in the introduction, ALox for C++ makes extensive use of preprocessor macros
 which still is adhering to modern C++ programming style, because the purpose of the macros are
@@ -208,9 +218,6 @@ software (should someone do so).<br>
 In this respect, ALox for C++ is the most flexible implementation of ALox as two different release
 builds are possible: such with release logging incorporated and such with release logging pruned.<p>
 
-
-## 5.2. ALox Logging Macros ## {#cppprepro_42}
-
 The macros and their documentation are divided into two different groups:<br>
 - \ref GrpMacrosDebugLog
 - \ref GrpMacrosReleaseLog
@@ -230,10 +237,10 @@ Both macro sets include macro #Log_Prune, respectively #Lox_Prune.
 All that these two macros do is pruning the code that is passed to them in the moment that
 debug logging (respectively release logging) is supposed to be pruned.<p>
 
-For an introduction of how to use these macros, see \ref cpptutorial.
+For an introduction of how to use these macros, see \ref alox_cpp_tutorial.
 
 
-## 5.3. ALox Low Level Macros ## {#cppprepro_43}
+## 5.3. ALox Low Level Macros ## {#alox_cpp_prepro_43}
 
 The two sets of ALox macros for debug and release logging that where introduced in the previous
 chapter, rely on a small set of low level macros.
@@ -246,13 +253,6 @@ For developers who are interested in manipulating them, please refer to the sour
 ALox to get an understanding on how such manipulation would influence the existing
 \ref GrpMacrosDebugLog and \ref GrpMacrosReleaseLog, and also how to build your own macros
 upon them.
-
-## 5.4. ALib Macros ## {#cppprepro_44}
-As mentioned already, the ALox class library includes some utility classes, packaged into ALib.
-There are also a few macros available that are provided by ALib. These are not related to
-logging but might be useful in general.<p>
-For people who are interested in and may want to use these macros within projects that use
-ALib/ALox anyhow, the documentation is found here: \ref GrpALibMacros.
 
 */
 

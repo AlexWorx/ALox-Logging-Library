@@ -247,7 +247,7 @@ public class UT_alox_domains extends AWorxUnitTesting
         iniFile.readFile();
 
         // add to config
-        Configuration.Default.insertPlugin( iniFile, Configuration.PRIO_INI_FILE );
+        ALox.config.insertPlugin( iniFile, Configuration.PRIO_STANDARD );
 
         // create lox, loggers
         Lox myLox= new Lox( "MyLox" ); // name will be upper case
@@ -263,7 +263,7 @@ public class UT_alox_domains extends AWorxUnitTesting
 
         //Log.state( "", Verbosity.INFO, "Configuration now is:" );
 
-        Configuration.Default.removePlugin( iniFile );
+        ALox.config.removePlugin( iniFile );
         myLox.removeLogger( ml );
         myLox.removeLogger( "CONSOLE" );
     }
@@ -282,8 +282,8 @@ public class UT_alox_domains extends AWorxUnitTesting
             // create iniFile
             IniFile iniFile= new IniFile("*"); // don't read
             Variable var= new Variable();
-            iniFile.store( var.define( ALox.configCategoryName, "TESTML_FORMAT"),  "%Sp" );
-            iniFile.store( var.define( ALox.configCategoryName, "T_LOX_TESTML_VERBOSITY",';'),
+            iniFile.store( var.declare( ALox.configCategoryName, "TESTML_FORMAT"),  "%Sp" );
+            iniFile.store( var.declare( ALox.configCategoryName, "T_LOX_TESTML_VERBOSITY",';'),
                              "/DOM_VERB  = VerboseXX  ;" // xx is allowed!
                           +  "/DOM_INFO  = Info       ;"
                           +  "/DOM_WARN  = WARNING    ;"
@@ -295,7 +295,7 @@ public class UT_alox_domains extends AWorxUnitTesting
                           +  "*SUBSTR*   = Info       ;"
                           +  "/OVERWRITE = Info       ;"
                         );
-            Configuration.Default.insertPlugin( iniFile, Configuration.PRIO_INI_FILE );
+            ALox.config.insertPlugin( iniFile, Configuration.PRIO_STANDARD );
 
 
             // test
@@ -362,7 +362,7 @@ public class UT_alox_domains extends AWorxUnitTesting
             lox.verbose( "/OVERWRITE"   , "test" );    UT_EQ(  0, ml.cntLogs ); ml.cntLogs= 0;
             lox.info   ( "/OVERWRITE"   , "test" );    UT_EQ(  1, ml.cntLogs ); ml.cntLogs= 0;
 
-            lox.setVerbosity( ml , Verbosity.WARNING, "/OVERWRITE", 1000 ); // does overwrite
+            lox.setVerbosity( ml , Verbosity.WARNING, "/OVERWRITE", Configuration.PRIO_PROTECTED_VALUES - 1 ); // does overwrite
             lox.verbose( "/OVERWRITE"   , "test" );    UT_EQ(  0, ml.cntLogs ); ml.cntLogs= 0;
             lox.info   ( "/OVERWRITE"   , "test" );    UT_EQ(  0, ml.cntLogs ); ml.cntLogs= 0;
             lox.warning( "/OVERWRITE"   , "test" );    UT_EQ(  1, ml.cntLogs ); ml.cntLogs= 0;
@@ -372,15 +372,15 @@ public class UT_alox_domains extends AWorxUnitTesting
             lox.error  ( "/A/B"         , "test" );    UT_EQ(  0, ml.cntLogs ); ml.cntLogs= 0;
             lox.error  ( "/A/C"         , "test" );    UT_EQ(  0, ml.cntLogs ); ml.cntLogs= 0;
 
-            lox.setVerbosity( ml , Verbosity.INFO, "/A/B", Configuration.PRIO_DEFAULT -1 ); // does not overwrite
+            lox.setVerbosity( ml , Verbosity.INFO, "/A/B", Configuration.PRIO_DEFAULT_VALUES -1 ); // does not overwrite
             lox.verbose( "/A/B"         , "test" );    UT_EQ(  0, ml.cntLogs ); ml.cntLogs= 0;
             lox.info   ( "/A/B"         , "test" );    UT_EQ(  0, ml.cntLogs ); ml.cntLogs= 0;
 
-            lox.setVerbosity( ml , Verbosity.INFO, "/A/B", Configuration.PRIO_DEFAULT ); // does overwrite
+            lox.setVerbosity( ml , Verbosity.INFO, "/A/B", Configuration.PRIO_DEFAULT_VALUES); // does overwrite
             lox.verbose( "/A/B"         , "test" );    UT_EQ(  0, ml.cntLogs ); ml.cntLogs= 0;
             lox.info   ( "/A/B"         , "test" );    UT_EQ(  1, ml.cntLogs ); ml.cntLogs= 0;
 
-            lox.setVerbosity( ml , Verbosity.INFO, "/A/B", Configuration.PRIO_DEFAULT+ 1 ); // one higher
+            lox.setVerbosity( ml , Verbosity.INFO, "/A/B", Configuration.PRIO_DEFAULT_VALUES + 1 ); // one higher
             lox.verbose( "/A/B"         , "test" );    UT_EQ(  0, ml.cntLogs ); ml.cntLogs= 0;
             lox.info   ( "/A/B"         , "test" );    UT_EQ(  1, ml.cntLogs ); ml.cntLogs= 0;
 
@@ -392,7 +392,7 @@ public class UT_alox_domains extends AWorxUnitTesting
 
             //lox.state( "", Verbosity.INFO, "Configuration now is:" );
 
-            Configuration.Default.removePlugin( iniFile );
+            ALox.config.removePlugin( iniFile );
             lox.removeLogger( ml );
             lox.removeLogger( "CONSOLE" );
         }

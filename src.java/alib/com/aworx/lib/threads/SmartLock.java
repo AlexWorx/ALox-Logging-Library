@@ -17,7 +17,7 @@ import com.aworx.lib.lang.Safeness;
 /** ************************************************************************************************
  * This class extends class ThreadLock, adding functionality to register 'acquirers' of type
  * \b %ThreadLock. Only with the second \e acquirer added, the lock is activated
- * using \ref com::aworx::lib::threads::ThreadLock::setSafeness "ThreadLock.setSafeness(Safeness.Safe)".
+ * using \ref com.aworx.lib.threads.ThreadLock.setSafeness "ThreadLock.setSafeness(Safeness.Safe)".
  * The goal is to not use a mutex, when such use is not needed. In occasions with very high
  * frequency of acquisition, this can provide a performance benefit.
  *
@@ -33,7 +33,7 @@ import com.aworx.lib.lang.Safeness;
  * <b>Using nulled acquirers:</b><br>
  * Sometimes it is useful to add a \c null as an \e acquirer. A sample for this is found and
  * explained with
- * \ref com::aworx::lib::ALIB::stdOutputStreamsLock "ALIB.stdOutputStreamsLock".
+ * \ref com.aworx.lib.ALIB.stdOutputStreamsLock "ALIB.stdOutputStreamsLock".
  * If the first acquirer is null, the second should be added in a thread-safe way. This means,
  * the code invoking #addAcquirer needs to care for itself, that this object is not acquired
  * during this process. E.g. it can be done in the bootstrap section of a process, when no parallel

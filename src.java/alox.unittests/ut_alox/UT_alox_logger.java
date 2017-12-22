@@ -253,7 +253,7 @@ public class UT_alox_logger extends AWorxUnitTesting
                          )
     {
         Variable var= new Variable();
-        var.define(ALox.configCategoryName, "TESTML_FORMAT", ',').store( testFormat  );
+        ALox.config.store( var.declare(ALox.configCategoryName, "TESTML_FORMAT", ','), testFormat  );
         Lox lox= new Lox("TEST");
         MemoryLogger ml= new MemoryLogger("TESTML");
         lox.setVerbosity( ml, Verbosity.INFO );

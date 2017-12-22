@@ -47,14 +47,14 @@ integer T_Apply<Format::Tab>::Apply( AString& target, const Format::Tab& tab)
     if (reference < 0 )
     {
         // search backwards
-        reference= target.LastIndexOfAny( NewLine, Inclusion::Include, target.Length() -1 );
+        reference= target.LastIndexOfAny<Inclusion::Include>( NewLine, target.Length() -1 );
         if ( reference < 0 )
             reference= 0;
         else
         {
             // if new line has more than one character (windows) we have to now search the first
             // character that is not in newline
-            reference= target.IndexOfAny<false>( NewLine, Inclusion::Exclude, reference );
+            reference= target.IndexOfAny<Inclusion::Exclude, false>( NewLine, reference );
             if (reference < 0 )
                 reference= target.Length();
 
@@ -79,15 +79,37 @@ integer T_Apply<Format::Tab>::Apply( AString& target, const Format::Tab& tab)
 // #################################################################################################
 integer T_Apply<Format::Field>::Apply( AString& target, const Format::Field& field)
 {
+
+#if ALIB_MODULE_BOXING
+    String theContent;
+
+    // buffer apply given box into (if none string)
+    String128 noneStringArgBuf;
+    ALIB_WARN_ONCE_PER_INSTANCE_DISABLE(noneStringArgBuf,  ReplaceExternalBuffer );
+
+    // string type box given?
+    if( field.theContent.IsType<String>() )
+        theContent= field.theContent.Unbox<String>();
+    else
+    {
+        // write box into local buffer
+        noneStringArgBuf << field.theContent;
+        theContent= noneStringArgBuf;
+    }
+
+#else
+    String theContent= field.theContent;
+#endif
+
     integer width=    field.theWidth;
     integer padSize=  field.theWidth
-                       - CString::LengthWhenConvertedToWChar( field.theContent.Buffer(),
-                                                              field.theContent.Length() );
+                       - CString::LengthWhenConvertedToWChar( theContent.Buffer(),
+                                                              theContent.Length() );
 
     // check pad field.width
     if (padSize <= 0 || field.theAlignment == Alignment::Left )
     {
-                                target._          <false>( field.theContent );
+                                target._          <false>( theContent );
         if (padSize > 0 )       target.InsertChars<false>( field.padChar, padSize );
         return width;
     }
@@ -97,7 +119,7 @@ integer T_Apply<Format::Field>::Apply( AString& target, const Format::Field& fie
     {
         if( padSize > 0 )
             target.InsertChars<false>( field.padChar, padSize );
-        target.Apply<false>( field.theContent );
+        target.Apply<false>( theContent );
         return width;
     }
 
@@ -105,7 +127,7 @@ integer T_Apply<Format::Field>::Apply( AString& target, const Format::Field& fie
     integer leftPadding= padSize / 2;
     if( leftPadding > 0 )
         target.InsertChars<false> ( field.padChar, leftPadding  );
-    target.Apply<false> ( field.theContent );
+    target.Apply<false> ( theContent );
     if( padSize > leftPadding ) target.InsertChars<false> ( field.padChar, padSize - leftPadding );
 
     return width;
@@ -345,4 +367,4 @@ integer T_Apply<Format::Oct>::Apply( AString& target,  const Format::Oct& fmt )
 #endif
 
 
-}}}// namespace aworx::lib::strings
+}}}// namespace [aworx::lib::strings]

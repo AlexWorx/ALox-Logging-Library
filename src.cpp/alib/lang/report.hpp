@@ -20,8 +20,7 @@
 #endif
 
 
-namespace aworx { namespace lib
-{
+namespace aworx { namespace lib {
 
 // #################################################################################################
 // forward declarations
@@ -31,8 +30,7 @@ namespace strings { class TString;
                     class Formatter;
                     class AString;    }
 
-namespace lang
-{
+namespace lang {
 
 class ReportWriter;
 
@@ -47,12 +45,12 @@ class ReportWriter;
     #undef ALIB_ASSERT_ERROR
     #undef ALIB_ASSERT_WARNING
 
-    #define ALIB_ERROR(   ... )                     {                aworx::lib::lang::Report::GetDefault().DoReport( ALIB_DBG_SRC_INFO_PARAMS, 0,    __VA_ARGS__               );  }
-    #define ALIB_WARNING( ... )                     {                aworx::lib::lang::Report::GetDefault().DoReport( ALIB_DBG_SRC_INFO_PARAMS, 1,    __VA_ARGS__               );  }
+    #define ALIB_ERROR(   ... )                     {                aworx::lib::lang::Report::GetDefault().DoReport( ALIB_SRCPOS_REL_EMPTY, 0,    __VA_ARGS__               );  }
+    #define ALIB_WARNING( ... )                     {                aworx::lib::lang::Report::GetDefault().DoReport( ALIB_SRCPOS_REL_EMPTY, 1,    __VA_ARGS__               );  }
 
-    #define ALIB_ASSERT( cond )                     { if (!(cond)) { aworx::lib::lang::Report::GetDefault().DoReport( ALIB_DBG_SRC_INFO_PARAMS, 0,    "Internal Error"          ); } }
-    #define ALIB_ASSERT_ERROR( cond, ... )          { if (!(cond)) { aworx::lib::lang::Report::GetDefault().DoReport( ALIB_DBG_SRC_INFO_PARAMS, 0,    __VA_ARGS__               ); } }
-    #define ALIB_ASSERT_WARNING( cond, ... )        { if (!(cond)) { aworx::lib::lang::Report::GetDefault().DoReport( ALIB_DBG_SRC_INFO_PARAMS, 1,    __VA_ARGS__               ); } }
+    #define ALIB_ASSERT( cond )                     { if (!(cond)) { aworx::lib::lang::Report::GetDefault().DoReport( ALIB_SRCPOS_REL_EMPTY, 0,    "Internal Error"          ); } }
+    #define ALIB_ASSERT_ERROR( cond, ... )          { if (!(cond)) { aworx::lib::lang::Report::GetDefault().DoReport( ALIB_SRCPOS_REL_EMPTY, 0,    __VA_ARGS__               ); } }
+    #define ALIB_ASSERT_WARNING( cond, ... )        { if (!(cond)) { aworx::lib::lang::Report::GetDefault().DoReport( ALIB_SRCPOS_REL_EMPTY, 1,    __VA_ARGS__               ); } }
 
 #endif
 
@@ -93,7 +91,7 @@ class ReportWriter;
  * - #ALIB_ASSERT_ERROR
  * - #ALIB_ASSERT_WARNING
  *
- * In fact, these macros exist in <b>ALib Modules</b> as well, but with the inclusion of
+ * In fact, these macros exist in <b>%ALib Modules</b> as well, but with the inclusion of
  * header <b>"alib/lang/report.hpp"</b>, these macros become redefined to use \b %ALib reports.
  *
  * For convenience, in debug compilations of the library, these macros provide the file name,
@@ -339,7 +337,7 @@ class ReportWriterStdIO : public ReportWriter, public Singleton<ReportWriterStdI
     //! @cond NO_DOX
         friend class Singleton<ReportWriterStdIO>;
         friend class Report;
-    //! @endcond NO_DOX
+    //! @endcond
 
     /**
      * Private constructor, while parent class \b %Singleton is friend. Therefore, only one
@@ -370,6 +368,6 @@ class ReportWriterStdIO : public ReportWriter, public Singleton<ReportWriterStdI
 };
 
 
-}}} // namespace aworx::lib::lang
+}}}// namespace [aworx::lib::lang]
 
 #endif // HPP_ALIB_LANG_REPORT

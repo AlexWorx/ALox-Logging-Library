@@ -28,6 +28,8 @@
 #include "alib/compatibility/std_iostream.hpp"
 #include "alib/compatibility/std_string.hpp"
 #include "alib/strings/util/stringtuples.hpp"
+#include "alib/strings/boxing/debug.hpp"
+
 
 namespace std
 {
@@ -35,6 +37,7 @@ namespace std
 }
 #define cout testOutputStream
 using namespace std;
+using namespace aworx;
 
 
 //using namespace aworx;
@@ -233,7 +236,7 @@ inline  dox_boxing_bijective::MyBijBoxed T_Boxing<dox_boxing_bijective::MyBijBox
     return dox_boxing_bijective::MyBijBoxed( static_cast<int>( box.data.Value ) );
 }
 
-}}} // namespace aworx::lib::boxing
+}}} // namespace [aworx::lib::boxing]
 
 // back to our namespace
 namespace dox_boxing_bijective {
@@ -467,6 +470,38 @@ void sampleFunc()
 
 }//namespace dox_boxing_sample_boxedas
 
+
+// ########################################################################################
+namespace dox_boxing_sample_enums {
+
+//! [DOX_ALIB_BOXING_SAMPLE_ENUMS]
+enum MyEnum
+{
+    EVAL1=     1,
+    EVAL2=     2,
+};
+
+enum MyEnumClass
+{
+    ECVAL1,
+    ECVAL2,
+};
+
+//! [DOX_ALIB_BOXING_SAMPLE_ENUMS]
+
+void sampleFunc()
+{
+//! [DOX_ALIB_BOXING_SAMPLE_ENUMS_2]
+aworx::Box myEnum=          MyEnum::EVAL1;
+aworx::Box myEnumClass=     MyEnumClass::ECVAL1;
+
+MyEnum      myEnumUB=       myEnum     .Unbox<MyEnum>();
+MyEnumClass myEnumClassUB=  myEnumClass.Unbox<MyEnumClass >();
+//! [DOX_ALIB_BOXING_SAMPLE_ENUMS_2]
+
+}
+
+}//namespace dox_boxing_sample_enums
 
 // ########################################################################################
 namespace dox_boxing_sample_if {
@@ -777,6 +812,8 @@ HeavilyOverloadedFunction( aworx::Boxes(1, 2, 3) );
 //! [DOX_ALIB_BOXING_BOXES_SAMPLE_VARIADIC_SINGLE_1]
 }
 }//namespace dox_boxing_sample_boxes_box
+
+
 // ########################################################################################
 namespace dox_boxing_sample_debug {
 
@@ -796,9 +833,9 @@ void sampleFunc2()
 //! [DOX_ALIB_BOXING_DEBUG_2]
 #if ALIB_DEBUG
     aworx::lib::debug::Boxing dbgBoxing;
-    aworx::Strings& strings= dbgBoxing.GetInterfaces( "abc" );
+    auto strings= dbgBoxing.GetInterfaces( "abc" );
     for( auto it : strings )
-        cout << "  " << std::get<0>(it) << endl;
+        cout << "  " << it << endl;
 #endif
 //! [DOX_ALIB_BOXING_DEBUG_2]
 }
@@ -825,6 +862,28 @@ void sampleFunc4()
 
 
 }//namespace dox_boxing_sample_debug
+
+
+// ########################################################################################
+
+namespace dox_boxing_sample_compare {
+
+void sampleFunc()
+{
+//! [DOX_ALIB_BOXING_COMPARE]
+std::vector<aworx::Box> myVec= { 2, 3.0, "BBB", 6, 1.0, "AAA", 4, "CCC", 5.0, 0 };
+
+std::sort( myVec.begin(), myVec.end() );
+
+for( auto& box : myVec )
+    cout << box << endl;
+//! [DOX_ALIB_BOXING_COMPARE]
+}
+
+
+}//namespace dox_boxing_sample_compare
+
+
 
 
 

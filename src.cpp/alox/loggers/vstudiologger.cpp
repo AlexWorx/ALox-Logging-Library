@@ -39,7 +39,7 @@ using namespace aworx::lox::core;
 VStudioLogger::VStudioLogger( const String&  name )
 : PlainTextLogger( name, "VSTUDIO_CONSOLE", false )
 {
-    ALIB_ASSERT_ERROR ( ALIB::IsDebuggerPresent(), "This is not a debug session within Visual Studio" )
+    ALIB_ASSERT_ERROR ( lib::ALIB.IsDebuggerPresent(), "This is not a debug session within Visual Studio" )
 
     // prevent cutting off filenames
     MetaInfo->Format.SearchAndReplace( "%SF:%SL:", "%SP\\%SF(%SL):" );
@@ -58,7 +58,7 @@ bool VStudioLogger::notifyLogOp( Phase phase)
     return true;
 }
 
-integer VStudioLogger::logSubstring( const AString& buffer, integer start, integer length )
+integer VStudioLogger::logSubstring( const String& buffer, integer start, integer length )
 {
     if ( wCharBuffer == nullptr )
         wCharBuffer= new wchar_t[ wCharBufferSize= 128];

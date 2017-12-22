@@ -6,7 +6,7 @@
 // #################################################################################################
 
 /**
-\page man_trim_source_path  14 - Trimming Source File Paths and Clickable IDE Output
+\page alox_man_trim_source_path  14 - Trimming Source File Paths and Clickable IDE Output
 
 
 \tableofcontents
@@ -37,7 +37,7 @@ Source file paths can become quite long and for different reasons, it might be w
 a redundant or irrelevant prefix from the it.
 
 \~Comment ####################################################################################### \~
-# 1. Source Path Trim Rules #  {#man_trim_source_path_set}
+# 1. Source Path Trim Rules #  {#alox_man_trim_source_path_set}
 
 ALox provides a mechanism to trim the path of source files by using a set of rules.
 
@@ -48,7 +48,7 @@ The advantage of having the static, global table is that a user can set 'hints' 
 the path only once (at bootstrap) and forget about it. All instances of \b Lox will use it.
 
 \~Comment ####################################################################################### \~
-## 1.1 Automatic Detection of Trim Rules ##  {#man_trim_source_path_set_automatic}
+## 1.1 Automatic Detection of Trim Rules ##  {#alox_man_trim_source_path_set_automatic}
 ALox tries to detect trimable portions of a source path automatically.
 For that, \b %ALox compares the actual path name of the executable of the currently running
 process with the path of a source file. The prefix both have in common is identified as trimable.
@@ -100,7 +100,7 @@ When things become more complex, it is advisable to add <em>Source Path Trim Rul
 
 
 \~Comment ####################################################################################### \~
-## 1.2 Programmatical Provision of Trim Rules ##  {#man_trim_source_path_set_programmatical}
+## 1.2 Programmatical Provision of Trim Rules ##  {#alox_man_trim_source_path_set_programmatical}
 A user of \b %ALox may use method
 <b>%Lox.SetSourcePathTrimRule</b>
 ([C++] (@ref      #aworx::lox::Lox::SetSourcePathTrimRule),
@@ -166,7 +166,7 @@ Only one rule per source path is executed. In other words, as soon as a rule mat
 a source path, no further attempts for trimming are performed.
 
 \~Comment ####################################################################################### \~
-## 1.3 Trim Rules Provided by External Configuration Variables## {#man_trim_source_path_set_config}
+## 1.3 Trim Rules Provided by External Configuration Variables## {#alox_man_trim_source_path_set_config}
 
 Setting <em>Source Path Trim Rules</em> <em>'from within the source code'</em> is easy and straightforward. However, when
 working in a team such changes might not be appreciated by other team members. In this and
@@ -225,7 +225,7 @@ as follows:
 
 
 \~Comment ####################################################################################### \~
-## 1.4 Priorities of Trim Rules ##  {#man_trim_source_path_set_priorities}
+## 1.4 Priorities of Trim Rules ##  {#alox_man_trim_source_path_set_priorities}
 
 Different trim rules might be redundant or even contradict each other. Therefore the rules
 are equipped with a priority. Rules with higher priority are applied first.
@@ -240,22 +240,20 @@ variables. It is are set as follows:
   <b>%Lox.SetSourcePathTrimRule</b>
     ([C++] (@ref      #aworx::lox::Lox::SetSourcePathTrimRule),
      [C#]  (@ref  #cs::aworx::lox::Lox::SetSourcePathTrimRule)) which defaults to
-  <b>%Configuration.PrioDefault</b>
-    ([C++] (@ref      #aworx::lib::config::Configuration::PrioDefault),
-     [C#]  (@ref  #cs::aworx::lib::config::Configuration::PrioDefault)).
+    \cpp_alib{config,Priorities,Priorities::DefaultValues} respectively
+    \cs_alib{config,Configuration::PrioDefaultValues}.
 - Rules that are automatically detected have a priority of
   <b>%Configuration.PrioAutodetect</b>
-    ([C++] (@ref      #aworx::lib::config::Configuration::PrioAutodetect),
+    ([C++] (@ref      #aworx::lib::config::Priorities::AutoDetected),
      [C#]  (@ref  #cs::aworx::lib::config::Configuration::PrioAutodetect)).
 
-\b %Configuration.PrioDefault is a lower priority than (the default) priorities of the configuration plug-ins.
+\b %Configuration.PrioDefaultValues is a lower priority than (the default) priorities of the configuration plug-ins.
 Therefore, the configuration variables by default \b overrule what is hard-coded as a
 <em>Source Path Trim Rule</em>.<br>
 To change this behavior, any other priority may be specified in the source code, especially
-the pre-defined value of:
-  <b>%Configuration.PrioProtected</b>
-    ([C++] (@ref      #aworx::lib::config::Configuration::PrioProtected),
-     [C#]  (@ref  #cs::aworx::lib::config::Configuration::PrioProtected)) may be used.
+the pre-defined value of
+\cpp_alib{config,Priorities,Priorities::DefaultValues} respectively
+\cs_alib{config,Configuration::PrioDefaultValues}.
 It allows the user to give the rule set in the source code the highest priority and this way
 to protect the rule from external manipulation.
 
@@ -269,14 +267,14 @@ to protect the rule from external manipulation.
 
 <p>
 \note The priority scheme used here is similar to what is described for \e Verbosity settings in
-      chapter \ref man_external_verbosity_configuration.
+      chapter \ref alox_man_external_verbosity_configuration.
 
 
 \~Comment ####################################################################################### \~
-## 1.5 Verifying Trim Rules ##  {#man_trim_source_path_set_veryfy}
+## 1.5 Verifying Trim Rules ##  {#alox_man_trim_source_path_set_veryfy}
 
 With most methods invoked on class \b Lox, internal log messages are provided
-(See \ref man_internal_domains). When setting <em>Source Path Trim Rules</em>, this is \b not the case. The rational
+(See \ref alox_man_internal_domains). When setting <em>Source Path Trim Rules</em>, this is \b not the case. The rational
 here is, that in most cases no \e %Logger is attached to the \b %Lox attached, yet. If something
 goes wrong with source path trimming, e.g. when you are not sure if a rule was read from
 external configuration variables, you can use method
@@ -294,7 +292,7 @@ rule is displayed.
 
 
 \~Comment ####################################################################################### \~
-## 1.6 Removing Trim Rules ##  {#man_trim_source_path_set_remove}
+## 1.6 Removing Trim Rules ##  {#alox_man_trim_source_path_set_remove}
 
 In very special situations (e.g. \b %ALox uses it for unit testing) method
 <b>%Lox.ClearSourcePathTrimRules</b>
@@ -308,7 +306,7 @@ rules of a \b %Lox instance, optionally including all global rules.
     class \b %Lox in question, because the automatic rule and its creation is local to the each
     \b %Lox.
 
-# 2. Considerations in respect to Scope Functionality #  {#man_trim_source_path_scope}
+# 2. Considerations in respect to Scope Functionality #  {#alox_man_trim_source_path_scope}
 The benefits of having \b %ALox using reduced length source file paths in consideration to \e Scopes
 is in respect to performance. All data associated with language-related \e Scopes is stored and
 retrieved in hash-tables with keys containing the source path.<br>
@@ -318,15 +316,15 @@ Furthermore, the output of method
  [C#]  (@ref  #cs::aworx::lox::Lox::State)), might be better readable with these shorter
 paths.
 
-It is also important to consider that when using \e Scope.Path, especially in combination with
-optional parameter \p pathLevel, which addresses parent directories of source directories,
+It is also important to consider that when using \e Scope.Path, especially if increased by
+an amount of addressed parent directories,
 the source path must not be trimmed more than such use suggests. When the files are sorted
 in nested directories according to the nested namespace structure implemented in the files,
 then the directory prior to the tree of namespace directories should be included in the trimmed path.
 
 
 \~Comment ####################################################################################### \~
-# 3. Considerations in respect to Logging Meta Information #  {#man_trim_source_path_set_metainfo}
+# 3. Considerations in respect to Logging Meta Information #  {#alox_man_trim_source_path_set_metainfo}
 
 \note
   This section is about textual logging with the use of \e Loggers derived from class
@@ -359,7 +357,7 @@ output lines, you might want to change the format of the meta info to match the 
 IDE requires.
 
 \note
-  In documentation page \ref cppsetup and \ref cssetup, detailed instructions for selected
+  In documentation page \ref alox_cpp_setup and \ref alox_cs_setup, detailed instructions for selected
   platforms and IDEs are given.
 
 Certain build systems/compilers might not provide the absolute path information
@@ -371,7 +369,7 @@ ALox provides a feature to do such correction. An optional parameter of method
 ([C++] (@ref      #aworx::lox::Lox::SetSourcePathTrimRule),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetSourcePathTrimRule)) allows to specify a replacement string
 for what is cut by a rule. (This replacement string can of-course also be set using
-the configuration variables described in \ref man_trim_source_path_set_config.)
+the configuration variables described in \ref alox_man_trim_source_path_set_config.)
 Sometimes it might be needed to "fiddle around" with the options of the trim rules and the
 format of the \b %TextLogger output, until finally your IDE recognizes the source information
 correctly. But once succeeded, it proofs being worth the effort!
@@ -381,5 +379,5 @@ When you are sure, that your IDE does not support the links to the editor, then 
 and your way to go is displaying a (best possible) trimmed path, to reduce overall log output width.
 
 --------------------------------------------------------------------
-<center>Next chapter: \ref man_domain_substitution </center> <center> \ref manual "Back to index" </center>
+<center>Next chapter: \ref alox_man_domain_substitution </center> <center> \ref manual "Back to index" </center>
 */

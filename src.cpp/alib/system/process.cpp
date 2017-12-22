@@ -37,8 +37,8 @@
 
 
 
-namespace aworx { namespace lib { namespace system
-{
+namespace aworx { namespace lib { namespace system {
+
 // static instance representing current process
 ProcessInfo    ProcessInfo::current;
 
@@ -50,7 +50,7 @@ const ProcessInfo&    ProcessInfo::Current()
     {
         // Own global lock and check if still nulled.
         // (If not, this is a very unlikely parallel access )
-        OWN( lock );
+        LOCK_HERE_WITH( lock )
         if ( ProcessInfo::current.PID == 0 )
             ProcessInfo::current.get( 0 );
     }
@@ -244,5 +244,5 @@ const ProcessInfo&    ProcessInfo::Current()
 
 
 
-}}}// namespace aworx::lib::system
+}}}// namespace [aworx::lib::system]
 

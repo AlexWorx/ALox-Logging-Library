@@ -1359,6 +1359,9 @@ public void FormatterPythonStyle()
     checkFormat( "Hello PX"                   , "Hello {}", 'P', null, null, "X", null);
 
     //===== Conversion '!'  =========
+    checkFormat("Hello world"                , "{}{!X} {}"                 , "Hello", "freaking", "world"  );
+    checkFormat("world"                      , "{!X}{!X}{}"                , "Hello", "freaking", "world"  );
+    checkFormat(""                           , "{!X}{!X}{!X}"              , "Hello", "freaking", "world"  );
     checkFormat("HELLO world"                , "{!U} {!L}"                 , "hELlo", "WorlD"  );
     checkFormat("HELLO hello"                , "{!U} {0!L}"                , "hELlo"           );
     checkFormat("ABC abc"                    , "{1!U} {1!L}"               , "hELlo", "abc"    );
@@ -1369,6 +1372,11 @@ public void FormatterPythonStyle()
     checkFormat("This is \"QUOTEDUPPER\""    , "This is {!Up!Qu}"          , "quotedUpper"      );
     checkFormat("This is \"quotedlower\""    , "This is {!Up!Qu!Lo}"       , "quotedLOWER"      );
     checkFormat("This is \"quotedlower\""    , "This is {!Qu!Lo}"          , "quotedLOWER"      );
+
+    checkFormat("X   Y"                      , "X{!Fill}Y"                 , 3      );
+    checkFormat("XY"                         , "X{!Fill}Y"                 , 0      );
+    checkFormat("X@@@Y"                      , "X{!FillC@}Y"               , 3      );
+    checkFormat("X   Y"                      , "X{!FillC}Y"                , 3      );
 
     checkFormat("Tab     X"                  , "Tab{!Tab}"                 , "X"      );
     checkFormat("Tab10     X"                , "Tab10{!Tab10}"             , "X"      );
@@ -1393,6 +1401,7 @@ public void FormatterPythonStyle()
     checkFormat("          abc   123"        , "{!ATab2!L}{!ATab3}"       , "ABC" , "123" );
     checkFormat("==========abc---123"        , "{!ATabC=2!L}{!ATabC-3}"   , "ABC" , "123" );
     checkFormat(" X Y"                       , "{!ATabRes!ATab2}{!ATab3}" , "X"   , "Y"   );
+    formatter.reset();
 
     checkFormat("\\r\\n\\t"                   , "{!ESC<}"                  , "\r\n\t" );
     checkFormat("\t\\r\\n\\t\t"               , "\t{!ESC<}\t"              , "\r\n\t" );
@@ -1403,9 +1412,18 @@ public void FormatterPythonStyle()
     checkFormat("\r"                          , "{!ESC>}"                  , "\\r"          );
     checkFormat("\r\n\t"                      , "{!ESC>}"                  , "\\r\\n\\t"    );
     checkFormat("\t\r\n\t\t"                  , "\t{!ESC>}\t"              , "\\r\\n\\t"    );
-    checkFormat("\u00FF"                        , "{!ESC>}"                  , "\\xFF"        );
-    checkFormat("\u00E5"                        , "{!ESC>}"                  , "\\xE5"        );
+    checkFormat("\u00FF"                        , "{!ESC>}"                  , "\\xFF"      );
+    checkFormat("\u00E5"                        , "{!ESC>}"                  , "\\xE5"      );
     checkFormat("\u001B\t"                    , "{!ESC>}"                  , "\\033\\t"     );
+
+
+    checkFormat("This is right"              , "This is {!Repl<wrong><right>}" , "wrong"  );
+    checkFormat("Never empty: abc"           , "Never empty: {!Repl<><N/A>}"   , "abc"    );
+    checkFormat("Never empty: N/A"           , "Never empty: {!Repl<><N/A>}"   , ""       );
+
+    checkFormat("Auto width"                 , "Auto {!AWidth:>}"         , "width"  );
+    checkFormat("Auto     w"                 , "Auto {!AWidth:>}"         , "w"      );
+    formatter.reset();
 
     //============================ Samples taken from Python docs ==================================
     checkFormat( "a, b, c"          , "{0}, {1}, {2}"           ,  'a', 'b', 'c' );

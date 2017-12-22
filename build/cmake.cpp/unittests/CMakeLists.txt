@@ -133,31 +133,24 @@
 # Target
 # -------------------------------------------------------------------------------------------------
 
-    add_executable            ( ALib_ALox_UT    ${ALIB_INCS}         ${ALOX_INCS}
-                                                ${ALIB_UTESTS_INCS}  ${ALOX_UTESTS_INCS}
-                                                ${ALIB_UTESTS_SRCS}  ${ALOX_UTESTS_SRCS}    )
+    add_executable             ( ALib_ALox_UT    ${ALIB_INCS}         ${ALOX_INCS}
+                                                 ${ALIB_UTESTS_INCS}  ${ALOX_UTESTS_INCS}
+                                                 ${ALIB_UTESTS_SRCS}  ${ALOX_UTESTS_SRCS}    )
 
-    set_target_properties     ( ALib_ALox_UT    PROPERTIES  COMPILE_FLAGS ${AWORX_COMPILE_FLAGS}  )
+    target_include_directories ( ALib_ALox_UT    PRIVATE   ${ALIB_UTESTS_SRC_DIR}
+                                                           ${ALOX_UTESTS_SRC_DIR}            )
+    ALoxCompilerAndLinkerFlags( ALib_ALox_UT )
 
     # for GTEST, option available only up to gcc 7.2
     if     ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU"    )
       if   (CMAKE_CXX_COMPILER_VERSION VERSION_LESS "7.2")
-        set_target_properties ( ALib_ALox_UT    PROPERTIES  COMPILE_FLAGS "-Wno-gnu-statement-expression" ) 
+        target_compile_options ( ALib_ALox_UT    PRIVATE "-Wno-gnu-statement-expression" )
       endif()
     endif()
 
-
-    target_compile_definitions( ALib_ALox_UT    PRIVATE  ${ALIB_COMPILER_SYMBOLS}
-                                                         ${ALOX_COMPILER_SYMBOLS}           )
-
-    set_target_properties     ( ALib_ALox_UT    PROPERTIES  LINK_FLAGS   ${AWORX_LINK_FLAGS})
-
-    target_include_directories( ALib_ALox_UT    PRIVATE   ${ALIB_UTESTS_SRC_DIR}
-                                                          ${ALOX_UTESTS_SRC_DIR}            )
-
-    target_link_libraries     ( ALib_ALox_UT    ${ALIB_EXTERNAL_LIBS}
-                                                ${ALOX_EXTERNAL_LIBS}
-                                                ALox_StaticLib                              )
+    target_link_libraries      ( ALib_ALox_UT    ${ALIB_EXTERNAL_LIBS}
+                                                 ${ALOX_EXTERNAL_LIBS}
+                                                 ALox_SharedLib                              )
 
     if ( ${ALIB_GTEST} )
         target_compile_definitions( ALib_ALox_UT PRIVATE  "ALIB_GTEST_ON"                    )
@@ -188,8 +181,8 @@ if ( ${ALIB_CMAKE_COTIRE} )
     # use multiple processor cores
     set_target_properties( ALib_ALox_UT    PROPERTIES COTIRE_UNITY_SOURCE_MAXIMUM_NUMBER_OF_INCLUDES "-j" )
 
-    # header for precomp is "alib/alib.hpp"
-    set_target_properties( ALib_ALox_UT    PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT  "${ALIB_SRC_DIR}/alib/alib.hpp" )
+    # header for precomp is "alox/alox.hpp"
+    set_target_properties( ALib_ALox_UT    PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT  "${ALIB_SRC_DIR}/alox/alox.hpp" )
 
     #set some other cotire specific settings
     set_source_files_properties( ${ALIB_SRC_DIR}/alox.unittests/ut_alox_log_scopes.cpp   PROPERTIES COTIRE_EXCLUDED "1"  )

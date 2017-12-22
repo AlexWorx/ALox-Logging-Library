@@ -10,7 +10,6 @@
     #include <algorithm>
 #endif
 
-
 namespace aworx { namespace lib { namespace strings
 {
 // #################################################################################################
@@ -18,8 +17,8 @@ namespace aworx { namespace lib { namespace strings
 // #################################################################################################
 
 //! @cond NO_DOX
-ALIB_DEBUG_CODE( void appendErrorToAString( AString& target ) { target._("T_Apply<Unknown Type>");} )
-//! @endcond NO_DOX
+ALIB_DBG( void appendErrorToAString( AString& target ) { target._("T_Apply<Unknown Type>");} )
+//! @endcond
 
 // *************************************************************************************************
 // AString::_dbgCheck()
@@ -70,7 +69,7 @@ ALIB_DEBUG_CODE( void appendErrorToAString( AString& target ) { target._("T_Appl
     }
 
 #endif
-//! @endcond NO_DOX
+//! @endcond
 
 
 
@@ -355,11 +354,11 @@ integer AString::TrimAt( integer idx, const TString& trimChars )
     if ( idx >= length )
          return length;
 
-    integer regionStart=  LastIndexOfAny<false>( trimChars, Inclusion::Exclude, idx ) + 1;
+    integer regionStart=  LastIndexOfAny<Inclusion::Exclude, false>( trimChars, idx ) + 1;
     if (regionStart < 0 )
         regionStart= 0;
 
-    integer regionEnd=    IndexOfAny    <false>( trimChars, Inclusion::Exclude, idx );
+    integer regionEnd=    IndexOfAny    <Inclusion::Exclude, false>( trimChars, idx );
     if (regionEnd < 0 )
         regionEnd= length;
 
@@ -377,11 +376,11 @@ AString& AString::Trim( const TString& trimChars )
         return *this;
 
     // trim end
-    integer idx= LastIndexOfAny<false>( trimChars, Inclusion::Exclude, length - 1 ) + 1;
+    integer idx= LastIndexOfAny<Inclusion::Exclude, false>( trimChars, length - 1 ) + 1;
     if ( (length= idx) > 0 )
     {
         // trim front
-        idx= IndexOfAny<false>( trimChars, Inclusion::Exclude);
+        idx= IndexOfAny<Inclusion::Exclude,false>( trimChars );
         if ( idx > 0 )
             Delete<false>( 0, idx );
     }
@@ -439,7 +438,8 @@ integer AString::SearchAndReplace(  const TString&  needle,
     {
         // search  next occurrence
         ALIB_STRING_DBG_UNTERMINATE(*this, 0);
-        integer    idx= IndexOf<false>( needle, startIdx, sensitivity );
+        integer    idx= ( sensitivity == Case::Sensitive ? IndexOf<Case::Sensitive, false>( needle, startIdx  )
+                                                         : IndexOf<Case::Ignore   , false>( needle, startIdx  ) );
         if ( idx < 0 )
             break;
 
@@ -481,23 +481,28 @@ integer AString::SearchAndReplace(  const TString&  needle,
     {
         if( remove )
         {
-            target.SearchAndReplace("aworx::lib::lang::"               , "" );
-            target.SearchAndReplace("aworx::lib::boxing::ftypes::"     , "" );
-            target.SearchAndReplace("aworx::lib::boxing::"             , "" );
-            target.SearchAndReplace("aworx::lib::strings::boxing::"    , "" );
-            target.SearchAndReplace("aworx::lib::strings::util::"      , "" );
-            target.SearchAndReplace("aworx::lib::strings::format::"    , "" );
-            target.SearchAndReplace("aworx::lib::strings::"            , "" );
-            target.SearchAndReplace("aworx::lib::threads::"            , "" );
-            target.SearchAndReplace("aworx::lib::system::"             , "" );
-            target.SearchAndReplace("aworx::lib::config::"             , "" );
-            target.SearchAndReplace("aworx::lib::time::"               , "" );
-            target.SearchAndReplace("aworx::lib::containers::"         , "" );
+            target.SearchAndReplace("aworx::lib::boxing::ftypes::"    , "" );
+            target.SearchAndReplace("aworx::lib::boxing::"            , "" );
+            target.SearchAndReplace("aworx::lib::config::"            , "" );
+            target.SearchAndReplace("aworx::lib::debug::"             , "" );
+            target.SearchAndReplace("aworx::lib::lang::"              , "" );
+            target.SearchAndReplace("aworx::lib::strings::boxing::"   , "" );
+            target.SearchAndReplace("aworx::lib::strings::util::"     , "" );
+            target.SearchAndReplace("aworx::lib::strings::format::"   , "" );
+            target.SearchAndReplace("aworx::lib::strings::"           , "" );
+            target.SearchAndReplace("aworx::lib::system::"            , "" );
+            target.SearchAndReplace("aworx::lib::threads::"           , "" );
+            target.SearchAndReplace("aworx::lib::time"                , "" );
+            target.SearchAndReplace("aworx::lib::util::"              , "" );
+            target.SearchAndReplace("aworx::lib::"                    , "" );
+            target.SearchAndReplace("aworx::lox::core::textlogger::"  , "" );
+            target.SearchAndReplace("aworx::lox::core::"              , "" );
+            target.SearchAndReplace("aworx::lox::"                    , "" );
 
             ALIB_ASSERT_ERROR( target.IndexOf("aworx::lib") < 0,
                                "Not all namespaces were fetched"    );
 
-            target.SearchAndReplace("aworx::lox::"                     , "" );
+            target.SearchAndReplace("aworx::lox::"                   , "" );
         }
         return target;
     }

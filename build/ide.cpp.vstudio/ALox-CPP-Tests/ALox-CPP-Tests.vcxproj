@@ -189,7 +189,6 @@
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_boxing.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_compatiblity_qt.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_config.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_containers.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_strings.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_strings_astring.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_strings_format.cpp" />
@@ -197,6 +196,7 @@
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_system.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_threads.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_time.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_util_stringtree.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_logger.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_log_domains.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_log_rel.cpp" />

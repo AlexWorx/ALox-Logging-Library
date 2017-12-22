@@ -41,15 +41,15 @@ void  InMemoryPlugin::Reset()
     Sections.insert( Sections.end(), createSection( nullptr ) );
 }
 
-InMemoryPlugin::Section* InMemoryPlugin::SearchSection( const String& name ) const
+InMemoryPlugin::Section* InMemoryPlugin::SearchSection( const String& sectionName ) const
 {
-    if ( name.IsEmpty() )
+    if ( sectionName.IsEmpty() )
         return Sections[0];
 
     auto sIt= find_if( Sections.begin(), Sections.end(),
-                       [& name](InMemoryPlugin::Section* section)
+                       [& sectionName](InMemoryPlugin::Section* section)
                        {
-                          return section->Name.Equals( name, Case::Ignore );
+                          return section->Name.Equals<Case::Ignore>( sectionName );
                        }
                       );
 
@@ -57,11 +57,11 @@ InMemoryPlugin::Section* InMemoryPlugin::SearchSection( const String& name ) con
                                     : nullptr;
 }
 
-InMemoryPlugin::Section* InMemoryPlugin::SearchOrCreateSection( const String& name, const String& comments )
+InMemoryPlugin::Section* InMemoryPlugin::SearchOrCreateSection( const String& sectionName, const String& comments )
 {
-    Section* s= SearchSection( name );
+    Section* s= SearchSection( sectionName );
     if ( s == nullptr )
-        Sections.insert( Sections.end(), s= createSection( name ) );
+        Sections.insert( Sections.end(), s= createSection( sectionName ) );
 
     if ( s->Comments.IsEmpty() )
         s->Comments._( comments );
@@ -84,7 +84,7 @@ bool  InMemoryPlugin::Load( Variable& variable, bool searchOnly ) const
          && (entry=   section->GetEntry ( variable.Name, false  ) ) != nullptr
          && !searchOnly                                                            )
     {
-        entry->ToVariable( this, variable );
+        entry->ToVariable( *this, variable );
     }
 
     return entry != nullptr;
@@ -96,7 +96,7 @@ bool  InMemoryPlugin::Store( Variable& variable  )
     if ( variable.Size() > 0 )
     {
         Entry* entry= section->GetEntry( variable.Name, true );
-        entry->FromVariable( this, variable );
+        entry->FromVariable( *this, variable );
         return true;
     }
 
@@ -107,12 +107,12 @@ bool  InMemoryPlugin::Store( Variable& variable  )
 // #################################################################################################
 // class InMemoryPlugin::Section
 // #################################################################################################
-bool InMemoryPlugin::Section::DeleteEntry ( const String& name )
+bool InMemoryPlugin::Section::DeleteEntry ( const String& entryName )
 {
     for ( size_t idx= 0; idx < Entries.size(); ++idx )
     {
         Entry* entry= Entries[idx];
-        if ( entry->Name.Equals( name, lang::Case::Ignore ) )
+        if ( entry->Name.Equals<Case::Ignore>( entryName ) )
         {
             delete Entries[idx];
             Entries.erase( Entries.begin() + static_cast<std::vector<Entry*>::difference_type>(idx) );
@@ -122,18 +122,18 @@ bool InMemoryPlugin::Section::DeleteEntry ( const String& name )
     return false;
 }
 
-InMemoryPlugin::Entry* InMemoryPlugin::Section::GetEntry( const String& name, bool create )
+InMemoryPlugin::Entry* InMemoryPlugin::Section::GetEntry( const String& entryName, bool create )
 {
-    if ( name.IsEmpty() )
+    if ( entryName.IsEmpty() )
     {
         ALIB_WARNING( "Empty variable name given" );
         return nullptr;
     }
 
     auto entryIt= find_if( Entries.begin(), Entries.end(),
-                             [& name](InMemoryPlugin::Entry* variable)
+                             [& entryName](InMemoryPlugin::Entry* variable)
                              {
-                                return  variable->Name.Equals( name, Case::Ignore );
+                                return  variable->Name.Equals<Case::Ignore>( entryName );
                              }
                          );
     if( entryIt != Entries.end() )
@@ -143,21 +143,18 @@ InMemoryPlugin::Entry* InMemoryPlugin::Section::GetEntry( const String& name, bo
         return nullptr;
 
     // create entry
-    return *Entries.insert( Entries.end(), createEntry( name ) );
+    return *Entries.insert( Entries.end(), createEntry( entryName ) );
 }
 
 // #################################################################################################
 // class InMemoryPlugin::Entry
 // #################################################################################################
-void InMemoryPlugin::Entry::ToVariable( const InMemoryPlugin* , Variable& variable )
+void InMemoryPlugin::Entry::ToVariable( const InMemoryPlugin& , Variable& variable )
 {
     ALIB_ASSERT( Delim != '\0' || Values.size() <= 1);
-    if ( Delim != '\0' )
-        variable.Delim= Delim;
-    if ( FormatHints != 0 )
-        variable.FormatHints= FormatHints;
-    if ( FormatAttrAlignment.IsNotEmpty() )
-        variable.FormatAttrAlignment= FormatAttrAlignment;
+    if ( Delim != '\0' )                        variable.Delim=               Delim;
+    if ( FmtHints != FormatHints::None )        variable.FmtHints=            FmtHints;
+    if ( FormatAttrAlignment.IsNotEmpty() )     variable.FormatAttrAlignment= FormatAttrAlignment;
 
     variable.Comments._()._( Comments );
     for( AString& val : Values )
@@ -165,11 +162,11 @@ void InMemoryPlugin::Entry::ToVariable( const InMemoryPlugin* , Variable& variab
 }
 
 
-void InMemoryPlugin::Entry::FromVariable( const InMemoryPlugin* , Variable& variable )
+void InMemoryPlugin::Entry::FromVariable( const InMemoryPlugin& , Variable& variable )
 {
     // copy attributes
     Delim=               variable.Delim;
-    FormatHints=         variable.FormatHints;
+    FmtHints=            variable.FmtHints;
     FormatAttrAlignment= variable.FormatAttrAlignment;
 
     if ( Comments.IsEmpty() )    // do not overwrite comments
@@ -192,5 +189,54 @@ void InMemoryPlugin::Entry::FromVariable( const InMemoryPlugin* , Variable& vari
 }
 
 
-}}}// namespace aworx::lib::config
+// #################################################################################################
+// CLIArgs Iterator
+// #################################################################################################
+//! @cond NO_DOX
+class InMemoryPlugin::InMemoryPluginIteratorImpl : public ConfigurationPlugin::Iterator
+{
+    InMemoryPlugin& parent;
+    InMemoryPlugin::Section*                      section;
+    std::vector<InMemoryPlugin::Entry*>::iterator actualEntry;
+
+
+    public:
+
+    InMemoryPluginIteratorImpl( InMemoryPlugin& plugin, const String& sectionName )
+    : parent(plugin)
+    {
+        if( (section= parent.SearchSection( sectionName )) !=nullptr )
+
+            actualEntry= section->Entries.begin();
+    }
+
+    virtual ~InMemoryPluginIteratorImpl() override
+    {}
+
+    virtual bool        Next( Variable& variable )                                          override
+    {
+        // clear variable name at least. Values remain, until something was found. The caller has
+        // to check the result anyhow!
+        variable.Name.Clear();
+
+        if( section == nullptr || actualEntry == section->Entries.end() )
+            return false;
+
+        variable.Declare( section->Name,  (*actualEntry)->Name );
+        (*actualEntry)->ToVariable( parent, variable );
+        actualEntry++;
+        return true;
+    }
+};
+
+
+ConfigurationPlugin::Iterator*   InMemoryPlugin::GetIterator( const String& sectionName )
+{
+    return new InMemoryPluginIteratorImpl( *this, sectionName );
+}
+//! @endcond
+
+
+
+}}}// namespace [aworx::lib::config]
 

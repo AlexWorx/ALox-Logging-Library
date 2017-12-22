@@ -38,9 +38,9 @@ public abstract class Log
 
         /** ************************************************************************************
          * This method creates an adequate/default debug logger using
-         * \ref com::aworx::lox::Lox::createConsoleLogger "Lox.createConsoleLogger"
+         * \ref com.aworx.lox.Lox.createConsoleLogger "Lox.createConsoleLogger"
          * and attaches it to the debug instance of class
-         * \ref com::aworx::lox::Lox "Lox".
+         * \ref com.aworx.lox.Lox "Lox".
          * Of-course, alternatively to using this method, a suitable set of
          * debug loggers can be created manually. Also, before/after using this method
          * additional debug loggers may be created.
@@ -85,8 +85,8 @@ public abstract class Log
         /** ************************************************************************************
          * Removes the \e Logger(s) which was/were created by \ref addDebugLogger.
          *  This method also invokes
-         *  \ref com::aworx::lib::lang::Report::popWriter "Report.popWriter(null)"
-         *  to install a default \ref com::aworx::lib::lang::ReportWriter "ReportWriter" for \b %ALib.
+         *  \ref com.aworx.lib.lang.Report.popWriter "Report.popWriter(null)"
+         *  to install a default \ref com.aworx.lib.lang.ReportWriter "ReportWriter" for \b %ALib.
          *
          * @param lox The lox to remove the debug logger from.
          *           If null, the static debug object#LOX is used.
@@ -119,9 +119,9 @@ public abstract class Log
 
         /** ************************************************************************************
          * In the case that the original \b %ALib ReportWriterStdIO is still in place,
-         * \ref com::aworx::lib::lang::Report::pushWriter "Report.pushWriter" is invoked to provide a
+         * \ref com.aworx.lib.lang.Report.pushWriter "Report.pushWriter" is invoked to provide a
          * ReportWriter of type
-         * \ref com::aworx::lox::ALoxReportWriter "ALoxReportWriter".
+         * \ref com.aworx.lox.ALoxReportWriter "ALoxReportWriter".
          *
          * \note
          * This method is effective only in debug compilations. Usually it is invoked indirectly by
@@ -129,11 +129,11 @@ public abstract class Log
          * they are using release logging exclusively), should invoke this method on bootstrap
          * providing their (release) lox.
          * In this case, the \e Verbosity of the internal domain used by class
-         * \ref com::aworx::lox::ALoxReportWriter "ALoxReportWriter" has to be set for the
+         * \ref com.aworx.lox.ALoxReportWriter "ALoxReportWriter" has to be set for the
          * the logger(s) in given \p lox in question.
          *
          * @param lox  The lox that the
-         *             \ref com::aworx::lox::ALoxReportWriter "ALoxReportWriter" created will be using.
+         *             \ref com.aworx.lox.ALoxReportWriter "ALoxReportWriter" created will be using.
          **************************************************************************************/
         public static void addALibReportWriter( Lox lox )
         {
@@ -168,8 +168,8 @@ public abstract class Log
 
         /**
          * The \b %ALib ReportWriter. This will be created and registered in method
-         * \ref com::aworx::lox::Log::addDebugLogger    "Log.addDebugLogger" and removed in
-         * \ref com::aworx::lox::Log::removeDebugLogger "Log.removeDebugLogger" in the case that
+         * \ref com.aworx.lox.Log.addDebugLogger    "Log.addDebugLogger" and removed in
+         * \ref com.aworx.lox.Log.removeDebugLogger "Log.removeDebugLogger" in the case that
          * the original \b %ALib ReportWriterStdIO is in place.
          */
         public static ALoxReportWriter  debugReportWriter                                     =null;
@@ -250,7 +250,7 @@ public abstract class Log
      * \b %Verbosity.Off and \p domain to \c "/".
      *
      * Optional parameter \p priority defaults to
-     * \ref com::aworx::lox::Configuration::PRIO_DEFAULT "Configuration.PRIO_DEFAULT", which is a lower priority
+     * \ref com.aworx.lox.Configuration.PRIO_DEFAULT_VALUES "Configuration.PRIO_DEFAULT_VALUES", which is a lower priority
      * than those of the standard plug-ins of external configuration data. Therefore, external
      * configuration by default 'overwrite' settings made from 'within the source code', which
      * simply means by invoking this method.<br>
@@ -289,7 +289,7 @@ public abstract class Log
      *                   starting with <c> '/'</c> are recommended.
      *                   Defaults to root domain \"/\".
      * @param priority   The priority of the setting. Defaults to
-     *                   \ref com::aworx::lox::Configuration::PRIO_DEFAULT "Configuration.PRIO_DEFAULT",
+     *                   \ref com.aworx.lox.Configuration.PRIO_DEFAULT_VALUES "Configuration.PRIO_DEFAULT_VALUES",
      *                   which is a lower priority than standard plug-ins of external
      *                   configuration have.
      **********************************************************************************************/
@@ -310,7 +310,7 @@ public abstract class Log
      **********************************************************************************************/
     public static  void setVerbosity( Logger logger, Verbosity verbosity, String domain)
     {
-        LOX.setVerbosity( logger, verbosity, domain, Configuration.PRIO_DEFAULT );
+        LOX.setVerbosity( logger, verbosity, domain, Configuration.PRIO_DEFAULT_VALUES);
     }
 
     /** ********************************************************************************************
@@ -323,7 +323,7 @@ public abstract class Log
      **********************************************************************************************/
     public static  void setVerbosity( Logger logger, Verbosity verbosity)
     {
-        LOX.setVerbosity( logger, verbosity, "/", Configuration.PRIO_DEFAULT );
+        LOX.setVerbosity( logger, verbosity, "/", Configuration.PRIO_DEFAULT_VALUES);
     }
 
     /** ********************************************************************************************
@@ -339,7 +339,7 @@ public abstract class Log
      *                   starting with <c> '/'</c> are recommended.
      *                   Defaults to root domain \"/\".
      * @param priority   The priority of the setting. Defaults to
-     *                   \ref com::aworx::lox::Configuration::PRIO_DEFAULT "Configuration.PRIO_DEFAULT",
+     *                   \ref com.aworx.lox.Configuration.PRIO_DEFAULT_VALUES "Configuration.PRIO_DEFAULT_VALUES",
      *                   which is a lower priority than standard plug-ins of external
      *                   configuration have.
      **********************************************************************************************/
@@ -361,7 +361,7 @@ public abstract class Log
      **********************************************************************************************/
     public static  void setVerbosity( String loggerName, Verbosity verbosity, String domain)
     {
-        LOX.setVerbosity( loggerName, verbosity, domain, Configuration.PRIO_DEFAULT );
+        LOX.setVerbosity( loggerName, verbosity, domain, Configuration.PRIO_DEFAULT_VALUES);
     }
 
     /** ********************************************************************************************
@@ -375,7 +375,7 @@ public abstract class Log
      **********************************************************************************************/
     public static  void setVerbosity( String loggerName, Verbosity verbosity)
     {
-        LOX.setVerbosity( loggerName, verbosity, "/", Configuration.PRIO_DEFAULT );
+        LOX.setVerbosity( loggerName, verbosity, "/", Configuration.PRIO_DEFAULT_VALUES);
     }
 
     /** ********************************************************************************************
@@ -403,7 +403,7 @@ public abstract class Log
      * @param scope        The scope that should the given \p domain be registered for.
      *                     Available Scope definitions are platform/language dependent.
      * @param packageLevel Used only with
-     *                     \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE".
+     *                     \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE".
      *                     Cuts the given number of package parts (separated with '.') from the end
      *                     of the packages. Optional and defaults to \c 0.
      **********************************************************************************************/
@@ -582,7 +582,7 @@ public abstract class Log
      * @param scope        The scope that should the given \p logable be registered for.
      *                     Available Scope definitions are platform/language dependent.
      * @param packageLevel Used only with
-     *                     \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE".
+     *                     \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE".
      *                     Cuts the given number of package parts (separated with '.') from the end
      *                     of the packages. Optional and defaults to \c 0.
      ******************************************************************************************/
@@ -769,7 +769,7 @@ public abstract class Log
      *                  data is unique to the \e Lox.
      * @param scope     The \e %Scope that the data is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
-     *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
+     *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      ******************************************************************************************/
     public static void store( Object data, String key, Scope scope, int pkgLevel )
@@ -825,7 +825,7 @@ public abstract class Log
      *                  If \c null, currently stored data will be removed.
      * @param scope     The \e %Scope that the data is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
-     *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
+     *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      ******************************************************************************************/
     public static void store( Object  data, Scope scope, int  pkgLevel )
@@ -858,7 +858,7 @@ public abstract class Log
      *                  data is unique to the \e Lox.
      * @param scope     The \e %Scope that the data is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
-     *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
+     *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      * @return The object, \c null if nothing was found.
      ******************************************************************************************/
@@ -911,7 +911,7 @@ public abstract class Log
      *
      * @param scope     The \e %Scope that the data is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
-     *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
+     *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      * @return The object, \c null if nothing was found.
      ******************************************************************************************/
@@ -1006,9 +1006,9 @@ public abstract class Log
     }
 
     /** ********************************************************************************************
-     * Logs a list of \e Logables using \ref Verbosity::VERBOSE "Verbosity.VERBOSE".
-     * For this, \ref com::aworx::lox::Lox::verbose "Lox.verbose" is invoked on static object
-     * \ref com::aworx::lox::Log::LOX "LOX" used for debug logging.
+     * Logs a list of \e Logables using \ref Verbosity.VERBOSE "Verbosity.VERBOSE".
+     * For this, \ref com.aworx.lox.Lox.verbose "Lox.verbose" is invoked on static object
+     * \ref com.aworx.lox.Log.LOX "LOX" used for debug logging.
      *
      * @param logables  The list of \e Logables, optionally including a domain name at the start.
      **********************************************************************************************/
@@ -1018,9 +1018,9 @@ public abstract class Log
     }
 
     /** ********************************************************************************************
-     * Logs a list of \e Logables using \ref Verbosity::INFO "Verbosity.INFO".
-     * For this, \ref com::aworx::lox::Lox::info "Lox.info" is invoked on static object
-     * \ref com::aworx::lox::Log::LOX "LOX" used for debug logging.
+     * Logs a list of \e Logables using \ref Verbosity.INFO "Verbosity.INFO".
+     * For this, \ref com.aworx.lox.Lox.info "Lox.info" is invoked on static object
+     * \ref com.aworx.lox.Log.LOX "LOX" used for debug logging.
      *
      * @param logables  The list of \e Logables, optionally including a domain name at the start.
      **********************************************************************************************/
@@ -1030,9 +1030,9 @@ public abstract class Log
     }
 
     /** ********************************************************************************************
-     * Logs a list of \e Logables using \ref Verbosity::WARNING "Verbosity.WARNING".
-     * For this, \ref com::aworx::lox::Lox::warning "Lox.warning" is invoked on static object
-     * \ref com::aworx::lox::Log::LOX "LOX" used for debug logging.
+     * Logs a list of \e Logables using \ref Verbosity.WARNING "Verbosity.WARNING".
+     * For this, \ref com.aworx.lox.Lox.warning "Lox.warning" is invoked on static object
+     * \ref com.aworx.lox.Log.LOX "LOX" used for debug logging.
      *
      * @param logables  The list of \e Logables, optionally including a domain name at the start.
      **********************************************************************************************/
@@ -1042,9 +1042,9 @@ public abstract class Log
     }
 
     /** ********************************************************************************************
-     * Logs a list of \e Logables using \ref Verbosity::ERROR "Verbosity.ERROR".
-     * For this, \ref com::aworx::lox::Lox::error "Lox.error" is invoked on static object
-     * \ref com::aworx::lox::Log::LOX "LOX" used for debug logging.
+     * Logs a list of \e Logables using \ref Verbosity.ERROR "Verbosity.ERROR".
+     * For this, \ref com.aworx.lox.Lox.error "Lox.error" is invoked on static object
+     * \ref com.aworx.lox.Log.LOX "LOX" used for debug logging.
      *
      * @param logables  The list of \e Logables, optionally including a domain name at the start.
      **********************************************************************************************/
@@ -1055,8 +1055,8 @@ public abstract class Log
 
     /** ********************************************************************************************
      * Logs a list of \e Logables only if parameter \p condition is not \c true.
-     * For this, \ref com::aworx::lox::Lox::Assert "Lox.Assert" is invoked on static object
-     * \ref com::aworx::lox::Log::LOX "LOX" used for debug logging.
+     * For this, \ref com.aworx.lox.Lox.Assert "Lox.Assert" is invoked on static object
+     * \ref com.aworx.lox.Log.LOX "LOX" used for debug logging.
      *
      * \note This Method's name starts with capital letter, as <c>'assert'</c> is a Java keyword.
      *
@@ -1070,8 +1070,8 @@ public abstract class Log
 
     /** ********************************************************************************************
      * Logs a list of \e Logables only if the parameter \p condition is \c true.
-     * For this, \ref com::aworx::lox::Lox::If "Lox.If" is invoked on static object
-     * \ref com::aworx::lox::Log::LOX "LOX" used for debug logging.
+     * For this, \ref com.aworx.lox.Lox.If "Lox.If" is invoked on static object
+     * \ref com.aworx.lox.Log.LOX "LOX" used for debug logging.
      *
      * \note This Method's name starts with capital letter, as <c>'if'</c> is a Java keyword.
      *
@@ -1088,8 +1088,8 @@ public abstract class Log
 
     /** ********************************************************************************************
      * Logs a list of \e Logables only if the parameter \p condition is \c true.
-     * For this, \ref com::aworx::lox::Lox::If "Lox.If" is invoked on static object
-     * \ref com::aworx::lox::Log::LOX "LOX" used for debug logging.
+     * For this, \ref com.aworx.lox.Lox.If "Lox.If" is invoked on static object
+     * \ref com.aworx.lox.Log.LOX "LOX" used for debug logging.
      * This overloaded version omits parameter \p domain.
      *
      * \note This Method's name starts with capital letter, as <c>'if'</c> is a Java keyword.
@@ -1112,10 +1112,10 @@ public abstract class Log
      * Using parameter \p group, a set of <em>Log Statements</em> that share the same group key, can be
      * grouped and of such set, only the one which is first executed actually logs.<br>
      * Alternatively, when \p key is omitted (or null or empty), but a
-     * \ref com::aworx::lox::Scope "Scope" is given with parameter \p scope, then the
+     * \ref com.aworx.lox.Scope "Scope" is given with parameter \p scope, then the
      * counter is associated with the scope.<br>
      * Finally, parameters \p key and \p scope can also be used in combination. The key is
-     * then unique in respect to the \ref com::aworx::lox::Scope "Scope" provided.
+     * then unique in respect to the \ref com.aworx.lox.Scope "Scope" provided.
      *
      * Using, none, one or both of the parameters \p group and \p scope, among others, the
      * following use cases can be achieved.
@@ -1147,7 +1147,7 @@ public abstract class Log
      * \note
      *   Due to the limitations of the Java language to dissolve ambiguities when invoking
      *   overloaded methods, most of the overloads provided await parameters
-     *   \p domain and \p verbosity at the start. This is in difference to <b>%ALox for C++</b> and 
+     *   \p domain and \p verbosity at the start. This is in difference to <b>%ALox for C++</b> and
      *   <b>%ALox forC#</b>,
      *   where overloaded methods always default these parameters to \c null respectively
      *   \c %Verbosity.INFO.<br>
@@ -1177,11 +1177,11 @@ public abstract class Log
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope::Global, then the
+     *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
-     *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
+     *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
@@ -1202,11 +1202,11 @@ public abstract class Log
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope::Global, then the
+     *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
-     *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
+     *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      **********************************************************************************************/
     public static void once(String domain, Verbosity verbosity, Object logables, String group, Scope scope, int pkgLevel)
@@ -1225,7 +1225,7 @@ public abstract class Log
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope::Global, then the
+     *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
      **********************************************************************************************/
@@ -1245,7 +1245,7 @@ public abstract class Log
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope::Global, then the
+     *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      **********************************************************************************************/
     public static void once(String domain, Verbosity verbosity, Object logables, String group )
@@ -1264,7 +1264,7 @@ public abstract class Log
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope::Global, then the
+     *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
@@ -1283,7 +1283,7 @@ public abstract class Log
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
-     *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
+     *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
@@ -1302,7 +1302,7 @@ public abstract class Log
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
-     *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
+     *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      **********************************************************************************************/
     public static void once(String domain, Verbosity verbosity, Object logables, Scope scope, int pkgLevel)
@@ -1384,7 +1384,7 @@ public abstract class Log
      *                  share the same group name are working on the same counter (according
      *                  to the \p scope.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope::Global, then the
+     *                  provided. If omitted and \p scope is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
     **********************************************************************************************/
     public static void once( Object logables, int quantity, String group  )
@@ -1400,7 +1400,7 @@ public abstract class Log
      *                  this defaults to \c 1.
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param pkgLevel  Used only if parameter \p scope equals
-     *                  \ref com::aworx::lox::Scope::PACKAGE "Scope.PACKAGE"
+     *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
     **********************************************************************************************/
     public static void once( Object logables, int quantity, Scope scope, int pkgLevel )

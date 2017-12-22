@@ -247,7 +247,7 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
                                /usr/local/lib/  , false, 9, true, /usr/lib/
 //! [Man_SourcePathTrimming]
 */
-            String fileName= Environment.CurrentDirectory + "/Log_ConfigTrimRules.ini";
+            String fileName= System.Environment.CurrentDirectory + "/Log_ConfigTrimRules.ini";
             StreamWriter file= new StreamWriter( fileName );
             file.Write( iniFileContents );
             file.Close();
@@ -256,7 +256,7 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
             iniFile.ReadFile();
             //iniFile.WriteFile(); // temporarily enable to see what we have written above
 
-            Configuration.Default.InsertPlugin( iniFile, Configuration.PrioIniFile );
+            ALox.Config.InsertPlugin( iniFile, Configuration.PrioStandard );
 
             // test
             Lox lox= new Lox("T_LOX", false );
@@ -270,20 +270,20 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
 
             lox.Info( "" );  UT_EQ("alox.unittests", ml.MemoryLog ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
-            Configuration.Default.RemovePlugin( iniFile );
+            ALox.Config.RemovePlugin( iniFile );
             lox.RemoveLogger( ml );
             lox.RemoveLogger( "CONSOLE" );
         }
 
         // local rule
         clearLox.ClearSourcePathTrimRules( Reach.Global, false);
-        Configuration.Default.DefaultValues.Reset();
+        ALox.Config.GetPluginTypeSafe<InMemoryPlugin>( Configuration.PrioDefaultValues   ).Reset();
         {
             // store default values
             Variable var= new Variable();
-            var.Define( ALox.ConfigCategoryName, "TESTML_FORMAT" ).Store( "%Sp" );
-            var.Define( ALox.ConfigCategoryName, "T_LOX_SOURCE_PATH_TRIM_RULES",';')
-            .Store( "*;**; *alox.u*, include ;*;**" // default values, 0, ignore"
+            ALox.Config.Store( var.Declare( ALox.ConfigCategory, "TESTML_FORMAT" ), "%Sp" );
+            ALox.Config.Store( var.Declare( ALox.ConfigCategory, "T_LOX_SOURCE_PATH_TRIM_RULES",';'),
+                    "*;**; *alox.u*, include ;*;**" // default values, 0, ignore"
                                                     // the * will be removed
                                                     // two illegal rules before and after
                                  );
@@ -305,16 +305,16 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
         }
 
         clearLox.ClearSourcePathTrimRules( Reach.Global, false);
-        Configuration.Default.DefaultValues.Reset();
+        ALox.Config.GetPluginTypeSafe<InMemoryPlugin>( Configuration.PrioDefaultValues   ).Reset();
         {
             // create iniFile
             IniFile iniFile= new IniFile("*"); // don't read
             Variable var= new Variable();
-            iniFile.Store( var.Define( ALox.ConfigCategoryName, "TESTML_FORMAT" ),  "%Sp" );
-            iniFile.Store( var.Define( ALox.ConfigCategoryName, "T_LOX_SOURCE_PATH_TRIM_RULES",';'),
+            iniFile.Store( var.Declare( ALox.ConfigCategory, "TESTML_FORMAT" ),  "%Sp" );
+            iniFile.Store( var.Declare( ALox.ConfigCategory, "T_LOX_SOURCE_PATH_TRIM_RULES",';'),
                            "*alox.u, excl, 2, sens" );
 
-            Configuration.Default.InsertPlugin( iniFile, Configuration.PrioIniFile );
+            ALox.Config.InsertPlugin( iniFile, Configuration.PrioStandard );
 
 
             // test
@@ -332,23 +332,23 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
             // overwrite with source priority
             lox.SetSourcePathTrimRule( "*alox.u", Inclusion.Exclude, 0, Case.Ignore, "REPLACE_1/", Reach.Local );
             lox.Info( "" ); UT_EQ( "ox.unittests"  , ml.MemoryLog ); ml.MemoryLog._(); ml.AutoSizes.Reset();
-            lox.SetSourcePathTrimRule( "*alox.u", Inclusion.Exclude, 0, Case.Ignore, "REPLACE_2/", Reach.Local, Configuration.PrioProtected );
+            lox.SetSourcePathTrimRule( "*alox.u", Inclusion.Exclude, 0, Case.Ignore, "REPLACE_2/", Reach.Local, Configuration.PrioProtectedValues );
             lox.Info( "" ); UT_TRUE( ml.MemoryLog.StartsWith( "REPLACE_2/" ) ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
-            Configuration.Default.RemovePlugin( iniFile );
+            ALox.Config.RemovePlugin( iniFile );
             lox.RemoveLogger( ml );
             lox.RemoveLogger( "CONSOLE" );
         }
 
         // ignore case
         clearLox.ClearSourcePathTrimRules( Reach.Global, false);
-        Configuration.Default.DefaultValues.Reset();
+        ALox.Config.GetPluginTypeSafe<InMemoryPlugin>( Configuration.PrioDefaultValues   ).Reset();
         {
             // store default values
             Variable var= new Variable();
-            var.Define( ALox.ConfigCategoryName, "TESTML_FORMAT" ).Store( "%Sp" );
-            var.Define( ALox.ConfigCategoryName, "T_LOX_SOURCE_PATH_TRIM_RULES",';')
-               .Store( "*aLOX.U, exc, 2, ign"   );
+            ALox.Config.Store( var.Declare( ALox.ConfigCategory, "TESTML_FORMAT" ), "%Sp" );
+            ALox.Config.Store( var.Declare( ALox.ConfigCategory, "T_LOX_SOURCE_PATH_TRIM_RULES",';' ),
+                                                     "*aLOX.U, exc, 2, ign"   );
 
 
             // test
@@ -368,13 +368,13 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
         }
 
         clearLox.ClearSourcePathTrimRules( Reach.Global, false);
-        Configuration.Default.DefaultValues.Reset();
+        ALox.Config.GetPluginTypeSafe<InMemoryPlugin>( Configuration.PrioDefaultValues   ).Reset();
         {
             // store default values
             Variable var= new Variable();
-            var.Define( ALox.ConfigCategoryName, "TESTML_FORMAT" ).Store( "%Sp" );
-            var.Define( ALox.ConfigCategoryName, "T_LOX_SOURCE_PATH_TRIM_RULES",';')
-               .Store( "*aLOX.U, excl, 2, sens"  );
+            ALox.Config.Store( var.Declare( ALox.ConfigCategory, "TESTML_FORMAT" ), "%Sp" );
+            ALox.Config.Store( var.Declare( ALox.ConfigCategory, "T_LOX_SOURCE_PATH_TRIM_RULES",';'),
+                "*aLOX.U, excl, 2, sens"  );
 
 
 
@@ -814,30 +814,30 @@ Log.Once( new Object[] {"One - {} - {}!", "two", 3}  );
         Log.RemoveLogger( memLogger );
         UT_TRUE( Log.DebugLogger.CntLogs == 0 );
 
-        Variable var= new Variable( ALox.ConfigCategoryName, Log.LOX.GetName() + "_DUMP_STATE_ON_EXIT",  ',' );
+        Variable var= new Variable( ALox.ConfigCategory, Log.LOX.GetName() + "_DUMP_STATE_ON_EXIT",  ',' );
 
-        var.Store( "domain=/TEST, verbosity = e, domains, basic" );
+        ALox.Config.Store( var, "domain=/TEST, verbosity = e, domains, basic" );
         int cntLogs;
 
-        var.Store( "domain=/TEST, verbosity = e, sptr, basic" );
+        ALox.Config.Store( var, "domain=/TEST, verbosity = e, sptr, basic" );
         Log.SetVerbosity( memLogger, Verbosity.Verbose );
         cntLogs= Log.DebugLogger.CntLogs;
         Log.RemoveLogger( memLogger );
         UT_TRUE( Log.DebugLogger.CntLogs > cntLogs );
 
-        var.Store( "verbosity = e, domains, basic" );
+        ALox.Config.Store( var, "verbosity = e, domains, basic" );
         Log.SetVerbosity( memLogger, Verbosity.Verbose );
         cntLogs= Log.DebugLogger.CntLogs;
         Log.RemoveLogger( memLogger );
         UT_TRUE( Log.DebugLogger.CntLogs > cntLogs );
 
-        var.Store( "domains, loggers" );
+        ALox.Config.Store( var, "domains, loggers" );
         Log.SetVerbosity( memLogger, Verbosity.Verbose );
         cntLogs= Log.DebugLogger.CntLogs;
         Log.RemoveLogger( memLogger );
         UT_TRUE( Log.DebugLogger.CntLogs > cntLogs );
 
-        var.Store( "" );
+        ALox.Config.Store( var, "" );
         Log.SetVerbosity( memLogger, Verbosity.Verbose );
         cntLogs= Log.DebugLogger.CntLogs;
         Log.RemoveLogger( memLogger );
@@ -868,45 +868,45 @@ Log.Once( new Object[] {"One - {} - {}!", "two", 3}  );
         MemoryLogger memLogger= new MemoryLogger("MYLGGR");
         Log.SetVerbosity( Log.DebugLogger, Verbosity.Verbose, ALox.InternalDomains );
 
-        Variable var= new Variable( ALox.ConfigCategoryName, Log.LOX.GetName() + "_MYLGGR_VERBOSITY",  ';' );
+        Variable var= new Variable( ALox.ConfigCategory, Log.LOX.GetName() + "_MYLGGR_VERBOSITY",  ';' );
         Variable varBack= new Variable();
 
         // test writing into other variable with variable name error
         UT_PRINT( "An error message should follow (wrong variable format): " );
-        var.Store(  "writeback MY_" );
+        ALox.Config.Store( var,  "writeback MY_" );
         Log.SetVerbosity( memLogger, Verbosity.Verbose );
         Log.RemoveLogger( memLogger );
 
         // test writing into other variable
-        var.Store(  "writeback MY_VAR" );
+        ALox.Config.Store( var,  "writeback MY_VAR" );
         Log.SetVerbosity( memLogger, Verbosity.Verbose );
         Log.RemoveLogger( memLogger );
-        varBack.Define( "MY",  "VAR" ).Load();
+        ALox.Config.Load(varBack.Declare( "MY",  "VAR" ));
         UT_PRINT(  "Variable written: ", varBack.GetString() );
         UT_TRUE( varBack.GetString().Length() > 0 );
 
         // test writing into other variable without cat
-        var.Store(  "writeback ANON" );
+        ALox.Config.Store( var,  "writeback ANON" );
         Log.SetVerbosity( memLogger, Verbosity.Verbose );
         Log.RemoveLogger( memLogger );
-        varBack.Define( "",  "ANON" ).Load();
+        ALox.Config.Load(varBack.Declare( "",  "ANON" ));
         UT_PRINT(  "Variable written: ", varBack.GetString() );
         UT_TRUE( varBack.GetString().Length() > 0 );
 
         // test writing into other variable without cat and with underscores in name
-        var.Store(  "writeback _2ND_ANON" );
+        ALox.Config.Store( var,  "writeback _2ND_ANON" );
         Log.SetVerbosity( memLogger, Verbosity.Verbose );
         Log.RemoveLogger( memLogger );
-        varBack.Define( "",  "2ND_ANON" ).Load();
+        ALox.Config.Load(varBack.Declare( "",  "2ND_ANON" ));
         UT_PRINT(  "Variable written: ", varBack.GetString() );
         UT_TRUE( varBack.GetString().Length() > 0 );
 
         // test writing into other the variable itself
-        var.Store(  "writeback" );
+        ALox.Config.Store( var,  "writeback" );
         Log.SetVerbosity( memLogger, Verbosity.Verbose );
         Log.RemoveLogger( memLogger );
 
-        Configuration.Default.Load( var);
+        ALox.Config.Load( var);
         UT_PRINT( "Variable written: ", var.GetString() );
         UT_TRUE( var.GetString().Length() > 0 );
 

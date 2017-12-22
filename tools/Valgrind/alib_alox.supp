@@ -22,3 +22,44 @@
    Memcheck:Cond
    fun:*TString*Terminate*
 }
+
+{
+   <DeleteSingletons>
+   Memcheck:Addr8
+   fun:_ZNKSt8__detail10_Hash_nodeISt4pairIKSt17reference_wrapperIKSt9type_infoEPvELb1EE7_M_nextEv
+   fun:_ZNSt8__detail19_Node_iterator_baseISt4pairIKSt17reference_wrapperIKSt9type_infoEPvELb1EE7_M_incrEv
+   fun:_ZNSt8__detail14_Node_iteratorISt4pairIKSt17reference_wrapperIKSt9type_infoEPvELb0ELb1EEppEv
+   fun:_ZN5aworx3lib4lang16DeleteSingletonsEv
+}
+
+{
+   <ExceptionUnboxCopyString1>
+   Memcheck:Free
+   fun:_ZdaPv
+   fun:_ZN5aworx3lib7strings7AStringD2Ev
+   fun:_ZN5aworx3lib4lang9ExceptionD2Ev
+}
+
+{
+   <ExceptionUnboxCopyString2>
+   Memcheck:Free
+   fun:_ZdlPv
+   fun:_ZN5aworx3lib4lang9ExceptionD2Ev
+}
+
+{
+   <DeleteExceptionUnboxCopyString>
+   Memcheck:Addr8
+   fun:_ZN5aworx3lib7strings7AString17HasInternalBufferEv
+   fun:_ZN5aworx3lib7strings7AStringD2Ev
+   fun:_ZN5aworx3lib4lang9ExceptionD2Ev
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr8
+   fun:_ZN5aworx3lib7strings7AStringD2Ev
+   fun:_ZN5aworx3lib4lang9ExceptionD2Ev
+}
+
+

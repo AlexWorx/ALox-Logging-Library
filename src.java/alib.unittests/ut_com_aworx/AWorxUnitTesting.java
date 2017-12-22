@@ -14,6 +14,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import com.aworx.lib.ALIB;
+import com.aworx.lib.config.InMemoryPlugin;
 import com.aworx.lib.config.Configuration;
 import com.aworx.lib.lang.CurrentData;
 import com.aworx.lib.strings.AString;
@@ -21,7 +22,6 @@ import com.aworx.lib.strings.Substring;
 import com.aworx.lox.ALox;
 import com.aworx.lox.Log;
 import com.aworx.lox.Verbosity;
-import ut_com_aworx.UTWriter;
 
 /** ************************************************************************************************
  *  All aworx unit test class are derived from this class.
@@ -36,6 +36,8 @@ public class AWorxUnitTesting
 
     public AWorxUnitTesting()
     {
+        ALox.init();
+
         // create UTWriter (once)
         if ( utWriter == null )
             utWriter= new UTWriter();
@@ -64,7 +66,10 @@ public class AWorxUnitTesting
         UT_EQ( 1,  ALIB.stdOutputStreamsLock.cntAcquirers() );
         UT_EQ( 0,  ALIB.stdOutputStreamsLock.dbgCountAcquirements(null) );
 
-        Configuration.Default= new Configuration();
+        ALox.config.getPluginTypeSafe( Configuration.PRIO_DEFAULT_VALUES  , InMemoryPlugin.class ).reset();
+        ALox.config.getPluginTypeSafe( Configuration.PRIO_PROTECTED_VALUES, InMemoryPlugin.class ).reset();
+        ALIB.config.getPluginTypeSafe( Configuration.PRIO_DEFAULT_VALUES  , InMemoryPlugin.class ).reset();
+        ALIB.config.getPluginTypeSafe( Configuration.PRIO_PROTECTED_VALUES, InMemoryPlugin.class ).reset();
 
         ALox.reset();
         Log.mapThreadName( "UTThread" );

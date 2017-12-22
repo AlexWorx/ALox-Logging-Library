@@ -22,8 +22,8 @@ import com.aworx.lox.core.ScopeInfo;
 public abstract class PlainTextLogger extends TextLogger
 {
     /**
-     * If this field is set to \c true (the default), all \ref com::aworx::lox::ESC "ESC" color and
-     * style codes get removed when logging into this Logger. \c ESC::TAB is processed.
+     * If this field is set to \c true (the default), all \ref com.aworx.lox.ESC "ESC" color and
+     * style codes get removed when logging into this Logger. \c ESC.TAB is processed.
      *
      * It might be useful, to set this to false, e.g. in the case, the contents of the
      * Logger is (later) written into a different logger (e.g. as a multi line message)

@@ -14,8 +14,7 @@
     #include "alib/time/ticks.hpp"
 #endif
 
-namespace aworx { namespace lib { namespace threads
-{
+namespace aworx { namespace lib { namespace threads {
 
 ThreadLock::ThreadLock( LockMode pLockMode, Safeness pSafeness )
 : lockMode(pLockMode)
@@ -46,7 +45,7 @@ int ThreadLock::DbgCountAcquirements( Thread* thread ) const
         }
         ALIB_ASSERT( cntAcquirements > 0 );
 
-        return  ( owner == ( thread != nullptr ? thread : Thread::CurrentThread() ) )
+        return  ( owner == ( thread != nullptr ? thread : THREADS.CurrentThread() ) )
                 ?  cntAcquirements
                 : -cntAcquirements;
     #else
@@ -55,11 +54,11 @@ int ThreadLock::DbgCountAcquirements( Thread* thread ) const
     #endif
 }
 
-#if ALIB_DEBUG
-    void ThreadLock::Acquire( const TString& file, int line, const TString& func )
-#else
-    void ThreadLock::Acquire()
-#endif
+#if !defined(DOX_PARSER)
+
+ALIB_REL_DBG(
+void ThreadLock::Acquire() ,
+void ThreadLock::Acquire( const TString& file, int line, const TString& func )   )
 {
     // are we in unsafe mode?
     if ( GetSafeness() == Safeness::Unsafe )
@@ -80,7 +79,7 @@ int ThreadLock::DbgCountAcquirements( Thread* thread ) const
 
 
     // get current thread
-    Thread* thisThread= Thread::CurrentThread();
+    Thread* thisThread= THREADS.CurrentThread();
 
     // synchronize on mutex
     #if ALIB_FEAT_THREADS
@@ -140,11 +139,10 @@ int ThreadLock::DbgCountAcquirements( Thread* thread ) const
 
         // take control
         owner=           thisThread;
-        #if ALIB_DEBUG
-            acquirementSourcefile= file;
-            acquirementLineNumber= line;
-            acquirementMethodName= func;
-        #endif
+        ALIB_DBG(
+        acquirementSourcefile= file;
+        acquirementLineNumber= line;
+        acquirementMethodName= func;      )
         cntAcquirements= 1;
 
     #if ALIB_FEAT_THREADS
@@ -152,6 +150,7 @@ int ThreadLock::DbgCountAcquirements( Thread* thread ) const
     #endif
 }
 
+#endif //!defined(DOX_PARSER)
 
 void ThreadLock::Release()
 {
@@ -261,6 +260,6 @@ void ThreadLock::SetSafeness( Safeness safeness )
 }
 
 
-}}}// namespace aworx::lib::threads
+}}}// namespace [aworx::lib::threads]
 
 

@@ -6,13 +6,13 @@
 // #################################################################################################
 
 /**
-\page man_ext_loggers        A - Loggers and Implementing Custom Types
+\page alox_man_ext_loggers        A - Loggers and Implementing Custom Types
 
 \tableofcontents
 
 
 \~Comment ####################################################################################### \~
-# 1. Class Logger # {#man_loggers_logger}
+# 1. Class Logger # {#alox_man_loggers_logger}
 
 \b %ALox is designed to support different log streams. A log stream is a destination for the \e Logables
 and can be the IDE console, the terminal console, a file, a web service or anything that accepts
@@ -61,7 +61,7 @@ While all \b %ALox code tries to be short and simple, class \b %Logger is partic
 So, let us quickly walk through the class by looking at its members.
 
 \~Comment ####################################################################################### \~
-## 1.1 The fields of class Logger ## {#man_loggers_logger_fields}
+## 1.1 The fields of class Logger ## {#alox_man_loggers_logger_fields}
 There are just a few fields in class
   <b>Logger</b>
   ([C++] (@ref #aworx::lox::core::Logger),
@@ -69,7 +69,7 @@ There are just a few fields in class
    [Java](@ref #com::aworx::lox::core::Logger)):
 
 \~Comment ####################################################################################### \~
-### 1.1.1 Name and TypeName ### {#man_loggers_logger_fields_name}
+### 1.1.1 Name and TypeName ### {#alox_man_loggers_logger_fields_name}
 class \b %Logger has two members,
 <b>Name</b>
   ([C++] (@ref      #aworx::lox::core::Logger::Name),
@@ -101,7 +101,7 @@ Both fields are not used internally but only provided to be used by classes mana
 If multiple \e Loggers are attached to a \b Lox, they need to to have unique \e Names.
 
 \~Comment ####################################################################################### \~
-### 1.1.2 TimeOfCreation and TimeOfLastLog ### {#man_loggers_logger_fields_TimeOf}
+### 1.1.2 TimeOfCreation and TimeOfLastLog ### {#alox_man_loggers_logger_fields_TimeOf}
 These are two time stamps that contain the time of the creation of the
   <b>Logger</b>
   ([C++] (@ref #aworx::lox::core::Logger),
@@ -113,14 +113,14 @@ and the time difference between two log calls. The latter is especially interest
 log outputs on a debug console, as it allows to get for a first quick impression about your
 software's performance, lock states, bottlenecks, etc.
 
-### 1.1.3 CntLogs ### {#man_loggers_logger_fields_CntLogs}
+### 1.1.3 CntLogs ### {#alox_man_loggers_logger_fields_CntLogs}
 This is a simple counter of the number of logs processed so far. Feel free to
 reset it as you like, it is not used anywhere internally, other than as an option
 to output with each log line.
 
 
 \~Comment ####################################################################################### \~
-## 1.2 Methods of class Logger ## {#man_loggers_logger_methods}
+## 1.2 Methods of class Logger ## {#alox_man_loggers_logger_methods}
 
 Besides the protected constructor, which just initializes some default values for the \e Loggers'
 fields, abstract method
@@ -134,7 +134,7 @@ Derived classes only need to implement this abstract method with code that is ex
 When the method is invoked, class \b Lox already performed various checks, including that the
 \b %Verbosity justifies the execution.
 
-## 1.3 Implementing a custom *Logger* ## {#man_loggers_logger_customloggers}
+## 1.3 Implementing a custom *Logger* ## {#alox_man_loggers_logger_customloggers}
 As an experienced programmer after reading the previous sections, it is certainly fully obvious
 to you which steps need to be taken to create your own variation of class
   <b>Logger</b>
@@ -160,7 +160,7 @@ through this chapter.
 
 
 \~Comment ####################################################################################### \~
-# 2. Abstract class TextLogger # {#man_loggers_textlogger}
+# 2. Abstract class TextLogger # {#alox_man_loggers_textlogger}
 
 When you think about debug log output you think about logging textual messages that
 get displayed on your debug console. We think the use of a logging ecosystem for this
@@ -229,7 +229,7 @@ digraph TextLoggers
    and still do pure textual logging.
 
 \~Comment ####################################################################################### \~
-## 2.1 Helper classes for TextLogger ## {#man_loggers_textlogger_helpers}
+## 2.1 Helper classes for TextLogger ## {#alox_man_loggers_textlogger_helpers}
 Class
   <b>TextLogger</b>
   ([C++] (@ref      #aworx::lox::core::textlogger::TextLogger),
@@ -243,7 +243,7 @@ without deriving new ones.
 The helper classes are described in the following two paragraphs.
 
 \~Comment ####################################################################################### \~
-### 2.1.1 Class MetaInfo ### {#man_loggers_textlogger_MetaInfo}
+### 2.1.1 Class MetaInfo ### {#alox_man_loggers_textlogger_MetaInfo}
 Class
   <b>MetaInfo</b>
   ([C++] (@ref #aworx::lox::core::textlogger::MetaInfo),
@@ -329,7 +329,7 @@ your on implementation of *MetaInfo* and override the virtual method
   [Java] (@ref #com::aworx::lox::core::textlogger::MetaInfo::write))!
 
 \~Comment ####################################################################################### \~
-### 2.1.2 Class ObjectConverter ### {#man_loggers_textlogger_ObjectConverter}
+### 2.1.2 Class ObjectConverter ### {#alox_man_loggers_textlogger_ObjectConverter}
 Class
 <b>ObjectConverter</b>
   ([C++] (@ref      #aworx::lox::core::textlogger::ObjectConverter),
@@ -389,7 +389,7 @@ functionality in respect to converting the \e Logables while using class \b %Tex
   Using this class is an alternative to the creation of a dedicated \b ObjectConverter for such types.
 
 \~Comment ####################################################################################### \~
-## 2.2 The multi-line features of class TextLogger ## {#man_loggers_textlogger_multiline}
+## 2.2 The multi-line features of class TextLogger ## {#alox_man_loggers_textlogger_multiline}
 Class
   <b>%TextLogger</b>
   ([C++] (@ref      #aworx::lox::core::textlogger::TextLogger),
@@ -436,7 +436,7 @@ The following modes are available:
 - 4: Like multi-line mode 3, but without writing the headline.
 
 \~Comment ####################################################################################### \~
-## 2.3 Deriving your own Logger from class TextLogger ## {#man_loggers_textlogger_derive}
+## 2.3 Deriving your own Logger from class TextLogger ## {#alox_man_loggers_textlogger_derive}
 As mentioned above, class
 <b>%TextLogger</b>
   ([C++] (@ref      #aworx::lox::core::textlogger::TextLogger),
@@ -475,10 +475,10 @@ see the source code of class
    [C#]  (@ref  #cs::aworx::lox::loggers::MemoryLogger),
    [Java](@ref #com::aworx::lox::loggers::MemoryLogger)).
 
-On this topic, see also chapter \ref man_colorful_loggers.
+On this topic, see also chapter \ref alox_man_colorful_loggers.
 
 \~Comment ####################################################################################### \~
-## 2.4 Locking the Standard Output Streams ## {#man_loggers_textlogger_stdio_lock}
+## 2.4 Locking the Standard Output Streams ## {#alox_man_loggers_textlogger_stdio_lock}
 
 Class
 <b>TextLogger</b>
@@ -490,7 +490,7 @@ of ALib to avoid concurrent access to the <em>standard output stream</em> and
 
 This feature is described in the reference documentation of
 <b>%ALIB.StdOutputStreamsLock</b>
-  ([C++] (@ref      #aworx::lib::ALIB::StdOutputStreamsLock),
+  ([C++] (@ref      #aworx::lib::ALib::StdOutputStreamsLock),
    [C#]  (@ref  #cs::aworx::lib::ALIB::StdOutputStreamsLock),
    [Java](@ref #com::aworx::lib::ALIB::stdOutputStreamsLock)).
 
@@ -499,8 +499,8 @@ value \c true for parameter \p usesStdStreams of the protected constructor of cl
 
 If an application writes to those streams in parallel to \b %ALox (e.g. using \b std::cout in C++,
 \b Console.WriteLine in C# or \b System.out.println in Java), then to avoid mixing such output
-with \b %ALox output, such direct writes should be performed only after the \b ALIB.StdOutputStreamsLock
-was 'acquired'. Also, such application has to register once with \b ALIB.StdOutputStreamsLock.
+with \b %ALox output, such direct writes should be performed only after the \b %ALIB.StdOutputStreamsLock
+was 'acquired'. Also, such application has to register once with \b %ALIB.StdOutputStreamsLock.
 Then, together with the \e Logger, the critical number of two 'acquirers' are reached and the
 <b>%SmartLock</b>
   ([C++] (@ref      #aworx::lib::threads::SmartLock),
@@ -508,7 +508,7 @@ Then, together with the \e Logger, the critical number of two 'acquirers' are re
    [Java](@ref #com::aworx::lib::threads::SmartLock)) gets activated.
 
 \~Comment ####################################################################################### \~
-## 2.5 Recursive Log Statements ## {#man_loggers_textlogger_recursive}
+## 2.5 Recursive Log Statements ## {#alox_man_loggers_textlogger_recursive}
 
 ALox supports recursive log calls. Recursion occurs when log statements are executed during the
 evaluation of the logables of an already invoked log statement. A user might think that recursive
@@ -535,7 +535,7 @@ Class
 [C#]  (@ref  #cs::aworx::lox::core::textlogger::StandardConverter),
 [Java](@ref #com::aworx::lox::core::textlogger::StandardConverter)) are well prepared and as long
 as custom loggers are built on those, recursion should not be a problem. This is because abstract method
-\ref man_loggers_textlogger_derive "TextLogger.logText" will \b not be invoked recursively.
+\ref alox_man_loggers_textlogger_derive "TextLogger.logText" will \b not be invoked recursively.
 
 When implementing own variants of class \b %ObjectConverter or otherwise a "deeper" use of provided
 classes is done, the possibility of recursion of log calls has to be taken into account.
@@ -543,7 +543,7 @@ classes is done, the possibility of recursion of log calls has to be taken into 
 
 
 \~Comment ####################################################################################### \~
-# 3. Logger implementations provided by ALox # {#man_loggers_implementations}
+# 3. Logger implementations provided by ALox # {#alox_man_loggers_implementations}
 
 While the abstract classes \b %Logger, \b %TextLogger and \b %PlainTextLogger are located in the
 namespaces (packages)
@@ -600,7 +600,7 @@ the performance loss for your application would be around 0.01%. (Yes, that is w
 we love Bauhaus coding style.)
 
 \~Comment ####################################################################################### \~
-# 4. Summary and outlook # {#man_loggers_summary}
+# 4. Summary and outlook # {#alox_man_loggers_summary}
 
 The following summarizes the takeaways of this chapter:
 - We learned about class \b %Logger and its simple structure and few fields.

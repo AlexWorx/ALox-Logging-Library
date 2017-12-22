@@ -16,19 +16,19 @@ using cs.aworx.lib.threads;
 
 /**
  * This sub-namespace  provides some classes used for formatting data in string buffers of
- * type \ref cs::aworx::lib::strings::AString "AString".
+ * type \ref cs.aworx.lib.strings.AString "AString".
  */
 namespace cs.aworx.lib.strings.format  {
 
 /** ************************************************************************************************
- * Writes formatted text into an \ref cs::aworx::lib::strings::AString "AString".
+ * Writes formatted text into an \ref cs.aworx.lib.strings.AString "AString".
  *
  * While this class is abstract, only derived classes that support a specific format syntax can
  * be instantiated and used. Built-in formatters provided with \b %ALib are:
- * - \ref cs::aworx::lib::strings::format::FormatterPythonStyle  "FormatterPythonStyle", which mimics
+ * - \ref cs.aworx.lib.strings.format.FormatterPythonStyle  "FormatterPythonStyle", which mimics
  *   the [Python formatting syntax](https://docs.python.org/3.5/library/string.html#format-string-syntax)
  *   and
- * - \ref cs::aworx::lib::strings::format::FormatterJavaStyle    "FormatterJavaStyle", which mimics
+ * - \ref cs.aworx.lib.strings.format.FormatterJavaStyle    "FormatterJavaStyle", which mimics
  *   the formatting syntax of corresponding
  *   [Java class "Formatter"](http://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html)
  *
@@ -137,15 +137,15 @@ namespace cs.aworx.lib.strings.format  {
  * ##Implementing A Custom %Formatter##
  * To implement a custom formatter, the abstract methods found in this class have to be implemented.
  * With class
- * \ref cs::aworx::lib::strings::format::FormatterStdImpl "FormatterStdImpl" a - still abstract -
+ * \ref cs.aworx.lib.strings.format.FormatterStdImpl "FormatterStdImpl" a - still abstract -
  * descendant class is provided. This class implements method #format but introduces a set of
  * new abstract methods to overwrite. Although, those are more methods, these methods are probably
  * more simple to implement and therefore deriving from this class might be considered for new
  * custom types.
  *
  * The two built-in <b>Formatter</b>s provided with \b %ALib,
- * \ref cs::aworx::lib::strings::format::FormatterPythonStyle  "FormatterPythonStyle" and
- * \ref cs::aworx::lib::strings::format::FormatterJavaStyle    "FormatterJavaStyle" derive from
+ * \ref cs.aworx.lib.strings.format.FormatterPythonStyle  "FormatterPythonStyle" and
+ * \ref cs.aworx.lib.strings.format.FormatterJavaStyle    "FormatterJavaStyle" derive from
  * \b %FormatterStdImpl and copying the source code of one of them might be a good start for
  * implementing a custom type.
  **************************************************************************************************/
@@ -163,7 +163,7 @@ public abstract class Formatter
 
         /**
          * A static, global instance which is used by ALib internally (e.g. for formatting
-         * \ref cs::aworx::lib::lang::Report "Report" messages).
+         * \ref cs.aworx.lib.lang.Report "Report" messages).
          * Applications can acquire and use this instance using #AcquireDefault and #ReleaseDefault.
          */
         protected static     Formatter            defaultFormatter;
@@ -193,7 +193,7 @@ public abstract class Formatter
          * Locks and returns the global, default formatter for general purpose use.
          * A subsequent call to #ReleaseDefault has to follow.
          * The formatter is of type
-         * \ref cs::aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle". Other formatters
+         * \ref cs.aworx.lib.strings.format.FormatterPythonStyle "FormatterPythonStyle". Other formatters
          * might be attached to the one returned (chained) to support different format
          * standards.
          *
@@ -202,9 +202,9 @@ public abstract class Formatter
         public static Formatter                   AcquireDefault()
         {
             #if DEBUG
-                defaultFormatterLock.RecursionWarningThreshold= 1;
+                Formatter.defaultFormatterLock.RecursionWarningThreshold= 1;
             #endif
-            defaultFormatterLock.Acquire();
+            Formatter.defaultFormatterLock.Acquire();
 
             if ( Formatter.defaultFormatter == null )
                 Formatter.defaultFormatter= new FormatterPythonStyle();
@@ -213,11 +213,18 @@ public abstract class Formatter
         }
 
 
-        /** Releases the previously default formatter singleton, previously retrieved with
-         *  #AcquireDefault */
+        /**
+         * Releases the previously default formatter singleton, previously retrieved with
+         * #AcquireDefault.
+         *
+         * If finally released (no recursive acquirements had been done), method
+         * \alib{strings.format,Formatter.Reset} is invoked.
+         */
         public static void                         ReleaseDefault()
         {
-            defaultFormatterLock.Release();
+            if( Formatter.defaultFormatterLock.WillRelease() )
+                Formatter.defaultFormatter.Reset();
+            Formatter.defaultFormatterLock.Release();
         }
 
 
@@ -305,8 +312,19 @@ public abstract class Formatter
         }
 
         /** ****************************************************************************************
+         * Virtual but not abstract method to used to reset internal states which are otherwise
+         * kept between invocations of #Format.
+         *
+         * As a sample, derived type \alib{strings.format,FormatterPythonStyle} clears its auto-tab
+         * and auto-width positions.
+         *
+         * The default implementation does nothing.
+         ******************************************************************************************/
+        public virtual void                   Reset()                                             {}
+
+        /** ****************************************************************************************
          * Virtual bot not abstract method which is invoked with each invocation of
-         * \ref cs::aworx::lib::strings::format::Formatter::Format "Formatter.Format".
+         * \ref cs.aworx.lib.strings.format.Formatter.Format "Formatter.Format".
          * The default implementation does nothing.
          ******************************************************************************************/
         protected virtual void                initializeFormat()                                  {}

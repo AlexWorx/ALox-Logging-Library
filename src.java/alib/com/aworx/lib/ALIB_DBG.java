@@ -11,7 +11,7 @@ import com.aworx.lib.lang.Report;
 
 /** ************************************************************************************************
  * This class contains static debug shortcuts to to methods of class
- * \ref com::aworx::lib::lang::Report "Report".
+ * \ref com.aworx.lib.lang.Report "Report".
  * All invocations of the static methods get "pruned" (removed) from release compilations if
  * used with \b %ALox default configuration of \b Proguard. See \b %ALox documentation on
  * project setup and pruning for more information.
@@ -24,11 +24,11 @@ public final class ALIB_DBG
 
         /** ****************************************************************************************
          * Invokes
-         * \ref com::aworx::lib::lang::Report::doReport "Report.doReport".
+         * \ref com.aworx.lib.lang.Report.doReport "Report.doReport".
          * This method is pruned from release code.
          *
          * @param type  The msg type.
-         * @param msg   The msg to be passed to the \ref com::aworx::lib::lang::ReportWriter "ReportWriter".
+         * @param msg   The msg to be passed to the \ref com.aworx.lib.lang.ReportWriter "ReportWriter".
          ******************************************************************************************/
         public static void REPORT( int type, Object... msg )
         {
@@ -37,10 +37,10 @@ public final class ALIB_DBG
 
         /** ****************************************************************************************
          * Invokes
-         * \ref com::aworx::lib::lang::Report::doReport "Report.doReport".
+         * \ref com.aworx.lib.lang.Report.doReport "Report.doReport".
          * This method is pruned from release code.
          *
-         *  @param msg  The msg to be passed to the \ref com::aworx::lib::lang::ReportWriter "ReportWriter".
+         *  @param msg  The msg to be passed to the \ref com.aworx.lib.lang.ReportWriter "ReportWriter".
          ******************************************************************************************/
         public static void ERROR( Object... msg )
         {
@@ -49,11 +49,11 @@ public final class ALIB_DBG
 
         /** ****************************************************************************************
          * Invokes
-         * \ref com::aworx::lib::lang::Report::doReport "Report.doReport".
+         * \ref com.aworx.lib.lang.Report.doReport "Report.doReport".
          * This method is pruned from release code.
          *
          *  @param msg  The msg to be passed to the
-         *              \ref com::aworx::lib::lang::ReportWriter "ReportWriter".
+         *              \ref com.aworx.lib.lang.ReportWriter "ReportWriter".
          ******************************************************************************************/
         public static void WARNING( Object... msg )
         {
@@ -62,12 +62,12 @@ public final class ALIB_DBG
 
         /** ****************************************************************************************
          * If given condition is false, method
-         * \ref com::aworx::lib::lang::Report::doReport "Report.doReport" gets invoked with the standard message
+         * \ref com.aworx.lib.lang.Report.doReport "Report.doReport" gets invoked with the standard message
          * "Internal Error".
          * This method is pruned from release code.
          *
          * @param cond The condition that has to be met to prevent
-         *             \ref com::aworx::lib::lang::ReportWriter "ReportWriter" call.
+         *             \ref com.aworx.lib.lang.ReportWriter "ReportWriter" call.
          ******************************************************************************************/
         public static void ASSERT( boolean cond )
         {
@@ -78,12 +78,12 @@ public final class ALIB_DBG
 
         /** ****************************************************************************************
          * If given condition is false, method
-         * \ref com::aworx::lib::lang::Report::doReport "Report.doReport" gets invoked with the given message.
+         * \ref com.aworx.lib.lang.Report.doReport "Report.doReport" gets invoked with the given message.
          * This method is pruned from release code.
          *
          * @param cond The condition that has to be met to prevent
-         *             \ref com::aworx::lib::lang::ReportWriter "ReportWriter" call.
-         * @param msg  The msg to be passed to the \ref com::aworx::lib::lang::ReportWriter "ReportWriter".
+         *             \ref com.aworx.lib.lang.ReportWriter "ReportWriter" call.
+         * @param msg  The msg to be passed to the \ref com.aworx.lib.lang.ReportWriter "ReportWriter".
          ******************************************************************************************/
         public static void ASSERT_ERROR( boolean cond, Object... msg )
         {
@@ -93,12 +93,12 @@ public final class ALIB_DBG
 
         /** ****************************************************************************************
          * If given condition is false, method
-         * \ref com::aworx::lib::lang::Report::doReport "Report.doReport" gets invoked with the given message.
+         * \ref com.aworx.lib.lang.Report.doReport "Report.doReport" gets invoked with the given message.
          * This method is pruned from release code.
          *
          * @param cond The condition that has to be met to prevent
-         *             \ref com::aworx::lib::lang::ReportWriter "ReportWriter" call.
-         * @param msg  The msg to be passed to the \ref com::aworx::lib::lang::ReportWriter "ReportWriter".
+         *             \ref com.aworx.lib.lang.ReportWriter "ReportWriter" call.
+         * @param msg  The msg to be passed to the \ref com.aworx.lib.lang.ReportWriter "ReportWriter".
          ******************************************************************************************/
         public static void ASSERT_WARNING( boolean cond, Object... msg )
         {

@@ -75,14 +75,14 @@ UT_METHOD( Constructors )
     delete ms; ms= new AString( tASEmpty, -100,  1000);  UT_TRUE  ( ms->Length()     == 0 );  UT_TRUE  ( ms->Capacity() > 0 );
 
     AString tAS( "0123456789" );
-    delete ms; ms= new AString( tAS, 5);                 UT_TRUE  ( ms->Capacity() >=   5 && ms->Length() ==  5 );    UT_EQ( *ms, "56789");
-    delete ms; ms= new AString( tAS, 5, 100);            UT_TRUE  ( ms->Capacity() >=   5 && ms->Length() ==  5 );    UT_EQ( *ms, "56789");
-    delete ms; ms= new AString( tAS, -5);                UT_TRUE  ( ms->Capacity() >=  10 && ms->Length() == 10 );    UT_EQ( *ms, "0123456789");
-    delete ms; ms= new AString( tAS, -5, 3);             UT_TRUE  ( ms->Capacity() >    0 && ms->Length() ==  0 );    UT_EQ( *ms, "");
-    delete ms; ms= new AString( tAS, 50, 3);             UT_TRUE  ( ms->Capacity() >    0 && ms->Length() ==  0 );    UT_EQ( *ms, "");
-    delete ms; ms= new AString( tAS, 10, 3);             UT_TRUE  ( ms->Capacity() >    0 && ms->Length() ==  0 );    UT_EQ( *ms, "");
-    delete ms; ms= new AString( tAS, -5, 10);            UT_TRUE  ( ms->Capacity() >=   5 && ms->Length() ==  5 );    UT_EQ( *ms, "01234");
-    delete ms; ms= new AString( tAS, -5, 100);           UT_TRUE  ( ms->Capacity() >=  10 && ms->Length() == 10 );    UT_EQ( *ms, "0123456789");
+    delete ms; ms= new AString( tAS, 5);                 UT_TRUE  ( ms->Capacity() >=   5 && ms->Length() ==  5 );    UT_EQ( "56789"       , *ms);
+    delete ms; ms= new AString( tAS, 5, 100);            UT_TRUE  ( ms->Capacity() >=   5 && ms->Length() ==  5 );    UT_EQ( "56789"       , *ms);
+    delete ms; ms= new AString( tAS, -5);                UT_TRUE  ( ms->Capacity() >=  10 && ms->Length() == 10 );    UT_EQ( "0123456789"  , *ms);
+    delete ms; ms= new AString( tAS, -5, 3);             UT_TRUE  ( ms->Capacity() >    0 && ms->Length() ==  0 );    UT_EQ( ""            , *ms);
+    delete ms; ms= new AString( tAS, 50, 3);             UT_TRUE  ( ms->Capacity() >    0 && ms->Length() ==  0 );    UT_EQ( ""            , *ms);
+    delete ms; ms= new AString( tAS, 10, 3);             UT_TRUE  ( ms->Capacity() >    0 && ms->Length() ==  0 );    UT_EQ( ""            , *ms);
+    delete ms; ms= new AString( tAS, -5, 10);            UT_TRUE  ( ms->Capacity() >=   5 && ms->Length() ==  5 );    UT_EQ( "01234"       , *ms);
+    delete ms; ms= new AString( tAS, -5, 100);           UT_TRUE  ( ms->Capacity() >=  10 && ms->Length() == 10 );    UT_EQ( "0123456789"  , *ms);
 
     string tS("0123456789");
     delete ms; ms= new AString( "" );                    UT_TRUE  ( ms->Length() == 0 );    UT_TRUE    ( ms->Capacity() > 0 );
@@ -91,17 +91,17 @@ UT_METHOD( Constructors )
     delete ms; ms= new AString( "", -1000, 1 );          UT_TRUE  ( ms->Length() == 0 );    UT_TRUE    ( ms->Capacity() > 0 );
     delete ms; ms= new AString( "", -100,  1000);        UT_TRUE  ( ms->Length() == 0 );    UT_TRUE    ( ms->Capacity() > 0 );
     delete ms; ms= new AString( tS );                    UT_TRUE  ( ms->Capacity() >=  10 && ms->Length() == 10 );
-                                                         UT_EQ( *ms, "0123456789");
+                                                         UT_EQ( "0123456789"  , *ms );
     delete ms; ms= new AString( tS, 5);                  UT_TRUE  ( ms->Capacity() >=  5  && ms->Length() == 5 );
-                                                         UT_EQ( *ms, "56789");
+                                                         UT_EQ( "56789"       , *ms );
     delete ms; ms= new AString( tS, 5, 100);             UT_TRUE  ( ms->Capacity() >=  5  && ms->Length() == 5 );
-                                                         UT_EQ( *ms, "56789");
+                                                         UT_EQ( "56789"       ,*ms );
     delete ms; ms= new AString( tS, -5);                 UT_TRUE  ( ms->Capacity() >=  10 && ms->Length() == 10 );
-                                                         UT_EQ( *ms, "0123456789");
+                                                         UT_EQ( "0123456789"  , *ms );
     delete ms; ms= new AString( tS, -5, 10);             UT_TRUE  ( ms->Capacity() >=  5  && ms->Length() == 5 );
-                                                         UT_EQ( *ms, "01234");
+                                                         UT_EQ( "01234"       , *ms );
     delete ms; ms= new AString( tS, -5, 100);            UT_TRUE  ( ms->Capacity() >=  10 && ms->Length() == 10 );
-                                                         UT_EQ( *ms, "0123456789");
+                                                         UT_EQ( "0123456789"  , *ms );
     const char* tSBEmpty= "";
     delete ms; ms= new AString( tSBEmpty );              UT_TRUE  ( ms->Length() == 0 );
     delete ms; ms= new AString( tSBEmpty, 1,     0 );    UT_TRUE  ( ms->Length() == 0 );
@@ -110,16 +110,11 @@ UT_METHOD( Constructors )
     delete ms; ms= new AString( tSBEmpty, -100,  1000);  UT_TRUE  ( ms->Length() == 0 );
 
     const char*  tSB= "0123456789";
-    delete ms; ms= new AString( tSB );                   UT_TRUE  ( ms->Capacity() >=  10 && ms->Length() == 10 );
-                                                         UT_EQ( *ms, "0123456789");
-    delete ms; ms= new AString( tSB, 5);                 UT_TRUE  ( ms->Capacity() >=  5  && ms->Length() == 5 );
-                                                         UT_EQ( *ms, "56789");
-    delete ms; ms= new AString( tSB, 5, 100);            UT_TRUE  ( ms->Capacity() >=  5  && ms->Length() == 5 );
-                                                         UT_EQ( *ms, "56789");
-    delete ms; ms= new AString( tSB, -5);                UT_TRUE  ( ms->Capacity() >=  10 && ms->Length() == 10 );
-                                                         UT_EQ( *ms, "0123456789");
-    delete ms; ms= new AString( tSB, -5, 10);            UT_TRUE  ( ms->Capacity() >=  5  && ms->Length() == 5 );
-                                                         UT_EQ( *ms, "01234");
+    delete ms; ms= new AString( tSB );                   UT_TRUE  ( ms->Capacity() >=  10 && ms->Length() == 10 ); UT_EQ( "0123456789"   , *ms );
+    delete ms; ms= new AString( tSB, 5);                 UT_TRUE  ( ms->Capacity() >=  5  && ms->Length() == 5  ); UT_EQ( "56789"        , *ms );
+    delete ms; ms= new AString( tSB, 5, 100);            UT_TRUE  ( ms->Capacity() >=  5  && ms->Length() == 5  ); UT_EQ( "56789"        , *ms );
+    delete ms; ms= new AString( tSB, -5);                UT_TRUE  ( ms->Capacity() >=  10 && ms->Length() == 10 ); UT_EQ( "0123456789"   , *ms );
+    delete ms; ms= new AString( tSB, -5, 10);            UT_TRUE  ( ms->Capacity() >=  5  && ms->Length() == 5  ); UT_EQ( "01234"        , *ms );
     delete ms; ms= new AString( tSB, -5, 100);           UT_TRUE  ( ms->Capacity() >=  10 && ms->Length() == 10 );
     delete ms;
 }
@@ -411,12 +406,12 @@ UT_METHOD( Conversions )
     strs << "second line";
 
     strs >> ms;
-    UT_EQ( ms, "hello stringstream" );
+    UT_EQ( "hello stringstream", ms );
     strs >> ms;
-    UT_EQ( ms, "second line" );
+    UT_EQ( "second line"       , ms );
 
     strs >> ms;
-    UT_EQ( ms, "" );
+    UT_EQ( ""                  , ms );
 }
 
 
@@ -447,19 +442,19 @@ UT_METHOD( Append )
         ms._("89");                UT_TRUE( ms.Length()> 7      );  UT_EQ( "123456789", ms );
 
         const char* t= "0123456789";
-        ms.Clear()._   ( t, 5);                     UT_EQ( ms, "56789"      );
-        ms.Clear()._   ( t, 5, 100);                UT_EQ( ms, "56789"      );
-        ms.Clear()._   ( t, -5);                    UT_EQ( ms, "0123456789" );
-        ms.Clear()._   ( t, -5, 3);                 UT_EQ( ms, ""           );
-        ms.Clear()._   ( t, 50, 3);                 UT_EQ( ms, ""           );
-        ms.Clear()._   ( t, 10, 3);                 UT_EQ( ms, ""           );
-        ms.Clear()._   ( t, -5, 10);                UT_EQ( ms, "01234"      );
-        ms.Clear()._   ( t, -5, 100);               UT_EQ( ms, "0123456789" );
+        ms.Clear()._   ( t, 5);                     UT_EQ( "56789"      , ms );
+        ms.Clear()._   ( t, 5, 100);                UT_EQ( "56789"      , ms );
+        ms.Clear()._   ( t, -5);                    UT_EQ( "0123456789" , ms );
+        ms.Clear()._   ( t, -5, 3);                 UT_EQ( ""           , ms );
+        ms.Clear()._   ( t, 50, 3);                 UT_EQ( ""           , ms );
+        ms.Clear()._   ( t, 10, 3);                 UT_EQ( ""           , ms );
+        ms.Clear()._   ( t, -5, 10);                UT_EQ( "01234"      , ms );
+        ms.Clear()._   ( t, -5, 100);               UT_EQ( "0123456789" , ms );
 
         // _NC
         ms.SetNull();            UT_EQ  ( 0, ms.Length()      );  UT_TRUE( ms.IsNull()   );
         ms._NC( csEmpty );       UT_EQ  ( 0, ms.Length()      );  UT_TRUE( ms.IsNull()   );
-        ms.Clear()._NC( t, 5,3);                  UT_EQ( ms, "567"      );
+        ms.Clear()._NC( t, 5,3);                  UT_EQ( "567"   ,  ms    );
 
     }
 
@@ -483,19 +478,19 @@ UT_METHOD( Append )
         ms._("89");                UT_TRUE( ms.Length()> 7     );  UT_EQ( "123456789", ms );
 
         const char* t= "0123456789";
-        ms.Clear()._   ( t, 5);                     UT_EQ( ms, "56789"      );
-        ms.Clear()._   ( t, 5, 100);                UT_EQ( ms, "56789"      );
-        ms.Clear()._   ( t, -5);                    UT_EQ( ms, "0123456789" );
-        ms.Clear()._   ( t, -5, 3);                 UT_EQ( ms, ""           );
-        ms.Clear()._   ( t, 50, 3);                 UT_EQ( ms, ""           );
-        ms.Clear()._   ( t, 10, 3);                 UT_EQ( ms, ""           );
-        ms.Clear()._   ( t, -5, 10);                UT_EQ( ms, "01234"      );
-        ms.Clear()._   ( t, -5, 100);               UT_EQ( ms, "0123456789" );
+        ms.Clear()._   ( t, 5);                     UT_EQ( "56789"      , ms );
+        ms.Clear()._   ( t, 5, 100);                UT_EQ( "56789"      , ms );
+        ms.Clear()._   ( t, -5);                    UT_EQ( "0123456789" , ms );
+        ms.Clear()._   ( t, -5, 3);                 UT_EQ( ""           , ms );
+        ms.Clear()._   ( t, 50, 3);                 UT_EQ( ""           , ms );
+        ms.Clear()._   ( t, 10, 3);                 UT_EQ( ""           , ms );
+        ms.Clear()._   ( t, -5, 10);                UT_EQ( "01234"      , ms );
+        ms.Clear()._   ( t, -5, 100);               UT_EQ( "0123456789" , ms );
 
         // _NC
         ms.SetNull();            UT_EQ  ( 0, ms.Length()      );  UT_TRUE( ms.IsNull()   );
         ms._NC( csEmpty );       UT_EQ  ( 0, ms.Length()      );  UT_TRUE( ms.IsNull()   );
-        ms.Clear()._NC( t, 5,3);                  UT_EQ( ms, "567"      );
+        ms.Clear()._NC( t, 5,3);                  UT_EQ( "567"   ,  ms   );
 
     }
 
@@ -546,7 +541,7 @@ UT_METHOD( Append )
 
         ms= ssNull;                UT_EQ  ( 0, ms.Length()        );  UT_TRUE( ms.IsNull()    );
         ms= ssEmpty;               UT_EQ  ( 0, ms.Length()        );  UT_TRUE( ms.IsNotNull() );
-        ms= t;                     UT_EQ  ( 5, ms.Length()        );  UT_EQ  ( ms, String16(t)    );
+        ms= t;                     UT_EQ  ( 5, ms.Length()        );  UT_EQ  ( String(t), ms);
         ms= ssNull;                UT_EQ  ( 0, ms.Length()        );  UT_TRUE( ms.IsNull()    );
 
         ms._( ssNull );            UT_EQ  ( 0, ms.Length()        );  UT_TRUE( ms.IsNull()    );
@@ -555,14 +550,14 @@ UT_METHOD( Append )
         ms._( t );                 UT_EQ  (16, ms.Capacity()      );    UT_EQ( "01234"     , ms );
         ms._( t );                 UT_TRUE( ms.Length()> 5     );  UT_EQ( "0123401234", ms );
 
-        t.ConsumeChar();         ms.Clear()._( t );           UT_EQ( ms,  "1234"      );
-        t.ConsumeChar();         ms.Clear()._( t );           UT_EQ( ms,   "234"      );
-        t.ConsumeCharFromEnd();  ms.Clear()._( t );           UT_EQ( ms,  "23"        );
+        t.ConsumeChar();         ms.Clear()._( t );           UT_EQ( "1234" , ms  );
+        t.ConsumeChar();         ms.Clear()._( t );           UT_EQ(  "234" , ms  );
+        t.ConsumeCharFromEnd();  ms.Clear()._( t );           UT_EQ( "23"   , ms  );
 
         // _NC
         ms.SetNull();             UT_EQ  ( 0, ms.Length()        );  UT_TRUE( ms.IsNull()    );
         ms._NC( ssEmpty );        UT_EQ  ( 0, ms.Length()        );  UT_TRUE( ms.IsNull()   );
-        ms.Clear()._NC( t);                       UT_EQ( ms, "23"   );
+        ms.Clear()._NC( t);                       UT_EQ( "23"  ,  ms   );
     }
 
     // std::string
@@ -570,28 +565,28 @@ UT_METHOD( Append )
         AString ms;   std::string t( "012" ); std::string ssEmpty("");
                                    UT_EQ  ( 0, ms.Length()      );  UT_TRUE( ms.IsNull()    );
         ms= ssEmpty;               UT_EQ  ( 0, ms.Length()      );  UT_TRUE( ms.IsNotNull() );
-        ms= t;                     UT_EQ  ( 3, ms.Length()      );  UT_EQ  ( ms, t.c_str()  );
+        ms= t;                     UT_EQ  ( 3, ms.Length()      );  UT_EQ  ( t.c_str(), ms  );
         ms.SetNull();
 
         ms._( ssEmpty);            UT_EQ  ( 0, ms.Length()      );  UT_TRUE( ms.IsNotNull() );
         ms.SetNull();              UT_EQ  ( 0, ms.Length()      );  UT_TRUE( ms.IsNull()    );
         ms._( t );                 UT_EQ  (16, ms.Capacity()    );  UT_EQ( "012"   , ms );
-        ms._( t );                 UT_TRUE( ms.Length()> 3       );  UT_EQ( "012012", ms );
+        ms._( t );                 UT_TRUE( ms.Length()> 3      );  UT_EQ( "012012", ms );
         t= "0123456789";
-        ms.Clear()._( t, 5);            UT_EQ( ms, "56789"      );
-        ms.Clear()._( t, 5, 100);       UT_EQ( ms, "56789"      );
-        ms.Clear()._( t, -5);           UT_EQ( ms, "0123456789" );
-        ms.Clear()._( t, -5, 3);        UT_EQ( ms, ""           );
-        ms.Clear()._( t, 50, 3);        UT_EQ( ms, ""           );
-        ms.Clear()._( t, 10, 3);        UT_EQ( ms, ""           );
-        ms.Clear()._( t, -5, 10);       UT_EQ( ms, "01234"      );
-        ms.Clear()._( t, -5, 100);      UT_EQ( ms, "0123456789" );
+        ms.Clear()._( t, 5);            UT_EQ( "56789"      , ms );
+        ms.Clear()._( t, 5, 100);       UT_EQ( "56789"      , ms );
+        ms.Clear()._( t, -5);           UT_EQ( "0123456789" , ms );
+        ms.Clear()._( t, -5, 3);        UT_EQ( ""           , ms );
+        ms.Clear()._( t, 50, 3);        UT_EQ( ""           , ms );
+        ms.Clear()._( t, 10, 3);        UT_EQ( ""           , ms );
+        ms.Clear()._( t, -5, 10);       UT_EQ( "01234"      , ms );
+        ms.Clear()._( t, -5, 100);      UT_EQ( "0123456789" , ms );
 
         // _NC
-        ms.SetNull();                   UT_EQ  ( 0, ms.Length());  UT_TRUE( ms.IsNull()    );
-        ms._NC( ssEmpty );              UT_EQ  ( 0, ms.Length());  UT_FALSE( ms.IsNull()   );
-        ms.Clear()._NC( t);             UT_EQ( ms, "0123456789" );
-        ms.Clear()._<false>( t ,2,3);   UT_EQ( ms, "234"        );
+        ms.SetNull();                   UT_EQ( 0, ms.Length());  UT_TRUE( ms.IsNull()    );
+        ms._NC( ssEmpty );              UT_EQ( 0, ms.Length());  UT_FALSE( ms.IsNull()   );
+        ms.Clear()._NC( t);             UT_EQ( "0123456789", ms  );
+        ms.Clear()._<false>( t ,2,3);   UT_EQ( "234"       , ms  );
     }
 
     // string literals
@@ -611,27 +606,27 @@ UT_METHOD( Append )
 
         // 1 - 6 length literals
         {
-            {   AString ms( "a" );       UT_EQ( 1, ms.Length() );   UT_EQ( ms, "a"           );}
-            {   AString ms( "ab" );      UT_EQ( 2, ms.Length() );   UT_EQ( ms, "ab"          );}
-            {   AString ms( "abc" );     UT_EQ( 3, ms.Length() );   UT_EQ( ms, "abc"         );}
-            {   AString ms( "abcd" );    UT_EQ( 4, ms.Length() );   UT_EQ( ms, "abcd"        );}
-            {   AString ms( "abcde" );   UT_EQ( 5, ms.Length() );   UT_EQ( ms, "abcde"       );}
-            {   AString ms( "abcdef" );  UT_EQ( 6, ms.Length() );   UT_EQ( ms, "abcdef"      );}
+            {   AString ms( "a" );       UT_EQ( 1, ms.Length() );   UT_EQ( "a"        , ms  );}
+            {   AString ms( "ab" );      UT_EQ( 2, ms.Length() );   UT_EQ( "ab"       , ms  );}
+            {   AString ms( "abc" );     UT_EQ( 3, ms.Length() );   UT_EQ( "abc"      , ms  );}
+            {   AString ms( "abcd" );    UT_EQ( 4, ms.Length() );   UT_EQ( "abcd"     , ms  );}
+            {   AString ms( "abcde" );   UT_EQ( 5, ms.Length() );   UT_EQ( "abcde"    , ms  );}
+            {   AString ms( "abcdef" );  UT_EQ( 6, ms.Length() );   UT_EQ( "abcdef"   , ms  );}
 
             { AString ms;
-              ms.Clear()._( "a" );       UT_EQ( 1, ms.Length() );   UT_EQ( ms, "a"           );
-              ms.Clear()._( "ab" );      UT_EQ( 2, ms.Length() );   UT_EQ( ms, "ab"          );
-              ms.Clear()._( "abc" );     UT_EQ( 3, ms.Length() );   UT_EQ( ms, "abc"         );
-              ms.Clear()._( "abcd" );    UT_EQ( 4, ms.Length() );   UT_EQ( ms, "abcd"        );
-              ms.Clear()._( "abcde" );   UT_EQ( 5, ms.Length() );   UT_EQ( ms, "abcde"       );
-              ms.Clear()._( "abcdef" );  UT_EQ( 6, ms.Length() );   UT_EQ( ms, "abcdef"      );}
+              ms.Clear()._( "a" );       UT_EQ( 1, ms.Length() );   UT_EQ( "a"        , ms  );
+              ms.Clear()._( "ab" );      UT_EQ( 2, ms.Length() );   UT_EQ( "ab"       , ms  );
+              ms.Clear()._( "abc" );     UT_EQ( 3, ms.Length() );   UT_EQ( "abc"      , ms  );
+              ms.Clear()._( "abcd" );    UT_EQ( 4, ms.Length() );   UT_EQ( "abcd"     , ms  );
+              ms.Clear()._( "abcde" );   UT_EQ( 5, ms.Length() );   UT_EQ( "abcde"    , ms  );
+              ms.Clear()._( "abcdef" );  UT_EQ( 6, ms.Length() );   UT_EQ( "abcdef"   , ms  );}
             { AString ms;
-              ms.Clear() << "a"  ;       UT_EQ( 1, ms.Length() );   UT_EQ( ms, "a"           );
-              ms.Clear() << "ab"  ;      UT_EQ( 2, ms.Length() );   UT_EQ( ms, "ab"          );
-              ms.Clear() << "abc"  ;     UT_EQ( 3, ms.Length() );   UT_EQ( ms, "abc"         );
-              ms.Clear() << "abcd"  ;    UT_EQ( 4, ms.Length() );   UT_EQ( ms, "abcd"        );
-              ms.Clear() << "abcde"  ;   UT_EQ( 5, ms.Length() );   UT_EQ( ms, "abcde"       );
-              ms.Clear() << "abcdef"  ;  UT_EQ( 6, ms.Length() );   UT_EQ( ms, "abcdef"      );}
+              ms.Clear() << "a"  ;       UT_EQ( 1, ms.Length() );   UT_EQ( "a"        , ms  );
+              ms.Clear() << "ab"  ;      UT_EQ( 2, ms.Length() );   UT_EQ( "ab"       , ms  );
+              ms.Clear() << "abc"  ;     UT_EQ( 3, ms.Length() );   UT_EQ( "abc"      , ms  );
+              ms.Clear() << "abcd"  ;    UT_EQ( 4, ms.Length() );   UT_EQ( "abcd"     , ms  );
+              ms.Clear() << "abcde"  ;   UT_EQ( 5, ms.Length() );   UT_EQ( "abcde"    , ms  );
+              ms.Clear() << "abcdef"  ;  UT_EQ( 6, ms.Length() );   UT_EQ( "abcdef"   , ms  );}
         }
 
     }
@@ -649,10 +644,20 @@ UT_METHOD( Fields )
     AString ms;
 
     // empty fields
+    ms._( Format::Field( nullptr, 3, Alignment::Left,     '#' ) );
+    #if ALIB_DEBUG
+        #if defined(_WIN32)
+            UT_EQ( "std::nullptr_t(0x0)", ms   );
+        #else
+            UT_EQ( "decltype(nullptr)(0x0)", ms   );
+        #endif
+    #endif
+
     ms.Clear();
-    ms._( Format::Field( nullptr, 3, Alignment::Left,     '#' ) );    UT_EQ( ms, "###"           );
-    ms._( Format::Field( nullptr, 4, Alignment::Center,   '*' ) );    UT_EQ( ms, "###****"       );
-    ms._( Format::Field( nullptr, 5, Alignment::Right,    '+' ) );    UT_EQ( ms, "###****+++++"  );
+
+    ms._( Format::Field( "" ,     3, Alignment::Left,     '#' ) );    UT_EQ( "###"          , ms );
+    ms._( Format::Field( "" ,     4, Alignment::Center,   '*' ) );    UT_EQ( "###****"      , ms );
+    ms._( Format::Field( "" ,     5, Alignment::Right,    '+' ) );    UT_EQ( "###****+++++" , ms );
 
     // field, alignment left
     ms.Clear();
@@ -663,7 +668,7 @@ UT_METHOD( Fields )
     ms._( Format::Field( "ABCDE"   , 5,    Alignment::Left ) );
     ms._( Format::Field( "ABCDEF"  , 5,    Alignment::Left ) );
     ms._( Format::Field( "ABCDEFG" , 5,    Alignment::Left ) );
-    UT_EQ( ms, "A    AB   ABC  ABCD ABCDEABCDEFABCDEFG" );
+    UT_EQ( "A    AB   ABC  ABCD ABCDEABCDEFABCDEFG", ms );
 
     // field, alignment right
     ms.Clear();
@@ -674,7 +679,7 @@ UT_METHOD( Fields )
     ms._( Format::Field( "ABCDE"   , 5                      ) );
     ms._( Format::Field( "ABCDEF"  , 5,    Alignment::Right ) );
     ms._( Format::Field( "ABCDEFG" , 5,    Alignment::Right ) );
-    UT_EQ( ms, "    A   AB  ABC ABCDABCDEABCDEFABCDEFG" );
+    UT_EQ( "    A   AB  ABC ABCDABCDEABCDEFABCDEFG", ms );
 
     // field, alignment center
     ms.Clear();
@@ -685,7 +690,7 @@ UT_METHOD( Fields )
     ms._( Format::Field( "ABCDE"   , 5,    Alignment::Center) );
     ms._( Format::Field( "ABCDEF"  , 5,    Alignment::Center) );
     ms._( Format::Field( "ABCDEFG" , 5,    Alignment::Center) );
-    UT_EQ( ms, "  A   AB   ABC ABCD ABCDEABCDEFABCDEFG" );
+    UT_EQ( "  A   AB   ABC ABCD ABCDEABCDEFABCDEFG", ms );
 
     // a nested field
     ms.Clear();
@@ -694,7 +699,7 @@ UT_METHOD( Fields )
              inner._(" Lang:"); inner._(Format::Field( "en_US",  8, Alignment::Right, '-' ) );
         ms._(Format::Field( inner, 35, Alignment::Center, '#' ) );
     ms._("***");
-    UT_EQ( ms, "***####OS:-----Linux Lang:---en_US####***" );
+    UT_EQ( "***####OS:-----Linux Lang:---en_US####***", ms );
 }
 
 
@@ -735,27 +740,27 @@ UT_METHOD( CapacityLength )
 
         lib::lang::Report::GetDefault().PushHaltFlags( false, false );
             UT_PRINT( "A warning should follow" );
-            ms.SetLength(20);                    UT_EQ( 10, ms.Length() );    UT_EQ  ( ms.Capacity(), as );    UT_EQ( ms, "0123456789" );
+            ms.SetLength(20);                    UT_EQ( 10, ms.Length() );    UT_EQ  ( ms.Capacity(), as );    UT_EQ("0123456789"   ,  ms  );
 
             UT_PRINT( "No (second) warning should follow" );
-            ms.SetLength(20);                    UT_EQ( 10, ms.Length() );    UT_EQ  ( ms.Capacity(), as );    UT_EQ( ms, "0123456789" );
+            ms.SetLength(20);                    UT_EQ( 10, ms.Length() );    UT_EQ  ( ms.Capacity(), as );    UT_EQ("0123456789"   ,  ms  );
 
             ALIB_WARN_ONCE_PER_TYPE_ENABLE( AString, SetLengthLonger );
 
             UT_PRINT( "No warning should follow" );
-            ms.SetLength(10);                    UT_EQ( 10, ms.Length() );    UT_EQ  ( ms.Capacity(), as );    UT_EQ( ms, "0123456789" );
+            ms.SetLength(10);                    UT_EQ( 10, ms.Length() );    UT_EQ  ( ms.Capacity(), as );    UT_EQ("0123456789"   ,  ms  );
 
             UT_PRINT( "A warning should follow" );
-            ms.SetLength(11);                    UT_EQ( 10, ms.Length() );    UT_EQ  ( ms.Capacity(), as );    UT_EQ( ms, "0123456789" );
+            ms.SetLength(11);                    UT_EQ( 10, ms.Length() );    UT_EQ  ( ms.Capacity(), as );    UT_EQ("0123456789"   ,  ms  );
 
             UT_PRINT( "No (second) warning should follow" );
-            ms.SetLength(11);                    UT_EQ( 10, ms.Length() );    UT_EQ  ( ms.Capacity(), as );    UT_EQ( ms, "0123456789" );
+            ms.SetLength(11);                    UT_EQ( 10, ms.Length() );    UT_EQ  ( ms.Capacity(), as );    UT_EQ("0123456789"   ,  ms  );
 
         lib::lang::Report::GetDefault().PopHaltFlags();
 
-        ms.SetLength(5);                         UT_EQ( 5, ms.Length() );    UT_EQ  ( ms.Capacity(), as );    UT_EQ( ms, "01234"      );
-        ms.SetBuffer(3);                         UT_EQ( 3, ms.Length() );    UT_EQ  ( ms.Capacity(), 3  );    UT_EQ( ms, "012"        );
-        ms._("ABC");                             UT_EQ( 6, ms.Length() );    UT_TRUE( ms.Capacity() >= 6);    UT_EQ( ms, "012ABC"     );
+        ms.SetLength(5);                         UT_EQ( 5, ms.Length() );    UT_EQ  ( ms.Capacity(), as );    UT_EQ( "01234"  , ms    );
+        ms.SetBuffer(3);                         UT_EQ( 3, ms.Length() );    UT_EQ  ( ms.Capacity(), 3  );    UT_EQ( "012"    , ms    );
+        ms._("ABC");                             UT_EQ( 6, ms.Length() );    UT_TRUE( ms.Capacity() >= 6);    UT_EQ( "012ABC" , ms    );
     }
 
     // external buffer
@@ -763,20 +768,20 @@ UT_METHOD( CapacityLength )
         AString* ms;
         ms= new AString();
         ms->SetBuffer( new char[5], 5, 0, Responsibility::Transfer );
-        ms->_("ABC");                  UT_EQ( 3, ms->Length() );        UT_TRUE ( ms->Capacity() == 4 );  UT_EQ( *ms, "ABC" );
+        ms->_("ABC");                  UT_EQ( 3, ms->Length() );        UT_TRUE ( ms->Capacity() == 4 );  UT_EQ( "ABC"   , *ms  );
 
         delete ms;
 
         ms= new AString();
         ms->SetBuffer( new char[5], 5, 0, Responsibility::Transfer );
         ms->_("ABC");
-        ms->_("ABC");                  UT_EQ( 6, ms->Length() );        UT_TRUE ( ms->Capacity() > 4 );  UT_EQ( *ms, "ABCABC" );
+        ms->_("ABC");                  UT_EQ( 6, ms->Length() );        UT_TRUE ( ms->Capacity() > 4 );  UT_EQ( "ABCABC"   , *ms  );
         delete ms;
 
         char stackCA1[5];
         AString sMS1;
         sMS1.SetBuffer( reinterpret_cast<char*>(&stackCA1), 5 );
-        sMS1._("ABC");                 UT_TRUE ( sMS1.Buffer() == reinterpret_cast<char*>(&stackCA1) );  UT_EQ( sMS1, "ABC" );
+        sMS1._("ABC");                 UT_TRUE ( sMS1.Buffer() == reinterpret_cast<char*>(&stackCA1) );  UT_EQ( "ABC"   , sMS1  );
 
         lib::lang::Report::GetDefault().PushHaltFlags( false, false );
             char stackCA2[5];
@@ -784,17 +789,17 @@ UT_METHOD( CapacityLength )
             sMS2.SetBuffer( reinterpret_cast<char*>(&stackCA2), 5 );
             sMS2._("ABC");
             UT_PRINT( "A warning should follow" );
-            sMS2._("ABC");                UT_TRUE ( sMS2.Buffer() != reinterpret_cast<char*>(&stackCA2) );  UT_EQ( sMS2, "ABCABC" );
+            sMS2._("ABC");                UT_TRUE ( sMS2.Buffer() != reinterpret_cast<char*>(&stackCA2) );  UT_EQ( "ABCABC"   , sMS2  );
 
-            PAString<5> msS;
+            PreallocatedString<5> msS;
             const char* orig= msS.Buffer();
-            msS._("ABC");                 UT_TRUE ( msS.Buffer() == orig );  UT_EQ( msS, "ABC" );
+            msS._("ABC");                 UT_TRUE ( msS.Buffer() == orig );  UT_EQ( "ABC"   , String(msS)  );
             UT_PRINT( "A warning should follow" );
-            msS._("ABC");                 UT_TRUE ( msS.Buffer() != orig );  UT_EQ( msS, "ABCABC" );
+            msS._("ABC");                 UT_TRUE ( msS.Buffer() != orig );  UT_EQ( "ABCABC", String(msS)  );
 
             String64 ms64;
             orig= ms64.Buffer();
-            ms64._("ABC");                UT_TRUE ( ms64.Buffer() == orig ); UT_EQ( ms64, "ABC" );
+            ms64._("ABC");                UT_TRUE ( ms64.Buffer() == orig ); UT_EQ( "ABC"   , String(ms64) );
             ms64.Clear();
             ms64.InsertChars('@', 63 );   UT_TRUE ( ms64.Buffer() == orig );
             UT_PRINT( "A warning should follow" );
@@ -1060,91 +1065,84 @@ UT_METHOD( SearchAndReplace )
 
         // search one of
         integer l= ms.Length();
-        result= ms.IndexOfAny               ( ""     , Inclusion::Include       );    UT_EQ(  -1, result );
-        result= ms.IndexOfAny               ( "x"    , Inclusion::Include       );    UT_EQ(  -1, result );
-        result= ms.IndexOfAny               ( "xy"   , Inclusion::Include       );    UT_EQ(  -1, result );
-        result= ms.IndexOfAny               ( "xyz"  , Inclusion::Include       );    UT_EQ(  -1, result );
-        result= ms.IndexOfAny               ( "xyd"  , Inclusion::Include       );    UT_EQ(   3, result );
-        result= ms.IndexOfAny               ( "d"    , Inclusion::Include       );    UT_EQ(   3, result );
-        result= ms.IndexOfAny               ( "xyd"  , Inclusion::Include,  -2  );    UT_EQ(   3, result );
-        result= ms.IndexOfAny               ( "xyd"  , Inclusion::Include,   4  );    UT_EQ(   8, result );
-        result= ms.IndexOfAny               ( "xyd"  , Inclusion::Include,  20  );    UT_EQ(  -1, result );
-
-        result= ms.LastIndexOfAny           ( ""     , Inclusion::Include       );    UT_EQ(  -1, result );
-        result= ms.LastIndexOfAny           ( "x"    , Inclusion::Include       );    UT_EQ(  -1, result );
-        result= ms.LastIndexOfAny           ( "xy"   , Inclusion::Include       );    UT_EQ(  -1, result );
-        result= ms.LastIndexOfAny           ( "xyz"  , Inclusion::Include       );    UT_EQ(  -1, result );
-        result= ms.LastIndexOfAny           ( "xyd"  , Inclusion::Include       );    UT_EQ(   8, result );
-        result= ms.LastIndexOfAny           ( "xyd"  , Inclusion::Include,  -2  );    UT_EQ(  -1, result );
-        result= ms.LastIndexOfAny           ( "xyd"  , Inclusion::Include,   2  );    UT_EQ(  -1, result );
-        result= ms.LastIndexOfAny           ( "xyd"  , Inclusion::Include,   4  );    UT_EQ(   3, result );
-        result= ms.LastIndexOfAny           ( "a"    , Inclusion::Include,   4  );    UT_EQ(   0, result );
-        result= ms.LastIndexOfAny           ( "b"    , Inclusion::Include,   4  );    UT_EQ(   1, result );
-        result= ms.LastIndexOfAny           ( "ba"   , Inclusion::Include,   4  );    UT_EQ(   1, result );
-        result= ms.LastIndexOfAny           ( "xa"   , Inclusion::Include,   4  );    UT_EQ(   0, result );
-        result= ms.LastIndexOfAny           ( "xyd"  , Inclusion::Include,  20  );    UT_EQ(   8, result );
-        result= ms.LastIndexOfAny           ( "d"    , Inclusion::Include,  20  );    UT_EQ(   8, result );
-        result= ms.LastIndexOfAny           ( "e"    , Inclusion::Include,  20  );    UT_EQ(   9, result );
-
-        result= ms.IndexOfAny        <false>( "x"    , Inclusion::Include       );    UT_EQ(  -1, result );
-        result= ms.IndexOfAny        <false>( "xy"   , Inclusion::Include       );    UT_EQ(  -1, result );
-        result= ms.IndexOfAny        <false>( "xyz"  , Inclusion::Include       );    UT_EQ(  -1, result );
-        result= ms.IndexOfAny        <false>( "xyd"  , Inclusion::Include       );    UT_EQ(   3, result );
-        result= ms.IndexOfAny        <false>( "d"    , Inclusion::Include       );    UT_EQ(   3, result );
-        result= ms.IndexOfAny        <false>( "xyd"  , Inclusion::Include,   4  );    UT_EQ(   8, result );
-
-        result= ms.LastIndexOfAny<false>    ( "xyd"  , Inclusion::Include,   2  );    UT_EQ(  -1, result );
-        result= ms.LastIndexOfAny<false>    ( "xyd"  , Inclusion::Include,   4  );    UT_EQ(   3, result );
-        result= ms.LastIndexOfAny<false>    ( "a"    , Inclusion::Include,   4  );    UT_EQ(   0, result );
-        result= ms.LastIndexOfAny<false>    ( "b"    , Inclusion::Include,   4  );    UT_EQ(   1, result );
-        result= ms.LastIndexOfAny<false>    ( "ba"   , Inclusion::Include,   4  );    UT_EQ(   1, result );
-        result= ms.LastIndexOfAny<false>    ( "xa"   , Inclusion::Include,   4  );    UT_EQ(   0, result );
+        result= ms.IndexOfAny    <Inclusion::Include       >( ""           );    UT_EQ(  -1, result );
+        result= ms.IndexOfAny    <Inclusion::Include       >( "x"          );    UT_EQ(  -1, result );
+        result= ms.IndexOfAny    <Inclusion::Include       >( "xy"         );    UT_EQ(  -1, result );
+        result= ms.IndexOfAny    <Inclusion::Include       >( "xyz"        );    UT_EQ(  -1, result );
+        result= ms.IndexOfAny    <Inclusion::Include       >( "xyd"        );    UT_EQ(   3, result );
+        result= ms.IndexOfAny    <Inclusion::Include       >( "d"          );    UT_EQ(   3, result );
+        result= ms.IndexOfAny    <Inclusion::Include       >( "xyd" ,  -2  );    UT_EQ(   3, result );
+        result= ms.IndexOfAny    <Inclusion::Include       >( "xyd" ,   4  );    UT_EQ(   8, result );
+        result= ms.IndexOfAny    <Inclusion::Include       >( "xyd" ,  20  );    UT_EQ(  -1, result );
+        result= ms.LastIndexOfAny<Inclusion::Include       >( ""           );    UT_EQ(  -1, result );
+        result= ms.LastIndexOfAny<Inclusion::Include       >( "x"          );    UT_EQ(  -1, result );
+        result= ms.LastIndexOfAny<Inclusion::Include       >( "xy"         );    UT_EQ(  -1, result );
+        result= ms.LastIndexOfAny<Inclusion::Include       >( "xyz"        );    UT_EQ(  -1, result );
+        result= ms.LastIndexOfAny<Inclusion::Include       >( "xyd"        );    UT_EQ(   8, result );
+        result= ms.LastIndexOfAny<Inclusion::Include       >( "xyd" ,  -2  );    UT_EQ(  -1, result );
+        result= ms.LastIndexOfAny<Inclusion::Include       >( "xyd" ,   2  );    UT_EQ(  -1, result );
+        result= ms.LastIndexOfAny<Inclusion::Include       >( "xyd" ,   4  );    UT_EQ(   3, result );
+        result= ms.LastIndexOfAny<Inclusion::Include       >( "a"   ,   4  );    UT_EQ(   0, result );
+        result= ms.LastIndexOfAny<Inclusion::Include       >( "b"   ,   4  );    UT_EQ(   1, result );
+        result= ms.LastIndexOfAny<Inclusion::Include       >( "ba"  ,   4  );    UT_EQ(   1, result );
+        result= ms.LastIndexOfAny<Inclusion::Include       >( "xa"  ,   4  );    UT_EQ(   0, result );
+        result= ms.LastIndexOfAny<Inclusion::Include       >( "xyd" ,  20  );    UT_EQ(   8, result );
+        result= ms.LastIndexOfAny<Inclusion::Include       >( "d"   ,  20  );    UT_EQ(   8, result );
+        result= ms.LastIndexOfAny<Inclusion::Include       >( "e"   ,  20  );    UT_EQ(   9, result );
+        result= ms.IndexOfAny    <Inclusion::Include, false>( "x"          );    UT_EQ(  -1, result );
+        result= ms.IndexOfAny    <Inclusion::Include, false>( "xy"         );    UT_EQ(  -1, result );
+        result= ms.IndexOfAny    <Inclusion::Include, false>( "xyz"        );    UT_EQ(  -1, result );
+        result= ms.IndexOfAny    <Inclusion::Include, false>( "xyd"        );    UT_EQ(   3, result );
+        result= ms.IndexOfAny    <Inclusion::Include, false>( "d"          );    UT_EQ(   3, result );
+        result= ms.IndexOfAny    <Inclusion::Include, false>( "xyd"  ,  4  );    UT_EQ(   8, result );
+        result= ms.LastIndexOfAny<Inclusion::Include, false>( "xyd"  ,  2  );    UT_EQ(  -1, result );
+        result= ms.LastIndexOfAny<Inclusion::Include, false>( "xyd"  ,  4  );    UT_EQ(   3, result );
+        result= ms.LastIndexOfAny<Inclusion::Include, false>( "a"    ,  4  );    UT_EQ(   0, result );
+        result= ms.LastIndexOfAny<Inclusion::Include, false>( "b"    ,  4  );    UT_EQ(   1, result );
+        result= ms.LastIndexOfAny<Inclusion::Include, false>( "ba"   ,  4  );    UT_EQ(   1, result );
+        result= ms.LastIndexOfAny<Inclusion::Include, false>( "xa"   ,  4  );    UT_EQ(   0, result );
 
         // search NOT one of
-        result= ms.IndexOfAny               ( ""     , Inclusion::Exclude       );    UT_EQ(   0, result );
-        result= ms.IndexOfAny               ( "x"    , Inclusion::Exclude       );    UT_EQ(   0, result );
-        result= ms.IndexOfAny               ( "xy"   , Inclusion::Exclude       );    UT_EQ(   0, result );
-        result= ms.IndexOfAny               ( "xyz"  , Inclusion::Exclude       );    UT_EQ(   0, result );
-        result= ms.IndexOfAny               ( "a"    , Inclusion::Exclude       );    UT_EQ(   1, result );
-        result= ms.IndexOfAny               ( "ba"   , Inclusion::Exclude       );    UT_EQ(   2, result );
-        result= ms.IndexOfAny               ( "abc"  , Inclusion::Exclude       );    UT_EQ(   3, result );
-        result= ms.IndexOfAny               ( "acb"  , Inclusion::Exclude       );    UT_EQ(   3, result );
-        result= ms.IndexOfAny               ( "cba"  , Inclusion::Exclude       );    UT_EQ(   3, result );
-        result= ms.IndexOfAny               ( "xcba" , Inclusion::Exclude       );    UT_EQ(   3, result );
-
-        result= ms.LastIndexOfAny           ( ""     , Inclusion::Exclude       );    UT_EQ( l-1, result );
-        result= ms.LastIndexOfAny           ( "x"    , Inclusion::Exclude       );    UT_EQ( l-1, result );
-        result= ms.LastIndexOfAny           ( "xy"   , Inclusion::Exclude       );    UT_EQ( l-1, result );
-        result= ms.LastIndexOfAny           ( "e"    , Inclusion::Exclude       );    UT_EQ( l-2, result );
-        result= ms.LastIndexOfAny           ( "de"   , Inclusion::Exclude       );    UT_EQ( l-3, result );
-        result= ms.LastIndexOfAny           ( "cde"  , Inclusion::Exclude       );    UT_EQ( l-4, result );
-        result= ms.LastIndexOfAny           ( "ced"  , Inclusion::Exclude       );    UT_EQ( l-4, result );
-        result= ms.LastIndexOfAny           ( "ecd"  , Inclusion::Exclude       );    UT_EQ( l-4, result );
-        result= ms.LastIndexOfAny           ( "ecd"  , Inclusion::Exclude,  5   );    UT_EQ(   5, result );
-        result= ms.LastIndexOfAny           ( "ecd"  , Inclusion::Exclude,  4   );    UT_EQ(   4, result );
-        result= ms.LastIndexOfAny           ( "acd"  , Inclusion::Exclude,  3   );    UT_EQ(   1, result );
-        result= ms.LastIndexOfAny           ( "abc"  , Inclusion::Exclude,  2   );    UT_EQ(  -1, result );
-        result= ms.LastIndexOfAny           ( "xay"  , Inclusion::Exclude,  3   );    UT_EQ(   3, result );
-        result= ms.LastIndexOfAny           ( "d"    , Inclusion::Exclude,  3   );    UT_EQ(   2, result );
-        result= ms.LastIndexOfAny           ( "a"    , Inclusion::Exclude,  0   );    UT_EQ(  -1, result );
-
-        result= ms.IndexOfAny        <false>( "x"    , Inclusion::Exclude       );    UT_EQ(   0, result );
-        result= ms.IndexOfAny        <false>( "xy"   , Inclusion::Exclude       );    UT_EQ(   0, result );
-        result= ms.IndexOfAny        <false>( "xyz"  , Inclusion::Exclude       );    UT_EQ(   0, result );
-        result= ms.IndexOfAny        <false>( "a"    , Inclusion::Exclude       );    UT_EQ(   1, result );
-        result= ms.IndexOfAny        <false>( "ba"   , Inclusion::Exclude       );    UT_EQ(   2, result );
-        result= ms.IndexOfAny        <false>( "abc"  , Inclusion::Exclude       );    UT_EQ(   3, result );
-        result= ms.IndexOfAny        <false>( "acb"  , Inclusion::Exclude       );    UT_EQ(   3, result );
-        result= ms.IndexOfAny        <false>( "cba"  , Inclusion::Exclude       );    UT_EQ(   3, result );
-        result= ms.IndexOfAny        <false>( "xcba" , Inclusion::Exclude       );    UT_EQ(   3, result );
-
-        result= ms.LastIndexOfAny<false>    ( "ecd"  , Inclusion::Exclude,  5   );    UT_EQ(   5, result );
-        result= ms.LastIndexOfAny<false>    ( "ecd"  , Inclusion::Exclude,  4   );    UT_EQ(   4, result );
-        result= ms.LastIndexOfAny<false>    ( "acd"  , Inclusion::Exclude,  3   );    UT_EQ(   1, result );
-        result= ms.LastIndexOfAny<false>    ( "abc"  , Inclusion::Exclude,  2   );    UT_EQ(  -1, result );
-        result= ms.LastIndexOfAny<false>    ( "xay"  , Inclusion::Exclude,  3   );    UT_EQ(   3, result );
-        result= ms.LastIndexOfAny<false>    ( "d"    , Inclusion::Exclude,  3   );    UT_EQ(   2, result );
-        result= ms.LastIndexOfAny<false>    ( "a"    , Inclusion::Exclude,  0   );    UT_EQ(  -1, result );
+        result= ms.IndexOfAny    <Inclusion::Exclude       >( ""           );    UT_EQ(   0, result );
+        result= ms.IndexOfAny    <Inclusion::Exclude       >( "x"          );    UT_EQ(   0, result );
+        result= ms.IndexOfAny    <Inclusion::Exclude       >( "xy"         );    UT_EQ(   0, result );
+        result= ms.IndexOfAny    <Inclusion::Exclude       >( "xyz"        );    UT_EQ(   0, result );
+        result= ms.IndexOfAny    <Inclusion::Exclude       >( "a"          );    UT_EQ(   1, result );
+        result= ms.IndexOfAny    <Inclusion::Exclude       >( "ba"         );    UT_EQ(   2, result );
+        result= ms.IndexOfAny    <Inclusion::Exclude       >( "abc"        );    UT_EQ(   3, result );
+        result= ms.IndexOfAny    <Inclusion::Exclude       >( "acb"        );    UT_EQ(   3, result );
+        result= ms.IndexOfAny    <Inclusion::Exclude       >( "cba"        );    UT_EQ(   3, result );
+        result= ms.IndexOfAny    <Inclusion::Exclude       >( "xcba"       );    UT_EQ(   3, result );
+        result= ms.LastIndexOfAny<Inclusion::Exclude       >( ""           );    UT_EQ( l-1, result );
+        result= ms.LastIndexOfAny<Inclusion::Exclude       >( "x"          );    UT_EQ( l-1, result );
+        result= ms.LastIndexOfAny<Inclusion::Exclude       >( "xy"         );    UT_EQ( l-1, result );
+        result= ms.LastIndexOfAny<Inclusion::Exclude       >( "e"          );    UT_EQ( l-2, result );
+        result= ms.LastIndexOfAny<Inclusion::Exclude       >( "de"         );    UT_EQ( l-3, result );
+        result= ms.LastIndexOfAny<Inclusion::Exclude       >( "cde"        );    UT_EQ( l-4, result );
+        result= ms.LastIndexOfAny<Inclusion::Exclude       >( "ced"        );    UT_EQ( l-4, result );
+        result= ms.LastIndexOfAny<Inclusion::Exclude       >( "ecd"        );    UT_EQ( l-4, result );
+        result= ms.LastIndexOfAny<Inclusion::Exclude       >( "ecd"  ,  5  );    UT_EQ(   5, result );
+        result= ms.LastIndexOfAny<Inclusion::Exclude       >( "ecd"  ,  4  );    UT_EQ(   4, result );
+        result= ms.LastIndexOfAny<Inclusion::Exclude       >( "acd"  ,  3  );    UT_EQ(   1, result );
+        result= ms.LastIndexOfAny<Inclusion::Exclude       >( "abc"  ,  2  );    UT_EQ(  -1, result );
+        result= ms.LastIndexOfAny<Inclusion::Exclude       >( "xay"  ,  3  );    UT_EQ(   3, result );
+        result= ms.LastIndexOfAny<Inclusion::Exclude       >( "d"    ,  3  );    UT_EQ(   2, result );
+        result= ms.LastIndexOfAny<Inclusion::Exclude       >( "a"    ,  0  );    UT_EQ(  -1, result );
+        result= ms.IndexOfAny    <Inclusion::Exclude ,false>( "x"          );    UT_EQ(   0, result );
+        result= ms.IndexOfAny    <Inclusion::Exclude ,false>( "xy"         );    UT_EQ(   0, result );
+        result= ms.IndexOfAny    <Inclusion::Exclude ,false>( "xyz"        );    UT_EQ(   0, result );
+        result= ms.IndexOfAny    <Inclusion::Exclude ,false>( "a"          );    UT_EQ(   1, result );
+        result= ms.IndexOfAny    <Inclusion::Exclude ,false>( "ba"         );    UT_EQ(   2, result );
+        result= ms.IndexOfAny    <Inclusion::Exclude ,false>( "abc"        );    UT_EQ(   3, result );
+        result= ms.IndexOfAny    <Inclusion::Exclude ,false>( "acb"        );    UT_EQ(   3, result );
+        result= ms.IndexOfAny    <Inclusion::Exclude ,false>( "cba"        );    UT_EQ(   3, result );
+        result= ms.IndexOfAny    <Inclusion::Exclude ,false>( "xcba"       );    UT_EQ(   3, result );
+        result= ms.LastIndexOfAny<Inclusion::Exclude ,false>( "ecd"  ,  4  );    UT_EQ(   4, result );
+        result= ms.LastIndexOfAny<Inclusion::Exclude ,false>( "acd"  ,  3  );    UT_EQ(   1, result );
+        result= ms.LastIndexOfAny<Inclusion::Exclude ,false>( "abc"  ,  2  );    UT_EQ(  -1, result );
+        result= ms.LastIndexOfAny<Inclusion::Exclude ,false>( "xay"  ,  3  );    UT_EQ(   3, result );
+        result= ms.LastIndexOfAny<Inclusion::Exclude ,false>( "d"    ,  3  );    UT_EQ(   2, result );
+        result= ms.LastIndexOfAny<Inclusion::Exclude ,false>( "a"    ,  0  );    UT_EQ(  -1, result );
     }
 
     // ------------------ search one of several characters TString version  ------------------
@@ -1152,143 +1150,139 @@ UT_METHOD( SearchAndReplace )
     {
         TString ms("abcd abcde");
         // search one of
-        result= ms.IndexOfAny       ( ""       , Inclusion::Include      );    UT_EQ(  -1, result );
-        result= ms.IndexOfAny       ( "x"      , Inclusion::Include      );    UT_EQ(  -1, result );
-        result= ms.IndexOfAny       ( "xy"     , Inclusion::Include      );    UT_EQ(  -1, result );
-        result= ms.IndexOfAny       ( "xyz"    , Inclusion::Include      );    UT_EQ(  -1, result );
-        result= ms.IndexOfAny       ( "xyd"    , Inclusion::Include      );    UT_EQ(   3, result );
-        result= ms.IndexOfAny       ( "d"      , Inclusion::Include      );    UT_EQ(   3, result );
-        result= ms.IndexOfAny       ( "xyd"    , Inclusion::Include, -2  );    UT_EQ(   3, result );
-        result= ms.IndexOfAny       ( "xyd"    , Inclusion::Include,  4  );    UT_EQ(   8, result );
-        result= ms.IndexOfAny       ( "xyd"    , Inclusion::Include, 20  );    UT_EQ(  -1, result );
-
-        result= ms.IndexOfAny<false>( "x"      , Inclusion::Include      );    UT_EQ(  -1, result );
-        result= ms.IndexOfAny<false>( "xy"     , Inclusion::Include      );    UT_EQ(  -1, result );
-        result= ms.IndexOfAny<false>( "xyz"    , Inclusion::Include      );    UT_EQ(  -1, result );
-        result= ms.IndexOfAny<false>( "xyd"    , Inclusion::Include      );    UT_EQ(   3, result );
-        result= ms.IndexOfAny<false>( "d"      , Inclusion::Include      );    UT_EQ(   3, result );
-        result= ms.IndexOfAny<false>( "xyd"    , Inclusion::Include,  4  );    UT_EQ(   8, result );
-
-        // search NOT one of
-        result= ms.IndexOfAny       ( ""       , Inclusion::Exclude      );    UT_EQ(   0, result );
-        result= ms.IndexOfAny       ( "x"      , Inclusion::Exclude      );    UT_EQ(   0, result );
-        result= ms.IndexOfAny       ( "xy"     , Inclusion::Exclude      );    UT_EQ(   0, result );
-        result= ms.IndexOfAny       ( "xyz"    , Inclusion::Exclude      );    UT_EQ(   0, result );
-        result= ms.IndexOfAny       ( "a"      , Inclusion::Exclude      );    UT_EQ(   1, result );
-        result= ms.IndexOfAny       ( "ba"     , Inclusion::Exclude      );    UT_EQ(   2, result );
-        result= ms.IndexOfAny       ( "abc"    , Inclusion::Exclude      );    UT_EQ(   3, result );
-        result= ms.IndexOfAny       ( "acb"    , Inclusion::Exclude      );    UT_EQ(   3, result );
-        result= ms.IndexOfAny       ( "cba"    , Inclusion::Exclude      );    UT_EQ(   3, result );
-        result= ms.IndexOfAny       ( "xcba"   , Inclusion::Exclude      );    UT_EQ(   3, result );
-
-        result= ms.IndexOfAny<false>( "x"      , Inclusion::Exclude      );    UT_EQ(   0, result );
-        result= ms.IndexOfAny<false>( "xy"     , Inclusion::Exclude      );    UT_EQ(   0, result );
-        result= ms.IndexOfAny<false>( "xyz"    , Inclusion::Exclude      );    UT_EQ(   0, result );
-        result= ms.IndexOfAny<false>( "a"      , Inclusion::Exclude      );    UT_EQ(   1, result );
-        result= ms.IndexOfAny<false>( "ba"     , Inclusion::Exclude      );    UT_EQ(   2, result );
-        result= ms.IndexOfAny<false>( "abc"    , Inclusion::Exclude      );    UT_EQ(   3, result );
-        result= ms.IndexOfAny<false>( "acb"    , Inclusion::Exclude      );    UT_EQ(   3, result );
-        result= ms.IndexOfAny<false>( "cba"    , Inclusion::Exclude      );    UT_EQ(   3, result );
-        result= ms.IndexOfAny<false>( "xcba"   , Inclusion::Exclude      );    UT_EQ(   3, result );
+        result= ms.IndexOfAny<Inclusion::Include       >( ""            );    UT_EQ(  -1, result );
+        result= ms.IndexOfAny<Inclusion::Include       >( "x"           );    UT_EQ(  -1, result );
+        result= ms.IndexOfAny<Inclusion::Include       >( "xy"          );    UT_EQ(  -1, result );
+        result= ms.IndexOfAny<Inclusion::Include       >( "xyz"         );    UT_EQ(  -1, result );
+        result= ms.IndexOfAny<Inclusion::Include       >( "xyd"         );    UT_EQ(   3, result );
+        result= ms.IndexOfAny<Inclusion::Include       >( "d"           );    UT_EQ(   3, result );
+        result= ms.IndexOfAny<Inclusion::Include       >( "xyd"   , -2  );    UT_EQ(   3, result );
+        result= ms.IndexOfAny<Inclusion::Include       >( "xyd"   ,  4  );    UT_EQ(   8, result );
+        result= ms.IndexOfAny<Inclusion::Include       >( "xyd"   , 20  );    UT_EQ(  -1, result );
+        result= ms.IndexOfAny<Inclusion::Include, false>( "x"           );    UT_EQ(  -1, result );
+        result= ms.IndexOfAny<Inclusion::Include, false>( "xy"          );    UT_EQ(  -1, result );
+        result= ms.IndexOfAny<Inclusion::Include, false>( "xyz"         );    UT_EQ(  -1, result );
+        result= ms.IndexOfAny<Inclusion::Include, false>( "xyd"         );    UT_EQ(   3, result );
+        result= ms.IndexOfAny<Inclusion::Include, false>( "d"           );    UT_EQ(   3, result );
+        result= ms.IndexOfAny<Inclusion::Include, false>( "xyd"   ,  4  );    UT_EQ(   8, result );
+        result= ms.IndexOfAny<Inclusion::Exclude       >( ""            );    UT_EQ(   0, result );
+        result= ms.IndexOfAny<Inclusion::Exclude       >( "x"           );    UT_EQ(   0, result );
+        result= ms.IndexOfAny<Inclusion::Exclude       >( "xy"          );    UT_EQ(   0, result );
+        result= ms.IndexOfAny<Inclusion::Exclude       >( "xyz"         );    UT_EQ(   0, result );
+        result= ms.IndexOfAny<Inclusion::Exclude       >( "a"           );    UT_EQ(   1, result );
+        result= ms.IndexOfAny<Inclusion::Exclude       >( "ba"          );    UT_EQ(   2, result );
+        result= ms.IndexOfAny<Inclusion::Exclude       >( "abc"         );    UT_EQ(   3, result );
+        result= ms.IndexOfAny<Inclusion::Exclude       >( "acb"         );    UT_EQ(   3, result );
+        result= ms.IndexOfAny<Inclusion::Exclude       >( "cba"         );    UT_EQ(   3, result );
+        result= ms.IndexOfAny<Inclusion::Exclude       >( "xcba"        );    UT_EQ(   3, result );
+        result= ms.IndexOfAny<Inclusion::Exclude, false>( "x"           );    UT_EQ(   0, result );
+        result= ms.IndexOfAny<Inclusion::Exclude, false>( "xy"          );    UT_EQ(   0, result );
+        result= ms.IndexOfAny<Inclusion::Exclude, false>( "xyz"         );    UT_EQ(   0, result );
+        result= ms.IndexOfAny<Inclusion::Exclude, false>( "a"           );    UT_EQ(   1, result );
+        result= ms.IndexOfAny<Inclusion::Exclude, false>( "ba"          );    UT_EQ(   2, result );
+        result= ms.IndexOfAny<Inclusion::Exclude, false>( "abc"         );    UT_EQ(   3, result );
+        result= ms.IndexOfAny<Inclusion::Exclude, false>( "acb"         );    UT_EQ(   3, result );
+        result= ms.IndexOfAny<Inclusion::Exclude, false>( "cba"         );    UT_EQ(   3, result );
+        result= ms.IndexOfAny<Inclusion::Exclude, false>( "xcba"        );    UT_EQ(   3, result );
     }
 
     // search nullptr, empty string
     {
-        AString ms("abcd abcd");
-        result= ms.IndexOfSubstring( nullptr        );    UT_EQ( result, 0 );
-        result= ms.IndexOfSubstring( nullptr,    5  );    UT_EQ( result, 5 );
-        result= ms.IndexOfSubstring( nullptr,   50  );    UT_EQ( result,-1 );
-        result= ms.IndexOfSubstring( nullptr, -  5  );    UT_EQ( result, 0 );
-        result= ms.IndexOfSubstring( "",      -  5  );    UT_EQ( result, 0 );
-        result= ms.IndexOfSubstring( "",         0  );    UT_EQ( result, 0 );
-        result= ms.IndexOfSubstring( "",         4  );    UT_EQ( result, 4 );
-        result= ms.IndexOfSubstring( "",       100  );    UT_EQ( result,-1 );
-        result= ms.IndexOf  ( nullptr        );    UT_EQ( result, 0 );
-        result= ms.IndexOf  ( nullptr,    5  );    UT_EQ( result, 5 );
-        result= ms.IndexOf  ( nullptr,   50  );    UT_EQ( result,-1 );
-        result= ms.IndexOf  ( nullptr, -  5  );    UT_EQ( result, 0 );
-        result= ms.IndexOf  ( "",      -  5  );    UT_EQ( result, 0 );
-        result= ms.IndexOf  ( "",         0  );    UT_EQ( result, 0 );
-        result= ms.IndexOf  ( "",         4  );    UT_EQ( result, 4 );
-        result= ms.IndexOf  ( "",       100  );    UT_EQ( result,-1 );
+        TString ms("abcd abcd");
+        result= ms.IndexOfSubstring( nullptr        );    UT_EQ( -1, result );
+        result= ms.IndexOfSubstring( nullptr,    5  );    UT_EQ( -1, result );
+        result= ms.IndexOfSubstring( nullptr,   50  );    UT_EQ( -1, result );
+        result= ms.IndexOfSubstring( nullptr, -  5  );    UT_EQ( -1, result );
+        result= ms.IndexOfSubstring( "",      -  5  );    UT_EQ(  0, result );
+        result= ms.IndexOfSubstring( "",         0  );    UT_EQ(  0, result );
+        result= ms.IndexOfSubstring( "",         4  );    UT_EQ(  4, result );
+        result= ms.IndexOfSubstring( "",       100  );    UT_EQ( -1, result );
+        result= ms.IndexOf  ( nullptr        );    UT_EQ(  0, result );
+        result= ms.IndexOf  ( nullptr,    5  );    UT_EQ(  5, result );
+        result= ms.IndexOf  ( nullptr,   50  );    UT_EQ( -1, result );
+        result= ms.IndexOf  ( nullptr, -  5  );    UT_EQ(  0, result );
+        result= ms.IndexOf  ( "",      -  5  );    UT_EQ(  0, result );
+        result= ms.IndexOf  ( "",         0  );    UT_EQ(  0, result );
+        result= ms.IndexOf  ( "",         4  );    UT_EQ(  4, result );
+        result= ms.IndexOf  ( "",       100  );    UT_EQ( -1, result );
     }
 
     // search
     {
-        AString ms("abcd abcd");
-        result= ms.IndexOfSubstring       ( "abcd"       );      UT_EQ( result, 0 );
-        result= ms.IndexOfSubstring       ( "b"          );      UT_EQ( result, 1 );
-        result= ms.IndexOfSubstring       ( " abcd"      );      UT_EQ( result, 4 );
-        result= ms.IndexOfSubstring       ( "abcd",     1);      UT_EQ( result, 5 );
-        result= ms.IndexOfSubstring       ( "abcd",   - 1);      UT_EQ( result, 0 );
-        result= ms.IndexOfSubstring       ( "xyz",    -10);      UT_EQ( result,-1 );
-        result= ms.IndexOfSubstring<false>( "abcd"       );      UT_EQ( result, 0 );
-        result= ms.IndexOfSubstring<false>( "b"          );      UT_EQ( result, 1 );
-        result= ms.IndexOfSubstring<false>( " abcd"      );      UT_EQ( result, 4 );
-        result= ms.IndexOfSubstring<false>( "abcd",     1);      UT_EQ( result, 5 );
-        result= ms.IndexOf         ( "abcd"       );      UT_EQ( result, 0 );
-        result= ms.IndexOf         ( "b"          );      UT_EQ( result, 1 );
-        result= ms.IndexOf         ( " abcd"      );      UT_EQ( result, 4 );
-        result= ms.IndexOf         ( "abcd",     1);      UT_EQ( result, 5 );
-        result= ms.IndexOf         ( "abcd",   - 1);      UT_EQ( result, 0 );
-        result= ms.IndexOf         ( "xyz",    -10);      UT_EQ( result,-1 );
-        result= ms.IndexOf  <false>( "abcd"       );      UT_EQ( result, 0 );
-        result= ms.IndexOf  <false>( "b"          );      UT_EQ( result, 1 );
-        result= ms.IndexOf  <false>( " abcd"      );      UT_EQ( result, 4 );
-        result= ms.IndexOf  <false>( "abcd",     1);      UT_EQ( result, 5 );
+        TString ms("abcd abcd");
+        result= ms.IndexOfSubstring                        ( "abcd"       );  UT_EQ( result,   0 );
+        result= ms.IndexOfSubstring                        ( "b"          );  UT_EQ( result,   1 );
+        result= ms.IndexOfSubstring                        ( " abcd"      );  UT_EQ( result,   4 );
+        result= ms.IndexOfSubstring                        ( "abcd",     1);  UT_EQ( result,   5 );
+        result= ms.IndexOfSubstring                        ( "abcd",   - 1);  UT_EQ( result,   0 );
+        result= ms.IndexOfSubstring                        ( "xyz",    -10);  UT_EQ( result,  -1 );
+        result= ms.IndexOfSubstring<Case::Sensitive, false>( "abcd"       );  UT_EQ( result,   0 );
+        result= ms.IndexOfSubstring<Case::Sensitive, false>( "b"          );  UT_EQ( result,   1 );
+        result= ms.IndexOfSubstring<Case::Sensitive, false>( " abcd"      );  UT_EQ( result,   4 );
+        result= ms.IndexOfSubstring<Case::Sensitive, false>( "abcd",     1);  UT_EQ( result,   5 );
+        result= ms.IndexOf                                 ( "abcd"       );  UT_EQ( result,   0 );
+        result= ms.IndexOf                                 ( "b"          );  UT_EQ( result,   1 );
+        result= ms.IndexOf                                 ( " abcd"      );  UT_EQ( result,   4 );
+        result= ms.IndexOf                                 ( "abcd",     1);  UT_EQ( result,   5 );
+        result= ms.IndexOf                                 ( "abcd",   - 1);  UT_EQ( result,   0 );
+        result= ms.IndexOf                                 ( "xyz",    -10);  UT_EQ( result,  -1 );
+        result= ms.IndexOf         <Case::Sensitive, false>( "abcd"       );  UT_EQ( result,   0 );
+        result= ms.IndexOf         <Case::Sensitive, false>( "b"          );  UT_EQ( result,   1 );
+        result= ms.IndexOf         <Case::Sensitive, false>( " abcd"      );  UT_EQ( result,   4 );
+        result= ms.IndexOf         <Case::Sensitive, false>( "abcd",     1);  UT_EQ( result,   5 );
     }
 
     // ignore case
     {
         AString ms( "Hello A-Worx utilXXX" );
         ms.DeleteEnd(3);
-        result= ms.IndexOfSubstring       ( "a-worx",   0, Case::Ignore ); UT_EQ( result,  6 );
-        result= ms.IndexOfSubstring       ( "a-worx",   1, Case::Ignore ); UT_EQ( result,  6 );
-        result= ms.IndexOfSubstring       ( "a-worx", -10, Case::Ignore ); UT_EQ( result,  6 );
-        result= ms.IndexOfSubstring       ( "a-worx",   6, Case::Ignore ); UT_EQ( result,  6 );
-        result= ms.IndexOfSubstring       ( "a-worx",   7, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOfSubstring       ( "a-worx", 100, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOfSubstring       ( "hel",      0, Case::Ignore ); UT_EQ( result,  0 );
-        result= ms.IndexOfSubstring       ( "hel",      1, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOfSubstring       ( "util",     1, Case::Ignore ); UT_EQ( result, 13 );
-        result= ms.IndexOfSubstring       ( "UTIL",     5, Case::Ignore ); UT_EQ( result, 13 );
-        result= ms.IndexOfSubstring       ( "UTIL",    13, Case::Ignore ); UT_EQ( result, 13 );
-        result= ms.IndexOfSubstring       ( "UTIL",    14, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOfSubstring<false>( "a-worx",   0, Case::Ignore ); UT_EQ( result,  6 );
-        result= ms.IndexOfSubstring<false>( "a-worx",   1, Case::Ignore ); UT_EQ( result,  6 );
-        result= ms.IndexOfSubstring<false>( "a-worx",   6, Case::Ignore ); UT_EQ( result,  6 );
-        result= ms.IndexOfSubstring<false>( "a-worx",   7, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOfSubstring<false>( "hel",      0, Case::Ignore ); UT_EQ( result,  0 );
-        result= ms.IndexOfSubstring<false>( "hel",      1, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOfSubstring<false>( "util",     1, Case::Ignore ); UT_EQ( result, 13 );
-        result= ms.IndexOfSubstring<false>( "UTIL",     5, Case::Ignore ); UT_EQ( result, 13 );
-        result= ms.IndexOfSubstring<false>( "UTIL",    13, Case::Ignore ); UT_EQ( result, 13 );
-        result= ms.IndexOf         ( "a-worx",   0, Case::Ignore ); UT_EQ( result,  6 );
-        result= ms.IndexOf         ( "a-worx",   1, Case::Ignore ); UT_EQ( result,  6 );
-        result= ms.IndexOf         ( "a-worx", -10, Case::Ignore ); UT_EQ( result,  6 );
-        result= ms.IndexOf         ( "a-worx",   6, Case::Ignore ); UT_EQ( result,  6 );
-        result= ms.IndexOf         ( "a-worx",   7, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOf         ( "a-worx", 100, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOf         ( "hel",      0, Case::Ignore ); UT_EQ( result,  0 );
-        result= ms.IndexOf         ( "hel",      1, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOf         ( "util",     1, Case::Ignore ); UT_EQ( result, 13 );
-        result= ms.IndexOf         ( "UTIL",     5, Case::Ignore ); UT_EQ( result, 13 );
-        result= ms.IndexOf         ( "UTIL",    13, Case::Ignore ); UT_EQ( result, 13 );
-        result= ms.IndexOf         ( "UTIL",    14, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOf  <false>( "a-worx",   0, Case::Ignore ); UT_EQ( result,  6 );
-        result= ms.IndexOf  <false>( "a-worx",   1, Case::Ignore ); UT_EQ( result,  6 );
-        result= ms.IndexOf  <false>( "a-worx",   6, Case::Ignore ); UT_EQ( result,  6 );
-        result= ms.IndexOf  <false>( "a-worx",   7, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOf  <false>( "hel",      0, Case::Ignore ); UT_EQ( result,  0 );
-        result= ms.IndexOf  <false>( "hel",      1, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOf  <false>( "util",     1, Case::Ignore ); UT_EQ( result, 13 );
-        result= ms.IndexOf  <false>( "UTIL",     5, Case::Ignore ); UT_EQ( result, 13 );
-        result= ms.IndexOf  <false>( "UTIL",    13, Case::Ignore ); UT_EQ( result, 13 );
+        result= ms.IndexOfSubstring<Case::Ignore   , true >( "a-worx",    0 ); UT_EQ( result,  6 );
+        result= ms.IndexOfSubstring<Case::Ignore   , true >( "a-worx",    1 ); UT_EQ( result,  6 );
+        result= ms.IndexOfSubstring<Case::Ignore   , true >( "a-worx",  -10 ); UT_EQ( result,  6 );
+        result= ms.IndexOfSubstring<Case::Ignore   , true >( "a-worx",    6 ); UT_EQ( result,  6 );
+        result= ms.IndexOfSubstring<Case::Ignore   , true >( "a-worx",    7 ); UT_EQ( result, -1 );
+        result= ms.IndexOfSubstring<Case::Ignore   , true >( "a-worx",  100 ); UT_EQ( result, -1 );
+        result= ms.IndexOfSubstring<Case::Ignore   , true >( "hel",       0 ); UT_EQ( result,  0 );
+        result= ms.IndexOfSubstring<Case::Ignore   , true >( "hel",       1 ); UT_EQ( result, -1 );
+        result= ms.IndexOfSubstring<Case::Ignore   , true >( "util",      1 ); UT_EQ( result, 13 );
+        result= ms.IndexOfSubstring<Case::Ignore   , true >( "UTIL",      5 ); UT_EQ( result, 13 );
+        result= ms.IndexOfSubstring<Case::Ignore   , true >( "UTIL",     13 ); UT_EQ( result, 13 );
+        result= ms.IndexOfSubstring<Case::Ignore   , true >( "UTIL",     14 ); UT_EQ( result, -1 );
+        result= ms.IndexOfSubstring<Case::Ignore   , false>( "a-worx",    0 ); UT_EQ( result,  6 );
+        result= ms.IndexOfSubstring<Case::Ignore   , false>( "a-worx",    1 ); UT_EQ( result,  6 );
+        result= ms.IndexOfSubstring<Case::Ignore   , false>( "a-worx",    6 ); UT_EQ( result,  6 );
+        result= ms.IndexOfSubstring<Case::Ignore   , false>( "a-worx",    7 ); UT_EQ( result, -1 );
+        result= ms.IndexOfSubstring<Case::Ignore   , false>( "hel",       0 ); UT_EQ( result,  0 );
+        result= ms.IndexOfSubstring<Case::Ignore   , false>( "hel",       1 ); UT_EQ( result, -1 );
+        result= ms.IndexOfSubstring<Case::Ignore   , false>( "util",      1 ); UT_EQ( result, 13 );
+        result= ms.IndexOfSubstring<Case::Ignore   , false>( "UTIL",      5 ); UT_EQ( result, 13 );
+        result= ms.IndexOfSubstring<Case::Ignore   , false>( "UTIL",     13 ); UT_EQ( result, 13 );
+        result= ms.IndexOf         <Case::Ignore          >( "a-worx",    0 ); UT_EQ( result,  6 );
+        result= ms.IndexOf         <Case::Ignore          >( "a-worx",    1 ); UT_EQ( result,  6 );
+        result= ms.IndexOf         <Case::Ignore          >( "a-worx",  -10 ); UT_EQ( result,  6 );
+        result= ms.IndexOf         <Case::Ignore          >( "a-worx",    6 ); UT_EQ( result,  6 );
+        result= ms.IndexOf         <Case::Ignore          >( "a-worx",    7 ); UT_EQ( result, -1 );
+        result= ms.IndexOf         <Case::Ignore          >( "a-worx",  100 ); UT_EQ( result, -1 );
+        result= ms.IndexOf         <Case::Ignore          >( "hel",       0 ); UT_EQ( result,  0 );
+        result= ms.IndexOf         <Case::Ignore          >( "hel",       1 ); UT_EQ( result, -1 );
+        result= ms.IndexOf         <Case::Ignore          >( "util",      1 ); UT_EQ( result, 13 );
+        result= ms.IndexOf         <Case::Ignore          >( "UTIL",      5 ); UT_EQ( result, 13 );
+        result= ms.IndexOf         <Case::Ignore          >( "UTIL",     13 ); UT_EQ( result, 13 );
+        result= ms.IndexOf         <Case::Ignore          >( "UTIL",     14 ); UT_EQ( result, -1 );
+        result= ms.IndexOf         <Case::Ignore   , false>( "a-worx",    0 ); UT_EQ( result,  6 );
+        result= ms.IndexOf         <Case::Ignore   , false>( "a-worx",    1 ); UT_EQ( result,  6 );
+        result= ms.IndexOf         <Case::Ignore   , false>( "a-worx",    6 ); UT_EQ( result,  6 );
+        result= ms.IndexOf         <Case::Ignore   , false>( "a-worx",    7 ); UT_EQ( result, -1 );
+        result= ms.IndexOf         <Case::Ignore   , false>( "hel",       0 ); UT_EQ( result,  0 );
+        result= ms.IndexOf         <Case::Ignore   , false>( "hel",       1 ); UT_EQ( result, -1 );
+        result= ms.IndexOf         <Case::Ignore   , false>( "util",      1 ); UT_EQ( result, 13 );
+        result= ms.IndexOf         <Case::Ignore   , false>( "UTIL",      5 ); UT_EQ( result, 13 );
+        result= ms.IndexOf         <Case::Ignore   , false>( "UTIL",     13 ); UT_EQ( result, 13 );
     }
 
     // IndexOfFirstDifference
     {
-        AString as("abcdef");
+        String as("abcdef");
         UT_EQ( 6, as.IndexOfFirstDifference("abcdef") );
         UT_EQ( 5, as.IndexOfFirstDifference("abcde") );
         UT_EQ( 6, as.IndexOfFirstDifference("abcdefg") );
@@ -1352,21 +1346,70 @@ UT_METHOD( SearchAndReplace )
     // replace one space by two spaces in a string of spaces
     {
         AString ms("     ");
-        result= ms.SearchAndReplace( " ",   "  "  );    UT_EQ( ms, "          " );        UT_EQ( 5, result );
+        result= ms.SearchAndReplace( " ",   "  "  );    UT_EQ( "          ", ms  );        UT_EQ( 5, result );
     }
 
     // replace ignoreCase
     {
         AString ms;
-        ms.Clear()._("ABC"); result= ms.SearchAndReplace( "abc",    "xxx",0, 1, Case::Sensitive );    UT_EQ( ms, "ABC" );        UT_EQ( 0, result );
-        ms.Clear()._("ABC"); result= ms.SearchAndReplace( "abc",    "xxx",0, 1, Case::Ignore    );    UT_EQ( ms, "xxx" );        UT_EQ( 1, result );
-        ms.Clear()._("ABC"); result= ms.SearchAndReplace( "ABC",    "xxx",0, 1, Case::Ignore    );    UT_EQ( ms, "xxx" );        UT_EQ( 1, result );
-
-        ms.Clear()._("abc");         ms.SearchAndReplace( "ABC",    "xxx",0, 1, Case::Sensitive );    UT_EQ( ms, "abc" );
-        ms.Clear()._("abc");         ms.SearchAndReplace( "ABC",    "xxx",0, 1, Case::Ignore    );    UT_EQ( ms, "xxx" );
-        ms.Clear()._("abc");         ms.SearchAndReplace( "abc",    "xxx",0, 1, Case::Ignore    );    UT_EQ( ms, "xxx" );
+        ms.Clear()._("ABC"); result= ms.SearchAndReplace( "abc",    "xxx",0, 1, Case::Sensitive );    UT_EQ( "ABC", ms );        UT_EQ( 0, result );
+        ms.Clear()._("ABC"); result= ms.SearchAndReplace( "abc",    "xxx",0, 1, Case::Ignore    );    UT_EQ( "xxx", ms );        UT_EQ( 1, result );
+        ms.Clear()._("ABC"); result= ms.SearchAndReplace( "ABC",    "xxx",0, 1, Case::Ignore    );    UT_EQ( "xxx", ms );        UT_EQ( 1, result );
+        ms.Clear()._("abc");         ms.SearchAndReplace( "ABC",    "xxx",0, 1, Case::Sensitive );    UT_EQ( "abc", ms );
+        ms.Clear()._("abc");         ms.SearchAndReplace( "ABC",    "xxx",0, 1, Case::Ignore    );    UT_EQ( "xxx", ms );
+        ms.Clear()._("abc");         ms.SearchAndReplace( "abc",    "xxx",0, 1, Case::Ignore    );    UT_EQ( "xxx", ms );
     }
 
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//--- Test Trim
+//--------------------------------------------------------------------------------------------------
+UT_METHOD( Count )
+{
+    UT_INIT();
+
+    // Count
+    String str;
+
+    str= "";
+    UT_EQ( 0, str.Count( NullString ) );
+    UT_EQ( 0, str.Count( ""  ) );
+    UT_EQ( 0, str.Count( "x" ) );
+
+    UT_EQ( 0, str.CountChar( 'x' ) );
+    UT_EQ( 0, str.CountChar( '\0') );
+
+    str= "abcdef";
+    UT_EQ( 1, str.Count( "a"  ) );   UT_EQ( 1, str.CountChar( 'a'  ) );  UT_EQ( 1, str.Count<Case::Sensitive ALIB_COMMA false>( "a"  ) );   UT_EQ( 1, str.CountChar<false>( 'a'  ) );
+    UT_EQ( 1, str.Count( "b"  ) );   UT_EQ( 1, str.CountChar( 'b'  ) );  UT_EQ( 1, str.Count<Case::Sensitive ALIB_COMMA false>( "b"  ) );   UT_EQ( 1, str.CountChar<false>( 'b'  ) );
+    UT_EQ( 1, str.Count( "e"  ) );   UT_EQ( 1, str.CountChar( 'e'  ) );  UT_EQ( 1, str.Count<Case::Sensitive ALIB_COMMA false>( "e"  ) );   UT_EQ( 1, str.CountChar<false>( 'e'  ) );
+    UT_EQ( 1, str.Count( "f"  ) );   UT_EQ( 1, str.CountChar( 'f'  ) );  UT_EQ( 1, str.Count<Case::Sensitive ALIB_COMMA false>( "f"  ) );   UT_EQ( 1, str.CountChar<false>( 'f'  ) );
+    UT_EQ( 0, str.Count( "x"  ) );   UT_EQ( 0, str.CountChar( 'x'  ) );  UT_EQ( 0, str.Count<Case::Sensitive ALIB_COMMA false>( "x"  ) );   UT_EQ( 0, str.CountChar<false>( 'x'  ) );
+    UT_EQ( 0, str.Count( ""   ) );                                       UT_EQ( 0, str.Count<Case::Sensitive ALIB_COMMA false>( ""   ) );
+    UT_EQ( 1, str.Count( "ab" ) );                                       UT_EQ( 1, str.Count<Case::Sensitive ALIB_COMMA false>( "ab" ) );
+    UT_EQ( 1, str.Count( "bc" ) );                                       UT_EQ( 1, str.Count<Case::Sensitive ALIB_COMMA false>( "bc" ) );
+    UT_EQ( 1, str.Count( "ef" ) );                                       UT_EQ( 1, str.Count<Case::Sensitive ALIB_COMMA false>( "ef" ) );
+
+    UT_EQ( 1, str.Count( "ab", "X" ) );                                  UT_EQ( 1, str.Count<Case::Sensitive ALIB_COMMA false>( "ab", "X" ) );
+    UT_EQ( 0, str.Count( "ab", "c" ) );                                  UT_EQ( 0, str.Count<Case::Sensitive ALIB_COMMA false>( "ab", "c" ) );
+    UT_EQ( 0, str.Count( "ab", ""  ) );                                  UT_EQ( 0, str.Count<Case::Sensitive ALIB_COMMA false>( "ab", ""  ) );
+
+    str= "abcabcabcabc";
+    UT_EQ( 1, str.Count( "abcabcabcabc" ) );                                        UT_EQ( 1, str.Count<Case::Sensitive ALIB_COMMA false>( "abcabcabcabc" ) );
+    UT_EQ( 0, str.Count( "abcabcabcabcX") );                                        UT_EQ( 0, str.Count<Case::Sensitive ALIB_COMMA false>( "abcabcabcabcX") );
+    UT_EQ( 1, str.Count(  "bcabcabcabc" ) );                                        UT_EQ( 1, str.Count<Case::Sensitive ALIB_COMMA false>(  "bcabcabcabc" ) );
+    UT_EQ( 1, str.Count( "abcabcabcab"  ) );                                        UT_EQ( 1, str.Count<Case::Sensitive ALIB_COMMA false>( "abcabcabcab"  ) );
+    UT_EQ( 1, str.Count(  "bcabcabcab"  ) );                                        UT_EQ( 1, str.Count<Case::Sensitive ALIB_COMMA false>(  "bcabcabcab"  ) );
+    UT_EQ( 1, str.Count(   "cabcabc"    ) );                                        UT_EQ( 1, str.Count<Case::Sensitive ALIB_COMMA false>(   "cabcabc"    ) );
+    UT_EQ( 4, str.Count(   "abc"        ) );                                        UT_EQ( 4, str.Count<Case::Sensitive ALIB_COMMA false>(   "abc"        ) );
+    UT_EQ( 3, str.Count(   "cab"        ) );                                        UT_EQ( 3, str.Count<Case::Sensitive ALIB_COMMA false>(   "cab"        ) );
+    UT_EQ( 4, str.Count(   "ab"         ) );                                        UT_EQ( 4, str.Count<Case::Sensitive ALIB_COMMA false>(   "ab"         ) );
+    UT_EQ( 4, str.Count(   "a"          ) ); UT_EQ( 4, str.CountChar('a'      ) );  UT_EQ( 4, str.Count<Case::Sensitive ALIB_COMMA false>(   "a"          ) ); UT_EQ( 4, str.CountChar<false>(   'a'          ) );
+    UT_EQ( 0, str.Count(   "a"  ,"b"    ) ); UT_EQ( 0, str.CountChar('a', 'b' ) );  UT_EQ( 0, str.Count<Case::Sensitive ALIB_COMMA false>(   "a" , "b"    ) ); UT_EQ( 0, str.CountChar<false>(   'a' ,'b'     ) );
+    UT_EQ( 4, str.Count(   "a"  ,"c"    ) ); UT_EQ( 4, str.CountChar('a', 'c' ) );  UT_EQ( 4, str.Count<Case::Sensitive ALIB_COMMA false>(   "a" , "c"    ) ); UT_EQ( 4, str.CountChar<false>(   'a' ,'c'     ) );
+    UT_EQ( 1, str.Count(   "ab" ,"ca"   ) ); UT_EQ( 1, str.CountChar('c', 'a' ) );  UT_EQ( 1, str.Count<Case::Sensitive ALIB_COMMA false>(   "ab" ,"ca"   ) ); UT_EQ( 1, str.CountChar<false>(   'c' ,'a'     ) );
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1464,28 +1507,27 @@ UT_METHOD( Compare )
     result= ms.CompareTo( t      );                          resultX= t.compare( t );                            UT_EQ( resultX,    result );
     result= ms.CompareTo( string(t).append("x")       );     resultX= t.compare( string(t).append("x") );        UT_EQ( resultX,    result );
     result= ms.CompareTo( t.substr (0, t.size() -1 )  );     resultX= t.compare( t.substr(0, t.size() -1 ) );    UT_EQ( resultX,    result );
-    result= ms.CompareTo( "pad" + t, Case::Sensitive, 3            );    UT_EQ(  0,     result );
-    result= ms.CompareTo( "pad" + t, Case::Sensitive, 3, 2         );    UT_EQ(  1,     result );
-    result= ms.CompareTo( "pad" + t, Case::Sensitive, 3, 100, 0, 4 );    UT_EQ( -1,     result );
-    result= ms.CompareTo( "pad" + t, Case::Sensitive, 3, 100, 0, 5 );    UT_EQ(  0,     result );
-    result= ms.CompareTo(         t, Case::Sensitive, 2,2,   2,2   );    UT_EQ(  0,     result );
-    result= ms.CompareTo(         t, Case::Sensitive, 2,2,   2,1   );    UT_EQ( -1,     result );
-    result= ms.CompareTo(         t, Case::Sensitive, 2,2,   2,3   );    UT_EQ(  1,     result );
+    result= ms.CompareTo<true, Case::Sensitive>( "pad" + t,  3            );    UT_EQ(  0,     result );
+    result= ms.CompareTo<true, Case::Sensitive>( "pad" + t,  3, 2         );    UT_EQ(  1,     result );
+    result= ms.CompareTo<true, Case::Sensitive>( "pad" + t,  3, 100, 0, 4 );    UT_EQ( -1,     result );
+    result= ms.CompareTo<true, Case::Sensitive>( "pad" + t,  3, 100, 0, 5 );    UT_EQ(  0,     result );
+    result= ms.CompareTo<true, Case::Sensitive>(         t,  2,2,   2,2   );    UT_EQ(  0,     result );
+    result= ms.CompareTo<true, Case::Sensitive>(         t,  2,2,   2,1   );    UT_EQ( -1,     result );
+    result= ms.CompareTo<true, Case::Sensitive>(         t,  2,2,   2,3   );    UT_EQ(  1,     result );
+    result= ms.CompareTo<true, Case::Sensitive>(         t,  -2,5,   -2, 5 );                           UT_EQ( 0,   result );
+    result= ms.CompareTo<true, Case::Sensitive>(         t,   2, intMaxValue,    2, intMaxValue );      UT_EQ( 0,   result );
+    result= ms.CompareTo<true, Case::Sensitive>(         t,  -2, intMaxValue,   -2, intMaxValue );      UT_EQ( 0,   result );
+    result= ms.CompareTo<true, Case::Sensitive>(         t,  -2, 100,           -2, 99 );               UT_EQ( 0,   result );
+    result= ms.CompareTo<true, Case::Sensitive>(         t,  -2, 5,             -2, intMaxValue );      UT_EQ( 1,   result );
+    result= ms.CompareTo<true, Case::Sensitive>(         t,  -2, intMaxValue,   -2, 5 );                UT_EQ( -1,  result );
 
-    result= ms.CompareTo(         t, Case::Sensitive, -2,5,   -2, 5 );                           UT_EQ( 0,   result );
-    result= ms.CompareTo(         t, Case::Sensitive,  2, intMaxValue,    2, intMaxValue );      UT_EQ( 0,   result );
-    result= ms.CompareTo(         t, Case::Sensitive, -2, intMaxValue,   -2, intMaxValue );      UT_EQ( 0,   result );
-    result= ms.CompareTo(         t, Case::Sensitive, -2, 100,           -2, 99 );               UT_EQ( 0,   result );
-    result= ms.CompareTo(         t, Case::Sensitive, -2, 5,             -2, intMaxValue );      UT_EQ( 1,   result );
-    result= ms.CompareTo(         t, Case::Sensitive, -2, intMaxValue,   -2, 5 );                UT_EQ( -1,  result );
 
-
-    result= ms.CompareTo<false>( "pad" + t, Case::Sensitive, 3, 2         );    UT_EQ(  1,     result );
-    result= ms.CompareTo<false>( "pad" + t, Case::Sensitive, 3, 5         );    UT_EQ(  0,     result );
-    result= ms.CompareTo<false>( "pad" + t, Case::Sensitive, 3, 6         );    UT_EQ(  -1,    result );
-    result= ms.CompareTo<false>(         t, Case::Sensitive, 2,2,   2,2   );    UT_EQ(  0,     result );
-    result= ms.CompareTo<false>(         t, Case::Sensitive, 2,2,   2,1   );    UT_EQ( -1,     result );
-    result= ms.CompareTo<false>(         t, Case::Sensitive, 2,2,   2,3   );    UT_EQ(  1,     result );
+    result= ms.CompareTo<false, Case::Sensitive>( "pad" + t,  3, 2         );    UT_EQ(  1,     result );
+    result= ms.CompareTo<false, Case::Sensitive>( "pad" + t,  3, 5         );    UT_EQ(  0,     result );
+    result= ms.CompareTo<false, Case::Sensitive>( "pad" + t,  3, 6         );    UT_EQ(  -1,    result );
+    result= ms.CompareTo<false, Case::Sensitive>(         t,  2,2,   2,2   );    UT_EQ(  0,     result );
+    result= ms.CompareTo<false, Case::Sensitive>(         t,  2,2,   2,1   );    UT_EQ( -1,     result );
+    result= ms.CompareTo<false, Case::Sensitive>(         t,  2,2,   2,3   );    UT_EQ(  1,     result );
 
 
     // greater/smaller strings
@@ -1513,41 +1555,41 @@ UT_METHOD( Compare )
 
     // ignore case
     string ABCDE= "ABCDE";
-    result= ms.CompareTo       ( ABCDE );                                  UT_TRUE( result >  0 );
-    result= ms.CompareTo       ( ABCDE, Case::Sensitive              );    UT_TRUE( result >  0 );
-    result= ms.CompareTo       ( ABCDE, Case::Ignore                 );    UT_TRUE( result == 0 );
-    result= ms.CompareTo<false>( ABCDE );                                  UT_TRUE( result >  0 );
-    result= ms.CompareTo<false>( ABCDE, Case::Sensitive              );    UT_TRUE( result >  0 );
-    result= ms.CompareTo<false>( ABCDE, Case::Ignore                 );    UT_TRUE( result == 0 );
-    result= ms.CompareTo       ( ABCDE, Case::Sensitive, 2,2,   2,2  );    UT_TRUE( result >  0 );
-    result= ms.CompareTo       ( ABCDE, Case::Ignore,    2,2,   2,2  );    UT_TRUE( result == 0 );
-    result= ms.CompareTo<false>( ABCDE, Case::Sensitive, 2,2,   2,2  );    UT_TRUE( result >  0 );
-    result= ms.CompareTo<false>( ABCDE, Case::Ignore,    2,2,   2,2  );    UT_TRUE( result == 0 );
+    result= ms.CompareTo                         ( ABCDE               );    UT_TRUE( result >  0 );
+    result= ms.CompareTo<true, Case::Sensitive  >( ABCDE               );    UT_TRUE( result >  0 );
+    result= ms.CompareTo<true, Case::Ignore     >( ABCDE               );    UT_TRUE( result == 0 );
+    result= ms.CompareTo<false                  >( ABCDE               );    UT_TRUE( result >  0 );
+    result= ms.CompareTo<false, Case::Sensitive >( ABCDE               );    UT_TRUE( result >  0 );
+    result= ms.CompareTo<false, Case::Ignore    >( ABCDE               );    UT_TRUE( result == 0 );
+    result= ms.CompareTo<true , Case::Sensitive >( ABCDE,  2,2,   2,2  );    UT_TRUE( result >  0 );
+    result= ms.CompareTo<true , Case::Ignore    >( ABCDE,  2,2,   2,2  );    UT_TRUE( result == 0 );
+    result= ms.CompareTo<false, Case::Sensitive >( ABCDE,  2,2,   2,2  );    UT_TRUE( result >  0 );
+    result= ms.CompareTo<false, Case::Ignore    >( ABCDE,  2,2,   2,2  );    UT_TRUE( result == 0 );
 
     // we do just a very little testing with StringBuilder and AString parameter version of this function, as
     // the code differences are very small
     const char* cp= t.c_str(); //new StringBuilder(); tSB._( t );
-    result= ms.CompareTo       ( cp      );                                      UT_EQ( 0,   result );
-    result= ms.CompareTo       ( cp, Case::Sensitive, -5, 100, -10, 100      );  UT_EQ( 0,   result );
-    result= ms.CompareTo       ( cp, Case::Sensitive,  2,   3,   2,   3      );  UT_EQ( 0,   result );
-    result= ms.CompareTo<false>( cp, Case::Sensitive,  2,   3,   2,   3      );  UT_EQ( 0,   result );
+    result= ms.CompareTo<true ,Case::Sensitive>( cp                          );  UT_EQ( 0,   result );
+    result= ms.CompareTo<true ,Case::Sensitive>( cp,  -5, 100, -10, 100      );  UT_EQ( 0,   result );
+    result= ms.CompareTo<true ,Case::Sensitive>( cp,   2,   3,   2,   3      );  UT_EQ( 0,   result );
+    result= ms.CompareTo<false                >( cp,   2,   3,   2,   3      );  UT_EQ( 0,   result );
 
     AString tAS( t );
-    result= ms.CompareTo( tAS      );                                            UT_EQ( 0,   result );
-    result= ms.CompareTo       (tAS, Case::Sensitive, -5, 100, -10, 100      );  UT_EQ( 0,   result );
-    result= ms.CompareTo       ( cp, Case::Sensitive,  2,   3,   2,   3      );  UT_EQ( 0,   result );
-    result= ms.CompareTo<false>( cp, Case::Sensitive,  2,   3,   2,   3      );  UT_EQ( 0,   result );
+    result= ms.CompareTo                        ( tAS      );                     UT_EQ( 0,   result );
+    result= ms.CompareTo<true , Case::Sensitive>(tAS,  -5, 100, -10, 100      );  UT_EQ( 0,   result );
+    result= ms.CompareTo<true , Case::Sensitive>( cp,   2,   3,   2,   3      );  UT_EQ( 0,   result );
+    result= ms.CompareTo<false, Case::Sensitive>( cp,   2,   3,   2,   3      );  UT_EQ( 0,   result );
 
     // different ranges
     string r1=   "*ABCDEF*";
     string r2= "##*ABCDEF*##";
     ms.Clear()._( r1 );
-    result= ms.CompareTo       ( r2, Case::Sensitive, 2,8          );       UT_EQ( 0,   result );
-    result= ms.CompareTo<false>( r2, Case::Sensitive, 2,7          );       UT_EQ( 1,   result );
-    result= ms.CompareTo<false>( r2, Case::Sensitive, 2,8          );       UT_EQ( 0,   result );
-    result= ms.CompareTo<false>( r2, Case::Sensitive, 2,9          );       UT_EQ(-1,   result );
-    result= ms.CompareTo       ( r2, Case::Sensitive, 3,6,   1,6   );       UT_EQ( 0,   result );
-    result= ms.CompareTo<false>( r2, Case::Sensitive, 3,6,   1,6   );       UT_EQ( 0,   result );
+    result= ms.CompareTo<true , Case::Sensitive>( r2,  2,8          );       UT_EQ( 0,   result );
+    result= ms.CompareTo<false, Case::Sensitive>( r2,  2,7          );       UT_EQ( 1,   result );
+    result= ms.CompareTo<false, Case::Sensitive>( r2,  2,8          );       UT_EQ( 0,   result );
+    result= ms.CompareTo<false, Case::Sensitive>( r2,  2,9          );       UT_EQ(-1,   result );
+    result= ms.CompareTo<true , Case::Sensitive>( r2,  3,6,   1,6   );       UT_EQ( 0,   result );
+    result= ms.CompareTo<false, Case::Sensitive>( r2,  3,6,   1,6   );       UT_EQ( 0,   result );
 
     // startsWith/Endswith/ContainsAt
     string sub1=  "ABC";
@@ -1556,30 +1598,30 @@ UT_METHOD( Compare )
     string s2=    "123ABC";
     string s3=    "##12ABC21##";
     string s4=    "AB";
-    ms.Clear()._( s1 );    UT_TRUE  ( ms.StartsWith( sub1 )    )
-                           UT_FALSE ( ms.StartsWith( sub2 )    )
-    ms.Clear()._( s2 );    UT_TRUE  ( ms.EndsWith  ( sub1 )    )
-                           UT_FALSE ( ms.EndsWith  ( sub2 )    )
-    ms.Clear()._( s3 );    UT_TRUE  ( ms.ContainsAt( sub1, 4 ) )
-                           UT_FALSE ( ms.ContainsAt( sub2, 4 ) )
-                           UT_TRUE  ( ms.ContainsAt( sub2, 4, Case::Ignore ) )
-    ms.Clear()._( s4 );    UT_FALSE ( ms.ContainsAt( sub1, 4 ) )
-                           UT_FALSE ( ms.ContainsAt( sub2, 4 ) )
-    ms.Clear()._( s4 );    UT_FALSE ( ms.ContainsAt( sub1, 0 ) )
-                           UT_FALSE ( ms.ContainsAt( sub2, 0, Case::Ignore ) )
+    ms.Clear()._( s1 );    UT_TRUE  ( ms.StartsWith                              ( sub1    ) )
+                           UT_FALSE ( ms.StartsWith                              ( sub2    ) )
+    ms.Clear()._( s2 );    UT_TRUE  ( ms.EndsWith                                ( sub1    ) )
+                           UT_FALSE ( ms.EndsWith                                ( sub2    ) )
+    ms.Clear()._( s3 );    UT_TRUE  ( ms.ContainsAt                              ( sub1, 4 ) )
+                           UT_FALSE ( ms.ContainsAt                              ( sub2, 4 ) )
+                           UT_TRUE  ( ms.ContainsAt<true ALIB_COMMA Case::Ignore>( sub2, 4 ) )
+    ms.Clear()._( s4 );    UT_FALSE ( ms.ContainsAt                              ( sub1, 4 ) )
+                           UT_FALSE ( ms.ContainsAt                              ( sub2, 4 ) )
+    ms.Clear()._( s4 );    UT_FALSE ( ms.ContainsAt                              ( sub1, 0 ) )
+                           UT_FALSE ( ms.ContainsAt<true ALIB_COMMA Case::Ignore>( sub2, 0 ) )
 
     ms.Clear()._( "Hello ALib classes" );
 
-    UT_TRUE( ms.StartsWith( "Hello ALib classes"   , Case::Ignore ) == true  );
-    UT_TRUE( ms.EndsWith  ( "Hello ALib classes"   , Case::Ignore ) == true  );
-    UT_TRUE( ms.StartsWith( "Hello ALib classesx"  , Case::Ignore ) == false );
-    UT_TRUE( ms.EndsWith  ( "xHello ALib classes"  , Case::Ignore ) == false );
-    UT_TRUE( ms.StartsWith( "heLLO"                , Case::Ignore ) == true  );
-    UT_TRUE( ms.StartsWith( "HeLLO"                , Case::Ignore ) == true  );
-    UT_TRUE( ms.EndsWith  ( "heLLO"                , Case::Ignore ) == false );
-    UT_TRUE( ms.StartsWith( "CLASSES"              , Case::Ignore ) == false );
-    UT_TRUE( ms.EndsWith  ( "CLASSES"              , Case::Ignore ) == true  );
-    UT_TRUE( ms.EndsWith  ( "clASSes"              , Case::Ignore ) == true  );
+    UT_TRUE( ms.StartsWith<Case::Ignore>( "Hello ALib classes"   ) == true  );
+    UT_TRUE( ms.EndsWith  <Case::Ignore>( "Hello ALib classes"   ) == true  );
+    UT_TRUE( ms.StartsWith<Case::Ignore>( "Hello ALib classesx"  ) == false );
+    UT_TRUE( ms.EndsWith  <Case::Ignore>( "xHello ALib classes"  ) == false );
+    UT_TRUE( ms.StartsWith<Case::Ignore>( "heLLO"                ) == true  );
+    UT_TRUE( ms.StartsWith<Case::Ignore>( "HeLLO"                ) == true  );
+    UT_TRUE( ms.EndsWith  <Case::Ignore>( "heLLO"                ) == false );
+    UT_TRUE( ms.StartsWith<Case::Ignore>( "CLASSES"              ) == false );
+    UT_TRUE( ms.EndsWith  <Case::Ignore>( "CLASSES"              ) == true  );
+    UT_TRUE( ms.EndsWith  <Case::Ignore>( "clASSes"              ) == true  );
 
     // contains with empty/null strings
     ms._()._("AB");             UT_FALSE ( ms.ContainsAt( NullString, -1 )  )
@@ -1644,8 +1686,8 @@ UT_METHOD( ConvertCase )
         for ( int i= testCharRangeStart; i <= testCharRangeEnd ; i++ )
             sb.append( 1, static_cast<char>( i ) );
 
-        string tUpper= sb;    std::transform( tUpper.begin(), tUpper.end(), tUpper.begin(), [](char c) { return  (char) ::toupper(c); } );
-        string tLower= sb;    std::transform( tLower.begin(), tLower.end(), tLower.begin(), [](char c) { return  (char) ::tolower(c); } );
+        string tUpper= sb;    std::transform( tUpper.begin(), tUpper.end(), tUpper.begin(), [](char c) { return  static_cast<char>( ::toupper(c) ); } );
+        string tLower= sb;    std::transform( tLower.begin(), tLower.end(), tLower.begin(), [](char c) { return  static_cast<char>( ::tolower(c) ); } );
 
         ms.Clear()._( sb ).ToLower(); UT_EQ( tLower.c_str(), ms );
         ms.Clear()._( sb ).ToUpper(); UT_EQ( tUpper.c_str(), ms );
@@ -1654,12 +1696,12 @@ UT_METHOD( ConvertCase )
     // test substring conversion
     {
         const char* t= "AAAbbb";
-        ms.Clear()._( t ).ToLower(  0,  2 );        UT_EQ( ms, "aaAbbb" );
-        ms.Clear()._( t ).ToLower( -2,  3 );        UT_EQ( ms, "aAAbbb" );
-        ms.Clear()._( t ).ToLower( -2     );        UT_EQ( ms, "aaabbb" );
-        ms.Clear()._( t ).ToUpper(  3,  2 );        UT_EQ( ms, "AAABBb" );
-        ms.Clear()._( t ).ToUpper( -2,  6 );        UT_EQ( ms, "AAABbb" );
-        ms.Clear()._( t ).ToUpper( -2     );        UT_EQ( ms, "AAABBB" );
+        ms.Clear()._( t ).ToLower(  0,  2 );        UT_EQ( "aaAbbb", ms );
+        ms.Clear()._( t ).ToLower( -2,  3 );        UT_EQ( "aAAbbb", ms );
+        ms.Clear()._( t ).ToLower( -2     );        UT_EQ( "aaabbb", ms );
+        ms.Clear()._( t ).ToUpper(  3,  2 );        UT_EQ( "AAABBb", ms );
+        ms.Clear()._( t ).ToUpper( -2,  6 );        UT_EQ( "AAABbb", ms );
+        ms.Clear()._( t ).ToUpper( -2     );        UT_EQ( "AAABBB", ms );
     }
 }
 
@@ -1678,7 +1720,7 @@ void wCharRoundTrip( AString& astring, AWorxUnitTesting& ut, const wchar_t* wstr
     wchar_t conversionBack[1024];
 
     UT_TRUE( astring.ToWString( conversionBack, 1024, msgPrefixLen ) >= 0)
-    UT_EQ( wstring, conversionBack );
+    UT_EQ(const_cast<wchar_t*>( wstring ), conversionBack );
 }
 
 UT_METHOD( WCharConversion )

@@ -7,7 +7,7 @@
 
 /**
  *  This namespace of the A-Worx Library provides classes for character string operations
- *  (following \ref com::aworx::lib "the principle design goals of \b %ALib").
+ *  (following \ref com.aworx.lib "the principle design goals of \b %ALib").
  */
 package com.aworx.lib.strings;
 
@@ -2051,7 +2051,7 @@ public class AString implements CharSequence
         /** ****************************************************************************************
          * Compares this to the given object. Given object can be of type
          * - %AString
-         * - \ref com::aworx::lib.strings::Substring "Substring"
+         * - \ref com.aworx.lib.strings.Substring "Substring"
          * - String or
          * - CharSequence
          *
@@ -2179,7 +2179,7 @@ public class AString implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Tests and returns true, if the given \ref com::aworx::lib::strings::Substring "Substring"
+         * Tests and returns true, if the given \ref com.aworx.lib.strings.Substring "Substring"
          * equals to what this object represents.
          * True is returned if both are zero length or \c null.
          *
@@ -2203,7 +2203,7 @@ public class AString implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Tests and returns true, if the given \ref com::aworx::lib::strings::Substring "Substring"
+         * Tests and returns true, if the given \ref com.aworx.lib.strings.Substring "Substring"
          * equals to what this object represents.
          * True is returned if both are zero length or \c null.
          *
@@ -2793,8 +2793,8 @@ public class AString implements CharSequence
          * If the new region length is needed to be known, it can be calculated as the sum of
          * the old region length and the difference of the string before and after the operation.
          *
-         * @param escape        \b Switch::On escapes ascii characters (the default),
-         *                      \b Switch::Off converts  escaped strings to ascii codes.
+         * @param escape        \b Switch.On escapes ascii characters (the default),
+         *                      \b Switch.Off converts  escaped strings to ascii codes.
          * @param regionStart   The start of the region to convert.
          * @param regionLength  The length of the region to convert.
          * @return \c this to allow concatenated calls.
@@ -2943,8 +2943,8 @@ public class AString implements CharSequence
         /** ****************************************************************************************
          * Overloaded version providing default parameter(s).
          *
-         * @param escape        \b Switch::On escapes ascii characters (the default),
-         *                      \b Switch::Off converts  escaped strings to ascii codes.
+         * @param escape        \b Switch.On escapes ascii characters (the default),
+         *                      \b Switch.Off converts  escaped strings to ascii codes.
          * @param regionStart   The start of the region to convert.
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
@@ -2956,8 +2956,8 @@ public class AString implements CharSequence
         /** ****************************************************************************************
          * Overloaded version providing default parameter(s).
          *
-         * @param escape        \b Switch::On escapes ascii characters (the default),
-         *                      \b Switch::Off converts  escaped strings to ascii codes.
+         * @param escape        \b Switch.On escapes ascii characters (the default),
+         *                      \b Switch.Off converts  escaped strings to ascii codes.
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
         public AString escape( Switch escape )
@@ -2984,18 +2984,18 @@ public class AString implements CharSequence
          *
          * Parameter \p numberFormat defaults to \c null, which denotes this method to use
          * the static singleton found in
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational".
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational".
          * To generate output better readable for humans, provide
-         * \ref com::aworx::lib::strings::NumberFormat::global "NumberFormat.global", or a
+         * \ref com.aworx.lib.strings.NumberFormat.global "NumberFormat.global", or a
          * customized object of that type.
          *
-         * See \ref com::aworx::lib::strings::NumberFormat "NumberFormat"
+         * See \ref com.aworx.lib.strings.NumberFormat "NumberFormat"
          * for more information on formatting options.<br>
          *
          * @param value         The value to append.
          * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
          *                      specified in field
-         *                      \ref com::aworx::lib::strings::NumberFormat::decMinimumFieldWidth "NumberFormat.decMinimumFieldWidth".
+         *                      \ref com.aworx.lib.strings.NumberFormat.decMinimumFieldWidth "NumberFormat.decMinimumFieldWidth".
          * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
@@ -3020,7 +3020,7 @@ public class AString implements CharSequence
          * @param value         The value to append.
          * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
          *                      specified in field
-         *                      \ref com::aworx::lib::strings::NumberFormat::decMinimumFieldWidth "NumberFormat.decMinimumFieldWidth".
+         *                      \ref com.aworx.lib.strings.NumberFormat.decMinimumFieldWidth "NumberFormat.decMinimumFieldWidth".
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
         public AString _( int value, int overrideWidth )
@@ -3057,18 +3057,18 @@ public class AString implements CharSequence
          *
          * Parameter \p numberFormat defaults to \c null, which denotes this method to use
          * the static singleton found in
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational".
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational".
          * To generate output better readable for humans, provide
-         * \ref com::aworx::lib::strings::NumberFormat::global "NumberFormat.global", or a
+         * \ref com.aworx.lib.strings.NumberFormat.global "NumberFormat.global", or a
          * customized object of that type.
          *
-         * See \ref com::aworx::lib::strings::NumberFormat "NumberFormat"
+         * See \ref com.aworx.lib.strings.NumberFormat "NumberFormat"
          * for more information on formatting options.<br>
          *
          * @param value         The value to append.
          * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
          *                      specified in field
-         *                      \ref com::aworx::lib::strings::NumberFormat::decMinimumFieldWidth "NumberFormat.decMinimumFieldWidth".
+         *                      \ref com.aworx.lib.strings.NumberFormat.decMinimumFieldWidth "NumberFormat.decMinimumFieldWidth".
          * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
@@ -3094,7 +3094,7 @@ public class AString implements CharSequence
          * @param value         The value to append.
          * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
          *                      specified in field
-         *                      \ref com::aworx::lib::strings::NumberFormat::decMinimumFieldWidth "NumberFormat.decMinimumFieldWidth".
+         *                      \ref com.aworx.lib.strings.NumberFormat.decMinimumFieldWidth "NumberFormat.decMinimumFieldWidth".
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
         public AString _( long value, int overrideWidth )
@@ -3130,18 +3130,18 @@ public class AString implements CharSequence
          *
          * Parameter \p numberFormat defaults to \c null, which denotes this method to use
          * the static singleton found in
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational".
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational".
          * To generate output better readable for humans, provide
-         * \ref com::aworx::lib::strings::NumberFormat::global "NumberFormat.global", or a
+         * \ref com.aworx.lib.strings.NumberFormat.global "NumberFormat.global", or a
          * customized object of that type.
          *
-         * See \ref com::aworx::lib::strings::NumberFormat "NumberFormat"
+         * See \ref com.aworx.lib.strings.NumberFormat "NumberFormat"
          * for more information on formatting options.<br>
          *
          * @param value         The value to append.
          * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
          *                      specified in field
-         *                      \ref com::aworx::lib::strings::NumberFormat::binFieldWidth "NumberFormat.binFieldWidth".
+         *                      \ref com.aworx.lib.strings.NumberFormat.binFieldWidth "NumberFormat.binFieldWidth".
          * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
@@ -3167,7 +3167,7 @@ public class AString implements CharSequence
          * @param value         The value to append.
          * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
          *                      specified in field
-         *                      \ref com::aworx::lib::strings::NumberFormat::binFieldWidth "NumberFormat.binFieldWidth".
+         *                      \ref com.aworx.lib.strings.NumberFormat.binFieldWidth "NumberFormat.binFieldWidth".
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
         public AString _Bin( long value, int overrideWidth )
@@ -3203,18 +3203,18 @@ public class AString implements CharSequence
          *
          * Parameter \p numberFormat defaults to \c null, which denotes this method to use
          * the static singleton found in
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational".
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational".
          * To generate output better readable for humans, provide
-         * \ref com::aworx::lib::strings::NumberFormat::global "NumberFormat.global", or a
+         * \ref com.aworx.lib.strings.NumberFormat.global "NumberFormat.global", or a
          * customized object of that type.
          *
-         * See \ref com::aworx::lib::strings::NumberFormat "NumberFormat"
+         * See \ref com.aworx.lib.strings.NumberFormat "NumberFormat"
          * for more information on formatting options.<br>
          *
          * @param value         The value to append.
          * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
          *                      specified in field
-         *                      \ref com::aworx::lib::strings::NumberFormat::hexFieldWidth "NumberFormat.hexFieldWidth".
+         *                      \ref com.aworx.lib.strings.NumberFormat.hexFieldWidth "NumberFormat.hexFieldWidth".
          * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
@@ -3241,7 +3241,7 @@ public class AString implements CharSequence
          * @param value         The value to append.
          * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
          *                      specified in field
-         *                      \ref com::aworx::lib::strings::NumberFormat::hexFieldWidth "NumberFormat.hexFieldWidth".
+         *                      \ref com.aworx.lib.strings.NumberFormat.hexFieldWidth "NumberFormat.hexFieldWidth".
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
         public AString _Hex( long value, int overrideWidth )
@@ -3279,19 +3279,19 @@ public class AString implements CharSequence
          *
          * Parameter \p numberFormat defaults to \c null, which denotes this method to use
          * the static singleton found in
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational".
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational".
          * To generate output better readable for humans, provide
-         * \ref com::aworx::lib::strings::NumberFormat::global "NumberFormat.global", or a
+         * \ref com.aworx.lib.strings.NumberFormat.global "NumberFormat.global", or a
          * customized object of that type.
          *
-         * See \ref com::aworx::lib::strings::NumberFormat "NumberFormat"
+         * See \ref com.aworx.lib.strings.NumberFormat "NumberFormat"
          * for more information on formatting options.<br>
 
          *
          * @param value         The value to append.
          * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
          *                      specified in field
-         *                      \ref com::aworx::lib::strings::NumberFormat::octFieldWidth "NumberFormat.octFieldWidth".
+         *                      \ref com.aworx.lib.strings.NumberFormat.octFieldWidth "NumberFormat.octFieldWidth".
          * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
@@ -3317,7 +3317,7 @@ public class AString implements CharSequence
          * @param value         The value to append.
          * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
          *                      specified in field
-         *                      \ref com::aworx::lib::strings::NumberFormat::octFieldWidth "NumberFormat.octFieldWidth".
+         *                      \ref com.aworx.lib.strings.NumberFormat.octFieldWidth "NumberFormat.octFieldWidth".
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
         public AString _Oct( long value, int overrideWidth )
@@ -3350,13 +3350,13 @@ public class AString implements CharSequence
 
         /** ****************************************************************************************
          * Append a double value. See
-         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat"
+         * \ref com.aworx.lib.strings.NumberFormat "NumberFormat"
          * for more information on formatting options.
          *
          * @param value         The double value to append.
          * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
          *                      specified in field
-         *                      \ref com::aworx::lib::strings::NumberFormat::integralPartMinimumWidth "NumberFormat.integralPartMinimumWidth"
+         *                      \ref com.aworx.lib.strings.NumberFormat.integralPartMinimumWidth "NumberFormat.integralPartMinimumWidth"
          * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
@@ -3382,7 +3382,7 @@ public class AString implements CharSequence
          * @param value         The double value to append.
          * @param overrideWidth If not \c 0 (the default), overrides the output width otherwise
          *                      specified in field
-         *                      \ref com::aworx::lib::strings::NumberFormat::integralPartMinimumWidth "NumberFormat.integralPartMinimumWidth"
+         *                      \ref com.aworx.lib.strings.NumberFormat.integralPartMinimumWidth "NumberFormat.integralPartMinimumWidth"
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
         public AString _( double value, int overrideWidth )
@@ -3507,10 +3507,10 @@ public class AString implements CharSequence
         /** ****************************************************************************************
          * Parses a long integer value in decimal, binary, hexadecimal or octal format from
          * the string by invoking method
-         * \ref com::aworx::lib::strings::NumberFormat::parseInt "NumberFormat.parseInt"
+         * \ref com.aworx.lib.strings.NumberFormat.parseInt "NumberFormat.parseInt"
          * on the given \p numberFormat instance.<br>
          * Parameter \p numberFormat defaults \c null. This denotes static singleton
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to 'international' settings (not using the locale) and therefore
          * also not parsing grouping characters.
          *
@@ -3519,7 +3519,7 @@ public class AString implements CharSequence
          * read.
          *
          * For more information on number conversion, see class
-         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * \ref com.aworx.lib.strings.NumberFormat "NumberFormat". All of its interface methods
          * have a corresponding implementation within class \b %AString.
          *
          * @param startIdx     The start index for parsing.
@@ -3650,10 +3650,10 @@ public class AString implements CharSequence
         /** ****************************************************************************************
          * Reads an unsigned 64-bit integer in standard decimal format at the given position
          * from this \b %AString. This is done, by invoking
-         * \ref com::aworx::lib::strings::NumberFormat::parseDec "NumberFormat.parseDec"
+         * \ref com.aworx.lib.strings.NumberFormat.parseDec "NumberFormat.parseDec"
          * on the given \p numberFormat instance.<br>
          * Parameter \p numberFormat defaults \c null. This denotes static singleton
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
          * Optional output parameter \p newIdx may be used to detect if parsing was successful.
@@ -3665,7 +3665,7 @@ public class AString implements CharSequence
          * #parseFloat.
          *
          * For more information on number conversion, see class
-         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * \ref com.aworx.lib.strings.NumberFormat "NumberFormat". All of its interface methods
          * have a corresponding implementation within class \b %AString.
          *
          * \note Because Java does not support unsigned integer, the value to read is limited to
@@ -3801,10 +3801,10 @@ public class AString implements CharSequence
         /** ****************************************************************************************
          * Reads an unsigned 64-bit integer in binary format at the given position
          * from this \b %AString. This is done, by invoking
-         * \ref com::aworx::lib::strings::NumberFormat::parseBin "NumberFormat.parseBin"
+         * \ref com.aworx.lib.strings.NumberFormat.parseBin "NumberFormat.parseBin"
          * on the given \p numberFormat instance.<br>
          * Parameter \p numberFormat defaults \c null. This denotes static singleton
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
          * Optional output parameter \p newIdx may be used to detect if parsing was successful.
@@ -3812,7 +3812,7 @@ public class AString implements CharSequence
          * read.
          *
          * For more information on number conversion, see class
-         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * \ref com.aworx.lib.strings.NumberFormat "NumberFormat". All of its interface methods
          * have a corresponding implementation within class \b %AString.
          *
          * \note Although Java does not support unsigned integer, the value that is read with this
@@ -3949,10 +3949,10 @@ public class AString implements CharSequence
         /** ****************************************************************************************
          * Reads an unsigned 64-bit integer in hexadecimal format at the given position
          * from this \b %AString. This is done, by invoking
-         * \ref com::aworx::lib::strings::NumberFormat::parseHex "NumberFormat.parseHex"
+         * \ref com.aworx.lib.strings.NumberFormat.parseHex "NumberFormat.parseHex"
          * on the given \p numberFormat instance.<br>
          * Parameter \p numberFormat defaults \c null. This denotes static singleton
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
          * Optional output parameter \p newIdx may be used to detect if parsing was successful.
@@ -3960,7 +3960,7 @@ public class AString implements CharSequence
          * read.
          *
          * For more information on number conversion, see class
-         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * \ref com.aworx.lib.strings.NumberFormat "NumberFormat". All of its interface methods
          * have a corresponding implementation within class \b %AString.
          *
          * \note Although Java does not support unsigned integer, the value that is read with this
@@ -4098,10 +4098,10 @@ public class AString implements CharSequence
         /** ****************************************************************************************
          * Reads an unsigned 64-bit integer in octal format at the given position
          * from this \b %AString. This is done, by invoking
-         * \ref com::aworx::lib::strings::NumberFormat::parseOct "NumberFormat.parseOct"
+         * \ref com.aworx.lib.strings.NumberFormat.parseOct "NumberFormat.parseOct"
          * on the given \p numberFormat instance.<br>
          * Parameter \p numberFormat defaults \c null. This denotes static singleton
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
          * Optional output parameter \p newIdx may be used to detect if parsing was successful.
@@ -4109,7 +4109,7 @@ public class AString implements CharSequence
          * read.
          *
          * For more information on number conversion, see class
-         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * \ref com.aworx.lib.strings.NumberFormat "NumberFormat". All of its interface methods
          * have a corresponding implementation within class \b %AString.
          *
          * \note Although Java does not support unsigned integer, the value that is read with this
@@ -4246,10 +4246,10 @@ public class AString implements CharSequence
         /** ****************************************************************************************
          * Reads a floating point number at the given position from this \b %AString.
          * This is done, by invoking
-         * \ref com::aworx::lib::strings::NumberFormat::parseFloat "NumberFormat.parseFloat"
+         * \ref com.aworx.lib.strings.NumberFormat.parseFloat "NumberFormat.parseFloat"
          * on the given \p numberFormat instance.<br>
          * Parameter \p numberFormat defaults \c null. This denotes static singleton
-         * \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational"
+         * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to 'international' settings (not using the locale) and therefore
          * also not parsing grouping characters.
          *
@@ -4259,7 +4259,7 @@ public class AString implements CharSequence
          *
          * For more information on parsing options for floating point numbers and number
          * conversion in general, see class
-         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat". All of its interface methods
+         * \ref com.aworx.lib.strings.NumberFormat "NumberFormat". All of its interface methods
          * have a corresponding implementation within class \b %AString.
          *
          * @param startIdx     The start index for parsing.
@@ -4416,7 +4416,7 @@ public class AString implements CharSequence
         // note: charAt() already implemented in standard interface
 
         /** ****************************************************************************************
-         * Reports an \b %ALib error (using \ref com::aworx::lib::lang::ReportWriter "ReportWriter")
+         * Reports an \b %ALib error (using \ref com.aworx.lib.lang.ReportWriter "ReportWriter")
          * and returns null. The reason for this behavior is to disallow the usage of AString
          * within (system) methods that create sub sequences. This would be in contrast to the
          * design goal of AString.

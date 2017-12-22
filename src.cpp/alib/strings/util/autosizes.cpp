@@ -17,7 +17,7 @@
 
 namespace aworx { namespace lib { namespace strings { namespace util  {
 
-int   AutoSizes::Next( integer requestedSize, integer growthPadding )
+int   AutoSizes::Actual( integer requestedSize, integer growthPadding )
 {
     // grow arrays as needed
     if ( values.size() == static_cast<size_t>(ActualIndex) )
@@ -40,10 +40,14 @@ int   AutoSizes::Next( integer requestedSize, integer growthPadding )
         values[ static_cast<size_t>(ActualIndex) ]=         requestedSize + ( size == 0 ? 0 : growthPadding );
     }
 
-    // increase auto tab index
-    ActualIndex++;
-
     return static_cast<int>(size);
+}
+
+int   AutoSizes::Next( integer requestedSize, integer growthPadding )
+{
+    auto result= Actual( requestedSize, growthPadding );
+    ActualIndex++;
+    return result;
 }
 
 void    AutoSizes::Export( AString& target  )

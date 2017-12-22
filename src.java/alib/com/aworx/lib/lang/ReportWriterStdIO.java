@@ -14,8 +14,8 @@ import com.aworx.lib.strings.format.Formatter;
  * The standard \b %ReportWriter writing the message to \c System.err and \c System.out.
  * The global formatter singleton is used is used to process the objects in the report message.
  * This is by default of type
- * \ref com::aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle". See
- * \ref com::aworx::lib::strings::format::Formatter::acquireDefault "Formatter.acquireDefault"
+ * \ref com.aworx.lib.strings.format.FormatterPythonStyle "FormatterPythonStyle". See
+ * \ref com.aworx.lib.strings.format.Formatter.acquireDefault "Formatter.acquireDefault"
  * for more information.
  **************************************************************************************************/
 public class ReportWriterStdIO implements ReportWriter

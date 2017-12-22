@@ -18,7 +18,7 @@
 #ifndef HPP_ALIB_SYSTEM_PROCESSINFO
 //! @cond NO_DOX
 #define HPP_ALIB_SYSTEM_PROCESSINFO 1
-//! @endcond NO_DOX
+//! @endcond
 
 namespace aworx { namespace lib { namespace system
 {
@@ -99,7 +99,7 @@ class ProcessInfo
         /** ****************************************************************************************
          * Default constructor to create an empty instance
          ******************************************************************************************/
-                              ProcessInfo()                   {}
+                        ProcessInfo()                   {}
 
 
         #if defined( __unix__ )
@@ -120,7 +120,7 @@ class ProcessInfo
          *
          * @return \c true on success, \c false otherwise.
          **************************************************************************************/
-        ALIB_API bool          get( uinteger PID  );
+        ALIB_API bool  get( uinteger PID  );
 
     // #############################################################################################
     // Interface

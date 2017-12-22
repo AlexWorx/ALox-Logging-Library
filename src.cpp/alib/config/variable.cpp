@@ -18,17 +18,21 @@
     #include "alib/strings/util/tokenizer.hpp"
 #endif
 
+#if !defined (HPP_ALIB_LANG_RESOURCE_TUPLE_LOADER)
+    #include "alib/lang/resourcedtupleloader.hpp"
+#endif
 
 
-namespace aworx { namespace lib { namespace config
-{
+
+
+namespace aworx { namespace lib { namespace config {
 
 void    Variable::clear()
 {
     Config=         nullptr;
-    Priority=       -1;
+    Priority=       Priorities::NONE;
     Delim=          '\0';
-    FormatHints=    0;
+    FmtHints=       FormatHints::None;
 
     Category._();
     Name    ._();
@@ -38,26 +42,22 @@ void    Variable::clear()
 
 }
 
-Variable&    Variable::Define( const VariableDefinition&    definition,
-                               std::vector<String>&         replacements )
+Variable&    Variable::Declare( const VariableDecl&     declaration,
+                                std::vector<String>&    replacements )
 {
     clear();
 
-    Delim=               definition.Delim;
-    FormatHints=         definition.FormatHints;
-    FormatAttrAlignment= definition.FormatAttrAlignment;
+    Delim=               declaration.Delim();
+    FmtHints=            declaration.FmtHints();
+    FormatAttrAlignment= declaration.FormatAttrAlignment();
 
     // set Category, Name, Comment
-    Category._(    definition.Category.IsNotNull()
-                           ?  definition.Category
-                           :  definition.CategoryFallback
-                           ? *definition.CategoryFallback
-                           : NullString                     );
-    Name    ._( definition.Name    );
-    Comments._( definition.Comments );
+    Category._( declaration.Category()  );
+    Name    ._( declaration.Name()      );
+    Comments._( declaration.Comments()  );
 
-    if ( definition.DefaultValue.IsNotNull() )
-        DefaultValue._()._( definition.DefaultValue );
+    if ( declaration.DefaultValue().IsNotNull() )
+        DefaultValue._()._( declaration.DefaultValue() );
     else
         DefaultValue.SetNull();
 
@@ -86,8 +86,8 @@ Variable&    Variable::Define( const VariableDefinition&    definition,
     return *this;
 }
 
-Variable&   Variable::Define( const String& category,  const String& name,  char  delim ,
-                              const String& comments     )
+Variable&   Variable::Declare( const String& category,  const String& name,  char  delim ,
+                               const String& comments     )
 {
     clear();
 
@@ -143,57 +143,13 @@ integer     Variable::GetInteger(int idx) { return  idx < qtyValues ? static_cas
 double      Variable::GetFloat  (int idx) { return  idx < qtyValues ? GetString(idx)->ParseFloat( Config ? &Config->NumberFormat : &NumberFormat::Global ) : 0.0;   }
 
 
-
-// #################################################################################################
-// convenience methods using Configuration::Default singleton
-// #################################################################################################
-int  Variable::Load()
-{
-    return Configuration::Default.Load( *this );
-}
-
-int  Variable::Store( const String& externalizedValue )
-{
-    return Configuration::Default.Store( *this, externalizedValue );
-}
-
-int  Variable::StoreDefault( const String& externalizedValue )
-{
-    if ( externalizedValue.IsNotNull() )
-        Configuration::Default.DefaultValues.StringConverter->LoadFromString( *this, externalizedValue );
-
-    if ( Size() == 0 && DefaultValue.IsNotNull() )
-        Configuration::Default.DefaultValues.StringConverter->LoadFromString( *this, DefaultValue );
-
-    Priority= Configuration::PrioDefault;
-    return Configuration::Default.Store( *this, NullString );
-}
-
-int  Variable::Protect( const String& externalizedValue )
-{
-    if ( externalizedValue.IsNotNull() )
-        Configuration::Default.DefaultValues.StringConverter->LoadFromString( *this, externalizedValue );
-
-    if ( Size() == 0 && DefaultValue.IsNotNull() )
-        Configuration::Default.DefaultValues.StringConverter->LoadFromString( *this, DefaultValue );
-
-    Priority= Configuration::PrioProtected;
-    return Configuration::Default.Store( *this, NullString );
-}
-
-int  Variable::LoadFromString( const String& externalizedValue )
-{
-    Configuration::Default.DefaultValues.StringConverter->LoadFromString( *this, externalizedValue );
-    return Size();
-}
-
 bool Variable::GetAttribute( const String& attrName, Substring& result, char attrDelim )
 {
     for ( int i= 0; i< Size(); i++ )
     {
         result.Set( GetString(i ) );
-        if (    result.ConsumeString ( attrName,  lang::Case::Ignore, lang::Whitespaces::Trim )
-             && result.ConsumeChar   ( attrDelim, lang::Case::Ignore, lang::Whitespaces::Trim ) )
+        if (    result.ConsumeString<lang::Case::Ignore, lang::Whitespaces::Trim>( attrName )
+             && result.ConsumeChar<lang::Case::Ignore, lang::Whitespaces::Trim>( attrDelim ) )
         {
             result.Trim();
             return true;
@@ -202,5 +158,6 @@ bool Variable::GetAttribute( const String& attrName, Substring& result, char att
     return false;
 }
 
-}}}// namespace aworx::lib::config
+
+}}}// namespace [aworx::lib::config]
 

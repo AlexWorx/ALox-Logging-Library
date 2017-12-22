@@ -34,10 +34,9 @@ class JustOne : public aworx::Singleton<JustOne>
 //! [DOX_ALIB_LANG_SINGLETON_DEBUG_LIST_1]
 #if ALIB_DEBUG && ALIB_FEAT_SINGLETON_MAPPED
 
-
     // import the map of singletons. This is not done in the header files!
     namespace aworx { namespace lib { namespace lang {
-        extern ALIB_API TypeinfoMap<void*>  singletonMap;
+        extern ALIB_API RTTIUnorderedMap<void*>  singletonMap;
     }}}
 //! [DOX_ALIB_LANG_SINGLETON_DEBUG_LIST_1]
 

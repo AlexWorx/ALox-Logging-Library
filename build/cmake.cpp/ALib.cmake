@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------------------------------
 # set cache variables
 # --------------------------------------------------------------------------------------------------
-    set( ALIB_VERSION                   "1709R0"                                        CACHE STRING
+    set( ALIB_VERSION                   "1712R0"                                        CACHE STRING
          "The ALib version. Not modifiable (will be overwritten on generation!)"        FORCE )
 
     set( temp "${CMAKE_CURRENT_LIST_DIR}/../.." )
@@ -130,54 +130,54 @@
 # --------------------------------------------------------------------------------------------------
 
     if ( ${ALIB_DEBUG} )
-        set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "ALIB_DEBUG_ON"          )
+        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_DEBUG_ON"          )
     else()
-        set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "ALIB_DEBUG_OFF"         )
+        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_DEBUG_OFF"         )
     endif()
     if ( ${ALIB_DEBUG_STRINGS} )
-        set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "ALIB_DEBUG_STRINGS_ON"  )
+        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_DEBUG_STRINGS_ON"  )
     else()
-        set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "ALIB_DEBUG_STRINGS_OFF" )
+        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_DEBUG_STRINGS_OFF" )
     endif()
     if ( ${ALIB_DEBUG_GLIB} )
-        set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "_GLIBCXX_DEBUG"
+        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "_GLIBCXX_DEBUG"
                                                                 "_GLIBCXX_DEBUG_PEDANTIC"
                                                                 "_GLIBCPP_CONCEPT_CHECKS" )
     endif()
 
     if ( ${ALIB_FEAT_THREADS} )
-        set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "ALIB_FEAT_THREADS_ON"   )
+        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_FEAT_THREADS_ON"   )
     else()
-        set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "ALIB_FEAT_THREADS_OFF"  )
+        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_FEAT_THREADS_OFF"  )
     endif()
     if ( ${ALIB_FEAT_SINGLETON_MAPPED} )
-        set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "ALIB_FEAT_SINGLETON_MAPPED_ON"   )
+        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_FEAT_SINGLETON_MAPPED_ON"   )
     else()
-        set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "ALIB_FEAT_SINGLETON_MAPPED_OFF"  )
+        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_FEAT_SINGLETON_MAPPED_OFF"  )
     endif()
     if ( ${ALIB_FEAT_BOXING_FTYPES} )
-        set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "ALIB_FEAT_BOXING_FTYPES_ON"   )
+        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_FEAT_BOXING_FTYPES_ON"   )
     else()
-        set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "ALIB_FEAT_BOXING_FTYPES_OFF"  )
+        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_FEAT_BOXING_FTYPES_OFF"  )
     endif()
     if ( ${ALIB_FEAT_BOXING_STD_VECTOR} )
-        set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "ALIB_FEAT_BOXING_STD_VECTOR_ON"   )
+        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_FEAT_BOXING_STD_VECTOR_ON"   )
     else()
-        set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "ALIB_FEAT_BOXING_STD_VECTOR_OFF"  )
+        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_FEAT_BOXING_STD_VECTOR_OFF"  )
     endif()
 
 
     if ( ${ALIB_AVOID_ANALYZER_WARNINGS} )
-        set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "ALIB_AVOID_ANALYZER_WARNINGS_ON"  )
+        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_AVOID_ANALYZER_WARNINGS_ON"  )
     else()
-        set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "ALIB_AVOID_ANALYZER_WARNINGS_OFF" )
+        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_AVOID_ANALYZER_WARNINGS_OFF" )
     endif()
 
     if ( ${ALIB_GDB_PP_SUPPRESS_CHILDREN} )
-        set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "ALIB_GDB_PP_SUPPRESS_CHILDREN"  )
+        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_GDB_PP_SUPPRESS_CHILDREN"  )
     endif()
     if ( ${ALIB_GDB_PP_FIND_POINTER_TYPES} )
-        set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "ALIB_GDB_PP_FIND_POINTER_TYPES"  )
+        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_GDB_PP_FIND_POINTER_TYPES"  )
     endif()
 
 
@@ -185,38 +185,38 @@
 # --------------------------------------------------------------------------------------------------
 # External libraries
 # --------------------------------------------------------------------------------------------------
-
-    set( ALIB_EXTERNAL_LIBS "" )
-
     # multithreading
     if ( ${ALIB_FEAT_THREADS} )
 
 #! [DOXYGEN_CMAKE_FIND_THREADS]
 find_package(Threads)
-set( ALIB_EXTERNAL_LIBS ${ALIB_EXTERNAL_LIBS}         ${CMAKE_THREAD_LIBS_INIT} )
+list( APPEND  ALIB_EXTERNAL_LIBS  ${CMAKE_THREAD_LIBS_INIT} )
 #! [DOXYGEN_CMAKE_FIND_THREADS]
 
     endif()
 
     if(APPLE)
-        SET(ALIB_EXTERNAL_LIBS "${ALIB_EXTERNAL_LIBS} -framework Foundation")
+        list( APPEND ALIB_EXTERNAL_LIBS  "-framework Foundation")
     endif()
 
 
-
 # --------------------------------------------------------------------------------------------------
-# A-Worx compiler flags (can be optionally used by projects using ALib, of-course not mandatory!)
+# A-Worx compiler features and flags
 # --------------------------------------------------------------------------------------------------
-    set( AWORX_LINK_FLAGS                     " " ) #avoids the need of an if() later
+    list( APPEND AWORX_COMPILER_FEATURES   "cxx_std_11" )
 
     if     ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU"    )
+
         # add -H to generate output "!/x" for use of precompiled header
-        set( AWORX_COMPILE_FLAGS "-Wall -Wextra -Werror -std=c++11 -fPIC" )
+        list( APPEND AWORX_COMPILER_WARNINGS   "-Wall"          )
+        list( APPEND AWORX_COMPILER_WARNINGS   "-Wextra"        )
+        list( APPEND AWORX_COMPILER_WARNINGS   "-Werror"        )
+        #list( APPEND AWORX_COMPILER_WARNINGS   "-Weffc++"       )
 
         # add coverage flags to GCC
         if( ${AWORX_COVERAGE_COMPILE} )
-            set( AWORX_COMPILE_FLAGS "${AWORX_COMPILE_FLAGS} --coverage " )
-            set( AWORX_LINK_FLAGS                           "--coverage " )
+            list( APPEND  AWORX_COMPILER_FLAGS "--coverage"     )
+            list( APPEND  AWORX_LINKER_FLAGS   "--coverage"     )
         endif()
 
     # Clang: We are using -Weverything, although this is not recommended. We think it should be
@@ -226,35 +226,49 @@ set( ALIB_EXTERNAL_LIBS ${ALIB_EXTERNAL_LIBS}         ${CMAKE_THREAD_LIBS_INIT} 
     #        Of-course, some very obvious things like C++98 compatibility warnings have to be
     #        removed explicitly:
     elseif ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang"     )
-        set( AWORX_COMPILE_FLAGS "-std=c++11 -Weverything" )
-        set( AWORX_COMPILE_FLAGS "${AWORX_COMPILE_FLAGS} -Wno-c++98-compat"                  )
-        set( AWORX_COMPILE_FLAGS "${AWORX_COMPILE_FLAGS} -Wno-c++98-compat-pedantic"         )
-        set( AWORX_COMPILE_FLAGS "${AWORX_COMPILE_FLAGS} -Wno-global-constructors"           )
-        set( AWORX_COMPILE_FLAGS "${AWORX_COMPILE_FLAGS} -Wno-exit-time-destructors"         )
-        set( AWORX_COMPILE_FLAGS "${AWORX_COMPILE_FLAGS} -Wno-padded"                        )
-        set( AWORX_COMPILE_FLAGS "${AWORX_COMPILE_FLAGS} -Wno-weak-vtables"                  )
-        set( AWORX_COMPILE_FLAGS "${AWORX_COMPILE_FLAGS} -Wno-documentation-unknown-command" )
+        list( APPEND AWORX_COMPILER_WARNINGS   "-pedantic"                          )
+        list( APPEND AWORX_COMPILER_WARNINGS   "-Weffc++"                           )
+        list( APPEND AWORX_COMPILER_WARNINGS   "-Weverything"                       )
+        list( APPEND AWORX_COMPILER_WARNINGS   "-Wno-c++98-compat"                  )
+        list( APPEND AWORX_COMPILER_WARNINGS   "-Wno-c++98-compat-pedantic"         )
+        list( APPEND AWORX_COMPILER_WARNINGS   "-Wno-global-constructors"           )
+        list( APPEND AWORX_COMPILER_WARNINGS   "-Wno-exit-time-destructors"         )
+        list( APPEND AWORX_COMPILER_WARNINGS   "-Wno-padded"                        )
+        list( APPEND AWORX_COMPILER_WARNINGS   "-Wno-weak-vtables"                  )
+        list( APPEND AWORX_COMPILER_WARNINGS   "-Wno-documentation-unknown-command" )
 
         if ( ${ALIB_CMAKE_COTIRE} )
             # needs to be off of due to "unity builds" of cotire
-            set( AWORX_COMPILE_FLAGS "${AWORX_COMPILE_FLAGS} -Wno-header-hygiene"                   )
+            list( APPEND AWORX_COMPILER_WARNINGS "-Wno-header-hygiene"      )
+        endif()
 
-            # Maybe a 'bug' in cotire. Was discussed and closed. Might be removed in the future
-            # However: If removed, 'often' things still work, only sometimes compiler complains that
-            #          trigraph settings are different in precompiled header and actual source
-            set( AWORX_COMPILE_FLAGS "${AWORX_COMPILE_FLAGS} -trigraphs"                    )
+        if( CMAKE_BUILD_TYPE STREQUAL "Debug" )
+            list( APPEND AWORX_COMPILE_FLAGS   "-fno-limit-debug-info"      )
         endif()
 
 
 
     #! NEVER TESTED YET !
     elseif ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "Intel"  )
-        set( AWORX_COMPILE_FLAGS "" )
+        list( APPEND AWORX_COMPILER_WARNINGS "" )
 
     #! NEVER TESTED YET !
     elseif ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC"   )
-        set( AWORX_COMPILE_FLAGS "/W4 /WX /EHsc" )
+        list( APPEND AWORX_COMPILER_WARNINGS   "/W4"    )
+        list( APPEND AWORX_COMPILER_WARNINGS   "/WX"    )
+        list( APPEND AWORX_COMPILER_WARNINGS   "/EHsc"  )
     endif()
+
+# --------------------------------------------------------------------------------------------------
+# A-Worx linker features and flags
+# --------------------------------------------------------------------------------------------------
+    if(APPLE)
+        list( APPEND AWORX_LINKER_FLAGS        "-lObjc"     )
+    else()
+        list( APPEND AWORX_LINKER_FLAGS        " "          )
+    endif()
+
+
 
 # ##################################################################################################
 # --------------------------------------------------------------------------------------------------
@@ -268,32 +282,33 @@ set( ALIB_EXTERNAL_LIBS ${ALIB_EXTERNAL_LIBS}         ${CMAKE_THREAD_LIBS_INIT} 
 #
 # Note:
 #   To enable/disable change CMake cache variable ALIB_CMAKE_COTIRE.
-#   To change the default value for this variable (on clean cmake builts), set non-cached CMake
+#   To change the default value for this variable (on clean cmake builds), set non-cached CMake
 #   variable ALIB_CMAKE_COTIRE_DEFAULT prior to invoking this script.
 # -------------------------------------------------------------------------------------------------
 
 # download cotire (once)
 if ( ${ALIB_CMAKE_COTIRE} )
+    message( STATUS  "Check availability of 'cotire' cmake library..." )
 
-    message( STATUS  "Setting up 'cotire' for ALox library projects" )
+    set( _cotireFileName ${CMAKE_CURRENT_LIST_DIR}/cotire.cmake )
+    set( _cotireFileUrl  "https://raw.githubusercontent.com/sakra/cotire/master/CMake/cotire.cmake" )
+    if( NOT EXISTS  ${_cotireFileName} )
+        message( STATUS "  ...not found. Downloading ${_cotireFileName} from ${_cotireFileUrl} ..." )
+        file( DOWNLOAD  ${_cotireFileUrl}  ${_cotireFileName} )
 
-    set( cotireFileName ${CMAKE_CURRENT_LIST_DIR}/cotire.cmake )
-    if( NOT EXISTS  ${cotireFileName} )
-        message( STATUS "  Downloading ${cotireFileName} from ${cotireFileUrl} ..." )
-        file( DOWNLOAD "https://raw.githubusercontent.com/sakra/cotire/master/CMake/cotire.cmake" ${cotireFileName} )
-
-        if( NOT EXISTS  ${cotireFileName} )
+        if( NOT EXISTS  ${_cotireFileName} )
             message( "  ...Error: Download of 'cotire' failed. Continuing without cotire." )
             set( ALIB_CMAKE_COTIRE "Off" )
         else()
-            message( STATUS "  ...success." )
+            message( STATUS " ...success." )
         endif()
+    else()
+        message( STATUS  "  ...cotire allready downloaded" )
     endif()
 
     if ( ${ALIB_CMAKE_COTIRE} )
-        include(${cotireFileName})
+        include(${_cotireFileName})
     endif()
-
 endif()
 
 

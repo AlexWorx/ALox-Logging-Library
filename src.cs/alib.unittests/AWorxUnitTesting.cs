@@ -42,7 +42,7 @@ public class AWorxUnitTesting
 
     public AWorxUnitTesting()
     {
-        ALIB.Init( null );
+        ALox.Init();
 
         // create UTWriter (once)
         if ( utWriter == null )
@@ -73,10 +73,13 @@ public class AWorxUnitTesting
                 UT_EQ( 1,  ALIB.StdOutputStreamsLock.CntAcquirers() );
             UT_EQ( 0,  ALIB.StdOutputStreamsLock.DbgCountAcquirements(null) );
 
-            Configuration.Default= new Configuration();
+            ALox.Config.GetPluginTypeSafe<InMemoryPlugin>( Configuration.PrioDefaultValues   ).Reset();
+            ALox.Config.GetPluginTypeSafe<InMemoryPlugin>( Configuration.PrioProtectedValues ).Reset();
+            ALIB.Config.GetPluginTypeSafe<InMemoryPlugin>( Configuration.PrioDefaultValues   ).Reset();
+            ALIB.Config.GetPluginTypeSafe<InMemoryPlugin>( Configuration.PrioProtectedValues ).Reset();
 
             #if ALIB_IDE_MONODEVELOP || ALIB_IDE_RIDER
-                (new Variable( "ALOX", "CONSOLE_TYPE" )).Store( "plain" );
+                ALox.Config.Store( new Variable( "ALOX", "CONSOLE_TYPE" ), "plain" );
             #endif
             ALox.Reset();
             Log.SetSourcePathTrimRule( "*/src.cs/", Inclusion.Include );

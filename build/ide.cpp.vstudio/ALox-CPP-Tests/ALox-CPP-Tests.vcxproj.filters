@@ -114,7 +114,7 @@
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_time.cpp">
       <Filter>tests.alib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_containers.cpp">
+    <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_util_stringtree.cpp">
       <Filter>tests.alib</Filter>
     </ClCompile>
   </ItemGroup>

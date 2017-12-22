@@ -11,10 +11,10 @@ import com.aworx.lib.strings.AString;
 
 /** ************************************************************************************************
  * Abstract class that represents a plug in for class
- * \ref com::aworx::lib::config::Configuration "Configuration"
+ * \ref com.aworx.lib.config.Configuration "Configuration"
  * to provide configuration data from specific configuration data source.
  *
- * See documentation of namespace #com::aworx::lib::config for more information on \b %ALib
+ * See documentation of namespace #com.aworx.lib.config for more information on \b %ALib
  * external configuration variables.
  *
  * The plug-in also may have the ability to write data. The default implementation for writing

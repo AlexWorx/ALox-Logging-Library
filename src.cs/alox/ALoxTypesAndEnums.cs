@@ -22,9 +22,9 @@ namespace cs.aworx.lox    {
  * - Error (lowest level).
  *
  * A value of this set is provided to ALox in two different ways:
- * First, all methods of class \ref cs::aworx::lox::Lox "Lox" that execute a log operation
+ * First, all methods of class \ref cs.aworx.lox.Lox "Lox" that execute a log operation
  * assign a value of this enum to the <em>Log Statement</em>. Secondly, methods
- * \ref cs::aworx::lox::Lox::SetVerbosity "Lox.SetVerbosity", are defining the 'accepted' \e minimal
+ * \ref cs.aworx.lox.Lox.SetVerbosity "Lox.SetVerbosity", are defining the 'accepted' \e minimal
  * \e Verbosity for a pair of <em>\<Logger/%Log Domain\></em>.
  *
  * %ALox, when executing a statement, checks both values against each other. A <em>Log Statement</em>
@@ -33,19 +33,19 @@ namespace cs.aworx.lox    {
  * with associated \e %Verbosity \b %Warning and \b %Error are executed and those with \b %Info and
  * \b %Verbose are suppressed.
  *
- * If special value \b %Off is used with \ref cs::aworx::lox::Lox::SetVerbosity "Lox.SetVerbosity",
+ * If special value \b %Off is used with \ref cs.aworx.lox.Lox.SetVerbosity "Lox.SetVerbosity",
  * all logging is switched Off for this pair of <em>\<Logger/%Log Domain\></em>.
  *
  * Some of the <em>Log Statements</em> accept the parameter directly (e.g.
- * \ref cs::aworx::lox::Lox::Entry "Lox.Entry",
- * \ref cs::aworx::lox::Lox::Once  "Lox.Once" and
- * \ref cs::aworx::lox::Lox::If "Lox.If"), others inherently use the right value as their method
+ * \ref cs.aworx.lox.Lox.Entry "Lox.Entry",
+ * \ref cs.aworx.lox.Lox.Once  "Lox.Once" and
+ * \ref cs.aworx.lox.Lox.If "Lox.If"), others inherently use the right value as their method
  * name suggests (e.g.
- * \ref cs::aworx::lox::Lox::Error      "Lox.Error",
- * \ref cs::aworx::lox::Lox::Warning    "Lox.Warning",
- * \ref cs::aworx::lox::Lox::Info       "Lox.Info",
- * \ref cs::aworx::lox::Lox::Verbose    "Lox.Verbose" and
- * \ref cs::aworx::lox::Lox::Assert     "Lox.Assert"). The latter group of methods do not support
+ * \ref cs.aworx.lox.Lox.Error      "Lox.Error",
+ * \ref cs.aworx.lox.Lox.Warning    "Lox.Warning",
+ * \ref cs.aworx.lox.Lox.Info       "Lox.Info",
+ * \ref cs.aworx.lox.Lox.Verbose    "Lox.Verbose" and
+ * \ref cs.aworx.lox.Lox.Assert     "Lox.Assert"). The latter group of methods do not support
  * parameter \b %Off.
  *
  * If special value \b %Off is used with those <em>Log Statements</em>, that allow to specify the \e %Verbosity
@@ -113,10 +113,6 @@ public enum Scope
     *   'inner' scopes can be defined optionally by multiple definitions.                */
     ThreadOuter,
 
-    /** Denotes the actual source path as the scope. When used, optionally 'outer' \e Scopes
-     *  of this scope level itself can be defined using parent directories of the path.*/
-    Path,
-
     /** Denotes the actual source file as the scope*/
     Filename,
 
@@ -125,13 +121,20 @@ public enum Scope
 
     /** Denotes the actual thread as the scope. When used with <em>Scope Domains</em>,
      *   'inner' scopes can be defined optionally by multiple definitions.              */
-    ThreadInner
+    ThreadInner,
+
+    /**
+     * Denotes the actual source path as the scope. By adding positive integer values
+     * to this element, 'outer' \e Scopes of this scope level itself can be defined using parent
+     * directories of the path.
+     */
+    Path
 }
 
 /** ************************************************************************************************
  * This class defines "escape sequences" that influence the formatting of log output.
  * Specific implementations of class
- * \ref cs::aworx::lox::core::Logger "Logger"
+ * \ref cs.aworx.lox.core.Logger "Logger"
  * have to convert or interpret this classes definitions of escape sequences
  * when processing log data. If no formatting of the output is supported by a specific Logger
  * implementation, such logger should filter and discard escape sequences defined here.

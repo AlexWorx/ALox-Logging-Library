@@ -18,7 +18,7 @@
 #ifndef HPP_ALIB_THREADS_SMARTLOCK
 //! @cond NO_DOX
 #define HPP_ALIB_THREADS_SMARTLOCK 1
-//! @endcond NO_DOX
+//! @endcond
 
 // #################################################################################################
 // includes
@@ -52,7 +52,7 @@ namespace aworx { namespace lib { namespace threads
  * <b>Using nulled acquirers:</b><br>
  * Sometimes it is useful to add a \c nullptr as an \e acquirer. A sample for this is found and
  * explained with
- * \ref aworx::lib::ALIB::StdOutputStreamsLock "ALIB::StdOutputStreamsLock".
+ * \ref aworx::lib::ALib.StdOutputStreamsLock "ALib.StdOutputStreamsLock".
  * If the first acquirer is nullptr, the second should be added in a thread-safe way. This means,
  * the code invoking #AddAcquirer needs to care for itself, that this object is not acquired
  * during this process. E.g. it can be done in the bootstrap section of a process, when no parallel

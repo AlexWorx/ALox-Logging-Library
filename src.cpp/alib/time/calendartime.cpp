@@ -33,8 +33,8 @@
 #endif
 
 
-namespace aworx { namespace lib { namespace time
-{
+namespace aworx { namespace lib { namespace time {
+
 void TicksCalendarTime::Clear()
 {
     Year=
@@ -52,7 +52,7 @@ void TicksCalendarTime::Clear()
 
 }
 
-void TicksCalendarTime::Set( rawtime ticks, Timezone timezone )
+void TicksCalendarTime::Set( Time::TRaw ticks, Timezone timezone )
 {
     Clear();
     Ticks t(ticks);
@@ -91,7 +91,7 @@ void TicksCalendarTime::Set( rawtime ticks, Timezone timezone )
     #endif
 }
 
-rawtime  TicksCalendarTime::Get( Timezone timezone )
+Time::TRaw  TicksCalendarTime::Get( Timezone timezone )
 {
     Ticks t(0);
 
@@ -142,7 +142,7 @@ const TString months[]= { "January", "February", "March", "April", "May", "June"
                           "July", "August",  "September", "October", "November", "December"   };
 const TString   days[]= { "Sunday", "Monday", "Tuesday", "Wednesday",
                           "Thursday", "Friday", "Saturday"                                    };
-//! @endcond NO_DOX
+//! @endcond
 
 AString& TicksCalendarTime::Format( Substring format, AString& target, CurrentData targetData )
 {
@@ -237,5 +237,5 @@ AString& TicksCalendarTime::Format( Substring format, AString& target, CurrentDa
 }
 
 
-}}}// namespace aworx::lib::time
+}}}// namespace [aworx::lib::time]
 

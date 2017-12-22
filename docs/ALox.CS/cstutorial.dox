@@ -6,7 +6,7 @@
 // #################################################################################################
 
 /**
-\page cstutorial       ALox for C# Tutorial
+\page alox_cs_tutorial       ALox for C# Tutorial
 
 \tableofcontents
 
@@ -85,12 +85,12 @@ In this tutorial we stick to the simpler cases, maybe adding a second \e Logger 
 
 If you want to follow the tutorial samples and play around with it a little, you should
 either create a tutorial project or right away equip your current project with ALox.
-For information about how you do that see: \ref cssetup.
+For information about how you do that see: \ref alox_cs_setup.
 
 \note
   Of-course, you can easily skip this step and just continue \e reading the tutorial
   without setting up ALox now. For some IDEs, there might be a
-  \ref cssetup "ready to use solution" available that minimizes efforts when you want
+  \ref alox_cs_setup "ready to use solution" available that minimizes efforts when you want
   to follow the samples and play around a little.
 
 To have all namespaces for this tutorial set up, add the following lines to the start of
@@ -217,8 +217,8 @@ are logging out during developing and debugging your software, it is all automat
 release version.
 
 This is achieved by providing the right set of
-\ref cssetup_condcompsym "Conditional Compilation Symbol" when
-\ref cssetup "setting up the project". Only project configurations that have the symbol
+\ref alox_cs_setup_condcompsym "Conditional Compilation Symbol" when
+\ref alox_cs_setup "setting up the project". Only project configurations that have the symbol
 \b ALOX_DBG_LOG set will contain ALox debug logging statements.
 
 This has a lot of benefits:
@@ -868,6 +868,9 @@ To summarize: We have to ways to look into ALox:
     switch this domain on or off.
     In other words, the general domain tree is completely kept free for the users of ALox.
 
+\see
+    \alox configuration variable [ALOX_LOXNAME_DUMP_STATE_ON_EXIT](../group__GrpALoxConfigVars.html) provides
+    a way to automatically log state information when a \b %Lox gets deleted.
 
 # Further Reading #     {#tutcs_end}
 
@@ -885,7 +888,7 @@ important things not covered in the tutorial are:
 
 - <b>Release Logging</b><br>
   Release logging is very similar to debug logging. The differences and how to use release-logging is
-  described in a [dedicated chapter](../man_debug_and_release_logging.html) of the manual
+  described in a [dedicated chapter](../alox_man_debug_and_release_logging.html) of the manual
 - <b>External Configuration</b><br>
   Instead of setting \e Verbosities and other changeable configuration "from within the source"
   (by adding ALox API invocations to your software), such data can also come from INI files,
@@ -896,13 +899,13 @@ important things not covered in the tutorial are:
 - <b>Trimming Source File Paths</b><br>
   For C++ and C# users: ALox automatically trims paths of source code files. This can
   be optimized, as described in
-  [Trimming Source File Paths and Clickable IDE Output](../man_trim_source_path.html).
+  [Trimming Source File Paths and Clickable IDE Output](../alox_man_trim_source_path.html).
 - <b>Log Domain Substitution</b><br>
   What this is, is described in
-  [Log Domain Substitution](../man_domain_substitution.html).
+  [Log Domain Substitution](../alox_man_domain_substitution.html).
 
 If however, you just want to start using ALox and get to know more details over time, you should
-only read \ref cssetup.
+only read \ref alox_cs_setup.
 
 Finally, for the daily work, the [ALox class reference](annotated.html) gives a lot of help!
 

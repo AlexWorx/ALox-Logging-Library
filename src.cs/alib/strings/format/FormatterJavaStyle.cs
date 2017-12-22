@@ -16,13 +16,13 @@ using cs.aworx.lib.lang;
 namespace cs.aworx.lib.strings.format  {
 
 /** ************************************************************************************************
- * Implements a \ref cs::aworx::lib::strings::format::Formatter "Formatter" according to the
+ * Implements a \ref cs.aworx.lib.strings.format.Formatter "Formatter" according to the
  * [formatting standards of the Java language](http://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html).
  *
  * \note
  *   Inherited, public fields of parent class \b FormatterStdImpl provide important possibilities
  *   for changing the formatting behavior of instances of this class. Therefore, do not forget
- *   to consult the \ref cs::aworx::lib::strings::format::FormatterStdImpl "parent classes documentation".
+ *   to consult the \ref cs.aworx.lib.strings.format.FormatterStdImpl "parent classes documentation".
  *
  * In general, the original specification is covered quite well. The differences and specialties
  * are:
@@ -32,9 +32,9 @@ namespace cs.aworx.lib.strings.format  {
  *   As the syntax specification does not provide a feature to switch between standard and locale
  *   setting, the corresponding fields of #AlternativeNumberFormat are not used with this formatter.
  *   Instead, to enable localized output, method
- *   \ref cs::aworx::lib::strings::NumberFormat::SetFromLocale "NumberFormat.SetFromLocale"
+ *   \ref cs.aworx.lib.strings.NumberFormat.SetFromLocale "NumberFormat.SetFromLocale"
  *   has to be invoked on field
- *   \ref cs::aworx::lib::strings::format::FormatterStdImpl::DefaultNumberFormat "FormatterStdImpl.DefaultNumberFormat".
+ *   \ref cs.aworx.lib.strings.format.FormatterStdImpl.DefaultNumberFormat "FormatterStdImpl.DefaultNumberFormat".
  *   Alternatively, attributes of this object may be changed manually or by other means to reflect
  *   a desired locale.
  * - Hexadecimal floating point output (conversion type \c 'a' and \c 'A') is not supported.
@@ -53,11 +53,11 @@ namespace cs.aworx.lib.strings.format  {
  *     specification.)
  *   - For lower case floating point format types (\c 'f', \c 'g' and \c 'e'), the values specified
  *     in attributes \b %ExponentSeparator, \b %NANLiteral and \b %INFLiteral of object
- *     \ref cs::aworx::lib::strings::format::FormatterStdImpl::AlternativeNumberFormat "AlternativeNumberFormat"
+ *     \ref cs.aworx.lib.strings.format.FormatterStdImpl.AlternativeNumberFormat "AlternativeNumberFormat"
  *     are used. For upper case types (\c 'G' and \c 'E'), the corresponding attributes in
- *     \ref cs::aworx::lib::strings::format::FormatterStdImpl::DefaultNumberFormat "DefaultNumberFormat" apply.
+ *     \ref cs.aworx.lib.strings.format.FormatterStdImpl.DefaultNumberFormat "DefaultNumberFormat" apply.
  *   - Fixed point format (\c 'f' ) is not supported to use arbitrary length.
- *     See class \ref cs::aworx::lib::strings::NumberFormat "NumberFormat" for the limits.
+ *     See class \ref cs.aworx.lib.strings.NumberFormat "NumberFormat" for the limits.
  *     Due to this limitation, the default number of fractional digits is not set with type \c 'f',
  *     while in Java it is set to \c 6. This is to allow higher numbers up to \c 1.e13 to be printed
  *     in non-scientific format
@@ -82,17 +82,17 @@ namespace cs.aworx.lib.strings.format  {
  *     Changing the separator symbols, is not possible with the format fields of the format strings
  *     (if it was, this would become very incompatible to Java standards). Changes have to be made
  *     prior to the format operation by modifying field
- *     \ref cs::aworx::lib::strings::format::FormatterStdImpl::AlternativeNumberFormat "AlternativeNumberFormat"
+ *     \ref cs.aworx.lib.strings.format.FormatterStdImpl.AlternativeNumberFormat "AlternativeNumberFormat"
  *     which is provided through parent class \b %FormatterStdImpl.
  *
  *   - Alternative form (\c '#') adds prefixes as specified in members
- *     - \ref cs::aworx::lib::strings::NumberFormat::HexLiteralPrefix "HexLiteralPrefix" and
- *     - \ref cs::aworx::lib::strings::NumberFormat::OctLiteralPrefix "OctLiteralPrefix".
+ *     - \ref cs.aworx.lib.strings.NumberFormat.HexLiteralPrefix "HexLiteralPrefix" and
+ *     - \ref cs.aworx.lib.strings.NumberFormat.OctLiteralPrefix "OctLiteralPrefix".
  *
  *     For upper case formats,  those are taken from field
- *     \ref cs::aworx::lib::strings::format::FormatterStdImpl::DefaultNumberFormat "DefaultNumberFormat",
+ *     \ref cs.aworx.lib.strings.format.FormatterStdImpl.DefaultNumberFormat "DefaultNumberFormat",
  *     for lower case formats from
- *     \ref cs::aworx::lib::strings::format::FormatterStdImpl::AlternativeNumberFormat "AlternativeNumberFormat".
+ *     \ref cs.aworx.lib.strings.format.FormatterStdImpl.AlternativeNumberFormat "AlternativeNumberFormat".
  *     All defaults may be changed by the user.
  *
  *<p>
@@ -482,7 +482,7 @@ public class FormatterJavaStyle : FormatterStdImpl
 
         /** ****************************************************************************************
          * Replaces \c "%%" with \c '%' and \c "%n" with ascii \c 0x0a. In addition applies
-         * \ref cs::aworx::lib::strings::AString::Escape "AString.Escape" on \p target which replaces
+         * \ref cs.aworx.lib.strings.AString.Escape "AString.Escape" on \p target which replaces
          * standard codes like \c "\\n", \c "\\r" or \c "\\t" with corresponding ascii codes.
          * (The latter is an extension to the standard behavior of Java formatter.)
          *
@@ -497,15 +497,21 @@ public class FormatterJavaStyle : FormatterStdImpl
 
 
         /** ****************************************************************************************
-         * Processes "conversions" which are specified with \c '!'.
+         * All that this formatter does with this overridden method is to convert strings to
+         * upper case.
          *
          * @param startIdx  The int of the start of the field written in #targetString.
          *                  \c -1 indicates pre-phase.
+         * @param target    The target string, only if different from field #targetString, which
+         *                  indicates intermediate phase.
+         * @return \c false, if the placeholder should be skipped (nothing is written for it).
+         *         \c true otherwise.
          ******************************************************************************************/
-        protected override void    preAndPostProcess( int startIdx)
+        protected override bool    preAndPostProcess( int startIdx, AString target )
         {
-            if( startIdx >= 0 && phaExtConversionUpper )
+            if( startIdx >= 0 && phaExtConversionUpper && target == null )
                 targetString.ToUpper( startIdx );
+            return true;
         }
 
 

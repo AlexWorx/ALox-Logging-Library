@@ -14,6 +14,7 @@
     #pragma clang diagnostic ignored "-Wmissing-noreturn"
     #pragma clang diagnostic ignored "-Wshift-sign-overflow"
     #pragma clang diagnostic ignored "-Wused-but-marked-unused"
+    #pragma clang diagnostic ignored "-Wzero-as-null-pointer-constant"
 #endif
 
     #include "gtest/gtest.h"
@@ -34,20 +35,30 @@ using namespace aworx;
 int main( int argc, char **argv )
 {
     ::testing::InitGoogleTest( &argc, argv);
-    aworx::lox::ALox::Init( argc, argv );
+    aworx::lox::ALOX.Init( argc, argv );
 
     //aworx::lib::lang::Report::GetDefault().HaltOnWarning= true;
+
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_*";
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_Strings_AString*:CPP_Ticks*:CPP_Thread*:CPP_ALox*:CPP_Tutorial*";
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Boxing*";
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_AString.*";
-//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_AString.Conversions";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_AString.Count";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Substring.*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Format.*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Format.FormatterJavaStyle";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Format.FormatterPythonStyle";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Format.ConvertIntegers";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Util.*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Util.SimpleTextMarked";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Dox_Strings.*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Dox_Strings.PropertyFormatter";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Dox_Strings.PropertyFormatters";
+
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Dox_LANG.*";
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Time*";
 
@@ -57,13 +68,10 @@ int main( int argc, char **argv )
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_System.Dir*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Containers.*";
-//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Config.IniFiles";
-//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Config.ConfigDefaultAndProtected";
-//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Config.ConfigReplacementVariables";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Config.*";
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Compatibility.*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Boxing.Boxing_D*";
-//    ::testing::GTEST_FLAG(filter) = "CPP_ALib__Dox.*";
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.*";
@@ -86,6 +94,7 @@ int main( int argc, char **argv )
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Log_Domains.*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Log_Domains.Log_DomainSubstitutions*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Log_Domains.Log_DomainSubstitutions_IniFile*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Log_Domains.Log_Domain_IniFile*";
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Log_Scopes.*";
@@ -100,7 +109,7 @@ int main( int argc, char **argv )
 
     auto result= RUN_ALL_TESTS();
 
-    ALox::TerminationCleanUp();
+    lox::ALOX.TerminationCleanUp();
 
     return result;
 }

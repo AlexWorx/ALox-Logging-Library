@@ -13,30 +13,32 @@
 
 namespace aworx { namespace lib { namespace strings { namespace util  {
 
-// #################################################################################################
-// static objects
-// #################################################################################################
-AString Spaces::theSpaces;
 
-// #################################################################################################
-// Interface
-// #################################################################################################
-const aworx::AString&  Spaces::GetUnsafe( integer minSize )
+//! @cond NO_DOX
+namespace
 {
-    integer spacesLength= Spaces::theSpaces.Length();
-    if ( spacesLength < minSize )
-        Spaces::theSpaces.InsertChars( ' ', minSize - spacesLength );
+    AString      theSpaces;
+}
+//! @endcond
 
+String  Spaces::Get()
+{
     return theSpaces;
+}
+
+void    Spaces::Initialize( integer minSize )
+{
+    integer spacesLength= theSpaces.Length();
+    if ( spacesLength < minSize )
+        theSpaces.InsertChars( ' ', minSize - spacesLength );
 }
 
 void Spaces::Write( std::ostream& os, integer qty )
 {
-    const AString& spaces= Spaces::Get();
-    integer spacesLength= spaces.Length();
+    auto spaces= Spaces::Get();
     while ( qty > 0 )
     {
-        integer size= qty < spacesLength ? qty : spacesLength;
+        integer size= qty < spaces.Length() ? qty : spaces.Length();
         os.write( spaces.Buffer(), size );
         qty-= size;
     }

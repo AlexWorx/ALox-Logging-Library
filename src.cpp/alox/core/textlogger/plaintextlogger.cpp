@@ -41,7 +41,7 @@ void PlainTextLogger::logText( Domain&          ,   Verbosity  ,
     while( start < msgLength )
     {
         bool foundESC=  true;
-        end=    msg.IndexOf<false>( '\x1B', start );
+        end=    msg.String::IndexOf<false>( '\x1B', start );
         if( end < 0 )
         {
             foundESC= false;
@@ -73,7 +73,7 @@ void PlainTextLogger::logText( Domain&          ,   Verbosity  ,
 
                 if ( tabStop > column )
                 {
-                    const AString& spaces= Spaces::Get();
+                    auto spaces= Spaces::Get();
                     integer spacesLength= spaces.Length();
                     integer qty= tabStop - column;
                     while ( qty > 0 )

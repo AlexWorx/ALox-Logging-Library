@@ -34,8 +34,8 @@ import java.util.GregorianCalendar;
  *  As Ticks are system dependent, they should not be stored in system independent data files or
  *  otherwise shared between systems. In general such values should only be used by methods of
  *  this class and classes
- *  \ref com::aworx::lib::time::TickWatch "TickWatch" and
- *  \ref com::aworx::lib::time::TickSpan  "TickSpan".
+ *  \ref com.aworx.lib.time.TickWatch "TickWatch" and
+ *  \ref com.aworx.lib.time.TickSpan  "TickSpan".
  *
  *  The resolution and accuracy of the values is platform dependent. Especially nanoseconds are
  *  deemed to be not accurate and above 100 ns (this was written and fact in 2013).

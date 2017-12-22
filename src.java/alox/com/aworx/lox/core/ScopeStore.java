@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.aworx.lib.*;
-import com.aworx.lib.containers.StringTree;
+import com.aworx.lib.util.StringTree;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.Substring;
 import com.aworx.lox.Scope;

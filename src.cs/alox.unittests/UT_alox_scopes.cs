@@ -66,10 +66,10 @@ namespace ut_cs_aworx_lox
 
    void LogOnceTestThreadRun()
    {
-        Log.Once( Verbosity.Info, "Once(Scope.ThreadOuter) 2x - 2nd thread", Scope.ThreadOuter, 0, 2 );
-        Log.Once( Verbosity.Info, "Once(Scope.ThreadOuter) 2x - 2nd thread", Scope.ThreadOuter, 0, 2 );
-        Log.Once( Verbosity.Info, "Once(Scope.ThreadOuter) 2x - 2nd thread", Scope.ThreadOuter, 0, 2 );
-        Log.Once( Verbosity.Info, "Once(Scope.ThreadOuter) 2x - 2nd thread", Scope.ThreadOuter, 0, 2 );
+        Log.Once( Verbosity.Info, "Once(Scope.ThreadOuter) 2x - 2nd thread", Scope.ThreadOuter, 2 );
+        Log.Once( Verbosity.Info, "Once(Scope.ThreadOuter) 2x - 2nd thread", Scope.ThreadOuter, 2 );
+        Log.Once( Verbosity.Info, "Once(Scope.ThreadOuter) 2x - 2nd thread", Scope.ThreadOuter, 2 );
+        Log.Once( Verbosity.Info, "Once(Scope.ThreadOuter) 2x - 2nd thread", Scope.ThreadOuter, 2 );
    }
 
    void StoreDataTestThreadRun()
@@ -168,17 +168,17 @@ Log.Info( "*msg*" ); PFXCHECK( "One, two, 3*msg*"    ,ml );
         // source path
         Log.SetPrefix( "REPLACE:",    Scope.Path        );  Log.Info( "*msg*" ); PFXCHECK( "REPLACE:FILE:METHOD:DOMR:DOM1:*msg*"         ,ml );
         Log.SetPrefix( "PATH:",       Scope.Path        );  Log.Info( "*msg*" ); PFXCHECK( "PATH:FILE:METHOD:DOMR:DOM1:*msg*"            ,ml );
-        Log.SetPrefix( "REPLACE:",    Scope.Path, 1     );  Log.Info( "*msg*" ); PFXCHECK( "REPLACE:PATH:FILE:METHOD:DOMR:DOM1:*msg*"    ,ml );
-        Log.SetPrefix( "PO1:",        Scope.Path, 1     );  Log.Info( "*msg*" ); PFXCHECK( "PO1:PATH:FILE:METHOD:DOMR:DOM1:*msg*"        ,ml );
-        Log.SetPrefix( "REPLACE:",    Scope.Path, 2     );  Log.Info( "*msg*" ); PFXCHECK( "REPLACE:PO1:PATH:FILE:METHOD:DOMR:DOM1:*msg*",ml );
-        Log.SetPrefix( "PO2:",        Scope.Path, 2     );  Log.Info( "*msg*" ); PFXCHECK( "PO2:PO1:PATH:FILE:METHOD:DOMR:DOM1:*msg*"    ,ml );
+        Log.SetPrefix( "REPLACE:",    Scope.Path + 1    );  Log.Info( "*msg*" ); PFXCHECK( "REPLACE:PATH:FILE:METHOD:DOMR:DOM1:*msg*"    ,ml );
+        Log.SetPrefix( "PO1:",        Scope.Path + 1    );  Log.Info( "*msg*" ); PFXCHECK( "PO1:PATH:FILE:METHOD:DOMR:DOM1:*msg*"        ,ml );
+        Log.SetPrefix( "REPLACE:",    Scope.Path + 2    );  Log.Info( "*msg*" ); PFXCHECK( "REPLACE:PO1:PATH:FILE:METHOD:DOMR:DOM1:*msg*",ml );
+        Log.SetPrefix( "PO2:",        Scope.Path + 2    );  Log.Info( "*msg*" ); PFXCHECK( "PO2:PO1:PATH:FILE:METHOD:DOMR:DOM1:*msg*"    ,ml );
         Log.SetPrefix( "REPLACE:",    Scope.Global      );  Log.Info( "*msg*" ); PFXCHECK( "REPLACE:PO2:PO1:PATH:FILE:METHOD:DOMR:DOM1:*msg*"  , ml );
 
         // remove all previous scope domains
         Log.SetPrefix( null          ,Scope.Global      );
         Log.SetPrefix( null          ,Scope.Path        );
-        Log.SetPrefix( null          ,Scope.Path    ,1  );
-        Log.SetPrefix( null          ,Scope.Path    ,2  );
+        Log.SetPrefix( null          ,Scope.Path + 1    );
+        Log.SetPrefix( null          ,Scope.Path + 2    );
         Log.SetPrefix( null          ,Scope.Filename    );
         Log.SetPrefix( null          ,Scope.Method      );
 
@@ -296,11 +296,11 @@ Log.Info( "*msg*" ); PFXCHECK( "One, two, 3*msg*"    ,ml );
         // source path
         Log.SetDomain( "REPLACE",    Scope.Path      );  Log.Info( "" ); SDCHECK( "@/REPLACE/FILE/METHOD#"        ,ml );
         Log.SetDomain( "PATH",       Scope.Path      );  Log.Info( "" ); SDCHECK( "@/PATH/FILE/METHOD#"           ,ml );
-        Log.SetDomain( "REPLACE",    Scope.Path, 1   );  Log.Info( "" ); SDCHECK( "@/REPLACE/PATH/FILE/METHOD#"   ,ml );
-        Log.SetDomain( "PO1",        Scope.Path, 1   );  Log.Info( "" ); SDCHECK( "@/PO1/PATH/FILE/METHOD#"       ,ml );
-        Log.SetDomain( "REPLACE",    Scope.Path, 2   );  Log.Info( "" ); SDCHECK( "@/REPLACE/PO1/PATH/FILE/METHOD#",ml);
-        Log.SetDomain( "PO2",        Scope.Path, 2   );  Log.Info( "" ); SDCHECK( "@/PO2/PO1/PATH/FILE/METHOD#"   ,ml );
-        Log.SetDomain( "PO50",       Scope.Path, 50  );  Log.Info( "" ); SDCHECK( "@/PO50/PO2/PO1/PATH/FILE/METHOD#"   ,ml );
+        Log.SetDomain( "REPLACE",    Scope.Path + 1  );  Log.Info( "" ); SDCHECK( "@/REPLACE/PATH/FILE/METHOD#"   ,ml );
+        Log.SetDomain( "PO1",        Scope.Path + 1  );  Log.Info( "" ); SDCHECK( "@/PO1/PATH/FILE/METHOD#"       ,ml );
+        Log.SetDomain( "REPLACE",    Scope.Path + 2  );  Log.Info( "" ); SDCHECK( "@/REPLACE/PO1/PATH/FILE/METHOD#",ml);
+        Log.SetDomain( "PO2",        Scope.Path + 2  );  Log.Info( "" ); SDCHECK( "@/PO2/PO1/PATH/FILE/METHOD#"   ,ml );
+        Log.SetDomain( "PO50",       Scope.Path + 50 );  Log.Info( "" ); SDCHECK( "@/PO50/PO2/PO1/PATH/FILE/METHOD#"   ,ml );
 
         Log.SetDomain( "GLOBAL",     Scope.Global         );  Log.Info( "" );          SDCHECK( "@/GLOBAL/PO50/PO2/PO1/PATH/FILE/METHOD#"  , ml );
                                                                  CS_ALox_domains_helper.help(); SDCHECK( "@/GLOBAL/PO50/PO2/PO1/PATH/HFILE/HMETHOD#", ml );
@@ -311,9 +311,9 @@ Log.Info( "*msg*" ); PFXCHECK( "One, two, 3*msg*"    ,ml );
         // remove all previous scope domains
         Log.SetDomain( "",     Scope.Global      );
         Log.SetDomain( "",     Scope.Path        );
-        Log.SetDomain( "",     Scope.Path    ,1  );
-        Log.SetDomain( "",     Scope.Path    ,2  );
-        Log.SetDomain( "",     Scope.Path    ,45 ); // same as 50 above! (test)
+        Log.SetDomain( "",     Scope.Path + 1    );
+        Log.SetDomain( "",     Scope.Path + 2    );
+        Log.SetDomain( "",     Scope.Path + 45   ); // same as 50 above! (test)
         Log.SetDomain( "",     Scope.Filename    );
         Log.SetDomain( "",     Scope.Method      );  Log.Info(  "LOC", "" ); SDCHECK( "@/LOC#"                 ,ml );
 
@@ -428,10 +428,10 @@ Log.Info( "*msg*" ); PFXCHECK( "One, two, 3*msg*"    ,ml );
         // source path
         lox.SetDomain( "REPLACE",    Scope.Path     );  lox.Info(  ""   , "" ); CICHECK_RL( "@/REPLACE/FILE/METHOD#"         ,ml );
         lox.SetDomain( "PATH",       Scope.Path     );  lox.Info(  ""   , "" ); CICHECK_RL( "@/PATH/FILE/METHOD#"            ,ml );
-        lox.SetDomain( "REPLACE",    Scope.Path, 1  );  lox.Info(  ""   , "" ); CICHECK_RL( "@/REPLACE/PATH/FILE/METHOD#"    ,ml );
-        lox.SetDomain( "PO1",        Scope.Path, 1  );  lox.Info(  ""   , "" ); CICHECK_RL( "@/PO1/PATH/FILE/METHOD#"        ,ml );
-        lox.SetDomain( "REPLACE",    Scope.Path, 2  );  lox.Info(  ""   , "" ); CICHECK_RL( "@/REPLACE/PO1/PATH/FILE/METHOD#",ml );
-        lox.SetDomain( "PO2",        Scope.Path, 2  );  lox.Info(  ""   , "" ); CICHECK_RL( "@/PO2/PO1/PATH/FILE/METHOD#"    ,ml );
+        lox.SetDomain( "REPLACE",    Scope.Path + 1 );  lox.Info(  ""   , "" ); CICHECK_RL( "@/REPLACE/PATH/FILE/METHOD#"    ,ml );
+        lox.SetDomain( "PO1",        Scope.Path + 1 );  lox.Info(  ""   , "" ); CICHECK_RL( "@/PO1/PATH/FILE/METHOD#"        ,ml );
+        lox.SetDomain( "REPLACE",    Scope.Path + 2 );  lox.Info(  ""   , "" ); CICHECK_RL( "@/REPLACE/PO1/PATH/FILE/METHOD#",ml );
+        lox.SetDomain( "PO2",        Scope.Path + 2 );  lox.Info(  ""   , "" ); CICHECK_RL( "@/PO2/PO1/PATH/FILE/METHOD#"    ,ml );
 
         lox.SetDomain( "GLOBAL",     Scope.Global   );  lox.Info(  ""   , "" ); CICHECK_RL( "@/GLOBAL/PO2/PO1/PATH/FILE/METHOD#"  , ml );
 
@@ -439,8 +439,8 @@ Log.Info( "*msg*" ); PFXCHECK( "One, two, 3*msg*"    ,ml );
         // remove all previous scope domains
         lox.SetDomain( "",     Scope.Global      );
         lox.SetDomain( "",     Scope.Path        );
-        lox.SetDomain( "",     Scope.Path    ,1  );
-        lox.SetDomain( "",     Scope.Path    ,2  );
+        lox.SetDomain( "",     Scope.Path + 1    );
+        lox.SetDomain( "",     Scope.Path + 2    );
         lox.SetDomain( "",     Scope.Filename    );
         lox.SetDomain( "",     Scope.Method      );  lox.Info(  "LOC", "" ); SDCHECK_RL(  "@/LOC#"                ,ml );
 
@@ -525,32 +525,32 @@ Log.Info( "*msg*" ); PFXCHECK( "One, two, 3*msg*"    ,ml );
         //-------------------- associated to scope filename -----------------
         for (int i= 0; i < 5 ; i++ )
         {
-            Log.Once( "Subdom", Verbosity.Info, "Once(Scope filename) 4x", Scope.Filename, 0, 4 );
+            Log.Once( "Subdom", Verbosity.Info, "Once(Scope filename) 4x", Scope.Filename, 4 );
             logOnceMethod();
         }
-        Log.Once( Verbosity.Info, "Once(Scope filename) 4x", Scope.Filename, 0, 4 );
+        Log.Once( Verbosity.Info, "Once(Scope filename) 4x", Scope.Filename, 4 );
 
         UT_EQ( 4, ml.CntLogs ); ml.CntLogs= 0;
 
         //-------------------- associated to scope thread -----------------
-        Log.Once( Verbosity.Info, "Once(Scope.ThreadOuter) 2x - main thread", Scope.ThreadOuter, 0, 2 );
+        Log.Once( Verbosity.Info, "Once(Scope.ThreadOuter) 2x - main thread", Scope.ThreadOuter, 2 );
         UT_EQ( 1, ml.CntLogs ); ml.CntLogs= 0;
         Thread thread= new Thread( new ThreadStart( LogOnceTestThreadRun ) );
         thread.Start();
         while( thread.IsAlive )
             ALIB.SleepMicros(1);
         UT_EQ( 2, ml.CntLogs ); ml.CntLogs= 0;
-        Log.Once( Verbosity.Info, "Once(Scope.ThreadOuter) 2x - main thread", Scope.ThreadOuter, 0, 2 );
+        Log.Once( Verbosity.Info, "Once(Scope.ThreadOuter) 2x - main thread", Scope.ThreadOuter, 2 );
         UT_EQ( 1, ml.CntLogs ); ml.CntLogs= 0;
-        Log.Once( Verbosity.Info, "Once(Scope.ThreadOuter) 2x - main thread", Scope.ThreadOuter, 0, 2 );
+        Log.Once( Verbosity.Info, "Once(Scope.ThreadOuter) 2x - main thread", Scope.ThreadOuter, 2 );
         UT_EQ( 0, ml.CntLogs ); ml.CntLogs= 0;
-        Log.Once( Verbosity.Info, "Once(Scope.ThreadOuter) 2x - main thread", Scope.ThreadOuter, 0, 2 );
+        Log.Once( Verbosity.Info, "Once(Scope.ThreadOuter) 2x - main thread", Scope.ThreadOuter, 2 );
         UT_EQ( 0, ml.CntLogs ); ml.CntLogs= 0;
 
         // different group
-        Log.Once( "Once(group, Scope.ThreadOuter) 2x - main thread", "group", Scope.ThreadOuter, 0, 1 );
+        Log.Once( "Once(group, Scope.ThreadOuter) 2x - main thread", "group", Scope.ThreadOuter, 1 );
         UT_EQ( 1, ml.CntLogs ); ml.CntLogs= 0;
-        Log.Once( "Once(group, Scope.ThreadOuter) 2x - main thread", "group", Scope.ThreadOuter, 0, 1 );
+        Log.Once( "Once(group, Scope.ThreadOuter) 2x - main thread", "group", Scope.ThreadOuter, 1 );
         UT_EQ( 0, ml.CntLogs ); ml.CntLogs= 0;
 
         //-------------------- associated to line (using group interface)  -----------------
@@ -658,8 +658,8 @@ Log.Info( "*msg*" ); PFXCHECK( "One, two, 3*msg*"    ,ml );
         Log.Store( "Global"       ,    Scope.Global         );
         Log.Store( "Replaced"     ,    Scope.ThreadOuter    );
         Log.Store( "ThreadOuter"  ,    Scope.ThreadOuter    );
-        Log.Store( "Replaced"     ,    Scope.Path,    1     );
-        Log.Store( "Path1"        ,    Scope.Path,    1     );
+        Log.Store( "Replaced"     ,    Scope.Path + 1       );
+        Log.Store( "Path1"        ,    Scope.Path + 1       );
         Log.Store( "Replaced"     ,    Scope.Path           );
         Log.Store( "Path"         ,    Scope.Path           );
         Log.Store( "Replaced"     ,    Scope.Filename       );
@@ -672,7 +672,7 @@ Log.Info( "*msg*" ); PFXCHECK( "One, two, 3*msg*"    ,ml );
         Object data= null;
         data= Log.Retrieve( Scope.Global       ); UT_EQ( "Global"        , (String) data );
         data= Log.Retrieve( Scope.ThreadOuter  ); UT_EQ( "ThreadOuter"   , (String) data );
-        data= Log.Retrieve( Scope.Path,    1   ); UT_EQ( "Path1"         , (String) data );
+        data= Log.Retrieve( Scope.Path + 1    ); UT_EQ( "Path1"         , (String) data );
         data= Log.Retrieve( Scope.Path         ); UT_EQ( "Path"          , (String) data );
         data= Log.Retrieve( Scope.Filename     ); UT_EQ( "FileName"      , (String) data );
         data= Log.Retrieve( Scope.Method       ); UT_EQ( "Method"        , (String) data );
@@ -683,8 +683,8 @@ Log.Info( "*msg*" ); PFXCHECK( "One, two, 3*msg*"    ,ml );
         Log.Store( "Global"      ,   "mykey",  Scope.Global         );
         Log.Store( "Replaced"    ,   "mykey",  Scope.ThreadOuter    );
         Log.Store( "ThreadOuter" ,   "mykey",  Scope.ThreadOuter    );
-        Log.Store( "Replaced"    ,   "mykey",  Scope.Path,    1     );
-        Log.Store( "Path1"       ,   "mykey",  Scope.Path,    1     );
+        Log.Store( "Replaced"    ,   "mykey",  Scope.Path + 1       );
+        Log.Store( "Path1"       ,   "mykey",  Scope.Path + 1       );
         Log.Store( "Replaced"    ,   "mykey",  Scope.Path           );
         Log.Store( "Path"        ,   "mykey",  Scope.Path           );
         Log.Store( "Replaced"    ,   "mykey",  Scope.Filename       );
@@ -697,7 +697,7 @@ Log.Info( "*msg*" ); PFXCHECK( "One, two, 3*msg*"    ,ml );
 
         data= Log.Retrieve( "mykey", Scope.Global       ); UT_EQ( "Global"        , (String) data );
         data= Log.Retrieve( "mykey", Scope.ThreadOuter  ); UT_EQ( "ThreadOuter"   , (String) data );
-        data= Log.Retrieve( "mykey", Scope.Path,    1   ); UT_EQ( "Path1"         , (String) data );
+        data= Log.Retrieve( "mykey", Scope.Path + 1     ); UT_EQ( "Path1"         , (String) data );
         data= Log.Retrieve( "mykey", Scope.Path         ); UT_EQ( "Path"          , (String) data );
         data= Log.Retrieve( "mykey", Scope.Filename     ); UT_EQ( "FileName"      , (String) data );
         data= Log.Retrieve( "mykey", Scope.Method       ); UT_EQ( "Method"        , (String) data );

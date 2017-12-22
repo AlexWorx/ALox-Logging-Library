@@ -6,7 +6,7 @@
 // #################################################################################################
 
 /**
-\page man_intro         01 - About ALox
+\page alox_man_intro         01 - About ALox
 
 ## Introduction ##
 
@@ -43,7 +43,7 @@ send anything).
 <p>
 
 --------------------------------------------------------------------
-<center>Next chapter: \ref man_features_and_limitations </center> <center> \ref manual "Back to index" </center>
+<center>Next chapter: \ref alox_man_features_and_limitations </center> <center> \ref manual "Back to index" </center>
 
 */
 

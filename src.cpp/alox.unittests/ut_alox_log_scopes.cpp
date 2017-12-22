@@ -78,10 +78,10 @@ void LSD2()     {  Log_SetDomain( "LSD2", Scope::Method );    Log_Info( "" );   
     {
         virtual void Run()
         {
-            Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - 2nd thread", Scope::ThreadOuter, 0, 2 );
-            Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - 2nd thread", Scope::ThreadOuter, 0, 2 );
-            Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - 2nd thread", Scope::ThreadOuter, 0, 2 );
-            Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - 2nd thread", Scope::ThreadOuter, 0, 2 );
+            Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - 2nd thread", Scope::ThreadOuter, 2 );
+            Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - 2nd thread", Scope::ThreadOuter, 2 );
+            Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - 2nd thread", Scope::ThreadOuter, 2 );
+            Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - 2nd thread", Scope::ThreadOuter, 2 );
         }
     };
 
@@ -127,8 +127,8 @@ void LSD2()     {  Log_SetDomain( "LSD2", Scope::Method );    Log_Info( "" );   
 **********************************************************************************************/
 
 // with GTEST macros it all gets wild. Fix the method name
-#undef  ALIB_SRC_INFO_PARAMS
-#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, UT_GET_TEST_NAME
+#undef  ALIB_SRCPOS
+#define ALIB_SRCPOS     __FILE__, __LINE__, UT_GET_TEST_NAME
 
 UT_CLASS()
 
@@ -168,27 +168,27 @@ UT_METHOD(Log_LineFormat)
 
     #if ALOX_DBG_LOG
         Log::DebugLogger->MetaInfo->Format= "%TD@";
-        testML->MetaInfo->Format= "%TD@";
+                  testML->MetaInfo->Format= "%TD@";
         const char* df;
         df= ">yy-MM-dd<";    Log::DebugLogger->MetaInfo->DateFormat= df;                                                Log_Info( String128("Date test. Format: \"") << df << '\"' );
         testML->MemoryLog.Clear();
         df= ">yyyy/dd/MM<";  Log::DebugLogger->MetaInfo->DateFormat= df;  testML->MetaInfo->DateFormat= df;             Log_Info( "FMT", String128("Date test. Format: \"") << df << '\"' );
         UT_TRUE( testML->MemoryLog.SearchAndReplace( '/', '@') == 4 );
         Log::DebugLogger->MetaInfo->Format= "%TT@";
-        testML->MetaInfo->Format= "%TT@";
+                  testML->MetaInfo->Format= "%TT@";
         df= ">HH:mm:ss<";    Log::DebugLogger->MetaInfo->TimeOfDayFormat= df;                                           Log_Info( "FMT", String128("Time of day test Format: \"") << df << '\"' );
         testML->MemoryLog.Clear();
         df= ">HH-mm-ss<";    Log::DebugLogger->MetaInfo->TimeOfDayFormat= df;  testML->MetaInfo->TimeOfDayFormat= df;   Log_Info( "FMT", String128("Time of day test. Format: \"") << df << '\"' );
         UT_TRUE( testML->MemoryLog.SearchAndReplace( '-', '@') == 4 );
 
         Log::DebugLogger->MetaInfo->Format= "%tI@";
-        testML->MetaInfo->Format= "%tI@";
+                  testML->MetaInfo->Format= "%tI@";
         testML->MemoryLog.Clear();   testML->AutoSizes.Reset();
         Log_Info("");
         UT_EQ( "-1@", testML->MemoryLog );
 
         Log::DebugLogger->MetaInfo->Format=
-        testML->MetaInfo->Format=               "%P";
+                  testML->MetaInfo->Format= "%P";
         #if defined( _WIN32 )
             testML->MemoryLog.Clear();  testML->AutoSizes.Reset(); Log_Info("");     UT_TRUE(    testML->MemoryLog.Equals("te.processhost.managed.exe")
                                                                                               || testML->MemoryLog.Equals("vstest.executionengine.exe")
@@ -304,17 +304,17 @@ PFXCHECK( "One, two, 3*msg*"    ,ml );
     // source path
     Log_SetPrefix( "REPLACE:",    Scope::Path     );  PFXCHECK( "REPLACE:FILE:METHOD:DOMR:DOM1:*msg*"               ,ml );
     Log_SetPrefix( "PATH:",       Scope::Path     );  PFXCHECK( "PATH:FILE:METHOD:DOMR:DOM1:*msg*"                  ,ml );
-    Log_SetPrefix( "REPLACE:",    Scope::Path, 1  );  PFXCHECK( "REPLACE:PATH:FILE:METHOD:DOMR:DOM1:*msg*"          ,ml );
-    Log_SetPrefix( "PO1:",        Scope::Path, 1  );  PFXCHECK( "PO1:PATH:FILE:METHOD:DOMR:DOM1:*msg*"              ,ml );
-    Log_SetPrefix( "REPLACE:",    Scope::Path, 2  );  PFXCHECK( "REPLACE:PO1:PATH:FILE:METHOD:DOMR:DOM1:*msg*"      ,ml );
-    Log_SetPrefix( "PO2:",        Scope::Path, 2  );  PFXCHECK( "PO2:PO1:PATH:FILE:METHOD:DOMR:DOM1:*msg*"          ,ml );
+    Log_SetPrefix( "REPLACE:",    Scope::Path + 1 );  PFXCHECK( "REPLACE:PATH:FILE:METHOD:DOMR:DOM1:*msg*"          ,ml );
+    Log_SetPrefix( "PO1:",        Scope::Path + 1 );  PFXCHECK( "PO1:PATH:FILE:METHOD:DOMR:DOM1:*msg*"              ,ml );
+    Log_SetPrefix( "REPLACE:",    Scope::Path + 2 );  PFXCHECK( "REPLACE:PO1:PATH:FILE:METHOD:DOMR:DOM1:*msg*"      ,ml );
+    Log_SetPrefix( "PO2:",        Scope::Path + 2 );  PFXCHECK( "PO2:PO1:PATH:FILE:METHOD:DOMR:DOM1:*msg*"          ,ml );
     Log_SetPrefix( "REPLACE:",    Scope::Global   );  PFXCHECK( "REPLACE:PO2:PO1:PATH:FILE:METHOD:DOMR:DOM1:*msg*"  ,ml );
 
     // remove all previous scope domains
     Log_SetPrefix( nullptr ,Scope::Global      );
     Log_SetPrefix( nullptr ,Scope::Path        );
-    Log_SetPrefix( nullptr ,Scope::Path    ,1  );
-    Log_SetPrefix( nullptr ,Scope::Path    ,2  );
+    Log_SetPrefix( nullptr ,Scope::Path    + 1 );
+    Log_SetPrefix( nullptr ,Scope::Path    + 2 );
     Log_SetPrefix( nullptr ,Scope::Filename    );
     Log_SetPrefix( nullptr ,Scope::Method      );
 
@@ -413,14 +413,14 @@ UT_METHOD(Log_ScopeDomains)
     // source path
     Log_SetDomain( "REPLACE",    Scope::Path     );  DDCHECK( "","@/REPLACE/FILE/METHOD#"         ,ml );
     Log_SetDomain( "PATH",       Scope::Path     );  DDCHECK( "","@/PATH/FILE/METHOD#"            ,ml );
-    Log_SetDomain( "REPLACE",    Scope::Path, 1  );  DDCHECK( "","@/REPLACE/PATH/FILE/METHOD#"    ,ml );
-    Log_SetDomain( "PO1",        Scope::Path, 1  );  DDCHECK( "","@/PO1/PATH/FILE/METHOD#"        ,ml );
+    Log_SetDomain( "REPLACE",    Scope::Path + 1 );  DDCHECK( "","@/REPLACE/PATH/FILE/METHOD#"    ,ml );
+    Log_SetDomain( "PO1",        Scope::Path + 1 );  DDCHECK( "","@/PO1/PATH/FILE/METHOD#"        ,ml );
 
-    Log_SetDomain( "REPLACE",    Scope::Path, 2  );  DDCHECK( "","@/REPLACE/PO1/PATH/FILE/METHOD#",ml );
+    Log_SetDomain( "REPLACE",    Scope::Path + 2 );  DDCHECK( "","@/REPLACE/PO1/PATH/FILE/METHOD#",ml );
 
-    Log_SetDomain( "PO2",        Scope::Path, 2  );  DDCHECK( "","@/PO2/PO1/PATH/FILE/METHOD#"    ,ml );
-    Log_SetDomain( "REPLACE",    Scope::Path, 50 );  DDCHECK( "","@/REPLACE/PO2/PO1/PATH/FILE/METHOD#"     ,ml );
-    Log_SetDomain( "PO50",       Scope::Path, 50 );  DDCHECK( "","@/PO50/PO2/PO1/PATH/FILE/METHOD#"        ,ml );
+    Log_SetDomain( "PO2",        Scope::Path + 2 );  DDCHECK( "","@/PO2/PO1/PATH/FILE/METHOD#"    ,ml );
+    Log_SetDomain( "REPLACE",    Scope::Path + 50);  DDCHECK( "","@/REPLACE/PO2/PO1/PATH/FILE/METHOD#"     ,ml );
+    Log_SetDomain( "PO50",       Scope::Path + 50);  DDCHECK( "","@/PO50/PO2/PO1/PATH/FILE/METHOD#"        ,ml );
 
      Log_LogState( "", Verbosity::Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
@@ -445,9 +445,9 @@ UT_METHOD(Log_ScopeDomains)
     // remove all previous scope domains
     Log_SetDomain( "",     Scope::Global      );
     Log_SetDomain( "",     Scope::Path        );
-    Log_SetDomain( "",     Scope::Path    ,1  );
-    Log_SetDomain( "",     Scope::Path    ,2  );
-    Log_SetDomain( "",     Scope::Path    ,45 ); // same as 50 above! (test)
+    Log_SetDomain( "",     Scope::Path  + 1   );
+    Log_SetDomain( "",     Scope::Path  + 2   );
+    Log_SetDomain( "",     Scope::Path  + 45  ); // same as 50 above! (test)
     Log_SetDomain( "",     Scope::Filename    );
     Log_SetDomain( "",     Scope::Method      );  DDCHECK( "LOC", "@/LOC#"                ,ml );
 
@@ -488,7 +488,7 @@ UT_METHOD(Log_ScopeDomains)
         Log_SetDomain( "OTHER_THREAD",  Scope::ThreadOuter, &thread );
         thread.Start();
         while( thread.IsAlive() )
-            ALIB::SleepMillis(1);
+            ALib::SleepMillis(1);
                                UT_EQ( "@/OTHER_THREAD/DTT#", ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
         Log_Info( "ME", "" );  UT_EQ( "@/THIS_THREAD/ME#"  , ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
     #endif
@@ -555,10 +555,10 @@ UT_METHOD(Lox_ScopeDomains)
     // source path
     Lox_SetDomain( "REPLACE",    Scope::Path     );  CICHECK_RL( "","@/REPLACE/FILE/METHOD#"         ,ml );
     Lox_SetDomain( "PATH",       Scope::Path     );  CICHECK_RL( "","@/PATH/FILE/METHOD#"            ,ml );
-    Lox_SetDomain( "REPLACE",    Scope::Path, 1  );  CICHECK_RL( "","@/REPLACE/PATH/FILE/METHOD#"    ,ml );
-    Lox_SetDomain( "PO1",        Scope::Path, 1  );  CICHECK_RL( "","@/PO1/PATH/FILE/METHOD#"        ,ml );
-    Lox_SetDomain( "REPLACE",    Scope::Path, 2  );  CICHECK_RL( "","@/REPLACE/PO1/PATH/FILE/METHOD#",ml );
-    Lox_SetDomain( "PO2",        Scope::Path, 2  );  CICHECK_RL( "","@/PO2/PO1/PATH/FILE/METHOD#"    ,ml );
+    Lox_SetDomain( "REPLACE",    Scope::Path + 1 );  CICHECK_RL( "","@/REPLACE/PATH/FILE/METHOD#"    ,ml );
+    Lox_SetDomain( "PO1",        Scope::Path + 1 );  CICHECK_RL( "","@/PO1/PATH/FILE/METHOD#"        ,ml );
+    Lox_SetDomain( "REPLACE",    Scope::Path + 2 );  CICHECK_RL( "","@/REPLACE/PO1/PATH/FILE/METHOD#",ml );
+    Lox_SetDomain( "PO2",        Scope::Path + 2 );  CICHECK_RL( "","@/PO2/PO1/PATH/FILE/METHOD#"    ,ml );
 
     Lox_SetDomain( "GLOBAL",     Scope::Global   );  CICHECK_RL( "","@/GLOBAL/PO2/PO1/PATH/FILE/METHOD#"  , ml );
 
@@ -574,8 +574,8 @@ UT_METHOD(Lox_ScopeDomains)
     // remove all previous scope domains
     Lox_SetDomain( "",     Scope::Global      );
     Lox_SetDomain( "",     Scope::Path        );
-    Lox_SetDomain( "",     Scope::Path    ,1  );
-    Lox_SetDomain( "",     Scope::Path    ,2  );
+    Lox_SetDomain( "",     Scope::Path  + 1   );
+    Lox_SetDomain( "",     Scope::Path  + 2   );
     Lox_SetDomain( "",     Scope::Filename    );
     Lox_SetDomain( "",     Scope::Method      );  DDCHECK_RL( "LOC", "@/LOC#"                ,ml );
 
@@ -617,7 +617,7 @@ UT_METHOD(Lox_ScopeDomains)
         Lox_SetDomain( "OTHER_THREAD",  Scope::ThreadOuter, &thread );
         thread.Start();
         while( thread.IsAlive() )
-            ALIB::SleepMillis(1);
+            ALib::SleepMillis(1);
                                UT_EQ( "@/OTHER_THREAD/DTT#", ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
         Lox_Info( "ME", "" );  UT_EQ( "@/THIS_THREAD/ME#"  , ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
     #endif
@@ -638,17 +638,17 @@ UT_METHOD(Lox_ScopeDomains)
 
 
 // restore original macro used by ALox
-#undef  ALIB_SRC_INFO_PARAMS
-#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, __func__
+#undef  ALIB_SRCPOS
+#define ALIB_SRCPOS     __FILE__, __LINE__, __func__
 
 void logOnceMethod()
 {
-    Log_Once( Verbosity::Info, "Once(Scope::Filename) 4x -from other method", Scope::Filename, 0, 4 );
+    Log_Once( Verbosity::Info, "Once(Scope::Filename) 4x -from other method", Scope::Filename, 4 );
 }
 
 // with GTEST macros it all gets wild. Fix the method name
-#undef  ALIB_SRC_INFO_PARAMS
-#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, UT_GET_TEST_NAME
+#undef  ALIB_SRCPOS
+#define ALIB_SRCPOS     __FILE__, __LINE__, UT_GET_TEST_NAME
 
 UT_METHOD(Log_Once_Test)
 {
@@ -673,34 +673,34 @@ UT_METHOD(Log_Once_Test)
 
         for (int i= 0; i < 5 ; i++ )
         {
-            Log_Once( "Subdom", Verbosity::Info, "Once(Scope::Filename) 4x", Scope::Filename, 0, 4 );
+            Log_Once( "Subdom", Verbosity::Info, "Once(Scope::Filename) 4x", Scope::Filename, 4 );
             logOnceMethod();
         }
-        Log_Once( Verbosity::Info, "Once(Scope::Filename) 4x", Scope::Filename, 0, 4 );
+        Log_Once( Verbosity::Info, "Once(Scope::Filename) 4x", Scope::Filename, 4 );
 
         UT_EQ( 4, ml.CntLogs ); ml.CntLogs= 0;
     #endif
 
     //-------------------- associated to scope thread -----------------
     #if ALIB_FEAT_THREADS
-        Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - main thread", Scope::ThreadOuter, 0, 2 );
+        Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - main thread", Scope::ThreadOuter, 2 );
         UT_EQ( 1, ml.CntLogs ); ml.CntLogs= 0;
         LogOnceTestThread thread;
         thread.Start();
         while( thread.IsAlive() )
-            ALIB::SleepMicros(1);
+            ALib::SleepMicros(1);
         UT_EQ( 2, ml.CntLogs ); ml.CntLogs= 0;
-        Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - main thread", Scope::ThreadOuter, 0, 2 );
+        Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - main thread", Scope::ThreadOuter, 2 );
         UT_EQ( 1, ml.CntLogs ); ml.CntLogs= 0;
-        Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - main thread", Scope::ThreadOuter, 0, 2 );
+        Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - main thread", Scope::ThreadOuter, 2 );
         UT_EQ( 0, ml.CntLogs ); ml.CntLogs= 0;
-        Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - main thread", Scope::ThreadOuter, 0, 2 );
+        Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - main thread", Scope::ThreadOuter, 2 );
         UT_EQ( 0, ml.CntLogs ); ml.CntLogs= 0;
 
         // different group
-        Log_Once( Verbosity::Info, "Once(key, Scope::ThreadOuter) 2x - main thread", "group", Scope::ThreadOuter, 0, 1 );
+        Log_Once( Verbosity::Info, "Once(key, Scope::ThreadOuter) 2x - main thread", "group", Scope::ThreadOuter, 1 );
         UT_EQ( 1, ml.CntLogs ); ml.CntLogs= 0;
-        Log_Once( Verbosity::Info, "Once(key, Scope::ThreadOuter) 2x - main thread", "group", Scope::ThreadOuter, 0, 1 );
+        Log_Once( Verbosity::Info, "Once(key, Scope::ThreadOuter) 2x - main thread", "group", Scope::ThreadOuter, 1 );
         UT_EQ( 0, ml.CntLogs ); ml.CntLogs= 0;
     #endif
 
@@ -797,24 +797,24 @@ UT_METHOD(Log_Store_Test)
     Log_SetDomain( "STORE", Scope::Method );
 
     // without key
-    Log_Store( nullptr       ,    Scope::Global         );
-    Log_Store( "Replaced"    ,    Scope::Global         );
-    Log_Store( nullptr       ,    Scope::Global         );
-    Log_Store( "Replaced"    ,    Scope::Global         );
-    Log_Store( "Global"      ,    Scope::Global         );
-    Log_Store( "Replaced"    ,    Scope::ThreadOuter    );
-    Log_Store( "ThreadOuter" ,    Scope::ThreadOuter    );
+    Log_Store( nullptr       ,    Scope::Global       );
+    Log_Store( "Replaced"    ,    Scope::Global       );
+    Log_Store( nullptr       ,    Scope::Global       );
+    Log_Store( "Replaced"    ,    Scope::Global       );
+    Log_Store( "Global"      ,    Scope::Global       );
+    Log_Store( "Replaced"    ,    Scope::ThreadOuter  );
+    Log_Store( "ThreadOuter" ,    Scope::ThreadOuter  );
 
 #if ALOX_DBG_LOG_CI
-    Log_Store( "Replaced"    ,    Scope::Path,    1     );
-    Log_Store( "Path1"       ,    Scope::Path,    1     );
-    Log_Store( "Replaced"    ,    Scope::Path           );
-    Log_Store( "Path"        ,    Scope::Path           );
-    Log_Store( "Replaced"    ,    Scope::Filename       );
-    Log_Store( "FileName"    ,    Scope::Filename       );
-    Log_Store( "Replaced"    ,    Scope::Method         );
-    Log_Store( "Method"      ,    Scope::Method         );
-    Log_Store( "Replaced"    ,    Scope::ThreadInner    );
+    Log_Store( "Replaced"    ,    Scope::Path + 1     );
+    Log_Store( "Path1"       ,    Scope::Path + 1     );
+    Log_Store( "Replaced"    ,    Scope::Path         );
+    Log_Store( "Path"        ,    Scope::Path         );
+    Log_Store( "Replaced"    ,    Scope::Filename     );
+    Log_Store( "FileName"    ,    Scope::Filename     );
+    Log_Store( "Replaced"    ,    Scope::Method       );
+    Log_Store( "Method"      ,    Scope::Method       );
+    Log_Store( "Replaced"    ,    Scope::ThreadInner  );
 #endif
 
     Log_Store( "ThreadInner" ,    Scope::ThreadInner    );
@@ -823,7 +823,7 @@ UT_METHOD(Log_Store_Test)
     { Log_Retrieve( data,  Scope::ThreadOuter  ); UT_EQ( "ThreadOuter"   , data.Unbox<String>() ); }
 
 #if ALOX_DBG_LOG_CI
-    { Log_Retrieve( data,  Scope::Path,    1   ); UT_EQ( "Path1"         , data.Unbox<String>() ); }
+    { Log_Retrieve( data,  Scope::Path + 1     ); UT_EQ( "Path1"         , data.Unbox<String>() ); }
     { Log_Retrieve( data,  Scope::Path         ); UT_EQ( "Path"          , data.Unbox<String>() ); }
     { Log_Retrieve( data,  Scope::Filename     ); UT_EQ( "FileName"      , data.Unbox<String>() ); }
     { Log_Retrieve( data,  Scope::Method       ); UT_EQ( "Method"        , data.Unbox<String>() ); }
@@ -837,8 +837,8 @@ UT_METHOD(Log_Store_Test)
     Log_Store( "Replaced"     ,   "mykey",  Scope::ThreadOuter    );
     Log_Store( "ThreadOuter"  ,   "mykey",  Scope::ThreadOuter    );
 #if ALOX_DBG_LOG_CI
-    Log_Store( "Replaced"     ,   "mykey",  Scope::Path,    1     );
-    Log_Store( "Path1"        ,   "mykey",  Scope::Path,    1     );
+    Log_Store( "Replaced"     ,   "mykey",  Scope::Path + 1       );
+    Log_Store( "Path1"        ,   "mykey",  Scope::Path + 1       );
     Log_Store( "Replaced"     ,   "mykey",  Scope::Path           );
     Log_Store( "Path"         ,   "mykey",  Scope::Path           );
     Log_Store( "Replaced"     ,   "mykey",  Scope::Filename       );
@@ -853,7 +853,7 @@ UT_METHOD(Log_Store_Test)
     { Log_Retrieve( data,  "mykey", Scope::Global       ); UT_EQ( "Global"        , data.Unbox<String>() ); }
     { Log_Retrieve( data,  "mykey", Scope::ThreadOuter  ); UT_EQ( "ThreadOuter"   , data.Unbox<String>() ); }
 #if ALOX_DBG_LOG_CI
-    { Log_Retrieve( data,  "mykey", Scope::Path,    1   ); UT_EQ( "Path1"         , data.Unbox<String>() ); }
+    { Log_Retrieve( data,  "mykey", Scope::Path + 1     ); UT_EQ( "Path1"         , data.Unbox<String>() ); }
     { Log_Retrieve( data,  "mykey", Scope::Path         ); UT_EQ( "Path"          , data.Unbox<String>() ); }
     { Log_Retrieve( data,  "mykey", Scope::Filename     ); UT_EQ( "FileName"      , data.Unbox<String>() ); }
     { Log_Retrieve( data,  "mykey", Scope::Method       ); UT_EQ( "Method"        , data.Unbox<String>() ); }
@@ -868,7 +868,7 @@ UT_METHOD(Log_Store_Test)
     StoreDataTestThread thread(ut);
     thread.Start();
     while( thread.IsAlive() )
-        ALIB::SleepMicros(1);
+        ALib::SleepMicros(1);
 
     { Log_Retrieve( data,           Scope::ThreadOuter ); UT_EQ( "Main Thread Data"         , data.Unbox<String>() ); }
     { Log_Retrieve( data,  "mykey", Scope::ThreadOuter ); UT_EQ( "Main Thread Data, keyed"  , data.Unbox<String>() ); }

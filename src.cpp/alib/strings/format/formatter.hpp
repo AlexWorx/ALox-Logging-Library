@@ -17,7 +17,7 @@
 
 
 #if !ALIB_MODULE_BOXING
-    #error "class Formatter of library ALib can not be used without the use of ALib %Boxing."
+    #error "class Formatter of library ALib can not be used without the use of %ALib %Boxing."
 #endif
 
 #if !ALIB_FEAT_BOXING_FTYPES
@@ -45,6 +45,9 @@
     #include "alib/strings/substring.hpp"
 #endif
 
+#if !defined (HPP_ALIB_LANG_EXCEPTION)
+    #include "alib/lang/exception.hpp"
+#endif
 
 namespace aworx { namespace lib { namespace strings {
 
@@ -54,28 +57,154 @@ namespace aworx { namespace lib { namespace strings {
  *
  * \note
  *   This namespace is available only in <b>%ALib Module</b> distributions that includes
- *   modules <b>%ALib String </b> and <b>%ALib Boxing</b>.
+ *   modules <b>%ALib String </b> and <b>%ALib %Boxing</b>.
  */
 namespace format {
+
+
+//! [DOX_ALIB_ENUM_META_DATA_SPECIFCATION_using_enum]
+/** ****************************************************************************************
+ * Enumeration of exceptions thrown with classes found in namespace
+ * #aworx::lib::strings::format.
+ ******************************************************************************************/
+enum class Exceptions
+{
+    // general formatter errors
+    /** Argument index ’0’ not allowed. */
+    ArgumentIndexIs0                    =11,
+
+    /** Argument index greater than number of arguments available.  */
+    ArgumentIndexOutOfBounds            =12,
+
+    /** Incompatible type code given argument type found.           */
+    IncompatibleTypeCode                =13,
+
+
+    // Formatter Python Style
+    /** Thrown by \alib{strings::format,FormatterPythonStyle}:
+     *  Closing bracket <c>’}'</c> not found.                       */
+    MissingClosingBracket               =101,
+
+    /** Thrown by \alib{strings::format,FormatterPythonStyle}:
+     *  Missing precision integer value after <c>’.'</c> character. */
+    MissingPrecisionValuePS             =102,
+
+    /** Thrown by \alib{strings::format,FormatterPythonStyle}:
+     *  Duplicate type code.                                        */
+    DuplicateTypeCode                   =103,
+
+    /** Thrown by \alib{strings::format,FormatterPythonStyle}:
+     *  Unknown type code.                                          */
+    UnknownTypeCode                     =104,
+
+    /** Thrown by \alib{strings::format,FormatterPythonStyle}:
+     *  Expected <c>’!'</c> not found.                              */
+    ExclamationMarkExpected             =105,
+
+    /** Thrown by \alib{strings::format,FormatterPythonStyle}:
+     *  Unknown conversion after <c>’!'</c>.                        */
+    UnknownConversionPS                 =106,
+
+    /** Thrown by \alib{strings::format,FormatterPythonStyle}:
+     *  Precision specification not allowed with integer types.     */
+    PrecisionSpecificationWithInteger   =107,
+
+    /** Thrown by \alib{strings::format,FormatterPythonStyle}:
+     *  Missing replacement strings after conversion <c>!Replace</c>.*/
+    MissingReplacementStrings           =108,
+
+
+
+    // Formatter Java Style
+    /** Thrown by \alib{strings::format,FormatterJavaStyle}:
+     *  Formatting of negative values in brackets is not supported. */
+    NegativeValuesInBracketsNotSupported=201,
+
+    /** Thrown by \alib{strings::format,FormatterJavaStyle}:
+     *  Missing precision integer value after <c>’.'</c> character. */
+    MissingPrecisionValueJS             =202,
+
+    /** Thrown by \alib{strings::format,FormatterJavaStyle}:
+     *  Output of floating point values in hexadecimal format not supported.  */
+    HexadecimalFloatFormatNotSupported  =203,
+
+    /** Thrown by \alib{strings::format,FormatterJavaStyle}:
+     *  The alternate form '#' is not supported with given conversion.        */
+    NoAlternateFormOfConversion         =204,
+
+    /** Thrown by \alib{strings::format,FormatterJavaStyle}:
+     *  Precision specification is not supported with given conversion.       */
+    NoPrecisionWithConversion           =205,
+
+    /** Thrown by \alib{strings::format,FormatterJavaStyle}:
+     *  Unknown conversion suffix with with data/time conversion.             */
+    UnknownDateTimeConversionSuffix     =206,
+
+    /** Thrown by \alib{strings::format,FormatterJavaStyle}:
+     *  Unknown conversion character.                               */
+    UnknownConversionJS                 =207,
+
+
+    // PropertyFormatter and PropertyFormatters
+    /**
+     * Thrown by constructor of \alib{strings::format,PropertyFormatter}
+     * when a property identifier parsed from the format string has no corresponding entry in the
+     * \alib{strings::format,PropertyFormatter::TCallbackTable,TCallbackTable} provided.
+     */
+    UnknownPropertyInFormatString       =501,
+
+    /**
+     * Exception entry added in method \alib{strings::format,PropertyFormatter::Format}
+     * when the underlying formatter throws.
+     */
+    ErrorInResultingFormatString        =502,
+
+    /**
+     * Thrown by \alib{strings::format,PropertyFormatters::Format} if a configuration variable
+     * can not be loaded or is empty.
+     *
+     * \note To prevent this, software using this class should provide
+     *       \alib{lang,Library::Res,resourced} default values for each formatter variable.
+     */
+    MissingConfigurationVariable        =510,
+
+
+    // SimpleText
+    /**
+     * Thrown by \alib{strings::format,SimpleText::AddMarked}
+     * when an unknown marker token was found.
+     */
+    UnknownMarker                       =601,
+
+    /**
+     * Thrown by \alib{strings::format,SimpleText::AddMarked}
+     * when a property identifier parsed from the format string has no corresponding entry in the
+     * \alib{strings::format,PropertyFormatter::TCallbackTable,TCallbackTable} provided.
+     */
+    EndmarkerWithoutStart               =602,
+
+};
+//! [DOX_ALIB_ENUM_META_DATA_SPECIFCATION_using_enum]
+
 
 /** ************************************************************************************************
  * Writes formatted text into an \ref aworx::lib::strings::AString "AString".
  *
  * \note
  *   The C++ version of this class relies heavily on classes found in module (namespace)
- *   \ref aworx::lib::boxing "ALib Boxing". In short, <b>ALib Boxing</b> allows to create methods
+ *   \ref aworx::lib::boxing "ALib Boxing". In short, <b>%ALib %Boxing</b> allows to create methods
  *   that accept any type of argument as parameter, without the need of type conversion,
- *   wrapper classes, etc. Furthermore <b>ALib Boxing</b> allows to add virtual interfaces
+ *   wrapper classes, etc. Furthermore <b>%ALib %Boxing</b> allows to add virtual interfaces
  *   to C++ types, independent from the original implementation of the type itself. This means
  *   that any 3rd-party type can be adopted to support "boxing" and hence to be formatted with this
  *   class - without changing their implementation and with no access to their source code!<br>
- *   Knowledge about <b>ALib Boxing</b> is not needed to use this class with standard C++ types.
+ *   Knowledge about <b>%ALib %Boxing</b> is not needed to use this class with standard C++ types.
  *   Only if a string representation of custom types should be generated by this class with
- *   passing such custom types "as is", then support for <b>ALib Boxing</b> in respect to such
+ *   passing such custom types "as is", then support for <b>%ALib %Boxing</b> in respect to such
  *   custom types have to be added.
  *
  * \note
- *   The  \ref aworx::lib::boxing "detailed documentation" of <b>ALib Boxing</b> describes how
+ *   The  \ref aworx::lib::boxing "detailed documentation" of <b>%ALib %Boxing</b> describes how
  *   to do this. The "boxing interfaces" that are needed to be implemented for custom types
  *   to work with this formatters are
  *   \ref aworx::lib::strings::boxing::IApply  "IApply" and optionally
@@ -214,32 +343,50 @@ namespace format {
 class Formatter
 {
     #if !defined(DOX_PARSER)
-        friend void aworx::lib::strings::TerminationCleanUp();
+        friend class aworx::lib::strings::Strings;
     #endif
 
     // #############################################################################################
     //  static interface
     // #############################################################################################
     public:
-        #if ALIB_MODULE_ALL
-            /**
-             * Locks and returns the global, default formatter for general purpose use.
-             * A subsequent call to #ReleaseDefault has to follow.
-             * The formatter is of type
-             * \ref aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle". Other formatters
-             * might be attached to the one returned (chained) to support different format
-             * standards.
-             *
-             * @return The global formatter singleton.
-             */
-            ALIB_API
-            static Formatter&           AcquireDefault();
-
-            /** Releases the previously default formatter singleton, previously retrieved with
-             *  #AcquireDefault */
-            ALIB_API
-            static void                 ReleaseDefault();
+    #if defined(DOX_PARSER)
+        /**
+         * Locks and returns the global, default formatter for general purpose use.
+         * A subsequent call to #ReleaseDefault has to follow.
+         * The formatter is of type
+         * \ref aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle". Other formatters
+         * might be attached to the one returned (chained) to support different format
+         * standards.
+         *
+         * \note Locking is not performed in limited distribution version of module
+         *       <c>%ALib %Boxing and Strings</c>.
+         *
+         * @param file  Caller information. Available only in debug compilations.
+         * @param line  Caller information. Available only in debug compilations.
+         * @param func  Caller information. Available only in debug compilations.
+         * @return The global formatter singleton.
+         */
+        ALIB_API
+        static Formatter&    AcquireDefault( const TString& file, int line, const TString& func );
+    #else
+        ALIB_API
+        #if ALIB_DEBUG
+           static Formatter&    AcquireDefault( const TString& file, int line, const TString& func );
+        #else
+           static Formatter&    AcquireDefault();
         #endif
+    #endif
+
+        /**
+         * Releases the previously default formatter singleton, previously retrieved with
+         * #AcquireDefault.
+         *
+         * If finally released (no recursive acquirements had been done), method
+         * \alib{strings::format,Formatter::Reset} is invoked.
+         */
+        ALIB_API
+        static void             ReleaseDefault();
 
     // #############################################################################################
     //  public fields
@@ -252,14 +399,14 @@ class Formatter
         /** A buffer for conversion of multi-byte format strings to char-strings. */
         AString                         mbsFormatString;
 
-        #if ALIB_MODULE_ALL
-            /**
-             * A static, global instance which is used by \b %ALib internally (e.g. for formatting
-             * \ref aworx::lib::lang::Report "Report" messages).
-             * Applications can acquire and use this instance using #AcquireDefault and #ReleaseDefault.
-             */
-            static Formatter*           defaultFormatter;
+        /**
+         * A static, global instance which is used by \b %ALib internally (e.g. for formatting
+         * \ref aworx::lib::lang::Report "Report" messages).
+         * Applications can acquire and use this instance using #AcquireDefault and #ReleaseDefault.
+         */
+        static Formatter*           defaultFormatter;
 
+        #if ALIB_MODULE_ALL
             /** Lock to protect access to #defaultFormatter. Used by #AcquireDefault and
              * #ReleaseDefault. */
             static ThreadLock           defaultFormatterLock;
@@ -327,10 +474,21 @@ class Formatter
             Format( target, boxes );
         }
 
+        /** ****************************************************************************************
+         * Virtual but not abstract method to used to reset internal states which are otherwise
+         * kept between invocations of #Format.
+         *
+         * As a sample, derived type \alib{strings::format,FormatterPythonStyle} clears its auto-tab
+         * and auto-width positions.
+         *
+         * The default implementation does nothing.
+         ******************************************************************************************/
+        virtual void                Reset()                                                       {}
+
     protected:
         /** ****************************************************************************************
-         * Virtual bot not abstract method which is invoked with each invocation of
-         * \ref aworx::lib::strings::format::Formatter::Format "Formatter::Format".
+         * Virtual but not abstract method which is invoked with each invocation of
+         * #Format.
          * The default implementation does nothing.
          ******************************************************************************************/
         virtual void                initializeFormat()                                            {}
@@ -366,5 +524,9 @@ class Formatter
 using     Formatter=            aworx::lib::strings::format::Formatter;
 
 }  // namespace aworx
+
+//! [DOX_ALIB_ENUM_META_DATA_SPECIFCATION_using_enum2]
+ALIB_LANG_EXCEPTIONS(  aworx::lib::strings::format::Exceptions, aworx::lib::STRINGS, "FmtExceptions" )
+//! [DOX_ALIB_ENUM_META_DATA_SPECIFCATION_using_enum2]
 
 #endif // HPP_ALIB_STRINGS_FORMAT_FORMATTER

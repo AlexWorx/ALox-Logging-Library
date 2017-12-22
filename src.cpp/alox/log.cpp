@@ -49,10 +49,10 @@ namespace aworx {
 
         // add a VStudio logger if this a VStudio debug session
         #if defined(_WIN32) && ALIB_DEBUG
-            if( ALIB::IsDebuggerPresent() )
+            if( lib::ALIB.IsDebuggerPresent() )
             {
-                Variable variable( ALox::NO_IDE_LOGGER );
-                if( variable.Load() == 0 || ! variable.IsTrue() )
+                Variable variable( Variables::NO_IDE_LOGGER );
+                if( ALOX.Config->Load( variable ) == Priorities::NONE || ! variable.IsTrue() )
                 {
                     IDELogger= new VStudioLogger("IDE_LOGGER");
 
@@ -131,6 +131,6 @@ namespace aworx {
 
 #endif // ALOX_DBG_LOG
 
-}}// namespace aworx::lox
+}}// namespace [aworx::lox]
 
 

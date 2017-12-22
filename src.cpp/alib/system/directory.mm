@@ -35,6 +35,6 @@ void ALIB_APPLE_OC_NSHomeDirectory( AString& target)
 
 
 
-}}}}// namespace aworx::lib::system
+}}}}// namespace [aworx::lib::system::macos]
 
 #endif

@@ -12,16 +12,13 @@ import com.aworx.lib.strings.CString;
 import com.aworx.lib.strings.Substring;
 
 /** ************************************************************************************************
- * This virtual class is used by classes derived from
- * \ref com::aworx::lib::config::ConfigurationPlugin "ConfigurationPlugin"
+ * This virtual class is used by classes derived from \alib{config,ConfigurationPlugin}
  * to convert external string to internal values and vice versa, and for parsing lists of values
  * from an external string.
  *
  * Class \b %ConfigurationPlugin owns a default object with field
- * \ref com::aworx::lib::config::ConfigurationPlugin::defaultStringConverter "ConfigurationPlugin.defaultStringConverter",
- * to which field
- * \ref com::aworx::lib::config::ConfigurationPlugin::stringConverter "ConfigurationPlugin.stringConverter"
- * by default points to.
+ * \alib{config.ConfigurationPlugin.defaultStringConverter}, to which field
+ * \alib{config.ConfigurationPlugin.stringConverter} by default points to.
  *
  * \note
  *   Replacing the converters is deemed to be an advanced usage of \b %ALib. Consult the source code

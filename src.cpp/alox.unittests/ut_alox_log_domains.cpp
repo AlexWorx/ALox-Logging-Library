@@ -43,7 +43,7 @@ void ScopeInfoCacheTest2() { Log_Info("Test Method 2"); }
 #define LOG_CHECK( d, s, ml,lox )    {                  \
         ml.MemoryLog._();                               \
         ml.AutoSizes.Reset();                           \
-        lox.Acquire(ALIB_SRC_INFO_PARAMS);              \
+        lox.Acquire(ALIB_SRCPOS);                       \
         lox.GetLogableContainer().Add("");              \
         lox.Entry( d, Verbosity::Info );                \
         lox.Release();                                  \
@@ -57,8 +57,8 @@ void ScopeInfoCacheTest2() { Log_Info("Test Method 2"); }
 **********************************************************************************************/
 
 // with GTEST macros it all gets wild. Fix the method name
-#undef  ALIB_SRC_INFO_PARAMS
-#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, UT_GET_TEST_NAME
+#undef  ALIB_SRCPOS
+#define ALIB_SRCPOS     __FILE__, __LINE__, UT_GET_TEST_NAME
 
 UT_CLASS()
 
@@ -78,7 +78,7 @@ UT_METHOD(Lox_IllegalDomainNames)
     Log_SetVerbosity(&ml, Verbosity::Verbose );
     Log_SetVerbosity(Log::DebugLogger, Verbosity::Verbose, ALox::InternalDomains );
 
-    Lox& lox=  *ALox::Log();
+    Lox& lox=  *lox::ALOX.Log();
     LOG_CHECK( ""        , "</>"              , ml,lox);
     LOG_CHECK( "LOC"     , "</LOC>"           , ml,lox);
     LOG_CHECK( "%"       , "</#>"             , ml,lox);
@@ -151,7 +151,7 @@ UT_METHOD(Log_DomainSubstitutions)
     ml.MetaInfo->Format._()._("<%D>");
     Log_SetVerbosity(&ml, Verbosity::Verbose );
     Log_SetVerbosity(Log::DebugLogger, Verbosity::Info, ALox::InternalDomains );
-    Lox& lox=  *ALox::Log();
+    Lox& lox=  *lox::ALOX.Log();
 
 
                                                         LOG_CHECK( ""     , "</>"                    , ml,lox);
@@ -277,14 +277,15 @@ UT_METHOD(Log_DomainSubstitutions_IniFile)
 
     aworx::IniFile iniFile( fileName );
     iniFile.ReadFile();
-    UT_TRUE( (IniFile::Status::Ok == iniFile.LastStatus) );
 
     // add to config
-    Configuration::Default.InsertPlugin( &iniFile, Configuration::PrioIniFile );
+    lox::ALOX.Config->InsertPlugin( &iniFile, Priorities::Standard );
+    Variable var("ALOX","TESTMEMLOGGER_FORMAT" );
+    lox::ALOX.Config->Load(var);
 
     // create lox, loggers
     Lox myLox( "MyLox" ); // name will be upper case
-    myLox.Acquire(ALIB_SRC_INFO_PARAMS);
+    myLox.Acquire(ALIB_SRCPOS);
 
         Logger* consoleLogger= Lox::CreateConsoleLogger("CONSOLE");
         myLox.SetVerbosity( "CONSOLE" , Verbosity::Verbose );
@@ -303,7 +304,7 @@ UT_METHOD(Log_DomainSubstitutions_IniFile)
         myLox.RemoveLogger( "CONSOLE" );
         delete consoleLogger;
     myLox.Release();
-    Configuration::Default.RemovePlugin( &iniFile );
+    lox::ALOX.Config->RemovePlugin( &iniFile );
 }
 #endif
 
@@ -321,25 +322,24 @@ UT_METHOD(Log_Domain_IniFile)
         // create iniFile
         IniFile iniFile("*"); // don't read
         Variable var;
-        iniFile.Store( var.Define( ALox::ConfigCategoryName, "TESTML_FORMAT"),  "%Sp" );
-        iniFile.Store( var.Define( ALox::ConfigCategoryName, "T_LOX_TESTML_VERBOSITY",';'),
+        iniFile.Store( var.Declare( "ALOX", "TESTML_FORMAT"),  "%Sp" );
+        iniFile.Store( var.Declare( "ALOX", "T_LOX_TESTML_VERBOSITY",';'),
                          "/DOM_VERB  = VerboseXX  ;" // xx is allowed!
                          "/DOM_INFO  = Info       ;"
                          "/DOM_WARN  = WARNING    ;"
                          "/DOM_ERR   = erRor      ;"
                          "/DOM_OFF   = off        ;"
-                         "/DOM_OFF2  = xxx        ;"
                          "/ATSTART*  = Info       ;"
                          "*ATEND     = Info       ;"
                          "*SUBSTR*   = Info       ;"
                          "/OVERWRITE = Info       ;"
                     );
-        Configuration::Default.InsertPlugin( &iniFile, Configuration::PrioIniFile );
+        lox::ALOX.Config->InsertPlugin( &iniFile, Priorities::Standard );
 
 
         // test
         Lox lox("T_LOX", false);
-        lox.Acquire(ALIB_SRC_INFO_PARAMS);
+        lox.Acquire(ALIB_SRCPOS);
             Logger* consoleLogger= Lox::CreateConsoleLogger("CONSOLE");
 
             lox.SetVerbosity( consoleLogger, Verbosity::Verbose, "CONSOLE" );
@@ -366,7 +366,6 @@ UT_METHOD(Log_Domain_IniFile)
             lox.Error  ( "DOM_ERR"      , "test" );    UT_EQ(  1, ml.CntLogs ); ml.CntLogs= 0;
 
             lox.Error  ( "DOM_OFF"      , "test" );    UT_EQ(  0, ml.CntLogs ); ml.CntLogs= 0;
-            lox.Error  ( "DOM_OFF2"     , "test" );    UT_EQ(  0, ml.CntLogs ); ml.CntLogs= 0;
 
             lox.Verbose( "ATSTART"      , "test" );    UT_EQ(  0, ml.CntLogs ); ml.CntLogs= 0;
             lox.Info   ( "ATSTART"      , "test" );    UT_EQ(  1, ml.CntLogs ); ml.CntLogs= 0;
@@ -404,7 +403,7 @@ UT_METHOD(Log_Domain_IniFile)
             lox.Verbose( "/OVERWRITE"   , "test" );    UT_EQ(  0, ml.CntLogs ); ml.CntLogs= 0;
             lox.Info   ( "/OVERWRITE"   , "test" );    UT_EQ(  1, ml.CntLogs ); ml.CntLogs= 0;
 
-            lox.SetVerbosity( &ml , Verbosity::Warning, "/OVERWRITE", 1000 ); // does overwrite
+            lox.SetVerbosity( &ml , Verbosity::Warning, "/OVERWRITE", Priorities::ProtectedValues -1 ); // does overwrite
             lox.Verbose( "/OVERWRITE"   , "test" );    UT_EQ(  0, ml.CntLogs ); ml.CntLogs= 0;
             lox.Info   ( "/OVERWRITE"   , "test" );    UT_EQ(  0, ml.CntLogs ); ml.CntLogs= 0;
             lox.Warning( "/OVERWRITE"   , "test" );    UT_EQ(  1, ml.CntLogs ); ml.CntLogs= 0;
@@ -415,15 +414,15 @@ UT_METHOD(Log_Domain_IniFile)
             lox.Error  ( "/A/B"         , "test" );    UT_EQ(  0, ml.CntLogs ); ml.CntLogs= 0;
             lox.Error  ( "/A/C"         , "test" );    UT_EQ(  0, ml.CntLogs ); ml.CntLogs= 0;
 
-            lox.SetVerbosity( &ml , Verbosity::Info, "/A/B", Configuration::PrioDefault -1 ); // does not overwrite
+            lox.SetVerbosity( &ml , Verbosity::Info, "/A/B", Priorities::DefaultValues -1 ); // does not overwrite
             lox.Verbose( "/A/B"         , "test" );    UT_EQ(  0, ml.CntLogs ); ml.CntLogs= 0;
             lox.Info   ( "/A/B"         , "test" );    UT_EQ(  0, ml.CntLogs ); ml.CntLogs= 0;
 
-            lox.SetVerbosity( &ml , Verbosity::Info, "/A/B", Configuration::PrioDefault ); // does overwrite
+            lox.SetVerbosity( &ml , Verbosity::Info, "/A/B", Priorities::DefaultValues ); // does overwrite
             lox.Verbose( "/A/B"         , "test" );    UT_EQ(  0, ml.CntLogs ); ml.CntLogs= 0;
             lox.Info   ( "/A/B"         , "test" );    UT_EQ(  1, ml.CntLogs ); ml.CntLogs= 0;
 
-            lox.SetVerbosity( &ml , Verbosity::Info, "/A/B", Configuration::PrioDefault + 1 ); // one higher
+            lox.SetVerbosity( &ml , Verbosity::Info, "/A/B", Priorities::DefaultValues + 1 ); // one higher
             lox.Verbose( "/A/B"         , "test" );    UT_EQ(  0, ml.CntLogs ); ml.CntLogs= 0;
             lox.Info   ( "/A/B"         , "test" );    UT_EQ(  1, ml.CntLogs ); ml.CntLogs= 0;
 
@@ -435,7 +434,7 @@ UT_METHOD(Log_Domain_IniFile)
 
             //lox.State( "/CONSOLE", Verbosity::Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
-            Configuration::Default.RemovePlugin( &iniFile );
+            lox::ALOX.Config->RemovePlugin( &iniFile );
             lox.RemoveLogger( &ml );
             lox.RemoveLogger( "CONSOLE" );
             delete consoleLogger;

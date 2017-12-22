@@ -17,39 +17,39 @@ import java.util.LinkedList;
  * (In \b %ALib itself, sending a \e 'report' usually precedes raising an error.)
  * Also, \e reports are not replacing any debug or release logging facility, which is not
  * part of \b %ALib. Much more, logging libraries might provide a derived object of type
- * \ref com::aworx::lib::lang::ReportWriter "ReportWriter" to plug into \b %ALib report facility.
+ * \ref com.aworx.lib.lang.ReportWriter "ReportWriter" to plug into \b %ALib report facility.
  * This way, the concepts of logging and reports get unified. (As a sample,
  * <b>%ALox Logging Library </b> which builds on \b %ALib does so.)
  *
  * While a process can create different objects of this class, usually, the default instance,
  * received by
- * \ref com::aworx::lib::lang::Report::getDefault "getDefault".
+ * \ref com.aworx.lib.lang.Report.getDefault "getDefault".
  * is sufficient and all warnings and errors will be directed to this one. \b %ALib itself directs
  * all internal reports to the default instance.
  *
  * This class uses a singleton of type
- * \ref com::aworx::lib::lang::ReportWriter "ReportWriter" to actually write the reports. By default, an
+ * \ref com.aworx.lib.lang.ReportWriter "ReportWriter" to actually write the reports. By default, an
  * object of type
- * \ref com::aworx::lib::lang::ReportWriterStdIO "ReportWriterStdIO" is attached.
+ * \ref com.aworx.lib.lang.ReportWriterStdIO "ReportWriterStdIO" is attached.
  *
  * The reporting method,
- * \ref com::aworx::lib::lang::Report::doReport      "doReport" will check the flags provided with
- * \ref com::aworx::lib::lang::Report::pushHaltFlags "pushHaltFlags" for message types \c 0 (errors)
+ * \ref com.aworx.lib.lang.Report.doReport      "doReport" will check the flags provided with
+ * \ref com.aworx.lib.lang.Report.pushHaltFlags "pushHaltFlags" for message types \c 0 (errors)
  * and \c 1 (warnings), and may invoke \e assert(). Such assertions are effective
  * only in the debug compilation of the library/executable. Custom \e 'ReportWriters' might
  * take action (e.g. for security reasons) and e.g. terminate the application also in
  * release compilations.
  *
  * To simplify things, a set of static methods are defined in class
- * \ref com::aworx::lib::ALIB "ALIB" which  are deemed to be
+ * \ref com.aworx.lib.ALIB "ALIB" which  are deemed to be
  * pruned in release versions of the compilation unit. These are:
  *
- * - \ref com::aworx::lib::ALIB_DBG::REPORT          "ALIB_DBG.REPORT"
- * - \ref com::aworx::lib::ALIB_DBG::ERROR           "ALIB_DBG.ERROR"
- * - \ref com::aworx::lib::ALIB_DBG::WARNING         "ALIB_DBG.WARNING"
- * - \ref com::aworx::lib::ALIB_DBG::ASSERT          "ALIB_DBG.ASSERT"
- * - \ref com::aworx::lib::ALIB_DBG::ASSERT_ERROR    "ALIB_DBG.ASSERT_ERROR"
- * - \ref com::aworx::lib::ALIB_DBG::ASSERT_WARNING  "ALIB_DBG.ASSERT_WARNING"
+ * - \ref com.aworx.lib.ALIB_DBG.REPORT          "ALIB_DBG.REPORT"
+ * - \ref com.aworx.lib.ALIB_DBG.ERROR           "ALIB_DBG.ERROR"
+ * - \ref com.aworx.lib.ALIB_DBG.WARNING         "ALIB_DBG.WARNING"
+ * - \ref com.aworx.lib.ALIB_DBG.ASSERT          "ALIB_DBG.ASSERT"
+ * - \ref com.aworx.lib.ALIB_DBG.ASSERT_ERROR    "ALIB_DBG.ASSERT_ERROR"
+ * - \ref com.aworx.lib.ALIB_DBG.ASSERT_WARNING  "ALIB_DBG.ASSERT_WARNING"
  *
  * The use of these methods is recommended and preferred over the direct use of class Report
  * whenever pure debug reports are intended.
@@ -66,7 +66,7 @@ public class Report
          * The message type. \c 0 indicates \e 'severe' errors, \c 1 warnings.
          * Others are status messages and may be defined (interpreted) by custom
          * implementations of
-         * \ref com::aworx::lib::lang::ReportWriter "ReportWriter".
+         * \ref com.aworx.lib.lang.ReportWriter "ReportWriter".
          */
         public int         type;
 
@@ -210,7 +210,7 @@ public class Report
 
         /** ****************************************************************************************
          * Reports the given message to the current
-         * \ref com::aworx::lib::lang::ReportWriter "ReportWriter" in place. The default \b ReportWriter
+         * \ref com.aworx.lib.lang.ReportWriter "ReportWriter" in place. The default \b ReportWriter
          * will print the message on the process console. Furthermore, in debug
          * execution the flags provided with #pushHaltFlags is checked.
          * If this is set for the type of message, the program halts or suspends into the debugger

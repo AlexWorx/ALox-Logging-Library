@@ -77,7 +77,7 @@ public abstract class TextLogger extends Logger
         /**
          * A helper object to get textual representation of logable objects.
          * If no converter is set when this logger is used, a converter of type
-         * \ref com::aworx::lox::core::textlogger::StandardConverter "StandardConverter" is created and used.
+         * \ref com.aworx.lox.core.textlogger.StandardConverter "StandardConverter" is created and used.
          * In the destructor of this class, the current object converter will be deleted.
          *
          * To extend class \b %TextLogger to support logging custom objects, custom converters can
@@ -196,7 +196,7 @@ public abstract class TextLogger extends Logger
         /** ****************************************************************************************
          * Invokes grand-parent's method and in addition, if field #usesStdStreams is set,
          * registers with
-         * \ref com::aworx::lib::ALIB::stdOutputStreamsLock "ALIB.stdOutputStreamsLock"
+         * \ref com.aworx.lib.ALIB.stdOutputStreamsLock "ALIB.stdOutputStreamsLock"
          *
          * @param newAcquirer The acquirer to add.
          * @return The new number of \e acquirers set.
@@ -220,11 +220,11 @@ public abstract class TextLogger extends Logger
             Variable variable= new Variable();
 
             // import autosizes from configuration (last session)
-            if ( variable.define( ALox.AUTO_SIZES, getName() ).load() != 0 )
+            if ( ALox.config.load(variable.declare( ALox.AUTO_SIZES, getName() )) != 0 )
                 autoSizes.importValues( variable.getString() );
 
             // import "max elapsed time" from configuration (last session)
-            if ( variable.define( ALox.MAX_ELAPSED_TIME, getName() ).load() != 0 )
+            if ( ALox.config.load(variable.declare( ALox.MAX_ELAPSED_TIME, getName() )) != 0 )
             {
                 long maxInSecs= variable.getInteger();
                 Substring attrValue= new Substring();
@@ -241,18 +241,18 @@ public abstract class TextLogger extends Logger
             // Variable  <name>_FORMAT / <typeName>_FORMAT:
             com.aworx.lib.ALIB_DBG.ASSERT_WARNING( ALox.FORMAT.defaultValue == null,
                                  "Default value of variable FORMAT should be kept null" );
-            if(    0 ==  variable.define( ALox.FORMAT, getName()     ).load()
-                && 0 ==  variable.define( ALox.FORMAT, getTypeName() ).load() )
+            if(    0 ==  ALox.config.load(variable.declare( ALox.FORMAT, getName()     ))
+                && 0 ==  ALox.config.load(variable.declare( ALox.FORMAT, getTypeName() )) )
             {
                 // no variable created, yet. Let's create a 'personal' one on our name
-                variable.define( ALox.FORMAT, getName() );
+                variable.declare( ALox.FORMAT, getName() );
                 variable.add( metaInfo.format            );
                 variable.add( metaInfo.verbosityError    );
                 variable.add( metaInfo.verbosityWarning  );
                 variable.add( metaInfo.verbosityInfo     );
                 variable.add( metaInfo.verbosityVerbose  );
                 variable.add( fmtMsgSuffix               );
-                variable.store();
+                ALox.config.store(variable);
             }
             else
             {
@@ -267,15 +267,15 @@ public abstract class TextLogger extends Logger
             // Variable  <name>_FORMAT_DATE_TIME / <typeName>_FORMAT_DATE_TIME:
             com.aworx.lib.ALIB_DBG.ASSERT_WARNING( ALox.FORMAT_DATE_TIME.defaultValue == null,
                                  "Default value of variable FORMAT_DATE_TIME should be kept null" );
-            if(    0 ==  variable.define( ALox.FORMAT_DATE_TIME, getName()     ).load()
-                && 0 ==  variable.define( ALox.FORMAT_DATE_TIME, getTypeName() ).load() )
+            if(    0 ==  ALox.config.load(variable.declare( ALox.FORMAT_DATE_TIME, getName()     ))
+                && 0 ==  ALox.config.load(variable.declare( ALox.FORMAT_DATE_TIME, getTypeName() )) )
             {
                 // no variable created, yet. Let's create a 'personal' one on our name
-                variable.define( ALox.FORMAT_DATE_TIME, getName() );
+                variable.declare( ALox.FORMAT_DATE_TIME, getName() );
                 variable.add( metaInfo.dateFormat        );
                 variable.add( metaInfo.timeOfDayFormat   );
                 variable.add( metaInfo.timeElapsedDays   );
-                variable.store();
+                ALox.config.store(variable);
             }
             else
             {
@@ -287,11 +287,11 @@ public abstract class TextLogger extends Logger
             // Variable  <name>FORMAT_TIME_DIFF / <typeName>FORMAT_TIME_DIFF:
             com.aworx.lib.ALIB_DBG.ASSERT_WARNING( ALox.FORMAT_TIME_DIFF.defaultValue == null,
                                  "Default value of variable FORMAT_TIME_DIFF should be kept null" );
-            if(    0 ==  variable.define( ALox.FORMAT_TIME_DIFF, getName()     ).load()
-                && 0 ==  variable.define( ALox.FORMAT_TIME_DIFF, getTypeName() ).load() )
+            if(    0 ==  ALox.config.load(variable.declare( ALox.FORMAT_TIME_DIFF, getName()     ))
+                && 0 ==  ALox.config.load(variable.declare( ALox.FORMAT_TIME_DIFF, getTypeName() )) )
             {
                 // no variable created, yet. Let's create a 'personal' one on our name
-                variable.define( ALox.FORMAT_TIME_DIFF, getName() );
+                variable.declare( ALox.FORMAT_TIME_DIFF, getName() );
                 variable.add(metaInfo.timeDiffMinimum);
                 variable.add( metaInfo.timeDiffNone   );
                 variable.add( metaInfo.timeDiffNanos  );
@@ -301,7 +301,7 @@ public abstract class TextLogger extends Logger
                 variable.add( metaInfo.timeDiffMins   );
                 variable.add( metaInfo.timeDiffHours  );
                 variable.add( metaInfo.timeDiffDays   );
-                variable.store();
+                ALox.config.store(variable);
             }
             else
             {
@@ -319,16 +319,16 @@ public abstract class TextLogger extends Logger
             // Variable  <name>FORMAT_MULTILINE / <typeName>FORMAT_MULTILINE:
             com.aworx.lib.ALIB_DBG.ASSERT_WARNING( ALox.FORMAT_MULTILINE.defaultValue == null,
                                  "Default value of variable FORMAT_MULTILINE should be kept null" );
-            if(    0 ==  variable.define( ALox.FORMAT_MULTILINE, getName()     ).load()
-                && 0 ==  variable.define( ALox.FORMAT_MULTILINE, getTypeName() ).load() )
+            if(    0 ==  ALox.config.load(variable.declare( ALox.FORMAT_MULTILINE, getName()     ))
+                && 0 ==  ALox.config.load(variable.declare( ALox.FORMAT_MULTILINE, getTypeName() )) )
             {
                 // no variable created, yet. Let's create a 'personal' one on our name
-                variable.define( ALox.FORMAT_MULTILINE, getName() );
+                variable.declare( ALox.FORMAT_MULTILINE, getName() );
                 variable.add( multiLineMsgMode );
                 variable.add( fmtMultiLineMsgHeadline   );
                 variable.add( fmtMultiLinePrefix );
                 variable.add( fmtMultiLineSuffix );
-                variable.store();
+                ALox.config.store(variable);
             }
             else
             {
@@ -347,8 +347,8 @@ public abstract class TextLogger extends Logger
             // Variable  <name>FORMAT_REPLACEMENTS / <typeName>FORMAT_REPLACEMENTS:
             com.aworx.lib.ALIB_DBG.ASSERT_WARNING( ALox.REPLACEMENTS.defaultValue == null,
                                  "Default value of variable FORMAT_MULTILINE should be kept null" );
-            if(    0 !=  variable.define( ALox.REPLACEMENTS, getName()     ).load()
-                || 0 !=  variable.define( ALox.REPLACEMENTS, getTypeName() ).load() )
+            if(    0 !=  ALox.config.load(variable.declare( ALox.REPLACEMENTS, getName()     ))
+                || 0 !=  ALox.config.load(variable.declare( ALox.REPLACEMENTS, getTypeName() )) )
             {
                 for( int i= 0; i< variable.size() / 2 ; i++ )
                 {
@@ -365,7 +365,7 @@ public abstract class TextLogger extends Logger
 
         /** ****************************************************************************************
          * Invokes grand-parent's method and in addition, de-registers with
-         * \ref com::aworx::lib::ALIB::stdOutputStreamsLock "ALIB.stdOutputStreamsLock".
+         * \ref com.aworx.lib.ALIB.stdOutputStreamsLock "ALIB.stdOutputStreamsLock".
          * @param acquirer The acquirer to remove.
          * @return The new number of \e acquirers set.
          ******************************************************************************************/
@@ -388,16 +388,16 @@ public abstract class TextLogger extends Logger
             Variable variable= new Variable();
 
             // export autosizes to configuration
-            variable.define( ALox.AUTO_SIZES, getName() );
+            variable.declare( ALox.AUTO_SIZES, getName() );
             autoSizes.exportValues( variable.add() );
-            variable.store();
+            ALox.config.store(variable);
 
             // export "max elapsed time" to configuration
-            variable.define( ALox.MAX_ELAPSED_TIME, getName() );
-            AString destVal=  variable.load() != 0  ?  variable.getString()
-                                                    :  variable.add();
+            variable.declare( ALox.MAX_ELAPSED_TIME, getName() );
+            AString destVal=  ALox.config.load(variable) != 0  ?  variable.getString()
+                                                               :  variable.add();
             destVal._()._( metaInfo.maxElapsedTime.inSeconds() );
-            variable.store();
+            ALox.config.store(variable);
 
             // call parents' implementation
             return super.removeAcquirer( acquirer );
@@ -529,7 +529,7 @@ public abstract class TextLogger extends Logger
                 msgBuf.searchAndReplace( replacements.get( i ),
                                          replacements.get( i + 1 ), msgBufStartLength );
 
-            // setup log buffer with meta info << ESC::EOMETA
+            // setup log buffer with meta info << ESC.EOMETA
             logBuf.clear();
             autoSizes.start();
             int qtyESCTabsWritten=  metaInfo.write( this, logBuf, domain, verbosity, scope );

@@ -6,12 +6,12 @@
 // #################################################################################################
 
 /**
-\page javatutorial       ALox for Java Tutorial
+\page alox_java_tutorial       ALox for Java Tutorial
 
 
 \tableofcontents
 
-# 1. Hello ALox # {#tutjava_hello_alox}
+# 1. Hello ALox # {#alox_java_tut_hello_alox}
 
 Welcome to the ALox for Java tutorial! This tutorial aims to introduce you to ALox as quickly as
 possible and put you into a position to decide whether ALox is the right logging library for you.
@@ -44,7 +44,7 @@ ALox you can keep your debug <em>Log Statements</em> in your code forever!
 Let us quickly start a new chapter of this tutorial and go into more details.
 
 \~Comment ####################################################################################### \~
-# 2. Classes Log and Lox # {#tutjava_lox}
+# 2. Classes Log and Lox # {#alox_java_tut_lox}
 The previous chapter was a teaser. We showed the shortest possible sample program which does not
 'bootstrap' ALox (aka initialize and configure). This is detected and hence ALox tries to setup
 itself with reasonable default options.
@@ -82,16 +82,16 @@ In this tutorial we stick to the simpler cases, maybe adding a second \e Logger 
 
 
 \~Comment ####################################################################################### \~
-# 3 Create a tutorial project or equip your current project with ALox #   {#tutjava_createproject}
+# 3 Create a tutorial project or equip your current project with ALox #   {#alox_java_tut_createproject}
 
 If you want to follow the tutorial samples and play around with them a little, you should
 either create a tutorial project or right away equip your current project with ALox.
-For information about how you do that see: \ref javasetup.
+For information about how you do that see: \ref alox_java_setup.
 
 \note
   Of-course, you can easily skip this step and just continue \e reading the tutorial
   without setting up ALox now. For some IDEs, there might be a
-  \ref javasetup "ready to use solution" available that minimizes efforts when you want
+  \ref alox_java_setup "ready to use solution" available that minimizes efforts when you want
   to follow the samples and play around a little.
 
 To have all packages for this tutorial set up, add the following lines to the start of
@@ -101,7 +101,7 @@ your source file:
 
 
 \~Comment ####################################################################################### \~
-# 4. Class Logger #  {#tutjava_logger}
+# 4. Class Logger #  {#alox_java_tut_logger}
 
 While class \b %Lox is the main interface to ALox logging, abstract class
 \ref com::aworx::lox::core::Logger  "Logger" is performing the log. 'Performing' here means that
@@ -112,7 +112,7 @@ Before we can start logging, we need to create one or more \e %Loggers and attac
 our instance of class \b %Lox.
 
 \note
-  In the shortest sample shown above (\ref tutjava_hello_alox  "Hello ALox") we have not done this. For debug
+  In the shortest sample shown above (\ref alox_java_tut_hello_alox  "Hello ALox") we have not done this. For debug
   logging ALox notices this and automatically creates a \e %Logger.
 
 
@@ -157,7 +157,7 @@ should look like this:
 \snippet UT_dox_tutorial.java        Tut_ALox_Logger_2
 
 \~Comment ####################################################################################### \~
-# 5. Run the Application #  {#tutjava_run}
+# 5. Run the Application #  {#alox_java_tut_run}
 
 When you run your project, output similar to this:
 
@@ -171,7 +171,7 @@ should appear in your IDE or your console.
   here.
 
 \~Comment ####################################################################################### \~
-## 5.2. Run your application within your IDE ##        {#tutjava_run_ide}
+## 5.2. Run your application within your IDE ##        {#alox_java_tut_run_ide}
 
 If you are using an IDE supported by ALox (e.g. Eclipse), you can double click the log line in the output
 window. The IDE  opens the source and selects the line of code where the log call was invoked.
@@ -219,12 +219,12 @@ This takes a wider output into account for the  benefit of largely improved read
 
 
 \~Comment ####################################################################################### \~
-## 5.2. A quick note on pruning ##                              {#tutjava_run_release}
+## 5.2. A quick note on pruning ##                              {#alox_java_tut_run_release}
 
 At this point, the tutorial on ALox for C# or ALox for C++ include a section about a "release build"
 of the current tutorial project. In these languages, such release builds remove all <em>Log Statements</em>
 from the code. Java does not know release builds. But pruning is still supported and automated in
-ALox for Java as well (not covered in this tutorial, but documented here: \ref javasetup_pruning "Pruning ALox").
+ALox for Java as well (not covered in this tutorial, but documented here: \ref alox_java_setup_pruning "Pruning ALox").
 The advantages are:<p>
 
 - your release code executes faster
@@ -233,7 +233,7 @@ The advantages are:<p>
 
 
 \~Comment ####################################################################################### \~
-# 6. Controlling the  'Verbosity' #     {#tutjava_verbosity}
+# 6. Controlling the  'Verbosity' #     {#alox_java_tut_verbosity}
 
 The code above uses the method [Lox::info()](@ref #com::aworx::lox::Lox::info) (embedded in a preprocessor macro) to create the
 log output. There are three other Versions of that method, together constituting the four <em>'Verbosities'</em>:
@@ -311,7 +311,7 @@ Now, we are able to control the \e Verbosity of the \b 'overall' log output of o
 But probably, in bigger projects, we need more \b 'granularity' for such control. The next section tells how!
 
 \~Comment ####################################################################################### \~
-# 7. Log Domains  #     {#tutjava_logdomains}
+# 7. Log Domains  #     {#alox_java_tut_logdomains}
 
 Controlling the \e Verbosity of the log output, including switching it completely off,
 is of-course a core feature of any logging library.
@@ -354,7 +354,7 @@ when looking at the meta information of the log output, showing
 
 
 \~Comment ####################################################################################### \~
-# 8. Hierarchical Log Domains  #     {#tutjava_logdomains_hierarchical}
+# 8. Hierarchical Log Domains  #     {#alox_java_tut_logdomains_hierarchical}
 
 
 ALox organizes <em>Log Domains</em> hierarchically. A first advantage of this is that it becomes easy to switch
@@ -410,7 +410,7 @@ Now, we are able control the \e Verbosity of a (sub-)tree of <em>Log Domains</em
 more about why the hierarchical organization of <em>Log Domains</em> is extremely useful.
 
 \~Comment ####################################################################################### \~
-# 9. Scope Domains  #     {#tutjava_scope_domains}
+# 9. Scope Domains  #     {#alox_java_tut_scope_domains}
 
 As we saw, optional parameter \p domain of <em>Log Statements</em> allows us to group the log output into
 different areas of interest and control the \e Verbosity per group. This is nice, but
@@ -496,7 +496,7 @@ in the [ALox User Manual](../manual.html). Among other things, you will find:
 
 
 \~Comment ####################################################################################### \~
-# 10. Formatting #   {#tutjava_formatting}
+# 10. Formatting #   {#alox_java_tut_formatting}
 
 While talking about rather complicated things like <em>Log Domains</em> and \e Scopes, we must not
 forget to talk about the log output itself. \b %ALox is designed to be able to pass any type of
@@ -567,7 +567,7 @@ with some more samples:
 
 
 \~Comment ####################################################################################### \~
-# 11. Conditional logging  #   {#tutjava_conditional}
+# 11. Conditional logging  #   {#alox_java_tut_conditional}
 
 ## 11.1. Lox.Assert  ##
 
@@ -631,7 +631,7 @@ therefore just summarize some facts:
 
 
 \~Comment ####################################################################################### \~
-# 12. Prefixes  #   {#tutjava_log_prefix}
+# 12. Prefixes  #   {#alox_java_tut_log_prefix}
 
 Imagine, all log statements of a of a certain kind should be very visible and distinguishable
 from other output. You could do this by
@@ -676,7 +676,7 @@ The next chapter shows that ALox has already built-in mechanics for logging out
 structured data!
 
 \~Comment ####################################################################################### \~
-# 13. LogTools: Log Complex Data ##       {#tutjava_logtools}
+# 13. LogTools: Log Complex Data ##       {#alox_java_tut_logtools}
 
 ALox also provides some log functions that log more complex stuff. The design decision was made to not
 put this into the classes
@@ -686,7 +686,7 @@ However, LogTools is used in the same simple fashion as classes \b Log / \b Lox 
 
 On the Java language platform two methods are currently available which are briefly covered in the following:
 
-## 13.1 Instance(): Log any object recursively ## {#tutjava_more_logtools_instance}
+## 13.1 Instance(): Log any object recursively ## {#alox_java_tut_more_logtools_instance}
 
 The method [LogTools.instance()] (@ref #com.aworx.lox.tools.LogTools.instance) allows you to log just any object
 recursively in a well formatted way. You can try this out quickly by adding the following code to your sample:
@@ -705,7 +705,7 @@ Here are the first lines of output of the above sample:
 
 \verbinclude ALox.Java/generated/Tut_Instance.txt
 
-## 13.2 Exception(): Log an exception recursively (with inner exceptions) ## {#tutjava_more_logtools_exception}
+## 13.2 Exception(): Log an exception recursively (with inner exceptions) ## {#alox_java_tut_more_logtools_exception}
 
 Just like Instance(), the method [LogTools.exception()] (@ref #com.aworx.lox.tools.LogTools.exception) uses the multi
 line feature of ALox to log out the contents of a Java Exception well formatted and recursively (following inner exceptions).
@@ -727,7 +727,7 @@ The following log output will be generated:
 
 
 \~Comment ####################################################################################### \~
-# 14. Name Your Threads  #       {#tutjava_threadnames}
+# 14. Name Your Threads  #       {#alox_java_tut_threadnames}
 
 In multi-threaded applications, ALox by default logs information about the thread id or name
 that executed the code containing your log statements.
@@ -761,7 +761,7 @@ right place automatically! It also might be a good idea to restart your app with
 to \e Verbosity.Verbose and then look for the first appearances of unknown threads.
 
 \~Comment ####################################################################################### \~
-# 15. ALox Log Data #      {#tutjava_logdata}
+# 15. ALox Log Data #      {#alox_java_tut_logdata}
 
 We hope that you are fully aware when reading through this tutorial, that all debug-log statements
 that are sampled here, are \b pruned from the release executables.
@@ -800,7 +800,7 @@ stored, ALox just creates an empty, default object. The output in this case woul
 
 
 \~Comment ####################################################################################### \~
-# 16. ALox Configuration Information and Internal Log Messages #      {#tutjava_config}
+# 16. ALox Configuration Information and Internal Log Messages #      {#alox_java_tut_config}
 
 In complex projects it might get a little confusing to keep track about the
 \e Loggers and their \e Verbosity, <em>Scope Domains</em>, <em>Prefix Logables</em> and <em>Log Data</em> set.
@@ -852,9 +852,11 @@ To summarize: We have to ways to look into ALox:
     switch this domain on or off.
     In other words, the general domain tree is completely kept free for the users of ALox.
 
+\see
+    \alox configuration variable [ALOX_LOXNAME_DUMP_STATE_ON_EXIT](../group__GrpALoxConfigVars.html) provides
+    a way to automatically log state information when a \b %Lox gets deleted.
 
-
-# Further Reading #     {#tutjava_end}
+# Further Reading #     {#alox_java_tut_end}
 
 This is the end of the tutorial of ALox for C++. You should be able to use the basic features of the ALox logging ecosystem and
 have nice, formatted, configurable log output in your software projects. ALox puts you in the comfortable position to
@@ -870,7 +872,7 @@ important things not covered in the tutorial are:
 
 - <b>Release Logging</b><br>
   Release logging is very similar to debug logging. The differences and how to use release-logging is
-  described in a [dedicated chapter](../man_debug_and_release_logging.html) of the manual
+  described in a [dedicated chapter](../alox_man_debug_and_release_logging.html) of the manual
 - <b>External Configuration</b><br>
   Instead of setting \e Verbosities and other changeable configuration "from within the source"
   (by adding ALox API invocations to your software), such data can also come from INI files,
@@ -881,14 +883,14 @@ important things not covered in the tutorial are:
 - <b>Trimming Source File Paths</b><br>
   For C++ and C# users: ALox automatically trims paths of source code files. This can
   be optimized, as described in
-  [Trimming Source File Paths and Clickable IDE Output](../man_trim_source_path.html).
+  [Trimming Source File Paths and Clickable IDE Output](../alox_man_trim_source_path.html).
 - <b>Log Domain Substitution</b><br>
   What this is, is described in
-  [Log Domain Substitution](../man_domain_substitution.html).
+  [Log Domain Substitution](../alox_man_domain_substitution.html).
 
 
 If however, you just want to start using ALox and get to know more details over time, you should
-only read \ref javasetup.
+only read \ref alox_java_setup.
 
 Finally, for the daily work, the [ALox class reference](annotated.html) gives a lot of help!
 

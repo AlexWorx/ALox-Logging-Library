@@ -20,10 +20,9 @@
 // includes
 // #################################################################################################
 
-#include "alib/containers/stringtree.hpp"
+#include "alib/util/stringtree.hpp"
 
-namespace aworx { namespace lox { namespace core
-{
+namespace aworx { namespace lox { namespace core {
 
 /** ************************************************************************************************
  * Static axiomatic methods on value types stored in class \b ScopeStore.
@@ -78,7 +77,7 @@ class ScopeStore
         StoreT                                  globalStore;
 
         /** StringTree store for language-related scopes (path,source,method) */
-        lib::containers::StringTree<StoreT>*    languageStore;
+        lib::util::StringTree<StoreT>*          languageStore;
 
         /** A list of domain paths of \e Scope::ThreadOuter */
         std::map<int, std::vector<StoreT>>      threadOuterStore;
@@ -110,7 +109,7 @@ class ScopeStore
         Scope                                   actScope;
 
         /** The actual language related scopes' map node */
-        typename lib::containers::StringTree<StoreT>::Cursor    actStringTreeNode;
+        typename lib::util::StringTree<StoreT>::Cursor    actStringTreeNode;
 
         /** The path level when using access methods */
         int                                     actPathLevel;
@@ -289,10 +288,10 @@ template<> inline std::map<AString, int>*      ScopeStoreType<std::map<AString, 
 template<> inline bool                         ScopeStoreType<std::map<AString, Box>*>::AreEqual    ( std::map<AString, Box>* first, std::map<AString, Box>* second ) { return first == second;  }
 template<> inline bool                         ScopeStoreType<std::map<AString, Box>*>::IsNull      ( std::map<AString, Box>* value )                                      { return value == nullptr; }
 template<> inline std::map<AString, Box>* ScopeStoreType<std::map<AString, Box>*>::NullValue   ()                                                                          { return nullptr;          }
-//! @endcond NO_DOX
+//! @endcond
 
 
-}}} // namespace aworx::lox::utils
+}}}// namespace [aworx::lox::core]
 
 
 

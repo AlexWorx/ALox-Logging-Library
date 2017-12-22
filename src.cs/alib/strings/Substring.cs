@@ -34,14 +34,14 @@ namespace cs.aworx.lib.strings  {
  *  \note
  *    To generate Substrings which are separated by a delimiter character within a
  *    character array, use class
- *    \ref cs::aworx::lib::strings::util::Tokenizer "Tokenizer".
+ *    \ref cs.aworx.lib.strings.util.Tokenizer "Tokenizer".
  *  <p>
  *
  *  \note
  *    In the Java and C# versions of ALib, due to the language design, fields #Start and #End have
  *    to be used to define the substring on a field #Buf, the character buffer. This forces
  *    a \e reimplementation of a bigger portion of the interface of class
- *    \ref cs::aworx::lib::strings::AString "AString". In the C++ version of ALib, there is a
+ *    \ref cs.aworx.lib.strings.AString "AString". In the C++ version of ALib, there is a
  *    richer family of string classes that fully integrates with zero terminated <em>C strings</em>,
  *    standard C++ strings and 3rd party string libraries. Neither the fields \e %start and \e %end
  *    are necessary, nor the aforementioned reimplementation. Consequently, when directly accessing
@@ -63,7 +63,7 @@ public class Substring
 
         /// The hash value. Has to be set dirty (0) whenever String is changed from
         /// outside!.
-        protected     int                   hash                                =0;
+        protected     int     hash                                                               =0;
 
 
     /** ############################################################################################
@@ -509,6 +509,30 @@ public class Substring
         }
 
         /** ****************************************************************************************
+         * Searches \p separator and cuts the beginning of this string, including the separator.
+         * What was consumed is returned, excluding the separator.
+         *
+         * If the separator is not found, all of this string is consumed and returned.
+         *
+         * @param target     The target substring.
+         * @param separator  The separator to search. Defaults to <c>','</c>.
+         *
+         * @return The number of characters consumed.
+         ******************************************************************************************/
+        public int  ConsumeToken( Substring target, char separator= ',' )
+        {
+            int separatorPos= IndexOfOrLength( separator );
+            target.Buf=   Buf;
+            target.Start= Start;
+            target.End=   Start + separatorPos - 1;
+
+            Start+= separatorPos + 1;
+            if (Start > End + 1)
+                Start= End + 1;
+            return target.Length();
+        }
+
+        /** ****************************************************************************************
          * Checks if this object starts with the given string \p consumable. If it does, this
          * string is cut from this object.
          *
@@ -669,10 +693,11 @@ public class Substring
          * abbreviated.
          *
          * @param consumable        The consumable string.
-         * @param minChars          The minimum amount of characters to consume.
-         *                          Optional and defaults to \c 1
+         * @param minChars          The minimum amount of characters to consume. If \c 0 or
+         *                          negative, the length of \p consumable is chosen.
+         *                          Optional and defaults to \c 1.
          * @param sensitivity       The sensitivity of the comparison.
-         *                          Defaults to \b Case.Sensitive.
+         *                          Defaults to \b Case.Ignore.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
          *                          first character consume operation.
          *                          Defaults to \b Whitespaces.Keep.
@@ -680,12 +705,14 @@ public class Substring
          ******************************************************************************************/
         public int     ConsumePartOf( String           consumable,
                                       int              minChars           = 1,
-                                      lang.Case        sensitivity        = lang.Case.Sensitive,
+                                      lang.Case        sensitivity        = lang.Case.Ignore,
                                       lang.Whitespaces trimBeforeConsume  = lang.Whitespaces.Keep )
         {
             if ( trimBeforeConsume == lang.Whitespaces.Trim )
                 TrimStart();
 
+            if ( minChars <= 0 )
+                minChars= consumable.Length;
             if ( minChars == 0 || minChars > consumable.Length )
                 return 0;
 
@@ -694,6 +721,53 @@ public class Substring
                 return 0;
             ConsumeChars( diff );
             return diff;
+        }
+
+        /** ****************************************************************************************
+         * Consumes a field from the beginning of this substring, which is surrounded by
+         * given start end end character identifiers. If both are the same, e.g. \c '"', then
+         * the first occurrence of the end character is used. If they are not the same, e.g.
+         * \c '<' and \c '>', then repeated start characters are counted and consumption only ends
+         * when a corresponding amount of end characters has been found.
+         *
+         * @param  startChar  The start character of the field to consume.
+         * @param  endChar    The end character of the field to consume.
+         * @param  target     The target string to place the field in.
+         * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
+         *                          consume operation. Defaults to \b Whitespaces.Keep.
+         * @return The string consumed. \b NullString on error (start/end character not found)
+         ******************************************************************************************/
+        public Substring  ConsumeField( char startChar, char endChar, Substring target,
+                                        lang.Whitespaces trimBeforeConsume  = lang.Whitespaces.Keep )
+        {
+            if ( trimBeforeConsume == lang.Whitespaces.Trim )
+                TrimStart();
+
+            target.SetNull();
+
+            if ( CharAtStart() != startChar )
+                return target;
+
+            int cntStartChars= 1;
+            for ( int i= Start + 1; i <= End ; i++ )
+            {
+                char actChar= Buf[i];
+                if( actChar == endChar )
+                {
+                    if( --cntStartChars == 0 )
+                    {
+                        target.Buf=   Buf;
+                        target.Start= Start + 1;
+                        target.End=   i - 1;
+                        Start=        i + 1;
+                        return target;
+                    }
+                }
+                else if( actChar == startChar )
+                    cntStartChars++;
+            }
+
+            return target;
         }
 
         /** ****************************************************************************************
@@ -738,14 +812,14 @@ public class Substring
         /** ****************************************************************************************
          * Parses a long integer value in decimal, binary, hexadecimal or octal format from
          * the string by invoking method
-         * \ref cs::aworx::lib::strings::NumberFormat::ParseInt "NumberFormat.ParseInt"
+         * \ref cs.aworx.lib.strings.NumberFormat.ParseInt "NumberFormat.ParseInt"
          * on the given \p numberFormat instance.<br>
          * Parameter \p numberFormat defaults to \c null. This denotes static singleton
-         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
          * For more information on number conversion, see class
-         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat".
+         * \ref cs.aworx.lib.strings.NumberFormat "NumberFormat".
          *
          * @param[out] result  A reference to the result value.
          * @param numberFormat Defines the input format.
@@ -793,10 +867,10 @@ public class Substring
         /** ****************************************************************************************
          * Reads an unsigned 64-bit integer in standard decimal format at the given position
          * from this %AString. This is done, by invoking
-         * \ref cs::aworx::lib::strings::NumberFormat::ParseDec "NumberFormat.ParseDec"
+         * \ref cs.aworx.lib.strings.NumberFormat.ParseDec "NumberFormat.ParseDec"
          * on the given \p numberFormat instance.<br>
          * Parameter \p numberFormat defaults to \c null. This denotes static singleton
-         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
          * Sign literals \c '-' or \c '+' are \b not accepted and parsing will fail.
@@ -804,7 +878,7 @@ public class Substring
          * #ConsumeFloat.
          *
          * For more information on number conversion, see class
-         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat".
+         * \ref cs.aworx.lib.strings.NumberFormat "NumberFormat".
          *
          * @param[out] result  A reference to the result value.
          * @param numberFormat Defines the input format.
@@ -852,14 +926,14 @@ public class Substring
         /** ****************************************************************************************
          * Reads an unsigned 64-bit integer in binary format at the given position
          * from this \b %AString. This is done, by invoking
-         * \ref cs::aworx::lib::strings::NumberFormat::ParseBin "NumberFormat.ParseBin"
+         * \ref cs.aworx.lib.strings.NumberFormat.ParseBin "NumberFormat.ParseBin"
          * on the given \p numberFormat instance.<br>
          * Parameter \p numberFormat defaults to \c null. This denotes static singleton
-         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
          * For more information on number conversion, see class
-         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat".
+         * \ref cs.aworx.lib.strings.NumberFormat "NumberFormat".
          *
          * @param[out] result  A reference to the result value.
          * @param numberFormat Defines the input format.
@@ -907,14 +981,14 @@ public class Substring
         /** ****************************************************************************************
          * Reads an unsigned 64-bit integer in hexadecimal format at the given position
          * from this \b %AString. This is done, by invoking
-         * \ref cs::aworx::lib::strings::NumberFormat::ParseHex "NumberFormat.ParseHex"
+         * \ref cs.aworx.lib.strings.NumberFormat.ParseHex "NumberFormat.ParseHex"
          * on the given \p numberFormat instance.<br>
          * Parameter \p numberFormat defaults to \c null. This denotes static singleton
-         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
          * For more information on number conversion, see class
-         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat".
+         * \ref cs.aworx.lib.strings.NumberFormat "NumberFormat".
          *
          * @param[out] result  A reference to the result value.
          * @param numberFormat Defines the input format.
@@ -962,14 +1036,14 @@ public class Substring
         /** ****************************************************************************************
          * Reads an unsigned 64-bit integer in octal format at the given position
          * from this \b %AString. This is done, by invoking
-         * \ref cs::aworx::lib::strings::NumberFormat::ParseOct "NumberFormat.ParseOct"
+         * \ref cs.aworx.lib.strings.NumberFormat.ParseOct "NumberFormat.ParseOct"
          * on the given \p numberFormat instance.<br>
          * Parameter \p numberFormat defaults to \c null. This denotes static singleton
-         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
          * For more information on number conversion, see class
-         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat".
+         * \ref cs.aworx.lib.strings.NumberFormat "NumberFormat".
          *
          * @param[out] result  A reference to the result value.
          * @param numberFormat Defines the input format.
@@ -1017,16 +1091,16 @@ public class Substring
         /** ****************************************************************************************
          * Reads a floating point number at the given position from this \b %AString.
          * This is done, by invoking
-         * \ref cs::aworx::lib::strings::NumberFormat::ParseFloat "NumberFormat.ParseFloat"
+         * \ref cs.aworx.lib.strings.NumberFormat.ParseFloat "NumberFormat.ParseFloat"
          * on the given \p numberFormat instance.<br>
          * Parameter \p numberFormat defaults to \c null. This denotes static singleton
-         * \ref cs::aworx::lib::strings::NumberFormat::Computational "NumberFormat.Computational"
+         * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to 'international' settings (not using the locale) and therefore
          * also not parsing grouping characters.
          *
          * For more information on parsing options for floating point numbers and number
          * conversion in general, see class
-         * \ref cs::aworx::lib::strings::NumberFormat "NumberFormat".
+         * \ref cs.aworx.lib.strings.NumberFormat "NumberFormat".
          *
          * @param[out] result  A reference to the result value.
          * @param numberFormat Defines the input format.
@@ -1747,7 +1821,7 @@ public class Substring
         /** ****************************************************************************************
          * Moves the start marker to the first character not found in parameter \p whiteSpaces.
          * @param whiteSpaces  The characters used for trimming. Defaults to
-         *                     \ref cs::aworx::lib::strings::CString::DefaultWhitespaces "CString.DefaultWhitespaces".
+         *                     \ref cs.aworx.lib.strings.CString.DefaultWhitespaces "CString.DefaultWhitespaces".
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
         public Substring TrimStart( char[] whiteSpaces )
@@ -1769,7 +1843,7 @@ public class Substring
 
         /** ****************************************************************************************
          * Invokes #TrimStart(char[] whiteSpaces) providing default parameter
-         * \ref cs::aworx::lib::strings::CString::DefaultWhitespaces "CString.DefaultWhitespaces".
+         * \ref cs.aworx.lib.strings.CString.DefaultWhitespaces "CString.DefaultWhitespaces".
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
         public Substring TrimStart()
@@ -1780,7 +1854,7 @@ public class Substring
         /** ****************************************************************************************
          * Moves the start marker to the first character not found in parameter \p whiteSpaces.
          * @param whiteSpaces  The characters used for trimming. Defaults to
-         *                     \ref cs::aworx::lib::strings::CString::DefaultWhitespaces "CString.DefaultWhitespaces".
+         *                     \ref cs.aworx.lib.strings.CString.DefaultWhitespaces "CString.DefaultWhitespaces".
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
         public Substring TrimEnd( char[] whiteSpaces )
@@ -1796,7 +1870,7 @@ public class Substring
 
         /** ****************************************************************************************
          * Invokes #TrimEnd(char[] whiteSpaces) providing default parameter
-         * \ref cs::aworx::lib::strings::CString::DefaultWhitespaces "CString.DefaultWhitespaces".
+         * \ref cs.aworx.lib.strings.CString.DefaultWhitespaces "CString.DefaultWhitespaces".
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
         public Substring   TrimEnd()
@@ -1807,7 +1881,7 @@ public class Substring
         /** ****************************************************************************************
          * Invokes #TrimStart and #TrimEnd .
          * @param whiteSpaces  The characters used for trimming. Defaults to
-         *                     \ref cs::aworx::lib::strings::CString::DefaultWhitespaces "CString.DefaultWhitespaces".
+         *                     \ref cs.aworx.lib.strings.CString.DefaultWhitespaces "CString.DefaultWhitespaces".
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
         public Substring   Trim( char[] whiteSpaces )
@@ -1817,7 +1891,7 @@ public class Substring
 
         /** ****************************************************************************************
          * Invokes #Trim(char[] whiteSpaces) providing default parameter
-         * \ref cs::aworx::lib::strings::CString::DefaultWhitespaces "CString.DefaultWhitespaces".
+         * \ref cs.aworx.lib.strings.CString.DefaultWhitespaces "CString.DefaultWhitespaces".
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
         public Substring   Trim()

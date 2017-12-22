@@ -14,7 +14,7 @@
 
 // to preserve the right order, we are not includable directly from outside.
 #if !defined(ALIB_PROPER_INCLUSION)
-    #error "include 'alib/alib.hpp' or 'alib/alib_strings.hpp' instead of this header"
+    #error "include 'alib/alib.hpp' instead of this header"
 #endif
 
 
@@ -40,8 +40,8 @@ class AString;
 
 
 //! @cond NO_DOX
-ALIB_DEBUG_CODE( ALIB_API void appendErrorToAString( AString& target ); )
-//! @endcond NO_DOX
+ALIB_DBG( ALIB_API void appendErrorToAString( AString& target ); )
+//! @endcond
 
 
 // #################################################################################################
@@ -74,11 +74,14 @@ ALIB_DEBUG_CODE( ALIB_API void appendErrorToAString( AString& target ); )
  * parameter \p target. For string types, simple append operations are predefined. More
  * complex operations format the string, convert integer and floating point numbers, etc.
  *
- * For basic user defined string types that get adopted to \b %ALib string system using a specialization
- * of struct
+ * For basic user defined string types that get adopted to \b %ALib string system using a
+ * specialization of struct
  * \ref aworx::lib::strings::T_String "T_String", no specialization of this struct is needed,
  * because method \ref aworx::lib::strings::AString::Apply "AString::Apply" will detect that and
  * append the custom string.
+ *
+ * The second template parameter \p TEnableIf may be used to perform templated specializations
+ * based on a condition evaluated with \p std::enable_if (or similar tmp mechanics).
  *
  * Built-in specializations of this function for certain types exist, as listed in reference
  * documentation of class \ref aworx::lib::strings::AString "AString".
@@ -104,9 +107,13 @@ ALIB_DEBUG_CODE( ALIB_API void appendErrorToAString( AString& target ); )
  * \note This sample is kept simple. In real life, class
  *       \ref aworx::lib::time::TicksCalendarTime "TicksCalendarTime" should be used to
  *       implement more options.
+ *
+ * @tparam  TApplicable The type that should be made compatible with method \ref AString::Apply.
+ * @tparam  TEnableIf   Optional TMP parameter to allow selective templated specializations.
  **********************************************************************************************/
-template<typename TApplicable>   struct T_Apply    : public std::false_type
+template<typename TApplicable, typename TEnableIf= void>   struct T_Apply   : public std::false_type
 {
+    ALIB_WARNINGS_ALLOW_TEMPLATE_META_PROGRAMMING
     /** ********************************************************************************************
      * Default implementation of Apply. This method must never be invoked and therefore
      * throws an assertion if it is.
@@ -136,13 +143,13 @@ template<typename TApplicable>   struct T_Apply    : public std::false_type
      *          \ref aworx::lib::strings::AString::operator= "AString assignment operator".<br>
      *          If nothing is was appended, this method must return 0.
      **********************************************************************************************/
-    static inline
+    static
     integer Apply( AString& target, const TApplicable& src )
     {
         (void) target;
         (void) src;
 
-        ALIB_WARNINGS_START_TMP
+        ALIB_WARNINGS_ALLOW_TEMPLATE_META_PROGRAMMING
 
         // prevent invoking us with unknown types
         using TPlain= typename std::remove_const    <
@@ -169,7 +176,7 @@ template<typename TApplicable>   struct T_Apply    : public std::false_type
         //ALIB_TMP_SHOW_TYPE_IN_DEBUGGER(TPlain)
         //assert(0);
 
-        ALIB_DEBUG_CODE( appendErrorToAString( target ) );
+        ALIB_DBG( appendErrorToAString( target ) );
 
         ALIB_WARNING("Unknown type for T_ApplyTo()");
 
@@ -177,16 +184,15 @@ template<typename TApplicable>   struct T_Apply    : public std::false_type
 
         ALIB_WARNINGS_RESTORE
     }
-
+    ALIB_WARNINGS_RESTORE
 };
 
-#if defined(DOX_PARSER)
 
 /** ************************************************************************************************
  * @addtogroup GrpALibMacros
  * @{
- * @name Macros Supporting TMP Class T_Apply
- * TMP class
+ * @name Macros Supporting ALib Strings
+ * TMP struct
  * \ref aworx::lib::strings::T_Apply "T_Apply" may be specialized for user types to allow the
  * <em>"application"</em> of custom object of type
  * \ref aworx::lib::strings::AString "AString".
@@ -236,27 +242,31 @@ template<typename TApplicable>   struct T_Apply    : public std::false_type
  * @}
  * @} //ingroup GrpALibMacros
  **************************************************************************************************/
-#define ALIB_STRINGS_SPECIALIZE_T_APPLY(TYPE)
-#define ALIB_STRINGS_SPECIALIZE_T_APPLY_DEF(TYPE, IMPL)
-#define ALIB_STRINGS_SPECIALIZE_T_APPLY_INLINE(TYPE, IMPL)
 
-#else
+#define ALIB_STRINGS_SPECIALIZE_T_APPLY(TYPE)                                                      \
+namespace aworx { namespace lib { namespace strings                                                \
+{                                                                                                  \
+    template<> struct       T_Apply<TYPE> : public std::true_type                                  \
+    {                                                                                              \
+        static integer Apply( AString& target, const TYPE src );                                   \
+    };                                                                                             \
+}}}                                                                                                \
 
- #define ALIB_STRINGS_SPECIALIZE_T_APPLY(TYPE)                                                     \
-    namespace aworx { namespace lib { namespace strings {                                          \
-   template<> struct       T_Apply<TYPE> : public std::true_type                                   \
-  { static integer Apply( AString& target, const TYPE src );  }; }}}
-
-#define ALIB_STRINGS_SPECIALIZE_T_APPLY_DEF(TYPE, IMPL)                                            \
+#define ALIB_STRINGS_SPECIALIZE_T_APPLY_DEF(TYPE, IMPL)                                              \
 aworx::lib::lang::integer aworx::lib::strings::T_Apply<TYPE>::Apply(AString& target, const TYPE src) \
-{ IMPL }
+{                                                                                                    \
+    IMPL                                                                                             \
+}                                                                                                    \
 
- #define ALIB_STRINGS_SPECIALIZE_T_APPLY_INLINE(TYPE, IMPL)                                        \
-    namespace aworx { namespace lib { namespace strings {                                          \
-   template<> struct       T_Apply<TYPE> : public std::true_type                                   \
-  { static inline integer Apply( AString& target, const TYPE src ){ IMPL }  }; }}}
+#define ALIB_STRINGS_SPECIALIZE_T_APPLY_INLINE(TYPE, IMPL)                                         \
+namespace aworx { namespace lib { namespace strings                                                \
+{                                                                                                  \
+    template<> struct       T_Apply<TYPE> : public std::true_type                                  \
+    {                                                                                              \
+        static inline integer Apply( AString& target, const TYPE src ){ IMPL }                     \
+    };                                                                                             \
+}}}                                                                                                \
 
-#endif // else of defined(DOX_PARSER)
 
 
 /** ************************************************************************************************
@@ -412,7 +422,7 @@ aworx::lib::lang::integer aworx::lib::strings::T_Apply<TYPE>::Apply(AString& tar
  *   (pointers to the types or arrays of them) will be appended.<br>
  *   Wide characters and wide character strings <em>([const] wchar_t*)</em> will be converted to
  *   encoded multi-byte character strings according  to the currently set locale. (See
- *   \ref aworx::lib::ALIB::Init "ALIB::Init" for more information about setting locale and
+ *   \ref aworx::lib::ALib::Init "ALib::Init" for more information about setting locale and
  *   \ref aworx::lib::strings::String::ToWString "String::ToWString" for converting in the other
  *   direction.)
  * - C++ fundamental arithmetic types (e.g. \c float, \c int, <c>signed char</c>, etc.) will be
@@ -826,7 +836,7 @@ class AString : public TString
          *                        the life-cycle of the given external buffer is managed elsewhere.
          ******************************************************************************************/
         ALIB_API
-        void     SetBuffer( char*                 extBuffer,
+        void     SetBuffer( char*                extBuffer,
                             integer              extBufferSize,
                             integer              extLength          = 0,
                             lang::Responsibility responsibility     = lang::Responsibility::KeepWithSender );
@@ -1161,13 +1171,13 @@ class AString : public TString
                 if ( qty <= 0 || pos < 0 ||  pos > length )
                     return *this;
             }
+            #if ALIB_DEBUG
             else
             {
-                #if ALIB_DEBUG
-                    ALIB_ASSERT_ERROR(  qty >= 0,                   "NC: Illegal quantity given" )
-                    ALIB_ASSERT_ERROR(  pos >= 0 && pos <= length,  "NC: Illegal position given" )
-                #endif
+                ALIB_ASSERT_ERROR(  qty >= 0,                   "NC: Illegal quantity given" )
+                ALIB_ASSERT_ERROR(  pos >= 0 && pos <= length,  "NC: Illegal position given" )
             }
+            #endif
 
             EnsureRemainingCapacity( qty );
 
@@ -1216,7 +1226,7 @@ class AString : public TString
             {
                 ALIB_ASSERT_ERROR( src.IsNotNull(), "NC: Source string is nulled"  );
                 #if ALIB_DEBUG
-                    integer    rs=  regionStart;
+                    integer rs=  regionStart;
                     integer rl=  regionLength;
                     AdjustRegion( rs, rl );
                     ALIB_ASSERT_ERROR(  rs == regionStart && rl == regionLength, "NC: Invalid region given" )
@@ -1273,7 +1283,7 @@ class AString : public TString
             else
             {
                 #if ALIB_DEBUG
-                    integer    rs=  regionStart;
+                    integer rs=  regionStart;
                     integer rl=  regionLength;
                     AdjustRegion( rs, rl );
                     ALIB_ASSERT_ERROR(  rs == regionStart && rl == regionLength, "NC: Invalid region given" )
@@ -1473,7 +1483,7 @@ class AString : public TString
             if (length == 0 || trimChars.IsEmpty() )
                 return *this;
 
-            integer idx= IndexOfAny<false>( trimChars, Inclusion::Exclude);
+            integer idx= IndexOfAny<Inclusion::Exclude, false>( trimChars );
             if ( idx > 0 )
                 Delete<false>( 0, idx );
             else if ( idx < 0 )
@@ -1497,7 +1507,7 @@ class AString : public TString
         {
             if( length > 0 &&  trimChars.IsNotEmpty() )
             {
-                length= LastIndexOfAny<false>( trimChars, Inclusion::Exclude, length - 1 ) + 1;
+                length= LastIndexOfAny<Inclusion::Exclude, false>( trimChars, length - 1 ) + 1;
                 ALIB_STRING_DBG_UNTERMINATE(*this, 0)
             }
             return *this;
@@ -1543,7 +1553,7 @@ class AString : public TString
             else
             {
                 ALIB_STRING_DBG_CHK(this)
-                ALIB_ASSERT_ERROR( src,  "NC: nullptr passed" )
+                ALIB_ASSERT_ERROR( src || srcLength == 0,  "NC: nullptr passed" )
             }
 
             EnsureRemainingCapacity( srcLength );
@@ -1609,12 +1619,7 @@ class AString : public TString
             }
 
             ALIB_API
-            AString& Append( const char32_t* src, integer srcLength )
-        #endif
-
-
-        #if !defined(DOX_PARSER)
-            ALIB_WARNINGS_START_TMP;
+            AString& Append( const char32_t* src, integer srcLength );
         #endif
 
 
@@ -1709,10 +1714,11 @@ class AString : public TString
          *         but not necessarily correct). Depends on the implementation of the template
          *         method \ref T_Apply which is invoked in turn.
          ******************************************************************************************/
-        template <bool TCheck= true, class TApplicable>
+        template <bool TCheck= true, typename TApplicable>
         inline
         integer Apply(const  TApplicable& src )
         {
+            ALIB_WARNINGS_ALLOW_TEMPLATE_META_PROGRAMMING;
             ALIB_STRING_DBG_CHK(this);
 
             // nullptr ?
@@ -1757,7 +1763,7 @@ class AString : public TString
                     mbLength= WideCharToMultiByte( CP_UTF8, NULL, &wc, 1,  vbuffer + length, MB_LEN_MAX * 2, NULL, NULL );
                     if ( mbLength <= 0 )
                     {
-                        ALIB_DEBUG_CODE( DWORD error= GetLastError(); )
+                        ALIB_DBG( DWORD error= GetLastError(); )
                         ALIB_WARNING( "AString: Cannot convert wide character string to UTF-8. Error: ",
                                        (   error == ERROR_INSUFFICIENT_BUFFER    ? "ERROR_INSUFFICIENT_BUFFER"
                                         :  error == ERROR_INVALID_FLAGS          ? "ERROR_INVALID_FLAGS."
@@ -1942,10 +1948,9 @@ class AString : public TString
 
             ALIB_STRING_DBG_UNTERMINATE(*this, 0);
             return result;
-        }
-        #if !defined(DOX_PARSER)
             ALIB_WARNINGS_RESTORE
-        #endif
+        }
+
 
         /** ****************************************************************************************
          *  Wrapper method around #Apply that returns \c *this to allow concatenated calls.
@@ -2086,33 +2091,6 @@ class AString : public TString
                                   lang::Case     sensitivity         = lang::Case::Sensitive );
 
         /** ****************************************************************************************
-         * Replaces one or more occurrences of a terminatable string (
-         * \ref aworx::lib::strings::TString "TString") by a replacement string.
-         * \note The difference to #SearchAndReplace is that this method returns \b *this to allow
-         *       concatenated calls.
-         *
-         * @param needle           The terminatable string to be replaced.
-         * @param replacement      The replacement string (does not need to be zero terminatable).
-         * @param startIdx         The integer where the search starts. Optional and defaults 0.
-         * @param maxReplacements  The maximum number of replacements to perform.
-         *                         Optional and defaults to CString::MaxLen.
-         * @param sensitivity      Case sensitivity of the comparison.
-         *                         Optional and defaults to Case::Sensitive.
-         *
-         * @return \c *this to allow concatenated calls.
-         ******************************************************************************************/
-        inline
-        AString& SearchAndReplaceAlx( const TString   needle,
-                                      const String&   replacement,
-                                      integer         startIdx            = 0,
-                                      integer         maxReplacements     = CString::MaxLen,
-                                      lang::Case      sensitivity         = lang::Case::Sensitive )
-        {
-            SearchAndReplace( needle, replacement, startIdx, maxReplacements, sensitivity );
-            return *this;
-        }
-
-        /** ****************************************************************************************
          * Converts all or a region of characters in the Buffer to upper case.
          *
          * @param regionStart     Start of the region to be converted. Defaults to 0
@@ -2132,7 +2110,7 @@ class AString : public TString
             else
             {
                 #if ALIB_DEBUG
-                    integer rs=     regionStart;
+                    integer rs=  regionStart;
                     integer rl=  regionLength;
                     AdjustRegion( rs, rl );
                     ALIB_ASSERT_ERROR(  rs == regionStart && rl == regionLength, "NC: Invalid region given" )
@@ -2171,7 +2149,7 @@ class AString : public TString
             else
             {
                 #if ALIB_DEBUG
-                    integer    rs=  regionStart;
+                    integer rs=  regionStart;
                     integer rl=  regionLength;
                     AdjustRegion( rs, rl );
                     ALIB_ASSERT_ERROR(  rs == regionStart && rl == regionLength, "NC: Invalid region given" )
@@ -2267,7 +2245,7 @@ class AString : public TString
              *    \ref aworx::lib "distribution module" and
              *  - if code selction symbol \ref ALIB_FEAT_SINGLETON_MAPPED is \c true.
              *
-             *  In case <b>ALib Strings</b> are not included in the distribution module, then
+             *  In case <b>%ALib Strings</b> are not included in the distribution module, then
              *  alternative method
              *  \ref aworx::lib::debug::GetSingletons "GetSingletons" can be used which
              *  returns a list of \c std::type_info structs together with (void) pointers to the

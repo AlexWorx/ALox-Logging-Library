@@ -1,17 +1,18 @@
 package com.aworx.lib.strings.format;
 import com.aworx.lib.lang.Alignment;
 import com.aworx.lib.lang.Switch;
+import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.CString;
 
 
 /** ************************************************************************************************
- * Implements a \ref com::aworx::lib::strings::format::Formatter "Formatter" according to the
+ * Implements a \ref com.aworx.lib.strings.format.Formatter "Formatter" according to the
  * [formatting standards of the Java language](http://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html).
  *
  * \note
  *   Inherited, public fields of parent class \b FormatterStdImpl provide important possibilities
  *   for changing the formatting behavior of instances of this class. Therefore, do not forget
- *   to consult the \ref com::aworx::lib::strings::format::FormatterStdImpl "parent classes documentation".
+ *   to consult the \ref com.aworx.lib.strings.format.FormatterStdImpl "parent classes documentation".
  *
  * In general, the original specification is covered quite well. The differences and specialties
  * are:
@@ -21,9 +22,9 @@ import com.aworx.lib.strings.CString;
  *   As the syntax specification does not provide a feature to switch between standard and locale
  *   setting, the corresponding fields of #alternativeNumberFormat are not used with this formatter.
  *   Instead, to enable localized output, method
- *   \ref com::aworx::lib::strings::NumberFormat::setFromLocale "NumberFormat.setFromLocale"
+ *   \ref com.aworx.lib.strings.NumberFormat.setFromLocale "NumberFormat.setFromLocale"
  *   has to be invoked on field
- *   \ref com::aworx::lib::strings::format::FormatterStdImpl::defaultNumberFormat "FormatterStdImpl.defaultNumberFormat".
+ *   \ref com.aworx.lib.strings.format.FormatterStdImpl.defaultNumberFormat "FormatterStdImpl.defaultNumberFormat".
  *   Alternatively, attributes of this object may be changed manually or by other means to reflect
  *   a desired locale.
  * - Hexadecimal floating point output (conversion type \c 'a' and \c 'A') is not supported.
@@ -42,11 +43,11 @@ import com.aworx.lib.strings.CString;
  *     specification.)
  *   - For lower case floating point format types (\c 'f', \c 'g' and \c 'e'), the values specified
  *     in attributes \b %ExponentSeparator, \b %NANLiteral and \b %INFLiteral of object
- *     \ref com::aworx::lib::strings::format::FormatterStdImpl::alternativeNumberFormat "alternativeNumberFormat"
+ *     \ref com.aworx.lib.strings.format.FormatterStdImpl.alternativeNumberFormat "alternativeNumberFormat"
  *     are used. For upper case types (\c 'G' and \c 'E'), the corresponding attributes in
- *     \ref com::aworx::lib::strings::format::FormatterStdImpl::defaultNumberFormat "defaultNumberFormat" apply.
+ *     \ref com.aworx.lib.strings.format.FormatterStdImpl.defaultNumberFormat "defaultNumberFormat" apply.
  *   - Fixed point format (\c 'f' ) is not supported to use arbitrary length.
- *     See class \ref com::aworx::lib::strings::NumberFormat "NumberFormat" for the limits.
+ *     See class \ref com.aworx.lib.strings.NumberFormat "NumberFormat" for the limits.
  *     Due to this limitation, the default number of fractional digits is not set with type \c 'f',
  *     while in Java it is set to \c 6. This is to allow higher numbers up to \c 1.e13 to be printed
  *     in non-scientific format
@@ -71,23 +72,23 @@ import com.aworx.lib.strings.CString;
  *     Changing the separator symbols, is not possible with the format fields of the format strings
  *     (if it was, this would become very incompatible to Java standards). Changes have to be made
  *     prior to the format operation by modifying field
- *     \ref com::aworx::lib::strings::format::FormatterStdImpl::alternativeNumberFormat "alternativeNumberFormat"
+ *     \ref com.aworx.lib.strings.format.FormatterStdImpl.alternativeNumberFormat "alternativeNumberFormat"
  *     which is provided through parent class \b %FormatterStdImpl.
  *
  *   - Alternative form (\c '#') adds prefixes as specified in members
- *     - \ref com::aworx::lib::strings::NumberFormat::hexLiteralPrefix "hexLiteralPrefix" and
- *     - \ref com::aworx::lib::strings::NumberFormat::octLiteralPrefix "octLiteralPrefix".
+ *     - \ref com.aworx.lib.strings.NumberFormat.hexLiteralPrefix "hexLiteralPrefix" and
+ *     - \ref com.aworx.lib.strings.NumberFormat.octLiteralPrefix "octLiteralPrefix".
  *
  *     For upper case formats,  those are taken from field
- *     \ref com::aworx::lib::strings::format::FormatterStdImpl::defaultNumberFormat "defaultNumberFormat",
+ *     \ref com.aworx.lib.strings.format.FormatterStdImpl.defaultNumberFormat "defaultNumberFormat",
  *     for lower case formats from
- *     \ref com::aworx::lib::strings::format::FormatterStdImpl::alternativeNumberFormat "alternativeNumberFormat".
+ *     \ref com.aworx.lib.strings.format.FormatterStdImpl.alternativeNumberFormat "alternativeNumberFormat".
  *     All defaults may be changed by the user.
  *
  *<p>
  * - <b>Time and Date:</b>
  *   - In the Java version, boxed values of types
- *     \ref com::aworx::lib::time::Ticks "Ticks" and \b java.util.Date  are applicable to conversion
+ *     \ref com.aworx.lib.time.Ticks "Ticks" and \b java.util.Date  are applicable to conversion
  *     type \c 't'.
  *   - The following time conversion suffix characters are supported:
  *     \c 'H', \c 'k', \c 'I', \c 'l', \c 'M', \c 'S', \c 'B', \c 'b', \c 'h', \c 'A', \c 'a',
@@ -214,7 +215,7 @@ public class FormatterJavaStyle extends FormatterStdImpl
             TYPE_SUFFIX  ,
             END          ,
         }
-        //! @endcond NO_DOX
+        //! @endcond
 
         /** ****************************************************************************************
          * Parses placeholder field in Java syntax. The portion \p format_spec is not set as this
@@ -487,7 +488,7 @@ public class FormatterJavaStyle extends FormatterStdImpl
 
         /** ****************************************************************************************
          * Replaces \c "%%" with \c '%' and \c "%n" with ascii \c 0x0a. In addition applies
-         * \ref com::aworx::lib::strings::AString::escape "AString.escape" on \p target which replaces
+         * \ref com.aworx.lib.strings.AString.escape "AString.escape" on \p target which replaces
          * standard codes like \c "\\n", \c "\\r" or \c "\\t" with corresponding ascii codes.
          * (The latter is an extension to the standard behavior of Java formatter.)
          *
@@ -503,18 +504,23 @@ public class FormatterJavaStyle extends FormatterStdImpl
 
 
         /** ****************************************************************************************
-         * Processes "conversions" which are specified with \c '!'.
+         * All that this formatter does with this overridden method is to convert strings to
+         * upper case.
          *
          * @param startIdx  The int of the start of the field written in #ptargetString.
          *                  \c -1 indicates pre-phase.
+         * @param target    The target string, only if different from field #ptargetString, which
+         *                  indicates intermediate phase.
+         * @return \c false, if the placeholder should be skipped (nothing is written for it).
+         *         \c true otherwise.
          ******************************************************************************************/
         @Override
-        protected void    preAndPostProcess( int startIdx)
+        protected boolean preAndPostProcess( int startIdx, AString target )
         {
-            if( startIdx >= 0 && phaExtConversionUpper )
+            if( startIdx >= 0 && phaExtConversionUpper && target == null )
                 ptargetString.toUpper( startIdx );
+            return true;
         }
-
 
 
         /** ****************************************************************************************

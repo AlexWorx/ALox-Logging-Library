@@ -38,13 +38,27 @@ FormatterPythonStyle::FormatterPythonStyle()
 
 }
 
+void FormatterPythonStyle::Reset()
+{
+    FormatterStdImpl::Reset();
+    autoSizes.Reset();
+}
+
+void FormatterPythonStyle::initializeFormat()
+{
+    FormatterStdImpl::initializeFormat();
+    autoSizes.Start();
+}
+
+
 void FormatterPythonStyle::resetPHAs()
 {
     // first invoke parent's setting...
     FormatterStdImpl::resetPHAs();
 
     // ...then make some "python like" adjustments
-    phaExtConversion= nullptr;
+    phaExtConversion                    = nullptr;
+    phaExtConversionPos                 = -1;
 
     phaNF.ForceDecimalPoint             = false;
     phaNF.ExponentSeparator             = AlternativeNumberFormat.ExponentSeparator; // choose lower case as default
@@ -53,6 +67,7 @@ void FormatterPythonStyle::resetPHAs()
     phaNF.OmitTrailingFractionalZeros   = true;
 
     phaExtPrecision                     = -1;
+    phaExtPrecisionPos                  = -1;
     phaExtDefaultPrecision              = 6;
 }
 
@@ -94,7 +109,7 @@ bool FormatterPythonStyle::parsePlaceholder()
                 {
                     int argNo;
                     parser.ConsumeDecDigits( argNo );
-                    setArgument( argNo, false );
+                    setArgument( argNo );
                 }
                 NEXTSTATE(CONVERSION);
 
@@ -102,12 +117,11 @@ bool FormatterPythonStyle::parsePlaceholder()
             case CONVERSION:
                 if( parser.CharAtStart() == '!' )
                 {
-                    integer endConversion= parser.IndexOfAny(":}", Inclusion::Include );
+                    phaExtConversionPos = formatString->Length() - parser.Length() - 1;
+                    integer endConversion= parser.IndexOfAny<Inclusion::Include>(":}" );
                     if( endConversion < 0 )
-                    {
-                        errorFormatString( "Closing replacement bracket '}' not found" );
-                        return false;
-                    }
+                        throw Exception(ALIB_SRCPOS_REL_NULLED, Exceptions::MissingClosingBracket,
+                                        formatString, phaExtConversionPos );
 
                     parser.ConsumeChars( endConversion, &phaExtConversion );
                 }
@@ -135,10 +149,8 @@ bool FormatterPythonStyle::parsePlaceholder()
                         &&  parser.CharAt( eoFormatSpec - 1) == '\\' );
 
                 if ( eoFormatSpec < 0 )
-                {
-                    errorFormatString( "Closing replacement bracket '}' not found" );
-                    return false;
-                }
+                    throw Exception(ALIB_SRCPOS_REL_NULLED, Exceptions::MissingClosingBracket,
+                                    formatString, formatString->Length()  );
 
                 // extract format spec to separate substring
                 parser.ConsumeChars( eoFormatSpec, &phaFormatSpec ) ;
@@ -146,12 +158,12 @@ bool FormatterPythonStyle::parsePlaceholder()
                 NEXTSTATE(END)
             }
 
-            case END:
-                if( parser.CharAtStart() != '}'  )
-                {
-                    errorFormatString( "Closing replacement bracket '}' not found" );
-                    return false;
-                }
+//! [DOX_ALIB_ENUM_META_DATA_SPECIFCATION_using_enum4]
+case END:
+    if( parser.CharAtStart() != '}'  )
+        throw Exception(ALIB_SRCPOS_REL_NULLED, Exceptions::MissingClosingBracket,
+                        formatString, formatString->Length() - parser.Length() );
+//! [DOX_ALIB_ENUM_META_DATA_SPECIFCATION_using_enum4]
                 parser.ConsumeChars(1);
                 return true;
 
@@ -224,12 +236,11 @@ bool FormatterPythonStyle::parseStdFormatSpec()
         // allowed for integer values."
         else if( actChar == '.' )
         {
+            phaExtPrecisionPos= formatString->Length() - parser.Length() - formatSpec.Length() -1;
             formatSpec.ConsumeChars( 1 );
             if ( ! formatSpec.ConsumeDecDigits( phaExtPrecision ) )
-            {
-                errorFormatString( "Missing precision value after '.' character" );
-                return false;
-            }
+                throw Exception(ALIB_SRCPOS_REL_NULLED, Exceptions::MissingPrecisionValuePS,
+                                formatString, formatString->Length() - parser.Length() - formatSpec.Length() - 1 );
             continue;
         }
 
@@ -238,15 +249,12 @@ bool FormatterPythonStyle::parseStdFormatSpec()
         else if (String("sdcboxXeEfFngGhHB%").IndexOf( actChar ) >= 0 )
         {
             if ( phaTypeCode != '\0' )
-            {
-                String128 msg;
-                msg._( "Duplicate type code '")._( actChar )._( "' given (previous was '")
-                   ._( phaTypeCode )._("')");
-                errorFormatString( msg );
-                return false;
-            }
+                throw Exception(ALIB_SRCPOS_REL_NULLED, Exceptions::DuplicateTypeCode,
+                                actChar, phaTypeCode,
+                                formatString, formatString->Length() - parser.Length() - formatSpec.Length() - 1 );
 
             phaTypeCode= actChar;
+            phaTypeCodePosition= formatString->Length() - parser.Length() - formatSpec.Length() - 1;
 
             if( String("EGF").IndexOf( actChar ) >= 0 )
             {
@@ -315,8 +323,10 @@ bool FormatterPythonStyle::parseStdFormatSpec()
                         break;
 
 
-            default:    errorFormatString( String32("Unknown format character '")._( actChar )._('\'')  );
-                        return false;
+            default:
+                throw Exception(ALIB_SRCPOS_REL_NULLED, Exceptions::UnknownTypeCode,
+                                actChar,
+                                formatString, formatString->Length() - parser.Length() - formatSpec.Length() - 1 );
         }
 
         formatSpec.ConsumeChars(1);
@@ -332,54 +342,62 @@ void    FormatterPythonStyle::replaceEscapeSequences( integer startIdx )
     targetString->_<false>( Format::Escape( Switch::Off, startIdx ) );
 }
 
-void    FormatterPythonStyle::preAndPostProcess( integer startIdx )
+bool    FormatterPythonStyle::preAndPostProcess( integer startIdx, AString* target )
 {
-    bool isPostProcess= startIdx>= 0;
+    bool isPreProcess=  startIdx < 0;
+    bool isPostProcess= startIdx>= 0 && target == nullptr;
     Substring conversion= phaExtConversion;
+    phaExtConversionPos++;
+
 
     while( conversion.IsNotEmpty() )
     {
-        if( !conversion .ConsumeChar('!') )
+        if( !conversion.ConsumeChar('!') )
+            throw Exception(ALIB_SRCPOS_REL_NULLED, Exceptions::ExclamationMarkExpected,
+                            formatString, phaExtConversionPos + phaExtConversion.Length() - conversion.Length() );
+
+             if(  conversion.ConsumePartOf( "Xtinguish") > 0 )   { return false;                                                         }
+             if(  conversion.ConsumePartOf( "Upper"    ) > 0 )   { if (isPostProcess) targetString->ToUpper( startIdx );                 }
+        else if(  conversion.ConsumePartOf( "Lower"    ) > 0 )   { if (isPostProcess) targetString->ToLower( startIdx );                 }
+        else if(  conversion.ConsumePartOf( "str"      ) > 0
+                ||conversion.ConsumePartOf( "Quote"    ) > 0 )   { if (isPostProcess) targetString->InsertAt<false>("\"", startIdx)._<false>( "\"" );  }
+
+        else if( conversion.ConsumePartOf( "Fill"     ) > 0 )
         {
-            errorFormatString( String256("Expected '!' in (rest of) conversion string \"!")._( conversion )._('"')  );
-            return;
+            phaType= PHType::Fill;
+            phaFillChar=  conversion.ConsumeChar<Case::Ignore>('C' ) && conversion.Length() > 0
+                            ? conversion.ConsumeChar<false>()
+                            : ' ';
+
         }
 
-             if( conversion.ConsumePartOf("Upper", 1, Case::Ignore) > 0 )   { if (isPostProcess) targetString->ToUpper( startIdx );                 }
-        else if( conversion.ConsumePartOf("Lower", 1, Case::Ignore) > 0 )   { if (isPostProcess) targetString->ToLower( startIdx );                 }
-        else if( conversion.ConsumePartOf("str"  , 1, Case::Ignore) > 0
-               ||conversion.ConsumePartOf("Quote", 1, Case::Ignore) > 0 )   { if (isPostProcess) targetString->InsertAt<false>("\"", startIdx)._<false>( "\"" );  }
-        else if( conversion.ConsumePartOf("Tab"  , 1, Case::Ignore) > 0 )
+        else if( conversion.ConsumePartOf( "Tab"      ) > 0 )
         {
-            char tabChar= ' ';
-            if( conversion.ConsumeChar('C', Case::Ignore ) )
-                tabChar= conversion.ConsumeChar();
-            if (tabChar == '\0' )
-                tabChar= ' ';
+            char tabChar= conversion.ConsumeChar<Case::Ignore>('C' ) && conversion.Length() > 0
+                                ? conversion.ConsumeChar<false>()
+                                : ' ';
             int tabSize;
             if( !conversion.ConsumeDecDigits<int>( tabSize ) )
                 tabSize= 8;
 
-            if( !isPostProcess )
+            if( isPreProcess )
                 targetString->_<false>( Format::Tab( tabSize, -1, 1, tabChar ) );
 
         }
 
-        else if( conversion.ConsumePartOf("ATab"  , 2, Case::Ignore) > 0 )
+        else if( conversion.ConsumePartOf("ATab"  , 2 ) > 0 )
         {
 
-            if( conversion.ConsumePartOf("Reset"  , 1, Case::Ignore) > 0 )
+            if( conversion.ConsumePartOf("Reset"      ) > 0 )
             {
-                if(!isPostProcess)
-                    TabSizes.Reset();
+                if( isPreProcess )
+                    autoSizes.Reset();
             }
             else
             {
-                char tabChar= ' ';
-                if( conversion.ConsumeChar('C', Case::Ignore ) )
-                    tabChar= conversion.ConsumeChar();
-                if (tabChar == '\0' )
-                    tabChar= ' ';
+                char tabChar= conversion.ConsumeChar<Case::Ignore>('C' ) && conversion.Length() > 0
+                                ? conversion.ConsumeChar<false>()
+                                : ' ';
 
                 int growth;
                 if( !conversion.ConsumeDecDigits<int>( growth ) )
@@ -387,16 +405,36 @@ void    FormatterPythonStyle::preAndPostProcess( integer startIdx )
                 else
                     growth--;
 
-                if( !isPostProcess )
+                if( isPreProcess )
                 {
-                    integer tabStop= TabSizes.Next( targetString->Length() + 1, growth );
-                    targetString->InsertChars<false>( tabChar, tabStop - targetString->Length() );
+                    integer actPos= targetString->Length() - targetStringStartLength;
+                    integer tabStop= autoSizes.Next( actPos + 1, growth );
+                    targetString->InsertChars<false>( tabChar, tabStop - actPos );
                 }
             }
         }
 
-        else if(    conversion.ConsumePartOf("Esc"  , 1, Case::Ignore) > 0
-                 || conversion.ConsumePartOf("A"    , 1, Case::Ignore) > 0)
+        else if( conversion.ConsumePartOf("AWidth"  , 2 ) > 0 )
+        {
+            if( conversion.ConsumePartOf("Reset"      ) > 0 )
+            {
+                if( isPreProcess )
+                    autoSizes.Reset();
+            }
+            else
+            {
+                int extraPadding;
+                conversion.ConsumeDecDigits<int>( extraPadding );
+
+                if( isPreProcess )
+                    phaWidth= autoSizes.Actual( 0, extraPadding );
+                else if ( isPostProcess )
+                    autoSizes.Next( targetString->Length() - startIdx, extraPadding );
+            }
+        }
+
+        else if(    conversion.ConsumePartOf( "Esc" ) > 0
+                 || conversion.ConsumePartOf( "A"   ) > 0 )
         {
             Switch toESC= Switch::On;
             conversion.ConsumeChar('<');
@@ -407,14 +445,34 @@ void    FormatterPythonStyle::preAndPostProcess( integer startIdx )
                 targetString->_<false>( Format::Escape( toESC, startIdx ) );
         }
 
-        // error (not recognized)
-        else
+        else if( conversion.ConsumePartOf("Replace"  , 2 ) > 0 )
         {
-            errorFormatString( String256("Unknown conversion string \"!")._( conversion )._('"')  );
-            return;
+            String64 search=  conversion.ConsumeField( '<', '>' );
+            String   replace= conversion.ConsumeField( '<', '>' );
+            if( search.IsNull() || replace.IsNull() )
+                throw Exception( ALIB_SRCPOS_REL_NULLED, Exceptions::MissingReplacementStrings,
+                                 formatString, phaExtConversionPos + phaExtConversion.Length() - conversion.Length() );
+
+            if( target != nullptr )
+            {
+                // special case: fill empty fields
+                if( search.IsEmpty() && target->Length() - startIdx == 0 )
+                {
+                    *target << replace;
+                }
+                else
+                    target->SearchAndReplace( search, replace, startIdx );
+            }
         }
 
+        // error (not recognized)
+        else
+            throw Exception( ALIB_SRCPOS_REL_NULLED, Exceptions::UnknownConversionPS,
+                             conversion,
+                             formatString, phaExtConversionPos + phaExtConversion.Length() - conversion.Length() );
     }
+
+    return true;
 }
 
 bool  FormatterPythonStyle::checkStdFieldAgainstArgument()
@@ -439,11 +497,8 @@ bool  FormatterPythonStyle::checkStdFieldAgainstArgument()
     if( phaType == PHType::String || phaType == PHType::Bool  )
         phaCutContent= phaExtPrecision;
     else if ( phaExtPrecision >= 0 && phaType != PHType::Float )
-    {
-        errorFormatString( "Precision not allowed in integer format specifier" );
-        return false;
-    }
-
+        throw Exception(ALIB_SRCPOS_REL_NULLED, Exceptions::PrecisionSpecificationWithInteger,
+                        formatString, phaExtPrecisionPos );
     return result;
 
 }

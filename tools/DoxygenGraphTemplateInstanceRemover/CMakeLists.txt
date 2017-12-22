@@ -57,8 +57,13 @@ aux_source_directory(. SRC_LIST)
 
     add_executable( dot ${SRC_LIST})
 
-    set_target_properties     ( dot   PROPERTIES  COMPILE_FLAGS     ${AWORX_COMPILE_FLAGS}    )
-    set_target_properties     ( dot   PROPERTIES  LINK_FLAGS        ${AWORX_LINK_FLAGS}       )
+    target_compile_features   ( dot   PRIVATE  ${AWORX_COMPILER_FEATURES}   )
+    target_compile_options    ( dot   PRIVATE  ${AWORX_COMPILER_WARNINGS}   )
+    target_compile_options    ( dot   PRIVATE  ${AWORX_COMPILER_FLAGS}      )
+    target_compile_definitions( dot   PUBLIC   ${ALIB_COMPILER_DEFINITIONS} )
+
+
+    set_target_properties     ( dot   PROPERTIES  LINK_FLAGS        ${AWORX_LINKER_FLAGS}       )
     target_link_libraries     ( dot   ${ALIB_EXTERNAL_LIBS}
                                       ${ALOX_EXTERNAL_LIBS}   )
 

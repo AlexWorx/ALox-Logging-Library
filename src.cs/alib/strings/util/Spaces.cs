@@ -33,7 +33,7 @@ public class Spaces
          *   Parameter \p minSize should be omitted and the size of the object returned accepted.
          *   Requesting a higher size, might result in slightly more efficiency.
          *   In multithreaded processes, changing the size must be performed during bootstrap,
-         *   e.g. directly after invoking \ref cs::aworx::lib::ALIB::Init "ALIB.Init" by calling
+         *   e.g. directly after invoking \ref cs.aworx.lib.ALIB.Init "ALIB.Init" by calling
          *   this method with the appropriate size.
          *
          * @param minSize  The minimum number of spaces that should be available in the returned

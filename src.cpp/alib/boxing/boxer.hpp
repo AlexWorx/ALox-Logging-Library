@@ -7,7 +7,7 @@
 /** @file */ // Hello Doxygen
 
 
-#if !defined (HPP_ALIB_BOXING)
+#if !defined (HPP_ALIB_BOXING_LIB)
     #include "alib/boxing/boxing.hpp"
 #endif
 
@@ -15,7 +15,7 @@
 #ifndef HPP_ALIB_BOXING_BOXER
 //! @cond NO_DOX
 #define HPP_ALIB_BOXING_BOXER 1
-//! @endcond NO_DOX
+//! @endcond
 
 #if ALIB_DEBUG && !defined (_GLIBCXX_VECTOR) && !defined(_VECTOR_)
     #include <vector>
@@ -28,13 +28,12 @@ namespace aworx { namespace lib { namespace boxing
 // forward declarations
 // #################################################################################################
 class Box;
-void  TerminationCleanUp();
 
 // #################################################################################################
 // class Boxer
 // #################################################################################################
 /**
- * This class is used internally with <b>ALib %Boxing</b> to provide runtime type information and
+ * This class is used internally with <b>%ALib %Boxing</b> to provide runtime type information and
  * virtual method invocations to boxed values.
  * A singleton instance of a derived type of this class is attached to each
  * \ref aworx::lib::boxing::Box "Box". Such derived type is generated using templated
@@ -44,131 +43,31 @@ void  TerminationCleanUp();
  */
 class Boxer
 {
-    friend class Box;
-    friend void  TerminationCleanUp();
+    friend class Boxing; ///< A friend class.
+    friend class Box;    ///< A friend class.
 
     // #############################################################################################
     // Protected fields
     // #############################################################################################
     protected:
-        /** Information about the boxer type as provided in the constructor by derived class. */
-        const std::type_info&           type;
+        /** Information about the encapsulated type. In case of arrays, this represents the
+         *  boxer type, while the element type is provided in #elemType. */
+        const std::type_info&               type;
 
         /** In case of array types, information about the element type. */
-        const std::type_info&           elemType;
+        const std::type_info&               elemType;
 
         /** In case of array types, information about the size of the element type. */
-        const size_t                    sizeofElemType;
+        const size_t                        sizeofElemType;
 
         /** Box interfaces attached using #DefineInterface. */
-        lang::TypeinfoMap<Interface*>   interfaces;
+        lang::RTTIUnorderedMap<Interface*>  interfaces;
 
         /** This static singleton field holds default interfaces that apply to each and every
          * boxed type. See #DefineDefaultInterface  for more information. */
         static ALIB_API
-        lang::TypeinfoMap<Interface*>   defaultInterfaces;
+        lang::RTTIUnorderedMap<Interface*>  defaultInterfaces;
 
-
-
-    // #############################################################################################
-    // Debug methods
-    // #############################################################################################
-    #if ALIB_DEBUG
-
-    protected:
-        /** Map of boxers. Available only in debug compilations. */
-        static  ALIB_API
-        lang::TypeinfoMap<Boxer*>       dbgKnownBoxers;
-
-        /** Map of box interfaces. Available only in debug compilations. */
-        static  ALIB_API
-        lang::TypeinfoMap<Interface*>   dbgKnownInterfaces;
-
-        /** Map of box interface implementations. Available only in debug compilations. */
-        static  ALIB_API
-        lang::TypeinfoMap<Interface*>   dbgKnownInterfaceImpl;
-
-        /** Internal method doing checks in debug compilation version of the library. */
-        ALIB_API
-        void                            dbgCheckNewBoxer();
-
-    public:
-        /**
-         * Collects all interface specializations available for the given boxed type.
-         * Available only in debug compilations.
-         * @param boxerType Type information on the boxer that represents the boxed type.
-         * @return A vector containing type information structs.
-         */
-        static std::vector<const std::type_info*>       DbgGetInterfaces( const std::type_info& boxerType )
-        {
-            std::vector<const std::type_info*> target;
-            Boxer* boxer= dbgKnownBoxers[boxerType];
-            for( auto it : boxer->interfaces )
-                target.emplace_back( &it.first.get() );
-            return target;
-        }
-
-        /**
-         * Collects type information on used boxer singletons.
-         * Available only in debug compilations.
-         * @return A vector containing type information structs.
-         */
-        static std::vector<const std::type_info*>        DbgGetKnownBoxers()
-        {
-            std::vector<const std::type_info*> target;
-            for( auto it: Boxer::dbgKnownBoxers )
-                target.emplace_back( &it.first.get() );
-            return target;
-        }
-
-        /**
-         * Collects type information on registered interfaces.
-         * Available only in debug compilations.
-         * @return A vector containing type information structs.
-         */
-        static std::vector<const std::type_info*>        DbgGetKnownInterfaces()
-        {
-            std::vector<const std::type_info*> target;
-            for( auto it: Boxer::dbgKnownInterfaces )
-                target.emplace_back( &it.first.get() );
-            return target;
-        }
-
-        /**
-         * Collects type information on registered default interfaces.
-         * Available only in debug compilations.
-         * @return A vector containing type information structs.
-         */
-        static std::vector<const std::type_info*>        DbgGetDefaultInterfaces()
-        {
-            std::vector<const std::type_info*> target;
-            for( auto it: Boxer::defaultInterfaces )
-                target.emplace_back( &it.first.get() );
-            return target;
-        }
-
-        /**
-         * Collects type information on registered interface implementations.
-         * Available only in debug compilations.
-         * @return A vector containing type information structs.
-         */
-        static std::vector<const std::type_info*>        DbgGetKnownInterfaceImpl()
-        {
-            std::vector<const std::type_info*> target;
-            for( auto it: Boxer::dbgKnownInterfaceImpl )
-                target.emplace_back( &it.first.get() );
-            return target;
-        }
-
-
-
-        /**
-         * Internal method doing checks in debug compilation version of the library.
-         * @param ifType The interface to check.
-         */
-        ALIB_API static  void  debugCheckInterfaceExists( const std::type_info& ifType );
-
-    #endif
 
 
     // #############################################################################################
@@ -184,12 +83,10 @@ class Boxer
          * @param ptype  Type information of the derived Boxer type.
          */
         Boxer( const std::type_info& ptype )
-            : type( ptype ), elemType( ptype ), sizeofElemType(0)
-            {
-                #if ALIB_DEBUG
-                    dbgCheckNewBoxer();
-                #endif
-            }
+        : type( ptype ), elemType( ptype ), sizeofElemType(0), interfaces()
+        {
+            ALIB_DBG( BOXING.dbgCheckNewBoxer( this ); )
+        }
 
         /**
          * Constructs a boxer for array types. Takes a second \b std::typeinfo object
@@ -202,12 +99,10 @@ class Boxer
         Boxer( const std::type_info& pType,
                const std::type_info& pElemType,
                size_t                pSizeofElem )
-            : type( pType ), elemType( pElemType ), sizeofElemType(pSizeofElem)
-            {
-                #if ALIB_DEBUG
-                    dbgCheckNewBoxer();
-                #endif
-            }
+         : type( pType ), elemType( pElemType ), sizeofElemType(pSizeofElem), interfaces()
+         {
+             ALIB_DBG( BOXING.dbgCheckNewBoxer( this ); )
+         }
 
 
         /**
@@ -253,9 +148,7 @@ class Boxer
         static inline void  DefineDefaultInterface( Interface* interface )
         {
             Boxer::defaultInterfaces[interface->typeInfo]=  interface;
-            #if ALIB_DEBUG
-                Boxer::dbgKnownInterfaces[interface->typeInfo]= interface;
-            #endif
+            ALIB_DBG( BOXING.dbgKnownInterfaces[interface->typeInfo]= interface; )
         }
 
         /**
@@ -276,7 +169,7 @@ class Boxer
          */
         inline void         DefineInterface( Interface* interface)
         {
-            #if ALIB_DEBUG
+            ALIB_DBG(
                 if( interfaces.find( interface->typeInfo )  != interfaces.end() )
                 {
                     ALIB_MESSAGE( "ALib Boxing: Replacing interface ",
@@ -284,14 +177,14 @@ class Boxer
                                   " for type ",
                                   debug::TypeDemangler(type).Get()                 )
                 }
-            #endif
+            )
 
             interfaces.insert(std::make_pair(std::reference_wrapper<const std::type_info>(interface->typeInfo), interface) );
 
-            #if ALIB_DEBUG
-                Boxer::dbgKnownInterfaces[interface->typeInfo]= interface;
-                Boxer::dbgKnownInterfaceImpl[typeid(*interface)]= interface;
-            #endif
+            ALIB_DBG(
+                BOXING.dbgKnownInterfaces   [interface->typeInfo]= interface;
+                BOXING.dbgKnownInterfaceImpl[typeid(*interface) ]= interface;
+            )
         }
 
         /** ****************************************************************************************
@@ -327,7 +220,7 @@ class BoxerT  : public Boxer   , public Singleton<BoxerT<TBoxable>>
          * This constructor is private and class \b %Singleton is a friend, which makes instances
          * of this class being a 'strict' singleton (only that singleton instance exists).
          */
-        inline BoxerT() : Boxer(typeid(BoxerT<TBoxable>))
+        inline BoxerT() : Boxer(typeid(TBoxable))
         {}
 };
 
@@ -357,7 +250,7 @@ class ArrayBoxerT : public Boxer, public Singleton<ArrayBoxerT<TElementType>>
 
 
 
-}}} // namespace aworx::lib::boxing
+}}} // namespace [aworx::lib::boxing]
 
 
 #endif // HPP_ALIB_BOXING_BOXER

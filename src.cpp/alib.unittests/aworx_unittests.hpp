@@ -78,6 +78,7 @@
         #pragma clang diagnostic ignored "-Wmissing-noreturn"
         #pragma clang diagnostic ignored "-Wshift-sign-overflow"
         #pragma clang diagnostic ignored "-Wused-but-marked-unused"
+        #pragma clang diagnostic ignored "-Wzero-as-null-pointer-constant"
     #endif
 
         #include "gtest/gtest.h"
@@ -99,8 +100,16 @@
     #include "iomanip"
 
 
-    #define  UT_CLASS(name) // nothing in it in GTest: every test is is own class
-    #define  UT_CLASS_END
+    // nothing (almost) in it in GTest: every test is is own class
+    #if defined(__clang__)
+        #define  UT_CLASS(name)           _Pragma("clang diagnostic push")                                       \
+                                          _Pragma("clang diagnostic ignored \"-Wzero-as-null-pointer-constant\"")
+        #define  UT_CLASS_END             _Pragma("clang diagnostic pop")
+    #else
+        #define  UT_CLASS(name)
+        #define  UT_CLASS_END
+    #endif
+
 
     #define  UT_METHOD_Z(m, sm, sc)       GTEST_TEST(TESTCLASSNAME, m)
 
@@ -148,9 +157,9 @@
 
 #define  UT_PRINT(...   )   { ut.Print (__FILE__, __LINE__, aworx::Verbosity::Info, __VA_ARGS__ ); }
 #define  UT_EQ(    a,b  )   ut.EQ      (__FILE__, __LINE__,  a,b    );
-#define  UT_NEAR( a,b,d )   ut.EQ      (__FILE__, __LINE__,  a,b, d );
-#define  UT_TRUE(  cond )   ut.ISTRUE  (__FILE__, __LINE__,  cond   );
-#define  UT_FALSE( cond )   ut.ISFALSE (__FILE__, __LINE__,  cond   );
+#define  UT_NEAR( a,b,d )   ut.Near    (__FILE__, __LINE__,  a,b, d );
+#define  UT_TRUE(  cond )   ut.IsTrue  (__FILE__, __LINE__,  cond   );
+#define  UT_FALSE( cond )   ut.IsFalse (__FILE__, __LINE__,  cond   );
 
 
 namespace ut_aworx {
@@ -192,7 +201,7 @@ class AWorxUnitTesting : public aworx::lib::lang::ReportWriter
         aworx::AString          Domain;
         aworx::String           ActTestName;
         bool                    AssertOnFailure= true;
-        
+
         static aworx::String128 LastAutoSizes;
         static aworx::AString   GeneratedSamplesDir;
         static aworx::AString   CustomMetaInfoFormat; // used if set from outside
@@ -203,6 +212,7 @@ class AWorxUnitTesting : public aworx::lib::lang::ReportWriter
         static aworx::String    GeneratedSamplesSearchDir;
 
     public:
+        bool                                         initializer;
         aworx::lox::Lox                              lox;
         aworx::lox::core::textlogger::TextLogger*    utl;
 
@@ -212,7 +222,6 @@ class AWorxUnitTesting : public aworx::lib::lang::ReportWriter
         template <typename... T>
         void Print (  const aworx::String& file, int line, aworx::Verbosity verbosity,  T&&... args  )
         {
-
             lox.Acquire(file, line, ActTestName);
                 lox.GetLogableContainer().Add( std::forward<T>( args )... );
                 lox.Entry( Domain, verbosity );
@@ -225,40 +234,53 @@ class AWorxUnitTesting : public aworx::lib::lang::ReportWriter
         virtual void NotifyActivation  ( aworx::Phase ) { }
         virtual void Report  (  const aworx::lib::lang::Report::Message& msg );
 
-        void eQImpl ( const aworx::TString& file, int line,  int64_t   exp, int64_t     v );
-        void eQImpl ( const aworx::TString& file, int line,  uint64_t  exp, uint64_t    v );
+        template<typename TComp1, typename TComp2>
+        void EQ( const aworx::TString& file, int line,  TComp1      exp , TComp2  v )
+        {
+            if ( v != exp)
+                Failed(file,line, exp, v);
 
-        inline void EQ  ( const aworx::TString& file, int line,  int32_t          exp , int32_t          v ) { eQImpl(file,line, static_cast<int64_t>( exp ), static_cast<int64_t>(v) ); }
-        inline void EQ  ( const aworx::TString& file, int line,  uint32_t         exp , uint32_t         v ) { eQImpl(file,line, static_cast<int64_t>( exp ), static_cast<int64_t>(v) ); }
-        inline void EQ  ( const aworx::TString& file, int line,  int64_t          exp , int64_t          v ) { eQImpl(file,line, static_cast<int64_t>( exp ), static_cast<int64_t>(v) ); }
-        inline void EQ  ( const aworx::TString& file, int line,  uint64_t         exp , uint64_t         v ) { eQImpl(file,line, static_cast<int64_t>( exp ), static_cast<int64_t>(v) ); }
-        inline void EQ  ( const aworx::TString& file, int line,  aworx::intGap_t  exp , aworx::intGap_t  v ) { eQImpl(file,line, static_cast<int64_t>( exp ), static_cast<int64_t>(v) ); }
-        inline void EQ  ( const aworx::TString& file, int line,  aworx::uintGap_t exp , aworx::uintGap_t v ) { eQImpl(file,line, static_cast<int64_t>( exp ), static_cast<int64_t>(v) ); }
-        inline void EQ  ( const aworx::TString& file, int line,  int32_t          exp , int64_t          v ) { eQImpl(file,line, static_cast<int64_t>( exp ), static_cast<int64_t>(v) ); }
-        inline void EQ  ( const aworx::TString& file, int line,  uint32_t         exp , uint64_t         v ) { eQImpl(file,line, static_cast<int64_t>( exp ), static_cast<int64_t>(v) ); }
-        inline void EQ  ( const aworx::TString& file, int line,  int64_t          exp , int32_t          v ) { eQImpl(file,line, static_cast<int64_t>( exp ), static_cast<int64_t>(v) ); }
-        inline void EQ  ( const aworx::TString& file, int line,  uint64_t         exp , uint32_t         v ) { eQImpl(file,line, static_cast<int64_t>( exp ), static_cast<int64_t>(v) ); }
-        inline void EQ  ( const aworx::TString& file, int line,  int32_t          exp , aworx::intGap_t  v ) { eQImpl(file,line, static_cast<int64_t>( exp ), static_cast<int64_t>(v) ); }
-        inline void EQ  ( const aworx::TString& file, int line,  uint32_t         exp , aworx::uintGap_t v ) { eQImpl(file,line, static_cast<int64_t>( exp ), static_cast<int64_t>(v) ); }
-        inline void EQ  ( const aworx::TString& file, int line,  aworx::intGap_t  exp , int32_t          v ) { eQImpl(file,line, static_cast<int64_t>( exp ), static_cast<int64_t>(v) ); }
-        inline void EQ  ( const aworx::TString& file, int line,  aworx::uintGap_t exp , uint32_t         v ) { eQImpl(file,line, static_cast<int64_t>( exp ), static_cast<int64_t>(v) ); }
-        inline void EQ  ( const aworx::TString& file, int line,  int64_t          exp , aworx::intGap_t  v ) { eQImpl(file,line, static_cast<int64_t>( exp ), static_cast<int64_t>(v) ); }
-        inline void EQ  ( const aworx::TString& file, int line,  uint64_t         exp , aworx::uintGap_t v ) { eQImpl(file,line, static_cast<int64_t>( exp ), static_cast<int64_t>(v) ); }
-        inline void EQ  ( const aworx::TString& file, int line,  aworx::intGap_t  exp , int64_t          v ) { eQImpl(file,line, static_cast<int64_t>( exp ), static_cast<int64_t>(v) ); }
-        inline void EQ  ( const aworx::TString& file, int line,  aworx::uintGap_t exp , uint64_t         v ) { eQImpl(file,line, static_cast<int64_t>( exp ), static_cast<int64_t>(v) ); }
+            #if ALIB_GTEST
+                EXPECT_EQ   ( exp, v );
+            #elif defined(_WIN32)
+                Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue( exp == v );
+            #else
+            #   pragma message ("Unknown Testing platform in: " __FILE__ )
+            #endif
+
+        }
 
 
-        void EQ     ( const aworx::TString& file, int line,  int32_t              exp , int32_t              v,    int32_t  prec );
-        void EQ     ( const aworx::TString& file, int line,  uint32_t             exp , uint32_t             v,    uint32_t prec );
-        void EQ     ( const aworx::TString& file, int line,  int64_t              exp , int64_t              v,    int64_t  prec );
-        void EQ     ( const aworx::TString& file, int line,  uint64_t             exp , uint64_t             v,    uint64_t prec );
-        void EQ     ( const aworx::TString& file, int line,  double               exp , double               v );
-        void EQ     ( const aworx::TString& file, int line,  double               exp , double               v,    double   prec );
-        void EQ     ( const aworx::TString& file, int line,  const aworx::String& exp , const aworx::String& v );
-        void EQ     ( const aworx::TString& file, int line,  const wchar_t*       exp , const wchar_t*       v );
+        void EQ( const aworx::TString& file, int line,  const aworx::String&  exp , const aworx::String&  v );
+        void EQ( const aworx::TString& file, int line,  const char*           exp , const aworx::String&  v )     { EQ( file, line,                      aworx::String(exp),                                    v  ); }
+        void EQ( const aworx::TString& file, int line,  const aworx::String&  exp , const aworx::Substring& v)    { EQ( file, line,                                    exp , dynamic_cast<const aworx::String&>(v) ); }
+        void EQ( const aworx::TString& file, int line,  const char*           exp , const aworx::Substring& v)    { EQ( file, line,                      aworx::String(exp), dynamic_cast<const aworx::String&>(v) ); }
+        void EQ( const aworx::TString& file, int line,  const aworx::String&  exp , const aworx::AString& v )     { EQ( file, line,                                    exp , dynamic_cast<const aworx::String&>(v) ); }
+        void EQ( const aworx::TString& file, int line,  const aworx::TString& exp , const aworx::AString& v )     { EQ( file, line, dynamic_cast<const aworx::String&>(exp), dynamic_cast<const aworx::String&>(v) ); }
+        void EQ( const aworx::TString& file, int line,  const char*           exp , const aworx::AString& v )     { EQ( file, line,                      aworx::String(exp), dynamic_cast<const aworx::String&>(v) ); }
+        void EQ( const aworx::TString& file, int line,  const aworx::AString& exp , const aworx::AString& v )     { EQ( file, line, dynamic_cast<const aworx::String&>(exp), dynamic_cast<const aworx::String&>(v) ); }
+        void EQ( const aworx::TString& file, int line,  const char*           exp,  const char* v )               { EQ( file, line,                      aworx::String(exp),                      aworx::String(v) ); }
+        void EQ( const aworx::TString& file, int line,  wchar_t*    exp , wchar_t*   v );
+        void EQ( const aworx::TString& file, int line,  double exp , double v );
 
-        void ISTRUE ( const aworx::TString& file, int line,  bool cond );
-        void ISFALSE( const aworx::TString& file, int line,  bool cond );
+        template<typename TComp1, typename TComp2, typename TCompDiff>
+        void Near   ( const aworx::TString& file, int line,  TComp1  exp , TComp2 v, TCompDiff prec )
+        {
+            bool c= (v < exp ? exp-v : v-exp) <= prec;
+            if (!c)
+                Failed(file,line,exp,v);
+            #if ALIB_GTEST
+                EXPECT_NEAR ( exp, v, prec     );
+            #elif defined(_WIN32)
+                Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c );
+            #else
+            #   pragma message ("Unknown Testing platform in: " __FILE__ )
+            #endif
+        }
+
+
+        void IsTrue ( const aworx::TString& file, int line,  bool cond );
+        void IsFalse( const aworx::TString& file, int line,  bool cond );
 };
 
 } // namespace ut_aworx

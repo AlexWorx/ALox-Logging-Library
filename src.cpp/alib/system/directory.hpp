@@ -18,15 +18,9 @@
 #ifndef HPP_ALIB_SYSTEM_DIRECTORY
 //! @cond NO_DOX
 #define HPP_ALIB_SYSTEM_DIRECTORY 1
-//! @endcond NO_DOX
+//! @endcond
 
-namespace aworx { namespace lib {
-
-/**
- * This namespace of \b %ALib holds classes and functions that are interfacing with the operating
- * system.
- */
-namespace system
+namespace aworx { namespace lib { namespace system
 {
 
 // #############################################################################################
@@ -176,11 +170,6 @@ class Directory
     // #############################################################################################
     public:
         /** ****************************************************************************************
-         * @returns \c true if the directory represented by #Path is existing
-         ******************************************************************************************/
-        ALIB_API   bool         IsValid();
-
-        /** ****************************************************************************************
          * Changes the directory. If the given path is relative (e.g. a name of a sub directory
          * or ".."), such path is added to the current #Path. Otherwise, field #Path is replaced.
          * If the resulting destination directory is not valid, \c false is returned and the
@@ -219,12 +208,9 @@ class Directory
         /** ****************************************************************************************
          *  Creates the directory of the given (absolute or relative) path.
          *  @param path     The path to test.
-         *  @return \b Result::OK if a directory was found. Common errors codes are:
-         *          - \ref aworx::lib::lang::Result::InvalidPath "Result::InvalidPath"
-         *          - \ref aworx::lib::lang::Result::FileExists  "Result::FileExists"
-         *          but other errors might occur as well (OS dependent).
+         *  @return A value of enum type \alib{system,SystemErrors}.
          ******************************************************************************************/
-        ALIB_API static lang::Result   Create( const TString& path );
+        ALIB_API static SystemErrors    Create( const TString& path );
 }; //class Directory
 
 }} // namespace lib::system
@@ -249,4 +235,7 @@ constexpr char    DirectorySeparator
 #endif
 }  // namespace aworx
 
+
+ALIB_LANG_ENUM_PARSABLE( aworx::Directory::SpecialFolder )
+ALIB_LANG_RESOURCED(     aworx::Directory::SpecialFolder, aworx::lib::SYSTEM, "SpecialFolder" )
 #endif // HPP_ALIB_SYSTEM_DIRECTORY

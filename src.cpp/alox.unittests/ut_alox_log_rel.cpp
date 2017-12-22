@@ -41,8 +41,8 @@ void ScopeInfoCacheTest3() { Log_Info("Test Method 3"); }
 **********************************************************************************************/
 
 // with GTEST macros it all gets wild. Fix the method name
-#undef  ALIB_SRC_INFO_PARAMS
-#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, UT_GET_TEST_NAME
+#undef  ALIB_SRCPOS
+#define ALIB_SRCPOS     __FILE__, __LINE__, UT_GET_TEST_NAME
 
 UT_CLASS()
 
@@ -134,7 +134,6 @@ UT_METHOD(Lox_TestVerbositySetting)
     UT_METHOD(Lox_TestScopeDomain)
     {
         UT_INIT();
-
         int  cntLL;
         MemoryLogger ml;
         Lox lox("ReleaseLox");

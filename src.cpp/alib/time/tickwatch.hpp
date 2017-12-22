@@ -18,7 +18,7 @@
 #ifndef HPP_ALIB_TIME_TICKWATCH
 //! @cond NO_DOX
 #define HPP_ALIB_TIME_TICKWATCH 1
-//! @endcond NO_DOX
+//! @endcond
 
 
 #if !defined (HPP_ALIB_TIME_TICKS)
@@ -123,9 +123,9 @@ class TickWatch
         const Ticks    Sample    ()
         {
             cntSamples++;
-            rawtime st=    startTime.Raw();
+            Time::TRaw st=    startTime.Raw();
             startTime.Set();
-            rawtime diff=  startTime.Raw() - st;
+            Time::TRaw diff=  startTime.Raw() - st;
 
             Ticks sample( diff );
             sum.Add( diff );

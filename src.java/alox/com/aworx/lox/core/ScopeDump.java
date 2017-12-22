@@ -12,7 +12,7 @@ import java.util.Map;
 
 import com.aworx.lib.*;
 import com.aworx.lib.lang.*;
-import com.aworx.lib.containers.*;
+import com.aworx.lib.util.StringTree;
 import com.aworx.lib.lang.Alignment;
 import com.aworx.lib.strings.AString;
 import com.aworx.lox.ESC;
@@ -22,7 +22,7 @@ import com.aworx.lox.ESC;
  * It was extracted from class \b %Lox to keep that class clean from this somehow 'cluttered' code.
  *
  * The current purpose of this class is to write information into an AString buffer. This is used
- * by method \ref com::aworx::lox::Lox::state "Lox.state". In the future, other export formats,
+ * by method \ref com.aworx.lox.Lox.state "Lox.state". In the future, other export formats,
  * like JSON might be implemented here.
  *
  * \note As this is a pure internal helper class. Documentation may be limited.

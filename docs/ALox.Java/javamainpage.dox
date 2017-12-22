@@ -6,7 +6,7 @@
 // #################################################################################################
 
 /**
-\page javamainpage    Java Reference
+\page alox_java_mainpage    Java Reference
 
 
 # Welcome to ALox for Java! #
@@ -15,7 +15,7 @@ This part of the ALox Logging library documentation is specific to its Java Impl
 The following information is found here:
 
 ## Documentation ##
-- Walk yourself through the [ALox for Java Tutorial ](javatutorial.html). This is allows you a fast overview and intro
+- Walk yourself through the [ALox for Java Tutorial ](alox_java_tutorial.html). This is allows you a fast overview and intro
   if you are new to ALox.
 
 - Consult the general (language agnostic) [ALox User Manual](../manual.html) for in-depth information
@@ -26,7 +26,7 @@ The following information is found here:
 
 ## Project Setup ##
 The steps to configure Eclipse or any other Java IDE to support ALox is described
-here: \ref javasetup.
+here: \ref alox_java_setup.
 
 ## ALox for Android ##
 

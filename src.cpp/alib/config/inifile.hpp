@@ -18,7 +18,7 @@
 #ifndef HPP_ALIB_CONFIG_INI_FILE
 //! @cond NO_DOX
 #define HPP_ALIB_CONFIG_INI_FILE 1
-//! @endcond NO_DOX
+//! @endcond
 
 
 // #################################################################################################
@@ -104,27 +104,15 @@ namespace aworx { namespace lib { namespace config
  *   - Sequences of blank lines are reduced to one blank line, when writing the file.
  *   - Erroneous lines are ignored and not written back. Line numbers with erroneous lines
  *     are collected in field #LinesWithReadErrors.
+ *
+\~Comment ####################################################################################### \~
+ * # Reference Documentation #
+ * @throws aworx::lib::config::Exceptions
+ *   - \alib{config::Exceptions::ErrorOpeningFile}
+ *   - \alib{config::Exceptions::ErrorWritingFile}
  **************************************************************************************************/
  class IniFile : public InMemoryPlugin
 {
-    // #############################################################################################
-    // Public enums
-    // #############################################################################################
-    public:
-        /** ****************************************************************************************
-         * Status codes
-         ******************************************************************************************/
-        enum class Status
-        {
-            /** All went well */
-            Ok,
-
-            /** File not found when reading. This is not necessarily an error.*/
-            ErrorOpeningFile,
-
-            /** An error occurred writing the file .*/
-            ErrorWritingFile
-        };
 
     // #############################################################################################
     // Public fields
@@ -147,7 +135,8 @@ namespace aworx { namespace lib { namespace config
                 Entry( const String& name ) : InMemoryPlugin::Entry( name ) {}
 
                 /** Destructor */
-                virtual ~Entry() {}
+                virtual ~Entry()    override
+                {}
 
                 /**
                  * Overrides default method. If we have not parsed the INI file text value, yet,
@@ -157,7 +146,7 @@ namespace aworx { namespace lib { namespace config
                  * @param variable  The variable to fill with our values.
                  */
                 ALIB_API
-                virtual void ToVariable( const InMemoryPlugin* parent, Variable& variable );
+                virtual void ToVariable( const InMemoryPlugin& parent, Variable& variable ) override;
 
                 /**
                  * Overrides default method. Clears the raw value, and calls base method.
@@ -166,7 +155,7 @@ namespace aworx { namespace lib { namespace config
                  * @param variable  The variable to fill with our values.
                  */
                 ALIB_API
-                virtual void FromVariable( const InMemoryPlugin* parent, Variable& variable );
+                virtual void FromVariable( const InMemoryPlugin& parent, Variable& variable ) override;
         };
 
         /** ****************************************************************************************
@@ -209,13 +198,9 @@ namespace aworx { namespace lib { namespace config
         /** The file header which will be written out as a comment lines with "# " prefixes */
         AString                          FileComments;
 
-        /** The status. */
-        Status                           LastStatus;
-
         /** Is cleared and filled with faulty line numbers when reading the file. (E.g. when a
             line is no section and no comment but still has no equal sign ('=').  */
         std::vector<int>                 LinesWithReadErrors;
-
 
         /**
          * The prefix that is used for comment lines of sections or variables that have been
@@ -243,11 +228,13 @@ namespace aworx { namespace lib { namespace config
         /** ****************************************************************************************
          * Constructs an instance of this class and reads the file.
          * If no file name is given, the file name is set to the process name with extension
-         * found in public static field #DefaultFileExtension and the file path will be set to
-         * \ref aworx::lib::system::Directory::SpecialFolder::HomeConfig "Directory::SpecialFolder::HomeConfig".
+         * found in public static field #DefaultFileExtension.
          *
-         * If the given file name \p filePathAndName starts with '*', no file is read and field
-         * #AutoSave is set to \c false.
+         * If the given file name equals <c>'*'</c>, no file is read and field #AutoSave is set
+         * to \c false.
+         *
+         * If the given name does not start with a path separation character,
+         * \alib{system,Directory::SpecialFolder::HomeConfig} is prepended.
          *
          * @param filePathAndName  The name (and path) of the file to read and write.
          *                         Provide "*" to suppress reading a file.
@@ -258,7 +245,7 @@ namespace aworx { namespace lib { namespace config
         /** ****************************************************************************************
          * Virtual Destructor.
          ******************************************************************************************/
-        virtual      ~IniFile()   {}
+        virtual               ~IniFile()   {}
 
     // #############################################################################################
     // Interface
@@ -267,28 +254,37 @@ namespace aworx { namespace lib { namespace config
          * Clears all configuration data.
          ******************************************************************************************/
         ALIB_API
-        virtual void        Reset();
+        virtual void           Reset();
 
         /** ****************************************************************************************
          * Clears all configuration data and reads the file. It might happen that lines are
          * ignored or otherwise marked as faulty. All numbers of such lines get collected in
          * field LinesWithReadErrors.
-         * @return Returns the #Status of the operation.
+         * @throws Exception( \alib{config,Exceptions,config::Exceptions::ErrorOpeningFile} ).
          ******************************************************************************************/
         ALIB_API
-        IniFile::Status     ReadFile();
+        void     ReadFile();
 
         /** ****************************************************************************************
          * Write all configuration data into the file.
-         * @return Returns the #Status of the operation.
+         * @throws Exception( \alib{config,Exceptions,config::Exceptions::ErrorOpeningFile} ).
          ******************************************************************************************/
         ALIB_API
-        IniFile::Status     WriteFile();
+        void     WriteFile();
 
     // #############################################################################################
     // ConfigurationPlugin interface implementation
     // #############################################################################################
     public:
+         /** ****************************************************************************************
+          * Return the plug-in name, in this case, the file name.
+          * @return The name of the plug-in.
+          ******************************************************************************************/
+         virtual String  Name()   const
+         {
+            return FileName;
+         }
+
         using InMemoryPlugin::Load;
         using InMemoryPlugin::Store;
 
@@ -317,14 +313,19 @@ namespace aworx { namespace lib { namespace config
         /** ****************************************************************************************
          * Overrides base classes method to create a section of our type.
          *
-         * @param name    The name of the section.
+         * Checks for resource string <c>"INI_CMT_sectionName"</c> in config library singleton
+         * \ref aworx::lib::CONFIG. If found, the comment is added. Therefore, to add a default
+         * comment, in the bootstrap section of the software, such resources may be added to the
+         * resources of library <b>aworx::lib::CONFIG</b>.<br>
+         * The comment string read from the resources is formatted using
+         * \alib{strings::format,SimpleText::AddMarked}.
+         *
+         *
+         * @param sectionName    The name of the section.
          * @return An object of type \ref Section "IniFile::Section".
          ******************************************************************************************/
-        inline
-        virtual Section*  createSection(const String& name )
-        {
-            return new IniFile::Section( name );
-        }
+        ALIB_API
+        virtual Section*    createSection( const String& sectionName );
 
         /** ****************************************************************************************
          * Writes a list of comments to the file. Comment lines are started with '#'.
@@ -332,7 +333,7 @@ namespace aworx { namespace lib { namespace config
          * @param comments The comment lines for the section.
          ******************************************************************************************/
         ALIB_API
-        void writeComments( std::ostream& os, const AString& comments );
+        void                writeComments( std::ostream& os, const AString& comments );
 
 };
 

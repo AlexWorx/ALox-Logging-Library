@@ -28,8 +28,7 @@ namespace aworx { namespace lox
 
 class PrefixLogable;
 
-namespace core
-{
+namespace core {
 
 
 /** ************************************************************************************************
@@ -51,7 +50,7 @@ class Domain
         Verbosity             LoggerVerbosity       = Verbosity::Off;
 
         /**  The priority value that was used to set the priority */
-        int                   Priority              = 0;
+        Priorities           Priority              = Priorities::NONE;
 
 
         /** the number of log calls on this domain for this logger */
@@ -203,7 +202,7 @@ class Domain
         core::Logger*  GetLogger( const String& loggerName )
         {
             for ( size_t i= 0; i < Data.size() ; i++  )
-                if ( loggerName.Equals( Data[i].Logger->GetName(), Case::Ignore ) )
+                if ( loggerName.Equals<Case::Ignore>( Data[i].Logger->GetName()) )
                     return Data[i].Logger;
             return nullptr;
         }
@@ -230,7 +229,7 @@ class Domain
         int  GetLoggerNo( const String& loggerName )
         {
             for ( size_t i= 0; i < Data.size() ; i++  )
-                if ( loggerName.Equals( Data[i].Logger->GetName(), Case::Ignore ) )
+                if ( loggerName.Equals<Case::Ignore>( Data[i].Logger->GetName() ) )
                     return static_cast<int>( i );
             return -1;
         }
@@ -260,7 +259,7 @@ class Domain
          * @return The new \e Verbosity.
          ******************************************************************************************/
         inline
-        Verbosity SetVerbosity( int loggerNo, Verbosity verbosity, int priority )
+        Verbosity SetVerbosity( int loggerNo, Verbosity verbosity, Priorities priority )
         {
             LoggerData& ld= Data[static_cast<size_t>(loggerNo)];
             if( priority >= ld.Priority )
@@ -291,7 +290,7 @@ class Domain
          * @return The priority.
          ******************************************************************************************/
         inline
-        int       GetPriority( int loggerNo )
+        Priorities GetPriority( int loggerNo )
         {
             return Data[static_cast<size_t>(loggerNo)].Priority;
         }
@@ -409,6 +408,6 @@ class Domain
 
 }; // Domain
 
-}}} // namespace aworx::lox::utils
+}}}// namespace [aworx::lox::core]
 
 #endif // HPP_ALOX_CORE_DOMAIN

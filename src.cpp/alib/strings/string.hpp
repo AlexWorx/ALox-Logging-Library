@@ -12,7 +12,7 @@
 
 // to preserve the right order, we are not includable directly from outside.
 #if !defined(ALIB_PROPER_INCLUSION)
-    #error "include 'alib/alib.hpp' or 'alib/alib_strings.hpp' instead of this header"
+    #error "include 'alib/alib.hpp' instead of this header"
 #endif
 
 // #################################################################################################
@@ -127,30 +127,16 @@ namespace aworx { namespace lib { namespace strings {                           
 
 
 
-namespace aworx { namespace lib { namespace strings
-{
+namespace aworx { namespace lib { namespace strings {
+
 // #################################################################################################
 // forward declarations
 // #################################################################################################
 class String;
 
 #if !defined(DOX_PARSER)
-    ALIB_WARNINGS_START_TMP;
+    ALIB_WARNINGS_ALLOW_TEMPLATE_META_PROGRAMMING;
 #endif
-
-/**
- * Initializes the <b>ALib String</b> namespace.
- * In current version, all it does is invoking \ref aworx::lib::strings::boxing::Init().
- */
-ALIB_API void Init();
-
-/**
- * Frees resources of the <b>ALib String</b> namespace.
- * In current version, all it does is deleting the global formatter object.
- */
-ALIB_API void TerminationCleanUp();
-
-
 
 /** ********************************************************************************************
  * This is a specializable struct which defaults the question whether a given type
@@ -279,7 +265,7 @@ template<> struct T_String<char const*> : public std::true_type
 
 /** ************************************************************************************************
  * This is quite the same as template struct \ref aworx::lib::strings::T_String.
- * It is used when the length of the string can be deduced from type \p TLiteral.
+ * It is used when the length of the string can be inferred from type \p TLiteral.
  * The most obvious type are C++ string literal, hence character arrays \c char[TCapacity] of a
  * given length.
  *
@@ -325,13 +311,13 @@ struct T_StringLiteral<char[TCapacity]>  : public std::true_type
      * @param src The source string
      * @return The buffer of the literal
      */
-    static inline const     char*    Buffer( char  const (&src) [TCapacity]   ) { return src; }
+    static inline constexpr const char*    Buffer( char  const (&src) [TCapacity]   ) { return src; }
 
     /**
      * Returns the constant length which is \p TCapacity in \c char[TCapacity] minus one.
      * @return The length.
      */
-    static inline constexpr integer Length()        { return TCapacity -1;                  }
+    static inline constexpr integer        Length()        { return TCapacity -1;                  }
 };
 
 
@@ -410,7 +396,7 @@ class String
                 void     _dbgCheck()   const;
             #endif
 
-        //! @endcond NO_DOX
+        //! @endcond
 
 
     // #############################################################################################
@@ -459,8 +445,9 @@ class String
          * Constructs a \e nulled %String
          ******************************************************************************************/
         inline
-        constexpr String()                      : buffer(nullptr)
-                                                , length(0)
+        constexpr String()
+        : buffer(nullptr)
+        , length(0)
         {}
 
         /** ****************************************************************************************
@@ -502,7 +489,7 @@ class String
         }
 
         #if !defined(DOX_PARSER)
-            ALIB_WARNINGS_START_TMP;
+            ALIB_WARNINGS_ALLOW_TEMPLATE_META_PROGRAMMING;
         #endif
         /** ****************************************************************************************
          * Templated constructor for different types. This constructor uses some template meta
@@ -540,7 +527,7 @@ class String
          ******************************************************************************************/
         template <typename TStringLike>
         inline
-        #if !defined(_MSC_VER)                                                                               
+        #if !defined(_MSC_VER)
             constexpr
         #endif
         String(const  TStringLike& src )
@@ -786,12 +773,13 @@ class String
          * \c true is returned if both are \e nulled or empty. If only one is \e nulled, \c false is returned.
          *
          * @param needle        An %String that is compared to this.
-         * @param sensitivity   Determines if comparison is case sensitive (the default) or not.
+         * @tparam TSensitivity Determines if comparison is case sensitive (the default) or not.
          *
          * @return    \c true, if contents of this and the given %String are equal.
          ******************************************************************************************/
+        template<lang::Case TSensitivity =lang::Case::Sensitive>
         inline
-        bool Equals( const String& needle, lang::Case sensitivity =lang::Case::Sensitive )
+        bool Equals( const String& needle )
         const
         {
             ALIB_STRING_DBG_CHK(this)
@@ -802,12 +790,12 @@ class String
             if ( length == 0 )
                 return true;
 
-            return  0 == (sensitivity == lang::Case::Sensitive
+            return  0 == (TSensitivity == lang::Case::Sensitive
                             ?   strncmp             ( buffer, needle.buffer, static_cast<size_t>(length) )
                             :   CString::strncasecmp( buffer, needle.buffer,                     length  ) );
         }
 
-        /** *******************************************************************ł*********************
+        /** ****************************************************************************************
          * Returns \c true, if the given %String is found at the given position.
          *
          *  \note The following rules apply
@@ -815,17 +803,19 @@ class String
          *          (This check only done if \p TCheck equals \c true.)
          *        - Otherwise, if the length of \p needle is 0, \c true is returned.
          *
-         * @tparam TCheck      Defaults to \c true which is the normal invocation mode.
-         *                     If \c <false\> is added to the method name, no check on parameter
-         *                     \p pos is performed and \p needle must not be \e nulled.
-         * @param needle       The string to compare with. If is \e nulled or empty, \c true is returned.
-         * @param pos          The position to search for needle.
-         * @param sensitivity  Determines if comparison is case sensitive (the default) or not.
+         * @param needle        The string to compare with. If is \e nulled or empty, \c true is
+         *                      returned.
+         * @param pos           The position to search for needle.
+         * @tparam TCheck       Defaults to \c true which is the normal invocation mode.
+         *                      If \c <false\> is added to the method name, no check on parameter
+         *                      \p pos is performed and \p needle must not be \e nulled.
+         * @tparam TSensitivity Determines if comparison is case sensitive (the default) or not.
          * @return \c true if \p needle is found at the given position. False otherwise. *
          ******************************************************************************************/
-        template <bool TCheck= true>
+        template< bool        TCheck      = true,
+                  lang::Case  TSensitivity = lang::Case::Sensitive >
         inline
-        bool ContainsAt( const String& needle, integer pos, lang::Case sensitivity =lang::Case::Sensitive )
+        bool ContainsAt( const String& needle, integer pos )
         const
         {
             integer needleLength= needle.length;
@@ -844,7 +834,7 @@ class String
                 ALIB_ASSERT_ERROR( needleLength != 0, "Non checking and emtpy compare string" );
             }
 
-            return 0 == ( sensitivity == lang::Case::Sensitive
+            return 0 == ( TSensitivity == lang::Case::Sensitive
                             ?   strncmp             ( buffer + pos,  needle.buffer, static_cast<size_t>(needleLength) )
                             :   CString::strncasecmp( buffer + pos,  needle.buffer,                     needleLength  ) );
         }
@@ -855,11 +845,12 @@ class String
          *
          * @param needle        The string to compare the start of this string with.
          *                      If \e nulled or empty, \c true is returned.
-         * @param sensitivity   Determines if comparison is case sensitive (the default) or not.
+         * @tparam TSensitivity Determines if comparison is case sensitive (the default) or not.
          * @return \c true if \p needle is found at the start of this, \c false otherwise. *
          ******************************************************************************************/
+        template<lang::Case TSensitivity =lang::Case::Sensitive>
         inline
-        bool StartsWith( const String& needle, lang::Case sensitivity =lang::Case::Sensitive )
+        bool StartsWith( const String& needle )
         const
         {
             integer needleLength= needle.length;
@@ -867,7 +858,7 @@ class String
                 return false;
             if ( needleLength == 0 )
                 return true;
-            return 0 == ( sensitivity == lang::Case::Sensitive
+            return 0 == ( TSensitivity == lang::Case::Sensitive
                             ?   strncmp             ( buffer,  needle.buffer, static_cast<size_t>(needleLength) )
                             :   CString::strncasecmp( buffer,  needle.buffer, needleLength ) );
         }
@@ -878,11 +869,12 @@ class String
          *
          * @param needle        The string to compare the end of this string with.
          *                      If \e nulled or empty, \c true is returned.
-         * @param sensitivity   Determines if comparison is case sensitive (the default) or not.
+         * @tparam TSensitivity Determines if comparison is case sensitive (the default) or not.
          * @return \c true if \p needle is found at the end of this, \c false otherwise. *
          ******************************************************************************************/
+        template<lang::Case TSensitivity =lang::Case::Sensitive>
         inline
-        bool EndsWith( const String& needle, lang::Case sensitivity =lang::Case::Sensitive )
+        bool EndsWith( const String& needle )
         const
         {
             integer needleLength= needle.length;
@@ -890,7 +882,7 @@ class String
                 return false;
             if ( needleLength <= 0 )
                 return true;
-            return 0 == ( sensitivity == lang::Case::Sensitive
+            return 0 == ( TSensitivity == lang::Case::Sensitive
                           ?   strncmp             ( buffer + length - needleLength,  needle.buffer, static_cast<size_t>(needleLength) )
                           :   CString::strncasecmp( buffer + length - needleLength,  needle.buffer,                     needleLength  ) );
         }
@@ -898,12 +890,12 @@ class String
         /** ****************************************************************************************
          * Compares this with another %String.
          *
-         * @tparam TCheck      Defaults to \c true which is the normal invocation mode.
-         *                     If \c \<false\> is added to the method name, no check for \e nulled
-         *                     object is performed and this string must not be of zero length
-         *                     (while \p needle might be of zero length).
-         * @param needle    The string to compare this string with.
-         * @param sensitivity  Determines if comparison is case sensitive (the default) or not.
+         * @tparam TCheck       Defaults to \c true which is the normal invocation mode.
+         *                      If \c \<false\> is added to the method name, no check for \e nulled
+         *                      object is performed and this string must not be of zero length
+         *                      (while \p needle might be of zero length).
+         * @param  needle       The string to compare this string with.
+         * @tparam TSensitivity Determines if comparison is case sensitive (the default) or not.
          *
          * @return
          *  -  0 if this and \p needle are \e nulled or if both have a length of 0 or if both
@@ -911,9 +903,10 @@ class String
          *  - <0 if this is \e nulled and \p needle is not or if this is smaller than \p needle.
          *  - >0 if this is not \e nulled but \p needle is or if this is greater than \p needle.
          ******************************************************************************************/
-        template <bool TCheck= true>
+        template < bool TCheck      = true,
+                   Case TSensitivity = Case::Sensitive>
         inline
-        int CompareTo(  const String&  needle, lang::Case sensitivity =lang::Case::Sensitive )
+        int CompareTo( const String&  needle )
         const
         {
             // check \c nullptr arguments
@@ -928,7 +921,7 @@ class String
             bool   iAmShorter= length < needleLength;
             integer shortLen=   iAmShorter ? length : needleLength;
 
-            int cmpVal= (sensitivity == lang::Case::Sensitive)
+            int cmpVal= (TSensitivity == lang::Case::Sensitive)
                 ? strncmp             ( buffer, needle.buffer, static_cast<size_t>(shortLen) )
                 : CString::strncasecmp( buffer, needle.buffer,                     shortLen  );
 
@@ -941,19 +934,19 @@ class String
         /** ****************************************************************************************
          * Compares this with a region of another %String.
          *
+         * @param needle             The string to compare this string with.
+         * @param needleRegionStart  The start of the region in \p needle to compare this object
+         *                           with.
+         * @param needleRegionLength The length of the region in \p needle to compare this object
+         *                           with.
+         *                           Defaults to CString::MaxLen;
          * @tparam TCheck            Defaults to \c true which is the normal invocation mode.
          *                           If \c \<false\> is added to the method name, no check for a \e nulled
          *                           comparison object is performed and this string must not be empty.
          *                           Furthermore, no check is performed whether the given region fits
          *                           to parameter \p needle. This also means that the default value must
          *                           not be used with <em>TCheck==\<\c false\></em>.
-         * @param needle             The string to compare this string with.
-         * @param sensitivity        Determines if comparison is case sensitive (the default) or not.
-         * @param needleRegionStart  The start of the region in \p needle to compare this object
-         *                           with.
-         * @param needleRegionLength The length of the region in \p needle to compare this object
-         *                           with.
-         *                           Defaults to CString::MaxLen;
+         * @tparam TSensitivity      Determines if comparison is case sensitive (the default) or not.
          *
          * @return
          *  -  0 if this and \p needle are \e nulled or if both have a length of 0 or if both
@@ -961,10 +954,10 @@ class String
          *  - <0 if this is \e nulled and \p needle is not or if this is smaller than \p needle.
          *  - >0 if this is not \e nulled but \p needle is or if this is greater than \p needle.
          ******************************************************************************************/
-        template <bool TCheck= true>
+        template < bool TCheck      = true,
+                   Case TSensitivity = Case::Sensitive>
         inline
         int CompareTo(  const String&  needle,
-                        lang::Case    sensitivity,
                         integer       needleRegionStart,
                         integer       needleRegionLength  =CString::MaxLen
                      )
@@ -977,15 +970,23 @@ class String
                 cmpSub.buffer+=   needleRegionStart;
                 cmpSub.length=    needleRegionLength;
 
-                return CompareTo( cmpSub, sensitivity );
+                return CompareTo<true,  TSensitivity>( cmpSub );
             }
             else
-                return CompareTo<false>( String( needle.buffer + needleRegionStart, needleRegionLength ), sensitivity );
+                return CompareTo<false, TSensitivity>( String( needle.buffer + needleRegionStart, needleRegionLength ) );
         }
 
         /** ****************************************************************************************
          * Compares a region of this object with a region of another %String.
          *
+         * @param needle          The string to compare this string with.
+         * @param cmpRegionStart  The start of the region in \p needle to compare this object
+         *                        with.
+         * @param cmpRegionLength The length of the region in \p needle to compare this object
+         *                        with.
+         * @param regionStart     The start of the region in this object to compare with
+         * @param regionLength   The length of the region in this object to compare with.
+         *                        Defaults to CString::MaxLen;
          * @tparam TCheck         Defaults to \c true which is the normal invocation mode.
          *                        If \c \<false\> is added to the method name, no check for a \e nulled
          *                        comparison object is performed and this string must not be empty.
@@ -994,15 +995,7 @@ class String
          *                        with parameter \p needle.
          *                        This also means that the default value must not be used
          *                        with <em>TCheck==\<\c false\></em>.
-         * @param needle          The string to compare this string with.
-         * @param sensitivity     Determines if comparison is case sensitive (the default) or not.
-         * @param cmpRegionStart  The start of the region in \p needle to compare this object
-         *                        with.
-         * @param cmpRegionLength The length of the region in \p needle to compare this object
-         *                        with.
-         * @param regionStart     The start of the region in this object to compare with
-         * @param regionLength   The length of the region in this object to compare with.
-         *                        Defaults to CString::MaxLen;
+         * @tparam TSensitivity   Determines if comparison is case sensitive (the default) or not.
          *
          * @return
          *  -  0 if this and \p needle are \e nulled or if both have a length of 0 or if both
@@ -1010,10 +1003,10 @@ class String
          *  - <0 if this is \e nulled and \p needle is not or if this is smaller than \p needle.
          *  - >0 if this is not \e nulled but \p needle is or if this is greater than \p needle.
          ******************************************************************************************/
-        template <bool TCheck= true>
+        template < bool TCheck       = true,
+                   Case TSensitivity = Case::Sensitive>
         inline
         int CompareTo(  const String&   needle,
-                        lang::Case      sensitivity,
                         integer         cmpRegionStart,
                         integer         cmpRegionLength,
                         integer         regionStart,
@@ -1029,12 +1022,12 @@ class String
                 cmpSub.length=    cmpRegionLength;
 
                 AdjustRegion( regionStart, regionLength );
-                return String( buffer + regionStart, regionLength ).CompareTo( cmpSub, sensitivity );
+                return String( buffer + regionStart, regionLength ).CompareTo<true, TSensitivity>( cmpSub );
             }
             else
                 return String( buffer + regionStart, regionLength )
-                        .CompareTo<false>( String( needle.buffer + cmpRegionStart, cmpRegionLength ),
-                                           sensitivity );
+                        .CompareTo<false, TSensitivity>( String( needle.buffer + cmpRegionStart,
+                                                                cmpRegionLength )               );
 
         }
 
@@ -1271,25 +1264,26 @@ class String
          *
          * This method searches forwards. For backwards search, see #LastIndexOf.
          *
-         * @tparam TCheck   Defaults to \c true which is the normal invocation mode.
-         *                  If \c <false\> is added to the method name, no parameter checks are
-         *                  performed and the needles must not be empty.
-         * @param needles   Pointer to a zero terminated set of characters to be taken into account.
-         * @param inclusion Denotes whether the search returns the first index that holds a value
-         *                  that is included or that is not excluded in the set of needle
-         *                  characters.
-         * @param startIdx  The index to start the search at. If the given value is less than 0,
-         *                  it is set to 0. If it exceeds the length of the string, the length of
-         *                  the string is returned.
-         *                  Defaults to 0.
+         * @param needles     Pointer to a zero terminated set of characters to be taken into
+         *                    account.
+         * @param startIdx    The index to start the search at. If the given value is less than 0,
+         *                    it is set to 0. If it exceeds the length of the string, the length of
+         *                    the string is returned.
+         *                    Defaults to 0.
+         * @tparam TInclusion Denotes whether the search returns the first index that holds a value
+         *                    that is included or that is not excluded in the set of needle
+         *                    characters.
+         * @tparam TCheck     Defaults to \c true which is the normal invocation mode.
+         *                    If \c <false\> is added to the method name, no parameter checks are
          *
          * @return The index of the first character found which is included, respectively not
          *         included, in the given set of characters.
          *         If nothing is found, -1 is returned.
          ******************************************************************************************/
-        template <bool TCheck= true>
+        template <lang::Inclusion   TInclusion,
+                  bool              TCheck      = true>
         inline
-        integer    IndexOfAny( const String& needles, lang::Inclusion inclusion, integer startIdx= 0 )
+        integer    IndexOfAny( const String& needles, integer startIdx= 0 )
         const
         {
             if (TCheck)
@@ -1304,10 +1298,9 @@ class String
             }
 
 
-            integer idx= CString::IndexOfAny( buffer + startIdx,  length - startIdx,
-                                               needles.Buffer(),
-                                               needles.Length(),
-                                               inclusion                                       );
+            integer idx= TInclusion == lang::Inclusion::Include
+                     ? CString::IndexOfAnyIncluded( buffer + startIdx,  length - startIdx, needles.Buffer(), needles.Length() )
+                     : CString::IndexOfAnyExcluded( buffer + startIdx,  length - startIdx, needles.Buffer(), needles.Length() );
 
             return idx == -1 ? -1 : startIdx + idx;
         }
@@ -1319,21 +1312,24 @@ class String
          * This method searches backwards starting at the given index. For forwards search, see
          * #IndexOf.
          *
-         * @param needles    Pointer to a zero terminated set of characters to be searched for.
-         * @param inclusion  Denotes whether the search returns the first index that holds a value
-         *                   that is included or that is not excluded in the set of needle
-         *                   characters.
-         * @param startIdx   The index to start the search at. The value is cropped to be in
-         *                   the bounds of 0 and the length of this object minus one.
-         *                   Defaults to maximum integer value.
+         * @param needles     Pointer to a zero terminated set of characters to be searched for.
+         * @param startIdx    The index to start the search at. The value is cropped to be in
+         *                    the bounds of 0 and the length of this object minus one.
+         *                    Defaults to maximum integer value.
+         * @tparam TInclusion Denotes whether the search returns the first index that holds a value
+         *                    that is included or that is not excluded in the set of needle
+         *                    characters.
+         * @tparam TCheck     Defaults to \c true which is the normal invocation mode.
+         *                    If \c <false\> is added to the method name, no parameter checks are
          *
          * @return The index of the first character found which is included, respectively not
          *         included, in the given set of characters.
          *         If nothing is found, -1 is returned.
          ******************************************************************************************/
-        template <bool TCheck= true>
+        template <lang::Inclusion   TInclusion,
+                  bool              TCheck = true   >
         inline
-        integer LastIndexOfAny( const String& needles, lang::Inclusion inclusion, integer startIdx= CString::MaxLen )
+        integer LastIndexOfAny( const String& needles, integer startIdx= CString::MaxLen )
         const
         {
             if (TCheck)
@@ -1347,9 +1343,9 @@ class String
                                  "Non checking and illegal parameters" );
             }
 
-            return  CString::LastIndexOfAny(  Buffer(), startIdx,
-                                              needles.Buffer(), needles.Length(),
-                                              inclusion                               );
+            return   TInclusion == lang::Inclusion::Include
+                       ? CString::LastIndexOfAnyInclude(  Buffer(), startIdx, needles.Buffer(), needles.Length() )
+                       : CString::LastIndexOfAnyExclude(  Buffer(), startIdx, needles.Buffer(), needles.Length() );
         }
 
         /** ****************************************************************************************
@@ -1361,46 +1357,50 @@ class String
          * This method is useful for example to search needles of type
          * \ref aworx::lib::strings::Substring "Substring" (which are not terminatable).
          *
-         * @tparam TCheck      Defaults to \c true which is the normal invocation mode.
-         *                     If \c \<false\> is added to the method name, parameter \p startIdx
-         *                     must be valid and \p needle must not be empty.
-         * @param needle       The string to search for.
-         * @param startIdx     The index to start the search at. Optional and defaults to \c 0.
-         * @param sensitivity  Case sensitivity of the comparison.
-         *                     Optional and defaults to \b Case::Sensitive.
+         * If \p needle is empty, \p startIdx is returned.
+         *
+         * @param  needle         The string to search for.
+         * @param  startIdx       The index to start the search at. Optional and defaults to \c 0.
+         * @tparam TSensitivity   Case sensitivity of the comparison.
+         *                        Optional and defaults to \b Case::Sensitive.
+         * @tparam TCheck         Defaults to \c true which is the normal invocation mode.
+         *                        If \c \<false\> is added to the method name, parameter \p startIdx
+         *                        must be valid and \p needle must not be empty.
          *
          * @return    -1 if the string is not found. Otherwise the index of first occurrence.
          ******************************************************************************************/
-        template <bool TCheck= true>
+        template<lang::Case     TSensitivity  =  lang::Case::Sensitive,
+                 bool           TCheck       = true                     >
         inline
         integer  IndexOfSubstring( const String&  needle,
-                                    integer       startIdx= 0,
-                                    lang::Case    sensitivity=  lang::Case::Sensitive )
+                                   integer        startIdx= 0    )
         const
         {
             integer nLen=   needle.Length();
             if (TCheck)
             {
+                if ( needle.IsNull()  )
+                    return  -1;
                 if ( startIdx < 0 )                startIdx= 0;
                 if ( startIdx + nLen > length )    return -1;
-                if ( needle.Length() == 0  )       return  startIdx;
             }
             else
             {
-                ALIB_ASSERT_ERROR( startIdx >= 0 && startIdx + nLen <= length && nLen != 0,
+                ALIB_ASSERT_ERROR( startIdx >= 0 && startIdx <= length && needle.IsNotNull(),
                                  "Non checking and illegal parameters" );
             }
-
+            if( nLen == 0 )
+                return startIdx;
             const char*  buf=    buffer + startIdx;
-            const char*  bufEnd= buf + length - nLen + 1;
+            const char*  bufEnd= buffer + length - nLen + 1;
             const char* nBuf=    needle.Buffer();
             const char* nBufEnd= nBuf + nLen;
 
-            while ( buf != bufEnd )
+            while ( buf <= bufEnd )
             {
                 const char* b=  buf;
                 const char* n= nBuf;
-                if ( sensitivity == lang::Case::Sensitive )
+                if ( TSensitivity == lang::Case::Sensitive )
                 {
                     while ( *b++ == *n++ )
                         if( n == nBufEnd )
@@ -1433,9 +1433,9 @@ class String
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        integer  IndexOfFirstDifference( const String&     needle,
-                                          lang::Case        sensitivity   = lang::Case::Sensitive,
-                                          integer          idx         = 0                     ) const
+        integer  IndexOfFirstDifference( const String&  needle,
+                                         lang::Case     sensitivity = lang::Case::Sensitive,
+                                         integer        idx         = 0                     ) const
         {
             ALIB_STRING_DBG_CHK(this)
 
@@ -1455,6 +1455,200 @@ class String
                                                       needle.buffer,          needle.length,
                                                       sensitivity                                 );
         }
+
+        /** ****************************************************************************************
+         * Counts all occurrences of \p needle from \p startPos to the end of the string.
+         *
+         * For empty strings \p needle, \c 0 is returned.
+         *
+         * @param needle    The string to search for.
+         * @param startPos  The index to start the counting.
+         *                  Optional and defaults to \c 0.
+         * @tparam TCheck   Defaults to \c true which is the normal invocation mode.
+         *                  If \c \<false\> is added to the method name, no range check is
+         *                  performed.
+         *
+         * @return  The index of the first difference in \p needle.
+         ******************************************************************************************/
+        template <bool TCheck= true>
+        inline
+        int  CountChar( char            needle,
+                        integer         startPos        = 0                                  ) const
+        {
+            ALIB_STRING_DBG_CHK(this)
+            if ( TCheck )
+            {
+                // adjust range, if empty return -1
+                     if ( startPos <  0      )  startPos= 0;
+                else if ( startPos >= length )  return 0;
+            }
+            else
+            {
+                ALIB_ASSERT_ERROR( startPos >= 0 && startPos < length,
+                                 "Non checking and index out of range" );
+            }
+
+
+            int     result= 0;
+            while( startPos < length && (startPos= IndexOf<false>( needle, startPos )) >= 0 )
+            {
+                startPos++;
+                result++;
+            }
+
+            return result;
+        }
+
+        /** ****************************************************************************************
+         * Counts all occurrences of \p needle, unless followed by \p omit, starting at
+         * \p startPos to the end of the string.
+         *
+         * For empty strings \p needle, \c 0 is returned.
+         * Also, for empty strings \p omit, \c 0 is returned.
+         *
+         * @param needle    The string to search for.
+         * @param omit      Omit occurrence if the given character follows.
+         * @param startPos  The index to start the counting.
+         *                  Optional and defaults to \c 0.
+         * @tparam TCheck   Defaults to \c true which is the normal invocation mode.
+         *                  If \c \<false\> is added to the method name, no range check is
+         *                  performed.
+         *
+         * @return  The index of the first difference in \p needle.
+         ******************************************************************************************/
+        template <bool TCheck= true>
+        int  CountChar( char            needle,
+                        char            omit,
+                        integer         startPos        = 0                                  ) const
+        {
+            ALIB_STRING_DBG_CHK(this)
+            if ( TCheck )
+            {
+                // adjust range, if empty return -1
+                     if ( startPos <  0      )  startPos= 0;
+                else if ( startPos >= length )  return 0;
+            }
+            else
+            {
+                ALIB_ASSERT_ERROR( startPos >= 0 && startPos < length,
+                                 "Non checking and index out of range" );
+            }
+
+            int     result= 0;
+            while( startPos < length && (startPos= IndexOf<false>( needle, startPos )) >= 0 )
+            {
+                startPos++;
+                if( startPos < Length()  &&  *(buffer + startPos) == omit  )
+                    continue;
+
+                result++;
+            }
+
+            return result;
+        }
+
+        /** ****************************************************************************************
+         * Counts all occurrences of \p needle from \p startPos to the end of the string.
+         *
+         * For empty strings \p needle, \c 0 is returned.
+         *
+         * @param needle        The string to search for.
+         * @param startPos      The index to start the counting.
+         *                      Optional and defaults to \c 0.
+         * @tparam TSensitivity Case sensitivity of the comparison.
+         *                      Optional and defaults to \b Case::Sensitive.
+         * @tparam TCheck       Defaults to \c true which is the normal invocation mode.
+         *                      If \c \<false\> is added to the method name, parameter \p startIdx
+         *                      must be valid and \p needle must not be empty.
+         *
+         * @return  The index of the first difference in \p needle.
+         ******************************************************************************************/
+        template<lang::Case     TSensitivity  =  lang::Case::Sensitive,
+                 bool           TCheck       = true                     >
+        int  Count( const String&   needle,
+                    integer         startPos        = 0                                  ) const
+        {
+            ALIB_STRING_DBG_CHK(this)
+            integer nLen= needle.Length();
+            if( nLen == 0  )
+                return 0;
+            if (TCheck)
+            {
+                if ( startPos < 0 )                startPos= 0;
+                if ( startPos + nLen > length )    return  0;
+            }
+            else
+            {
+                ALIB_ASSERT_ERROR( startPos >= 0 && startPos < length,
+                                 "Non checking and illegal parameters" );
+            }
+
+            int     result= 0;
+            while( (startPos= IndexOfSubstring<TSensitivity, false>( needle, startPos )) >= 0 )
+            {
+                startPos+= needle.Length();
+                result++;
+            }
+
+            return result;
+        }
+
+        /** ****************************************************************************************
+         * Counts all occurrences of \p needle, unless followed by \p omit, starting at
+         * \p startPos to the end of the string.
+         *
+         * For empty strings \p needle, \c 0 is returned.
+         * Also, for empty strings \p omit, \c 0 is returned.
+         *
+         * @param needle       The string to search for.
+         * @param omit         Omit occurrence if the given string follows.
+         * @param startPos     The index to start the counting.
+         *                     Optional and defaults to \c 0.
+         * @tparam sensitivity Case sensitivity of the comparison.
+         *                     Optional and defaults to \b Case::Sensitive.
+         * @tparam TCheck      Defaults to \c true which is the normal invocation mode.
+         *                     If \c \<false\> is added to the method name, parameter \p startIdx
+         *                     must be valid and \p needle must not be empty.
+         *
+         * @return  The index of the first difference in \p needle.
+         ******************************************************************************************/
+        template<lang::Case     sensitivity  =  lang::Case::Sensitive,
+                 bool           TCheck       = true                     >
+        int  Count( const String&   needle,
+                    const String&   omit,
+                    integer         startPos        = 0                                  ) const
+        {
+            ALIB_STRING_DBG_CHK(this)
+            integer nLen= needle.Length();
+            if ( nLen == 0  )
+                return  0;
+            if (TCheck)
+            {
+                if ( startPos < 0 )                startPos= 0;
+                if ( startPos + nLen > length )    return  0;
+            }
+            else
+            {
+                ALIB_ASSERT_ERROR( startPos >= 0 && startPos < length,
+                                 "Non checking and illegal parameters" );
+            }
+
+
+            int     result= 0;
+            while( (startPos= IndexOfSubstring<sensitivity,false>( needle, startPos )) >= 0 )
+            {
+                startPos+= nLen;
+                if(     startPos + omit.Length() <= Length()
+                    &&  String( buffer, startPos, omit.Length()).Equals<sensitivity>( omit )
+                  )
+                    continue;
+
+                result++;
+            }
+
+            return result;
+        }
+
 
 
     /** ############################################################################################
@@ -1492,7 +1686,7 @@ class String
          *   with T being <em>[const] wchar_t*</em>.
          * - On Linux, it might be necessary to invoke std function <em>setlocale()</em> once,
          *   prior to using this method.
-         *   This, by default, is done in \ref aworx::lib::ALIB::Init "ALIB::Init".
+         *   This, by default, is done in \ref aworx::lib::ALib::Init "ALib::Init".
          *
          * @param dest          The destination buffer.
          * @param destCapacity  The size of the destination buffer. Has to be equal or greater than
@@ -1545,7 +1739,7 @@ class String
         class RandomAccessIteratorBase
             : public std::iterator< std::random_access_iterator_tag,  // iterator_category
                                     char,                             // value_type
-                                    integer,                          // integer
+                                    integer,                          // distance type
                                     TPointer,                         // pointer
                                     TReference                        // reference
                                   >
@@ -1679,7 +1873,7 @@ class String
                  *  @param other  The iterator to compare
                  *  @return \c true if this iterator is \e smaller than \p other,
                  *          \c false otherwise. */
-                integer operator<(RandomAccessIteratorBase other)   const
+                bool operator<(RandomAccessIteratorBase other)   const
                 {
                     return p < other.p;
                 }
@@ -1688,7 +1882,7 @@ class String
                  *  @param other  The iterator to compare
                  *  @return \c true if this iterator is \e smaller than or equal to \p other,
                  *          \c false otherwise. */
-                integer operator<=(RandomAccessIteratorBase other)   const
+                bool operator<=(RandomAccessIteratorBase other)   const
                 {
                     return p <= other.p;
                 }
@@ -1698,7 +1892,7 @@ class String
                  *  @param other  The iterator to compare
                  *  @return \c true if this iterator is \e greater than \p other,
                  *          \c false otherwise. */
-                integer operator>(RandomAccessIteratorBase other)   const
+                bool operator>(RandomAccessIteratorBase other)   const
                 {
                     return p > other.p;
                 }
@@ -1707,7 +1901,7 @@ class String
                  *  @param other  The iterator to compare
                  *  @return \c true if this iterator is \e greater than or equal to \p other,
                  *          \c false otherwise. */
-                integer operator>=(RandomAccessIteratorBase other)   const
+                bool operator>=(RandomAccessIteratorBase other)   const
                 {
                     return p >= other.p;
                 }
@@ -1754,57 +1948,64 @@ class String
 }; // class %String
 
 
-    /** ********************************************************************************************
-     * Implements a hash function  for class \ref aworx::lib::strings::String "String" usable
-     * with types found in namespace \b std.
-     * Instead of implementing \b std::hash inside namespace \b std, this struct can be
-     * provided as template parameter, e.g. to \b std::unordered_map.
-     **********************************************************************************************/
-    struct std_Hash
+/** ********************************************************************************************
+ * Implements a hash function  for class \ref aworx::lib::strings::String "String" usable
+ * with types found in namespace \b std.
+ * Instead of implementing \b std::hash inside namespace \b std, this struct can be
+ * provided as template parameter, e.g. to \b std::unordered_map.
+ **********************************************************************************************/
+struct std_Hash
+{
+    /**
+     * Calculates the hash code for class \b String.
+     * @param src The string object to hash.
+     * @return The hash code.
+     */
+    size_t operator()(const String src) const
     {
-        /**
-         * Calculates the hash code for class \b String.
-         * @param src The string object to hash.
-         * @return The hash code.
-         */
-        size_t operator()(const String src) const
-        {
-            integer result= 0xc70f6907UL;
+        integer result= 0xc70f6907UL;
 
-            for (int i = 0; i < src.Length(); i++)
-                result = 31*result + src.CharAt<false>(i++);
+        for (int i = 0; i < src.Length(); i++)
+            result = 31*result + src.CharAt<false>(i++);
 
-            return static_cast<size_t>( result );
-        }
-    };
+        return static_cast<size_t>( result );
+    }
+};
 
-    /** ********************************************************************************************
-     * Implements a comparison function for objects of class
-     * \ref aworx::lib::strings::String "String", usable with types found in namespace \b std.
-     * Instead of implementing the operator inside namespace \b std, this struct can be
-     * provided as template parameter, e.g. to \b std::unordered_map.
-     **********************************************************************************************/
-    struct std_Equals
+/** ********************************************************************************************
+ * Implements a comparison function for objects of class
+ * \ref aworx::lib::strings::String "String", usable with types found in namespace \b std.
+ * Instead of implementing the operator inside namespace \b std, this struct can be
+ * provided as template parameter, e.g. to \b std::unordered_map.
+ **********************************************************************************************/
+struct std_Equals
+{
+    /**
+     * Invokes \ref aworx::lib::strings::String::Equals "String::Equals" on \p lhs, passing
+     * \p rhs.
+     * @param lhs The first string object.
+     * @param rhs The second string object.
+     * @return The hash code.
+     */
+    bool operator()(const String lhs,
+                    const String rhs) const
     {
-        /**
-         * Invokes \ref aworx::lib::strings::String::Equals "String::Equals" on \p lhs, passing
-         * \p rhs.
-         * @param lhs The first string object.
-         * @param rhs The second string object.
-         * @return The hash code.
-         */
-        bool operator()(const String lhs,
-                        const String rhs) const
-        {
-            return lhs.Equals( rhs );
-        }
-    };
+        return lhs.Equals( rhs );
+    }
+};
 
 }} // namespace lib::strings
 
 
 /** Type alias name in namespace #aworx. */
-using     String    =   aworx::lib::strings::String;
+using     String                =   aworx::lib::strings::String;
+
+/** Type alias name in namespace #aworx. */
+template<typename TValue>
+using     UnorderedStringMap    =   std::unordered_map<String, TValue,
+                                                       lib::strings::std_Hash,
+                                                       lib::strings::std_Equals>;
+
 
 
 // #################################################################################################
@@ -1832,9 +2033,10 @@ constexpr lib::strings::String   EmptyString {"", 0};
 // #################################################################################################
 /** clang needs this when class String is used as a key of class std::map (in std::map::operator[String]). */
 #if defined(__clang__)
-    ALIB_STRING_CONSTRUCTOR_FIX( std::tuple<      String &>  )
-    ALIB_STRING_CONSTRUCTOR_FIX( std::tuple<const String &>  )
-    ALIB_STRING_CONSTRUCTOR_FIX( std::tuple<      String &&> )
+    ALIB_STRING_CONSTRUCTOR_FIX( std::tuple<      String   >  )
+    ALIB_STRING_CONSTRUCTOR_FIX( std::tuple<      String & >  )
+    ALIB_STRING_CONSTRUCTOR_FIX( std::tuple<const String & >  )
+    ALIB_STRING_CONSTRUCTOR_FIX( std::tuple<      String &&>  )
 #endif
 
 

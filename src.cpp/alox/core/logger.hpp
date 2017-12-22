@@ -57,7 +57,9 @@ class Logger : public lib::threads::SmartLock
 
     /**
      *  An utility value. Has to be first in the class. Will be initialized prior to any other
-     *  field. For more info see # Log::InitALox()
+     *  field. Usually, library initialization is performed with \alib{lang,Library::Init} on
+     *  singleton \ref aworx::lox::ALOX. However, is this is not invoked explicitly on bootstrap,
+     *  this fields initialization code will do the job.
      */
     private:    bool _apiInitializer;
 
@@ -128,7 +130,7 @@ class Logger : public lib::threads::SmartLock
          ******************************************************************************************/
         inline
         Logger( const String& name, const String& typeName )
-                                     : _apiInitializer( ALox::Init() )
+                                     : _apiInitializer( ALOX.Init() )
                                      , Name(name)
                                      , TypeName(typeName)
                                      , TimeOfCreation ()
@@ -178,15 +180,15 @@ using     Logger=       aworx::lox::core::Logger;
 
 
 
-namespace aworx { namespace lib { namespace strings
-{
+namespace aworx { namespace lib { namespace strings {
+
 // We are faking all template specializations of namespace strings for doxygen into namespace
 // strings::applyto to keep the documentation of namespace string clean!
 #if defined(DOX_PARSER)
 namespace thirdparty {
 /**
  * Template type and function specializations found here allow to apply types of logging library
- * \b %ALox to be "applicable" to <b>ALib Strings</b>.
+ * \b %ALox to be "applicable" to <b>%ALib Strings</b>.
  *
  * \attention
  *   This is a non-existing namespace, exclusively defined for the
@@ -230,8 +232,7 @@ namespace alox {
 #if defined(DOX_PARSER)
 }}
 #endif
-}}} // namespace aworx::lib::strings
 
-
+}}}// namespace [aworx::lox::strings]
 
 #endif // HPP_ALOX_CORE_LOGGER

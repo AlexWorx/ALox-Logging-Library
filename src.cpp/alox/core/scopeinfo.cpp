@@ -41,7 +41,7 @@ int                                         ScopeInfo::DefaultCacheSize         
 
 bool                                        ScopeInfo::GlobalSPTRsReadFromConfig       = false;
 
-ScopeInfo::ScopeInfo( const TString& pName, const std::map<int, String32>&  pThreadDictionary )
+ScopeInfo::ScopeInfo( const String& pName, const std::map<int, String32>&  pThreadDictionary )
 : loxName( pName )
 , threadDictionary(pThreadDictionary)
 {
@@ -60,7 +60,7 @@ ScopeInfo::ScopeInfo( const TString& pName, const std::map<int, String32>&  pThr
         if ( trimInfoNo == 0 )
         {
             trimInfoList= &LocalSPTRs;
-            variable.Define( ALox::SPTR_LOX, loxName ).Load();
+            variable.Declare( Variables::SPTR_LOX, loxName );
         }
         else
         {
@@ -69,10 +69,11 @@ ScopeInfo::ScopeInfo( const TString& pName, const std::map<int, String32>&  pThr
             GlobalSPTRsReadFromConfig= true;
 
             trimInfoList= &GlobalSPTRs;
-            variable.Define( ALox::SPTR_GLOBAL ).Load();
+            variable.Declare( Variables::SPTR_GLOBAL );
         }
+        ALOX.Config->Load( variable );
 
-        if( variable.Priority != 0 )
+        if( variable.Priority != Priorities::NONE  )
         {
             for( int ruleNo= 0; ruleNo< variable.Size(); ruleNo++ )
             {
@@ -99,9 +100,10 @@ ScopeInfo::ScopeInfo( const TString& pName, const std::map<int, String32>&  pThr
                 else
                     rule.Path.SearchAndReplace( '/' , '\\' );
 
-                rule.IncludeString =    lib::lang::ReadInclusion( ruleTknzr.Next() );
+                ruleTknzr.Next().ConsumeEnumOrBool( rule.IncludeString, Inclusion::Exclude, Inclusion::Include );
                 ruleTknzr.Next().ConsumeInt( rule.TrimOffset );
-                rule.Sensitivity=       lib::lang::ReadCase( ruleTknzr.Next() );
+                ruleTknzr.Next().ConsumeEnumOrBool( rule.Sensitivity, Case::Ignore, Case::Sensitive );
+
                 rule.TrimReplacement=   ruleTknzr.Next();
             }
         }
@@ -169,13 +171,13 @@ void ScopeInfo::Set ( const TString& sourceFileName, int lineNumber, const TStri
 
 }
 
-void  ScopeInfo::SetSourcePathTrimRule( const TString&  path,
-                                        Inclusion       includeString,
-                                        int             trimOffset,
-                                        Case            sensitivity,
-                                        const String&   trimReplacement,
-                                        Reach           reach,
-                                        int             priority )
+void  ScopeInfo::SetSourcePathTrimRule( const TString&      path,
+                                        Inclusion           includeString,
+                                        int                 trimOffset,
+                                        Case                sensitivity,
+                                        const String&       trimReplacement,
+                                        Reach               reach,
+                                        Priorities         priority )
 {
     // clear cache to have lazy variables reset with the next invocation
     for ( int i= 0; i< cacheSize; i++ )
@@ -260,9 +262,14 @@ void ScopeInfo::trimPath()
         for ( auto& ti : *trimInfoList )
         {
             if( ti.IsPrefix )
-                idx= actual->trimmedPath.StartsWith( ti.Path, ti.Sensitivity ) ? 0 : -1;
+                idx= ( ti.Sensitivity == Case::Sensitive  ? actual->trimmedPath.StartsWith<Case::Sensitive>( ti.Path )
+                                                          : actual->trimmedPath.StartsWith<Case::Ignore   >( ti.Path )
+                     )
+
+                     ? 0 : -1;
             else
-                idx= actual->trimmedPath.IndexOfSubstring( ti.Path, 0, ti.Sensitivity );
+                idx= ti.Sensitivity == Case::Sensitive  ? actual->trimmedPath.IndexOfSubstring<Case::Sensitive>( ti.Path )
+                                                        : actual->trimmedPath.IndexOfSubstring<Case::Ignore   >( ti.Path );
             if ( idx >= 0 )
             {
                 integer startIdx= idx + ( ti.IncludeString == Inclusion::Include ? ti.Path.Length() : 0 ) + ti.TrimOffset;
@@ -304,7 +311,7 @@ void ScopeInfo::trimPath()
             currentDir.SetLength<false>( i );
             TString origFile= actual->origFile;
                 SetSourcePathTrimRule( currentDir, Inclusion::Include, 0, Case::Ignore, NullString,
-                                       Reach::Local, Configuration::PrioAutodetect );
+                                       Reach::Local, Priorities::AutoDetected );
             actual->origFile= origFile;
             trimPath(); // one recursive call
         }
@@ -312,7 +319,7 @@ void ScopeInfo::trimPath()
 }
 
 
-}}}// namespace aworx::lox::core
+}}}// namespace [aworx::lox::core]
 
 #if defined(_MSC_VER)
     #pragma warning( pop )

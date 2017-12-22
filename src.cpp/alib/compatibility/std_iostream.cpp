@@ -7,7 +7,7 @@
 #include "alib/alib.hpp"
 #include "alib/compatibility/std_iostream.hpp"
 #if defined(_MSC_VER)
-    #include <algorithm> 
+    #include <algorithm>
 #endif
 
 #if ALIB_MODULE_STRINGS
@@ -27,7 +27,7 @@ namespace aworx { namespace lib { namespace strings {
 namespace thirdparty {
 /**
  * With the inclusion of header file <c>alib/compatibility/std_string.hpp</c>,
- * some compatibility between <b>ALib Strings</b> and string types of namespace \b std
+ * some compatibility between <b>%ALib Strings</b> and string types of namespace \b std
  * is provided.
  *
  * <b>1. Specializations of  %T_String:</b><br>
@@ -171,6 +171,6 @@ integer T_Apply<thirdparty::std::ReadLineFromIStream>::Apply( AString& target, c
 #endif
 
 
-}}}// namespace aworx::lib::strings
+}}}// namespace [aworx::lib::strings]
 #endif // ALIB_MODULE_STRINGS
 

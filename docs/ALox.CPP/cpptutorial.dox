@@ -6,11 +6,11 @@
 // #################################################################################################
 
 /**
-\page cpptutorial       ALox for C++ Tutorial
+\page alox_cpp_tutorial       ALox for C++ Tutorial
 
 \tableofcontents
 
-# 1. Hello ALox # {#tutcpp_hello_alox}
+# 1. Hello ALox # {#alox_tutcpp_hello_alox}
 
 Welcome to the ALox for C++ tutorial! This tutorial aims to introduce you to ALox as quickly as
 possible and put you into a position to decide whether ALox is the right logging library for you.
@@ -43,7 +43,7 @@ Let us quickly start a new chapter of this tutorial and go into more details.
 
 
 \~Comment ####################################################################################### \~
-# 2. Class Lox and ALox C++ Macros # {#tutcpp_adding_ALox}
+# 2. Class Lox and ALox C++ Macros # {#alox_tutcpp_adding_ALox}
 
 The previous chapter was a teaser. We showed the shortest possible sample program which does not
 'bootstrap' ALox (aka initialize and configure). This is detected and hence ALox tries to setup
@@ -91,19 +91,19 @@ In this tutorial we stick to the simple case, maybe adding a second \e Logger he
 In the tutorial language we do not further explain these macros. So do not be surprised when the presented sample code
 shows a macro, while the explaining text refers to the method invocations that are represented by these macros.
 For a full introduction into the ALox' macros for logging, please refer to
-\ref cppprepro_macros "C++ Macros".
+\ref alox_cpp_prepro_macros "C++ Macros".
 
 \~Comment ####################################################################################### \~
-# 3. Create a tutorial project or equip your current project with ALox #   {#tutcpp_createproject}
+# 3. Create a tutorial project or equip your current project with ALox #   {#alox_tutcpp_createproject}
 
 If you want to follow the tutorial samples and play around with it a little, you should
 either create a tutorial project or right away equip your current project with ALox.
-For information about how you do that see: \ref cppsetup.
+For information about how you do that see: \ref alox_cpp_setup.
 
 \note
   Of-course, you can easily skip this step and just continue \e reading the tutorial
   without setting up ALox now. For some IDEs, there might be a
-  \ref cppsetup "ready to use solution" available that minimizes efforts when you want
+  \ref alox_cpp_setup "ready to use solution" available that minimizes efforts when you want
   to follow the samples and play around a little.
 
 To include all headers necessary for this tutorial, add the following statements to your source file:
@@ -120,7 +120,7 @@ And add a statement to use namespaces \c std and \ref aworx to your source file:
 
 
 \~Comment ####################################################################################### \~
-# 4. Class Logger ##  {#tutcpp_logger}
+# 4. Class Logger ##  {#alox_tutcpp_logger}
 
 While class \b %Lox is the main interface to ALox logging, abstract class
 \ref aworx::lox::core::Logger  "Logger" is performing the log. 'Performing' here means that
@@ -131,7 +131,7 @@ Before we can start logging, we need to create one or more \e %Loggers and attac
 our instance of class \b %Lox.
 
 \note
-  In the shortest sample shown above (\ref tutcpp_hello_alox "Hello ALox") we have not done this. For debug
+  In the shortest sample shown above (\ref alox_tutcpp_hello_alox "Hello ALox") we have not done this. For debug
   logging ALox notices this and automatically creates a \e %Logger.
 
 
@@ -167,7 +167,7 @@ should look like this:
 
 
 \~Comment ####################################################################################### \~
-# 5. Run the Application #  {#tutcpp_run}
+# 5. Run the Application #  {#alox_tutcpp_run}
 
 When you run your project, output similar to this:
 
@@ -181,7 +181,7 @@ should appear in your IDE or your console.
   here.
 
 \~Comment ####################################################################################### \~
-## 5.1. Run your application within your IDE ##        {#tutcpp_run_ide}
+## 5.1. Run your application within your IDE ##        {#alox_tutcpp_run_ide}
 
 If you are using an IDE supported by ALox (e.g. Visual Studio in Windows), you can double click the log line in the output
 window. The IDE  opens the source and selects the line of code where the log call was invoked.
@@ -229,7 +229,7 @@ This takes a wider output into account for the  benefit of largely improved read
 
 
 \~Comment ####################################################################################### \~
-## 5.2. Build a release version ##                              {#tutcpp_run_release}
+## 5.2. Build a release version ##                              {#alox_tutcpp_run_release}
 
 Switch your project configuration to "Release" and run the application. The output should not appear!
 
@@ -238,8 +238,8 @@ are logging out during developing and debugging your software, it is all automat
 release version.
 
 This is achieved by providing the right set of
-\ref cppprepro_compsymbols "Compilation Symbols" when
-\ref cppsetup "setting up the project". Only project configurations that have the symbol
+\ref alox_cpp_prepro_compsymbols "Compilation Symbols" when
+\ref alox_cpp_setup "setting up the project". Only project configurations that have the symbol
 \b ALOX_DBG_LOG_ON set will contain ALox debug logging statements.
 
 This has a lot of benefits:
@@ -249,7 +249,7 @@ This has a lot of benefits:
 
 
 \~Comment ####################################################################################### \~
-# 6. Controlling the 'Verbosity' #     {#tutcpp_verbosity}
+# 6. Controlling the 'Verbosity' #     {#alox_tutcpp_verbosity}
 
 The code above uses the method [Lox::Info()](@ref #aworx::lox::Lox::Info) (embedded in a preprocessor macro) to create the
 log output. There are three other Versions of that method, together constituting the four <em>'Verbosities'</em>:
@@ -329,7 +329,7 @@ But probably, in bigger projects, we need more \b 'granularity' for such control
 
 
 \~Comment ####################################################################################### \~
-# 7. Log Domains  #     {#tutcpp_logdomains}
+# 7. Log Domains  #     {#alox_tutcpp_logdomains}
 
 Controlling the \e Verbosity of the log output, including switching it completely off,
 is of-course a core feature of any logging library.
@@ -372,7 +372,7 @@ when looking at the meta information of the log output, showing
 
 
 \~Comment ####################################################################################### \~
-# 8. Hierarchical Log Domains  #     {#tutcpp_logdomains_hierarchical}
+# 8. Hierarchical Log Domains  #     {#alox_tutcpp_logdomains_hierarchical}
 
 ALox organizes <em>Log Domains</em> hierarchically. A first advantage of this is that it becomes easy to switch
 \e Verbosity of a whole set of <em>Log Domains</em> by controlling the parent.
@@ -427,7 +427,7 @@ Now, we are able control the \e Verbosity of a (sub-)tree of <em>Log Domains</em
 more about why the hierarchical organization of <em>Log Domains</em> is extremely useful.
 
 \~Comment ####################################################################################### \~
-# 9. Scope Domains  #     {#tutcpp_scope_domains}
+# 9. Scope Domains  #     {#alox_tutcpp_scope_domains}
 
 As we saw, optional parameter \p domain of <em>Log Statements</em> allows us to group the log output into
 different areas of interest and control the \e Verbosity per group. This is nice, but
@@ -512,7 +512,7 @@ in the [ALox User Manual](../manual.html). Among other things, you will find:
 
 
 \~Comment ####################################################################################### \~
-# 10. Formatting #   {#tutcpp_formatting}
+# 10. Formatting #   {#alox_tutcpp_formatting}
 While talking about rather complicated things like <em>Log Domains</em> and \e Scopes, we must not
 forget to talk about the log output itself. \b %ALox is designed to be able to pass any type of
 data to one or more \e Loggers. In the default case, a textual output of these \e "Logables" is wanted.
@@ -582,7 +582,7 @@ with some more samples:
 
 
 \~Comment ####################################################################################### \~
-# 11. Conditional logging  #   {#tutcpp_conditional}
+# 11. Conditional logging  #   {#alox_tutcpp_conditional}
 
 ## 11.1. Lox.Assert  ##
 
@@ -641,7 +641,7 @@ therefore just summarize some facts:
 
 
 \~Comment ####################################################################################### \~
-# 12. Prefixes  #   {#tutcpp_Log_Prefix}
+# 12. Prefixes  #   {#alox_tutcpp_Log_Prefix}
 
 Imagine, all log statements of a of a certain kind should be very visible and distinguishable
 from other output. You could do this by
@@ -687,10 +687,11 @@ structured data!
 
 
 \~Comment ####################################################################################### \~
-# 13. LogTools: Log Complex Data ##       {#tutcpp_logtools}
+# 13. LogTools: Log Complex Data ##       {#alox_tutcpp_logtools}
 
-Ooopps, unfortunately, we have to skip this chapter in the C++ Version of ALox. While C# and Java provide
-runtime type information and class reflection (introspection), pure C++ does not.
+Ooopps, unfortunately, we have to (almost) skip this chapter in the C++ Version of ALox.
+While C# and Java provide runtime type information and class reflection (introspection),
+C++ does not.
 Therefore, we are missing the extremely handy LogTools class in C++, which in the other ALox incarnations recursively
 log complex objects automatically.<p>
 Therefore, if you want to *dump* more complex objects you have to extend your classes (and probably their subclasses) with
@@ -698,7 +699,7 @@ corresponding helper functions that assemble a log string.<p>
 What helps to have a clear presentation of objects dumps within your log files are the concepts of <em>Prefix Logable</em>
 providing recursive indentation and *multi-line* logging that ALox provides.<p>
 
-Here is a sample output from the Java LogTools class that give you and idea how nicely a dumped
+Here is a sample output from the Java LogTools class that gives you and idea how nicely a dumped
 object might look, if recursive indentation and tabulators are used:<p>
 
 \attention This is Java code, taken from the ALox for Java tutorial!
@@ -716,6 +717,9 @@ When implementing an object dump, you should not place a <em>Log Statement</em> 
 every attribute. In contrast, you should collect the whole dump within an #aworx::AString
 (or any string type you like) and then log this String as a whole.
 
+So, currently class \alox{LogTools} just provides one static method for logging
+\alib{lang,Exception,ALib Exceptions}.
+
 For future versions of ALox for C++, it is planned to provide:
 - Working with debug information to implement log tools for user defined classes
 - Preprocessor macros that standardize the customized logging of complex objects
@@ -724,7 +728,7 @@ You are invited to send us your proposals of log tool code for common libraries 
 
 
 \~Comment ####################################################################################### \~
-# 14. Name Your Threads  #       {#tutcpp_threadnames}
+# 14. Name Your Threads  #       {#alox_tutcpp_threadnames}
 
 In multi-threaded applications, ALox by default logs information about the thread id or name
 that executed the code containing your log statements.
@@ -775,7 +779,7 @@ right place automatically! It also might be a good idea to restart your app with
 to \e Verbosity.Verbose and then look for the first appearances of unknown threads.
 
 \~Comment ####################################################################################### \~
-# 15. ALox Log Data #      {#tutcpp_logdata}
+# 15. ALox Log Data #      {#alox_tutcpp_logdata}
 
 We hope that you are fully aware when reading through this tutorial, that all debug-log statements
 that are sampled here, are \b pruned from the release executables.
@@ -820,7 +824,7 @@ the right debug \b %Lox:
 
 
 \~Comment ####################################################################################### \~
-# 16. ALox Configuration Information and Internal Log Messages #      {#tutcpp_config}
+# 16. ALox Configuration Information and Internal Log Messages #      {#alox_tutcpp_config}
 
 In complex projects it might get a little confusing to keep track about the
 \e Loggers and their \e Verbosity, <em>Scope Domains</em>, <em>Prefix Logables</em> and <em>Log Data</em> set.
@@ -874,8 +878,12 @@ To summarize: We have to ways to look into ALox:
     In other words, the general domain tree is completely kept free for the users of ALox.
 
 
+\see
+    \alox configuration variable [ALOX_LOXNAME_DUMP_STATE_ON_EXIT](../group__GrpALoxConfigVars.html) provides
+    a way to automatically log state information when a \b %Lox gets deleted.
 
-# Further Reading #     {#tutcpp_end}
+
+# Further Reading #     {#alox_tutcpp_end}
 
 This is the end of the tutorial of ALox for C++. You should be able to use the basic features of the ALox logging ecosystem and
 have nice, formatted, configurable log output in your software projects. ALox puts you in the comfortable position to
@@ -891,7 +899,7 @@ important things not covered in the tutorial are:
 
 - <b>Release Logging</b><br>
   Release logging is very similar to debug logging. The differences and how to use release-logging is
-  described in a [dedicated chapter](../man_debug_and_release_logging.html) of the manual
+  described in a [dedicated chapter](../alox_man_debug_and_release_logging.html) of the manual
 - <b>External Configuration</b><br>
   Instead of setting \e Verbosities and other changeable configuration "from within the source"
   (by adding ALox API invocations to your software), such data can also come from INI files,
@@ -902,14 +910,14 @@ important things not covered in the tutorial are:
 - <b>Trimming Source File Paths</b><br>
   For C++ and C# users: ALox automatically trims paths of source code files. This can
   be optimized, as described in
-  [Trimming Source File Paths and Clickable IDE Output](../man_trim_source_path.html).
+  [Trimming Source File Paths and Clickable IDE Output](../alox_man_trim_source_path.html).
 - <b>Log Domain Substitution</b><br>
   What this is, is described in
-  [Log Domain Substitution](../man_domain_substitution.html).
+  [Log Domain Substitution](../alox_man_domain_substitution.html).
 
 
 If however, you just want to start using ALox and get to know more details over time, you should
-only read \ref cppsetup and probably \ref GrpMacrosDebugLog.
+only read \ref alox_cpp_setup and probably \ref GrpMacrosDebugLog.
 
 Finally, for the daily work, the [ALox class reference](annotated.html) gives a lot of help!
 */

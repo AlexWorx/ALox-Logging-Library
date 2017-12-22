@@ -106,7 +106,7 @@ bool ParseLine( Line& fileLine )
     Substring line(fileLine.original);
 
     // Ignore lines not starting with "Node"
-    if ( !line.ConsumeString( "Node", Case::Sensitive, Whitespaces::Trim ) )
+    if ( !line.ConsumeString<Case::Sensitive, Whitespaces::Trim >( "Node") )
         return true;
 
     // From now on, unknown means error (stop processing file)
@@ -118,7 +118,7 @@ bool ParseLine( Line& fileLine )
     }
 
     //------------- read node definition lines -------------
-    if( line.ConsumeString( "[label=\"", Case::Sensitive, Whitespaces::Trim ) )
+    if( line.ConsumeString<Case::Sensitive, Whitespaces::Trim>( "[label=\""  ) )
     {
         integer idx= line.IndexOf( '\"' );
         if (idx < 0 )
@@ -157,7 +157,7 @@ bool ParseLine( Line& fileLine )
         // save if original name
         if ( !node->IsIntInstance )
         {
-            if ( line.Trim().IndexOfAny(", &", Inclusion::Include) < 0  && isupper( node->TClassName.CharAtStart() ) )
+            if ( line.Trim().IndexOfAny<Inclusion::Include>(", &") < 0  && isupper( node->TClassName.CharAtStart() ) )
             {
                 node->TParamName= line;
                 dotFile.TClasses.emplace_back( node );
@@ -182,7 +182,7 @@ bool ParseLine( Line& fileLine )
     }
 
     //------------- read link lines -------------
-    if( line.ConsumeString( "-> Node", Case::Ignore, Whitespaces::Trim ) )
+    if( line.ConsumeString<Case::Sensitive, Whitespaces::Trim>( "-> Node" ) )
     {
         Link* link= new Link();
         fileLine.content=   link;
@@ -223,19 +223,26 @@ int ReadFile()
         Line* line= &dotFile.Lines.back();
         {
             line->original.SearchAndReplace("\\l", "" ); // new line characters
-            line->original.SearchAndReplace("aworx::lib::boxing::",                 "" );
-            line->original.SearchAndReplace("aworx::lib::strings::",                "" );
-            line->original.SearchAndReplace("aworx::lib::containers::",             "" );
-            line->original.SearchAndReplace("aworx::lib::threads::",                "" );
-            line->original.SearchAndReplace("aworx::lib::config::",                 "" );
-            line->original.SearchAndReplace("aworx::lib::time",                     "" );
-            line->original.SearchAndReplace("aworx::lib::",                         "" );
-            line->original.SearchAndReplace("aworx::lox::lang::textlogger::",       "" );
-            line->original.SearchAndReplace("lang::aworx::lox::core::",             "" ); //very strange, but this occurs!?
-            line->original.SearchAndReplace("aworx::lox::lang::",                   "" );
-            line->original.SearchAndReplace("aworx::lox::",                         "" );
-            line->original.SearchAndReplace("lox::lang::",                          "" );
-            line->original.SearchAndReplace("lang::",                               "" );
+            line->original.SearchAndReplace("aworx::lib::boxing::"              , "" );
+            line->original.SearchAndReplace("aworx::lib::config::"              , "" );
+            line->original.SearchAndReplace("aworx::lib::debug::"               , "" );
+            line->original.SearchAndReplace("aworx::lib::lang::"                , "" );
+            line->original.SearchAndReplace("aworx::lib::strings::"             , "" );
+            line->original.SearchAndReplace("aworx::lib::system::"              , "" );
+            line->original.SearchAndReplace("aworx::lib::threads::"             , "" );
+            line->original.SearchAndReplace("aworx::lib::time"                  , "" );
+            line->original.SearchAndReplace("aworx::lib::util::"                , "" );
+            line->original.SearchAndReplace("aworx::lib::"                      , "" );
+            line->original.SearchAndReplace("aworx::lox::core::textlogger::"    , "" );
+            line->original.SearchAndReplace("aworx::lox::core::"                , "" );
+            line->original.SearchAndReplace("aworx::lox::"                      , "" );
+
+            //line->original.SearchAndReplace("aworx::lox::lang::textlogger::",       "" ); //very strange, but this occurs!?
+            //line->original.SearchAndReplace("lang::aworx::lox::core::",             "" );
+            //line->original.SearchAndReplace("aworx::lox::lang::",                   "" );
+            //line->original.SearchAndReplace("lox::lang::",                          "" );
+            //line->original.SearchAndReplace("lang::",                               "" );
+
             line->original.SearchAndReplace("std::",                                "" );
             line->original.SearchAndReplace("< ",        "<" );
             line->original.SearchAndReplace("< ",        "<" );
@@ -561,10 +568,10 @@ int main(int argc, char *argv[])
     DebugMode= argc==1;
 
     // init ALib/ALox
-    ALox::Init( argc, argv);
+    lox::ALOX.Init( argc, argv);
     Log_AddDebugLogger();
     Log_SetDomain( "DOXGRAPH", Scope::Filename  );
-    Log_SetVerbosity( "DEBUG_LOGGER", DebugMode || ALIB::IsDebuggerPresent()
+    Log_SetVerbosity( "DEBUG_LOGGER", DebugMode || lib::ALIB.IsDebuggerPresent()
                                       ?  Verbosity::Verbose :  Verbosity::Warning,
                                       "/DOXGRAPH" );
 
@@ -600,13 +607,13 @@ int main(int argc, char *argv[])
 
     // read INI file
     Inifile= new IniFile("doxygenDotFixer.cfg");
-    Log_Assert( Inifile->LastStatus == IniFile::Status::Ok , "IniFile not found" );
+    //Log_Assert( Inifile->LastStatus == IniFile::Status::Ok , "IniFile not found" );
     Inifile->AutoSave=      true;
     Inifile->FileComments=
      "======================================================================================" "\n" \
      "ALib - A-Worx Utility Library"                                                          "\n" \
      "Copyright 2013-2017 A-Worx GmbH, Germany"                                               "\n" \
-     "Published under 'Boost Software License' (a free software license, see LICENSE.txt)"          "\n" \
+     "Published under 'Boost Software License' (a free software license, see LICENSE.txt)"    "\n" \
      "======================================================================================" "\n" \
      "This tool replaces simple, pure integer template instantiation nodes in doxygen"        "\n" \
      "dot files by their parameterized template class counterparts."                          "\n" \
@@ -638,7 +645,7 @@ int main(int argc, char *argv[])
 
     delete Inifile;
     FileName.SetNull();
-    ALox::TerminationCleanUp();
+    lox::ALOX.TerminationCleanUp();
 
     return 0;
 }

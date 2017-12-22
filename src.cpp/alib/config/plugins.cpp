@@ -5,8 +5,13 @@
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
-#include "alib/config/configuration.hpp"
-#include "alib/system/environment.hpp"
+
+#if !defined (HPP_ALIB_CONFIG_CONFIGURATION)
+#   include "alib/config/configuration.hpp"
+#endif
+#if !defined (HPP_ALIB_SYSTEM_ENVIRONMENT)
+#   include "alib/system/environment.hpp"
+#endif
 
 
 #if !defined(_STDIO_H) && !defined(_INC_STDIO)
@@ -161,63 +166,197 @@ void XTernalizer::LoadFromString( Variable& variable, const String& value )
     }
 }
 
-
-
 // #################################################################################################
-// CommandLinePlugin
+// CLIArgs
 // #################################################################################################
-bool  CommandLinePlugin::Load( Variable& variable, bool searchOnly )  const
+bool  CLIArgs::Load( Variable& variable, bool searchOnly )  const
 {
-    // assemble option name as CATEGORY_NAME
+    // check if category may me left out
+    bool allowWithoutCategory= false;
+    for (auto& defaultCategory : DefaultCategories )
+        if( (allowWithoutCategory= variable.Category.Equals( defaultCategory )) == true )
+            break;
+
     String4K   wcharConverter;
 
-    for ( int i= 1; i < argCount ; i++ )
+    size_t qtyArgs= args != nullptr ?  args->size()
+                                    :  argCount;
+    for ( size_t i= args != nullptr ? 0 : 1 ; i < qtyArgs ; i++ )
     {
         // create substring on actual variable (trim if somebody would work with quotation marks...)
-        Substring actVar;
-        if (!wArgs)
-            (actVar= (reinterpret_cast<char**>(argVector) [i] )).Trim();
+        Substring cliArg;
+        if( args != nullptr )
+            cliArg= (*args)[i];
         else
         {
-            // convert wide characters
-            wcharConverter.Clear()._(  (reinterpret_cast<wchar_t**>(argVector))[i]  );
-            (actVar= wcharConverter ).Trim();
+            if (!wArgs)
+                (cliArg= (reinterpret_cast<char**>(argVector) [i] )).Trim();
+            else
+            {
+                // convert wide characters
+                wcharConverter.Clear()._(  (reinterpret_cast<wchar_t**>(argVector))[i]  );
+                (cliArg= wcharConverter ).Trim();
+            }
         }
 
         // request '-' and allow a second '-'
-        if ( !actVar.ConsumeChar('-') )
+        if ( !cliArg.ConsumeChar('-') )
             continue;
-        actVar.ConsumeChar('-');
-        if ( actVar.ConsumeString( variable.Fullname, lang::Case::Ignore ) )
-        {
-            if ( actVar.IsEmpty() )
-            {
-                if ( !searchOnly )
-                    variable.Add();
-                return true;
-            }
+        cliArg.ConsumeChar('-');
 
-            if ( actVar.ConsumeChar( Whitespaces::Trim ) == '='  )
-            {
-                if ( !searchOnly )
-                    StringConverter->LoadFromString( variable, actVar.Trim() );
-                return true;
-            }
-         }
+        // try names
+
+        if (    !                          cliArg.ConsumeString<lang::Case::Ignore>( variable.Fullname )
+             && !( allowWithoutCategory && cliArg.ConsumeString<lang::Case::Ignore>( variable.Name     )  )
+             && !(    AllowedMinimumShortCut > 0
+                   && (                            cliArg.ConsumePartOf( variable.Fullname, AllowedMinimumShortCut + 1 + static_cast<int>(variable.Category.Length()) )
+                       ||( allowWithoutCategory && cliArg.ConsumePartOf( variable.Name    , AllowedMinimumShortCut ) )
+                      )
+                 )
+           )
+            continue; // next arg
+
+        // found --CAT_NAME. If rest is empty or continues with '=', we set
+        if ( cliArg.IsEmpty() )
+        {
+            if ( !searchOnly )
+                variable.Add();
+            return true;
+        }
+
+        if ( cliArg.ConsumeChar<true, Whitespaces::Trim>() == '='  )
+        {
+            if ( !searchOnly )
+                StringConverter->LoadFromString( variable, cliArg.Trim() );
+            return true;
+        }
     }
 
     return false;
 }
 
 // #################################################################################################
-// EnvironmentPlugin
+// CLIArgs Iterator
 // #################################################################################################
-EnvironmentPlugin::EnvironmentPlugin()
+//! @cond NO_DOX
+namespace {
+
+class CLIArgsIteratorImpl : public ConfigurationPlugin::Iterator
+{
+    CLIArgs&        parent;
+    String          sectionName;
+    size_t          nextArgNo;
+
+
+    public:
+
+    CLIArgsIteratorImpl( CLIArgs& cliArgs, const String& pSectionName )
+    : parent(cliArgs)
+    , sectionName(pSectionName)
+    , nextArgNo(0)
+    {
+
+    }
+
+    virtual ~CLIArgsIteratorImpl() override
+    {}
+
+    virtual bool        Next( Variable& variable )                                          override
+    {
+        return detail::nextCLIArg( parent, nextArgNo, sectionName, variable );
+    }
+};
+
+} // anonymous namespace
+
+namespace detail {
+
+bool nextCLIArg( CLIArgs& cliArgs, size_t& nextArgNo, const String& sectionName, Variable& variable )
+{
+    // clear variable name at least. Values remain, until something was found. The caller has
+    // to check the result anyhow!
+    variable.Name.Clear();
+
+    size_t qtyArgs= cliArgs.args != nullptr ?  cliArgs.args->size()
+                                            :  cliArgs.argCount;
+    if( nextArgNo >= qtyArgs )
+        return false;
+
+    // check if category may me left out
+    bool allowWithoutCategory= false;
+    for (auto& defaultCategory : cliArgs.DefaultCategories )
+        if( (allowWithoutCategory= sectionName.Equals( defaultCategory )) == true )
+            break;
+
+    String4K   wcharConverter;
+
+    // skip index 0 (command name) if not special args string vector set.
+    if( nextArgNo == 0 && cliArgs.args == nullptr )
+        nextArgNo= 1;
+    while( nextArgNo < qtyArgs )
+    {
+        // create substring on actual variable (trim if somebody would work with quotation marks...)
+        Substring cliArg;
+        if( cliArgs.args != nullptr )
+            cliArg= (*cliArgs.args)[nextArgNo];
+        else
+        {
+            if (!cliArgs.wArgs)
+                (cliArg= (reinterpret_cast<char**>(cliArgs.argVector) [nextArgNo] )).Trim();
+            else
+            {
+                // convert wide characters
+                wcharConverter.Clear()._(  (reinterpret_cast<wchar_t**>(cliArgs.argVector))[nextArgNo]  );
+                (cliArg= wcharConverter ).Trim();
+            }
+        }
+        nextArgNo++;
+
+        // request '-' and allow a second '-'
+        if ( !cliArg.ConsumeChar('-') )
+            continue;
+        cliArg.ConsumeChar('-');
+
+        // consume category
+        if( !allowWithoutCategory && !sectionName.IsEmpty()
+            && (    !cliArg.ConsumeString<lang::Case::Ignore>( sectionName )
+                 || !cliArg.ConsumeChar('_' ) ) )
+           continue;
+
+        // check for '=' sign
+        integer equalSignPos= cliArg.IndexOf( '=' );
+        if( equalSignPos < 0 )
+            continue;
+
+        // found!
+        Substring value;
+        cliArg  .Split  ( equalSignPos, value, 1);
+        variable.Declare( sectionName, cliArg   );
+        cliArgs.StringConverter->LoadFromString( variable, value.Trim() );
+        return true;
+    }
+
+    // not found
+    return false;
+}
+} //namespace detail
+
+ConfigurationPlugin::Iterator*   CLIArgs::GetIterator( const String& sectionName )
+{
+    return new CLIArgsIteratorImpl( *this, sectionName );
+}
+
+//! @endcond
+
+// #################################################################################################
+// Environment
+// #################################################################################################
+Environment::Environment()
 : ConfigurationPlugin()
 {
 }
 
-bool  EnvironmentPlugin::Load( Variable& variable, bool searchOnly )  const
+bool  Environment::Load( Variable& variable, bool searchOnly )  const
 {
     String256 value;
     ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( value,  ReplaceExternalBuffer );
@@ -232,5 +371,5 @@ bool  EnvironmentPlugin::Load( Variable& variable, bool searchOnly )  const
 
 
 
-}}}// namespace aworx::lib::config
+}}}// namespace [aworx::lib::config]
 

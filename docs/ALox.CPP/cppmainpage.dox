@@ -6,7 +6,7 @@
 // #################################################################################################
 
 /**
-\page cppmainpage    C++ Reference
+\page alox_cpp_mainpage    C++ Reference
 
 
 
@@ -20,7 +20,7 @@ The following information is found in the C++ sub pages:
 
 
 ## Documentation ##
-- Walk yourself through the [ALox for C++ Tutorial ](cpptutorial.html). This is allows you a fast overview and intro
+- Walk yourself through the [ALox for C++ Tutorial ](alox_cpp_tutorial.html). This is allows you a fast overview and intro
   if you are new to ALox.
 
 - Consult the general (language agnostic) [ALox User Manual](../manual.html) for in-depth information
@@ -48,13 +48,13 @@ The C++ Version got tested on the following platform combinations:
 - macOS Sierra (V.10.12)
     - CLion 2016.3
 
-Check out \ref cppsetup for details of how to compile and use ALox in your C++ environment.
+Check out \ref alox_cpp_setup for details of how to compile and use ALox in your C++ environment.
 
 ## ALox Logging Macros  ##
 After working yourself through the tutorial and after having set up your projects to use
 ALox, it is recommended to read some information about <em>preprocessor macros</em> that
 form the 'highest' level API into ALox.
-Such information is provided here: \ref cppprepro_macros  "C++ Macros"
+Such information is provided here: \ref alox_cpp_prepro_macros  "C++ Macros"
 
 ## ALib ##
 
@@ -65,7 +65,7 @@ creating \b %ALib (in contrast to using some existing 3rd party library) is to h
 and a certain level of source code compatibility between the different language versions of \b %ALox.
 
 \b %ALib is bundled with \b ALox and currently not released as a separate project. An exclamation
-to this bundled release are the so called <b>ALib Modules</b>. They are provided for C++ only and each
+to this bundled release are the so called <b>%ALib Modules</b>. They are provided for C++ only and each
 provide a subset of \b %ALib. Fore more information, refer to the \ref aworx::lib "ALib Documentation".
 
 ## Organization of code ##

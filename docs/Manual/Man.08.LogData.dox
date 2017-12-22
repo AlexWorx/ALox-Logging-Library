@@ -6,16 +6,16 @@
 // #################################################################################################
 
 /**
-\page man_log_data       08 - Log Data (Debug Variables)
+\page alox_man_log_data       08 - Log Data (Debug Variables)
 
 \tableofcontents
 
 
 \~Comment ####################################################################################### \~
-# 1. Prerequisites #  {#man_log_data_prerequisites}
+# 1. Prerequisites #  {#alox_man_log_data_prerequisites}
 
 For a better understanding of what is explained in this chapter, it might be advisable to have read:
-- Chapter \ref man_scopes. In short, at that place it is explained how ALox defines
+- Chapter \ref alox_man_scopes. In short, at that place it is explained how ALox defines
   language-related \e Scopes (including the 'global' \e Scope) and thread-related \e Scopes.
   Both types are 'interwoven' and form the complete set, as denoted in enum-class
   <b>%Scope</b>
@@ -23,7 +23,7 @@ For a better understanding of what is explained in this chapter, it might be adv
    [C#]  (@ref  #cs::aworx::lox::Scope),
    [Java](@ref #com::aworx::lox::Scope)).
 
-- Chapter \ref man_log_once
+- Chapter \ref alox_man_log_once
 
 \attention
   Both chapters are prerequisites for understanding what is explained here.
@@ -38,7 +38,7 @@ For a better understanding of what is explained in this chapter, it might be adv
 
 
 \~Comment ####################################################################################### \~
-# 2. Introduction #  {#man_log_data_intro}
+# 2. Introduction #  {#alox_man_log_data_intro}
 
 The concept of <em>Log Data</em> is a feature used for debugging. The goal that is aimed here
 is similar to the goal of debug-<em>Log Statements</em> themselves. As a reminder, those are:
@@ -68,7 +68,7 @@ generated giving more information about where and why the exception occurred.
   There are other, standardized, reliable and efficient ways to store thread-local data.
 
 \~Comment ####################################################################################### \~
-# 3. Using Log Data #  {#man_log_data_using}
+# 3. Using Log Data #  {#alox_man_log_data_using}
 
 The interface for setting and retrieving <em>Log Data</em> is provided with methods
 <b>%Lox.Store</b>
@@ -83,7 +83,7 @@ The interface for setting and retrieving <em>Log Data</em> is provided with meth
 The type of data stored is \b Object in Java and C# implementations and
 \ref aworx::lib::boxing::Box "Box" in <b>%ALox for C++</b>.
 
-While in Chapter \ref man_log_once of this manual, it was explained in detail how parameters
+While in Chapter \ref alox_man_log_once of this manual, it was explained in detail how parameters
 \p group and \p scope of method
 <b>%Lox.Once</b>
 ([C++] (@ref      #aworx::lox::Lox::Once),
@@ -116,12 +116,12 @@ For clarification, this means, that different <em>Log Data</em> objects are stor
 even if parameters \p scope and \p key are the same. For example,
 an object stored using \p Scope.Method can not be retrieved from a different method and will also not be overwritten
 within a different method. Again, the consequences and use cases of this design may become
-clearer when reading chapter \ref man_log_once "Lox.Once".
+clearer when reading chapter \ref alox_man_log_once "Lox.Once".
 
 
-# 4. Language Specific Notes ##  {#man_log_data_langspec}
+# 4. Language Specific Notes ##  {#alox_man_log_data_langspec}
 
-## 4.1 ALox for C++ ##  {#man_log_data_langspec_cpp}
+## 4.1 ALox for C++ ##  {#alox_man_log_data_langspec_cpp}
 It is important to understand that in ALox for C++, <em>Log Data</em> objects have to
 be kept in memory, if they are passed as pointers. The question if data is passed as a pointer
 or as a value is answered in \ref aworx::lib::boxing "ALib Boxing" documentation.
@@ -148,6 +148,6 @@ other pruned statement) or must be enclosed with corresponding \c \#if / \c \#en
 
 
 --------------------------------------------------------------------
-<center>Next chapter: \ref man_multi_threaded </center> <center> \ref manual "Back to index" </center>
+<center>Next chapter: \ref alox_man_multi_threaded </center> <center> \ref manual "Back to index" </center>
 
 */

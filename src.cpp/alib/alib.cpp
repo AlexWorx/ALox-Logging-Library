@@ -19,19 +19,25 @@
 
 #if ALIB_MODULE_CONFIGURATION
 
+    #if !defined (HPP_ALIB_CONFIG_LIB)
+    #   include "alib/config/configlib.hpp"
+    #endif
     #if !defined (HPP_ALIB_CONFIG_CONFIGURATION)
-        #include "alib/config/configuration.hpp"
+    #   include "alib/config/configuration.hpp"
+    #endif
+    #if !defined (HPP_ALIB_TIME_LIB)
+    #   include "alib/time/timelib.hpp"
     #endif
     #if !defined (HPP_ALIB_TIME_TICKS)
-        #include "alib/time/ticks.hpp"
+    #   include "alib/time/ticks.hpp"
     #endif
 
     #if !defined (HPP_ALIB_SYSTEM_PROCESSINFO)
-        #include "alib/system/process.hpp"
+    #   include "alib/system/process.hpp"
     #endif
 
     #if !defined (HPP_ALIB_SYSTEM_ENVIRONMENT)
-        #include "alib/system/environment.hpp"
+    #   include "alib/system/environment.hpp"
     #endif
 #endif
 
@@ -55,160 +61,67 @@
 #endif
 
 
-#if !defined (_GLIBCXX_IOSTREAM) && !defined (_IOSTREAM_ )
-    #include <iostream>
-#endif
-#if !defined (_GLIBCXX_IOMANIP) && !defined (_IOMANIP_ )
-    #include <iomanip>
-#endif
-
-
 #if !defined (_GLIBCXX_THREAD) && !defined (_THREAD_ )
     #include <thread>
 #endif
 
+namespace aworx { namespace lib {
 
+#if ALIB_MODULE_STRINGS
 
 // #################################################################################################
-// namespace
+// Static instance and constructor
 // #################################################################################################
-namespace aworx { namespace lib
-{
-// #################################################################################################
-// General static fields
-// #################################################################################################
-bool                 ALIB::WaitForKeyPressOnTermination                                      =false;
+ALib                 ALIB;
 
+ALib::ALib()
+: Library( ALIB_VERSION, ALIB_REVISION, "ALIB", ALIB_COMPILATION_FLAGS )
 #if ALIB_MODULE_ALL
-threads::SmartLock   ALIB::StdOutputStreamsLock;
+, StdOutputStreamsLock(* new threads::SmartLock() )
 #endif
-
-// #################################################################################################
-// Compilation verification
-// #################################################################################################
-const uint64_t       ALIB::CompilationFlags=                            ALIB_COMPATIBILITY_VERIFYER;
-const int            ALIB::Version=                                           ALIB_VERSION_VERYFIER;
-const int            ALIB::Revision=                                                              0;
-
-
-bool                 ALIB::initialized                                                       =false;
-
-std::pair <const char*, uint64_t> ALIB::CompilationFlagMeanings[9]=
 {
-    { "ALIB_DEBUG"                  , ALIB_DEBUG_VFYBIT                     },
-    { "ALIB_DEBUG_STRINGS"          , ALIB_DEBUG_STRINGS_VFYBIT             },
-
-    { "ALIB_FEAT_THREADS"           , ALIB_FEAT_THREADS_VFYBIT              },
-    { "ALIB_FEAT_SINGLETON_MAPPED"  , ALIB_FEAT_SINGLETON_MAPPED_VFYBIT     },
-    { "ALIB_FEAT_BOXING_FTYPES"     , ALIB_FEAT_BOXING_FTYPES_VFYBIT        },
-    { "ALIB_FEAT_BOXING_STD_VECTOR" , ALIB_FEAT_BOXING_STD_VECTOR_VFYBIT    },
-
-    { "ALIB_MODULE_ALL"             , ALIB_MODULE_ALL_VFYBIT                },
-    { "ALIB_MODULE_STRINGS"         , ALIB_MODULE_STRINGS_VFYBIT            },
-    { "ALIB_MODULE_BOXING"          , ALIB_MODULE_BOXING_VFYBIT             },
-};
-
-
-bool ALIB::VerifyCompilationFlags( uint64_t flags )
-{
-    // verify the flags
-    if ( flags == ALIB::CompilationFlags )
-        return true;
-
-    // dump out the flags
-    std::cout << std::left << std::setw(30) <<  "Symbol" << '|' << std::setw(5) << " Lib" <<'|' << " Comp. Unit"  << std::endl;
-
-    int cnt= 0;
-    for( auto& p : CompilationFlagMeanings )
+    CompilationFlagMeanings=
     {
-        cnt++;
-        std::cout << std::setw(30) <<  p.first << '|' << std::setw(5) << (ALIB::CompilationFlags & p.second  ? " On" : " Off")
-                                                << "|" << std::setw(5) << (flags                  & p.second  ? " On" : " Off")
-                  << std::endl;
-    }
+        { "ALIB_DEBUG"                  , ALIB_DEBUG_VFYBIT                     },
+        { "ALIB_DEBUG_STRINGS"          , ALIB_DEBUG_STRINGS_VFYBIT             },
 
-    return false;
+        { "ALIB_FEAT_THREADS"           , ALIB_FEAT_THREADS_VFYBIT              },
+        { "ALIB_FEAT_SINGLETON_MAPPED"  , ALIB_FEAT_SINGLETON_MAPPED_VFYBIT     },
+        { "ALIB_FEAT_BOXING_FTYPES"     , ALIB_FEAT_BOXING_FTYPES_VFYBIT        },
+        { "ALIB_FEAT_BOXING_STD_VECTOR" , ALIB_FEAT_BOXING_STD_VECTOR_VFYBIT    },
+
+        { "ALIB_MODULE_ALL"             , ALIB_MODULE_ALL_VFYBIT                },
+        { "ALIB_MODULE_STRINGS"         , ALIB_MODULE_STRINGS_VFYBIT            },
+        { "ALIB_MODULE_BOXING"          , ALIB_MODULE_BOXING_VFYBIT             },
+    };
+
+    //############### initialize threads and time ################
+    #if ALIB_MODULE_CONFIGURATION
+        dependencies.emplace_back( &THREADS );
+        dependencies.emplace_back( &TIME    );
+    #endif
+
+    #if ALIB_MODULE_BOXING
+        dependencies.emplace_back( &BOXING  );
+    #endif
+    #if ALIB_MODULE_STRINGS
+        dependencies.emplace_back( &STRINGS );
+    #endif
+
+
+    dependencies.emplace_back( &LANG );
+
+    #if ALIB_MODULE_SYSTEM
+        dependencies.emplace_back( &SYSTEM );
+    #endif
+
+    #if ALIB_MODULE_CONFIGURATION
+        dependencies.emplace_back( &CONFIG );
+    #endif
+
+
 }
 
-// #################################################################################################
-// Replacement method for ALib Essential Reports
-// #################################################################################################
-#if ALIB_MODULE_ALL &&  ALIB_DEBUG
-    namespace debug {
-    /**
-     * This method is installed with
-     * \ref aworx::lib::debug::DbgSimpleALibMsg_Plugin in method
-     * \ref aworx::lib::ALIB::Init "ALIB::Init".
-     *
-     * The message strings are simply passed to the default
-     * \ref aworx::lib::lang::Report "Report".
-     * This way, the essential assert, error and message macros are using the \b %ALib report system
-     * in the moment that the complete %ALib library is in place (instead of only one of the
-     * libraries' modules.
-     *
-     * @param file    Information about the scope of invocation.
-     * @param line    Information about the scope of invocation.
-     * @param method  Information about the scope of invocation.
-     * @param type    The type of message. See \ref aworx::lib::lang::Report::Message "Report::Message".
-     * @param qtyMsgs The number of messages in \p msgs.
-     * @param msgs    A list of strings (this is all that the essential versions of \b %ALib reporting
-     *                macros provide).
-     */
-    void ALib_Dbg_Report_Plugin(const char* file, int line, const char* method, int type, int qtyMsgs, const char** msgs);
-    void ALib_Dbg_Report_Plugin(const char* file, int line, const char* method, int type, int qtyMsgs, const char** msgs)
-    {
-        lang::Report::Message message( file,line,method, type, msgs[0] );
-        for (int i= 1; i< qtyMsgs; ++i )
-            message.Add( msgs[i] );
-        lang::Report::GetDefault().DoReport( message );
-    }
-    } // namespace aworx::lib[::debug]
-#endif
-
-
-
-// #################################################################################################
-// Configuration variable definitions
-// #################################################################################################
-#if ALIB_MODULE_CONFIGURATION
-
-    String               ALIB::ConfigCategoryName                                           ="ALIB";
-
-    config::VariableDefinition ALIB::RTE =
-    {
-        &ALIB::ConfigCategoryName,   nullptr,     "RTE",
-        "auto",
-        '\0', nullptr, Variable::FormatHint_None,
-        "Defines runtime environment. Defaults to 'auto' which enables detection. Other"        "\n"
-        "allowed values are: eclipse, " "qtcreator, " "vstudio, " "shell, " "desktop, " "device, "
-    };
-
-    config::VariableDefinition ALIB::LOCALE =
-    {
-        &ALIB::ConfigCategoryName,   nullptr,     "LOCALE",
-        "",
-        '\0', nullptr, Variable::FormatHint_None,
-        "Defines the locale of the application. If empty or not set, the systems' locale is used."
-    };
-
-    config::VariableDefinition ALIB::WAIT_FOR_KEY_PRESS =
-    {
-        &ALIB::ConfigCategoryName,   nullptr,     "WAIT_FOR_KEY_PRESS",
-        "",
-        '\0', nullptr, Variable::FormatHint_None,
-        "If true, the process waits for a key stroke on termination. If empty, under Windows"   "\n"
-        "behavior is detected, under other OSes, defaults to false."
-    };
-
-    config::VariableDefinition ALIB::HAS_CONSOLE_WINDOW =
-    {
-        &ALIB::ConfigCategoryName,   nullptr,     "HAS_CONSOLE_WINDOW",
-        "",
-        '\0', nullptr, Variable::FormatHint_None,
-        "Boolean value that denotes what its name indicates. If empty, under Windows value is " "\n"
-        "detected, under other OSes, defaults to true."
-    };
-#endif
 
 // #################################################################################################
 // Environment definition/detection
@@ -216,11 +129,15 @@ bool ALIB::VerifyCompilationFlags( uint64_t flags )
 
 #if ALIB_MODULE_ALL
 
+//! @cond NO_DOX
     #if defined(__unix__) || defined(__APPLE__)
-        String      ALIB::DebuggerProcessNames= "gdb|debugserver";
+    namespace {
+        String      DebuggerProcessNames= "gdb|debugserver";
+    }
     #endif
+//! @endcond
 
-    bool ALIB::IsDebuggerPresent()
+    bool ALib::IsDebuggerPresent()
     {
     #if defined(__unix__) || defined(__APPLE__)
 
@@ -253,12 +170,12 @@ bool ALIB::VerifyCompilationFlags( uint64_t flags )
 #endif // ALIB_MODULE_ALL
 
 #if ALIB_MODULE_CONFIGURATION
-    bool ALIB::HasConsoleWindow()
+    bool ALib::HasConsoleWindow()
     {
         // read configuration
         bool returnValue;
-        Variable variable( ALIB::HAS_CONSOLE_WINDOW );
-        Configuration::Default.Load( variable );
+        Variable variable( Variables::HAS_CONSOLE_WINDOW );
+        Config->Load( variable );
         if ( variable.Size() > 0  && variable.GetString()->Length() > 0 )
             returnValue=  variable.IsTrue();
         else
@@ -279,128 +196,114 @@ bool ALIB::VerifyCompilationFlags( uint64_t flags )
 // Init/ TerminationCleanUp()
 // #################################################################################################
 
-void ALIB::Init( int argc, char    **argv )
+void ALib::init( Phases phase )
 {
-    #if ALIB_MODULE_CONFIGURATION
-        Configuration::Default.SetCommandLineArgs( argc, argv );
-    #endif
-    init();
-}
-
-void ALIB::Init( int argc, wchar_t **argv )
-{
-    #if ALIB_MODULE_CONFIGURATION
-        Configuration::Default.SetCommandLineArgs( argc, argv );
-    #endif
-    init();
-}
-
-
-void ALIB::init()
-{
-    // check for double initialization (this is explicitly allowed, see docs)
-    if ( initialized )
-        return;
-
-    //############### initialize threads and time ################
-    #if ALIB_MODULE_CONFIGURATION
-        aworx::lib::threads::Init();
-        aworx::lib::time::Init();
-    #endif
-
-    //############### create singletons ###############
-    #if ALIB_MODULE_ALL &&  ALIB_DEBUG
-        debug::DbgSimpleALibMsg_Plugin= debug::ALib_Dbg_Report_Plugin;
-    #endif
-
-
-    initialized= true;
-
-//! [DOX_ALIB_BOXING_BOOTSTRAP]
-//############### Initialize boxing ###############
-#if ALIB_MODULE_BOXING
-    aworx::lib::boxing::Init();
-#endif
-#if ALIB_MODULE_STRINGS
-    aworx::lib::strings::Init();
-#endif
-#if ALIB_MODULE_CONFIGURATION
-    aworx::lib::time::InitBoxing();
-#endif
-//! [DOX_ALIB_BOXING_BOOTSTRAP]
-
-    #if ALIB_MODULE_CONFIGURATION
-        Variable variable;
-    #endif
-
-    //############### set locale ###############
-    #if ALIB_MODULE_CONFIGURATION && ( defined (__GLIBCXX__)  || defined(__APPLE__) )
+    if( phase == Phases::resourceset )
     {
-        int receivedFrom= 0;
-        variable.Define( ALIB::LOCALE );
-        AString locale;
-        if (     variable.Load() != 0
-             &&  variable.GetString()->IsNotEmpty()        )
-        {
-            receivedFrom= 1;
-            locale._( variable.GetString() );
-        }
-        else if ( system::GetEnvironmentVariable( "LANG"      ,locale ) )        receivedFrom= 2;
-        else if ( system::GetEnvironmentVariable( "LANGUAGE"  ,locale ) )        receivedFrom= 3;
+        Res->AddBulk( ResourceCategory.ToCString(),
 
-        if( receivedFrom > 0 && !locale.Equals( "none", Case::Ignore ) )
+
+        "Var0",    "1|ALIB|LOCALE|ES||||VC1",
+        "Var1",    "2|ALIB|WAIT_FOR_KEY_PRESS|VD2||||VC2",
+        "Var2",    "3|ALIB|HAS_CONSOLE_WINDOW|ES||||VC3",
+
+
+        "VC1",
+            "Defines the locale of the application. If empty or not set, the systems' locale is used."
+        ,
+        "VC2",
+            "If true, the process waits for a key stroke on termination. If empty, under Windows"   "\n"
+            "behavior is detected, under other OSes, defaults to false."
+        ,
+        "VC3",
+            "Boolean value that denotes what its name indicates. If empty, under Windows value is " "\n"
+            "detected, under other OSes, defaults to true."
+        ,
+
+        // Empty string. This is set with variables that want to be written into blank files.
+        "ES",   "",
+
+        // default values
+        "VD2",  "",
+
+
+        // end of AddBulk()
+        nullptr );
+    }
+
+    else if( phase == Phases::final )
+    {
+        //############### set locale ###############
+        #if ALIB_MODULE_CONFIGURATION
+        Variable variable;
+        #endif
+
+        #if ALIB_MODULE_CONFIGURATION && ( defined (__GLIBCXX__)  || defined(__APPLE__) )
         {
-            if( !setlocale(LC_ALL, locale.ToCString() ) )
+            int receivedFrom= 0;
+            variable.Declare( Variables::LOCALE );
+            AString locale;
+            if (     Config->Load( variable ) != Priorities::NONE
+                 &&  variable.GetString()->IsNotEmpty()        )
             {
-                String256 msg( "ALib Error: setlocale(\""); msg << locale <<"\") failed. Setting read from ";
-                msg << (   receivedFrom == 1 ? "config variable 'LOCALE'"        :
-                           receivedFrom == 2 ? "environment variable 'LANG'"     :
-                           receivedFrom == 3 ? "environment variable 'LANGUAGE'" : "ERROR"  );
+                receivedFrom= 1;
+                locale._( variable.GetString() );
+            }
+            else if ( system::GetEnvironmentVariable( "LANG"      ,locale ) )        receivedFrom= 2;
+            else if ( system::GetEnvironmentVariable( "LANGUAGE"  ,locale ) )        receivedFrom= 3;
 
-                std::cerr.write( msg.Buffer(), msg.Length() );
-
-                std::cerr << ". Trying  'setlocale(LC_ALL, \"\")': ";
-                if ( setlocale(LC_ALL, ""  ) )
-                    std::cerr << " success.";
-                else
+            if( receivedFrom > 0 && !locale.Equals<Case::Ignore>( "none" ) )
+            {
+                if( !setlocale(LC_ALL, locale.ToCString() ) )
                 {
-                    std::cerr << "failed. Trying  'setlocale(LC_ALL, \"C\")': ";
-                    if ( setlocale(LC_ALL, "C" ) )
+                    String256 msg( "ALib Error: setlocale(\""); msg << locale <<"\") failed. Setting read from ";
+                    msg << (   receivedFrom == 1 ? "config variable 'LOCALE'"        :
+                               receivedFrom == 2 ? "environment variable 'LANG'"     :
+                               receivedFrom == 3 ? "environment variable 'LANGUAGE'" : "ERROR"  );
+
+                    std::cerr.write( msg.Buffer(), msg.Length() );
+
+                    std::cerr << ". Trying  'setlocale(LC_ALL, \"\")': ";
+                    if ( setlocale(LC_ALL, ""  ) )
                         std::cerr << " success.";
                     else
-                        std::cerr << std::endl << "     Panic: No standard locale setting was successful!";
+                    {
+                        std::cerr << "failed. Trying  'setlocale(LC_ALL, \"C\")': ";
+                        if ( setlocale(LC_ALL, "C" ) )
+                            std::cerr << " success.";
+                        else
+                            std::cerr << std::endl << "     Panic: No standard locale setting was successful!";
+                    }
+                    std::cerr << std::endl;
                 }
-                std::cerr << std::endl;
             }
         }
-    }
-    #endif
+        #endif
 
-    // set the system's locale as the default for our static default number format
-    #if ALIB_MODULE_STRINGS
-        strings::NumberFormat::Global.SetFromLocale();
-        strings::NumberFormat::Global.WriteGroupChars= true;
-    #endif
+        // set the system's locale as the default for our static default number format
+        #if ALIB_MODULE_STRINGS
+            strings::NumberFormat::Global.SetFromLocale();
+            strings::NumberFormat::Global.WriteGroupChars= true;
+        #endif
 
 
-    // --- determine if we want to wait for a keypress upon termination ---
-    {
+        // --- determine if we want to wait for a keypress upon termination ---
         #if ALIB_MODULE_CONFIGURATION
-            variable.Define( ALIB::WAIT_FOR_KEY_PRESS );
-            Configuration::Default.Load( variable );
+            variable.Declare( Variables::WAIT_FOR_KEY_PRESS );
+            Config->Load( variable );
             if ( variable.Size() > 0 )
                 WaitForKeyPressOnTermination= variable.IsTrue();
             else
             {
                 #if defined(_WIN32) && ALIB_DEBUG
-                    WaitForKeyPressOnTermination=  ALIB::HasConsoleWindow() && ALIB::IsDebuggerPresent();
+                    WaitForKeyPressOnTermination=  ALib::HasConsoleWindow() && ALib::IsDebuggerPresent();
                 #else
                     WaitForKeyPressOnTermination=  false;
                 #endif
             }
         #else
                 #if defined(_WIN32) && ALIB_DEBUG
-                    WaitForKeyPressOnTermination=  ALIB::HasConsoleWindow() && ALIB::IsDebuggerPresent();
+                    WaitForKeyPressOnTermination=  ALib::HasConsoleWindow() && ALib::IsDebuggerPresent();
                 #else
                     WaitForKeyPressOnTermination=  false;
                 #endif
@@ -408,44 +311,51 @@ void ALIB::init()
     }
 }
 
-void ALIB::TerminationCleanUp()
+
+void ALib::terminationCleanUp()
 {
-    if ( ALIB::WaitForKeyPressOnTermination )
+    if ( ALIB.WaitForKeyPressOnTermination )
     {
         #if defined(_WIN32)
             OutputDebugStringA( "\r\nALIB: Waiting for 'Enter' key in the console window." \
-                                "\r\n     (To disable this, set 'ALIB::WaitForKeyPressOnTermination' to 'false'.)\r\n" );
+                                "\r\n     (To disable this, set 'ALIB.WaitForKeyPressOnTermination' to 'false'.)\r\n" );
         #endif
 
         std::cout << std::endl << "ALIB: Press 'Enter' to exit... " \
-            "      (To disable this, set 'ALIB::WaitForKeyPressOnTermination to 'false'.)" << std::endl;
+            "      (To disable this, set 'ALIB.WaitForKeyPressOnTermination to 'false'.)" << std::endl;
         while ( getchar() != '\n' )
             ;
     }
 
-    // terminate subcomponents
-    #if ALIB_MODULE_CONFIGURATION
-        aworx::lib::time::TerminationCleanUp();
-        aworx::lib::threads::TerminationCleanUp();
-    #endif
-
-    #if ALIB_MODULE_ALL && ALIB_DEBUG
-        lang::Report::TerminationCleanUp();
-    #endif
-
-    #if ALIB_MODULE_STRINGS
-        aworx::lib::strings::TerminationCleanUp();
-    #endif
-
-    #if ALIB_MODULE_BOXING
-        aworx::lib::boxing::TerminationCleanUp();
-    #endif
 
     // remove singletons
     lang::DeleteSingletons();
 
+    // and the cout/cerr lock
+    #if ALIB_MODULE_ALL
+        delete &StdOutputStreamsLock;
+    #endif
 }
 
+
+void ALib::CheckCompatibility( int alibVersion, volatile uint64_t compilationFlags )
+{
+    if (Version != alibVersion )
+    {
+        std::cout << "!!! Error in ALox library compilation: linked against wrong version of ALib" << std::endl;
+        std::cout << "!!! ALib library version:   " << Version       << std::endl;
+        std::cout << "!!! ALib requested version: " << alibVersion   << std::endl;
+        std::cout << "!!! Exiting with exit(-1)" << std::endl;
+        exit(-1);
+    }
+
+    // verify the given (actual compilation units') flags against ALib
+    if (!VerifyCompilationFlags( compilationFlags ) )
+    {
+        std::cout << "!!! Error in ALib library compilation: linked library of ALib has different compilation symbols set." << std::endl;
+        exit(-1);
+    }
+}
 
 // #################################################################################################
 // SleepX methods
@@ -473,7 +383,7 @@ void ALIB::TerminationCleanUp()
     #endif
 #endif
 
-void ALIB::SleepMillis( int milliseconds )
+void ALib::SleepMillis( int milliseconds )
 {
     #if ALIB_FEAT_THREADS
         std::this_thread::sleep_for( std::chrono::milliseconds( milliseconds ) );
@@ -482,7 +392,7 @@ void ALIB::SleepMillis( int milliseconds )
     #endif
 }
 
-void ALIB::SleepMicros( int microseconds )
+void ALib::SleepMicros( int microseconds )
 {
     #if ALIB_FEAT_THREADS
         std::this_thread::sleep_for( std::chrono::microseconds( microseconds ) );
@@ -491,7 +401,7 @@ void ALIB::SleepMicros( int microseconds )
     #endif
 }
 
-void ALIB::SleepNanos( int nanoseconds )
+void ALib::SleepNanos( int nanoseconds )
 {
     #if ALIB_FEAT_THREADS
         std::this_thread::sleep_for( std::chrono::nanoseconds( nanoseconds ) );
@@ -502,19 +412,23 @@ void ALIB::SleepNanos( int nanoseconds )
 }
 
 #if ALIB_MODULE_CONFIGURATION
-    void ALIB::Sleep( const time::Ticks& ticks )
+    void ALib::Sleep( const time::Ticks& ticks )
     {
-         ALIB::SleepNanos( static_cast<int>( ticks.InNanos() ) );
+         ALib::SleepNanos( static_cast<int>( ticks.InNanos() ) );
     }
 #endif
+
+#endif //ALIB_MODULE_STRINGS
+
 
 // #################################################################################################
 //  String helpers
 // #################################################################################################
 
 #if ALIB_MODULE_BOXING || ALIB_MODULE_STRINGS
+namespace detail {
     #if defined(__WCHAR_MAX__)  && ( __WCHAR_MAX__ > 0x10000 )
-        size_t   ALIB::strlen16( const char16_t* s )
+        size_t   strlen16( const char16_t* s )
         {
             static_assert( sizeof(wchar_t) == sizeof( char32_t ), "Error: Platform not supported" );
             if ( s == nullptr ) return 0;
@@ -524,7 +438,7 @@ void ALIB::SleepNanos( int nanoseconds )
             return static_cast<size_t>( p - s );
         }
     #else
-        size_t   ALIB::strlen32( const char32_t* s )
+        size_t   strlen32( const char32_t* s )
         {
             static_assert( sizeof(wchar_t) == sizeof( char16_t ), "Error: Platform not supported" );
 
@@ -535,7 +449,134 @@ void ALIB::SleepNanos( int nanoseconds )
             return static_cast<size_t>( p - s );
         }
     #endif
+}  // namespace aworx::lib[::detail]
 #endif
 
-}}// namespace aworx::lib
+}} // namespace [aworx::lib]
 
+
+// #################################################################################################
+//  Doxygen documentation of general macros. (All gathered in one place for technical reasons.)
+// #################################################################################################
+/**
+ * @addtogroup GrpALibMacros
+ * @{
+ * @name Macros Supporting Various ALib Concepts
+ * The macros listed here have a direct relationship with classes defined in \b %ALib
+ * and with their use.
+ * @{
+ *
+ * \def  OWN
+ * This preprocessor macro defines an object of class
+ * \ref aworx::lib::lang::Owner "Owner". The special thing about it is, that with using this macro
+ * there is no need to "invent" an (otherwise unreferenced) identifier for that definition.
+ * Basically, this macro exists, because C++ does not support anonymous local instances.<br>
+ * As a sample, without using this macros a piece of code code using classes
+ * \ref aworx::lib::lang::Owner   "Owner"/
+ * \ref aworx::lib::lang::Ownable "Ownable"
+ * could look like this:<br>
+ *
+ *      {
+ *          Owner myOwner( myOwnable );
+ *
+ *          // do stuff
+ *          ...  (this code never refers to "myOwner")
+ *      }
+ *
+ *  With the use of this macro, the code changes to:<br>
+ *
+ *      {
+ *          OWN( myOwnable ); // internal identifier replacing "myOwner" not shown
+ *
+ *          // do stuff
+ *          ...
+ *      }
+ *
+ * \see Macros \ref LOCK_HERE and \ref LOCK_HERE_WITH.
+ *
+ *  @param ownable   The \b %Ownable to acquire and release.
+ *
+ *
+ *
+ * \def  LOCK_HERE
+ * Shortcut to macro \ref OWN, providing <c>*this</c> as the owner. Usually used with
+ * methods of types derived from classes \alib{threads,ThreadLock} or \alib{threads,ThreadLockNR}
+ *
+ *
+ * \def  LOCK_HERE_WITH
+ * Alias name for macro \ref OWN to have better readable code if parameter \p owner of macro
+ * \b %OWN is of type \alib{threads,ThreadLock} or \alib{threads,ThreadLockNR}.
+ *
+ *  @param lock   The \b %Ownable to acquire and release.
+ *
+ *
+ * \def  ALIB_LANG_RESOURCED
+ *   Macro used to specialize TMP struct \alib{lang,T_Resourced,T_Resourced<TResourced>}
+ *   for given type \p TResourced.
+ *
+ *   This macro is for example used with \alib{lang,T_EnumMetaDataDecl,ALib Enum Meta Data}.
+ *
+ *   @param TResourced      The type to specialize TMP struct \b %T_Resourced for.
+ *   @param ResourceLibrary A reference to the library the type is associated with.
+ *   @param NameString      The name of the resources.
+ *
+ *
+ *
+ * \def  ALIB_LANG_EXCEPTIONS
+ *   Macro used to declare enumeration type \p TEnum to be compatible with class
+ *   \b %Exception.
+ *
+ *   \see Class \alib{lang,Exception} for details.
+ *
+ *   @param TEnum            The enumeration type that is to be declared as an error code compatible
+ *                           with class \alib{lang,Exception}.
+ *   @param ResourceLibrary  A reference to the \alib{lang,Library} the enum meta data is loaded
+ *                           from.
+ *   @param ResourceName     The resource name of the meta information of the \p TEnum.
+ *
+ *
+ *
+ * \def  ALIB_CONFIG_VARIABLES
+ *   Macro used to declare enumeration type \p TEnum to denote
+ *   \ref aworx::lib::config "ALib Configuration Variables".
+ *   In particular, the macro includes the following code:
+ *   - Specializes TMP struct \alib{lang,T_EnumMetaDataDecl} for type \p TEnum and associate
+ *     type \alib{config,VariableDecl::TTuple} for its meta data.
+ *   - Passes parameters \p ResourceLibrary and \p ResourceName to macro \ref ALIB_LANG_RESOURCED.
+ *   - Specializes method \alib{lang,EnumMetaData::CheckLoad} to use a detail method
+ *     for loading the meta data from the resources.
+ *
+ *   With this - and the corresponding resource data! - in place, elements of \p TEnum can be
+ *   used to declare configuration variables by passing them to one of following constructors and
+ *   methods:
+ *   - \alib{config,VariableDecl::VariableDecl(TEnum)}
+ *   - \alib{config,Variable::Variable(TEnum)}
+ *   - \alib{config,Variable::Variable(TEnum),Variable::Variable(TEnum\,const StringTypes&...)}
+ *   - \alib{config,Variable::Declare(TEnum)}
+ *   - \alib{config,Variable::Declare(TEnum),Variable::Declare(TEnum\,const StringTypes&...)}
+ *
+ *   The resource data is a table of values separated by character <b>'|'</b> ("pipe" character), which
+ *   has to contain the eight values of tuple type \alib{config,VariableDecl::TTuple}. Elements
+ *   \c 3 ("DefaultValue") and \c 7 ("Comments"), in the resources are interpreted as a
+ *   resource name. This way, both values are loaded from separated resource strings.
+ *   This has the following advantages:
+ *   - The values may contain the separation character <b>'|'</b>.
+ *   - The values can be manipulated within the resources more easily.
+ *
+ *   Note that for loading the resources, static template method
+ *   \alib{lang,ResourcedTupleLoader::LoadTable} is used.
+ *   As documented, this method (optionally) allows to separate each variable declaration entry
+ *   into an own, numbered resource string.
+ *
+ *
+ *   \see Namespace documentation \ref aworx::lib::config for information on configuration
+ *        data and variables.
+ *
+ *   @param TEnum            The enumeration type that is to be declared for denoting configuration
+ *                           variables.
+ *   @param ResourceLibrary  A reference to the \alib{lang,Library} the enum meta data is loaded
+ *                           from.
+ *   @param ResourceName     The resource name of the meta information of the \p TEnum.
+ *
+ * @}
+ * @} */ // GrpALibMacros

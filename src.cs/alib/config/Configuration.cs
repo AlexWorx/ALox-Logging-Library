@@ -26,8 +26,8 @@ using cs.aworx.lib.lang;
 
 This package provides tools to read and write configuration data using different mechanisms.
 In short, the features are:
-- A central class to retrieve external configuration data from various sources.
-- Abstract plug-in class to read and optionally store a certain type of external source.
+- Central class \alib{config,Configuration} used to retrieve and store external configuration data using arbitrary sources.
+- Abstract plug-in interface \alib{config,ConfigurationPlugin} to read from (and optionally store into) custom external storage.
 - Predefined plug-ins for command line parameters, environment variables and simple INI files.
 - The possibility to set default values 'in code' (if no external plug-in finds a value)
   and doing this "out of scope" which means independent from the code that finally uses a variable.
@@ -42,9 +42,9 @@ In short, the features are:
 <b>Class %Configuration and Plug-ins:</b><br>
 
 The plug-ins, derived from abstract class
-\ref cs::aworx::lib::config::ConfigurationPlugin "ConfigurationPlugin"
+\ref cs.aworx.lib.config.ConfigurationPlugin "ConfigurationPlugin"
 are plugged into an object of type
-\ref cs::aworx::lib::config::Configuration "Configuration" and are responsible for reading (and
+\ref cs.aworx.lib.config.Configuration "Configuration" and are responsible for reading (and
 optionally writing) variables from dedicated sources.
 
 Class \b %Configuration offers an interface to retrieve and store configuration variables using
@@ -53,7 +53,7 @@ Values are retrieved and stored by looping through the plug-ins sorted by priori
 As soon as one plug-in confirms to have found (or stored) the variable, the loop ends.
 This way, plug-ins may "overrule" each other in respect to retrieving configuration data.
 
-Class \ref cs::aworx::lib::ALIB "ALIB" creates a static singleton of this class for public
+Class \ref cs.aworx.lib.ALIB "ALIB" creates a static singleton of this class for public
 access and this singleton is usually all that is needed.
 
 
@@ -62,8 +62,8 @@ access and this singleton is usually all that is needed.
 %Configuration variables are addressed by two strings: The \b category and the \b name. In the case of
 INI files, the category is translated to the section and the name to variables within the
 section. Other plug-ins, for example
-\ref cs::aworx::lib::config::CommandLinePlugin "CommandLinePlugin" or
-\ref cs::aworx::lib::config::EnvironmentPlugin "EnvironmentPlugin", are prepending the category
+\ref cs.aworx.lib.config.CLIArgs "CLIArgs" or
+\ref cs.aworx.lib.config.Environment  "Environment", are prepending the category
 name to the variable name separated by an underscore character \c '_'.
 For example, a variable in category \c "ALIB" named \c "WAIT_FOR_KEY_PRESS", in an
 INI file would be stated like this:
@@ -97,13 +97,13 @@ or, in section \c MY:
 
 Three different standard plug-ins that collect external configuration variables are provided
 with ALib already:
-- Class \ref cs::aworx::lib::config::CommandLinePlugin "CommandLinePlugin":<br>
+- Class \ref cs.aworx.lib.config.CLIArgs "CLIArgs":<br>
   Reads parameter values of the form -[-]CategoryName_VariableName=value from the command line.
-- Class \ref cs::aworx::lib::config::EnvironmentPlugin "EnvironmentPlugin":<br>
+- Class \ref cs.aworx.lib.config.Environment  "Environment":<br>
   Reads system defined environment variables
   (see [Wikipedia](https://en.wikipedia.org/wiki/Environment_variable) of the form
   <c>CategoryName_VariableName=value</c>.
-- Class \ref cs::aworx::lib::config::IniFile "IniFile":<br>
+- Class \ref cs.aworx.lib.config.IniFile "IniFile":<br>
   Reads and writes quite standard INI files
   (see [Wikipedia](https://en.wikipedia.org/wiki/INI_file).
 <p>
@@ -111,9 +111,9 @@ with ALib already:
 The proposed priorities to be used when attaching the plug-ins to the \b %Configuration object,
 are given in static fields:
 
- - \ref cs::aworx::lib::config::Configuration::PrioCmdLine "Configuration.PrioCmdLine" (400)
- - \ref cs::aworx::lib::config::Configuration::PrioEnvironment "Configuration.PrioEnvironment" (300)
- - \ref cs::aworx::lib::config::Configuration::PrioIniFile "Configuration.PrioIniFile" (200)
+ - \ref cs.aworx.lib.config.Configuration.PrioCLIArgs "Configuration.PrioCLIArgs" (40000)
+ - \ref cs.aworx.lib.config.Configuration.PrioEnvironment   "Configuration.PrioEnvironment" (30000)
+ - \ref cs.aworx.lib.config.Configuration.PrioStandard      "Configuration.PrioStandard" (20000)
 
 With these default priorities set, whatever is stored in an INI file,
 can be overwritten by setting an environment variable. Both settings can in turn be
@@ -122,13 +122,13 @@ overwritten by specifying a corresponding command line parameter when launching 
 # 3. Default Variables #
 
 In addition to the three plug-ins described above, ALib implements a fourth one,
-class \ref cs::aworx::lib::config::InMemoryPlugin "InMemoryPlugin". As the name indicates, this
+class \ref cs.aworx.lib.config.InMemoryPlugin "InMemoryPlugin". As the name indicates, this
 class keeps configuration variables in memory. The special thing about it is that it does not
 read any external data source! The reason for having it, is twofold. The first use case
 are <em>Default variables</em>.<br>
 
 An instance is plugged into class \b %Configuration with a priority of
-- \ref cs::aworx::lib::config::Configuration::PrioDefault "Configuration.PrioDefault" (100),
+- \ref cs.aworx.lib.config.Configuration.PrioDefaultValues "Configuration.PrioDefaultValues" (10000),
 
 this plug-in serves as a storage for default values.
 The only way to set these default values is \e programatically, which means "with program code".
@@ -140,9 +140,9 @@ The advantages of having such default variables are:
 
 # 4. Protecting Variables #
 
-Class \ref cs::aworx::lib::config::InMemoryPlugin "InMemoryPlugin" is by default used a second
+Class \ref cs.aworx.lib.config.InMemoryPlugin "InMemoryPlugin" is by default used a second
 time by plugging an instance into class \b %Configuration with a priority of
-- \ref cs::aworx::lib::config::Configuration::PrioProtected "Configuration.PrioProtected" (max integer).
+- \ref cs.aworx.lib.config.Configuration.PrioProtectedValues "Configuration.PrioProtectedValues" (max integer).
 
 When setting a variable within this plug-in, no other plug-in can <em>'overrule'</em> this value.
 This way, it is possible to protect values against external modification.
@@ -156,27 +156,26 @@ This way, it is possible to protect values against external modification.
 # 5. Using class %Configuration #
 In normal use cases, there is no need to create an instance of class Configuration, as a default
 singleton is provided with
-\ref cs::aworx::lib::config::Configuration::Default "Configuration.Default".
+\ref cs.aworx.lib.ALIB.Config "ALIB.Config".
 The command line parameters (optionally) provided with
-\ref cs::aworx::lib::ALIB::Init "ALIB.Init" are passed to the command-line plug-in of this
+\ref cs.aworx.lib.ALIB.Init "ALIB.Init" are passed to the command-line plug-in of this
 singleton.
 
-Class %Configuration in the constructor sets up four plug-ins automatically: One for command-line,
-one for environment variables and two in-memory plug-ins used for default values and protected values.
-Each plug-in is publicly addressable (with fields
-\ref cs::aworx::lib::config::Configuration::CmdLine           "CmdLine",
-\ref cs::aworx::lib::config::Configuration::Environment       "Environment",
-\ref cs::aworx::lib::config::Configuration::DefaultValues     "DefaultValues" and
-\ref cs::aworx::lib::config::Configuration::ProtectedValues   "ProtectedValues").
+Class %Configuration in the constructor by default sets up four plug-ins automatically:
+\alib{config,CLIArgs} for parsing command-line arguments as variables,
+\alib{config,Environment} for environment variables and two plug-ins of type
+\alib{config,InMemoryPlugin} used for default and protected values.
 
 If an application wants to suppress the use of one of the plug-ins, the plug-ins can be removed
-using method \ref cs::aworx::lib::config::Configuration::RemovePlugin "RemovePlugin".<br>
+using method \ref cs.aworx.lib.config.Configuration.RemovePlugin "RemovePlugin".<br>
 On the other hand, a plug-in of type
-\ref cs::aworx::lib::config::IniFile "IniFile" may be attached on bootstrap of a process using
-\ref cs::aworx::lib::config::Configuration::PrioIniFile "Configuration.PrioIniFile" (200).
+\ref cs.aworx.lib.config.IniFile "IniFile" may be attached on bootstrap of a process using
+\ref cs.aworx.lib.config.Configuration.PrioStandard "Configuration.PrioStandard" (20000).
 
 In addition (or alternatively), custom plug-ins may be written and installed using arbitrary
-priorities. Especially, provided class \b %IniFile is designed for simplicity and smaller applications.
+priorities.
+
+Class \b %IniFile is designed for simplicity and smaller applications.
 Instead of using it \b %IniFile, it is recommended to use application/platform
 specific mechanisms for writing configuration data. In this case, write your own plug-in
 to grant ALib and other libraries which rely on ALib, access to your applications's configuration
@@ -188,7 +187,7 @@ This way, the users can stick to his/her preferred way of implementation.
 \anchor cs_alib_namespace_config_substitution
 # 6. %Variable Substitution #
 
-Method \ref cs::aworx::lib::config::Configuration::Load  "Configuration.Load" by default substitutes
+Method \ref cs.aworx.lib.config.Configuration.Load  "Configuration.Load" by default substitutes
 references to other configuration variables found in the value of the requested variable.
 
 For example, if two variables are defined as follows:
@@ -210,13 +209,13 @@ in other variables' values. For example, the syntax can be adjusted to
         MYCAT_MYVARIABLE= The result is %{MYCAT_RESULT}
 
 See documentation of fields
-\ref cs::aworx::lib::config::Configuration::SubstitutionVariableStart       "SubstitutionVariableStart",
-\ref cs::aworx::lib::config::Configuration::SubstitutionVariableEnd         "SubstitutionVariableEnd" and
-\ref cs::aworx::lib::config::Configuration::SubstitutionVariableDelimiters  "SubstitutionVariableDelimiters"
+\ref cs.aworx.lib.config.Configuration.SubstitutionVariableStart       "SubstitutionVariableStart",
+\ref cs.aworx.lib.config.Configuration.SubstitutionVariableEnd         "SubstitutionVariableEnd" and
+\ref cs.aworx.lib.config.Configuration.SubstitutionVariableDelimiters  "SubstitutionVariableDelimiters"
 for more information.
 
 When parsing a variables' category and name, method
-\ref cs::aworx::lib::config::Configuration::Load  "Configuration.Load" searches for an underscore
+\ref cs.aworx.lib.config.Configuration.Load  "Configuration.Load" searches for an underscore
 character \c '_'. The first underscore found serves as a delimiter of category from the name.
 If no underscore character is found, the category is left empty (anonymous category) and the name is set to what
 is given as a variable name.
@@ -234,20 +233,15 @@ is given as a variable name.
 # 7. Loading and Storing %Variables #
 Values of variables are loaded and received using instances of class Variable. Instances of this class
 can be passed to the interface of class Configuration or directly to specific
-\ref cs::aworx::lib::config::ConfigurationPlugin "ConfigurationPlugin" objects.
-However, the simplest way of loading and storing variables is to use the interface methods of class
-\b %Variable itself. These methods are considered "available for convenience", hence all they do is
-to invoke methods of class \b %Configuration passing themselves as parameters. The methods are using
-the public static singleton \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default".
-For most use cases this all that is needed!
+\ref cs.aworx.lib.config.ConfigurationPlugin "ConfigurationPlugin" objects.
 
 Simple access methods allow to read or set the values of a variable.
 
-By consequently using optional class VariableDefinition for defining all variables of an application or library,
+By consequently using optional class VariableDecl for declaring all variables of an application or library,
 all attributes of variables can be maintained in one place. This includes categories, names, comments,
 value delimiters and default values of variables.
-Class \b %Variable accepts instances of \b %VariableDefinition in the constructor as well as in overloaded
-method \ref cs::aworx::lib::config::Variable.Define "Variable.Define".
+Class \b %Variable accepts instances of \b %VariableDecl in the constructor as well as in overloaded
+method \ref cs.aworx.lib.config.Variable.Declare "Variable.Declare".
 
 # 8. In- and Externalizing %Variable values #
 %Variable values provided via command line parameters, environment variables or textual configuration
@@ -257,8 +251,8 @@ files need to be converted when loading and storing them. This has two reasons:
   a variable.
 
 For this task, class
-\ref cs::aworx::lib::config::XTernalizer "XTernalizer" is used. Each
-\ref cs::aworx::lib::config::ConfigurationPlugin "ConfigurationPlugin" owns an instance of this
+\ref cs.aworx.lib.config.XTernalizer "XTernalizer" is used. Each
+\ref cs.aworx.lib.config.ConfigurationPlugin "ConfigurationPlugin" owns an instance of this
 class (which is exchangeable). Conversion is done internally and there is no need to interface
 with this class directly when using variables.
 A huge benefit of this API design is that variable values look the same in an INI-file as
@@ -281,10 +275,8 @@ namespace cs.aworx.lib.config  {
 // #################################################################################################
 
 /** ************************************************************************************************
- * This class primarily is used via the public static singleton instance of it, found in
- * \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default".
- * It holds a list of objects of type
- * \ref cs::aworx::lib::config::ConfigurationPlugin "ConfigurationPlugin",
+ * This class is a container of objects of type
+ * \ref cs.aworx.lib.config.ConfigurationPlugin "ConfigurationPlugin",
  * sorted by their priority and provides a
  * single user interface to query configuration data from those.
  *
@@ -297,7 +289,7 @@ namespace cs.aworx.lib.config  {
  * by this method. For more information about the (adjustable) syntax, see
  * \ref cs_alib_namespace_config_substitution "Variable Substitution".
  *
- * See documentation of namespace #cs::aworx::lib::config for more information on ALib
+ * See documentation of namespace #cs.aworx.lib.config for more information on ALib
  * external configuration variables.
  **************************************************************************************************/
 public class Configuration
@@ -334,17 +326,6 @@ public class Configuration
     // #############################################################################################
     // public fields
     // #############################################################################################
-        /**
-         * This is the default singleton for standard use. Note that it is allowed to have
-         * multiple instances of this class but this default is provided for convenience as
-         * standard applications have just one.<br>
-         * Overloaded methods found in classes of this namespace, which omit the configuration
-         * parameter use this singleton instead.
-         * Of-course, also custom plug-ins may be attached to this object.
-         */
-        public static Configuration         Default                           = new Configuration();
-
-
         /**
          * Values considered to indicate "true". Defaults to
          * { "1", "true", "t", "yes", "y", "on", "ok" }.
@@ -383,55 +364,51 @@ public class Configuration
         = { ' ','$','@',',','.',';',':','\"','\'','+','-','*','/','\\',
             '§','%','&','(',')','[',']','{','}','<','>','=','?','\'','`','~','#' };
 
-        /** The in-memory configuration plug-in that stores default values. */
-        public InMemoryPlugin               DefaultValues              = new InMemoryPlugin();
-
-        /** The in-memory configuration plug-in that stores values that are not changeable
-            by external configuration data. */
-        public InMemoryPlugin               ProtectedValues            = new InMemoryPlugin();
-
-        /** The plug-in for command line parameters.      */
-        public CommandLinePlugin            CmdLine                 = new CommandLinePlugin();
-
-        /** The plug-in for the evaluation of system environment variables. */
-        public EnvironmentPlugin            Environment             = new EnvironmentPlugin();
 
         /** Constant providing the highest possible priority. This is used with
-         *  #ProtectedValues */
-        public const int                    PrioProtected                            = int.MaxValue;
+            #PrioProtectedValues */
+        public const int                    PrioProtectedValues                      = int.MaxValue;
 
-        /** Constant providing default priority for \b %IniFile (or similar) plug-in. */
-        public const int                    PrioCmdLine                                       = 400;
+        /** Constant providing default priority for \b %IniFile (or similar) external plug-ins. */
+        public const int                    PrioCLIArgs                                     = 40000;
 
         /** Constant providing default priority for environment variables plug-in. */
-        public const int                    PrioEnvironment                                   = 300;
+        public const int                    PrioEnvironment                                 = 30000;
 
         /** Constant providing default priority for command-line parameters plug-in. */
-        public const int                    PrioIniFile                                       = 200;
+        public const int                    PrioStandard                                    = 20000;
 
-        /** Constant providing a low priority. This is used with #DefaultValues */
-        public const int                    PrioDefault                                       = 100;
+        /** Constant providing a low priority. This is used with #PrioDefaultValues */
+        public const int                    PrioDefaultValues                               = 10000;
 
         /**
          * Constant providing a priority which is even lower than default. This priority is
          * not used by any standard plug-ins and currently not even anywhere in core ALib.
          * The rational to provide it is for third party libraries that may use this value
-         * in cases where values are estimated or detected. A user of the library may then
-         * overwrite such auto-detection by setting a default value in the configuration.
+         * in cases where values are estimated or detected - instead of defaulted.
+         * A user of the library may then overwrite such auto-detection by setting a default value
+         * in the configuration.
          */
-        public const int                    PrioAutodetect                                     = 50;
+        public const int                    PrioAutodetect                                    = 500;
 
     // #############################################################################################
     // Initialization
     // #############################################################################################
         /** ****************************************************************************************
-         * Constructs a Configuration. Registers the initial plug-ins
-         * #DefaultValues,
-         * #CmdLine,
-         * #Environment and
-         * #ProtectedValues.
+         * Constructs a Configuration. If \p addDefaultPlugins is \c true, registers the initial
+         * plug-ins as follows
+         *
+         *  Priority         | Plug-in Type
+         * ------------------|----------------------------------------------------------
+         *  \alib{config,Configuration.PrioDefaultValues}       | \alib{config,InMemoryPlugin}
+         *  \alib{config,Configuration.PrioEnvironment}   | \alib{config,Environment}
+         *  \alib{config,Configuration.PrioCLIArgs} | \alib{config,CLIArgs}
+         *  \alib{config,Configuration.PrioProtectedValues}     | \alib{config,InMemoryPlugin}
+         *
+         * @param addDefaultPlugins If \c true, the default plugins are added.
+         *                          Defaults to \c true.
          ******************************************************************************************/
-        public Configuration()
+        public Configuration(  bool addDefaultPlugins = true  )
         {
             // set default true values
             TrueValues=     new List<AString>();
@@ -443,20 +420,22 @@ public class Configuration
             TrueValues.Add( new AString( "on"   ) );
             TrueValues.Add( new AString( "ok"   ) );
 
-            // insert plug-ins
-            InsertPlugin( DefaultValues,   Configuration.PrioDefault   );
-            InsertPlugin( Environment,           Configuration.PrioEnvironment   );
-            InsertPlugin( CmdLine,       Configuration.PrioCmdLine   );
-            InsertPlugin( ProtectedValues, Configuration.PrioProtected );
+            if( addDefaultPlugins )
+            {
+                InsertPlugin( new InMemoryPlugin()    , PrioDefaultValues    );
+                InsertPlugin( new Environment() , PrioEnvironment      );
+                InsertPlugin( new CLIArgs(), PrioCLIArgs    );
+                InsertPlugin( new InMemoryPlugin()    , PrioProtectedValues  );
+            }
         }
 
         /** ****************************************************************************************
-         * Sets the command line arguments for #CmdLine.
+         * Sets the command line arguments for default plug-in \alib{config,CLIArgs}.
          *
          * \note This method should be called for instances of this class after construction.<br>
          *       In standard application scenarios, this method is invoked by method
-         *       \ref cs::aworx::lib::ALIB::Init   "ALIB.Init" for the static singleton found in
-         *       \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default".
+         *       \ref cs.aworx.lib.ALIB.Init   "ALIB.Init" for the static singleton found in
+         *       \ref cs.aworx.lib.ALIB.Config "ALIB.Config".
          *
          * @param args    Parameters taken from <em>standard C#</em> method \c main()
          *                (the list of command line arguments).
@@ -465,8 +444,12 @@ public class Configuration
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void  SetCommandLineArgs( String[] args= null )
         {
-            if( args != null && args.Length > 0 )
-                CmdLine.SetArgs( args );
+            if (args == null || args.Length == 0)
+                return;
+
+            CLIArgs cliParameters= GetPluginTypeSafe<CLIArgs>();
+            ALIB_DBG.ASSERT_ERROR( cliParameters != null , "No CLIArgs  installed" );
+            cliParameters.SetArgs( args );
         }
 
     // #############################################################################################
@@ -477,8 +460,8 @@ public class Configuration
          * Adds the given plug-in to the list of plug-ins used to query configuration values.
          * Higher numbers for parameter priority, prioritize this plug-in against those with
          * lower values. Default values are provided with static constant fields
-         * #PrioCmdLine, #PrioEnvironment and
-         * #PrioIniFile.
+         * #PrioCLIArgs, #PrioEnvironment and #PrioStandard.
+         *
          * @param plugin   The plug-in to insert.
          * @param priority The priority of the plug-in.
          ******************************************************************************************/
@@ -524,36 +507,118 @@ public class Configuration
             return false;
         }
 
+        /** ****************************************************************************************
+         * Returns the plug-in with the given priority. If the plug-in does not exist, \c null
+         * is returned.
+         *
+         * \note
+         *   The method is not thread-safe. At least, the returned plugin may become invalid
+         *   after the method returned.
+         *   For thread-safe operations, this object needs to be acquired and released explicitly.
+         *
+         *   Usually this method is used in the termination section of a software, when no parallel
+         *   threads are active.
+         *
+         *   It may be used for example to \ref FetchFromDefault "fetch" default variables into a
+         *   configuration file.
+         *
+         * @param priority The priority of the plug-in to return.
+         * @return The plug-in requested or \c null if not available.
+         ******************************************************************************************/
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public
+        ConfigurationPlugin  GetPlugin( int priority )
+        {
+            foreach ( PluginAndPrio ppp in plugins )
+                if (ppp.prio == priority)
+                    return ppp.plugin;
+            return null;
+        }
 
         /** ****************************************************************************************
-         * This method fetches all values from #DefaultValues which are not present in the given
-         * plug-in \p dest and stores them in.
+         * Same as #GetPlugin, but converts the plug-in found to the template type.
+         * A type-check is performed. If the plugin has a different type, \c null is returned.
+         *
+         * @param priority The priority of the plug-in to return.
+         * @tparam TPluginType The type of the plugin to search.
+         * @return The plug-in of requested type and priority. \c null if not available.
+         ******************************************************************************************/
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public
+        TPluginType          GetPluginTypeSafe<TPluginType>( int priority )  where TPluginType : ConfigurationPlugin
+        {
+            return GetPlugin( priority ) as TPluginType;
+        }
+
+        /** ****************************************************************************************
+         * Searches all plug-ins for the first found with type \p TPluginType.
+         *
+         * @tparam TPluginType The type of the plugin to search.
+         * @return The plug-in of requested type. \c null if not available.
+         ******************************************************************************************/
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public
+        TPluginType          GetPluginTypeSafe<TPluginType>()                where TPluginType : ConfigurationPlugin
+        {
+            TPluginType casted=null;;
+            foreach( PluginAndPrio ppp in plugins )
+                if( (casted= ppp.plugin as TPluginType)  != null )
+                    break;
+
+            return casted;
+        }
+
+        /** ****************************************************************************************
+         * Checks if any plug-in is attached. This is useful if optional configuration objects
+         * are used. In case no plug-in was attached (by a third party), the effort to declare and
+         * search a variable can be omitted.
+         * @return \c true if this object has any plugin set, \c false otherwise.
+         ******************************************************************************************/
+        public bool          HasPlugins()
+        {
+            return plugins.Count > 0;
+        }
+
+
+
+
+        /** ****************************************************************************************
+         * This method fetches all values from a plug-in of priority #PrioDefaultValues, which are
+         * not present in the given plug-in \p dest and stores them in that.
          * This is useful to collect all generated default values and store them in a users'
          * configuration file. This way, the user can identify configurable options easily.
          *
          * \note
-         *   Applications might want to copy only a portion of the default values to not
-         *   blow up a users' configuration. To achieve this, a custom method to fetch selected
-         *   values has to be implemented. In this respect, this method is a very simple
+         *   Applications might want to copy only a portion of the default values (of a section)
+         *   to not blow up a users' configuration. To achieve this, a custom method to fetch
+         *   selected values has to be implemented. In this respect, this method is a very simple
          *   default and its source might be used as a jump start.
          *
-         * @param dest   The destination plug-in.
+         * @param dest          The destination plug-in.
+         * @param sectionName   Optional string denoting a section to fetch.
+         *                      Defaults to \c null.
          * @return The number of variables fetched.
          ******************************************************************************************/
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public int FetchFromDefault( ConfigurationPlugin dest)
+        public int FetchFromDefault( ConfigurationPlugin dest, String sectionName = null )
         {
+            InMemoryPlugin defaultPlugin= GetPluginTypeSafe<InMemoryPlugin>( PrioDefaultValues );
+            ALIB_DBG.ASSERT_ERROR(defaultPlugin != null,
+                                  "Utility method FetchFromDefault used without default plugin in place.");
             int cntCopied= 0;
             Variable variable= new Variable();
-            for( int sNo= 0; sNo < DefaultValues.Sections.Count ; sNo++ )
+            for( int sNo= 0; sNo < defaultPlugin.Sections.Count ; sNo++ )
             {
-                InMemoryPlugin.Section section= DefaultValues.Sections[sNo];
+                InMemoryPlugin.Section section= defaultPlugin.Sections[sNo];
+                if( sectionName!=null && !section.Name.Equals( sectionName ) )
+                    continue;
+
                 for( int vNo= 0; vNo < section.Entries.Count ; vNo++ )
                 {
                     InMemoryPlugin.Entry entry= section.Entries[vNo];
-                    if( !dest.Load( variable.Define(section.Name, entry.Name ), true ) )
+                    if( !dest.Load( variable.Declare(section.Name, entry.Name ), true ) )
                     {
-                        DefaultValues.Load  ( variable );
+                        defaultPlugin.Load  ( variable );
                         dest.Store( variable );
                         cntCopied++;
                     }
@@ -583,18 +648,17 @@ public class Configuration
         /** ****************************************************************************************
          * Receives and optionally creates configuration variable.
          *
-         * If the variable was not found and
-         * \ref cs::aworx::lib::config::Variable::DefaultValue "Variable.DefaultValue"
-         * in \p variable is set, the method adds the value value to plug-in #DefaultValues
-         * (respectively to the plug-in found at or below #PrioDefault).
+         * If the variable was not found and \alib{config,Variable.DefaultValue}
+         * in \p variable is set, the method adds the value value to a plug-in of priority
+         * #PrioDefaultValues, (respectively to the plug-in found at or below #PrioDefaultValues).
          * For the conversion of the value, field
-         * \ref cs::aworx::lib::config::ConfigurationPlugin::StringConverter "ConfigurationPlugin.StringConverter"
-         * of field #DefaultValues is used.
+         * \alib{config,ConfigurationPlugin.StringConverter} of field a plug-in of priority
+         * #PrioDefaultValues, is used. (Which has to be present.)
          *
          * @param variable       The variable to receive.
          *
          * @returns The priority of the configuration plug-in that provided the result.
-         *          \c 0 if not found, #PrioDefault if either found or created in #DefaultValues.
+         *          \c 0 if not found.
          ******************************************************************************************/
         [MethodImpl(MethodImplOptions.Synchronized)]
         public int  Load( Variable    variable )
@@ -616,37 +680,36 @@ public class Configuration
          * other plug-in is asked.
          * This way, the variable is stored by the plug-in with the highest priority.
          *
-         * The maximum priority to start the loop with depending on field
-         * \ref cs::aworx::lib::config::Variable::Priority "Variable.Priority"
+         * The maximum priority to start the loop with depends on field
+         * \ref cs.aworx.lib.config.Variable.Priority "Variable.Priority"
          * of the given \p variable. The rules are as follows:
-         * - If the value is \c -1, which is the default value of new variables or ones that
-         *   were freshly defined, then prior to storing the value, the variable is (tried to be)
+         * - If the value is \c 0, which is the default value of new variables or ones that
+         *   were freshly declared, then prior to storing the value, the variable is (tried to be)
          *   loaded first (without actually overwriting the values).
          *   After that, one of the next two rules apply.
          * - If the value is \c 0, which indicates that a previous load operation failed, the
-         *   loop starts with #PrioDefault (and usually ends there, as standard configuration sets
+         *   loop starts with #PrioDefaultValues
+         *   (and usually ends there, as standard configuration sets
          *   do not have plug-ins with lower priorities installed). In other words, newly created
-         *   variables are stored in the in-memory plug-in #DefaultValues. This way, they are
+         *   variables are stored in the plug-in of priority #PrioDefaultValues (usually an
+         *   \b InMemoryPlugin). This way, they are
          *   not written to external configuration files, unless the application explicitly moves
          *   such new default values to dedicated other plug-ins (e.g. on termination).
          * - If the value is greater than \c 0, the value is used as the start of the loop.
          *   This way, an already defined variable will be stored in the same plug-in as it was
-         *   found (or one with a lower priority, if that plug-in does not provide writing
-         *   capabilities).
+         *   found or one with a lower priority, if that plug-in does not provide writing
+         *   capabilities.
          *
-         * Consequently, as field
-         * \ref cs::aworx::lib::config::Variable::Priority "Variable.Priority" is public, the behavior
+         * Consequently, as field \alib{config,Variable.Priority} is public, the behavior
          * can be manipulated, by setting the field explicitly prior to invoking this method.
          * Some frequent use cases shall be named here:
-         * - Setting the field to #PrioProtected allows to store the
-         *   variable in plug-in #ProtectedValues. This way, the variable gets \e 'locked' in
+         * - Setting the field to ##PrioProtectedValues allows to protect the variable value in
          *   respect to external manipulation.
-         * - Setting the field to #PrioDefault allows to store the
-         *   variable in plug-in #DefaultValues. This way, the variable becomes just a default
-         *   and does not overwrite other external values.
+         * - By setting the field to #PrioDefaultValues, the value becomes just a default
+         *   and does not overwrite externally specified values.
          * - Setting the field to a distinct priority value that names a user-specific configuration
-         *   (vs. a system-wide configuration).
-         * - Setting the field to #PrioProtected <c>- 1</c> allows to store the
+         *   (vs. a system-wide configuration) to store into.
+         * - Setting the field to ##PrioProtectedValues <c>- 1</c>, allows to store the
          *   variable just in the plug-in with highest possible priority, for example
          *   a user specific configuration is preferred to a system wide configuration)
          * - A variable might be related to a second one. If the priority of the second one is
@@ -654,18 +717,17 @@ public class Configuration
          *   plug-in.
          *
          * The method returns the priority of the configuration plug-in that the value was written
-         * to as well as storing this value in field
-         * \ref cs::aworx::lib::config::Variable::Priority "Variable.Priority".
+         * to as well as storing this value in field \alib{config,Variable.Priority}.
          * If the result is \c 0, the variable was not written. This might only happen if
-         * - either field #DefaultValues was modified (removed or exchanged with a different
-         *   plug-in that does not write the value)
-         * - or if field \p Priority of the variable was set below #PrioDefault and greater
+         * - either field default plug-in of priority #PrioDefaultValues was modified
+         *   (removed or exchanged with a different  plug-in that does not write the value)
+         * - or if field \p Priority of the variable was set below #PrioDefaultValues and greater
          *   than \c 0.
-         * - The detected (!) priority was #PrioProtected. In this case, obviously the application
-         *   does not want to allow changes and writing the variable into a different plug-in
-         *   has no effect. This way, such variables also do not appear in a users' configuration
+         * - The detected (!) priority was ##PrioProtectedValues.
+         *   In this case, obviously the application does not want to allow changes and writing the
+         *   variable into a different plug-in has no effect.
+         *   This way, such variables also do not appear in a users' configuration
          *   in the case that on program termination, new default values are copied there.
-         *
          *
          * Optional parameter \p externalizedValue allows to provide a string that is parsed
          * by the storing plug-in to reset the variables' values prior to writing.
@@ -702,7 +764,7 @@ public class Configuration
             variable.Config= this;
 
             // detect?
-            bool detected= variable.Priority < 0;
+            bool detected= variable.Priority <= 0;
             if ( detected )
             {
                 variable.Priority= 0;
@@ -716,10 +778,10 @@ public class Configuration
 
             // new variables go to default
             if ( variable.Priority == 0 )
-                variable.Priority= Configuration.PrioDefault;
+                variable.Priority= Configuration.PrioDefaultValues;
 
             // we do not store if detected priority is protected
-            else if( detected && variable.Priority == Configuration.PrioProtected )
+            else if( detected && variable.Priority == Configuration.PrioProtectedValues )
                 return (variable.Priority= 0);
 
             // store
@@ -732,6 +794,108 @@ public class Configuration
 
             return (variable.Priority= 0);
         }
+
+    // #############################################################################################
+    // convenience methods
+    // #############################################################################################
+
+        /** ****************************************************************************************
+         * Convenience method that stores the variable with priority
+         * \ref cs.aworx.lib.config.Configuration.PrioDefaultValues "Configuration.PrioDefaultValues".
+         *
+         * The variable value is determined as follows:
+         * - If optional parameter \p externalizedValue is provided and not \e nulled, the values
+         *   are loaded from that string.
+         * - Otherwise, if the variable has no values set but field
+         *   \alib{config,Variable.DefaultValue} is not \e nulled, then values are loaded from
+         ~   this field.
+         * - If all is unset (the variable values, parameter \p externalizedValue and field
+         *   \alib{config,Variable.DefaultValue}), then the unset variable is stored, which results
+         ~   in removing an existing default value from the configuration.
+         *
+         *
+         * @param variable              The variable object.
+         * @param externalizedValue     Optional externalized value string. If given, the variable
+         *                              is set prior to writing.
+         * @returns The result of
+         *          \ref cs.aworx.lib.config.Configuration.Store "Configuration.Default.Store(this)".
+         ******************************************************************************************/
+        public int     StoreDefault( Variable variable, Object externalizedValue= null )
+        {
+            InMemoryPlugin defaultPlugin= GetPluginTypeSafe<InMemoryPlugin>( PrioDefaultValues );
+            ALIB_DBG.ASSERT_ERROR(defaultPlugin != null,
+                                  "Utility method StoreDefault used without default plugin in place.");
+
+            if(     externalizedValue != null
+                && ( !(externalizedValue is AString) || ((AString) externalizedValue).IsNotNull() ) )
+                defaultPlugin.StringConverter.LoadFromString( variable, externalizedValue );
+
+            if ( variable.Size() == 0 && variable.DefaultValue.IsNotNull() )
+                defaultPlugin.StringConverter.LoadFromString( variable, variable.DefaultValue );
+
+            variable.Priority= Configuration.PrioDefaultValues;
+            return Store( variable, null );
+        }
+
+        /** ****************************************************************************************
+         * Convenience method that stores the variable with priority
+         * \ref cs.aworx.lib.config.Configuration.PrioProtectedValues "Configuration.PrioProtectedValues".
+         *
+         * The variable value is determined as follows:
+         * - If optional parameter \p externalizedValue is provided and not \e nulled, the values
+         *   are loaded from that string.
+         * - Otherwise, if the variable has no values set but field
+         *   \alib{config,Variable.DefaultValue} is not \e nulled
+         *   then values are loaded from this field.
+         * - If all is unset (the variable values, parameter \p externalizedValue and field
+         *   \alib{config,Variable.DefaultValue}), then the unset variable is stored, which results
+         ~   in removing an existing protection value from the configuration.
+         *
+         * @param variable              The variable object.
+         * @param externalizedValue     Optional externalized value string. If given, the variable
+         *                              is set prior to writing.
+         * @returns The result of
+         *          \ref cs.aworx.lib.config.Configuration.Store "Configuration.Default.Store(this)".
+         ******************************************************************************************/
+        public int     Protect( Variable variable, Object externalizedValue= null )
+        {
+            InMemoryPlugin protectedPlugin= GetPluginTypeSafe<InMemoryPlugin>( PrioProtectedValues);
+            ALIB_DBG.ASSERT_ERROR(protectedPlugin != null,
+                                  "Utility method FetchFromDefault used without default plugin in place.");
+
+            if(     externalizedValue != null
+                && ( !(externalizedValue is AString) || ((AString) externalizedValue).IsNotNull() ) )
+                protectedPlugin.StringConverter.LoadFromString( variable, externalizedValue );
+
+            if ( variable.Size() == 0 && variable.DefaultValue.IsNotNull() )
+                protectedPlugin.StringConverter.LoadFromString( variable, variable.DefaultValue );
+
+            variable.Priority= Configuration.PrioProtectedValues;
+            return Store( variable, null );
+        }
+
+
+        /** ****************************************************************************************
+         * Convenience method to set values according to the provided string.
+         * For the conversion of the "externalized" string, method
+         * \alib{config,XTernalizer.LoadFromString} of field
+         * \alib{config,ConfigurationPlugin.StringConverter}
+         * of a plug-in of priority #PrioDefaultValues, is used.
+         *
+         * @param variable              The variable object.
+         * @param externalizedValue     The new value to write.
+         *
+         * @returns The size of the variable after parsing.
+         ******************************************************************************************/
+        public int   LoadFromString( Variable variable, Object externalizedValue )
+        {
+            ConfigurationPlugin defaultPlugin= GetPlugin( PrioDefaultValues );
+            ALIB_DBG.ASSERT_ERROR(defaultPlugin != null,
+                "Utility method LoadFromString used without default plugin in place.");
+            defaultPlugin.StringConverter.LoadFromString( variable, externalizedValue );
+            return variable.Size();
+        }
+
 
     // #############################################################################################
     // internal methods
@@ -832,7 +996,7 @@ public class Configuration
 
                     if ( tmpReplVarName.IsNotEmpty() )
                     {
-                        replVar.Define( tmpReplVarCategory, tmpReplVarName, variable.Delim );
+                        replVar.Declare( tmpReplVarCategory, tmpReplVarName, variable.Delim );
                         loadImpl( replVar, false );
                     }
                     else

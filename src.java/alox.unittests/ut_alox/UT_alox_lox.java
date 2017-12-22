@@ -445,27 +445,27 @@ Log.once( new Object[] {"One - {} - {}!", "two", 3}  );
         int cntLogs;
 
 
-        var.store( "domain=/TEST, verbosity = e, domains, basic" );
+        ALox.config.store( var, "domain=/TEST, verbosity = e, domains, basic" );
 
-        var.store("domain=/TEST, verbosity = e, sptr, basic" );
+        ALox.config.store( var,"domain=/TEST, verbosity = e, sptr, basic" );
         Log.setVerbosity( memLogger, Verbosity.VERBOSE );
         cntLogs= Log.debugLogger.cntLogs;
         Log.removeLogger( memLogger );
         UT_TRUE( Log.debugLogger.cntLogs > cntLogs );
 
-        var.store("verbosity = e, domains, basic" );
+        ALox.config.store( var,"verbosity = e, domains, basic" );
         Log.setVerbosity( memLogger, Verbosity.VERBOSE );
         cntLogs= Log.debugLogger.cntLogs;
         Log.removeLogger( memLogger );
         UT_TRUE( Log.debugLogger.cntLogs > cntLogs );
 
-        var.store("domains, loggers" );
+        ALox.config.store( var,"domains, loggers" );
         Log.setVerbosity( memLogger, Verbosity.VERBOSE );
         cntLogs= Log.debugLogger.cntLogs;
         Log.removeLogger( memLogger );
         UT_TRUE( Log.debugLogger.cntLogs > cntLogs );
 
-        var.store("" );
+        ALox.config.store( var,"" );
         Log.setVerbosity( memLogger, Verbosity.VERBOSE );
         cntLogs= Log.debugLogger.cntLogs;
         Log.removeLogger( memLogger );
@@ -493,40 +493,40 @@ Log.once( new Object[] {"One - {} - {}!", "two", 3}  );
 
         // test writing into other variable with variable name error
         UT_PRINT( "An error message should follow (wrong variable format): " );
-        var.store("writeback MY_" );
+        ALox.config.store( var,"writeback MY_" );
         Log.setVerbosity( memLogger, Verbosity.VERBOSE );
         Log.removeLogger( memLogger );
 
         // test writing into other variable
-        var.store("writeback MY_VAR" );
+        ALox.config.store( var,"writeback MY_VAR" );
         Log.setVerbosity( memLogger, Verbosity.VERBOSE );
         Log.removeLogger( memLogger );
-        varBack.define( "MY",  "VAR" ).load();
+        ALox.config.load( varBack.declare( "MY",  "VAR" ));
         UT_PRINT(  "Variable written: ", varBack.getString() );
         UT_TRUE( varBack.getString().length() > 0 );
 
         // test writing into other variable without cat
-        var.store("writeback ANON" );
+        ALox.config.store( var,"writeback ANON" );
         Log.setVerbosity( memLogger, Verbosity.VERBOSE );
         Log.removeLogger( memLogger );
-        varBack.define( "",  "ANON" ).load();
+        ALox.config.load( varBack.declare( "",  "ANON" ));
         UT_PRINT(  "Variable written: ", varBack.getString() );
         UT_TRUE( varBack.getString().length() > 0 );
 
         // test writing into other variable without cat and with underscores in name
-        var.store("writeback _2ND_ANON" );
+        ALox.config.store( var,"writeback _2ND_ANON" );
         Log.setVerbosity( memLogger, Verbosity.VERBOSE );
         Log.removeLogger( memLogger );
-        varBack.define( "",  "2ND_ANON" ).load();
+        ALox.config.load( varBack.declare( "",  "2ND_ANON" ));
         UT_PRINT(  "Variable written: ", varBack.getString() );
         UT_TRUE( varBack.getString().length() > 0 );
 
         // test writing into other the variable itself
-        var.store("writeback" );
+        ALox.config.store( var,"writeback" );
         Log.setVerbosity( memLogger, Verbosity.VERBOSE );
         Log.removeLogger( memLogger );
 
-        Configuration.Default.load( var );
+        ALox.config.load( var );
         UT_PRINT(  "Variable written: ", varBack.getString() );
         UT_TRUE( var.getString().length() > 0 );
 

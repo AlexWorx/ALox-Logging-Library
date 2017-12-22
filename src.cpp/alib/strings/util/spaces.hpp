@@ -19,54 +19,42 @@
 #ifndef HPP_ALIB_STRINGS_UTIL_SPACES
 //! @cond NO_DOX
 #define HPP_ALIB_STRINGS_UTIL_SPACES 1
-//! @endcond NO_DOX
+//! @endcond
 
 namespace aworx { namespace lib { namespace strings { namespace util  {
 
 
 /** ************************************************************************************************
- * This is a simple class that provides a string full of spaces. This may be used to avoid
- * memory allocations/initializations.
+ * This is a simple class that provides a string full of spaces.
+ * This string may be used to avoid repeated memory allocations/initializations and/or repeated
+ * method invocations when a software interfaces to libraries that either allow to write
+ * a string or a single character (i.e. <c>std::ostream</c>).
  **************************************************************************************************/
 class Spaces
 {
-    // #############################################################################################
-    // static functionality
-    // #############################################################################################
-    protected:
-        /** The internal string of spaces. */
-        static AString          theSpaces;
-
-   // #############################################################################################
-   // Interface
-   // #############################################################################################
    public:
         /** ****************************************************************************************
-         * Receives a const AString full of spaces.
+         * Receives a string full of spaces. Its length depends on what is set during
+         * library initialization.
          *
-         * @return A const AString filled with spaces.
-         ******************************************************************************************/
-        inline
-        static const aworx::AString&  Get()
-        {
-            return GetUnsafe( 128 );
-        }
-
-        /** ****************************************************************************************
-         * Receives a const AString full of spaces.
-         *
-         * \attention
-         *   In multithreaded processes, changing the size of the internal spaces string must be
-         *   performed during bootstrap, e.g. directly after invoking
-         *   \ref aworx::lib::ALIB::Init "ALIB::Init" by calling this method with the appropriate
-         *   size.
-         *
-         * @param minSize  The minimum number of spaces that should be available in the returned
-         *                 AString
-         * @return A const AString filled with spaces.
+         * @return A static string filled with spaces.
          ******************************************************************************************/
         ALIB_API
-        static const aworx::AString&  GetUnsafe(integer minSize);
+        static String  Get();
+
+        /** ****************************************************************************************
+         * Creates the string.
+         *
+         * This method is invoked during
+         * \alib{strings,Strings::init,string library initialization} with \p minSize set to
+         * \c 128. During initialization of user libraries, this value might be increased by
+         * invoking this method with a higher value.
+         *
+         * @param minSize  The minimum number of spaces that should be available in the string
+         *                 returned with #Get.
+         ******************************************************************************************/
+        ALIB_API
+        static void     Initialize(integer minSize);
 
         /** ****************************************************************************************
          * Write the given number of spaces to the ostream.
@@ -74,7 +62,7 @@ class Spaces
          * @param qty   The quantity of spaces to write
          ******************************************************************************************/
         ALIB_API
-        static void                   Write( std::ostream& os, integer qty );
+        static void    Write( std::ostream& os, integer qty );
 };
 
 }}} // namespace aworx[::lib::strings::util]

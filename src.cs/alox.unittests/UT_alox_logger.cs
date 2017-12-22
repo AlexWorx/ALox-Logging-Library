@@ -296,7 +296,7 @@ namespace ut_cs_aworx_lox
                          )
     {
         Variable var= new Variable();
-        var.Define(ALox.ConfigCategoryName, "TESTML_FORMAT", ',').Store( testFormat  );
+        ALox.Config.Store( var.Declare(ALox.ConfigCategory, "TESTML_FORMAT", ','), testFormat  );
 
         Lox lox= new Lox("TEST");
         MemoryLogger ml= new MemoryLogger("TESTML");

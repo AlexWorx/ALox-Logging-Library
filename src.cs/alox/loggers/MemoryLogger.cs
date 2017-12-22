@@ -31,7 +31,7 @@ public class MemoryLogger : PlainTextLogger
     /**
      * The logging Buffer. This can be accessed publicly and hence used as preferred. Especially,
      * the whole log can easily be cleared using
-     * \ref cs::aworx::lib::strings::AString::Clear "AString.Clear".
+     * \ref cs.aworx.lib.strings.AString.Clear "AString.Clear".
      * In multi-threaded environments, \c Lox interfaces' mutex should be acquired
      * before accessing this buffer. The initial size of the buffer is 8kb.
      */

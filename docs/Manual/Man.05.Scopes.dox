@@ -6,28 +6,28 @@
 // #################################################################################################
 
 /**
-\page man_scopes  05 - Scopes in ALox
+\page alox_man_scopes  05 - Scopes in ALox
 
 \tableofcontents
 
 \~Comment ####################################################################################### \~
-# 1. Introduction #  {#man_scopes_intro}
+# 1. Introduction #  {#alox_man_scopes_intro}
 
 ALox uses the concept of \e Scopes in different ways. The most important and prominent use is to set
 so called <em>Scope Domains</em>. Those can be registered and then are used as a 'default' domain
 path with each <em>Log Statement</em> placed within the according \e %Scope. The concept of
-<em>Scope Domains</em> has been explained already in the previous chapter (see \ref man_logdomains). But to keep it simple,
+<em>Scope Domains</em> has been explained already in the previous chapter (see \ref alox_man_logdomains). But to keep it simple,
 the full variety of ALox \e Scopes was not yet, explained there. This is what this chapter
 aims to do.
 
-So, be sure, that you have read and understood chapter \ref man_logdomains, before working yourself
+So, be sure, that you have read and understood chapter \ref alox_man_logdomains, before working yourself
 through this chapter. Using the more complex possibilities of scopes is optional when using ALox, so you can
 consider this chapter as an advanced topic.
 
 Furthermore, there are other features in ALox that use \e Scopes. Those are elaborated in chapters
-- \ref man_log_once,
-- \ref man_prefix_logables and
-- \ref man_log_data.
+- \ref alox_man_log_once,
+- \ref alox_man_prefix_logables and
+- \ref alox_man_log_data.
 
 
 \note
@@ -56,7 +56,7 @@ ALox \e Scopes are enumerated in enum-class
 
 
 \~Comment ####################################################################################### \~
-# 2. Language-Related Scopes #  {#man_scopes_language}
+# 2. Language-Related Scopes #  {#alox_man_scopes_language}
 
 ALox adopts the concept of \e Scopes from each programming language of its implementation
 (currently C++, C# and Java).
@@ -85,7 +85,7 @@ The techniques are different in each implementation:
   avoided. And: ALox is fast still!).
 
 
-As explained in detail in chapter \ref man_debug_and_release_logging, for release-logging, such
+As explained in detail in chapter \ref alox_man_debug_and_release_logging, for release-logging, such
 automatic collection is not wanted. Without repeating the reasons for this here, let us emphasize
 the consequence:
 
@@ -124,7 +124,7 @@ The good news is: This is absolutely OK! The rational for claiming this is:
 The following sections describe each of the language-related \e Scopes in detail.
 
 \~Comment ####################################################################################### \~
-## 2.1 Scope.Global ##  {#man_scopes_language_global}
+## 2.1 Scope.Global ##  {#alox_man_scopes_language_global}
 As the name of this \e Scope indicates, this is the 'most outer' \e Scope of ALox. It is always
 there and only one single 'instance' of it exists per Lox. In other words, all <em>Log Statements</em> or other
 invocations of ALox are executed 'within' this singleton scope.
@@ -155,7 +155,7 @@ code would be gathered beyond that temporary <em>Log Domains</em> '/DEBUG' and a
 
 
 \~Comment ####################################################################################### \~
-## 2.2 Scope.Path (In Java Scope.PACKAGE)  ##  {#man_scopes_language_path}
+## 2.2 Scope.Path (In Java Scope.PACKAGE)  ##  {#alox_man_scopes_language_path}
 
 This \e Scope has a different name and meaning in ALox for C++/C# and ALox for Java.
 Let's start with the Java side of things - well, but, even as a C++ or C# programmer, please continue
@@ -165,7 +165,7 @@ The scope information collected by ALox for each <em>Log Statement</em> incorpor
 'package' name of the class and method that is executing it.
 Therefore, using method
 <b>%Lox.SetDomain</b>
-([C++] (@ref      #aworx::lox::Lox::SetDomain(const String&, Scope, int)),
+([C++] (@ref      #aworx::lox::Lox::SetDomain(const String&, Scope)),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
  [Java](@ref #com::aworx::lox::Lox::setDomain)) with \e Scope PACKAGE
 in Java instructs ALox to use the given <em>Scope Domain</em> for all <em>Log Statements</em> residing in any
@@ -203,8 +203,16 @@ would have path
 
         /home/user/myproject/src/ui/dialogs
 
-as associated \e %Scope.Path. Now, same as in Java where <b>%Lox.SetDomain</b> accepts
-an optional parameter \p packageLevel, in C++ and C# this method accepts an optional parameter \p pathLevel.
+as associated \e %Scope.Path. Instead of optional paramter \ packageLevel of method
+<b>%Lox.SetDomain</b>, in C++ and and C# the outer directories can simply be reached by adding
+an integer value specifying the number of directories to cut, to the enumeration element
+\b %Scope::Path.
+
+\note
+  This differences in the interface is caused by the fact that Java does not allow to do arithmetics
+  with elements of enumerations. C# allows this and in C++ we use the concept of
+  \ref aworx::lang::T_EnumIsArithmetical "ALib arithmetical enums".).
+
 If this is used, for values greater than \c 0, the corresponding amount of directories are cut
 from the end of the source files' path to determine the parent directory that a <em>Scope Domain</em> should
 be set for. As with Java packages, \e %Scope.Path can be considered being not just a single \e Scope, but
@@ -220,7 +228,7 @@ path.
   not match and reflect the namespace but (quite as its name indicates) the structure of the
   source tree.<br>
   However, if all sources of a project simply reside just in one single directory, then the use of \e %Scope.Path
-  is not advisable. Its effect would be similar to  \ref man_scopes_language_global "Scope.Global", with the
+  is not advisable. Its effect would be similar to  \ref alox_man_scopes_language_global "Scope.Global", with the
   only difference that a thread-related \e Scope is applied after \e %Scope.Path but before \e %Scope.Global.
   (Thread-related \e Scopes are discussed later in this chapter).
 
@@ -228,8 +236,8 @@ path.
 
 \note
   Because ALox is designed to tolerate errors as much as possible, the use of values for
-  parameter \p packageLevel, respectively \p pathLevel that are higher than
-  the number of sub-packages, respectively directories that can be cut, does *not* result in an error.
+  parameter \p packageLevel (in Java, respectively in C++/C# the use of adding interger values to enum element \b %Scope::Path)
+  that are higher than the number of sub-packages (respectively directories) that can be cut, does *not* result in an error.
   Instead, an empty package/path name is registered and consequently, a registration
   with, lets say level \c 42 would simply be overwritten by a subsequent registration with level \c 43
   and the effect would be nearly similar to using \e %Scope.Global.<br>
@@ -238,7 +246,7 @@ path.
 
 
 \~Comment ####################################################################################### \~
-## 2.3 Scope.Filename (In Java Scope.CLASS)  ##  {#man_scopes_language_filename}
+## 2.3 Scope.Filename (In Java Scope.CLASS)  ##  {#alox_man_scopes_language_filename}
 
 Like \e Scopes \e Path/PACKAGE, this  \e %Scope.Filename/CLASS has a different name and meaning
 in ALox for C++/C# and ALox for Java. But here it is quite simple.
@@ -260,7 +268,7 @@ Again, this is only true if both files reside in the same directory!
 
 
 \~Comment ####################################################################################### \~
-## 2.4 Scope.Method ##  {#man_scopes_language_method}
+## 2.4 Scope.Method ##  {#alox_man_scopes_language_method}
 
 \e %Scope.Method (in Java Scope.METHOD) comprises all <em>Log Statements</em> which are
 residing in a certain method. This is the 'most inner' of the language-related set of \e Scopes
@@ -279,7 +287,7 @@ would be overwritten or at least redirected by <em>Scope Domains</em> of a calli
 
 
 \~Comment ####################################################################################### \~
-## 2.5 Anonymous Scopes ##  {#man_scopes_language_anonymous}
+## 2.5 Anonymous Scopes ##  {#alox_man_scopes_language_anonymous}
 The programming languages C++, C# and Java, allow to open and close 'anonymous scopes' using
 curly braces '{' and '}'. For example, a variable declared in such anonymous scope is not visible to the rest
 of the method. Unfortunately, these anonymous scopes can not be 'detected' by ALox
@@ -295,10 +303,10 @@ a <em>Log Statement</em> are placed by ALox within the evaluated, resulting doma
 resulted from a <em>Scope Domain</em> setting of an inner \e Scope of \e %Scope.Method.
 
 \~Comment ####################################################################################### \~
-## 2.6 How To Set Scope Domains for Language-Related Scopes ##  {#man_scopes_language_setting}
+## 2.6 How To Set Scope Domains for Language-Related Scopes ##  {#alox_man_scopes_language_setting}
 
-When reading earlier chapter \ref man_logdomains and the later chapters
-(\ref man_log_once, \ref man_prefix_logables and \ref man_log_data),
+When reading earlier chapter \ref alox_man_logdomains and the later chapters
+(\ref alox_man_log_once, \ref alox_man_prefix_logables and \ref alox_man_log_data),
 you might be surprised, that the only way to use a specific \e Scope is to do this with an
 invocation of a corresponding method of class \b Lox <b>from within</b> that \e Scope itself.
 
@@ -332,7 +340,7 @@ the \e Scope and potentially associated <em>Scope Domains</em> anyhow.
       in scopes not reachable by your code: This is when for some reason you want to change
       the domains that a library (or part of the project you do not have access to) uses.
       To do this, ALox provides a concept called <em>Domain Substitution</em>,
-      described in \ref man_domain_substitution. The huge advantage of this approach is, that this
+      described in \ref alox_man_domain_substitution. The huge advantage of this approach is, that this
       feature substitutes \b all <em>Log Domains</em>, regardless whether they are evaluated by ALox from
       <em>Scope Domains</em> or if they are given as parameters of the <em>Log Statement</em>.
 
@@ -358,11 +366,11 @@ A snapshot of all current settings can be logged using
 Alternatively, if the snapshot is not enough to understand what is set, overwritten and used where,
 a live log of ALox' internal messages can be activated to identify exactly what the code is doing
 in respect to <em>Scope Domains</em>.
-See \ref man_internal_domains for more information about how to enable internal log messages.
+See \ref alox_man_internal_domains for more information about how to enable internal log messages.
 
 
 \~Comment ####################################################################################### \~
-# 3. Thread-Related Scopes #  {#man_scopes_thread}
+# 3. Thread-Related Scopes #  {#alox_man_scopes_thread}
 
 This section adds two new \e Scope 'levels', named:
 
@@ -405,7 +413,7 @@ The whole list of <em>Scope Domains</em>, together with the parameter \p domain,
 <em>Remark: [L] and [T] here indicate language-related and thread-related \e Scopes.</em>
 
 \~Comment ####################################################################################### \~
-## 3.1 Use Cases for Scope.ThreadOuter ##  {#man_scopes_thread_outer}
+## 3.1 Use Cases for Scope.ThreadOuter ##  {#alox_man_scopes_thread_outer}
 
 An important use case for <em>Scope Domains</em> of \e %Scope.ThreadOuter is useful in single-threaded
 applications, the same as in multi-threaded.
@@ -445,7 +453,7 @@ blocking the application for too long.
   insights of a software, that simple "debug log statements" do not provide!
 
 \~Comment ####################################################################################### \~
-## 3.2 Use Cases for Scope.ThreadInner ##  {#man_scopes_thread_inner}
+## 3.2 Use Cases for Scope.ThreadInner ##  {#alox_man_scopes_thread_inner}
 
 While technically \e %Scope.ThreadInner is very similar to \e %Scope.ThreadOuter, the effect and
 use cases still differs slightly. Instead of 'redirecting' just all log output of a thread into
@@ -457,7 +465,7 @@ specific Sub-<em>Log Domains</em> by thread. First, when a <em>Scope Domain</em>
 is set, the \e Verbosity of the new sub-domains will not change. This is true, because all new domains that are
 created by this thread are sub-domains of those <em>Log Domains</em> used before. And such sub-domains
 just inherit the setting as long as they are not controlled explicitly (as explained in
-\ref man_logdomains_recursive). From here, specifically for this thread, the \e Verbosity of
+\ref alox_man_logdomains_recursive). From here, specifically for this thread, the \e Verbosity of
 certain domains can now be tweaked until the right set of <em>Log Statements</em> appear.
 
 Imagine a very general class providing a very general feature, hence frequently used by different
@@ -477,12 +485,12 @@ Finally it is noteworthy to mention the impact of \e %Scope.ThreadInner being th
 
 
 \~Comment ####################################################################################### \~
-## 3.3 Multiple Use of Thread-Related Scopes ##  {#man_scopes_thread_multiple}
+## 3.3 Multiple Use of Thread-Related Scopes ##  {#alox_man_scopes_thread_multiple}
 
-We learned in section \ref man_scopes_language_path, that this \e Scope through the use of
+We learned in section \ref alox_man_scopes_language_path, that this \e Scope through the use of
 optional parameter \p pathLevel of method
 <b>%Lox.SetDomain</b>
-([C++] (@ref      #aworx::lox::Lox::SetDomain(const String&, Scope, int)),
+([C++] (@ref      #aworx::lox::Lox::SetDomain(const String&, Scope)),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
  [Java](@ref #com::aworx::lox::Lox::setDomain)) may be seen as whole set of nested
 \e Scopes itself.
@@ -503,11 +511,11 @@ in the next section.
 
 
 \~Comment ####################################################################################### \~
-## 3.4 How To Set Scope Domains for Thread-Related Scopes ##  {#man_scopes_thread_setting}
+## 3.4 How To Set Scope Domains for Thread-Related Scopes ##  {#alox_man_scopes_thread_setting}
 
 The same method,
 <b>%Lox.SetDomain</b>
-([C++] (@ref      #aworx::lox::Lox::SetDomain(const String&, Scope, int)),
+([C++] (@ref      #aworx::lox::Lox::SetDomain(const String&, Scope)),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
  [Java](@ref #com::aworx::lox::Lox::setDomain)) which is used for language-related \e Scopes
 is used to set and remove thread-related \e Scopes.
@@ -528,11 +536,11 @@ can not be guaranteed, class \b Lox offers method
  [Java](@ref #com::aworx::lox::Lox::removeThreadDomain)) which accepts the domain path
 to be removed explicitly as a parameter.
 
-It was discussed in \ref man_scopes_language_setting, that those types of \e Scopes can only be
+It was discussed in \ref alox_man_scopes_language_setting, that those types of \e Scopes can only be
 set from 'within' the \e Scope to be set (the same or an inner \e Scope). This is different
 with thread-related \e Scopes. Method
 <b>%Lox.SetDomain</b>
-([C++] (@ref      #aworx::lox::Lox::SetDomain(const String&, Scope, int)),
+([C++] (@ref      #aworx::lox::Lox::SetDomain(const String&, Scope)),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
  [Java](@ref #com::aworx::lox::Lox::setDomain)) as well as
 <b>%Lox.RemoveThreadDomain</b>
@@ -552,7 +560,8 @@ hence the current thread, is used.
   operating system, this is no issue. To refer to a thread created with a different library, the
   approach is as follows:
   - from within the thread that is created, ALib method
-    \ref aworx::lib::threads::Thread::CurrentThread "aworx::Thread::CurrentThread" has to be invoked.
+    \cpp_alib{threads,Threads::CurrentThread} has to be invoked on library singleton
+    #aworx::lib::THREADS.
   - The pointer to the \ref aworx::lib::threads::Thread "aworx::Thread" object received has to
     be passed to the scope of the method that is supposed to set a thread-related \e Scope value
     for referencing the thread in question.
@@ -567,16 +576,16 @@ settings can be logged using <b>%Lox.State</b>
 Alternatively, if the snapshot is not enough to understand what is set, removed and used where,
 a live log of ALox' internal messages can be activated to identify exactly what the code is doing
 in respect to <em>Scope Domains</em>.
-See \ref man_internal_domains for more information about how to enable internal log messages.
+See \ref alox_man_internal_domains for more information about how to enable internal log messages.
 
 
 \~Comment ####################################################################################### \~
-# 4. Wrap up #  {#man_scopes_wrapup}
+# 4. Wrap up #  {#alox_man_scopes_wrapup}
 
 We want to summarize the takeaways of this chapter:
 
 - \e Scopes are used for different features of ALox, as documented in
-  \ref man_logdomains, \ref man_log_once, \ref man_prefix_logables and \ref man_log_data.
+  \ref alox_man_logdomains, \ref alox_man_log_once, \ref alox_man_prefix_logables and \ref alox_man_log_data.
 - Most of the samples and explanations in this chapter are related to <em>Scope Domains</em>.
 - \e Scopes are nested, we have inner and outer \e Scopes.
 - Four (programming-)language-related \e Scopes were introduced. They work similar to scopes of
@@ -621,6 +630,6 @@ harder to achieve. Already the maintenance of \e Verbosities may start causing s
 
 
 --------------------------------------------------------------------
-<center>Next chapter: \ref man_log_once </center> <center> \ref manual "Back to index" </center>
+<center>Next chapter: \ref alox_man_log_once </center> <center> \ref manual "Back to index" </center>
 
 */

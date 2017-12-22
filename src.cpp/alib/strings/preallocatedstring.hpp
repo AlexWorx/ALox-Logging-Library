@@ -14,7 +14,7 @@
 
 // to preserve the right order, we are not includable directly from outside.
 #if !defined(ALIB_PROPER_INCLUSION)
-    #error "include 'alib/alib.hpp' or 'alib/alib_strings.hpp' instead of this header"
+    #error "include 'alib/alib.hpp' instead of this header"
 #endif
 
 // #################################################################################################
@@ -249,7 +249,7 @@ class PreallocatedString : public AString
 
 /** Type alias name in namespace #aworx. */
 template<aworx::lib::lang::integer TCapacity>
-using PAString      =       aworx::lib::strings::PreallocatedString<TCapacity>;
+using PreallocatedString =       aworx::lib::strings::PreallocatedString<TCapacity>;
 
 /// Type alias name for \ref aworx::lib::strings::PreallocatedString "PreallocatedString<8>".
 using String8  =  aworx::lib::strings::PreallocatedString<   8>;

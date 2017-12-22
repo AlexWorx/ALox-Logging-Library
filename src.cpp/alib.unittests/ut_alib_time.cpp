@@ -39,7 +39,7 @@ void dateFormatCheck( AWorxUnitTesting& ut, TicksCalendarTime& ct,  const char *
     String128 res;
     ct.Format( fmt, res );
     UT_PRINT( (String128("TicksCalendarTime.Format: ") << fmt << " ->")._(Format::Tab(20)) << res );
-    UT_EQ( expected, res );
+    UT_EQ( expected, String(res) );
 }
 
 
@@ -54,23 +54,23 @@ UT_METHOD(Basics)
         Ticks t;
         int64_t i64;
         int          i;
-        t.FromSeconds( 42 );       i64= t.InNanos  (); UT_NEAR( 42000000000LL, i64,  500LL );
+        t.FromSeconds( 42 );       i64= t.InNanos  (); UT_NEAR( 42000000000L, i64,  500L );
                                    i64= t.InMicros (); UT_EQ(    42000000LL, i64 );
                                    i64= t.InMillis (); UT_EQ(       42000LL, i64 );
                                    i  = t.InSeconds(); UT_EQ(          42LL, i   );
-        t.FromMillis( 42 );        i64= t.InNanos  (); UT_NEAR(  42000000LL, i64, 500LL );
+        t.FromMillis( 42 );        i64= t.InNanos  (); UT_NEAR(  42000000L, i64, 500L );
                                    i64= t.InMicros (); UT_EQ( 42000LL, i64 );
                                    i64= t.InMillis (); UT_EQ(    42LL, i64 );
                                    i  = t.InSeconds(); UT_EQ(     0LL, i   );
-        t.FromMicros( 42 );        i64= t.InNanos  (); UT_NEAR(  42000LL, i64, 500LL );
+        t.FromMicros( 42 );        i64= t.InNanos  (); UT_NEAR(  42000L, i64, 500L );
                                    i64= t.InMicros (); UT_EQ(    42LL, i64 );
                                    i64= t.InMillis (); UT_EQ(     0LL, i64 );
                                    i  = t.InSeconds(); UT_EQ(     0LL, i   );
-        t.FromNanos( 42 );         i64= t.InNanos  (); UT_NEAR(  42LL, i64, 500LL );
+        t.FromNanos( 42 );         i64= t.InNanos  (); UT_NEAR(  42L, i64, 500L );
                                    i64= t.InMicros (); UT_EQ(     0LL, i64 );
                                    i64= t.InMillis (); UT_EQ(     0LL, i64 );
                                    i  = t.InSeconds(); UT_EQ(     0LL, i   );
-        t.FromNanos( 123456789 );  i64= t.InNanos  (); UT_NEAR(  123456789LL, i64, 500LL );
+        t.FromNanos( 123456789 );  i64= t.InNanos  (); UT_NEAR(  123456789L, i64, 500L );
                                    i64= t.InMicros (); UT_EQ( 123456LL, i64 );
                                    i64= t.InMillis (); UT_EQ( 123LL, i64 );
                                    i  = t.InSeconds(); UT_EQ( 0LL, i   );
@@ -79,11 +79,11 @@ UT_METHOD(Basics)
         Ticks diff;
         diff.FromMillis( 100 );
         t.FromSeconds( 42 );
-        t.Add( diff );          i64= t.InNanos  (); UT_NEAR(  42100000000LL, i64,  500LL );
+        t.Add( diff );          i64= t.InNanos  (); UT_NEAR(  42100000000L, i64,  500L );
                                 i64= t.InMicros (); UT_EQ(    42100000LL, i64 );
                                 i64= t.InMillis (); UT_EQ(       42100LL, i64 );
                                 i  = t.InSeconds(); UT_EQ(          42LL, i   );
-        t.Sub( diff );          i64= t.InNanos  (); UT_NEAR(  42000000000LL, i64,  500LL );
+        t.Sub( diff );          i64= t.InNanos  (); UT_NEAR(  42000000000L, i64,  500L );
                                 i64= t.InMicros (); UT_EQ(    42000000LL, i64 );
                                 i64= t.InMillis (); UT_EQ(       42000LL, i64 );
                                 i  = t.InSeconds(); UT_EQ(          42LL, i   );
@@ -97,7 +97,7 @@ UT_METHOD(Basics)
 
     // check internal frequency
     {
-        auto inaccuracy= Ticks::Inaccuracy();
+        auto inaccuracy= lib::TIME.Inaccuracy();
         UT_PRINT( "Ticks Inaccuracy: {} ns", inaccuracy );
         UT_FALSE ( inaccuracy > 1000 ); // on macOS 10.12 (Sierra), 1000 was observed
     }
@@ -105,7 +105,7 @@ UT_METHOD(Basics)
     // check Ticks creation time
     {
         Ticks creationTimeDiff;
-        creationTimeDiff.Sub( Ticks::CreationTime() );
+        creationTimeDiff.Sub( lib::TIME.CreationTime() );
         UT_PRINT( "Ticks library creation was: {} ns ago"        , creationTimeDiff.InNanos()  );
         UT_PRINT( "Ticks library creation was: {} \xC2\xB5s ago" , creationTimeDiff.InMicros() ); // UTF-8 encoding of the greek 'm' letter;
         UT_PRINT( "Ticks library creation was: {} ms ago"        , creationTimeDiff.InMillis() );
@@ -117,7 +117,7 @@ UT_METHOD(Basics)
     // check if we could sleep for 100ms
     {
         Ticks start;
-            ALIB::SleepMillis( 30 );
+            ALib::SleepMillis( 30 );
         Ticks sleepTime;
         sleepTime.Sub( start );
         UT_PRINT( "Ticks diff after 30ms sleep: {}\xC2\xB5s ago", sleepTime.InMicros() ); // UTF-8 encoding of the greek 'm' letter;
@@ -369,7 +369,7 @@ UT_METHOD(Ages)
         tt.Reset();
         for (int i= 0 ; i< 100 ; i++)
         {
-            ALIB::SleepNanos( 1 );
+            ALib::SleepNanos( 1 );
             tt.Sample();
         }
         Ticks avg= tt.GetAverage();
@@ -379,13 +379,13 @@ UT_METHOD(Ages)
     // sleep two times 20 ms and probe it to an average
     {
         tt.Reset();
-            ALIB::SleepMillis( 20 );
+            ALib::SleepMillis( 20 );
         tt.Sample();
 
-                ALIB::SleepMillis( 80 );
+                ALib::SleepMillis( 80 );
 
         tt.Start();
-            ALIB::SleepMillis( 20 );
+            ALib::SleepMillis( 20 );
         tt.Sample();
 
         auto cum=    tt.GetCumulated().InMillis();

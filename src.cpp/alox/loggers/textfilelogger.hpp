@@ -104,7 +104,7 @@ class TextFileLogger : public aworx::lox::core::textlogger::PlainTextLogger
         virtual bool notifyLogOp( lib::lang::Phase phase );
 
         /** ****************************************************************************************
-         * Writes the given region of the given AString to the console.
+         * Writes the given region of the given string to the console.
          *
          * @param buffer   The string to write a portion of.
          * @param start    The start of the portion in \p buffer to write out.
@@ -112,7 +112,7 @@ class TextFileLogger : public aworx::lox::core::textlogger::PlainTextLogger
          * @return The number of characters written, -1 on error.
          ******************************************************************************************/
         ALIB_API
-        virtual integer logSubstring( const AString& buffer, integer start, integer length );
+        virtual integer logSubstring( const String& buffer, integer start, integer length );
 
 
         /** ****************************************************************************************

@@ -6,6 +6,9 @@
 // #################################################################################################
 #include "alib/alib.hpp"
 
+#if !defined (HPP_ALIB_LANG_EXCEPTION)
+    #include "alib/lang/exception.hpp"
+#endif
 #if !defined (HPP_ALIB_CONFIG_CONFIGURATION)
     #include "alib/config/configuration.hpp"
 #endif
@@ -27,6 +30,9 @@
 #if !defined (HPP_ALIB_STRINGS_UTIL_SPACES)
     #include "alib/strings/util/spaces.hpp"
 #endif
+#if !defined (HPP_ALIB_STRINGS_FORMAT_SIMPLETEXT)
+    #include "alib/strings/format/simpletext.hpp"
+#endif
 
 #include <fstream>
 #if defined(_MSC_VER)
@@ -34,8 +40,7 @@
 #endif
 
 
-namespace aworx { namespace lib { namespace config
-{
+namespace aworx { namespace lib { namespace config {
 
 // #################################################################################################
 // static/globals
@@ -45,7 +50,7 @@ String                IniFile::DefaultFileExtension                             
 // #################################################################################################
 // class InMemoryPlugin::Entry
 // #################################################################################################
-void IniFile::Entry::ToVariable( const InMemoryPlugin* parent, Variable& variable )
+void IniFile::Entry::ToVariable( const InMemoryPlugin& parent, Variable& variable )
 {
     // if we are still raw, then parse the INI file content
     if ( Values.size() == 0 )
@@ -104,7 +109,7 @@ void IniFile::Entry::ToVariable( const InMemoryPlugin* parent, Variable& variabl
         }
 
         // now convert
-        parent->StringConverter->LoadFromString( variable, raw );
+        parent.StringConverter->LoadFromString( variable, raw );
 
         // copy the parsed values back to our entry and store the delimiter
         for( int i= 0; i < variable.Size() ; i++ )
@@ -116,7 +121,7 @@ void IniFile::Entry::ToVariable( const InMemoryPlugin* parent, Variable& variabl
         InMemoryPlugin::Entry::ToVariable( parent, variable );
 }
 
-void IniFile::Entry::FromVariable( const InMemoryPlugin* parent, Variable& variable )
+void IniFile::Entry::FromVariable( const InMemoryPlugin& parent, Variable& variable )
 {
     RawValue._();
     InMemoryPlugin::Entry::FromVariable( parent, variable );
@@ -127,25 +132,31 @@ void IniFile::Entry::FromVariable( const InMemoryPlugin* parent, Variable& varia
 // Constructor/Destructor
 // #################################################################################################
 IniFile::IniFile( const String& fileName )
-: InMemoryPlugin()
+: InMemoryPlugin( NullString )
 {
-    if ( fileName.IsNotEmpty() )
-    {
-        // don't read anything
-        if ( fileName.StartsWith( "*" ) )
-        {
-            AutoSave= false;
-            return;
-        }
 
-        FileName= fileName;
+    // don't read anything
+    if ( fileName.StartsWith( "*" ) )
+    {
+        AutoSave= false;
+        return;
     }
-    else
+
+    if ( fileName.CharAtStart() != '/'
+      #if defined(_WIN32)
+         && fileName.CharAtStart() != '\\'
+         && fileName.CharAt(1)     != ':'
+      #endif
+       )
     {
         Directory dir( Directory::SpecialFolder::HomeConfig );
         FileName._( dir.Path      )
-                ._( DirectorySeparator )
-                ._( ProcessInfo::Current().Name  );
+                ._( DirectorySeparator );
+    }
+
+    if ( fileName.IsEmpty()  )
+    {
+        FileName._( ProcessInfo::Current().Name  );
 
         #if defined(_WIN32)
             if( FileName.EndsWith( ".exe" ) )
@@ -154,8 +165,11 @@ IniFile::IniFile( const String& fileName )
 
         FileName._( IniFile::DefaultFileExtension );
     }
+    else
+        FileName <<  fileName;
 
     ReadFile();
+
 }
 
 void  IniFile::Reset()
@@ -163,7 +177,21 @@ void  IniFile::Reset()
     InMemoryPlugin::Reset();
     FileComments.Clear();
     LinesWithReadErrors.clear();
-    LastStatus= Status::Ok;
+}
+
+IniFile::Section*  IniFile::createSection(const String& sectionName )
+{
+    auto section= new IniFile::Section( sectionName );
+    String comments= lib::CONFIG.GetTry(String128("INI_CMT_")._(sectionName) );
+    if( comments.IsNotEmpty() )
+    {
+        SimpleText text;
+        text.LineWidth= 100;
+        text.AddMarked( comments );
+        text.RemoveLastNewLine();
+        section->Comments << text.Text;
+    }
+    return section;
 }
 
 
@@ -179,17 +207,30 @@ bool startsWithCommentSymbol( Substring& subs )
     return       i <  2
             || ( i == 2 && subs.Length() > 1 && subs[1] == '/'  );
 }
-//! @endcond NO_DOX
+//! @endcond
 
-IniFile::Status  IniFile::ReadFile()
+void  IniFile::ReadFile()
 {
     Reset();
-    LastStatus= Status::Ok;
 
     // open file
     std::ifstream file( FileName.ToCString() );
     if ( !file.is_open() )
-        return LastStatus= Status::ErrorOpeningFile;
+    {
+        int errNo= errno;
+
+        // file does not exist ?
+        if (   errNo == EnumValue(system::SystemErrors::enoent) )
+            return;
+
+        // other errors: throw
+        auto& systemErrorMetaData= *EnumMetaData<system::SystemErrors>::GetSingleton();
+        systemErrorMetaData.CheckLoad();
+        throw Exception( ALIB_SRCPOS_REL_NULLED,  system::SystemErrors(errNo),
+                         systemErrorMetaData.Value<1>( system::SystemErrors(errNo) ),  errNo )
+                   .Add( ALIB_SRCPOS_REL_NULLED,  config::Exceptions::ErrorOpeningFile,
+                         "INI-", FileName                                                        );
+    }
 
     AString     lineAS;
     String128   name;
@@ -260,7 +301,7 @@ IniFile::Status  IniFile::ReadFile()
 
         // Variable line
         value.Clear();
-        integer idx= line.IndexOfAny( separatorCharacters, lang::Inclusion::Include );
+        integer idx= line.IndexOfAny<Inclusion::Include>( separatorCharacters );
         if( idx < 0 )
         {
             name._()._( line );
@@ -307,8 +348,6 @@ IniFile::Status  IniFile::ReadFile()
 
     }
     file.close();
-
-    return LastStatus;
 }
 
 void  IniFile::writeComments( std::ostream& os, const AString& comments )
@@ -332,28 +371,36 @@ void  IniFile::writeComments( std::ostream& os, const AString& comments )
 }
 
 //! @cond NO_DOX
-int getAssignmentPos( const AString& value, const String& alignmentSeparator );
-int getAssignmentPos( const AString& value, const String& alignmentSeparator )
-{
-    integer idx= value.IndexOf( alignmentSeparator );
-    if( idx > 0 )
+namespace {
+    int getAssignmentPos( const AString& value, const String& alignmentSeparator )
     {
-        integer idxQuote= value.IndexOfOrLength( '"' );
-        if (  idxQuote > idx )
-            return static_cast<int>(idx);
+        integer idx= value.IndexOf( alignmentSeparator );
+        if( idx > 0 )
+        {
+            integer idxQuote= value.IndexOfOrLength( '"' );
+            if (  idxQuote > idx )
+                return static_cast<int>(idx);
+        }
+        return -1;
     }
-    return -1;
 }
-//! @endcond NO_DOX
+//! @endcond
 
-IniFile::Status  IniFile::WriteFile()
+void IniFile::WriteFile()
 {
-    LastStatus= Status::Ok;
-
     // read all variables
     std::ofstream file ( FileName.ToCString() );
     if ( !file.is_open() )
-        return LastStatus= Status::ErrorOpeningFile;
+    {
+        int errNo= errno;
+        auto& systemErrorMetaData= *EnumMetaData<system::SystemErrors>::GetSingleton();
+        systemErrorMetaData.CheckLoad();
+        throw Exception( ALIB_SRCPOS_REL_NULLED, system::SystemErrors(errNo),
+                         systemErrorMetaData.Value<1>( system::SystemErrors(errNo) ), errNo )
+                  .Add(  ALIB_SRCPOS_REL_NULLED, config::Exceptions::ErrorWritingFile,
+                         "INI-", FileName                                                       );
+    }
+
 
     // write file header
     if ( FileComments.IsNotEmpty() )
@@ -410,13 +457,14 @@ IniFile::Status  IniFile::WriteFile()
                 file << '=';
                 Spaces::Write( file, maxVarLength - entry->Name.Length() + 1 );
 
-                bool     isFirst=      true;
-                String128 externalizedValue;
+                bool      isFirst=      true;
+                String256 externalizedValue;
+                ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( externalizedValue, ReplaceExternalBuffer )
 
                 //-------- write as single-line ----------
-                if ( 0 == ( entry->FormatHints & Variable::FormatHint_MultLine  ) )
+                if ( !EnumContains( entry->FmtHints, FormatHints::MultLine  ) )
                 {
-                    bool delimSpaces=  (0 == ( entry->FormatHints & Variable::FormatHint_NoDelimSpaces ) );
+                    bool delimSpaces=  (! EnumContains( entry->FmtHints, FormatHints::NoDelimSpaces ) );
                     for( AString& value : entry->Values )
                     {
                         // write delim and backslash of previous line, newline and then spaces of actual line
@@ -531,10 +579,8 @@ IniFile::Status  IniFile::WriteFile()
 
     // close file
     file.close();
-
-    return LastStatus;
 }
 
 
-}}}// namespace aworx::lib::config
+}}}// namespace [aworx::lib::config]
 

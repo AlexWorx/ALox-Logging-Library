@@ -70,7 +70,7 @@ namespace aworx { namespace lib { namespace strings {
         }
     };
 
-}}} // namespace aworx::lib::strings
+}}} // namespace [aworx::lib::strings]
 
 
 namespace ut_aworx {
@@ -84,7 +84,7 @@ void testParam            ( AWorxUnitTesting& ut, const char* exp, const String&
     #endif
     String32 asTemp;
     asTemp._(as);
-    UT_EQ( exp, asTemp  );
+    UT_EQ( exp, String(asTemp)  );
     UT_TRUE( as.Equals(exp) );
 }
 
@@ -95,7 +95,7 @@ void testParamTerminatable( AWorxUnitTesting& ut, const char* exp, const TString
     #endif
     String32 asTemp;
     asTemp._(as);
-    UT_EQ( exp, asTemp  );
+    UT_EQ( exp, String(asTemp)  );
     UT_TRUE( as.Equals(exp) );
 }
 
@@ -106,7 +106,7 @@ void testParamPreallocatedString( AWorxUnitTesting& ut, const char* exp, const S
     #endif
     String32 asTemp;
     asTemp._(as);
-    UT_EQ( exp, asTemp  );
+    UT_EQ( exp, String(asTemp)  );
     UT_TRUE( as.Equals(exp) );
 }
 
@@ -117,7 +117,7 @@ void testParamSubstring( AWorxUnitTesting& ut, const char* exp, const Substring&
     #endif
     String32 asTemp;
     asTemp._(as);
-    UT_EQ( exp, asTemp  );
+    UT_EQ( exp, String(asTemp)  );
     UT_TRUE( as.Equals(exp) );
 }
 
@@ -130,11 +130,11 @@ UT_METHOD( ConstructorsExplicit )
     UT_INIT();
 
     // before we begin...
-    static_assert( std::is_nothrow_move_constructible<String>       ::value, "String has to be move constructable with no assertions");
-    static_assert( std::is_nothrow_move_constructible<Substring>    ::value, "Substring has to be move constructable with no assertions");
-    static_assert( std::is_nothrow_move_constructible<TString>      ::value, "TString has to be move constructable with no assertions");
-    static_assert( std::is_nothrow_move_constructible<AString>      ::value, "AString has to be move constructable with no assertions");
-    static_assert( std::is_nothrow_move_constructible<PAString<10>> ::value, "PreallocatedString has to be move constructable with no assertions");
+    static_assert( std::is_nothrow_move_constructible<String>                 ::value, "String has to be move constructable with no assertions");
+    static_assert( std::is_nothrow_move_constructible<Substring>              ::value, "Substring has to be move constructable with no assertions");
+    static_assert( std::is_nothrow_move_constructible<TString>                ::value, "TString has to be move constructable with no assertions");
+    static_assert( std::is_nothrow_move_constructible<AString>                ::value, "AString has to be move constructable with no assertions");
+    static_assert( std::is_nothrow_move_constructible<PreallocatedString<10>> ::value, "PreallocatedString has to be move constructable with no assertions");
 
     wchar_t backTest[1024];
 
@@ -1057,14 +1057,14 @@ UT_METHOD( MoveConstructors )
     {   String16    as   ( AString ( "123456789_123456"));   as._ ( "x");   }
 
     {   String16    vola ( "123456789_123456");
-    String16    as       ( std::move            ( vola));
-    as._                 ( "x");
+        String16    as   ( std::move( vola ) );
+                    as._ ( "x");
     }
 
     {
         String16    vola( "123456789_123456");
         String16    as; as= std::move ( vola);
-        as._                          ( "x");
+                    as._("x");
     }
     lib::lang::Report::GetDefault().PopHaltFlags();
 

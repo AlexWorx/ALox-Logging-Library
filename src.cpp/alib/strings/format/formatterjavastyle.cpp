@@ -32,6 +32,9 @@ namespace aworx { namespace lib { namespace strings { namespace format {
 FormatterJavaStyle::FormatterJavaStyle()
 : FormatterStdImpl( "FormatterJavaStyle" )
 {
+    // arguments are counted starting with 1.
+    argumentCountStartsWith1 = true;
+
     // set number format to Java defaults
     DefaultNumberFormat.ForceDecimalPoint       = false;
     DefaultNumberFormat.WriteExponentPlusSign   = true;
@@ -129,8 +132,8 @@ bool FormatterJavaStyle::parsePlaceholder()
                         ALIB_ASSERT_RESULT_EQUALS( parser.ConsumeChar('$'), true );
                     }
                 }
-                if( argNo > 0 )
-                    setArgument( argNo, true  );
+                if( argNo >= 0 )
+                    setArgument( argNo );
 
                 NEXTSTATE(FLAGS);
             }
@@ -175,8 +178,8 @@ bool FormatterJavaStyle::parsePlaceholder()
                             break;
 
                         case '(':
-                            errorFormatString("Brackets for negative values not supported");
-                            return false;
+                            throw Exception(ALIB_SRCPOS_REL_NULLED, Exceptions::NegativeValuesInBracketsNotSupported,
+                                            formatString, formatString->Length() - parser.Length() );
 
                         default:
                             flagsDone= true;
@@ -201,57 +204,51 @@ bool FormatterJavaStyle::parsePlaceholder()
             case PRECISION:
             {
                 if( parser.ConsumeChar( '.' ) && !parser.ConsumeDecDigits( phaExtPrecision ) )
-                {
-                    errorFormatString("Missing decimal value after precision symbol '.'");
-                    return false;
-                }
+                    throw Exception(ALIB_SRCPOS_REL_NULLED, Exceptions::MissingPrecisionValueJS,
+                                    formatString, formatString->Length() - parser.Length() );
 
                 NEXTSTATE(TYPE);
             }
 
             case TYPE:
             {
-                char typeChar=  parser.CharAtStart();
+                phaTypeCode=  parser.CharAtStart();
                 parser.ConsumeChars( 1 );
 
-                char typeCharLower= static_cast<char>( tolower( typeChar ) );
+                char typeCharLower= static_cast<char>( tolower( phaTypeCode ) );
 
                 if ( typeCharLower == 'a' )
                 {
-                    errorFormatString("Hexadecimal float format not supported");
-                    return false;
+                    throw Exception(ALIB_SRCPOS_REL_NULLED, Exceptions::HexadecimalFloatFormatNotSupported,
+                                    formatString, formatString->Length() - parser.Length() - 1 );
                 }
 
-                if( phaAlternateForm && String( "sSbBhHgGcCtT").IndexOf( typeChar ) >= 0 )
-                {
-                    errorFormatString(String128("Format Flags Conversion Mismatch Exception: Conversion = ")
-                                      << typeChar << ", Flags = #" );
-                    return false;
-                }
+                if( phaAlternateForm && String( "sSbBhHgGcCtT").IndexOf( phaTypeCode ) >= 0 )
+                    throw Exception(ALIB_SRCPOS_REL_NULLED, Exceptions::NoAlternateFormOfConversion,
+                                    phaTypeCode,
+                                    formatString, formatString->Length() - parser.Length() - 1 );
 
-                if( String("seg").IndexOf( typeChar ) >= 0 )
+                if( String("seg").IndexOf( phaTypeCode ) >= 0 )
                 {
-                    if( typeChar != 's' )
+                    if( phaTypeCode != 's' )
                         phaNF.ExponentSeparator= AlternativeNumberFormat.ExponentSeparator;
                     phaNF.INFLiteral=        AlternativeNumberFormat.INFLiteral;
                     phaNF.NANLiteral=        AlternativeNumberFormat.NANLiteral;
                 }
 
-                if( String("SBCT").IndexOf( typeChar ) >= 0 )
+                if( String("SBCT").IndexOf( phaTypeCode ) >= 0 )
                     phaExtConversionUpper= true;
 
                 if( String("egf").IndexOf( typeCharLower ) < 0 )
                     phaCutContent=  phaExtPrecision;
 
-                if( phaExtPrecision >=0 && String( "cCtTd").IndexOf( typeChar ) >= 0 )
-                {
-                    errorFormatString(String128("Precision not applicable for: Conversion = ")
-                                      << typeChar << ", Precision = ." << phaExtPrecision );
-                    return false;
-                }
+                if( phaExtPrecision >=0 && String( "cCtTd").IndexOf( phaTypeCode ) >= 0 )
+                    throw Exception(ALIB_SRCPOS_REL_NULLED, Exceptions::NoPrecisionWithConversion,
+                                    phaExtPrecision, phaTypeCode,
+                                    formatString, formatString->Length() - parser.Length() - 1 );
 
-                     if( typeChar == 'X' || typeChar == 'H' )   phaNF.HexLowerCase= false;
-                else if( typeChar == 'x' || typeChar == 'h' )   phaNF.HexLiteralPrefix= AlternativeNumberFormat.HexLiteralPrefix;
+                     if( phaTypeCode == 'X' || phaTypeCode == 'H' )   phaNF.HexLowerCase= false;
+                else if( phaTypeCode == 'x' || phaTypeCode == 'h' )   phaNF.HexLiteralPrefix= AlternativeNumberFormat.HexLiteralPrefix;
 
 
                 switch ( typeCharLower )
@@ -310,20 +307,17 @@ bool FormatterJavaStyle::parsePlaceholder()
                                     case 'F': phaFormatSpec= "yyyy-MM-dd";   break;
                                     // not supported: case 'c': ;
 
-
-
-
                                     default:
-                                    errorFormatString(String128("Unknown date/time conversion suffix character '")
-                                                      << phaExtDateTime << '\'');
-                                    return  false;
-
+                                        throw Exception(ALIB_SRCPOS_REL_NULLED, Exceptions::UnknownDateTimeConversionSuffix,
+                                                        phaExtDateTime,
+                                                        formatString, formatString->Length() - parser.Length() - 1 );
                                 }
                                 break;
 
                     default:
-                        errorFormatString("Unknown Format Conversion Exception");
-                        return false;
+                        throw Exception(ALIB_SRCPOS_REL_NULLED, Exceptions::UnknownConversionJS,
+                                        phaTypeCode,
+                                        formatString, formatString->Length() - parser.Length() - 1 );
                 }
 
                 NEXTSTATE(TYPE_SUFFIX);
@@ -344,10 +338,11 @@ bool FormatterJavaStyle::parsePlaceholder()
 
 }
 
-void    FormatterJavaStyle::preAndPostProcess( integer startIdx )
+bool    FormatterJavaStyle::preAndPostProcess( integer startIdx, AString* target )
 {
-    if( startIdx >= 0 && phaExtConversionUpper )
+    if( startIdx >= 0 && phaExtConversionUpper && target == nullptr )
         targetString->ToUpper( startIdx );
+    return true;
 }
 
 bool  FormatterJavaStyle::checkStdFieldAgainstArgument()

@@ -96,8 +96,8 @@ public class AutoSizes
         }
 
         /** ****************************************************************************************
-         * Returns the next auto value stored, respectively, if the given requested size is higher,
-         * then stores and returns the requested size. The given extra growth is added to the
+         * Returns the actual auto value stored, respectively, if the given requested size is
+         * higher, stores and returns the requested size. The given extra growth is added to the
          * requested size if the currently stored value is unequal to 0. In other words, the extra
          * size is added only with the second growth and each subsequent one.
          *
@@ -107,7 +107,7 @@ public class AutoSizes
          *
          * @return The (new) size of the auto field.
          ******************************************************************************************/
-        public int         next  ( int requestedSize, int extraGrowth )
+        public int         actual( int requestedSize, int extraGrowth )
         {
             // grow arrays as needed
             ensureArraySize( actualIndex + 1 );
@@ -129,11 +129,23 @@ public class AutoSizes
                 values[ actualIndex ]=        requestedSize + ( size == 0 ? 0 : extraGrowth );
             }
 
-            // increase auto tab index
-            actualIndex++;
-
             return size;
+        }
 
+        /** ****************************************************************************************
+         * Invokes #actual and then increases the internal position counter.
+         *
+         * @param requestedSize   The minimum size that is requested.
+         * @param extraGrowth     Added to the new size if the requested size is greater than
+         *                        the stored size and if the stored size does not equal 0.
+         *
+         * @return The (new) size of the auto field.
+         ******************************************************************************************/
+        public int         next  ( int requestedSize, int extraGrowth )
+        {
+            int result= actual( requestedSize, extraGrowth );
+            actualIndex++;
+            return result;
         }
 
         /** ****************************************************************************************
@@ -141,9 +153,9 @@ public class AutoSizes
          * to be separated by ' ' characters (space).
          *
          * @param source    The Substring that is parsed for the numbers
-         * @param session   If \c CurrentData::CLEAR, which is the default, the current values
+         * @param session   If \c CurrentData.CLEAR, which is the default, the current values
          *                  are taken from the last session stored and the sessions data is set to 0.
-         *                  If \c CurrentData::KEEP, both, current values and
+         *                  If \c CurrentData.KEEP, both, current values and
          *                  session values are taken from the string.
          ******************************************************************************************/
         public void         importValues( Substring source, CurrentData session )

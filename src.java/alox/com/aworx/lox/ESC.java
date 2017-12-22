@@ -11,7 +11,7 @@ import com.aworx.lib.strings.AString;
 /** ************************************************************************************************
  * This class defines "escape sequences" that influence the formatting of log output.
  * Specific implementations of class
- * \ref com::aworx::lox::core::Logger "Logger"
+ * \ref com.aworx.lox.core.Logger "Logger"
  * have to convert or interpret this classes definitions of escape sequences
  * when processing log data. If no formatting of the output is supported by a specific Logger
  * implementation, such logger should filter and discard escape sequences defined here.

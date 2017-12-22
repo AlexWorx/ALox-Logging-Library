@@ -32,6 +32,9 @@ public class ALoxJavaAndroidTestReleaseLog extends Activity
 
     public void testReleaseLogging()
     {
+        // Initialize ALox
+        ALox.init();
+
         // create a lox for release logging
         Lox lox= new Lox("Release");
 

@@ -393,6 +393,7 @@ class MetaInfo
  **************************************************************************************************/
 class TextLogger : public Logger
 {
+
     // #############################################################################################
     // Internal fields
     // #############################################################################################
@@ -416,6 +417,16 @@ class TextLogger : public Logger
          *  searched and replaced by the second string. Very simple, but useful in some cases.
          */
         std::vector<AString>    replacements;
+
+    public: // public only to allow being resourced
+        /** Denotes the use of light vs dark colors. Used with descendent classes only.  */
+        enum class LightColorUsage
+        {
+            Auto,            ///< Automatic
+            Never,           ///< Never use light colors
+            Foreground,      ///< Use light colors for foreground
+            Background       ///< Use light colors for background
+        };
 
     // #############################################################################################
     // Public fields
@@ -556,7 +567,7 @@ class TextLogger : public Logger
         /** ****************************************************************************************
          * Invokes grand-parent's method and in addition, if field #usesStdStreams
          * is set, registers with
-         * \ref aworx::lib::ALIB::StdOutputStreamsLock "ALIB::StdOutputStreamsLock".
+         * \ref aworx::lib::ALib::StdOutputStreamsLock "ALIB.StdOutputStreamsLock".
          *
          * Furthermore, configuration variables are read within this method and created with
          * default values, in the case they do not exist, yet. The variables read and optionally
@@ -580,7 +591,7 @@ class TextLogger : public Logger
 
         /** ****************************************************************************************
          * Invokes grand-parent's method and in addition, de-registers with
-         * \ref aworx::lib::ALIB::StdOutputStreamsLock "ALIB::StdOutputStreamsLock".
+         * \ref aworx::lib::ALib::StdOutputStreamsLock "ALIB.StdOutputStreamsLock".
          * @param acquirer The acquirer to remove.
          * @return The new number of \e acquirers set.
          ******************************************************************************************/
@@ -677,5 +688,8 @@ class TextLogger : public Logger
 using     TextLogger=       aworx::lox::core::textlogger::TextLogger;
 
 }  // namespace aworx
+
+ALIB_LANG_ENUM_PARSABLE( aworx::TextLogger::LightColorUsage )
+ALIB_LANG_RESOURCED(     aworx::TextLogger::LightColorUsage, aworx::lox::ALOX, "LightColorUsage" )
 
 #endif // HPP_ALOX_CORE_TEXTLOGGER_TEXTLOGGER

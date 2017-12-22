@@ -14,8 +14,65 @@
 #ifndef HPP_ALIB_LANG_ENUMS
 #define HPP_ALIB_LANG_ENUMS 1
 
-namespace aworx { namespace lib { namespace lang {
+namespace aworx {
 
+// For documentation, we are faking all operators and enum related template functions to namespace
+// aworx::lib::lang
+#if defined(DOX_PARSER)
+namespace lib { namespace lang {
+#endif
+
+
+/**
+ * Returns the "internal" integer type value of an enumeration value. This is useful for example,
+ * to return result codes to callers of different programming languages or command line programs.
+ *
+ * Selected by the compiler only if template parameter \p TEnum represents an enum type.
+ *
+ * \note While documented in namespace <c>%aworx::lib::lang</c> in fact this function resides in
+ *       namespace #aworx.
+ *
+ * \see A different, and much more far-reaching approach is implemented with class \alib{lang,Enum}.
+ *
+ * @param  element   The enumeration element.
+ * @tparam TEnum         Enumeration type.
+ * @tparam TEnableIf     Internal. Do \b not specify!<br>
+ *                       (Defaults to \c std::enable_if type, to enable the compiler to select this
+ *                       operator only for types that have \alib{lang,T_EnumIsBitwise} set.)
+ * @return \c true if all bits of \p testFor are set in \p tested.
+ */
+template<typename TEnum,
+         typename TEnableIf= typename  std::enable_if<std::is_enum<TEnum>::value>::type >
+constexpr
+typename std::underlying_type<TEnum>::type    EnumValue(TEnum  element) noexcept(true)
+{
+    return static_cast<typename std::underlying_type<TEnum>::type>( element );
+}
+
+// Reset documentation fake
+#if defined(DOX_PARSER)
+}} // namespace aworx[::lib::lang]
+#endif
+
+
+namespace lib { namespace lang {
+
+
+/** ************************************************************************************************
+ * Enumeration representing a boolean value. While the use of this enumeration type seems senseless
+ * at the first sight (as the C++ has keywords \c bool, \c false and \c true), the reason for its
+ * existence is to have write and parse methods in place using the concept of
+ * \alib{lang,T_EnumMetaDataDecl,ALib Enum Meta Information}.
+ *
+ * The default name translation table is equipped with various 'overloaded' element entries like
+ * "yes", "no", "on", "off", "1" or "0". Furthermore, if other languages should be supported,
+ * this can even be extended at runtime.
+ **************************************************************************************************/
+enum class Bool
+{
+    False,    ///< False value
+    True      ///< True value
+};
 
 /** ************************************************************************************************
  * Denotes if sth. is switched on or off.
@@ -29,13 +86,15 @@ enum class Switch
 /** ************************************************************************************************
  * Denotes upper and lower case character treatment.
  **************************************************************************************************/
+//! [DOX_ALIB_LANG_ENUMS_PARSABLE_1]
 enum class Case
 {
     Sensitive, ///< Chooses an operation mode which differs between lower and upper case letters
-               ///  (usually the default).
+               ///< (usually the default).
     Ignore     ///< Chooses an operation mode which does not differ between between lower and
-               ///  upper case letters.
+               ///< upper case letters.
 };
+//! [DOX_ALIB_LANG_ENUMS_PARSABLE_1]
 
 /** ************************************************************************************************
  * Denotes Alignments.
@@ -125,7 +184,6 @@ enum class Timezone
 /** ************************************************************************************************
  * Denotes whether a lock should allow recursive locks (count them) or not.
  **************************************************************************************************/
-
 enum class LockMode
 {
     Recursive,    ///< Allow nested locks.
@@ -166,8 +224,8 @@ enum class Propagation
  **************************************************************************************************/
 enum class Phase
 {
-    Begin,    ///< The start of a transaction.
-    End       ///< The end of a transaction.
+    Begin            = (1 << 0),    ///< The start of a transaction.
+    End              = (1 << 1),    ///< The end of a transaction.
 };
 
 /** ************************************************************************************************
@@ -183,92 +241,10 @@ enum class ContainerOp
 };
 
 
-/** ************************************************************************************************
- * Denotes result values across \b %ALib functions
- **************************************************************************************************/
-enum class Result
-{
-    OK,          ///< Everything is fine.
-    Error,       ///< An unspecified error occurred.
+}} // namespace [lib::lang]
 
-    // ####### Files, Directories, IO #######
-
-    // Directory::Create
-    FileExists,                ///< File or directory already exists. This includes the case where pathname is a symbolic link, dangling or not.
-    InvalidPath,               ///< A directory component in pathname does not exist or is a dangling symbolic link
-
-    #if defined (__GLIBC__) || defined(__APPLE__)
-      Directory_Create_EACCES         , ///< The parent directory does not allow write permission to the process, or one of the directories in pathname did not allow search permission.
-      Directory_Create_EDQUOT         , ///< The user's quota of disk blocks or inodes on the file system has been exhausted.
-      Directory_Create_EFAULT         , ///< Pathname points outside your accessible address space.
-      Directory_Create_ELOOP          , ///< Too many symbolic links were encountered in resolving pathname.
-      Directory_Create_EMLINK         , ///< The number of links to the parent directory would exceed LINK_MAX.
-      Directory_Create_ENAMETOOLONG   , ///< Pathname was too long.
-      Directory_Create_ENOMEM         , ///< Insufficient kernel memory was available.
-      Directory_Create_ENOSPC         , ///< The device containing pathname has no room for the new directory (or that the user's disk quota is exhausted).
-      Directory_Create_ENOTDIR        , ///< A component used as a directory in pathname is not, in fact, a directory.
-      Directory_Create_EPERM          , ///< The file system containing pathname does not support the creation of directories.
-      Directory_Create_EROFS          , ///< Pathname refers to a file on a read-only file system.
-   #endif
-
-};
-
-// #################################################################################################
-// Methods to 'parse' ALib enum values from strings.
-// #################################################################################################
-#if ALIB_MODULE_STRINGS
-
-    // forward declaration of class strings
-    } namespace strings { class String; } namespace lang {
-
-    /** ********************************************************************************************
-     * Interprets given \p src as a boolean value.
-     * If the case insensitive comparison of the first non-whitespace characters of the string with
-     * with values "t", "1", "y", "on", "ok"
-     * matches, \c true is returned.
-     * Otherwise, including the case that \p src is 'nulled', \c false is returned.
-     *
-     * @param src The string to 'parse'.
-     *
-     * @returns The \b %Case value read.
-     **********************************************************************************************/
-    ALIB_API
-    bool         ReadBoolean( const strings::String& src );
-
-    /** ********************************************************************************************
-     * Interprets given \p src as a value of enum type
-     * \ref aworx::lib::lang::Case "lang::Case".
-     * If the case insensitive comparison of the first non-whitespace characters of the string
-     * with values "s", "y", "t", "1"
-     * matches, \b %Case::Sensitive is returned.
-     * Otherwise, including the case that \p src is 'nulled', \b %Case::Ignore is returned.
-     *
-     * @param src The string to 'parse'.
-     *
-     * @returns The \b %Case value read.
-     **********************************************************************************************/
-    ALIB_API
-    Case        ReadCase( const strings::String& src );
-
-    /** ********************************************************************************************
-     * Interprets given \p src as a value of enum type
-     * \ref aworx::lib::lang::Inclusion "lang::Inclusion".
-     * If the case insensitive comparison of the first non-whitespace characters of the string
-     * with values "i", "y", "t", "1"
-     * matches, \b %Inclusion::Include is returned.
-     * Otherwise, including the case that \p src is 'nulled', \b %Inclusion::Exclude is returned.
-     *
-     * @param src The string to 'parse'.
-     *
-     * @returns The \b %Inclusion value read.
-     **********************************************************************************************/
-    ALIB_API
-    Inclusion   ReadInclusion( const strings::String& src );
-
-#endif // ALIB_MODULE_STRINGS
-
-
-}} // namespace lib::lang
+/** Type alias name in namespace #aworx. */
+using     Bool=             aworx::lib::lang::Bool;
 
 /** Type alias name in namespace #aworx. */
 using     Switch=           aworx::lib::lang::Switch;
@@ -320,9 +296,6 @@ using     Phase=            aworx::lib::lang::Phase;
 
 /** Type alias name in namespace #aworx. */
 using     ContainerOp=      aworx::lib::lang::ContainerOp;
-
-/** Type alias name in namespace #aworx. */
-using     Result=           aworx::lib::lang::Result;
 
 }  // namespace aworx
 

@@ -95,7 +95,7 @@ UT_METHOD( Std_Vector )
         AString as;
         std::vector<char> vec= {'a', 'b', 'c', };
         as << vec;
-        UT_EQ( vec, as );
+        UT_EQ( String( vec ), as );
         UT_EQ( "abc"   , as );
     }
 
@@ -130,10 +130,10 @@ UT_METHOD( Std_Vector )
 
         UT_EQ( String( vec ), String( vec ) );
 
-        aworx::lib::strings::ToStdVector( "abc", vec,       CurrentData::Keep );    UT_EQ( "abcabc"       , vec );
-        aworx::lib::strings::ToStdVector( "abc", vec,  1,1, CurrentData::Keep );    UT_EQ( "abcabcb"      , vec );
-        aworx::lib::strings::ToStdVector( "abc", vec,  1,5, CurrentData::Keep );    UT_EQ( "abcabcbbc"    , vec );
-        aworx::lib::strings::ToStdVector( "abc", vec, -1,5, CurrentData::Keep );    UT_EQ( "abcabcbbcabc" , vec );
+        aworx::lib::strings::ToStdVector( "abc", vec,       CurrentData::Keep );    UT_EQ( "abcabc"       , String( vec ) );
+        aworx::lib::strings::ToStdVector( "abc", vec,  1,1, CurrentData::Keep );    UT_EQ( "abcabcb"      , String( vec ) );
+        aworx::lib::strings::ToStdVector( "abc", vec,  1,5, CurrentData::Keep );    UT_EQ( "abcabcbbc"    , String( vec ) );
+        aworx::lib::strings::ToStdVector( "abc", vec, -1,5, CurrentData::Keep );    UT_EQ( "abcabcbbcabc" , String( vec ) );
     }
 }
 

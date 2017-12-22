@@ -27,7 +27,7 @@ namespace cs.aworx.lox.loggers    {
  * A logger that logs all messages using the .Net class <em>System.Console</em>.
  * The name of the \e Logger defaults to "CONSOLE".
  *
- * \b %ALox text logger escape sequences (see class \ref cs::aworx::lox::ESC "ESC")
+ * \b %ALox text logger escape sequences (see class \ref cs.aworx.lox.ESC "ESC")
  * are removed and ignored.
  **************************************************************************************************/
 public class ConsoleLogger : PlainTextLogger

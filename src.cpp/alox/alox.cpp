@@ -21,199 +21,24 @@ using namespace aworx;
 namespace aworx { namespace lox {
 
 
-// #################################################################################################
-// Version and check flags
-// #################################################################################################
-const int            ALox::Version=                                           ALIB_VERSION_VERYFIER;
-const int            ALox::Revision=                                                              0;
-const uint64_t       ALox::CompilationFlags=                            ALOX_COMPATIBILITY_VERYFIER;
-const uint64_t       ALox::ALibCompilationFlags=                        ALIB_COMPATIBILITY_VERIFYER;
-std::pair <const char*, uint64_t> ALox::CompilationFlagMeanings[]=
-{
-    { "ALOX_DBG_LOG"            , ALOX_DBG_LOG_VFYBIT         },
-    { "ALOX_DBG_LOG_CI"         , ALOX_DBG_LOG_CI_VFYBIT      },
-    { "ALOX_REL_LOG"            , ALOX_REL_LOG_VFYBIT         },
-    { "ALOX_REL_LOG_CI"         , ALOX_REL_LOG_CI_VFYBIT      },
-};
 
 // #################################################################################################
-// Configuration variables
+// Static instance and constructor
 // #################################################################################################
-lib::config::VariableDefinition ALox::CONSOLE_TYPE =
+ALox                 ALOX;
+
+ALox::ALox()
+: Library( ALIB_VERSION, ALIB_REVISION, "ALOX", ALOX_COMPILATION_FLAGS )
 {
-    &ALox::ConfigCategoryName,   nullptr,     "CONSOLE_TYPE",
-    "default",
-    '\0', nullptr, Variable::FormatHint_None,
-    "Influences the type of console logger to be created by method"         "\n"
-    "Lox::CreateConsoleLogger which is also used by Log::AddDebugLogger"    "\n"
-    "Possible values are: default, plain, ansi, windows, noqtcreator"
-};
-
-lib::config::VariableDefinition ALox::NO_IDE_LOGGER =
-{
-    &ALox::ConfigCategoryName,   nullptr,     "NO_IDE_LOGGER",
-    "false",
-    '\0', nullptr, Variable::FormatHint_None,
-    "If true, the creation of an additional, ide-specific debug logger is suppressed." "\n"
-    "(In particular suppresses DebugLogger (C#) and VStudioLogger (C++))"
-};
-
-lib::config::VariableDefinition ALox::AUTO_SIZES =
-{
-    &ALox::ConfigCategoryName,   nullptr,     "%1_AUTO_SIZES",
-    nullptr,
-    '\0', nullptr, Variable::FormatHint_None,
-    "Auto size values of last run of Logger '%1' (generated and temporary values)."
-};
-
-lib::config::VariableDefinition ALox::MAX_ELAPSED_TIME =
-{
-    &ALox::ConfigCategoryName,   nullptr,     "%1_MAX_ELAPSED_TIME",
-    "0, limit=59",
-    ',', nullptr, Variable::FormatHint_None,
-    "Maximum elapsed time of all runs of Logger '%1'. To reset elapsed time display\n"
-    "width, set this to 0 manually. Generated and temporary value.)"
-};
-
-
-lib::config::VariableDefinition ALox::DOMAIN_SUBSTITUTION =
-{
-    &ALox::ConfigCategoryName,   nullptr,     "%1_DOMAIN_SUBSTITUTION",
-    nullptr,
-    ';', "->", Variable::FormatHint_MultLine,
-    ""
-};
-
-lib::config::VariableDefinition ALox::VERBOSITY =
-{
-    &ALox::ConfigCategoryName,   nullptr,     "%1_%2_VERBOSITY",
-    "writeback",
-    ';', "=", Variable::FormatHint_MultLine,
-    "The verbosities of logger \"%2\" in lox \"%1\". Use 'writeback [VAR_NAME] ;'\n"
-    "to enable automatic writing on application exit."
-};
-
-lib::config::VariableDefinition ALox::PREFIXES =
-{
-    &ALox::ConfigCategoryName,   nullptr,     "%1_PREFIXES",
-    "",
-    ';', "=", Variable::FormatHint_MultLine,
-    "Prefix strings for log domains of lox \"%1\".\n"
-    "   Format: [*]domainpath[*] = prefixstring [, inclusion] [ ; … ] "
-};
-
-lib::config::VariableDefinition ALox::DUMP_STATE_ON_EXIT =
-{
-    &ALox::ConfigCategoryName,   nullptr,     "%1_DUMP_STATE_ON_EXIT",
-    "none, verbosity=info, domain=/ALOX",
-    ',', nullptr, Variable::FormatHint_None,
-    "Log information about lox \"%1\" on exit. Comma separated list of arguments define"       "\n"
-    "verbosity, domain and content of output. Possible values content arguments are:"          "\n"
-    "  " "All, " "Basic, " "Version, " "SPTR, " "Loggers, " "Domains, " "InternalDomains"      "\n"
-    "  " "ScopeDomains, " "DSR, " "PrefixLogables" "Once, " "LogData, " "ThreadMappings, "     "\n"
-    "  " "CompilationFlags." " If NONE is given nothing is dumped."
-};
-
-
-
-lib::config::VariableDefinition ALox::SPTR_GLOBAL =
-{
-    &ALox::ConfigCategoryName,   nullptr,     "GLOBAL_SOURCE_PATH_TRIM_RULES",
-    "",
-    ';', "=", Variable::FormatHint_MultLine,
-     "Defines global source path trim rules (applicable for all Lox instances)."   "\n"
-     "   Format: [*]sourcepath [, inclusion, trimoffset, sensitivity, replacement] [ ; … ]"
-};
-
-lib::config::VariableDefinition ALox::SPTR_LOX =
-{
-    &ALox::ConfigCategoryName,   nullptr,     "%1_SOURCE_PATH_TRIM_RULES",
-    "",
-    ';', "=", Variable::FormatHint_MultLine,
-     "Defines global source path trim rules for Lox \"%1\". "           "\n"
-     "   Format: [*]sourcepath [, inclusion, trimoffset, sensitivity, replacement] [ ; … ]"
-};
-
-#if defined(_WIN32)
-lib::config::VariableDefinition ALox::CODEPAGE =
-{
-    &ALox::ConfigCategoryName,   nullptr,     "CODEPAGE",
-    "65001",
-    '\0', nullptr, Variable::FormatHint_None,
-     "Code page used by class WindowsConsoleLogger. Defaults to 65001."           "\n"
-     "(Only used on Windows OS)"
-};
-#endif
-
-lib::config::VariableDefinition ALox::CONSOLE_LIGHT_COLORS =
-{
-    &ALox::ConfigCategoryName,   nullptr,     "CONSOLE_LIGHT_COLORS",
-    "",
-    '\0', nullptr, Variable::FormatHint_None,
-     "Evaluated by colorful loggers that dispose about light and dark colors. Those may"        "\n"
-     "adjust their foreground and background color accordingly. If not given, under Windows OS" "\n"
-     "the right value is detected. Otherwise the value defaults to \"foreground\". In some"     "\n"
-     "occasions, the (detected or set) runtime environment might also indicate a different"     "\n"
-     "default value.  Possible values are 'foreground', 'background' and 'never'."
-};
-
-
-lib::config::VariableDefinition ALox::FORMAT =
-{
-    &ALox::ConfigCategoryName,   nullptr,     "%1_FORMAT",
-    nullptr,
-    ',', nullptr, Variable::FormatHint_MultLine,
-     "Meta info format of text logger \"%1\", including signatures for verbosity strings and"   "\n"
-     "an optional string added to the end of each log statement."                               "\n"
-     "   Format: metaInfoFormat [, Error [, Warning [, Info [, Verbose [, MsgSuffix ]]]]]"
-};
-
-
-lib::config::VariableDefinition ALox::FORMAT_DATE_TIME =
-{
-    &ALox::ConfigCategoryName,   nullptr,     "%1_FORMAT_DATE_TIME",
-    nullptr,
-    ',', nullptr, Variable::FormatHint_None,
-     "Meta info date and time format of text logger \"%1\"."       "\n"
-     "   Format: DateFormat [, TimeOfDayFormat [, TimeElapsedDays ]]]"
-};
-
-lib::config::VariableDefinition ALox::FORMAT_TIME_DIFF =
-{
-    &ALox::ConfigCategoryName,   nullptr,     "%1_FORMAT_TIME_DIFF",
-
-    nullptr,
-
-    ',', nullptr, Variable::FormatHint_None,
-     "Meta info time difference entities of text logger \"%1\"."       "\n"
-     "   Format: TimeDiffMinimum [, TimeDiffNone [, TimeDiffNanos [, TimeDiffMicros [, TimeDiffMillis \n"
-     "           [, TimeDiffSecs [, TimeDiffMins [, TimeDiffHours [,  TimeDiffDays  ]]]]]]]]"
-};
-
-lib::config::VariableDefinition ALox::FORMAT_MULTILINE=
-{
-    &ALox::ConfigCategoryName,   nullptr,     "%1_FORMAT_MULTILINE",
-
-    nullptr,
-
-    ',', nullptr, Variable::FormatHint_None,
-     "Multi-line format of text logger \"%1\"."       "\n"
-     "   Format: MultiLineMsgMode [, FmtMultiLineMsgHeadline [, FmtMultiLinePrefix [, FmtMultiLineSuffix\n"
-     "           [, MultiLineDelimiter [, MultiLineDelimiterRepl ]]]]]"
-};
-
-lib::config::VariableDefinition ALox::REPLACEMENTS=
-{
-    &ALox::ConfigCategoryName,   nullptr,     "%1_REPLACEMENTS",
-
-    nullptr,
-
-    ',', nullptr, Variable::FormatHint_None,
-     "Pairs of search and replacement strings for text logger \"%1\"."       "\n"
-     "   Format: search, replacement [, search, replacement] [,...]"
-};
-
-
+    dependencies.emplace_back( &lib::ALIB );
+    CompilationFlagMeanings=
+    {
+        { "ALOX_DBG_LOG"      , ALOX_DBG_LOG_VFYBIT        },
+        { "ALOX_DBG_LOG_CI"   , ALOX_DBG_LOG_CI_VFYBIT     },
+        { "ALOX_REL_LOG"      , ALOX_REL_LOG_VFYBIT        },
+        { "ALOX_REL_LOG_CI"   , ALOX_REL_LOG_CI_VFYBIT     },
+    };
+}
 
 // #################################################################################################
 // Compilation Flags
@@ -228,79 +53,164 @@ lib::config::VariableDefinition ALox::REPLACEMENTS=
 #endif
 
 
-bool ALox::VerifyCompilationFlags( uint64_t flags )
-{
-    if ( flags == ALox::CompilationFlags )
-        return true;
-
-    // dump out the flags
-    cout << std::left << setw(25) <<  "Symbol" << '|' << setw(5) << " Lib" <<'|' << " Comp. Unit"  <<endl;
-    for( auto& p : CompilationFlagMeanings )
-    {
-        cout << setw(25) <<  p.first << '|' << setw(5) << (ALox::CompilationFlags & p.second  ? " On" : " Off")
-                                     << "|" << setw(5) << (flags                  & p.second  ? " On" : " Off")
-             << endl;
-    }
-
-    return false;
-}
-
-void ALox::checkLibraryVersions( int alibVersion, int aloxVersion, uint64_t flagsALib,  uint64_t flagsALox )
-{
-    if (ALIB::Version != alibVersion )
-    {
-        cout << "!!! Error in ALox library compilation: linked against wrong version of ALib" << endl;
-        cout << "!!! ALib library version:  " << ALIB::Version << endl;
-        cout << "!!! ALib included version: " << alibVersion   << endl;
-        cout << "!!! Exiting with exit(-1)" << endl;
-        exit(-1);
-    }
-
-    if (ALox::Version != aloxVersion )
-    {
-        cout << "!!! Error in ALox library compilation: linked against wrong version of ALox" << endl;
-        cout << "!!! ALox library version:  " << ALox::Version << endl;
-        cout << "!!! ALox included version: " << aloxVersion  << endl;
-        cout << "!!! Exiting with exit(-1)" << endl;
-        exit(-1);
-    }
-
-    // verify ALib against ALox
-    if (!ALIB::VerifyCompilationFlags( ALox::ALibCompilationFlags ) )
-    {
-        cout << "!!! Error in ALib library compilation: linked library of ALib has different compilation symbols set." << endl;
-        exit(-1);
-    }
-
-    // verify the given (actual compilation units') flags against ALib
-    if (!ALIB::VerifyCompilationFlags( flagsALib ) )
-    {
-        cout << "!!! Error in ALib library compilation: linked library of ALib has different compilation symbols set." << endl;
-        exit(-1);
-    }
-
-    // verify the given (actual compilation units') flags against ALox
-    if (!ALox::VerifyCompilationFlags( flagsALox ) )
-    {
-        cout << "!!! Error in ALox library compilation: linked library of ALox has different compilation symbols set." << endl;
-        exit(-1);
-    }
-}
 
 // #################################################################################################
 // ALox library initialization
 // #################################################################################################
-ThreadLockNR    ALox::lock;
-bool            ALox::isInitialized                                                         = false;
-String          ALox::ConfigCategoryName                                                   = "ALOX";
 
-void  ALox::initImpl()
+void  ALox::init( Phases phase )
 {
-    ALIB_BOXING_DEFINE_IAPPLY_FOR_APPLICABLE_TYPE(aworx::lox::core::Logger*);
-    isInitialized= true;
+    if( phase == Phases::resourceset )
+    {
+
+        lib::ALIB.CheckCompatibility( ALIB_VERSION, ALIB_COMPILATION_FLAGS );
+
+        Res->AddBulk( ResourceCategory.ToCString(),
+
+        "Var0" ,  "1|ALOX|NO_IDE_LOGGER|"                           "VD01||||VC01"   ,
+        "Var1" ,  "2|ALOX|CONSOLE_TYPE|"                            "VD02||||VC02"   ,
+        "Var2" ,  "3|ALOX|%1_%2_VERBOSITY|"                      "VD03|;|=|1|VC03"   ,
+        "Var3" ,  "4|ALOX|GLOBAL_SOURCE_PATH_TRIM_RULES|"          "ES|;|=|1|VC04"   ,
+        "Var4" ,  "5|ALOX|%1_SOURCE_PATH_TRIM_RULES|"              "ES|;|=|1|VC05"   ,
+        "Var5" ,  "6|ALOX|%1_DOMAIN_SUBSTITUTION|"                   "|;|->|1|"      ,
+        "Var6" ,  "7|ALOX|%1_PREFIXES|"                            "ES|;|=|1|VC07"   ,
+        "Var7" ,  "8|ALOX|%1_DUMP_STATE_ON_EXIT|"                  "VD08|,|||VC08"   ,
+        "Var8" , "20|ALOX|%1_AUTO_SIZES|"                               "||||VC20"   ,
+        "Var9" , "21|ALOX|%1_FORMAT|"                                 "|,||1|VC21"   ,
+        "Var10", "22|ALOX|%1_FORMAT_DATE_TIME|"                        "|,|||VC22"   ,
+        "Var11", "23|ALOX|%1_FORMAT_MULTILINE|"                        "|,|||VC23"   ,
+        "Var12", "24|ALOX|%1_FORMAT_TIME_DIFF|"                        "|,|||VC24"   ,
+        "Var13", "25|ALOX|%1_MAX_ELAPSED_TIME|"                    "VD25|,|||VC25"   ,
+        "Var14", "26|ALOX|%1_REPLACEMENTS|"                            "|,|||VC26"   ,
+        "Var15", "27|ALOX|CONSOLE_LIGHT_COLORS|"                      "ES||||VC27"   ,
+        #if defined(_WIN32)
+        "Var16", "28|ALOX|CODEPAGE|"                                "VD28||||VC28"   ,
+        #endif
+
+
+        // Empty string. This is set with variables that want to be written into blank files.
+        "ES",   "",
+
+        // configuration variable default values
+        "VD01", "false",
+        "VD02", "default",
+        "VD03", "writeback",
+        "VD08", "none, verbosity=info, domain=/ALOX",
+
+        "VD25", "0, limit=59",
+        #if defined(_WIN32)
+        "VD28", "65001",
+        #endif
+
+        // configuration variable comments
+        "VC01", "If true, the creation of an additional, ide-specific debug logger is suppressed." "\n"
+                "(In particular suppresses DebugLogger (C#) and VStudioLogger (C++))",
+
+        "VC02", "Influences the type of console logger to be created by method"                 "\n"
+                "Lox::CreateConsoleLogger which is also used by Log::AddDebugLogger"            "\n"
+                "Possible values are: default, plain, ansi, windows, noqtcreator",
+
+        "VC03", "The verbosities of logger \"%2\" in lox \"%1\". Use 'writeback [VAR_NAME] ;'"  "\n"
+                "to enable automatic writing on application exit.",
+
+        "VC04", "Defines global source path trim rules (applicable for all Lox instances)."     "\n"
+                "   Format: [*]sourcepath [, inclusion, trimoffset, sensitivity, replacement] [ ; … ]",
+
+        "VC05", "Defines source path trim rules for Lox \"%1\". "           "\n"
+                "   Format: [*]sourcepath [, inclusion, trimoffset, sensitivity, replacement] [ ; … ]",
+
+        "VC07", "Prefix strings for log domains of lox \"%1\".\n"
+                "   Format: [*]domainpath[*] = prefixstring [, inclusion] [ ; … ] ",
+
+        "VC08", "Log information about lox \"%1\" on exit. Comma separated list of arguments define" "\n"
+                "verbosity, domain and content of output. Possible values content arguments are:"    "\n"
+                "  All, " "Basic, " "Version, " "SPTR, " "Loggers, " "Domains, " "InternalDomains"   "\n"
+                "  ScopeDomains, " "DSR, " "PrefixLogables" "Once, " "LogData, " "ThreadMappings, "  "\n"
+                "  CompilationFlags." " If NONE is given nothing is dumped.",
+
+        "VC20", "Auto size values of last run of Logger '%1' (generated and temporary values).",
+
+        "VC21", "Meta info format of text logger \"%1\", including signatures for verbosity strings and" "\n"
+                "an optional string added to the end of each log statement."                             "\n"
+                "   Format: metaInfoFormat [, Error [, Warning [, Info [, Verbose [, MsgSuffix ]]]]]",
+
+        "VC22", "Meta info date and time format of text logger \"%1\"."                         "\n"
+                "   Format: DateFormat [, TimeOfDayFormat [, TimeElapsedDays ]]]",
+
+        "VC23", "Multi-line format of text logger \"%1\"."       "\n"
+                "   Format: MultiLineMsgMode [, FmtMultiLineMsgHeadline [, FmtMultiLinePrefix [, FmtMultiLineSuffix\n"
+                "           [, MultiLineDelimiter [, MultiLineDelimiterRepl ]]]]]",
+
+        "VC24", "Meta info time difference entities of text logger \"%1\"."       "\n"
+                "   Format: TimeDiffMinimum [, TimeDiffNone [, TimeDiffNanos [, TimeDiffMicros [, TimeDiffMillis \n"
+                "           [, TimeDiffSecs [, TimeDiffMins [, TimeDiffHours [,  TimeDiffDays  ]]]]]]]]",
+
+        "VC25", "Maximum elapsed time of all runs of Logger '%1'. To reset elapsed time display""\n"
+                "width, set this to 0 manually. Generated and temporary value.)",
+
+        "VC26", "Pairs of search and replacement strings for text logger \"%1\"."               "\n"
+                "   Format: search, replacement [, search, replacement] [,...]",
+
+        "VC27", "Evaluated by colorful loggers that dispose about light and dark colors. Those may"        "\n"
+                "adjust their foreground and background color accordingly. If not given, under Windows OS" "\n"
+                "the right value is detected. Otherwise the value defaults to \"foreground\". In some"     "\n"
+                "occasions, the (detected or set) runtime environment might also indicate a different"     "\n"
+                "default value.  Possible values are 'foreground', 'background' and 'never'.",
+
+        #if defined(_WIN32)
+        "VC28", "Code page used by class WindowsConsoleLogger. Defaults to 65001."           "\n"
+                "(Only used on Windows OS)",
+        #endif
+
+        //########################################## Enums ########################################
+        "Verbosity",          "0,Verbose,1,"
+                              "1,Info,1,"
+                              "2,Warning,1,"
+                              "2,Warnings,1," //allow with trailing s when reading
+                              "3,Error,1,"
+                              "3,Errors,1,"   //allow with trailing s when reading
+                              "4,Off,1",
+
+        "Scope",              "0,Global,1,"
+                              "1,ThreadOuter,7,"
+                              "2,Filename,1,"
+                              "3,Method,1,"
+                              "4,ThreadInner,7,"
+                              "5,Path,7",
+
+        "StateInfo",  "0" ","   "NONE"              ",1,"
+                      "1" ","   "Basic"             ",1,"
+                      "2" ","   "Version"           ",1,"
+                    "512" ","   "LogData"           ",4,"
+                      "4" ","   "Loggers"           ",1,"
+                     "64" ","   "DSR"               ",2,"
+                      "8" ","   "Domains"           ",1,"
+                     "16" ","   "InternalDomains"   ",1,"
+               "0x100000" ","   "SPTR"              ",2,"
+                     "32" ","   "ScopeDomains"      ",1,"
+                    "128" ","   "PrefixLogables"    ",1,"
+                    "256" ","   "Once"              ",1,"
+                   "1024" ","   "ThreadMappings"    ",1,"
+               "0x200000" ","   "CompilationFlags"  ",1,"
+             "0xFFFFFFFF" ","   "All"               ",1,",
+
+        "LightColorUsage",    "0,Auto,1,"
+                              "1,Never,1,"
+                              "2,Foreground,1,"
+                              "3,Background,1",
+
+        // end of AddBulk()
+        nullptr
+        );
+
+        // Add boxing interfaces
+        ALIB_BOXING_DEFINE_IAPPLY_FOR_APPLICABLE_TYPE(aworx::lox::Verbosity);
+        ALIB_BOXING_DEFINE_IAPPLY_FOR_APPLICABLE_TYPE(aworx::lox::Scope);
+        ALIB_BOXING_DEFINE_IAPPLY_FOR_APPLICABLE_TYPE(aworx::lox::core::Logger*);
+    }
 }
 
-void ALox::TerminationCleanUp()
+void ALox::terminationCleanUp()
 {
     #if ALOX_DBG_LOG
 
@@ -315,7 +225,7 @@ void ALox::TerminationCleanUp()
 
     #endif
 
-    ALIB::TerminationCleanUp();
+    lib::ALIB.TerminationCleanUp();
 }
 
 // #################################################################################################
@@ -335,26 +245,22 @@ void ALox::TerminationCleanUp()
 
 // The lox singletons for debug and release logging
 #if ALOX_DBG_LOG
-    Lox* ALox::theLog=    nullptr;
-
     Lox*     ALox::Log()
     {
-        if ( !isInitialized )            Init();
+        Init();
         if ( theLog == nullptr )         theLog= Get("LOG", Create::IfNotExistent );
         return theLog;
     }
 #endif
 
 
-std::vector<Lox*> ALox::loxes;
-
 Lox*     ALox::Get( const String& name, Create create )
 {
-    OWN(lock)
+    LOCK_HERE_WITH(loxManagement)
 
     // search
     for( auto it : loxes )
-        if( it->GetName().Equals( name, Case::Ignore ) )
+        if( it->GetName().Equals<Case::Ignore>( name ) )
             return it;
 
 
@@ -372,7 +278,7 @@ Lox*     ALox::Get( const String& name, Create create )
 
 void     ALox::Register( Lox* lox, ContainerOp operation )
 {
-    OWN(lock)
+    LOCK_HERE_WITH(loxManagement)
 
     // check
     if ( lox == nullptr )
@@ -433,7 +339,7 @@ ALoxReportWriter::ALoxReportWriter ( Lox* pLox )
     this->lox= pLox;
 
     #if ALIB_DEBUG
-        pLox->Acquire( ALIB_SRC_INFO_PARAMS );
+        pLox->Acquire( ALIB_SRCPOS );
 
             pLox->GetLogableContainer().Add( "ALoxReportWriter set" );
             pLox->Entry( ALoxReportWriter::LogDomain(), Verbosity::Verbose );

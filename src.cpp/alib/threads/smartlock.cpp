@@ -17,25 +17,23 @@
 #include <algorithm>
 
 
-namespace aworx { namespace lib { namespace threads
-{
+namespace aworx { namespace lib { namespace threads {
 
 int SmartLock::CntAcquirers()
 {
-    OWN( lock )
+    LOCK_HERE_WITH( lock )
     return static_cast<int>( acquirers.size() );
 }
 
 int   SmartLock::AddAcquirer( ThreadLock* newAcquirer )
 {
     size_t count;
-    #if ALIB_DEBUG
-        bool errAlreadyAdded=       true;
-        bool errHasToBeRecursive=   false;
-        int  errWasAcquired=        0;
-    #endif
+    ALIB_DBG(
+    bool errAlreadyAdded=       true;
+    bool errHasToBeRecursive=   false;
+    int  errWasAcquired=        0;        )
     {
-        OWN( lock )
+        LOCK_HERE_WITH( lock )
 
         count= acquirers.size();
 
@@ -43,10 +41,9 @@ int   SmartLock::AddAcquirer( ThreadLock* newAcquirer )
         if (     newAcquirer == nullptr
              ||  std::find( acquirers.begin(), acquirers.end(), newAcquirer ) == acquirers.end() )
         {
-            #if ALIB_DEBUG
-                errAlreadyAdded= false;
-                errWasAcquired=   ThreadLock::DbgCountAcquirements() != 0 ? 1 : 0;
-            #endif
+            ALIB_DBG(
+            errAlreadyAdded= false;
+            errWasAcquired=   ThreadLock::DbgCountAcquirements() != 0 ? 1 : 0;        )
 
             // switch on?
             if( acquirers.size() == 1 )
@@ -58,16 +55,15 @@ int   SmartLock::AddAcquirer( ThreadLock* newAcquirer )
                 {
                     if( firstAcquirer->GetMode() == LockMode::Recursive )
                     {
-                        firstAcquirer->Acquire( ALIB_DBG_SRC_INFO_PARAMS);
+                        firstAcquirer->Acquire( ALIB_SRCPOS_REL_EMPTY);
                             SetSafeness( Safeness::Safe );
                             acquirers.emplace_back( newAcquirer );
                             count++;
                         firstAcquirer->Release();
                     }
-                    #if ALIB_DEBUG
+                    ALIB_DBG(
                     else
-                        errHasToBeRecursive= false;
-                    #endif
+                        errHasToBeRecursive= false;         )
 
                 }
 
@@ -78,10 +74,9 @@ int   SmartLock::AddAcquirer( ThreadLock* newAcquirer )
                 {
                     // If this assert happens, its only good luck: we detected a misuse. But it should
                     // be very seldom to be detected this way :-/
-                    #if ALIB_DEBUG
-                        if ( errWasAcquired == 1 )
-                            errWasAcquired= 2;
-                    #endif
+                    ALIB_DBG(
+                    if ( errWasAcquired == 1 )
+                        errWasAcquired= 2;            )
 
                     SetSafeness( Safeness::Safe );
                     acquirers.emplace_back( newAcquirer );
@@ -91,7 +86,7 @@ int   SmartLock::AddAcquirer( ThreadLock* newAcquirer )
             else
                 acquirers.emplace_back( newAcquirer );
         }
-    }//OWN
+    }// LOCK_HERE_WITH
 
 
     ALIB_ASSERT_ERROR( !errAlreadyAdded,     "Acquirer already registered." );
@@ -105,24 +100,21 @@ int   SmartLock::AddAcquirer( ThreadLock* newAcquirer )
 int   SmartLock::RemoveAcquirer( ThreadLock* acquirerToRemove )
 {
     size_t count;
-    #if ALIB_DEBUG
-        bool errWasAcquired;
-        bool errNotFound=    true;
-    #endif
+    ALIB_DBG(
+    bool errWasAcquired;
+    bool errNotFound=    true;      )
     {
-        OWN( lock )
+        LOCK_HERE_WITH( lock )
 
-        #if ALIB_DEBUG
-            errWasAcquired=   ThreadLock::DbgCountAcquirements() != 0;
-        #endif
+        ALIB_DBG(
+        errWasAcquired=   ThreadLock::DbgCountAcquirements() != 0;    )
 
         // search acquirer
         auto it= std::find( acquirers.begin(), acquirers.end(), acquirerToRemove );
         if( it != acquirers.end() )
         {
-            #if ALIB_DEBUG
-                errNotFound= false;
-            #endif
+            ALIB_DBG(
+            errNotFound= false;     )
 
             // switch off?
             if( acquirers.size() == 2 )
@@ -133,8 +125,8 @@ int   SmartLock::RemoveAcquirer( ThreadLock* acquirerToRemove )
                 if( acquirer2== acquirerToRemove ) acquirer2= nullptr;
 
                 // Acquire acquirers in their order of appearance
-                if ( acquirer1 != nullptr ) acquirer1->Acquire(ALIB_DBG_SRC_INFO_PARAMS);
-                  if ( acquirer2 != nullptr ) acquirer2->Acquire(ALIB_DBG_SRC_INFO_PARAMS);
+                if ( acquirer1 != nullptr ) acquirer1->Acquire(ALIB_SRCPOS_REL_EMPTY);
+                  if ( acquirer2 != nullptr ) acquirer2->Acquire(ALIB_SRCPOS_REL_EMPTY);
                       SetSafeness( Safeness::Unsafe );
                       acquirers.erase( it );
                   if ( acquirer2 != nullptr ) acquirer2->Release();
@@ -154,7 +146,6 @@ int   SmartLock::RemoveAcquirer( ThreadLock* acquirerToRemove )
 }
 
 
-
-}}}// namespace aworx::lib::threads
+}}}// namespace [aworx::lib::threads]
 
 

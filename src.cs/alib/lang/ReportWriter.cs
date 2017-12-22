@@ -18,8 +18,8 @@ using cs.aworx.lib.time;
 namespace cs.aworx.lib.lang {
 
 /** ************************************************************************************************
- * Interface that defines a writer for for %ALib \ref cs::aworx::lib::lang::Report "Report".
- * By default, an instance of \ref cs::aworx::lib::lang::ReportWriterStdIO "ReportWriterStdIO"
+ * Interface that defines a writer for for %ALib \ref cs.aworx.lib.lang.Report "Report".
+ * By default, an instance of \ref cs.aworx.lib.lang.ReportWriterStdIO "ReportWriterStdIO"
  * is installed.
  * Applications may implement their own ReportWriter.
  **************************************************************************************************/
@@ -42,8 +42,8 @@ public interface ReportWriter
  * The standard \b %ReportWriter writing the message to \c Console.Error and \c Console.Out.
  * The global formatter singleton is used is used to process the objects in the report message.
  * This is by default of type
- * \ref cs::aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle". See
- * \ref cs::aworx::lib::strings::format::Formatter::AcquireDefault "Formatter.AcquireDefault"
+ * \ref cs.aworx.lib.strings.format.FormatterPythonStyle "FormatterPythonStyle". See
+ * \ref cs.aworx.lib.strings.format.Formatter.AcquireDefault "Formatter.AcquireDefault"
  * for more information.
  **************************************************************************************************/
 class ReportWriterStdIO : ReportWriter

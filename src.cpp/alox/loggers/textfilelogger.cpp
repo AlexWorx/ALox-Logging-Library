@@ -6,10 +6,19 @@
 // #################################################################################################
 #include "alib/alib.hpp"
 
-#include "alib/config/configuration.hpp"
-#include "alib/compatibility/std_iostream.hpp"
-#include "alox/loggers/textfilelogger.hpp"
+#if !defined (HPP_ALIB_CONFIG_CONFIGURATION)
+#   include "alib/config/configuration.hpp"
+#endif
+#if !defined (HPP_ALIB_COMPATIBILITY_STD_IOSTREAM)
+#   include "alib/compatibility/std_iostream.hpp"
+#endif
+#if !defined (HPP_ALOX_TEXT_FILE_LOGGER)
+#   include "alox/loggers/textfilelogger.hpp"
+#endif
+
+#if !defined (_GLIBCXX_FSTREAM) && !defined(_FSTREAM_)
 #include <fstream>
+#endif
 
 
 using namespace std;
@@ -65,7 +74,7 @@ bool TextFileLogger::notifyLogOp( Phase phase )
     return !hasIoError;
 }
 
-integer TextFileLogger::logSubstring( const AString& buffer, integer start, integer length )
+integer TextFileLogger::logSubstring( const String& buffer, integer start, integer length )
 {
     if (!hasIoError)
         *os << String( buffer, start, length );

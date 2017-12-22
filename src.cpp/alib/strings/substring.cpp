@@ -25,8 +25,7 @@
     #undef min
 #endif
 
-namespace aworx { namespace lib { namespace strings
-{
+namespace aworx { namespace lib { namespace strings {
 
 bool   Substring::consumeDecDigitsImpl( uint64_t& result )
 {
@@ -131,23 +130,5 @@ bool   Substring::ConsumeFloat( double&          result,
     return false;
 }
 
-integer  Substring::ConsumePartOf(  const String&     consumable,
-                                    int               minChars,
-                                    lang::Case        sensitivity,
-                                    lang::Whitespaces trimBeforeConsume )
-{
-    if ( trimBeforeConsume == lang::Whitespaces::Trim )
-        TrimStart();
 
-    if ( minChars == 0 || minChars > consumable.Length() )
-        return 0;
-
-    integer diff= IndexOfFirstDifference( consumable, sensitivity );
-    if( diff < static_cast<integer>( minChars ) )
-        return 0;
-    ConsumeChars( diff );
-    return diff;
-}
-
-
-}}}// namespace aworx::lib::strings
+}}}// namespace [aworx::lib::strings]

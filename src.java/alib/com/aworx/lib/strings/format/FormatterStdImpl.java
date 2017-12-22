@@ -22,7 +22,7 @@ import com.aworx.lib.lang.Alignment;
 /** ************************************************************************************************
  * Base class for \b %ALib built-in formatters.
  * This class implements abstract method
- * \ref com::aworx::lib::strings::format::Formatter::format "Formatter.format" and introduces a set of
+ * \ref com.aworx.lib.strings.format.Formatter.format "Formatter.format" and introduces a set of
  * new abstract methods that have to be implemented by descendants.
  *
  * The documentation of the class is split into two sections: The first addresses users of
@@ -41,7 +41,7 @@ import com.aworx.lib.lang.Alignment;
  *   the format specification.
  *
  * - Field #writeALibErrorReports defaults to \c true and may be used to disable
- *   \ref com::aworx::lib::lang::Report "ALib error reports" on illegal formed format strings.
+ *   \ref com.aworx.lib.lang.Report "ALib error reports" on illegal formed format strings.
  *
  * - Field #writeErrorsToTargetString defaults to \c true and may be used to disable
  *   the writing of of error messages about illegal formed format strings to the target string.
@@ -71,9 +71,9 @@ import com.aworx.lib.lang.Alignment;
  * a date/time object and custom format string is processed using public field #dateTimeFormat.
  * \note
  *   This concept (of writing a custom format specification to #phaFormatSpec) is implemented with class
- *   \ref com::aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle" as the
+ *   \ref com.aworx.lib.strings.format.FormatterPythonStyle "FormatterPythonStyle" as the
  *   "Python format mini language" supports such custom format specifications. Class
- *   \ref com::aworx::lib::strings::format::FormatterJavaStyle "FormatterJavaStyle" does \b not support
+ *   \ref com.aworx.lib.strings.format.FormatterJavaStyle "FormatterJavaStyle" does \b not support
  *   this mechanism.
  *
  * The following describes the formatting process in detail (the implementation of method #format)
@@ -110,7 +110,7 @@ import com.aworx.lib.lang.Alignment;
  *     If the format syntax of the formatter contains a separated format specification string
  *     (a substring of the placeholder string),  then the method may store such format
  *     substring in field
- *     \ref com::aworx::lib::strings::format::FormatterStdImpl::phaFormatSpec "phaFormatSpec".
+ *     \ref com.aworx.lib.strings.format.FormatterStdImpl.phaFormatSpec "phaFormatSpec".
  *
  * 8.  Next, it is checked if an argument was set by \b %parsePlaceholder. If not, #setArgument
  *     is invoked providing \c -1 for the index to indicate auto-indexing.
@@ -119,8 +119,8 @@ import com.aworx.lib.lang.Alignment;
  *       #setArgument, then a custom formatter might either override the method or,
  *       in the case no index is given in the format string, just
  *       set fields
- *       \ref com::aworx::lib::strings::format::FormatterStdImpl::phaArgument    "phaArgument" and
- *       \ref com::aworx::lib::strings::format::FormatterStdImpl::phaArgumentIdx "phaArgumentIdx"
+ *       \ref com.aworx.lib.strings.format.FormatterStdImpl.phaArgument    "phaArgument" and
+ *       \ref com.aworx.lib.strings.format.FormatterStdImpl.phaArgumentIdx "phaArgumentIdx"
  *       already in \b %parsePlaceholder according to its own strategy
  *
  * 9.  Method #preAndPostProcess is invoked with parameter \p startIdx equalling \c -1
@@ -134,7 +134,7 @@ import com.aworx.lib.lang.Alignment;
  *     to write the date/time value to the target string and \c true is returned.<br>
  *
  * 11. Again, if a format specification was stored in
- *     \ref com::aworx::lib::strings::format::FormatterStdImpl::phaFormatSpec "phaFormatSpec"
+ *     \ref com.aworx.lib.strings.format.FormatterStdImpl.phaFormatSpec "phaFormatSpec"
  *     method #parseStdFormatSpec is invoked which needs to set further attributes
  *     in the \b %Placeholder object according to to the standard format specification of the formatter.
  *
@@ -166,6 +166,9 @@ public abstract class FormatterStdImpl extends Formatter
 
         /** The target string as provided with method #format. */
         protected AString                ptargetString;
+
+        /** The length of the target string before adding the formatted contents.*/
+        protected int                    targetStringStartLength;
 
         /** The format string as provided with method #format. */
         protected Substring              pformatString                             = new Substring();
@@ -215,13 +218,17 @@ public abstract class FormatterStdImpl extends Formatter
             Float           , ///< Outputs a number in floating point format.
 
             // Bool
-            Bool            , ///< Writes 'true' or 'false'.
+            Bool            , ///< Writes "true" or "false".
             HashCode        , ///< Writes raw box data as hex.
+
+            // special
+            Fill            , ///< Writes #phaFillChar x-times. Used with python-style conversion
+                              ///< <b>{!Fill[C]}</b>
         }
 
     /** The type of the attribute as specified in the placeholder.
          *  This is set to
-         *  \ref com::aworx::lib::strings::format::FormatterStdImpl::PHType::NotGiven "PHType.NotGiven"
+         *  \ref com.aworx.lib.strings.format.FormatterStdImpl.PHType.NotGiven "PHType.NotGiven"
          *  in default implementation of #resetPHAs. */
         protected PHType                      phaType;
 
@@ -268,7 +275,7 @@ public abstract class FormatterStdImpl extends Formatter
         protected boolean                     phaAlignmentSpecified;
 
         /** The alignment of the contents within a field.
-         *  This is set to \ref com::aworx::lib::lang::Alignment::LEFT "Alignment.LEFT" in default
+         *  This is set to \ref com.aworx.lib.lang.Alignment.LEFT "Alignment.LEFT" in default
          *  implementation of #resetPHAs. */
         protected Alignment                   phaAlignment;
 
@@ -284,9 +291,9 @@ public abstract class FormatterStdImpl extends Formatter
 
         /** Used with binary, octal, or hexadecimal output. Specifies that the output will be
          *  prefixed by strings found in fields
-         *  \ref com::aworx::lib::strings::NumberFormat::binLiteralPrefix "binLiteralPrefix",
-         *  \ref com::aworx::lib::strings::NumberFormat::hexLiteralPrefix "hexLiteralPrefix" or
-         *  \ref com::aworx::lib::strings::NumberFormat::octLiteralPrefix "octLiteralPrefix" which
+         *  \ref com.aworx.lib.strings.NumberFormat.binLiteralPrefix "binLiteralPrefix",
+         *  \ref com.aworx.lib.strings.NumberFormat.hexLiteralPrefix "hexLiteralPrefix" or
+         *  \ref com.aworx.lib.strings.NumberFormat.octLiteralPrefix "octLiteralPrefix" which
          *  default to  \c "0b", \c "0o" and \c "0x".
          *  Set to \c false in default implementation of #resetPHAs. */
         protected boolean                     phaWriteBinOctHexPrefix;
@@ -333,34 +340,34 @@ public abstract class FormatterStdImpl extends Formatter
          * Not all fields in this object are used. The ones used are:
          * <p>
          * - Locale-specific versions of floating point separators:
-         *   - \ref com::aworx::lib::strings::NumberFormat::decimalPointChar   "decimalPointChar"
-         *   - \ref com::aworx::lib::strings::NumberFormat::thousandsGroupChar "thousandsGroupChar"
+         *   - \ref com.aworx.lib.strings.NumberFormat.decimalPointChar   "decimalPointChar"
+         *   - \ref com.aworx.lib.strings.NumberFormat.thousandsGroupChar "thousandsGroupChar"
          *
          *   These are retrieved according to the current locale once in the constructor. To
          *   change the locale, these fields can be changed.
          *
          * - Lower case versions of floating point literals:
-         *   - \ref com::aworx::lib::strings::NumberFormat::exponentSeparator "exponentSeparator"
-         *   - \ref com::aworx::lib::strings::NumberFormat::INFLiteral        "INFLiteral"
-         *   - \ref com::aworx::lib::strings::NumberFormat::NANLiteral        "NANLiteral"
+         *   - \ref com.aworx.lib.strings.NumberFormat.exponentSeparator "exponentSeparator"
+         *   - \ref com.aworx.lib.strings.NumberFormat.INFLiteral        "INFLiteral"
+         *   - \ref com.aworx.lib.strings.NumberFormat.NANLiteral        "NANLiteral"
          *
          * - Lower case versions of prefix literals that indicate the base of integer values:
-         *   - \ref com::aworx::lib::strings::NumberFormat::binLiteralPrefix "binLiteralPrefix"
-         *   - \ref com::aworx::lib::strings::NumberFormat::hexLiteralPrefix "hexLiteralPrefix"
-         *   - \ref com::aworx::lib::strings::NumberFormat::octLiteralPrefix "octLiteralPrefix"
+         *   - \ref com.aworx.lib.strings.NumberFormat.binLiteralPrefix "binLiteralPrefix"
+         *   - \ref com.aworx.lib.strings.NumberFormat.hexLiteralPrefix "hexLiteralPrefix"
+         *   - \ref com.aworx.lib.strings.NumberFormat.octLiteralPrefix "octLiteralPrefix"
          */
         public NumberFormat            alternativeNumberFormat                 = new NumberFormat();
 
         /** Flag that causes the creation of \b %ALib error reports on format syntax errors, argument
          *  type errors, etc.
          *  Defaults to \c true. (Ignored in release compilations. see class
-         *  \ref com::aworx::lib::lang::Report "Report" for more information.)                */
+         *  \ref com.aworx.lib.lang.Report "Report" for more information.)                */
         public SimpleDateFormat        dateTimeFormat       = new SimpleDateFormat("", Locale.ROOT);
 
         /** Flag that causes the creation of \b %ALib error reports on format syntax errors, argument
          *  type errors, etc.
          *  Defaults to \c true. (Ignored in release compilations. see class
-         *  \ref com::aworx::lib::lang::Report "Report" for more information.)                */
+         *  \ref com.aworx.lib.lang.Report "Report" for more information.)                */
         public boolean                 writeALibErrorReports                                 = true;
 
         /** Flag that causes error messages to be written into the target string.
@@ -427,10 +434,11 @@ public abstract class FormatterStdImpl extends Formatter
                 return 0;
 
             // save parameters/init state
-            this.ptargetString=     targetString;
+            this.ptargetString=             targetString;
+            this.targetStringStartLength=   targetString.length();
             this.pformatString.set( formatString );
-            this.parguments=        arguments;
-            this.pargOffset=        argOffset;
+            this.parguments=                arguments;
+            this.pargOffset=                argOffset;
 
             // initialize state info
             nextAutoIdx=        0;
@@ -478,21 +486,22 @@ public abstract class FormatterStdImpl extends Formatter
                         return argsConsumed;
 
                 // write field
-                preAndPostProcess( -1 );
-                int actIdx= targetString.length();
-                if ( !writeCustomFormat() )
+                if( preAndPostProcess( -1, null ) )
                 {
-                    // standard format
-                    if (    ( phaFormatSpec.isNotEmpty()  && !parseStdFormatSpec() )
-                         || !checkStdFieldAgainstArgument() )
-                        return argsConsumed;
+                    int actIdx= targetString.length();
+                    if ( !writeCustomFormat() )
+                    {
+                        // standard format
+                        if (    ( phaFormatSpec.isNotEmpty()  && !parseStdFormatSpec() )
+                             || !checkStdFieldAgainstArgument() )
+                            return argsConsumed;
 
-                    // write argument
-                    writeStdArgument();
+                        // write argument
+                        writeStdArgument();
+                    }
+
+                    preAndPostProcess( actIdx, null );
                 }
-
-                preAndPostProcess( actIdx );
-
 
             }// main loop searching next escape sequence
         }
@@ -678,6 +687,7 @@ public abstract class FormatterStdImpl extends Formatter
                     ||  phaType == PHType.IntHex
                     ||  phaType == PHType.Float
                     ||  phaType == PHType.Character
+                    ||  phaType == PHType.Fill
                     )
                 {
                     return true;
@@ -764,6 +774,11 @@ public abstract class FormatterStdImpl extends Formatter
                                   : '?';
                     target._( asChar );
                 }
+                break;
+
+
+                case Fill:
+                    target.insertChars( phaFillChar, (int) getIntegral() );
                 break;
 
                 case IntBase10:
@@ -875,6 +890,10 @@ public abstract class FormatterStdImpl extends Formatter
                 break;
             }
 
+            // now do an 'intermediate post phase' processing
+            preAndPostProcess( fieldStartIdx, target );
+
+
             // apply cutting
             if ( phaCutContent >= 0  &&   target.length() - oldTargetLength > phaCutContent  )
                 target.setLength( oldTargetLength + phaCutContent );
@@ -886,10 +905,14 @@ public abstract class FormatterStdImpl extends Formatter
         }
         /** ****************************************************************************************
          * Virtual method to do pre- and post- processing of the field written.
-         * Pre-processing could for example be adding tabulator spaces. A sample for post-processing
-         * is case conversion.<br>
+         * Pre-processing could for example be adding tabulator spaces, letter case conversions,
+         *
          * A negative given index \p startIdx indicates the pre-processing phase.
-         * This default implementation does nothing.
+         * If \p target is given, this indicates an "intermediate phase": The argument has been
+         * written, but no alignment or cutting has been done, yet. This phase should usually
+         * be ignored, but is for example important for search and replacement actions.
+         * If a field has a custom format implementation (e.g. time and date values), then
+         * the intermediate phase is never called.
          *
          * \note
          *   The reason why this method is \b not implemented as two different ones is that
@@ -900,10 +923,15 @@ public abstract class FormatterStdImpl extends Formatter
          *
          * @param startIdx  If \c -1 pre-processing is indicated, otherwise post-processing and
          *                  the index of the start of the field written in #ptargetString is given.
+         * @param target    The target string, only if different from field #ptargetString, which
+         *                  indicates intermediate phase.
+         * @return \c false, if the placeholder should be skipped (nothing is written for it).
+         *         \c true otherwise.
          ******************************************************************************************/
-        protected  void         preAndPostProcess(int startIdx)
+        protected  boolean     preAndPostProcess(int startIdx, AString target)
         {
             /* empty default implementation */
+            return true;
         }
 
         /** ****************************************************************************************
@@ -914,8 +942,8 @@ public abstract class FormatterStdImpl extends Formatter
          * value of parameter \p pos to automatically choose the next argument.
          *
          * Consequently, this method sets the fields
-         * \ref com::aworx::lib::strings::format::FormatterStdImpl::phaArgument    "Argument" and
-         * \ref com::aworx::lib::strings::format::FormatterStdImpl::phaArgumentIdx "ArgumentIdx"
+         * \ref com.aworx.lib.strings.format.FormatterStdImpl.phaArgument    "Argument" and
+         * \ref com.aworx.lib.strings.format.FormatterStdImpl.phaArgumentIdx "ArgumentIdx"
          * in given \p field.
          * For auto-values, it increments #nextAutoIdx.
          * Finally, this method is responsible for the correct book-keeping of #argsConsumed.

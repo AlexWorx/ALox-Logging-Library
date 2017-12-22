@@ -21,7 +21,7 @@ namespace aworx { namespace lib { namespace boxing
  * methods.
  *
  * <b>Defining a Custom %Interface:</b><br>
- * To add a custom interface method to <b>ALib %Boxing</b>, the following approach has to be taken:
+ * To add a custom interface method to <b>%ALib %Boxing</b>, the following approach has to be taken:
  * 1. A class needs to be derived from this class with a single custom virtual interface
  *    method named \c Invoke.<br>
  *    The first parameter of this virtual method needs to be of type <c>const aworx::Box&</c>. It
@@ -108,7 +108,7 @@ namespace aworx { namespace lib { namespace boxing
  * \see
  *   For a step by step sample see chapter
  *   \ref alib_namespace_boxing_interfaces_sample "A Simple %Interface Sample" of the
- *   documentation of <b>ALib %Boxing</b>.
+ *   documentation of <b>%ALib %Boxing</b>.
  **************************************************************************************************/
 class Interface
 {
@@ -125,7 +125,7 @@ class Interface
     public:
 
         /**
-         * Constructs an <b>ALib %Boxing interface</b>.
+         * Constructs an <b>%ALib %Boxing interface</b>.
          * Does nothing but saving the provided type information.
          * This type information has to reflect the directly derived class and to be the same
          * for all grandchild siblings. In detail, type information has to be passed as follows:
@@ -148,12 +148,12 @@ class Interface
 
 
 
-}}
+}}  // namespace aworx[::lib::boxing]
 
 /** Type alias name in namespace #aworx. */
 using     Interface  =   aworx::lib::boxing::Interface;
 
-} // namespace aworx::lib::boxing
+} // namespace [aworx]
 
 
 #endif // HPP_ALIB_BOXING_INTERFACE

@@ -10,7 +10,7 @@
 #include "alib/compatibility/std_string.hpp"
 #include "alib/compatibility/std_iostream.hpp"
 
-#define TESTCLASSNAME       CPP_ALib__Dox
+#define TESTCLASSNAME       CPP_ALib_Dox_Tokenizer
 #include "alib.unittests/aworx_unittests.hpp"
 
 #include <iostream>

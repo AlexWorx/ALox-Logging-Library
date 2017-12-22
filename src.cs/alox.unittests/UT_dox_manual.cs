@@ -549,7 +549,7 @@ public class CS_Manual   : AWorxUnitTesting
 
 
 //! [Man_ExtVerbosityConfig___1]
-Log.SetVerbosity( "DEBUG_LOGGER", Verbosity.Info, "/MYDOM", Configuration.PrioDefault + 1 );
+Log.SetVerbosity( "DEBUG_LOGGER", Verbosity.Info, "/MYDOM", Configuration.PrioDefaultValues + 1 );
 Log.Info( "MYDOM", "This line will be logged" );
 
 Log.SetVerbosity( "DEBUG_LOGGER", Verbosity.Off, "/MYDOM" );
@@ -560,7 +560,7 @@ memLog.MemoryLog.Clear();
 
 // Log.SetVerbosity( "DEBUG_LOGGER", Verbosity.Verbose, "$/" );
 
-    Log.SetVerbosity( memLog, Verbosity.Info, "/MYDOM", Configuration.PrioDefault + 1 );
+    Log.SetVerbosity( memLog, Verbosity.Info, "/MYDOM", Configuration.PrioDefaultValues + 1 );
     Log.Info( "MYDOM", "This line will be logged" );
 
     Log.SetVerbosity( memLog, Verbosity.Off, "/MYDOM" );
@@ -579,7 +579,7 @@ Log.SetVerbosity( "DEBUG_LOGGER", Verbosity.Verbose, ALox.InternalDomains );
     memLog.MemoryLog.Clear();
     Log.SetVerbosity( memLog, Verbosity.Verbose, ALox.InternalDomains );
 
-    Log.SetVerbosity( memLog, Verbosity.Info, "/MYDOM", Configuration.PrioDefault + 1 );
+    Log.SetVerbosity( memLog, Verbosity.Info, "/MYDOM", Configuration.PrioDefaultValues + 1 );
     Log.Info( "MYDOM", "This line will be logged" );
 
     Log.SetVerbosity( memLog, Verbosity.Off, "/MYDOM" );
@@ -589,8 +589,8 @@ Log.SetVerbosity( "DEBUG_LOGGER", Verbosity.Verbose, ALox.InternalDomains );
     SaveOutput( "Man_ExtVerbosityConfig_2.txt" );
 
 //! [Man_ExtVerbosityConfig___3]
-Log.SetVerbosity( "DEBUG_LOGGER", Verbosity.Verbose, "/UI/MOUSE"        , Configuration.PrioDefault + 1 );
-Log.SetVerbosity( "DEBUG_LOGGER", Verbosity.Verbose, "/UI/DIALOGS/MOUSE", Configuration.PrioDefault + 1 );
+Log.SetVerbosity( "DEBUG_LOGGER", Verbosity.Verbose, "/UI/MOUSE"        , Configuration.PrioDefaultValues + 1 );
+Log.SetVerbosity( "DEBUG_LOGGER", Verbosity.Verbose, "/UI/DIALOGS/MOUSE", Configuration.PrioDefaultValues + 1 );
 //! [Man_ExtVerbosityConfig___3]
 
     }

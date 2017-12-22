@@ -70,7 +70,7 @@ namespace aworx { namespace lib { namespace strings {
     };
 
 
-}}} // namespace aworx::lib::strings
+}}}// namespace [aworx::lox::strings]
 
 
 
@@ -82,8 +82,8 @@ namespace ut_alox {
 * UT_CLASS
 **********************************************************************************************/
 // with GTEST macros it all gets wild. Fix the method name
-#undef  ALIB_SRC_INFO_PARAMS
-#define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, UT_GET_TEST_NAME
+#undef  ALIB_SRCPOS
+#define ALIB_SRCPOS     __FILE__, __LINE__, UT_GET_TEST_NAME
 
 UT_CLASS()
 
@@ -242,10 +242,29 @@ UT_METHOD(Log_ColorsAndStyles)
                             );
 
     Log_GetLogger( acl, "DEBUG_LOGGER" );
-    Log_Prune( AnsiLogger          ::LightColorUsage oldVal1= AnsiLogger          ::LightColorUsage::Never; if ( acl != nullptr && acl->GetTypeName() == "ANSI_CONSOLE")  { oldVal1= static_cast<AnsiConsoleLogger*>(acl)   ->UseLightColors; static_cast<AnsiConsoleLogger*>(acl)   ->UseLightColors= static_cast<AnsiConsoleLogger*>(acl)   ->UseLightColors == AnsiLogger          ::LightColorUsage::ForegroundLight ? AnsiLogger          ::LightColorUsage::ForegroundDark : AnsiLogger          ::LightColorUsage::ForegroundLight; })
+    Log_Prune(
+      TextLogger::LightColorUsage oldVal1= TextLogger::LightColorUsage::Never;
+      if ( acl != nullptr && acl->GetTypeName() == "ANSI_CONSOLE")
+      {
+          oldVal1= static_cast<AnsiConsoleLogger*>(acl)->UseLightColors;
+          static_cast<AnsiConsoleLogger*>(acl)->UseLightColors= static_cast<AnsiConsoleLogger*>(acl)->UseLightColors == TextLogger::LightColorUsage::Foreground
+                                                                 ? TextLogger::LightColorUsage::Background
+                                                                 : TextLogger::LightColorUsage::Foreground;
+      }
+    )
+
     #if defined(_WIN32 )
     Log_GetLogger( wcl, "WINDOWS_CONSOLE" );
-    Log_Prune( WindowsConsoleLogger::LightColorUsage oldVal2= WindowsConsoleLogger::LightColorUsage::Never; if ( wcl != nullptr )                                         { oldVal2= static_cast<WindowsConsoleLogger*>(wcl)->UseLightColors; static_cast<WindowsConsoleLogger*>(wcl)->UseLightColors= static_cast<WindowsConsoleLogger*>(wcl)->UseLightColors == WindowsConsoleLogger::LightColorUsage::ForegroundLight ? WindowsConsoleLogger::LightColorUsage::ForegroundDark : WindowsConsoleLogger::LightColorUsage::ForegroundLight; })
+    Log_Prune(
+      TextLogger::LightColorUsage oldVal2= TextLogger::LightColorUsage::Never;
+      if ( wcl != nullptr)
+      {
+          oldVal2= static_cast<WindowsConsoleLogger*>(wcl)->UseLightColors;
+          static_cast<WindowsConsoleLogger*>(wcl)->UseLightColors= static_cast<AnsiConsoleLogger*>(wcl)->UseLightColors == TextLogger::LightColorUsage::Foreground
+                                                                 ? TextLogger::LightColorUsage::Background
+                                                                 : TextLogger::LightColorUsage::Foreground;
+      }
+    )
     #endif
 
     Log_Info(    String256("Same rev.:  ")
@@ -354,37 +373,37 @@ UT_METHOD(Log_TextLogger_RegisterStdStreamLocks)
 {
     UT_INIT(); // This already registers the uint test logger. Therefore, the console lock in \b %ALib
                // is occupied once already, but not in Safe mode, yet
-                                UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Unsafe );
+                                UT_TRUE( lib::ALIB.StdOutputStreamsLock.GetSafeness() == Safeness::Unsafe );
     Log_AddDebugLogger();
-    UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe );
-    Log_RemoveDebugLogger();    UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Unsafe );
-    Log_AddDebugLogger();       UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe );
+    UT_TRUE( lib::ALIB.StdOutputStreamsLock.GetSafeness() == Safeness::Safe );
+    Log_RemoveDebugLogger();    UT_TRUE( lib::ALIB.StdOutputStreamsLock.GetSafeness() == Safeness::Unsafe );
+    Log_AddDebugLogger();       UT_TRUE( lib::ALIB.StdOutputStreamsLock.GetSafeness() == Safeness::Safe );
 
     #if ALOX_REL_LOG
         #define LOX_LOX lox
         Lox lox("ReleaseLox");
 
         // a memory logger must not change anything!
-        Lox_SetVerbosity( Log::DebugLogger, Verbosity::Verbose );  UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
+        Lox_SetVerbosity( Log::DebugLogger, Verbosity::Verbose );  UT_TRUE( lib::ALIB.StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
         MemoryLogger ml;
-        Lox_SetVerbosity( &ml,              Verbosity::Verbose );  UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
-        Lox_RemoveLogger( Log::DebugLogger);               UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
-        Log_RemoveDebugLogger();                           UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Unsafe );
-        Lox_RemoveLogger( &ml )           ;                UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Unsafe );
+        Lox_SetVerbosity( &ml,              Verbosity::Verbose );  UT_TRUE( lib::ALIB.StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
+        Lox_RemoveLogger( Log::DebugLogger);                       UT_TRUE( lib::ALIB.StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
+        Log_RemoveDebugLogger();                                   UT_TRUE( lib::ALIB.StdOutputStreamsLock.GetSafeness() == Safeness::Unsafe );
+        Lox_RemoveLogger( &ml )           ;                        UT_TRUE( lib::ALIB.StdOutputStreamsLock.GetSafeness() == Safeness::Unsafe );
 
 
         // while a console logger does
-        Log_AddDebugLogger();                              UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
-        Lox_SetVerbosity( Log::DebugLogger, Verbosity::Verbose );  UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
+        Log_AddDebugLogger();                                      UT_TRUE( lib::ALIB.StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
+        Lox_SetVerbosity( Log::DebugLogger, Verbosity::Verbose );  UT_TRUE( lib::ALIB.StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
         ConsoleLogger cl;
-        Lox_SetVerbosity( &cl,              Verbosity::Verbose );  UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
-        Log_SetVerbosity( &cl,              Verbosity::Verbose );  UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
+        Lox_SetVerbosity( &cl,              Verbosity::Verbose );  UT_TRUE( lib::ALIB.StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
+        Log_SetVerbosity( &cl,              Verbosity::Verbose );  UT_TRUE( lib::ALIB.StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
 
-        Lox_RemoveLogger( Log::DebugLogger);               UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
-        Log_RemoveLogger( &cl)                             UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
-        Lox_RemoveLogger( &cl );                           UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Safe );
+        Lox_RemoveLogger( Log::DebugLogger);                       UT_TRUE( lib::ALIB.StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
+        Log_RemoveLogger( &cl)                                     UT_TRUE( lib::ALIB.StdOutputStreamsLock.GetSafeness() == Safeness::Safe   );
+        Lox_RemoveLogger( &cl );                                   UT_TRUE( lib::ALIB.StdOutputStreamsLock.GetSafeness() == Safeness::Safe );
      #endif
-     Log_RemoveDebugLogger();                              UT_TRUE( ALIB::StdOutputStreamsLock.GetSafeness() == Safeness::Unsafe   );
+     Log_RemoveDebugLogger();                                      UT_TRUE( lib::ALIB.StdOutputStreamsLock.GetSafeness() == Safeness::Unsafe   );
 }
 #endif // ALOX_DBG_LOG
 
@@ -400,7 +419,7 @@ void testFormatConfig( AWorxUnitTesting& ut, const String& testFormat,
                      )
 {
     Variable var;
-    var.Define(ALox::ConfigCategoryName, "TESTML_FORMAT", ',').Store( testFormat  );
+    lib::ALIB.Config->Store( var.Declare("ALOX", "TESTML_FORMAT", ','), testFormat  );
     MemoryLogger ml("TESTML");
 
     Lox lox("T", false );

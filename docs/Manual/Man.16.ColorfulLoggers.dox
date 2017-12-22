@@ -6,7 +6,7 @@
 // #################################################################################################
 
 /**
-\page man_colorful_loggers  16 - Colorful Loggers
+\page alox_man_colorful_loggers  16 - Colorful Loggers
 \~Comment ####################################################################################### \~
 # 1. Technical Prerequisites #
 
@@ -107,7 +107,7 @@ The takeaways from this short technical spotlight are now fairly obvious:
 - A developer of a custom \e %Logger that should not be enabled to support ESC-sequences, simply can
   derive from class \b %PlainTextLogger which finds and removes ESC-sequences before the
   messages are passed to the custom type.
-  (For the creation of custom loggers, see also chapter \ref man_ext_loggers).
+  (For the creation of custom loggers, see also chapter \ref alox_man_ext_loggers).
 
 --------------------------------------------------------------------
                          <center> \ref manual "Back to index" </center>

@@ -18,7 +18,7 @@
 #ifndef HPP_ALIB_TIME_CALENDARTIME
 //! @cond NO_DOX
 #define HPP_ALIB_TIME_CALENDARTIME 1
-//! @endcond NO_DOX
+//! @endcond
 
 
 #if !defined (HPP_ALIB_TIME_TICKS)
@@ -100,7 +100,7 @@ class TicksCalendarTime
      *                  Defaults to \c TimeZone::Local.
      **********************************************************************************************/
     inline
-     TicksCalendarTime( rawtime ticks, lang::Timezone timezone =lang::Timezone::Local )
+     TicksCalendarTime( Time::TRaw ticks, lang::Timezone timezone =lang::Timezone::Local )
      {
         Set(ticks, timezone);
      }
@@ -125,7 +125,7 @@ class TicksCalendarTime
      *                  Defaults to \c TimeZone::Local.
      **********************************************************************************************/
     ALIB_API
-    void         Set( rawtime ticks, lang::Timezone timezone =lang::Timezone::Local  );
+    void         Set( Time::TRaw ticks, lang::Timezone timezone =lang::Timezone::Local  );
 
     /** ********************************************************************************************
      *  Takes the current values of the public fields and calculates a raw ticks value.
@@ -138,7 +138,7 @@ class TicksCalendarTime
      *  @returns The time span represented by the public fields of this class.
      **********************************************************************************************/
     ALIB_API
-    rawtime Get( lang::Timezone timezone =lang::Timezone::Local );
+    Time::TRaw Get( lang::Timezone timezone =lang::Timezone::Local );
 
     /** ********************************************************************************************
      *     Sets all public values to 0.

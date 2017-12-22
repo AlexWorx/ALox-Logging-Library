@@ -10,7 +10,7 @@
 #ifndef HPP_ALIB_BOXING_FTYPES
 #define HPP_ALIB_BOXING_FTYPES 1
 
-#if !defined (HPP_ALIB_BOXING)
+#if !defined (HPP_ALIB_BOXING_LIB)
     #include "alib/boxing/boxing.hpp"
 #endif
 
@@ -88,9 +88,8 @@ inline void  T_Boxing<uint64_t >::Boxing( Box& box, const uint64_t  & value )  {
 inline void  T_Boxing< intGap_t>::Boxing( Box& box, const  intGap_t & value )  { box.data.Value= static_cast<boxvalue>(value);  box.data.Length= 0;  }
 inline void  T_Boxing<uintGap_t>::Boxing( Box& box, const uintGap_t & value )  { box.data.Value= static_cast<boxvalue>(value);  box.data.Length= 0;  }
 
-#if !defined(DOX_PARSER)
-    ALIB_WARNINGS_START_TMP
-#endif
+ALIB_WARNINGS_ALLOW_TEMPLATE_META_PROGRAMMING
+
 inline void  T_Boxing<float>::Boxing( Box& box, const float& value )
 {
     DefaultBoxing( box, static_cast<double>(value) );
@@ -128,9 +127,7 @@ inline void  T_Boxing<char32_t*>::Boxing( Box& box, char32_t* const& value )
     box.data.Length= value == nullptr || *value == '\0' ? 0 : -1;
 }
 
-#if !defined(DOX_PARSER)
 ALIB_WARNINGS_RESTORE
-#endif
 
 
 // #################################################################################################
@@ -145,7 +142,7 @@ inline char32_t   T_Boxing<char32_t>::Unboxing( const Box& box )  { return stati
 inline  int64_t   T_Boxing< int64_t>::Unboxing( const Box& box )  { return static_cast< int64_t>( box.data.Value ); }
 inline uint64_t   T_Boxing<uint64_t>::Unboxing( const Box& box )  { return static_cast<uint64_t>( box.data.Value ); }
 
-#endif
+#endif // !defined(DOX_PARSER)
 
 // #################################################################################################
 // Specializations of T_SGetArraySize<> for character types
@@ -154,8 +151,7 @@ inline uint64_t   T_Boxing<uint64_t>::Unboxing( const Box& box )  { return stati
  * Specialization of template function for type \c char, that subtracts \c 1 from the provided array
  * extend to denote the length of a character string.
  *
- * @param arrayExtent  The array extent as deducted using TMP in constructor of class
- *                     \ref aworx::lib::boxing::Box "Box".
+ * @param arrayExtent  The array extent. \c 1 will be deducted.
  * @returns The length as given by \p arrayExtent but reduced by \c 1.
  */
 template<>  inline constexpr  integer    T_SetArraySize<char>   ( integer arrayExtent )
@@ -167,8 +163,7 @@ template<>  inline constexpr  integer    T_SetArraySize<char>   ( integer arrayE
  * Specialization of template function for type \c wchar_t, that subtracts \c 1 from the provided
  * array extend to denote the length of a character string.
  *
- * @param arrayExtent  The array extent as deducted using TMP in constructor of class
- *                     \ref aworx::lib::boxing::Box "Box".
+ * @param arrayExtent  The array extent. \c 1 will be deducted.
  * @returns The length as given by \p arrayExtent but reduced by \c 1.
  */
 template<>  inline constexpr  integer    T_SetArraySize<wchar_t>( integer arrayExtent )
@@ -180,9 +175,8 @@ template<>  inline constexpr  integer    T_SetArraySize<wchar_t>( integer arrayE
  * Specialization of template function for type \c char16_t, that subtracts \c 1 from the provided
  * array extend to denote the length of a character string.
  *
- * @param arrayExtent  The array extent as deducted using TMP in constructor of class
- *                     \ref aworx::lib::boxing::Box "Box".
- * @returns The length as given by \p arrayExtent but reduced by \c 1.
+  * @param arrayExtent  The array extent. \c 1 will be deducted.
+* @returns The length as given by \p arrayExtent but reduced by \c 1.
  */
 template<>  inline constexpr  integer    T_SetArraySize<char16_t>( integer arrayExtent )
 {
@@ -193,8 +187,7 @@ template<>  inline constexpr  integer    T_SetArraySize<char16_t>( integer array
  * Specialization of template function for type \c char32_t, that subtracts \c 1 from the provided
  * array extend to denote the length of a character string.
  *
- * @param arrayExtent  The array extent as deducted using TMP in constructor of class
- *                     \ref aworx::lib::boxing::Box "Box".
+ * @param arrayExtent  The array extent. \c 1 will be deducted.
  * @returns The length as given by \p arrayExtent but reduced by \c 1.
  */
 template<>  inline constexpr  integer    T_SetArraySize<char32_t>( integer arrayExtent )
@@ -220,16 +213,16 @@ namespace ftypes
 class IEquals_Tdouble : public IEquals, public Singleton<IEquals_Tdouble>
 {
     /**
-     * Checks if \p box with boxed type \c double equals \p other. This is done by first comparing
+     * Checks if \p lhs with boxed type \c double equals \p rhs. This is done by first comparing
      * the exact values. If they differ, the difference is calculated and compared to
      * <c> 2.0f * std::numeric_limits<float>::epsilon()</c>. If smaller, \c true is returned.
      *
-     * @param box   The box that the interface was invoked on.
-     * @param other The boxed value to compare us to.
-     * @return \c true if \p comp equals \p box, \c false otherwise.
+     * @param lhs   The box that the interface was invoked on.
+     * @param rhs   The boxed value to compare us to.
+     * @return \c true if \p comp equals \p lhs, \c false otherwise.
      */
     ALIB_API
-    virtual bool Invoke( const Box& box, const Box& other );
+    virtual bool Invoke( const Box& lhs, const Box& rhs );
 };
 
 
@@ -237,78 +230,111 @@ class IEquals_Tdouble : public IEquals, public Singleton<IEquals_Tdouble>
 class IEquals_TcharArr : public IEquals, public Singleton<IEquals_TcharArr>
 {
     /**
-     * Checks if \p box with boxed type \c char[] equals \p other.
+     * Checks if \p lhs with boxed type \c char[] equals \p rhs.
      *
-     * @param box   The box that the interface was invoked on.
-     * @param other The boxed value to compare us to.
-     * @return \c true if \p comp equals \p box, \c false otherwise.
+     * @param lhs   The box that the interface was invoked on.
+     * @param rhs   The boxed value to compare us to.
+     * @return \c true if \p comp equals \p lhs, \c false otherwise.
      */
     ALIB_API
-    virtual bool Invoke( const Box& box, const Box& other );
+    virtual bool Invoke( const Box& lhs, const Box& rhs );
 };
 
 /** Implements 'Equals' - interface for boxed \c wchar_t[] values. */
 class IEquals_Twchar_tArr : public IEquals, public Singleton<IEquals_Twchar_tArr>
 {
     /**
-     * Checks if \p box with boxed type \c wchar_t[] equals \p other.
+     * Checks if \p lhs with boxed type \c wchar_t[] equals \p rhs.
      *
-     * @param box   The box that the interface was invoked on.
-     * @param other The boxed value to compare us to.
-     * @return \c true if \p comp equals \p box, \c false otherwise.
+     * @param lhs   The box that the interface was invoked on.
+     * @param rhs   The boxed value to compare us to.
+     * @return \c true if \p comp equals \p lhs, \c false otherwise.
      */
     ALIB_API
-    virtual bool Invoke( const Box& box, const Box& other );
+    virtual bool Invoke( const Box& lhs, const Box& rhs );
 };
 
 /** Implements 'Equals' - interface for boxed \c char16_t[] values. */
 class IEquals_Tchar16_tArr : public IEquals, public Singleton<IEquals_Tchar16_tArr>
 {
     /**
-     * Checks if \p box with boxed type \c char16_t[] equals \p other.
+     * Checks if \p lhs with boxed type \c char16_t[] equals \p rhs.
      *
-     * @param box   The box that the interface was invoked on.
-     * @param other The boxed value to compare us to.
-     * @return \c true if \p comp equals \p box, \c false otherwise.
+     * @param lhs   The box that the interface was invoked on.
+     * @param rhs   The boxed value to compare us to.
+     * @return \c true if \p comp equals \p lhs, \c false otherwise.
      */
     ALIB_API
-    virtual bool Invoke( const Box& box, const Box& other );
+    virtual bool Invoke( const Box& lhs, const Box& rhs );
 };
 
 /** Implements 'Equals' - interface for boxed \c char32_t[] values. */
 class IEquals_Tchar32_tArr : public IEquals, public Singleton<IEquals_Tchar32_tArr>
 {
     /**
-     * Checks if \p box with boxed type \c char32_t[] equals \p other.
+     * Checks if \p lhs with boxed type \c char32_t[] equals \p rhs.
      *
-     * @param box   The box that the interface was invoked on.
-     * @param other The boxed value to compare us to.
-     * @return \c true if \p comp equals \p box, \c false otherwise.
+     * @param lhs   The box that the interface was invoked on.
+     * @param rhs   The boxed value to compare us to.
+     * @return \c true if \p comp equals \p lhs, \c false otherwise.
      */
     ALIB_API
-    virtual bool Invoke( const Box& box, const Box& other );
+    virtual bool Invoke( const Box& lhs, const Box& rhs );
+};
+
+
+/** Implements 'IsLess' - interface for boxed \c boxed_uint values. */
+class IIsLess_boxed_uint : public IIsLess, public Singleton<IIsLess_boxed_uint>
+{
+    /**
+     * Returns the result of the comparison for unsigned integer values.
+     *
+     * @param lhs   The box that the interface was invoked on.
+     * @param rhs   The boxed value to compare us to.
+     * @return \c true if \p lhs is smaller than \p rhs, \c false otherwise.
+     */
+    ALIB_API
+    virtual bool Invoke( const Box& lhs, const Box& rhs );
+};
+
+/** Implements 'IsLess' - interface for boxed \c boxed_int values. */
+class IIsLess_boxed_int : public IIsLess, public Singleton<IIsLess_boxed_int>
+{
+    /**
+     * Returns the result of the comparison for signed integer values.
+     *
+     * @param lhs   The box that the interface was invoked on.
+     * @param rhs   The boxed value to compare us to.
+     * @return \c true if \p lhs is smaller than \p rhs, \c false otherwise.
+     */
+    ALIB_API
+    virtual bool Invoke( const Box& lhs, const Box& rhs );
+};
+
+/** Implements 'IsLess' - interface for boxed \c double values. */
+class IIsLess_double : public IIsLess, public Singleton<IIsLess_double>
+{
+    /**
+     * Returns the result of the comparison for double values.
+     *
+     * @param lhs   The box that the interface was invoked on.
+     * @param rhs   The boxed value to compare us to.
+     * @return \c true if \p lhs is smaller than \p rhs, \c false otherwise.
+     */
+    ALIB_API
+    virtual bool Invoke( const Box& lhs, const Box& rhs );
 };
 
 
 
-
-// #################################################################################################
-// Initialization
-// #################################################################################################
-/**
- * Initializes the default fundamental type handling of <b>ALib %Boxing</b>.
- * Defines interface implementation classes as interfaces of certain fundamental types.
- */
-ALIB_API void  Init(); // forward declaration (needed if very strict warnings are enabled in clang)
-
-}}} // namespace lib::boxing::ftypes
+}}} // namespace aworx::[lib::boxing::ftypes]
 
 /** Type alias name in namespace #aworx. */
 using     boxed_int   =   aworx::lib::boxing::ftypes::boxed_int;
 
 /** Type alias name in namespace #aworx. */
 using     boxed_uint  =   aworx::lib::boxing::ftypes::boxed_uint;
-} // namespace aworx
+} // namespace [aworx]
 
 #endif // ALIB_FEAT_BOXING_FTYPES
 #endif // HPP_ALIB_BOXING_FTYPES

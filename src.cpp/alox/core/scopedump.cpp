@@ -238,5 +238,5 @@ int ScopeDump::writeStore( ScopeStore<T>* store, int indentSpaces )
     return cnt;
 }
 
-//! @endcond NO_DOX
-}}} // namespace aworx::lox::core
+//! @endcond
+}}}// namespace [aworx::lox::core]

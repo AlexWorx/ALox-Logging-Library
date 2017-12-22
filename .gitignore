@@ -20,7 +20,7 @@ docs/doxygenDotFixer.cfg
 *.userprefs
 DownloadProject.*
 cotire.cmake
-
+.directory
 # not yet released
 __pycache__
 tools/unreleased
@@ -29,9 +29,15 @@ tools/unreleased
 # generated html site
 html/
 
-
-# Project files
+# Jetbrains IDEs
+local.properties
+codeStyles
 workspace.xml
+inspectionProfiles
+scopes
+
+
+# Other Project files
 tasks.xml
 *.suo
 *.user
@@ -40,7 +46,7 @@ tasks.xml
 .gradle
 
 *.log.txt
-local.properties
+
 
 # Build results
 

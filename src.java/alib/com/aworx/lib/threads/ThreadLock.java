@@ -58,7 +58,7 @@ public class ThreadLock
 
     /**
      * This is a threshold that causes acquire() to send a warning to
-     * \ref com::aworx::lib::lang::ReportWriter "ReportWriter" if acquiring
+     * \ref com.aworx.lib.lang.ReportWriter "ReportWriter" if acquiring
      * the access takes longer than the given number of milliseconds.
      * To disable such messages, set this value to 0. Default is 1 second.
      */
@@ -66,7 +66,7 @@ public class ThreadLock
 
     /**
      * Limit of recursions. If limit is reached or a multiple of it, an error message is passed to
-     * \ref com::aworx::lib::lang::ReportWriter "ReportWriter". Defaults is 10.
+     * \ref com.aworx.lib.lang.ReportWriter "ReportWriter". Defaults is 10.
      */
     public    int           recursionWarningThreshold                           = 10;
 
@@ -83,7 +83,7 @@ public class ThreadLock
     protected LockMode      lockMode;
 
     /**  Counter for the number of acquire() calls of the current thread. */
-    protected int           lockCount;
+    protected int           cntAcquirements;
 
     /**  The current owner of the ThreadLock. */
     protected Thread        owner;
@@ -170,18 +170,18 @@ public class ThreadLock
         // are we in unsafe mode?
         if ( mutex == null )
         {
-            // we are still increasing the lockCount
-            lockCount=  lockMode == LockMode.RECURSIVE ? lockCount + 1
+            // we are still increasing the cntAcquirements
+            cntAcquirements=  lockMode == LockMode.RECURSIVE ? cntAcquirements + 1
                                                        : 1;
 
             // reached warning limit
-            if ( lockCount  <= 0  )
+            if ( cntAcquirements  <= 0  )
             {
                 com.aworx.lib.ALIB_DBG.ERROR( "Unsafe mode: Counter invalid (<= 0): This should never happen. Set lock to safe mode!" );
             }
 
-            else if ( lockCount % recursionWarningThreshold == 0 )
-                com.aworx.lib.ALIB_DBG.WARNING( "Recursion depth " + lockCount + ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code." );
+            else if ( cntAcquirements % recursionWarningThreshold == 0 )
+                com.aworx.lib.ALIB_DBG.WARNING( "Recursion depth " + cntAcquirements + ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code." );
 
             // end of unsafe version of this method
             return;
@@ -200,12 +200,12 @@ public class ThreadLock
             // we already own the thread
             if( owner == thisThread )
             {
-                // we are still increasing the lockCount
-                lockCount=  lockMode  == LockMode.RECURSIVE  ? lockCount + 1
+                // we are still increasing the cntAcquirements
+                cntAcquirements=  lockMode  == LockMode.RECURSIVE  ? cntAcquirements + 1
                                                              : 1;
                 // reached warning limit
-                if ( lockCount % recursionWarningThreshold == 0 )
-                    com.aworx.lib.ALIB_DBG.WARNING( "Recursion depth " + lockCount + ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code." );
+                if ( cntAcquirements % recursionWarningThreshold == 0 )
+                    com.aworx.lib.ALIB_DBG.WARNING( "Recursion depth " + cntAcquirements + ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code." );
 
                 return;
             }
@@ -283,7 +283,7 @@ public class ThreadLock
             if ( createOwnerStackTrace )
                 ownerException= new Exception();
 
-            lockCount=    1;
+            cntAcquirements=    1;
 
         } // synchronized
 
@@ -299,11 +299,11 @@ public class ThreadLock
         if ( mutex == null )
         {
             // not locked
-            if( lockMode == LockMode.RECURSIVE && lockCount == 0 )
+            if( lockMode == LockMode.RECURSIVE && cntAcquirements == 0 )
                 com.aworx.lib.ALIB_DBG.ERROR( "Release without having the lock (in unsafe mode). This must never happen, check your code, set lock to safe mode!" );
 
-            // we are still decreasing the lockCount
-            lockCount=  lockMode  == LockMode.RECURSIVE  ? lockCount - 1
+            // we are still decreasing the cntAcquirements
+            cntAcquirements=  lockMode  == LockMode.RECURSIVE  ? cntAcquirements - 1
                                                          : 0;
             // end of unsafe version of this method
             return;
@@ -313,22 +313,34 @@ public class ThreadLock
         synchronized ( mutex )
         {
             // not locked
-            if( lockCount == 0 )
+            if( cntAcquirements == 0 )
                 com.aworx.lib.ALIB_DBG.ERROR( "Release without having the lock. This must never happen, check your code!" );
 
 
-            // decreasing the lockCount
-            lockCount=  lockMode  == LockMode.RECURSIVE  ? lockCount - 1
+            // decreasing the cntAcquirements
+            cntAcquirements=  lockMode  == LockMode.RECURSIVE  ? cntAcquirements - 1
                                                          : 0;
 
             // release and notify next waiting thread
-            if( lockCount == 0 )
+            if( cntAcquirements == 0 )
             {
                 owner= null;
                 ownerException= null;
                 mutex.notify();
             }
         } // synchronized
+    }
+
+
+    /** ****************************************************************************************
+     * Returns \c true if the next invocation of #release will release the lock.
+     * Returns \c false, if recursive acquirements have been performed.
+     *
+     * @return \c true if locked exactly once.
+     ******************************************************************************************/
+    public boolean willRelease()
+    {
+        return cntAcquirements == 1;
     }
 
     /** ********************************************************************************************
@@ -351,14 +363,14 @@ public class ThreadLock
     public int dbgCountAcquirements( Thread thread )
     {
         if ( getSafeness() == Safeness.UNSAFE )
-            return lockCount;
+            return cntAcquirements;
 
         if ( owner == null )
             return 0;
 
         return  ( owner == ( thread != null ? thread : Thread.currentThread() ) )
-                ?  lockCount
-                : -lockCount;
+                ?  cntAcquirements
+                : -cntAcquirements;
     }
 
     /** ********************************************************************************************
@@ -378,7 +390,7 @@ public class ThreadLock
         if ( mutex == null )
         {
             // already locked? ALIB Error
-            if( lockCount != 0 )
+            if( cntAcquirements != 0 )
             {
                 com.aworx.lib.ALIB_DBG.ERROR( "Cannot switch safeness mode while already locked. Current mode: unsafe, requested mode: "
                              +  safeness.toString() );
@@ -414,7 +426,7 @@ public class ThreadLock
     /** ********************************************************************************************
      * Query if this instance was set to unsafe mode.
      *
-     * @return A value of type com::aworx::lib::lang::Safeness "Safeness"
+     * @return A value of type com.aworx.lib.lang.Safeness "Safeness"
      **********************************************************************************************/
     public Safeness getSafeness()
     {
@@ -423,7 +435,7 @@ public class ThreadLock
 
     /** ****************************************************************************************
      *  Query if this instance was set to work recursively.
-     * @return A value of type com::aworx::lib::lang::LockMode "LockMode"
+     * @return A value of type com.aworx.lib.lang.LockMode "LockMode"
      ******************************************************************************************/
     public LockMode getMode()
     {
@@ -439,16 +451,16 @@ public class ThreadLock
     public String toString()
     {
         String result= "";
-             if ( lockCount == 0 )  result+= "Unlocked";
-        else if ( lockCount == 1 )  result+= "Locked";
-        else if ( lockCount >  1 )  result+= "Locked (" + lockCount + ")";
-        else if ( lockCount <  0 )  result+= "Illegal State. lockCount=" + lockCount;
+             if ( cntAcquirements == 0 )  result+= "Unlocked";
+        else if ( cntAcquirements == 1 )  result+= "Locked";
+        else if ( cntAcquirements >  1 )  result+= "Locked (" + cntAcquirements + ")";
+        else if ( cntAcquirements <  0 )  result+= "Illegal State. cntAcquirements=" + cntAcquirements;
 
              if ( lockMode == LockMode.SINGLE_LOCKS )
                                     result+= " (Non-Recursive)";
 
              if ( mutex  == null )  result+= " (Unsafe Mode)";
-        else if ( lockCount >  0 )  result+= ", Owner: (" + owner.getId() + ") \"" + owner.getName() + "\"";
+        else if ( cntAcquirements >  0 )  result+= ", Owner: (" + owner.getId() + ") \"" + owner.getName() + "\"";
 
         return result;
     }

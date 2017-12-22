@@ -166,43 +166,60 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src.cpp\alib\alib.hpp" />
-    <ClInclude Include="..\..\..\src.cpp\alib\alib\debug.hpp" />
-    <ClInclude Include="..\..\..\src.cpp\alib\alib\prepro.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\boxing\box.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\boxing\boxer.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\boxing\boxes.hpp" />
-    <ClInclude Include="..\..\..\src.cpp\alib\boxing\boxing.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\boxing\boxinglib.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\boxing\interface.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\boxing\interface_builtin.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\boxing\ftypes.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\compatibility\qt.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\compatibility\std_iostream.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\compatibility\std_string.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\config\configlib.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\config\configuration.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\config\inifile.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\config\inmemoryplugin.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\config\plugins.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\config\variable.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\containers\stringtree.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\debug\assert.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\distribution.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\enum.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\enumarithmetical.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\enumbitwise.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\enumiterators.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\enummetadata.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\enummetadataspec.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\lang\enums.hpp" />
-    <ClInclude Include="..\..\..\src.cpp\alib\lang\memoryblocks.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\exception.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\langlib.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\library.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\lang\ownable.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\prepro.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\lang\report.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\resourcedtupleloader.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\lang\resources.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\lang\rtti.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\lang\singleton.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\lang\types.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\strings\applicables.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\strings\astring.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\boxing\debug.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\strings\boxing\stringboxing.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\strings\cstring.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\strings\format\formatter.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\strings\format\formatterjavastyle.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\strings\format\formatterpythonstyle.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\strings\format\formatterstdimpl.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\format\propertyformatter.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\format\propertyformattermap.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\format\simpletext.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\strings\numberformat.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\strings\preallocatedstring.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\resourcestring.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\strings\string.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\stringlib.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\strings\stringliteral.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\strings\substring.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\strings\tstring.hpp" />
@@ -213,14 +230,17 @@
     <ClInclude Include="..\..\..\src.cpp\alib\system\directory.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\system\environment.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\system\process.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\system\systemlib.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\threads\smartlock.hpp" />
-    <ClInclude Include="..\..\..\src.cpp\alib\threads\thread.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\threads\threadlib.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\threads\threadlock.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\threads\threadlocknr.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\time\calendartime.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\time\ticks.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\time\tickspan.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\time\tickwatch.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\time\timelib.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\util\memoryblocks.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alox\alox.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alox\aloxtypesandenums.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alox\alox_console_loggers.hpp" />
@@ -240,18 +260,13 @@
     <ClInclude Include="..\..\..\src.cpp\alox\loggers\textfilelogger.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alox\loggers\vstudiologger.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alox\loggers\windowsconsolelogger.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox\logtools.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alox\lox.hpp" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src.cpp\alib\alib.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alib\alib\debug.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alib\boxing\boxing.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\boxing\boxinglib.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\boxing\ftypes.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
@@ -259,31 +274,34 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib\compatibility\std_iostream.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\config\configlib.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\config\configuration.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\config\inifile.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\config\inmemoryplugin.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\config\plugins.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\config\variable.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alib\lang\enums.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alib\lang\memoryblocks.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\debug\assert.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\lang\enummetadata.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\lang\exception.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\lang\langlib.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\lang\library.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\lang\report.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\lang\resources.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\lang\rtti.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alib\lang\singleton.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\lang\singleton.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\applicables.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\astring.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\boxing\debug.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\boxing\stringboxing.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\cstring.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\format\formatter.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\format\formatterjavastyle.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\format\formatterpythonstyle.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\format\formatterstdimpl.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\format\simpletext.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\numberformat.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\string.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\resourcestring.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\stringlib.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\substring.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\tstring.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\util\autosizes.cpp" />
@@ -292,12 +310,14 @@
     <ClCompile Include="..\..\..\src.cpp\alib\system\directory.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\system\environment.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\system\process.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\system\systemlib.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\threads\smartlock.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alib\threads\thread.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\threads\threadlib.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\threads\threadlock.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\time\calendartime.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\time\ticks.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\time\tickspan.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\util\memoryblocks.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox\alox.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox\aloxtypesandenums.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox\core\domain.cpp" />
@@ -312,6 +332,7 @@
     <ClCompile Include="..\..\..\src.cpp\alox\loggers\textfilelogger.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox\loggers\vstudiologger.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox\loggers\windowsconsolelogger.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox\logtools.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox\lox.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox\lox_getstate.cpp" />
     <ClCompile Include="ALox-CPP-DLL.cpp" />
@@ -343,6 +364,9 @@
       <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Level4</WarningLevel>
       <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Level4</WarningLevel>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\src.cpp\alib\system\directory.mm" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -99,7 +99,7 @@ class VStudioLogger : public aworx::lox::core::textlogger::PlainTextLogger
          * @return The number of characters written, -1 on error.
          ******************************************************************************************/
         ALIB_API
-        virtual integer logSubstring( const AString& buffer, integer start, integer length );
+        virtual integer logSubstring( const String& buffer, integer start, integer length );
 
 
         /** ****************************************************************************************
@@ -120,7 +120,7 @@ using     VStudioLogger=           aworx::lox::loggers::VStudioLogger;
 }  // namespace aworx
 
 
-#endif // ALIB_IDE_VSTUDIO &&  ALIB_DEBUG
+#endif // ALIB_IDE_VSTUDIO && ALIB_DEBUG
 
 #endif // HPP_ALOX_VSTUDIO_LOGGER
 

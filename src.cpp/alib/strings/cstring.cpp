@@ -80,30 +80,77 @@ integer  CString::LengthWhenConvertedToWChar( const char* cs, integer  csLength 
 //  IndexOf
 // #################################################################################################
 
-integer CString::IndexOfAny( const char* haystack,  integer  length,
-                              const char* needles,   integer  needlesLength,
-                              Inclusion inclusion                                )
+integer CString::IndexOfAnyIncluded( const char* haystack,  integer  length,
+                                     const char* needles,   integer  needlesLength )
 {
     if ( length        == -1 )    length=        static_cast<integer>( strlen( haystack ) );
     if ( needlesLength == -1 )    needlesLength= static_cast<integer>( strlen( needles  ) );
 
     const char* end=    haystack + length;
 
-    if ( inclusion == Inclusion::Include )
+    const char* s=      haystack;
+    while( s != end )
     {
-        const char* s=      haystack;
-        while( s != end )
-        {
-            for( int i= 0; i < needlesLength ; ++i )
-                if( *(needles + i) == *s )
-                    return s - haystack;
-            s++;
-        }
+        for( int i= 0; i < needlesLength ; ++i )
+            if( *(needles + i) == *s )
+                return s - haystack;
+        s++;
     }
-    else
+
+    return -1;
+}
+
+integer CString::IndexOfAnyExcluded( const char* haystack,  integer  length,
+                                     const char* needles,   integer  needlesLength )
+{
+    if ( length        == -1 )    length=        static_cast<integer>( strlen( haystack ) );
+    if ( needlesLength == -1 )    needlesLength= static_cast<integer>( strlen( needles  ) );
+
+    const char* end=    haystack + length;
+
+    const char* s=   haystack - 1;
+    while( ++s != end )
     {
-        const char* s=   haystack - 1;
-        while( ++s != end )
+        int i;
+        for( i= 0; i < needlesLength ; ++i )
+            if( needles[i] == *s )
+                break;
+        if ( i == needlesLength )
+            return s - haystack;
+    }
+
+    return -1;
+}
+
+integer CString::LastIndexOfAnyInclude( const char* haystack,  integer startPos,
+                                        const char* needles,   integer  needlesLength       )
+{
+    if ( needlesLength == -1 )    needlesLength= static_cast<integer>( strlen( needles  ) );
+
+    const char* s= haystack + startPos;
+
+    while( s >= haystack )
+    {
+        ALIB_ASSERT_ERROR( *s != '\0', "AString::LastIndexOfAny(): found '\\0' in source");
+        for( int i= 0; i < needlesLength ; ++i )
+            if( *(needles + i) == *s )
+                return s - haystack;
+
+        s--;
+    }
+    return -1;
+}
+
+integer CString::LastIndexOfAnyExclude( const char* haystack,  integer startPos,
+                                        const char* needles,   integer  needlesLength       )
+{
+    if ( needlesLength == -1 )    needlesLength= static_cast<integer>( strlen( needles  ) );
+
+    const char* s= haystack + startPos;
+
+    while( s >= haystack )
+    {
+        ALIB_ASSERT_ERROR( *s != '\0', "AString::LastIndexOfAny(): found '\\0' in source");
         {
             int i;
             for( i= 0; i < needlesLength ; ++i )
@@ -112,54 +159,14 @@ integer CString::IndexOfAny( const char* haystack,  integer  length,
             if ( i == needlesLength )
                 return s - haystack;
         }
-    }
 
-    return -1;
-}
-
-integer CString::LastIndexOfAny( const char* haystack,  integer startPos,
-                                  const char* needles,   integer  needlesLength,
-                                  Inclusion   inclusion                                  )
-{
-    if ( needlesLength == -1 )    needlesLength= static_cast<integer>( strlen( needles  ) );
-
-    const char* s= haystack + startPos;
-
-    if ( inclusion == Inclusion::Include )
-    {
-        while( s >= haystack )
-        {
-            ALIB_ASSERT_ERROR( *s != '\0', "AString::LastIndexOfAny(): found '\\0' in source");
-            for( int i= 0; i < needlesLength ; ++i )
-                if( *(needles + i) == *s )
-                    return s - haystack;
-
-            s--;
-        }
-    }
-    else
-    {
-        while( s >= haystack )
-        {
-            ALIB_ASSERT_ERROR( *s != '\0', "AString::LastIndexOfAny(): found '\\0' in source");
-            {
-                int i;
-                for( i= 0; i < needlesLength ; ++i )
-                    if( needles[i] == *s )
-                        break;
-                if ( i == needlesLength )
-                    return s - haystack;
-            }
-
-            s--;
-        }
+        s--;
     }
     return -1;
 }
-
 integer CString::IndexOfFirstDifference( const char* haystack,  integer haystackLength,
-                                          const char* needle,    integer needleLength,
-                                          lang::Case  sensitivity                             )
+                                         const char* needle,    integer needleLength,
+                                         lang::Case  sensitivity                             )
 {
     if ( haystackLength == -1 )    haystackLength= static_cast<integer>( strlen( haystack ) );
     if ( needleLength   == -1 )    needleLength=   static_cast<integer>( strlen( needle   ) );
@@ -185,4 +192,4 @@ integer CString::IndexOfFirstDifference( const char* haystack,  integer haystack
 
 
 
-}}}// namespace aworx::lib::strings
+}}}// namespace [aworx::lib::strings]

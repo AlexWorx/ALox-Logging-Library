@@ -30,11 +30,11 @@ namespace cs.aworx.lox.loggers    {
  *  <em>System.Diagnostics.Debug.Write()</em>.
  *  The name of the \e Logger defaults to "CLR_DEBUGGER_LOGGER".
  *
- *  \b %ALox text logger escape sequences (see class \ref cs::aworx::lox::ESC "ESC")
+ *  \b %ALox text logger escape sequences (see class \ref cs.aworx.lox.ESC "ESC")
  *  are removed and ignored.
  *
- *  \note For the ease of use, class \ref cs::aworx::lox::Log "Log" implements a method
- *  \ref cs::aworx::lox::Log::AddDebugLogger "Log.AddDebugLogger"
+ *  \note For the ease of use, class \ref cs.aworx.lox.Log "Log" implements a method
+ *  \ref cs.aworx.lox.Log.AddDebugLogger "Log.AddDebugLogger"
  *  that tries to create the right Logger type for standard debug logging.
  *  If a debug session is detected (e.g. in Visual Studio or MonoDevelop IDE), this logger is added
  *  in addition.

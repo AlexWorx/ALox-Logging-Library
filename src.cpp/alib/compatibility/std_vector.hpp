@@ -17,7 +17,7 @@
 #ifndef HPP_ALIB_COMPATIBILITY_STD_VECTOR
 //! @cond NO_DOX
 #define HPP_ALIB_COMPATIBILITY_STD_VECTOR 1
-//! @endcond NO_DOX
+//! @endcond
 #include <string>
 
 // #################################################################################################

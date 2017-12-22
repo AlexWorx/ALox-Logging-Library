@@ -30,8 +30,7 @@
 #endif
 
 
-namespace aworx { namespace lib { namespace strings
-{
+namespace aworx { namespace lib { namespace strings {
 
 
 // *************************************************************************************************
@@ -54,7 +53,7 @@ namespace aworx { namespace lib { namespace strings
                                 ,"Terminated but terminator char '\\0' not present"         );
     }
 #endif
-//! @endcond NO_DOX
+//! @endcond
 
 uint64_t    TString::ParseDecDigits( integer  startIdx, integer* newIdx )
 const
@@ -190,4 +189,4 @@ const
 
 
 
-}}}// namespace aworx::lib::strings
+}}}// namespace [aworx::lib::strings]

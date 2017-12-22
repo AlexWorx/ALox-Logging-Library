@@ -50,9 +50,7 @@
 #! [DOXYGEN_CMAKE_SAMPLE_TARGET]
     add_executable            ( ALoxSamples   ${ALOX_SAMPLES_SOURCES}  )
 
-    set_target_properties     ( ALoxSamples   PROPERTIES  COMPILE_FLAGS ${AWORX_COMPILE_FLAGS})
-
-    set_target_properties     ( ALoxSamples   PROPERTIES  LINK_FLAGS    ${AWORX_LINK_FLAGS}   )
+    ALoxCompilerAndLinkerFlags( ALoxSamples )
 
     target_link_libraries     ( ALoxSamples   ALox_SharedLib
                                               ${ALIB_EXTERNAL_LIBS}
@@ -66,6 +64,8 @@
 # -------------------------------------------------------------------------------------------------
     if( ${ALIB_CMAKE_COTIRE} )
         set_target_properties( ALoxSamples     PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT   "${ALIB_SRC_DIR}/alib/alib.hpp" )
+        set_target_properties( ALoxSamples     PROPERTIES COTIRE_UNITY_SOURCE_MAXIMUM_NUMBER_OF_INCLUDES "-j" )
+
         cotire( ALoxSamples )
 
         #--- dump cotire properties ---
@@ -74,7 +74,7 @@
         #get_target_property( _prefixHeader       ${_dumppname}    COTIRE_CXX_PREFIX_HEADER     )
         #get_target_property( _precompiledHeader  ${_dumppname}    COTIRE_CXX_PRECOMPILED_HEADER)
         #get_target_property( _unityTargetName    ${_dumppname}    COTIRE_UNITY_TARGET_NAME     )
-    
+
         # message(STATUS "${_dumppname} unity source:       ${_unitySource}")
         # message(STATUS "${_dumppname} prefix header:      ${_prefixHeader}")
         # message(STATUS "${_dumppname} precompiled header: ${_precompiledHeader}")

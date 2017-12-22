@@ -6,7 +6,7 @@
 // #################################################################################################
 
 /**
-\page man_internal_domains  11 - Internal Logging
+\page alox_man_internal_domains  11 - Internal Logging
 
 Well, it seems like a miracle that C++ compilers are written in C++ and looking behind the
 scenes it is really fine piece of <em>software art</em> when you really start bootstrapping
@@ -19,12 +19,12 @@ So, this chapter explains how these internal logs are organized and how an \b %A
 work with them. A first introduction to this is given in the language-specific tutorials,
 chapter
 <b>ALox Configuration Information and Internal Log Messages</b>
-(\ref tutcpp_config "C++",
+(\ref alox_tutcpp_config "C++",
  \ref  tutcs_config "C#",
- \ref tutjava_config "Java").
+ \ref alox_java_tut_config "Java").
 
 \~Comment ####################################################################################### \~
-# 1. The Internal Domain Tree # {#man_internal_domains_tree}
+# 1. The Internal Domain Tree # {#alox_man_internal_domains_tree}
 <em>Log Domains</em> are hierarchically organized in \b %ALox. All <em>Log Domains</em> together
 constitute a tree of <em>Log Domains</em>. Class
 <b>Lox</b>
@@ -71,7 +71,7 @@ and warnings if something goes wrong inside of \b %ALox (e.g. when you pass wron
 to \b %ALox, etc.).
 
 \~Comment ####################################################################################### \~
-# 2. Sub-Domains used by ALox # {#man_internal_domains_sub}
+# 2. Sub-Domains used by ALox # {#alox_man_internal_domains_sub}
 
 For different topics, \b %ALox uses different sub-domains for its internal logging. As usual,
 this allows to control the \e Verbosity of the internal log output more granular then by setting
@@ -96,7 +96,7 @@ VAR        | Used when parsing and processing external variables.
 
 
 \~Comment ####################################################################################### \~
-# 3. External Use of Internal Domains # {#man_internal_domains_external}
+# 3. External Use of Internal Domains # {#alox_man_internal_domains_external}
 
 It is not 'forbidden' to have custom <em>Log Statements</em> using the internal domain tree:
 
@@ -141,7 +141,7 @@ a \e %Logger, then also reports are received.
 
 
 \~Comment ####################################################################################### \~
-# 3. Final Remarks # {#man_internal_domains_remarks}
+# 3. Final Remarks # {#alox_man_internal_domains_remarks}
 
 It is absolutely OK, to register a \e %Logger exclusively for internal domains. Methods
 <b>%Lox.RemoveLogger</b>
@@ -163,5 +163,5 @@ when something is irritating. As an alternative to (temporarily) adding an invoc
 dump of the state using a command line parameter or other external configuration variable sources.
 
 --------------------------------------------------------------------
-<center>Next chapter: \ref man_external_configuration </center> <center> \ref manual "Back to index" </center>
+<center>Next chapter: \ref alox_man_external_configuration </center> <center> \ref manual "Back to index" </center>
 */

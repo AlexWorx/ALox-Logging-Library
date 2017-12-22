@@ -418,6 +418,20 @@ public void Consume()
         UT_EQ(  "wo"     , s.ToString() );
     }
 
+    // Tokens
+    {
+        Substring s= new Substring("word1 word2 word3");
+        Substring t=new Substring();
+        s.ConsumeToken(t, ' '); UT_EQ( "word1", t.ToString() );    UT_EQ( "word2 word3", s.ToString() );
+        s.ConsumeToken(t, ' '); UT_EQ( "word2", t.ToString() );    UT_EQ( "word3"      , s.ToString() );
+        s.ConsumeToken(t, ' '); UT_EQ( "word3", t.ToString() );    UT_EQ( 0, s.Length() );
+        s.ConsumeToken(t, ' '); UT_EQ( ""     , t.ToString() );    UT_EQ( 0, s.Length() );
+        s.ConsumeToken(t, ' '); UT_EQ( ""     , t.ToString() );    UT_EQ( 0, s.Length() );
+    }
+
+
+
+
     // consume AString, Substring
     {
         Substring s= new Substring("word1 word2 word3 word4");
@@ -474,8 +488,8 @@ public void Consume()
 
     {
         Substring subs= new Substring("abcdef");
-        UT_EQ( 0, subs.ConsumePartOf("ABC")                      );
-        UT_EQ( 0, subs.ConsumePartOf("aBC", 2)                   );
+        UT_EQ( 0, subs.ConsumePartOf("ABC", 1, Case.Sensitive ) );
+        UT_EQ( 0, subs.ConsumePartOf("aBC", 2, Case.Sensitive ) );
         UT_EQ( 0, subs.ConsumePartOf("aBC", 5, Case.Ignore)     );
         UT_EQ( 0, subs.ConsumePartOf("aBX", 3, Case.Ignore)     );       UT_EQ( "abcdef", subs.ToString() );
         UT_EQ( 0, subs.ConsumePartOf("aBX", 2, Case.Sensitive)  );       UT_EQ( "abcdef", subs.ToString() );

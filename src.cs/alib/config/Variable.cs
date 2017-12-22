@@ -18,25 +18,25 @@ namespace cs.aworx.lib.config  {
 
 
 /** ************************************************************************************************
- * A data record used to define an
- * \ref cs::aworx::lib::config::Variable "ALib Configuration Variable".
- * While variables can also defined by setting their attributes individually, it is recommended to
- * define all external configuration variables in a central place, using statically or dynamically
+ * A data record used to declare an
+ * \ref cs.aworx.lib.config.Variable "ALib Configuration Variable".
+ * While variables can also be declared by setting their attributes individually, it is recommended to
+ * declare all external configuration variables in a central place, using statically or dynamically
  * allocated objects of this type.<br>
  * Objects of class \b %Variable can be constructed and existing objects can be reused by invoking
- * \ref cs::aworx::lib::config::Variable::Define "Variable.Define". Both construction and
- * re-definition support to pass objects of this type.
+ * \ref cs.aworx.lib.config.Variable.Declare "Variable.Declare". Both, construction and
+ * re-declaration of variables, use objects of this type.
  *
  * All fields (except #Delim) support placeholders \c "%1", \c "%2" ... \c "%N", which are
  * replaced with the constructor of class \b %Variable and method
- * \ref cs::aworx::lib::config::Variable::Define "Variable.Define".
+ * \ref cs.aworx.lib.config.Variable.Declare "Variable.Declare".
  * This allows to define a series of variables whose category, name, description and value is
  * dependent on runtime information.
  *
  * Besides the use for passing parameters into objects of type Variable, this struct does not
  * provide further logic.
  **************************************************************************************************/
-public struct VariableDefinition
+public struct VariableDecl
 {
     /**
      * Simple constructor copying values
@@ -49,7 +49,7 @@ public struct VariableDefinition
      * @param formatHints          Value for field #FormatHints
      * @param comments             Value for field #Comments
      */
-    public VariableDefinition( AString categoryFallback, String category, String name, String defaultValue,
+    public VariableDecl( AString categoryFallback, String category, String name, String defaultValue,
                                char delim, String formatAttrAlignment, Variable.FormatHint formatHints,  String comments )
     {
         this.CategoryFallback=     categoryFallback;
@@ -82,48 +82,48 @@ public struct VariableDefinition
 
     /**
      * The default value. If this is \c null, no variable will be created with method
-     * \ref cs::aworx::lib::config::Configuration::Load "Configuration.Load".
+     * \ref cs.aworx.lib.config.Configuration.Load "Configuration.Load".
      * \note
      *   The field is ignored when using the plug-in interface
-     *   \ref cs::aworx::lib::config::ConfigurationPlugin::Load "ConfigurationPlugin.Load".
+     *   \ref cs.aworx.lib.config.ConfigurationPlugin.Load "ConfigurationPlugin.Load".
      */
     public String      DefaultValue;
 
     /** The (preferred) delimiter of values when represented in external strings.  */
     public char        Delim;
 
-    /** If set attributes written in multi-lines are vertically aligned by this character or
+    /** If set, attributes written in multi-lines are vertically aligned by this character or
      *  string. Use cases are "=", ":" or "->".<br> Used by
-     *  \ref cs::aworx::lib::config::IniFile "IniFile" and potentially by custom plug-ins. */
+     *  \ref cs.aworx.lib.config.IniFile "IniFile" and potentially by custom plug-ins. */
     public String      FormatAttrAlignment;
 
     /** Hints for formatting textual configuration files. (Used by class
-        \ref cs::aworx::lib::config::IniFile "IniFile" and potentially by custom plug-ins.*/
+        \ref cs.aworx.lib.config.IniFile "IniFile" and potentially by custom plug-ins.*/
     public Variable.FormatHint  FormatHints;
 
     /** Comments for the variable. Some plug-ins allow to store comments along with the
-     *  variable (e.g. class \ref cs::aworx::lib::config::IniFile).*/
+     *  variable (e.g. class \ref cs.aworx.lib.config.IniFile).*/
     public String      Comments;
 }
 
 /** ************************************************************************************************
  * This class is used to load and store external configuration data with objects of class
- * \ref cs::aworx::lib::config::Configuration       "Configuration" and its plug-ins
- * \ref cs::aworx::lib::config::ConfigurationPlugin "ConfigurationPlugin".
+ * \ref cs.aworx.lib.config.Configuration       "Configuration" and its plug-ins
+ * \ref cs.aworx.lib.config.ConfigurationPlugin "ConfigurationPlugin".
  *
  * \note
  *   For general information about external configuration variables, see namespace documentation
- *   \ref cs::aworx::lib::config "com.aworx.lib.config".
+ *   \ref cs.aworx.lib.config "com.aworx.lib.config".
  *
- * <b>Construction/Redefinition:</b><br>
+ * <b>Construction/Redeclaration:</b><br>
  * While constructors accepting attributes of a variable exist, it is recommended to
- * define all external configuration variables in a central place, using statically or dynamically
+ * declare all external configuration variables in a central place, using statically or dynamically
  * allocated objects of type
- * \ref cs::aworx::lib::config::VariableDefinition "VariableDefinition" and pass such record
+ * \ref cs.aworx.lib.config.VariableDecl "VariableDecl" and pass such record
  * to the constructor of a variable.
  *
  * The class is designed to be 'reused' to avoid repeated allocation/de-allocation of memory.
- * After invoking one of the overloaded methods #Define, which share the same signatures as
+ * After invoking one of the overloaded methods #Declare, which share the same signatures as
  * the overloaded constructors, a variable is freshly initialized. Internally, the memory
  * allocated for values remains allocated.
  *
@@ -133,7 +133,7 @@ public struct VariableDefinition
  * Method #Size reports the currently available values and methods #GetString(int), #GetInteger(int)
  * and #GetFloat(int) return a value. Internally all values are stored as strings. If
  * field #Config is set, its field
- * \ref cs::aworx::lib::config::Configuration::NumberFormat "Configuration.NumberFormat"
+ * \ref cs.aworx.lib.config.Configuration.NumberFormat "Configuration.NumberFormat"
  * is used for floating point conversion.
  *
  * When storing a variable that contains more than one value, field #Delim has to be set.
@@ -141,32 +141,24 @@ public struct VariableDefinition
  * prior to the load operation.
  * \note
  *   This is not true when loading/storing a variable directly in a plug-in of type
- *   \ref cs::aworx::lib::config::InMemoryPlugin "InMemoryPlugin"   or might also not be true
+ *   \ref cs.aworx.lib.config.InMemoryPlugin "InMemoryPlugin"   or might also not be true
  *   with custom configuration plug-in types which
  *   for example might store the values in a database.<br>
  *   However, with the default plug-ins
- *   \ref cs::aworx::lib::config::CommandLinePlugin "CommandLinePlugin",
- *   \ref cs::aworx::lib::config::EnvironmentPlugin "EnvironmentPlugin" and
- *   \ref cs::aworx::lib::config::IniFile "IniFile"
+ *   \ref cs.aworx.lib.config.CLIArgs "CLIArgs",
+ *   \ref cs.aworx.lib.config.Environment  "Environment" and
+ *   \ref cs.aworx.lib.config.IniFile "IniFile"
  *   the delimiter is needed! Therefore, it is best practice to always define a proper delimiter if
  *   a variable is multi-valued.
  *
  * <b>Loading and Storing:</b><br>
- * There are three ways of loading and storing a variable:
- * - Using the interface of class \ref cs::aworx::lib::config::Configuration "Configuration"
+ * There are two ways of loading and storing a variable:
+ * - Using the interface of class \ref cs.aworx.lib.config.Configuration "Configuration"
  *   which allows to load and store variables from different sources (plug-ins) in a prioritized
  *   way.
- * - Using the interface of class \ref cs::aworx::lib::config::ConfigurationPlugin "ConfigurationPlugin"
+ * - Using the interface of class \ref cs.aworx.lib.config.ConfigurationPlugin "ConfigurationPlugin"
  *   which may be used if the decision about the source or drain of a load/store operation is explicitly
  *   made by a code unit.
- * - Using the interface methods #Load,#Store, #StoreDefault and #Protect found in this class
- *   itself which are provided for convenience. Those simply invoke the interface of static global singleton
- *   \\ref cs::aworx::lib::config::Configuration::Default "Configuration.Default".
- *
- * Using the interface of this class itself is the most convenient way of loading and storing
- * variables, setting default values or protecting variables.
- * Only very few use cases demand for the creation and use of an instance of class
- * \b %Configuration different to the static singleton \b  %Configuration.Default.
  *
  * Storing empty variables (method #Size returns \c 0) deletes a variable from the those
  * configuration plug-ins that are write enabled.
@@ -205,18 +197,18 @@ public class Variable
         /**
          *  The delimiter used for parsing and storing values by simple textual plug-ins which
          *  use the default version of
-         *  \ref cs::aworx::lib::config::XTernalizer "XTernalizer"
+         *  \ref cs.aworx.lib.config.XTernalizer "XTernalizer"
          *  for in- and externalizing variables.
          */
         public char             Delim                   = '\0';
 
         /** Hints for formatting textual configuration files. (Used by class
-            \ref cs::aworx::lib::config::IniFile "IniFile" and potentially by custom plug-ins.*/
+            \ref cs.aworx.lib.config.IniFile "IniFile" and potentially by custom plug-ins.*/
         public FormatHint       FormatHints;
 
-        /** If set attributes written in multi-lines are vertically aligned by this character or
+        /** If set, attributes written in multi-lines are vertically aligned by this character or
          *  string. Use cases are "=", ":" or "->".<br> Used by
-         *  \ref cs::aworx::lib::config::IniFile "IniFile" and potentially by custom plug-ins. */
+         *  \ref cs.aworx.lib.config.IniFile "IniFile" and potentially by custom plug-ins. */
         public String           FormatAttrAlignment;
 
         /** The configuration variable comments with placeholders replaced */
@@ -230,24 +222,23 @@ public class Variable
          * The default value provided as an externalized string.
          *
          * The only occasion that this value is used is with method
-         * \ref cs::aworx::lib::config::Configuration::Load   "Configuration.Load".
-         * If no plug-in has this variable defined and this field is not \e nulled, then
-         * the value is written into plug-in
-         * \ref cs::aworx::lib::config::Configuration::DefaultValues   "Configuration.DefaultValues",
-         * respectively - if this was replaced by the user - into a plug-in found at or below priority
-         * \ref cs::aworx::lib::config::Configuration::PrioDefault   "Configuration.PrioDefault".
+         * \ref cs.aworx.lib.config.Configuration.Load   "Configuration.Load".
+         * If no plug-in has this variable defined and this field is not \e nulled, then the value
+         * is written into plug-in of priority \alib{config,Configuration.PrioDefaultValues},
+         * respectively - if this default plug-in was replaced by the user - into a plug-in found at
+         * or below this priority.
          *
          * In this case, the value is parsed using method
-         * \ref cs::aworx::lib::config::XTernalizer::LoadFromString  "XTernalizer.LoadFromString"
+         * \ref cs.aworx.lib.config.XTernalizer.LoadFromString  "XTernalizer.LoadFromString"
          * of field
-         * \ref cs::aworx::lib::config::ConfigurationPlugin::StringConverter  "ConfigurationPlugin.StringConverter"
+         * \ref cs.aworx.lib.config.ConfigurationPlugin.StringConverter  "ConfigurationPlugin.StringConverter"
          * of the plug-in writing the value.
          *
          * \note
          *   The field is ignored when using the plug-in interface
-         *   \ref cs::aworx::lib::config::ConfigurationPlugin::Load "ConfigurationPlugin.Load"
+         *   \ref cs.aworx.lib.config.ConfigurationPlugin.Load "ConfigurationPlugin.Load"
          *   directly. To store this value 'manually' directly to a plug-in, invoke
-         *   \ref cs::aworx::lib::config::ConfigurationPlugin::Store "ConfigurationPlugin.Store"
+         *   \ref cs.aworx.lib.config.ConfigurationPlugin.Store "ConfigurationPlugin.Store"
          *   with providing value explicitly.
          */
         public AString         DefaultValue             = new AString();
@@ -255,15 +246,15 @@ public class Variable
         /**
          * A value related to the priority of a configuration plug-in.
          * The following values apply:
-         * - \c -1 after creation or definition (reuse).
+         * - \c 0 after creation or declaration (reuse).
          * - The priority of the plug-in that loaded the value (after calling
-         *   \ref cs::aworx::lib::config::Configuration::Load   "Configuration.Load").
+         *   \ref cs.aworx.lib.config.Configuration.Load   "Configuration.Load").
          * - The priority of the plug-in that stored the value (after calling
-         *   \ref cs::aworx::lib::config::Configuration::Store "Configuration.Store").
+         *   \ref cs.aworx.lib.config.Configuration.Store "Configuration.Store").
          * - \c 0, if the last load or store operation failed.
          * In addition prior to storing a variable, the value might be manually set. See
          * documentation of
-         * \ref cs::aworx::lib::config::Configuration::Store "Configuration.Store") for details.
+         * \ref cs.aworx.lib.config.Configuration.Store "Configuration.Store") for details.
          */
         public int              Priority                = 0;
 
@@ -284,7 +275,7 @@ public class Variable
     // #############################################################################################
 
         /** ****************************************************************************************
-         * Constructs an undefined Variable. Prior to using this, #Define has to be invoked.
+         * Constructs an undefined Variable. Prior to using this, #Declare has to be invoked.
          ******************************************************************************************/
         public Variable()
         {
@@ -292,30 +283,30 @@ public class Variable
         }
 
         /** ****************************************************************************************
-         * Constructs a variable from a definition.
+         * Constructs a variable from a declaration.
          * Strings named \c "%1", \c "%2" ... \c "%N" found in the fields #Category, #Name,
          * #Comments and #DefaultValue are replaced with given replacement strings found
          * in vector \p replacements.
          *
-         * @param definition     The definition data of the variable.
+         * @param declaration    The declaration data of the variable.
          * @param replacements   List of objects that will be converted to strings using
-         *                       \ref cs::aworx::lib::strings::AString::_(Object) "AString._(Object)".
+         *                       \ref cs.aworx.lib.strings.AString._(Object) "AString._(Object)".
          ******************************************************************************************/
-          public Variable( VariableDefinition definition, params Object[] replacements )
+          public Variable( VariableDecl declaration, params Object[] replacements )
           {
-              Define( definition, replacements );
+              Declare( declaration, replacements );
           }
 
         /** ****************************************************************************************
-         * Constructs a variable using the definition of another variable. The values are not
+         * Constructs a variable using the declaration of another variable. The values are not
          * copied.
          *
-         * @param variable  A variable to copy the definition (which is comprised with fields
+         * @param variable  A variable to copy the declaration (which is comprised with fields
          *                  #Category, #Name, #Fullname, #Delim, #Comments and #DefaultValue) from.
          ******************************************************************************************/
         public Variable( Variable variable )
         {
-            Define( variable );
+            Declare( variable );
         }
 
         /** ****************************************************************************************
@@ -332,7 +323,7 @@ public class Variable
                          char   delim    = '\0' ,
                          Object comments = null  )
         {
-            Define( category, name, delim, comments );
+            Declare( category, name, delim, comments );
         }
 
     // #############################################################################################
@@ -340,33 +331,33 @@ public class Variable
     // #############################################################################################
 
         /** ****************************************************************************************
-         * Re-initializes a variable from a definition. Strings named \c "%1", \c "%2" ... \c "%N"
+         * Re-initializes a variable from a declaration. Strings named \c "%1", \c "%2" ... \c "%N"
          * found in the fields  #Category, #Name, #Comments and #DefaultValue are replaced with
          * given replacement string arguments in vector \p replacements.
          *
-         * @param definition     The definition data of the variable.
+         * @param declaration    The declaration data of the variable.
          * @param replacements   List of objects that will be converted to strings using
-         *                       \ref cs::aworx::lib::strings::AString::_(Object) "AString._(Object)".
+         *                       \ref cs.aworx.lib.strings.AString._(Object) "AString._(Object)".
          *
          * @return \c this to allow concatenated operations.
          ******************************************************************************************/
         public
-        Variable   Define( VariableDefinition definition, params Object[] replacements )
+        Variable   Declare( VariableDecl declaration, params Object[] replacements )
         {
             clear();
 
-            Delim=                  definition.Delim;
-            FormatHints=            definition.FormatHints;
-            FormatAttrAlignment=    definition.FormatAttrAlignment;
+            Delim=                  declaration.Delim;
+            FormatHints=            declaration.FormatHints;
+            FormatAttrAlignment=    declaration.FormatAttrAlignment;
 
             // set Category, Name, Comment
-            if(  definition.Category != null ) Category._( definition.Category );
-            else                               Category._( definition.CategoryFallback );
+            if(  declaration.Category != null ) Category._( declaration.Category );
+            else                               Category._( declaration.CategoryFallback );
 
-            Name    ._( definition.Name    );
-            Comments._( definition.Comments );
-            if ( definition.DefaultValue != null )
-                DefaultValue._()._( definition.DefaultValue );
+            Name    ._( declaration.Name    );
+            Comments._( declaration.Comments );
+            if ( declaration.DefaultValue != null )
+                DefaultValue._()._( declaration.DefaultValue );
             else
                 DefaultValue.SetNull();
 
@@ -400,14 +391,14 @@ public class Variable
         }
 
         /** ****************************************************************************************
-         * Constructs a variable using the definition of another variable. The values are not
+         * Constructs a variable using the declaration of another variable. The values are not
          * copied.
          *
-         * @param variable  A variable to copy the definition (which is comprised with fields
+         * @param variable  A variable to copy the declaration (which is comprised with fields
          *                  #Category, #Name, #Fullname, #Delim, #Comments and #DefaultValue) from.
          * @return \c this to allow concatenated operations.
          ******************************************************************************************/
-        public Variable Define ( Variable variable )
+        public Variable Declare ( Variable variable )
         {
             clear();
 
@@ -421,7 +412,7 @@ public class Variable
 
 
         /** ****************************************************************************************
-         * Re-initializes the variable with the new definition
+         * \ref clear "Clears" the variable resets its declaration.
          *
          * @param category  The category of the variable.
          * @param name      The name of the variable
@@ -435,8 +426,8 @@ public class Variable
          * @return \c this to allow concatenated operations.
          ******************************************************************************************/
         public
-        Variable   Define( Object category, Object name, char delim = '\0',
-                           Object comments = null  )
+        Variable   Declare( Object category, Object name, char delim = '\0',
+                            Object comments = null  )
         {
             clear();
 
@@ -508,7 +499,7 @@ public class Variable
          *  Other, depending on the variable semantics, more user friendly values may be set using
          *  the string interface #Add.
          *  String values recognized for boolean variables are defined in
-         * \ref cs::aworx::lib::config::Configuration::TrueValues   "Configuration.TrueValues".
+         * \ref cs.aworx.lib.config.Configuration.TrueValues   "Configuration.TrueValues".
          *
          * @param  value  The value to set.
          * @return A reference to the string representing the boolean value.
@@ -582,8 +573,7 @@ public class Variable
          * Returns the value at \p idx interpreted as a double value.
          * If the index is invalid, \c 0.0 is returned.
          * Parsing is done using field \c NumberFormat of field #Config, respectively, if this is
-         * not set, the static singleton
-         * \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default" is used.
+         * not set, the static singleton \alib{strings,NumberFormat.Global}.
          *
          * @param  idx  The index of the value to be retrieved.  Defaults to \c 0.
          * @return The value at \p idx interpreted as a double value.
@@ -598,8 +588,7 @@ public class Variable
         /** ****************************************************************************************
          * Returns \c true if the first value represents a boolean 'true'.
          * Evaluation is done using field #Config, respectively if this is not set, the static
-         * singleton
-         * \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default".
+         * singleton \ref cs.aworx.lib.ALIB.Config "ALIB.Config".
          *
          * @param  idx  The index of the value to be retrieved.  Defaults to \c 0.
          * @return The value at \p idx interpreted as a boolean value.
@@ -608,22 +597,6 @@ public class Variable
         {
             return idx < qtyValues  ? Config.IsTrue( GetString( idx ) )
                                     : false;
-        }
-
-        /** ****************************************************************************************
-         * Convenience method that loads the values of a variable from the static singleton
-         * \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default", using method
-         * \ref cs::aworx::lib::config::Configuration::Load    "Configuration.Load".
-         *
-         * @returns The priority of the configuration plug-in that provided the result.
-         *          \c 0 if not found,
-         *          \ref cs::aworx::lib::config::Configuration::PrioDefault   "Configuration.PrioDefault"
-         *          if either found or created in
-         *          \ref cs::aworx::lib::config::Configuration::DefaultValues "Configuration.Default.DefaultValues"
-         ******************************************************************************************/
-        public int     Load()
-        {
-            return Configuration.Default.Load( this );
         }
 
         /** ****************************************************************************************
@@ -651,113 +624,6 @@ public class Variable
             return false;
         }
 
-        /** ****************************************************************************************
-         * Convenience method that stores the values of a variable using the static singleton
-         * \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default", and method
-         * \ref cs::aworx::lib::config::Configuration::Store   "Configuration.Store".
-         *
-         * Optional parameter \p externalizedValue allows to provide a string that is parsed
-         * by the storing plug-in to reset the variables' values prior to writing.
-         *
-         * @param externalizedValue     Optional externalized value string. If given, the variable
-         *
-         * @returns The result of
-         *          \ref cs::aworx::lib::config::Configuration::Store "Configuration.Default.Store(this)".
-         ******************************************************************************************/
-        public int     Store( Object externalizedValue= null )
-        {
-            return Configuration.Default.Store( this, externalizedValue );
-        }
-
-        /** ****************************************************************************************
-         * Convenience method that stores the variable with priority
-         * \ref cs::aworx::lib::config::Configuration::PrioDefault "Configuration.PrioDefault"
-         * using the static singleton
-         * \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default".
-         *
-         * The variable value is determined as follows:
-         * - If optional parameter \p externalizedValue is provided and not \e nulled, the values
-         *   are loaded from that string.
-         * - Otherwise, if the variable has no values set but field #DefaultValue is not \e nulled
-         *   then values are loaded from this field.
-         * - If all is unset (the variable values, parameter \p externalizedValue and field
-         *   #DefaultValue), then the unset variable is stored, which results in removing a
-         *   an existing default value from the configuration.
-         *
-         *
-         * @param externalizedValue     Optional externalized value string. If given, the variable
-         *                              is set prior to writing.
-         * @returns The result of
-         *          \ref cs::aworx::lib::config::Configuration::Store "Configuration.Default.Store(this)".
-         ******************************************************************************************/
-        public int     StoreDefault( Object externalizedValue= null )
-        {
-            if(     externalizedValue != null
-                && ( !(externalizedValue is AString) || ((AString) externalizedValue).IsNotNull() ) )
-                Configuration.Default.DefaultValues.StringConverter.LoadFromString( this, externalizedValue );
-
-            if ( Size() == 0 && DefaultValue.IsNotNull() )
-                Configuration.Default.DefaultValues.StringConverter.LoadFromString( this, DefaultValue );
-
-            Priority= Configuration.PrioDefault;
-            return Configuration.Default.Store( this, null );
-        }
-
-        /** ****************************************************************************************
-         * Convenience method that stores the variable with priority
-         * \ref cs::aworx::lib::config::Configuration::PrioProtected "Configuration.PrioProtected"
-         * using the static singleton
-         * \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default".
-         *
-         * The variable value is determined as follows:
-         * - If optional parameter \p externalizedValue is provided and not \e nulled, the values
-         *   are loaded from that string.
-         * - Otherwise, if the variable has no values set but field #DefaultValue is not \e nulled
-         *   then values are loaded from this field.
-         * - If all is unset (the variable values, parameter \p externalizedValue and field
-         *   #DefaultValue), then the unset variable is stored, which results in removing a
-         *   an existing protection value from the configuration.
-         *
-         * @param externalizedValue     Optional externalized value string. If given, the variable
-         *                              is set prior to writing.
-         * @returns The result of
-         *          \ref cs::aworx::lib::config::Configuration::Store "Configuration.Default.Store(this)".
-         ******************************************************************************************/
-        public int     Protect( Object externalizedValue= null )
-        {
-            if(     externalizedValue != null
-                && ( !(externalizedValue is AString) || ((AString) externalizedValue).IsNotNull() ) )
-                Configuration.Default.DefaultValues.StringConverter.LoadFromString( this, externalizedValue );
-
-            if ( Size() == 0 && DefaultValue.IsNotNull() )
-                Configuration.Default.DefaultValues.StringConverter.LoadFromString( this, DefaultValue );
-
-            Priority= Configuration.PrioProtected;
-            return Configuration.Default.Store( this, null );
-        }
-
-
-        /** ****************************************************************************************
-         * Convenience method to set values according to the provided string.
-         * For the conversion of the "externalized" string, method
-         * \ref cs::aworx::lib::config::XTernalizer::LoadFromString "XTernalizer.LoadFromString"
-         * of field
-         * \ref cs::aworx::lib::config::ConfigurationPlugin::StringConverter "ConfigurationPlugin.StringConverter"
-         * of default plug-in
-         * \ref cs::aworx::lib::config::Configuration::DefaultValues "Configuration.DefaultValues"
-         * of static singleton
-         * \ref cs::aworx::lib::config::Configuration::Default "Configuration.Default" is used.
-         *
-         * @param externalizedValue     The new value to write.
-         *
-         * @returns The #Size of the variable after parsing.
-         ******************************************************************************************/
-        public int   LoadFromString( Object externalizedValue )
-        {
-            Configuration.Default.DefaultValues.StringConverter.LoadFromString( this, externalizedValue );
-            return Size();
-        }
-
 
     // #############################################################################################
     // protected methods
@@ -769,7 +635,7 @@ public class Variable
         protected void        clear()
         {
             Config=         null;
-            Priority=       -1;
+            Priority=       0;
             Delim=          '\0';
             FormatHints=    0;
 

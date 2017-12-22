@@ -1,4 +1,4 @@
-#// #################################################################################################
+// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
 //  Copyright 2013-2017 A-Worx GmbH, Germany
@@ -18,7 +18,7 @@
 #ifndef HPP_ALIB_TIME_TICKSPAN
 //! @cond NO_DOX
 #define HPP_ALIB_TIME_TICKSPAN 1
-//! @endcond NO_DOX
+//! @endcond
 
 
 
@@ -80,7 +80,7 @@ class TickSpan
      *  @param ticks The value in ticks to use for setting the public fields
      **********************************************************************************************/
     inline
-    TickSpan( rawtime ticks )                         { Set(ticks); }
+    TickSpan( Time::TRaw ticks )                         { Set(ticks); }
 
     /** ********************************************************************************************
      *  Constructs the object using the two Tick objects that mark the start and end points in time
@@ -106,14 +106,14 @@ class TickSpan
      *  parameter.
      *  @param ticks The value in ticks to use for setting the public fields
      **********************************************************************************************/
-    ALIB_API void              Set( rawtime ticks );
+    ALIB_API void              Set( Time::TRaw ticks );
 
     /** ********************************************************************************************
      *  Takes the current values of the public fields and calculates a time span value in ticks.
      *  Such value can be used with class Ticks, e.g. to add or subtract time spans.
      *  @returns The time span represented by the public fields of this class.
      **********************************************************************************************/
-    ALIB_API rawtime      Get();
+    ALIB_API Time::TRaw      Get();
 
     /** ********************************************************************************************
      *  Sets all public values to 0.

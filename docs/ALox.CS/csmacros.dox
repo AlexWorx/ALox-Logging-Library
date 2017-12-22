@@ -6,13 +6,13 @@
 // #################################################################################################
 
 /**
-\page csmacros        Conditional Compilation Symbols
+\page alox_cs_macros        Conditional Compilation Symbols
 
 \tableofcontents
 
-# Conditional Compilation Symbols #  {#csmacros_conditional_compile_symbols}
+# Conditional Compilation Symbols #  {#alox_cs_macros_conditional_compile_symbols}
 
-In section \ref cssetup we have learned about some conditional
+In section \ref alox_cs_setup we have learned about some conditional
 compilation symbols already. The following gives the complete list of such symbols
 introduced by ALox for C#:
 

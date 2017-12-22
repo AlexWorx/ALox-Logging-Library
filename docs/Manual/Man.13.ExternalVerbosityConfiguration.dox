@@ -6,17 +6,17 @@
 // #################################################################################################
 
 /**
-\page man_external_verbosity_configuration  13 - External Verbosity Configuration
+\page alox_man_external_verbosity_configuration  13 - External Verbosity Configuration
 
 \tableofcontents
 
 \~Comment ####################################################################################### \~
-# 1. Introduction # {#man_external_verbosity_configuration_intro}
+# 1. Introduction # {#alox_man_external_verbosity_configuration_intro}
 
 This Chapter brings us back to talking about <em>Log Domains</em> and their attribute <em>Verbosity</em>
 which are associated with pairs of a <em>Log Domains</em> and a \e %Logger.
 \note
-  Please make sure that you have read and understood \ref man_logdomains before continue reading.
+  Please make sure that you have read and understood \ref alox_man_logdomains before continue reading.
 
 Setting such \e Verbosity by invoking
 <b>%Lox.SetVerbosity</b>
@@ -37,13 +37,13 @@ external configuration works in ALox.
 
 
 \~Comment ####################################################################################### \~
-# 2. Priorities of Verbosity Settings # {#man_external_verbosity_configuration_prios}
+# 2. Priorities of Verbosity Settings # {#alox_man_external_verbosity_configuration_prios}
 
 In the
 <b>Tutorials</b>
- ([C++] (@ref cpptutorial),
-  [C#]  (@ref cstutorial),
-  [Java](@ref javatutorial)), in chapter \ref man_logdomains and elsewhere in the
+ ([C++] (@ref alox_cpp_tutorial),
+  [C#]  (@ref alox_cs_tutorial),
+  [Java](@ref alox_java_tutorial)), in chapter \ref alox_man_logdomains and elsewhere in the
 ALox documentation, so far, we have just ignored an optional parameter of overlaoded methods:
 <b>%Lox.SetVerbosity</b>
 ([C++] (@ref      #aworx::lox::Lox::SetVerbosity),
@@ -51,14 +51,15 @@ ALox documentation, so far, we have just ignored an optional parameter of overla
  [Java](@ref #com::aworx::lox::Lox::setVerbosity)). The parameter is named \p priority.
 We did so, because this parameter, while extending the flexibility of ALox, brings a new
 new level of complexity to the table.
-The good news is that (as explained in \ref man_apdx_auto_config) when the parameter
+The good news is that (as explained in \ref alox_man_apdx_auto_config) when the parameter
 is omitted, ALox behaves as if this feature was not existing.
 
 The parameter is of \c int type and defaults to constant
-<b>%Configuration.PrioDefault</b>
-([C++] (@ref      #aworx::lib::config::Configuration::PrioDefault),
- [C#]  (@ref  #cs::aworx::lib::config::Configuration::PrioDefault),
- [Java](@ref #com::aworx::lib::config::Configuration::PRIO_DEFAULT)). The value of the constant
+<b>%PrioDefaultValues</b>
+    ([C++] (@ref     #aworx::lib::config::Priorities::DefaultValues),
+     [C#]  (@ref  #cs::aworx::lib::config::Configuration::PrioDefaultValues),
+     [Java](@ref #com::aworx::lib::config::Configuration::PRIO_DEFAULT_VALUES)).
+The value of the constant
 is \c 100, but for now, this is not of further interest. When passing a higher value here, subsequent invocations
 for the <em>Log Domain</em> in question (or for one of its parent domains!) which use the standard value, will
 be ignored. See the following sample:
@@ -71,7 +72,7 @@ And its output:
 
 As you see, the second invocation of \b %Lox.SetVerbosity is ignored, because the first had a
 higher priority.<br>
-With ALox internal logging (see \ref man_internal_domains)
+With ALox internal logging (see \ref alox_man_internal_domains)
 activated, ALox nicely reports what is going on. We add line:
 
 \snippet "UT_dox_manual.cs"        Man_ExtVerbosityConfig___2
@@ -111,21 +112,30 @@ again.
   of \e Verbosity settings would not have been implemented with ALox.
 
 \~Comment ####################################################################################### \~
-# 3. Priorities of External Configuration # {#man_external_verbosity_configuration_configprios}
+# 3. Priorities of External Configuration # {#alox_man_external_verbosity_configuration_configprios}
 
 
-As you have learned from the previous chapter, \ref man_external_configuration, the configuration system of
-ALib (the utility library that ALox builds upon) works with priorities the same as ALox \e Verbosity settings
-do. Now, you might guess what happens! ALox uses the same constants as ALib configuration does.
-The following table gives an overview of these constants defined in class \b %Configuration:
+As you have learned from the previous chapter, \ref alox_man_external_configuration, the configuration system of
+\alib (the utility library that ALox builds upon) works with priorities the same as \alox \e Verbosity settings
+do. Now, you might guess what happens! \alox uses the same constants as the \alib configuration
+system does.
+The following table gives an overview of these constants:
 
 Constant|Value
 - - - - |- - - - - - - - - - - - - - - - -
-<b>PrioProtected</b>   ([C++] (@ref #aworx::lib::config::Configuration::PrioProtected),    [C#](@ref #cs::aworx::lib::config::Configuration::PrioProtected),   [Java](@ref #com::aworx::lib::config::Configuration::PRIO_PROTECTED))   | \<max int\>
-<b>PrioCmdLine</b>     ([C++] (@ref #aworx::lib::config::Configuration::PrioCmdLine),      [C#](@ref #cs::aworx::lib::config::Configuration::PrioCmdLine),     [Java](@ref #com::aworx::lib::config::Configuration::PRIO_CMD_LINE))    | 400
-<b>PrioEnvironment</b> ([C++] (@ref #aworx::lib::config::Configuration::PrioEnvironment),  [C#](@ref #cs::aworx::lib::config::Configuration::PrioEnvironment), [Java](@ref #com::aworx::lib::config::Configuration::PRIO_ENVIRONMENT)) | 300
-<b>PrioIniFile</b>     ([C++] (@ref #aworx::lib::config::Configuration::PrioIniFile),      [C#](@ref #cs::aworx::lib::config::Configuration::PrioIniFile),     [Java](@ref #com::aworx::lib::config::Configuration::PRIO_INI_FILE))    | 200
-<b>PrioDefault</b>     ([C++] (@ref #aworx::lib::config::Configuration::PrioDefault),      [C#](@ref #cs::aworx::lib::config::Configuration::PrioDefault),     [Java](@ref #com::aworx::lib::config::Configuration::PRIO_DEFAULT))     | 100
+<b>PrioProtectedValues</b>     ([C++] (@ref #aworx::lib::config::Priorities "Priorities::DefaultValues"),  [C#](@ref #cs::aworx::lib::config::Configuration::PrioProtectedValues),    [Java](@ref #com::aworx::lib::config::Configuration::PRIO_PROTECTED_VALUES)) | \<max int\>
+<b>PrioCLIParameters</b>       ([C++] (@ref #aworx::lib::config::Priorities "Priorities::Standard"),       [C#](@ref #cs::aworx::lib::config::Configuration::PrioCLIArgs),            [Java](@ref #com::aworx::lib::config::Configuration::PRIO_CLI_ARGS))         | 40000
+<b>PrioEnvironment</b>         ([C++] (@ref #aworx::lib::config::Priorities "Priorities::Environment"),    [C#](@ref #cs::aworx::lib::config::Configuration::PrioEnvironment),        [Java](@ref #com::aworx::lib::config::Configuration::PRIO_ENVIRONMENT))      | 30000
+<b>PrioStandard</b>            ([C++] (@ref #aworx::lib::config::Priorities "Priorities::CLI"),            [C#](@ref #cs::aworx::lib::config::Configuration::PrioStandard),           [Java](@ref #com::aworx::lib::config::Configuration::PRIO_STANDARD))         | 20000
+<b>PrioDefaultValues</b>       ([C++] (@ref #aworx::lib::config::Priorities "Priorities::ProtectedValues"),[C#](@ref #cs::aworx::lib::config::Configuration::PrioDefaultValues),      [Java](@ref #com::aworx::lib::config::Configuration::PRIO_DEFAULT_VALUES))   | 10000
+<b>PrioAutodetect</b>          ([C++] (@ref #aworx::lib::config::Priorities "Priorities::AutoDetected"),   [C#](@ref #cs::aworx::lib::config::Configuration::PrioAutodetect),         [Java](@ref #com::aworx::lib::config::Configuration::PRIO_AUTO_DETECT))      |   500
+
+
+\note
+    While in C# and Java langauge versions of \alib, the constants are properties of class
+    class \b %Configuration, in C++ they are implemented as
+    \cpp_alib{lang,T_EnumMetaDataDecl,enum meta data}" of enumeration type
+    \cpp_alib{config,Priorities}.
 
 When a \e Verbosity setting is read by ALox from external configuration, the priority of the plug-in
 that provided the data is used as the priority of the setting, just as if this value was
@@ -140,13 +150,13 @@ as you are using them, the same it reads configuration data for these <em>Log Do
 an explicit mandate for that. It just always does. If no configuration plug-ins are set, nothing
 is read, ALox will not complain. However, if it finds configuration data that influences
 the \e Verbosity setting of <em>Log Domains</em> you are using, then you will get noted by ALox as soon as
-you have activated \ref man_internal_domains "Internal Logging".
+you have activated \ref alox_man_internal_domains "Internal Logging".
 
 Before it is explained how the format of configuration looks like, lets talk about two important
 topics in respect to the priority values given in the table above.
 
-1. <b>%PrioDefault</b><br>
-As we have learned, constant <b>%Configuration.PrioDefault</b> is the default value for optional
+1. <b>%PrioDefaultValues</b><br>
+As we have learned, constant <b>%Configuration.PrioDefaultValues</b> is the default value for optional
 parameter \p priority of method <b>%Lox.SetVerbosity</b>. Having the lowest value of all constants,
 this shows that any external configuration by default overwrites what is defined as
 for the \e Verbosity "in the source code".<br>
@@ -158,7 +168,7 @@ Consider settings made in the source code as pure default values - at least as l
 not explicitly provide a different priority when invokeing the method.
 <br>
 
-2. <b>%Configuration.PrioProtected</b><br>
+2. <b>%Configuration.PrioProtectedValues</b><br>
 We have not talked about this one, although there are situations when using this might become
 very important:
 \attention
@@ -166,7 +176,7 @@ very important:
   when collection metrics from the field with deployed applications.
   In this case, a programmer may want
   to disallow to disable such logging. This can be achieved using priority constant
-  <b>%Configuration.PrioProtected</b> with method
+  <b>%Configuration.PrioProtectedValues</b> with method
   <b>%Lox.SetVerbosity</b>
   ([C++] (@ref      #aworx::lox::Lox::SetVerbosity),
    [C#]  (@ref  #cs::aworx::lox::Lox::SetVerbosity),
@@ -175,7 +185,7 @@ very important:
 
 
 \~Comment ####################################################################################### \~
-# 4. Variable LOXNAME_LOGGERNAME_VERBOSITY # {#man_external_verbosity_configuration_variable}
+# 4. Variable LOXNAME_LOGGERNAME_VERBOSITY # {#alox_man_external_verbosity_configuration_variable}
 
 This was a lot of theory, before we now finally come to to the definition of the configuration
 variable itself. When a \e %Logger is registered with an instance of class \b %Lox, ALox tries
@@ -242,16 +252,16 @@ variables from within the source code.
   If you really, urgently want to have the same flexibility of setting the \e Verbosity for
   \b patterns of <em>Log Domain</em> paths from within your code, then your way to go is to save
   a corresponding configuration variable into the in-memory configuration plug-in
-  found in field
-    <b>%Configuration.DefaultValues</b>
-     ([C++] (@ref      #aworx::lib::config::Configuration.DefaultValues),
-      [C#]  (@ref  #cs::aworx::lib::config::Configuration.DefaultValues),
-      [Java](@ref #com::aworx::lib::config::Configuration.defaultValues))
-  of the public static singleton of class \b %Configuration found in field
+  found with
+<b>%PrioDefaultValues</b>
+    ([C++] (@ref      #aworx::lib::config::Priorities::DefaultValues),
+     [C#]  (@ref  #cs::aworx::lib::config::Configuration::PrioDefaultValues),
+     [Java](@ref #com::aworx::lib::config::Configuration::PRIO_DEFAULT_VALUES))
+  of the public static singleton of class \b %ALox found in field
     <b>%Configuration.Default</b>
-     ([C++] (@ref      #aworx::lib::config::Configuration::Default),
-      [C#]  (@ref  #cs::aworx::lib::config::Configuration::Default),
-      [Java](@ref #com::aworx::lib::config::Configuration::Default)).
+     ([C++] (@ref      #aworx::lox::ALox::Config),
+      [C#]  (@ref  #cs::aworx::lox::ALox::Config),
+      [Java](@ref #com::aworx::lox::ALox::config)).
   Of-course,you do this instead of invoking \b %Lox.SetVerbosity.
 
 \note
@@ -260,7 +270,7 @@ variables from within the source code.
 
 <p>
 \note
-  To address the internal domain tree (see \ref man_internal_domains), provide string
+  To address the internal domain tree (see \ref alox_man_internal_domains), provide string
   \b "INTERNAL_DOMAINS" for parameter \c domainpath. This can also be used as a prefix e.g.
 
         INTERNAL_DOMAINS/REPORT = verbose ;
@@ -273,7 +283,7 @@ variables from within the source code.
 
 
 \~Comment ####################################################################################### \~
-# 5. Let ALox Write the Variable  # {#man_external_verbosity_configuration_variable_writeback}
+# 5. Let ALox Write the Variable  # {#alox_man_external_verbosity_configuration_variable_writeback}
 
 We had so far ignored the portion <c> [ writeback [ VAR_NAME ] ; ] </c>
 of configuration variable
@@ -285,11 +295,11 @@ The \b 'writeback' option tells ALox to write all verbosities back to the
 configuration as soon as a \e Logger is removed from a \b %Lox object.
 
 \note
-  Of-course, a write-enabled configuration plug-in needs to be attached to public static singleton
-  <b>%Configuration.Default</b>
-   ([C++] (@ref      #aworx::lib::config::Configuration::Default),
-    [C#]  (@ref  #cs::aworx::lib::config::Configuration::Default),
-    [Java](@ref #com::aworx::lib::config::Configuration::Default)).
+  Of-course, a write-enabled configuration plug-in needs to be registered with
+  <b>%PrioDefaultValues</b>
+    ([C++] (@ref      #aworx::lib::config::Priorities::DefaultValues),
+     [C#]  (@ref  #cs::aworx::lib::config::Configuration::PrioDefaultValues),
+     [Java](@ref #com::aworx::lib::config::Configuration::PRIO_DEFAULT_VALUES)).
   The simplest type is found with class
   <b>%IniFile</b>
     ([C++] (@ref      #aworx::lib::config::IniFile),
@@ -489,15 +499,15 @@ To conclude, lets take some further notes on what was said above:
   with a command line parameter like <c>\-\-verbosity \<val\></c>.
   Now, the software could write a variable of e.g. \b ALOX_REL_CONSOLE_VERBOSITY
   (a release logger responsible for the software's standard output)
-  into either
-  <b>%Configuration.DefaultValues</b>
-    ([C++] (@ref      #aworx::lib::config::Configuration::DefaultValues),
-     [C#]  (@ref  #cs::aworx::lib::config::Configuration::DefaultValues),
-     [Java](@ref #com::aworx::lib::config::Configuration::defaultValues)) or
-  <b>%Configuration.ProtectedValues</b>
-    ([C++] (@ref      #aworx::lib::config::Configuration::ProtectedValues),
-     [C#]  (@ref  #cs::aworx::lib::config::Configuration::ProtectedValues),
-     [Java](@ref #com::aworx::lib::config::Configuration::protectedValues))
+  with either
+  <b>%PrioDefaultValues</b>
+    ([C++] (@ref      #aworx::lib::config::Priorities::DefaultValues),
+     [C#]  (@ref  #cs::aworx::lib::config::Configuration::PrioDefaultValues),
+     [Java](@ref #com::aworx::lib::config::Configuration::PRIO_DEFAULT_VALUES)) or
+  <b>%PrioProtectedValues</b>
+      ([C++] (@ref      #aworx::lib::config::Priorities::ProtectedValues),
+       [C#]  (@ref  #cs::aworx::lib::config::Configuration::PrioProtectedValues),
+       [Java](@ref #com::aworx::lib::config::Configuration::PRIO_PROTECTED_VALUES))
   (use the latter to disallow the user to hack in).
   The value of the variable set 'in code' would either contain
   substituted system-wide external variables, or hard-coded strings (again, depending
@@ -505,7 +515,7 @@ To conclude, lets take some further notes on what was said above:
 
 
 \~Comment ####################################################################################### \~
-# 6. Wrap-up # {#man_external_verbosity_configuration_wrapup}
+# 6. Wrap-up # {#alox_man_external_verbosity_configuration_wrapup}
 
 As a summary, these are the takeaways of this chapter:
 
@@ -525,17 +535,18 @@ As a summary, these are the takeaways of this chapter:
   of the general one.
 - In special situations it is recommended to protect certain <em>Log Domains</em> from being changed
   at runtime. This is done by explicitly providing
-  <b>%Configuration.PrioProtected</b>
-  ([C++] (@ref      #aworx::lib::config::Configuration::PrioProtected),
-   [C#]  (@ref  #cs::aworx::lib::config::Configuration::PrioProtected),
-   [Java](@ref #com::aworx::lib::config::Configuration::PRIO_PROTECTED)) to method \b %Lox.SetVerbosity.
+  <b>%PrioProtectedValues</b>
+      ([C++] (@ref      #aworx::lib::config::Priorities::ProtectedValues),
+       [C#]  (@ref  #cs::aworx::lib::config::Configuration::PrioProtectedValues),
+       [Java](@ref #com::aworx::lib::config::Configuration::PRIO_PROTECTED_VALUES))
+  to method \b %Lox.SetVerbosity.
   A similar issue is described for <em>Domain Substitution</em>
-  \ref man_domain_substitution_config_prevent "here".
+  \ref alox_man_domain_substitution_config_prevent "here".
 - External setting of \e Verbosity has different (partly more, partly less) possibilities
-  in comparison to "programatically" setting. A way to extend the programatical setting
-  to work the same as external configuration is by usin an in-memory INI file.
+  in comparison to "programatically" setting. A way to extend the programatically setting
+  to work the same as external configuration, is by using an in-memory INI file.
 
 --------------------------------------------------------------------
-<center>Next chapter: \ref man_trim_source_path </center> <center> \ref manual "Back to index" </center>
+<center>Next chapter: \ref alox_man_trim_source_path </center> <center> \ref manual "Back to index" </center>
 
 */

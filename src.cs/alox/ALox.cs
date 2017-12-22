@@ -67,11 +67,11 @@ public static class ALox
          ******************************************************************************************/
         public static AString ToStringPriority( int priority, AString target )
         {
-            if ( priority == Configuration.PrioDefault   )  return target._( "Default  " );
-            if ( priority == Configuration.PrioProtected )  return target._( "Protected" );
-            if ( priority == Configuration.PrioCmdLine   )  return target._( "CmdLine  " );
-            if ( priority == Configuration.PrioEnvironment   )  return target._( "EnvVars  " );
-            if ( priority == Configuration.PrioIniFile   )  return target._( "IniFile  " );
+            if ( priority == Configuration.PrioDefaultValues       )  return target._( "Default"      );
+            if ( priority == Configuration.PrioProtectedValues     )  return target._( "Protected"    );
+            if ( priority == Configuration.PrioCLIArgs )  return target._( "CLI");
+            if ( priority == Configuration.PrioEnvironment   )  return target._( "EnvVars"      );
+            if ( priority == Configuration.PrioStandard      )  return target._( "Standard"     );
 
             return target.Field()._( priority ).Field( 9, Alignment.Left );
         }
@@ -97,7 +97,7 @@ public static class ALox
          * Interprets given \p src as a verbosity.
          * A case insensitive comparison of only the first (!) character of the start of the string
          * is performed (against 'v', 'i', 'w' and 'e').
-         * If no match is found, \e %Verbosity::Off is returned.
+         * If no match is found, \e %Verbosity.Off is returned.
          * @param src The string to 'parse'.
          * @returns The verbosity read.
          ******************************************************************************************/
@@ -126,7 +126,7 @@ public static class ALox
          * Besides this version number, field #Revision indicates if this is a revised version
          * of a former release.
          */
-        public static readonly int                   Version                                  =1709;
+        public static readonly int                   Version                                  =1712;
 
         /**
          * The revision number of this release. Each ALox #Version is initially released as
@@ -136,21 +136,35 @@ public static class ALox
         public static readonly int                   Revision                                    =0;
 
         /**
+         * The configuration used by \alox. This is received or created with overloaded
+         * #Init methods. It might be shared with other libraries or can be an instance
+         * explicitly dedicated to the \alox library.<br>
+         * The option to use an exclusive one may be used to store \alox configuration
+         * variables in different configuration files, e.g. to reduce "clutter" of an
+         * applications' then "main" configuration file.<br>
+         * Changes should only be made at very initial, single threaded bootstrap code,
+         * with the invocation of the according method \ref #Init(Configuration).
+         *
+         * \see  Field #ConfigCategory.
+         */
+        public static      Configuration               Config                                 =null;
+
+        /**
          * The name of the configuration category of configuration variables used by ALox.<br>
          * Defaults to "ALOX".<br>
          * This value can be changed to avoid conflicts between applications (especially in
          * respect to environment variable settings). Changes should be placed at very initial
          * bootstrap code, before the invocation of #Init.<br>
-         * See also \ref cs::aworx::lib::ALIB::ConfigCategoryName "ALIB.ConfigCategoryName".
+         * See also \ref cs.aworx.lib.ALIB.ConfigCategory "ALIB.ConfigCategory".
          */
-        public  static         AString               ConfigCategoryName      = new AString("ALOX" );
+        public  static         AString               ConfigCategory      = new AString("ALOX" );
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref cs::aworx::lox::Lox::CreateConsoleLogger "Lox.CreateConsoleLogger".
+         * used by \ref cs.aworx.lox.Lox.CreateConsoleLogger "Lox.CreateConsoleLogger".
          */
-        public static          VariableDefinition           CONSOLE_TYPE = new VariableDefinition(
-            ConfigCategoryName,   null,             "CONSOLE_TYPE",
+        public static          VariableDecl           CONSOLE_TYPE = new VariableDecl(
+            ConfigCategory,   null,             "CONSOLE_TYPE",
             "default",
             '\0', null, Variable.FormatHint.None,
             "Influences the type of console logger to be created by method\n"         +
@@ -160,10 +174,10 @@ public static class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref cs::aworx::lox::Log::AddDebugLogger "Log.AddDebugLogger".
+         * used by \ref cs.aworx.lox.Log.AddDebugLogger "Log.AddDebugLogger".
          */
-        public static          VariableDefinition           NO_IDE_LOGGER = new VariableDefinition(
-            ConfigCategoryName,   null,     "NO_IDE_LOGGER",
+        public static          VariableDecl           NO_IDE_LOGGER = new VariableDecl(
+            ConfigCategory,   null,     "NO_IDE_LOGGER",
 
             "false",
             '\0', null, Variable.FormatHint.None,
@@ -173,10 +187,10 @@ public static class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref cs::aworx::lox::core::textlogger::TextLogger "TextLogger".
+         * used by \ref cs.aworx.lox.core.textlogger.TextLogger "TextLogger".
          */
-        public static          VariableDefinition           AUTO_SIZES = new VariableDefinition(
-            ConfigCategoryName,   null,     "%1_AUTO_SIZES",
+        public static          VariableDecl           AUTO_SIZES = new VariableDecl(
+            ConfigCategory,   null,     "%1_AUTO_SIZES",
             null,
             '\0', null, Variable.FormatHint.None,
             "Auto size values of last run of Logger '%1' (generated and temporary values)."
@@ -184,10 +198,10 @@ public static class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref cs::aworx::lox::core::textlogger::TextLogger "TextLogger".
+         * used by \ref cs.aworx.lox.core.textlogger.TextLogger "TextLogger".
          */
-        public static          VariableDefinition           MAX_ELAPSED_TIME = new VariableDefinition(
-            ConfigCategoryName,   null,     "%1_MAX_ELAPSED_TIME",
+        public static          VariableDecl           MAX_ELAPSED_TIME = new VariableDecl(
+            ConfigCategory,   null,     "%1_MAX_ELAPSED_TIME",
             "0, limit=59",
             ',', null, Variable.FormatHint.None,
             "Maximum elapsed time of all runs of Logger '%1'. To reset elapsed time display\n" +
@@ -198,10 +212,10 @@ public static class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref cs::aworx::lox::Lox "Lox".
+         * used by \ref cs.aworx.lox.Lox "Lox".
          */
-        public static          VariableDefinition           DOMAIN_SUBSTITUTION = new VariableDefinition(
-            ConfigCategoryName,   null,     "%1_DOMAIN_SUBSTITUTION",
+        public static          VariableDecl           DOMAIN_SUBSTITUTION = new VariableDecl(
+            ConfigCategory,   null,     "%1_DOMAIN_SUBSTITUTION",
             null,
             ';', "->", Variable.FormatHint.MultLine,
             ""
@@ -212,8 +226,8 @@ public static class ALox
          * Attributes of corresponding configuration variable
          * [ALOX_LOXNAME_LOGGERNAME_VERBOSITY](../group__GrpALoxConfigVars.html).
          */
-        public static          VariableDefinition           VERBOSITY = new VariableDefinition(
-            ConfigCategoryName,   null,     "%1_%2_VERBOSITY",
+        public static          VariableDecl           VERBOSITY = new VariableDecl(
+            ConfigCategory,   null,     "%1_%2_VERBOSITY",
             "writeback;",
             ';', "=", Variable.FormatHint.MultLine,
             "The verbosities of logger \"%2\" in lox \"%1\". Use 'writeback [VAR_NAME] ;'\n" +
@@ -223,10 +237,10 @@ public static class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref cs::aworx::lox::Lox "Lox".
+         * used by \ref cs.aworx.lox.Lox "Lox".
          */
-        public static          VariableDefinition           PREFIXES = new VariableDefinition(
-            ConfigCategoryName,   null,     "%1_PREFIXES",
+        public static          VariableDecl           PREFIXES = new VariableDecl(
+            ConfigCategory,   null,     "%1_PREFIXES",
             "",
             ';', "=", Variable.FormatHint.MultLine,
             "Prefix strings for log domains of lox \"%1\".\n"                           +
@@ -236,10 +250,10 @@ public static class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref cs::aworx::lox::Lox "Lox".
+         * used by \ref cs.aworx.lox.Lox "Lox".
          */
-        public static          VariableDefinition           DUMP_STATE_ON_EXIT = new VariableDefinition(
-            ConfigCategoryName,   null,     "%1_DUMP_STATE_ON_EXIT",
+        public static          VariableDecl           DUMP_STATE_ON_EXIT = new VariableDecl(
+            ConfigCategory,   null,     "%1_DUMP_STATE_ON_EXIT",
             "none, verbosity=info, domain=/ALOX",
             ',', null, Variable.FormatHint.None,
             "Log information about lox \"%1\" on exit. Comma separated list of arguments define\n"    +
@@ -254,8 +268,8 @@ public static class ALox
          * Attributes of corresponding configuration variable
          * [ALOX_GLOBAL_SOURCE_PATH_TRIM_RULES](../group__GrpALoxConfigVars.html).
          */
-        public static          VariableDefinition           SPTR_GLOBAL = new VariableDefinition(
-            ConfigCategoryName,   null,     "GLOBAL_SOURCE_PATH_TRIM_RULES",
+        public static          VariableDecl           SPTR_GLOBAL = new VariableDecl(
+            ConfigCategory,   null,     "GLOBAL_SOURCE_PATH_TRIM_RULES",
             "",
             ';', "=", Variable.FormatHint.MultLine,
              "Defines global source path trim rules (applicable for all Lox instances).\n"   +
@@ -265,25 +279,25 @@ public static class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref cs::aworx::lox::Lox "Lox".
+         * used by \ref cs.aworx.lox.Lox "Lox".
          */
-        public static          VariableDefinition           SPTR_LOX = new VariableDefinition(
-            ConfigCategoryName,   null,     "%1_SOURCE_PATH_TRIM_RULES",
+        public static          VariableDecl           SPTR_LOX = new VariableDecl(
+            ConfigCategory,   null,     "%1_SOURCE_PATH_TRIM_RULES",
 
             "",
 
             ';', "=", Variable.FormatHint.MultLine,
-             "Defines global source path trim rules for Lox \"%1\".\n"           +
+             "Defines source path trim rules for Lox \"%1\".\n"           +
              "   Format: [*]sourcepath [, inclusion, trimoffset, sensitivity, replacement] [ ; … ]"
         );
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
          * used by colorful specializations of class
-         * \ref cs::aworx::lox::core::textlogger::TextLogger "TextLogger".
+         * \ref cs.aworx.lox.core.textlogger.TextLogger "TextLogger".
          */
-        public static          VariableDefinition           CONSOLE_LIGHT_COLORS = new VariableDefinition(
-            ConfigCategoryName,   null,     "CONSOLE_LIGHT_COLORS",
+        public static          VariableDecl           CONSOLE_LIGHT_COLORS = new VariableDecl(
+            ConfigCategory,   null,     "CONSOLE_LIGHT_COLORS",
             "",
             '\0', null, Variable.FormatHint.None,
             "Evaluated by colorful loggers that dispose about light and dark colors. Those may\n"        +
@@ -295,10 +309,10 @@ public static class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref cs::aworx::lox::core::textlogger::TextLogger "TextLogger".
+         * used by \ref cs.aworx.lox.core.textlogger.TextLogger "TextLogger".
          */
-        public static          VariableDefinition           FORMAT = new VariableDefinition(
-            ConfigCategoryName,   null,     "%1_FORMAT",
+        public static          VariableDecl           FORMAT = new VariableDecl(
+            ConfigCategory,   null,     "%1_FORMAT",
 
             null,
 
@@ -310,10 +324,10 @@ public static class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref cs::aworx::lox::core::textlogger::TextLogger "TextLogger".
+         * used by \ref cs.aworx.lox.core.textlogger.TextLogger "TextLogger".
          */
-        public static          VariableDefinition           FORMAT_DATE_TIME = new VariableDefinition(
-            ConfigCategoryName,   null,     "%1_FORMAT_DATE_TIME",
+        public static          VariableDecl           FORMAT_DATE_TIME = new VariableDecl(
+            ConfigCategory,   null,     "%1_FORMAT_DATE_TIME",
 
             null,
 
@@ -324,10 +338,10 @@ public static class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref cs::aworx::lox::core::textlogger::TextLogger "TextLogger".
+         * used by \ref cs.aworx.lox.core.textlogger.TextLogger "TextLogger".
          */
-        public static          VariableDefinition           FORMAT_TIME_DIFF = new VariableDefinition(
-            ConfigCategoryName,   null,     "%1_FORMAT_TIME_DIFF",
+        public static          VariableDecl           FORMAT_TIME_DIFF = new VariableDecl(
+            ConfigCategory,   null,     "%1_FORMAT_TIME_DIFF",
 
             null,
 
@@ -339,10 +353,10 @@ public static class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref cs::aworx::lox::core::textlogger::TextLogger "TextLogger".
+         * used by \ref cs.aworx.lox.core.textlogger.TextLogger "TextLogger".
          */
-        public static          VariableDefinition           FORMAT_MULTILINE = new VariableDefinition(
-            ConfigCategoryName,   null,     "%1_FORMAT_MULTILINE",
+        public static          VariableDecl           FORMAT_MULTILINE = new VariableDecl(
+            ConfigCategory,   null,     "%1_FORMAT_MULTILINE",
 
             null,
 
@@ -354,10 +368,10 @@ public static class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref cs::aworx::lox::core::textlogger::TextLogger "TextLogger".
+         * used by \ref cs.aworx.lox.core.textlogger.TextLogger "TextLogger".
          */
-        public static          VariableDefinition           REPLACEMENTS     = new VariableDefinition(
-            ConfigCategoryName,   null,     "%1_REPLACEMENTS",
+        public static          VariableDecl           REPLACEMENTS     = new VariableDecl(
+            ConfigCategory,   null,     "%1_REPLACEMENTS",
 
             null,
 
@@ -385,7 +399,7 @@ public static class ALox
          *   LGD        | Used with storing and retrieving <em>Log Data</em> objects.
          *
          * In addition, class
-         * \ref cs::aworx::lox::ALoxReportWriter "ALoxReportWriter" logs into sub-domain
+         * \ref cs.aworx.lox.ALoxReportWriter "ALoxReportWriter" logs into sub-domain
          * <c>'REPORT'</c>.
          *
          * \note For internal logging an separated <em>domain tree</em> is used. This means, that
@@ -403,21 +417,30 @@ public static class ALox
         private static bool           isInitialized= false;
 
         /** ****************************************************************************************
-         * This method must be called prior to using %ALox, e.g. at the beginning of
+         * This method must be called prior to using \b %ALox, e.g. at the beginning of
          * the \c main() method of an application. It is OK, to call this method more than once, which
-         * allows independent code blocks (e.g. libraries) to bootstrap %ALox independently.
-         * However, only the first invocation is effective with the exclamation that if
-         * command line parameters are provided with a call, those are set.
-         * Also, the very first invocation should not be interrupted by a parallel invocation of a
-         * second thread. Consequently, it has to be assured that this method is invoked once on
-         * the real bootstrap an app.
+         * allows independent code blocks (e.g. libraries) to bootstrap \b %ALox independently.
+         * However, only the first invocation is effective.
          *
-         * In the C# version of the ALox Logging Library, not invoking this method will not lead to
-         * severe problems, however, some options might fail.
-         * It is good practice to invoke this method in the main() method of a process
-         * and provide the command line arguments.
+         * The very first invocation should not be interrupted by a parallel invocation of a
+         * second thread. Consequently, with more complex applications it is recommended to
+         * explicitly invoke this method once when the software is bootstrapped.
          *
-         * See also \ref cs::aworx::lib::ALIB::Init "ALIB.Init" which is invoked by this method.
+         * \note This method invokes
+         *       \ref cs.aworx.lib.ALIB.Init "ALIB.Init" and passes the
+         *       \alib{config,Configuration} object created. Hence, no explicit initialization of
+         *       underlying \b %ALib is needed.<br>
+         *       If a different configuration object is to be used with \alib, then \b %ALIB.Init
+         *       needs to be called explicitly prior to this method.
+         *
+         * If command line parameters should be used for configuring \b %ALox, then the very first
+         * call to this method has to provide the argc and argv parameters.
+         * Subsequent calls to this method with different parameters do not change the setup.
+         *
+         * If other, custom configuration data sources should be used already with this method
+         * (to read the configuration variables as described in
+         * \ref cs.aworx.lib.ALIB.Init "ALIB.Init"), use overloaded method
+         * \ref cs.aworx.lox.ALox.Init(Configuration) "ALox.Init(Configuration)".
          *
          * @param args    Parameters taken from <em>standard C#</em> method \c main()
          *                (the list of command line arguments).
@@ -429,8 +452,33 @@ public static class ALox
                 return;
             isInitialized= true;
 
-            // initialize ALIB
-            ALIB.Init( args );
+            ALox.Config= new Configuration();
+            ALox.Config.SetCommandLineArgs( args );
+
+            ALIB.Init( ALox.Config );
+            #if ALOX_DBG_LOG
+                Log.LOX= new Lox("Log", true);
+            #endif
+        }
+
+        /** ****************************************************************************************
+         * Variant of method #Init, accepting a configuration.
+         * This will be stored in field #Config and used for loading and storing \alox
+         * variables.
+         *
+         * @param config  The configuration object to use.
+         * @returns Returns \c true if \b %ALox was initialized before, \c false if not.
+         ******************************************************************************************/
+        public static void     Init(  Configuration config )
+        {
+            if ( isInitialized )
+                return;
+            isInitialized= true;
+            ALox.Config= config;
+            ALIB.Init( config );
+            #if ALOX_DBG_LOG
+                Log.LOX= new Lox("Log", true);
+            #endif
         }
 
     // #############################################################################################
@@ -557,7 +605,7 @@ public static class ALox
 
 /** ****************************************************************************************
  * The \b %ReportWriter for ALib when using ALox. An instance of this class is
- * created in method \ref cs::aworx::lox::Log::AddDebugLogger "Log.AddDebugLogger"
+ * created in method \ref cs.aworx.lox.Log.AddDebugLogger "Log.AddDebugLogger"
  * and registered with ALib.<br>
  * Uses internal domain <c>'$/REPORT'</c> for logging.
  ******************************************************************************************/

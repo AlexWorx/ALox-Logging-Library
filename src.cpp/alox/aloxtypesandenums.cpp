@@ -18,76 +18,6 @@ using namespace aworx;
 namespace aworx { namespace lox {
 
 
-// #################################################################################################
-// ToString() methods for ALox public enums
-// #################################################################################################
-
-#define CASE_RETURN(enum,field)  { case enum::  field : return #field; }
-
-const String ToString( Verbosity verbosity )
-{
-    switch( verbosity )
-    {
-        CASE_RETURN( Verbosity, Off      )
-        CASE_RETURN( Verbosity, Verbose  )
-        CASE_RETURN( Verbosity, Info     )
-        CASE_RETURN( Verbosity, Warning  )
-        #if !defined(__clang__)
-            default:
-        #endif
-        CASE_RETURN( Verbosity, Error    )
-    }
-}
-
-AString& ToString( Verbosity verbosity, int priority, AString& target )
-{
-    target._( Format::Field( aworx::lox::ToString( verbosity ), 7, Alignment::Left) );
-    target._( '(' );
-    ToStringPriority( priority, target );
-    return target.InsertAt( ")", target.LastIndexOfAny( DefaultWhitespaces, Inclusion::Exclude )  + 1 );
-}
-
-AString& ToStringPriority( int priority, AString& target )
-{
-    if ( priority == Configuration::PrioDefault   )  return target._( "Default  " );
-    if ( priority == Configuration::PrioProtected )  return target._( "Protected" );
-    if ( priority == Configuration::PrioCmdLine   )  return target._( "CmdLine  " );
-    if ( priority == Configuration::PrioEnvironment   )  return target._( "EnvVars  " );
-    if ( priority == Configuration::PrioIniFile   )  return target._( "IniFile  " );
-    String64 numStr;  numStr._( Format( priority, 1 ) );
-    return target._( Format::Field( numStr, 9, Alignment::Left ) );
-}
-
-
-Verbosity ReadVerbosity( const String& src )
-{
-    integer idx= src.IndexOfAny( DefaultWhitespaces, Inclusion::Exclude );
-    if ( idx >= 0 )
-    {
-        integer c= tolower( src[idx] );
-        if ( c == 'v' ) return Verbosity::Verbose;
-        if ( c == 'i' ) return Verbosity::Info;
-        if ( c == 'w' ) return Verbosity::Warning;
-        if ( c == 'e' ) return Verbosity::Error;
-    }
-    return Verbosity::Off;
-}
-
-
-AString& ToString( Scope scope, int pathLevel, AString& target )
-{
-    target._( "Scope::" );
-    switch( scope )
-    {
-        case Scope::Global:         { target._("Global");       break; }
-        case Scope::ThreadOuter:    { target._("ThreadOuter");  break; }
-        case Scope::Path:           { target._("Path")._("(L" )._( pathLevel )._( ")" ); break; }
-        case Scope::Filename:       { target._("Filename");     break; }
-        case Scope::Method:         { target._("Method");       break; }
-        case Scope::ThreadInner:    { target._("ThreadInner");  break; }
-    }
-    return target;
-}
 
 
 // #################################################################################################
@@ -107,7 +37,7 @@ AString& ToString( Scope scope, int pathLevel, AString& target )
           SLiteral<3>  ESC::BLACK      { "\033c6" }; ///< Select black color for foreground.
           SLiteral<3>  ESC::WHITE      { "\033c7" }; ///< Select white color for foreground.
           SLiteral<3>  ESC::GRAY       { "\033c8" }; ///< Select gray color for foreground.
-          SLiteral<3>  ESC::FG_RESET   { "\033c9" }; ///< Select std color for foreground.
+          SLiteral<3>  ESC::FG_RESET   { "\033c9" }; ///< Select std color for foreground.4
 
           SLiteral<3>  ESC::BG_RED     { "\033C0" }; ///< Select red color for background.
           SLiteral<3>  ESC::BG_GREEN   { "\033C1" }; ///< Select green color for background.

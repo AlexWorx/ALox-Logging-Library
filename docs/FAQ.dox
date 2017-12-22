@@ -68,7 +68,7 @@ is so fast, there will not be a measurable difference between "normal" debug log
 \c System.out.println(), \c Console.WriteLine, etc. versus ALox logging. And: as for debug logging, this
 gets automatically pruned in the release code. Hence, the release version of your software is free
 of any performance issue caused by debug logging. (For example, C# users read
-\ref cssetup_pruning_result "Mission accomplished: Perfect Auto Pruning with ALox!"
+\ref alox_cs_setup_pruning_result "Mission accomplished: Perfect Auto Pruning with ALox!"
 for more information.)
 
 
@@ -110,9 +110,9 @@ remain in the code. Such remaining <em>release logging</em> might be deactivated
 activated in case of runtime errors, external triggers, or other special events.
 
 For details on how pruning is implemented in the different flavors of ALox, refer to
-\ref cppprepro_macros   "Pruning ALox for C++",
-\ref cspruning          "Pruning ALox for C#" and
-\ref javasetup_pruning  "Pruning ALox for Java".
+\ref alox_cpp_prepro_macros   "Pruning ALox for C++",
+\ref alox_cs_pruning          "Pruning ALox for C#" and
+\ref alox_java_setup_pruning  "Pruning ALox for Java".
 
 
 # Why are ALox log formats all US/English? # {#faq_internationalization}
@@ -125,7 +125,7 @@ And we think that a maximum of compatibility (e.g. with other tools or within in
 is guaranteed this way.<br>
 If you absolutely want localized meta information, like logging the name of months in Finnish,
 you can extend ALox for that.
-Here is \ref man_loggers_textlogger "how you do that"!
+Here is \ref alox_man_loggers_textlogger "how you do that"!
 
 <br>
 # Why is ALox introducing a set of own utility classes? # {#faq_aworx_util}

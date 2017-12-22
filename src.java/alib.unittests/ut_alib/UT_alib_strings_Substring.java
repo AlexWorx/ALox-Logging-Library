@@ -373,6 +373,18 @@ public void Consume()
         UT_EQ(  "wo"     , s.toString() );
     }
 
+    // Tokens
+    {
+        Substring s= new Substring("word1 word2 word3");
+        Substring t=new Substring();
+        s.consumeToken(t, ' '); UT_EQ( "word1", t.toString() );    UT_EQ( "word2 word3", s.toString() );
+        s.consumeToken(t, ' '); UT_EQ( "word2", t.toString() );    UT_EQ( "word3"      , s.toString() );
+        s.consumeToken(t, ' '); UT_EQ( "word3", t.toString() );    UT_EQ( 0, s.length() );
+        s.consumeToken(t, ' '); UT_EQ( ""     , t.toString() );    UT_EQ( 0, s.length() );
+        s.consumeToken(t, ' '); UT_EQ( ""     , t.toString() );    UT_EQ( 0, s.length() );
+    }
+
+
     {
         Substring subs= new Substring("1234567890");
         UT_EQ( 0, subs.consumePartOf("abc") );
@@ -392,18 +404,18 @@ public void Consume()
 
     {
         Substring subs= new Substring("abcdef");
-        UT_EQ( 0, subs.consumePartOf("ABC")                      );
-        UT_EQ( 0, subs.consumePartOf("aBC", 2)                   );
-        UT_EQ( 0, subs.consumePartOf("aBC", 5, Case.IGNORE)     );
-        UT_EQ( 0, subs.consumePartOf("aBX", 3, Case.IGNORE)     );       UT_EQ( "abcdef", subs.toString() );
-        UT_EQ( 0, subs.consumePartOf("aBX", 2, Case.SENSITIVE)  );       UT_EQ( "abcdef", subs.toString() );
-        UT_EQ( 2, subs.consumePartOf("aBX", 2, Case.IGNORE)     );       UT_EQ(   "cdef", subs.toString() );
-        UT_EQ( 0, subs.consumePartOf("CXX", 2, Case.IGNORE)     );       UT_EQ(   "cdef", subs.toString() );
-        UT_EQ( 1, subs.consumePartOf("CXX", 1, Case.IGNORE)     );       UT_EQ(    "def", subs.toString() );
-        UT_EQ( 3, subs.consumePartOf("def", 2, Case.IGNORE)     );       UT_EQ(       "", subs.toString() );
-        UT_EQ( 0, subs.consumePartOf("def", 2, Case.IGNORE)     );       UT_EQ(       "", subs.toString() );
-        UT_EQ( 0, subs.consumePartOf("",    2, Case.IGNORE)     );       UT_EQ(       "", subs.toString() );
-        UT_EQ( 0, subs.consumePartOf("",    0, Case.IGNORE)     );       UT_EQ(       "", subs.toString() );
+        UT_EQ( 0, subs.consumePartOf("ABC"   , 1, Case.SENSITIVE)  );
+        UT_EQ( 0, subs.consumePartOf("aBC"   , 2, Case.SENSITIVE)  );
+        UT_EQ( 0, subs.consumePartOf("aBC"   , 5, Case.SENSITIVE)  );
+        UT_EQ( 0, subs.consumePartOf("aBX"   , 3, Case.IGNORE)     );       UT_EQ( "abcdef", subs.toString() );
+        UT_EQ( 0, subs.consumePartOf("aBX"   , 2, Case.SENSITIVE)  );       UT_EQ( "abcdef", subs.toString() );
+        UT_EQ( 2, subs.consumePartOf("aBX"   , 2, Case.IGNORE)     );       UT_EQ(   "cdef", subs.toString() );
+        UT_EQ( 0, subs.consumePartOf("CXX"   , 2, Case.IGNORE)     );       UT_EQ(   "cdef", subs.toString() );
+        UT_EQ( 1, subs.consumePartOf("CXX"   , 1, Case.IGNORE)     );       UT_EQ(    "def", subs.toString() );
+        UT_EQ( 3, subs.consumePartOf("def"   , 2, Case.IGNORE)     );       UT_EQ(       "", subs.toString() );
+        UT_EQ( 0, subs.consumePartOf("def"   , 2, Case.IGNORE)     );       UT_EQ(       "", subs.toString() );
+        UT_EQ( 0, subs.consumePartOf(""      , 2, Case.IGNORE)     );       UT_EQ(       "", subs.toString() );
+        UT_EQ( 0, subs.consumePartOf(""      , 0, Case.IGNORE)     );       UT_EQ(       "", subs.toString() );
     }
 }
 

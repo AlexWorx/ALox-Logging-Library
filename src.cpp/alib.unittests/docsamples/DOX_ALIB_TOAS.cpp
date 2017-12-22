@@ -7,7 +7,7 @@
 #include "alox/alox.hpp"
 
 
-#define TESTCLASSNAME       CPP_ALib__Dox
+#define TESTCLASSNAME       CPP_ALib_Dox_T_String
 
 
 //--------------------------------------------------------------------------------------------------
@@ -70,7 +70,7 @@ namespace aworx { namespace lib { namespace strings {
         static inline integer    Length( const myns::MyString& src )  { return  static_cast<integer>( src.GetMyLength() );  }
     };
 
-}}} // namespace aworx::lib::strings
+}}} // [namespace aworx::lib::strings]
 
 //
 // Defining a test method that takes a const reference to String

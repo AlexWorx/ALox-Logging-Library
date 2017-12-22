@@ -22,7 +22,7 @@
     #include "alib/time/ticks.hpp"
 #endif
 
-#if !defined (HPP_ALIB_THREADS_THREAD)
+#if !defined (HPP_ALIB_THREADS_LIB)
     #include "thread.hpp"
 #endif
 
@@ -80,13 +80,13 @@ class ScopeInfo
         /**  Defines portions of source paths to be ignored  */
         struct SourcePathTrimRule
         {
-            AString    Path;             ///< The path string
-            bool       IsPrefix;         ///< true if path was not starting with '\*' when provided.
-            Inclusion  IncludeString;    ///< Denotes if #Path itself should be included when trimmed
-            Case       Sensitivity;      ///< The sensitivity of the comparison when trimming
-            int        TrimOffset;       ///< Additional offset of the trim position
-            AString    TrimReplacement;  ///< Optional replacement string for trimmed paths'.
-            int        Priority;         ///< The priority of the rule. Depends on origin: source code, config...)
+            AString      Path;            ///< The path string
+            bool         IsPrefix;        ///< true if path was not starting with '\*' when provided.
+            Inclusion    IncludeString;   ///< Denotes if #Path itself should be included when trimmed
+            Case         Sensitivity;     ///< The sensitivity of the comparison when trimming
+            int          TrimOffset;      ///< Additional offset of the trim position
+            AString      TrimReplacement; ///< Optional replacement string for trimmed paths'.
+            Priorities  Priority;        ///< The priority of the rule. Depends on origin: source code, config...)
         };
 
         /**  List of trim definitions for portions of source paths to be ignored  */
@@ -227,7 +227,7 @@ class ScopeInfo
          *                          managed outside of this class.
          ******************************************************************************************/
         ALOX_API
-         ScopeInfo( const TString& name, const std::map<int, String32>& threadDictionary );
+         ScopeInfo( const String& name, const std::map<int, String32>& threadDictionary );
 
         ALOX_API
         ~ScopeInfo();
@@ -286,7 +286,7 @@ class ScopeInfo
                                          Case           sensitivity,
                                          const String&  trimReplacement,
                                          Reach          reach,
-                                         int            priority                );
+                                         Priorities    priority                );
 
         /** ****************************************************************************************
          * Receives the name of the \b Lox we are belonging to (this is a 1:1 relationship).
@@ -423,7 +423,7 @@ class ScopeInfo
         int GetThreadID()
         {
             if( thread == nullptr )
-                thread= Thread::CurrentThread();
+                thread= lib::THREADS.CurrentThread();
             return thread->GetId();
         }
 
@@ -441,7 +441,7 @@ class ScopeInfo
             {
                 // get current thread, if not passed with set()
                 if( thread == nullptr )
-                    thread =  Thread::CurrentThread();
+                    thread =  lib::THREADS.CurrentThread();
 
                 if (id != nullptr)
                     *id=    thread->GetId();
@@ -485,6 +485,6 @@ class ScopeInfo
         }
 }; // class ScopeInfo
 
-}}} // namespace aworx::lox::utils
+}}}// namespace [aworx::lox::core]
 
 #endif // HPP_ALOX_CORE_SCOPEINFO

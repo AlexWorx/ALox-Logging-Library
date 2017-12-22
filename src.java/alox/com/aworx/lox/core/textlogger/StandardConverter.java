@@ -15,17 +15,17 @@ import com.aworx.lib.strings.format.FormatterStdImpl;
 
 /** ************************************************************************************************
  * Implements the interface
- * \ref com::aworx::lox::core::textlogger::ObjectConverter "ObjectConverter". Class
- * \ref com::aworx::lox::core::textlogger::TextLogger      "TextLogger" creates an instance of this
+ * \ref com.aworx.lox.core.textlogger.ObjectConverter "ObjectConverter". Class
+ * \ref com.aworx.lox.core.textlogger.TextLogger      "TextLogger" creates an instance of this
  * type in the moment no other (custom) type was set prior to the first log statement.
  *
  * This implementation uses
  * two specialisations of class
- * \ref com::aworx::lib::strings::format::Formatter "Formatter" to format the given logables to a textual
+ * \ref com.aworx.lib.strings.format.Formatter "Formatter" to format the given logables to a textual
  * representation. The formatters (and their sequence!) are:
  *
- * 1. \ref com::aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle"
- * 2. \ref com::aworx::lib::strings::format::FormatterJavaStyle   "FormatterJavaStyle"
+ * 1. \ref com.aworx.lib.strings.format.FormatterPythonStyle "FormatterPythonStyle"
+ * 2. \ref com.aworx.lib.strings.format.FormatterJavaStyle   "FormatterJavaStyle"
  *
  * This way, standard text logging supports format strings in Python style as well as in Java style.
  **************************************************************************************************/

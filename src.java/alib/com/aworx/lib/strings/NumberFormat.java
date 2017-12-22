@@ -22,9 +22,9 @@ import com.aworx.lib.lang.Inclusion;
  * \attention
  *   The methods of this class are not intended for the common use. Instead, use interface of
  *   classes
- *      \ref com::aworx::lib::strings::AString   "AString",
- *      \ref com::aworx::lib::strings::Substring "Substring" or
- *      \ref com::aworx::lib::strings::format::Formatter "Formatter"
+ *      \ref com.aworx.lib.strings.AString   "AString",
+ *      \ref com.aworx.lib.strings.Substring "Substring" or
+ *      \ref com.aworx.lib.strings.format.Formatter "Formatter"
  *   to write and parse numbers, which accept an object of this type as parameters.
  *
  * <b>Defined Singletons and User-Defined Instances:</b><br>
@@ -33,11 +33,11 @@ import com.aworx.lib.lang.Inclusion;
  * is needed as a parameter:
  * - #global<br>
  *   This is initialized with method
- *   \ref com::aworx::lib::ALIB::init "ALIB.init" and reflects local specific settings.
+ *   \ref com.aworx.lib.ALIB.init "ALIB.init" and reflects local specific settings.
  *
  * - #computational<br>
  *   This is also initialized with method
- *   \ref com::aworx::lib::ALIB::init "ALIB.init" and should be used for writing and parsing
+ *   \ref com.aworx.lib.ALIB.init "ALIB.init" and should be used for writing and parsing
  *   numbers which are intended to be readable by software. Its' decimal point character
  *   is set to \c '.', the international standard. Furthermore no group separators are set for
  *   decimal and decimal floating point as well as for binary, hexadecimal and octal conversion.
@@ -122,7 +122,7 @@ import com.aworx.lib.lang.Inclusion;
  * There is no corresponding method defined that writes the literal prefix. When writing
  * binary, hexadecimal or octal values, such prefixes have to be prepended 'manually'.
  *
- * <b>ALib for Java Specifics:</b><br>
+ * <b>%ALib for Java Specifics:</b><br>
  * - As Java does not support unsigned integer types, there is a limitation in reading unsigned
  *   values above \b Long.MAX_INT (e.g. written with other language implementations of \b %ALib).
  *   From a 'bitwise' perspective, the methods are working well. For example, long value
@@ -175,7 +175,7 @@ public class NumberFormat
      * The default static number format object that acts as the
      * default settings of the currently running process.<br>
      * Method
-     * \ref com::aworx::lib::ALIB::init "ALIB.init" invokes #setFromLocale() on this object and
+     * \ref com.aworx.lib.ALIB.init "ALIB.init" invokes #setFromLocale() on this object and
      * switches grouping on.
      *
      * Classes providing functionality based on this class, might use this as a default
@@ -189,7 +189,7 @@ public class NumberFormat
      * use, which means, that grouping is switched off and decimal point character
      * is \c '.'.<br>
      * Method
-     * \ref com::aworx::lib::ALIB::init "ALIB.init" invokes #setComputational on this object.
+     * \ref com.aworx.lib.ALIB.init "ALIB.init" invokes #setComputational on this object.
      * Note that using code that use this field without having invoked <b>ALIB.init</b> may
      * behave wrongly.
      *
@@ -518,12 +518,12 @@ public class NumberFormat
      * #writeExponentPlusSign         |  \c false
      * #omitTrailingFractionalZeros   |  \c false
      * #hexLowerCase                  |  \c false
-     * #whitespaces                   |  \ref com::aworx::lib::strings::CString::DEFAULT_WHITESPACES "DEFAULT_WHITESPACES"
+     * #whitespaces                   |  \ref com.aworx.lib.strings.CString.DEFAULT_WHITESPACES "DEFAULT_WHITESPACES"
      *
      *
      * \note
      *   With static object
-     *   \ref com::aworx::lib::strings::NumberFormat::computational "NumberFormat.computational",
+     *   \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational",
      *   there is a global singleton existing which can be used but must not be changed.
      **********************************************************************************************/
     public void setComputational()
@@ -627,9 +627,9 @@ public class NumberFormat
      *
      * \note
      *   Static (global) object
-     *   \ref com::aworx::lib::strings::NumberFormat::global "NumberFormat.global",
+     *   \ref com.aworx.lib.strings.NumberFormat.global "NumberFormat.global",
      *   implements an instance which has the right locale set (provided that
-     *   \ref com::aworx::lib::ALIB::init "ALIB.init"
+     *   \ref com.aworx.lib.ALIB.init "ALIB.init"
      *   was duly invoked by the process).
      *   Otherwise, this method might be used to initialize a custom object with default values
      *   to afterwards make some specific changes.
