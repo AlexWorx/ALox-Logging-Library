@@ -4,7 +4,6 @@ var searchData=
   ['aworx',['aworx',['.././java_ref/namespacecom_1_1aworx.html',1,'com::aworx'],['.././cs_ref/namespacecs_1_1aworx.html',1,'cs::aworx']]],
   ['com',['com',['.././java_ref/namespacecom_1_1aworx.html',1,'']]],
   ['config',['config',['.././java_ref/namespacecom_1_1aworx_1_1lib_1_1config.html',1,'com::aworx::lib::config'],['.././cs_ref/namespacecs_1_1aworx_1_1lib_1_1config.html',1,'cs::aworx::lib::config']]],
-  ['containers',['containers',['.././java_ref/namespacecom_1_1aworx_1_1lib_1_1containers.html',1,'com::aworx::lib::containers'],['.././cs_ref/namespacecs_1_1aworx_1_1lib_1_1containers.html',1,'cs::aworx::lib::containers']]],
   ['core',['core',['.././java_ref/namespacecom_1_1aworx_1_1lox_1_1core.html',1,'com::aworx::lox::core'],['.././cs_ref/namespacecs_1_1aworx_1_1lox_1_1core.html',1,'cs::aworx::lox::core']]],
   ['cs',['cs',['.././cs_ref/namespacecs.html',1,'']]],
   ['format',['format',['.././java_ref/namespacecom_1_1aworx_1_1lib_1_1strings_1_1format.html',1,'com::aworx::lib::strings::format'],['.././cs_ref/namespacecs_1_1aworx_1_1lib_1_1strings_1_1format.html',1,'cs::aworx::lib::strings::format']]],
@@ -18,12 +17,12 @@ var searchData=
   ['report',['Report',['.././java_ref/classcom_1_1aworx_1_1lib_1_1lang_1_1Report_1_1Message.html',1,'com::aworx::lib::lang::Report'],['.././cs_ref/classcs_1_1aworx_1_1lib_1_1lang_1_1Report_1_1Message.html',1,'cs::aworx::lib::lang::Report']]],
   ['scopeinfo',['ScopeInfo',['.././cs_ref/classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1Scope.html',1,'cs::aworx::lox::core']]],
   ['strings',['strings',['.././java_ref/namespacecom_1_1aworx_1_1lib_1_1strings.html',1,'com::aworx::lib::strings'],['.././cs_ref/namespacecs_1_1aworx_1_1lib_1_1strings.html',1,'cs::aworx::lib::strings']]],
-  ['stringtree',['StringTree',['.././java_ref/classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html',1,'com::aworx::lib::containers::StringTree'],['.././cs_ref/classcs_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html',1,'cs::aworx::lib::containers::StringTree']]],
+  ['stringtree',['StringTree',['.././java_ref/classcom_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Cursor.html',1,'com::aworx::lib::util::StringTree'],['.././cs_ref/classcs_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Cursor.html',1,'cs::aworx::lib::util::StringTree']]],
   ['system',['system',['.././java_ref/namespacecom_1_1aworx_1_1lib_1_1system.html',1,'com::aworx::lib::system'],['.././cs_ref/namespacecs_1_1aworx_1_1lib_1_1system.html',1,'cs::aworx::lib::system']]],
   ['textlogger',['textlogger',['.././java_ref/namespacecom_1_1aworx_1_1lox_1_1core_1_1textlogger.html',1,'com::aworx::lox::core::textlogger'],['.././cs_ref/namespacecs_1_1aworx_1_1lox_1_1core_1_1textlogger.html',1,'cs::aworx::lox::core::textlogger']]],
   ['threads',['threads',['.././java_ref/namespacecom_1_1aworx_1_1lib_1_1threads.html',1,'com::aworx::lib::threads'],['.././cs_ref/namespacecs_1_1aworx_1_1lib_1_1threads.html',1,'cs::aworx::lib::threads']]],
   ['time',['time',['.././java_ref/namespacecom_1_1aworx_1_1lib_1_1time.html',1,'com::aworx::lib::time'],['.././cs_ref/namespacecs_1_1aworx_1_1lib_1_1time.html',1,'cs::aworx::lib::time']]],
   ['tools',['tools',['.././java_ref/namespacecom_1_1aworx_1_1lox_1_1tools.html',1,'com::aworx::lox::tools'],['.././cs_ref/namespacecs_1_1aworx_1_1lox_1_1tools.html',1,'cs::aworx::lox::tools']]],
-  ['util',['util',['.././java_ref/namespacecom_1_1aworx_1_1lib_1_1strings_1_1util.html',1,'com::aworx::lib::strings::util'],['.././cs_ref/namespacecs_1_1aworx_1_1lib_1_1strings_1_1util.html',1,'cs::aworx::lib::strings::util']]],
-  ['walker',['Walker',['.././java_ref/classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1NameAndNode.html',1,'com::aworx::lib::containers::StringTree::Walker'],['.././cs_ref/structcs_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Walker_1_1NameAndNode.html',1,'cs::aworx::lib::containers::StringTree::Walker']]]
+  ['util',['util',['.././java_ref/namespacecom_1_1aworx_1_1lib_1_1strings_1_1util.html',1,'com::aworx::lib::strings::util'],['.././java_ref/namespacecom_1_1aworx_1_1lib_1_1util.html',1,'com::aworx::lib::util'],['.././cs_ref/namespacecs_1_1aworx_1_1lib_1_1strings_1_1util.html',1,'cs::aworx::lib::strings::util'],['.././cs_ref/namespacecs_1_1aworx_1_1lib_1_1util.html',1,'cs::aworx::lib::util']]],
+  ['walker',['Walker',['.././java_ref/classcom_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Walker_1_1NameAndNode.html',1,'com::aworx::lib::util::StringTree::Walker'],['.././cs_ref/structcs_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Walker_1_1NameAndNode.html',1,'cs::aworx::lib::util::StringTree::Walker']]]
 ];

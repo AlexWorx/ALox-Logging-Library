@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -95,6 +95,9 @@ $(function() {
 <li>IIsEmpty()
 : <a class="el" href="classaworx_1_1lib_1_1boxing_1_1IIsEmpty.html#a6f08e46cfadbe5c262c99926c095d7d4">IIsEmpty</a>
 </li>
+<li>IIsLess()
+: <a class="el" href="classaworx_1_1lib_1_1boxing_1_1IIsLess.html#ae721e35e564ec0e9b714ab1f2ff2cfa0">IIsLess</a>
+</li>
 <li>IIsNull()
 : <a class="el" href="classaworx_1_1lib_1_1boxing_1_1IIsNull.html#a34e9bb75919814251d526be4de30dbf8">IIsNull</a>
 </li>
@@ -102,19 +105,24 @@ $(function() {
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html#ab84649c92a0bcd14b6a11a42efaea8d3">AutoSizes</a>
 </li>
 <li>Inaccuracy()
-: <a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html#ae7f9fa6ce6d8bbcd61dc943a188a4397">Ticks</a>
+: <a class="el" href="classaworx_1_1lib_1_1time_1_1Time.html#ac7b9d70842a51f65d59c7fe2d68b805c">Time</a>
 </li>
 <li>InDays()
 : <a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html#a2c5c7eaaa1302e6222b92b069fb5aa4b">Ticks</a>
 </li>
 <li>IndexOf()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a7365672c3c963ba88de5612e38e704bd">String</a>
-, <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html#a333c481b377c4f860814bebd33e8354b">TString</a>
+, <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html#a7c6e1eba65efe930eedd3f64d8e70540">TString</a>
 </li>
 <li>IndexOfAny()
-: <a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#aa3962c6c714dc8aa2167d0228b196bb0">CString</a>
-, <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a312ecf30301f4228a167052b58895ef5">String</a>
-, <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html#a071d569b770ed5cc50b7e3ef0c5eb3cb">TString</a>
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a66424c3dfeba3c25b75df951147067d3">String</a>
+, <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html#a8cf5e9cd4182bf3cb2eb8b427986725e">TString</a>
+</li>
+<li>IndexOfAnyExcluded()
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a8b7fb0087e4f2bb85f43732f4f431e51">CString</a>
+</li>
+<li>IndexOfAnyIncluded()
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a357655a103be1f5e2c2b2f5b39735949">CString</a>
 </li>
 <li>IndexOfFirstDifference()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a27fb0036e031eed866348bcb2b107046">CString</a>
@@ -124,7 +132,7 @@ $(function() {
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#abe7d75de817ac17c9104f47991cc0ae6">String</a>
 </li>
 <li>IndexOfSubstring()
-: <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a0b2db8c097f2e27a96c64807c8d0edc4">String</a>
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a0d261d680a9f9036a43cb7a6a4baa268">String</a>
 </li>
 <li>InEpochSeconds()
 : <a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html#a6b3a5a4b71a7147bb4183e246b97afec">Ticks</a>
@@ -145,11 +153,21 @@ $(function() {
 : <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a941e3deeb4b8a4591a828fc06cfce59b">IniFile</a>
 </li>
 <li>init()
-: <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a02fd73d861ef2e4aabb38c0c9ff82947">ALIB</a>
+: <a class="el" href="classaworx_1_1lib_1_1ALib.html#a0f7439457156e6270dfd3ccfd07e1ea1">ALib</a>
+, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Boxing.html#a0f7439457156e6270dfd3ccfd07e1ea1">Boxing</a>
+, <a class="el" href="classaworx_1_1lib_1_1config_1_1Config.html#a0f7439457156e6270dfd3ccfd07e1ea1">Config</a>
+, <a class="el" href="classaworx_1_1lib_1_1lang_1_1Lang.html#a0f7439457156e6270dfd3ccfd07e1ea1">Lang</a>
+, <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a53c148f92b7958bbb2ac3a216f193807">Library</a>
 </li>
 <li>Init()
-: <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB</a>
-, <a class="el" href="classaworx_1_1lox_1_1ALox.html#a4c4ba727bf8ffe104f310aca32519e36">ALox</a>
+: <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#abad644913fc967938ede0607a353e29c">Library</a>
+</li>
+<li>init()
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Strings.html#a0f7439457156e6270dfd3ccfd07e1ea1">Strings</a>
+, <a class="el" href="classaworx_1_1lib_1_1system_1_1System.html#a0f7439457156e6270dfd3ccfd07e1ea1">System</a>
+, <a class="el" href="classaworx_1_1lib_1_1threads_1_1Threads.html#a0f7439457156e6270dfd3ccfd07e1ea1">Threads</a>
+, <a class="el" href="classaworx_1_1lib_1_1time_1_1Time.html#a0f7439457156e6270dfd3ccfd07e1ea1">Time</a>
+, <a class="el" href="classaworx_1_1lox_1_1ALox.html#a0f7439457156e6270dfd3ccfd07e1ea1">ALox</a>
 </li>
 <li>InitAccess()
 : <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a15cc8a2338769a04748e8964f2659b42">ScopeStore&lt; StoreT &gt;</a>
@@ -157,18 +175,18 @@ $(function() {
 <li>initCursor()
 : <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a17a9a02a8a9868b496bcba471d2167dc">ScopeStore&lt; StoreT &gt;</a>
 </li>
+<li>Initialize()
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1util_1_1Spaces.html#a028556c5fed94a8e9db6f77d689f6790">Spaces</a>
+</li>
 <li>initializeFormat()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1format_1_1Formatter.html#a7bcf7d146e09cc943691dba24cff2c86">Formatter</a>
-, <a class="el" href="classaworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#a67a8cec3c20ce01a26d49d5beefc0f25">FormatterPythonStyle</a>
-</li>
-<li>initImpl()
-: <a class="el" href="classaworx_1_1lox_1_1ALox.html#aa0329788cf41e8d04c8c98add57d7c76">ALox</a>
+, <a class="el" href="classaworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#a153bcd24c93aeab3a398676e6a2aff2d">FormatterPythonStyle</a>
 </li>
 <li>InitWalk()
 : <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a6c7957bf7f600d4bf0aaef683b2e6c3e">ScopeStore&lt; StoreT &gt;</a>
 </li>
 <li>InMemoryPlugin()
-: <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html#a7528a6f611e3c203586189de2d03786f">InMemoryPlugin</a>
+: <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html#ace0bcdcc50a2d5a3fa3d00b105f51dc7">InMemoryPlugin</a>
 </li>
 <li>InMicros()
 : <a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html#a3dec213332149a6047ad2d6ffdc323f8">Ticks</a>
@@ -192,10 +210,7 @@ $(function() {
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#af17757fb09bfd4a08175fa9a3f823db4">AString</a>
 </li>
 <li>InsertPlugin()
-: <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a5d1b6c80d43cc1f1dd83e43f2c2fbe9a">Configuration</a>
-</li>
-<li>insertPlugin()
-: <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a91357d05e4e05a428ad283c8bb272df8">Configuration</a>
+: <a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#a0fbe8a829205bbd2cc9b5249e9cc5dae">PluginContainer&lt; pTPlugin, pTPriorities &gt;</a>
 </li>
 <li>InSystemTime()
 : <a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html#ac95385bcbe267c71b01d12b51850e222">Ticks</a>
@@ -207,28 +222,33 @@ $(function() {
 : <a class="el" href="classaworx_1_1lib_1_1config_1_1XTernalizer.html#a2a51acb7abba2b88df033efbcc356f92">XTernalizer</a>
 </li>
 <li>Invalidate()
-: <a class="el" href="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#ab9adfea0e765ab447b8ce7730a6cd812">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Walker</a>
+: <a class="el" href="classaworx_1_1lib_1_1util_1_1StringTree_1_1Walker.html#ab9adfea0e765ab447b8ce7730a6cd812">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Walker</a>
 </li>
 <li>Invoke()
 : <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Box.html#ae828c5649908bb8346f1187bb4187936">Box</a>
-, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__Tchar16__tArr.html#ab221412b546bb3d4325a73b3e288a3ea">IEquals_Tchar16_tArr</a>
-, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__Tchar32__tArr.html#ab221412b546bb3d4325a73b3e288a3ea">IEquals_Tchar32_tArr</a>
-, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__TcharArr.html#ab221412b546bb3d4325a73b3e288a3ea">IEquals_TcharArr</a>
-, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__Tdouble.html#ab221412b546bb3d4325a73b3e288a3ea">IEquals_Tdouble</a>
-, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__Twchar__tArr.html#ab221412b546bb3d4325a73b3e288a3ea">IEquals_Twchar_tArr</a>
-, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1IEquals.html#ab221412b546bb3d4325a73b3e288a3ea">IEquals</a>
+, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__Tchar16__tArr.html#a2a49fbffb7b0fa8ea731f8ed25d717f9">IEquals_Tchar16_tArr</a>
+, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__Tchar32__tArr.html#a2a49fbffb7b0fa8ea731f8ed25d717f9">IEquals_Tchar32_tArr</a>
+, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__TcharArr.html#a2a49fbffb7b0fa8ea731f8ed25d717f9">IEquals_TcharArr</a>
+, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__Tdouble.html#a2a49fbffb7b0fa8ea731f8ed25d717f9">IEquals_Tdouble</a>
+, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__Twchar__tArr.html#a2a49fbffb7b0fa8ea731f8ed25d717f9">IEquals_Twchar_tArr</a>
+, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IIsLess__boxed__int.html#a2a49fbffb7b0fa8ea731f8ed25d717f9">IIsLess_boxed_int</a>
+, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IIsLess__boxed__uint.html#a2a49fbffb7b0fa8ea731f8ed25d717f9">IIsLess_boxed_uint</a>
+, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IIsLess__double.html#a2a49fbffb7b0fa8ea731f8ed25d717f9">IIsLess_double</a>
+, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1IEquals.html#a2a49fbffb7b0fa8ea731f8ed25d717f9">IEquals</a>
 , <a class="el" href="classaworx_1_1lib_1_1boxing_1_1IIsEmpty.html#af07c982e656c05e504eb6795781e16c4">IIsEmpty</a>
+, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1IIsLess.html#a2a49fbffb7b0fa8ea731f8ed25d717f9">IIsLess</a>
 , <a class="el" href="classaworx_1_1lib_1_1boxing_1_1IIsNull.html#aee3793eda103cdfa9cc904721eda09d5">IIsNull</a>
 , <a class="el" href="classaworx_1_1lib_1_1boxing_1_1IIsNull__false.html#aee3793eda103cdfa9cc904721eda09d5">IIsNull_false</a>
 , <a class="el" href="classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply.html#a16d8e419894311838f8460c925c485f7">IApply</a>
-, <a class="el" href="classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__BoxedAs__TApplicable.html#a746d55da03afef155dc495c9dcdad339">IApply_BoxedAs_TApplicable&lt; TApplicable &gt;</a>
-, <a class="el" href="classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__TApplicable.html#a746d55da03afef155dc495c9dcdad339">IApply_TApplicable&lt; TApplicable &gt;</a>
-, <a class="el" href="classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__Tchar16__tArr.html#a746d55da03afef155dc495c9dcdad339">IApply_Tchar16_tArr</a>
-, <a class="el" href="classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__Tchar32__tArr.html#a746d55da03afef155dc495c9dcdad339">IApply_Tchar32_tArr</a>
-, <a class="el" href="classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__TcharArr.html#a746d55da03afef155dc495c9dcdad339">IApply_TcharArr</a>
-, <a class="el" href="classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__Twchar__tArr.html#a746d55da03afef155dc495c9dcdad339">IApply_Twchar_tArr</a>
+, <a class="el" href="classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__BoxedAs__TApplicable.html#a4afe783be9db4f1d4203fbf543db2a90">IApply_BoxedAs_TApplicable&lt; TApplicable &gt;</a>
+, <a class="el" href="classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__TApplicable.html#a4afe783be9db4f1d4203fbf543db2a90">IApply_TApplicable&lt; TApplicable &gt;</a>
+, <a class="el" href="classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__Tchar16__tArr.html#a4afe783be9db4f1d4203fbf543db2a90">IApply_Tchar16_tArr</a>
+, <a class="el" href="classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__Tchar32__tArr.html#a4afe783be9db4f1d4203fbf543db2a90">IApply_Tchar32_tArr</a>
+, <a class="el" href="classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__TcharArr.html#a4afe783be9db4f1d4203fbf543db2a90">IApply_TcharArr</a>
+, <a class="el" href="classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__Twchar__tArr.html#a4afe783be9db4f1d4203fbf543db2a90">IApply_Twchar_tArr</a>
 , <a class="el" href="classaworx_1_1lib_1_1strings_1_1boxing_1_1IFormat.html#a9242c45fb83459cecd2cee1cd3df5b66">IFormat</a>
-, <a class="el" href="classaworx_1_1lib_1_1time_1_1IFormat__TTicks.html#a8e1464eec8a8f88e21a41a91eaa7ef93">IFormat_TTicks</a>
+, <a class="el" href="classaworx_1_1lib_1_1strings_1_1boxing_1_1IIsLess__Tchar__arr.html#a2a49fbffb7b0fa8ea731f8ed25d717f9">IIsLess_Tchar_arr</a>
+, <a class="el" href="classaworx_1_1lib_1_1time_1_1IFormat__TTicks.html#add5f25b21b66b78676ec81227eb2d939">IFormat_TTicks</a>
 </li>
 <li>IsActive()
 : <a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html#a6dc8fbb3427c720adda3ed3a807f9902">Domain</a>
@@ -249,19 +269,19 @@ $(function() {
 : <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Box.html#ad34718fb8f3109b7ee870650ae8dedbf">Box</a>
 </li>
 <li>IsDebuggerPresent()
-: <a class="el" href="classaworx_1_1lib_1_1ALIB.html#ad0e7333ca518b4965afb347b0c072680">ALIB</a>
+: <a class="el" href="classaworx_1_1lib_1_1ALib.html#ad0e7333ca518b4965afb347b0c072680">ALib</a>
 </li>
 <li>IsEmpty()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a8e12342fc420701fbffd97025421575a">String</a>
 </li>
 <li>IsInitialized()
-: <a class="el" href="classaworx_1_1lib_1_1ALIB.html#ab2c217951b4362bb6661a1e863105320">ALIB</a>
+: <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a5d722e33d5e4075d4f0fc88c7cb54bd2">Library</a>
 </li>
 <li>IsInvalid()
-: <a class="el" href="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#aad9bf43dc400b86b4afe746243f6d3fe">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Cursor</a>
+: <a class="el" href="classaworx_1_1lib_1_1util_1_1StringTree_1_1Cursor.html#aad9bf43dc400b86b4afe746243f6d3fe">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Cursor</a>
 </li>
 <li>IsInValid()
-: <a class="el" href="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#a45a55b577ab446624b703ff4bf726926">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Walker</a>
+: <a class="el" href="classaworx_1_1lib_1_1util_1_1StringTree_1_1Walker.html#a45a55b577ab446624b703ff4bf726926">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Walker</a>
 </li>
 <li>IsNotEmpty()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a6c546c3e5ed2e243ae839807fe633140">String</a>
@@ -278,13 +298,14 @@ $(function() {
 : <a class="el" href="classaworx_1_1lox_1_1Lox.html#a7232acc9ffe4595630e4abdaf6918ef9">Lox</a>
 </li>
 <li>IsRoot()
-: <a class="el" href="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#ac8cbef7a1c768ebd43aa897165044ecf">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Cursor</a>
+: <a class="el" href="classaworx_1_1lib_1_1util_1_1StringTree_1_1Cursor.html#ac8cbef7a1c768ebd43aa897165044ecf">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Cursor</a>
 </li>
 <li>isRoot()
-: <a class="el" href="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#ad78e3dab6fc481769907b77419fe4bac">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Node</a>
+: <a class="el" href="structaworx_1_1lib_1_1util_1_1StringTree_1_1Node.html#ad78e3dab6fc481769907b77419fe4bac">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Node</a>
 </li>
 <li>IsSameType()
 : <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Box.html#a4c7d7c493c9172bcebf20d5324a396b3">Box</a>
+, <a class="el" href="structaworx_1_1lib_1_1lang_1_1Enum.html#aedf382686a47103c1aadeface9ef947d">Enum</a>
 </li>
 <li>isThreadRelatedScope()
 : <a class="el" href="classaworx_1_1lox_1_1Lox.html#a28d8099108a0e54af2abd18a2f58e112">Lox</a>
@@ -295,6 +316,7 @@ $(function() {
 </li>
 <li>IsType()
 : <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Box.html#a6cfff1d08a62820fcf3a5f82922a3bba">Box</a>
+, <a class="el" href="structaworx_1_1lib_1_1lang_1_1Enum.html#aeb9aae84b52f87145a2dc958185b1e82">Enum</a>
 </li>
 <li>IsUnboxable()
 : <a class="el" href="structaworx_1_1lib_1_1boxing_1_1T__Boxing.html#a480f352bde129b4856313c6b2c77eafa">T_Boxing&lt; TBoxable &gt;</a>
@@ -304,9 +326,8 @@ $(function() {
 , <a class="el" href="structaworx_1_1lib_1_1strings_1_1boxing_1_1T__Boxing_3_01strings_1_1StringLiteral_3_01TLength_01_4_01_4.html#a480f352bde129b4856313c6b2c77eafa">T_Boxing&lt; strings::StringLiteral&lt; TLength &gt; &gt;</a>
 </li>
 <li>IsValid()
-: <a class="el" href="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a9dcb9b43a3d0fa9003d4c1c9d921f6b2">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Cursor</a>
-, <a class="el" href="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#ac532c4b500b1a85ea22217f2c65a70ed">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Walker</a>
-, <a class="el" href="classaworx_1_1lib_1_1system_1_1Directory.html#a1865c345633bd315a4095b999bbd2e6d">Directory</a>
+: <a class="el" href="classaworx_1_1lib_1_1util_1_1StringTree_1_1Cursor.html#a9dcb9b43a3d0fa9003d4c1c9d921f6b2">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Cursor</a>
+, <a class="el" href="classaworx_1_1lib_1_1util_1_1StringTree_1_1Walker.html#ac532c4b500b1a85ea22217f2c65a70ed">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Walker</a>
 </li>
 <li>IsVoidPointer()
 : <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Box.html#a2a7634ca57b5937c59db2299e0baeabb">Box</a>
@@ -316,7 +337,7 @@ $(function() {
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

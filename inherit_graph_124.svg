@@ -12,10 +12,10 @@
 <!-- Node0 -->
 <g id="node1" class="node">
 <title>Node0</title>
-<g id="a_node1"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" xlink:href="./cpp_ref/classaworx_1_1lib_1_1system_1_1Directory.html" target="_top" xlink:title="aworx::lib::system\l::Directory">
+<g id="a_node1"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" xlink:href="./cpp_ref/classaworx_1_1lib_1_1system_1_1ProcessInfo.html" target="_top" xlink:title="aworx::lib::system\l::ProcessInfo">
 <polygon fill="#ffffff" stroke="#000000" points="0,-.5 0,-30.5 96,-30.5 96,-.5 0,-.5"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">aworx::lib::system</text>
-<text text-anchor="middle" x="48" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">::Directory</text>
+<text text-anchor="middle" x="48" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">::ProcessInfo</text>
 </a>
 </g>
 </g>

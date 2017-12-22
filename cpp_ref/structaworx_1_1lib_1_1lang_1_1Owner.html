@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -99,8 +99,9 @@ Collaboration diagram for Owner:</div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> Ensures that an object of type <a class="el" href="classaworx_1_1lib_1_1lang_1_1Ownable.html">Ownable</a> is acquired and properly released when unwinding the stack. This class is meant to be allocated only on the stack and not on the heap. Therefore, the new operators are declared private.<br />
- See preprocessor macro <a class="el" href="group__GrpALibMacros.html#ga428418e97842561b5fa5118c120954a9">OWN</a> for a convenient way to use this class. </p>
+<p> Ensures that an object of type <a class="el" href="classaworx_1_1lib_1_1lang_1_1Ownable.html">Ownable</a> is acquired and properly released when unwinding the stack. This class is meant to be allocated only on the stack and not on the heap. Therefore, the new operators are declared private.</p>
+<p>In debug compilations the constructor expects caller source information parameters <code>file</code>, <code>line</code> and <code>func</code>. It is convenient to use macro <a class="el" href="group__GrpALibMacros.html#ga3d922ed3a0447cf1b3fd6d23fe41527e">ALIB_SRCPOS_REL_EMPTY</a> to provide those.</p>
+<dl class="section see"><dt>See also</dt><dd>Preprocessor macros <a class="el" href="group__GrpALibMacros.html#ga428418e97842561b5fa5118c120954a9">OWN</a>, <a class="el" href="group__GrpALibMacros.html#ga551a71d481fdae3cb10d7a61632bc068">LOCK_HERE</a> and <a class="el" href="group__GrpALibMacros.html#gae04a994c8182611e544702fea0d2f7c4">LOCK_HERE_WITH</a> for a convenient way to use this class. </dd></dl>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
@@ -400,7 +401,7 @@ Private Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:15 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

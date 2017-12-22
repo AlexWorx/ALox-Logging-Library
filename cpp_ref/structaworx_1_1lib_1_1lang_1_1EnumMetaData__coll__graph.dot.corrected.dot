@@ -1,0 +1,19 @@
+digraph "EnumMetaData&lt;TEnum, TEnableIf&gt;"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node2 [label="EnumMetaData\<TEnum, TEnableIf\>",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node5 [label="vector\<typename T_EnumMetaDataDecl\<TEnum\>::TTuple\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node8 [label="map\<typename underlying_type\<TEnum\>::type, typename T_EnumMetaDataDecl\<TEnum\>::TTuple &\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node3 [label="Singleton\<EnumMetaData\<TEnum\>\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1lang_1_1Singleton.html"];
+  Node4 [label="EnumMetaData\<TEnum\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1lang_1_1EnumMetaData.html"];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" singleton" ,fontname="Helvetica"];
+  Node5 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Table" ,fontname="Helvetica"];
+  Node5 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Table" ,fontname="Helvetica"];
+  Node8 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Map" ,fontname="Helvetica"];
+  Node8 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Map" ,fontname="Helvetica"];
+}
+

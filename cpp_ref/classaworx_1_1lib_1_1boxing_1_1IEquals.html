@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -103,9 +103,10 @@ Collaboration diagram for IEquals:</div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> This is one of the built-in <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Interface.html">Interface</a> classes of <b>ALib Boxing</b>. Similar to the corresponding virtual method of class <b>Object</b> in languages like Java and C#, this interface is invokable with all boxable types, as a default implementation is registered (see <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Boxer.html#a6228b2d41176a6f8fd6489b150dfc5c3">Boxer::DefineDefaultInterface</a>).</p>
+<p> This is one of the built-in <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Interface.html">Interface</a> classes of <b>ALib Boxing</b>. This interface is invokable with all boxable types, as a default implementation is registered (see <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Boxer.html#a6228b2d41176a6f8fd6489b150dfc5c3">Boxer::DefineDefaultInterface</a>. The default implementation is provided with this base interface class itself.</p>
 <p>The default implementation is implemented with this base interface class itself. For non-array types, this default implementation checks if both boxes share the same type and data, without interpreting the data in any way.<br />
- For array types, the contents of the array is checked using <code>memcmp()</code> if types and lengths are the same. </p>
+ For array types, the contents of the array is checked using <code>memcmp()</code> if types and lengths are the same.</p>
+<p>This interface is invoked by <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Box.html#ade892ae7540dc827ee1f5928c4fda5dc">Box::operator==</a>. </p>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Public Static Methods</h2></td></tr>
@@ -116,8 +117,8 @@ Public Static Methods</h2></td></tr>
 Public Methods</h2></td></tr>
 <tr class="memitem:ab11719299226c51d732f92764685fbe4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1boxing_1_1IEquals.html#ab11719299226c51d732f92764685fbe4">IEquals</a> ()</td></tr>
 <tr class="separator:ab11719299226c51d732f92764685fbe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab221412b546bb3d4325a73b3e288a3ea"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1boxing_1_1IEquals.html#ab221412b546bb3d4325a73b3e288a3ea">Invoke</a> (const <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Box.html">Box</a> &amp;box, const <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Box.html">Box</a> &amp;other)</td></tr>
-<tr class="separator:ab221412b546bb3d4325a73b3e288a3ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a49fbffb7b0fa8ea731f8ed25d717f9"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1boxing_1_1IEquals.html#a2a49fbffb7b0fa8ea731f8ed25d717f9">Invoke</a> (const <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Box.html">Box</a> &amp;lhs, const <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Box.html">Box</a> &amp;rhs)</td></tr>
+<tr class="separator:a2a49fbffb7b0fa8ea731f8ed25d717f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classaworx_1_1lib_1_1boxing_1_1Interface"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classaworx_1_1lib_1_1boxing_1_1Interface')"><img src="closed.png" alt="-"/>&#160;Public Methods inherited from <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Interface.html">Interface</a></td></tr>
 <tr class="memitem:a7fc03ce9a2c1652fdb17279f1b25e652 inherit pub_methods_classaworx_1_1lib_1_1boxing_1_1Interface"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1boxing_1_1Interface.html#a7fc03ce9a2c1652fdb17279f1b25e652">Interface</a> (const std::type_info &amp;type)</td></tr>
 <tr class="separator:a7fc03ce9a2c1652fdb17279f1b25e652 inherit pub_methods_classaworx_1_1lib_1_1boxing_1_1Interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -185,8 +186,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="ab221412b546bb3d4325a73b3e288a3ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab221412b546bb3d4325a73b3e288a3ea">&#9670;&nbsp;</a></span>Invoke()</h2>
+<a id="a2a49fbffb7b0fa8ea731f8ed25d717f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a49fbffb7b0fa8ea731f8ed25d717f9">&#9670;&nbsp;</a></span>Invoke()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -198,13 +199,13 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">bool Invoke </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Box.html">Box</a> &amp;&#160;</td>
-          <td class="paramname"><em>box</em>, </td>
+          <td class="paramname"><em>lhs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Box.html">Box</a> &amp;&#160;</td>
-          <td class="paramname"><em>other</em>&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -221,26 +222,26 @@ Additional Inherited Members</h2></td></tr>
 <p>Overrideable method that evaluates if two boxed objects equal to each other. The default implementation checks if both boxes share the same type and data. (it does not interpret the data).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">box</td><td>The box that the interface was invoked on. </td></tr>
-    <tr><td class="paramname">other</td><td>The boxed value to compare us to. </td></tr>
+    <tr><td class="paramname">lhs</td><td>The box that the interface was invoked on. </td></tr>
+    <tr><td class="paramname">rhs</td><td>The boxed value to compare us to. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>comp</code> equals <code>box</code>, <code>false</code> otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>lhs</code> equals <code>rhs</code>, <code>false</code> otherwise. </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__Tchar32__tArr.html#ab221412b546bb3d4325a73b3e288a3ea">IEquals_Tchar32_tArr</a>, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__Tchar16__tArr.html#ab221412b546bb3d4325a73b3e288a3ea">IEquals_Tchar16_tArr</a>, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__Twchar__tArr.html#ab221412b546bb3d4325a73b3e288a3ea">IEquals_Twchar_tArr</a>, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__TcharArr.html#ab221412b546bb3d4325a73b3e288a3ea">IEquals_TcharArr</a>, and <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__Tdouble.html#ab221412b546bb3d4325a73b3e288a3ea">IEquals_Tdouble</a>.</p>
+<p>Reimplemented in <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__Tchar32__tArr.html#a2a49fbffb7b0fa8ea731f8ed25d717f9">IEquals_Tchar32_tArr</a>, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__Tchar16__tArr.html#a2a49fbffb7b0fa8ea731f8ed25d717f9">IEquals_Tchar16_tArr</a>, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__Twchar__tArr.html#a2a49fbffb7b0fa8ea731f8ed25d717f9">IEquals_Twchar_tArr</a>, <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__TcharArr.html#a2a49fbffb7b0fa8ea731f8ed25d717f9">IEquals_TcharArr</a>, and <a class="el" href="classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IEquals__Tdouble.html#a2a49fbffb7b0fa8ea731f8ed25d717f9">IEquals_Tdouble</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="interface__builtin_8hpp_source.html">interface_builtin.hpp</a></li>
-<li>boxing.cpp</li>
+<li>boxinglib.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:57 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:15 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

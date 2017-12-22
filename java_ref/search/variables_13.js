@@ -2,8 +2,8 @@ var searchData=
 [
   ['tab',['TAB',['../classcom_1_1aworx_1_1lox_1_1ESC.html#afc480285e73a6ba4ed416a0c97a87b72',1,'com::aworx::lox::ESC']]],
   ['tabreference',['tabReference',['../classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#ad464d10c2231d8bbfa23f5dcaa15af92',1,'com::aworx::lib::strings::AString']]],
-  ['tabsizes',['TabSizes',['../classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#ab288b6ed16d4f25d0e19df0afb421ef0',1,'com::aworx::lib::strings::format::FormatterPythonStyle']]],
   ['target',['target',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html#a782151d24530c70cef193f27597731cc',1,'com::aworx::lox::core::ScopeDump']]],
+  ['targetstringstartlength',['targetStringStartLength',['../classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a2cc2ce57da3c470cd449875ccb46e3d2',1,'com::aworx::lib::strings::format::FormatterStdImpl']]],
   ['tastring',['tAString',['../classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html#a4eab9ca32845e6e56169e1df28225791',1,'com::aworx::lox::core::Domain']]],
   ['tempas',['tempAS',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html#a5a04010d4c0003b3aba30583b7bf3d48',1,'com::aworx::lox::core::ScopeDump']]],
   ['tempbuf',['tempBuf',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#ad8bcff62308a450db0f7e00b6937a67d',1,'com::aworx::lox::tools::LogTools']]],
@@ -37,7 +37,7 @@ var searchData=
   ['timeofdayformatter',['timeOfDayFormatter',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#aeb350e099bc2a47cf6c85fa0db340748',1,'com::aworx::lox::core::textlogger::MetaInfo']]],
   ['timeoflastlog',['timeOfLastLog',['../classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a086aaa689b170f76cb4730aebbf01349',1,'com::aworx::lox::core::Logger']]],
   ['timestamp',['timeStamp',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#a4e72dac5d168369a754893772395f0d3',1,'com::aworx::lox::core::ScopeInfo']]],
-  ['tmpas',['tmpAS',['../classcom_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html#a43a6d226488086cf9563b431ccbe5c69',1,'com.aworx.lib.config.EnvironmentPlugin.tmpAS()'],['../classcom_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html#a43a6d226488086cf9563b431ccbe5c69',1,'com.aworx.lib.config.XTernalizer.tmpAS()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#a43a6d226488086cf9563b431ccbe5c69',1,'com.aworx.lox.Lox.tmpAS()']]],
+  ['tmpas',['tmpAS',['../classcom_1_1aworx_1_1lib_1_1config_1_1Environment.html#a43a6d226488086cf9563b431ccbe5c69',1,'com.aworx.lib.config.Environment.tmpAS()'],['../classcom_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html#a43a6d226488086cf9563b431ccbe5c69',1,'com.aworx.lib.config.XTernalizer.tmpAS()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#a43a6d226488086cf9563b431ccbe5c69',1,'com.aworx.lox.Lox.tmpAS()']]],
   ['tmpastring',['tmpAString',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ab6307f6d6ae7eb38fdcd9f372e798366',1,'com::aworx::lox::core::textlogger::MetaInfo']]],
   ['tmpcomments',['tmpComments',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a982a94ba249ae6bc678f130090ac0a1a',1,'com::aworx::lox::Lox']]],
   ['tmpconversion',['tmpConversion',['../classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a7732bc1197cd517b4e03c9e588adc8e9',1,'com::aworx::lib::config::Configuration']]],

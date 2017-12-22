@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['init',['Init',['.././cpp_ref/classaworx_1_1lib_1_1threads_1_1Thread.html#a43fa9786596c3c31fa9668d143565ecc',1,'aworx::lib::threads::Thread::Init()'],['.././cpp_ref/classaworx_1_1lib_1_1time_1_1Ticks.html#a43fa9786596c3c31fa9668d143565ecc',1,'aworx::lib::time::Ticks::Init()']]]
+  ['singleton',['Singleton',['.././cpp_ref/classaworx_1_1lib_1_1boxing_1_1ArrayBoxerT.html#af6e405c4329b8149d4eefda083f7c337',1,'aworx::lib::boxing::ArrayBoxerT::Singleton()'],['.././cpp_ref/classaworx_1_1lib_1_1boxing_1_1BoxerT.html#a5d634a6df1373ddf19444ae0bb87532c',1,'aworx::lib::boxing::BoxerT::Singleton()']]]
 ];

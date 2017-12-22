@@ -12,7 +12,7 @@
 <!-- Node0 -->
 <g id="node1" class="node">
 <title>Node0</title>
-<g id="a_node1"><a xlink:href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html" target="_top" xlink:title="StringTree\&lt; T \&gt;.Node">
+<g id="a_node1"><a xlink:href="classcom_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Node.html" target="_top" xlink:title="StringTree\&lt; T \&gt;.Node">
 <polygon fill="#ffffff" stroke="#000000" points="0,-.5 0,-19.5 111,-19.5 111,-.5 0,-.5"/>
 <text text-anchor="middle" x="55.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">StringTree&lt; T &gt;.Node</text>
 </a>

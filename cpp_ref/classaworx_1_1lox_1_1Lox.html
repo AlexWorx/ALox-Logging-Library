@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -104,7 +104,7 @@ Inheritance diagram for Lox:</div>
 <div class="dynheader">
 Collaboration diagram for Lox:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lox_1_1Lox__coll__graph.svg" width="2492" height="1612"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lox_1_1Lox__coll__graph.svg" width="2459" height="1515"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
@@ -115,27 +115,28 @@ Collaboration diagram for Lox:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a99fb83031ce9923c84392b4e92f956b5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
-&#160;&#160;<a class="el" href="classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a4f2ea67d97f96331439b0a1ca2d083db">StateInfo_Basic</a> = 1 &lt;&lt; 0, 
-<a class="el" href="classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a8b4ecf28d924534de013261b35207b27">StateInfo_Version</a> = 1 &lt;&lt; 1, 
-<a class="el" href="classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a5ab8a46c8344beef8d4109905dd51383">StateInfo_Loggers</a> = 1 &lt;&lt; 2, 
-<a class="el" href="classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a0cfe61b3491148f99db83c51b9a36682">StateInfo_Domains</a> = 1 &lt;&lt; 3, 
+<tr class="memitem:aa2916fda7c89ab56ba7645d99879df31"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31">StateInfo</a> { <br />
+&#160;&#160;<a class="el" href="classaworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31ab50339a10e1de285ac99d4c3990b8693">NONE</a> = 0, 
+<a class="el" href="classaworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a972e73b7a882d0802a4e3a16946a2f94">Basic</a> = 1 &lt;&lt; 0, 
+<a class="el" href="classaworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a34b6cd75171affba6957e308dcbd92be">Version</a> = 1 &lt;&lt; 1, 
+<a class="el" href="classaworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a96b1c552ca6ed5ee0ee3d0af174530ab">Loggers</a> = 1 &lt;&lt; 2, 
 <br />
-&#160;&#160;<a class="el" href="classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a261450da2fb0377ae568ea271df75382">StateInfo_InternalDomains</a> = 1 &lt;&lt; 4, 
-<a class="el" href="classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a69dfc3282698ee2ca226a8f49a74a448">StateInfo_ScopeDomains</a> = 1 &lt;&lt; 5, 
-<a class="el" href="classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a155fbfbb987b91a1f4b8aa8e6a577045">StateInfo_DSR</a> = 1 &lt;&lt; 6, 
-<a class="el" href="classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5aee324135b4a5bd701042dbfb7cc713f1">StateInfo_PrefixLogables</a> = 1 &lt;&lt; 7, 
+&#160;&#160;<a class="el" href="classaworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a78cd2c7d5422ffdb6d9545211ca49eeb">Domains</a> = 1 &lt;&lt; 3, 
+<a class="el" href="classaworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a31113a0541f0520765177c7069ba8ca1">InternalDomains</a> = 1 &lt;&lt; 4, 
+<a class="el" href="classaworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a068b63932226b23a03535d36d8d2eb22">ScopeDomains</a> = 1 &lt;&lt; 5, 
+<a class="el" href="classaworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a2f83cd74c1361769a936e39b22fdc603">DSR</a> = 1 &lt;&lt; 6, 
 <br />
-&#160;&#160;<a class="el" href="classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5abf66f34c4d811a22437439effd868cbb">StateInfo_Once</a> = 1 &lt;&lt; 8, 
-<a class="el" href="classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a325d8d794fa2bfec9142d51acaabc2b4">StateInfo_LogData</a> = 1 &lt;&lt; 9, 
-<a class="el" href="classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a69192c477dd713b20bf5280c4cd84e5c">StateInfo_ThreadMappings</a> = 1 &lt;&lt; 10, 
-<a class="el" href="classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a7ab954bf94dd5bd711094597ef4c8082">StateInfo_SPTR</a> = 1 &lt;&lt; 20, 
+&#160;&#160;<a class="el" href="classaworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a4febf3aa9c543957a624d0e01118ad99">PrefixLogables</a> = 1 &lt;&lt; 7, 
+<a class="el" href="classaworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31ae1a9dc9f23534e63de9df0d540ac1611">Once</a> = 1 &lt;&lt; 8, 
+<a class="el" href="classaworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a8252db9108bed0cc77b9108ef2e5b215">LogData</a> = 1 &lt;&lt; 9, 
+<a class="el" href="classaworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31afb1cd41460e08ac954abd863f3e769b4">ThreadMappings</a> = 1 &lt;&lt; 10, 
 <br />
-&#160;&#160;<a class="el" href="classaworx_1_1lox_1_1Lox.html#a99fb83031ce9923c84392b4e92f956b5a312521b5e1373eba35be14d2676f7f43">StateInfo_CompilationFlags</a> = 1 &lt;&lt; 21, 
-<b>StateInfo_All</b> = ~0L
+&#160;&#160;<a class="el" href="classaworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31acb272fa6b5049b35cc46afdbea004556">SPTR</a> = 1 &lt;&lt; 20, 
+<a class="el" href="classaworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31a20dd27d31849969ca1a1a73a5a1593ac">CompilationFlags</a> = 1 &lt;&lt; 21, 
+<b>All</b> = ~0L
 <br />
  }</td></tr>
-<tr class="separator:a99fb83031ce9923c84392b4e92f956b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:aa2916fda7c89ab56ba7645d99879df31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Inner Classes</h2></td></tr>
@@ -156,10 +157,10 @@ Public Static Methods</h2></td></tr>
 Public Methods</h2></td></tr>
 <tr class="memitem:a1c1585d0800185380c13eb475249aa58"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a1c1585d0800185380c13eb475249aa58">Lox</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;name, bool doRegister=true)</td></tr>
 <tr class="separator:a1c1585d0800185380c13eb475249aa58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8df22829cdb5cad1db7f72bb0b068d5b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a8df22829cdb5cad1db7f72bb0b068d5b">~Lox</a> ()</td></tr>
-<tr class="separator:a8df22829cdb5cad1db7f72bb0b068d5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73420c0a36f3b95e7ba9e8915f7a7959"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#gae0b01789678bd95eb30cf96f7806c084">ALIB_WARNINGS_OVERLOAD_VIRTUAL_OFF</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a73420c0a36f3b95e7ba9e8915f7a7959">Acquire</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;file, int line, const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;func) <a class="el" href="group__GrpALibMacros.html#gab046192b7da77d13a691be2a7ba3e32e">ALIB_OVERRIDE</a></td></tr>
-<tr class="separator:a73420c0a36f3b95e7ba9e8915f7a7959"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdd4c34686526f164c1bddccb183bd45"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#afdd4c34686526f164c1bddccb183bd45">~Lox</a> () override</td></tr>
+<tr class="separator:afdd4c34686526f164c1bddccb183bd45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a988585c51f422fdb6b6882fd46896c2d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#gae0b01789678bd95eb30cf96f7806c084">ALIB_WARNINGS_OVERLOAD_VIRTUAL_OFF</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a988585c51f422fdb6b6882fd46896c2d">Acquire</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;file, int line, const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;func) <a class="el" href="group__GrpALibMacros.html#ga5f6b7763c5f5722d7f178c04540aba9e">ALIB_DBG</a>(override)</td></tr>
+<tr class="separator:a988585c51f422fdb6b6882fd46896c2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95e4dff854b14da3b9e1705ab99add29"><td class="memTemplParams" colspan="2">template&lt;typename... BoxedObjects&gt; </td></tr>
 <tr class="memitem:a95e4dff854b14da3b9e1705ab99add29"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a95e4dff854b14da3b9e1705ab99add29">Assert</a> (bool condition, BoxedObjects &amp;&amp;... logables)</td></tr>
 <tr class="separator:a95e4dff854b14da3b9e1705ab99add29"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -179,8 +180,8 @@ Public Methods</h2></td></tr>
 <tr class="separator:a829395dc991b4aed5a09ef5aa77e3e12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf83cc2cb9e495e07808a4aaa1bed50e"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#acf83cc2cb9e495e07808a4aaa1bed50e">GetName</a> ()</td></tr>
 <tr class="separator:acf83cc2cb9e495e07808a4aaa1bed50e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82080fe4b1655df596d5e186b1886cf0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a82080fe4b1655df596d5e186b1886cf0">GetState</a> (<a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;buf, int flags=StateInfo_All)</td></tr>
-<tr class="separator:a82080fe4b1655df596d5e186b1886cf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab493d2adc9a5bc4a79cfba532af998e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ab493d2adc9a5bc4a79cfba532af998e3">GetState</a> (<a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;buf, <a class="el" href="classaworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31">StateInfo</a> flags=StateInfo::All)</td></tr>
+<tr class="separator:ab493d2adc9a5bc4a79cfba532af998e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0d10a1dcd8f0b252edd5b17751e5c90"><td class="memTemplParams" colspan="2">template&lt;typename... BoxedObjects&gt; </td></tr>
 <tr class="memitem:ad0d10a1dcd8f0b252edd5b17751e5c90"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ad0d10a1dcd8f0b252edd5b17751e5c90">If</a> (bool condition, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;domain, <a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, BoxedObjects &amp;&amp;... logables)</td></tr>
 <tr class="separator:ad0d10a1dcd8f0b252edd5b17751e5c90"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -194,28 +195,28 @@ Public Methods</h2></td></tr>
 <tr class="separator:a7232acc9ffe4595630e4abdaf6918ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3911541857ea84938dede341ceb64ddd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a3911541857ea84938dede341ceb64ddd">MapThreadName</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;threadName, int id=0)</td></tr>
 <tr class="separator:a3911541857ea84938dede341ceb64ddd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6461dec7c62cad4cb618ac730bac95a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a6461dec7c62cad4cb618ac730bac95a9">Once</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;domain, <a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;logables, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;group, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope=<a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a>, int pathLevel=0, int quantity=1)</td></tr>
-<tr class="separator:a6461dec7c62cad4cb618ac730bac95a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:accf9765bb17566eb2cdea9c9d8aa32ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#accf9765bb17566eb2cdea9c9d8aa32ff">Once</a> (<a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;logables, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;group, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, int pathLevel=0, int quantity=1)</td></tr>
-<tr class="separator:accf9765bb17566eb2cdea9c9d8aa32ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79bebcd15b9f6a526c4e5d9d3c79c46f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a79bebcd15b9f6a526c4e5d9d3c79c46f">Once</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;domain, <a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;logables, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;group, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope=<a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a>, int quantity=1)</td></tr>
+<tr class="separator:a79bebcd15b9f6a526c4e5d9d3c79c46f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5653789ebccf06d0dd06e29066a754ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a5653789ebccf06d0dd06e29066a754ed">Once</a> (<a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;logables, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;group, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, int quantity=1)</td></tr>
+<tr class="separator:a5653789ebccf06d0dd06e29066a754ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a450a4772747076c4152c273220a0a975"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a450a4772747076c4152c273220a0a975">Once</a> (<a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;logables, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;group, int quantity=1)</td></tr>
 <tr class="separator:a450a4772747076c4152c273220a0a975"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bb447f6b679132af1df88e837338b73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a9bb447f6b679132af1df88e837338b73">Once</a> (<a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;logables, int quantity=1)</td></tr>
 <tr class="separator:a9bb447f6b679132af1df88e837338b73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4b8cd123e85dd8b8b68946e6705b2ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ac4b8cd123e85dd8b8b68946e6705b2ed">Once</a> (const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;logables, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;group, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, int pathLevel=0, int quantity=1)</td></tr>
-<tr class="separator:ac4b8cd123e85dd8b8b68946e6705b2ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e8ccc108f0f0be74c54dcd0bf56b97d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a2e8ccc108f0f0be74c54dcd0bf56b97d">Once</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;domain, <a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;logables, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope=<a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a>, int pathLevel=0, int quantity=1)</td></tr>
-<tr class="separator:a2e8ccc108f0f0be74c54dcd0bf56b97d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e5f3784e9e05ae15af102cb504867a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a6e5f3784e9e05ae15af102cb504867a6">Once</a> (<a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;logables, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, int pathLevel=0, int quantity=1)</td></tr>
-<tr class="separator:a6e5f3784e9e05ae15af102cb504867a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad96749e71e403eea575a0a2e744b803"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#aad96749e71e403eea575a0a2e744b803">Once</a> (const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;logables, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, int pathLevel=0, int quantity=1)</td></tr>
-<tr class="separator:aad96749e71e403eea575a0a2e744b803"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9232e0176b4e91bc117a6533bf7e1df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#aa9232e0176b4e91bc117a6533bf7e1df">Once</a> (const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;logables, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;group, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, int quantity=1)</td></tr>
+<tr class="separator:aa9232e0176b4e91bc117a6533bf7e1df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34a8880e2a278ffdfc0814188f87421b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a34a8880e2a278ffdfc0814188f87421b">Once</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;domain, <a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;logables, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope=<a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a>, int quantity=1)</td></tr>
+<tr class="separator:a34a8880e2a278ffdfc0814188f87421b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae745689d03c1ea393c94f403230c04e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ae745689d03c1ea393c94f403230c04e0">Once</a> (<a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;logables, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, int quantity=1)</td></tr>
+<tr class="separator:ae745689d03c1ea393c94f403230c04e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c48a9ee258285ac970bc06ec5913774"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a0c48a9ee258285ac970bc06ec5913774">Once</a> (const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;logables, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, int quantity=1)</td></tr>
+<tr class="separator:a0c48a9ee258285ac970bc06ec5913774"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a333fcf4915ba4157e4c2c78c11ef34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a1a333fcf4915ba4157e4c2c78c11ef34">Once</a> (const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;logables, int quantity=1)</td></tr>
 <tr class="separator:a1a333fcf4915ba4157e4c2c78c11ef34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ae77c879297e411e02878a3a56c0d9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a4ae77c879297e411e02878a3a56c0d9a">Once</a> (const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;logables, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;group, int quantity=1)</td></tr>
 <tr class="separator:a4ae77c879297e411e02878a3a56c0d9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5e97927ea5978957ff01813d86cbd25"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#ga65685ca0f9ee1c3af3bdc8f0df4d431d">ALIB_WARNINGS_RESTORE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#aa5e97927ea5978957ff01813d86cbd25">Release</a> () <a class="el" href="group__GrpALibMacros.html#gab046192b7da77d13a691be2a7ba3e32e">ALIB_OVERRIDE</a></td></tr>
-<tr class="separator:aa5e97927ea5978957ff01813d86cbd25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a044393918deb33780c17d010fa8ef27c"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#ga65685ca0f9ee1c3af3bdc8f0df4d431d">ALIB_WARNINGS_RESTORE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a044393918deb33780c17d010fa8ef27c">Release</a> () override</td></tr>
+<tr class="separator:a044393918deb33780c17d010fa8ef27c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2aa68c613846fce90749385f1c373e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ab2aa68c613846fce90749385f1c373e1">RemoveLogger</a> (<a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">core::Logger</a> *logger)</td></tr>
 <tr class="separator:ab2aa68c613846fce90749385f1c373e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa919db1f8e24e600d7f648f52a240487"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> <a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">core::Logger</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#aa919db1f8e24e600d7f648f52a240487">RemoveLogger</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;loggerName)</td></tr>
@@ -224,40 +225,40 @@ Public Methods</h2></td></tr>
 <tr class="separator:adb89a8f794afb0b6551fe45499dea973"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a372de693ad40b3f42839c8ec6ac845f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a372de693ad40b3f42839c8ec6ac845f4">Reset</a> ()</td></tr>
 <tr class="separator:a372de693ad40b3f42839c8ec6ac845f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a363a3a48f4296a1adff0a8dc4fbda2d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a363a3a48f4296a1adff0a8dc4fbda2d3">Retrieve</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;key, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope=<a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a>, int pathLevel=0)</td></tr>
-<tr class="separator:a363a3a48f4296a1adff0a8dc4fbda2d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1eedb5c901c2913861e3c490d66ad322"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a1eedb5c901c2913861e3c490d66ad322">Retrieve</a> (<a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope=<a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a>, int pathLevel=0)</td></tr>
-<tr class="separator:a1eedb5c901c2913861e3c490d66ad322"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b78fb31f62ec7e9f862417c5936e8ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a1b78fb31f62ec7e9f862417c5936e8ea">SetDomain</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;scopeDomain, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, int pathLevel=0)</td></tr>
-<tr class="separator:a1b78fb31f62ec7e9f862417c5936e8ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaac0bce32cf17e137a2cb53598eb65bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#aaac0bce32cf17e137a2cb53598eb65bc">Retrieve</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;key, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope=<a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a>)</td></tr>
+<tr class="separator:aaac0bce32cf17e137a2cb53598eb65bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81447b86b8fab91e4a44163b063ec737"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a81447b86b8fab91e4a44163b063ec737">Retrieve</a> (<a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope=<a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a>)</td></tr>
+<tr class="separator:a81447b86b8fab91e4a44163b063ec737"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a230b89005c93ffdbfe0dd689d7eb0f11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a230b89005c93ffdbfe0dd689d7eb0f11">SetDomain</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;scopeDomain, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope)</td></tr>
+<tr class="separator:a230b89005c93ffdbfe0dd689d7eb0f11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7400e88de124219833bcf081835d2ce0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a7400e88de124219833bcf081835d2ce0">SetDomain</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;scopeDomain, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, <a class="el" href="namespaceaworx.html#a42fe02133ffe8b203c4aa204d2114d49">Thread</a> *thread)</td></tr>
 <tr class="separator:a7400e88de124219833bcf081835d2ce0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29833c62d41ae3049594a81c7651dfdc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a29833c62d41ae3049594a81c7651dfdc">SetDomainSubstitutionRule</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;domainPath, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;replacement)</td></tr>
 <tr class="separator:a29833c62d41ae3049594a81c7651dfdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0af08eeaa33fd3c7897f1562933acff0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a0af08eeaa33fd3c7897f1562933acff0">SetPrefix</a> (const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;prefix, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, int pathLevel=0)</td></tr>
-<tr class="separator:a0af08eeaa33fd3c7897f1562933acff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a868d9d33d9456b6380abf3bf39cd8b16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a868d9d33d9456b6380abf3bf39cd8b16">SetPrefix</a> (const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;prefix, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope)</td></tr>
+<tr class="separator:a868d9d33d9456b6380abf3bf39cd8b16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a264c932c18a338a9759309825a08b16a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a264c932c18a338a9759309825a08b16a">SetPrefix</a> (const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;prefix, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, <a class="el" href="namespaceaworx.html#a42fe02133ffe8b203c4aa204d2114d49">Thread</a> *thread)</td></tr>
 <tr class="separator:a264c932c18a338a9759309825a08b16a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73b0ea069f4b4e068e61acc88f8c65d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a73b0ea069f4b4e068e61acc88f8c65d3">SetPrefix</a> (const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;prefix, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;domain=nullptr, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a217539925b78b2eed40ae7817d5bee52">lib::lang::Inclusion</a> otherPLs=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a217539925b78b2eed40ae7817d5bee52af4d72a64acd8929c0cc9ed96a7a336cc">lib::lang::Inclusion::Include</a>)</td></tr>
 <tr class="separator:a73b0ea069f4b4e068e61acc88f8c65d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f43644aa1d946287c317a9a38079bbe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a0f43644aa1d946287c317a9a38079bbe">SetSourcePathTrimRule</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;path, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a217539925b78b2eed40ae7817d5bee52">Inclusion</a> includeString=Inclusion::Exclude, int trimOffset=0, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">Case</a> sensitivity=Case::Ignore, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;trimReplacement=<a class="el" href="namespaceaworx.html#ab1ed6dcfbe4628dccefbdb5633b1bf01">NullString</a>, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9537c0a8df05f0a728b6e2a89c7f3a1b">Reach</a> reach=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9537c0a8df05f0a728b6e2a89c7f3a1ba4cc6684df7b4a92b1dec6fce3264fac8">Reach::Global</a>, int priority=<a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a5854d47deb1f21be95871268fa3efa02">lib::config::Configuration::PrioDefault</a>)</td></tr>
-<tr class="separator:a0f43644aa1d946287c317a9a38079bbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30d2d3a359e2aba54ed0a53388e90ba0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a30d2d3a359e2aba54ed0a53388e90ba0">SetSourcePathTrimRule</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;path, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a217539925b78b2eed40ae7817d5bee52">Inclusion</a> includeString=Inclusion::Exclude, int trimOffset=0, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">Case</a> sensitivity=Case::Ignore, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;trimReplacement=<a class="el" href="namespaceaworx.html#ab1ed6dcfbe4628dccefbdb5633b1bf01">NullString</a>, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9537c0a8df05f0a728b6e2a89c7f3a1b">Reach</a> reach=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9537c0a8df05f0a728b6e2a89c7f3a1ba4cc6684df7b4a92b1dec6fce3264fac8">Reach::Global</a>, <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities</a> priority=Priorities::DefaultValues)</td></tr>
+<tr class="separator:a30d2d3a359e2aba54ed0a53388e90ba0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38f1b49d9a57c65ea233c6cf8f96c5f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a38f1b49d9a57c65ea233c6cf8f96c5f3">SetStartTime</a> (<a class="el" href="namespaceaworx.html#ad270463709a4ae7e7098df40e803e458">Ticks</a> startTime=<a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html">lib::time::Ticks</a>(0), const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;loggerName=nullptr)</td></tr>
 <tr class="separator:a38f1b49d9a57c65ea233c6cf8f96c5f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a717cc8dfcf1a68396ca4bd060eca1c75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a717cc8dfcf1a68396ca4bd060eca1c75">SetStartTime</a> (time_t startTime, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;loggerName=nullptr)</td></tr>
 <tr class="separator:a717cc8dfcf1a68396ca4bd060eca1c75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a264248c9c72e3e8aaa8b6ec61dbd2a56"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a264248c9c72e3e8aaa8b6ec61dbd2a56">SetStartTime</a> (const FILETIME &amp;startTime, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;loggerName=nullptr)</td></tr>
 <tr class="separator:a264248c9c72e3e8aaa8b6ec61dbd2a56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78d6d149b2be1a323243694826b09762"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a78d6d149b2be1a323243694826b09762">SetVerbosity</a> (<a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">core::Logger</a> *logger, <a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;domain=&quot;/&quot;, int priority=<a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a5854d47deb1f21be95871268fa3efa02">lib::config::Configuration::PrioDefault</a>)</td></tr>
-<tr class="separator:a78d6d149b2be1a323243694826b09762"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30219d3400bb5b5a370ec24c24bb5d52"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a30219d3400bb5b5a370ec24c24bb5d52">SetVerbosity</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;loggerName, <a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;domain=&quot;/&quot;, int priority=<a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a5854d47deb1f21be95871268fa3efa02">lib::config::Configuration::PrioDefault</a>)</td></tr>
-<tr class="separator:a30219d3400bb5b5a370ec24c24bb5d52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22f1d6bb191f086182dc97d4e6ecab3e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a22f1d6bb191f086182dc97d4e6ecab3e">State</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;domain, <a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;headLine, int flags=StateInfo_All)</td></tr>
-<tr class="separator:a22f1d6bb191f086182dc97d4e6ecab3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae426500da56a1be2efa28dc5917234fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ae426500da56a1be2efa28dc5917234fd">Store</a> (const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;data, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;key, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope=<a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a>, int pathLevel=0)</td></tr>
-<tr class="separator:ae426500da56a1be2efa28dc5917234fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a170f2489f88c91881aadf142d81c3512"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a170f2489f88c91881aadf142d81c3512">Store</a> (const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;data, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope=<a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a>, int pathLevel=0)</td></tr>
-<tr class="separator:a170f2489f88c91881aadf142d81c3512"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0996e2acc9b8e4f43cbe144cf623177"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ae0996e2acc9b8e4f43cbe144cf623177">SetVerbosity</a> (<a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">core::Logger</a> *logger, <a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;domain=&quot;/&quot;, <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities</a> priority=Priorities::DefaultValues)</td></tr>
+<tr class="separator:ae0996e2acc9b8e4f43cbe144cf623177"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad98aedbb5397b9150d3e3ae9e9f8f8c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ad98aedbb5397b9150d3e3ae9e9f8f8c5">SetVerbosity</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;loggerName, <a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;domain=&quot;/&quot;, <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities</a> priority=Priorities::DefaultValues)</td></tr>
+<tr class="separator:ad98aedbb5397b9150d3e3ae9e9f8f8c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8396987d83aaa22cb36dad2d9d2254dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a8396987d83aaa22cb36dad2d9d2254dd">State</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;domain, <a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;headLine, <a class="el" href="classaworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31">StateInfo</a> flags=StateInfo::All)</td></tr>
+<tr class="separator:a8396987d83aaa22cb36dad2d9d2254dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8148cc441fc8a094d28eb998b363d211"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a8148cc441fc8a094d28eb998b363d211">Store</a> (const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;data, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;key, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope=<a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a>)</td></tr>
+<tr class="separator:a8148cc441fc8a094d28eb998b363d211"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aed7a14111c67285b0c9f63f81cea94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a2aed7a14111c67285b0c9f63f81cea94">Store</a> (const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;data, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope=<a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a>)</td></tr>
+<tr class="separator:a2aed7a14111c67285b0c9f63f81cea94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6eabd60bb346393885053a79b0878062"><td class="memTemplParams" colspan="2">template&lt;typename... BoxedObjects&gt; </td></tr>
 <tr class="memitem:a6eabd60bb346393885053a79b0878062"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a6eabd60bb346393885053a79b0878062">Verbose</a> (BoxedObjects &amp;&amp;... logables)</td></tr>
 <tr class="separator:a6eabd60bb346393885053a79b0878062"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -328,8 +329,8 @@ Protected Fields</h2></td></tr>
 Protected Methods</h2></td></tr>
 <tr class="memitem:a73bbed03ab83327061dafd3e38f47248"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a13da4402eea5d25b5fbddc19c3605e22">Boxes</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a73bbed03ab83327061dafd3e38f47248">acquireInternalLogables</a> ()</td></tr>
 <tr class="separator:a73bbed03ab83327061dafd3e38f47248"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a8eb47bb2d24263b10eb18cc63e1ad5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a8a8eb47bb2d24263b10eb18cc63e1ad5">checkScopeInformation</a> (<a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, int pathLevel, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;internalDomain)</td></tr>
-<tr class="separator:a8a8eb47bb2d24263b10eb18cc63e1ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a5ef7a33feed1022db5eaa588f04c25"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a3a5ef7a33feed1022db5eaa588f04c25">checkScopeInformation</a> (<a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> &amp;scope, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;internalDomain)</td></tr>
+<tr class="separator:a3a5ef7a33feed1022db5eaa588f04c25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8bb3912a3ce86b15842e79d0b421204"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ac8bb3912a3ce86b15842e79d0b421204">clear</a> ()</td></tr>
 <tr class="separator:ac8bb3912a3ce86b15842e79d0b421204"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8801e9bd1ba933633227c2d83339ef14"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a8801e9bd1ba933633227c2d83339ef14">dumpStateOnLoggerRemoval</a> ()</td></tr>
@@ -354,18 +355,18 @@ Protected Methods</h2></td></tr>
 <tr class="separator:a867453b588d52f7ad7501b70c5b0570d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a3c8a81a3153c230b1780bcc53a282d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a2a3c8a81a3153c230b1780bcc53a282d">logInternal</a> (<a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;subDomain, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;msg)</td></tr>
 <tr class="separator:a2a3c8a81a3153c230b1780bcc53a282d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a588adcd150df0486845e6d35c1ae7490"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a588adcd150df0486845e6d35c1ae7490">once</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;domain, <a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;logables, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;pGroup, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, int pathLevel, int quantity)</td></tr>
-<tr class="separator:a588adcd150df0486845e6d35c1ae7490"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1adacbdafb647842e6cb49a1559d8e04"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a1adacbdafb647842e6cb49a1559d8e04">retrieveImpl</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;pKey, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, int pathLevel)</td></tr>
-<tr class="separator:a1adacbdafb647842e6cb49a1559d8e04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abccf755042862a34fac770b5bb0588cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#abccf755042862a34fac770b5bb0588cc">setDomainImpl</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;scopeDomain, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, int pathLevel, bool removeNTRSD, <a class="el" href="namespaceaworx.html#a42fe02133ffe8b203c4aa204d2114d49">Thread</a> *thread)</td></tr>
-<tr class="separator:abccf755042862a34fac770b5bb0588cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a781dec0f8dd06472808257e5f7ffb847"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a781dec0f8dd06472808257e5f7ffb847">setPrefixImpl</a> (const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;prefix, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, int pathLevel, <a class="el" href="namespaceaworx.html#a42fe02133ffe8b203c4aa204d2114d49">Thread</a> *thread)</td></tr>
-<tr class="separator:a781dec0f8dd06472808257e5f7ffb847"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe5003a70b8125a0670ecc77979b3d4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#afe5003a70b8125a0670ecc77979b3d4f">storeImpl</a> (const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;data, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;pKey, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, int pathLevel)</td></tr>
-<tr class="separator:afe5003a70b8125a0670ecc77979b3d4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3c4a57d89b36da0b63b92457de9a14b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ab3c4a57d89b36da0b63b92457de9a14b">writeVerbositiesOnLoggerRemoval</a> (<a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">Logger</a> *logger)</td></tr>
-<tr class="separator:ab3c4a57d89b36da0b63b92457de9a14b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d09e0cf8ecb25a5b19080966fc98656"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a7d09e0cf8ecb25a5b19080966fc98656">once</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;domain, <a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;logables, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;pGroup, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, int quantity)</td></tr>
+<tr class="separator:a7d09e0cf8ecb25a5b19080966fc98656"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7aef738aa944623c13764d8e71b89d6a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a7aef738aa944623c13764d8e71b89d6a">retrieveImpl</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;pKey, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope)</td></tr>
+<tr class="separator:a7aef738aa944623c13764d8e71b89d6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abda16fbeffc7202d32738f51cc14437d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#abda16fbeffc7202d32738f51cc14437d">setDomainImpl</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;scopeDomain, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, bool removeNTRSD, <a class="el" href="namespaceaworx.html#a42fe02133ffe8b203c4aa204d2114d49">Thread</a> *thread)</td></tr>
+<tr class="separator:abda16fbeffc7202d32738f51cc14437d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4721f7a04801212d2f74307c3c7443e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ab4721f7a04801212d2f74307c3c7443e">setPrefixImpl</a> (const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;prefix, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope, <a class="el" href="namespaceaworx.html#a42fe02133ffe8b203c4aa204d2114d49">Thread</a> *thread)</td></tr>
+<tr class="separator:ab4721f7a04801212d2f74307c3c7443e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87c74f0b69c7563f13c6f77b498c221d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a87c74f0b69c7563f13c6f77b498c221d">storeImpl</a> (const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;data, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;pKey, <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> scope)</td></tr>
+<tr class="separator:a87c74f0b69c7563f13c6f77b498c221d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a177e884c9baeadb15e900176501150fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a177e884c9baeadb15e900176501150fe">writeVerbositiesOnLoggerRemoval</a> (<a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">Logger</a> *logger)</td></tr>
+<tr class="separator:a177e884c9baeadb15e900176501150fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock')"><img src="closed.png" alt="-"/>&#160;Protected Methods inherited from <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a></td></tr>
 <tr class="memitem:ac1b7c80ef351b4ddeccf330b34121947 inherit pro_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ac1b7c80ef351b4ddeccf330b34121947">ThreadLock</a> (<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a00fc859257c8f09ff9198dde28121961">lang::LockMode</a> <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a48ca7c4076cf2b37218a11298526c9f4">lockMode</a>=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a00fc859257c8f09ff9198dde28121961a556c3dd912453ae5cb3095cd5054e6f4">lang::LockMode::Recursive</a>, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a8c800527afe0a8a6c71ae4cceda6bf9d">lang::Safeness</a> safeness=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a8c800527afe0a8a6c71ae4cceda6bf9dac6eea0560cd6f377e78dff2c85cc9122">lang::Safeness::Safe</a>)</td></tr>
 <tr class="separator:ac1b7c80ef351b4ddeccf330b34121947 inherit pro_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -379,49 +380,61 @@ Protected Methods</h2></td></tr>
 <tr class="separator:a7b2ea79ab83658e6c8b5f803c9b22475 inherit pro_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7610d5aa2df13cbaf64eb5ac17ddee71 inherit pro_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7610d5aa2df13cbaf64eb5ac17ddee71">SetSafeness</a> (<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a8c800527afe0a8a6c71ae4cceda6bf9d">lang::Safeness</a> safeness)</td></tr>
 <tr class="separator:a7610d5aa2df13cbaf64eb5ac17ddee71 inherit pro_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7950eee52ea10c4637f72ec9e152f316 inherit pro_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7950eee52ea10c4637f72ec9e152f316">WillRelease</a> () const</td></tr>
+<tr class="separator:a7950eee52ea10c4637f72ec9e152f316 inherit pro_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classaworx_1_1lib_1_1lang_1_1Ownable"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classaworx_1_1lib_1_1lang_1_1Ownable')"><img src="closed.png" alt="-"/>&#160;Protected Methods inherited from <a class="el" href="classaworx_1_1lib_1_1lang_1_1Ownable.html">Ownable</a></td></tr>
 <tr class="memitem:a0cf51e767ecc62f4adc80e8d69e066df inherit pro_methods_classaworx_1_1lib_1_1lang_1_1Ownable"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Ownable.html#a0cf51e767ecc62f4adc80e8d69e066df">~Ownable</a> ()</td></tr>
 <tr class="separator:a0cf51e767ecc62f4adc80e8d69e066df inherit pro_methods_classaworx_1_1lib_1_1lang_1_1Ownable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Enumeration Documentation</h2>
-<a id="a99fb83031ce9923c84392b4e92f956b5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99fb83031ce9923c84392b4e92f956b5">&#9670;&nbsp;</a></span>anonymous enum</h2>
+<a id="aa2916fda7c89ab56ba7645d99879df31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2916fda7c89ab56ba7645d99879df31">&#9670;&nbsp;</a></span>StateInfo</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">anonymous enum</td>
+          <td class="memname">enum <a class="el" href="classaworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31">StateInfo</a></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Denotes flags used with methods <a class="el" href="classaworx_1_1lox_1_1Lox.html#a82080fe4b1655df596d5e186b1886cf0">GetState</a> and <a class="el" href="classaworx_1_1lox_1_1Lox.html#a22f1d6bb191f086182dc97d4e6ecab3e">State</a> to select different parts of the state receive. </p>
+<p>Denotes flags used with methods <a class="el" href="classaworx_1_1lox_1_1Lox.html#ab493d2adc9a5bc4a79cfba532af998e3">GetState</a> and <a class="el" href="classaworx_1_1lox_1_1Lox.html#a8396987d83aaa22cb36dad2d9d2254dd">State</a> to select different parts of the state receive. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a99fb83031ce9923c84392b4e92f956b5a4f2ea67d97f96331439b0a1ca2d083db"></a>StateInfo_Basic&#160;</td><td class="fielddoc"><p>Name and number of log calls. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa2916fda7c89ab56ba7645d99879df31ab50339a10e1de285ac99d4c3990b8693"></a>NONE&#160;</td><td class="fielddoc"><p>No state. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a99fb83031ce9923c84392b4e92f956b5a8b4ecf28d924534de013261b35207b27"></a>StateInfo_Version&#160;</td><td class="fielddoc"><p>Library Version and thread safeness. </p>
+<tr><td class="fieldname"><a id="aa2916fda7c89ab56ba7645d99879df31a972e73b7a882d0802a4e3a16946a2f94"></a>Basic&#160;</td><td class="fielddoc"><p>Name and number of log calls. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a99fb83031ce9923c84392b4e92f956b5a5ab8a46c8344beef8d4109905dd51383"></a>StateInfo_Loggers&#160;</td><td class="fielddoc"><p>Loggers. </p>
+<tr><td class="fieldname"><a id="aa2916fda7c89ab56ba7645d99879df31a34b6cd75171affba6957e308dcbd92be"></a>Version&#160;</td><td class="fielddoc"><p>Library Version and thread safeness. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a99fb83031ce9923c84392b4e92f956b5a0cfe61b3491148f99db83c51b9a36682"></a>StateInfo_Domains&#160;</td><td class="fielddoc"><p><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> domains currently registered. </p>
+<tr><td class="fieldname"><a id="aa2916fda7c89ab56ba7645d99879df31a96b1c552ca6ed5ee0ee3d0af174530ab"></a>Loggers&#160;</td><td class="fielddoc"><p>Loggers. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a99fb83031ce9923c84392b4e92f956b5a261450da2fb0377ae568ea271df75382"></a>StateInfo_InternalDomains&#160;</td><td class="fielddoc"><p>Internal domains. </p>
+<tr><td class="fieldname"><a id="aa2916fda7c89ab56ba7645d99879df31a78cd2c7d5422ffdb6d9545211ca49eeb"></a>Domains&#160;</td><td class="fielddoc"><p><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> domains currently registered. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a99fb83031ce9923c84392b4e92f956b5a69dfc3282698ee2ca226a8f49a74a448"></a>StateInfo_ScopeDomains&#160;</td><td class="fielddoc"><p>Scope domains. </p>
+<tr><td class="fieldname"><a id="aa2916fda7c89ab56ba7645d99879df31a31113a0541f0520765177c7069ba8ca1"></a>InternalDomains&#160;</td><td class="fielddoc"><p>Internal domains. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a99fb83031ce9923c84392b4e92f956b5a155fbfbb987b91a1f4b8aa8e6a577045"></a>StateInfo_DSR&#160;</td><td class="fielddoc"><p>Domain substitution rules. </p>
+<tr><td class="fieldname"><a id="aa2916fda7c89ab56ba7645d99879df31a068b63932226b23a03535d36d8d2eb22"></a>ScopeDomains&#160;</td><td class="fielddoc"><p>Scope domains. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a99fb83031ce9923c84392b4e92f956b5aee324135b4a5bd701042dbfb7cc713f1"></a>StateInfo_PrefixLogables&#160;</td><td class="fielddoc"><p>Prefix logables. </p>
+<tr><td class="fieldname"><a id="aa2916fda7c89ab56ba7645d99879df31a2f83cd74c1361769a936e39b22fdc603"></a>DSR&#160;</td><td class="fielddoc"><p>Domain substitution rules. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a99fb83031ce9923c84392b4e92f956b5abf66f34c4d811a22437439effd868cbb"></a>StateInfo_Once&#160;</td><td class="fielddoc"><p><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> once counters. </p>
+<tr><td class="fieldname"><a id="aa2916fda7c89ab56ba7645d99879df31a4febf3aa9c543957a624d0e01118ad99"></a>PrefixLogables&#160;</td><td class="fielddoc"><p>Prefix logables. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a99fb83031ce9923c84392b4e92f956b5a325d8d794fa2bfec9142d51acaabc2b4"></a>StateInfo_LogData&#160;</td><td class="fielddoc"><p><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> data objects. </p>
+<tr><td class="fieldname"><a id="aa2916fda7c89ab56ba7645d99879df31ae1a9dc9f23534e63de9df0d540ac1611"></a>Once&#160;</td><td class="fielddoc"><p><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> once counters. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a99fb83031ce9923c84392b4e92f956b5a69192c477dd713b20bf5280c4cd84e5c"></a>StateInfo_ThreadMappings&#160;</td><td class="fielddoc"><p>Named threads. </p>
+<tr><td class="fieldname"><a id="aa2916fda7c89ab56ba7645d99879df31a8252db9108bed0cc77b9108ef2e5b215"></a>LogData&#160;</td><td class="fielddoc"><p><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> data objects. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a99fb83031ce9923c84392b4e92f956b5a7ab954bf94dd5bd711094597ef4c8082"></a>StateInfo_SPTR&#160;</td><td class="fielddoc"><p>Source path trim rules. </p>
+<tr><td class="fieldname"><a id="aa2916fda7c89ab56ba7645d99879df31afb1cd41460e08ac954abd863f3e769b4"></a>ThreadMappings&#160;</td><td class="fielddoc"><p>Named threads. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a99fb83031ce9923c84392b4e92f956b5a312521b5e1373eba35be14d2676f7f43"></a>StateInfo_CompilationFlags&#160;</td><td class="fielddoc"><p><b>ALib/<b>ALox</b> compilation</b> flags </p>
+<tr><td class="fieldname"><a id="aa2916fda7c89ab56ba7645d99879df31acb272fa6b5049b35cc46afdbea004556"></a>SPTR&#160;</td><td class="fielddoc"><p>Source path trim rules. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa2916fda7c89ab56ba7645d99879df31a20dd27d31849969ca1a1a73a5a1593ac"></a>CompilationFlags&#160;</td><td class="fielddoc"><p><b>ALib/<b>ALox</b> compilation</b> flags </p>
 </td></tr>
 </table>
 
@@ -466,8 +479,8 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a8df22829cdb5cad1db7f72bb0b068d5b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8df22829cdb5cad1db7f72bb0b068d5b">&#9670;&nbsp;</a></span>~Lox()</h2>
+<a id="afdd4c34686526f164c1bddccb183bd45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdd4c34686526f164c1bddccb183bd45">&#9670;&nbsp;</a></span>~Lox()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -484,7 +497,7 @@ Protected Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -494,8 +507,8 @@ Protected Methods</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a73420c0a36f3b95e7ba9e8915f7a7959"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73420c0a36f3b95e7ba9e8915f7a7959">&#9670;&nbsp;</a></span>Acquire()</h2>
+<a id="a988585c51f422fdb6b6882fd46896c2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a988585c51f422fdb6b6882fd46896c2d">&#9670;&nbsp;</a></span>Acquire()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -529,7 +542,7 @@ Protected Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -544,7 +557,7 @@ Protected Methods</h2></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented from <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a607d6c96bfd21c3530e8a7fab9ca0395">ThreadLock</a>.</p>
+<p>Reimplemented from <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a0d1442ed6b0204331a77b7afbfd27b1e">ThreadLock</a>.</p>
 
 </div>
 </div>
@@ -623,8 +636,8 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a8a8eb47bb2d24263b10eb18cc63e1ad5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a8eb47bb2d24263b10eb18cc63e1ad5">&#9670;&nbsp;</a></span>checkScopeInformation()</h2>
+<a id="a3a5ef7a33feed1022db5eaa588f04c25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a5ef7a33feed1022db5eaa588f04c25">&#9670;&nbsp;</a></span>checkScopeInformation()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -633,16 +646,10 @@ Protected Methods</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool checkScopeInformation </td>
+          <td class="memname">int checkScopeInformation </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> &amp;&#160;</td>
           <td class="paramname"><em>scope</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pathLevel</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -663,16 +670,15 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Checks if given scope needs information that is not available.</p>
+<p> Checks if given scope needs information that is not available. In addition, the in/out parameter <code>scope</code> is changed to <b><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Scope::Path</a></b>, in case a level was added. That level is returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">scope</td><td>The scope that is to be checked. </td></tr>
-    <tr><td class="paramname">pathLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Scope::Path</a> to reference parent directories. </td></tr>
-    <tr><td class="paramname">internalDomain</td><td>The internal sub-domain to log any error/warning into. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">scope</td><td>A reference to the scope that is to be checked (and eventually modified. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">internalDomain</td><td>The internal sub-domain to log any error/warning into. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><code>true</code> if all is fine, <code>false</code> else. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A posititve value providing the path level deducted from <code>scope</code> if all is fine, <code>-1</code> else. </dd></dl>
 
 </div>
 </div>
@@ -737,7 +743,7 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Removes all local trimming rules set with <a class="el" href="classaworx_1_1lox_1_1Lox.html#a0f43644aa1d946287c317a9a38079bbe">SetSourcePathTrimRule</a>. If parameter <code>global</code> is set to <b>Inclusion::Include</b>, the global rules are cleared in addition.</p>
+<p> Removes all local trimming rules set with <a class="el" href="classaworx_1_1lox_1_1Lox.html#a30d2d3a359e2aba54ed0a53388e90ba0">SetSourcePathTrimRule</a>. If parameter <code>global</code> is set to <b>Inclusion::Include</b>, the global rules are cleared in addition.</p>
 <p>Setting parameter <code>allowAutoRule</code> to <code>false</code>, allows to suppress the creation of an automatic rule based on the executables path.</p>
 <dl class="section see"><dt>See also</dt><dd><a href="../manual.html">ALox User Manual</a> for more information.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -1002,7 +1008,7 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Assembles the resulting domain from the given <code>domainPath</code> and the Scope Domain paths (see <a class="el" href="classaworx_1_1lox_1_1Lox.html#a1b78fb31f62ec7e9f862417c5936e8ea">SetDomain</a>) according to the scope identified by <code>scopeInfo</code>. The resulting full domain string is assembled from inner to outer scope. If <code>domainPath</code>, respectively as soon as any of the Scope Domains' paths start with the character defined with <a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html#a5d34c67477a6f6f1a0a3803f1300cf2e">Domain::Separator</a>, the evaluation is stopped (the path is interpreted as absolute).</p>
+<p> Assembles the resulting domain from the given <code>domainPath</code> and the Scope Domain paths (see <a class="el" href="classaworx_1_1lox_1_1Lox.html#a230b89005c93ffdbfe0dd689d7eb0f11">SetDomain</a>) according to the scope identified by <code>scopeInfo</code>. The resulting full domain string is assembled from inner to outer scope. If <code>domainPath</code>, respectively as soon as any of the Scope Domains' paths start with the character defined with <a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html#a5d34c67477a6f6f1a0a3803f1300cf2e">Domain::Separator</a>, the evaluation is stopped (the path is interpreted as absolute).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domainPath</td><td>The domain path. If starting with the character defined with <a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html#a5d34c67477a6f6f1a0a3803f1300cf2e">Domain::Separator</a>, no Scope Domains are applied. </td></tr>
@@ -1222,14 +1228,14 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a82080fe4b1655df596d5e186b1886cf0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a82080fe4b1655df596d5e186b1886cf0">&#9670;&nbsp;</a></span>GetState()</h2>
+<a id="ab493d2adc9a5bc4a79cfba532af998e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab493d2adc9a5bc4a79cfba532af998e3">&#9670;&nbsp;</a></span>GetState()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">NO_DOX void GetState </td>
+          <td class="memname">void GetState </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;&#160;</td>
           <td class="paramname"><em>buf</em>, </td>
@@ -1237,8 +1243,8 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>flags</em> = <code>StateInfo_All</code>&#160;</td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31">StateInfo</a>&#160;</td>
+          <td class="paramname"><em>flags</em> = <code>StateInfo::All</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1248,11 +1254,12 @@ Protected Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> This method collects state information about this lox in a formatted multi-line AString. Parameter <code>flags</code> is a bit field with bits defined in constants of class <b>Lox</b> prefixed with <b>"StateInfo_"</b>, e.g. <code>StateInfo_Loggers</code>.</p>
+<p> This method collects state information about this lox in a formatted multi-line AString. Parameter <code>flags</code> is a bitwise enum type (operators on elements available).</p>
+<dl class="section note"><dt>Note</dt><dd>As an alternative to (temporarily) adding an invocation of <b>Lox.State</b> to your code, <b>ALox</b> provides configuration variable <a href="group__GrpALoxConfigVars.html">ALOX_LOXNAME_DUMP_STATE_ON_EXIT</a>. This allows to enable an automatic invocation of this method using external configuration data like command line parameters, environment variables or INI files. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">buf</td><td>The target string. </td></tr>
-    <tr><td class="paramname">flags</td><td>Flag bits that define which state information is collected. </td></tr>
+    <tr><td class="paramname">flags</td><td>Bits that define which state information is collected. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1728,8 +1735,8 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a6461dec7c62cad4cb618ac730bac95a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6461dec7c62cad4cb618ac730bac95a9">&#9670;&nbsp;</a></span>Once() <span class="overload">[1/10]</span></h2>
+<a id="a79bebcd15b9f6a526c4e5d9d3c79c46f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79bebcd15b9f6a526c4e5d9d3c79c46f">&#9670;&nbsp;</a></span>Once() <span class="overload">[1/10]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1766,12 +1773,6 @@ Protected Methods</h2></td></tr>
           <td></td>
           <td class="paramtype"><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>&#160;</td>
           <td class="paramname"><em>scope</em> = <code><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a></code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pathLevel</em> = <code>0</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1825,7 +1826,6 @@ Protected Methods</h2></td></tr>
     <tr><td class="paramname">logables</td><td>The objects to log (Multiple objects may be provided within container class Boxes.) </td></tr>
     <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <code>scope</code>.) If omitted (or empty or nullptr), the counter is is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a>, then the counter is associated exclusively with the single <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the group or counter is bound to. </td></tr>
-    <tr><td class="paramname">pathLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Scope::Path</a> to reference parent directories. Optional and defaults to <code>0</code>. </td></tr>
     <tr><td class="paramname">quantity</td><td>The number of logs to be performed. As the name of the method indicates, this defaults to <code>1</code>. If negative, the first and every "-quantity-th" statement is executed. </td></tr>
   </table>
   </dd>
@@ -1833,8 +1833,8 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="accf9765bb17566eb2cdea9c9d8aa32ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#accf9765bb17566eb2cdea9c9d8aa32ff">&#9670;&nbsp;</a></span>Once() <span class="overload">[2/10]</span></h2>
+<a id="a5653789ebccf06d0dd06e29066a754ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5653789ebccf06d0dd06e29066a754ed">&#9670;&nbsp;</a></span>Once() <span class="overload">[2/10]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1870,12 +1870,6 @@ Protected Methods</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pathLevel</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>quantity</em> = <code>1</code>&#160;</td>
         </tr>
         <tr>
@@ -1891,14 +1885,13 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a6461dec7c62cad4cb618ac730bac95a9">Once</a>.</p>
+<p> Overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a79bebcd15b9f6a526c4e5d9d3c79c46f">Once</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">verbosity</td><td>The verbosity of the <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Statement</em> (if performed). </td></tr>
     <tr><td class="paramname">logables</td><td>The objects to log (Multiple objects may be provided within container class Boxes.) </td></tr>
     <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <code>scope</code>.) If omitted (or empty or nullptr), the counter is is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a>, then the counter is associated exclusively with the single <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the group or counter is bound to. </td></tr>
-    <tr><td class="paramname">pathLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Scope::Path</a> to reference parent directories. Optional and defaults to <code>0</code>. </td></tr>
     <tr><td class="paramname">quantity</td><td>The number of logs to be performed. As the name of the method indicates, this defaults to <code>1</code>. </td></tr>
   </table>
   </dd>
@@ -1952,7 +1945,7 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a6461dec7c62cad4cb618ac730bac95a9">Once</a>.</p>
+<p> Overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a79bebcd15b9f6a526c4e5d9d3c79c46f">Once</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">verbosity</td><td>The verbosity of the <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Statement</em> (if performed). </td></tr>
@@ -2005,7 +1998,7 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a6461dec7c62cad4cb618ac730bac95a9">Once</a>.</p>
+<p> Overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a79bebcd15b9f6a526c4e5d9d3c79c46f">Once</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">verbosity</td><td>The verbosity of the <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Statement</em> (if performed). </td></tr>
@@ -2017,8 +2010,8 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="ac4b8cd123e85dd8b8b68946e6705b2ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac4b8cd123e85dd8b8b68946e6705b2ed">&#9670;&nbsp;</a></span>Once() <span class="overload">[5/10]</span></h2>
+<a id="aa9232e0176b4e91bc117a6533bf7e1df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9232e0176b4e91bc117a6533bf7e1df">&#9670;&nbsp;</a></span>Once() <span class="overload">[5/10]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2048,12 +2041,6 @@ Protected Methods</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pathLevel</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>quantity</em> = <code>1</code>&#160;</td>
         </tr>
         <tr>
@@ -2069,13 +2056,12 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a6461dec7c62cad4cb618ac730bac95a9">Once</a>.</p>
+<p> Overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a79bebcd15b9f6a526c4e5d9d3c79c46f">Once</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logables</td><td>The objects to log (Multiple objects may be provided within container class Boxes.) </td></tr>
     <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <code>scope</code>.) If omitted (or empty or nullptr), the counter is is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a>, then the counter is associated exclusively with the single <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the group or counter is bound to. </td></tr>
-    <tr><td class="paramname">pathLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Scope::Path</a> to reference parent directories. Optional and defaults to <code>0</code>. </td></tr>
     <tr><td class="paramname">quantity</td><td>The number of logs to be performed. As the name of the method indicates, this defaults to <code>1</code>. </td></tr>
   </table>
   </dd>
@@ -2083,8 +2069,8 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a2e8ccc108f0f0be74c54dcd0bf56b97d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2e8ccc108f0f0be74c54dcd0bf56b97d">&#9670;&nbsp;</a></span>Once() <span class="overload">[6/10]</span></h2>
+<a id="a34a8880e2a278ffdfc0814188f87421b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34a8880e2a278ffdfc0814188f87421b">&#9670;&nbsp;</a></span>Once() <span class="overload">[6/10]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2120,12 +2106,6 @@ Protected Methods</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pathLevel</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>quantity</em> = <code>1</code>&#160;</td>
         </tr>
         <tr>
@@ -2141,14 +2121,13 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a6461dec7c62cad4cb618ac730bac95a9">Once</a>.</p>
+<p> Overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a79bebcd15b9f6a526c4e5d9d3c79c46f">Once</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domain</td><td>Optional <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Domain</em> which is combined with <em>Scope Domains</em> set for the <em>Scope</em> of invocation. </td></tr>
     <tr><td class="paramname">verbosity</td><td>The verbosity of the <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Statement</em> (if performed). </td></tr>
     <tr><td class="paramname">logables</td><td>The objects to log (Multiple objects may be provided within container class Boxes.) </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the group or counter is bound to. </td></tr>
-    <tr><td class="paramname">pathLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Scope::Path</a> to reference parent directories. Optional and defaults to <code>0</code>. </td></tr>
     <tr><td class="paramname">quantity</td><td>The number of logs to be performed. As the name of the method indicates, this defaults to <code>1</code>. </td></tr>
   </table>
   </dd>
@@ -2156,8 +2135,8 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a6e5f3784e9e05ae15af102cb504867a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e5f3784e9e05ae15af102cb504867a6">&#9670;&nbsp;</a></span>Once() <span class="overload">[7/10]</span></h2>
+<a id="ae745689d03c1ea393c94f403230c04e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae745689d03c1ea393c94f403230c04e0">&#9670;&nbsp;</a></span>Once() <span class="overload">[7/10]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2187,12 +2166,6 @@ Protected Methods</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pathLevel</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>quantity</em> = <code>1</code>&#160;</td>
         </tr>
         <tr>
@@ -2208,13 +2181,12 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a6461dec7c62cad4cb618ac730bac95a9">Once</a>.</p>
+<p> Overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a79bebcd15b9f6a526c4e5d9d3c79c46f">Once</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">verbosity</td><td>The verbosity of the <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Statement</em> (if performed). </td></tr>
     <tr><td class="paramname">logables</td><td>The objects to log (Multiple objects may be provided within container class Boxes.) </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the group or counter is bound to. </td></tr>
-    <tr><td class="paramname">pathLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Scope::Path</a> to reference parent directories. Optional and defaults to <code>0</code>. </td></tr>
     <tr><td class="paramname">quantity</td><td>The number of logs to be performed. As the name of the method indicates, this defaults to <code>1</code>. </td></tr>
   </table>
   </dd>
@@ -2222,8 +2194,8 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="aad96749e71e403eea575a0a2e744b803"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad96749e71e403eea575a0a2e744b803">&#9670;&nbsp;</a></span>Once() <span class="overload">[8/10]</span></h2>
+<a id="a0c48a9ee258285ac970bc06ec5913774"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c48a9ee258285ac970bc06ec5913774">&#9670;&nbsp;</a></span>Once() <span class="overload">[8/10]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2247,12 +2219,6 @@ Protected Methods</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pathLevel</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>quantity</em> = <code>1</code>&#160;</td>
         </tr>
         <tr>
@@ -2268,12 +2234,11 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a6461dec7c62cad4cb618ac730bac95a9">Once</a>.</p>
+<p> Overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a79bebcd15b9f6a526c4e5d9d3c79c46f">Once</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logables</td><td>The objects to log (Multiple objects may be provided within container class Boxes.) </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the group or counter is bound to. </td></tr>
-    <tr><td class="paramname">pathLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Scope::Path</a> to reference parent directories. Optional and defaults to <code>0</code>. </td></tr>
     <tr><td class="paramname">quantity</td><td>The number of logs to be performed. As the name of the method indicates, this defaults to <code>1</code>. </td></tr>
   </table>
   </dd>
@@ -2315,7 +2280,7 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a6461dec7c62cad4cb618ac730bac95a9">Once</a>.</p>
+<p> Overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a79bebcd15b9f6a526c4e5d9d3c79c46f">Once</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logables</td><td>The objects to log (Multiple objects may be provided within container class Boxes.) </td></tr>
@@ -2366,7 +2331,7 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a6461dec7c62cad4cb618ac730bac95a9">Once</a>.</p>
+<p> Overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a79bebcd15b9f6a526c4e5d9d3c79c46f">Once</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logables</td><td>The objects to log (Multiple objects may be provided within container class Boxes.) </td></tr>
@@ -2378,8 +2343,8 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a588adcd150df0486845e6d35c1ae7490"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a588adcd150df0486845e6d35c1ae7490">&#9670;&nbsp;</a></span>once()</h2>
+<a id="a7d09e0cf8ecb25a5b19080966fc98656"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d09e0cf8ecb25a5b19080966fc98656">&#9670;&nbsp;</a></span>once()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2421,12 +2386,6 @@ Protected Methods</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pathLevel</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>quantity</em>&#160;</td>
         </tr>
         <tr>
@@ -2442,7 +2401,7 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Internal method serving public interface <a class="el" href="classaworx_1_1lox_1_1Lox.html#a6461dec7c62cad4cb618ac730bac95a9">Once</a>.</p>
+<p> Internal method serving public interface <a class="el" href="classaworx_1_1lox_1_1Lox.html#a79bebcd15b9f6a526c4e5d9d3c79c46f">Once</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domain</td><td>Optional <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Domain</em> which is combined with <em>Scope Domains</em> set for the <em>Scope</em> of invocation. </td></tr>
@@ -2450,7 +2409,6 @@ Protected Methods</h2></td></tr>
     <tr><td class="paramname">logables</td><td>The objects to log (Multiple objects may be provided within container class Boxes.) </td></tr>
     <tr><td class="paramname">pGroup</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <code>scope</code>.) If omitted (or empty or nullptr), the counter is is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a>, then the counter is associated exclusively with the single <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the group or counter is bound to. </td></tr>
-    <tr><td class="paramname">pathLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Scope::Path</a> to reference parent directories. Optional and defaults to <code>0</code>. </td></tr>
     <tr><td class="paramname">quantity</td><td>The number of logs to be performed. As the name of the method indicates, this defaults to <code>1</code>. </td></tr>
   </table>
   </dd>
@@ -2458,8 +2416,8 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="aa5e97927ea5978957ff01813d86cbd25"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa5e97927ea5978957ff01813d86cbd25">&#9670;&nbsp;</a></span>Release()</h2>
+<a id="a044393918deb33780c17d010fa8ef27c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a044393918deb33780c17d010fa8ef27c">&#9670;&nbsp;</a></span>Release()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2476,12 +2434,12 @@ Protected Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Releases ownership of this object. If <a class="el" href="classaworx_1_1lox_1_1Lox.html#a73420c0a36f3b95e7ba9e8915f7a7959">Acquire</a> was called multiple times, the same number of calls to this method have to be performed to release ownership. </p>
+<p> Releases ownership of this object. If <a class="el" href="classaworx_1_1lox_1_1Lox.html#a988585c51f422fdb6b6882fd46896c2d">Acquire</a> was called multiple times, the same number of calls to this method have to be performed to release ownership. </p>
 
 <p>Reimplemented from <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c">ThreadLock</a>.</p>
 
@@ -2503,7 +2461,7 @@ Protected Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Removes a logger from this container. </p><dl class="section note"><dt>Note</dt><dd>To (temporarily) disable a logger without removing it, a call to <a class="el" href="classaworx_1_1lox_1_1Lox.html#a78d6d149b2be1a323243694826b09762">SetVerbosity(logger, Verbosity::Off)</a> can be used.</dd></dl>
+<p> Removes a logger from this container. </p><dl class="section note"><dt>Note</dt><dd>To (temporarily) disable a logger without removing it, a call to <a class="el" href="classaworx_1_1lox_1_1Lox.html#ae0996e2acc9b8e4f43cbe144cf623177">SetVerbosity(logger, Verbosity::Off)</a> can be used.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logger</td><td>The logger to be removed. </td></tr>
@@ -2530,7 +2488,7 @@ Protected Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Removes logger named <code>loggerName</code> from this container. </p><dl class="section note"><dt>Note</dt><dd>To (temporarily) disable a logger without removing it, a call to <a class="el" href="classaworx_1_1lox_1_1Lox.html#a78d6d149b2be1a323243694826b09762">SetVerbosity(logger, Verbosity::Off)</a> can be used.</dd></dl>
+<p> Removes logger named <code>loggerName</code> from this container. </p><dl class="section note"><dt>Note</dt><dd>To (temporarily) disable a logger without removing it, a call to <a class="el" href="classaworx_1_1lox_1_1Lox.html#ae0996e2acc9b8e4f43cbe144cf623177">SetVerbosity(logger, Verbosity::Off)</a> can be used.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">loggerName</td><td>The name of the <em>Logger(s)</em> to be removed (case insensitive). </td></tr>
@@ -2574,8 +2532,8 @@ Protected Methods</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> This method is used to remove an <em>explicitly given</em> domain path from the list of domain paths set for <em>Scope.ThreadOuter</em> or <em>Scope.ThreadInner</em>.</p>
-<p>To remove the most recently added domain path from such thread-related <em>Scope</em>, use one of the overloaded methods <a class="el" href="classaworx_1_1lox_1_1Lox.html#a1b78fb31f62ec7e9f862417c5936e8ea">SetDomain</a> and provide an empty or nulled value for parameter <code>scopeDomain</code> (the same as how domain paths of other <em>Scopes</em> are removed).</p>
-<dl class="section note"><dt>Note</dt><dd>The long name of the method already indicates that this method is a little special. Only seldom, more than one <em>Scope Domain</em> is needed to be added. And if this is needed, then such <em>Scope Domains</em> usually get removed in reverse order of their definition, with is performed using the standard interface that allows 'removing' any other <em>Scope Domain</em>. (Passing an empty or nulled domain path to method <a class="el" href="classaworx_1_1lox_1_1Lox.html#a1b78fb31f62ec7e9f862417c5936e8ea">SetDomain</a>.)</dd></dl>
+<p>To remove the most recently added domain path from such thread-related <em>Scope</em>, use one of the overloaded methods <a class="el" href="classaworx_1_1lox_1_1Lox.html#a230b89005c93ffdbfe0dd689d7eb0f11">SetDomain</a> and provide an empty or nulled value for parameter <code>scopeDomain</code> (the same as how domain paths of other <em>Scopes</em> are removed).</p>
+<dl class="section note"><dt>Note</dt><dd>The long name of the method already indicates that this method is a little special. Only seldom, more than one <em>Scope Domain</em> is needed to be added. And if this is needed, then such <em>Scope Domains</em> usually get removed in reverse order of their definition, with is performed using the standard interface that allows 'removing' any other <em>Scope Domain</em>. (Passing an empty or nulled domain path to method <a class="el" href="classaworx_1_1lox_1_1Lox.html#a230b89005c93ffdbfe0dd689d7eb0f11">SetDomain</a>.)</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">scopeDomain</td><td>The domain path to register. </td></tr>
@@ -2615,8 +2573,8 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a363a3a48f4296a1adff0a8dc4fbda2d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a363a3a48f4296a1adff0a8dc4fbda2d3">&#9670;&nbsp;</a></span>Retrieve() <span class="overload">[1/2]</span></h2>
+<a id="aaac0bce32cf17e137a2cb53598eb65bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaac0bce32cf17e137a2cb53598eb65bc">&#9670;&nbsp;</a></span>Retrieve() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2634,13 +2592,7 @@ Protected Methods</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>&#160;</td>
-          <td class="paramname"><em>scope</em> = <code><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a></code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pathLevel</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>scope</em> = <code><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2655,7 +2607,7 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Retrieves <b>ALox</b> <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Data</em>, an object type <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Box.html">Box</a> which had been stored in a prior call to <a class="el" href="classaworx_1_1lox_1_1Lox.html#ae426500da56a1be2efa28dc5917234fd">Store</a>. Using the optional <code>key</code> and <code>scope</code> offer various possibilities to reference such objects.<br />
+<p> Retrieves <b>ALox</b> <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Data</em>, an object type <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Box.html">Box</a> which had been stored in a prior call to <a class="el" href="classaworx_1_1lox_1_1Lox.html#a8148cc441fc8a094d28eb998b363d211">Store</a>. Using the optional <code>key</code> and <code>scope</code> offer various possibilities to reference such objects.<br />
 </p>
 <dl class="section note"><dt>Note</dt><dd>If no data is found, an nulled object is returned. This can be tested using method <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Box.html#ac4d637a0dec45d546495c1660c9f6047">Box::IsNull</a>.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd><em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Data</em> is a feature provided by <b>ALox</b> to support debug-logging. It is not advised to use <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Data</em> to implement application logic.</dd></dl>
@@ -2663,7 +2615,6 @@ Protected Methods</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">key</td><td>The optional key to the data. If omitted (or empty or nullptr), the data is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a>, then the data is unique to the <em><a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a></em>. </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the data is bound to. </td></tr>
-    <tr><td class="paramname">pathLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Scope::Path</a> to reference parent directories. Optional and defaults to <code>0</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2671,8 +2622,8 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a1eedb5c901c2913861e3c490d66ad322"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1eedb5c901c2913861e3c490d66ad322">&#9670;&nbsp;</a></span>Retrieve() <span class="overload">[2/2]</span></h2>
+<a id="a81447b86b8fab91e4a44163b063ec737"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81447b86b8fab91e4a44163b063ec737">&#9670;&nbsp;</a></span>Retrieve() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2684,18 +2635,8 @@ Protected Methods</h2></td></tr>
           <td class="memname"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> Retrieve </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>&#160;</td>
-          <td class="paramname"><em>scope</em> = <code><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a></code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>scope</em> = <code><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a></code></td><td>)</td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pathLevel</em> = <code>0</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -2706,13 +2647,12 @@ Protected Methods</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <ul>
-<li>Overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a363a3a48f4296a1adff0a8dc4fbda2d3">Retrieve</a> which omits parameter <code>key</code>.</li>
+<li>Overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#aaac0bce32cf17e137a2cb53598eb65bc">Retrieve</a> which omits parameter <code>key</code>.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd><em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Data</em> is a feature provided by <b>ALox</b> to support debug-logging. It is not advised to use <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Data</em> to implement application logic.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the data is bound to. </td></tr>
-    <tr><td class="paramname">pathLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Scope::Path</a> to reference parent directories. Optional and defaults to <code>0</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2720,8 +2660,8 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a1adacbdafb647842e6cb49a1559d8e04"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1adacbdafb647842e6cb49a1559d8e04">&#9670;&nbsp;</a></span>retrieveImpl()</h2>
+<a id="a7aef738aa944623c13764d8e71b89d6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7aef738aa944623c13764d8e71b89d6a">&#9670;&nbsp;</a></span>retrieveImpl()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2739,13 +2679,7 @@ Protected Methods</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>&#160;</td>
-          <td class="paramname"><em>scope</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pathLevel</em>&#160;</td>
+          <td class="paramname"><em>scope</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2760,12 +2694,11 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Internal method serving public interface <a class="el" href="classaworx_1_1lox_1_1Lox.html#a363a3a48f4296a1adff0a8dc4fbda2d3">Retrieve</a>.</p>
+<p> Internal method serving public interface <a class="el" href="classaworx_1_1lox_1_1Lox.html#aaac0bce32cf17e137a2cb53598eb65bc">Retrieve</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pKey</td><td>The key to the data. </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the data is bound to. </td></tr>
-    <tr><td class="paramname">pathLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Scope::Path</a> to reference parent directories. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2773,8 +2706,8 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a1b78fb31f62ec7e9f862417c5936e8ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b78fb31f62ec7e9f862417c5936e8ea">&#9670;&nbsp;</a></span>SetDomain() <span class="overload">[1/2]</span></h2>
+<a id="a230b89005c93ffdbfe0dd689d7eb0f11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a230b89005c93ffdbfe0dd689d7eb0f11">&#9670;&nbsp;</a></span>SetDomain() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2792,13 +2725,7 @@ Protected Methods</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>&#160;</td>
-          <td class="paramname"><em>scope</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pathLevel</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>scope</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2821,7 +2748,6 @@ Protected Methods</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">scopeDomain</td><td>The domain path to register. </td></tr>
     <tr><td class="paramname">scope</td><td>The scope that should the given <code>domain</code> be registered for. Available Scope definitions are platform/language dependent. </td></tr>
-    <tr><td class="paramname">pathLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Scope::Path</a> to reference parent directories. Optional and defaults to <code>0</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2868,7 +2794,7 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> This overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a1b78fb31f62ec7e9f862417c5936e8ea">SetDomain</a> is applicable only for <em>Scope.ThreadOuter</em> and <em>Scope.ThreadInner</em> and allows to specify the thread that the setting should be associated with.</p>
+<p> This overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a230b89005c93ffdbfe0dd689d7eb0f11">SetDomain</a> is applicable only for <em>Scope.ThreadOuter</em> and <em>Scope.ThreadInner</em> and allows to specify the thread that the setting should be associated with.</p>
 <p>If <code>scopeDomain</code> is nullptr or empty, the most recently added domain path is removed. For removing an explicitly named domain associated with a thread use method <a class="el" href="classaworx_1_1lox_1_1Lox.html#adb89a8f794afb0b6551fe45499dea973">RemoveThreadDomain</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2881,8 +2807,8 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="abccf755042862a34fac770b5bb0588cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abccf755042862a34fac770b5bb0588cc">&#9670;&nbsp;</a></span>setDomainImpl()</h2>
+<a id="abda16fbeffc7202d32738f51cc14437d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abda16fbeffc7202d32738f51cc14437d">&#9670;&nbsp;</a></span>setDomainImpl()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2901,12 +2827,6 @@ Protected Methods</h2></td></tr>
           <td></td>
           <td class="paramtype"><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>&#160;</td>
           <td class="paramname"><em>scope</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pathLevel</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2938,7 +2858,6 @@ Protected Methods</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">scopeDomain</td><td>The domain path to register. </td></tr>
     <tr><td class="paramname">scope</td><td>The scope that the given <code>domain</code> should be registered for. Available Scope definitions are platform/language dependent. </td></tr>
-    <tr><td class="paramname">pathLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Scope::Path</a> to reference parent directories. </td></tr>
     <tr><td class="paramname">removeNTRSD</td><td>Used to remove a named thread-related Scope Domain (and is true only when invoked by interface method <a class="el" href="classaworx_1_1lox_1_1Lox.html#adb89a8f794afb0b6551fe45499dea973">RemoveThreadDomain</a>. </td></tr>
     <tr><td class="paramname">thread</td><td>The thread to set/unset a thread-related Scope Domain for. </td></tr>
   </table>
@@ -2990,7 +2909,7 @@ Protected Methods</h2></td></tr>
 <p><b>Deletion of Rules</b> To delete a rule, invoke the method with same parameter <code>domainPath</code> and a 'nulled' or empty string for parameter <code>replacement</code>. To delete all rules, invoke the method with parameter <code>domainPath</code> 'nulled' or empty.</p>
 <p><b>Final remarks</b> Domain substitution is useful to permanently change ('redirect') domain paths of 3rd party code (e.g. libraries using <b>ALox</b>) or log statements that must not be changed for other reasons. It is advised to not 'overuse' this feature, as side effects are inherent to the concept of <em>Domain Substitution</em>. For example, an unwanted side effect might be that <em>Prefix Logables</em> are not applicable to the substituted domain, while other <em>Prefix Logables</em> are bound to the resulting domain.</p>
 <p>For <b>Lox</b> objects that should be protected of external manipulation, it is advisable, to remove all <em>Domain Substitution Rules</em> right after the <b>Lox</b> was created by invoking this method with a nulled value for parameter <code>domainPath</code>. The reason is, that otherwise, through configuration files or command line parameters, domains of the <b>Lox</b> can be substituted and then the resulting domains <em>Verbosities</em> be <em>overwritten</em> using further configuration variables. Any prioritized <em>'internal'</em> setting of <em>Verbosities</em> this way could be circumvented!</p>
-<p>For more information consult the <a href="../man_domain_substitution.html">ALox User Manual</a>.</p>
+<p>For more information consult the <a href="../alox_man_domain_substitution.html">ALox User Manual</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domainPath</td><td>The path to search. Has to start with either <code> '/'</code> or <code> '*'</code>. </td></tr>
@@ -3001,8 +2920,8 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a0af08eeaa33fd3c7897f1562933acff0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0af08eeaa33fd3c7897f1562933acff0">&#9670;&nbsp;</a></span>SetPrefix() <span class="overload">[1/3]</span></h2>
+<a id="a868d9d33d9456b6380abf3bf39cd8b16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a868d9d33d9456b6380abf3bf39cd8b16">&#9670;&nbsp;</a></span>SetPrefix() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3020,13 +2939,7 @@ Protected Methods</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>&#160;</td>
-          <td class="paramname"><em>scope</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pathLevel</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>scope</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -3044,7 +2957,7 @@ Protected Methods</h2></td></tr>
 <p> The given <code>prefix</code> becomes a <em>Prefix Logable</em> provided to loggers with each log statement executed within the given <code>scope</code>. The list of objects received by a logger is sorted from outer scope to inner scope. The logable of the <em>Log Statement</em> itself, is the last in the list, except one or more <em>Prefix Logables</em> of <em>Scope.ThreadInner</em> are set. Those are (similar to how this <em>Scope</em> is used with <em>Scope Domains</em>) appended to the end of the list.</p>
 <p>To remove a previously set <em>Prefix Logable</em>, <code>nullptr</code> has to be passed with parameter <code>prefix</code>. For <em>Scope.ThreadOuter</em> and <em>Scope.ThreadInner</em>, passing <code>nullptr</code> (respectively with the overloaded method accepting string messages, a <em>nulled</em> string) removes the most recently added <em>Prefix Logable</em>.</p>
 <dl class="section note"><dt>Note</dt><dd><em>Logables</em> of boxed character array types are duplicated internally by <b>ALox</b> when setting as <em>Prefix Logables</em>. This means, in contrast to other types, for string-type <em>Prefix Logables</em> the life-cycle of the object passed in parameter <code>prefix</code> is allowed to end right after the invocation of this method. This is a convenience feature of <b>ALox</b>. However, this also means, that changes of the strings that occur after the string objects got set as a <em>Prefix Logable</em>, are not reflected. To implement "variable" <em>Prefix Logable</em> of string-type, an object of type <b>AString</b> might be passed wrapped in class <a class="el" href="classaworx_1_1lib_1_1boxing_1_1BoxedAs.html">BoxedAs&lt;AString&gt;</a>.<br />
- For more information consult the <a href="../man_prefix_logables.html#man_prefix_logables_cppspecifics">ALox User Manual</a>.</dd></dl>
+ For more information consult the <a href="../alox_man_prefix_logables.html#alox_man_prefix_logables_cppspecifics">ALox User Manual</a>.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Unlike other methods of this class which accept an arbitrary amount of logables, this method and its overloaded variants accept only one logable (the prefix). To supply several objects to be prefix logables at once, a container of type <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Boxes.html">Boxes</a> may be passed with parameter <code>logables</code>, like in the following sample: <div class="fragment"><div class="line"><a class="code" href="namespaceaworx.html#a13da4402eea5d25b5fbddc19c3605e22">Boxes</a> prefixes(<span class="stringliteral">&quot;One, &quot;</span>, <span class="stringliteral">&quot;two, &quot;</span>, 3 );</div><div class="line"><a class="code" href="group__GrpMacrosDebugLog.html#ga4186c23d7999be11f0e5017d254a306c">Log_SetPrefix</a>( prefixes,  <a class="code" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a>   );</div></div><!-- fragment --> The provided container as well as the prefixes themselves have to be kept in memory until they are unset.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>The C++ version of <b>ALox</b> implements scope mechanisms using scope information generated by the preprocessor. By default, debug logging supports such caller information, release logging does not. This can be changed. For more information on how to change such defaults, see <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga392381bb9caea53c133ce68c32cee4e1">ALOX_DBG_LOG_CI</a> and <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga4b0e38e300ec824146da5e868f2c6290">ALOX_REL_LOG_CI</a> in section <a class="el" href="group__GrpALoxCodeSelectorSymbols.html">ALox Symbols to Select Code Fragments</a>.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>The word 'prefix' in this methods' name and in the name of <b>ALox</b> feature <em>Prefix Logables</em> is chosen for the fact that with text loggers (which is the most widely applied use case for <b>ALox</b>) such objects are prefixes to the log message. Of-course, with using <em>Scope.ThreadInner</em>, this turns into a suffix!<br />
@@ -3053,7 +2966,6 @@ Protected Methods</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">prefix</td><td>The <em>Prefix Logable</em> to set. </td></tr>
     <tr><td class="paramname">scope</td><td>The scope that should the given <code>domain</code> be registered for. Available Scope definitions are platform/language dependent. </td></tr>
-    <tr><td class="paramname">pathLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Scope::Path</a> to reference parent directories. Optional and defaults to <code>0</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -3100,7 +3012,7 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> This overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a0af08eeaa33fd3c7897f1562933acff0">SetPrefix</a> is applicable only for <em>Scope.ThreadOuter</em> and <em>Scope.ThreadInner</em> and allows to specify the thread that the setting should be associated with.</p>
+<p> This overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#a868d9d33d9456b6380abf3bf39cd8b16">SetPrefix</a> is applicable only for <em>Scope.ThreadOuter</em> and <em>Scope.ThreadInner</em> and allows to specify the thread that the setting should be associated with.</p>
 <p>If <code>scopeDomain</code> is nullptr or empty, the most recently added <em>Prefix Logable</em> is removed.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -3160,8 +3072,8 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a781dec0f8dd06472808257e5f7ffb847"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a781dec0f8dd06472808257e5f7ffb847">&#9670;&nbsp;</a></span>setPrefixImpl()</h2>
+<a id="ab4721f7a04801212d2f74307c3c7443e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4721f7a04801212d2f74307c3c7443e">&#9670;&nbsp;</a></span>setPrefixImpl()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3180,12 +3092,6 @@ Protected Methods</h2></td></tr>
           <td></td>
           <td class="paramtype"><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>&#160;</td>
           <td class="paramname"><em>scope</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pathLevel</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -3211,7 +3117,6 @@ Protected Methods</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">prefix</td><td>The <em>Prefix Logable</em> to set. </td></tr>
     <tr><td class="paramname">scope</td><td>The scope that the given <code>logable</code> should be registered for. Available Scope definitions are platform/language dependent. </td></tr>
-    <tr><td class="paramname">pathLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Scope::Path</a> to reference parent directories. </td></tr>
     <tr><td class="paramname">thread</td><td>The thread to set/unset a thread-related <em>Prefix Logable</em> for. </td></tr>
   </table>
   </dd>
@@ -3219,8 +3124,8 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a0f43644aa1d946287c317a9a38079bbe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0f43644aa1d946287c317a9a38079bbe">&#9670;&nbsp;</a></span>SetSourcePathTrimRule()</h2>
+<a id="a30d2d3a359e2aba54ed0a53388e90ba0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30d2d3a359e2aba54ed0a53388e90ba0">&#9670;&nbsp;</a></span>SetSourcePathTrimRule()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3267,8 +3172,8 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>priority</em> = <code><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a5854d47deb1f21be95871268fa3efa02">lib::config::Configuration::PrioDefault</a></code>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities</a>&#160;</td>
+          <td class="paramname"><em>priority</em> = <code>Priorities::DefaultValues</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -3299,7 +3204,7 @@ Protected Methods</h2></td></tr>
     <tr><td class="paramname">sensitivity</td><td>Determines if the comparison of <code>path</code> with a source files' path is performed case sensitive or not. Optional and defaults to <b>Case::Ignore</b>. </td></tr>
     <tr><td class="paramname">trimReplacement</td><td>Replacement string for trimmed portion of the path. Optional and defaults to <b>NullString</b>. </td></tr>
     <tr><td class="paramname">reach</td><td>Denotes whether the rule is applied locally (to this <b>Lox</b> only) or applies to all instances of class <b>Lox</b>. Defaults to <b>Reach::Global</b>. </td></tr>
-    <tr><td class="paramname">priority</td><td>The priority of the setting. Defaults to <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a5854d47deb1f21be95871268fa3efa02">Configuration::PrioDefault</a>. </td></tr>
+    <tr><td class="paramname">priority</td><td>The priority of the setting. Defaults to <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities::DefaultValues</a>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -3418,8 +3323,8 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a78d6d149b2be1a323243694826b09762"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78d6d149b2be1a323243694826b09762">&#9670;&nbsp;</a></span>SetVerbosity() <span class="overload">[1/2]</span></h2>
+<a id="ae0996e2acc9b8e4f43cbe144cf623177"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0996e2acc9b8e4f43cbe144cf623177">&#9670;&nbsp;</a></span>SetVerbosity() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3445,8 +3350,8 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>priority</em> = <code><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a5854d47deb1f21be95871268fa3efa02">lib::config::Configuration::PrioDefault</a></code>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities</a>&#160;</td>
+          <td class="paramname"><em>priority</em> = <code>Priorities::DefaultValues</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -3459,10 +3364,10 @@ Protected Methods</h2></td></tr>
 <p> Sets the <em>Verbosity</em> of the <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Domain</em> which is evaluated from parameter <code>domain</code> and applicable <em>Scope Domains</em>. The <code>verbosity</code> given, is set recursively for all sub-domains.</p>
 <p>With the first invocation of this method for a distinct <code>logger</code>, this <em>Logger</em> is registered with this <em>Lox</em>. In this case, prior to setting the given <em>Verbosity</em> for the evaluated sub-domain, the <em>Verbosity</em> for all domains is set to <b>Verbosity::Off</b>.</p>
 <p>To deregister a <em>Logger</em> with a <b><a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a></b>, use method <a class="el" href="classaworx_1_1lox_1_1Lox.html#ab2aa68c613846fce90749385f1c373e1">RemoveLogger</a>. To 'disable' a <em>Logger</em>, invoke this method with parameters <code>verbosity</code> equaling to <b>Verbosity::Off</b> and <code>domain</code> to <code>"/"</code>.</p>
-<p>Optional parameter <code>priority</code> defaults to <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a5854d47deb1f21be95871268fa3efa02">Configuration::PrioDefault</a>, which is a lower priority than those of the standard plug-ins of external configuration data. Therefore, external configuration by default 'overwrite' settings made from 'within the source code', which simply means by invoking this method.<br />
+<p>Optional parameter <code>priority</code> defaults to <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities::DefaultValues</a>, which is a lower priority than those of the standard plug-ins of external configuration data. Therefore, external configuration by default 'overwrite' settings made from 'within the source code', which simply means by invoking this method.<br />
  The parameter can be provided for two main reasons:</p><ul>
 <li>To 'lock' a verbosity setting against external manipulation.</li>
-<li>to 'break' the standard mechanism that an invocation of this method sets all sub-domains recursively. If a sub-domain was set with a higher priority (e.g. <code>Configuration::PrioDefault + 1</code>, then this sub-domain will not be affected by future invocations of this method with standard-priority given.</li>
+<li>to 'break' the standard mechanism that an invocation of this method sets all sub-domains recursively. If a sub-domain was set with a higher priority (e.g. <code>Config::PriorityOf(Priorities::DefaultValues) + 1</code>, then this sub-domain will not be affected by future invocations of this method with standard-priority given.</li>
 </ul>
 <p>For more information on how to use external configuration variables with priority and on protecting verbosity settings, consult the <a href="../manual.html">ALox User Manual</a>.</p>
 <dl class="section attention"><dt>Attention</dt><dd>The same as with most interface methods of this class, the given <code>domain</code> parameter is combined with <em>Scope Domains</em> set for the callers' <em>Scope</em>. In standard use cases of ALox, the <em>Verbosity</em> of a <em>Domain</em> is set using absolute domain path addressing. Therefore, it is recommended to have any domain path passed to this method starting with <code> '/'</code>, which suppresses the concatenation of <em>Scope Domains</em>.<br />
@@ -3476,15 +3381,15 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
     <tr><td class="paramname">logger</td><td>The logger to be to be affected (case insensitive). </td></tr>
     <tr><td class="paramname">verbosity</td><td>The 'level of verboseness' to be set. </td></tr>
     <tr><td class="paramname">domain</td><td>The parent (start) domain to be set. The use of absolute paths starting with <code> '/'</code> are recommended. Defaults to root domain "/". </td></tr>
-    <tr><td class="paramname">priority</td><td>The priority of the setting. Defaults to <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a5854d47deb1f21be95871268fa3efa02">Configuration::PrioDefault</a>. </td></tr>
+    <tr><td class="paramname">priority</td><td>The priority of the setting. Defaults to <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities::DefaultValues</a>. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a30219d3400bb5b5a370ec24c24bb5d52"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a30219d3400bb5b5a370ec24c24bb5d52">&#9670;&nbsp;</a></span>SetVerbosity() <span class="overload">[2/2]</span></h2>
+<a id="ad98aedbb5397b9150d3e3ae9e9f8f8c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad98aedbb5397b9150d3e3ae9e9f8f8c5">&#9670;&nbsp;</a></span>SetVerbosity() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3510,8 +3415,8 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>priority</em> = <code><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a5854d47deb1f21be95871268fa3efa02">lib::config::Configuration::PrioDefault</a></code>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities</a>&#160;</td>
+          <td class="paramname"><em>priority</em> = <code>Priorities::DefaultValues</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -3521,22 +3426,22 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Same as <a class="el" href="classaworx_1_1lox_1_1Lox.html#a78d6d149b2be1a323243694826b09762">SetVerbosity</a> but addressing the <em>Logger</em> to manipulate by its name.<br />
- This method may only be used after a <em>Logger</em> was once 'registered' with this <b>Lox</b> using <a class="el" href="classaworx_1_1lox_1_1Lox.html#a78d6d149b2be1a323243694826b09762">SetVerbosity</a>.</p>
+<p> Same as <a class="el" href="classaworx_1_1lox_1_1Lox.html#ae0996e2acc9b8e4f43cbe144cf623177">SetVerbosity</a> but addressing the <em>Logger</em> to manipulate by its name.<br />
+ This method may only be used after a <em>Logger</em> was once 'registered' with this <b>Lox</b> using <a class="el" href="classaworx_1_1lox_1_1Lox.html#ae0996e2acc9b8e4f43cbe144cf623177">SetVerbosity</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">loggerName</td><td>The logger to be to be affected, identified by its name (case insensitive). </td></tr>
     <tr><td class="paramname">verbosity</td><td>The 'level of verboseness' to be set. </td></tr>
     <tr><td class="paramname">domain</td><td>The parent (start) domain to be set. The use of absolute paths starting with <code> '/'</code> are recommended. Defaults to root domain "/". </td></tr>
-    <tr><td class="paramname">priority</td><td>The priority of the setting. Defaults to <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a5854d47deb1f21be95871268fa3efa02">Configuration::PrioDefault</a>. </td></tr>
+    <tr><td class="paramname">priority</td><td>The priority of the setting. Defaults to <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities::DefaultValues</a>. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a22f1d6bb191f086182dc97d4e6ecab3e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a22f1d6bb191f086182dc97d4e6ecab3e">&#9670;&nbsp;</a></span>State()</h2>
+<a id="a8396987d83aaa22cb36dad2d9d2254dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8396987d83aaa22cb36dad2d9d2254dd">&#9670;&nbsp;</a></span>State()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3562,8 +3467,8 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>flags</em> = <code>StateInfo_All</code>&#160;</td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31">StateInfo</a>&#160;</td>
+          <td class="paramname"><em>flags</em> = <code>StateInfo::All</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -3573,7 +3478,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> This method logs the current configuration of this <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> and its encapsulated objects. It uses method <a class="el" href="classaworx_1_1lox_1_1Lox.html#a82080fe4b1655df596d5e186b1886cf0">GetState</a> to assemble the logable string.</p>
+<p> This method logs the current configuration of this <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> and its encapsulated objects. It uses method <a class="el" href="classaworx_1_1lox_1_1Lox.html#ab493d2adc9a5bc4a79cfba532af998e3">GetState</a> to assemble the logable string.</p>
 <dl class="section note"><dt>Note</dt><dd>As an alternative to (temporarily) adding an invocation of <b>Lox.State</b> to your code, <b>ALox</b> provides configuration variable <a href="group__GrpALoxConfigVars.html">ALOX_LOXNAME_DUMP_STATE_ON_EXIT</a>. This allows to enable an automatic invocation of this method using external configuration data like command line parameters, environment variables or INI files.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -3587,8 +3492,8 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 
 </div>
 </div>
-<a id="ae426500da56a1be2efa28dc5917234fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae426500da56a1be2efa28dc5917234fd">&#9670;&nbsp;</a></span>Store() <span class="overload">[1/2]</span></h2>
+<a id="a8148cc441fc8a094d28eb998b363d211"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8148cc441fc8a094d28eb998b363d211">&#9670;&nbsp;</a></span>Store() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3612,13 +3517,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>&#160;</td>
-          <td class="paramname"><em>scope</em> = <code><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a></code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pathLevel</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>scope</em> = <code><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -3633,7 +3532,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Stores data encapsulated in an object of class <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Box.html">Box</a> which can be retrieved back by invoking <a class="el" href="classaworx_1_1lox_1_1Lox.html#a363a3a48f4296a1adff0a8dc4fbda2d3">Retrieve</a>. Using the optional <code>key</code> and <code>scope</code> offer various possibilities to reference this data later.<br />
+<p> Stores data encapsulated in an object of class <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Box.html">Box</a> which can be retrieved back by invoking <a class="el" href="classaworx_1_1lox_1_1Lox.html#aaac0bce32cf17e137a2cb53598eb65bc">Retrieve</a>. Using the optional <code>key</code> and <code>scope</code> offer various possibilities to reference this data later.<br />
 </p>
 <p>To remove data from the store, pass <code>nullptr</code> with parameter <code>data</code>.</p>
 <dl class="section attention"><dt>Attention</dt><dd>When data objects are 'overwritten', previous objects will be deleted internally. Hence, only pointers to heap-allocated objects (created with <code>new</code>) may be passed!<br />
@@ -3644,15 +3543,14 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
     <tr><td class="paramname">data</td><td>The data object to store. If <code>nullptr</code>, currently stored data will be removed. In C++, has to be heap allocated and will be deleted by this <b>Lox</b> when overwritten or this lox is deleted. </td></tr>
     <tr><td class="paramname">key</td><td>The optional key to the data. If omitted (or empty or nullptr), the data is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a>, then the data is unique to the <em><a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a></em>. </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the data is bound to. </td></tr>
-    <tr><td class="paramname">pathLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Scope::Path</a> to reference parent directories. Optional and defaults to <code>0</code>. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a170f2489f88c91881aadf142d81c3512"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a170f2489f88c91881aadf142d81c3512">&#9670;&nbsp;</a></span>Store() <span class="overload">[2/2]</span></h2>
+<a id="a2aed7a14111c67285b0c9f63f81cea94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2aed7a14111c67285b0c9f63f81cea94">&#9670;&nbsp;</a></span>Store() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3670,13 +3568,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>&#160;</td>
-          <td class="paramname"><em>scope</em> = <code><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a></code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pathLevel</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>scope</em> = <code><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Scope::Global</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -3691,19 +3583,18 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded version of <a class="el" href="classaworx_1_1lox_1_1Lox.html#ae426500da56a1be2efa28dc5917234fd">Store(const Box&amp;,const String&amp;,Scope,int)</a> "Store" which omits parameter <code>key</code>. </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Overloaded version of Store(const Box&amp;,const String&amp;,Scope,int) "Store" which omits parameter <code>key</code>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>The data object to store. In C++, has to be heap allocated and will be deleted by this <b>Lox</b> when overwritten or this lox is deleted. </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the data is bound to. </td></tr>
-    <tr><td class="paramname">pathLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Scope::Path</a> to reference parent directories. Optional and defaults to <code>0</code>. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="afe5003a70b8125a0670ecc77979b3d4f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe5003a70b8125a0670ecc77979b3d4f">&#9670;&nbsp;</a></span>storeImpl()</h2>
+<a id="a87c74f0b69c7563f13c6f77b498c221d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87c74f0b69c7563f13c6f77b498c221d">&#9670;&nbsp;</a></span>storeImpl()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3727,13 +3618,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a>&#160;</td>
-          <td class="paramname"><em>scope</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pathLevel</em>&#160;</td>
+          <td class="paramname"><em>scope</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -3748,13 +3633,12 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Internal method serving public interface <a class="el" href="classaworx_1_1lox_1_1Lox.html#ae426500da56a1be2efa28dc5917234fd">Store</a>.</p>
+<p> Internal method serving public interface <a class="el" href="classaworx_1_1lox_1_1Lox.html#a8148cc441fc8a094d28eb998b363d211">Store</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>The data object to store. In C++, has to be heap allocated and will be deleted by this <b>Lox</b> when overwritten or this lox is deleted. </td></tr>
     <tr><td class="paramname">pKey</td><td>The key to the data. </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the data is bound to. </td></tr>
-    <tr><td class="paramname">pathLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Scope::Path</a> to reference parent directories. </td></tr>
   </table>
   </dd>
 </dl>
@@ -3833,8 +3717,8 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 
 </div>
 </div>
-<a id="ab3c4a57d89b36da0b63b92457de9a14b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab3c4a57d89b36da0b63b92457de9a14b">&#9670;&nbsp;</a></span>writeVerbositiesOnLoggerRemoval()</h2>
+<a id="a177e884c9baeadb15e900176501150fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a177e884c9baeadb15e900176501150fe">&#9670;&nbsp;</a></span>writeVerbositiesOnLoggerRemoval()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3843,7 +3727,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NO_DOX void writeVerbositiesOnLoggerRemoval </td>
+          <td class="memname">void writeVerbositiesOnLoggerRemoval </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">Logger</a> *&#160;</td>
           <td class="paramname"><em>logger</em></td><td>)</td>
@@ -4282,7 +4166,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

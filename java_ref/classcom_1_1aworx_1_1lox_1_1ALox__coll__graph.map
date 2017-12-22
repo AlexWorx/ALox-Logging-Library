@@ -1,4 +1,7 @@
 <map id="ALox" name="ALox">
-<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="217,81,283,108"/>
-<area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html" title="VariableDefinition" alt="" coords="378,178,501,205"/>
+<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lib_1_1config_1_1VariableDecl.html" title="VariableDecl" alt="" coords="631,552,726,579"/>
+<area shape="rect" id="node4" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="161,376,227,403"/>
+<area shape="rect" id="node6" href="$classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html" title="Configuration" alt="" coords="803,264,902,291"/>
+<area shape="rect" id="node9" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="431,376,539,403"/>
+<area shape="rect" id="node10" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="264,67,341,93"/>
 </map>

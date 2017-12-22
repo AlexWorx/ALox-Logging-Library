@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu"    href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu_hl" href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu"    href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu_hl" href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -909,7 +909,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
     <tr><td class="paramname">domain</td><td>Optional <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em> which is combined with <em>Scope Domains</em> set for the <em>Scope</em> of invocation. </td></tr>
     <tr><td class="paramname">verbosity</td><td>The <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> (if performed). </td></tr>
     <tr><td class="paramname">logables</td><td>The object(s) to log. (Multiple objects may be provided as an Object[].) </td></tr>
-    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <code>scope</code>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is Scope::Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
+    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <code>scope</code>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is Scope.Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the group or counter is bound to. </td></tr>
     <tr><td class="paramname">pkgLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a> to reference parent packages. Optional and defaults to <code>0</code>. </td></tr>
     <tr><td class="paramname">quantity</td><td>The number of logs to be performed. As the name of the method indicates, this defaults to <code>1</code>. </td></tr>
@@ -983,7 +983,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
     <tr><td class="paramname">domain</td><td>Optional <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em> which is combined with <em>Scope Domains</em> set for the <em>Scope</em> of invocation. </td></tr>
     <tr><td class="paramname">verbosity</td><td>The <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> (if performed). </td></tr>
     <tr><td class="paramname">logables</td><td>The object(s) to log. (Multiple objects may be provided as an Object[].) </td></tr>
-    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <code>scope</code>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is Scope::Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
+    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <code>scope</code>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is Scope.Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the group or counter is bound to. </td></tr>
     <tr><td class="paramname">pkgLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a> to reference parent packages. Optional and defaults to <code>0</code>. </td></tr>
   </table>
@@ -1050,7 +1050,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
     <tr><td class="paramname">domain</td><td>Optional <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em> which is combined with <em>Scope Domains</em> set for the <em>Scope</em> of invocation. </td></tr>
     <tr><td class="paramname">verbosity</td><td>The <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> (if performed). </td></tr>
     <tr><td class="paramname">logables</td><td>The object(s) to log. (Multiple objects may be provided as an Object[].) </td></tr>
-    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <code>scope</code>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is Scope::Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
+    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <code>scope</code>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is Scope.Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the group or counter is bound to. </td></tr>
   </table>
   </dd>
@@ -1110,7 +1110,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
     <tr><td class="paramname">domain</td><td>Optional <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em> which is combined with <em>Scope Domains</em> set for the <em>Scope</em> of invocation. </td></tr>
     <tr><td class="paramname">verbosity</td><td>The <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> (if performed). </td></tr>
     <tr><td class="paramname">logables</td><td>The object(s) to log. (Multiple objects may be provided as an Object[].) </td></tr>
-    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <code>scope</code>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is Scope::Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
+    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <code>scope</code>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is Scope.Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1175,7 +1175,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
     <tr><td class="paramname">domain</td><td>Optional <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em> which is combined with <em>Scope Domains</em> set for the <em>Scope</em> of invocation. </td></tr>
     <tr><td class="paramname">verbosity</td><td>The <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> (if performed). </td></tr>
     <tr><td class="paramname">logables</td><td>The object(s) to log. (Multiple objects may be provided as an Object[].) </td></tr>
-    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <code>scope</code>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is Scope::Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
+    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <code>scope</code>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is Scope.Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
     <tr><td class="paramname">quantity</td><td>The number of logs to be performed. As the name of the method indicates, this defaults to <code>1</code>. </td></tr>
   </table>
   </dd>
@@ -1616,7 +1616,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
   <table class="params">
     <tr><td class="paramname">logables</td><td>The object(s) to log. (Multiple objects may be provided as an Object[].) </td></tr>
     <tr><td class="paramname">quantity</td><td>The number of logs to be performed. As the name of the method indicates, this defaults to <code>1</code>. </td></tr>
-    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <code>scope</code>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is Scope::Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
+    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <code>scope</code>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is Scope.Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2923,7 +2923,7 @@ The word 'prefix' in this methods' name and in the name of <b>ALox</b> feature <
 <p> Sets the <em>Verbosity</em> of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em> which is evaluated from parameter <code>domain</code> and applicable <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> Domains</em>. The <code>verbosity</code> given, is set recursively for all sub-domains.</p>
 <p>With the first invocation of this method for a distinct <code>logger</code>, this <em>Logger</em> is registered with this <em>Lox</em>. In this case, prior to setting the given <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> for the evaluated sub-domain, the <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> for all domains is set to <b>Verbosity.Off</b>.</p>
 <p>To deregister a <em>Logger</em> with a <b><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></b>, use method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a7ffce9599fa306280caf0a805bb421b8">removeLogger</a>. To 'disable' a <em>Logger</em>, invoke this method with parameters <code>verbosity</code> equaling to <b>Verbosity.Off</b> and <code>domain</code> to <code>"/"</code>.</p>
-<p>Optional parameter <code>priority</code> defaults to <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#abdca3e572982b273c6edeb145cd6b92f">Configuration.PRIO_DEFAULT</a>, which is a lower priority than those of the standard plug-ins of external configuration data. Therefore, external configuration by default 'overwrite' settings made from 'within the source code', which simply means by invoking this method.<br />
+<p>Optional parameter <code>priority</code> defaults to <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ae4177d538925ca1d6b9858078c3ea513">Configuration.PRIO_DEFAULT_VALUES</a>, which is a lower priority than those of the standard plug-ins of external configuration data. Therefore, external configuration by default 'overwrite' settings made from 'within the source code', which simply means by invoking this method.<br />
  The parameter can be provided for two main reasons:</p><ul>
 <li>To 'lock' a verbosity setting against external manipulation.</li>
 <li>to 'break' the standard mechanism that an invocation of this method sets all sub-domains recursively. If a sub-domain was set with a higher priority (e.g. <code>PRIO_SOURCE + 1</code>, then this sub-domain will not be affected by future invocations of this method with standard-priority given.</li>
@@ -2939,7 +2939,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
     <tr><td class="paramname">logger</td><td>The logger to be to be affected (case insensitive). </td></tr>
     <tr><td class="paramname">verbosity</td><td>The 'level of verboseness' to be set. </td></tr>
     <tr><td class="paramname">domain</td><td>The parent (start) domain to be set. The use of absolute paths starting with <code> '/'</code> are recommended. Defaults to root domain "/". </td></tr>
-    <tr><td class="paramname">priority</td><td>The priority of the setting. Defaults to <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#abdca3e572982b273c6edeb145cd6b92f">Configuration.PRIO_DEFAULT</a>, which is a lower priority than standard plug-ins of external configuration have. </td></tr>
+    <tr><td class="paramname">priority</td><td>The priority of the setting. Defaults to <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ae4177d538925ca1d6b9858078c3ea513">Configuration.PRIO_DEFAULT_VALUES</a>, which is a lower priority than standard plug-ins of external configuration have. </td></tr>
   </table>
   </dd>
 </dl>
@@ -3099,7 +3099,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
     <tr><td class="paramname">loggerName</td><td>The logger to be to be affected, identified by its name (case insensitive). </td></tr>
     <tr><td class="paramname">verbosity</td><td>The 'level of verboseness' to be set. </td></tr>
     <tr><td class="paramname">domain</td><td>The parent (start) domain to be set. The use of absolute paths starting with <code> '/'</code> are recommended. Defaults to root domain "/". </td></tr>
-    <tr><td class="paramname">priority</td><td>The priority of the setting. Defaults to <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#abdca3e572982b273c6edeb145cd6b92f">Configuration.PRIO_DEFAULT</a>, which is a lower priority than standard plug-ins of external configuration have. </td></tr>
+    <tr><td class="paramname">priority</td><td>The priority of the setting. Defaults to <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ae4177d538925ca1d6b9858078c3ea513">Configuration.PRIO_DEFAULT_VALUES</a>, which is a lower priority than standard plug-ins of external configuration have. </td></tr>
   </table>
   </dd>
 </dl>
@@ -3730,7 +3730,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:48:01 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

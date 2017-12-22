@@ -4,20 +4,22 @@ digraph "InMemoryPlugin"
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
   Node3 [label="InMemoryPlugin",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
-  Node6 [label="vector\<InMemoryPlugin::Section *\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node7 [label="vector\<InMemoryPlugin::Section *\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node12 [label="vector\<InMemoryPlugin::Entry *\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node11 [label="PreallocatedString\<TCapacity\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html"];
   Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node5 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" StringConverter\ndefaultStringConverter" ,fontname="Helvetica"];
-  Node6 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Sections" ,fontname="Helvetica"];
-  Node7 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
-  Node8 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Comments" ,fontname="Helvetica"];
-  Node8 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node11 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Name" ,fontname="Helvetica"];
-  Node12 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Entries" ,fontname="Helvetica"];
+  Node6 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" name" ,fontname="Helvetica"];
+  Node7 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Sections" ,fontname="Helvetica"];
+  Node8 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
+  Node9 -> Node8 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Comments" ,fontname="Helvetica"];
+  Node9 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 -> Node8 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Name" ,fontname="Helvetica"];
+  Node12 -> Node8 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Entries" ,fontname="Helvetica"];
   Node4 [label="ConfigurationPlugin",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html"];
   Node5 [label="XTernalizer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1config_1_1XTernalizer.html"];
-  Node7 [label="Section",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html"];
-  Node8 [label="AString",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1AString.html"];
+  Node6 [label="String",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1String.html"];
+  Node8 [label="Section",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html"];
+  Node9 [label="AString",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1AString.html"];
 }
 

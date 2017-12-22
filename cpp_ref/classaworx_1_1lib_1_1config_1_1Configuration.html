@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -82,11 +82,9 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-static-attribs">Public Static Fields</a> &#124;
+<a href="#nested-classes">Inner Classes</a> &#124;
 <a href="#pub-attribs">Public Fields</a> &#124;
 <a href="#pub-methods">Public Methods</a> &#124;
-<a href="#pro-types">Protected Types</a> &#124;
-<a href="#pro-attribs">Protected Fields</a> &#124;
 <a href="#pro-methods">Protected Methods</a> &#124;
 <a href="classaworx_1_1lib_1_1config_1_1Configuration-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -98,50 +96,30 @@ $(function() {
 <div class="dynheader">
 Inheritance diagram for Configuration:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1config_1_1Configuration__inherit__graph.svg" width="110" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1config_1_1Configuration__inherit__graph.svg" width="311" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for Configuration:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1config_1_1Configuration__coll__graph.svg" width="1448" height="543"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1config_1_1Configuration__coll__graph.svg" width="1448" height="386"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> This class primarily is used via its public static singleton instance <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ac7b578f72e6b1f48e14ad3a762c412db">Configuration::Default</a>. It holds a list of objects of type <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a>, sorted by their priority and provides a single user interface to query configuration data from those.</p>
-<p>The class inherits from \ŗef <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">aworx::lib::threads::ThreadLock</a> "ThreadLock" and interface methods are implemented <em>synchronized</em>.</p>
+<p> This class is a container for objects of type <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a>, and provides a single user interface to query configuration data from those.</p>
+<p>The class inherits from <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a> and interface methods are implemented <em>synchronized</em>.</p>
 <p>By default, all category and variable names are case insensitive. This is at least true for the default plug-ins delivered with <b>ALib</b>.</p>
 <p>Variables by default can contain other variables, which are recursively substituted by this method. For more information about the (adjustable) syntax, see <a class="el" href="namespaceaworx_1_1lib_1_1config.html#cpp_alib_namespace_config_substitution">Variable Substitution</a>.</p>
 <p>See documentation of namespace <a class="el" href="namespaceaworx_1_1lib_1_1config.html">aworx::lib::config</a> for more information on <b>ALib</b> external configuration variables. </p>
 </div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
-Public Static Fields</h2></td></tr>
-<tr class="memitem:ac7b578f72e6b1f48e14ad3a762c412db"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html">config::Configuration</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ac7b578f72e6b1f48e14ad3a762c412db">Default</a></td></tr>
-<tr class="separator:ac7b578f72e6b1f48e14ad3a762c412db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12cc396b18254ffb4e2d7b98692f2cbc"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a12cc396b18254ffb4e2d7b98692f2cbc">PrioAutodetect</a> = 50</td></tr>
-<tr class="separator:a12cc396b18254ffb4e2d7b98692f2cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1baac67c511294bc3317b956ea196b11"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a1baac67c511294bc3317b956ea196b11">PrioCmdLine</a> = 400</td></tr>
-<tr class="separator:a1baac67c511294bc3317b956ea196b11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5854d47deb1f21be95871268fa3efa02"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a5854d47deb1f21be95871268fa3efa02">PrioDefault</a> = 100</td></tr>
-<tr class="separator:a5854d47deb1f21be95871268fa3efa02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a521974ec2e990cfb266f4e83b451d578"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a521974ec2e990cfb266f4e83b451d578">PrioEnvironment</a> = 300</td></tr>
-<tr class="separator:a521974ec2e990cfb266f4e83b451d578"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0e213817eb829a4d7b3f1960814a781"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ac0e213817eb829a4d7b3f1960814a781">PrioIniFile</a> = 200</td></tr>
-<tr class="separator:ac0e213817eb829a4d7b3f1960814a781"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaadcce82539022fab50871afc106a9d1"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#aaadcce82539022fab50871afc106a9d1">PrioProtected</a> =(std::numeric_limits&lt;int&gt;::max)()</td></tr>
-<tr class="separator:aaadcce82539022fab50871afc106a9d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Inner Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration_1_1Iterator.html">Iterator</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Fields</h2></td></tr>
-<tr class="memitem:ada8187fc67d8f54a46aed3bf04542e08"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1config_1_1CommandLinePlugin.html">CommandLinePlugin</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ada8187fc67d8f54a46aed3bf04542e08">CmdLine</a></td></tr>
-<tr class="separator:ada8187fc67d8f54a46aed3bf04542e08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64b37d856a86344c0d3c1a6d9779e6f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a></td></tr>
-<tr class="separator:a64b37d856a86344c0d3c1a6d9779e6f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a317739ee132a40b625cafa2c5a8706"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1config_1_1EnvironmentPlugin.html">EnvironmentPlugin</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a3a317739ee132a40b625cafa2c5a8706">Environment</a></td></tr>
-<tr class="separator:a3a317739ee132a40b625cafa2c5a8706"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bfa3473e5c94dafa94ae1339fe70a48"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html">strings::NumberFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a9bfa3473e5c94dafa94ae1339fe70a48">NumberFormat</a></td></tr>
 <tr class="separator:a9bfa3473e5c94dafa94ae1339fe70a48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a694607c106d5e636c5fc90d623c0dcef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a694607c106d5e636c5fc90d623c0dcef">ProtectedValues</a></td></tr>
-<tr class="separator:a694607c106d5e636c5fc90d623c0dcef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a822c543b34c30995bd4b8d7df220af83"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a822c543b34c30995bd4b8d7df220af83">SubstitutionVariableDelimiters</a> = &quot; $@,.;:\&quot;\'+-*/\\§%&amp;()[]{}&lt;&gt;=?'`~#&quot;</td></tr>
 <tr class="separator:a822c543b34c30995bd4b8d7df220af83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af688cf13bb219d944adb4731a227451d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#af688cf13bb219d944adb4731a227451d">SubstitutionVariableEnd</a> = nullptr</td></tr>
@@ -158,33 +136,61 @@ Public Fields</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
-<tr class="memitem:a36d123dcc42ef58da853d1eb86f12199"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a36d123dcc42ef58da853d1eb86f12199">Configuration</a> ()</td></tr>
-<tr class="separator:a36d123dcc42ef58da853d1eb86f12199"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a080b7d97e47cd9bba370205c7c481ca2"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a080b7d97e47cd9bba370205c7c481ca2">~Configuration</a> ()</td></tr>
-<tr class="separator:a080b7d97e47cd9bba370205c7c481ca2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6278a48fb2dd492fa6765092f838f44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ad6278a48fb2dd492fa6765092f838f44">FetchFromDefault</a> (<a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> &amp;dest)</td></tr>
-<tr class="separator:ad6278a48fb2dd492fa6765092f838f44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d1b6c80d43cc1f1dd83e43f2c2fbe9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a5d1b6c80d43cc1f1dd83e43f2c2fbe9a">InsertPlugin</a> (<a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> *plugin, int priority)</td></tr>
-<tr class="separator:a5d1b6c80d43cc1f1dd83e43f2c2fbe9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7711c27e91b3aa0ad23a1ec020f1c73"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ab7711c27e91b3aa0ad23a1ec020f1c73">Configuration</a> (bool addDefaultPlugins=true)</td></tr>
+<tr class="separator:ab7711c27e91b3aa0ad23a1ec020f1c73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09dcd47e8d29f55ef5515d6413d42d16"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a09dcd47e8d29f55ef5515d6413d42d16">~Configuration</a> ()</td></tr>
+<tr class="separator:a09dcd47e8d29f55ef5515d6413d42d16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a8327212b95a8eb1fc6817c6376327b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a2a8327212b95a8eb1fc6817c6376327b">FetchFromDefault</a> (<a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> &amp;dest, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;section=<a class="el" href="namespaceaworx.html#ab1ed6dcfbe4628dccefbdb5633b1bf01">NullString</a>)</td></tr>
+<tr class="separator:a2a8327212b95a8eb1fc6817c6376327b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86be441029df719e05e39518527bfa30"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration_1_1Iterator.html">Iterator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a86be441029df719e05e39518527bfa30">GetIterator</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;sectionName)</td></tr>
+<tr class="separator:a86be441029df719e05e39518527bfa30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0da6e72e76dfd9415dedd65569f8d02"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#aa0da6e72e76dfd9415dedd65569f8d02">IsTrue</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;value)</td></tr>
 <tr class="separator:aa0da6e72e76dfd9415dedd65569f8d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6abcf130e83414cb45a3130e7de0aff9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a6abcf130e83414cb45a3130e7de0aff9">Load</a> (<a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> &amp;variable)</td></tr>
-<tr class="separator:a6abcf130e83414cb45a3130e7de0aff9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0cc199ada725868041d059e7098b0ccd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a0cc199ada725868041d059e7098b0ccd">RemovePlugin</a> (<a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> *plugin)</td></tr>
-<tr class="separator:a0cc199ada725868041d059e7098b0ccd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54eb8ca9a9f484609edf27bc57af2e73"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a54eb8ca9a9f484609edf27bc57af2e73">Load</a> (<a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> &amp;variable)</td></tr>
+<tr class="separator:a54eb8ca9a9f484609edf27bc57af2e73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48c507c3c7310d208de387fa51579ee8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a48c507c3c7310d208de387fa51579ee8">LoadFromString</a> (<a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> &amp;variable, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;externalizedValue)</td></tr>
+<tr class="separator:a48c507c3c7310d208de387fa51579ee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af95cc36a7e678d2107395a5f4b599ead"><td class="memTemplParams" colspan="2">template&lt;typename TEnum , typename TEnableIf  = typename std::enable_if&lt;                            std::is_same&lt; VariableDecl::TTuple, typename lang::T_EnumMetaDataDecl&lt;TEnum&gt;::TTuple &gt;::value                                                             &gt;::type&gt; </td></tr>
+<tr class="memitem:af95cc36a7e678d2107395a5f4b599ead"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#af95cc36a7e678d2107395a5f4b599ead">PreloadVariables</a> ()</td></tr>
+<tr class="separator:af95cc36a7e678d2107395a5f4b599ead"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab16dd774047229b1e87d491cb297bdf9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ab16dd774047229b1e87d491cb297bdf9">Protect</a> (<a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> &amp;variable, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;externalizedValue=nullptr)</td></tr>
+<tr class="separator:ab16dd774047229b1e87d491cb297bdf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b8d8859cf4ec741098d699081779432"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a0b8d8859cf4ec741098d699081779432">SetCommandLineArgs</a> (int argc=0, char **argv=nullptr)</td></tr>
 <tr class="separator:a0b8d8859cf4ec741098d699081779432"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab18bdd6003c1535f7ae331e1064d8b42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ab18bdd6003c1535f7ae331e1064d8b42">SetCommandLineArgs</a> (int argc, wchar_t **argv)</td></tr>
 <tr class="separator:ab18bdd6003c1535f7ae331e1064d8b42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a240650c554ebeed809020762c8223845"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a240650c554ebeed809020762c8223845">Store</a> (<a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> &amp;variable, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;externalizedValue=nullptr)</td></tr>
-<tr class="separator:a240650c554ebeed809020762c8223845"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a972bad3145dc66bea80921d0e67eadad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a972bad3145dc66bea80921d0e67eadad">Store</a> (<a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> &amp;variable, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;externalizedValue=nullptr)</td></tr>
+<tr class="separator:a972bad3145dc66bea80921d0e67eadad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad268402c30f7a69143567776075589df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ad268402c30f7a69143567776075589df">StoreDefault</a> (<a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> &amp;variable, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;externalizedValue=nullptr)</td></tr>
+<tr class="separator:ad268402c30f7a69143567776075589df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classaworx_1_1lib_1_1util_1_1PluginContainer"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classaworx_1_1lib_1_1util_1_1PluginContainer')"><img src="closed.png" alt="-"/>&#160;Public Methods inherited from <a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html">PluginContainer&lt; ConfigurationPlugin, Priorities &gt;</a></td></tr>
+<tr class="memitem:af37e3c575ca5138ee9ffae6ae54cee1c inherit pub_methods_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#af37e3c575ca5138ee9ffae6ae54cee1c">~PluginContainer</a> ()</td></tr>
+<tr class="separator:af37e3c575ca5138ee9ffae6ae54cee1c inherit pub_methods_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebfadd8b53d13e193db717c967b21602 inherit pub_methods_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#aebfadd8b53d13e193db717c967b21602">CountPlugins</a> ()</td></tr>
+<tr class="separator:aebfadd8b53d13e193db717c967b21602 inherit pub_methods_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ab6bd858ba0f2643076b151c5b52098 inherit pub_methods_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#a2013d0a728b075dfbffc40f77876b0b3">TPlugin</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#a5ab6bd858ba0f2643076b151c5b52098">GetPlugin</a> (size_t number)</td></tr>
+<tr class="separator:a5ab6bd858ba0f2643076b151c5b52098 inherit pub_methods_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41dac85fdbba7b39e5be3b2c82b48aad inherit pub_methods_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#a2013d0a728b075dfbffc40f77876b0b3">TPlugin</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#a41dac85fdbba7b39e5be3b2c82b48aad">GetPlugin</a> (<a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">TPriorities</a> priority)</td></tr>
+<tr class="separator:a41dac85fdbba7b39e5be3b2c82b48aad inherit pub_methods_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8789353278d2b1e6929397521a540ff4 inherit pub_methods_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memItemLeft" align="right" valign="top">TPluginType *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#a8789353278d2b1e6929397521a540ff4">GetPluginTypeSafe</a> (<a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">TPriorities</a> priority)</td></tr>
+<tr class="separator:a8789353278d2b1e6929397521a540ff4 inherit pub_methods_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28b3a28e42db5000c6794a61720d0a94 inherit pub_methods_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memItemLeft" align="right" valign="top">TPluginType *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#a28b3a28e42db5000c6794a61720d0a94">GetPluginTypeSafe</a> ()</td></tr>
+<tr class="separator:a28b3a28e42db5000c6794a61720d0a94 inherit pub_methods_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06922a119b8659b7852d3cd04009bea9 inherit pub_methods_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#a06922a119b8659b7852d3cd04009bea9">HasPlugins</a> ()</td></tr>
+<tr class="separator:a06922a119b8659b7852d3cd04009bea9 inherit pub_methods_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fbe8a829205bbd2cc9b5249e9cc5dae inherit pub_methods_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#a0fbe8a829205bbd2cc9b5249e9cc5dae">InsertPlugin</a> (<a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#a2013d0a728b075dfbffc40f77876b0b3">TPlugin</a> *plugin, <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">TPriorities</a> priority, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab5305b978950ba3946cf79a4bccbf7af">lang::Responsibility</a> responsibility=lang::Responsibility::KeepWithSender)</td></tr>
+<tr class="separator:a0fbe8a829205bbd2cc9b5249e9cc5dae inherit pub_methods_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12da6b5f9ce8fe0c80261384ab45e071 inherit pub_methods_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#a12da6b5f9ce8fe0c80261384ab45e071">RemovePlugin</a> (<a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#a2013d0a728b075dfbffc40f77876b0b3">TPlugin</a> *plugin)</td></tr>
+<tr class="separator:a12da6b5f9ce8fe0c80261384ab45e071 inherit pub_methods_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17b7431786aa6fa8ec8323e647993a0c inherit pub_methods_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#a2013d0a728b075dfbffc40f77876b0b3">TPlugin</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#a17b7431786aa6fa8ec8323e647993a0c">RemovePlugin</a> (<a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">TPriorities</a> priority)</td></tr>
+<tr class="separator:a17b7431786aa6fa8ec8323e647993a0c inherit pub_methods_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock')"><img src="closed.png" alt="-"/>&#160;Public Methods inherited from <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a></td></tr>
 <tr class="memitem:ac1b7c80ef351b4ddeccf330b34121947 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ac1b7c80ef351b4ddeccf330b34121947">ThreadLock</a> (<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a00fc859257c8f09ff9198dde28121961">lang::LockMode</a> <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a48ca7c4076cf2b37218a11298526c9f4">lockMode</a>=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a00fc859257c8f09ff9198dde28121961a556c3dd912453ae5cb3095cd5054e6f4">lang::LockMode::Recursive</a>, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a8c800527afe0a8a6c71ae4cceda6bf9d">lang::Safeness</a> safeness=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a8c800527afe0a8a6c71ae4cceda6bf9dac6eea0560cd6f377e78dff2c85cc9122">lang::Safeness::Safe</a>)</td></tr>
 <tr class="separator:ac1b7c80ef351b4ddeccf330b34121947 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62d4d1d8df991fec098bbd8d5f19e34b inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a62d4d1d8df991fec098bbd8d5f19e34b">~ThreadLock</a> ()</td></tr>
 <tr class="separator:a62d4d1d8df991fec098bbd8d5f19e34b inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a607d6c96bfd21c3530e8a7fab9ca0395 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a607d6c96bfd21c3530e8a7fab9ca0395">Acquire</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;file, int line, const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;func)</td></tr>
-<tr class="separator:a607d6c96bfd21c3530e8a7fab9ca0395 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d1442ed6b0204331a77b7afbfd27b1e inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a0d1442ed6b0204331a77b7afbfd27b1e">Acquire</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;file, int line, const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;func)</td></tr>
+<tr class="separator:a0d1442ed6b0204331a77b7afbfd27b1e inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aceed656a3e262a10e366de4969fa4003 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#aceed656a3e262a10e366de4969fa4003">DbgCountAcquirements</a> (<a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html">Thread</a> *thread=nullptr) const</td></tr>
 <tr class="separator:aceed656a3e262a10e366de4969fa4003 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad990be5d1f5256638b1ddcc842a6ceb5 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a00fc859257c8f09ff9198dde28121961">lang::LockMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#ad990be5d1f5256638b1ddcc842a6ceb5">GetMode</a> () const</td></tr>
@@ -192,22 +198,33 @@ Public Methods</h2></td></tr>
 <tr class="memitem:a7b2ea79ab83658e6c8b5f803c9b22475 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a8c800527afe0a8a6c71ae4cceda6bf9d">lang::Safeness</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7b2ea79ab83658e6c8b5f803c9b22475">GetSafeness</a> () const</td></tr>
 <tr class="separator:a7b2ea79ab83658e6c8b5f803c9b22475 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94c93747c8daa99d65c2a04c6be0748c inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c">Release</a> ()</td></tr>
+<tr class="memdesc:a94c93747c8daa99d65c2a04c6be0748c inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="mdescLeft">&#160;</td><td class="mdescRight">defined(DOX_PARSER)  <a href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c">More...</a><br /></td></tr>
 <tr class="separator:a94c93747c8daa99d65c2a04c6be0748c inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7610d5aa2df13cbaf64eb5ac17ddee71 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7610d5aa2df13cbaf64eb5ac17ddee71">SetSafeness</a> (<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a8c800527afe0a8a6c71ae4cceda6bf9d">lang::Safeness</a> safeness)</td></tr>
 <tr class="separator:a7610d5aa2df13cbaf64eb5ac17ddee71 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7950eee52ea10c4637f72ec9e152f316 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7950eee52ea10c4637f72ec9e152f316">WillRelease</a> () const</td></tr>
+<tr class="separator:a7950eee52ea10c4637f72ec9e152f316 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classaworx_1_1lib_1_1lang_1_1Ownable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classaworx_1_1lib_1_1lang_1_1Ownable')"><img src="closed.png" alt="-"/>&#160;Public Methods inherited from <a class="el" href="classaworx_1_1lib_1_1lang_1_1Ownable.html">Ownable</a></td></tr>
 <tr class="memitem:a0cf51e767ecc62f4adc80e8d69e066df inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Ownable"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Ownable.html#a0cf51e767ecc62f4adc80e8d69e066df">~Ownable</a> ()</td></tr>
 <tr class="separator:a0cf51e767ecc62f4adc80e8d69e066df inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Ownable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-types"></a>
-Protected Types</h2></td></tr>
-<tr class="memitem:a86d6fcf668e7b9488355437e406fa456"><td class="memItemLeft" align="right" valign="top">typedef std::pair&lt; int, <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a86d6fcf668e7b9488355437e406fa456">PluginAndPrio</a></td></tr>
-<tr class="separator:a86d6fcf668e7b9488355437e406fa456"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Methods</h2></td></tr>
+<tr class="memitem:afb2f9029c27017205630b2ee39bb7ab2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#afb2f9029c27017205630b2ee39bb7ab2">loadImpl</a> (<a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> &amp;variable, bool substitute)</td></tr>
+<tr class="separator:afb2f9029c27017205630b2ee39bb7ab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
-Protected Fields</h2></td></tr>
-<tr class="memitem:a3ab0c51547c4c4232d1cc46c3024aef0"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a86d6fcf668e7b9488355437e406fa456">PluginAndPrio</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a3ab0c51547c4c4232d1cc46c3024aef0">plugins</a></td></tr>
-<tr class="separator:a3ab0c51547c4c4232d1cc46c3024aef0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_types_classaworx_1_1lib_1_1util_1_1PluginContainer"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classaworx_1_1lib_1_1util_1_1PluginContainer')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html">PluginContainer&lt; ConfigurationPlugin, Priorities &gt;</a></td></tr>
+<tr class="memitem:a2013d0a728b075dfbffc40f77876b0b3 inherit pub_types_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#a2013d0a728b075dfbffc40f77876b0b3">TPlugin</a> = ConfigurationPlugin</td></tr>
+<tr class="separator:a2013d0a728b075dfbffc40f77876b0b3 inherit pub_types_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f949b8609e855c63a0be04e4f582d34 inherit pub_types_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#a3f949b8609e855c63a0be04e4f582d34">TPriorities</a> = <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities</a></td></tr>
+<tr class="separator:a3f949b8609e855c63a0be04e4f582d34 inherit pub_types_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classaworx_1_1lib_1_1util_1_1PluginContainer"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classaworx_1_1lib_1_1util_1_1PluginContainer')"><img src="closed.png" alt="-"/>&#160;Protected Fields inherited from <a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html">PluginContainer&lt; ConfigurationPlugin, Priorities &gt;</a></td></tr>
+<tr class="memitem:aefb0e5aa78574294360aa4404def1546 inherit pro_attribs_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Slot &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#aefb0e5aa78574294360aa4404def1546">plugins</a></td></tr>
+<tr class="separator:aefb0e5aa78574294360aa4404def1546 inherit pro_attribs_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae123e42288639003e21f988cba43d8e1 inherit pro_attribs_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#a2013d0a728b075dfbffc40f77876b0b3">TPlugin</a> *&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#ae123e42288639003e21f988cba43d8e1">pluginsOwned</a></td></tr>
+<tr class="separator:ae123e42288639003e21f988cba43d8e1 inherit pro_attribs_classaworx_1_1lib_1_1util_1_1PluginContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classaworx_1_1lib_1_1threads_1_1ThreadLock')"><img src="closed.png" alt="-"/>&#160;Protected Fields inherited from <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a></td></tr>
 <tr class="memitem:a04735ee43ec4d1676e4e0eb3d6bebd73 inherit pro_attribs_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a04735ee43ec4d1676e4e0eb3d6bebd73">cntAcquirements</a> =0</td></tr>
 <tr class="separator:a04735ee43ec4d1676e4e0eb3d6bebd73 inherit pro_attribs_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -226,41 +243,10 @@ Protected Fields</h2></td></tr>
 <tr class="separator:a34743946c0a8598a13feea2b3c7944eb inherit pro_attribs_classaworx_1_1lib_1_1lang_1_1Ownable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9f15c83b17c4bab35858650c98c44d5 inherit pro_attribs_classaworx_1_1lib_1_1lang_1_1Ownable"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">strings::TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Ownable.html#ae9f15c83b17c4bab35858650c98c44d5">acquirementSourcefile</a> =nullptr</td></tr>
 <tr class="separator:ae9f15c83b17c4bab35858650c98c44d5 inherit pro_attribs_classaworx_1_1lib_1_1lang_1_1Ownable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
-Protected Methods</h2></td></tr>
-<tr class="memitem:a91357d05e4e05a428ad283c8bb272df8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a91357d05e4e05a428ad283c8bb272df8">insertPlugin</a> (<a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> *plugin, int priority)</td></tr>
-<tr class="separator:a91357d05e4e05a428ad283c8bb272df8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2eda8ca2ba7de479f3d0204bfbdc78d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#aa2eda8ca2ba7de479f3d0204bfbdc78d">loadImpl</a> (<a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> &amp;variable, bool substitute)</td></tr>
-<tr class="separator:aa2eda8ca2ba7de479f3d0204bfbdc78d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a86d6fcf668e7b9488355437e406fa456"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a86d6fcf668e7b9488355437e406fa456">&#9670;&nbsp;</a></span>PluginAndPrio</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef std::pair&lt;int, <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a>*&gt; <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a86d6fcf668e7b9488355437e406fa456">PluginAndPrio</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>An element of the list of plug-ins with their priority </p>
-
-</div>
-</div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a36d123dcc42ef58da853d1eb86f12199"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a36d123dcc42ef58da853d1eb86f12199">&#9670;&nbsp;</a></span>Configuration()</h2>
+<a id="ab7711c27e91b3aa0ad23a1ec020f1c73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7711c27e91b3aa0ad23a1ec020f1c73">&#9670;&nbsp;</a></span>Configuration()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -268,18 +254,37 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a> </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>addDefaultPlugins</em> = <code>true</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Constructs a <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a>. Registers the initial plug-ins <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a>, <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ada8187fc67d8f54a46aed3bf04542e08">CmdLine</a>, <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a3a317739ee132a40b625cafa2c5a8706">Environment</a> and <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a694607c106d5e636c5fc90d623c0dcef">ProtectedValues</a>. </p>
+<p> Constructs a <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a>. If <code>addDefaultPlugins</code> is <code>true</code>, registers the initial plug-ins as follows</p>
+<table class="doxtable">
+<tr>
+<th>Priority </th><th>Plug-in Type  </th></tr>
+<tr>
+<td><a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dda663d90fa900995eda127ba7745719104">Priorities::ProtectedValues</a> </td><td><a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a> </td></tr>
+<tr>
+<td><a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dda0ba29c6a1afacf586b03a26162c72274">Priorities::Environment</a> </td><td><a class="el" href="classaworx_1_1lib_1_1config_1_1Environment.html">Environment</a> </td></tr>
+<tr>
+<td><a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dda91af5705f16502125e8b2187e64202c0">Priorities::CLI</a> </td><td><a class="el" href="classaworx_1_1lib_1_1config_1_1CLIArgs.html">CLIArgs</a> </td></tr>
+<tr>
+<td><a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814ddaff1c11ab5744d2a4a07760b31e816e7f">Priorities::DefaultValues</a> </td><td><a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a> </td></tr>
+</table>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">addDefaultPlugins</td><td>If <code>true</code>, the default plugins are added. Defaults to <code>true</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a id="a080b7d97e47cd9bba370205c7c481ca2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a080b7d97e47cd9bba370205c7c481ca2">&#9670;&nbsp;</a></span>~Configuration()</h2>
+<a id="a09dcd47e8d29f55ef5515d6413d42d16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09dcd47e8d29f55ef5515d6413d42d16">&#9670;&nbsp;</a></span>~Configuration()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -288,7 +293,7 @@ Protected Methods</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual ~<a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a> </td>
+          <td class="memname">~<a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -296,18 +301,18 @@ Protected Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Destructs a configuration plug-in. All <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> that were assigned (using <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a5d1b6c80d43cc1f1dd83e43f2c2fbe9a">InsertPlugin</a>) will be deleted. </p>
+<p> Destructs a configuration plug-in. All <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> that were assigned (using <a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#a0fbe8a829205bbd2cc9b5249e9cc5dae">InsertPlugin</a>) will be deleted. </p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad6278a48fb2dd492fa6765092f838f44"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad6278a48fb2dd492fa6765092f838f44">&#9670;&nbsp;</a></span>FetchFromDefault()</h2>
+<a id="a2a8327212b95a8eb1fc6817c6376327b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a8327212b95a8eb1fc6817c6376327b">&#9670;&nbsp;</a></span>FetchFromDefault()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -316,17 +321,28 @@ Protected Methods</h2></td></tr>
           <td class="memname">int FetchFromDefault </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> &amp;&#160;</td>
-          <td class="paramname"><em>dest</em></td><td>)</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>section</em> = <code><a class="el" href="namespaceaworx.html#ab1ed6dcfbe4628dccefbdb5633b1bf01">NullString</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> This method fetches all values from <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a> which are not present in the given plug-in <code>dest</code> and stores them in. This is useful to collect all generated default values and store them in a users' configuration file. This way, the user can identify configurable options easily.</p>
-<dl class="section note"><dt>Note</dt><dd>Applications might want to copy only a portion of the default values to not blow up a users' configuration. To achieve this, a custom method to fetch selected values has to be implemented. In this respect, this method is a very simple default and its source might be used as a jump start.</dd></dl>
+<p> This method fetches all values from a plug-in of priority <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814ddaff1c11ab5744d2a4a07760b31e816e7f">DefaultValues</a>, which are not present in the given plug-in <code>dest</code> and stores them in that. This is useful to collect all generated default values and store them in a users' configuration file. This way, the user can identify configurable options easily.</p>
+<dl class="section note"><dt>Note</dt><dd>Applications might want to copy only a portion of the default values (of a section) to not blow up a users' configuration. To achieve this, a custom method to fetch selected values has to be implemented. In this respect, this method is a very simple default and its source might be used as a jump start.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dest</td><td>The destination plug-in. </td></tr>
+    <tr><td class="paramname">section</td><td>Optional string denoting a section to fetch. Defaults to <code>NullString</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -334,93 +350,31 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a5d1b6c80d43cc1f1dd83e43f2c2fbe9a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5d1b6c80d43cc1f1dd83e43f2c2fbe9a">&#9670;&nbsp;</a></span>InsertPlugin()</h2>
+<a id="a86be441029df719e05e39518527bfa30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86be441029df719e05e39518527bfa30">&#9670;&nbsp;</a></span>GetIterator()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void InsertPlugin </td>
+          <td class="memname"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration_1_1Iterator.html">Iterator</a>* GetIterator </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> *&#160;</td>
-          <td class="paramname"><em>plugin</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>sectionName</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>priority</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 <hr/>
-<p> Adds the given plug-in to the list of plug-ins used to query configuration values. Higher numbers for parameter priority, prioritize this plug-in against those with lower values. Default values are provided with static constant fields <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a1baac67c511294bc3317b956ea196b11">PrioCmdLine</a>, <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a521974ec2e990cfb266f4e83b451d578">PrioEnvironment</a> and <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ac0e213817eb829a4d7b3f1960814a781">PrioIniFile</a>.</p>
+<p> Creates an iterator object to return all variables within a section.</p>
+<p>The iterator object returned, needs to be deleted by the caller.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">plugin</td><td>The plug-in to insert. </td></tr>
-    <tr><td class="paramname">priority</td><td>The priority of the plug-in. </td></tr>
+    <tr><td class="paramname">sectionName</td><td>The name of the section to iterate.</td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="a91357d05e4e05a428ad283c8bb272df8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a91357d05e4e05a428ad283c8bb272df8">&#9670;&nbsp;</a></span>insertPlugin()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void insertPlugin </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> *&#160;</td>
-          <td class="paramname"><em>plugin</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>priority</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<hr/>
-<p> Implementation of <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a5d1b6c80d43cc1f1dd83e43f2c2fbe9a">InsertPlugin</a> (not locked, used in the constructor).</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">plugin</td><td>The plug-in to insert. </td></tr>
-    <tr><td class="paramname">priority</td><td>The priority of the plug-in. </td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#a24926108b770033792d015cb86aeffb3">Variable::Size</a> after parsing. </dd></dl>
 
 </div>
 </div>
@@ -451,14 +405,14 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a6abcf130e83414cb45a3130e7de0aff9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6abcf130e83414cb45a3130e7de0aff9">&#9670;&nbsp;</a></span>Load()</h2>
+<a id="a54eb8ca9a9f484609edf27bc57af2e73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54eb8ca9a9f484609edf27bc57af2e73">&#9670;&nbsp;</a></span>Load()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Load </td>
+          <td class="memname"><a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities</a> Load </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> &amp;&#160;</td>
           <td class="paramname"><em>variable</em></td><td>)</td>
@@ -468,19 +422,57 @@ Protected Methods</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Receives and optionally creates configuration variable.</p>
-<p>If the variable was not found and <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#ae4b47533ee1b78ad20c12f235d7ef958">Variable::DefaultValue</a> in <code>variable</code> is set, the method adds the value value to plug-in <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a> (respectively to the plug-in found at or below <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a5854d47deb1f21be95871268fa3efa02">PrioDefault</a>). For the conversion of the value, field <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a150967a58e76635889b4082537c67a2f">ConfigurationPlugin::StringConverter</a> of field <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a> is used.</p>
+<p>If the variable was not found and <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#ae4b47533ee1b78ad20c12f235d7ef958">Variable::DefaultValue</a> in <code>variable</code> is set, the method adds the value value to a plug-in of priority <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814ddaff1c11ab5744d2a4a07760b31e816e7f">DefaultValues</a>, (respectively to the plug-in found at or below <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814ddaff1c11ab5744d2a4a07760b31e816e7f">DefaultValues</a>). For the conversion of the value, field <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a150967a58e76635889b4082537c67a2f">ConfigurationPlugin::StringConverter</a> of field a plug-in of priority <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814ddaff1c11ab5744d2a4a07760b31e816e7f">DefaultValues</a>, is used. (Which has to be present.)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">variable</td><td>The variable to receive.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The priority of the configuration plug-in that provided the result. <code>0</code> if not found, <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a5854d47deb1f21be95871268fa3efa02">PrioDefault</a> if either found or created in <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The priority of the configuration plug-in that provided the result. <code>0</code> if not found. </dd></dl>
 
 </div>
 </div>
-<a id="aa2eda8ca2ba7de479f3d0204bfbdc78d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2eda8ca2ba7de479f3d0204bfbdc78d">&#9670;&nbsp;</a></span>loadImpl()</h2>
+<a id="a48c507c3c7310d208de387fa51579ee8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48c507c3c7310d208de387fa51579ee8">&#9670;&nbsp;</a></span>LoadFromString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LoadFromString </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> &amp;&#160;</td>
+          <td class="paramname"><em>variable</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>externalizedValue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Convenience method to set values in <code>variable</code> according to the provided string. For the conversion of the "externalized" string, method <a class="el" href="classaworx_1_1lib_1_1config_1_1XTernalizer.html#adeb8b4a1df5c756294f6c354b5d185e4">XTernalizer::LoadFromString</a> of field <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a150967a58e76635889b4082537c67a2f">ConfigurationPlugin::StringConverter</a> of a plug-in of priority <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814ddaff1c11ab5744d2a4a07760b31e816e7f">DefaultValues</a>, is used.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">variable</td><td>The variable object. </td></tr>
+    <tr><td class="paramname">externalizedValue</td><td>The new value to write.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#a24926108b770033792d015cb86aeffb3">Variable::Size</a> after parsing. </dd></dl>
+
+</div>
+</div>
+<a id="afb2f9029c27017205630b2ee39bb7ab2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb2f9029c27017205630b2ee39bb7ab2">&#9670;&nbsp;</a></span>loadImpl()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -489,7 +481,7 @@ Protected Methods</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int loadImpl </td>
+          <td class="memname"><a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities</a> loadImpl </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> &amp;&#160;</td>
           <td class="paramname"><em>variable</em>, </td>
@@ -525,29 +517,80 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a0cc199ada725868041d059e7098b0ccd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0cc199ada725868041d059e7098b0ccd">&#9670;&nbsp;</a></span>RemovePlugin()</h2>
+<a id="af95cc36a7e678d2107395a5f4b599ead"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af95cc36a7e678d2107395a5f4b599ead">&#9670;&nbsp;</a></span>PreloadVariables()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PreloadVariables </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> This method "pre-loads" all variables of the given enum type. This way, their default value is stored in the default configuration plug-in and a later invocation of <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a2a8327212b95a8eb1fc6817c6376327b">FetchFromDefault</a> fetches all variables, regardless if a "run" of the software used the variables or not.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enum type equipped with meta data according to the scheme of configuration variables. </td></tr>
+    <tr><td class="paramname">TEnableIf</td><td>Not to be specified. Used by the compiler to select this constructor only for associated custom C++ enum types. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab16dd774047229b1e87d491cb297bdf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab16dd774047229b1e87d491cb297bdf9">&#9670;&nbsp;</a></span>Protect()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool RemovePlugin </td>
+          <td class="memname"><a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities</a> Protect </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> *&#160;</td>
-          <td class="paramname"><em>plugin</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> &amp;&#160;</td>
+          <td class="paramname"><em>variable</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>externalizedValue</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Remove the given plug-in from the list of plug-ins. Responsibility for deletion of removed plug-ins moves to the remover. Active (inserted) plug-ins get deleted by class' destructor. </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Convenience method that stores the <code>variable</code> with priority <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities::ProtectedValues</a>.</p>
+<p>The variable value is determined as follows:</p><ul>
+<li>If optional parameter <code>externalizedValue</code> is provided and not <em>nulled</em>, the values are loaded from that string.</li>
+<li>Otherwise, if the variable has no values set but <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#ae4b47533ee1b78ad20c12f235d7ef958">Variable::DefaultValue</a> is not <em>nulled</em> then values are loaded from this field.</li>
+<li>If all is unset (the variable values, parameter <code>externalizedValue</code> and field <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#ae4b47533ee1b78ad20c12f235d7ef958">Variable::DefaultValue</a>), then the unset variable is stored, which results in removing an existing protection value from the configuration.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">plugin</td><td>The plug-in to be deleted. </td></tr>
+    <tr><td class="paramname">variable</td><td>The variable object. </td></tr>
+    <tr><td class="paramname">externalizedValue</td><td>Optional externalized value string. If given, the variable is set prior to writing. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><code>true</code> if the plug-in was removed, else <code>false</code>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a972bad3145dc66bea80921d0e67eadad">Configuration::Store</a>. </dd></dl>
 
 </div>
 </div>
@@ -585,9 +628,8 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Sets the command line arguments for <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ada8187fc67d8f54a46aed3bf04542e08">CmdLine</a>.</p>
-<dl class="section note"><dt>Note</dt><dd>This method should be called for instances of this class after construction.<br />
- In standard application scenarios, this method is invoked by method <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a> for the static singleton <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ac7b578f72e6b1f48e14ad3a762c412db">Default</a>.</dd></dl>
+<p> Sets the command line arguments for default plug-in <a class="el" href="classaworx_1_1lib_1_1config_1_1CLIArgs.html">CLIArgs</a>. This method should be called for instances of this class after construction.</p>
+<dl class="section note"><dt>Note</dt><dd>In standard application scenarios, this method is invoked when the <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html">Library</a> is initialized using an interface method that accepts CLI arguments.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>On the Windows platform, the Microsoft compiler provides the global variables <em>__argc</em> and <em>__argv</em> (respectively <em>__wargv</em> for wide character binaries. These variables a can be used if this method is invoked outside of the <em>main()</em> method.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -644,14 +686,14 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a240650c554ebeed809020762c8223845"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a240650c554ebeed809020762c8223845">&#9670;&nbsp;</a></span>Store()</h2>
+<a id="a972bad3145dc66bea80921d0e67eadad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a972bad3145dc66bea80921d0e67eadad">&#9670;&nbsp;</a></span>Store()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Store </td>
+          <td class="memname"><a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities</a> Store </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> &amp;&#160;</td>
           <td class="paramname"><em>variable</em>, </td>
@@ -671,22 +713,22 @@ Protected Methods</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Writes the variable to the configuration. In general, this is done by asking each of our installed plug-ins - in the order of their priority - to do so. As soon as the first plug-in returns <code>true</code>, the variable is considered written and no other plug-in is asked. This way, the variable is stored by the plug-in with the highest priority.</p>
-<p>The maximum priority to start the loop with depending on field <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#a4450b0bad265ba3bd24e994f70aec802">Variable::Priority</a> of the given <code>variable</code>. The rules are as follows:</p><ul>
-<li>If the value is <code>-1</code>, which is the default value of new variables or ones that were freshly defined, then prior to storing the value, the variable is (tried to be) loaded first (without actually overwriting the values). After that, one of the next two rules apply.</li>
-<li>If the value is <code>0</code>, which indicates that a previous load operation failed, the loop starts with <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a5854d47deb1f21be95871268fa3efa02">PrioDefault</a> (and usually ends there, as standard configuration sets do not have plug-ins with lower priorities installed). In other words, newly created variables are stored in the in-memory plug-in <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a>. This way, they are not written to external configuration files, unless the application explicitly moves such new default values to dedicated other plug-ins (e.g. on termination).</li>
-<li>If the value is greater than <code>0</code>, the value is used as the start of the loop. This way, an already defined variable will be stored in the same plug-in as it was found (or one with a lower priority, if that plug-in does not provide writing capabilities).</li>
+<p>The maximum priority to start the loop with depends on field <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#a785160bb624ffbba18242691580e55c0">Variable::Priority</a> of the given <code>variable</code>. The rules are as follows:</p><ul>
+<li>If the value is <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814ddab50339a10e1de285ac99d4c3990b8693">Priorities::NONE</a>, which is the default value of new variables or ones that were freshly declared, then prior to storing the value, the variable is (tried to be) loaded first (without actually overwriting the values). After that, one of the next two rules apply.</li>
+<li>If the value is still <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814ddab50339a10e1de285ac99d4c3990b8693">Priorities::NONE</a>, which indicates that a previous load operation failed, the loop starts with <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities::DefaultValues</a> (and usually ends there, as standard configuration sets do not have plug-ins with lower priorities installed). In other words, newly created variables are stored in the plug-in of priority <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814ddaff1c11ab5744d2a4a07760b31e816e7f">DefaultValues</a> (usually an <b><a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a></b>). This way, they are not written to external configuration files, unless the application explicitly moves such new default values to dedicated other plug-ins (e.g. on termination).</li>
+<li>If the value is greater than <code>0</code>, the value is used as the start of the loop. This way, an already defined variable will be stored in the same plug-in as it was found or one with a lower priority, if that plug-in does not provide writing capabilities.</li>
 </ul>
-<p>Consequently, as field <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#a4450b0bad265ba3bd24e994f70aec802">Variable::Priority</a> is public, the behavior can be manipulated, by setting the field explicitly prior to invoking this method. Some frequent use cases shall be named here:</p><ul>
-<li>Setting the field to <code><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#aaadcce82539022fab50871afc106a9d1">Configuration::PrioProtected</a></code> allows to store the variable in plug-in <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a694607c106d5e636c5fc90d623c0dcef">ProtectedValues</a>. This way, the variable gets <em>'locked'</em> in respect to external manipulation.</li>
-<li>Setting the field to <code><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a5854d47deb1f21be95871268fa3efa02">Configuration::PrioDefault</a></code> allows to store the variable in plug-in <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a>. This way, the variable becomes just a default and does not overwrite other external values.</li>
-<li>Setting the field to a distinct priority value that names a user-specific configuration (vs. a system-wide configuration).</li>
-<li>Setting the field to <code><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#aaadcce82539022fab50871afc106a9d1">Configuration::PrioProtected</a> - 1</code> allows to store the variable just in the plug-in with highest possible priority, for example a user specific configuration is preferred to a system wide configuration)</li>
+<p>Consequently, as field <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#a785160bb624ffbba18242691580e55c0">Variable::Priority</a> is public, the behavior can be manipulated, by setting the field explicitly prior to invoking this method. Some frequent use cases shall be named here:</p><ul>
+<li>Setting the field to <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dda663d90fa900995eda127ba7745719104">Priorities::ProtectedValues</a> allows to protect the variable value in respect to external manipulation.</li>
+<li>By setting the field to <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814ddaff1c11ab5744d2a4a07760b31e816e7f">DefaultValues</a>, the value becomes just a default and does not overwrite externally specified values.</li>
+<li>Setting the field to a distinct priority value that names a user-specific configuration (vs. a system-wide configuration) to store into.</li>
+<li>Setting the field to <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dda663d90fa900995eda127ba7745719104">ProtectedValues</a> <code>- 1</code>, allows to store the variable just in the plug-in with highest possible priority, for example a user specific configuration is preferred to a system wide configuration)</li>
 <li>A variable might be related to a second one. If the priority of the second one is known, that priority might be set to possibly have both variables stored in the same plug-in.</li>
 </ul>
-<p>The method returns the priority of the configuration plug-in that the value was written to as well as storing this value in field <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#a4450b0bad265ba3bd24e994f70aec802">Variable::Priority</a>. If the result is <code>0</code>, the variable was not written. This might only happen if</p><ul>
-<li>either field <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a> was modified (removed or exchanged with a different plug-in that does not write the value)</li>
-<li>or if field <code>Priority</code> of the variable was set below <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a5854d47deb1f21be95871268fa3efa02">PrioDefault</a> and greater than <code>0</code>.</li>
-<li>The detected (!) priority was <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#aaadcce82539022fab50871afc106a9d1">PrioProtected</a>. In this case, obviously the application does not want to allow changes and writing the variable into a different plug-in has no effect. This way, such variables also do not appear in a users' configuration in the case that on program termination, new default values are copied there.</li>
+<p>The method returns the priority of the configuration plug-in that the value was written to as well as storing this value in field <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#a785160bb624ffbba18242691580e55c0">Variable::Priority</a>. If the result is <code>0</code>, the variable was not written. This might only happen if</p><ul>
+<li>either field default plug-in of priority <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814ddaff1c11ab5744d2a4a07760b31e816e7f">DefaultValues</a> was modified (removed or exchanged with a different plug-in that does not write the value)</li>
+<li>or if field <code>Priority</code> of the variable was set below <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814ddaff1c11ab5744d2a4a07760b31e816e7f">DefaultValues</a> and greater than <code>0</code>.</li>
+<li>The detected (!) priority was <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dda663d90fa900995eda127ba7745719104">ProtectedValues</a>. In this case, obviously the application does not want to allow changes and writing the variable into a different plug-in has no effect. This way, such variables also do not appear in a users' configuration in the case that on program termination, new default values are copied there.</li>
 </ul>
 <p>Optional parameter <code>externalizedValue</code> allows to provide a string that is parsed by the storing plug-in to reset the variables' values prior to writing.</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -700,76 +742,50 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
+<a id="ad268402c30f7a69143567776075589df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad268402c30f7a69143567776075589df">&#9670;&nbsp;</a></span>StoreDefault()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities</a> StoreDefault </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> &amp;&#160;</td>
+          <td class="paramname"><em>variable</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>externalizedValue</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Convenience method that stores the <code>variable</code> with priority <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities::DefaultValues</a>.</p>
+<p>The variable value is determined as follows:</p><ul>
+<li>If optional parameter <code>externalizedValue</code> is provided and not <em>nulled</em>, the values are loaded from that string.</li>
+<li>Otherwise, if the variable has no values set but <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#ae4b47533ee1b78ad20c12f235d7ef958">Variable::DefaultValue</a> is not <em>nulled</em> then values are loaded from this field.</li>
+<li>If all is unset (the variable values, parameter <code>externalizedValue</code> and field <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#ae4b47533ee1b78ad20c12f235d7ef958">Variable::DefaultValue</a>), then the unset variable is stored, which results in removing an existing default value from the configuration.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">variable</td><td>The variable object. </td></tr>
+    <tr><td class="paramname">externalizedValue</td><td>Optional externalized value string. If given, the variable is set prior to writing. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a972bad3145dc66bea80921d0e67eadad">Configuration::Store</a>. </dd></dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="ada8187fc67d8f54a46aed3bf04542e08"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada8187fc67d8f54a46aed3bf04542e08">&#9670;&nbsp;</a></span>CmdLine</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1config_1_1CommandLinePlugin.html">CommandLinePlugin</a> CmdLine</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The plug-in for command line parameters. </p>
-
-</div>
-</div>
-<a id="ac7b578f72e6b1f48e14ad3a762c412db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac7b578f72e6b1f48e14ad3a762c412db">&#9670;&nbsp;</a></span>Default</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a> Default</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>This is the default singleton for standard use. Note that it is allowed to have multiple instances of this class but this default is provided for convenience as standard applications have just one.<br />
- Overloaded methods found in classes of this namespace, which omit the configuration parameter use this singleton instead. Of-course, also custom plug-ins may be attached to this object. </p>
-
-</div>
-</div>
-<a id="a64b37d856a86344c0d3c1a6d9779e6f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a64b37d856a86344c0d3c1a6d9779e6f6">&#9670;&nbsp;</a></span>DefaultValues</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a> DefaultValues</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The in-memory configuration plug-in that stores default values. </p>
-
-</div>
-</div>
-<a id="a3a317739ee132a40b625cafa2c5a8706"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3a317739ee132a40b625cafa2c5a8706">&#9670;&nbsp;</a></span>Environment</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1config_1_1EnvironmentPlugin.html">EnvironmentPlugin</a> Environment</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The plug-in for the evaluation of system environment variables. </p>
-
-</div>
-</div>
 <a id="a9bfa3473e5c94dafa94ae1339fe70a48"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9bfa3473e5c94dafa94ae1339fe70a48">&#9670;&nbsp;</a></span>NumberFormat</h2>
 
@@ -782,182 +798,6 @@ Protected Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Number format definition used to read and write int and float values. </p>
-
-</div>
-</div>
-<a id="a3ab0c51547c4c4232d1cc46c3024aef0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ab0c51547c4c4232d1cc46c3024aef0">&#9670;&nbsp;</a></span>plugins</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a86d6fcf668e7b9488355437e406fa456">PluginAndPrio</a> &gt; plugins</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>The plug-ins we have attached </p>
-
-</div>
-</div>
-<a id="a12cc396b18254ffb4e2d7b98692f2cbc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a12cc396b18254ffb4e2d7b98692f2cbc">&#9670;&nbsp;</a></span>PrioAutodetect</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr int PrioAutodetect = 50</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Constant providing a priority which is even lower than default. This priority is not used by any standard plug-ins and currently not even anywhere in core <b>ALib</b>. The rational to provide it is for third party libraries that may use this value in cases where values are estimated or detected. A user of the library may then overwrite such auto-detection by setting a default value in the configuration. </p>
-
-</div>
-</div>
-<a id="a1baac67c511294bc3317b956ea196b11"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1baac67c511294bc3317b956ea196b11">&#9670;&nbsp;</a></span>PrioCmdLine</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr int PrioCmdLine = 400</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Constant providing default priority for <b>IniFile</b> (or similar) plug-in. </p>
-
-</div>
-</div>
-<a id="a5854d47deb1f21be95871268fa3efa02"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5854d47deb1f21be95871268fa3efa02">&#9670;&nbsp;</a></span>PrioDefault</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr int PrioDefault = 100</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Constant providing a low priority. This is used with <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a> </p>
-
-</div>
-</div>
-<a id="a521974ec2e990cfb266f4e83b451d578"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a521974ec2e990cfb266f4e83b451d578">&#9670;&nbsp;</a></span>PrioEnvironment</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr int PrioEnvironment = 300</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Constant providing default priority for environment variables plug-in. </p>
-
-</div>
-</div>
-<a id="ac0e213817eb829a4d7b3f1960814a781"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac0e213817eb829a4d7b3f1960814a781">&#9670;&nbsp;</a></span>PrioIniFile</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr int PrioIniFile = 200</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Constant providing default priority for command-line parameters plug-in. </p>
-
-</div>
-</div>
-<a id="aaadcce82539022fab50871afc106a9d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaadcce82539022fab50871afc106a9d1">&#9670;&nbsp;</a></span>PrioProtected</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr int PrioProtected =(std::numeric_limits&lt;int&gt;::max)()</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Constant providing the highest possible priority. This is used with <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a694607c106d5e636c5fc90d623c0dcef">ProtectedValues</a> </p>
-
-</div>
-</div>
-<a id="a694607c106d5e636c5fc90d623c0dcef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a694607c106d5e636c5fc90d623c0dcef">&#9670;&nbsp;</a></span>ProtectedValues</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a> ProtectedValues</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The in-memory configuration plug-in that stores values that are not changeable by external configuration data. </p>
 
 </div>
 </div>
@@ -1030,7 +870,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:57 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:15 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

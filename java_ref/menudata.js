@@ -1,7 +1,7 @@
 var menudata={children:[
-{text:"Overview",url:"javamainpage.html"},
-{text:"Tutorial",url:"javatutorial.html"},
-{text:"IDE Setup",url:"javasetup.html"},
+{text:"Overview",url:"alox_java_mainpage.html"},
+{text:"Tutorial",url:"alox_java_tutorial.html"},
+{text:"IDE Setup",url:"alox_java_setup.html"},
 {text:"Class Reference",url:"annotated.html",children:[
 {text:"Alphabetical Index",url:"classes.html"},
 {text:"Namespace Index",url:"annotated.html"},

@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu"    href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu_hl" href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu"    href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu_hl" href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -86,6 +86,7 @@ $(function() {
 <a href="#pub-static-methods">Public Static Methods</a> &#124;
 <a href="#pro-static-attribs">Protected Static Fields</a> &#124;
 <a href="#pri-static-attribs">Private Static Fields</a> &#124;
+<a href="#pro-static-methods">Protected Static Methods</a> &#124;
 <a href="classcom_1_1aworx_1_1lib_1_1ALIB-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ALIB Class Reference</div>  </div>
@@ -94,7 +95,7 @@ $(function() {
 <div class="dynheader">
 Collaboration diagram for ALIB:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lib_1_1ALIB__coll__graph.svg" width="560" height="323"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lib_1_1ALIB__coll__graph.svg" width="1116" height="536"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
@@ -106,19 +107,23 @@ Collaboration diagram for ALIB:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Public Static Fields</h2></td></tr>
+<tr class="memitem:a0910717551963df697d192900a7f4f59"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a0910717551963df697d192900a7f4f59">config</a> =null</td></tr>
+<tr class="separator:a0910717551963df697d192900a7f4f59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99bc0357098bd21444efbafe19704712"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a99bc0357098bd21444efbafe19704712">configCategoryName</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>( &quot;ALIB&quot; )</td></tr>
 <tr class="separator:a99bc0357098bd21444efbafe19704712"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80915412cfca1d0f550c217f30d3083c"><td class="memItemLeft" align="right" valign="top">static final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a80915412cfca1d0f550c217f30d3083c">revision</a> =0</td></tr>
 <tr class="separator:a80915412cfca1d0f550c217f30d3083c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e06b7976acfefcb37439832378a1070"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html">SmartLock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a3e06b7976acfefcb37439832378a1070">stdOutputStreamsLock</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html">SmartLock</a>()</td></tr>
 <tr class="separator:a3e06b7976acfefcb37439832378a1070"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a450c392481245410c99fb560c206e824"><td class="memItemLeft" align="right" valign="top">static final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a450c392481245410c99fb560c206e824">version</a> =1709</td></tr>
+<tr class="memitem:a450c392481245410c99fb560c206e824"><td class="memItemLeft" align="right" valign="top">static final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a450c392481245410c99fb560c206e824">version</a> =1712</td></tr>
 <tr class="separator:a450c392481245410c99fb560c206e824"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Public Static Methods</h2></td></tr>
 <tr class="memitem:afaa45c957f86a4ff5d0939a80af4d2d3"><td class="memItemLeft" align="right" valign="top">synchronized static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#afaa45c957f86a4ff5d0939a80af4d2d3">init</a> (String[] args)</td></tr>
 <tr class="separator:afaa45c957f86a4ff5d0939a80af4d2d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acee3974944e5898adc148fc4f7524dba"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#acee3974944e5898adc148fc4f7524dba">init</a> (<a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a> <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a0910717551963df697d192900a7f4f59">config</a>)</td></tr>
+<tr class="separator:acee3974944e5898adc148fc4f7524dba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26132ef4a63bb3ad56a2630fae0d49f9"><td class="memItemLeft" align="right" valign="top">static boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a26132ef4a63bb3ad56a2630fae0d49f9">readBoolean</a> (<a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> src)</td></tr>
 <tr class="separator:a26132ef4a63bb3ad56a2630fae0d49f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a580e8fc68c1ef90b1b304bd94c32bfa8"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="enumcom_1_1aworx_1_1lib_1_1lang_1_1Case.html">Case</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a580e8fc68c1ef90b1b304bd94c32bfa8">readCase</a> (<a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> src)</td></tr>
@@ -151,10 +156,15 @@ Private Static Fields</h2></td></tr>
 <tr class="separator:a0a20ce9d8843a85788d87d662e71c35d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9e96e2665866b3811a07ba6261b80c2"><td class="memItemLeft" align="right" valign="top">static char []&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#af9e96e2665866b3811a07ba6261b80c2">trueValuesInclusion</a> = { 'i', 't', '1', 'y' }</td></tr>
 <tr class="separator:af9e96e2665866b3811a07ba6261b80c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-methods"></a>
+Protected Static Methods</h2></td></tr>
+<tr class="memitem:aedc913c139bb562646d3459b0ca28997"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#aedc913c139bb562646d3459b0ca28997">init</a> ()</td></tr>
+<tr class="separator:aedc913c139bb562646d3459b0ca28997"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="afaa45c957f86a4ff5d0939a80af4d2d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afaa45c957f86a4ff5d0939a80af4d2d3">&#9670;&nbsp;</a></span>init()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#afaa45c957f86a4ff5d0939a80af4d2d3">&#9670;&nbsp;</a></span>init() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -177,15 +187,78 @@ Private Static Fields</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> This method must be called prior to using <b>ALib</b>, e.g. at the beginning of the <code>main()</code> method of an application. It is OK, to call this method more than once, which allows independent code blocks (e.g. libraries) to bootstrap ALIB independently. However, only the first invocation is effective with the exclamation that if command line parameters are provided with a call, those are set. Also, the very first invocation should not be interrupted by a parallel invocation of a second thread. Consequently, it has to be assured that this method is invoked once on the real bootstrap an app.</p>
-<p>In the Java version of the AWorx Library (<b>ALib</b>), the invocation of this method is optional. However, it is good practice to invoke this method in the main() method of a process and provide the command line arguments. If no invocation is performed, no configuration plug-ins are set.</p>
-<p>If other, custom configuration data sources should be used already with this method (however, in the current Java implementation, no configuration variables are read), then such plug-in(s) have to be added to public, static field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac7b578f72e6b1f48e14ad3a762c412db">Configuration.Default</a> prior to invoking this method. In other words, currently it is irrelevant whether custom plug-ins are added prior or after invoking this method. But in future versions this may change and in other language versions of <b>ALib</b>, some variables are read. Therefore, it is good practice to add custom plug-ins prior to invoking this method.</p>
+<p> This method must be called prior to using <b>ALib</b>, e.g. at the beginning of the <code>main()</code> method of an application. It is OK, to call this method more than once, which allows independent code blocks (e.g. libraries) to bootstrap ALIB independently. However, only the first invocation is effective</p>
+<p>The very first invocation should not be interrupted by a parallel invocation of a second thread. Consequently, with more complex applications it is recommended to explicitly invoke this method once when the software is bootstrapped.</p>
+<p>If command line parameters should be used for configuring <b>ALox</b>, then the very first call to this method has to provide the argc and argv parameters. Subsequent calls to this method with different parameters do not change the setup.</p>
+<p>If other, custom configuration data sources should be used already with this method use overloaded method <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#acee3974944e5898adc148fc4f7524dba">ALIB.init(Configuration)</a>.</p>
+<dl class="section note"><dt>Note</dt><dd>In the current Java implementation of <b>ALib</b>, no configuration variables are read.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">args</td><td>Parameters taken from <em>standard Java</em> method <code>main()</code> (the list of command line arguments). Accepts <code>null</code> to ignore command line parameters. </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="acee3974944e5898adc148fc4f7524dba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acee3974944e5898adc148fc4f7524dba">&#9670;&nbsp;</a></span>init() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a>&#160;</td>
+          <td class="paramname"><em>config</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Variant of method <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#afaa45c957f86a4ff5d0939a80af4d2d3">init</a>, accepting a configuration. This will be stored in field <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a0910717551963df697d192900a7f4f59">config</a> and used for loading and storing <b>ALib</b> variables.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">config</td><td>The configuration object to use with <b>ALib</b> variables. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aedc913c139bb562646d3459b0ca28997"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedc913c139bb562646d3459b0ca28997">&#9670;&nbsp;</a></span>init() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Used by <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#afaa45c957f86a4ff5d0939a80af4d2d3">init</a> functions. </p>
 
 </div>
 </div>
@@ -485,6 +558,32 @@ Private Static Fields</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a0910717551963df697d192900a7f4f59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0910717551963df697d192900a7f4f59">&#9670;&nbsp;</a></span>config</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a> config =null</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The configuration used by <b>ALib</b>. This is received or created with overloaded <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#afaa45c957f86a4ff5d0939a80af4d2d3">init</a> methods. It might be shared with other libraries or can be an instance explicitly dedicated to the <b>ALib</b> library.<br />
+ The option to use an exclusive one may be used to store <b>ALib</b> configuration variables in different configuration files, e.g. to reduce "clutter" of an applications' then "main" configuration file.<br />
+ Changes should only be made at very initial, single threaded bootstrap code, with the invocation of the according method <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#acee3974944e5898adc148fc4f7524dba">init(Configuration)</a>.</p>
+<dl class="section see"><dt>See also</dt><dd>Field <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a99bc0357098bd21444efbafe19704712">configCategoryName</a>. </dd></dl>
+
+</div>
+</div>
 <a id="a99bc0357098bd21444efbafe19704712"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a99bc0357098bd21444efbafe19704712">&#9670;&nbsp;</a></span>configCategoryName</h2>
 
@@ -582,7 +681,7 @@ Private Static Fields</h2></td></tr>
 <p>If an application is deemed to always write to the standard output streams from within multiple threads, an alternative to registering each writing entity, is to invoke <b>AddAcquirer</b> just two times in a row with <code>null</code> at the start of a process and then never do this again (and never de-register). This way, no thread needs to register/deregister but threads may still <b>Acquire</b> and <b>Release</b> the lock without being registered. In other words, once a smart lock is enabled, subsequent registrations are just used to count and identify the de-registration.</p>
 <dl class="section note"><dt>Note</dt><dd>The advantage of the SmartLock is that if only one 'entity' registered, no system <em>mutexes</em> will be used with <b>Acquire</b> and <b>Release</b>, hence there is a performance gain. Such gain is not noticeable for the 'slow' terminal console output, but it is for fast, buffered output streams. </dd>
 <dd>
-Logging library <b>ALox</b>, which is built on <b>ALib</b>, will register whenever a <em>Logger</em> is used that writes to the standard output stream. Hence, applications that in parallel use, e.g. 'std::cout', should register at bootstrap and <em>acquire</em> this instance prior to writing. This way, log output and other application output is not mixed, but separated in different Lines. </dd></dl>
+Logging library <b>ALox</b>, which is built on <b>ALib</b>, will register whenever a <em>Logger</em> is used that writes to the standard output stream. Hence, applications that in parallel use, e.g. 'std.cout', should register at bootstrap and <em>acquire</em> this instance prior to writing. This way, log output and other application output is not mixed, but separated in different Lines. </dd></dl>
 
 </div>
 </div>
@@ -665,7 +764,7 @@ Logging library <b>ALox</b>, which is built on <b>ALib</b>, will register whenev
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">final int version =1709</td>
+          <td class="memname">final int version =1712</td>
         </tr>
       </table>
   </td>
@@ -685,7 +784,7 @@ Logging library <b>ALox</b>, which is built on <b>ALib</b>, will register whenev
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:48:01 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

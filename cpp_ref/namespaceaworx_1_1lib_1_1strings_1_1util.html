@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -82,7 +82,8 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">aworx::lib::strings::util Namespace Reference</div>  </div>
 </div><!--header-->
@@ -94,20 +95,124 @@ $(function() {
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html">AutoSizes</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1util_1_1SimpleText.html">SimpleText</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1util_1_1Spaces.html">Spaces</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1util_1_1StringTuples.html">StringTuples</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1util_1_1StringTable.html">StringTable</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1util_1_1Tokenizer.html">Tokenizer</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a6a099c1324d20ad8751ca4e2f0fb5e36"><td class="memTemplParams" colspan="2">template&lt;Case sensitivity, int T_StringColumn, typename... T_TupleTypes&gt; </td></tr>
+<tr class="memitem:a6a099c1324d20ad8751ca4e2f0fb5e36"><td class="memTemplItemLeft" align="right" valign="top">std::tuple&lt; T_TupleTypes... &gt; const  *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1util.html#a6a099c1324d20ad8751ca4e2f0fb5e36">FindStringInTupleVector</a> (const std::vector&lt; std::tuple&lt; T_TupleTypes... &gt;&gt; &amp;haystack, const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle)</td></tr>
+<tr class="separator:a6a099c1324d20ad8751ca4e2f0fb5e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52fca63b4787aa77d8a3ebafc567c4fa"><td class="memTemplParams" colspan="2">template&lt;Case sensitivity, int T_StringColumn, size_t T_MinCharColumn, typename... T_TupleTypes&gt; </td></tr>
+<tr class="memitem:a52fca63b4787aa77d8a3ebafc567c4fa"><td class="memTemplItemLeft" align="right" valign="top">std::tuple&lt; T_TupleTypes... &gt; const  *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1util.html#a52fca63b4787aa77d8a3ebafc567c4fa">FindStringStartInTupleVector</a> (const std::vector&lt; std::tuple&lt; T_TupleTypes... &gt;&gt; &amp;haystack, const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle)</td></tr>
+<tr class="separator:a52fca63b4787aa77d8a3ebafc567c4fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a6a099c1324d20ad8751ca4e2f0fb5e36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a099c1324d20ad8751ca4e2f0fb5e36">&#9670;&nbsp;</a></span>FindStringInTupleVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::tuple&lt;T_TupleTypes...&gt; const* aworx::lib::strings::util::FindStringInTupleVector </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::tuple&lt; T_TupleTypes... &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>haystack</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>needle</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Finds a tuple in a vector of those by performing a comparison of a given string with string data provided in one of the tuple elements.</p>
+<p>The first template parameter T_StringColumn denotes the index of the tuple elements that provides the string to search parameter <code>needle</code> in.</p>
+<p>The other template types are fetched with the second, variadic template parameter <code>T_TupleTypes</code> and and denote the types of the tuples. These template parameters do not need to be specified with invocations of the function, as they are inferred by the compiler from parameter <code>haystack</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">haystack</td><td>Vector of tuples to search in. </td></tr>
+    <tr><td class="paramname">needle</td><td>The string to search. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">sensitivity</td><td>Character case sensitivity of the comparison. Defaults to <b>Case::Sensitive</b>. </td></tr>
+    <tr><td class="paramname">T_StringColumn</td><td>The tuple element number of the comparison string. </td></tr>
+    <tr><td class="paramname">T_TupleTypes</td><td>The template type of the tuple. (Inferred by the compiler.)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the tuple found. <b>nullptr</b> on failure. </dd></dl>
+
+</div>
+</div>
+<a id="a52fca63b4787aa77d8a3ebafc567c4fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52fca63b4787aa77d8a3ebafc567c4fa">&#9670;&nbsp;</a></span>FindStringStartInTupleVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::tuple&lt;T_TupleTypes...&gt; const* aworx::lib::strings::util::FindStringStartInTupleVector </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::tuple&lt; T_TupleTypes... &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>haystack</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>needle</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Finds a tuple in a vector of those by performing a comparison of a given string with string data provided in one of the tuple elements.</p>
+<p>The function has two integer template parameters. The first, <code>T_StringColumn</code> denotes the index of the tuple elements that provides the string to search method parameter <code>needle</code> in.</p>
+<p>The second, <code>T_MinCharIndex</code>,give the index of an element of the tuple that holds an <code>int</code> value. This value is used to determine possible "abbreviations" in the search. For example, if this template parameter is set to <code>1</code>, then the second column of the table is interpreted as this minimum value. If then a value of for example <code>3</code> is found in an entry, then a match is returned if just the first three characters of the string are provided with method parameter <code>needle</code>. This allows to search for identifiers in a table which are abbreviated up to a mimimum length.</p>
+<p>The other template types are fetched with the second, variadic template parameter <code>T_TupleTypes</code> and and denote the types of the tuples. These template parameters do not need to be specified with invocations of the function, as they are inferred by the compiler from parameter <code>haystack</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">haystack</td><td>Vector of tuples to search in. </td></tr>
+    <tr><td class="paramname">needle</td><td>The string to search.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">sensitivity</td><td>Character case sensitivity of the comparison. Defaults to <b>Case::Sensitive</b>. </td></tr>
+    <tr><td class="paramname">T_StringColumn</td><td>The tuple element number of the comparison string. </td></tr>
+    <tr><td class="paramname">T_MinCharColumn</td><td>The element number of the column providing a minimum length of the given search string <code>needle</code>. </td></tr>
+    <tr><td class="paramname">T_TupleTypes</td><td>The template type of the tuple. (Inferred by the compiler.)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the tuple found. <b>nullptr</b> on failure. </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

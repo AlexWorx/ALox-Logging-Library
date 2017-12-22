@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -104,10 +104,10 @@ Collaboration diagram for NumberFormat:</div>
 <dl class="section attention"><dt>Attention</dt><dd>The methods of this class are not intended for the common use. Instead, use interface of classes <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a>, <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> or <a class="el" href="classaworx_1_1lib_1_1strings_1_1format_1_1Formatter.html">Formatter</a> to write and parse numbers, which accept an object of this type as parameters.</dd></dl>
 <p><b>Defined Singletons and User-Defined Instances:</b><br />
  Two static singletons of this class are defined which can be used wherever a number format object is needed as a parameter:</p><ul>
-<li><a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a90ba9664ea3142614578553e08d506a1">Global</a><br />
- This is initialized with method <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a> and reflects local specific settings.</li>
+<li><a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a9c9a27c7479023730cc33644fc6c9164">Global</a><br />
+ This is initialized with method <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#abad644913fc967938ede0607a353e29c">ALib::Init</a> and reflects local specific settings.</li>
 <li><a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">Computational</a><br />
- This is also initialized with method <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a> and should be used for writing and parsing numbers which are intended to be readable by software. Its' decimal point character is set to <code>'</code>.', the international standard. Furthermore no group separators are set for decimal and decimal floating point as well as for binary, hexadecimal and octal conversion.</li>
+ This is also initialized with method <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#abad644913fc967938ede0607a353e29c">ALib::Init</a> and should be used for writing and parsing numbers which are intended to be readable by software. Its' decimal point character is set to <code>'</code>.', the international standard. Furthermore no group separators are set for decimal and decimal floating point as well as for binary, hexadecimal and octal conversion.</li>
 </ul>
 <p>User defined objects default to the 'computational' setting after construction.</p>
 <p><b>Output Formats:</b><br />
@@ -140,8 +140,8 @@ Collaboration diagram for NumberFormat:</div>
 Public Static Fields</h2></td></tr>
 <tr class="memitem:acf46ddfeb324ad3027ecf50f6f48e149"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">Computational</a></td></tr>
 <tr class="separator:acf46ddfeb324ad3027ecf50f6f48e149"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90ba9664ea3142614578553e08d506a1"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a90ba9664ea3142614578553e08d506a1">Global</a></td></tr>
-<tr class="separator:a90ba9664ea3142614578553e08d506a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c9a27c7479023730cc33644fc6c9164"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a9c9a27c7479023730cc33644fc6c9164">Global</a></td></tr>
+<tr class="separator:a9c9a27c7479023730cc33644fc6c9164"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Fields</h2></td></tr>
@@ -584,7 +584,7 @@ Public Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Copies all fields (settings) from the given object. If no object is provided, values of the static singleton found in field <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a90ba9664ea3142614578553e08d506a1">Global</a> are copied</p>
+<p> Copies all fields (settings) from the given object. If no object is provided, values of the static singleton found in field <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a9c9a27c7479023730cc33644fc6c9164">Global</a> are copied</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">other</td><td>The <b>NumberFormat</b> object to copy the values from. Defaults to <code>nullptr</code>, which chooses the global singleton. </td></tr>
@@ -691,7 +691,7 @@ Public Methods</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Sets the field <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#ad283a34604408f7d20bc724f9b68e723">DecimalPointChar</a> and <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a7635f548490932c61e74373b1122eaf7">ThousandsGroupChar</a> to reflect the current system locale setting. No other values are changed.</p>
-<dl class="section note"><dt>Note</dt><dd>Static (global) object <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a90ba9664ea3142614578553e08d506a1">NumberFormat::Global</a>, implements an instance which has the right locale set (provided that <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a> was duly invoked by the process). Otherwise, this method might be used to initialize a custom object with default values to afterwards make some specific changes. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Static (global) object <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a9c9a27c7479023730cc33644fc6c9164">NumberFormat::Global</a>, implements an instance which has the right locale set (provided that <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#abad644913fc967938ede0607a353e29c">ALib::Init</a> was duly invoked by the process). Otherwise, this method might be used to initialize a custom object with default values to afterwards make some specific changes. </dd></dl>
 
 </div>
 </div>
@@ -1207,7 +1207,7 @@ Public Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>A static number format object that may be used to write and parse numbers for 'computational' use, which means, that grouping is switched off and decimal point character is <code>'</code>.'.<br />
- Method <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a> invokes <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#ad3db6c2cbd7606d63136f8bffd82c6d4">SetComputational</a> on this object. Note that using code that use this field without having invoked <b><a class="el" href="classaworx_1_1lib_1_1ALIB.html#a02fd73d861ef2e4aabb38c0c9ff82947">ALIB.init</a></b> may behave wrongly.</p>
+ Method <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#abad644913fc967938ede0607a353e29c">ALib::Init</a> invokes <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#ad3db6c2cbd7606d63136f8bffd82c6d4">SetComputational</a> on this object. Note that using code that use this field without having invoked <b>ALIB.init</b> may behave wrongly.</p>
 <p>Classes providing functionality based on this class, might use this as a default value for parameters of their interface methods. </p>
 
 </div>
@@ -1316,8 +1316,8 @@ Public Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a90ba9664ea3142614578553e08d506a1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a90ba9664ea3142614578553e08d506a1">&#9670;&nbsp;</a></span>Global</h2>
+<a id="a9c9a27c7479023730cc33644fc6c9164"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c9a27c7479023730cc33644fc6c9164">&#9670;&nbsp;</a></span>Global</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1326,7 +1326,7 @@ Public Methods</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NO_DOX <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> Global</td>
+          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> Global</td>
         </tr>
       </table>
   </td>
@@ -1336,7 +1336,7 @@ Public Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>The default static number format object that acts as the default settings of the currently running process.<br />
- Method <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a> invokes <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a286f8e0f3c8b0faa574522a25fbb0912">SetFromLocale()</a> on this object and switches grouping on.</p>
+ Method <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#abad644913fc967938ede0607a353e29c">ALib::Init</a> invokes <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a286f8e0f3c8b0faa574522a25fbb0912">SetFromLocale()</a> on this object and switches grouping on.</p>
 <p>Classes providing functionality based on this class, might use this as a default value for parameters of their interface methods. </p>
 
 </div>
@@ -1663,7 +1663,7 @@ Public Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

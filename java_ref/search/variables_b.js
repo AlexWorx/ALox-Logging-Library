@@ -14,7 +14,6 @@ var searchData=
   ['lineswithreaderrors',['linesWithReadErrors',['../classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html#adb5fc7d5dfa64923e2e6c62f3b6f3c52',1,'com::aworx::lib::config::IniFile']]],
   ['local',['LOCAL',['../enumcom_1_1aworx_1_1lib_1_1lang_1_1Reach.html#ad9a9110964a4d3537dccd0031a2509a9',1,'com::aworx::lib::lang::Reach']]],
   ['lock',['lock',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a77074852c5d95a31cab43e8c85871c64',1,'com::aworx::lox::tools::LogTools']]],
-  ['lockcount',['lockCount',['../classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a7f41e1e3070abd18f7cdfdb9a95b3d9c',1,'com::aworx::lib::threads::ThreadLock']]],
   ['lockmode',['lockMode',['../classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a22778d029b4af3e865c273d2ad677cb6',1,'com::aworx::lib::threads::ThreadLock']]],
   ['logable',['logable',['../classcom_1_1aworx_1_1lox_1_1core_1_1Domain_1_1PL.html#ab7614a387226abfcb338940751eab5a8',1,'com::aworx::lox::core::Domain::PL']]],
   ['logablelists',['logableLists',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a62d30b78c039868dbed821e6e30d8a54',1,'com::aworx::lox::Lox']]],

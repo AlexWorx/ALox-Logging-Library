@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -85,7 +85,8 @@ $(function() {
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
 <div class="title">alox.hpp File Reference</div>  </div>
 </div><!--header-->
@@ -93,7 +94,6 @@ $(function() {
 <div class="textblock"><code>#include &quot;<a class="el" href="alib_8hpp_source.html">alib/alib.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="alox__symbols_8hpp_source.html">internals/alox_symbols.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="alox__macros_8hpp_source.html">internals/alox_macros.hpp</a>&quot;</code><br />
-<code>#include &lt;vector&gt;</code><br />
 <code>#include &quot;<a class="el" href="configuration_8hpp_source.html">alib/config/configuration.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="aloxtypesandenums_8hpp_source.html">aloxtypesandenums.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="log_8hpp_source.html">log.hpp</a>&quot;</code><br />
@@ -101,12 +101,12 @@ $(function() {
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for alox.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="alox_8hpp__incl.svg" width="4530" height="486"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="alox_8hpp__incl.svg" width="6074" height="486"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="alox_8hpp__dep__incl.svg" width="1328" height="411"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="alox_8hpp__dep__incl.svg" width="1479" height="411"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="alox_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -140,12 +140,40 @@ Typedefs</h2></td></tr>
 <tr class="separator:a4d5353279fde6a5d6e5b1c8e776abf66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab080a8382b8714cf6776bf5918e3b894"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#ab080a8382b8714cf6776bf5918e3b894">ALoxReportWriter</a> = <a class="el" href="classaworx_1_1lox_1_1ALoxReportWriter.html">aworx::lox::ALoxReportWriter</a></td></tr>
 <tr class="separator:ab080a8382b8714cf6776bf5918e3b894"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a382a38852335f58a53739d455c7d67c9"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lox.html#a382a38852335f58a53739d455c7d67c9">Variables</a> { <br />
+&#160;&#160;<a class="el" href="namespaceaworx_1_1lox.html#a382a38852335f58a53739d455c7d67c9adb0b90067892b7258dc8c3b55e4c2569">NO_IDE_LOGGER</a> = 1, 
+<a class="el" href="namespaceaworx_1_1lox.html#a382a38852335f58a53739d455c7d67c9a3906ee006af77b8fa8262283f9caf7e4">CONSOLE_TYPE</a> = 2, 
+<a class="el" href="namespaceaworx_1_1lox.html#a382a38852335f58a53739d455c7d67c9a47a219833a4b3a09240896c88b2b1969">VERBOSITY</a> = 3, 
+<a class="el" href="namespaceaworx_1_1lox.html#a382a38852335f58a53739d455c7d67c9a835487a189e71ba8b5d94d178b94794f">SPTR_GLOBAL</a> = 4, 
+<br />
+&#160;&#160;<a class="el" href="namespaceaworx_1_1lox.html#a382a38852335f58a53739d455c7d67c9ac29fb515e3e56db64a1427d969dcabcb">SPTR_LOX</a> = 5, 
+<a class="el" href="namespaceaworx_1_1lox.html#a382a38852335f58a53739d455c7d67c9a4b520f6a3150be16e39dcb542fab214d">DOMAIN_SUBSTITUTION</a> = 6, 
+<a class="el" href="namespaceaworx_1_1lox.html#a382a38852335f58a53739d455c7d67c9ac8dd1a6634966abd5efb5d86d4db378f">PREFIXES</a> = 7, 
+<a class="el" href="namespaceaworx_1_1lox.html#a382a38852335f58a53739d455c7d67c9a6971f54df65eca4fb3bbdad4f22f5c66">DUMP_STATE_ON_EXIT</a> = 8, 
+<br />
+&#160;&#160;<a class="el" href="namespaceaworx_1_1lox.html#a382a38852335f58a53739d455c7d67c9ae6b539e0553a3c71491c32b5b2c729a9">AUTO_SIZES</a> = 20, 
+<a class="el" href="namespaceaworx_1_1lox.html#a382a38852335f58a53739d455c7d67c9a47c8929b6152d540597c758853ff95a2">FORMAT</a> = 21, 
+<a class="el" href="namespaceaworx_1_1lox.html#a382a38852335f58a53739d455c7d67c9a7e225271444009a790a617c6a27106bd">FORMAT_DATE_TIME</a> = 22, 
+<a class="el" href="namespaceaworx_1_1lox.html#a382a38852335f58a53739d455c7d67c9a7f191f01c0a19a76dc041e1f7a558035">FORMAT_MULTILINE</a> = 23, 
+<br />
+&#160;&#160;<a class="el" href="namespaceaworx_1_1lox.html#a382a38852335f58a53739d455c7d67c9a0f1becc977b12c17805459b8aa2ba30f">FORMAT_TIME_DIFF</a> = 24, 
+<a class="el" href="namespaceaworx_1_1lox.html#a382a38852335f58a53739d455c7d67c9a042746fb996d023babbdc562c85193c8">MAX_ELAPSED_TIME</a> = 25, 
+<a class="el" href="namespaceaworx_1_1lox.html#a382a38852335f58a53739d455c7d67c9a5d83625ab3ab5703580d30a5567722a9">REPLACEMENTS</a> = 26, 
+<a class="el" href="namespaceaworx_1_1lox.html#a382a38852335f58a53739d455c7d67c9a1406d36082094d9896893e2c0241dbfc">CONSOLE_LIGHT_COLORS</a> = 27, 
+<br />
+&#160;&#160;<a class="el" href="namespaceaworx_1_1lox.html#a382a38852335f58a53739d455c7d67c9a58044b3a1c5af7cd5cd60e5d6b8d0220">CODEPAGE</a> = 28
+<br />
+ }</td></tr>
+<tr class="separator:a382a38852335f58a53739d455c7d67c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:57 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:15 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

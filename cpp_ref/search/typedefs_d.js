@@ -1,5 +1,14 @@
 var searchData=
 [
+  ['t_5fenumisarithmetical',['T_EnumIsArithmetical',['../namespaceaworx.html#a4ef0c1ae06e0ec4aaf4fa06db3764aaf',1,'aworx']]],
+  ['t_5fenumisbitwise',['T_EnumIsBitwise',['../namespaceaworx.html#afa213b2093410bd18e8cfa3466ba7991',1,'aworx']]],
+  ['t_5fenummetadatadecl',['T_EnumMetaDataDecl',['../namespaceaworx.html#a3a1673dfc99d9c6ada6e55688118987f',1,'aworx']]],
+  ['t_5fenummetadatadeclreadwrite',['T_EnumMetaDataDeclReadWrite',['../namespaceaworx.html#af96cbbf66e47ab524a037add74068028',1,'aworx']]],
+  ['tcallback',['TCallback',['../classaworx_1_1lib_1_1strings_1_1format_1_1PropertyFormatter.html#af7f8660738c419d93f773c71076201f6',1,'aworx::lib::strings::format::PropertyFormatter']]],
+  ['tcallbackresulttable',['TCallbackResultTable',['../classaworx_1_1lib_1_1strings_1_1format_1_1PropertyFormatter.html#ae2f43583c0d4aa1d4be57b741fb8e2fd',1,'aworx::lib::strings::format::PropertyFormatter']]],
+  ['tcallbacktable',['TCallbackTable',['../classaworx_1_1lib_1_1strings_1_1format_1_1PropertyFormatter.html#ac1afadc6413a8b3bbf96543425cabd68',1,'aworx::lib::strings::format::PropertyFormatter']]],
+  ['tcallbacktableentry',['TCallbackTableEntry',['../classaworx_1_1lib_1_1strings_1_1format_1_1PropertyFormatter.html#aa58330f4b28f399d6a471177daaedb01',1,'aworx::lib::strings::format::PropertyFormatter']]],
+  ['tenumasint',['TEnumAsInt',['../classaworx_1_1lib_1_1lang_1_1EnumIterator_1_1RandomAccessIteratorBase.html#a57b696d2a99267e4b79644981849b732',1,'aworx::lib::lang::EnumIterator::RandomAccessIteratorBase']]],
   ['textfilelogger',['TextFileLogger',['../namespaceaworx.html#ae64ac3b33c7c180e92559a869977fda0',1,'aworx']]],
   ['textlogger',['TextLogger',['../namespaceaworx.html#a8d1a5942495395f77e31bb5d451c332b',1,'aworx']]],
   ['thread',['Thread',['../namespaceaworx.html#a42fe02133ffe8b203c4aa204d2114d49',1,'aworx']]],
@@ -10,10 +19,15 @@ var searchData=
   ['tickscalendartime',['TicksCalendarTime',['../namespaceaworx.html#a0607ccd659418fa7cb9922b2c4ba5f1d',1,'aworx']]],
   ['tickspan',['TickSpan',['../namespaceaworx.html#a7b85567c52aa0abc2531be7a2a7f887f',1,'aworx']]],
   ['tickwatch',['TickWatch',['../namespaceaworx.html#a4d4926218d664dabc231ce5cf0c19afc',1,'aworx']]],
+  ['time',['Time',['../namespaceaworx.html#a67efe36bc6d92289fff19bfbbac5ae86',1,'aworx']]],
   ['timezone',['Timezone',['../namespaceaworx.html#a1502492c46a08f4f2c114afd9bb7604c',1,'aworx']]],
-  ['tmap',['TMap',['../classaworx_1_1lib_1_1containers_1_1StringTree.html#ad3a5e277feb31b2935875b70eef254c5',1,'aworx::lib::containers::StringTree']]],
+  ['tmap',['TMap',['../structaworx_1_1lib_1_1lang_1_1EnumMetaData.html#ad814bef98dead04b33a9f789a877f2e7',1,'aworx::lib::lang::EnumMetaData::TMap()'],['../classaworx_1_1lib_1_1util_1_1StringTree.html#a5ed481b3d67c031356e1868b7cb2ae03',1,'aworx::lib::util::StringTree::TMap()']]],
   ['tokenizer',['Tokenizer',['../namespaceaworx.html#a2c2d5fb0afae1a62f9a9181e69db8349',1,'aworx']]],
+  ['tplugin',['TPlugin',['../classaworx_1_1lib_1_1util_1_1PluginContainer.html#a2013d0a728b075dfbffc40f77876b0b3',1,'aworx::lib::util::PluginContainer']]],
+  ['tpriorities',['TPriorities',['../classaworx_1_1lib_1_1util_1_1PluginContainer.html#a3f949b8609e855c63a0be04e4f582d34',1,'aworx::lib::util::PluginContainer']]],
+  ['traw',['TRaw',['../classaworx_1_1lib_1_1time_1_1Time.html#a6a8ff39a1910a73af0edcd78f6717ec4',1,'aworx::lib::time::Time']]],
   ['tstring',['TString',['../namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31',1,'aworx']]],
-  ['type',['Type',['../structaworx_1_1lib_1_1boxing_1_1T__Boxing.html#a92442bdba7916947a2e91658a44f79db',1,'aworx::lib::boxing::T_Boxing::Type()'],['../structaworx_1_1lib_1_1boxing_1_1T__Boxing_3_01BoxedAs_3_01TBoxed_01_4_01_4.html#a90aaaf70952757dd5a21920f7377e4eb',1,'aworx::lib::boxing::T_Boxing&lt; BoxedAs&lt; TBoxed &gt; &gt;::Type()'],['../structaworx_1_1lib_1_1boxing_1_1T__Boxing_3_01std_1_1vector_3_01TElem_01_4_01_4.html#a6cd8a57ae15b5711e0a70fc1e4fcbb14',1,'aworx::lib::boxing::T_Boxing&lt; std::vector&lt; TElem &gt; &gt;::Type()'],['../structaworx_1_1lib_1_1strings_1_1boxing_1_1T__Boxing_3_01aworx_1_1lib_1_1strings_1_1PreallocatedString_3_01TCapacity_01_4_01_4.html#aaa3c5c7c352ef985ca5921bd23c301a1',1,'aworx::lib::strings::boxing::T_Boxing&lt; aworx::lib::strings::PreallocatedString&lt; TCapacity &gt; &gt;::Type()'],['../structaworx_1_1lib_1_1strings_1_1boxing_1_1T__Boxing_3_01strings_1_1StringLiteral_3_01TLength_01_4_01_4.html#aaa3c5c7c352ef985ca5921bd23c301a1',1,'aworx::lib::strings::boxing::T_Boxing&lt; strings::StringLiteral&lt; TLength &gt; &gt;::Type()']]],
-  ['typeinfomap',['TypeinfoMap',['../namespaceaworx_1_1lib_1_1lang.html#ae408aa856d7bc11ba1706acd119f34a3',1,'aworx::lib::lang']]]
+  ['ttable',['TTable',['../structaworx_1_1lib_1_1lang_1_1EnumMetaData.html#a062f57574ec4a82773729a9319b72220',1,'aworx::lib::lang::EnumMetaData']]],
+  ['ttuple',['TTuple',['../structaworx_1_1lib_1_1lang_1_1T__EnumMetaDataDecl.html#a192f961ba0493883f37bd7b662fa3ecc',1,'aworx::lib::lang::T_EnumMetaDataDecl::TTuple()'],['../structaworx_1_1lib_1_1config_1_1VariableDecl.html#a4dbc8e822ad16dd44d72ca71e0c04d73',1,'aworx::lib::config::VariableDecl::TTuple()'],['../structaworx_1_1lib_1_1lang_1_1T__EnumMetaDataSpecification.html#a50e855658b9f9deea01b9ed0cbf4add5',1,'aworx::lib::lang::T_EnumMetaDataSpecification::TTuple()'],['../classaworx_1_1lib_1_1lang_1_1Exception.html#a51c2fc70efeb6b779bafdb6cca11b7e5',1,'aworx::lib::lang::Exception::TTuple()']]],
+  ['type',['Type',['../structaworx_1_1lib_1_1boxing_1_1T__Boxing.html#a92442bdba7916947a2e91658a44f79db',1,'aworx::lib::boxing::T_Boxing::Type()'],['../structaworx_1_1lib_1_1boxing_1_1T__Boxing_3_01BoxedAs_3_01TBoxed_01_4_01_4.html#a90aaaf70952757dd5a21920f7377e4eb',1,'aworx::lib::boxing::T_Boxing&lt; BoxedAs&lt; TBoxed &gt; &gt;::Type()'],['../structaworx_1_1lib_1_1boxing_1_1T__Boxing_3_01std_1_1vector_3_01TElem_01_4_01_4.html#a6cd8a57ae15b5711e0a70fc1e4fcbb14',1,'aworx::lib::boxing::T_Boxing&lt; std::vector&lt; TElem &gt; &gt;::Type()'],['../structaworx_1_1lib_1_1strings_1_1boxing_1_1T__Boxing_3_01aworx_1_1lib_1_1strings_1_1PreallocatedString_3_01TCapacity_01_4_01_4.html#aaa3c5c7c352ef985ca5921bd23c301a1',1,'aworx::lib::strings::boxing::T_Boxing&lt; aworx::lib::strings::PreallocatedString&lt; TCapacity &gt; &gt;::Type()'],['../structaworx_1_1lib_1_1strings_1_1boxing_1_1T__Boxing_3_01strings_1_1StringLiteral_3_01TLength_01_4_01_4.html#aaa3c5c7c352ef985ca5921bd23c301a1',1,'aworx::lib::strings::boxing::T_Boxing&lt; strings::StringLiteral&lt; TLength &gt; &gt;::Type()']]]
 ];

@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu"    href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu_hl" href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu"    href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu_hl" href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -96,26 +96,24 @@ $(function() {
 <div class="dynheader">
 Collaboration diagram for Variable:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lib_1_1config_1_1Variable__coll__graph.svg" width="1608" height="563"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lib_1_1config_1_1Variable__coll__graph.svg" width="978" height="452"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
 <p> This class is used to load and store external configuration data with objects of class <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a> and its plug-ins <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a>.</p>
 <dl class="section note"><dt>Note</dt><dd>For general information about external configuration variables, see namespace documentation <a class="el" href="namespacecom_1_1aworx_1_1lib_1_1config.html">com.aworx.lib.config</a>.</dd></dl>
-<p><b>Construction/Redefinition:</b><br />
- While constructors accepting attributes of a variable exist, it is recommended to define all external configuration variables in a central place, using statically or dynamically allocated objects of type <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html">VariableDefinition</a> and pass such record to the constructor of a variable.</p>
-<p>The class is designed to be 'reused' to avoid repeated allocation/de-allocation of memory. After invoking one of the overloaded methods <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ac7eaf1c48ec304681a7274c6adebf508">define</a>, which share the same signatures as the overloaded constructors, a variable is freshly initialized. Internally, the memory allocated for values remains allocated.</p>
+<p><b>Construction/Redeclaration:</b><br />
+ While constructors accepting attributes of a variable exist, it is recommended to declare all external configuration variables in a central place, using statically or dynamically allocated objects of type <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1VariableDecl.html">VariableDecl</a> and pass such record to the constructor of a variable.</p>
+<p>The class is designed to be 'reused' to avoid repeated allocation/de-allocation of memory. After invoking one of the overloaded methods <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#aa1be93bcc124f7f2b31cb05c5b1c49da">declare</a>, which share the same signatures as the overloaded constructors, a variable is freshly initialized. Internally, the memory allocated for values remains allocated.</p>
 <p><b>Values:</b><br />
  A variable can contain zero, one or several values. If zero, then the variable was either not loaded, yet or the load operation failed (no configuration plug-in defined the variable). Method <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af4b57d21919c42d55af03391f91a1c08">size</a> reports the currently available values and methods <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a7ed7993d80f56e26251114655ca4fc81">getString(int)</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af495e2bc25687408e6a8965db57b02e9">getInteger(int)</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a4fa7f982c4f04e6e56fbeac899efc4ab">getFloat(int)</a> return a value. Internally all values are stored as strings. If field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a0910717551963df697d192900a7f4f59">config</a> is set, its field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a0330374313c82399b6dd59c7db2acf58">Configuration.numberFormat</a> is used for floating point conversion.</p>
 <p>When storing a variable that contains more than one value, field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ab56c67e0ed9605b4078e2135f791c4ed">delim</a> has to be set. Conversely, when reading a variable that contains multiple values, the delimiter has to be set prior to the load operation. </p><dl class="section note"><dt>Note</dt><dd>This is not true when loading/storing a variable directly in a plug-in of type <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a> or might also not be true with custom configuration plug-in types which for example might store the values in a database.<br />
- However, with the default plug-ins <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html">CommandLinePlugin</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html">EnvironmentPlugin</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html">IniFile</a> the delimiter is needed! Therefore, it is best practice to always define a proper delimiter if a variable is multi-valued.</dd></dl>
+ However, with the default plug-ins <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1CLIArgs.html">CLIArgs</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Environment.html">Environment</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html">IniFile</a> the delimiter is needed! Therefore, it is best practice to always define a proper delimiter if a variable is multi-valued.</dd></dl>
 <p><b>Loading and Storing:</b><br />
- There are three ways of loading and storing a variable:</p><ul>
+ There are two ways of loading and storing a variable:</p><ul>
 <li>Using the interface of class <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a> which allows to load and store variables from different sources (plug-ins) in a prioritized way.</li>
 <li>Using the interface of class <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> which may be used if the decision about the source or drain of a load/store operation is explicitly made by a code unit.</li>
-<li>Using the interface methods <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ab223e99bd1bae1986af774532abb06c9">load</a>,<a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a726077123e0956b4ea50be806c48bb69">store</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a6048c721952f08afa96982d63b4b13e3">storeDefault</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a98ac4bb88ba456f3a492c7dfbd299364">protect</a> found in this class itself which are provided for convenience. Those simply invoke the interface of the static global singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac7b578f72e6b1f48e14ad3a762c412db">Configuration.Default</a>.</li>
 </ul>
-<p>Using the interface of this class itself is the most convenient way of loading and storing variables, setting default values or protecting variables. Only very few use cases demand for the creation and use of an instance of class <b>Configuration</b> different to the static singleton <b>ALib.config</b>.</p>
 <p>Storing empty variables (method <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af4b57d21919c42d55af03391f91a1c08">size</a> returns <code>0</code>) deletes a variable from the those configuration plug-ins that are write enabled. </p>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
@@ -156,8 +154,8 @@ Public Fields</h2></td></tr>
 Public Methods</h2></td></tr>
 <tr class="memitem:ad57a167cb505659893c09faa703a8ec5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ad57a167cb505659893c09faa703a8ec5">Variable</a> ()</td></tr>
 <tr class="separator:ad57a167cb505659893c09faa703a8ec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e31d7ede7567fc0c9706ae3ce1d967a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a0e31d7ede7567fc0c9706ae3ce1d967a">Variable</a> (<a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html">VariableDefinition</a> definition, Object... replacements)</td></tr>
-<tr class="separator:a0e31d7ede7567fc0c9706ae3ce1d967a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcc9af89a90d8a43f5684c65d76087f2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#adcc9af89a90d8a43f5684c65d76087f2">Variable</a> (<a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1VariableDecl.html">VariableDecl</a> declaration, Object... replacements)</td></tr>
+<tr class="separator:adcc9af89a90d8a43f5684c65d76087f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a752082bfea0d9b49fcd694a17911835f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a752082bfea0d9b49fcd694a17911835f">Variable</a> (<a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a> variable)</td></tr>
 <tr class="separator:a752082bfea0d9b49fcd694a17911835f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d95040dd89abf1b0f7ad8b71abd5618"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a2d95040dd89abf1b0f7ad8b71abd5618">Variable</a> (CharSequence <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af6f530773799481b0dc99e709a99a5df">category</a>, CharSequence <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a854ed5ff2038053c383f709d65e69315">name</a>, char <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ab56c67e0ed9605b4078e2135f791c4ed">delim</a>, CharSequence <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a61ad1915b74bbe1d88054839516d1873">comments</a>)</td></tr>
@@ -176,16 +174,16 @@ Public Methods</h2></td></tr>
 <tr class="separator:abbcb723f7f5b313e0243ec62137cb24c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19fb8fa788505191a2f38bf44812def4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a19fb8fa788505191a2f38bf44812def4">clearValues</a> ()</td></tr>
 <tr class="separator:a19fb8fa788505191a2f38bf44812def4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7eaf1c48ec304681a7274c6adebf508"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ac7eaf1c48ec304681a7274c6adebf508">define</a> (<a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html">VariableDefinition</a> definition, Object... replacements)</td></tr>
-<tr class="separator:ac7eaf1c48ec304681a7274c6adebf508"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac979dc117b67dfe89e2394af93675dc3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ac979dc117b67dfe89e2394af93675dc3">define</a> (CharSequence <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af6f530773799481b0dc99e709a99a5df">category</a>, CharSequence <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a854ed5ff2038053c383f709d65e69315">name</a>, char <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ab56c67e0ed9605b4078e2135f791c4ed">delim</a>, CharSequence <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a61ad1915b74bbe1d88054839516d1873">comments</a>)</td></tr>
-<tr class="separator:ac979dc117b67dfe89e2394af93675dc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3762b60e2c7deab71f48a9c61e2903d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a3762b60e2c7deab71f48a9c61e2903d2">define</a> (<a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a> variable)</td></tr>
-<tr class="separator:a3762b60e2c7deab71f48a9c61e2903d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a209534e8f783050aae476fe976bbc327"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a209534e8f783050aae476fe976bbc327">define</a> (CharSequence <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af6f530773799481b0dc99e709a99a5df">category</a>, CharSequence <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a854ed5ff2038053c383f709d65e69315">name</a>, char <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ab56c67e0ed9605b4078e2135f791c4ed">delim</a>)</td></tr>
-<tr class="separator:a209534e8f783050aae476fe976bbc327"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fda5e4d57bfdd133a293917b1f3bc5c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a4fda5e4d57bfdd133a293917b1f3bc5c">define</a> (CharSequence <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af6f530773799481b0dc99e709a99a5df">category</a>, CharSequence <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a854ed5ff2038053c383f709d65e69315">name</a>)</td></tr>
-<tr class="separator:a4fda5e4d57bfdd133a293917b1f3bc5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1be93bcc124f7f2b31cb05c5b1c49da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#aa1be93bcc124f7f2b31cb05c5b1c49da">declare</a> (<a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1VariableDecl.html">VariableDecl</a> declaration, Object... replacements)</td></tr>
+<tr class="separator:aa1be93bcc124f7f2b31cb05c5b1c49da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9822ef7ccb8b152cd5643dba3dba081e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a9822ef7ccb8b152cd5643dba3dba081e">declare</a> (CharSequence <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af6f530773799481b0dc99e709a99a5df">category</a>, CharSequence <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a854ed5ff2038053c383f709d65e69315">name</a>, char <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ab56c67e0ed9605b4078e2135f791c4ed">delim</a>, CharSequence <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a61ad1915b74bbe1d88054839516d1873">comments</a>)</td></tr>
+<tr class="separator:a9822ef7ccb8b152cd5643dba3dba081e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c7d79c9118dfe60616fd86c990f8b8c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a0c7d79c9118dfe60616fd86c990f8b8c">declare</a> (<a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a> variable)</td></tr>
+<tr class="separator:a0c7d79c9118dfe60616fd86c990f8b8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3beea16a7b3209a3c057be7e087f0c17"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a3beea16a7b3209a3c057be7e087f0c17">declare</a> (CharSequence <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af6f530773799481b0dc99e709a99a5df">category</a>, CharSequence <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a854ed5ff2038053c383f709d65e69315">name</a>, char <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ab56c67e0ed9605b4078e2135f791c4ed">delim</a>)</td></tr>
+<tr class="separator:a3beea16a7b3209a3c057be7e087f0c17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0c93e24f9d819424eef9d4f2178000c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ab0c93e24f9d819424eef9d4f2178000c">declare</a> (CharSequence <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af6f530773799481b0dc99e709a99a5df">category</a>, CharSequence <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a854ed5ff2038053c383f709d65e69315">name</a>)</td></tr>
+<tr class="separator:ab0c93e24f9d819424eef9d4f2178000c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47beaaf988e1edc918640dd8b9f5342b"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a47beaaf988e1edc918640dd8b9f5342b">getAttribute</a> (String attrName, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> result)</td></tr>
 <tr class="separator:a47beaaf988e1edc918640dd8b9f5342b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ef0fa75fed4f4cb087d25dfdf1e572d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a6ef0fa75fed4f4cb087d25dfdf1e572d">getDouble</a> ()</td></tr>
@@ -204,26 +202,10 @@ Public Methods</h2></td></tr>
 <tr class="separator:a7e97cd8a22f25b55419dbdbc60e9b791"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab95f6bb9483f6d88a71ca45985ae10d6"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ab95f6bb9483f6d88a71ca45985ae10d6">isTrue</a> ()</td></tr>
 <tr class="separator:ab95f6bb9483f6d88a71ca45985ae10d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab223e99bd1bae1986af774532abb06c9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ab223e99bd1bae1986af774532abb06c9">load</a> ()</td></tr>
-<tr class="separator:ab223e99bd1bae1986af774532abb06c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba30e6332602cc0a9e654f4a87b11ab0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#aba30e6332602cc0a9e654f4a87b11ab0">loadFromString</a> (Object externalizedValue)</td></tr>
-<tr class="separator:aba30e6332602cc0a9e654f4a87b11ab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98ac4bb88ba456f3a492c7dfbd299364"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a98ac4bb88ba456f3a492c7dfbd299364">protect</a> (Object externalizedValue)</td></tr>
-<tr class="separator:a98ac4bb88ba456f3a492c7dfbd299364"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac333eae6437cfe4c54fa3d80eb44a7ac"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ac333eae6437cfe4c54fa3d80eb44a7ac">protect</a> ()</td></tr>
-<tr class="separator:ac333eae6437cfe4c54fa3d80eb44a7ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afdac9f21277e56873549df5f6fecacd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#afdac9f21277e56873549df5f6fecacd6">ReplaceValue</a> (int idx, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a> replVariable)</td></tr>
 <tr class="separator:afdac9f21277e56873549df5f6fecacd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4b57d21919c42d55af03391f91a1c08"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af4b57d21919c42d55af03391f91a1c08">size</a> ()</td></tr>
 <tr class="separator:af4b57d21919c42d55af03391f91a1c08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a726077123e0956b4ea50be806c48bb69"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a726077123e0956b4ea50be806c48bb69">store</a> (Object externalizedValue)</td></tr>
-<tr class="separator:a726077123e0956b4ea50be806c48bb69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3aa260f54c773dfa161df2d633bd23e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#aa3aa260f54c773dfa161df2d633bd23e">store</a> ()</td></tr>
-<tr class="separator:aa3aa260f54c773dfa161df2d633bd23e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6048c721952f08afa96982d63b4b13e3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a6048c721952f08afa96982d63b4b13e3">storeDefault</a> (Object externalizedValue)</td></tr>
-<tr class="separator:a6048c721952f08afa96982d63b4b13e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f100f55267180681b79fb08050cddc5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a9f100f55267180681b79fb08050cddc5">storeDefault</a> ()</td></tr>
-<tr class="separator:a9f100f55267180681b79fb08050cddc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Fields</h2></td></tr>
@@ -258,12 +240,12 @@ Package Access Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Constructs an undefined <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a>. Prior to using this, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ac7eaf1c48ec304681a7274c6adebf508">define</a> has to be invoked. </p>
+<p> Constructs an undefined <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a>. Prior to using this, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#aa1be93bcc124f7f2b31cb05c5b1c49da">declare</a> has to be invoked. </p>
 
 </div>
 </div>
-<a id="a0e31d7ede7567fc0c9706ae3ce1d967a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e31d7ede7567fc0c9706ae3ce1d967a">&#9670;&nbsp;</a></span>Variable() <span class="overload">[2/6]</span></h2>
+<a id="adcc9af89a90d8a43f5684c65d76087f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcc9af89a90d8a43f5684c65d76087f2">&#9670;&nbsp;</a></span>Variable() <span class="overload">[2/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -271,8 +253,8 @@ Package Access Methods</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html">VariableDefinition</a>&#160;</td>
-          <td class="paramname"><em>definition</em>, </td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1VariableDecl.html">VariableDecl</a>&#160;</td>
+          <td class="paramname"><em>declaration</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -288,10 +270,10 @@ Package Access Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Constructs a variable from a definition. Strings named <code>"%1"</code>, <code>"%2"</code> ... <code>"%N"</code> found in the fields <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af6f530773799481b0dc99e709a99a5df">category</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a854ed5ff2038053c383f709d65e69315">name</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a61ad1915b74bbe1d88054839516d1873">comments</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a14c64917d8c15bbb3ed70696b4c2278e">defaultValue</a> are replaced with given replacement strings found in array <code>replacements</code>.</p>
+<p> Constructs a variable from a declaration. Strings named <code>"%1"</code>, <code>"%2"</code> ... <code>"%N"</code> found in the fields <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af6f530773799481b0dc99e709a99a5df">category</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a854ed5ff2038053c383f709d65e69315">name</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a61ad1915b74bbe1d88054839516d1873">comments</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a14c64917d8c15bbb3ed70696b4c2278e">defaultValue</a> are replaced with given replacement strings found in array <code>replacements</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">definition</td><td>The definition data of the variable. </td></tr>
+    <tr><td class="paramname">declaration</td><td>The declaration data of the variable. </td></tr>
     <tr><td class="paramname">replacements</td><td>List of objects that will be converted to strings using <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#aed0c1d7dae40b57d087dd15c4f8cef51">AString._(Object)</a>. </td></tr>
   </table>
   </dd>
@@ -315,10 +297,10 @@ Package Access Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Constructs a variable using the definition of another variable. The values are not copied.</p>
+<p> Constructs a variable using the declaration of another variable. The values are not copied.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">variable</td><td>A variable to copy the definition (which is comprised with fields <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af6f530773799481b0dc99e709a99a5df">category</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a854ed5ff2038053c383f709d65e69315">name</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a16f536647e1da3e967f40e8c83576a1f">fullname</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ab56c67e0ed9605b4078e2135f791c4ed">delim</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a61ad1915b74bbe1d88054839516d1873">comments</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a14c64917d8c15bbb3ed70696b4c2278e">defaultValue</a>) from. </td></tr>
+    <tr><td class="paramname">variable</td><td>A variable to copy the declaration (which is comprised with fields <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af6f530773799481b0dc99e709a99a5df">category</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a854ed5ff2038053c383f709d65e69315">name</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a16f536647e1da3e967f40e8c83576a1f">fullname</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ab56c67e0ed9605b4078e2135f791c4ed">delim</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a61ad1915b74bbe1d88054839516d1873">comments</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a14c64917d8c15bbb3ed70696b4c2278e">defaultValue</a>) from. </td></tr>
   </table>
   </dd>
 </dl>
@@ -604,17 +586,17 @@ Package Access Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="ac7eaf1c48ec304681a7274c6adebf508"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac7eaf1c48ec304681a7274c6adebf508">&#9670;&nbsp;</a></span>define() <span class="overload">[1/5]</span></h2>
+<a id="aa1be93bcc124f7f2b31cb05c5b1c49da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1be93bcc124f7f2b31cb05c5b1c49da">&#9670;&nbsp;</a></span>declare() <span class="overload">[1/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a> define </td>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a> declare </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html">VariableDefinition</a>&#160;</td>
-          <td class="paramname"><em>definition</em>, </td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1VariableDecl.html">VariableDecl</a>&#160;</td>
+          <td class="paramname"><em>declaration</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -630,10 +612,10 @@ Package Access Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Re-initializes the variable with the new definition. Strings named <code>"%1"</code>, <code>"%2"</code> ... <code>"%N"</code> found in the fields <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af6f530773799481b0dc99e709a99a5df">category</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a854ed5ff2038053c383f709d65e69315">name</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a61ad1915b74bbe1d88054839516d1873">comments</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a14c64917d8c15bbb3ed70696b4c2278e">defaultValue</a> are replaced with given replacement string arguments in array <code>replacements</code>.</p>
+<p> <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ac8bb3912a3ce86b15842e79d0b421204">Clears</a> the variable resets its declaration. Strings named <code>"%1"</code>, <code>"%2"</code> ... <code>"%N"</code> found in the fields <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af6f530773799481b0dc99e709a99a5df">category</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a854ed5ff2038053c383f709d65e69315">name</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a61ad1915b74bbe1d88054839516d1873">comments</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a14c64917d8c15bbb3ed70696b4c2278e">defaultValue</a> are replaced with given replacement string arguments in array <code>replacements</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">definition</td><td>The definition data of the variable. </td></tr>
+    <tr><td class="paramname">declaration</td><td>The declaration data of the variable. </td></tr>
     <tr><td class="paramname">replacements</td><td>List of objects that will be converted to strings using <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#aed0c1d7dae40b57d087dd15c4f8cef51">AString._(Object)</a>. </td></tr>
   </table>
   </dd>
@@ -642,14 +624,14 @@ Package Access Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="ac979dc117b67dfe89e2394af93675dc3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac979dc117b67dfe89e2394af93675dc3">&#9670;&nbsp;</a></span>define() <span class="overload">[2/5]</span></h2>
+<a id="a9822ef7ccb8b152cd5643dba3dba081e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9822ef7ccb8b152cd5643dba3dba081e">&#9670;&nbsp;</a></span>declare() <span class="overload">[2/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a> define </td>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a> declare </td>
           <td>(</td>
           <td class="paramtype">CharSequence&#160;</td>
           <td class="paramname"><em>category</em>, </td>
@@ -680,7 +662,7 @@ Package Access Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Re-initializes the variable with the new definition</p>
+<p> <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ac8bb3912a3ce86b15842e79d0b421204">Clears</a> the variable resets its declaration.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">category</td><td>The category of the variable. </td></tr>
@@ -694,14 +676,14 @@ Package Access Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a3762b60e2c7deab71f48a9c61e2903d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3762b60e2c7deab71f48a9c61e2903d2">&#9670;&nbsp;</a></span>define() <span class="overload">[3/5]</span></h2>
+<a id="a0c7d79c9118dfe60616fd86c990f8b8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c7d79c9118dfe60616fd86c990f8b8c">&#9670;&nbsp;</a></span>declare() <span class="overload">[3/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a> define </td>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a> declare </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a>&#160;</td>
           <td class="paramname"><em>variable</em></td><td>)</td>
@@ -710,10 +692,10 @@ Package Access Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Constructs a variable using the definition of another variable. The values are not copied.</p>
+<p> Constructs a variable using the declaration of another variable. The values are not copied.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">variable</td><td>A variable to copy the definition (which is comprised with fields <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af6f530773799481b0dc99e709a99a5df">category</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a854ed5ff2038053c383f709d65e69315">name</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a16f536647e1da3e967f40e8c83576a1f">fullname</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ab56c67e0ed9605b4078e2135f791c4ed">delim</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a61ad1915b74bbe1d88054839516d1873">comments</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a14c64917d8c15bbb3ed70696b4c2278e">defaultValue</a>) from. </td></tr>
+    <tr><td class="paramname">variable</td><td>A variable to copy the declaration (which is comprised with fields <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af6f530773799481b0dc99e709a99a5df">category</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a854ed5ff2038053c383f709d65e69315">name</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a16f536647e1da3e967f40e8c83576a1f">fullname</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#ab56c67e0ed9605b4078e2135f791c4ed">delim</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a61ad1915b74bbe1d88054839516d1873">comments</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a14c64917d8c15bbb3ed70696b4c2278e">defaultValue</a>) from. </td></tr>
   </table>
   </dd>
 </dl>
@@ -721,14 +703,14 @@ Package Access Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a209534e8f783050aae476fe976bbc327"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a209534e8f783050aae476fe976bbc327">&#9670;&nbsp;</a></span>define() <span class="overload">[4/5]</span></h2>
+<a id="a3beea16a7b3209a3c057be7e087f0c17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3beea16a7b3209a3c057be7e087f0c17">&#9670;&nbsp;</a></span>declare() <span class="overload">[4/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a> define </td>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a> declare </td>
           <td>(</td>
           <td class="paramtype">CharSequence&#160;</td>
           <td class="paramname"><em>category</em>, </td>
@@ -766,14 +748,14 @@ Package Access Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a4fda5e4d57bfdd133a293917b1f3bc5c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4fda5e4d57bfdd133a293917b1f3bc5c">&#9670;&nbsp;</a></span>define() <span class="overload">[5/5]</span></h2>
+<a id="ab0c93e24f9d819424eef9d4f2178000c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0c93e24f9d819424eef9d4f2178000c">&#9670;&nbsp;</a></span>declare() <span class="overload">[5/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a> define </td>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html">Variable</a> declare </td>
           <td>(</td>
           <td class="paramtype">CharSequence&#160;</td>
           <td class="paramname"><em>category</em>, </td>
@@ -910,7 +892,7 @@ Package Access Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Returns the value at index <code>0</code> interpreted as a double value. If no value is defined, <code>0.0</code> is returned. Parsing is done using field <code>numberFormat</code> of field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a0910717551963df697d192900a7f4f59">config</a>, respectively, if this is not set, the static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac7b578f72e6b1f48e14ad3a762c412db">Configuration.Default</a> is used.</p>
+<p> Returns the value at index <code>0</code> interpreted as a double value. If no value is defined, <code>0.0</code> is returned. Parsing is done using field <code>numberFormat</code> of field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a0910717551963df697d192900a7f4f59">config</a>, respectively, if this is not set, the static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a57b001277f79d9f58dd266598d107317">NumberFormat.global</a>.</p>
 <dl class="section return"><dt>Returns</dt><dd>The value at <code>idx</code> interpreted as a double value. </dd></dl>
 
 </div>
@@ -931,7 +913,7 @@ Package Access Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Returns the value at <code>idx</code> interpreted as a double value. If the index is invalid, <code>0.0</code> is returned. Parsing is done using field <code>numberFormat</code> of field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a0910717551963df697d192900a7f4f59">config</a>, respectively, if this is not set, the static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac7b578f72e6b1f48e14ad3a762c412db">Configuration.Default</a> is used.</p>
+<p> Returns the value at <code>idx</code> interpreted as a double value. If the index is invalid, <code>0.0</code> is returned. Parsing is done using field <code>numberFormat</code> of field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a0910717551963df697d192900a7f4f59">config</a>, respectively, if this is not set, the static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a57b001277f79d9f58dd266598d107317">NumberFormat.global</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">idx</td><td>The index of the value to be retrieved. Defaults to <code>0</code>. </td></tr>
@@ -1052,7 +1034,7 @@ Package Access Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Returns <code>true</code> if the value at the given <code>idx</code> represents a boolean 'true'. Evaluation is done using field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a0910717551963df697d192900a7f4f59">config</a>, respectively if this is not set, the static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac7b578f72e6b1f48e14ad3a762c412db">Configuration.Default</a>.</p>
+<p> Returns <code>true</code> if the value at the given <code>idx</code> represents a boolean 'true'. Evaluation is done using field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a0910717551963df697d192900a7f4f59">config</a>, respectively if this is not set, the static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a0910717551963df697d192900a7f4f59">ALIB.config</a>.</p>
 <p>If the index is invalid, <code>false</code> is returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1079,107 +1061,9 @@ Package Access Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Returns <code>true</code> if the first value represents a boolean 'true'. Evaluation is done using field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a0910717551963df697d192900a7f4f59">config</a>, respectively if this is not set, the static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac7b578f72e6b1f48e14ad3a762c412db">Configuration.Default</a>.</p>
+<p> Returns <code>true</code> if the first value represents a boolean 'true'. Evaluation is done using field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a0910717551963df697d192900a7f4f59">config</a>, respectively if this is not set, the static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a0910717551963df697d192900a7f4f59">ALIB.config</a>.</p>
 <p>If no value is set <code>false</code> is returned.</p>
 <dl class="section return"><dt>Returns</dt><dd>The value at <code>idx</code> interpreted as a boolean value. </dd></dl>
-
-</div>
-</div>
-<a id="ab223e99bd1bae1986af774532abb06c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab223e99bd1bae1986af774532abb06c9">&#9670;&nbsp;</a></span>load()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int load </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Convenience method that loads the values of a variable from the static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac7b578f72e6b1f48e14ad3a762c412db">Configuration.Default</a>, using method <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a2222e544f04bdb04117b1c9b2e4e731f">Configuration.load</a>.</p>
-<dl class="section return"><dt>Returns</dt><dd>The priority of the configuration plug-in that provided the result. <code>0</code> if not found, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#abdca3e572982b273c6edeb145cd6b92f">Configuration.PRIO_DEFAULT</a> if either found or created in <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#acd38e044ddc3f033abe3e69c51963e56">Configuration.Default.defaultValues</a> </dd></dl>
-
-</div>
-</div>
-<a id="aba30e6332602cc0a9e654f4a87b11ab0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba30e6332602cc0a9e654f4a87b11ab0">&#9670;&nbsp;</a></span>loadFromString()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int loadFromString </td>
-          <td>(</td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>externalizedValue</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Convenience method to set values according to the provided string. For the conversion of the "externalized" string, method <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html#ac01bd465bf154b9d16b016c56ab5d7b0">XTernalizer.loadFromString</a> of field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a728fd4fd08c7736c49bf19cc2ae92397">ConfigurationPlugin.stringConverter</a> of default plug-in <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#acd38e044ddc3f033abe3e69c51963e56">Configuration.defaultValues</a> of static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac7b578f72e6b1f48e14ad3a762c412db">Configuration.Default</a> is used.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">externalizedValue</td><td>The new value to write.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af4b57d21919c42d55af03391f91a1c08">size</a> of the variable after parsing. </dd></dl>
-
-</div>
-</div>
-<a id="a98ac4bb88ba456f3a492c7dfbd299364"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a98ac4bb88ba456f3a492c7dfbd299364">&#9670;&nbsp;</a></span>protect() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int protect </td>
-          <td>(</td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>externalizedValue</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Convenience method that stores the variable with priority <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#acabc9e89fbc407ff2ae93b6537d6450f">Configuration.PRIO_PROTECTED</a> using the static singleton <b>Configuration</b> object found in <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac7b578f72e6b1f48e14ad3a762c412db">Configuration.Default</a>.</p>
-<p>The variable value is determined as follows:</p><ul>
-<li>If optional parameter <code>externalizedValue</code> is provided and not <em>nulled</em>, the values are loaded from that string.</li>
-<li>Otherwise, if the variable has no values set but field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a14c64917d8c15bbb3ed70696b4c2278e">defaultValue</a> is not <em>nulled</em> then values are loaded from this field.</li>
-<li>If all is unset (the variable values, parameter <code>externalizedValue</code> and field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a14c64917d8c15bbb3ed70696b4c2278e">defaultValue</a>), then the unset variable is stored, which results in removing a an existing protection value from the configuration.</li>
-</ul>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">externalizedValue</td><td>Optional externalized value string. If given, the variable is set prior to writing. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The result of <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a454f981ef44f6c9a569dbe13573fd275">Configuration.Default.store(this)</a>. </dd></dl>
-
-</div>
-</div>
-<a id="ac333eae6437cfe4c54fa3d80eb44a7ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac333eae6437cfe4c54fa3d80eb44a7ac">&#9670;&nbsp;</a></span>protect() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int protect </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Overloaded version providing default value <code>null</code> for parameter <code>externalizedValue</code>. </p><dl class="section return"><dt>Returns</dt><dd>The result of <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a454f981ef44f6c9a569dbe13573fd275">Configuration.Default.store(this)</a>. </dd></dl>
 
 </div>
 </div>
@@ -1237,105 +1121,6 @@ Package Access Methods</h2></td></tr>
 <hr/>
 <p> Returns the number of values set in this object.</p>
 <dl class="section return"><dt>Returns</dt><dd>The number of values set. </dd></dl>
-
-</div>
-</div>
-<a id="a726077123e0956b4ea50be806c48bb69"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a726077123e0956b4ea50be806c48bb69">&#9670;&nbsp;</a></span>store() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int store </td>
-          <td>(</td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>externalizedValue</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Convenience method that stores the values of a variable using the static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac7b578f72e6b1f48e14ad3a762c412db">Configuration.Default</a>, and method <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a454f981ef44f6c9a569dbe13573fd275">Configuration.store</a>.</p>
-<p>Optional parameter <code>externalizedValue</code> allows to provide a string that is parsed by the storing plug-in to reset the variables' values prior to writing.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">externalizedValue</td><td>Optional externalized value string. If given, the variable</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The result of <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a454f981ef44f6c9a569dbe13573fd275">Configuration.Default.store(this)</a>. </dd></dl>
-
-</div>
-</div>
-<a id="aa3aa260f54c773dfa161df2d633bd23e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa3aa260f54c773dfa161df2d633bd23e">&#9670;&nbsp;</a></span>store() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int store </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Convenience method that stores the values of a variable using the static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac7b578f72e6b1f48e14ad3a762c412db">Configuration.Default</a>, and method <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a454f981ef44f6c9a569dbe13573fd275">Configuration.store</a>.</p>
-<dl class="section return"><dt>Returns</dt><dd>The result of <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a454f981ef44f6c9a569dbe13573fd275">Configuration.Default.store(this)</a>. </dd></dl>
-
-</div>
-</div>
-<a id="a6048c721952f08afa96982d63b4b13e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6048c721952f08afa96982d63b4b13e3">&#9670;&nbsp;</a></span>storeDefault() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int storeDefault </td>
-          <td>(</td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>externalizedValue</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Convenience method that stores the variable with priority <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#abdca3e572982b273c6edeb145cd6b92f">Configuration.PRIO_DEFAULT</a> using the static singleton <b>Configuration</b> object found in <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac7b578f72e6b1f48e14ad3a762c412db">Configuration.Default</a>.</p>
-<p>The variable value is determined as follows:</p><ul>
-<li>If optional parameter <code>externalizedValue</code> is provided and not <em>nulled</em>, the values are loaded from that string.</li>
-<li>Otherwise, if the variable has no values set but field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a14c64917d8c15bbb3ed70696b4c2278e">defaultValue</a> is not <em>nulled</em> then values are loaded from this field.</li>
-<li>If all is unset (the variable values, parameter <code>externalizedValue</code> and field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a14c64917d8c15bbb3ed70696b4c2278e">defaultValue</a>), then the unset variable is stored, which results in removing a an existing default value from the configuration.</li>
-</ul>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">externalizedValue</td><td>Optional externalized value string. If given, the variable is set prior to writing. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The result of <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a454f981ef44f6c9a569dbe13573fd275">Configuration.Default.store(this)</a>. </dd></dl>
-
-</div>
-</div>
-<a id="a9f100f55267180681b79fb08050cddc5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9f100f55267180681b79fb08050cddc5">&#9670;&nbsp;</a></span>storeDefault() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int storeDefault </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Overloaded version providing default value <code>null</code> for parameter <code>externalizedValue</code>. </p><dl class="section return"><dt>Returns</dt><dd>The result of <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a454f981ef44f6c9a569dbe13573fd275">Configuration.Default.store(this)</a>. </dd></dl>
 
 </div>
 </div>
@@ -1397,7 +1182,7 @@ Package Access Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>The default value provided as an externalized string.</p>
-<p>The only occasion that this value is used is with method <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a2222e544f04bdb04117b1c9b2e4e731f">Configuration.load</a>. If no plug-in has this variable defined and this field is not <em>nulled</em>, then the value is written into plug-in <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#acd38e044ddc3f033abe3e69c51963e56">Configuration.defaultValues</a>, respectively - if this was replaced by the user - into a plug-in found at or below priority <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#abdca3e572982b273c6edeb145cd6b92f">Configuration.PRIO_DEFAULT</a>.</p>
+<p>The only occasion that this value is used is with method <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a2222e544f04bdb04117b1c9b2e4e731f">Configuration.load</a>. If no plug-in has this variable defined and this field is not <em>nulled</em>, then the value is written into plug-in of priority <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ae4177d538925ca1d6b9858078c3ea513">Configuration.PRIO_DEFAULT_VALUES</a>, respectively - if this default plug-in was replaced by the user - into a plug-in found at or below this priority.</p>
 <p>In this case, the value is parsed using method <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html#ac01bd465bf154b9d16b016c56ab5d7b0">XTernalizer.loadFromString</a> of field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a728fd4fd08c7736c49bf19cc2ae92397">ConfigurationPlugin.stringConverter</a> of the plug-in writing the value.</p>
 <dl class="section note"><dt>Note</dt><dd>The field is ignored when using the plug-in interface <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#afda19bd7d886e5666babdfc09f9d4e1b">ConfigurationPlugin.load</a> directly. To store this value 'manually' directly to a plug-in, invoke <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a9a29bfa1c311919ded7d4fea01094193">ConfigurationPlugin.store</a> with providing value explicitly. </dd></dl>
 
@@ -1521,7 +1306,7 @@ Package Access Methods</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>If set attributes written in multi-lines are vertically aligned by this character or string. Use cases are "=", ":" or "-&gt;".<br />
+<p>If set, attributes written in multi-lines are vertically aligned by this character or string. Use cases are "=", ":" or "-&gt;".<br />
  Used by <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html">IniFile</a> and potentially by custom plug-ins. </p>
 
 </div>
@@ -1583,7 +1368,7 @@ Package Access Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>A value related to the priority of a configuration plug-in. The following values apply:</p><ul>
-<li><code>-1</code> after creation or definition (reuse).</li>
+<li><code>0</code> after creation or declaration (reuse).</li>
 <li>The priority of the plug-in that loaded the value (after calling <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a2222e544f04bdb04117b1c9b2e4e731f">Configuration.load</a>).</li>
 <li>The priority of the plug-in that stored the value (after calling <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a454f981ef44f6c9a569dbe13573fd275">Configuration.store</a>).</li>
 <li><code>0</code>, if the last load or store operation failed. In addition prior to storing a variable, the value might be manually set. See documentation of <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a454f981ef44f6c9a569dbe13573fd275">Configuration.store</a>) for details. </li>
@@ -1644,7 +1429,7 @@ Package Access Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:48:01 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

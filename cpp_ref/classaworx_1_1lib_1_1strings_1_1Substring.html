@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -104,8 +104,7 @@ Collaboration diagram for Substring:</div>
 <p> This class is used for defining a region (sub-string) on an existing character array. Objects of this class will not manipulate the underlying data. In particular, there is no terminating zero written.</p>
 <p>Unlike in the <em>C#</em> and <em>Java</em> versions of <b>ALib</b>, the represented region is defined by the protected fields inherited from class <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#adcffeb665e497d8c0909063e4b5df871">String</a>. The difference to base class <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> is, that class <b>Substring</b> allows to change the buffer's start and its length. Otherwise, this class has the very same lightweight nature and performance as its base. In general, while working with a <b>Substring</b>, the size of it should shrink, e.g. by trimming, but should not grow.</p>
 <p>Like base class <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a>, the class can not, and therefore does not, verify that the underlying buffer is still allocated or contains termination characters within the region (which would be is against the rules). It is up to the user of this class to make sure the buffer stays intact until any referencing object of this type is destructed (or just is not used any more).</p>
-<p>Objects of this class can be reused by freshly initializing them using of method <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a78e69b45cdcafe78919ef4394b946473">Set(const String&amp;)</a> and <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a0ecb7ee6fe3a0f1bbfcaaa44262f3236">Set(const String&amp;,integer,integer)</a>.</p>
-<dl class="section note"><dt>Note</dt><dd>To generate <b>Substring</b> objects which are separated by a delimiter character within a character array, use class <a class="el" href="classaworx_1_1lib_1_1strings_1_1util_1_1Tokenizer.html">Tokenizer</a>. </dd></dl>
+<p>Objects of this class can be reused by freshly initializing them using of method <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a78e69b45cdcafe78919ef4394b946473">Set(const String&amp;)</a> and <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a0ecb7ee6fe3a0f1bbfcaaa44262f3236">Set(const String&amp;,integer,integer)</a>. </p>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
@@ -176,24 +175,27 @@ Public Methods</h2></td></tr>
 <tr class="separator:ad5adea1923df366e896af251757b3528 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a227e5bdf7a6d162da1ba47c39063b417 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a227e5bdf7a6d162da1ba47c39063b417">operator[]</a> (<a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> idx) const</td></tr>
 <tr class="separator:a227e5bdf7a6d162da1ba47c39063b417 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8afc22664fd3e83354780b3d3dd78cd inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#af8afc22664fd3e83354780b3d3dd78cd">Equals</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">lang::Case</a> sensitivity=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">lang::Case::Sensitive</a>) const</td></tr>
-<tr class="separator:af8afc22664fd3e83354780b3d3dd78cd inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a683512f36882cc61934216adb9a6cb4c inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
-<tr class="memitem:a683512f36882cc61934216adb9a6cb4c inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a683512f36882cc61934216adb9a6cb4c">ContainsAt</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> pos, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">lang::Case</a> sensitivity=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">lang::Case::Sensitive</a>) const</td></tr>
-<tr class="separator:a683512f36882cc61934216adb9a6cb4c inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4ad515b560f370c38bcfdd4a5f47ac7 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#ac4ad515b560f370c38bcfdd4a5f47ac7">StartsWith</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">lang::Case</a> sensitivity=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">lang::Case::Sensitive</a>) const</td></tr>
-<tr class="separator:ac4ad515b560f370c38bcfdd4a5f47ac7 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad94f0e5b6be0fe047edc412b802bddc7 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#ad94f0e5b6be0fe047edc412b802bddc7">EndsWith</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">lang::Case</a> sensitivity=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">lang::Case::Sensitive</a>) const</td></tr>
-<tr class="separator:ad94f0e5b6be0fe047edc412b802bddc7 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c5e3e986cb1ce9f008fec021efab7e3 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
-<tr class="memitem:a4c5e3e986cb1ce9f008fec021efab7e3 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a4c5e3e986cb1ce9f008fec021efab7e3">CompareTo</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">lang::Case</a> sensitivity=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">lang::Case::Sensitive</a>) const</td></tr>
-<tr class="separator:a4c5e3e986cb1ce9f008fec021efab7e3 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f9db22cea88d6eb49ca79aa8a7844cc inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
-<tr class="memitem:a6f9db22cea88d6eb49ca79aa8a7844cc inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a6f9db22cea88d6eb49ca79aa8a7844cc">CompareTo</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">lang::Case</a> sensitivity, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> needleRegionStart, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> needleRegionLength=<a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a854222d062dd7b383aff419dac1b8481">CString::MaxLen</a>) const</td></tr>
-<tr class="separator:a6f9db22cea88d6eb49ca79aa8a7844cc inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad749ee26153b5d5a977f59993fb98042 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
-<tr class="memitem:ad749ee26153b5d5a977f59993fb98042 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#ad749ee26153b5d5a977f59993fb98042">CompareTo</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">lang::Case</a> sensitivity, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> cmpRegionStart, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> cmpRegionLength, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> regionStart, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> regionLength=<a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a854222d062dd7b383aff419dac1b8481">CString::MaxLen</a>) const</td></tr>
-<tr class="separator:ad749ee26153b5d5a977f59993fb98042 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80f54c9dc7947aa731b93bf3217e93f2 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;lang::Case TSensitivity = lang::Case::Sensitive&gt; </td></tr>
+<tr class="memitem:a80f54c9dc7947aa731b93bf3217e93f2 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a80f54c9dc7947aa731b93bf3217e93f2">Equals</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle) const</td></tr>
+<tr class="separator:a80f54c9dc7947aa731b93bf3217e93f2 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf92645fa8c4cc894d35fd4df0e635f8 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true, lang::Case TSensitivity = lang::Case::Sensitive&gt; </td></tr>
+<tr class="memitem:acf92645fa8c4cc894d35fd4df0e635f8 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#acf92645fa8c4cc894d35fd4df0e635f8">ContainsAt</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> pos) const</td></tr>
+<tr class="separator:acf92645fa8c4cc894d35fd4df0e635f8 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bb39f5f0436c043b8a3b808c9974d02 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;lang::Case TSensitivity = lang::Case::Sensitive&gt; </td></tr>
+<tr class="memitem:a0bb39f5f0436c043b8a3b808c9974d02 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a0bb39f5f0436c043b8a3b808c9974d02">StartsWith</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle) const</td></tr>
+<tr class="separator:a0bb39f5f0436c043b8a3b808c9974d02 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b3d473da02ff2622d1a90928c506876 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;lang::Case TSensitivity = lang::Case::Sensitive&gt; </td></tr>
+<tr class="memitem:a6b3d473da02ff2622d1a90928c506876 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a6b3d473da02ff2622d1a90928c506876">EndsWith</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle) const</td></tr>
+<tr class="separator:a6b3d473da02ff2622d1a90928c506876 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a804faaeae51297434cd4b197353134d9 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true, Case TSensitivity = Case::Sensitive&gt; </td></tr>
+<tr class="memitem:a804faaeae51297434cd4b197353134d9 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a804faaeae51297434cd4b197353134d9">CompareTo</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle) const</td></tr>
+<tr class="separator:a804faaeae51297434cd4b197353134d9 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8cf3199b988a6675df81ab1e4e72fda inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true, Case TSensitivity = Case::Sensitive&gt; </td></tr>
+<tr class="memitem:aa8cf3199b988a6675df81ab1e4e72fda inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#aa8cf3199b988a6675df81ab1e4e72fda">CompareTo</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> needleRegionStart, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> needleRegionLength=<a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a854222d062dd7b383aff419dac1b8481">CString::MaxLen</a>) const</td></tr>
+<tr class="separator:aa8cf3199b988a6675df81ab1e4e72fda inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a641cc875334801db2605fc7e55c656c7 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true, Case TSensitivity = Case::Sensitive&gt; </td></tr>
+<tr class="memitem:a641cc875334801db2605fc7e55c656c7 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a641cc875334801db2605fc7e55c656c7">CompareTo</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> cmpRegionStart, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> cmpRegionLength, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> regionStart, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> regionLength=<a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a854222d062dd7b383aff419dac1b8481">CString::MaxLen</a>) const</td></tr>
+<tr class="separator:a641cc875334801db2605fc7e55c656c7 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab64e70a5dacaf96051001c5ac1ba42d4 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#ab64e70a5dacaf96051001c5ac1ba42d4">operator&lt;</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;op) const</td></tr>
 <tr class="separator:ab64e70a5dacaf96051001c5ac1ba42d4 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac02f8b4c5f15456011760d3690065335 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#ac02f8b4c5f15456011760d3690065335">operator&gt;</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;op) const</td></tr>
@@ -218,18 +220,30 @@ Public Methods</h2></td></tr>
 <tr class="memitem:a8bb8c82267bbb72239c9d6559cdfbf24 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
 <tr class="memitem:a8bb8c82267bbb72239c9d6559cdfbf24 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a8bb8c82267bbb72239c9d6559cdfbf24">LastIndexOf</a> (char needle, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> startIndex=<a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a854222d062dd7b383aff419dac1b8481">CString::MaxLen</a>) const</td></tr>
 <tr class="separator:a8bb8c82267bbb72239c9d6559cdfbf24 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a312ecf30301f4228a167052b58895ef5 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
-<tr class="memitem:a312ecf30301f4228a167052b58895ef5 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a312ecf30301f4228a167052b58895ef5">IndexOfAny</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needles, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a217539925b78b2eed40ae7817d5bee52">lang::Inclusion</a> inclusion, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> startIdx=0) const</td></tr>
-<tr class="separator:a312ecf30301f4228a167052b58895ef5 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73db69a072ace024e768ac4f3bbd0630 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
-<tr class="memitem:a73db69a072ace024e768ac4f3bbd0630 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a73db69a072ace024e768ac4f3bbd0630">LastIndexOfAny</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needles, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a217539925b78b2eed40ae7817d5bee52">lang::Inclusion</a> inclusion, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> startIdx=<a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a854222d062dd7b383aff419dac1b8481">CString::MaxLen</a>) const</td></tr>
-<tr class="separator:a73db69a072ace024e768ac4f3bbd0630 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b2db8c097f2e27a96c64807c8d0edc4 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
-<tr class="memitem:a0b2db8c097f2e27a96c64807c8d0edc4 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a0b2db8c097f2e27a96c64807c8d0edc4">IndexOfSubstring</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> startIdx=0, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">lang::Case</a> sensitivity=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">lang::Case::Sensitive</a>) const</td></tr>
-<tr class="separator:a0b2db8c097f2e27a96c64807c8d0edc4 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66424c3dfeba3c25b75df951147067d3 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;lang::Inclusion TInclusion, bool TCheck = true&gt; </td></tr>
+<tr class="memitem:a66424c3dfeba3c25b75df951147067d3 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a66424c3dfeba3c25b75df951147067d3">IndexOfAny</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needles, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> startIdx=0) const</td></tr>
+<tr class="separator:a66424c3dfeba3c25b75df951147067d3 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3869a6fbaf8ca6e478cd119c540dffbf inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;lang::Inclusion TInclusion, bool TCheck = true&gt; </td></tr>
+<tr class="memitem:a3869a6fbaf8ca6e478cd119c540dffbf inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a3869a6fbaf8ca6e478cd119c540dffbf">LastIndexOfAny</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needles, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> startIdx=<a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a854222d062dd7b383aff419dac1b8481">CString::MaxLen</a>) const</td></tr>
+<tr class="separator:a3869a6fbaf8ca6e478cd119c540dffbf inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d261d680a9f9036a43cb7a6a4baa268 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;lang::Case TSensitivity = lang::Case::Sensitive, bool TCheck = true&gt; </td></tr>
+<tr class="memitem:a0d261d680a9f9036a43cb7a6a4baa268 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a0d261d680a9f9036a43cb7a6a4baa268">IndexOfSubstring</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> startIdx=0) const</td></tr>
+<tr class="separator:a0d261d680a9f9036a43cb7a6a4baa268 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa38812ea513734bb82f5eba9a87eedc3 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
 <tr class="memitem:aa38812ea513734bb82f5eba9a87eedc3 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#aa38812ea513734bb82f5eba9a87eedc3">IndexOfFirstDifference</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">lang::Case</a> sensitivity=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">lang::Case::Sensitive</a>, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> idx=0) const</td></tr>
 <tr class="separator:aa38812ea513734bb82f5eba9a87eedc3 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac06a9c8f9bb2ba88baee904f7510042e inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
+<tr class="memitem:ac06a9c8f9bb2ba88baee904f7510042e inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#ac06a9c8f9bb2ba88baee904f7510042e">CountChar</a> (char needle, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> startPos=0) const</td></tr>
+<tr class="separator:ac06a9c8f9bb2ba88baee904f7510042e inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2881dc9600967935c5a39536782ad818 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
+<tr class="memitem:a2881dc9600967935c5a39536782ad818 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a2881dc9600967935c5a39536782ad818">CountChar</a> (char needle, char omit, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> startPos=0) const</td></tr>
+<tr class="separator:a2881dc9600967935c5a39536782ad818 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c2055642e2ff907fa45012dc825a705 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;lang::Case TSensitivity = lang::Case::Sensitive, bool TCheck = true&gt; </td></tr>
+<tr class="memitem:a4c2055642e2ff907fa45012dc825a705 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a4c2055642e2ff907fa45012dc825a705">Count</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> startPos=0) const</td></tr>
+<tr class="separator:a4c2055642e2ff907fa45012dc825a705 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a151ecb5e80af54ad4f84f6f49af4d3c9 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;lang::Case sensitivity = lang::Case::Sensitive, bool TCheck = true&gt; </td></tr>
+<tr class="memitem:a151ecb5e80af54ad4f84f6f49af4d3c9 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a151ecb5e80af54ad4f84f6f49af4d3c9">Count</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle, const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;omit, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> startPos=0) const</td></tr>
+<tr class="separator:a151ecb5e80af54ad4f84f6f49af4d3c9 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3e160a8b59fc366a756f4b9e5aba7b2 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#ac3e160a8b59fc366a756f4b9e5aba7b2">CopyTo</a> (char *dest) const</td></tr>
 <tr class="separator:ac3e160a8b59fc366a756f4b9e5aba7b2 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afad765c530b9d43175f20bdcf968451a inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#afad765c530b9d43175f20bdcf968451a">ToWString</a> (wchar_t *dest, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> destCapacity, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> regionStart=0, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> regionLength=<a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a854222d062dd7b383aff419dac1b8481">CString::MaxLen</a>) const</td></tr>
@@ -248,52 +262,71 @@ Consume</h2></td></tr>
 <tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrpd2e0379c3a30439bfc1b6869af4408cc"></a></p><h6></h6>
 <h2></h2>
 </td></tr>
-<tr class="memitem:aab23dfec3931737a975ca82d666f862a"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
-<tr class="memitem:aab23dfec3931737a975ca82d666f862a"><td class="memTemplItemLeft" align="right" valign="top">char&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aab23dfec3931737a975ca82d666f862a">ConsumeChar</a> (<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad4a46f9fb632511f6be7c53e05f330f7">lang::Whitespaces</a> trimBeforeConsume=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4a02bce93bff905887ad2233110bf9c49e">lang::Whitespaces::Keep</a>)</td></tr>
-<tr class="separator:aab23dfec3931737a975ca82d666f862a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac791fd629b63bb535ecea8efdc08724"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aac791fd629b63bb535ecea8efdc08724">ConsumeChar</a> (char consumable, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">lang::Case</a> sensitivity=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">lang::Case::Sensitive</a>, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad4a46f9fb632511f6be7c53e05f330f7">lang::Whitespaces</a> trimBeforeConsume=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4a02bce93bff905887ad2233110bf9c49e">lang::Whitespaces::Keep</a>)</td></tr>
-<tr class="separator:aac791fd629b63bb535ecea8efdc08724"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a105d1a949f88a6f3bf185e6f6b62b03c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a105d1a949f88a6f3bf185e6f6b62b03c">ConsumeCharFromEnd</a> (char consumable, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">lang::Case</a> sensitivity=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">lang::Case::Sensitive</a>, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad4a46f9fb632511f6be7c53e05f330f7">lang::Whitespaces</a> trimBeforeConsume=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4a02bce93bff905887ad2233110bf9c49e">lang::Whitespaces::Keep</a>)</td></tr>
-<tr class="separator:a105d1a949f88a6f3bf185e6f6b62b03c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56dc67397032027b91bd623b99f64e02"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
-<tr class="memitem:a56dc67397032027b91bd623b99f64e02"><td class="memTemplItemLeft" align="right" valign="top">char&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a56dc67397032027b91bd623b99f64e02">ConsumeCharFromEnd</a> (<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad4a46f9fb632511f6be7c53e05f330f7">lang::Whitespaces</a> trimBeforeConsume=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4a02bce93bff905887ad2233110bf9c49e">lang::Whitespaces::Keep</a>)</td></tr>
-<tr class="separator:a56dc67397032027b91bd623b99f64e02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18cf26497fae8890a9f43b142063db59"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true, lang::Whitespaces TTrimBeforeConsume = lang::Whitespaces::Keep&gt; </td></tr>
+<tr class="memitem:a18cf26497fae8890a9f43b142063db59"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#gad64afad18f0a403ccfc7703caf03a047">ALIB_WARNINGS_ALLOW_TEMPLATE_META_PROGRAMMING</a> char&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a18cf26497fae8890a9f43b142063db59">ConsumeChar</a> ()</td></tr>
+<tr class="separator:a18cf26497fae8890a9f43b142063db59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9703f0addd265e2b484243f0ade80420"><td class="memTemplParams" colspan="2">template&lt;lang::Case TSensitivity = lang::Case::Sensitive, lang::Whitespaces TTrimBeforeConsume = lang::Whitespaces::Keep&gt; </td></tr>
+<tr class="memitem:a9703f0addd265e2b484243f0ade80420"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a9703f0addd265e2b484243f0ade80420">ConsumeChar</a> (char consumable)</td></tr>
+<tr class="separator:a9703f0addd265e2b484243f0ade80420"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0adcec095f89379d9e01634745e4f1af"><td class="memTemplParams" colspan="2">template&lt;lang::Case TSensitivity = lang::Case::Sensitive, lang::Whitespaces TTrimBeforeConsume = lang::Whitespaces::Keep&gt; </td></tr>
+<tr class="memitem:a0adcec095f89379d9e01634745e4f1af"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a0adcec095f89379d9e01634745e4f1af">ConsumeCharFromEnd</a> (char consumable)</td></tr>
+<tr class="separator:a0adcec095f89379d9e01634745e4f1af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a944a0976c73b809d66b6777da9f3ed9b"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true, lang::Whitespaces TTrimBeforeConsume = lang::Whitespaces::Keep&gt; </td></tr>
+<tr class="memitem:a944a0976c73b809d66b6777da9f3ed9b"><td class="memTemplItemLeft" align="right" valign="top">char&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a944a0976c73b809d66b6777da9f3ed9b">ConsumeCharFromEnd</a> ()</td></tr>
+<tr class="separator:a944a0976c73b809d66b6777da9f3ed9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa92d18f63bf16bd73b4146c738a9b9eb"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
 <tr class="memitem:aa92d18f63bf16bd73b4146c738a9b9eb"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aa92d18f63bf16bd73b4146c738a9b9eb">ConsumeChars</a> (<a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> regionLength, <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> *target=nullptr)</td></tr>
 <tr class="separator:aa92d18f63bf16bd73b4146c738a9b9eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af86dfb35eed1fe734ec7977187f79b95"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
 <tr class="memitem:af86dfb35eed1fe734ec7977187f79b95"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#af86dfb35eed1fe734ec7977187f79b95">ConsumeCharsFromEnd</a> (<a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> regionLength, <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> *target=nullptr)</td></tr>
 <tr class="separator:af86dfb35eed1fe734ec7977187f79b95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e4eea49b40899820afd59c34e10ffc9"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
-<tr class="memitem:a4e4eea49b40899820afd59c34e10ffc9"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a4e4eea49b40899820afd59c34e10ffc9">ConsumeChars</a> (<a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> regionLength, <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> separatorWidth=0, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4">lang::CurrentData</a> targetData=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2">lang::CurrentData::Clear</a>)</td></tr>
-<tr class="separator:a4e4eea49b40899820afd59c34e10ffc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7447c3eb16c727f928613f0135414ea8"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
-<tr class="memitem:a7447c3eb16c727f928613f0135414ea8"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a7447c3eb16c727f928613f0135414ea8">ConsumeCharsFromEnd</a> (<a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> regionLength, <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> separatorWidth=0, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4">lang::CurrentData</a> targetData=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2">lang::CurrentData::Clear</a>)</td></tr>
-<tr class="separator:a7447c3eb16c727f928613f0135414ea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3794c676238c3519975629aae9347b1d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a3794c676238c3519975629aae9347b1d">ConsumeString</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;consumable, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">lang::Case</a> sensitivity=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">lang::Case::Sensitive</a>, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad4a46f9fb632511f6be7c53e05f330f7">lang::Whitespaces</a> trimBeforeConsume=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4a02bce93bff905887ad2233110bf9c49e">lang::Whitespaces::Keep</a>)</td></tr>
-<tr class="separator:a3794c676238c3519975629aae9347b1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0424b41278203f4e311efb75b01e286b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a0424b41278203f4e311efb75b01e286b">ConsumeStringFromEnd</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;consumable, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">lang::Case</a> sensitivity=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">lang::Case::Sensitive</a>, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad4a46f9fb632511f6be7c53e05f330f7">lang::Whitespaces</a> trimBeforeConsume=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4a02bce93bff905887ad2233110bf9c49e">lang::Whitespaces::Keep</a>)</td></tr>
-<tr class="separator:a0424b41278203f4e311efb75b01e286b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd3e76a1240e0aef9f86e3d9e81d3437"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#afd3e76a1240e0aef9f86e3d9e81d3437">ConsumePartOf</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;consumable, int minChars=1, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">lang::Case</a> sensitivity=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">lang::Case::Sensitive</a>, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad4a46f9fb632511f6be7c53e05f330f7">lang::Whitespaces</a> trimBeforeConsume=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4a02bce93bff905887ad2233110bf9c49e">lang::Whitespaces::Keep</a>)</td></tr>
-<tr class="separator:afd3e76a1240e0aef9f86e3d9e81d3437"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30b0271dbd35a163e0519c66a3128f85"><td class="memTemplParams" colspan="2">template&lt;typename TInteger &gt; </td></tr>
-<tr class="memitem:a30b0271dbd35a163e0519c66a3128f85"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a30b0271dbd35a163e0519c66a3128f85">ConsumeDecDigits</a> (TInteger &amp;result)</td></tr>
-<tr class="separator:a30b0271dbd35a163e0519c66a3128f85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84b355fb156194f4cc2000d0e75ccafa"><td class="memTemplParams" colspan="2">template&lt;typename TInteger &gt; </td></tr>
-<tr class="memitem:a84b355fb156194f4cc2000d0e75ccafa"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a84b355fb156194f4cc2000d0e75ccafa">ConsumeInt</a> (TInteger &amp;result, <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> *numberFormat=nullptr)</td></tr>
-<tr class="separator:a84b355fb156194f4cc2000d0e75ccafa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae616e4986934db6e74c8a468456d2b40"><td class="memTemplParams" colspan="2">template&lt;typename TInteger &gt; </td></tr>
-<tr class="memitem:ae616e4986934db6e74c8a468456d2b40"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#ae616e4986934db6e74c8a468456d2b40">ConsumeDec</a> (TInteger &amp;result, <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> *numberFormat=nullptr)</td></tr>
-<tr class="separator:ae616e4986934db6e74c8a468456d2b40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1489e0a893e57509f6ef5114c5070e4"><td class="memTemplParams" colspan="2">template&lt;typename TInteger &gt; </td></tr>
-<tr class="memitem:aa1489e0a893e57509f6ef5114c5070e4"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aa1489e0a893e57509f6ef5114c5070e4">ConsumeBin</a> (TInteger &amp;result, <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> *numberFormat=nullptr)</td></tr>
-<tr class="separator:aa1489e0a893e57509f6ef5114c5070e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79c5c855abc0848e210ab2c4703af7ff"><td class="memTemplParams" colspan="2">template&lt;typename TInteger &gt; </td></tr>
-<tr class="memitem:a79c5c855abc0848e210ab2c4703af7ff"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a79c5c855abc0848e210ab2c4703af7ff">ConsumeHex</a> (TInteger &amp;result, <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> *numberFormat=nullptr)</td></tr>
-<tr class="separator:a79c5c855abc0848e210ab2c4703af7ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa16d54268343c10a49eb936c45de13bf"><td class="memTemplParams" colspan="2">template&lt;typename TInteger &gt; </td></tr>
-<tr class="memitem:aa16d54268343c10a49eb936c45de13bf"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aa16d54268343c10a49eb936c45de13bf">ConsumeOct</a> (TInteger &amp;result, <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> *numberFormat=nullptr)</td></tr>
-<tr class="separator:aa16d54268343c10a49eb936c45de13bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c2ea6c0c2d6cf000b1f3f90de484dd7"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true, lang::CurrentData TTargetData = lang::CurrentData::Clear&gt; </td></tr>
+<tr class="memitem:a5c2ea6c0c2d6cf000b1f3f90de484dd7"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a5c2ea6c0c2d6cf000b1f3f90de484dd7">ConsumeChars</a> (<a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> regionLength, <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> separatorWidth=0)</td></tr>
+<tr class="separator:a5c2ea6c0c2d6cf000b1f3f90de484dd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7d23e3fd9b997913b97396e916371f5"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true, lang::CurrentData TTargetData = lang::CurrentData::Clear&gt; </td></tr>
+<tr class="memitem:ac7d23e3fd9b997913b97396e916371f5"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#ac7d23e3fd9b997913b97396e916371f5">ConsumeCharsFromEnd</a> (<a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> regionLength, <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> separatorWidth=0)</td></tr>
+<tr class="separator:ac7d23e3fd9b997913b97396e916371f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadfa9ad37a0dd52b650e9b18cc896df3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aadfa9ad37a0dd52b650e9b18cc896df3">ConsumeToken</a> (char separator=',')</td></tr>
+<tr class="separator:aadfa9ad37a0dd52b650e9b18cc896df3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c6527d5e8373e7090b615551c4fd417"><td class="memTemplParams" colspan="2">template&lt;lang::Case TSensitivity = lang::Case::Sensitive, lang::Whitespaces TTrimBeforeConsume = lang::Whitespaces::Keep&gt; </td></tr>
+<tr class="memitem:a9c6527d5e8373e7090b615551c4fd417"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a9c6527d5e8373e7090b615551c4fd417">ConsumeString</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;consumable)</td></tr>
+<tr class="separator:a9c6527d5e8373e7090b615551c4fd417"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a461822ea5b3be48c259618bb9464c2d7"><td class="memTemplParams" colspan="2">template&lt;lang::Case TSensitivity = lang::Case::Sensitive, lang::Whitespaces TTrimBeforeConsume = lang::Whitespaces::Keep&gt; </td></tr>
+<tr class="memitem:a461822ea5b3be48c259618bb9464c2d7"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a461822ea5b3be48c259618bb9464c2d7">ConsumeStringFromEnd</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;consumable)</td></tr>
+<tr class="separator:a461822ea5b3be48c259618bb9464c2d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacfd7bb195ac8ad310bc26345600b2bd"><td class="memTemplParams" colspan="2">template&lt;lang::Case TSensitivity = lang::Case::Ignore, lang::Whitespaces TTrimBeforeConsume = lang::Whitespaces::Keep&gt; </td></tr>
+<tr class="memitem:aacfd7bb195ac8ad310bc26345600b2bd"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aacfd7bb195ac8ad310bc26345600b2bd">ConsumePartOf</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;consumable, int minChars=1)</td></tr>
+<tr class="separator:aacfd7bb195ac8ad310bc26345600b2bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae70c6d9bd6d40bfe8bc0ad73302a79d3"><td class="memTemplParams" colspan="2">template&lt;lang::Whitespaces TTrimBeforeConsume = lang::Whitespaces::Keep&gt; </td></tr>
+<tr class="memitem:ae70c6d9bd6d40bfe8bc0ad73302a79d3"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#ae70c6d9bd6d40bfe8bc0ad73302a79d3">ConsumeField</a> (char startChar, char endChar)</td></tr>
+<tr class="separator:ae70c6d9bd6d40bfe8bc0ad73302a79d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a108a7aaa23fe6b9ac6b37339766ad17f"><td class="memTemplParams" colspan="2">template&lt;typename TEnum , lang::Case TSensitivity = lang::Case::Ignore, lang::Whitespaces TTrimBeforeConsume = lang::Whitespaces::Trim, typename TEnableIf  = typename std::enable_if&lt;T_EnumMetaDataDeclReadWrite&lt;TEnum&gt;::MinParseLengthIndex                                                             != 0 &gt;::type&gt; </td></tr>
+<tr class="memitem:a108a7aaa23fe6b9ac6b37339766ad17f"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a108a7aaa23fe6b9ac6b37339766ad17f">ConsumeEnum</a> (TEnum &amp;result)</td></tr>
+<tr class="separator:a108a7aaa23fe6b9ac6b37339766ad17f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1525edfa4acb47087a795c78d3a0f41f"><td class="memTemplParams" colspan="2">template&lt;typename TEnum , lang::Case TSensitivity = lang::Case::Ignore, lang::Whitespaces TTrimBeforeConsume = lang::Whitespaces::Trim, char delimiter = ',', bool keepLastDelim = true, typename TEnableIf  = typename std::enable_if&lt; ( T_EnumMetaDataDeclReadWrite&lt;TEnum&gt;::MinParseLengthIndex                                                                !=  0 )                                                              &amp;&amp; lang::T_EnumIsBitwise&lt;TEnum&gt;::value                                                            &gt;::type&gt; </td></tr>
+<tr class="memitem:a1525edfa4acb47087a795c78d3a0f41f"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a1525edfa4acb47087a795c78d3a0f41f">ConsumeEnumBitwise</a> (TEnum &amp;result)</td></tr>
+<tr class="separator:a1525edfa4acb47087a795c78d3a0f41f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9756182d816925205b1c7390e78f68d0"><td class="memTemplParams" colspan="2">template&lt;typename TEnum , lang::Case TSensitivity = lang::Case::Ignore, lang::Whitespaces TTrimBeforeConsume = lang::Whitespaces::Trim, typename TEnableIf  = typename std::enable_if&lt; T_EnumMetaDataDeclReadWrite&lt;TEnum&gt;::MinParseLengthIndex                                                                       !=  0 &gt;::type&gt; </td></tr>
+<tr class="memitem:a9756182d816925205b1c7390e78f68d0"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a9756182d816925205b1c7390e78f68d0">ConsumeEnumOrBool</a> (TEnum &amp;result, TEnum falseValue, TEnum trueValue)</td></tr>
+<tr class="separator:a9756182d816925205b1c7390e78f68d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6006fd6197e8f7e89de75c14c15e46e4"><td class="memTemplParams" colspan="2">template&lt;typename TInteger , typename TEnableIf  = typename std::enable_if&lt;    std::is_integral&lt;TInteger&gt;::value                                                            &gt;::type&gt; </td></tr>
+<tr class="memitem:a6006fd6197e8f7e89de75c14c15e46e4"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga65685ca0f9ee1c3af3bdc8f0df4d431d">ALIB_WARNINGS_RESTORE</a> bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a6006fd6197e8f7e89de75c14c15e46e4">ConsumeDecDigits</a> (TInteger &amp;result)</td></tr>
+<tr class="separator:a6006fd6197e8f7e89de75c14c15e46e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add31aaa5679f21922507f0030d97e6ed"><td class="memTemplParams" colspan="2">template&lt;typename TInteger , typename TEnableIf  = typename std::enable_if&lt;    std::is_integral&lt;TInteger&gt;::value                                                            &gt;::type&gt; </td></tr>
+<tr class="memitem:add31aaa5679f21922507f0030d97e6ed"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#add31aaa5679f21922507f0030d97e6ed">ConsumeInt</a> (TInteger &amp;result, <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> *numberFormat=nullptr)</td></tr>
+<tr class="separator:add31aaa5679f21922507f0030d97e6ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e5fc74c4504055b329a8f903da8b4e6"><td class="memTemplParams" colspan="2">template&lt;typename TInteger , typename TEnableIf  = typename std::enable_if&lt;    std::is_integral&lt;TInteger&gt;::value                                                            &gt;::type&gt; </td></tr>
+<tr class="memitem:a9e5fc74c4504055b329a8f903da8b4e6"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a9e5fc74c4504055b329a8f903da8b4e6">ConsumeDec</a> (TInteger &amp;result, <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> *numberFormat=nullptr)</td></tr>
+<tr class="separator:a9e5fc74c4504055b329a8f903da8b4e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21df93f4ebb1ad0e8e1a89d973d8d0ce"><td class="memTemplParams" colspan="2">template&lt;typename TInteger , typename TEnableIf  = typename std::enable_if&lt;    std::is_integral&lt;TInteger&gt;::value                                                            &gt;::type&gt; </td></tr>
+<tr class="memitem:a21df93f4ebb1ad0e8e1a89d973d8d0ce"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a21df93f4ebb1ad0e8e1a89d973d8d0ce">ConsumeBin</a> (TInteger &amp;result, <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> *numberFormat=nullptr)</td></tr>
+<tr class="separator:a21df93f4ebb1ad0e8e1a89d973d8d0ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b4e369700fc684fc50cf7ebdbd652f0"><td class="memTemplParams" colspan="2">template&lt;typename TInteger , typename TEnableIf  = typename std::enable_if&lt;    std::is_integral&lt;TInteger&gt;::value                                                            &gt;::type&gt; </td></tr>
+<tr class="memitem:a7b4e369700fc684fc50cf7ebdbd652f0"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a7b4e369700fc684fc50cf7ebdbd652f0">ConsumeHex</a> (TInteger &amp;result, <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> *numberFormat=nullptr)</td></tr>
+<tr class="separator:a7b4e369700fc684fc50cf7ebdbd652f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac41815981c3918d05b0e33547df965c4"><td class="memTemplParams" colspan="2">template&lt;typename TInteger , typename TEnableIf  = typename std::enable_if&lt;    std::is_integral&lt;TInteger&gt;::value                                                            &gt;::type&gt; </td></tr>
+<tr class="memitem:ac41815981c3918d05b0e33547df965c4"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#ac41815981c3918d05b0e33547df965c4">ConsumeOct</a> (TInteger &amp;result, <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> *numberFormat=nullptr)</td></tr>
+<tr class="separator:ac41815981c3918d05b0e33547df965c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4787a8202a8d845cc8f2bebcc3c101c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aa4787a8202a8d845cc8f2bebcc3c101c">ConsumeFloat</a> (double &amp;result, <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> *numberFormat=nullptr)</td></tr>
 <tr class="separator:aa4787a8202a8d845cc8f2bebcc3c101c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1635e6b81da4d6af0b197641b4f0179"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
@@ -414,8 +447,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="aa1489e0a893e57509f6ef5114c5070e4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1489e0a893e57509f6ef5114c5070e4">&#9670;&nbsp;</a></span>ConsumeBin()</h2>
+<a id="a21df93f4ebb1ad0e8e1a89d973d8d0ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21df93f4ebb1ad0e8e1a89d973d8d0ce">&#9670;&nbsp;</a></span>ConsumeBin()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -460,7 +493,9 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">TInteger</td><td>The output type. Must be statically castable from <b>uint64_t</b>.</td></tr>
+    <tr><td class="paramname">TInteger</td><td>The output type. Must be statically castable from <b>uint64_t</b>. </td></tr>
+    <tr><td class="paramname">TEnableIf</td><td>Internal. Do <b>not</b> specify!<br />
+ (Defaults to <code>std::enable_if</code> type, to enable the compiler to select this method only for integer types.</td></tr>
   </table>
   </dd>
 </dl>
@@ -502,7 +537,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Implementation for <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aa1489e0a893e57509f6ef5114c5070e4">ConsumeBin</a>.</p>
+<p> Implementation for <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a21df93f4ebb1ad0e8e1a89d973d8d0ce">ConsumeBin</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">result</td><td>A reference to the result value. </td></tr>
@@ -514,8 +549,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="aab23dfec3931737a975ca82d666f862a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab23dfec3931737a975ca82d666f862a">&#9670;&nbsp;</a></span>ConsumeChar() <span class="overload">[1/2]</span></h2>
+<a id="a18cf26497fae8890a9f43b142063db59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18cf26497fae8890a9f43b142063db59">&#9670;&nbsp;</a></span>ConsumeChar() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -524,10 +559,9 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">char ConsumeChar </td>
+          <td class="memname"><a class="el" href="group__GrpALibMacros.html#gad64afad18f0a403ccfc7703caf03a047">ALIB_WARNINGS_ALLOW_TEMPLATE_META_PROGRAMMING</a> char ConsumeChar </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad4a46f9fb632511f6be7c53e05f330f7">lang::Whitespaces</a>&#160;</td>
-          <td class="paramname"><em>trimBeforeConsume</em> = <code><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4a02bce93bff905887ad2233110bf9c49e">lang::Whitespaces::Keep</a></code></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -541,13 +575,8 @@ Additional Inherited Members</h2></td></tr>
 <p> Retrieve and remove the first character from the substring.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
+    <tr><td class="paramname">TTrimBeforeConsume</td><td>Determines if the string should be (left-) trimmed before the consume operation. Defaults to <b>Whitespaces::Keep</b>. </td></tr>
     <tr><td class="paramname">TCheck</td><td>Defaults to <code>true</code> which is the normal invocation mode. If <code>&lt;false&gt;</code> is added to the method name, no parameter check is performed.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">trimBeforeConsume</td><td>Determines if the string should be (left-) trimmed before the consume operation. Defaults to <b>Whitespaces::Keep</b>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -555,8 +584,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="aac791fd629b63bb535ecea8efdc08724"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aac791fd629b63bb535ecea8efdc08724">&#9670;&nbsp;</a></span>ConsumeChar() <span class="overload">[2/2]</span></h2>
+<a id="a9703f0addd265e2b484243f0ade80420"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9703f0addd265e2b484243f0ade80420">&#9670;&nbsp;</a></span>ConsumeChar() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -568,24 +597,8 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">bool ConsumeChar </td>
           <td>(</td>
           <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>consumable</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>consumable</em></td><td>)</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">lang::Case</a>&#160;</td>
-          <td class="paramname"><em>sensitivity</em> = <code><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">lang::Case::Sensitive</a></code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad4a46f9fb632511f6be7c53e05f330f7">lang::Whitespaces</a>&#160;</td>
-          <td class="paramname"><em>trimBeforeConsume</em> = <code><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4a02bce93bff905887ad2233110bf9c49e">lang::Whitespaces::Keep</a></code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -598,9 +611,14 @@ Additional Inherited Members</h2></td></tr>
 <p> Checks if this object starts with the given character <code>consumable</code>. If it does, this character is cut from this object.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">consumable</td><td>The consumable character </td></tr>
-    <tr><td class="paramname">sensitivity</td><td>The sensitivity of the comparison. </td></tr>
-    <tr><td class="paramname">trimBeforeConsume</td><td>Determines if the string should be (left-) trimmed before the consume operation. Defaults to <b>Whitespaces::Keep</b>. </td></tr>
+    <tr><td class="paramname">consumable</td><td>The consumable character</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TSensitivity</td><td>The sensitivity of the comparison. </td></tr>
+    <tr><td class="paramname">TTrimBeforeConsume</td><td>Determines if the string should be (left-) trimmed before the consume operation. Defaults to <b>Whitespaces::Keep</b>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -608,8 +626,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a105d1a949f88a6f3bf185e6f6b62b03c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a105d1a949f88a6f3bf185e6f6b62b03c">&#9670;&nbsp;</a></span>ConsumeCharFromEnd() <span class="overload">[1/2]</span></h2>
+<a id="a0adcec095f89379d9e01634745e4f1af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0adcec095f89379d9e01634745e4f1af">&#9670;&nbsp;</a></span>ConsumeCharFromEnd() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -621,24 +639,8 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">bool ConsumeCharFromEnd </td>
           <td>(</td>
           <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>consumable</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>consumable</em></td><td>)</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">lang::Case</a>&#160;</td>
-          <td class="paramname"><em>sensitivity</em> = <code><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">lang::Case::Sensitive</a></code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad4a46f9fb632511f6be7c53e05f330f7">lang::Whitespaces</a>&#160;</td>
-          <td class="paramname"><em>trimBeforeConsume</em> = <code><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4a02bce93bff905887ad2233110bf9c49e">lang::Whitespaces::Keep</a></code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -652,8 +654,13 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">consumable</td><td>The consumable character </td></tr>
-    <tr><td class="paramname">sensitivity</td><td>The sensitivity of the comparison. </td></tr>
-    <tr><td class="paramname">trimBeforeConsume</td><td>Determines if the string should be (left-) trimmed before the consume operation. Defaults to <b>Whitespaces::Keep</b>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TSensitivity</td><td>The sensitivity of the comparison. </td></tr>
+    <tr><td class="paramname">TTrimBeforeConsume</td><td>Determines if the string should be (left-) trimmed before the consume operation. Defaults to <b>Whitespaces::Keep</b>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -661,8 +668,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a56dc67397032027b91bd623b99f64e02"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a56dc67397032027b91bd623b99f64e02">&#9670;&nbsp;</a></span>ConsumeCharFromEnd() <span class="overload">[2/2]</span></h2>
+<a id="a944a0976c73b809d66b6777da9f3ed9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a944a0976c73b809d66b6777da9f3ed9b">&#9670;&nbsp;</a></span>ConsumeCharFromEnd() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -673,8 +680,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">char ConsumeCharFromEnd </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad4a46f9fb632511f6be7c53e05f330f7">lang::Whitespaces</a>&#160;</td>
-          <td class="paramname"><em>trimBeforeConsume</em> = <code><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4a02bce93bff905887ad2233110bf9c49e">lang::Whitespaces::Keep</a></code></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -689,12 +695,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">TCheck</td><td>Defaults to <code>true</code> which is the normal invocation mode. If <code>&lt;false&gt;</code> is added to the method name, no parameter check is performed.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">trimBeforeConsume</td><td>Determines if the string should be (right-) trimmed before the consume operation. Defaults to <b>Whitespaces::Keep</b>. </td></tr>
+    <tr><td class="paramname">TTrimBeforeConsume</td><td>Determines if the string should be (right-) trimmed before the consume operation. Defaults to <b>Whitespaces::Keep</b>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -755,8 +756,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a4e4eea49b40899820afd59c34e10ffc9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4e4eea49b40899820afd59c34e10ffc9">&#9670;&nbsp;</a></span>ConsumeChars() <span class="overload">[2/2]</span></h2>
+<a id="a5c2ea6c0c2d6cf000b1f3f90de484dd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c2ea6c0c2d6cf000b1f3f90de484dd7">&#9670;&nbsp;</a></span>ConsumeChars() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -780,13 +781,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td>
-          <td class="paramname"><em>separatorWidth</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4">lang::CurrentData</a>&#160;</td>
-          <td class="paramname"><em>targetData</em> = <code><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2">lang::CurrentData::Clear</a></code>&#160;</td>
+          <td class="paramname"><em>separatorWidth</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -802,7 +797,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Cuts the given number of characters from the beginning of the <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> and optionally places the portion that was cut in parameter <code>target</code>.<br />
- Parameter <code>regionLength</code> is checked to be between 0 and length. If negative, nothing is cut and <code>target</code> is set empty, respectively left untouched depending on <code>If</code> <code>regionLength</code> is greater than this objects' length, all contents is 'moved' to <code>target</code>.</p>
+ Parameter <code>regionLength</code> is checked to be between 0 and length. If negative, nothing is cut and <code>target</code> is set empty, respectively left untouched depending on <code>TTargetData</code>.</p>
+<p>If <code>regionLength</code> is greater than this objects' length, all contents is 'moved' to <code>target</code>.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">TCheck</td><td>Defaults to <code>true</code> which is the normal invocation mode. If <code>&lt;false&gt;</code> is added to the method name, no parameter check is performed.</td></tr>
@@ -814,7 +810,12 @@ Additional Inherited Members</h2></td></tr>
     <tr><td class="paramname">regionLength</td><td>The length of the region at the start to delete. </td></tr>
     <tr><td class="paramname">target</td><td>A target <b>AString</b> that receives the portion that is cut from this object. </td></tr>
     <tr><td class="paramname">separatorWidth</td><td>This width is added to what is cut from this string, while <code>target</code> still receives the portion defined by <code>regionLength</code>. Defaults to 0. </td></tr>
-    <tr><td class="paramname">targetData</td><td>If <code>CurrentData::Keep</code>, the parameter <code>target</code> is not cleared before the result is written. Defaults to <code><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2" title="Chooses to clear existing data. ">CurrentData::Clear</a></code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TTargetData</td><td>If <code>CurrentData::Keep</code>, the parameter <code>target</code> is not cleared before the result is written. Defaults to <code><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2" title="Chooses to clear existing data. ">CurrentData::Clear</a></code>.</td></tr>
   </table>
   </dd>
 </dl>
@@ -875,8 +876,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a7447c3eb16c727f928613f0135414ea8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7447c3eb16c727f928613f0135414ea8">&#9670;&nbsp;</a></span>ConsumeCharsFromEnd() <span class="overload">[2/2]</span></h2>
+<a id="ac7d23e3fd9b997913b97396e916371f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7d23e3fd9b997913b97396e916371f5">&#9670;&nbsp;</a></span>ConsumeCharsFromEnd() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -900,13 +901,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td>
-          <td class="paramname"><em>separatorWidth</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4">lang::CurrentData</a>&#160;</td>
-          <td class="paramname"><em>targetData</em> = <code><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2">lang::CurrentData::Clear</a></code>&#160;</td>
+          <td class="paramname"><em>separatorWidth</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -934,7 +929,12 @@ Additional Inherited Members</h2></td></tr>
     <tr><td class="paramname">regionLength</td><td>The length of the region at the start to delete. </td></tr>
     <tr><td class="paramname">target</td><td>A target <b>AString</b> that receives the portion that is cut from this object. </td></tr>
     <tr><td class="paramname">separatorWidth</td><td>This width is added to what is cut from this string, while <code>target</code> still receives the portion defined by <code>regionLength</code>. Defaults to 0. </td></tr>
-    <tr><td class="paramname">targetData</td><td>If <code>CurrentData::Keep</code>, the parameter <code>target</code> is not cleared before the result is written. Defaults to <code><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2" title="Chooses to clear existing data. ">CurrentData::Clear</a></code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TTargetData</td><td>If <code>CurrentData::Keep</code>, the parameter <code>target</code> is not cleared before the result is written. Defaults to <code><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2" title="Chooses to clear existing data. ">CurrentData::Clear</a></code>.</td></tr>
   </table>
   </dd>
 </dl>
@@ -942,8 +942,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="ae616e4986934db6e74c8a468456d2b40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae616e4986934db6e74c8a468456d2b40">&#9670;&nbsp;</a></span>ConsumeDec()</h2>
+<a id="a9e5fc74c4504055b329a8f903da8b4e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e5fc74c4504055b329a8f903da8b4e6">&#9670;&nbsp;</a></span>ConsumeDec()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -978,7 +978,7 @@ Additional Inherited Members</h2></td></tr>
 <hr/>
 <p> Consumes an unsigned integer in standard decimal format from the start of this AString. This is done, by invoking <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#afc38a5eee53f6649d43fa1e0d53108ca">NumberFormat::ParseDec</a> on the given <code>numberFormat</code> instance.<br />
  Parameter <code>numberFormat</code> defaults to <code>nullptr</code>. This denotes static singleton <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat::Computational</a> which is configured to not using - and therefore also not parsing - grouping characters.</p>
-<p>Sign literals <code>'-'</code> or <code>'+'</code> are <b>not</b> accepted and parsing will fail. For reading signed integer values, see methods <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a84b355fb156194f4cc2000d0e75ccafa">ConsumeInt</a>, for floating point numbers <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aa4787a8202a8d845cc8f2bebcc3c101c">ConsumeFloat</a>.</p>
+<p>Sign literals <code>'-'</code> or <code>'+'</code> are <b>not</b> accepted and parsing will fail. For reading signed integer values, see methods <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#add31aaa5679f21922507f0030d97e6ed">ConsumeInt</a>, for floating point numbers <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aa4787a8202a8d845cc8f2bebcc3c101c">ConsumeFloat</a>.</p>
 <p>For more information on number conversion, see class <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -989,7 +989,9 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">TInteger</td><td>The output type. Must be statically castable from <b>uint64_t</b>.</td></tr>
+    <tr><td class="paramname">TInteger</td><td>The output type. Must be statically castable from <b>uint64_t</b>. </td></tr>
+    <tr><td class="paramname">TEnableIf</td><td>Internal. Do <b>not</b> specify!<br />
+ (Defaults to <code>std::enable_if</code> type, to enable the compiler to select this method only for integer types. </td></tr>
   </table>
   </dd>
 </dl>
@@ -997,8 +999,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a30b0271dbd35a163e0519c66a3128f85"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a30b0271dbd35a163e0519c66a3128f85">&#9670;&nbsp;</a></span>ConsumeDecDigits()</h2>
+<a id="a6006fd6197e8f7e89de75c14c15e46e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6006fd6197e8f7e89de75c14c15e46e4">&#9670;&nbsp;</a></span>ConsumeDecDigits()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1007,7 +1009,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool ConsumeDecDigits </td>
+          <td class="memname"><a class="el" href="group__GrpALibMacros.html#ga65685ca0f9ee1c3af3bdc8f0df4d431d">ALIB_WARNINGS_RESTORE</a> bool ConsumeDecDigits </td>
           <td>(</td>
           <td class="paramtype">TInteger &amp;&#160;</td>
           <td class="paramname"><em>result</em></td><td>)</td>
@@ -1022,7 +1024,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Consumes all characters <code>'0'</code> to <code>'9'</code> at the start of this object and stores the value they represent in <code>result</code>. <br />
-Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a84b355fb156194f4cc2000d0e75ccafa">ConsumeInt</a> or <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#ae616e4986934db6e74c8a468456d2b40">ConsumeDec</a>, no sign, whitespaces or group characters are consumed.</p>
+Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#add31aaa5679f21922507f0030d97e6ed">ConsumeInt</a> or <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a9e5fc74c4504055b329a8f903da8b4e6">ConsumeDec</a>, no sign, whitespaces or group characters are consumed.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">result</td><td>A reference to the result value. </td></tr>
@@ -1031,7 +1033,9 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
 </dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">TInteger</td><td>The output type. Must be statically castable from <b>uint64_t</b>.</td></tr>
+    <tr><td class="paramname">TInteger</td><td>The output type. Must be statically castable from <b>uint64_t</b>. </td></tr>
+    <tr><td class="paramname">TEnableIf</td><td>Internal. Do <b>not</b> specify!<br />
+ (Defaults to <code>std::enable_if</code> type, to enable the compiler to select this method only for integer types.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1063,7 +1067,7 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Implementation for <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a30b0271dbd35a163e0519c66a3128f85">ConsumeDecDigits</a>.</p>
+<p> Implementation for <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a6006fd6197e8f7e89de75c14c15e46e4">ConsumeDecDigits</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">result</td><td>A reference to the result value. </td></tr>
@@ -1108,7 +1112,7 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Implementation for <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#ae616e4986934db6e74c8a468456d2b40">ConsumeDec</a>.</p>
+<p> Implementation for <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a9e5fc74c4504055b329a8f903da8b4e6">ConsumeDec</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">result</td><td>A reference to the result value. </td></tr>
@@ -1117,6 +1121,232 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if a number was found and consumed, <code>false</code> otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a108a7aaa23fe6b9ac6b37339766ad17f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a108a7aaa23fe6b9ac6b37339766ad17f">&#9670;&nbsp;</a></span>ConsumeEnum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ConsumeEnum </td>
+          <td>(</td>
+          <td class="paramtype">TEnum &amp;&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Consumes an element of an C++ enum which is equipped with "\b %ALib enum meta data". For more information consult <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumMetaDataDecl.html#anchor_T_EnumMetaDataDecl_read_enum">T_EnumMetaDataDecl documentation</a>.</p>
+<dl class="section note"><dt>Note</dt><dd>This method is applicable to bitwise enums as well. However, only one element name is parsed. To parse multiple elements (ored to one enum value), use method <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a1525edfa4acb47087a795c78d3a0f41f">ConsumeEnumBitwise</a>.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">result</td><td>The result enum element given as reference. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>The enumeration type. </td></tr>
+    <tr><td class="paramname">TSensitivity</td><td>The sensitivity of the comparison. Defaults to <b>Case::Sensitive</b>. </td></tr>
+    <tr><td class="paramname">TTrimBeforeConsume</td><td>Determines if the string should be (left-) trimmed before the consume operation.<br />
+ Defaults to <b><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad4a46f9fb632511f6be7c53e05f330f7a1fc5884251ca9f20a4fd5f79a458f94f" title="Trim whitespaces away. ">Whitespaces::Trim</a></b>. </td></tr>
+    <tr><td class="paramname">TEnableIf</td><td>Internal. Do <b>not</b> specify!<br />
+ (Defaults to <code>std::enable_if</code> type, to enable the compiler to select this method only for types that have specialized member <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumMetaDataDeclReadWrite.html#ad6a86b6d7bcbf4f92a37082cc313b64b">T_EnumMetaDataDeclReadWrite::MinParseLengthIndex</a> evaluating to a value different to <code>0</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if an enum element was read, <code>false</code> otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a1525edfa4acb47087a795c78d3a0f41f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1525edfa4acb47087a795c78d3a0f41f">&#9670;&nbsp;</a></span>ConsumeEnumBitwise()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ConsumeEnumBitwise </td>
+          <td>(</td>
+          <td class="paramtype">TEnum &amp;&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Repeatedly invokes <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a108a7aaa23fe6b9ac6b37339766ad17f">ConsumeEnum</a> until <code>delim</code> is not found. The enum element values are or'ed in <code>result</code>.</p>
+<dl class="section note"><dt>Note</dt><dd>This method is applicable to <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">bitwise enums</a> only.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">result</td><td>The result enum element given as reference. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TSensitivity</td><td>The sensitivity of the comparison. Defaults to <b>Case::Sensitive</b>. </td></tr>
+    <tr><td class="paramname">TTrimBeforeConsume</td><td>Determines if the string should be (left-) trimmed before and after each consume operation.<br />
+ Defaults to <b><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad4a46f9fb632511f6be7c53e05f330f7a1fc5884251ca9f20a4fd5f79a458f94f" title="Trim whitespaces away. ">Whitespaces::Trim</a></b>. </td></tr>
+    <tr><td class="paramname">delimiter</td><td>The delimiter character of the enum elements.<br />
+ Defaults to <code>','</code>. </td></tr>
+    <tr><td class="paramname">keepLastDelim</td><td>If <code>true</code> , the delimiter will be kept in this substring, if after the delimiter no further enum element was found. If <code>false</code>, the delimiter will be kept.<br />
+ Defaults to <code>true</code>. </td></tr>
+    <tr><td class="paramname">TEnum</td><td>The enumeration type. </td></tr>
+    <tr><td class="paramname">TEnableIf</td><td>Internal. Do <b>not</b> specify!<br />
+ (Defaults to <code>std::enable_if</code> type, to enable the compiler to select this operator only for types that have specialized <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">T_EnumIsBitwise</a> and also specialized member <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumMetaDataDeclReadWrite.html#ad6a86b6d7bcbf4f92a37082cc313b64b">T_EnumMetaDataDeclReadWrite::MinParseLengthIndex</a> evaluating to a value different to <code>0</code>.) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if an enum element was read, <code>false</code> otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a9756182d816925205b1c7390e78f68d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9756182d816925205b1c7390e78f68d0">&#9670;&nbsp;</a></span>ConsumeEnumOrBool()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ConsumeEnumOrBool </td>
+          <td>(</td>
+          <td class="paramtype">TEnum &amp;&#160;</td>
+          <td class="paramname"><em>result</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>falseValue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>trueValue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Convenience method that first uses <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a108a7aaa23fe6b9ac6b37339766ad17f">ConsumeEnum</a> to try and read an element of an C++ enum. If this is not successful, an enum of type <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a39db6982619d623273fad8a383489309">Bool</a> is tried to be read. If this is successful, depending on the value read, the <code>TEnum</code> values given as parameters <code>falseValue</code> and <code>trueValue</code> are assigned. Otherwise false is returned.</p>
+<p>For more information consult <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumMetaDataDecl.html#anchor_T_EnumMetaDataDecl_read_enum">T_EnumMetaDataDecl documentation</a>.</p>
+<dl class="section note"><dt>Note</dt><dd>This method is applicable to bitwise enums as well. However, only one element name is parsed. To parse multiple elements (ored to one enum value), use method <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a1525edfa4acb47087a795c78d3a0f41f">ConsumeEnumBitwise</a>.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">result</td><td>The result enum element given as reference. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>The enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">trueValue</td><td>The <code>TEnum</code> value to use in case of <code>Bool::True</code> was read. </td></tr>
+    <tr><td class="paramname">falseValue</td><td>The <code>TEnum</code> value to use in case of <code>Bool::False</code> was read. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TTrimBeforeConsume</td><td>Determines if the string should be (left-) trimmed before the consume operation. Passed to <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a108a7aaa23fe6b9ac6b37339766ad17f">ConsumeEnum</a>.<br />
+ Defaults to <b><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad4a46f9fb632511f6be7c53e05f330f7a1fc5884251ca9f20a4fd5f79a458f94f" title="Trim whitespaces away. ">Whitespaces::Trim</a></b>. </td></tr>
+    <tr><td class="paramname">TSensitivity</td><td>The sensitivity of the comparison. </td></tr>
+    <tr><td class="paramname">TEnableIf</td><td>Internal. Do <b>not</b> specify!<br />
+ (Defaults to <code>std::enable_if</code> type, to enable the compiler to select this method only for types that have specialized member <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumMetaDataDeclReadWrite.html#ad6a86b6d7bcbf4f92a37082cc313b64b">T_EnumMetaDataDeclReadWrite::MinParseLengthIndex</a> evaluating to a value different to <code>0</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if an element of <code>TEnum</code> or <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a39db6982619d623273fad8a383489309">Bool</a> could be read, <code>false</code> otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ae70c6d9bd6d40bfe8bc0ad73302a79d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae70c6d9bd6d40bfe8bc0ad73302a79d3">&#9670;&nbsp;</a></span>ConsumeField()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> ConsumeField </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>startChar</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>endChar</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Consumes a field from the beginning of this substring, which is surrounded by given start end end character identifiers. If both are the same, e.g. <code>'"'</code>, then the first occurrence of the end character is used. If they are not the same, e.g. <code>'&lt;'</code> and <code>'&gt;'</code>, then repeated start characters are counted and consumption only ends when a corresponding amount of end characters has been found.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">startChar</td><td>The start character of the field to consume. </td></tr>
+    <tr><td class="paramname">endChar</td><td>The end character of the field to consume. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TTrimBeforeConsume</td><td>Determines if the string should be (left-) trimmed before the consume operation. Defaults to <b>Whitespaces::Keep</b>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The string consumed. <b>NullString</b> on error (start/end character not found) </dd></dl>
 
 </div>
 </div>
@@ -1160,8 +1390,8 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
 
 </div>
 </div>
-<a id="a79c5c855abc0848e210ab2c4703af7ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a79c5c855abc0848e210ab2c4703af7ff">&#9670;&nbsp;</a></span>ConsumeHex()</h2>
+<a id="a7b4e369700fc684fc50cf7ebdbd652f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b4e369700fc684fc50cf7ebdbd652f0">&#9670;&nbsp;</a></span>ConsumeHex()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1206,7 +1436,9 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
 </dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">TInteger</td><td>The output type. Must be statically castable from <b>uint64_t</b>.</td></tr>
+    <tr><td class="paramname">TInteger</td><td>The output type. Must be statically castable from <b>uint64_t</b>. </td></tr>
+    <tr><td class="paramname">TEnableIf</td><td>Internal. Do <b>not</b> specify!<br />
+ (Defaults to <code>std::enable_if</code> type, to enable the compiler to select this method only for integer types.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1248,7 +1480,7 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Implementation for <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a79c5c855abc0848e210ab2c4703af7ff">ConsumeHex</a>.</p>
+<p> Implementation for <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a7b4e369700fc684fc50cf7ebdbd652f0">ConsumeHex</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">result</td><td>A reference to the result value. </td></tr>
@@ -1260,8 +1492,8 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
 
 </div>
 </div>
-<a id="a84b355fb156194f4cc2000d0e75ccafa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a84b355fb156194f4cc2000d0e75ccafa">&#9670;&nbsp;</a></span>ConsumeInt()</h2>
+<a id="add31aaa5679f21922507f0030d97e6ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add31aaa5679f21922507f0030d97e6ed">&#9670;&nbsp;</a></span>ConsumeInt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1306,7 +1538,9 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
 </dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">TInteger</td><td>The output type. Must be statically castable from <b>uint64_t</b>.</td></tr>
+    <tr><td class="paramname">TInteger</td><td>The output type. Must be statically castable from <b>uint64_t</b>. </td></tr>
+    <tr><td class="paramname">TEnableIf</td><td>Internal. Do <b>not</b> specify!<br />
+ (Defaults to <code>std::enable_if</code> type, to enable the compiler to select this method only for integer types. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1348,7 +1582,7 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Implementation for <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a84b355fb156194f4cc2000d0e75ccafa">ConsumeInt</a>.</p>
+<p> Implementation for <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#add31aaa5679f21922507f0030d97e6ed">ConsumeInt</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">result</td><td>A reference to the result value. </td></tr>
@@ -1360,8 +1594,8 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
 
 </div>
 </div>
-<a id="aa16d54268343c10a49eb936c45de13bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa16d54268343c10a49eb936c45de13bf">&#9670;&nbsp;</a></span>ConsumeOct()</h2>
+<a id="ac41815981c3918d05b0e33547df965c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac41815981c3918d05b0e33547df965c4">&#9670;&nbsp;</a></span>ConsumeOct()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1406,7 +1640,9 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
 </dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">TInteger</td><td>The output type. Must be statically castable from <b>uint64_t</b>.</td></tr>
+    <tr><td class="paramname">TInteger</td><td>The output type. Must be statically castable from <b>uint64_t</b>. </td></tr>
+    <tr><td class="paramname">TEnableIf</td><td>Internal. Do <b>not</b> specify!<br />
+ (Defaults to <code>std::enable_if</code> type, to enable the compiler to select this method only for integer types.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1448,7 +1684,7 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Implementation for <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aa16d54268343c10a49eb936c45de13bf">ConsumeOct</a>.</p>
+<p> Implementation for <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#ac41815981c3918d05b0e33547df965c4">ConsumeOct</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">result</td><td>A reference to the result value. </td></tr>
@@ -1460,11 +1696,14 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
 
 </div>
 </div>
-<a id="afd3e76a1240e0aef9f86e3d9e81d3437"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afd3e76a1240e0aef9f86e3d9e81d3437">&#9670;&nbsp;</a></span>ConsumePartOf()</h2>
+<a id="aacfd7bb195ac8ad310bc26345600b2bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacfd7bb195ac8ad310bc26345600b2bd">&#9670;&nbsp;</a></span>ConsumePartOf()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> ConsumePartOf </td>
@@ -1476,19 +1715,7 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>minChars</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">lang::Case</a>&#160;</td>
-          <td class="paramname"><em>sensitivity</em> = <code><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">lang::Case::Sensitive</a></code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad4a46f9fb632511f6be7c53e05f330f7">lang::Whitespaces</a>&#160;</td>
-          <td class="paramname"><em>trimBeforeConsume</em> = <code><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4a02bce93bff905887ad2233110bf9c49e">lang::Whitespaces::Keep</a></code>&#160;</td>
+          <td class="paramname"><em>minChars</em> = <code>1</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1496,6 +1723,11 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Consumes a minimum of <code>minChars</code> of string <code>consumable</code> from the start of this substring. If the minimum characters could not be found, nothing is consumed, otherwise as much as possible.<br />
@@ -1503,9 +1735,14 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">consumable</td><td>The consumable string. </td></tr>
-    <tr><td class="paramname">minChars</td><td>The minimum amount of characters to consume. Optional and defaults to <code>1</code> </td></tr>
-    <tr><td class="paramname">sensitivity</td><td>The sensitivity of the comparison. Defaults to <b>Case::Sensitive</b>. </td></tr>
-    <tr><td class="paramname">trimBeforeConsume</td><td>Determines if the string should be (left-) trimmed before the first character consume operation. Defaults to <b>Whitespaces::Keep</b>. </td></tr>
+    <tr><td class="paramname">minChars</td><td>The minimum amount of characters to consume. If <code>0</code> or negative, the length of <code>consumable</code> is chosen. Optional and defaults to <code>1</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TSensitivity</td><td>The sensitivity of the comparison. Defaults to <b>Case::Ignore</b>. </td></tr>
+    <tr><td class="paramname">TTrimBeforeConsume</td><td>Determines if the string should be (left-) trimmed before the first character consume operation. Defaults to <b>Whitespaces::Keep</b>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1513,8 +1750,8 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
 
 </div>
 </div>
-<a id="a3794c676238c3519975629aae9347b1d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3794c676238c3519975629aae9347b1d">&#9670;&nbsp;</a></span>ConsumeString()</h2>
+<a id="a9c6527d5e8373e7090b615551c4fd417"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c6527d5e8373e7090b615551c4fd417">&#9670;&nbsp;</a></span>ConsumeString()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1526,24 +1763,8 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
           <td class="memname">bool ConsumeString </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>consumable</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>consumable</em></td><td>)</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">lang::Case</a>&#160;</td>
-          <td class="paramname"><em>sensitivity</em> = <code><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">lang::Case::Sensitive</a></code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad4a46f9fb632511f6be7c53e05f330f7">lang::Whitespaces</a>&#160;</td>
-          <td class="paramname"><em>trimBeforeConsume</em> = <code><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4a02bce93bff905887ad2233110bf9c49e">lang::Whitespaces::Keep</a></code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -1557,8 +1778,13 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">consumable</td><td>The consumable string. </td></tr>
-    <tr><td class="paramname">sensitivity</td><td>The sensitivity of the comparison. </td></tr>
-    <tr><td class="paramname">trimBeforeConsume</td><td>Determines if the string should be (left-) trimmed before the consume operation. Defaults to <b>Whitespaces::Keep</b>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TSensitivity</td><td>The sensitivity of the comparison. </td></tr>
+    <tr><td class="paramname">TTrimBeforeConsume</td><td>Determines if the string should be (left-) trimmed before the consume operation. Defaults to <b>Whitespaces::Keep</b>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1566,8 +1792,8 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
 
 </div>
 </div>
-<a id="a0424b41278203f4e311efb75b01e286b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0424b41278203f4e311efb75b01e286b">&#9670;&nbsp;</a></span>ConsumeStringFromEnd()</h2>
+<a id="a461822ea5b3be48c259618bb9464c2d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a461822ea5b3be48c259618bb9464c2d7">&#9670;&nbsp;</a></span>ConsumeStringFromEnd()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1579,24 +1805,8 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
           <td class="memname">bool ConsumeStringFromEnd </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>consumable</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>consumable</em></td><td>)</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">lang::Case</a>&#160;</td>
-          <td class="paramname"><em>sensitivity</em> = <code><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">lang::Case::Sensitive</a></code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ad4a46f9fb632511f6be7c53e05f330f7">lang::Whitespaces</a>&#160;</td>
-          <td class="paramname"><em>trimBeforeConsume</em> = <code><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4a02bce93bff905887ad2233110bf9c49e">lang::Whitespaces::Keep</a></code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -1610,12 +1820,53 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">consumable</td><td>The consumable string </td></tr>
-    <tr><td class="paramname">sensitivity</td><td>The sensitivity of the comparison. </td></tr>
-    <tr><td class="paramname">trimBeforeConsume</td><td>Determines if the string should be (left-) trimmed before the consume operation. Defaults to <b>Whitespaces::Keep</b>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TSensitivity</td><td>The sensitivity of the comparison. </td></tr>
+    <tr><td class="paramname">TTrimBeforeConsume</td><td>Determines if the string should be (left-) trimmed before the consume operation. Defaults to <b>Whitespaces::Keep</b>. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code>, if this object was starting with <code>consumable</code> and consequently the string was cut. </dd></dl>
+
+</div>
+</div>
+<a id="aadfa9ad37a0dd52b650e9b18cc896df3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadfa9ad37a0dd52b650e9b18cc896df3">&#9670;&nbsp;</a></span>ConsumeToken()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> ConsumeToken </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>separator</em> = <code>','</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Searches <code>separator</code> and cuts the beginning of this string, including the separator. What was consumed is returned, excluding the separator.</p>
+<p>If the separator is not found, all of this string is consumed and returned.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">separator</td><td>The separator to search. Defaults to <code>','</code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The token consumed. </dd></dl>
 
 </div>
 </div>
@@ -1739,8 +1990,8 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
 <hr/>
 <p> Set the length of the substring. The string can only be shortened.</p>
 <dl class="section note"><dt>Note</dt><dd>If the new length is requested to be higher than the current length, an one-time warning is issued. The warning occurs only once for the first occurrence of an invocation of this method with such wrong parameter. To enable/disable this warning use macros<ul>
-<li><a class="el" href="debug_8hpp.html#a4473b84f3867281772aa921922d63473">ALIB_WARN_ONCE_PER_TYPE_ENABLE(String, SetLengthLonger)</a> and</li>
-<li><a class="el" href="debug_8hpp.html#aa711a1bf6b8f7218756d71b713629754">ALIB_WARN_ONCE_PER_TYPE_DISABLE(String, SetLengthLonger)</a>.</li>
+<li><a class="el" href="assert_8hpp.html#a4473b84f3867281772aa921922d63473">ALIB_WARN_ONCE_PER_TYPE_ENABLE(String, SetLengthLonger)</a> and</li>
+<li><a class="el" href="assert_8hpp.html#aa711a1bf6b8f7218756d71b713629754">ALIB_WARN_ONCE_PER_TYPE_DISABLE(String, SetLengthLonger)</a>.</li>
 </ul>
 </dd></dl>
 <p>The non-checking version does not do any checks but just applies the new length.</p>
@@ -1965,7 +2216,7 @@ Unlike with <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

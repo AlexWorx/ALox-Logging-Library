@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -82,6 +82,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-attribs">Public Fields</a> &#124;
 <a href="#pub-methods">Public Methods</a> &#124;
 <a href="#pro-methods">Protected Methods</a> &#124;
@@ -91,49 +92,52 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="stringboxing_8hpp_source.html">stringboxing.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="debug_8hpp_source.html">debug.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for Boxing:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1debug_1_1Boxing__coll__graph.svg" width="558" height="335"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1debug_1_1Boxing__coll__graph.svg" width="218" height="332"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
 <p> This class is only available in debug compilations of <b>ALib</b> and furthermore only if <b>ALib Boxing</b> is used in an <b>ALib</b> module distribution that incorporates module <b>ALib Strings</b>.</p>
 <p>It uses the plain debug methods of classes <b>Box</b> and <b>Boxer</b> that accept and return type information structs <code>std::typeinfo</code> and converts them to strings and sorted lists of strings. </p>
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a3c8894068cb475f1327a41f564385523"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a3c8894068cb475f1327a41f564385523">StringVector</a> = std::vector&lt; <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">aworx::String</a> &gt;</td></tr>
+<tr class="separator:a3c8894068cb475f1327a41f564385523"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Fields</h2></td></tr>
 <tr class="memitem:ac12c14f62caa5def812f185580f1494b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#ac12c14f62caa5def812f185580f1494b">dump</a></td></tr>
 <tr class="separator:ac12c14f62caa5def812f185580f1494b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81097c7f5010e677484de7129688bc12"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a81097c7f5010e677484de7129688bc12">removeNamespaces</a></td></tr>
 <tr class="separator:a81097c7f5010e677484de7129688bc12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21a68bee7bfd1b64d14453a5b625044c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#abc46e42927a238007065da5265423816">Strings</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a21a68bee7bfd1b64d14453a5b625044c">strings</a></td></tr>
-<tr class="separator:a21a68bee7bfd1b64d14453a5b625044c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4877fe5eba7d052ddf9c9dbe87ade7c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a3c8894068cb475f1327a41f564385523">StringVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a4877fe5eba7d052ddf9c9dbe87ade7c4">strings</a></td></tr>
+<tr class="separator:a4877fe5eba7d052ddf9c9dbe87ade7c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a782151d24530c70cef193f27597731cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a782151d24530c70cef193f27597731cc">target</a></td></tr>
 <tr class="separator:a782151d24530c70cef193f27597731cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
-<tr class="memitem:a623426d1692c33b3319d141aa57329af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a623426d1692c33b3319d141aa57329af">Boxing</a> (bool removeALibNamespaces=true)</td></tr>
-<tr class="separator:a623426d1692c33b3319d141aa57329af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a603a39ed65115b855faf38102187fc27"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a603a39ed65115b855faf38102187fc27">~Boxing</a> ()</td></tr>
-<tr class="separator:a603a39ed65115b855faf38102187fc27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1fa86a53923b665f496cd35491765ff5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a1fa86a53923b665f496cd35491765ff5">Dump</a> ()</td></tr>
-<tr class="separator:a1fa86a53923b665f496cd35491765ff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad13fc2fa2999879ef7b92674f2c76c69"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#ad13fc2fa2999879ef7b92674f2c76c69">Boxing</a> (bool removeALibNamespaces=true)</td></tr>
+<tr class="separator:ad13fc2fa2999879ef7b92674f2c76c69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a493a46ed7dffa100751f59068150cef1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a493a46ed7dffa100751f59068150cef1">Dump</a> ()</td></tr>
+<tr class="separator:a493a46ed7dffa100751f59068150cef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1f24407901f6084d1c0678648411373"><td class="memTemplParams" colspan="2">template&lt;typename TBoxable &gt; </td></tr>
 <tr class="memitem:af1f24407901f6084d1c0678648411373"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#af1f24407901f6084d1c0678648411373">GetBoxingInfo</a> ()</td></tr>
 <tr class="separator:af1f24407901f6084d1c0678648411373"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0392377b4c3ecc654c4cf78540ce97ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="namespaceaworx.html#abc46e42927a238007065da5265423816">Strings</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a0392377b4c3ecc654c4cf78540ce97ce">GetInterfaces</a> (const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;box)</td></tr>
-<tr class="separator:a0392377b4c3ecc654c4cf78540ce97ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd8705370d023f51b3249e0971a60aa0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="namespaceaworx.html#abc46e42927a238007065da5265423816">Strings</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#abd8705370d023f51b3249e0971a60aa0">GetKnownBoxTypes</a> ()</td></tr>
-<tr class="separator:abd8705370d023f51b3249e0971a60aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7dcc6c2957a5a975e2ac3f89bb102489"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="namespaceaworx.html#abc46e42927a238007065da5265423816">Strings</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a7dcc6c2957a5a975e2ac3f89bb102489">GetKnownInterfaceDefaults</a> ()</td></tr>
-<tr class="separator:a7dcc6c2957a5a975e2ac3f89bb102489"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab332260f04ca574c0e621250435f18e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="namespaceaworx.html#abc46e42927a238007065da5265423816">Strings</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#ab332260f04ca574c0e621250435f18e2">GetKnownInterfaceImplementations</a> ()</td></tr>
-<tr class="separator:ab332260f04ca574c0e621250435f18e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad88205a26dac662b600f014842a2827d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="namespaceaworx.html#abc46e42927a238007065da5265423816">Strings</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#ad88205a26dac662b600f014842a2827d">GetKnownInterfaces</a> ()</td></tr>
-<tr class="separator:ad88205a26dac662b600f014842a2827d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f85fbde29f81dc47c9db1cb5574cdfe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a3c8894068cb475f1327a41f564385523">StringVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a2f85fbde29f81dc47c9db1cb5574cdfe">GetInterfaces</a> (const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;box)</td></tr>
+<tr class="separator:a2f85fbde29f81dc47c9db1cb5574cdfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f01cc6f5d488b2a9ef42e857ed07e31"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a3c8894068cb475f1327a41f564385523">StringVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a6f01cc6f5d488b2a9ef42e857ed07e31">GetKnownBoxTypes</a> ()</td></tr>
+<tr class="separator:a6f01cc6f5d488b2a9ef42e857ed07e31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa25a4bb1a67fb47634d517bfb3e1c48d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a3c8894068cb475f1327a41f564385523">StringVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#aa25a4bb1a67fb47634d517bfb3e1c48d">GetKnownInterfaceDefaults</a> ()</td></tr>
+<tr class="separator:aa25a4bb1a67fb47634d517bfb3e1c48d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ae85a6757cdd7f90254fcbd4aafb247"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a3c8894068cb475f1327a41f564385523">StringVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a8ae85a6757cdd7f90254fcbd4aafb247">GetKnownInterfaceImplementations</a> ()</td></tr>
+<tr class="separator:a8ae85a6757cdd7f90254fcbd4aafb247"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0a330283bcf5506160628c3103b7cd6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a3c8894068cb475f1327a41f564385523">StringVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#ae0a330283bcf5506160628c3103b7cd6">GetKnownInterfaces</a> ()</td></tr>
+<tr class="separator:ae0a330283bcf5506160628c3103b7cd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17a1460cf2ac70b6f81b0bd2cdd0c5cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a17a1460cf2ac70b6f81b0bd2cdd0c5cd">GetType</a> (const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;box)</td></tr>
 <tr class="separator:a17a1460cf2ac70b6f81b0bd2cdd0c5cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c508f7d912e502d6e44743a1038bbc2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a5c508f7d912e502d6e44743a1038bbc2">GetTypeName</a> (const std::type_info &amp;type)</td></tr>
@@ -146,21 +150,45 @@ Protected Methods</h2></td></tr>
 <tr class="memitem:a89c380b9a4837b30c6fe4f1a1da33cff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a89c380b9a4837b30c6fe4f1a1da33cff">typesToStrings</a> (const std::vector&lt; const std::type_info *&gt; &amp;list)</td></tr>
 <tr class="separator:a89c380b9a4837b30c6fe4f1a1da33cff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a623426d1692c33b3319d141aa57329af"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a623426d1692c33b3319d141aa57329af">&#9670;&nbsp;</a></span>Boxing()</h2>
+<h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a3c8894068cb475f1327a41f564385523"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c8894068cb475f1327a41f564385523">&#9670;&nbsp;</a></span>StringVector</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html">Boxing</a> </td>
+          <td class="memname">using <a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a3c8894068cb475f1327a41f564385523">StringVector</a> =  std::vector&lt;<a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">aworx::String</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The return type of various methods of this class </p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ad13fc2fa2999879ef7b92674f2c76c69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad13fc2fa2999879ef7b92674f2c76c69">&#9670;&nbsp;</a></span>Boxing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html">Boxing</a> </td>
           <td>(</td>
           <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>removeALibNamespaces</em> = <code>true</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Constructor</p>
@@ -173,41 +201,22 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a603a39ed65115b855faf38102187fc27"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a603a39ed65115b855faf38102187fc27">&#9670;&nbsp;</a></span>~Boxing()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">~<a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html">Boxing</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Destructor </p>
-
-</div>
-</div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a1fa86a53923b665f496cd35491765ff5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1fa86a53923b665f496cd35491765ff5">&#9670;&nbsp;</a></span>Dump()</h2>
+<a id="a493a46ed7dffa100751f59068150cef1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a493a46ed7dffa100751f59068150cef1">&#9670;&nbsp;</a></span>Dump()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">NO_DOX <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp; Dump </td>
+          <td class="memname"><a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp; Dump </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Uses methods <a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#abd8705370d023f51b3249e0971a60aa0">GetKnownBoxTypes</a>, <a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a0392377b4c3ecc654c4cf78540ce97ce">GetInterfaces</a>, <a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#ad88205a26dac662b600f014842a2827d">GetKnownInterfaces</a>, <a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a7dcc6c2957a5a975e2ac3f89bb102489">GetKnownInterfaceDefaults</a> and <a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#ab332260f04ca574c0e621250435f18e2">GetKnownInterfaceImplementations</a> to write the current state of <b>ALib Boxing</b> to the given <code>target</code>.</p>
+<p>Uses methods <a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a6f01cc6f5d488b2a9ef42e857ed07e31">GetKnownBoxTypes</a>, <a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a2f85fbde29f81dc47c9db1cb5574cdfe">GetInterfaces</a>, <a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#ae0a330283bcf5506160628c3103b7cd6">GetKnownInterfaces</a>, <a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#aa25a4bb1a67fb47634d517bfb3e1c48d">GetKnownInterfaceDefaults</a> and <a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a8ae85a6757cdd7f90254fcbd4aafb247">GetKnownInterfaceImplementations</a> to write the current state of <b>ALib Boxing</b> to the given <code>target</code>.</p>
 <dl class="section return"><dt>Returns</dt><dd>A string containing the dump. </dd></dl>
 
 </div>
@@ -251,7 +260,7 @@ Protected Methods</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Internal helper method of <a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a1fa86a53923b665f496cd35491765ff5">Dump</a>.</p>
+<p>Internal helper method of <a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a493a46ed7dffa100751f59068150cef1">Dump</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">list</td><td>A list of types. </td></tr>
@@ -291,14 +300,14 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a0392377b4c3ecc654c4cf78540ce97ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0392377b4c3ecc654c4cf78540ce97ce">&#9670;&nbsp;</a></span>GetInterfaces()</h2>
+<a id="a2f85fbde29f81dc47c9db1cb5574cdfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f85fbde29f81dc47c9db1cb5574cdfe">&#9670;&nbsp;</a></span>GetInterfaces()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">NO_DOX <a class="el" href="namespaceaworx.html#abc46e42927a238007065da5265423816">Strings</a> &amp; GetInterfaces </td>
+          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a3c8894068cb475f1327a41f564385523">Boxing::StringVector</a> &amp; GetInterfaces </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> &amp;&#160;</td>
           <td class="paramname"><em>box</em></td><td>)</td>
@@ -306,7 +315,7 @@ Protected Methods</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns a <b>StringBlock</b> with a list of types received by <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Boxer.html#a84052e2906651204a5686664bc20b862">Boxer::DbgGetInterfaces</a> providing the type information received with <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Boxer.html#a84052e2906651204a5686664bc20b862">Boxer::DbgGetInterfaces</a>.</p>
+<p>Returns a <b>StringBlock</b> with a list of types received by <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Boxing.html#a2cdb9dc37645e581ecca4a45376f287a">Boxing::DbgGetInterfaces</a> providing the type information received with <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Boxing.html#a2cdb9dc37645e581ecca4a45376f287a">Boxing::DbgGetInterfaces</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">box</td><td>The box object to get the type from. </td></tr>
@@ -317,78 +326,78 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="abd8705370d023f51b3249e0971a60aa0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd8705370d023f51b3249e0971a60aa0">&#9670;&nbsp;</a></span>GetKnownBoxTypes()</h2>
+<a id="a6f01cc6f5d488b2a9ef42e857ed07e31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f01cc6f5d488b2a9ef42e857ed07e31">&#9670;&nbsp;</a></span>GetKnownBoxTypes()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceaworx.html#abc46e42927a238007065da5265423816">Strings</a> &amp; GetKnownBoxTypes </td>
+          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a3c8894068cb475f1327a41f564385523">Boxing::StringVector</a> &amp; GetKnownBoxTypes </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns a <b>StringBlock</b> with a list of types received with <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Boxer.html#a62f9dbdd875dd7cf0df25f8ab142d306">Boxer::DbgGetKnownBoxers</a>. The uses <a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a5c508f7d912e502d6e44743a1038bbc2">GetTypeName</a> to tries to deduce the boxed value types from the boxer types.)</p>
+<p>Returns a <b>StringBlock</b> with a list of types received with <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Boxing.html#a928b4f70113d24da32ea6895b79ab2e3">Boxing::DbgGetKnownBoxers</a>. The uses <a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a5c508f7d912e502d6e44743a1038bbc2">GetTypeName</a> to tries to infer the boxed value types from the boxer types.)</p>
 <dl class="section return"><dt>Returns</dt><dd>A list of demangled type names. </dd></dl>
 
 </div>
 </div>
-<a id="a7dcc6c2957a5a975e2ac3f89bb102489"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7dcc6c2957a5a975e2ac3f89bb102489">&#9670;&nbsp;</a></span>GetKnownInterfaceDefaults()</h2>
+<a id="aa25a4bb1a67fb47634d517bfb3e1c48d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa25a4bb1a67fb47634d517bfb3e1c48d">&#9670;&nbsp;</a></span>GetKnownInterfaceDefaults()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceaworx.html#abc46e42927a238007065da5265423816">Strings</a> &amp; GetKnownInterfaceDefaults </td>
+          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a3c8894068cb475f1327a41f564385523">Boxing::StringVector</a> &amp; GetKnownInterfaceDefaults </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns a <b>StringBlock</b> with a list of types received with <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Boxer.html#a2d7232559a770f142bd3e930a4e9fe61">Boxer::DbgGetDefaultInterfaces</a>.</p>
+<p>Returns a <b>StringBlock</b> with a list of types received with <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Boxing.html#ae3eb64b459dc5813723d650ec1da43a6">Boxing::DbgGetDefaultInterfaces</a>.</p>
 <dl class="section return"><dt>Returns</dt><dd>A list of demangled type names. </dd></dl>
 
 </div>
 </div>
-<a id="ab332260f04ca574c0e621250435f18e2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab332260f04ca574c0e621250435f18e2">&#9670;&nbsp;</a></span>GetKnownInterfaceImplementations()</h2>
+<a id="a8ae85a6757cdd7f90254fcbd4aafb247"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ae85a6757cdd7f90254fcbd4aafb247">&#9670;&nbsp;</a></span>GetKnownInterfaceImplementations()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceaworx.html#abc46e42927a238007065da5265423816">Strings</a> &amp; GetKnownInterfaceImplementations </td>
+          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a3c8894068cb475f1327a41f564385523">Boxing::StringVector</a> &amp; GetKnownInterfaceImplementations </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns a <b>StringBlock</b> with a list of types received with <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Boxer.html#adbb10fb051c27c536311e7f5c8501241">Boxer::DbgGetKnownInterfaceImpl</a>.</p>
+<p>Returns a <b>StringBlock</b> with a list of types received with <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Boxing.html#aa4c2f7712ed86c42a710b567a8570934">Boxing::DbgGetKnownInterfaceImpl</a>.</p>
 <dl class="section return"><dt>Returns</dt><dd>A list of demangled type names. </dd></dl>
 
 </div>
 </div>
-<a id="ad88205a26dac662b600f014842a2827d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad88205a26dac662b600f014842a2827d">&#9670;&nbsp;</a></span>GetKnownInterfaces()</h2>
+<a id="ae0a330283bcf5506160628c3103b7cd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0a330283bcf5506160628c3103b7cd6">&#9670;&nbsp;</a></span>GetKnownInterfaces()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceaworx.html#abc46e42927a238007065da5265423816">Strings</a> &amp; GetKnownInterfaces </td>
+          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a3c8894068cb475f1327a41f564385523">Boxing::StringVector</a> &amp; GetKnownInterfaces </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns a <b>StringBlock</b> with a list of types received with <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Boxer.html#a2a7a4ea24bd3d70233f2f70a2bb19fe0">Boxer::DbgGetKnownInterfaces</a>.</p>
+<p>Returns a <b>StringBlock</b> with a list of types received with <a class="el" href="classaworx_1_1lib_1_1boxing_1_1Boxing.html#ad0e6afc9d06b2ddd35d5fc8f70bf3283">Boxing::DbgGetKnownInterfaces</a>.</p>
 <dl class="section return"><dt>Returns</dt><dd>A list of demangled type names. </dd></dl>
 
 </div>
@@ -434,7 +443,7 @@ Protected Methods</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Writes the (demangled) string representation of the given type. It is tried to identify a boxer type and deduce the boxed type information from this type.</p>
+<p>Writes the (demangled) string representation of the given type. It is tried to identify a boxer type and infer the boxed type information from this type.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">type</td><td>The type. </td></tr>
@@ -509,14 +518,14 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a21a68bee7bfd1b64d14453a5b625044c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a21a68bee7bfd1b64d14453a5b625044c">&#9670;&nbsp;</a></span>strings</h2>
+<a id="a4877fe5eba7d052ddf9c9dbe87ade7c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4877fe5eba7d052ddf9c9dbe87ade7c4">&#9670;&nbsp;</a></span>strings</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceaworx.html#abc46e42927a238007065da5265423816">Strings</a>* strings</td>
+          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1debug_1_1Boxing.html#a3c8894068cb475f1327a41f564385523">StringVector</a> strings</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -540,14 +549,14 @@ Protected Methods</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="stringboxing_8hpp_source.html">stringboxing.hpp</a></li>
-<li>stringboxing.cpp</li>
+<li><a class="el" href="debug_8hpp_source.html">debug.hpp</a></li>
+<li>debug.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:15 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

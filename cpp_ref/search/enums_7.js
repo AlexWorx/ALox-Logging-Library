@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['timezone',['Timezone',['../namespaceaworx_1_1lib_1_1lang.html#a9b1d8f31e178e17a8fef3a9e94bc4b2c',1,'aworx::lib::lang']]],
-  ['type',['Type',['../structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html#a1d1cfd8ffb84e947f82999c682b666a7',1,'aworx::lox::Lox::DomainSubstitutionRule']]]
+  ['phase',['Phase',['../namespaceaworx_1_1lib_1_1lang.html#ae1c5184dc404edf057ed537bcfddef84',1,'aworx::lib::lang']]],
+  ['phases',['Phases',['../classaworx_1_1lib_1_1lang_1_1Library.html#a5d32d09cde4f13ec4fb05a824d3e3219',1,'aworx::lib::lang::Library']]],
+  ['phtype',['PHType',['../classaworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a4660396d3d3ae4a0b0985d23df5c32e8',1,'aworx::lib::strings::format::FormatterStdImpl']]],
+  ['priorities',['Priorities',['../namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd',1,'aworx::lib::config']]],
+  ['propagation',['Propagation',['../namespaceaworx_1_1lib_1_1lang.html#aeae0c2d4659a32ef54bd221d1a3da4e6',1,'aworx::lib::lang']]]
 ];

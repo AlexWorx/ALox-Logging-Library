@@ -1,8 +1,9 @@
 <map id="formatterpythonstyle.hpp" name="formatterpythonstyle.hpp">
 <area shape="rect" id="node2" href="$formatterstdimpl_8hpp.html" title="alib/strings/format/formatterstdimpl.hpp" alt="" coords="183,80,432,107"/>
 <area shape="rect" id="node3" href="$autosizes_8hpp.html" title="alib/strings/util/autosizes.hpp" alt="" coords="5,155,196,181"/>
-<area shape="rect" id="node4" href="$formatter_8hpp.html" title="alib/strings/format/formatter.hpp" alt="" coords="220,155,427,181"/>
-<area shape="rect" id="node6" href="$threadlock_8hpp.html" title="alib/threads/threadlock.hpp" alt="" coords="154,229,333,256"/>
-<area shape="rect" id="node7" href="$numberformat_8hpp.html" title="alib/strings/numberformat.hpp" alt="" coords="357,229,551,256"/>
-<area shape="rect" id="node8" href="$substring_8hpp.html" title="alib/strings/substring.hpp" alt="" coords="576,229,743,256"/>
+<area shape="rect" id="node4" href="$formatter_8hpp.html" title="alib/strings/format/formatter.hpp" alt="" coords="248,155,455,181"/>
+<area shape="rect" id="node6" href="$threadlock_8hpp.html" title="alib/threads/threadlock.hpp" alt="" coords="99,229,278,256"/>
+<area shape="rect" id="node7" href="$exception_8hpp.html" title="alib/lang/exception.hpp" alt="" coords="302,229,457,256"/>
+<area shape="rect" id="node8" href="$numberformat_8hpp.html" title="alib/strings/numberformat.hpp" alt="" coords="481,229,675,256"/>
+<area shape="rect" id="node9" href="$substring_8hpp.html" title="alib/strings/substring.hpp" alt="" coords="700,229,867,256"/>
 </map>

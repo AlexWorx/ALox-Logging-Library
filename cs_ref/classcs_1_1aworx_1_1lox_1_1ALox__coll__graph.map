@@ -1,13 +1,8 @@
 <map id="ALox" name="ALox">
-<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="336,5,401,32"/>
-<area shape="rect" id="node3" href="$structcs_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html" title="VariableDefinition" alt="" coords="97,676,219,703"/>
-<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html" title="Variable" alt="" coords="267,587,335,613"/>
-<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html" title="Configuration" alt="" coords="595,497,694,524"/>
-<area shape="rect" id="node6" href="$classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugin.html" title="EnvironmentPlugin" alt="" coords="431,393,562,420"/>
-<area shape="rect" id="node8" href="$classcs_1_1aworx_1_1lib_1_1config_1_1XTernalizer.html" title="XTernalizer" alt="" coords="600,124,687,151"/>
-<area shape="rect" id="node12" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="780,176,888,203"/>
-<area shape="rect" id="node7" href="$classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html" title="ConfigurationPlugin" alt="" coords="592,237,727,263"/>
-<area shape="rect" id="node10" href="$classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html" title="InMemoryPlugin" alt="" coords="587,393,703,420"/>
-<area shape="rect" id="node11" href="$classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugin.html" title="CommandLinePlugin" alt="" coords="727,393,869,420"/>
-<area shape="rect" id="node9" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="925,5,1002,32"/>
+<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html" title="Configuration" alt="" coords="283,289,381,316"/>
+<area shape="rect" id="node7" href="$classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html" title="Variable" alt="" coords="483,379,551,405"/>
+<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="377,5,442,32"/>
+<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="43,133,151,159"/>
+<area shape="rect" id="node6" href="$structcs_1_1aworx_1_1lib_1_1config_1_1VariableDecl.html" title="VariableDecl" alt="" coords="470,468,565,495"/>
+<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="284,133,361,159"/>
 </map>

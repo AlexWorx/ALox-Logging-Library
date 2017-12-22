@@ -1,8 +1,8 @@
 var menudata={children:[
-{text:"Overview",url:"cppmainpage.html"},
-{text:"Tutorial",url:"cpptutorial.html"},
-{text:"IDE/Build system setup",url:"cppsetup.html"},
-{text:"Symbols & Macros",url:"cppprepro.html"},
+{text:"Overview",url:"alox_cpp_mainpage.html"},
+{text:"Tutorial",url:"alox_cpp_tutorial.html"},
+{text:"IDE/Build system setup",url:"alox_cpp_setup.html"},
+{text:"Symbols & Macros",url:"alox_cpp_prepro.html"},
 {text:"Class Reference",url:"annotated.html",children:[
 {text:"Alphabetical Index",url:"classes.html"},
 {text:"Namespace Index",url:"annotated.html"},
@@ -84,5 +84,4 @@ var menudata={children:[
 {text:"y",url:"functions_vars_y.html#index_y"}]},
 {text:"Typedefs",url:"functions_type.html"},
 {text:"Enumerations",url:"functions_enum.html"},
-{text:"Enumerator",url:"functions_eval.html"},
 {text:"Related Functions",url:"functions_rela.html"}]}]}]}

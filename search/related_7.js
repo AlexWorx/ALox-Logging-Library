@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['stringtree',['StringTree',['.././cpp_ref/classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#aa42c89c0eaa357d95820842673034eed',1,'aworx::lib::containers::StringTree::Cursor::StringTree()'],['.././cpp_ref/classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html#aa42c89c0eaa357d95820842673034eed',1,'aworx::lib::containers::StringTree::StdIterator::StringTree()'],['.././cpp_ref/classaworx_1_1lib_1_1containers_1_1StringTree_1_1Walker.html#aa42c89c0eaa357d95820842673034eed',1,'aworx::lib::containers::StringTree::Walker::StringTree()']]],
-  ['syncclock',['SyncClock',['.././cpp_ref/classaworx_1_1lib_1_1time_1_1Ticks.html#a7f95064d16d82b4d476d8cfe4d2f52c4',1,'aworx::lib::time::Ticks']]]
+  ['t_5fboxing',['T_Boxing',['.././cpp_ref/classaworx_1_1lib_1_1boxing_1_1Box.html#a0acd27547301a0bb7c2d2fbdbd709df3',1,'aworx::lib::boxing::Box']]]
 ];

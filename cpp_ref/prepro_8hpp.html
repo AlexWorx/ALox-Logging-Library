@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -77,7 +77,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_d01351256000916d249597029aab7e28.html">src.cpp</a></li><li class="navelem"><a class="el" href="dir_08f885627474fb330dde0a077913c803.html">alib</a></li><li class="navelem"><a class="el" href="dir_f084a130650aeadfa20a4eb0d3bb60a0.html">alib</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_d01351256000916d249597029aab7e28.html">src.cpp</a></li><li class="navelem"><a class="el" href="dir_08f885627474fb330dde0a077913c803.html">alib</a></li><li class="navelem"><a class="el" href="dir_6c45edb4accd465c0536ee24c34bd8d0.html">lang</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -119,7 +119,7 @@ Macros</h2></td></tr>
 <tr class="separator:gac4bd86743dc96603b414fa7e517fdb9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1bed5257f25120726eb658164c482957"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibCompilerSymbols.html#ga1bed5257f25120726eb658164c482957">ALIB_FEAT_THREADS_ON</a></td></tr>
 <tr class="separator:ga1bed5257f25120726eb658164c482957"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">Preprocessor Helper Macros</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">C/C++ Preprocessor Helper Macros</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>The following macros are fundamental and building blocks for other macros. </p>
 </div></td></tr>
 <tr class="memitem:ga3f61373916523c0c97327c83b2d6132e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#ga3f61373916523c0c97327c83b2d6132e">ALIB_STRINGIFY</a>(a)</td></tr>
@@ -128,55 +128,54 @@ Macros</h2></td></tr>
 <tr class="separator:gaf5375d121ff32a60c641c7e3a4b7810e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaeee83bac121e3fd5d1b452269a5853f3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#gaeee83bac121e3fd5d1b452269a5853f3">ALIB_IDENTIFIER</a>(prefix)</td></tr>
 <tr class="separator:gaeee83bac121e3fd5d1b452269a5853f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf0f36a56c88d4138438b7897c787c59f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#gaf0f36a56c88d4138438b7897c787c59f">ALIB_COMMA</a></td></tr>
+<tr class="memitem:gaf0f36a56c88d4138438b7897c787c59f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#gaf0f36a56c88d4138438b7897c787c59f">ALIB_COMMA</a>&#160;&#160;&#160;,</td></tr>
 <tr class="separator:gaf0f36a56c88d4138438b7897c787c59f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">C++ Language And Linkage Macros</div></td></tr>
+<tr class="memitem:ga6730e9dcdca129649f6040b3f7144d3a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#ga6730e9dcdca129649f6040b3f7144d3a">ALIB_COMMA_DBG</a>&#160;&#160;&#160;,</td></tr>
+<tr class="separator:ga6730e9dcdca129649f6040b3f7144d3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">C/C++ Language And Linkage Macros</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>The macros listed here are supporting C++ compilation and linking control and language specific utilities. </p>
 </div></td></tr>
 <tr class="memitem:ga74fe706f3101d8e1e21555f772da2849"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a></td></tr>
 <tr class="separator:ga74fe706f3101d8e1e21555f772da2849"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga989cf4e8da9e758591360c4c88122adb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#ga989cf4e8da9e758591360c4c88122adb">ALIB_DEBUG_CODE</a></td></tr>
-<tr class="separator:ga989cf4e8da9e758591360c4c88122adb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab046192b7da77d13a691be2a7ba3e32e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#gab046192b7da77d13a691be2a7ba3e32e">ALIB_OVERRIDE</a></td></tr>
-<tr class="separator:gab046192b7da77d13a691be2a7ba3e32e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5f6b7763c5f5722d7f178c04540aba9e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#ga5f6b7763c5f5722d7f178c04540aba9e">ALIB_DBG</a></td></tr>
+<tr class="separator:ga5f6b7763c5f5722d7f178c04540aba9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8f4eaa134959341e3f98a86c53c73281"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#ga8f4eaa134959341e3f98a86c53c73281">ALIB_REL_DBG</a></td></tr>
+<tr class="separator:ga8f4eaa134959341e3f98a86c53c73281"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga635f795f6036977415c87d82d385489a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#ga635f795f6036977415c87d82d385489a">ALIB_NO_RETURN</a></td></tr>
+<tr class="separator:ga635f795f6036977415c87d82d385489a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5a044189d5dbf0a9a16c757c61b30122"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#ga5a044189d5dbf0a9a16c757c61b30122">ALIB_SIZEOF_WCHAR_T</a></td></tr>
 <tr class="separator:ga5a044189d5dbf0a9a16c757c61b30122"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab1836c6de18fd089b123e40e22472f4d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#gab1836c6de18fd089b123e40e22472f4d">ALIB_SRC_INFO_PARAMS</a></td></tr>
-<tr class="separator:gab1836c6de18fd089b123e40e22472f4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac17f8e410ff33bbb690c0608d12ba5d4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#gac17f8e410ff33bbb690c0608d12ba5d4">ALIB_DBG_SRC_INFO_PARAMS</a></td></tr>
-<tr class="separator:gac17f8e410ff33bbb690c0608d12ba5d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">Macros To Control Compiler Warnings</div></td></tr>
+<tr class="memitem:ga78aabff444ee51f21cdfa81d81a00e64"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#ga78aabff444ee51f21cdfa81d81a00e64">ALIB_SRCPOS</a></td></tr>
+<tr class="separator:ga78aabff444ee51f21cdfa81d81a00e64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3d922ed3a0447cf1b3fd6d23fe41527e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#ga3d922ed3a0447cf1b3fd6d23fe41527e">ALIB_SRCPOS_REL_EMPTY</a></td></tr>
+<tr class="separator:ga3d922ed3a0447cf1b3fd6d23fe41527e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga171353a218bb2e8e9af924c98968b116"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#ga171353a218bb2e8e9af924c98968b116">ALIB_SRCPOS_REL_NULLED</a></td></tr>
+<tr class="separator:ga171353a218bb2e8e9af924c98968b116"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga474671002d5264f4e1851ddb541d848b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#ga474671002d5264f4e1851ddb541d848b">ALIB_TMP_SHOW_TYPE_IN_DEBUGGER</a>(type)</td></tr>
+<tr class="separator:ga474671002d5264f4e1851ddb541d848b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">C/C++ Compiler Warning Control</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p><b>ALib</b> sources are designed to be compiled on different compilers using the highest possible compiler warning levels available. In some situations, some warnings need to be temporarily disabled. The following macros do this in a compiler agnostic way. </p>
 </div></td></tr>
 <tr class="memitem:ga65685ca0f9ee1c3af3bdc8f0df4d431d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#ga65685ca0f9ee1c3af3bdc8f0df4d431d">ALIB_WARNINGS_RESTORE</a></td></tr>
 <tr class="separator:ga65685ca0f9ee1c3af3bdc8f0df4d431d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0f42e478292531594964210f03927150"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#ga0f42e478292531594964210f03927150">ALIB_WARNINGS_START_TMP</a></td></tr>
-<tr class="separator:ga0f42e478292531594964210f03927150"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad64afad18f0a403ccfc7703caf03a047"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#gad64afad18f0a403ccfc7703caf03a047">ALIB_WARNINGS_ALLOW_TEMPLATE_META_PROGRAMMING</a></td></tr>
+<tr class="separator:gad64afad18f0a403ccfc7703caf03a047"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga25e88e49df3bbf7266e602b7abf62b7f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#ga25e88e49df3bbf7266e602b7abf62b7f">ALIB_WARNINGS_UNINITIALIZED_OFF</a></td></tr>
 <tr class="separator:ga25e88e49df3bbf7266e602b7abf62b7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae0b01789678bd95eb30cf96f7806c084"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#gae0b01789678bd95eb30cf96f7806c084">ALIB_WARNINGS_OVERLOAD_VIRTUAL_OFF</a></td></tr>
 <tr class="separator:gae0b01789678bd95eb30cf96f7806c084"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae1f79630f149afe2900be8ddc95be90b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#gae1f79630f149afe2900be8ddc95be90b">ALIB_WARNINGS_MACRO_NOT_USED_OFF</a></td></tr>
 <tr class="separator:gae1f79630f149afe2900be8ddc95be90b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga47068005503397453b64e89db03bd3e0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#ga47068005503397453b64e89db03bd3e0">ALIB_WARNINGS_ALLOW_BITWISE_SWITCH</a></td></tr>
+<tr class="separator:ga47068005503397453b64e89db03bd3e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1518475780abb680e932a6c564e05fd4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#ga1518475780abb680e932a6c564e05fd4">ALIB_FALLTHROUGH</a></td></tr>
 <tr class="separator:ga1518475780abb680e932a6c564e05fd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga474671002d5264f4e1851ddb541d848b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#ga474671002d5264f4e1851ddb541d848b">ALIB_TMP_SHOW_TYPE_IN_DEBUGGER</a>(type)</td></tr>
-<tr class="separator:ga474671002d5264f4e1851ddb541d848b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">Namespace Initialization</div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p>Simple macros used by namespace <code>Init()</code> and <code><a class="el" href="namespaceaworx_1_1lib_1_1boxing.html#a2a0bcae1f7341255492ebc90deab5f01">TerminationCleanUp()</a></code> functions to ensure single and avoid duplicate invocation. </p>
-</div></td></tr>
-<tr class="memitem:gaa23c944e6d67aa52d2e05a1399151423"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#gaa23c944e6d67aa52d2e05a1399151423">ALIB_NAMESPACE_INIT_FLAG</a></td></tr>
-<tr class="separator:gaa23c944e6d67aa52d2e05a1399151423"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga19ee3a0b9771ba7d0236885ff2e8a194"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#ga19ee3a0b9771ba7d0236885ff2e8a194">ALIB_NAMESPACE_INIT_DEDUP</a></td></tr>
-<tr class="separator:ga19ee3a0b9771ba7d0236885ff2e8a194"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2be6f663a4b742184515d1963cbbde2c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibMacros.html#ga2be6f663a4b742184515d1963cbbde2c">ALIB_NAMESPACE_INIT_CHECK</a>(namespace)</td></tr>
-<tr class="separator:ga2be6f663a4b742184515d1963cbbde2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:57 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:15 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

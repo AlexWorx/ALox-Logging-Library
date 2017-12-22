@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -89,7 +89,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <a name="details" id="details"></a><h2 class="groupheader">Namespace Description</h2>
-<div class="textblock"><p>With the inclusion of header file <code><a class="el" href="std__string_8hpp.html">alib/compatibility/std_string.hpp</a></code>, some compatibility between <b>ALib Strings</b> and string types of namespace <b>std</b> is provided.</p>
+<div class="textblock"><p>With the inclusion of header file <code><a class="el" href="std__string_8hpp.html">alib/compatibility/std_string.hpp</a></code>, some compatibility between <b>ALib <a class="el" href="classaworx_1_1lib_1_1strings_1_1Strings.html">Strings</a></b> and string types of namespace <b>std</b> is provided.</p>
 <p><b>1. Specializations of T_String:</b><br />
  Specializations of <a class="el" href="structaworx_1_1lib_1_1strings_1_1T__String.html">aworx::lib::strings::T_String</a> is given for type <b>std::string</b>. This allows to construct objects of class <b>String</b> directly and implicitly from objects and pointers to objects of <b>std::string</b>.</p>
 <p><b>2. Applicable Types:</b><br />
@@ -128,14 +128,20 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:abcce4a2cc847b6ab04e5eddbcfd0b4e2"><td class="memItemLeft" align="right" valign="top">inline ::std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#abcce4a2cc847b6ab04e5eddbcfd0b4e2">operator&lt;&lt;</a> (::std::ostream &amp;stream, const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;string)</td></tr>
-<tr class="separator:abcce4a2cc847b6ab04e5eddbcfd0b4e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99efdef7cac234f403cc722fc28e3551"><td class="memItemLeft" align="right" valign="top">inline ::std::ostream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#a99efdef7cac234f403cc722fc28e3551">operator&lt;&lt;</a> (::std::ostream *stream, const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;string)</td></tr>
-<tr class="separator:a99efdef7cac234f403cc722fc28e3551"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeecd3f446cd52e4903ec0506e139f778"><td class="memItemLeft" align="right" valign="top">inline ::std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#aeecd3f446cd52e4903ec0506e139f778">operator&gt;&gt;</a> (::std::istream &amp;stream, <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;string)</td></tr>
-<tr class="separator:aeecd3f446cd52e4903ec0506e139f778"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6aa23a97a1b196f03878e58b3dac7624"><td class="memItemLeft" align="right" valign="top">inline ::std::istream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#a6aa23a97a1b196f03878e58b3dac7624">operator&gt;&gt;</a> (::std::istream *stream, <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;string)</td></tr>
-<tr class="separator:a6aa23a97a1b196f03878e58b3dac7624"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87fbb8b7085a135eb378c01ad642ca62"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#a87fbb8b7085a135eb378c01ad642ca62">operator&lt;&lt;</a> (std::ostream &amp;stream, const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;string)</td></tr>
+<tr class="separator:a87fbb8b7085a135eb378c01ad642ca62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a711970990a045b7ee4c78c43968db751"><td class="memItemLeft" align="right" valign="top">std::ostream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#a711970990a045b7ee4c78c43968db751">operator&lt;&lt;</a> (std::ostream *stream, const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;string)</td></tr>
+<tr class="separator:a711970990a045b7ee4c78c43968db751"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a8be392083299363a46570e0b11d422"><td class="memTemplParams" colspan="2">template&lt;typename TApplicable , typename TEnableIf  = typename std::enable_if&lt;aworx::lib::strings::T_Apply&lt;TApplicable&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a7a8be392083299363a46570e0b11d422"><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#a7a8be392083299363a46570e0b11d422">operator&lt;&lt;</a> (std::ostream &amp;stream, const TApplicable &amp;applicable)</td></tr>
+<tr class="separator:a7a8be392083299363a46570e0b11d422"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9692972d4d2aac14983aca97a761311"><td class="memTemplParams" colspan="2">template&lt;typename TApplicable , typename TEnableIf  = typename std::enable_if&lt;aworx::lib::strings::T_Apply&lt;TApplicable&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:ad9692972d4d2aac14983aca97a761311"><td class="memTemplItemLeft" align="right" valign="top">std::ostream *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#ad9692972d4d2aac14983aca97a761311">operator&lt;&lt;</a> (std::ostream *stream, const TApplicable &amp;applicable)</td></tr>
+<tr class="separator:ad9692972d4d2aac14983aca97a761311"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9651871e7daa6d9fc7cf18c22b11daa4"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#a9651871e7daa6d9fc7cf18c22b11daa4">operator&gt;&gt;</a> (std::istream &amp;stream, <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;string)</td></tr>
+<tr class="separator:a9651871e7daa6d9fc7cf18c22b11daa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36c110c0bad310bc926dd4ba78bbb719"><td class="memItemLeft" align="right" valign="top">std::istream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#a36c110c0bad310bc926dd4ba78bbb719">operator&gt;&gt;</a> (std::istream *stream, <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;string)</td></tr>
+<tr class="separator:a36c110c0bad310bc926dd4ba78bbb719"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a37f6748b43c7e24e2e203c8aaab743"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#a6a37f6748b43c7e24e2e203c8aaab743">ToStdString</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;src, std::string &amp;target, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> regionStart, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> regionLength=<a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a854222d062dd7b383aff419dac1b8481">CString::MaxLen</a>, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4">lang::CurrentData</a> targetData=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2">lang::CurrentData::Clear</a>)</td></tr>
 <tr class="separator:a6a37f6748b43c7e24e2e203c8aaab743"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b956a880e23a42e5d82f3dcdc9d2291"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#a2b956a880e23a42e5d82f3dcdc9d2291">ToStdString</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;src, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> regionStart, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> regionLength=<a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a854222d062dd7b383aff419dac1b8481">CString::MaxLen</a>)</td></tr>
@@ -154,16 +160,19 @@ Functions</h2></td></tr>
 <tr class="separator:a411f0b04841847a3e326260d70c72f48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="abcce4a2cc847b6ab04e5eddbcfd0b4e2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abcce4a2cc847b6ab04e5eddbcfd0b4e2">&#9670;&nbsp;</a></span>operator<<() <span class="overload">[1/2]</span></h2>
+<a id="a87fbb8b7085a135eb378c01ad642ca62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87fbb8b7085a135eb378c01ad642ca62">&#9670;&nbsp;</a></span>operator<<() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">inline ::std::ostream&amp; aworx::lib::strings::thirdparty::std::operator&lt;&lt; </td>
+          <td class="memname">std::ostream&amp; aworx::lib::strings::thirdparty::std::operator&lt;&lt; </td>
           <td>(</td>
-          <td class="paramtype">::std::ostream &amp;&#160;</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
           <td class="paramname"><em>stream</em>, </td>
         </tr>
         <tr>
@@ -178,9 +187,14 @@ Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
-<p> Copies the contents of the given String to into the std::ostream given as reference. </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Copies the contents of the given String to into the <code>std::ostream</code> given as reference. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">stream</td><td>The ostream object to write the given <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> into. </td></tr>
     <tr><td class="paramname">string</td><td>The <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> to write into the given ostream. </td></tr>
@@ -191,16 +205,19 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a99efdef7cac234f403cc722fc28e3551"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99efdef7cac234f403cc722fc28e3551">&#9670;&nbsp;</a></span>operator<<() <span class="overload">[2/2]</span></h2>
+<a id="a711970990a045b7ee4c78c43968db751"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a711970990a045b7ee4c78c43968db751">&#9670;&nbsp;</a></span>operator<<() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">inline ::std::ostream* aworx::lib::strings::thirdparty::std::operator&lt;&lt; </td>
+          <td class="memname">std::ostream* aworx::lib::strings::thirdparty::std::operator&lt;&lt; </td>
           <td>(</td>
-          <td class="paramtype">::std::ostream *&#160;</td>
+          <td class="paramtype">std::ostream *&#160;</td>
           <td class="paramname"><em>stream</em>, </td>
         </tr>
         <tr>
@@ -215,9 +232,14 @@ Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
-<p> Copies the contents of the given String to into the std::ostream given as pointer. </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Copies the contents of the given String to into the <code>std::ostream</code> given as pointer. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">stream</td><td>The ostream object to write the given <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> into. </td></tr>
     <tr><td class="paramname">string</td><td>The <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> to write into the given ostream. </td></tr>
@@ -228,16 +250,97 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aeecd3f446cd52e4903ec0506e139f778"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeecd3f446cd52e4903ec0506e139f778">&#9670;&nbsp;</a></span>operator>>() <span class="overload">[1/2]</span></h2>
+<a id="a7a8be392083299363a46570e0b11d422"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a8be392083299363a46570e0b11d422">&#9670;&nbsp;</a></span>operator<<() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">inline ::std::istream&amp; aworx::lib::strings::thirdparty::std::operator&gt;&gt; </td>
+          <td class="memname">std::ostream&amp; aworx::lib::strings::thirdparty::std::operator&lt;&lt; </td>
           <td>(</td>
-          <td class="paramtype">::std::istream &amp;&#160;</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>stream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TApplicable &amp;&#160;</td>
+          <td class="paramname"><em>applicable</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Copies the contents of the given <a class="el" href="structaworx_1_1lib_1_1strings_1_1T__Apply.html">applicable type</a> the <code>std::ostream</code> given as reference.</p>
+<dl class="section note"><dt>Note</dt><dd>Unlike this documentation states, this operator is defined in namespace <a class="el" href="namespaceaworx.html">aworx</a>.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stream</td><td>The <code>std::ostream</code> object to write the given <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> into. </td></tr>
+    <tr><td class="paramname">applicable</td><td>The object whose contents is to be written into the given <code>stream</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The ostream to allow concatenated operations. </dd></dl>
+
+</div>
+</div>
+<a id="ad9692972d4d2aac14983aca97a761311"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9692972d4d2aac14983aca97a761311">&#9670;&nbsp;</a></span>operator<<() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream* aworx::lib::strings::thirdparty::std::operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream *&#160;</td>
+          <td class="paramname"><em>stream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TApplicable &amp;&#160;</td>
+          <td class="paramname"><em>applicable</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Copies the contents of the given <a class="el" href="structaworx_1_1lib_1_1strings_1_1T__Apply.html">applicable type</a> the <code>std::ostream</code> given as pointer.</p>
+<dl class="section note"><dt>Note</dt><dd>Unlike this documentation states, this operator is defined in namespace <a class="el" href="namespaceaworx.html">aworx</a>.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stream</td><td>The <code>std::ostream</code> object to write the given <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> into. </td></tr>
+    <tr><td class="paramname">applicable</td><td>The object whose contents is to be written into the given <code>stream</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The ostream to allow concatenated operations. </dd></dl>
+
+</div>
+</div>
+<a id="a9651871e7daa6d9fc7cf18c22b11daa4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9651871e7daa6d9fc7cf18c22b11daa4">&#9670;&nbsp;</a></span>operator>>() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::istream&amp; aworx::lib::strings::thirdparty::std::operator&gt;&gt; </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
           <td class="paramname"><em>stream</em>, </td>
         </tr>
         <tr>
@@ -252,6 +355,11 @@ Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Clears the given AString and extracts data from the std::istream into it. The extractions ends with either the end of the std::istream or when reading a newline character. </p><dl class="params"><dt>Parameters</dt><dd>
@@ -265,16 +373,19 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a6aa23a97a1b196f03878e58b3dac7624"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6aa23a97a1b196f03878e58b3dac7624">&#9670;&nbsp;</a></span>operator>>() <span class="overload">[2/2]</span></h2>
+<a id="a36c110c0bad310bc926dd4ba78bbb719"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36c110c0bad310bc926dd4ba78bbb719">&#9670;&nbsp;</a></span>operator>>() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">inline ::std::istream* aworx::lib::strings::thirdparty::std::operator&gt;&gt; </td>
+          <td class="memname">std::istream* aworx::lib::strings::thirdparty::std::operator&gt;&gt; </td>
           <td>(</td>
-          <td class="paramtype">::std::istream *&#160;</td>
+          <td class="paramtype">std::istream *&#160;</td>
           <td class="paramname"><em>stream</em>, </td>
         </tr>
         <tr>
@@ -289,6 +400,11 @@ Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <hr/>
 <p> Clears the given AString and extracts data from the std::istream into it. The extractions ends with either the end of the std::istream or when reading a newline character. </p><dl class="params"><dt>Parameters</dt><dd>
@@ -722,7 +838,7 @@ Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

@@ -10,7 +10,7 @@ var searchData=
   ['insttypetabstop',['instTypeTabStop',['../classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a1cfe4bbb4fae0ca0db99d3fe768ffa64',1,'cs::aworx::lox::tools::LogTools']]],
   ['instvaluetabstop',['instValueTabStop',['../classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#ac586537acea9202be95f5cf793324550',1,'cs::aworx::lox::tools::LogTools']]],
   ['integralpartminimumwidth',['IntegralPartMinimumWidth',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a2a4db10f06c84cfd604377afdf6d3678',1,'cs::aworx::lib::strings::NumberFormat']]],
-  ['internaldomains',['internalDomains',['../classcs_1_1aworx_1_1lox_1_1Lox.html#aa921f3f43ab67608196f46723182a3c4',1,'cs.aworx.lox.Lox.internalDomains()'],['../classcs_1_1aworx_1_1lox_1_1ALox.html#a7b6260c97ca73f960a2b5aabd5cc91ae',1,'cs.aworx.lox.ALox.InternalDomains()']]],
+  ['internaldomains',['InternalDomains',['../classcs_1_1aworx_1_1lox_1_1ALox.html#a7b6260c97ca73f960a2b5aabd5cc91ae',1,'cs.aworx.lox.ALox.InternalDomains()'],['../classcs_1_1aworx_1_1lox_1_1Lox.html#aa921f3f43ab67608196f46723182a3c4',1,'cs.aworx.lox.Lox.internalDomains()']]],
   ['internalfrequency',['InternalFrequency',['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#ae62f17585d560a30016408f33ace2912',1,'cs::aworx::lib::time::Ticks']]],
   ['intmsg',['intMsg',['../classcs_1_1aworx_1_1lox_1_1Lox.html#adc7950715b5ea60bbbfe297cf70fb70f',1,'cs::aworx::lox::Lox']]],
   ['isinitialized',['isInitialized',['../classcs_1_1aworx_1_1lib_1_1ALIB.html#a1fdc2bf5595c2e64dc06d987769834eb',1,'cs.aworx.lib.ALIB.isInitialized()'],['../classcs_1_1aworx_1_1lox_1_1ALox.html#a1fdc2bf5595c2e64dc06d987769834eb',1,'cs.aworx.lox.ALox.isInitialized()']]],

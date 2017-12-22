@@ -1,9 +1,11 @@
 <map id="threadlocknr.hpp" name="threadlocknr.hpp">
-<area shape="rect" id="node2" href="$threadlock_8hpp.html" title="threadlock.hpp" alt="" coords="182,80,289,107"/>
-<area shape="rect" id="node3" href="$configuration_8hpp.html" title="configuration.hpp" alt="" coords="40,155,161,181"/>
-<area shape="rect" id="node4" href="$formatter_8hpp.html" title="formatter.hpp" alt="" coords="186,155,285,181"/>
-<area shape="rect" id="node5" href="$smartlock_8hpp.html" title="smartlock.hpp" alt="" coords="317,229,421,256"/>
-<area shape="rect" id="node6" href="$alox_8hpp.html" title="alox.hpp" alt="" coords="5,229,76,256"/>
-<area shape="rect" id="node7" href="$lox_8hpp.html" title="lox.hpp" alt="" coords="45,304,109,331"/>
-<area shape="rect" id="node8" href="$formatterstdimpl_8hpp.html" title="formatterstdimpl.hpp" alt="" coords="151,229,293,256"/>
+<area shape="rect" id="node2" href="$threadlock_8hpp.html" title="threadlock.hpp" alt="" coords="186,80,293,107"/>
+<area shape="rect" id="node3" href="$configuration_8hpp.html" title="configuration.hpp" alt="" coords="5,229,127,256"/>
+<area shape="rect" id="node4" href="$formatter_8hpp.html" title="formatter.hpp" alt="" coords="261,155,359,181"/>
+<area shape="rect" id="node5" href="$smartlock_8hpp.html" title="smartlock.hpp" alt="" coords="313,304,417,331"/>
+<area shape="rect" id="node6" href="$plugincontainer_8hpp.html" title="plugincontainer.hpp" alt="" coords="103,155,237,181"/>
+<area shape="rect" id="node7" href="$alox_8hpp.html" title="alox.hpp" alt="" coords="31,304,101,331"/>
+<area shape="rect" id="node8" href="$lox_8hpp.html" title="lox.hpp" alt="" coords="70,379,134,405"/>
+<area shape="rect" id="node9" href="$formatterstdimpl_8hpp.html" title="formatterstdimpl.hpp" alt="" coords="151,229,293,256"/>
+<area shape="rect" id="node10" href="$propertyformatter_8hpp_source.html" title="propertyformatter.hpp" alt="" coords="317,229,463,256"/>
 </map>

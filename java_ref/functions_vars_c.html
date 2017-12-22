@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu"    href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu_hl" href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu"    href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu_hl" href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -91,10 +91,10 @@ $(function() {
 </li>
 <li>category
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#af6f530773799481b0dc99e709a99a5df">Variable</a>
-, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html#a536550816628993ec6969fd80fadf522">VariableDefinition</a>
+, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1VariableDecl.html#a536550816628993ec6969fd80fadf522">VariableDecl</a>
 </li>
 <li>categoryFallback
-: <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html#ac6bc20f7af2bb7431c80cbe35f4ba90a">VariableDefinition</a>
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1VariableDecl.html#ac6bc20f7af2bb7431c80cbe35f4ba90a">VariableDecl</a>
 </li>
 <li>CENTER
 : <a class="el" href="enumcom_1_1aworx_1_1lib_1_1lang_1_1Alignment.html#a00f6ce13ea7d341a8ed6b99840f4bbd3">Alignment</a>
@@ -106,7 +106,7 @@ $(function() {
 : <a class="el" href="enumcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl_1_1PHType.html#aba9a62a0230bce162e345c6b6e793273">FormatterStdImpl.PHType</a>
 </li>
 <li>children
-: <a class="el" href="classcom_1_1aworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#a2ee3b39248022bb21a963232b602f756">StringTree&lt; T &gt;.Node</a>
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Node.html#a2ee3b39248022bb21a963232b602f756">StringTree&lt; T &gt;.Node</a>
 </li>
 <li>CLASS
 : <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#ad5946acbc78d91b2bd0621fbf6a3c9a9">Scope</a>
@@ -117,8 +117,11 @@ $(function() {
 <li>CLEAR
 : <a class="el" href="enumcom_1_1aworx_1_1lib_1_1lang_1_1CurrentData.html#aff8d1f245a0d094a179848e1c80ef0f6">CurrentData</a>
 </li>
-<li>cmdLine
-: <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#aa0949c7b0d9e84430dfedcb7cf260053">Configuration</a>
+<li>cliArg
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1CLIArgs.html#ae557b60bcbcd2c7362d6746ae0751310">CLIArgs</a>
+</li>
+<li>cntAcquirements
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a04735ee43ec4d1676e4e0eb3d6bebd73">ThreadLock</a>
 </li>
 <li>cntLogCalls
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html#a898aebb032f3bceb8d879e7695f197d0">Domain</a>
@@ -140,13 +143,15 @@ $(function() {
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html#a61ad1915b74bbe1d88054839516d1873">InMemoryPlugin.Entry</a>
 , <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html#a61ad1915b74bbe1d88054839516d1873">InMemoryPlugin.Section</a>
 , <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a61ad1915b74bbe1d88054839516d1873">Variable</a>
-, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html#a446e9faba60d9d2e04048648a1057eb9">VariableDefinition</a>
+, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1VariableDecl.html#a446e9faba60d9d2e04048648a1057eb9">VariableDecl</a>
 </li>
 <li>computational
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat</a>
 </li>
 <li>config
-: <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a0910717551963df697d192900a7f4f59">Variable</a>
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a0910717551963df697d192900a7f4f59">ALIB</a>
+, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#a0910717551963df697d192900a7f4f59">Variable</a>
+, <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a0910717551963df697d192900a7f4f59">ALox</a>
 </li>
 <li>configCategoryName
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a99bc0357098bd21444efbafe19704712">ALIB</a>
@@ -156,10 +161,10 @@ $(function() {
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html#a2cdd8a5eae9f519716e5221dc724e540">Domain</a>
 </li>
 <li>CONSOLE_LIGHT_COLORS
-: <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#ad7970bffcd14975fc37dc5b5c845786f">ALox</a>
+: <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a7fe361a6896e60c6fdaf1b3c2b4aff8b">ALox</a>
 </li>
 <li>CONSOLE_TYPE
-: <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#a3aa93506b494baed80deb0f1f506c1b7">ALox</a>
+: <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html#ae7cd9610f28482a6c307bcb78661047e">ALox</a>
 </li>
 <li>constColonAndClosingBracket
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#a004e5366aaab1ad2659974c440de022d">FormatterPythonStyle</a>
@@ -172,6 +177,9 @@ $(function() {
 </li>
 <li>contents
 : <a class="el" href="classcom_1_1aworx_1_1lib_1_1lang_1_1Report_1_1Message.html#a4b38287baa05e4fa1e899f17fb710aa6">Report.Message</a>
+</li>
+<li>conversion
+: <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#a0983962f15c7db725a3baf0ac8570444">FormatterPythonStyle</a>
 </li>
 <li>converter
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#aa326f8ce09fe32d21b432ebc966465c4">TextLogger</a>
@@ -202,7 +210,7 @@ $(function() {
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:48:01 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

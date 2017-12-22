@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -82,14 +82,13 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle">
 <div class="title">aworx::lib::strings::boxing Namespace Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a name="details" id="details"></a><h2 class="groupheader">Namespace Description</h2>
-<div class="textblock"><p>This namespace provides a customization of <b>ALib Boxing</b> for <b>ALib Strings</b>. This means, on the one hand that code in this namespace specifies how objects found in parent namespace <a class="el" href="namespaceaworx_1_1lib_1_1strings.html">aworx::lib::strings</a> are boxed and on the other hand introduces box-interfaces related to strings.</p>
+<div class="textblock"><p>This namespace provides a customization of <b>ALib Boxing</b> for <b>ALib <a class="el" href="classaworx_1_1lib_1_1strings_1_1Strings.html">Strings</a></b>. This means, on the one hand that code in this namespace specifies how objects found in parent namespace <a class="el" href="namespaceaworx_1_1lib_1_1strings.html">aworx::lib::strings</a> are boxed and on the other hand introduces box-interfaces related to strings.</p>
 <dl class="section attention"><dt>Attention</dt><dd>In this documentation, you will find specializations of templated namespace functions of namespace <code><a class="el" href="namespaceaworx_1_1lib_1_1boxing.html">aworx::lib::boxing</a></code>. This is of-course wrong in respect to the C++ language definition, which requires such specializations to be placed in the original namespace.<br />
  It was decided to 'trick' the <a href="http://www.stack.nl/~dimitri/doxygen">documentation parser</a> to show these specialization in this namespace, to keep namespace <b>boxing</b> clean and to have all specializations related to this namespace in one place. </dd></dl>
 </div><table class="memberdecls">
@@ -111,43 +110,18 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1boxing_1_1IFormat.html">IFormat</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1boxing_1_1IIsLess__Tchar__arr.html">IIsLess_Tchar_arr</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1boxing_1_1T__Boxing_3_01aworx_1_1lib_1_1strings_1_1PreallocatedString_3_01TCapacity_01_4_01_4.html">T_Boxing&lt; aworx::lib::strings::PreallocatedString&lt; TCapacity &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1boxing_1_1T__Boxing_3_01strings_1_1StringLiteral_3_01TLength_01_4_01_4.html">T_Boxing&lt; strings::StringLiteral&lt; TLength &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a1e3b6d38df0786ccf7f938d60e386aae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#gaa23c944e6d67aa52d2e05a1399151423">ALIB_NAMESPACE_INIT_FLAG</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1boxing.html#a1e3b6d38df0786ccf7f938d60e386aae">Init</a> ()</td></tr>
-<tr class="separator:a1e3b6d38df0786ccf7f938d60e386aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a1e3b6d38df0786ccf7f938d60e386aae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e3b6d38df0786ccf7f938d60e386aae">&#9670;&nbsp;</a></span>Init()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Init </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Initializes the <b>ALib Boxing</b> system in respect to boxing types found in module <a class="el" href="namespaceaworx_1_1lib_1_1strings.html">ALib Strings</a>.<br />
- With the use of full <b>ALib</b> library, this method is invoked by <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a>. If <b>ALib Strings</b> and <b>ALib Boxing</b> are used as separated modules, then the user has to invoke this somewhere in the bootstrap code. </p>
-<p>[DOX_ALIB_BOXING_SAMPLE_TEMPLATED_INTERFACE]</p>
-<p>[DOX_ALIB_BOXING_SAMPLE_TEMPLATED_INTERFACE] </p>
-
-</div>
-</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

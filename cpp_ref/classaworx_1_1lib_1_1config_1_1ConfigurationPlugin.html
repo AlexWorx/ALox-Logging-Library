@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -82,6 +82,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Inner Classes</a> &#124;
 <a href="#pub-attribs">Public Fields</a> &#124;
 <a href="#pub-methods">Public Methods</a> &#124;
 <a href="#pro-attribs">Protected Fields</a> &#124;
@@ -96,7 +97,7 @@ $(function() {
 <div class="dynheader">
 Inheritance diagram for ConfigurationPlugin:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin__inherit__graph.svg" width="448" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin__inherit__graph.svg" width="340" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for ConfigurationPlugin:</div>
@@ -110,6 +111,11 @@ Collaboration diagram for ConfigurationPlugin:</div>
 <p>The plug-in also may have the ability to write data. The default implementation for writing configuration data returns constant false, indicating that this plug-in never writes anything (e.g. command line parameter plug-in, environment variable plug-in).</p>
 <p>Category and <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> names are character case insensitive for the plug-ins predefined with <b>ALib</b>. It is recommended to to ignore character case in custom specializations of this class as well. </p>
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Inner Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin_1_1Iterator.html">Iterator</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Fields</h2></td></tr>
 <tr class="memitem:a150967a58e76635889b4082537c67a2f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1config_1_1XTernalizer.html">XTernalizer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a150967a58e76635889b4082537c67a2f">StringConverter</a></td></tr>
@@ -117,8 +123,14 @@ Public Fields</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
+<tr class="memitem:a03ff3650053c51f7cd230cb7b8b51f3c"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a03ff3650053c51f7cd230cb7b8b51f3c">~ConfigurationPlugin</a> ()</td></tr>
+<tr class="separator:a03ff3650053c51f7cd230cb7b8b51f3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a034b330cd5763763a5b929788f00c5a9"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin_1_1Iterator.html">Iterator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a034b330cd5763763a5b929788f00c5a9">GetIterator</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;sectionName)</td></tr>
+<tr class="separator:a034b330cd5763763a5b929788f00c5a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70e67cd810ebe58dcc842dbeaa715443"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a70e67cd810ebe58dcc842dbeaa715443">Load</a> (<a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> &amp;variable, bool searchOnly=false) const =0</td></tr>
 <tr class="separator:a70e67cd810ebe58dcc842dbeaa715443"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf72e93cf60de39c0c2d801d4af18818"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#abf72e93cf60de39c0c2d801d4af18818">Name</a> () const =0</td></tr>
+<tr class="separator:abf72e93cf60de39c0c2d801d4af18818"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f2a984c2c2f6283441afc5187da6f2e"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a4f2a984c2c2f6283441afc5187da6f2e">Store</a> (<a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> &amp;variable)</td></tr>
 <tr class="separator:a4f2a984c2c2f6283441afc5187da6f2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a283b076bd741a168847a799efb291b33"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a283b076bd741a168847a799efb291b33">Store</a> (<a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a> &amp;variable, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;externalizedValue)</td></tr>
@@ -133,8 +145,6 @@ Protected Fields</h2></td></tr>
 Protected Methods</h2></td></tr>
 <tr class="memitem:a1b50bf18ad3d087799d832b6d15b258e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a1b50bf18ad3d087799d832b6d15b258e">ConfigurationPlugin</a> ()</td></tr>
 <tr class="separator:a1b50bf18ad3d087799d832b6d15b258e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03ff3650053c51f7cd230cb7b8b51f3c"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a03ff3650053c51f7cd230cb7b8b51f3c">~ConfigurationPlugin</a> ()</td></tr>
-<tr class="separator:a03ff3650053c51f7cd230cb7b8b51f3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1b50bf18ad3d087799d832b6d15b258e"></a>
@@ -182,7 +192,7 @@ Protected Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -192,6 +202,45 @@ Protected Methods</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a034b330cd5763763a5b929788f00c5a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a034b330cd5763763a5b929788f00c5a9">&#9670;&nbsp;</a></span>GetIterator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin_1_1Iterator.html">Iterator</a>* GetIterator </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>sectionName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Creates an iterator object to return all variables within a section. The iterator object returned, needs to be deleted by the caller.</p>
+<p>If a plug-in can not perform iteration, it will return <code>nullptr</code>. This is for example true for plug-in class <a class="el" href="classaworx_1_1lib_1_1config_1_1Environment.html">Environment</a>.</p>
+<dl class="section note"><dt>Note</dt><dd>Method <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a86be441029df719e05e39518527bfa30">Configuration::GetIterator</a> returns an iterator that allows to iterate across all variables of a section found in all plug-ins</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sectionName</td><td>The name of the section to iterate.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The iterator requested or <code>nullptr</code> if the plug-in does not support section iteration. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classaworx_1_1lib_1_1config_1_1CLIArgs.html#a46faa9cb170187ab6a7d2186b3db43e5">CLIArgs</a>, and <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html#a46faa9cb170187ab6a7d2186b3db43e5">InMemoryPlugin</a>.</p>
+
+</div>
+</div>
 <a id="a70e67cd810ebe58dcc842dbeaa715443"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a70e67cd810ebe58dcc842dbeaa715443">&#9670;&nbsp;</a></span>Load()</h2>
 
@@ -236,7 +285,36 @@ Protected Methods</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if variable was found within this configuration source, <code>false</code> if not. </dd></dl>
 
-<p>Implemented in <a class="el" href="classaworx_1_1lib_1_1config_1_1EnvironmentPlugin.html#ae644fb31eb15b9f85800a8d3327e2433">EnvironmentPlugin</a>, <a class="el" href="classaworx_1_1lib_1_1config_1_1CommandLinePlugin.html#ae644fb31eb15b9f85800a8d3327e2433">CommandLinePlugin</a>, and <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html#ae644fb31eb15b9f85800a8d3327e2433">InMemoryPlugin</a>.</p>
+<p>Implemented in <a class="el" href="classaworx_1_1lib_1_1config_1_1Environment.html#ae644fb31eb15b9f85800a8d3327e2433">Environment</a>, <a class="el" href="classaworx_1_1lib_1_1config_1_1CLIArgs.html#ae644fb31eb15b9f85800a8d3327e2433">CLIArgs</a>, and <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html#ae644fb31eb15b9f85800a8d3327e2433">InMemoryPlugin</a>.</p>
+
+</div>
+</div>
+<a id="abf72e93cf60de39c0c2d801d4af18818"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf72e93cf60de39c0c2d801d4af18818">&#9670;&nbsp;</a></span>Name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> Name </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Abstract method to return a plug-in name. The name may be used in human readable output, e.g. log-files or exception messages to tell a user for example, which plug-in loaded a variable containing a syntax error. </p><dl class="section return"><dt>Returns</dt><dd>The name of the plug-in. </dd></dl>
+
+<p>Implemented in <a class="el" href="classaworx_1_1lib_1_1config_1_1Environment.html#a8f6daf3aa257e7df25ffd8eb04a072bd">Environment</a>, <a class="el" href="classaworx_1_1lib_1_1config_1_1CLIArgs.html#a8f6daf3aa257e7df25ffd8eb04a072bd">CLIArgs</a>, <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a8f6daf3aa257e7df25ffd8eb04a072bd">IniFile</a>, and <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html#a8f6daf3aa257e7df25ffd8eb04a072bd">InMemoryPlugin</a>.</p>
 
 </div>
 </div>
@@ -369,7 +447,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:57 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:15 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

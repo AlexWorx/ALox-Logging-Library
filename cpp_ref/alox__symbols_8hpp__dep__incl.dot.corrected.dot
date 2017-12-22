@@ -20,6 +20,7 @@ digraph "alox_symbols.hpp"
   Node2 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node4 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node6 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
@@ -56,5 +57,6 @@ digraph "alox_symbols.hpp"
   Node16 [label="scopedump.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$scopedump_8hpp.html"];
   Node17 [label="scopestore.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$scopestore_8hpp.html"];
   Node18 [label="scopeinfo.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$scopeinfo_8hpp.html"];
+  Node19 [label="logtools.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$logtools_8hpp.html"];
 }
 

@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu"    href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu_hl" href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu"    href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu_hl" href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -134,14 +134,14 @@ Collaboration diagram for FormatterStdImpl:</div>
  If the format syntax of the formatter contains a separated format specification string (a substring of the placeholder string), then the method may store such format substring in field <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a0f6bad7a5f9e88d63e69e580dcecedd4">phaFormatSpec</a>.</li>
 <li>Next, it is checked if an argument was set by <b>parsePlaceholder</b>. If not, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a542aeb50f527e3645510cbfede0f2661">setArgument</a> is invoked providing <code>-1</code> for the index to indicate auto-indexing. <dl class="section note"><dt>Note</dt><dd>If auto-indexing should be implemented differently than done with default method <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a542aeb50f527e3645510cbfede0f2661">setArgument</a>, then a custom formatter might either override the method or, in the case no index is given in the format string, just set fields <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#ac8664a270b9aeb6b55bae5ef05143ae9">phaArgument</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a376a7b963e937b5de093019a4e66d1cd">phaArgumentIdx</a> already in <b>parsePlaceholder</b> according to its own strategy</dd></dl>
 </li>
-<li>Method <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#ab93450b5092eeeaedc89b92108d0edbb">preAndPostProcess</a> is invoked with parameter <code>startIdx</code> equalling <code>-1</code> (indicating pre-processing). This allows for example to insert tab fill-characters (tab stops) prior to writing the contents of the field.</li>
+<li>Method <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a44f7016570e09ac86299cad004dd57ec">preAndPostProcess</a> is invoked with parameter <code>startIdx</code> equalling <code>-1</code> (indicating pre-processing). This allows for example to insert tab fill-characters (tab stops) prior to writing the contents of the field.</li>
 <li>Method <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a0dc2dbb1ab4de614dcca47b30c54bf53">writeCustomFormat</a> is invoked. This allows derived formatters to write arguments in a custom way. If the method returns <code>true</code>, the loop is continued ( &rarr; Step 4.). <br />
  The default implementation checks if a format specification was stored in <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a0f6bad7a5f9e88d63e69e580dcecedd4">phaFormatSpec</a> and if yes, if <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#ac8664a270b9aeb6b55bae5ef05143ae9">phaArgument</a> represents a date. If so, field <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a3481c3e5f23136b69aff371503df9e33">dateTimeFormat</a> is used to write the date/time value to the target string and <code>true</code> is returned.<br />
 </li>
 <li>Again, if a format specification was stored in <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a0f6bad7a5f9e88d63e69e580dcecedd4">phaFormatSpec</a> method <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a411b315e6784287fc21487cbae465636">parseStdFormatSpec</a> is invoked which needs to set further attributes in the <b>Placeholder</b> object according to to the standard format specification of the formatter.</li>
 <li>Now, as all fields that represent formatting attributes (fields with prefix <code>pha</code>) are well set (or kept with their defaulted value), method <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a834f67208a82e29714a84c285b9bba45">checkStdFieldAgainstArgument</a> is invoked. This method is virtual but not abstract. Its default implementation checks the placeholder attributes against the provided argument type and raises an error if the argument does not fit to the placeholder format specification.</li>
 <li>Method <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a778167c4f6f64bc2c3d2391790e59877">writeStdArgument</a> is invoked. This method is virtual but not abstract. Its default implementation writes the argument value formatted according to the attribute fields.</li>
-<li>Finally <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#ab93450b5092eeeaedc89b92108d0edbb">preAndPostProcess</a> is invoked with parameter <code>startIdx</code> pointing to the first character in <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a945cad967d9a849a90c1d46f3c27cd65">ptargetString</a> of the argument written. Here, actions like case conversion might be done on the field written.<ol type="a">
+<li>Finally <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a44f7016570e09ac86299cad004dd57ec">preAndPostProcess</a> is invoked with parameter <code>startIdx</code> pointing to the first character in <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a945cad967d9a849a90c1d46f3c27cd65">ptargetString</a> of the argument written. Here, actions like case conversion might be done on the field written.<ol type="a">
 <li>End of loop ( &rarr; Step 4.) </li>
 </ol>
 </li>
@@ -179,6 +179,8 @@ Public Methods</h2></td></tr>
 <tr class="separator:a4b6488677c0faabb6542272cc52bdff9 inherit pub_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a805299f87a715d2fa4a8d3f92f5dcf67 inherit pub_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html#a805299f87a715d2fa4a8d3f92f5dcf67">format</a> (<a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> target, ArrayList&lt; Object &gt; args)</td></tr>
 <tr class="separator:a805299f87a715d2fa4a8d3f92f5dcf67 inherit pub_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad20897c5c8bd47f5d4005989bead0e55 inherit pub_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html#ad20897c5c8bd47f5d4005989bead0e55">reset</a> ()</td></tr>
+<tr class="separator:ad20897c5c8bd47f5d4005989bead0e55 inherit pub_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-attribs"></a>
 Package Access Fields</h2></td></tr>
@@ -235,6 +237,8 @@ Protected Fields</h2></td></tr>
 <tr class="separator:a28b28eb631470261d30c68de3c8b73db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a945cad967d9a849a90c1d46f3c27cd65"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a945cad967d9a849a90c1d46f3c27cd65">ptargetString</a></td></tr>
 <tr class="separator:a945cad967d9a849a90c1d46f3c27cd65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cc2ce57da3c470cd449875ccb46e3d2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a2cc2ce57da3c470cd449875ccb46e3d2">targetStringStartLength</a></td></tr>
+<tr class="separator:a2cc2ce57da3c470cd449875ccb46e3d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter')"><img src="closed.png" alt="-"/>&#160;Protected Fields inherited from <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html">Formatter</a></td></tr>
 <tr class="memitem:a8d6f1cc6d3085cd5bb08fdd9f014b827 inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td class="memItemLeft" align="right" valign="top">ArrayList&lt; Object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html#a8d6f1cc6d3085cd5bb08fdd9f014b827">boxes</a></td></tr>
 <tr class="separator:a8d6f1cc6d3085cd5bb08fdd9f014b827 inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -255,8 +259,8 @@ Protected Methods</h2></td></tr>
 <tr class="separator:a4d98cbddb028ebc87fbebb9c72825bfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a411b315e6784287fc21487cbae465636"><td class="memItemLeft" align="right" valign="top">abstract boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a411b315e6784287fc21487cbae465636">parseStdFormatSpec</a> ()</td></tr>
 <tr class="separator:a411b315e6784287fc21487cbae465636"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab93450b5092eeeaedc89b92108d0edbb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#ab93450b5092eeeaedc89b92108d0edbb">preAndPostProcess</a> (int startIdx)</td></tr>
-<tr class="separator:ab93450b5092eeeaedc89b92108d0edbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44f7016570e09ac86299cad004dd57ec"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a44f7016570e09ac86299cad004dd57ec">preAndPostProcess</a> (int startIdx, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> target)</td></tr>
+<tr class="separator:a44f7016570e09ac86299cad004dd57ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03a419fa0ca225ed66085ced5dffd86d"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a03a419fa0ca225ed66085ced5dffd86d">replaceEscapeSequences</a> (int startIdx)</td></tr>
 <tr class="separator:a03a419fa0ca225ed66085ced5dffd86d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91f06a45332414ed6b825a1ba08e084d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a91f06a45332414ed6b825a1ba08e084d">resetPHAs</a> ()</td></tr>
@@ -612,8 +616,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="ab93450b5092eeeaedc89b92108d0edbb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab93450b5092eeeaedc89b92108d0edbb">&#9670;&nbsp;</a></span>preAndPostProcess()</h2>
+<a id="a44f7016570e09ac86299cad004dd57ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44f7016570e09ac86299cad004dd57ec">&#9670;&nbsp;</a></span>preAndPostProcess()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -622,11 +626,21 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void preAndPostProcess </td>
+          <td class="memname">boolean preAndPostProcess </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>startIdx</em></td><td>)</td>
+          <td class="paramname"><em>startIdx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
+          <td class="paramname"><em>target</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -636,15 +650,17 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Virtual method to do pre- and post- processing of the field written. Pre-processing could for example be adding tabulator spaces. A sample for post-processing is case conversion.<br />
- A negative given index <code>startIdx</code> indicates the pre-processing phase. This default implementation does nothing.</p>
+<p> Virtual method to do pre- and post- processing of the field written. Pre-processing could for example be adding tabulator spaces, letter case conversions,</p>
+<p>A negative given index <code>startIdx</code> indicates the pre-processing phase. If <code>target</code> is given, this indicates an "intermediate phase": The argument has been written, but no alignment or cutting has been done, yet. This phase should usually be ignored, but is for example important for search and replacement actions. If a field has a custom format implementation (e.g. time and date values), then the intermediate phase is never called.</p>
 <dl class="section note"><dt>Note</dt><dd>The reason why this method is <b>not</b> implemented as two different ones is that derived classes might do some more complicated parsing of parts of the placeholder string in this method. In this case, the parsing is needed to be implemented only once, while the finally parsed commands are only conditionally executed depending if executed as pre or post phase.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">startIdx</td><td>If <code>-1</code> pre-processing is indicated, otherwise post-processing and the index of the start of the field written in <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a945cad967d9a849a90c1d46f3c27cd65">ptargetString</a> is given. </td></tr>
+    <tr><td class="paramname">target</td><td>The target string, only if different from field <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a945cad967d9a849a90c1d46f3c27cd65">ptargetString</a>, which indicates intermediate phase. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd><code>false</code>, if the placeholder should be skipped (nothing is written for it). <code>true</code> otherwise. </dd></dl>
 
 </div>
 </div>
@@ -1437,6 +1453,29 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a2cc2ce57da3c470cd449875ccb46e3d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cc2ce57da3c470cd449875ccb46e3d2">&#9670;&nbsp;</a></span>targetStringStartLength</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int targetStringStartLength</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The length of the target string before adding the formatted contents. </p>
+
+</div>
+</div>
 <a id="ae2333b6e06e292f09b60bf143d8f6fae"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae2333b6e06e292f09b60bf143d8f6fae">&#9670;&nbsp;</a></span>tmpDate</h2>
 
@@ -1497,7 +1536,7 @@ Additional Inherited Members</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:48:01 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

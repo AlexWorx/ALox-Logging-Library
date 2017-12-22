@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -83,9 +83,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-static-attribs">Public Static Fields</a> &#124;
-<a href="#pub-static-methods">Public Static Methods</a> &#124;
-<a href="#pro-static-attribs">Protected Static Fields</a> &#124;
-<a href="#pro-static-methods">Protected Static Methods</a> &#124;
+<a href="#pub-methods">Public Methods</a> &#124;
+<a href="#pro-attribs">Protected Fields</a> &#124;
 <a href="#pro-methods">Protected Methods</a> &#124;
 <a href="classaworx_1_1lox_1_1ALox-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -95,218 +94,136 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="alox_8hpp_source.html">alox.hpp</a>&gt;</code></p>
 <div class="dynheader">
+Inheritance diagram for ALox:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lox_1_1ALox__inherit__graph.svg" width="72" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
 Collaboration diagram for ALox:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lox_1_1ALox__coll__graph.svg" width="2734" height="1662"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lox_1_1ALox__coll__graph.svg" width="3214" height="1664"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> This is a 100% static class that holds constants and 'global' methods of the <b>ALox</b> Logging Library. </p>
+<p> This is the library class for <b>ALox</b> logging library residing in namespace <a class="el" href="namespaceaworx_1_1lox.html">aworx::lox</a>.</p>
+<p>Apart from implementing class <b>Library</b>, this class is a 100% static and that holds constants and 'global' methods.</p>
+<dl class="section attention"><dt>Attention</dt><dd>If release logging is used, the explicit initialization of <b>ALox</b> by invoking <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#abad644913fc967938ede0607a353e29c">Library::Init</a> on singleton <a class="el" href="namespaceaworx_1_1lox.html#a29a365204e34e80d57694cfaae9df933">aworx::lox::ALOX</a> is mandatory. While debug logging 'automatically' invokes the method hidden in the background, release logging does not. If omitted, critical errors and undefined behavior in release builds might occur in the moment when debug-logging is pruned! </dd></dl>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Public Static Fields</h2></td></tr>
-<tr class="memitem:af832877b9f3459725651638bdaa2bfd4"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> const uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#af832877b9f3459725651638bdaa2bfd4">ALibCompilationFlags</a> = <a class="el" href="group__GrpALibMacros.html#gac35ba9f254df7ccaecd53953463c3b1f">ALIB_COMPATIBILITY_VERIFYER</a></td></tr>
-<tr class="separator:af832877b9f3459725651638bdaa2bfd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac75b561b1ba1e402193e3e0924faef2d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#ac75b561b1ba1e402193e3e0924faef2d">AUTO_SIZES</a></td></tr>
-<tr class="memdesc:ac75b561b1ba1e402193e3e0924faef2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a>.  <a href="#ac75b561b1ba1e402193e3e0924faef2d">More...</a><br /></td></tr>
-<tr class="separator:ac75b561b1ba1e402193e3e0924faef2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c5ccb3fa25740271b2aa08c3649a0ed"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a5c5ccb3fa25740271b2aa08c3649a0ed">CODEPAGE</a></td></tr>
-<tr class="memdesc:a5c5ccb3fa25740271b2aa08c3649a0ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1loggers_1_1WindowsConsoleLogger.html">WindowsConsoleLogger</a>.  <a href="#a5c5ccb3fa25740271b2aa08c3649a0ed">More...</a><br /></td></tr>
-<tr class="separator:a5c5ccb3fa25740271b2aa08c3649a0ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7c604e277c5f3e3084baaf7da5756d4"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> std::pair&lt; const char *, uint64_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#ad7c604e277c5f3e3084baaf7da5756d4">CompilationFlagMeanings</a> [4]</td></tr>
-<tr class="separator:ad7c604e277c5f3e3084baaf7da5756d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3c1e7a231e88307d2484c7d6af833a4"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> const uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#ad3c1e7a231e88307d2484c7d6af833a4">CompilationFlags</a> = ALOX_COMPATIBILITY_VERYFIER</td></tr>
-<tr class="separator:ad3c1e7a231e88307d2484c7d6af833a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affcf83e8b52935dd94b74c1a47cf7e0a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#affcf83e8b52935dd94b74c1a47cf7e0a">ConfigCategoryName</a> = &quot;ALOX&quot;</td></tr>
-<tr class="separator:affcf83e8b52935dd94b74c1a47cf7e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24480920a5f1e3e627fe0450015c7f9b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a24480920a5f1e3e627fe0450015c7f9b">CONSOLE_LIGHT_COLORS</a></td></tr>
-<tr class="memdesc:a24480920a5f1e3e627fe0450015c7f9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by colorful specializations of class <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a>.  <a href="#a24480920a5f1e3e627fe0450015c7f9b">More...</a><br /></td></tr>
-<tr class="separator:a24480920a5f1e3e627fe0450015c7f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a640b5e5b22311c795dc79a10a0894752"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a640b5e5b22311c795dc79a10a0894752">CONSOLE_TYPE</a></td></tr>
-<tr class="memdesc:a640b5e5b22311c795dc79a10a0894752"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by <a class="el" href="classaworx_1_1lox_1_1Lox.html#ae92c4ae884c3cd723deb9b5e8d27b6ac">Lox::CreateConsoleLogger</a>.  <a href="#a640b5e5b22311c795dc79a10a0894752">More...</a><br /></td></tr>
-<tr class="separator:a640b5e5b22311c795dc79a10a0894752"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07488d81370e535a32592ba1dd60f76a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a07488d81370e535a32592ba1dd60f76a">DOMAIN_SUBSTITUTION</a></td></tr>
-<tr class="memdesc:a07488d81370e535a32592ba1dd60f76a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a>.  <a href="#a07488d81370e535a32592ba1dd60f76a">More...</a><br /></td></tr>
-<tr class="separator:a07488d81370e535a32592ba1dd60f76a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9851c75124db349e8c4d73a3b35ba78f"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a9851c75124db349e8c4d73a3b35ba78f">DUMP_STATE_ON_EXIT</a></td></tr>
-<tr class="memdesc:a9851c75124db349e8c4d73a3b35ba78f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a>.  <a href="#a9851c75124db349e8c4d73a3b35ba78f">More...</a><br /></td></tr>
-<tr class="separator:a9851c75124db349e8c4d73a3b35ba78f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a331d559721eea1af356b425e5da3fc10"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a331d559721eea1af356b425e5da3fc10">FORMAT</a></td></tr>
-<tr class="memdesc:a331d559721eea1af356b425e5da3fc10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a>.  <a href="#a331d559721eea1af356b425e5da3fc10">More...</a><br /></td></tr>
-<tr class="separator:a331d559721eea1af356b425e5da3fc10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a636b90b67eb3723d0ec9c15cc52c5ff6"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a636b90b67eb3723d0ec9c15cc52c5ff6">FORMAT_DATE_TIME</a></td></tr>
-<tr class="memdesc:a636b90b67eb3723d0ec9c15cc52c5ff6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a>.  <a href="#a636b90b67eb3723d0ec9c15cc52c5ff6">More...</a><br /></td></tr>
-<tr class="separator:a636b90b67eb3723d0ec9c15cc52c5ff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b79d64c635784979379b13a36989a42"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a6b79d64c635784979379b13a36989a42">FORMAT_MULTILINE</a></td></tr>
-<tr class="memdesc:a6b79d64c635784979379b13a36989a42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a>.  <a href="#a6b79d64c635784979379b13a36989a42">More...</a><br /></td></tr>
-<tr class="separator:a6b79d64c635784979379b13a36989a42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85ec3e904f1be0c50618b570ee2fb491"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a85ec3e904f1be0c50618b570ee2fb491">FORMAT_TIME_DIFF</a></td></tr>
-<tr class="memdesc:a85ec3e904f1be0c50618b570ee2fb491"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a>.  <a href="#a85ec3e904f1be0c50618b570ee2fb491">More...</a><br /></td></tr>
-<tr class="separator:a85ec3e904f1be0c50618b570ee2fb491"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3638b7eb5a7ec5b5b082f1c8f362417"><td class="memItemLeft" align="right" valign="top"><a id="ab3638b7eb5a7ec5b5b082f1c8f362417"></a>
+static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDecl.html">lib::config::VariableDecl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#ab3638b7eb5a7ec5b5b082f1c8f362417">CODEPAGE</a></td></tr>
+<tr class="memdesc:ab3638b7eb5a7ec5b5b082f1c8f362417"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1loggers_1_1WindowsConsoleLogger.html">WindowsConsoleLogger</a>. <br /></td></tr>
+<tr class="separator:ab3638b7eb5a7ec5b5b082f1c8f362417"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27e1cb674b3172d5696b38af8479755d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="namespaceaworx.html#af631a26bf70ad6d6143973fadf779747">SLiteral</a>&lt; 2 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a27e1cb674b3172d5696b38af8479755d">InternalDomains</a> {&quot;$/&quot; }</td></tr>
 <tr class="separator:a27e1cb674b3172d5696b38af8479755d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19b66f8b85e07bf98b672d6ff789b3b8"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a19b66f8b85e07bf98b672d6ff789b3b8">MAX_ELAPSED_TIME</a></td></tr>
-<tr class="memdesc:a19b66f8b85e07bf98b672d6ff789b3b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a>.  <a href="#a19b66f8b85e07bf98b672d6ff789b3b8">More...</a><br /></td></tr>
-<tr class="separator:a19b66f8b85e07bf98b672d6ff789b3b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade6db5eeed258f9dacc0f28c9fd3c258"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#ade6db5eeed258f9dacc0f28c9fd3c258">NO_IDE_LOGGER</a></td></tr>
-<tr class="memdesc:ade6db5eeed258f9dacc0f28c9fd3c258"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by <a class="el" href="classaworx_1_1lox_1_1Log.html#a06444d2e7a321e26fe1d4c309cb8ed49">Log::AddDebugLogger</a>.  <a href="#ade6db5eeed258f9dacc0f28c9fd3c258">More...</a><br /></td></tr>
-<tr class="separator:ade6db5eeed258f9dacc0f28c9fd3c258"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a96bb3453197533db83cf0b00f29383"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a6a96bb3453197533db83cf0b00f29383">PREFIXES</a></td></tr>
-<tr class="memdesc:a6a96bb3453197533db83cf0b00f29383"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a>.  <a href="#a6a96bb3453197533db83cf0b00f29383">More...</a><br /></td></tr>
-<tr class="separator:a6a96bb3453197533db83cf0b00f29383"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e4907195925ae36b7cc276d18fa3867"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a8e4907195925ae36b7cc276d18fa3867">REPLACEMENTS</a></td></tr>
-<tr class="memdesc:a8e4907195925ae36b7cc276d18fa3867"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a>.  <a href="#a8e4907195925ae36b7cc276d18fa3867">More...</a><br /></td></tr>
-<tr class="separator:a8e4907195925ae36b7cc276d18fa3867"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c8cddb79a23b8e57370078da95de8ed"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a9c8cddb79a23b8e57370078da95de8ed">Revision</a> = 0</td></tr>
-<tr class="separator:a9c8cddb79a23b8e57370078da95de8ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60edc3b725fad56638ee3ebb6361ba16"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a60edc3b725fad56638ee3ebb6361ba16">SPTR_GLOBAL</a></td></tr>
-<tr class="memdesc:a60edc3b725fad56638ee3ebb6361ba16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attributes of corresponding configuration variable <a href="../group__GrpALoxConfigVars.html">ALOX_GLOBAL_SOURCE_PATH_TRIM_RULES</a>.  <a href="#a60edc3b725fad56638ee3ebb6361ba16">More...</a><br /></td></tr>
-<tr class="separator:a60edc3b725fad56638ee3ebb6361ba16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0ab4bc15314b8fb1c27e02f409842f5"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#ae0ab4bc15314b8fb1c27e02f409842f5">SPTR_LOX</a></td></tr>
-<tr class="memdesc:ae0ab4bc15314b8fb1c27e02f409842f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a>.  <a href="#ae0ab4bc15314b8fb1c27e02f409842f5">More...</a><br /></td></tr>
-<tr class="separator:ae0ab4bc15314b8fb1c27e02f409842f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab2d3e17d5ce98f508c9439d95d41cca"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#aab2d3e17d5ce98f508c9439d95d41cca">VERBOSITY</a></td></tr>
-<tr class="memdesc:aab2d3e17d5ce98f508c9439d95d41cca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attributes of corresponding configuration variable <a href="../group__GrpALoxConfigVars.html">ALOX_LOXNAME_LOGGERNAME_VERBOSITY</a>.  <a href="#aab2d3e17d5ce98f508c9439d95d41cca">More...</a><br /></td></tr>
-<tr class="separator:aab2d3e17d5ce98f508c9439d95d41cca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d88b5f159f3cd597cdd92f942340024"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a8d88b5f159f3cd597cdd92f942340024">Version</a> = <a class="el" href="group__GrpALibMacros.html#ga0d7d6d9f822a60d24cd5bb9f517cb3f7">ALIB_VERSION_VERYFIER</a></td></tr>
-<tr class="separator:a8d88b5f159f3cd597cdd92f942340024"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Public Static Methods</h2></td></tr>
-<tr class="memitem:a91162815924f9c2460b34836c39e1a50"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a91162815924f9c2460b34836c39e1a50">Get</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;name, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a55781bd0c78c4e5d47ce433f4eeeee85">Create</a> create=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a55781bd0c78c4e5d47ce433f4eeeee85a6e7b34fa59e1bd229b207892956dc41c">Create::Never</a>)</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Methods</h2></td></tr>
+<tr class="memitem:a91162815924f9c2460b34836c39e1a50"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a91162815924f9c2460b34836c39e1a50">Get</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;name, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a55781bd0c78c4e5d47ce433f4eeeee85">Create</a> create=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a55781bd0c78c4e5d47ce433f4eeeee85a6e7b34fa59e1bd229b207892956dc41c">Create::Never</a>)</td></tr>
 <tr class="separator:a91162815924f9c2460b34836c39e1a50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c4ba727bf8ffe104f310aca32519e36"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a4c4ba727bf8ffe104f310aca32519e36">Init</a> (int argc=0, char **argv=nullptr)</td></tr>
-<tr class="separator:a4c4ba727bf8ffe104f310aca32519e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5538a2441298bfa38b13d766239ec80d"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a5538a2441298bfa38b13d766239ec80d">Init</a> (int argc, wchar_t **argv)</td></tr>
-<tr class="separator:a5538a2441298bfa38b13d766239ec80d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae55ef9a26260880cde159c9d7591cb6a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#ae55ef9a26260880cde159c9d7591cb6a">Log</a> ()</td></tr>
+<tr class="memitem:ae55ef9a26260880cde159c9d7591cb6a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#ae55ef9a26260880cde159c9d7591cb6a">Log</a> ()</td></tr>
 <tr class="separator:ae55ef9a26260880cde159c9d7591cb6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf95bbd67aec5e9e71e14134b0924fcf"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#adf95bbd67aec5e9e71e14134b0924fcf">Register</a> (<a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> *lox, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#af6d9cc1e6686eca6e60d57d959cf57fb">ContainerOp</a> operation)</td></tr>
+<tr class="memitem:adf95bbd67aec5e9e71e14134b0924fcf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#adf95bbd67aec5e9e71e14134b0924fcf">Register</a> (<a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> *lox, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#af6d9cc1e6686eca6e60d57d959cf57fb">ContainerOp</a> operation)</td></tr>
 <tr class="separator:adf95bbd67aec5e9e71e14134b0924fcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a372de693ad40b3f42839c8ec6ac845f4"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a372de693ad40b3f42839c8ec6ac845f4">Reset</a> ()</td></tr>
+<tr class="memitem:a372de693ad40b3f42839c8ec6ac845f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a372de693ad40b3f42839c8ec6ac845f4">Reset</a> ()</td></tr>
 <tr class="separator:a372de693ad40b3f42839c8ec6ac845f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a0bcae1f7341255492ebc90deab5f01"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a2a0bcae1f7341255492ebc90deab5f01">TerminationCleanUp</a> ()</td></tr>
-<tr class="separator:a2a0bcae1f7341255492ebc90deab5f01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2da37e5ba2741c6d9a1e53a30b446ae4"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a2da37e5ba2741c6d9a1e53a30b446ae4">VerifyCompilationFlags</a> (uint64_t flags)</td></tr>
-<tr class="separator:a2da37e5ba2741c6d9a1e53a30b446ae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classaworx_1_1lib_1_1lang_1_1Library')"><img src="closed.png" alt="-"/>&#160;Public Methods inherited from <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html">Library</a></td></tr>
+<tr class="memitem:a217742c83da8907d623e338a236d8cfe inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a217742c83da8907d623e338a236d8cfe">Library</a> (int version, int revision, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;resourceCategory, uint64_t compilationFlags=0)</td></tr>
+<tr class="separator:a217742c83da8907d623e338a236d8cfe inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56c4af2b2bbb1ed2dfaff13956a23ab6 inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a56c4af2b2bbb1ed2dfaff13956a23ab6">~Library</a> ()</td></tr>
+<tr class="separator:a56c4af2b2bbb1ed2dfaff13956a23ab6 inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a0209bcb29d417d43cecd3cfb7dc8f9 inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a2a0209bcb29d417d43cecd3cfb7dc8f9">AddResource</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;name, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;data)</td></tr>
+<tr class="separator:a2a0209bcb29d417d43cecd3cfb7dc8f9 inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03dfa90a21c8ab81873b3bf246ad0a33 inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a03dfa90a21c8ab81873b3bf246ad0a33">Get</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;name)</td></tr>
+<tr class="separator:a03dfa90a21c8ab81873b3bf246ad0a33 inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05ecef2aeced2c15b98f4387370dd935 inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a05ecef2aeced2c15b98f4387370dd935">GetTry</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;name)</td></tr>
+<tr class="separator:a05ecef2aeced2c15b98f4387370dd935 inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abad644913fc967938ede0607a353e29c inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#abad644913fc967938ede0607a353e29c">Init</a> (<a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#af5f7af5636e8a1e1baf1076f08e79b02">InitLevels</a> level=<a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#af5f7af5636e8a1e1baf1076f08e79b02ab1c94ca2fbc3e78fc30069c8d0f01680">InitLevels::All</a>)</td></tr>
+<tr class="separator:abad644913fc967938ede0607a353e29c inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34e021aa2764ee7bf81035878f84de6f inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a34e021aa2764ee7bf81035878f84de6f">Init</a> (int argc, char **argv, <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#af5f7af5636e8a1e1baf1076f08e79b02">InitLevels</a> level=<a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#af5f7af5636e8a1e1baf1076f08e79b02ab1c94ca2fbc3e78fc30069c8d0f01680">InitLevels::All</a>)</td></tr>
+<tr class="separator:a34e021aa2764ee7bf81035878f84de6f inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c188865d1f19ef09faa3a9a99079bdb inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a5c188865d1f19ef09faa3a9a99079bdb">Init</a> (int argc, wchar_t **argv, <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#af5f7af5636e8a1e1baf1076f08e79b02">InitLevels</a> level=<a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#af5f7af5636e8a1e1baf1076f08e79b02ab1c94ca2fbc3e78fc30069c8d0f01680">InitLevels::All</a>)</td></tr>
+<tr class="separator:a5c188865d1f19ef09faa3a9a99079bdb inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d722e33d5e4075d4f0fc88c7cb54bd2 inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a5d722e33d5e4075d4f0fc88c7cb54bd2">IsInitialized</a> ()</td></tr>
+<tr class="separator:a5d722e33d5e4075d4f0fc88c7cb54bd2 inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a492ec7a07a27159dbdb72d131bd678dc inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a492ec7a07a27159dbdb72d131bd678dc">ReplaceResource</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;name, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;data, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;expectedResource=<a class="el" href="namespaceaworx.html#ab1ed6dcfbe4628dccefbdb5633b1bf01">NullString</a>)</td></tr>
+<tr class="separator:a492ec7a07a27159dbdb72d131bd678dc inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a768e7aa880b198b033d2bde1dd66c7b1 inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a768e7aa880b198b033d2bde1dd66c7b1">TerminationCleanUp</a> ()</td></tr>
+<tr class="separator:a768e7aa880b198b033d2bde1dd66c7b1 inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f125437b5a6d80e4026f4153c1cb8c5 inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a2f125437b5a6d80e4026f4153c1cb8c5">VerifyCompilationFlags</a> (uint64_t compilationFlags)</td></tr>
+<tr class="separator:a2f125437b5a6d80e4026f4153c1cb8c5 inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
-Protected Static Fields</h2></td></tr>
-<tr class="memitem:a1fdc2bf5595c2e64dc06d987769834eb"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a1fdc2bf5595c2e64dc06d987769834eb">isInitialized</a> = false</td></tr>
-<tr class="separator:a1fdc2bf5595c2e64dc06d987769834eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a283e6693e8700e7f0148cd0a41255714"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> <a class="el" href="namespaceaworx.html#adb7e18c3a3777faf17dde8a543e30a27">ThreadLockNR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a283e6693e8700e7f0148cd0a41255714">lock</a></td></tr>
-<tr class="separator:a283e6693e8700e7f0148cd0a41255714"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ca6d3ba00770c0f9f3f510f5f190f25"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> std::vector&lt; <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a6ca6d3ba00770c0f9f3f510f5f190f25">loxes</a></td></tr>
-<tr class="separator:a6ca6d3ba00770c0f9f3f510f5f190f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa738c8e1b3262d2afe7463f97d5980e4"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#aa738c8e1b3262d2afe7463f97d5980e4">theLog</a> = nullptr</td></tr>
-<tr class="separator:aa738c8e1b3262d2afe7463f97d5980e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-methods"></a>
-Protected Static Methods</h2></td></tr>
-<tr class="memitem:aa9e4d1c41a132391b46ce5c0ce73af5d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#aa9e4d1c41a132391b46ce5c0ce73af5d">checkLibraryVersions</a> (int alibVersion=<a class="el" href="group__GrpALibMacros.html#ga0d7d6d9f822a60d24cd5bb9f517cb3f7">ALIB_VERSION_VERYFIER</a>, int aloxVersion=<a class="el" href="group__GrpALibMacros.html#ga0d7d6d9f822a60d24cd5bb9f517cb3f7">ALIB_VERSION_VERYFIER</a>, uint64_t flagsALib=<a class="el" href="group__GrpALibMacros.html#gac35ba9f254df7ccaecd53953463c3b1f">ALIB_COMPATIBILITY_VERIFYER</a>, uint64_t flagsALox=ALOX_COMPATIBILITY_VERYFIER)</td></tr>
-<tr class="separator:aa9e4d1c41a132391b46ce5c0ce73af5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0329788cf41e8d04c8c98add57d7c76"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#aa0329788cf41e8d04c8c98add57d7c76">initImpl</a> ()</td></tr>
-<tr class="separator:aa0329788cf41e8d04c8c98add57d7c76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Fields</h2></td></tr>
+<tr class="memitem:a69b5aed73eb34991bbb3e77016904574"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a69b5aed73eb34991bbb3e77016904574">loxes</a></td></tr>
+<tr class="separator:a69b5aed73eb34991bbb3e77016904574"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeecaf42518ee1c938a3a5f961d571f42"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#adb7e18c3a3777faf17dde8a543e30a27">ThreadLockNR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#aeecaf42518ee1c938a3a5f961d571f42">loxManagement</a></td></tr>
+<tr class="separator:aeecaf42518ee1c938a3a5f961d571f42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96b214cd550476eaa9de2793f88a490b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a96b214cd550476eaa9de2793f88a490b">theLog</a> = nullptr</td></tr>
+<tr class="separator:a96b214cd550476eaa9de2793f88a490b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classaworx_1_1lib_1_1lang_1_1Library"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classaworx_1_1lib_1_1lang_1_1Library')"><img src="closed.png" alt="-"/>&#160;Protected Fields inherited from <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html">Library</a></td></tr>
+<tr class="memitem:a3c06d37894e88f199e4b81218b870278 inherit pro_attribs_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html">Library</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a3c06d37894e88f199e4b81218b870278">dependencies</a></td></tr>
+<tr class="separator:a3c06d37894e88f199e4b81218b870278 inherit pro_attribs_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3140b8a0756ba094c4b4ef748859bb8c inherit pro_attribs_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a5d32d09cde4f13ec4fb05a824d3e3219">Phases</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a3140b8a0756ba094c4b4ef748859bb8c">initState</a> = <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a5d32d09cde4f13ec4fb05a824d3e3219ab50339a10e1de285ac99d4c3990b8693">Phases::NONE</a></td></tr>
+<tr class="separator:a3140b8a0756ba094c4b4ef748859bb8c inherit pro_attribs_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1f55900afd0fbf2792d560f10aceb5f inherit pro_attribs_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#aa1f55900afd0fbf2792d560f10aceb5f">isResourceAndConfigOwner</a> = false</td></tr>
+<tr class="separator:aa1f55900afd0fbf2792d560f10aceb5f inherit pro_attribs_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Methods</h2></td></tr>
-<tr class="memitem:aa6e6d60af89ba00a696f2882251907d9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#aa6e6d60af89ba00a696f2882251907d9">ALox</a> ()</td></tr>
-<tr class="separator:aa6e6d60af89ba00a696f2882251907d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f7439457156e6270dfd3ccfd07e1ea1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a0f7439457156e6270dfd3ccfd07e1ea1">init</a> (<a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a5d32d09cde4f13ec4fb05a824d3e3219">Phases</a> phase) override</td></tr>
+<tr class="separator:a0f7439457156e6270dfd3ccfd07e1ea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f9483d9dee8eaaeae3831a8bb40731e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1ALox.html#a7f9483d9dee8eaaeae3831a8bb40731e">terminationCleanUp</a> () override</td></tr>
+<tr class="separator:a7f9483d9dee8eaaeae3831a8bb40731e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classaworx_1_1lib_1_1lang_1_1Library"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classaworx_1_1lib_1_1lang_1_1Library')"><img src="closed.png" alt="-"/>&#160;Protected Methods inherited from <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html">Library</a></td></tr>
+<tr class="memitem:a0bbaaca5c9aea78dd452f10854820897 inherit pro_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a0bbaaca5c9aea78dd452f10854820897">doInit</a> (<a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a5d32d09cde4f13ec4fb05a824d3e3219">Phases</a> phases, int argc, char **argv, wchar_t **wargv)</td></tr>
+<tr class="separator:a0bbaaca5c9aea78dd452f10854820897 inherit pro_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af98704b02585a327a14304d252997f11 inherit pro_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#af98704b02585a327a14304d252997f11">doInitRecursion</a> (<a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a5d32d09cde4f13ec4fb05a824d3e3219">Phases</a> phase)</td></tr>
+<tr class="separator:af98704b02585a327a14304d252997f11 inherit pro_methods_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_types_classaworx_1_1lib_1_1lang_1_1Library"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classaworx_1_1lib_1_1lang_1_1Library')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html">Library</a></td></tr>
+<tr class="memitem:af5f7af5636e8a1e1baf1076f08e79b02 inherit pub_types_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#af5f7af5636e8a1e1baf1076f08e79b02">InitLevels</a> { <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#af5f7af5636e8a1e1baf1076f08e79b02a7dcd6d6e6de3f9da7811cbf193be4cfd">PrepareResources</a> = 1, 
+<a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#af5f7af5636e8a1e1baf1076f08e79b02a804e592cd86d9e2a58f4ee431fb7ac53">PrepareConfig</a> = 3, 
+<a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#af5f7af5636e8a1e1baf1076f08e79b02ab1c94ca2fbc3e78fc30069c8d0f01680">All</a> = 7
+ }</td></tr>
+<tr class="separator:af5f7af5636e8a1e1baf1076f08e79b02 inherit pub_types_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d32d09cde4f13ec4fb05a824d3e3219 inherit pub_types_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a5d32d09cde4f13ec4fb05a824d3e3219">Phases</a> { <br />
+&#160;&#160;<a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a5d32d09cde4f13ec4fb05a824d3e3219a3a093dc14f7d2052c85990fe5719492c">resourceset</a> = (1 &lt;&lt; 0), 
+<a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a5d32d09cde4f13ec4fb05a824d3e3219a995aba3172a166a517d35ef8074e6a7f">resourceload</a> = (1 &lt;&lt; 1), 
+<a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a5d32d09cde4f13ec4fb05a824d3e3219a2a1585a864d9e67627c6ae04c807a2c5">final</a> = (1 &lt;&lt; 2), 
+<a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a5d32d09cde4f13ec4fb05a824d3e3219aba61548e71fe29cca4b4d5eeb161541e">END_OF_ITERATION</a> = (1 &lt;&lt; 4), 
+<br />
+&#160;&#160;<a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a5d32d09cde4f13ec4fb05a824d3e3219ab50339a10e1de285ac99d4c3990b8693">NONE</a> = 0, 
+<a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a5d32d09cde4f13ec4fb05a824d3e3219a5fb1f955b45e38e31789286a1790398d">ALL</a> = 7, 
+<a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a5d32d09cde4f13ec4fb05a824d3e3219a9d725163e44a2e9cf094059c0abfdef1">TERMINATED</a> = (1 &lt;&lt; 10)
+<br />
+ }</td></tr>
+<tr class="separator:a5d32d09cde4f13ec4fb05a824d3e3219 inherit pub_types_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_classaworx_1_1lib_1_1lang_1_1Library"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classaworx_1_1lib_1_1lang_1_1Library')"><img src="closed.png" alt="-"/>&#160;Public Fields inherited from <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html">Library</a></td></tr>
+<tr class="memitem:a78772e213364571dd5a4135621b15645 inherit pub_attribs_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; const char *, uint64_t &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a78772e213364571dd5a4135621b15645">CompilationFlagMeanings</a></td></tr>
+<tr class="separator:a78772e213364571dd5a4135621b15645 inherit pub_attribs_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3c1e7a231e88307d2484c7d6af833a4 inherit pub_attribs_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top">const uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#ad3c1e7a231e88307d2484c7d6af833a4">CompilationFlags</a></td></tr>
+<tr class="separator:ad3c1e7a231e88307d2484c7d6af833a4 inherit pub_attribs_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e8a1c3ae5bce4e178fa1d122021bb7d inherit pub_attribs_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html">config::Configuration</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a7e8a1c3ae5bce4e178fa1d122021bb7d">Config</a></td></tr>
+<tr class="separator:a7e8a1c3ae5bce4e178fa1d122021bb7d inherit pub_attribs_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab627750b141ce5fb08acab78e8ec3da8 inherit pub_attribs_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Resources.html">Resources</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#ab627750b141ce5fb08acab78e8ec3da8">Res</a></td></tr>
+<tr class="separator:ab627750b141ce5fb08acab78e8ec3da8 inherit pub_attribs_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20b7d9378dd73fde6c94341091af9445 inherit pub_attribs_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">strings::TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a20b7d9378dd73fde6c94341091af9445">ResourceCategory</a></td></tr>
+<tr class="separator:a20b7d9378dd73fde6c94341091af9445 inherit pub_attribs_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c8cddb79a23b8e57370078da95de8ed inherit pub_attribs_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a9c8cddb79a23b8e57370078da95de8ed">Revision</a></td></tr>
+<tr class="separator:a9c8cddb79a23b8e57370078da95de8ed inherit pub_attribs_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d88b5f159f3cd597cdd92f942340024 inherit pub_attribs_classaworx_1_1lib_1_1lang_1_1Library"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a8d88b5f159f3cd597cdd92f942340024">Version</a></td></tr>
+<tr class="separator:a8d88b5f159f3cd597cdd92f942340024 inherit pub_attribs_classaworx_1_1lib_1_1lang_1_1Library"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aa6e6d60af89ba00a696f2882251907d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa6e6d60af89ba00a696f2882251907d9">&#9670;&nbsp;</a></span>ALox()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Protected constructor to avoid users to instantiate this class </p>
-
-</div>
-</div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aa9e4d1c41a132391b46ce5c0ce73af5d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9e4d1c41a132391b46ce5c0ce73af5d">&#9670;&nbsp;</a></span>checkLibraryVersions()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void checkLibraryVersions </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>alibVersion</em> = <code><a class="el" href="group__GrpALibMacros.html#ga0d7d6d9f822a60d24cd5bb9f517cb3f7">ALIB_VERSION_VERYFIER</a></code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>aloxVersion</em> = <code><a class="el" href="group__GrpALibMacros.html#ga0d7d6d9f822a60d24cd5bb9f517cb3f7">ALIB_VERSION_VERYFIER</a></code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint64_t&#160;</td>
-          <td class="paramname"><em>flagsALib</em> = <code><a class="el" href="group__GrpALibMacros.html#gac35ba9f254df7ccaecd53953463c3b1f">ALIB_COMPATIBILITY_VERIFYER</a></code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint64_t&#160;</td>
-          <td class="paramname"><em>flagsALox</em> = <code>ALOX_COMPATIBILITY_VERYFIER</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<hr/>
-<p> Checks if versions of <b>ALib</b>, <b>ALox</b> and the actual compilation unit share compatible compilation symbols. This method is invoked automatically by method <a class="el" href="classaworx_1_1lox_1_1ALox.html#a4c4ba727bf8ffe104f310aca32519e36">Init</a>. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">alibVersion</td><td>Defaults to a value defined by the currently included headers. </td></tr>
-    <tr><td class="paramname">aloxVersion</td><td>Defaults to a value defined by the currently included headers. </td></tr>
-    <tr><td class="paramname">flagsALib</td><td>Defaults to a value defined by the currently included headers. </td></tr>
-    <tr><td class="paramname">flagsALox</td><td>Defaults to a value defined by the currently included headers. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a91162815924f9c2460b34836c39e1a50"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a91162815924f9c2460b34836c39e1a50">&#9670;&nbsp;</a></span>Get()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> * Get </td>
@@ -326,14 +243,9 @@ Protected Methods</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 <hr/>
-<p> Returns the <b><a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a></b> with the given name. A lox is only found if it was created and registered with <b>ALox</b> using <a class="el" href="classaworx_1_1lox_1_1ALox.html#adf95bbd67aec5e9e71e14134b0924fcf">Register</a>. If not found, and parameter <code>create</code> is <code>true</code> (the default), a new <b><a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a></b> is created, registered and returned.</p>
+<p> Returns a <b>Lox</b> with the given name. A <b>Lox</b> is only found if it was created and registered with <b>ALox</b> using <a class="el" href="classaworx_1_1lox_1_1ALox.html#adf95bbd67aec5e9e71e14134b0924fcf">Register</a>. If not found, and parameter <code>create</code> is <code>true</code> (the default), a new <b><a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a></b> is created, registered and returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>The name of the <b>Lox</b> to search and optionally to create. Comparison is case insensitive. </td></tr>
@@ -345,8 +257,8 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a4c4ba727bf8ffe104f310aca32519e36"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c4ba727bf8ffe104f310aca32519e36">&#9670;&nbsp;</a></span>Init() <span class="overload">[1/2]</span></h2>
+<a id="a0f7439457156e6270dfd3ccfd07e1ea1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f7439457156e6270dfd3ccfd07e1ea1">&#9670;&nbsp;</a></span>init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -355,119 +267,32 @@ Protected Methods</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static bool Init </td>
+          <td class="memname">void init </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>argc</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a5d32d09cde4f13ec4fb05a824d3e3219">Phases</a>&#160;</td>
+          <td class="paramname"><em>phase</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>argv</em> = <code>nullptr</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> This method must be called prior to using <b>ALox</b>, e.g. at the beginning of the <code>main()</code> method of an application. It is OK, to call this method more than once, which allows independent code blocks (e.g. libraries) to bootstrap <b>ALox</b> independently. However, only the first invocation is effective with the exclamation that if command line parameters are provided with a call, those are set. Also, the very first invocation should not be interrupted by a parallel invocation of a second thread. Consequently, it has to be assured that this method is invoked once on the real bootstrap an app.</p>
-<dl class="section note"><dt>Note</dt><dd>This method invokes <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a>, hence no explicit initialization of underlying <b>ALib</b> is needed.</dd></dl>
-<p>If command line parameters should be used for configuring <b>ALox</b>, then the very first call to this method has to provide the argc and argv parameters. Subsequent calls to this method with different parameters do not change the setup.</p>
-<dl class="section note"><dt>Note</dt><dd>If other, custom configuration data sources should be used already with this method (to read the configuration variables as described in <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a>), according configuration plug-ins have to be added attached to public singleton <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ac7b578f72e6b1f48e14ad3a762c412db">Configuration::Default</a> prior to invoking this method.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>On the Windows platform, the Microsoft compiler provides the global variables <em>__argc</em> and <em>__argv</em> (respectively <em>__wargv</em> for wide character binaries. These variables a can be used if this method is invoked outside of the <em>main()</em> method.</dd></dl>
-<p>For convenience, several <b>ALox</b> classes call this method implicitly on construction or when using them, e.g. <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> and Logger. Therefore, when using <b>ALox</b>, there is no need to to call this method, unless aforementioned command line parameters should be passed.</p>
-<dl class="section note"><dt>Note</dt><dd><b>ALox</b> must not be used before all global/static variables are created. Hence, it is not allowed to initialize <b>ALox</b> within static variable initialization code. This restriction is wanted by design, because different platforms and compilers implement the bootstrap of static and global data differently and it is not considered a good programming style to rely on C++ bootstrap. Using <b>ALox/ALIB</b> within C++ bootstrap is undefined behavior. (This is true for any C++ library.)</dd></dl>
-<dl class="section attention"><dt>Attention</dt><dd>If release logging is used, the explicit initialization of <b>ALox</b> by invoking this method is mandatory. While debug logging 'automatically' invokes the method hidden in the background, release logging does not. If omitted, critical errors and undefined behavior in release builds might occur in the moment when debug-logging is pruned!</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
+<p> Implementation of <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a53c148f92b7958bbb2ac3a216f193807">Library::init</a>.</p>
+<p>In phase <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a5d32d09cde4f13ec4fb05a824d3e3219a2a1585a864d9e67627c6ae04c807a2c5">Library::Phases::final</a> performs:</p><ul>
+<li>Adds boxing interface <a class="el" href="classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__TApplicable.html">IApply_TApplicable</a> for type <a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">Logger</a>. <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">argc</td><td>Parameter usually taken from <em>standard C</em> <code>main()</code> method (the number of arguments in <code>argv</code>). Defaults to 0. </td></tr>
-    <tr><td class="paramname">argv</td><td>Parameter usually taken from <em>standard C</em> <code>main()</code> method (pointer to a list of command line arguments). Defaults to nullptr. </td></tr>
+    <tr><td class="paramname">phase</td><td>The initialization phase to perform. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns <code>true</code> if <b>ALox</b> was initialized before, <code>false</code> if not. </dd></dl>
+</li>
+</ul>
 
-</div>
-</div>
-<a id="a5538a2441298bfa38b13d766239ec80d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5538a2441298bfa38b13d766239ec80d">&#9670;&nbsp;</a></span>Init() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static bool Init </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>argc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">wchar_t **&#160;</td>
-          <td class="paramname"><em>argv</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<hr/>
-<p> Variant of method <a class="el" href="classaworx_1_1lox_1_1ALox.html#a4c4ba727bf8ffe104f310aca32519e36">Init</a>, accepting command line arguments of type <code>wchar_t</code>.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">argc</td><td>Parameter usually taken from <em>standard C</em> <code>main()</code> method (the number of arguments in <code>argv</code>). </td></tr>
-    <tr><td class="paramname">argv</td><td>The command line parameters as <code>wchar_t</code>. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns <code>true</code> if <b>ALox</b> was initialized before, <code>false</code> if not. </dd></dl>
-
-</div>
-</div>
-<a id="aa0329788cf41e8d04c8c98add57d7c76"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa0329788cf41e8d04c8c98add57d7c76">&#9670;&nbsp;</a></span>initImpl()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void initImpl </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<hr/>
-<p> The part of <a class="el" href="classaworx_1_1lox_1_1ALox.html#a4c4ba727bf8ffe104f310aca32519e36">Init</a> that is allowed to go to the cpp file. </p>
+<p>Implements <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a53c148f92b7958bbb2ac3a216f193807">Library</a>.</p>
 
 </div>
 </div>
@@ -476,9 +301,6 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> * <a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> </td>
@@ -487,11 +309,6 @@ Protected Methods</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 <hr/>
 <p> Returns a singleton of class <b>Lox</b> used for debug logging </p><dl class="section return"><dt>Returns</dt><dd>The debug-logging <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> of <b>ALox</b> </dd></dl>
@@ -503,9 +320,6 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Register </td>
@@ -525,11 +339,6 @@ Protected Methods</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 <hr/>
 <p> Registers or un-registers a <b>Lox</b> object statically with <b>ALox</b>. Once registered, any code entity of the same process is enabled to retrieve the <b>Lox</b> using <a class="el" href="classaworx_1_1lox_1_1ALox.html#a91162815924f9c2460b34836c39e1a50">Get</a>.<br />
@@ -552,9 +361,6 @@ Protected Methods</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Reset </td>
@@ -563,11 +369,6 @@ Protected Methods</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 <hr/>
 <p> Resets this object. Concretely the following steps are performed:</p><ul>
@@ -578,8 +379,8 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a2a0bcae1f7341255492ebc90deab5f01"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2a0bcae1f7341255492ebc90deab5f01">&#9670;&nbsp;</a></span>TerminationCleanUp()</h2>
+<a id="a7f9483d9dee8eaaeae3831a8bb40731e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f9483d9dee8eaaeae3831a8bb40731e">&#9670;&nbsp;</a></span>terminationCleanUp()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -588,7 +389,7 @@ Protected Methods</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void TerminationCleanUp </td>
+          <td class="memname">void terminationCleanUp </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -596,387 +397,18 @@ Protected Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Cleans up static/global <b>ALox</b> memory on termination. This method is useful if using memory analysis tools (such as valgrind) to remove any internal allocations before a program terminates. </p>
+<p> Implementation of <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a10834966488a8a64a820af0c9b8db1e7">Library::terminationCleanUp</a>. </p>
 
-</div>
-</div>
-<a id="a2da37e5ba2741c6d9a1e53a30b446ae4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2da37e5ba2741c6d9a1e53a30b446ae4">&#9670;&nbsp;</a></span>VerifyCompilationFlags()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool VerifyCompilationFlags </td>
-          <td>(</td>
-          <td class="paramtype">uint64_t&#160;</td>
-          <td class="paramname"><em>flags</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<hr/>
-<p> Verifies a given sets of <b>ALox</b> compilation flags with the internal set <a class="el" href="classaworx_1_1lox_1_1ALox.html#ad3c1e7a231e88307d2484c7d6af833a4">ALox::CompilationFlags</a>. In case they are different in a way that alib gets incompatible (e.g. different class sizes, which results in errors that are very hard to debug), the flags are written to <em>cout</em> for comparison and <code>false</code> is returned.</p>
-<p>This method should be called on bootstrap to detect if incompatible library types were built. If several libraries that use <b>ALib</b> are linked together, each should invoke this test against separately. The macro <code>ALIB_COMPATIBILITY_VERIFYER</code> will provide the flags.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">flags</td><td>The flags externally grabbed using macro <code>ALIB_COMPATIBILITY_VERIFYER</code>.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><code>true</code> if compatible, <code>false</code> else. </dd></dl>
+<p>Implements <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a10834966488a8a64a820af0c9b8db1e7">Library</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="af832877b9f3459725651638bdaa2bfd4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af832877b9f3459725651638bdaa2bfd4">&#9670;&nbsp;</a></span>ALibCompilationFlags</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const uint64_t ALibCompilationFlags = <a class="el" href="group__GrpALibMacros.html#gac35ba9f254df7ccaecd53953463c3b1f">ALIB_COMPATIBILITY_VERIFYER</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>These flags are used internally to detect incompatibilities when linking <b>ALox</b> to <b>ALib</b> (can only be different in the unusual case that <b>ALib</b> exists in a library independent from <b>ALox</b>). </p>
-
-</div>
-</div>
-<a id="ac75b561b1ba1e402193e3e0924faef2d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac75b561b1ba1e402193e3e0924faef2d">&#9670;&nbsp;</a></span>AUTO_SIZES</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a> AUTO_SIZES</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">{</div><div class="line">    &amp;<a class="code" href="classaworx_1_1lox_1_1ALox.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALox::ConfigCategoryName</a>,   <span class="keyword">nullptr</span>,     <span class="stringliteral">&quot;%1_AUTO_SIZES&quot;</span>,</div><div class="line">    <span class="keyword">nullptr</span>,</div><div class="line">    <span class="charliteral">&#39;\0&#39;</span>, <span class="keyword">nullptr</span>, Variable::FormatHint_None,</div><div class="line">    <span class="stringliteral">&quot;Auto size values of last run of Logger &#39;%1&#39; (generated and temporary values).&quot;</span></div><div class="line">}</div></div><!-- fragment -->
-<p>Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a>. </p>
-
-</div>
-</div>
-<a id="a5c5ccb3fa25740271b2aa08c3649a0ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c5ccb3fa25740271b2aa08c3649a0ed">&#9670;&nbsp;</a></span>CODEPAGE</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a> CODEPAGE</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">{</div><div class="line">    &amp;<a class="code" href="classaworx_1_1lox_1_1ALox.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALox::ConfigCategoryName</a>,   <span class="keyword">nullptr</span>,     <span class="stringliteral">&quot;CODEPAGE&quot;</span>,</div><div class="line">    <span class="stringliteral">&quot;65001&quot;</span>,</div><div class="line">    <span class="charliteral">&#39;\0&#39;</span>, <span class="keyword">nullptr</span>, Variable::FormatHint_None,</div><div class="line">     <span class="stringliteral">&quot;Code page used by class WindowsConsoleLogger. Defaults to 65001.&quot;</span>           <span class="stringliteral">&quot;\n&quot;</span></div><div class="line">     <span class="stringliteral">&quot;(Only used on Windows OS)&quot;</span></div><div class="line">}</div></div><!-- fragment -->
-<p>Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1loggers_1_1WindowsConsoleLogger.html">WindowsConsoleLogger</a>. </p>
-
-</div>
-</div>
-<a id="ad7c604e277c5f3e3084baaf7da5756d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad7c604e277c5f3e3084baaf7da5756d4">&#9670;&nbsp;</a></span>CompilationFlagMeanings</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::pair&lt; const char *, uint64_t &gt; CompilationFlagMeanings</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">{</div><div class="line">    { <span class="stringliteral">&quot;ALOX_DBG_LOG&quot;</span>            , ALOX_DBG_LOG_VFYBIT         },</div><div class="line">    { <span class="stringliteral">&quot;ALOX_DBG_LOG_CI&quot;</span>         , ALOX_DBG_LOG_CI_VFYBIT      },</div><div class="line">    { <span class="stringliteral">&quot;ALOX_REL_LOG&quot;</span>            , ALOX_REL_LOG_VFYBIT         },</div><div class="line">    { <span class="stringliteral">&quot;ALOX_REL_LOG_CI&quot;</span>         , ALOX_REL_LOG_CI_VFYBIT      },</div><div class="line">}</div></div><!-- fragment --><p>This is for the creation of (debug) output information about the bits found in field <a class="el" href="classaworx_1_1lox_1_1ALox.html#ad3c1e7a231e88307d2484c7d6af833a4">CompilationFlags</a>. </p>
-
-</div>
-</div>
-<a id="ad3c1e7a231e88307d2484c7d6af833a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad3c1e7a231e88307d2484c7d6af833a4">&#9670;&nbsp;</a></span>CompilationFlags</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const uint64_t CompilationFlags = ALOX_COMPATIBILITY_VERYFIER</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>These flags are used internally to detect incompatibilities when linking <b>ALox</b> to binaries that use different compilation flags. </p>
-
-</div>
-</div>
-<a id="affcf83e8b52935dd94b74c1a47cf7e0a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#affcf83e8b52935dd94b74c1a47cf7e0a">&#9670;&nbsp;</a></span>ConfigCategoryName</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> ConfigCategoryName = &quot;ALOX&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>The name of the configuration category of configuration variables used by <b>ALox</b>.<br />
- Defaults to "ALOX".<br />
- This value can be changed to avoid conflicts between applications (especially in respect to environment variable settings). Changes should be placed at very initial bootstrap code, before the invocation of <a class="el" href="classaworx_1_1lox_1_1ALox.html#a4c4ba727bf8ffe104f310aca32519e36">Init</a>.<br />
- See also <a class="el" href="classaworx_1_1lib_1_1ALIB.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALIB::ConfigCategoryName</a>. </p>
-
-</div>
-</div>
-<a id="a24480920a5f1e3e627fe0450015c7f9b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a24480920a5f1e3e627fe0450015c7f9b">&#9670;&nbsp;</a></span>CONSOLE_LIGHT_COLORS</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a> CONSOLE_LIGHT_COLORS</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">{</div><div class="line">    &amp;<a class="code" href="classaworx_1_1lox_1_1ALox.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALox::ConfigCategoryName</a>,   <span class="keyword">nullptr</span>,     <span class="stringliteral">&quot;CONSOLE_LIGHT_COLORS&quot;</span>,</div><div class="line">    <span class="stringliteral">&quot;&quot;</span>,</div><div class="line">    <span class="charliteral">&#39;\0&#39;</span>, <span class="keyword">nullptr</span>, Variable::FormatHint_None,</div><div class="line">     <span class="stringliteral">&quot;Evaluated by colorful loggers that dispose about light and dark colors. Those may&quot;</span>        <span class="stringliteral">&quot;\n&quot;</span></div><div class="line">     <span class="stringliteral">&quot;adjust their foreground and background color accordingly. If not given, under Windows OS&quot;</span> <span class="stringliteral">&quot;\n&quot;</span></div><div class="line">     <span class="stringliteral">&quot;the right value is detected. Otherwise the value defaults to \&quot;foreground\&quot;. In some&quot;</span>     <span class="stringliteral">&quot;\n&quot;</span></div><div class="line">     <span class="stringliteral">&quot;occasions, the (detected or set) runtime environment might also indicate a different&quot;</span>     <span class="stringliteral">&quot;\n&quot;</span></div><div class="line">     <span class="stringliteral">&quot;default value.  Possible values are &#39;foreground&#39;, &#39;background&#39; and &#39;never&#39;.&quot;</span></div><div class="line">}</div></div><!-- fragment -->
-<p>Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by colorful specializations of class <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a>. </p>
-
-</div>
-</div>
-<a id="a640b5e5b22311c795dc79a10a0894752"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a640b5e5b22311c795dc79a10a0894752">&#9670;&nbsp;</a></span>CONSOLE_TYPE</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a> CONSOLE_TYPE</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">{</div><div class="line">    &amp;<a class="code" href="classaworx_1_1lox_1_1ALox.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALox::ConfigCategoryName</a>,   <span class="keyword">nullptr</span>,     <span class="stringliteral">&quot;CONSOLE_TYPE&quot;</span>,</div><div class="line">    <span class="stringliteral">&quot;default&quot;</span>,</div><div class="line">    <span class="charliteral">&#39;\0&#39;</span>, <span class="keyword">nullptr</span>, Variable::FormatHint_None,</div><div class="line">    <span class="stringliteral">&quot;Influences the type of console logger to be created by method&quot;</span>         <span class="stringliteral">&quot;\n&quot;</span></div><div class="line">    <span class="stringliteral">&quot;Lox::CreateConsoleLogger which is also used by Log::AddDebugLogger&quot;</span>    <span class="stringliteral">&quot;\n&quot;</span></div><div class="line">    <span class="stringliteral">&quot;Possible values are: default, plain, ansi, windows, noqtcreator&quot;</span></div><div class="line">}</div></div><!-- fragment -->
-<p>Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by <a class="el" href="classaworx_1_1lox_1_1Lox.html#ae92c4ae884c3cd723deb9b5e8d27b6ac">Lox::CreateConsoleLogger</a>. </p>
-
-</div>
-</div>
-<a id="a07488d81370e535a32592ba1dd60f76a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a07488d81370e535a32592ba1dd60f76a">&#9670;&nbsp;</a></span>DOMAIN_SUBSTITUTION</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a> DOMAIN_SUBSTITUTION</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">{</div><div class="line">    &amp;<a class="code" href="classaworx_1_1lox_1_1ALox.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALox::ConfigCategoryName</a>,   <span class="keyword">nullptr</span>,     <span class="stringliteral">&quot;%1_DOMAIN_SUBSTITUTION&quot;</span>,</div><div class="line">    <span class="keyword">nullptr</span>,</div><div class="line">    <span class="charliteral">&#39;;&#39;</span>, <span class="stringliteral">&quot;-&gt;&quot;</span>, Variable::FormatHint_MultLine,</div><div class="line">    <span class="stringliteral">&quot;&quot;</span></div><div class="line">}</div></div><!-- fragment -->
-<p>Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a>. </p>
-
-</div>
-</div>
-<a id="a9851c75124db349e8c4d73a3b35ba78f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9851c75124db349e8c4d73a3b35ba78f">&#9670;&nbsp;</a></span>DUMP_STATE_ON_EXIT</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a> DUMP_STATE_ON_EXIT</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">{</div><div class="line">    &amp;<a class="code" href="classaworx_1_1lox_1_1ALox.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALox::ConfigCategoryName</a>,   <span class="keyword">nullptr</span>,     <span class="stringliteral">&quot;%1_DUMP_STATE_ON_EXIT&quot;</span>,</div><div class="line">    <span class="stringliteral">&quot;none, verbosity=info, domain=/ALOX&quot;</span>,</div><div class="line">    <span class="charliteral">&#39;,&#39;</span>, <span class="keyword">nullptr</span>, Variable::FormatHint_None,</div><div class="line">    <span class="stringliteral">&quot;Log information about lox \&quot;%1\&quot; on exit. Comma separated list of arguments define&quot;</span>       <span class="stringliteral">&quot;\n&quot;</span></div><div class="line">    <span class="stringliteral">&quot;verbosity, domain and content of output. Possible values content arguments are:&quot;</span>          <span class="stringliteral">&quot;\n&quot;</span></div><div class="line">    <span class="stringliteral">&quot;  &quot;</span> <span class="stringliteral">&quot;All, &quot;</span> <span class="stringliteral">&quot;Basic, &quot;</span> <span class="stringliteral">&quot;Version, &quot;</span> <span class="stringliteral">&quot;SPTR, &quot;</span> <span class="stringliteral">&quot;Loggers, &quot;</span> <span class="stringliteral">&quot;Domains, &quot;</span> <span class="stringliteral">&quot;InternalDomains&quot;</span>      <span class="stringliteral">&quot;\n&quot;</span></div><div class="line">    <span class="stringliteral">&quot;  &quot;</span> <span class="stringliteral">&quot;ScopeDomains, &quot;</span> <span class="stringliteral">&quot;DSR, &quot;</span> <span class="stringliteral">&quot;PrefixLogables&quot;</span> <span class="stringliteral">&quot;Once, &quot;</span> <span class="stringliteral">&quot;LogData, &quot;</span> <span class="stringliteral">&quot;ThreadMappings, &quot;</span>     <span class="stringliteral">&quot;\n&quot;</span></div><div class="line">    <span class="stringliteral">&quot;  &quot;</span> <span class="stringliteral">&quot;CompilationFlags.&quot;</span> <span class="stringliteral">&quot; If NONE is given nothing is dumped.&quot;</span></div><div class="line">}</div></div><!-- fragment -->
-<p>Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a>. </p>
-
-</div>
-</div>
-<a id="a331d559721eea1af356b425e5da3fc10"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a331d559721eea1af356b425e5da3fc10">&#9670;&nbsp;</a></span>FORMAT</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a> FORMAT</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">{</div><div class="line">    &amp;<a class="code" href="classaworx_1_1lox_1_1ALox.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALox::ConfigCategoryName</a>,   <span class="keyword">nullptr</span>,     <span class="stringliteral">&quot;%1_FORMAT&quot;</span>,</div><div class="line">    <span class="keyword">nullptr</span>,</div><div class="line">    <span class="charliteral">&#39;,&#39;</span>, <span class="keyword">nullptr</span>, Variable::FormatHint_MultLine,</div><div class="line">     <span class="stringliteral">&quot;Meta info format of text logger \&quot;%1\&quot;, including signatures for verbosity strings and&quot;</span>   <span class="stringliteral">&quot;\n&quot;</span></div><div class="line">     <span class="stringliteral">&quot;an optional string added to the end of each log statement.&quot;</span>                               <span class="stringliteral">&quot;\n&quot;</span></div><div class="line">     <span class="stringliteral">&quot;   Format: metaInfoFormat [, Error [, Warning [, Info [, Verbose [, MsgSuffix ]]]]]&quot;</span></div><div class="line">}</div></div><!-- fragment -->
-<p>Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a>. </p>
-
-</div>
-</div>
-<a id="a636b90b67eb3723d0ec9c15cc52c5ff6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a636b90b67eb3723d0ec9c15cc52c5ff6">&#9670;&nbsp;</a></span>FORMAT_DATE_TIME</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a> FORMAT_DATE_TIME</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">{</div><div class="line">    &amp;<a class="code" href="classaworx_1_1lox_1_1ALox.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALox::ConfigCategoryName</a>,   <span class="keyword">nullptr</span>,     <span class="stringliteral">&quot;%1_FORMAT_DATE_TIME&quot;</span>,</div><div class="line">    <span class="keyword">nullptr</span>,</div><div class="line">    <span class="charliteral">&#39;,&#39;</span>, <span class="keyword">nullptr</span>, Variable::FormatHint_None,</div><div class="line">     <span class="stringliteral">&quot;Meta info date and time format of text logger \&quot;%1\&quot;.&quot;</span>       <span class="stringliteral">&quot;\n&quot;</span></div><div class="line">     <span class="stringliteral">&quot;   Format: DateFormat [, TimeOfDayFormat [, TimeElapsedDays ]]]&quot;</span></div><div class="line">}</div></div><!-- fragment -->
-<p>Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a>. </p>
-
-</div>
-</div>
-<a id="a6b79d64c635784979379b13a36989a42"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b79d64c635784979379b13a36989a42">&#9670;&nbsp;</a></span>FORMAT_MULTILINE</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a> FORMAT_MULTILINE</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">{</div><div class="line">    &amp;<a class="code" href="classaworx_1_1lox_1_1ALox.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALox::ConfigCategoryName</a>,   <span class="keyword">nullptr</span>,     <span class="stringliteral">&quot;%1_FORMAT_MULTILINE&quot;</span>,</div><div class="line"></div><div class="line">    <span class="keyword">nullptr</span>,</div><div class="line"></div><div class="line">    <span class="charliteral">&#39;,&#39;</span>, <span class="keyword">nullptr</span>, Variable::FormatHint_None,</div><div class="line">     <span class="stringliteral">&quot;Multi-line format of text logger \&quot;%1\&quot;.&quot;</span>       <span class="stringliteral">&quot;\n&quot;</span></div><div class="line">     <span class="stringliteral">&quot;   Format: MultiLineMsgMode [, FmtMultiLineMsgHeadline [, FmtMultiLinePrefix [, FmtMultiLineSuffix\n&quot;</span></div><div class="line">     <span class="stringliteral">&quot;           [, MultiLineDelimiter [, MultiLineDelimiterRepl ]]]]]&quot;</span></div><div class="line">}</div></div><!-- fragment -->
-<p>Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a>. </p>
-
-</div>
-</div>
-<a id="a85ec3e904f1be0c50618b570ee2fb491"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a85ec3e904f1be0c50618b570ee2fb491">&#9670;&nbsp;</a></span>FORMAT_TIME_DIFF</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a> FORMAT_TIME_DIFF</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">{</div><div class="line">    &amp;<a class="code" href="classaworx_1_1lox_1_1ALox.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALox::ConfigCategoryName</a>,   <span class="keyword">nullptr</span>,     <span class="stringliteral">&quot;%1_FORMAT_TIME_DIFF&quot;</span>,</div><div class="line"></div><div class="line">    <span class="keyword">nullptr</span>,</div><div class="line"></div><div class="line">    <span class="charliteral">&#39;,&#39;</span>, <span class="keyword">nullptr</span>, Variable::FormatHint_None,</div><div class="line">     <span class="stringliteral">&quot;Meta info time difference entities of text logger \&quot;%1\&quot;.&quot;</span>       <span class="stringliteral">&quot;\n&quot;</span></div><div class="line">     <span class="stringliteral">&quot;   Format: TimeDiffMinimum [, TimeDiffNone [, TimeDiffNanos [, TimeDiffMicros [, TimeDiffMillis \n&quot;</span></div><div class="line">     <span class="stringliteral">&quot;           [, TimeDiffSecs [, TimeDiffMins [, TimeDiffHours [,  TimeDiffDays  ]]]]]]]]&quot;</span></div><div class="line">}</div></div><!-- fragment -->
-<p>Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a>. </p>
-
-</div>
-</div>
 <a id="a27e1cb674b3172d5696b38af8479755d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a27e1cb674b3172d5696b38af8479755d">&#9670;&nbsp;</a></span>InternalDomains</h2>
 
@@ -1018,8 +450,8 @@ In addition used with method <b>Lox::SetStartTime</b>. </td></tr>
 
 </div>
 </div>
-<a id="a1fdc2bf5595c2e64dc06d987769834eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1fdc2bf5595c2e64dc06d987769834eb">&#9670;&nbsp;</a></span>isInitialized</h2>
+<a id="a69b5aed73eb34991bbb3e77016904574"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69b5aed73eb34991bbb3e77016904574">&#9670;&nbsp;</a></span>loxes</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1028,58 +460,12 @@ In addition used with method <b>Lox::SetStartTime</b>. </td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool isInitialized = false</td>
+          <td class="memname">std::vector&lt;<a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a>*&gt; loxes</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>flag indicating that <b>ALox</b> has been initialized </p>
-
-</div>
-</div>
-<a id="a283e6693e8700e7f0148cd0a41255714"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a283e6693e8700e7f0148cd0a41255714">&#9670;&nbsp;</a></span>lock</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespaceaworx.html#adb7e18c3a3777faf17dde8a543e30a27">ThreadLockNR</a> lock</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>A lock </p>
-
-</div>
-</div>
-<a id="a6ca6d3ba00770c0f9f3f510f5f190f25"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ca6d3ba00770c0f9f3f510f5f190f25">&#9670;&nbsp;</a></span>loxes</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> * &gt; loxes</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1087,8 +473,8 @@ In addition used with method <b>Lox::SetStartTime</b>. </td></tr>
 
 </div>
 </div>
-<a id="a19b66f8b85e07bf98b672d6ff789b3b8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a19b66f8b85e07bf98b672d6ff789b3b8">&#9670;&nbsp;</a></span>MAX_ELAPSED_TIME</h2>
+<a id="aeecaf42518ee1c938a3a5f961d571f42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeecaf42518ee1c938a3a5f961d571f42">&#9670;&nbsp;</a></span>loxManagement</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1097,46 +483,21 @@ In addition used with method <b>Lox::SetStartTime</b>. </td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a> MAX_ELAPSED_TIME</td>
+          <td class="memname"><a class="el" href="namespaceaworx.html#adb7e18c3a3777faf17dde8a543e30a27">ThreadLockNR</a> loxManagement</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">{</div><div class="line">    &amp;<a class="code" href="classaworx_1_1lox_1_1ALox.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALox::ConfigCategoryName</a>,   <span class="keyword">nullptr</span>,     <span class="stringliteral">&quot;%1_MAX_ELAPSED_TIME&quot;</span>,</div><div class="line">    <span class="stringliteral">&quot;0, limit=59&quot;</span>,</div><div class="line">    <span class="charliteral">&#39;,&#39;</span>, <span class="keyword">nullptr</span>, Variable::FormatHint_None,</div><div class="line">    <span class="stringliteral">&quot;Maximum elapsed time of all runs of Logger &#39;%1&#39;. To reset elapsed time display\n&quot;</span></div><div class="line">    <span class="stringliteral">&quot;width, set this to 0 manually. Generated and temporary value.)&quot;</span></div><div class="line">}</div></div><!-- fragment -->
-<p>Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a>. </p>
+<p>A lock for <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> creation and registration. </p>
 
 </div>
 </div>
-<a id="ade6db5eeed258f9dacc0f28c9fd3c258"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade6db5eeed258f9dacc0f28c9fd3c258">&#9670;&nbsp;</a></span>NO_IDE_LOGGER</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a> NO_IDE_LOGGER</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">{</div><div class="line">    &amp;<a class="code" href="classaworx_1_1lox_1_1ALox.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALox::ConfigCategoryName</a>,   <span class="keyword">nullptr</span>,     <span class="stringliteral">&quot;NO_IDE_LOGGER&quot;</span>,</div><div class="line">    <span class="stringliteral">&quot;false&quot;</span>,</div><div class="line">    <span class="charliteral">&#39;\0&#39;</span>, <span class="keyword">nullptr</span>, Variable::FormatHint_None,</div><div class="line">    <span class="stringliteral">&quot;If true, the creation of an additional, ide-specific debug logger is suppressed.&quot;</span> <span class="stringliteral">&quot;\n&quot;</span></div><div class="line">    <span class="stringliteral">&quot;(In particular suppresses DebugLogger (C#) and VStudioLogger (C++))&quot;</span></div><div class="line">}</div></div><!-- fragment -->
-<p>Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by <a class="el" href="classaworx_1_1lox_1_1Log.html#a06444d2e7a321e26fe1d4c309cb8ed49">Log::AddDebugLogger</a>. </p>
-
-</div>
-</div>
-<a id="a6a96bb3453197533db83cf0b00f29383"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a96bb3453197533db83cf0b00f29383">&#9670;&nbsp;</a></span>PREFIXES</h2>
+<a id="a96b214cd550476eaa9de2793f88a490b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96b214cd550476eaa9de2793f88a490b">&#9670;&nbsp;</a></span>theLog</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1145,182 +506,16 @@ In addition used with method <b>Lox::SetStartTime</b>. </td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a> PREFIXES</td>
+          <td class="memname"><a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a>* theLog = nullptr</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">{</div><div class="line">    &amp;<a class="code" href="classaworx_1_1lox_1_1ALox.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALox::ConfigCategoryName</a>,   <span class="keyword">nullptr</span>,     <span class="stringliteral">&quot;%1_PREFIXES&quot;</span>,</div><div class="line">    <span class="stringliteral">&quot;&quot;</span>,</div><div class="line">    <span class="charliteral">&#39;;&#39;</span>, <span class="stringliteral">&quot;=&quot;</span>, Variable::FormatHint_MultLine,</div><div class="line">    <span class="stringliteral">&quot;Prefix strings for log domains of lox \&quot;%1\&quot;.\n&quot;</span></div><div class="line">    <span class="stringliteral">&quot;   Format: [*]domainpath[*] = prefixstring [, inclusion] [ ; … ] &quot;</span></div><div class="line">}</div></div><!-- fragment -->
-<p>Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a>. </p>
-
-</div>
-</div>
-<a id="a8e4907195925ae36b7cc276d18fa3867"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8e4907195925ae36b7cc276d18fa3867">&#9670;&nbsp;</a></span>REPLACEMENTS</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a> REPLACEMENTS</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">{</div><div class="line">    &amp;<a class="code" href="classaworx_1_1lox_1_1ALox.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALox::ConfigCategoryName</a>,   <span class="keyword">nullptr</span>,     <span class="stringliteral">&quot;%1_REPLACEMENTS&quot;</span>,</div><div class="line"></div><div class="line">    <span class="keyword">nullptr</span>,</div><div class="line"></div><div class="line">    <span class="charliteral">&#39;,&#39;</span>, <span class="keyword">nullptr</span>, Variable::FormatHint_None,</div><div class="line">     <span class="stringliteral">&quot;Pairs of search and replacement strings for text logger \&quot;%1\&quot;.&quot;</span>       <span class="stringliteral">&quot;\n&quot;</span></div><div class="line">     <span class="stringliteral">&quot;   Format: search, replacement [, search, replacement] [,...]&quot;</span></div><div class="line">}</div></div><!-- fragment -->
-<p>Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a>. </p>
-
-</div>
-</div>
-<a id="a9c8cddb79a23b8e57370078da95de8ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9c8cddb79a23b8e57370078da95de8ed">&#9670;&nbsp;</a></span>Revision</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const int Revision = 0</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>The revision number of this release. Each <b>ALox</b> <a class="el" href="classaworx_1_1lox_1_1ALox.html#a8d88b5f159f3cd597cdd92f942340024">Version</a> is initially released as revision <em>0</em>. Pure maintenance releases that do not change the interface of <b>ALox</b> are holding the same <a class="el" href="classaworx_1_1lox_1_1ALox.html#a8d88b5f159f3cd597cdd92f942340024">Version</a> but an increased number in this field. </p>
-
-</div>
-</div>
-<a id="a60edc3b725fad56638ee3ebb6361ba16"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a60edc3b725fad56638ee3ebb6361ba16">&#9670;&nbsp;</a></span>SPTR_GLOBAL</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a> SPTR_GLOBAL</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">{</div><div class="line">    &amp;<a class="code" href="classaworx_1_1lox_1_1ALox.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALox::ConfigCategoryName</a>,   <span class="keyword">nullptr</span>,     <span class="stringliteral">&quot;GLOBAL_SOURCE_PATH_TRIM_RULES&quot;</span>,</div><div class="line">    <span class="stringliteral">&quot;&quot;</span>,</div><div class="line">    <span class="charliteral">&#39;;&#39;</span>, <span class="stringliteral">&quot;=&quot;</span>, Variable::FormatHint_MultLine,</div><div class="line">     <span class="stringliteral">&quot;Defines global source path trim rules (applicable for all Lox instances).&quot;</span>   <span class="stringliteral">&quot;\n&quot;</span></div><div class="line">     <span class="stringliteral">&quot;   Format: [*]sourcepath [, inclusion, trimoffset, sensitivity, replacement] [ ; … ]&quot;</span></div><div class="line">}</div></div><!-- fragment -->
-<p>Attributes of corresponding configuration variable <a href="../group__GrpALoxConfigVars.html">ALOX_GLOBAL_SOURCE_PATH_TRIM_RULES</a>. </p>
-
-</div>
-</div>
-<a id="ae0ab4bc15314b8fb1c27e02f409842f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae0ab4bc15314b8fb1c27e02f409842f5">&#9670;&nbsp;</a></span>SPTR_LOX</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a> SPTR_LOX</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">{</div><div class="line">    &amp;<a class="code" href="classaworx_1_1lox_1_1ALox.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALox::ConfigCategoryName</a>,   <span class="keyword">nullptr</span>,     <span class="stringliteral">&quot;%1_SOURCE_PATH_TRIM_RULES&quot;</span>,</div><div class="line">    <span class="stringliteral">&quot;&quot;</span>,</div><div class="line">    <span class="charliteral">&#39;;&#39;</span>, <span class="stringliteral">&quot;=&quot;</span>, Variable::FormatHint_MultLine,</div><div class="line">     <span class="stringliteral">&quot;Defines global source path trim rules for Lox \&quot;%1\&quot;. &quot;</span>           <span class="stringliteral">&quot;\n&quot;</span></div><div class="line">     <span class="stringliteral">&quot;   Format: [*]sourcepath [, inclusion, trimoffset, sensitivity, replacement] [ ; … ]&quot;</span></div><div class="line">}</div></div><!-- fragment -->
-<p>Attributes of corresponding <a href="../group__GrpALoxConfigVars.html">configuration variable</a> used by class <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a>. </p>
-
-</div>
-</div>
-<a id="aa738c8e1b3262d2afe7463f97d5980e4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa738c8e1b3262d2afe7463f97d5980e4">&#9670;&nbsp;</a></span>theLog</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> * theLog = nullptr</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <p>The <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> singleton for debug logging. Created on request. </p>
-
-</div>
-</div>
-<a id="aab2d3e17d5ce98f508c9439d95d41cca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab2d3e17d5ce98f508c9439d95d41cca">&#9670;&nbsp;</a></span>VERBOSITY</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">lib::config::VariableDefinition</a> VERBOSITY</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">{</div><div class="line">    &amp;<a class="code" href="classaworx_1_1lox_1_1ALox.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALox::ConfigCategoryName</a>,   <span class="keyword">nullptr</span>,     <span class="stringliteral">&quot;%1_%2_VERBOSITY&quot;</span>,</div><div class="line">    <span class="stringliteral">&quot;writeback&quot;</span>,</div><div class="line">    <span class="charliteral">&#39;;&#39;</span>, <span class="stringliteral">&quot;=&quot;</span>, Variable::FormatHint_MultLine,</div><div class="line">    <span class="stringliteral">&quot;The verbosities of logger \&quot;%2\&quot; in lox \&quot;%1\&quot;. Use &#39;writeback [VAR_NAME] ;&#39;\n&quot;</span></div><div class="line">    <span class="stringliteral">&quot;to enable automatic writing on application exit.&quot;</span></div><div class="line">}</div></div><!-- fragment -->
-<p>Attributes of corresponding configuration variable <a href="../group__GrpALoxConfigVars.html">ALOX_LOXNAME_LOGGERNAME_VERBOSITY</a>. </p>
-
-</div>
-</div>
-<a id="a8d88b5f159f3cd597cdd92f942340024"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8d88b5f159f3cd597cdd92f942340024">&#9670;&nbsp;</a></span>Version</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const int Version = <a class="el" href="group__GrpALibMacros.html#ga0d7d6d9f822a60d24cd5bb9f517cb3f7">ALIB_VERSION_VERYFIER</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>The version of <b>ALox</b>. The versioning follows the scheme YYMM (2-digit year, 2-digit month) of the initial release date. Besides this version number, field <a class="el" href="classaworx_1_1lox_1_1ALox.html#a9c8cddb79a23b8e57370078da95de8ed">Revision</a> indicates if this is a revised version of a former release. </p>
 
 </div>
 </div>
@@ -1332,7 +527,7 @@ In addition used with method <b>Lox::SetStartTime</b>. </td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

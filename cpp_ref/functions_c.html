@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -87,13 +87,23 @@ $(function() {
 : <a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html#a89f5d379ab6ea494541102c2f4be341c">Thread</a>
 </li>
 <li>cache
-: <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a0483fbbfacc1e2fedddd3360cf1b7a89">ScopeInfo</a>
+: <a class="el" href="classaworx_1_1lib_1_1lang_1_1Resources.html#a88eaf297e3c743e3d49c9b9571fec402">Resources</a>
+, <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a0483fbbfacc1e2fedddd3360cf1b7a89">ScopeInfo</a>
+</li>
+<li>cachedVariables
+: <a class="el" href="classaworx_1_1lib_1_1lang_1_1Resources.html#a5882c18eb6b6479ae21607613ba39b73">Resources</a>
 </li>
 <li>cacheRun
 : <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a8708f65d98fe3b0a6182920d75a4a9ac">ScopeInfo</a>
 </li>
 <li>cacheSize
 : <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a21f5d4e833c67e26ce27afd3d9f23288">ScopeInfo</a>
+</li>
+<li>callBacks
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1format_1_1PropertyFormatter.html#ae3daf3750096d91e4fe693ae286ccdc2">PropertyFormatter&lt; TFormattable, TESCIdentifier &gt;</a>
+</li>
+<li>callbacks
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1format_1_1PropertyFormatters.html#a1042aa552ca47a92f6c25b105c4b4cf2">PropertyFormatters&lt; TFormattable, TVariable &gt;</a>
 </li>
 <li>callerDateTime
 : <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a594357dd2afccbf86f5b6dfcdda82bbf">MetaInfo</a>
@@ -106,10 +116,7 @@ $(function() {
 </li>
 <li>Category
 : <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#a8c631f86070de2671d699fc5ae45e0b2">Variable</a>
-, <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html#ace42ec1911bd3b00414175a3e9df0a01">VariableDefinition</a>
-</li>
-<li>CategoryFallback
-: <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html#ab20be38ae51ba1caec1c7493758bccef">VariableDefinition</a>
+, <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDecl.html#af4520bc8f5382c61bb35b480adbdd9fe">VariableDecl</a>
 </li>
 <li>cfgSingleThreadValue
 : <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeStore.html#ac8ebbb91a987a22c90eae5a4c72ecbc0">ScopeStore&lt; StoreT &gt;</a>
@@ -126,31 +133,39 @@ $(function() {
 <li>CharAtStart()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a4b840e37d6ab8f0b56075c8de82b4152">String</a>
 </li>
-<li>checkLibraryVersions()
-: <a class="el" href="classaworx_1_1lox_1_1ALox.html#aa9e4d1c41a132391b46ce5c0ce73af5d">ALox</a>
+<li>CheckCompatibility()
+: <a class="el" href="classaworx_1_1lib_1_1ALib.html#a4e067ec1883226d1eed79b485be578b2">ALib</a>
+</li>
+<li>CheckLoad()
+: <a class="el" href="structaworx_1_1lib_1_1lang_1_1EnumMetaData.html#a715ca664eec221260f558b2a5ceffea9">EnumMetaData&lt; TEnum, TEnableIf &gt;</a>
+, <a class="el" href="structaworx_1_1lib_1_1strings_1_1ResourceString.html#a493621caac5e199c1c8e603d5bd22372">ResourceString</a>
+</li>
+<li>CheckMap()
+: <a class="el" href="structaworx_1_1lib_1_1lang_1_1EnumMetaData.html#a36c448bf6f4a286e7504b77e6c0230d0">EnumMetaData&lt; TEnum, TEnableIf &gt;</a>
 </li>
 <li>checkScopeInformation()
-: <a class="el" href="classaworx_1_1lox_1_1Lox.html#a8a8eb47bb2d24263b10eb18cc63e1ad5">Lox</a>
+: <a class="el" href="classaworx_1_1lox_1_1Lox.html#a3a5ef7a33feed1022db5eaa588f04c25">Lox</a>
 </li>
 <li>checkStdFieldAgainstArgument()
-: <a class="el" href="classaworx_1_1lib_1_1strings_1_1format_1_1FormatterJavaStyle.html#a61f1eb4b9b6f6bb7aff160536a0496f8">FormatterJavaStyle</a>
-, <a class="el" href="classaworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#a61f1eb4b9b6f6bb7aff160536a0496f8">FormatterPythonStyle</a>
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1format_1_1FormatterJavaStyle.html#a434f3e94d1165b6005b2f36d67b3129a">FormatterJavaStyle</a>
+, <a class="el" href="classaworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#a434f3e94d1165b6005b2f36d67b3129a">FormatterPythonStyle</a>
 , <a class="el" href="classaworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a894b330f53f267cca774d3e8fc1b7ad0">FormatterStdImpl</a>
 </li>
 <li>children
-: <a class="el" href="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#ac37f26f9defa51c300e3f29fb591cfe4">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Node</a>
+: <a class="el" href="structaworx_1_1lib_1_1util_1_1StringTree_1_1Node.html#ac37f26f9defa51c300e3f29fb591cfe4">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Node</a>
 </li>
 <li>clear()
 : <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#ac8bb3912a3ce86b15842e79d0b421204">Variable</a>
 </li>
 <li>Clear()
-: <a class="el" href="classaworx_1_1lib_1_1containers_1_1StringTree.html#aa71d36872f416feaa853788a7a7a7ef8">StringTree&lt; T, TKeyAllocator, TSeparator &gt;</a>
-, <a class="el" href="classaworx_1_1lib_1_1lang_1_1MemoryBlocks.html#ab7a5aad81a18b91f5d6a030be84407f7">MemoryBlocks</a>
-, <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#ae4d5af65574550e39830297e4496f81b">AString</a>
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#ae4d5af65574550e39830297e4496f81b">AString</a>
+, <a class="el" href="classaworx_1_1lib_1_1strings_1_1format_1_1SimpleText.html#ae7d36393d74b9ead8c4a6b817d1492bc">SimpleText</a>
 , <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#af3534dc253659982f8f5f646da7c951c">Substring</a>
-, <a class="el" href="classaworx_1_1lib_1_1strings_1_1util_1_1StringTuples.html#adb06c464665b97f69ee6404f29115e81">StringTuples&lt; TAssociatedTypes &gt;</a>
+, <a class="el" href="classaworx_1_1lib_1_1strings_1_1util_1_1StringTable.html#adb06c464665b97f69ee6404f29115e81">StringTable&lt; TAssociatedTypes &gt;</a>
 , <a class="el" href="classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html#aa71d36872f416feaa853788a7a7a7ef8">TicksCalendarTime</a>
 , <a class="el" href="classaworx_1_1lib_1_1time_1_1TickSpan.html#aa71d36872f416feaa853788a7a7a7ef8">TickSpan</a>
+, <a class="el" href="classaworx_1_1lib_1_1util_1_1MemoryBlocks.html#ab7a5aad81a18b91f5d6a030be84407f7">MemoryBlocks</a>
+, <a class="el" href="classaworx_1_1lib_1_1util_1_1StringTree.html#aa71d36872f416feaa853788a7a7a7ef8">StringTree&lt; T, TKeyAllocator, TSeparator &gt;</a>
 , <a class="el" href="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#aa71d36872f416feaa853788a7a7a7ef8">ScopeInfo::SourceFile</a>
 , <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a8276b692283d7725759466633f2c8211">ScopeStore&lt; StoreT &gt;</a>
 </li>
@@ -166,8 +181,11 @@ $(function() {
 <li>ClearValues()
 : <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#aa62ba4657e53457817abd37b52564195">Variable</a>
 </li>
+<li>CLIArgs()
+: <a class="el" href="classaworx_1_1lib_1_1config_1_1CLIArgs.html#ade61b01fa731f1d6ff1fac1229c6487d">CLIArgs</a>
+</li>
 <li>Clone()
-: <a class="el" href="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a716af637049daa5f0a7c9ef4d68c4990">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Cursor</a>
+: <a class="el" href="classaworx_1_1lib_1_1util_1_1StringTree_1_1Cursor.html#a716af637049daa5f0a7c9ef4d68c4990">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Cursor</a>
 </li>
 <li>CloneSettings()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a9dee9e8b29527a7c4a83330eab8248bb">FormatterStdImpl</a>
@@ -176,8 +194,7 @@ $(function() {
 : <a class="el" href="classaworx_1_1lox_1_1loggers_1_1TextFileLogger.html#ab2ff17b940ae7aca4827d832ceeaeda4">TextFileLogger</a>
 </li>
 <li>CmdLine
-: <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ada8187fc67d8f54a46aed3bf04542e08">Configuration</a>
-, <a class="el" href="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a38741324f2f4c6aa56dc430d4388a76c">ProcessInfo</a>
+: <a class="el" href="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a38741324f2f4c6aa56dc430d4388a76c">ProcessInfo</a>
 </li>
 <li>cntAcquirements
 : <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a04735ee43ec4d1676e4e0eb3d6bebd73">ThreadLock</a>
@@ -198,56 +215,47 @@ $(function() {
 <li>cntSamples
 : <a class="el" href="classaworx_1_1lib_1_1time_1_1TickWatch.html#a3203b85b99c75b91922c0147ac0ca04b">TickWatch</a>
 </li>
+<li>Code()
+: <a class="el" href="classaworx_1_1lib_1_1lang_1_1Exception.html#a03747b54b76e22ba04c63919a80eaa9a">Exception</a>
+, <a class="el" href="structaworx_1_1lib_1_1lang_1_1Exception_1_1Entry.html#ada2ee5950925cb733cccd237103b3a3b">Exception::Entry</a>
+</li>
 <li>CODEPAGE
-: <a class="el" href="classaworx_1_1lox_1_1ALox.html#a5c5ccb3fa25740271b2aa08c3649a0ed">ALox</a>
+: <a class="el" href="classaworx_1_1lox_1_1ALox.html#ab3638b7eb5a7ec5b5b082f1c8f362417">ALox</a>
 </li>
 <li>CodePage
 : <a class="el" href="classaworx_1_1lox_1_1loggers_1_1WindowsConsoleLogger.html#ac47fdc0badba5fd9ada1680d8d2b3304">WindowsConsoleLogger</a>
-</li>
-<li>CommandLinePlugin()
-: <a class="el" href="classaworx_1_1lib_1_1config_1_1CommandLinePlugin.html#a68f7a57f83d147920983ae22b0c25c16">CommandLinePlugin</a>
 </li>
 <li>Comments
 : <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Entry.html#a13a7dbf15cba4c8849fdd8044b185475">InMemoryPlugin::Entry</a>
 , <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html#a13a7dbf15cba4c8849fdd8044b185475">InMemoryPlugin::Section</a>
 , <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#a13a7dbf15cba4c8849fdd8044b185475">Variable</a>
-, <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html#a0902946a25415a8b2b6d8a6157290cac">VariableDefinition</a>
+, <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDecl.html#a711293de8c40f2e1b7827a7faf4a8fe5">VariableDecl</a>
 </li>
 <li>CompareTo()
-: <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a4c5e3e986cb1ce9f008fec021efab7e3">String</a>
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a804faaeae51297434cd4b197353134d9">String</a>
 </li>
 <li>CompilationFlagMeanings
-: <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a7919b8bb91256f9e175fda9eb2431721">ALIB</a>
-, <a class="el" href="classaworx_1_1lox_1_1ALox.html#ad7c604e277c5f3e3084baaf7da5756d4">ALox</a>
+: <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a78772e213364571dd5a4135621b15645">Library</a>
 </li>
 <li>CompilationFlags
-: <a class="el" href="classaworx_1_1lib_1_1ALIB.html#ad3c1e7a231e88307d2484c7d6af833a4">ALIB</a>
-, <a class="el" href="classaworx_1_1lox_1_1ALox.html#ad3c1e7a231e88307d2484c7d6af833a4">ALox</a>
+: <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#ad3c1e7a231e88307d2484c7d6af833a4">Library</a>
 </li>
 <li>Computational
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat</a>
 </li>
 <li>Config
 : <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#a2c37015bcce40f74f397f29ea050f251">Variable</a>
-</li>
-<li>ConfigCategoryName
-: <a class="el" href="classaworx_1_1lib_1_1ALIB.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALIB</a>
-, <a class="el" href="classaworx_1_1lox_1_1ALox.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALox</a>
+, <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a7e8a1c3ae5bce4e178fa1d122021bb7d">Library</a>
+, <a class="el" href="classaworx_1_1lib_1_1lang_1_1Resources.html#a7e8a1c3ae5bce4e178fa1d122021bb7d">Resources</a>
 </li>
 <li>Configuration()
-: <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a36d123dcc42ef58da853d1eb86f12199">Configuration</a>
+: <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ab7711c27e91b3aa0ad23a1ec020f1c73">Configuration</a>
 </li>
 <li>ConfigurationPlugin()
 : <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#a1b50bf18ad3d087799d832b6d15b258e">ConfigurationPlugin</a>
 </li>
 <li>ConfigurationRead
 : <a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html#a6b8f94546fd5c1c564c2bfe0fee6c770">Domain</a>
-</li>
-<li>CONSOLE_LIGHT_COLORS
-: <a class="el" href="classaworx_1_1lox_1_1ALox.html#a24480920a5f1e3e627fe0450015c7f9b">ALox</a>
-</li>
-<li>CONSOLE_TYPE
-: <a class="el" href="classaworx_1_1lox_1_1ALox.html#a640b5e5b22311c795dc79a10a0894752">ALox</a>
 </li>
 <li>ConsoleLogger()
 : <a class="el" href="classaworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#a125af672dcbe9fbde266699050701770">ConsoleLogger</a>
@@ -256,31 +264,32 @@ $(function() {
 : <a class="el" href="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a39dfc3f00493a74b8ab6907dec8c80ae">ProcessInfo</a>
 </li>
 <li>ConstIterator
-: <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a64c43de3fe68d6cfacf763b946b97adb">String</a>
+: <a class="el" href="structaworx_1_1lib_1_1lang_1_1EnumIterator.html#ae2f611f1d45d4e386427799cecf40943">EnumIterator&lt; TEnum, TEnableIf &gt;</a>
+, <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a64c43de3fe68d6cfacf763b946b97adb">String</a>
 </li>
 <li>ConsumeBin()
-: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aa1489e0a893e57509f6ef5114c5070e4">Substring</a>
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a21df93f4ebb1ad0e8e1a89d973d8d0ce">Substring</a>
 </li>
 <li>consumeBinImpl()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a664b047bdcd3364e4840b1b858ca5af7">Substring</a>
 </li>
 <li>ConsumeChar()
-: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aab23dfec3931737a975ca82d666f862a">Substring</a>
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a18cf26497fae8890a9f43b142063db59">Substring</a>
 </li>
 <li>ConsumeCharFromEnd()
-: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a105d1a949f88a6f3bf185e6f6b62b03c">Substring</a>
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a0adcec095f89379d9e01634745e4f1af">Substring</a>
 </li>
 <li>ConsumeChars()
-: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aa92d18f63bf16bd73b4146c738a9b9eb">Substring</a>
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a5c2ea6c0c2d6cf000b1f3f90de484dd7">Substring</a>
 </li>
 <li>ConsumeCharsFromEnd()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#af86dfb35eed1fe734ec7977187f79b95">Substring</a>
 </li>
 <li>ConsumeDec()
-: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#ae616e4986934db6e74c8a468456d2b40">Substring</a>
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a9e5fc74c4504055b329a8f903da8b4e6">Substring</a>
 </li>
 <li>ConsumeDecDigits()
-: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a30b0271dbd35a163e0519c66a3128f85">Substring</a>
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a6006fd6197e8f7e89de75c14c15e46e4">Substring</a>
 </li>
 <li>consumeDecDigitsImpl()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a756b0256b0fbcf7aec80d7c2722f30c4">Substring</a>
@@ -288,38 +297,53 @@ $(function() {
 <li>consumeDecImpl()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aa2b733a44927efdfcecf95c62023835f">Substring</a>
 </li>
+<li>ConsumeEnum()
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a108a7aaa23fe6b9ac6b37339766ad17f">Substring</a>
+</li>
+<li>ConsumeEnumBitwise()
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a1525edfa4acb47087a795c78d3a0f41f">Substring</a>
+</li>
+<li>ConsumeEnumOrBool()
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a9756182d816925205b1c7390e78f68d0">Substring</a>
+</li>
+<li>ConsumeField()
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#ae70c6d9bd6d40bfe8bc0ad73302a79d3">Substring</a>
+</li>
 <li>ConsumeFloat()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aa4787a8202a8d845cc8f2bebcc3c101c">Substring</a>
 </li>
 <li>ConsumeHex()
-: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a79c5c855abc0848e210ab2c4703af7ff">Substring</a>
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a7b4e369700fc684fc50cf7ebdbd652f0">Substring</a>
 </li>
 <li>consumeHexImpl()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a9a9decceb6a35bdaa19278420ae761c0">Substring</a>
 </li>
 <li>ConsumeInt()
-: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a84b355fb156194f4cc2000d0e75ccafa">Substring</a>
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#add31aaa5679f21922507f0030d97e6ed">Substring</a>
 </li>
 <li>consumeIntImpl()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#af1dbf5588e1ee580b73e18f5d69ccfe0">Substring</a>
 </li>
 <li>ConsumeOct()
-: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aa16d54268343c10a49eb936c45de13bf">Substring</a>
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#ac41815981c3918d05b0e33547df965c4">Substring</a>
 </li>
 <li>consumeOctImpl()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a264195f3cc0f789014d4e2ac4c7b1f3a">Substring</a>
 </li>
 <li>ConsumePartOf()
-: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#afd3e76a1240e0aef9f86e3d9e81d3437">Substring</a>
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aacfd7bb195ac8ad310bc26345600b2bd">Substring</a>
 </li>
 <li>ConsumeString()
-: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a3794c676238c3519975629aae9347b1d">Substring</a>
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a9c6527d5e8373e7090b615551c4fd417">Substring</a>
 </li>
 <li>ConsumeStringFromEnd()
-: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a0424b41278203f4e311efb75b01e286b">Substring</a>
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a461822ea5b3be48c259618bb9464c2d7">Substring</a>
+</li>
+<li>ConsumeToken()
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aadfa9ad37a0dd52b650e9b18cc896df3">Substring</a>
 </li>
 <li>ContainsAt()
-: <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a683512f36882cc61934216adb9a6cb4c">String</a>
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#acf92645fa8c4cc894d35fd4df0e635f8">String</a>
 </li>
 <li>Converter
 : <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a6564592f53dbbb610061901f7f7aa09a">TextLogger</a>
@@ -329,51 +353,64 @@ $(function() {
 , <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1StandardConverter.html#a8960d8a1fde6f3c547f5837f015ff162">StandardConverter</a>
 </li>
 <li>Copy()
-: <a class="el" href="classaworx_1_1lib_1_1strings_1_1StringLiteral.html#abe54b80eca850835aac62649d48de03c">StringLiteral&lt; TLength &gt;</a>
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1StringLiteral.html#a9d3a01b96278e25b770eabce9295bdf9">StringLiteral&lt; TLength &gt;</a>
+, <a class="el" href="classaworx_1_1lib_1_1util_1_1MemoryBlocks.html#a81816594c3ea2adecef005c51246814b">MemoryBlocks</a>
 </li>
 <li>copy
 : <a class="el" href="classaworx_1_1lox_1_1PrefixLogable.html#a4fac41c902ddaad2b6310b8261395dc7">PrefixLogable</a>
 </li>
+<li>copyStrings()
+: <a class="el" href="classaworx_1_1lib_1_1lang_1_1Exception.html#a0a43a55cdd225e2f98047107a9c0c3ac">Exception</a>
+</li>
 <li>CopyTo()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#ac3e160a8b59fc366a756f4b9e5aba7b2">String</a>
+</li>
+<li>Count()
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a4c2055642e2ff907fa45012dc825a705">String</a>
+</li>
+<li>CountChar()
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a2881dc9600967935c5a39536782ad818">String</a>
 </li>
 <li>CountLoggers()
 : <a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html#a99a4aca5fd12818f7a0718ff1bf37c9d">Domain</a>
 </li>
+<li>CountPlugins()
+: <a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#aebfadd8b53d13e193db717c967b21602">PluginContainer&lt; pTPlugin, pTPriorities &gt;</a>
+</li>
 <li>Create()
-: <a class="el" href="classaworx_1_1lib_1_1system_1_1Directory.html#a4705a3d882c8aa61346f6175f1c83a30">Directory</a>
+: <a class="el" href="classaworx_1_1lib_1_1system_1_1Directory.html#a68a884e9cabe148395138363401c80fe">Directory</a>
 </li>
 <li>createChild()
-: <a class="el" href="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#ac73b1e901363b189cd0edee4fc48c851">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Node</a>
+: <a class="el" href="structaworx_1_1lib_1_1util_1_1StringTree_1_1Node.html#ac73b1e901363b189cd0edee4fc48c851">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Node</a>
 </li>
 <li>createChildNoCheck()
-: <a class="el" href="structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html#ae875d1a5a1d29cfcef7658ef760053b3">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Node</a>
+: <a class="el" href="structaworx_1_1lib_1_1util_1_1StringTree_1_1Node.html#ae875d1a5a1d29cfcef7658ef760053b3">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Node</a>
 </li>
 <li>CreateConsoleLogger()
 : <a class="el" href="classaworx_1_1lox_1_1Lox.html#ae92c4ae884c3cd723deb9b5e8d27b6ac">Lox</a>
 </li>
 <li>createEntry()
 : <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html#a17c765fa30a40c65d18b1c216479d905">IniFile::Section</a>
-, <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html#a17c765fa30a40c65d18b1c216479d905">InMemoryPlugin::Section</a>
+, <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html#a84b71c63da8450788aeac15be6c8e768">InMemoryPlugin::Section</a>
 </li>
-<li>createPathAndReturnLeaf()
-: <a class="el" href="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#afd5858321e9f0ad6b314a9a054aa29f0">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Cursor</a>
+<li>createPathAndReturnLeafx()
+: <a class="el" href="classaworx_1_1lib_1_1util_1_1StringTree_1_1Cursor.html#a6ad9c435e482540972582af733a35d95">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Cursor</a>
 </li>
 <li>createSection()
-: <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#ac31ca82a48b7109f18662de9a2b43e6b">IniFile</a>
-, <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html#ac31ca82a48b7109f18662de9a2b43e6b">InMemoryPlugin</a>
+: <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#ac86a924344ead65a5aece542176c1e7b">IniFile</a>
+, <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html#a0b698de4481d70da02ee89efa4e0cb3a">InMemoryPlugin</a>
 </li>
 <li>CreationTime()
-: <a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html#a065d72f29bb4f81481339beef14afe7a">Ticks</a>
+: <a class="el" href="classaworx_1_1lib_1_1time_1_1Time.html#a0a28cb5d005059fd4d3e7dfe37c55207">Time</a>
 </li>
 <li>creationTime
-: <a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html#ac4aaa87e2fbf873c653a97f4a1d49d13">Ticks</a>
-</li>
-<li>current
-: <a class="el" href="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#afabfc6a52ba3d7842fe4c2b0bdc7cf6d">ProcessInfo</a>
+: <a class="el" href="classaworx_1_1lib_1_1time_1_1Time.html#a708b91dd612378afbff844b402595c61">Time</a>
 </li>
 <li>Current()
 : <a class="el" href="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a759e289a0ea1b35c1bd0fea90896432e">ProcessInfo</a>
+</li>
+<li>current
+: <a class="el" href="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#afabfc6a52ba3d7842fe4c2b0bdc7cf6d">ProcessInfo</a>
 </li>
 <li>CurrentDirectory()
 : <a class="el" href="classaworx_1_1lib_1_1system_1_1Directory.html#a06845a767764e37766027392413e068f">Directory</a>
@@ -382,10 +419,10 @@ $(function() {
 : <a class="el" href="classaworx_1_1lox_1_1loggers_1_1TextFileLogger.html#a79360590a52ab99fa5ca7bd3e679fef5">TextFileLogger</a>
 </li>
 <li>CurrentThread()
-: <a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html#afbdb4b0df9aaf36f3ab6c4965178f0d6">Thread</a>
+: <a class="el" href="classaworx_1_1lib_1_1threads_1_1Threads.html#afbdb4b0df9aaf36f3ab6c4965178f0d6">Threads</a>
 </li>
 <li>Cursor()
-: <a class="el" href="classaworx_1_1lib_1_1containers_1_1StringTree_1_1Cursor.html#a9d2203168bb2489b91572f716cf7ef02">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Cursor</a>
+: <a class="el" href="classaworx_1_1lib_1_1util_1_1StringTree_1_1Cursor.html#a9d2203168bb2489b91572f716cf7ef02">StringTree&lt; T, TKeyAllocator, TSeparator &gt;::Cursor</a>
 </li>
 <li>CYAN
 : <a class="el" href="classaworx_1_1lox_1_1ESC.html#afdf0230e4d8012d7a89df6f3fa266e5a">ESC</a>
@@ -395,7 +432,7 @@ $(function() {
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

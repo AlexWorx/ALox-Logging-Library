@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['init',['Init',['../classaworx_1_1lib_1_1threads_1_1Thread.html#a43fa9786596c3c31fa9668d143565ecc',1,'aworx::lib::threads::Thread::Init()'],['../classaworx_1_1lib_1_1time_1_1Ticks.html#a43fa9786596c3c31fa9668d143565ecc',1,'aworx::lib::time::Ticks::Init()']]]
+  ['singleton_3c_20arrayboxert_3c_20telementtype_20_3e_20_3e',['Singleton&lt; ArrayBoxerT&lt; TElementType &gt; &gt;',['../classaworx_1_1lib_1_1boxing_1_1ArrayBoxerT.html#af6e405c4329b8149d4eefda083f7c337',1,'aworx::lib::boxing::ArrayBoxerT']]],
+  ['singleton_3c_20boxert_3c_20tboxable_20_3e_20_3e',['Singleton&lt; BoxerT&lt; TBoxable &gt; &gt;',['../classaworx_1_1lib_1_1boxing_1_1BoxerT.html#a5d634a6df1373ddf19444ae0bb87532c',1,'aworx::lib::boxing::BoxerT']]]
 ];

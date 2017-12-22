@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu"    href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu_hl" href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu"    href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu_hl" href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -82,7 +82,6 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-attribs">Public Fields</a> &#124;
 <a href="#pub-methods">Public Methods</a> &#124;
 <a href="#pro-static-attribs">Protected Static Fields</a> &#124;
 <a href="#pro-attribs">Protected Fields</a> &#124;
@@ -100,7 +99,7 @@ Inheritance diagram for FormatterPythonStyle:</div>
 <div class="dynheader">
 Collaboration diagram for FormatterPythonStyle:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle__coll__graph.svg" width="1291" height="656"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle__coll__graph.svg" width="1295" height="656"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
@@ -175,41 +174,36 @@ Collaboration diagram for FormatterPythonStyle:</div>
  Puts quote characters <code>'"'</code> around the field. Note that these characters are not respecting any optional given field width but instead are added to such.<br />
  An alias name for !Quote is given with <b>!Str</b>. As the alias can be abbreviated to <b>!s</b>, this provides compatibility with the <b>Python</b> specification.</li>
 <li><b>!ESC[&lt;|&gt;]</b><br />
- In its default behavior or if <code>'&lt;'</code> is specified, certain characters are converted to escape sequences. If <code>'&gt;'</code> is given, escape sequences are converted to their (ascii) value. See If <code>'&gt;'</code> is given, escape sequences are converted to their (ascii) value. See <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#ac4172e37495305db4701901722d7651b">AString.escape</a> for details about the conversion that is performed.<br />
+ In its default behavior or if <code>'&lt;'</code> is specified, certain characters are converted to escape sequences. If <code>'&gt;'</code> is given, escape sequences are converted to their (ascii) value. See <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#ac4172e37495305db4701901722d7651b">AString.escape</a> for details about the conversion that is performed.<br />
  An alias name for <b>!ESC&lt;</b> is given with <b>!a</b> which provides compatibility with the <b>Python</b> specification. <dl class="section note"><dt>Note</dt><dd>If <b>!ESC&lt;</b> is used in combination with <b>!Quote</b>, then <b>!ESC&lt;</b> should be the first conversion specifier. Otherwise, the quotes inserted might be escaped as well.</dd></dl>
 </li>
+<li><b>!Fill[Cc]</b><br />
+ Inserts as many characters as denoted by the integer type argument. By default the fill character is space <code>' '</code>. It can be changed with optional character 'C' plus the character wanted.</li>
 <li><b>!Tab[Cc][NNN]</b><br />
- Inserts fill characters to extend the length of the string to be a multiple of a tab width. By default the fill character is space <code>' '</code>. It can be changed with optional character 'C' plus the character wanted. The tab width defaults to <code>8</code>. It can be changed by adding an unsigned decimal number. Converts the contents of the field to lower case.</li>
-<li><b>!ATab[[Cc][NNN]|Reset]</b><br />
- Inserts an "automatic tab". These are tabulator positions that are stored internally and are automatically extend their tab-position in the moment the actual contents exceeds the currently stored tab-position. An arbitrary amount of auto tab stops are maintained by the formatter. Which each new invocation of <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html#a4b6488677c0faabb6542272cc52bdff9">Formatter.format</a> the first auto tab stop is chosen and with each use of <code>!ATab</code> the next tab stop is used.<br />
- By default the fill character is space <code>' '</code>. It can be changed with optional character 'C' plus the character wanted. The optional number provided gives the growth value by which the tab will grow if its position is exceeded. This value defaults to <code>3</code>. The positions currently stored with the formatter can be reset with providing argument <code>Reset</code>. Alternatively to this, outside of a formatting process, the tab stops can be reset by invoking method <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html#ad20897c5c8bd47f5d4005989bead0e55">reset</a> on field <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#ab288b6ed16d4f25d0e19df0afb421ef0">TabSizes</a>. </li>
+ Inserts fill characters to extend the length of the string to be a multiple of a tab width. By default the fill character is space <code>' '</code>. It can be changed with optional character 'C' plus the character wanted. The tab width defaults to <code>8</code>. It can be changed by adding an unsigned decimal number.</li>
+<li><p class="startli"><b>!ATab[[Cc][NNN]|Reset]</b><br />
+ Inserts an "automatic tabulator stop". These are tabulator positions that are stored internally and are automatically extended in the moment the actual contents exceeds the currently stored tab-position. An arbitrary amount of auto tab stop and field width (see <b>!AWith</b> below) values is maintained by the formatter.</p>
+<p class="startli">Which each new invocation of <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html#a4b6488677c0faabb6542272cc52bdff9">Formatter.format</a>, the first auto value is chosen and with each use of <code>!ATab</code> or <code>!AWidth</code>, the next value is used.<br />
+ By default, the fill character is space <code>' '</code>. It can be changed with optional character 'C' plus the character wanted. The optional number provided gives the growth value by which the tab will grow if its position is exceeded. This value defaults to <code>3</code>. The positions currently stored with the formatter can be reset with providing argument <code>Reset</code>. Alternatively to this, outside of a formatting process, the tab stops can be reset by invoking method <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html#ad20897c5c8bd47f5d4005989bead0e55">Formatter.reset</a>.</p>
+<p class="startli">Both, auto tab and auto width conversions may be used to increase readability of multiple output lines. Of-course, output is not completely tabular, only if those values that result in the biggest sizes are formatted first. If a perfect tabular output is desired, the data to be formatted may be processed twice: Once to temporary buffer which is disposed and then a second time to the desired output stream.</p>
+<dl class="section note"><dt>Note</dt><dd>Method <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html#aaa818f27b92b478a9dd9eed839154ac7">Formatter.releaseDefault</a> resets the auto size values in case no multiple (recursive) acquirements had been performed.</dd></dl>
+</li>
+<li><b>!AWidth[NNN|Reset]</b><br />
+ Increases field width with repetitive invocations of format whenever a field value did not fit to the actually stored width. Optional decimal number <b>NNN</b> is added as a padding value. for more information, see <b>!ATab</b> above.</li>
+<li><b>!Xtinguish</b><br />
+ Does not print anything. This is useful if format strings are externalized. Modifications of such resources might use this conversion to suppress the display of arguments (which usually are hard-coded).</li>
+<li><b>!Replace&lt;search&gt;&lt;replace&gt;</b><br />
+ Searches string <code>search</code> and replaces with <code>replace</code>. Both values have to be given enclosed by characters <code>’&lt;'</code> and <code>’&gt;'</code>. In the special case that <code>search</code> is empty (<code>&lt;&gt;</code>), string <code>replace</code> will be inserted if the field argument is an empty string. </li>
 </ul>
 </li>
 </ul>
 </div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Fields</h2></td></tr>
-<tr class="memitem:ab288b6ed16d4f25d0e19df0afb421ef0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html">AutoSizes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#ab288b6ed16d4f25d0e19df0afb421ef0">TabSizes</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html">AutoSizes</a>()</td></tr>
-<tr class="separator:ab288b6ed16d4f25d0e19df0afb421ef0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl')"><img src="closed.png" alt="-"/>&#160;Public Fields inherited from <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html">FormatterStdImpl</a></td></tr>
-<tr class="memitem:aa7126090b0797d7a5a967bbc9bff6e41 inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#aa7126090b0797d7a5a967bbc9bff6e41">alternativeNumberFormat</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>()</td></tr>
-<tr class="separator:aa7126090b0797d7a5a967bbc9bff6e41 inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3481c3e5f23136b69aff371503df9e33 inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memItemLeft" align="right" valign="top">SimpleDateFormat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a3481c3e5f23136b69aff371503df9e33">dateTimeFormat</a> = new SimpleDateFormat(&quot;&quot;, Locale.ROOT)</td></tr>
-<tr class="separator:a3481c3e5f23136b69aff371503df9e33 inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c6cb1f7fddf8dd9d3fe14688753c01d inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a1c6cb1f7fddf8dd9d3fe14688753c01d">defaultNumberFormat</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>()</td></tr>
-<tr class="separator:a1c6cb1f7fddf8dd9d3fe14688753c01d inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a687ff3577960fbef0838a032a4b7699d inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a687ff3577960fbef0838a032a4b7699d">writeALibErrorReports</a> = true</td></tr>
-<tr class="separator:a687ff3577960fbef0838a032a4b7699d inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a718146e3dbdbfb6d4f2da66a5c3d30d8 inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a718146e3dbdbfb6d4f2da66a5c3d30d8">writeErrorsToTargetString</a> = true</td></tr>
-<tr class="separator:a718146e3dbdbfb6d4f2da66a5c3d30d8 inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter')"><img src="closed.png" alt="-"/>&#160;Public Fields inherited from <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html">Formatter</a></td></tr>
-<tr class="memitem:a56baad931db677cd188a686e4a357467 inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html">Formatter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html#a56baad931db677cd188a686e4a357467">next</a></td></tr>
-<tr class="separator:a56baad931db677cd188a686e4a357467 inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
 <tr class="memitem:a10c4d83dfa47d59ed6cdf5fa27b00277"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#a10c4d83dfa47d59ed6cdf5fa27b00277">FormatterPythonStyle</a> ()</td></tr>
 <tr class="separator:a10c4d83dfa47d59ed6cdf5fa27b00277"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad20897c5c8bd47f5d4005989bead0e55"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#ad20897c5c8bd47f5d4005989bead0e55">reset</a> ()</td></tr>
+<tr class="separator:ad20897c5c8bd47f5d4005989bead0e55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl')"><img src="closed.png" alt="-"/>&#160;Public Methods inherited from <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html">FormatterStdImpl</a></td></tr>
 <tr class="memitem:a2099cb35a18080515118c1b232c9501a inherit pub_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a2099cb35a18080515118c1b232c9501a">FormatterStdImpl</a> (String formatterClassName)</td></tr>
 <tr class="separator:a2099cb35a18080515118c1b232c9501a inherit pub_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -220,6 +214,8 @@ Public Methods</h2></td></tr>
 <tr class="separator:a4b6488677c0faabb6542272cc52bdff9 inherit pub_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a805299f87a715d2fa4a8d3f92f5dcf67 inherit pub_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html#a805299f87a715d2fa4a8d3f92f5dcf67">format</a> (<a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> target, ArrayList&lt; Object &gt; args)</td></tr>
 <tr class="separator:a805299f87a715d2fa4a8d3f92f5dcf67 inherit pub_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad20897c5c8bd47f5d4005989bead0e55 inherit pub_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html#ad20897c5c8bd47f5d4005989bead0e55">reset</a> ()</td></tr>
+<tr class="separator:ad20897c5c8bd47f5d4005989bead0e55 inherit pub_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
 Protected Static Fields</h2></td></tr>
@@ -233,8 +229,10 @@ Protected Static Fields</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Fields</h2></td></tr>
-<tr class="memitem:af32d2f254a6bf4828e9942a91a087bc7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#af32d2f254a6bf4828e9942a91a087bc7">parseExtConversion</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>()</td></tr>
-<tr class="separator:af32d2f254a6bf4828e9942a91a087bc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4f19574c48ddda56b341246abd50bcd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html">AutoSizes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#aa4f19574c48ddda56b341246abd50bcd">autoSizes</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html">AutoSizes</a>()</td></tr>
+<tr class="separator:aa4f19574c48ddda56b341246abd50bcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0983962f15c7db725a3baf0ac8570444"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#a0983962f15c7db725a3baf0ac8570444">conversion</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>()</td></tr>
+<tr class="separator:a0983962f15c7db725a3baf0ac8570444"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e981813d36090034f20a807521f0361"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#a0e981813d36090034f20a807521f0361">phaExtConversion</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>()</td></tr>
 <tr class="separator:a0e981813d36090034f20a807521f0361"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad69859ba8f699b6398e49454584a7e54"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#ad69859ba8f699b6398e49454584a7e54">phaExtDefaultPrecision</a></td></tr>
@@ -290,6 +288,8 @@ Protected Fields</h2></td></tr>
 <tr class="separator:a28b28eb631470261d30c68de3c8b73db inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a945cad967d9a849a90c1d46f3c27cd65 inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a945cad967d9a849a90c1d46f3c27cd65">ptargetString</a></td></tr>
 <tr class="separator:a945cad967d9a849a90c1d46f3c27cd65 inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cc2ce57da3c470cd449875ccb46e3d2 inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a2cc2ce57da3c470cd449875ccb46e3d2">targetStringStartLength</a></td></tr>
+<tr class="separator:a2cc2ce57da3c470cd449875ccb46e3d2 inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter')"><img src="closed.png" alt="-"/>&#160;Protected Fields inherited from <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html">Formatter</a></td></tr>
 <tr class="memitem:a8d6f1cc6d3085cd5bb08fdd9f014b827 inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td class="memItemLeft" align="right" valign="top">ArrayList&lt; Object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html#a8d6f1cc6d3085cd5bb08fdd9f014b827">boxes</a></td></tr>
 <tr class="separator:a8d6f1cc6d3085cd5bb08fdd9f014b827 inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -306,12 +306,12 @@ Protected Methods</h2></td></tr>
 <tr class="separator:a3c303cc951d6a91e6f4dc2aa655e4c20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acaf3b4baa3922352c5939d88ea2b1192"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#acaf3b4baa3922352c5939d88ea2b1192">initializeFormat</a> ()</td></tr>
 <tr class="separator:acaf3b4baa3922352c5939d88ea2b1192"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4938aeb40bc7a36e255a1c71ae565e00"><td class="memItemLeft" align="right" valign="top">NO_DOX boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#a4938aeb40bc7a36e255a1c71ae565e00">parsePlaceholder</a> ()</td></tr>
-<tr class="separator:a4938aeb40bc7a36e255a1c71ae565e00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a994c9ffa6837501af974f0e591e2dc87"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#a994c9ffa6837501af974f0e591e2dc87">parsePlaceholder</a> ()</td></tr>
+<tr class="separator:a994c9ffa6837501af974f0e591e2dc87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0f1afa86b31a1def78fc40588d43bfe"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#ac0f1afa86b31a1def78fc40588d43bfe">parseStdFormatSpec</a> ()</td></tr>
 <tr class="separator:ac0f1afa86b31a1def78fc40588d43bfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab93450b5092eeeaedc89b92108d0edbb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#ab93450b5092eeeaedc89b92108d0edbb">preAndPostProcess</a> (int startIdx)</td></tr>
-<tr class="separator:ab93450b5092eeeaedc89b92108d0edbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44f7016570e09ac86299cad004dd57ec"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#a44f7016570e09ac86299cad004dd57ec">preAndPostProcess</a> (int startIdx, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> target)</td></tr>
+<tr class="separator:a44f7016570e09ac86299cad004dd57ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a452546b129ddfb0ddd4909554a220b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#a8a452546b129ddfb0ddd4909554a220b">replaceEscapeSequences</a> (int startIdx)</td></tr>
 <tr class="separator:a8a452546b129ddfb0ddd4909554a220b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91f06a45332414ed6b825a1ba08e084d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#a91f06a45332414ed6b825a1ba08e084d">resetPHAs</a> ()</td></tr>
@@ -329,8 +329,8 @@ Protected Methods</h2></td></tr>
 <tr class="separator:a4d98cbddb028ebc87fbebb9c72825bfe inherit pro_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a411b315e6784287fc21487cbae465636 inherit pro_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memItemLeft" align="right" valign="top">abstract boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a411b315e6784287fc21487cbae465636">parseStdFormatSpec</a> ()</td></tr>
 <tr class="separator:a411b315e6784287fc21487cbae465636 inherit pro_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab93450b5092eeeaedc89b92108d0edbb inherit pro_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#ab93450b5092eeeaedc89b92108d0edbb">preAndPostProcess</a> (int startIdx)</td></tr>
-<tr class="separator:ab93450b5092eeeaedc89b92108d0edbb inherit pro_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44f7016570e09ac86299cad004dd57ec inherit pro_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a44f7016570e09ac86299cad004dd57ec">preAndPostProcess</a> (int startIdx, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> target)</td></tr>
+<tr class="separator:a44f7016570e09ac86299cad004dd57ec inherit pro_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03a419fa0ca225ed66085ced5dffd86d inherit pro_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a03a419fa0ca225ed66085ced5dffd86d">replaceEscapeSequences</a> (int startIdx)</td></tr>
 <tr class="separator:a03a419fa0ca225ed66085ced5dffd86d inherit pro_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91f06a45332414ed6b825a1ba08e084d inherit pro_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a91f06a45332414ed6b825a1ba08e084d">resetPHAs</a> ()</td></tr>
@@ -349,6 +349,20 @@ Protected Methods</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl')"><img src="closed.png" alt="-"/>&#160;Public Fields inherited from <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html">FormatterStdImpl</a></td></tr>
+<tr class="memitem:aa7126090b0797d7a5a967bbc9bff6e41 inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#aa7126090b0797d7a5a967bbc9bff6e41">alternativeNumberFormat</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>()</td></tr>
+<tr class="separator:aa7126090b0797d7a5a967bbc9bff6e41 inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3481c3e5f23136b69aff371503df9e33 inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memItemLeft" align="right" valign="top">SimpleDateFormat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a3481c3e5f23136b69aff371503df9e33">dateTimeFormat</a> = new SimpleDateFormat(&quot;&quot;, Locale.ROOT)</td></tr>
+<tr class="separator:a3481c3e5f23136b69aff371503df9e33 inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c6cb1f7fddf8dd9d3fe14688753c01d inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a1c6cb1f7fddf8dd9d3fe14688753c01d">defaultNumberFormat</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>()</td></tr>
+<tr class="separator:a1c6cb1f7fddf8dd9d3fe14688753c01d inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a687ff3577960fbef0838a032a4b7699d inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a687ff3577960fbef0838a032a4b7699d">writeALibErrorReports</a> = true</td></tr>
+<tr class="separator:a687ff3577960fbef0838a032a4b7699d inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a718146e3dbdbfb6d4f2da66a5c3d30d8 inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a718146e3dbdbfb6d4f2da66a5c3d30d8">writeErrorsToTargetString</a> = true</td></tr>
+<tr class="separator:a718146e3dbdbfb6d4f2da66a5c3d30d8 inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter')"><img src="closed.png" alt="-"/>&#160;Public Fields inherited from <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html">Formatter</a></td></tr>
+<tr class="memitem:a56baad931db677cd188a686e4a357467 inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html">Formatter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html#a56baad931db677cd188a686e4a357467">next</a></td></tr>
+<tr class="separator:a56baad931db677cd188a686e4a357467 inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter')"><img src="closed.png" alt="-"/>&#160;Public Static Methods inherited from <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html">Formatter</a></td></tr>
 <tr class="memitem:a848b6865d5165aafc3f2d6e170e84487 inherit pub_static_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html">Formatter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html#a848b6865d5165aafc3f2d6e170e84487">acquireDefault</a> ()</td></tr>
 <tr class="separator:a848b6865d5165aafc3f2d6e170e84487 inherit pub_static_methods_classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -493,8 +507,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a4938aeb40bc7a36e255a1c71ae565e00"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4938aeb40bc7a36e255a1c71ae565e00">&#9670;&nbsp;</a></span>parsePlaceholder()</h2>
+<a id="a994c9ffa6837501af974f0e591e2dc87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a994c9ffa6837501af974f0e591e2dc87">&#9670;&nbsp;</a></span>parsePlaceholder()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -503,7 +517,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NO_DOX boolean parsePlaceholder </td>
+          <td class="memname">boolean parsePlaceholder </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -549,8 +563,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="ab93450b5092eeeaedc89b92108d0edbb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab93450b5092eeeaedc89b92108d0edbb">&#9670;&nbsp;</a></span>preAndPostProcess()</h2>
+<a id="a44f7016570e09ac86299cad004dd57ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44f7016570e09ac86299cad004dd57ec">&#9670;&nbsp;</a></span>preAndPostProcess()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -559,11 +573,21 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void preAndPostProcess </td>
+          <td class="memname">boolean preAndPostProcess </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>startIdx</em></td><td>)</td>
+          <td class="paramname"><em>startIdx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
+          <td class="paramname"><em>target</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -577,9 +601,11 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">startIdx</td><td>The int of the start of the field written in <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a945cad967d9a849a90c1d46f3c27cd65">ptargetString</a>. <code>-1</code> indicates pre-phase. </td></tr>
+    <tr><td class="paramname">target</td><td>The target string, only if different from field <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a945cad967d9a849a90c1d46f3c27cd65">ptargetString</a>, which indicates intermediate phase. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd><code>false</code>, if the placeholder should be skipped (nothing is written for it). <code>true</code> otherwise. </dd></dl>
 
 </div>
 </div>
@@ -618,6 +644,25 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="ad20897c5c8bd47f5d4005989bead0e55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad20897c5c8bd47f5d4005989bead0e55">&#9670;&nbsp;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void reset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Resets <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#aa4f19574c48ddda56b341246abd50bcd">autoSizes</a>. </p>
+
+</div>
+</div>
 <a id="a91f06a45332414ed6b825a1ba08e084d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a91f06a45332414ed6b825a1ba08e084d">&#9670;&nbsp;</a></span>resetPHAs()</h2>
 
@@ -646,6 +691,29 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="aa4f19574c48ddda56b341246abd50bcd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4f19574c48ddda56b341246abd50bcd">&#9670;&nbsp;</a></span>autoSizes</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html">AutoSizes</a> autoSizes = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html">AutoSizes</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Storage of sizes for auto-tabulator feature ("!ATab") </p>
+
+</div>
+</div>
 <a id="a004e5366aaab1ad2659974c440de022d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a004e5366aaab1ad2659974c440de022d">&#9670;&nbsp;</a></span>constColonAndClosingBracket</h2>
 
@@ -669,8 +737,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="af32d2f254a6bf4828e9942a91a087bc7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af32d2f254a6bf4828e9942a91a087bc7">&#9670;&nbsp;</a></span>parseExtConversion</h2>
+<a id="a0983962f15c7db725a3baf0ac8570444"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0983962f15c7db725a3baf0ac8570444">&#9670;&nbsp;</a></span>conversion</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -679,7 +747,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> parseExtConversion = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>()</td>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> conversion = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>()</td>
         </tr>
       </table>
   </td>
@@ -688,7 +756,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Reused object used to parse <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#a0e981813d36090034f20a807521f0361">phaExtConversion</a> in method <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#ab93450b5092eeeaedc89b92108d0edbb">preAndPostProcess</a>. </p>
+<p>Reused object used to parse <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#a0e981813d36090034f20a807521f0361">phaExtConversion</a> in method <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#a44f7016570e09ac86299cad004dd57ec">preAndPostProcess</a>. </p>
 
 </div>
 </div>
@@ -761,21 +829,6 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="ab288b6ed16d4f25d0e19df0afb421ef0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab288b6ed16d4f25d0e19df0afb421ef0">&#9670;&nbsp;</a></span>TabSizes</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html">AutoSizes</a> TabSizes = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html">AutoSizes</a>()</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Storage of sizes for auto-tabulator feature ("!ATab") </p>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>FormatterPythonStyle.java</li>
 </ul>
@@ -783,7 +836,7 @@ Additional Inherited Members</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:48:01 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

@@ -1,10 +1,10 @@
 <map id="ThreadLock" name="ThreadLock">
-<area shape="rect" id="node8" href="$classaworx_1_1lib_1_1threads_1_1Thread.html" title="Thread" alt="" coords="877,84,940,111"/>
-<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="561,5,764,32"/>
-<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1lang_1_1Ownable.html" title="Ownable" alt="" coords="465,148,537,175"/>
-<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="111,73,175,100"/>
-<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="376,36,441,63"/>
-<area shape="rect" id="node7" href="$classaworx_1_1lib_1_1strings_1_1String.html" title="String" alt="" coords="5,73,61,100"/>
-<area shape="rect" id="node9" href="$classaworx_1_1lib_1_1threads_1_1Runnable.html" title="Runnable" alt="" coords="625,61,701,88"/>
-<area shape="rect" id="node10" title="STL class. " alt="" coords="633,123,692,149"/>
+<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="198,287,401,313"/>
+<area shape="rect" id="node7" href="$classaworx_1_1lib_1_1threads_1_1Thread.html" title="Thread" alt="" coords="123,376,185,403"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1lang_1_1Ownable.html" title="Ownable" alt="" coords="397,236,469,263"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="357,81,421,108"/>
+<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="317,185,383,212"/>
+<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1strings_1_1String.html" title="String" alt="" coords="361,5,417,32"/>
+<area shape="rect" id="node8" href="$classaworx_1_1lib_1_1threads_1_1Runnable.html" title="Runnable" alt="" coords="5,287,81,313"/>
+<area shape="rect" id="node9" title="STL class. " alt="" coords="115,287,174,313"/>
 </map>

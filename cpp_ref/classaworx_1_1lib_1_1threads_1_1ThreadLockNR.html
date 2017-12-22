@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -103,8 +103,8 @@ Collaboration diagram for ThreadLockNR:</div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> This class is a simple wrapper around std::mutex (provided solely to reach compatibility of <a class="el" href="classaworx_1_1lib_1_1ALIB.html">ALIB</a> across programming languages) and hence allows <em>mutual exclusive access</em> to resources, by protecting data from concurrent access by different threads.</p>
-<p>Unlike class <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a>, this class <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html">ThreadLockNR</a> does not use an internal counter to allow recursive calls to <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a07a42f9930e2b2f9b94a3d47d3088532">Acquire()</a> and <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a84a1506acc1e04455ebc3bc724265872">Release()</a>. Also, no owner is recorded, no <a class="el" href="classaworx_1_1lib_1_1ALIB.html">ALIB</a> <a class="el" href="classaworx_1_1lib_1_1lang_1_1ReportWriter.html">ReportWriter</a> is invoked on misuse and no time limit warnings are supported. Consider using <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a> in most cases. The advantage of <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html">ThreadLockNR</a> is that it operates several times faster than <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a>. So, for very time critical sections with frequent Lock.Release()use of <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html">ThreadLockNR</a> can be taken into consideration.</p>
+<p> This class is a simple wrapper around std::mutex (provided solely to reach compatibility of ALIB across programming languages) and hence allows <em>mutual exclusive access</em> to resources, by protecting data from concurrent access by different threads.</p>
+<p>Unlike class <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a>, this class <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html">ThreadLockNR</a> does not use an internal counter to allow recursive calls to <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a07a42f9930e2b2f9b94a3d47d3088532">Acquire()</a> and <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a84a1506acc1e04455ebc3bc724265872">Release()</a>. Also, no owner is recorded, no ALIB <a class="el" href="classaworx_1_1lib_1_1lang_1_1ReportWriter.html">ReportWriter</a> is invoked on misuse and no time limit warnings are supported. Consider using <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a> in most cases. The advantage of <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html">ThreadLockNR</a> is that it operates several times faster than <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a>. So, for very time critical sections with frequent Lock.Release()use of <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html">ThreadLockNR</a> can be taken into consideration.</p>
 <dl class="section attention"><dt>Attention</dt><dd>Nested (recursive) acquisitions are not supported and lead to undefined behavior. </dd></dl>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -397,7 +397,7 @@ Protected Fields</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

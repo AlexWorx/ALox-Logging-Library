@@ -1,8 +1,10 @@
 <map id="formatter.hpp" name="formatter.hpp">
-<area shape="rect" id="node3" href="$threadlock_8hpp.html" title="alib/threads/threadlock.hpp" alt="" coords="155,80,333,107"/>
-<area shape="rect" id="node4" href="$numberformat_8hpp.html" title="alib/strings/numberformat.hpp" alt="" coords="357,80,552,107"/>
-<area shape="rect" id="node5" href="$substring_8hpp.html" title="alib/strings/substring.hpp" alt="" coords="577,80,743,107"/>
-<area shape="rect" id="node6" href="$threadlocknr_8hpp.html" title="alib/threads/threadlocknr.hpp" alt="" coords="70,155,258,181"/>
-<area shape="rect" id="node7" href="$thread_8hpp.html" title="thread.hpp" alt="" coords="283,155,365,181"/>
-<area shape="rect" id="node8" href="$ownable_8hpp.html" title="alib/lang/ownable.hpp" alt="" coords="5,229,152,256"/>
+<area shape="rect" id="node3" href="$threadlock_8hpp.html" title="alib/threads/threadlock.hpp" alt="" coords="153,80,332,107"/>
+<area shape="rect" id="node4" href="$exception_8hpp.html" title="alib/lang/exception.hpp" alt="" coords="356,80,511,107"/>
+<area shape="rect" id="node5" href="$numberformat_8hpp.html" title="alib/strings/numberformat.hpp" alt="" coords="535,80,729,107"/>
+<area shape="rect" id="node6" href="$substring_8hpp.html" title="alib/strings/substring.hpp" alt="" coords="754,80,921,107"/>
+<area shape="rect" id="node7" href="$threadlocknr_8hpp.html" title="alib/threads/threadlocknr.hpp" alt="" coords="66,155,254,181"/>
+<area shape="rect" id="node8" href="$threadlib_8hpp.html" title="threadlib.hpp" alt="" coords="279,155,375,181"/>
+<area shape="rect" id="node14" href="$enumbitwise_8hpp.html" title="alib/lang/enumbitwise.hpp" alt="" coords="752,155,923,181"/>
+<area shape="rect" id="node9" href="$ownable_8hpp.html" title="alib/lang/ownable.hpp" alt="" coords="5,229,152,256"/>
 </map>

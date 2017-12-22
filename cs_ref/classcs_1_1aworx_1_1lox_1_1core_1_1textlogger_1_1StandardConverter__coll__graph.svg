@@ -111,10 +111,10 @@
 <!-- Node7&#45;&gt;Node4 -->
 <g id="edge16" class="edge">
 <title>Node7&#45;&gt;Node4</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M155.2699,-316.742C138.6626,-292.5841 111.0712,-248.0171 100.5,-205 88.927,-157.9063 131.2884,-107.4939 151.4291,-86.7584"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="152.6235,-319.0635 161.2373,-325.2322 158.3504,-315.0382 152.6235,-319.0635"/>
-<text text-anchor="middle" x="144.5" y="-191.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> phaExtConversion</text>
-<text text-anchor="middle" x="144.5" y="-180.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">parseExtConversion</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M157.0325,-316.8677C142.3862,-292.5309 117.821,-247.4383 108.5,-205 98.2838,-158.486 135.5757,-107.353 152.998,-86.571"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="154.0634,-318.7211 162.2819,-325.4074 160.0268,-315.0553 154.0634,-318.7211"/>
+<text text-anchor="middle" x="148.5" y="-191.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> conversion</text>
+<text text-anchor="middle" x="148.5" y="-180.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">phaExtConversion</text>
 </g>
 <!-- Node7&#45;&gt;Node5 -->
 <g id="edge12" class="edge">
@@ -250,7 +250,7 @@
 <title>Node13&#45;&gt;Node4</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M161.5,-124.1079C161.5,-111.714 161.5,-96.3263 161.5,-86.5817"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="158.0001,-124.4005 161.5,-134.4005 165.0001,-124.4006 158.0001,-124.4005"/>
-<text text-anchor="middle" x="183.5" y="-108" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> TabSizes</text>
+<text text-anchor="middle" x="185" y="-108" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> autoSizes</text>
 </g>
 <!-- Node14&#45;&gt;Node2 -->
 <g id="edge18" class="edge">

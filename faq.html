@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu_hl" href="index.html"                  >Home</a>                        </td>
-  <td> <a class="aworx-menu"    href="cpp_ref/cppmainpage.html"    >ALox for C++</a>                </td>
-  <td> <a class="aworx-menu"    href="cs_ref/csmainpage.html"      >ALox for C#</a>                 </td>
-  <td> <a class="aworx-menu"    href="java_ref/javamainpage.html"  >ALox for Java</a>               </td>
+  <td> <a class="aworx-menu_hl" href="index.html"                                      >Home</a>                        </td>
+  <td> <a class="aworx-menu"    href="cpp_ref/alox_cpp_mainpage.html"                   >ALox for C++</a>                </td>
+  <td> <a class="aworx-menu"    href="cs_ref/alox_cs_mainpage.html"                     >ALox for C#</a>                 </td>
+  <td> <a class="aworx-menu"    href="java_ref/alox_java_mainpage.html"                 >ALox for Java</a>               </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -70,7 +70,7 @@ $(function() {
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
+<iframe src="javascript:void(0)" frameborder="0"
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -112,7 +112,7 @@ nice in code, but would increase execution time."</p>
 <h1><a class="anchor" id="faq_performance"></a>
 What is the performance impact on my application when using ALox</h1>
 <p>ALox is fast (see previous question on Bauhaus). Using a MemoryLogger, in C# we measured more than 200.000 log entries per second on a Notebook (equipped with an Intel(R) Core(TM) i7 CPU @2.8GHz) while running an application (and ALox) in debug mode! Hence, if doing as much as 100 log entries per second, the performance loss for your application would still be a maximum of 0.05%.</p>
-<p>Of-course, logging into a console is slower. But the good news is: As the internal management of ALox is so fast, there will not be a measurable difference between "normal" debug log output using <code>printf()</code>, <code>System.out.println()</code>, <code>Console.WriteLine</code>, etc. versus ALox logging. And: as for debug logging, this gets automatically pruned in the release code. Hence, the release version of your software is free of any performance issue caused by debug logging. (For example, C# users read <a class="elRef" doxygen="ALox/html/cs_ref/cs_ref.tag:./cs_ref/" href="./cs_ref/cspruning.html#cssetup_pruning_result">Mission accomplished: Perfect Auto Pruning with ALox!</a> for more information.)</p>
+<p>Of-course, logging into a console is slower. But the good news is: As the internal management of ALox is so fast, there will not be a measurable difference between "normal" debug log output using <code>printf()</code>, <code>System.out.println()</code>, <code>Console.WriteLine</code>, etc. versus ALox logging. And: as for debug logging, this gets automatically pruned in the release code. Hence, the release version of your software is free of any performance issue caused by debug logging. (For example, C# users read <a class="elRef" doxygen="ALox/html/cs_ref/cs_ref.tag:./cs_ref/" href="./cs_ref/alox_cs_pruning.html#alox_cs_setup_pruning_result">Mission accomplished: Perfect Auto Pruning with ALox!</a> for more information.)</p>
 <h1><a class="anchor" id="faq_debug_vs_release_logging"></a>
 What do the terms "debug logging" and "release logging" mean?</h1>
 <p>The goals of <em>debug logging</em> and <em>release logging</em> are quite different. <em>Debug logging</em> is about adding <em>Log Statements</em> to your code that enables you to see on the terminal console, your IDEs output window or in a log-file, what your software currently does or recently did, what errors and warnings it produces, how long certain methods take to execute and whatever you want your software to tell you while testing it. Debug <em>Log Statements</em> should ultimately be <em>pruned</em> (see next answer) from release binaries.</p>
@@ -128,11 +128,11 @@ What is Pruning?</h1>
 <li>Hide technical details and secrets, by not only stopping the output but by also removing all textual strings from your executable or library that include debug messages.</li>
 </ul>
 <p>Automatic pruning assures furthermore, that the above stays true for all <em>debug logging</em> statements while all <em>release logging</em> statements remain in the code. Such remaining <em>release logging</em> might be deactivated initially and activated in case of runtime errors, external triggers, or other special events.</p>
-<p>For details on how pruning is implemented in the different flavors of ALox, refer to <a class="elRef" doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" href="./cpp_ref/cppprepro.html#cppprepro_macros">Pruning ALox for C++</a>, <a class="elRef" doxygen="ALox/html/cs_ref/cs_ref.tag:./cs_ref/" href="./cs_ref/cspruning.html">Pruning ALox for C#</a> and <a class="elRef" doxygen="ALox/html/java_ref/java_ref.tag:./java_ref/" href="./java_ref/javasetup.html#javasetup_pruning">Pruning ALox for Java</a>.</p>
+<p>For details on how pruning is implemented in the different flavors of ALox, refer to <a class="elRef" doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" href="./cpp_ref/alox_cpp_prepro.html#alox_cpp_prepro_macros">Pruning ALox for C++</a>, <a class="elRef" doxygen="ALox/html/cs_ref/cs_ref.tag:./cs_ref/" href="./cs_ref/alox_cs_pruning.html">Pruning ALox for C#</a> and <a class="elRef" doxygen="ALox/html/java_ref/java_ref.tag:./java_ref/" href="./java_ref/alox_java_setup.html#alox_java_setup_pruning">Pruning ALox for Java</a>.</p>
 <h1><a class="anchor" id="faq_internationalization"></a>
 Why are ALox log formats all US/English?</h1>
 <p>Of-course the log content itself is unicode and hence supports your locale within your application. But the following is true: All configurable output of meta information is done in US/English locale. There is no config option to change this. The reason is, that log output is really something that is not for a different audience than the software developers and here, US/English rules (just look at the keywords of your programming language). And we think that a maximum of compatibility (e.g. with other tools or within international teams) is guaranteed this way.<br />
- If you absolutely want localized meta information, like logging the name of months in Finnish, you can extend ALox for that. Here is <a class="el" href="man_ext_loggers.html#man_loggers_textlogger">how you do that</a>!</p>
+ If you absolutely want localized meta information, like logging the name of months in Finnish, you can extend ALox for that. Here is <a class="el" href="alox_man_ext_loggers.html#alox_man_loggers_textlogger">how you do that</a>!</p>
 <p><br />
  </p>
 <h1><a class="anchor" id="faq_aworx_util"></a>
@@ -142,7 +142,7 @@ Why is ALox introducing a set of own utility classes?</h1>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:48:03 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:20 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

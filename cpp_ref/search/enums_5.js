@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['reach',['Reach',['../namespaceaworx_1_1lib_1_1lang.html#a9537c0a8df05f0a728b6e2a89c7f3a1b',1,'aworx::lib::lang']]],
-  ['responsibility',['Responsibility',['../namespaceaworx_1_1lib_1_1lang.html#ab5305b978950ba3946cf79a4bccbf7af',1,'aworx::lib::lang']]],
-  ['result',['Result',['../namespaceaworx_1_1lib_1_1lang.html#a28287671eaf7406afd604bd055ba4066',1,'aworx::lib::lang']]]
+  ['inclusion',['Inclusion',['../namespaceaworx_1_1lib_1_1lang.html#a217539925b78b2eed40ae7817d5bee52',1,'aworx::lib::lang']]],
+  ['initlevels',['InitLevels',['../classaworx_1_1lib_1_1lang_1_1Library.html#af5f7af5636e8a1e1baf1076f08e79b02',1,'aworx::lib::lang::Library']]]
 ];

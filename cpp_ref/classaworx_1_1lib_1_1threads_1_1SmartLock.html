@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -99,7 +99,7 @@ Inheritance diagram for SmartLock:</div>
 <div class="dynheader">
 Collaboration diagram for SmartLock:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1threads_1_1SmartLock__coll__graph.svg" width="1272" height="236"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1threads_1_1SmartLock__coll__graph.svg" width="508" height="422"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
@@ -109,10 +109,10 @@ Collaboration diagram for SmartLock:</div>
 <li>An instance of this type must not be acquired before an <em>acquirer</em> is registered.</li>
 <li>The <em>acquirers</em> have to be in recursive mode.</li>
 <li>If <em>acquirers</em> are locked in a nested fashion, then they have to be added in the same order they are locked and removed in reverse order</li>
-<li>An <em>acquirer</em> must not be added twice. (This is not a technical restriction, but a chosen design. While a second addition is ignored, in debug versions of the code, an <em>ALib Error Report</em> is written (by default this triggers an assertion).</li>
+<li>An <em>acquirer</em> must not be added twice. (This is not a technical restriction, but a chosen design. While a second addition is ignored, in debug versions of the code, an <em><a class="el" href="classaworx_1_1lib_1_1ALib.html">ALib</a> Error Report</em> is written (by default this triggers an assertion).</li>
 </ul>
 <p><b>Using nulled acquirers:</b><br />
- Sometimes it is useful to add a <code>nullptr</code> as an <em>acquirer</em>. A sample for this is found and explained with <a class="el" href="classaworx_1_1lib_1_1ALIB.html#aeb9e114000a0c289b2e570050dd1eed4">ALIB::StdOutputStreamsLock</a>. If the first acquirer is nullptr, the second should be added in a thread-safe way. This means, the code invoking <a class="el" href="classaworx_1_1lib_1_1threads_1_1SmartLock.html#ac097a5b90ddc055cbf44b6a87b8cfda6">AddAcquirer</a> needs to care for itself, that this object is not acquired during this process. E.g. it can be done in the bootstrap section of a process, when no parallel threads were started. For further acquirers, such care does not need to be taken. While an <em>acquirer</em> must not be attached twice, 'anonymous' (nullptr) <em>acquirers</em> may. For each anonymous invocation of <a class="el" href="classaworx_1_1lib_1_1threads_1_1SmartLock.html#ac097a5b90ddc055cbf44b6a87b8cfda6">AddAcquirer</a>, a corresponding call <a class="el" href="classaworx_1_1lib_1_1threads_1_1SmartLock.html#a2f480eaa76919774ba222225c952b874">RemoveAcquirer</a> is needed, to get back to <b>Safeness::Unsafe</b>. </p>
+ Sometimes it is useful to add a <code>nullptr</code> as an <em>acquirer</em>. A sample for this is found and explained with <a class="el" href="classaworx_1_1lib_1_1ALib.html#a23d1ec070363dc767181ffab3f064091">ALib.StdOutputStreamsLock</a>. If the first acquirer is nullptr, the second should be added in a thread-safe way. This means, the code invoking <a class="el" href="classaworx_1_1lib_1_1threads_1_1SmartLock.html#ac097a5b90ddc055cbf44b6a87b8cfda6">AddAcquirer</a> needs to care for itself, that this object is not acquired during this process. E.g. it can be done in the bootstrap section of a process, when no parallel threads were started. For further acquirers, such care does not need to be taken. While an <em>acquirer</em> must not be attached twice, 'anonymous' (nullptr) <em>acquirers</em> may. For each anonymous invocation of <a class="el" href="classaworx_1_1lib_1_1threads_1_1SmartLock.html#ac097a5b90ddc055cbf44b6a87b8cfda6">AddAcquirer</a>, a corresponding call <a class="el" href="classaworx_1_1lib_1_1threads_1_1SmartLock.html#a2f480eaa76919774ba222225c952b874">RemoveAcquirer</a> is needed, to get back to <b>Safeness::Unsafe</b>. </p>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
@@ -138,9 +138,12 @@ Public Methods</h2></td></tr>
 <tr class="memitem:a7b2ea79ab83658e6c8b5f803c9b22475 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a8c800527afe0a8a6c71ae4cceda6bf9d">lang::Safeness</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7b2ea79ab83658e6c8b5f803c9b22475">GetSafeness</a> () const</td></tr>
 <tr class="separator:a7b2ea79ab83658e6c8b5f803c9b22475 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94c93747c8daa99d65c2a04c6be0748c inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c">Release</a> ()</td></tr>
+<tr class="memdesc:a94c93747c8daa99d65c2a04c6be0748c inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="mdescLeft">&#160;</td><td class="mdescRight">defined(DOX_PARSER)  <a href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c">More...</a><br /></td></tr>
 <tr class="separator:a94c93747c8daa99d65c2a04c6be0748c inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7610d5aa2df13cbaf64eb5ac17ddee71 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7610d5aa2df13cbaf64eb5ac17ddee71">SetSafeness</a> (<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a8c800527afe0a8a6c71ae4cceda6bf9d">lang::Safeness</a> safeness)</td></tr>
 <tr class="separator:a7610d5aa2df13cbaf64eb5ac17ddee71 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7950eee52ea10c4637f72ec9e152f316 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7950eee52ea10c4637f72ec9e152f316">WillRelease</a> () const</td></tr>
+<tr class="separator:a7950eee52ea10c4637f72ec9e152f316 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classaworx_1_1lib_1_1lang_1_1Ownable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classaworx_1_1lib_1_1lang_1_1Ownable')"><img src="closed.png" alt="-"/>&#160;Public Methods inherited from <a class="el" href="classaworx_1_1lib_1_1lang_1_1Ownable.html">Ownable</a></td></tr>
 <tr class="memitem:a0cf51e767ecc62f4adc80e8d69e066df inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Ownable"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Ownable.html#a0cf51e767ecc62f4adc80e8d69e066df">~Ownable</a> ()</td></tr>
 <tr class="separator:a0cf51e767ecc62f4adc80e8d69e066df inherit pub_methods_classaworx_1_1lib_1_1lang_1_1Ownable"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -247,7 +250,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overwriting <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a607d6c96bfd21c3530e8a7fab9ca0395">ThreadLock::Acquire</a>. Writes an error report, if no <em>acquirers</em> are attached. </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Overwriting <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a0d1442ed6b0204331a77b7afbfd27b1e">ThreadLock::Acquire</a>. Writes an error report, if no <em>acquirers</em> are attached. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">file</td><td>Caller information. Available only in debug compilations. </td></tr>
     <tr><td class="paramname">line</td><td>Caller information. Available only in debug compilations. </td></tr>
@@ -256,7 +259,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented from <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a607d6c96bfd21c3530e8a7fab9ca0395">ThreadLock</a>.</p>
+<p>Reimplemented from <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a0d1442ed6b0204331a77b7afbfd27b1e">ThreadLock</a>.</p>
 
 </div>
 </div>
@@ -406,7 +409,7 @@ Additional Inherited Members</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

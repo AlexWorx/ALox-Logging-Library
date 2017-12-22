@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -82,7 +82,9 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#namespaces">Nested namespaces</a> &#124;
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
 <div class="title">aworx::lib::config Namespace Reference</div>  </div>
 </div><!--header-->
@@ -92,22 +94,24 @@ $(function() {
  <dl class="section note"><dt>Note</dt><dd>It may be helpful to read this namespace documentation and understand the concepts - even if you are not planning to use configuration variables in your own code. The reason is that with the knowledge of the principals described here, it is possible to influence the behavior of 3rd party code (code of other team members or <b>ALib</b> enabled libraries like for example <b>ALox Logging Library</b>).</dd></dl>
 <h1>1. Introduction</h1>
 <p>This package provides tools to read and write configuration data using different mechanisms. In short, the features are:</p><ul>
-<li>A central class to retrieve external configuration data from various sources.</li>
-<li>Abstract plug-in class to read and optionally store a certain type of external source.</li>
-<li>Predefined plug-ins for command line parameters, environment variables and simple INI files.</li>
+<li>Central class <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a> used to retrieve and store external configuration data using arbitrary sources.</li>
+<li>Abstract plug-in interface <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> to read from (and optionally store into) custom external storage.</li>
+<li>Predefined plug-ins for command line parameters, environment variables, in-memory storage and simple INI files.</li>
 <li>The possibility to set default values 'in code' (if no external plug-in finds a value) and doing this "out of scope" which means independent from the code that finally uses a variable.</li>
 <li>The possibility to protect variables 'in code' from being modified (to block modification of variables exposed by 3rd party code).</li>
 <li>Automatic resolving of nested variables: Define a value once and pass it as a variable to other variables ("variable substitution").</li>
 <li>With the combination of variable substitution and protection of variable values, it is possible to hide, rename or even redefine the syntax and behavior of variables exposed by third party code (e.g. libraries).</li>
+<li>In the C++ version, variable declaration (defining the category, name, default value, comment and other fields) can be optionally externalized using a combination of concepts <a class="el" href="classaworx_1_1lib_1_1lang_1_1Resources.html">Resources</a>, <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html">Library</a> and <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumMetaDataDecl.html">enum meta data</a>.<br />
+ <b>ALib</b>s internal variables itself are externalized and hence can be renamed by users of those libraries.</li>
 </ul>
 <p><b>Class Configuration and Plug-ins:</b><br />
 </p>
 <p>The plug-ins, derived from abstract class <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> are plugged into an object of type <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a> and are responsible for reading (and optionally writing) variables from dedicated sources.</p>
 <p>Class <b>Configuration</b> offers an interface to retrieve and store configuration variables using the plug-ins. The plug-ins are attached to the <b>Configuration</b> instance along with a unique priority. Values are retrieved and stored by looping through the plug-ins sorted by priority. As soon as one plug-in confirms to have found (or stored) the variable, the loop ends. This way, plug-ins may "overrule" each other in respect to retrieving configuration data.</p>
-<p>Class <a class="el" href="classaworx_1_1lib_1_1ALIB.html">ALIB</a> creates a static singleton of this class for public access and this singleton is usually all that is needed.</p>
+<p>Class <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html">Library</a> creates an instance of this class with public access and this instance is usually all that is needed.</p>
 <p><b>Naming Configuration Variables</b>:<br />
 </p>
-<p>Configuration variables are addressed by two strings: The <b>category</b> and the <b>name</b>. In the case of INI files, the category is translated to the section and the name to variables within the section. Other plug-ins, for example <a class="el" href="classaworx_1_1lib_1_1config_1_1CommandLinePlugin.html">CommandLinePlugin</a> or <a class="el" href="classaworx_1_1lib_1_1config_1_1EnvironmentPlugin.html">EnvironmentPlugin</a>, are prepending the category name to the variable name separated by an underscore character <code>'_'</code>. For example, a variable in category <code>"ALIB"</code> named <code>"WAIT_FOR_KEY_PRESS"</code>, in an INI file would be stated like this: </p><pre class="fragment">    [ALIB]
+<p>Configuration variables are addressed by two strings: The <b>category</b> and the <b>name</b>. In the case of INI files, the category is translated to the section and the name to variables within the section. Other plug-ins, for example <a class="el" href="classaworx_1_1lib_1_1config_1_1CLIArgs.html">CLIArgs</a> or <a class="el" href="classaworx_1_1lib_1_1config_1_1Environment.html">Environment</a>, are prepending the category name to the variable name separated by an underscore character <code>'_'</code>. For example, a variable in category <code>"ALIB"</code> named <code>"WAIT_FOR_KEY_PRESS"</code>, in an INI file would be stated like this: </p><pre class="fragment">    [ALIB]
     WAIT_FOR_KEY_PRESS= yes
 </pre><p>To define the same variable and value on the command-line, the parameter needs to be: </p><pre class="fragment">    --ALIB_WAIT_FOR_KEY_PRESS=yes
 </pre><p>The anonymous, empty category is allowed. For convenience, with variables of this category, no underscore is prepended by the plug-ins. The little drawback of this is, that variables in the anonymous category that contain an underscore character, for some plug-ins can get ambiguous. For example, variable <code>MY_VARIABLE</code> in the anonymous category, on the command line would be uniquely addressed by: </p><pre class="fragment">    --MY_VAR=my value
@@ -115,49 +119,38 @@ $(function() {
 <pre class="fragment">    MY_VAR      =       my value
 </pre><p>or, in section <code>MY:</code> </p><pre class="fragment">    [MY]
     VAR         =       my value
-</pre><h1>2. Command-Line parameters, Environment Variables and INI files</h1>
+</pre><h1>2. Command-Line parameters, <a class="el" href="classaworx_1_1lib_1_1config_1_1Environment.html">Environment</a> Variables and INI files</h1>
 <p>Three different standard plug-ins that collect external configuration variables are provided with <b>ALib</b> already:</p><ul>
-<li>Class <a class="el" href="classaworx_1_1lib_1_1config_1_1CommandLinePlugin.html">CommandLinePlugin</a>:<br />
+<li>Class <a class="el" href="classaworx_1_1lib_1_1config_1_1CLIArgs.html">CLIArgs</a>:<br />
  Reads parameter values of the form -[-]CategoryName_VariableName=value from the command line.</li>
-<li>Class <a class="el" href="classaworx_1_1lib_1_1config_1_1EnvironmentPlugin.html">EnvironmentPlugin</a>:<br />
+<li>Class <a class="el" href="classaworx_1_1lib_1_1config_1_1Environment.html">Environment</a>:<br />
  Reads system defined environment variables (see <a href="https://en.wikipedia.org/wiki/Environment_variable">Wikipedia</a> of the form <code>CategoryName_VariableName=value</code>.</li>
 <li>Class <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html">IniFile</a>:<br />
  Reads and writes quite standard INI files (see <a href="https://en.wikipedia.org/wiki/INI_file">Wikipedia</a>. </li>
 </ul>
-<p>The proposed priorities to be used when attaching the plug-ins to the <b>Configuration</b> object, are given in static fields:</p>
-<ul>
-<li><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a1baac67c511294bc3317b956ea196b11">Configuration::PrioCmdLine</a> (400)</li>
-<li><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a521974ec2e990cfb266f4e83b451d578">Configuration::PrioEnvironment</a> (300)</li>
-<li><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ac0e213817eb829a4d7b3f1960814a781">Configuration::PrioIniFile</a> (200)</li>
-</ul>
+<p>The proposed priorities to be used when attaching the plug-ins to the <b>Configuration</b> object, are enumerated in <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities</a>, which is an <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">arithmetical enumeration</a>.</p>
 <p>With these default priorities set, whatever is stored in an INI file, can be overwritten by setting an environment variable. Both settings can in turn be overwritten by specifying a corresponding command line parameter when launching the process!</p>
 <h1>3. Default Variables</h1>
-<p>In addition to the three plug-ins described above, <b>ALib</b> implements a fourth one, class <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a>. As the name indicates, this class keeps configuration variables in memory. The special thing about it is that it does not read any external data source! The reason for having it, is twofold. The first use case are <em>Default variables</em>.<br />
-</p>
-<p>An instance is plugged into class <b>Configuration</b> with a priority of</p><ul>
-<li><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a5854d47deb1f21be95871268fa3efa02">Configuration::PrioDefault</a> (100),</li>
-</ul>
-<p>this plug-in serves as a storage for default values. The only way to set these default values is <em>programatically</em>, which means "with program code".</p>
+<p>In addition to the three plug-ins described above, <b>ALib</b> implements a fourth one, class <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a>. As the name indicates, this class keeps configuration variables in memory. The special thing about it is that it does not read any external data source! The reason for having it, is twofold. The first use case are <em>Default variables</em>: An instance is plugged into class <b>Configuration</b> with a (low) priority of <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities::DefaultValues</a>. This plug-in serves as a storage for default values. The only way to set these default values is <em>programatically</em>, which means "with program code".</p>
 <p>The advantages of having such default variables are:</p><ul>
 <li>Code that checks whether a variable is set can be omitted (there is always a value found).</li>
 <li>Code that sets default values if no variable is set can be omitted.</li>
-<li>All default settings can be made in one place (bootstrap section of a process or library)</li>
+<li>All default settings can be made in one place (in resources or in a in custom bootstrap section of a process or library)</li>
 </ul>
-<h1>4. Protecting Variables</h1>
-<p>Class <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a> is by default used a second time by plugging an instance into class <b>Configuration</b> with a priority of</p><ul>
-<li><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#aaadcce82539022fab50871afc106a9d1">Configuration::PrioProtected</a> (max integer).</li>
-</ul>
+<p><a class="anchor" id="cpp_alib_config_protection"></a></p><h1>4. Protecting Variables</h1>
+<p>Class <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a> is by default used a second time by plugging an instance into class <b>Configuration</b> with the highest possible priority <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities::ProtectedValues</a>.</p>
 <p>When setting a variable within this plug-in, no other plug-in can <em>'overrule'</em> this value. This way, it is possible to protect values against external modification.</p>
 <dl class="section note"><dt>Note</dt><dd>One might think: "If I do not want to allow external modification, I rather hard-code
     everything". This of-course is true for code under control. However, for 3rd party code using <b>ALib</b>, this offers an easy way to disallow users of your software (which incorporates that 3rd party code) to configure things that you do not want to be configurable.</dd></dl>
 <h1>5. Using class Configuration</h1>
-<p>In normal use cases, there is no need to create an instance of class <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a>, as a singleton is provided with <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ac7b578f72e6b1f48e14ad3a762c412db">Configuration::Default</a>. The command line parameters (optionally) provided with <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a53d8c6754ea7c4d7a0432cdb5f5b6371">ALIB::Init</a> are passed to the command-line plug-in of this singleton.</p>
-<p>Class Configuration in the constructor sets up four plug-ins automatically: One for command-line, one for environment variables and two in-memory plug-ins used for default values and protected values. Each plug-in is publicly addressable (with fields <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ada8187fc67d8f54a46aed3bf04542e08">CmdLine</a>, <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a3a317739ee132a40b625cafa2c5a8706">Environment</a>, <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a64b37d856a86344c0d3c1a6d9779e6f6">DefaultValues</a> and <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a694607c106d5e636c5fc90d623c0dcef">ProtectedValues</a>).</p>
-<p>If an application wants to suppress the use of one of the plug-ins, the plug-ins can be removed using method <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a0cc199ada725868041d059e7098b0ccd">RemovePlugin</a>.<br />
- On the other hand, a plug-in of type <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html">IniFile</a> may be attached on bootstrap of a process using <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ac0e213817eb829a4d7b3f1960814a781">Configuration::PrioIniFile</a> (200).</p>
-<p>In addition (or alternatively), custom plug-ins may be written and installed using arbitrary priorities. Especially, provided class <b>IniFile</b> is designed for simplicity and smaller applications. Instead of using it <b>IniFile</b>, it is recommended to use application/platform specific mechanisms for writing configuration data. In this case, write your own plug-in to grant <b>ALib</b> and other libraries which rely on <b>ALib</b>, access to your applications's configuration data. Again, <b>ALib</b> here follows its design principle to be non intrusive: The plug-in concept allows users of <b>ALib</b> (more important: users of <b>ALib</b> enabled libraries) to expose any external configuration source to these libraries. This way, the users can stick to his/her preferred way of implementation.</p>
+<p>In normal use cases, there is no need to create an instance of class <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a>, as a singleton is provided with <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a7e8a1c3ae5bce4e178fa1d122021bb7d">Library::Config</a> for every library. The command line parameters (optionally) provided with <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#abad644913fc967938ede0607a353e29c">Library::Init</a> are passed to the command-line plug-in of this singleton. Dependent libraries will receive the same singleton instance, unless they are explicitly initialized prior to initializing the library that builds upon them. (For details see <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html">Library</a>.)</p>
+<p>Class Configuration in the constructor by default sets up four plug-ins automatically: <a class="el" href="classaworx_1_1lib_1_1config_1_1CLIArgs.html">CLIArgs</a> for parsing command-line arguments as variables, <a class="el" href="classaworx_1_1lib_1_1config_1_1Environment.html">Environment</a> for environment variables and two plug-ins of type <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a> used for default and protected values.</p>
+<p>If an application wants to suppress the use of one of the plug-ins, the plug-ins can be removed using method <a class="el" href="classaworx_1_1lib_1_1util_1_1PluginContainer.html#a12da6b5f9ce8fe0c80261384ab45e071">RemovePlugin</a>.<br />
+ On the other hand, a plug-in of type <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html">IniFile</a> may be attached on bootstrap of a process (or later) using <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814ddaeb6d8ae6f20283755b339c0dc273988b">Priorities::Standard</a>.</p>
+<p>In addition (or alternatively), custom plug-ins may be written and installed using arbitrary priorities.</p>
+<p>Class <b>IniFile</b> is designed for simplicity and smaller applications. Instead of using it <b>IniFile</b>, it is recommended to use application/platform specific mechanisms for writing configuration data. In this case, write your own plug-in to grant <b>ALib</b> and other libraries which rely on <b>ALib</b>, access to your applications's configuration data. Again, <b>ALib</b> here follows its design principle to be non intrusive: The plug-in concept allows users of <b>ALib</b> (more important: users of <b>ALib</b> enabled libraries) to expose any external configuration source to these libraries. This way, the users can stick to his/her preferred way of implementation.</p>
 <p><a class="anchor" id="cpp_alib_namespace_config_substitution"></a></p><h1>6. Variable Substitution</h1>
-<p>Method <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a6abcf130e83414cb45a3130e7de0aff9">Configuration::Load</a> by default substitutes references to other configuration variables found in the value of the requested variable.</p>
+<p>Method <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a54eb8ca9a9f484609edf27bc57af2e73">Configuration::Load</a> by default substitutes references to other configuration variables found in the value of the requested variable.</p>
 <p>For example, if two variables are defined as follows: </p><pre class="fragment">    MYCAT_RESULT= 42
     MYCAT_MYVARIABLE= The result is $MYCAT_RESULT
 </pre><p>then, with the retrieval of variable <code>MYCAT_MYVARIABLE</code>, variable <code>MYCAT_RESULT</code> is read and the substring "$MYCAT_RESULT" is substituted by "42".<br />
@@ -165,7 +158,7 @@ $(function() {
 <p>Substitutions are performed repeatedly until all variables are resolved. Therefore, nested substitutions may be defined as well. To avoid an endless loop in case of circular dependencies, a simple threshold applies: A maximum of 50 replacements are done.</p>
 <p>The dollar sign <code>'$'</code> used to recognize variables is the default and can be modified. It is also possible to specify a prefix and a suffix for the identification of substitutable variables in other variables' values. For example, the syntax can be adjusted to </p><pre class="fragment">    MYCAT_MYVARIABLE= The result is %{MYCAT_RESULT}
 </pre><p>See documentation of fields <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ab1b62c82d8f31bc322674109a0aaa905">SubstitutionVariableStart</a>, <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#af688cf13bb219d944adb4731a227451d">SubstitutionVariableEnd</a> and <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a822c543b34c30995bd4b8d7df220af83">SubstitutionVariableDelimiters</a> for more information.</p>
-<p>When parsing a variables' category and name, method <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a6abcf130e83414cb45a3130e7de0aff9">Configuration::Load</a> searches for an underscore character <code>'_'</code>. The first underscore found serves as a delimiter of category from the name. If no underscore character is found, the category is left empty (anonymous category) and the name is set to what is given as a variable name. </p><dl class="section note"><dt>Note</dt><dd>This implies that variables which have no category but have an underscore in their name, need to be specified with a leading underscore. For example: <pre class="fragment">    TEXT= Welcome to $_HOME_LOCATION
+<p>When parsing a variables' category and name, method <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a54eb8ca9a9f484609edf27bc57af2e73">Configuration::Load</a> searches for an underscore character <code>'_'</code>. The first underscore found serves as a delimiter of category from the name. If no underscore character is found, the category is left empty (anonymous category) and the name is set to what is given as a variable name. </p><dl class="section note"><dt>Note</dt><dd>This implies that variables which have no category but have an underscore in their name, need to be specified with a leading underscore. For example: <pre class="fragment">    TEXT= Welcome to $_HOME_LOCATION
 </pre> </dd>
 <dd>
 refers to a variable name <code>HOME_LOCATION</code> in the anonymous category <code>""</code>.<br />
@@ -175,9 +168,9 @@ refers to a variable name <code>HOME_LOCATION</code> in the anonymous category <
 </ul>
 </dd></dl>
 <h1>7. Loading and Storing Variables</h1>
-<p>Values of variables are loaded and received using instances of class <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a>. Instances of this class can be passed to the interface of class <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a> or directly to specific <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> objects. However, the simplest way of loading and storing variables is to use the interface methods of class <b>Variable</b> itself. These methods are considered "available for convenience", hence all they do is to invoke methods of class <b>Configuration</b> passing themselves as parameters. The methods are using the public static singleton <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ac7b578f72e6b1f48e14ad3a762c412db">Configuration::Default</a>. For most use cases this all that is needed!</p>
+<p>Values of variables are loaded and received using instances of class <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a>. Instances of this class can be passed to the interface of class <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a> or directly to specific <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> objects.</p>
 <p>Simple access methods allow to read or set the values of a variable.</p>
-<p>By consequently using optional struct <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">VariableDefinition</a> for defining all variables of an application or library, all attributes of variables can be maintained in one place. This includes categories, names, comments, value delimiters and default values of variables. Class <b>Variable</b> accepts instances of <b>VariableDefinition</b> in the constructor as well as in overloaded method <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#a342e5a4af654bd6e366ed799fcf537b6">Variable::Define</a>.</p>
+<p>By consequently using optional struct <a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDecl.html">VariableDecl</a> for declaring all variables of an application or library, all attributes of variables can be maintained in one place. This includes categories, names, comments, value delimiters and default values of variables. Class <b>Variable</b> accepts instances of <b>VariableDecl</b> in the constructor as well as in overloaded method <a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html#af8a6d9b6a1c6e6b4a570466200c75144">Variable::Declare</a>.</p>
 <h1>8. In- and Externalizing Variable values</h1>
 <p>Variable values provided via command line parameters, environment variables or textual configuration files need to be converted when loading and storing them. This has two reasons:</p><ul>
 <li>Certain characters of variables have to be "escaped", e.g. <code>'\n'</code> or <code>'\t'</code> within strings</li>
@@ -185,17 +178,25 @@ refers to a variable name <code>HOME_LOCATION</code> in the anonymous category <
 </ul>
 <p>For this task, class <a class="el" href="classaworx_1_1lib_1_1config_1_1XTernalizer.html">XTernalizer</a> is used. Each <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a> owns an instance of this class (which is exchangeable). Conversion is done internally and there is no need to interface with this class directly when using variables. A huge benefit of this API design is that variable values look the same in an INI-file as when passed as a command line parameter.</p>
 <p>But it is important to understand that value parameters provided with interface methods to store variables accept "externalized" strings only. In simple cases this is not relevant. But if a variable contains multiple values or special characters, it has to be understood that 'internalization' of the value takes place.</p>
-<p>Normal, internal string values need to be added to the variable in code prior to invoking a store method. If an externalized string is provided with the store methods, then previously added variable values are cleared! </p>
+<p>Normal, internal string values need to be added to the variable in code prior to invoking a store method. If an externalized string is provided with the store methods, then previously added variable values are cleared!</p>
+<h1>Reference Documentation</h1>
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Nested namespaces</h2></td></tr>
+<tr class="memitem:namespaceaworx_1_1lib_1_1config_1_1detail"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1config_1_1detail.html">detail</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1CommandLinePlugin.html">CommandLinePlugin</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1CLIArgs.html">CLIArgs</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Config.html">Config</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html">ConfigurationPlugin</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1EnvironmentPlugin.html">EnvironmentPlugin</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Environment.html">Environment</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html">IniFile</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -203,16 +204,139 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1Variable.html">Variable</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDefinition.html">VariableDefinition</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1config_1_1VariableDecl.html">VariableDecl</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1XTernalizer.html">XTernalizer</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a8d828d7f6e0c02a7815c7e1308d3b06e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1config.html#a8d828d7f6e0c02a7815c7e1308d3b06e">Exceptions</a> { <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a8d828d7f6e0c02a7815c7e1308d3b06ead083aedf850e5989f336e50d1a539d44">ErrorOpeningFile</a> = 1, 
+<a class="el" href="namespaceaworx_1_1lib_1_1config.html#a8d828d7f6e0c02a7815c7e1308d3b06ea4d772ffe878e53b6d4e62d6a5b488e36">ErrorWritingFile</a> = 2
+ }</td></tr>
+<tr class="separator:a8d828d7f6e0c02a7815c7e1308d3b06e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac55b7da10891e6be23f1dcc7a7daa286"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1config.html#ac55b7da10891e6be23f1dcc7a7daa286">FormatHints</a> { <b>None</b> = 0, 
+<b>MultLine</b> = 1 &lt;&lt; 0, 
+<b>NoDelimSpaces</b> = 1 &lt;&lt; 1, 
+<b>Custom</b> = 1 &lt;&lt; 16
+ }</td></tr>
+<tr class="separator:ac55b7da10891e6be23f1dcc7a7daa286"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f738b6463e8c773284e5173741814dd"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities</a> { <br />
+&#160;&#160;<a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814ddaa439cc535cfa5d7f3f2def352e2255b0">AutoDetected</a> = 500, 
+<a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814ddaff1c11ab5744d2a4a07760b31e816e7f">DefaultValues</a> = 10000, 
+<a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814ddaeb6d8ae6f20283755b339c0dc273988b">Standard</a> = 20000, 
+<a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dda0ba29c6a1afacf586b03a26162c72274">Environment</a> = 30000, 
+<br />
+&#160;&#160;<a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dda91af5705f16502125e8b2187e64202c0">CLI</a> = 40000, 
+<a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dda663d90fa900995eda127ba7745719104">ProtectedValues</a> = (std::numeric_limits&lt;int&gt;::max)(), 
+<a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814ddab50339a10e1de285ac99d4c3990b8693">NONE</a> = 0
+<br />
+ }</td></tr>
+<tr class="separator:a4f738b6463e8c773284e5173741814dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a8d828d7f6e0c02a7815c7e1308d3b06e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d828d7f6e0c02a7815c7e1308d3b06e">&#9670;&nbsp;</a></span>Exceptions</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a8d828d7f6e0c02a7815c7e1308d3b06e">Exceptions</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Exception codes </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a8d828d7f6e0c02a7815c7e1308d3b06ead083aedf850e5989f336e50d1a539d44"></a>ErrorOpeningFile&#160;</td><td class="fielddoc"><p>File not found when reading. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a8d828d7f6e0c02a7815c7e1308d3b06ea4d772ffe878e53b6d4e62d6a5b488e36"></a>ErrorWritingFile&#160;</td><td class="fielddoc"><p>An error occurred writing the file . </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ac55b7da10891e6be23f1dcc7a7daa286"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac55b7da10891e6be23f1dcc7a7daa286">&#9670;&nbsp;</a></span>FormatHints</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceaworx_1_1lib_1_1config.html#ac55b7da10891e6be23f1dcc7a7daa286">FormatHints</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Denotes hints for formatting variables when storing in external configuration files </p>
+
+</div>
+</div>
+<a id="a4f738b6463e8c773284e5173741814dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f738b6463e8c773284e5173741814dd">&#9670;&nbsp;</a></span>Priorities</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dd">Priorities</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">Bitwise</a> enumeration of slots used for plug-ins. The associated <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumMetaDataDecl.html">enum meta data table</a> contains the slot priorities. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a4f738b6463e8c773284e5173741814ddaa439cc535cfa5d7f3f2def352e2255b0"></a>AutoDetected&#160;</td><td class="fielddoc"><p>Constant providing a priority which is even lower than default. This priority is not used by any standard plug-ins and currently not even anywhere in core <b>ALib</b>. The rational to provide it is for third party libraries that may use this value in cases where values are estimated or detected instead of defaulted.<br />
+ A user of the library may then overwrite such auto-detection by setting a default value in the configuration.<br />
+ The underlying integer value is <code>500</code>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a4f738b6463e8c773284e5173741814ddaff1c11ab5744d2a4a07760b31e816e7f"></a>DefaultValues&#160;</td><td class="fielddoc"><p>Used to store default values. By default, a plug-in of type <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a> is installed here.. The underlying integer value is <code>500</code>. <code>10000</code>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a4f738b6463e8c773284e5173741814ddaeb6d8ae6f20283755b339c0dc273988b"></a>Standard&#160;</td><td class="fielddoc"><p>Used to attach the main application configuration plug-in. For example an plug-in of type <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html">IniFile</a>. The underlying integer value is <code>500</code>. <code>20000</code>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a4f738b6463e8c773284e5173741814dda0ba29c6a1afacf586b03a26162c72274"></a>Environment&#160;</td><td class="fielddoc"><p>Used with plug-in <a class="el" href="classaworx_1_1lib_1_1config_1_1Environment.html">Environment</a>. The underlying integer value is <code>30000</code>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a4f738b6463e8c773284e5173741814dda91af5705f16502125e8b2187e64202c0"></a>CLI&#160;</td><td class="fielddoc"><p>Used with plug-in <a class="el" href="classaworx_1_1lib_1_1config_1_1CLIArgs.html">CLIArgs</a>. The underlying integer value is <code>40000</code>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a4f738b6463e8c773284e5173741814dda663d90fa900995eda127ba7745719104"></a>ProtectedValues&#160;</td><td class="fielddoc"><p>Used to store protected values. By default, a plug-in of type <a class="el" href="classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a> is installed here. No other plug-in can overwrite configuration variables which are defined in a plug-in with this priority.<br />
+ The underlying integer value is <code>std::numeric_limits&lt;int&gt;::max()</code>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a4f738b6463e8c773284e5173741814ddab50339a10e1de285ac99d4c3990b8693"></a>NONE&#160;</td><td class="fielddoc"><p>Used to denote that no variable or plug-in was found. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:57 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:15 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

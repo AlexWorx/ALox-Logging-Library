@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -120,20 +120,26 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:abcce4a2cc847b6ab04e5eddbcfd0b4e2"><td class="memItemLeft" align="right" valign="top">inline ::std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#abcce4a2cc847b6ab04e5eddbcfd0b4e2">operator&lt;&lt;</a> (::std::ostream &amp;stream, const String &amp;string)</td></tr>
-<tr class="separator:abcce4a2cc847b6ab04e5eddbcfd0b4e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99efdef7cac234f403cc722fc28e3551"><td class="memItemLeft" align="right" valign="top">inline ::std::ostream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#a99efdef7cac234f403cc722fc28e3551">operator&lt;&lt;</a> (::std::ostream *stream, const String &amp;string)</td></tr>
-<tr class="separator:a99efdef7cac234f403cc722fc28e3551"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeecd3f446cd52e4903ec0506e139f778"><td class="memItemLeft" align="right" valign="top">inline ::std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#aeecd3f446cd52e4903ec0506e139f778">operator&gt;&gt;</a> (::std::istream &amp;stream, AString &amp;string)</td></tr>
-<tr class="separator:aeecd3f446cd52e4903ec0506e139f778"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6aa23a97a1b196f03878e58b3dac7624"><td class="memItemLeft" align="right" valign="top">inline ::std::istream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#a6aa23a97a1b196f03878e58b3dac7624">operator&gt;&gt;</a> (::std::istream *stream, AString &amp;string)</td></tr>
-<tr class="separator:a6aa23a97a1b196f03878e58b3dac7624"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87fbb8b7085a135eb378c01ad642ca62"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#a87fbb8b7085a135eb378c01ad642ca62">operator&lt;&lt;</a> (std::ostream &amp;stream, const String &amp;string)</td></tr>
+<tr class="separator:a87fbb8b7085a135eb378c01ad642ca62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a711970990a045b7ee4c78c43968db751"><td class="memItemLeft" align="right" valign="top">std::ostream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#a711970990a045b7ee4c78c43968db751">operator&lt;&lt;</a> (std::ostream *stream, const String &amp;string)</td></tr>
+<tr class="separator:a711970990a045b7ee4c78c43968db751"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a8be392083299363a46570e0b11d422"><td class="memTemplParams" colspan="2">template&lt;typename TApplicable , typename TEnableIf  = typename std::enable_if&lt;aworx::lib::strings::T_Apply&lt;TApplicable&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a7a8be392083299363a46570e0b11d422"><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#a7a8be392083299363a46570e0b11d422">operator&lt;&lt;</a> (std::ostream &amp;stream, const TApplicable &amp;applicable)</td></tr>
+<tr class="separator:a7a8be392083299363a46570e0b11d422"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9692972d4d2aac14983aca97a761311"><td class="memTemplParams" colspan="2">template&lt;typename TApplicable , typename TEnableIf  = typename std::enable_if&lt;aworx::lib::strings::T_Apply&lt;TApplicable&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:ad9692972d4d2aac14983aca97a761311"><td class="memTemplItemLeft" align="right" valign="top">std::ostream *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#ad9692972d4d2aac14983aca97a761311">operator&lt;&lt;</a> (std::ostream *stream, const TApplicable &amp;applicable)</td></tr>
+<tr class="separator:ad9692972d4d2aac14983aca97a761311"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9651871e7daa6d9fc7cf18c22b11daa4"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#a9651871e7daa6d9fc7cf18c22b11daa4">operator&gt;&gt;</a> (std::istream &amp;stream, AString &amp;string)</td></tr>
+<tr class="separator:a9651871e7daa6d9fc7cf18c22b11daa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36c110c0bad310bc926dd4ba78bbb719"><td class="memItemLeft" align="right" valign="top">std::istream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#a36c110c0bad310bc926dd4ba78bbb719">operator&gt;&gt;</a> (std::istream *stream, AString &amp;string)</td></tr>
+<tr class="separator:a36c110c0bad310bc926dd4ba78bbb719"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:57 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:15 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

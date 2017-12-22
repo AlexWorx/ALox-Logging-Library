@@ -5,9 +5,9 @@ var searchData=
   ['aworx',['aworx',['../namespaceaworx.html',1,'']]],
   ['boxing',['boxing',['../namespaceaworx_1_1lib_1_1boxing.html',1,'aworx::lib::boxing'],['../namespaceaworx_1_1lib_1_1strings_1_1boxing.html',1,'aworx::lib::strings::boxing']]],
   ['config',['config',['../namespaceaworx_1_1lib_1_1config.html',1,'aworx::lib']]],
-  ['containers',['containers',['../namespaceaworx_1_1lib_1_1containers.html',1,'aworx::lib']]],
   ['core',['core',['../namespaceaworx_1_1lox_1_1core.html',1,'aworx::lox']]],
   ['debug',['debug',['../namespaceaworx_1_1lib_1_1debug.html',1,'aworx::lib']]],
+  ['detail',['detail',['../namespaceaworx_1_1lib_1_1config_1_1detail.html',1,'aworx::lib::config::detail'],['../namespaceaworx_1_1lib_1_1detail.html',1,'aworx::lib::detail'],['../namespaceaworx_1_1lib_1_1lang_1_1detail.html',1,'aworx::lib::lang::detail']]],
   ['format',['format',['../namespaceaworx_1_1lib_1_1strings_1_1format.html',1,'aworx::lib::strings']]],
   ['ftypes',['ftypes',['../namespaceaworx_1_1lib_1_1boxing_1_1ftypes.html',1,'aworx::lib::boxing']]],
   ['lang',['lang',['../namespaceaworx_1_1lib_1_1lang.html',1,'aworx::lib']]],
@@ -23,5 +23,5 @@ var searchData=
   ['thirdparty',['thirdparty',['../namespaceaworx_1_1lib_1_1boxing_1_1thirdparty.html',1,'aworx::lib::boxing::thirdparty'],['../namespaceaworx_1_1lib_1_1strings_1_1thirdparty.html',1,'aworx::lib::strings::thirdparty']]],
   ['threads',['threads',['../namespaceaworx_1_1lib_1_1threads.html',1,'aworx::lib']]],
   ['time',['time',['../namespaceaworx_1_1lib_1_1time.html',1,'aworx::lib']]],
-  ['util',['util',['../namespaceaworx_1_1lib_1_1strings_1_1util.html',1,'aworx::lib::strings']]]
+  ['util',['util',['../namespaceaworx_1_1lib_1_1strings_1_1util.html',1,'aworx::lib::strings::util'],['../namespaceaworx_1_1lib_1_1util.html',1,'aworx::lib::util']]]
 ];

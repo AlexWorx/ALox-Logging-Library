@@ -6,7 +6,7 @@ digraph "FormatterStdImpl"
   Node0 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node0 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node1 [label="Formatter",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1format_1_1Formatter.html"];
+  Node1 [label="Formatter",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1format_1_1Formatter.html",tooltip="[DOX_ALIB_ENUM_META_DATA_SPECIFCATION_using_enum] "];
   Node2 [label="FormatterJavaStyle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1format_1_1FormatterJavaStyle.html"];
   Node3 [label="FormatterPythonStyle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html"];
 }

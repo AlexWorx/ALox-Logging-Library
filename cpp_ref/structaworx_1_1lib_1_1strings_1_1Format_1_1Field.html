@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -94,43 +94,43 @@ $(function() {
 <div class="dynheader">
 Collaboration diagram for Format::Field:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="structaworx_1_1lib_1_1strings_1_1Format_1_1Field__coll__graph.svg" width="128" height="127"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="structaworx_1_1lib_1_1strings_1_1Format_1_1Field__coll__graph.svg" width="163" height="216"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
 <p> Parameter class used for <em>application</em> to objects of type <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> with specialization of template struct <a class="el" href="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01Format_1_1Field_01_4.html">T_Apply&lt;Format::Field&gt;</a>.</p>
-<p>Appends the contents of a string to to the <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> using a defined 'field'-width. If given string <code>value</code> is shorter than parameter <code>width</code> specifies, the field is filled with a corresponding amount of <code>padChar</code> characters.<br />
- Parameter <code>alignment</code> of type <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726">Alignment</a> allows to left-, right- or center-align the contents of the field. </p>
+<p>Appends the given object to the <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> using a defined 'field'-width. If the contents of the field is shorter than parameter <code>width</code> specifies, the field is filled with a corresponding amount of <code>padChar</code> characters.<br />
+ Parameter <code>alignment</code> of type <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726">Alignment</a> allows to left-, right- or center-align the contents of the field.</p>
+<dl class="section note"><dt>Note</dt><dd>In case, module <b>ALib Boxing</b> is not available, the field content parameter will be of type <code>const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a>&amp;</code>.<br />
+ Otherwise, boxing interface <a class="el" href="classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply.html">IApply</a> will be invoked on the given box internally to receive the string representation.</dd>
+<dd>
+Therefore, it is mandatory, that for any type that is used with this class to be formatted in a field, this boxing interface has to be implemented. As documented with that interface, for types that are applicable to <b>AString</b> objects already, all that is needed is to use macro <a class="el" href="group__GrpALibMacros.html#gafe870d103ad063d0ad15942df79d75ff">ALIB_BOXING_DEFINE_IAPPLY_FOR_APPLICABLE_TYPE</a> with the type in the bootstrap section of an application. </dd></dl>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Fields</h2></td></tr>
 <tr class="memitem:a8fdae00ef4d3c4f8372e573c3afe996c"><td class="memItemLeft" align="right" valign="top"><a id="a8fdae00ef4d3c4f8372e573c3afe996c"></a>
 char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1Format_1_1Field.html#a8fdae00ef4d3c4f8372e573c3afe996c">padChar</a></td></tr>
-<tr class="memdesc:a8fdae00ef4d3c4f8372e573c3afe996c"><td class="mdescLeft">&#160;</td><td class="mdescRight">the characters used for padding the contents within the field. <br /></td></tr>
+<tr class="memdesc:a8fdae00ef4d3c4f8372e573c3afe996c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The characters used for padding the contents within the field. <br /></td></tr>
 <tr class="separator:a8fdae00ef4d3c4f8372e573c3afe996c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa50d7b3fc91f3f68895f40dd3a9b5ce3"><td class="memItemLeft" align="right" valign="top"><a id="aa50d7b3fc91f3f68895f40dd3a9b5ce3"></a>
 <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726">lang::Alignment</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1Format_1_1Field.html#aa50d7b3fc91f3f68895f40dd3a9b5ce3">theAlignment</a></td></tr>
-<tr class="memdesc:aa50d7b3fc91f3f68895f40dd3a9b5ce3"><td class="mdescLeft">&#160;</td><td class="mdescRight">the alignment of the contents within the field. <br /></td></tr>
+<tr class="memdesc:aa50d7b3fc91f3f68895f40dd3a9b5ce3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The alignment of the contents within the field. <br /></td></tr>
 <tr class="separator:aa50d7b3fc91f3f68895f40dd3a9b5ce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3ed65f90b188a7bb02cdf4d776e2454"><td class="memItemLeft" align="right" valign="top"><a id="aa3ed65f90b188a7bb02cdf4d776e2454"></a>
-const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1Format_1_1Field.html#aa3ed65f90b188a7bb02cdf4d776e2454">theContent</a></td></tr>
-<tr class="memdesc:aa3ed65f90b188a7bb02cdf4d776e2454"><td class="mdescLeft">&#160;</td><td class="mdescRight">the content of the field. <br /></td></tr>
-<tr class="separator:aa3ed65f90b188a7bb02cdf4d776e2454"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd65f20f3fc5096556f77c79e528e62d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1Format_1_1Field.html#acd65f20f3fc5096556f77c79e528e62d">theContent</a></td></tr>
+<tr class="separator:acd65f20f3fc5096556f77c79e528e62d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa68584e5bcf6e60ed1da7f3fedf2a4cc"><td class="memItemLeft" align="right" valign="top"><a id="aa68584e5bcf6e60ed1da7f3fedf2a4cc"></a>
 <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1Format_1_1Field.html#aa68584e5bcf6e60ed1da7f3fedf2a4cc">theWidth</a></td></tr>
-<tr class="memdesc:aa68584e5bcf6e60ed1da7f3fedf2a4cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">the width of the field. <br /></td></tr>
+<tr class="memdesc:aa68584e5bcf6e60ed1da7f3fedf2a4cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The width of the field. <br /></td></tr>
 <tr class="separator:aa68584e5bcf6e60ed1da7f3fedf2a4cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
-<tr class="memitem:a7330a9f1b59222fea85596a38b6f08df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1Format_1_1Field.html#a7330a9f1b59222fea85596a38b6f08df">Field</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;content, int32_t width, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726">lang::Alignment</a> alignment=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726a92b09c7c48c520c3c55e497875da437c">lang::Alignment::Right</a>, char fillChar=' ')</td></tr>
-<tr class="separator:a7330a9f1b59222fea85596a38b6f08df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c2d80bc864423ec8df7fedb3858b47f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1Format_1_1Field.html#a7c2d80bc864423ec8df7fedb3858b47f">Field</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;content, int64_t width, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726">lang::Alignment</a> alignment=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726a92b09c7c48c520c3c55e497875da437c">lang::Alignment::Right</a>, char fillChar=' ')</td></tr>
-<tr class="separator:a7c2d80bc864423ec8df7fedb3858b47f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92e93680c467e15060ffa8a5b8330092"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1Format_1_1Field.html#a92e93680c467e15060ffa8a5b8330092">Field</a> (<a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> content, <a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> width, <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726">lang::Alignment</a> alignment=<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726a92b09c7c48c520c3c55e497875da437c">lang::Alignment::Right</a>, char fillChar=' ')</td></tr>
+<tr class="separator:a92e93680c467e15060ffa8a5b8330092"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a7330a9f1b59222fea85596a38b6f08df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7330a9f1b59222fea85596a38b6f08df">&#9670;&nbsp;</a></span>Field() <span class="overload">[1/2]</span></h2>
+<a id="a92e93680c467e15060ffa8a5b8330092"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92e93680c467e15060ffa8a5b8330092">&#9670;&nbsp;</a></span>Field()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -141,13 +141,13 @@ Public Methods</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="structaworx_1_1lib_1_1strings_1_1Format_1_1Field.html">Field</a> </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a>&#160;</td>
           <td class="paramname"><em>content</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a>&#160;</td>
           <td class="paramname"><em>width</em>, </td>
         </tr>
         <tr>
@@ -187,61 +187,19 @@ Public Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a7c2d80bc864423ec8df7fedb3858b47f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c2d80bc864423ec8df7fedb3858b47f">&#9670;&nbsp;</a></span>Field() <span class="overload">[2/2]</span></h2>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="acd65f20f3fc5096556f77c79e528e62d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd65f20f3fc5096556f77c79e528e62d">&#9670;&nbsp;</a></span>theContent</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structaworx_1_1lib_1_1strings_1_1Format_1_1Field.html">Field</a> </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>content</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int64_t&#160;</td>
-          <td class="paramname"><em>width</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726">lang::Alignment</a>&#160;</td>
-          <td class="paramname"><em>alignment</em> = <code><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726a92b09c7c48c520c3c55e497875da437c">lang::Alignment::Right</a></code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>fillChar</em> = <code>'&#160;'</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
+          <td class="memname"><a class="el" href="namespaceaworx.html#af923f654916f15a4287246e5bb3beabb">Box</a> theContent</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-<p>Constructor, copying the values into this 'delegate' object. They will be used with method <b>Apply</b> of specialized template struct <a class="el" href="structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01Format_1_1Field_01_4.html">T_Apply&lt;Format::Field&gt;</a>.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">content</td><td>The contents of the field. </td></tr>
-    <tr><td class="paramname">width</td><td>The width of the field </td></tr>
-    <tr><td class="paramname">alignment</td><td>The alignment of the contents within the field. Defaults to <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726">Alignment::Right</a> Other options are <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726">Alignment::Left</a> and <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726">Alignment::Center</a>. </td></tr>
-    <tr><td class="paramname">fillChar</td><td>The character used to fill the field up to its size. Defaults to ' ' (space). </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>The content of the field. If module <b>ALib Boxing</b> is not available, this field is of type <code>const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a>&amp;</code> </p>
 
 </div>
 </div>
@@ -252,7 +210,7 @@ Public Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:15 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

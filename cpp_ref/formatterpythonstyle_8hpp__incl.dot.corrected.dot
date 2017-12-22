@@ -4,19 +4,21 @@ digraph "formatterpythonstyle.hpp"
   node [fontname="Helvetica",fontsize="10",shape=record];
   Node0 [label="formatterpythonstyle.hpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
   Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node0 -> Node48 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 -> Node64 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 -> Node46 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 -> Node47 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node48 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node50 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node62 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node63 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node64 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 [label="alib/strings/format/formatterstdimpl.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$formatterstdimpl_8hpp.html"];
   Node2 [label="alib/strings/format/formatter.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$formatter_8hpp.html"];
   Node3 [label="vector",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node4 [label="alib/threads/threadlock.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$threadlock_8hpp.html"];
-  Node46 [label="alib/strings/numberformat.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$numberformat_8hpp.html"];
-  Node47 [label="alib/strings/substring.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$substring_8hpp.html"];
-  Node48 [label="alib/strings/util/autosizes.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$autosizes_8hpp.html"];
+  Node62 [label="alib/strings/numberformat.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$numberformat_8hpp.html"];
+  Node63 [label="alib/strings/substring.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$substring_8hpp.html"];
+  Node50 [label="alib/lang/exception.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$exception_8hpp.html"];
+  Node64 [label="alib/strings/util/autosizes.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$autosizes_8hpp.html"];
 }
 

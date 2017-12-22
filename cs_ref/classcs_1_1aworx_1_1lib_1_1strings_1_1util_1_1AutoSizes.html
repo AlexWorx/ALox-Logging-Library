@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu"    href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu_hl" href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu"    href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu_hl" href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -104,6 +104,8 @@ Public Fields</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
+<tr class="memitem:a4cec577ba9df3b1b9bf5f69a9b368238"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html#a4cec577ba9df3b1b9bf5f69a9b368238">Actual</a> (int requestedSize, int extraGrowth)</td></tr>
+<tr class="separator:a4cec577ba9df3b1b9bf5f69a9b368238"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad801ae4a456f1a4fc4d3c936ed43d031"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html#ad801ae4a456f1a4fc4d3c936ed43d031">Export</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> target)</td></tr>
 <tr class="separator:ad801ae4a456f1a4fc4d3c936ed43d031"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e27aca652f660887bba8f1b14d8edee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html#a2e27aca652f660887bba8f1b14d8edee">Import</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> source, <a class="el" href="namespacecs_1_1aworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4">CurrentData</a> session=CurrentData.Clear)</td></tr>
@@ -134,6 +136,52 @@ Protected Methods</h2></td></tr>
 <tr class="separator:a125985ca23382fd519da03305ef96cb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a4cec577ba9df3b1b9bf5f69a9b368238"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cec577ba9df3b1b9bf5f69a9b368238">&#9670;&nbsp;</a></span>Actual()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Actual </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>requestedSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>extraGrowth</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Returns the actual auto value stored, respectively, if the given requested size is higher, stores and returns the requested size. The given extra growth is added to the requested size if the currently stored value is unequal to 0. In other words, the extra size is added only with the second growth and each subsequent one.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">requestedSize</td><td>The minimum size that is requested. </td></tr>
+    <tr><td class="paramname">extraGrowth</td><td>Added to the new size if the requested size is greater than the stored size and if the stored size does not equal <code>0</code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The (new) size of the auto field. </dd></dl>
+
+</div>
+</div>
 <a id="a125985ca23382fd519da03305ef96cb3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a125985ca23382fd519da03305ef96cb3">&#9670;&nbsp;</a></span>ensureArraySize()</h2>
 
@@ -240,7 +288,7 @@ Protected Methods</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">source</td><td>The <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> that is parsed for the numbers </td></tr>
-    <tr><td class="paramname">session</td><td>If <code>CurrentData::Clear</code>, which is the default, the current values are taken from the last session stored and the sessions data is set to 0. If <code>CurrentData::Keep</code>, both, current values and session values are taken from the string. </td></tr>
+    <tr><td class="paramname">session</td><td>If <code>CurrentData.Clear</code>, which is the default, the current values are taken from the last session stored and the sessions data is set to 0. If <code>CurrentData.Keep</code>, both, current values and session values are taken from the string. </td></tr>
   </table>
   </dd>
 </dl>
@@ -326,7 +374,7 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Returns the next auto value stored, respectively, if the given requested size is higher, then stores and returns the requested size. The given extra growth is added to the requested size if the currently stored value is unequal to 0. In other words, the extra size is added only with the second growth and each subsequent one.</p>
+<p> Invokes <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html#a4cec577ba9df3b1b9bf5f69a9b368238">Actual</a> and then increases the internal position counter.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">requestedSize</td><td>The minimum size that is requested. </td></tr>
@@ -511,7 +559,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:48:00 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:17 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

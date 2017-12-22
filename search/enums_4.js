@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['lightcolorusage',['LightColorUsage',['.././cs_ref/classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#a2c0a0e233e4cc72e4c5655d595dde836',1,'cs::aworx::lox::loggers::AnsiLogger::LightColorUsage()'],['.././cs_ref/classcs_1_1aworx_1_1lox_1_1loggers_1_1ColorConsoleLogger.html#a2c0a0e233e4cc72e4c5655d595dde836',1,'cs::aworx::lox::loggers::ColorConsoleLogger::LightColorUsage()'],['.././cpp_ref/classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html#a2c0a0e233e4cc72e4c5655d595dde836',1,'aworx::lox::loggers::AnsiLogger::LightColorUsage()'],['.././cpp_ref/classaworx_1_1lox_1_1loggers_1_1WindowsConsoleLogger.html#a2c0a0e233e4cc72e4c5655d595dde836',1,'aworx::lox::loggers::WindowsConsoleLogger::LightColorUsage()']]],
-  ['lockmode',['LockMode',['.././cs_ref/namespacecs_1_1aworx_1_1lib_1_1lang.html#a00fc859257c8f09ff9198dde28121961',1,'cs::aworx::lib::lang::LockMode()'],['.././cpp_ref/namespaceaworx_1_1lib_1_1lang.html#a00fc859257c8f09ff9198dde28121961',1,'aworx::lib::lang::LockMode()']]]
+  ['formathint',['FormatHint',['.././cs_ref/classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#aebb3561ef8cb7db28ec75a25358ab5d4',1,'cs::aworx::lib::config::Variable']]],
+  ['formathints',['FormatHints',['.././cpp_ref/namespaceaworx_1_1lib_1_1config.html#ac55b7da10891e6be23f1dcc7a7daa286',1,'aworx::lib::config']]]
 ];

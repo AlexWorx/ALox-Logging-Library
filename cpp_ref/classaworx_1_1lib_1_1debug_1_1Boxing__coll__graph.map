@@ -1,8 +1,5 @@
 <map id="Boxing" name="Boxing">
-<area shape="rect" id="node2" title="STL class. " alt="" coords="5,109,284,136"/>
-<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1strings_1_1util_1_1StringTuples.html" title="StringTuples\&lt;TAssociatedTypes\&gt;" alt="" coords="243,199,462,225"/>
-<area shape="rect" id="node9" href="$classaworx_1_1lib_1_1lang_1_1MemoryBlocks.html" title="MemoryBlocks" alt="" coords="309,109,418,136"/>
-<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="487,199,552,225"/>
-<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="487,109,551,136"/>
-<area shape="rect" id="node7" href="$classaworx_1_1lib_1_1strings_1_1String.html" title="String" alt="" coords="491,5,547,32"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="147,196,212,223"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="142,95,206,121"/>
+<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1strings_1_1String.html" title="String" alt="" coords="101,5,157,32"/>
 </map>

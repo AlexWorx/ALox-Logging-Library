@@ -2,7 +2,7 @@ var searchData=
 [
   ['safeness',['Safeness',['../namespaceaworx.html#aa79d65dae6fee850c4a638c5bb26b1e3',1,'aworx']]],
   ['scope',['Scope',['../namespaceaworx.html#aef58f56e96f194bf0b5f765175f6ebd6',1,'aworx']]],
-  ['simpletext',['SimpleText',['../namespaceaworx.html#a6406bb650e022971a7e6d11926f1aeca',1,'aworx']]],
+  ['simpletext',['SimpleText',['../namespaceaworx.html#ae2181ebba476f42e5f64541c40880913',1,'aworx']]],
   ['singleton',['Singleton',['../namespaceaworx.html#a853db7b4d3eea2d12c2aef317b6110ee',1,'aworx']]],
   ['sliteral',['SLiteral',['../namespaceaworx.html#af631a26bf70ad6d6143973fadf779747',1,'aworx']]],
   ['smartlock',['SmartLock',['../namespaceaworx.html#aee1cd004a3010e8ee798517d96c1ffca',1,'aworx']]],
@@ -20,9 +20,11 @@ var searchData=
   ['string512',['String512',['../namespaceaworx.html#af634b7550d8a316ce3cf3fb6f9e86079',1,'aworx']]],
   ['string64',['String64',['../namespaceaworx.html#ac2fdc487456a994238ba4284b3859c41',1,'aworx']]],
   ['string8',['String8',['../namespaceaworx.html#ab35696c2e8d79567a528a4b6da788eb3',1,'aworx']]],
-  ['strings',['Strings',['../namespaceaworx.html#abc46e42927a238007065da5265423816',1,'aworx']]],
-  ['stringtree',['StringTree',['../namespaceaworx.html#ada54a4f56e3fabc4516eba3749b7c7a2',1,'aworx']]],
-  ['stringtuples',['StringTuples',['../namespaceaworx.html#aa0aafb6be60b02340000199f1a508044',1,'aworx']]],
+  ['strings',['Strings',['../namespaceaworx.html#a3c0dd4e93e0c8297a10ca98eff7e4ea7',1,'aworx']]],
+  ['stringtable',['StringTable',['../namespaceaworx.html#a3e978518419b8c970cdfd8a30af02250',1,'aworx']]],
+  ['stringtree',['StringTree',['../namespaceaworx.html#a3f529e3fce337b034a15d71babf9f109',1,'aworx']]],
+  ['stringvector',['StringVector',['../classaworx_1_1lib_1_1debug_1_1Boxing.html#a3c8894068cb475f1327a41f564385523',1,'aworx::lib::debug::Boxing']]],
   ['substring',['Substring',['../namespaceaworx.html#afed2e22d908094b0badbf8ac4d5f3900',1,'aworx']]],
-  ['switch',['Switch',['../namespaceaworx.html#a68e1ec4ff4ca04def6fdd7fe217a245a',1,'aworx']]]
+  ['switch',['Switch',['../namespaceaworx.html#a68e1ec4ff4ca04def6fdd7fe217a245a',1,'aworx']]],
+  ['system',['System',['../namespaceaworx.html#aea0af9d6b00ede1a16d0af24fdaeebe0',1,'aworx']]]
 ];

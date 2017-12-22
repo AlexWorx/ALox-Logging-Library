@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -90,20 +90,22 @@ $(function() {
 <div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="alox__macros_8hpp__dep__incl.svg" width="1328" height="486"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="alox__macros_8hpp__dep__incl.svg" width="1479" height="486"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="alox__macros_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:ga358351aade1160917800df0f7b25a525"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga358351aade1160917800df0f7b25a525">ALOX_COMPILATION_FLAGS</a></td></tr>
+<tr class="separator:ga358351aade1160917800df0f7b25a525"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga105a9f44250c23d6bb37df63aa9d9cbe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga105a9f44250c23d6bb37df63aa9d9cbe">LOG_ACQUIRE</a>&#160;&#160;&#160;{ <a class="el" href="namespaceaworx.html#abf1258bbd9cf9772a1559f4ceb37fde4">aworx::Lox</a>&amp; _log= <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a>; _log.Acquire( <a class="el" href="group__GrpALoxMacrosLowLevel.html#gab22206221434dc470889fa39d451c5fb">LOG_CI</a> );</td></tr>
 <tr class="separator:ga105a9f44250c23d6bb37df63aa9d9cbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa891e8485ea970f574971c6afd851218"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosDebugLog.html#gaa891e8485ea970f574971c6afd851218">Log_AddDebugLogger</a>()&#160;&#160;&#160;<a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>( <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga105a9f44250c23d6bb37df63aa9d9cbe">LOG_ACQUIRE</a>    Log::AddDebugLogger   ( &amp;_log );           <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga0d5795316ecfccc7b40b43c01bf62b0e">LOG_RELEASE</a> )</td></tr>
 <tr class="separator:gaa891e8485ea970f574971c6afd851218"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2797c2e9f997606c3c786fa68720ac71"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosDebugLog.html#ga2797c2e9f997606c3c786fa68720ac71">Log_Assert</a>(...)&#160;&#160;&#160;<a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>( <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga105a9f44250c23d6bb37df63aa9d9cbe">LOG_ACQUIRE</a> _log.Assert       ( __VA_ARGS__ );            <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga0d5795316ecfccc7b40b43c01bf62b0e">LOG_RELEASE</a> )</td></tr>
 <tr class="separator:ga2797c2e9f997606c3c786fa68720ac71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab22206221434dc470889fa39d451c5fb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALoxMacrosLowLevel.html#gab22206221434dc470889fa39d451c5fb">LOG_CI</a>&#160;&#160;&#160;<a class="el" href="group__GrpALibMacros.html#gab1836c6de18fd089b123e40e22472f4d">ALIB_SRC_INFO_PARAMS</a></td></tr>
+<tr class="memitem:gab22206221434dc470889fa39d451c5fb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALoxMacrosLowLevel.html#gab22206221434dc470889fa39d451c5fb">LOG_CI</a>&#160;&#160;&#160;<a class="el" href="group__GrpALibMacros.html#ga78aabff444ee51f21cdfa81d81a00e64">ALIB_SRCPOS</a></td></tr>
 <tr class="separator:gab22206221434dc470889fa39d451c5fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaff8f037b778ce73b40e0c7a0506a8718"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosDebugLog.html#gaff8f037b778ce73b40e0c7a0506a8718">Log_ClearSourcePathTrimRules</a>(...)&#160;&#160;&#160;<a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>( <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga105a9f44250c23d6bb37df63aa9d9cbe">LOG_ACQUIRE</a> _log.ClearSourcePathTrimRules( __VA_ARGS__ ); <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga0d5795316ecfccc7b40b43c01bf62b0e">LOG_RELEASE</a> )</td></tr>
 <tr class="separator:gaff8f037b778ce73b40e0c7a0506a8718"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -111,6 +113,8 @@ Macros</h2></td></tr>
 <tr class="separator:ga9ac05a63013c784625c66685ad51aff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8d8e6df0e755763bd471751235199baf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosDebugLog.html#ga8d8e6df0e755763bd471751235199baf">Log_Error</a>(...)&#160;&#160;&#160;<a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>( <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga105a9f44250c23d6bb37df63aa9d9cbe">LOG_ACQUIRE</a> _log.Error        ( __VA_ARGS__ );            <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga0d5795316ecfccc7b40b43c01bf62b0e">LOG_RELEASE</a> )</td></tr>
 <tr class="separator:ga8d8e6df0e755763bd471751235199baf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa94d27b5585a0b0cd1e9daadec9e745d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosDebugLog.html#gaa94d27b5585a0b0cd1e9daadec9e745d">Log_Exception</a>(...)&#160;&#160;&#160;<a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>( <a class="el" href="classaworx_1_1lox_1_1LogTools.html#ad9659c873a905d67b12dcdef5dcc7bed">aworx::lox::LogTools::Exception</a>( <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a>, __VA_ARGS__ );   )</td></tr>
+<tr class="separator:gaa94d27b5585a0b0cd1e9daadec9e745d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga07ed02a33090774d44b0a9eba642f362"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosDebugLog.html#ga07ed02a33090774d44b0a9eba642f362">Log_GetLogger</a>(identifier,  name)</td></tr>
 <tr class="separator:ga07ed02a33090774d44b0a9eba642f362"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7a1af9531448e3c6da1027b193e3b01b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosDebugLog.html#ga7a1af9531448e3c6da1027b193e3b01b">Log_If</a>(...)&#160;&#160;&#160;<a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>( <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga105a9f44250c23d6bb37df63aa9d9cbe">LOG_ACQUIRE</a> _log.If           ( __VA_ARGS__ );            <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga0d5795316ecfccc7b40b43c01bf62b0e">LOG_RELEASE</a> )</td></tr>
@@ -119,7 +123,7 @@ Macros</h2></td></tr>
 <tr class="separator:gaed4877ef3a04a6eb1ec1d4fba8305d75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga014d8b959e78330074b7aedad3ff747b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosDebugLog.html#ga014d8b959e78330074b7aedad3ff747b">Log_LogState</a>(...)&#160;&#160;&#160;<a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>( <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga105a9f44250c23d6bb37df63aa9d9cbe">LOG_ACQUIRE</a> _log.State         ( __VA_ARGS__ );            <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga0d5795316ecfccc7b40b43c01bf62b0e">LOG_RELEASE</a> )</td></tr>
 <tr class="separator:ga014d8b959e78330074b7aedad3ff747b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga71f7449b6ad8bbd0ba22f897d7338a22"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a>&#160;&#160;&#160;(*<a class="el" href="classaworx_1_1lox_1_1ALox.html#ae55ef9a26260880cde159c9d7591cb6a">aworx::ALox::Log</a>())</td></tr>
+<tr class="memitem:ga71f7449b6ad8bbd0ba22f897d7338a22"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a>&#160;&#160;&#160;(*<a class="el" href="namespaceaworx.html#a5d8a9ca518e5abc7446b6a753e2b7ae6">aworx::lox::ALOX.Log</a>())</td></tr>
 <tr class="separator:ga71f7449b6ad8bbd0ba22f897d7338a22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad01526d3f277fab96faf18695d25cb7e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosDebugLog.html#gad01526d3f277fab96faf18695d25cb7e">Log_MapThreadName</a>(threadName)&#160;&#160;&#160;<a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>( <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga105a9f44250c23d6bb37df63aa9d9cbe">LOG_ACQUIRE</a> _log.MapThreadName( threadName );             <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga0d5795316ecfccc7b40b43c01bf62b0e">LOG_RELEASE</a> )</td></tr>
 <tr class="separator:gad01526d3f277fab96faf18695d25cb7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,7 +163,7 @@ Macros</h2></td></tr>
 <tr class="separator:ga9ac629621d8152810e41e19931c990a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4d9961312aab181a28b21724c3809184"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga4d9961312aab181a28b21724c3809184">Lox_Assert</a>(...)&#160;&#160;&#160;<a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga9ac629621d8152810e41e19931c990a1">LOX_ACQUIRE</a> _lox.Assert       ( __VA_ARGS__);       <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> )</td></tr>
 <tr class="separator:ga4d9961312aab181a28b21724c3809184"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga94ca091e7e2c3556c74473ff0615b587"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga94ca091e7e2c3556c74473ff0615b587">LOX_CI</a>&#160;&#160;&#160;<a class="el" href="group__GrpALibMacros.html#gab1836c6de18fd089b123e40e22472f4d">ALIB_SRC_INFO_PARAMS</a></td></tr>
+<tr class="memitem:ga94ca091e7e2c3556c74473ff0615b587"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga94ca091e7e2c3556c74473ff0615b587">LOX_CI</a>&#160;&#160;&#160;<a class="el" href="group__GrpALibMacros.html#ga78aabff444ee51f21cdfa81d81a00e64">ALIB_SRCPOS</a></td></tr>
 <tr class="separator:ga94ca091e7e2c3556c74473ff0615b587"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1689da460f8040489689b3f45cf1e6b2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga1689da460f8040489689b3f45cf1e6b2">Lox_ClearSourcePathTrimRules</a>(...)&#160;&#160;&#160;<a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga9ac629621d8152810e41e19931c990a1">LOX_ACQUIRE</a> _lox.ClearSourcePathTrimRules( __VA_ARGS__ ); <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> )</td></tr>
 <tr class="separator:ga1689da460f8040489689b3f45cf1e6b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -167,6 +171,8 @@ Macros</h2></td></tr>
 <tr class="separator:ga3ee12da39c3574baf4fb03f7f323c886"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5fa12e4bc99fd2ebed4fe90729f54a03"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga5fa12e4bc99fd2ebed4fe90729f54a03">Lox_Error</a>(...)&#160;&#160;&#160;<a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga9ac629621d8152810e41e19931c990a1">LOX_ACQUIRE</a> _lox.Error        ( __VA_ARGS__ );      <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> )</td></tr>
 <tr class="separator:ga5fa12e4bc99fd2ebed4fe90729f54a03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2317941daa2d98c636a10cda8d5d7f04"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga2317941daa2d98c636a10cda8d5d7f04">Lox_Exception</a>(...)&#160;&#160;&#160;<a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>( <a class="el" href="classaworx_1_1lox_1_1LogTools.html#ad9659c873a905d67b12dcdef5dcc7bed">aworx::lox::LogTools::Exception</a>( <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>, __VA_ARGS__ );   )</td></tr>
+<tr class="separator:ga2317941daa2d98c636a10cda8d5d7f04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8536e68dcdee27e1d3463687d42ee6ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga8536e68dcdee27e1d3463687d42ee6ed">Lox_GetLogger</a>(identifier,  name)&#160;&#160;&#160;<a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( <a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">aworx::lox::core::Logger</a>* identifier; <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga9ac629621d8152810e41e19931c990a1">LOX_ACQUIRE</a> identifier= _lox.GetLogger ( name ); <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> )</td></tr>
 <tr class="separator:ga8536e68dcdee27e1d3463687d42ee6ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga31e9c5302ccb2af7285d9e17a46aac2b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga31e9c5302ccb2af7285d9e17a46aac2b">Lox_If</a>(...)&#160;&#160;&#160;<a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga9ac629621d8152810e41e19931c990a1">LOX_ACQUIRE</a> _lox.If           ( __VA_ARGS__);       <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> )</td></tr>
@@ -214,7 +220,7 @@ Macros</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:57 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:15 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

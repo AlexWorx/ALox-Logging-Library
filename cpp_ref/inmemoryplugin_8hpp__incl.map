@@ -1,5 +1,6 @@
 <map id="inmemoryplugin.hpp" name="inmemoryplugin.hpp">
-<area shape="rect" id="node2" href="$plugins_8hpp.html" title="alib/config/plugins.hpp" alt="" coords="193,80,343,107"/>
-<area shape="rect" id="node4" href="$variable_8hpp.html" title="alib/config/variable.hpp" alt="" coords="5,155,160,181"/>
-<area shape="rect" id="node5" href="$substring_8hpp.html" title="alib/strings/substring.hpp" alt="" coords="185,155,351,181"/>
+<area shape="rect" id="node2" href="$plugins_8hpp.html" title="alib/config/plugins.hpp" alt="" coords="201,80,351,107"/>
+<area shape="rect" id="node4" href="$variable_8hpp.html" title="alib/config/variable.hpp" alt="" coords="199,155,353,181"/>
+<area shape="rect" id="node5" href="$substring_8hpp.html" title="alib/strings/substring.hpp" alt="" coords="7,155,174,181"/>
+<area shape="rect" id="node6" href="$enumbitwise_8hpp.html" title="alib/lang/enumbitwise.hpp" alt="" coords="5,229,176,256"/>
 </map>

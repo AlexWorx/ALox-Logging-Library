@@ -1,8 +1,8 @@
 var menudata={children:[
-{text:"Overview",url:"csmainpage.html"},
-{text:"Tutorial",url:"cstutorial.html"},
-{text:"IDE Setup",url:"cssetup.html"},
-{text:"Pruning ALox",url:"cspruning.html"},
+{text:"Overview",url:"alox_cs_mainpage.html"},
+{text:"Tutorial",url:"alox_cs_tutorial.html"},
+{text:"IDE Setup",url:"alox_cs_setup.html"},
+{text:"Pruning ALox",url:"alox_cs_pruning.html"},
 {text:"Class Reference",url:"annotated.html",children:[
 {text:"Alphabetical Index",url:"classes.html"},
 {text:"Namespace Index",url:"annotated.html"},

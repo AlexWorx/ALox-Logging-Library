@@ -16,10 +16,16 @@ var searchData=
   ['iformat',['IFormat',['.././cpp_ref/classaworx_1_1lib_1_1strings_1_1boxing_1_1IFormat.html',1,'aworx::lib::strings::boxing']]],
   ['iformat_5ftticks',['IFormat_TTicks',['.././cpp_ref/classaworx_1_1lib_1_1time_1_1IFormat__TTicks.html',1,'aworx::lib::time']]],
   ['iisempty',['IIsEmpty',['.././cpp_ref/classaworx_1_1lib_1_1boxing_1_1IIsEmpty.html',1,'aworx::lib::boxing']]],
+  ['iisless',['IIsLess',['.././cpp_ref/classaworx_1_1lib_1_1boxing_1_1IIsLess.html',1,'aworx::lib::boxing']]],
+  ['iisless_5fboxed_5fint',['IIsLess_boxed_int',['.././cpp_ref/classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IIsLess__boxed__int.html',1,'aworx::lib::boxing::ftypes']]],
+  ['iisless_5fboxed_5fuint',['IIsLess_boxed_uint',['.././cpp_ref/classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IIsLess__boxed__uint.html',1,'aworx::lib::boxing::ftypes']]],
+  ['iisless_5fdouble',['IIsLess_double',['.././cpp_ref/classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IIsLess__double.html',1,'aworx::lib::boxing::ftypes']]],
+  ['iisless_5ftchar_5farr',['IIsLess_Tchar_arr',['.././cpp_ref/classaworx_1_1lib_1_1strings_1_1boxing_1_1IIsLess__Tchar__arr.html',1,'aworx::lib::strings::boxing']]],
   ['iisnull',['IIsNull',['.././cpp_ref/classaworx_1_1lib_1_1boxing_1_1IIsNull.html',1,'aworx::lib::boxing']]],
   ['iisnull_5ffalse',['IIsNull_false',['.././cpp_ref/classaworx_1_1lib_1_1boxing_1_1IIsNull__false.html',1,'aworx::lib::boxing']]],
   ['inclusion',['Inclusion',['.././java_ref/enumcom_1_1aworx_1_1lib_1_1lang_1_1Inclusion.html',1,'com::aworx::lib::lang']]],
-  ['inifile',['IniFile',['.././java_ref/classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html',1,'com::aworx::lib::config::IniFile'],['.././cpp_ref/classaworx_1_1lib_1_1config_1_1IniFile.html',1,'aworx::lib::config::IniFile'],['.././cs_ref/classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html',1,'cs::aworx::lib::config::IniFile']]],
-  ['inmemoryplugin',['InMemoryPlugin',['.././java_ref/classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html',1,'com::aworx::lib::config::InMemoryPlugin'],['.././cpp_ref/classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html',1,'aworx::lib::config::InMemoryPlugin'],['.././cs_ref/classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html',1,'cs::aworx::lib::config::InMemoryPlugin']]],
-  ['interface',['Interface',['.././cpp_ref/classaworx_1_1lib_1_1boxing_1_1Interface.html',1,'aworx::lib::boxing']]]
+  ['inifile',['IniFile',['.././java_ref/classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html',1,'com::aworx::lib::config::IniFile'],['.././cs_ref/classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html',1,'cs::aworx::lib::config::IniFile'],['.././cpp_ref/classaworx_1_1lib_1_1config_1_1IniFile.html',1,'aworx::lib::config::IniFile']]],
+  ['inmemoryplugin',['InMemoryPlugin',['.././java_ref/classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html',1,'com::aworx::lib::config::InMemoryPlugin'],['.././cs_ref/classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html',1,'cs::aworx::lib::config::InMemoryPlugin'],['.././cpp_ref/classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html',1,'aworx::lib::config::InMemoryPlugin']]],
+  ['interface',['Interface',['.././cpp_ref/classaworx_1_1lib_1_1boxing_1_1Interface.html',1,'aworx::lib::boxing']]],
+  ['iterator',['Iterator',['.././cpp_ref/classaworx_1_1lib_1_1config_1_1Configuration_1_1Iterator.html',1,'aworx::lib::config::Configuration::Iterator'],['.././cpp_ref/classaworx_1_1lib_1_1config_1_1ConfigurationPlugin_1_1Iterator.html',1,'aworx::lib::config::ConfigurationPlugin::Iterator']]]
 ];

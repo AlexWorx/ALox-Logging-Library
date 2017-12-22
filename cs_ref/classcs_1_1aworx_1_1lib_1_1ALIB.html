@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu"    href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu_hl" href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu"    href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu_hl" href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -85,6 +85,7 @@ $(function() {
 <a href="#pub-static-attribs">Public Static Fields</a> &#124;
 <a href="#pub-static-methods">Public Static Methods</a> &#124;
 <a href="#pri-static-attribs">Private Static Fields</a> &#124;
+<a href="#pri-static-methods">Private Static Methods</a> &#124;
 <a href="#properties">Properties</a> &#124;
 <a href="classcs_1_1aworx_1_1lib_1_1ALIB-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -94,7 +95,7 @@ $(function() {
 <div class="dynheader">
 Collaboration diagram for ALIB:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lib_1_1ALIB__coll__graph.svg" width="1896" height="648"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lib_1_1ALIB__coll__graph.svg" width="1030" height="592"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
@@ -106,16 +107,18 @@ Collaboration diagram for ALIB:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Public Static Fields</h2></td></tr>
-<tr class="memitem:aaec7daa77dd5f01266a702e0b270216b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#aaec7daa77dd5f01266a702e0b270216b">ConfigCategoryName</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>( &quot;ALIB&quot; )</td></tr>
-<tr class="separator:aaec7daa77dd5f01266a702e0b270216b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34430993f800b3bc4571bd4b9a6d9184"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a34430993f800b3bc4571bd4b9a6d9184">Config</a> =null</td></tr>
+<tr class="separator:a34430993f800b3bc4571bd4b9a6d9184"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad493f5410dd6d760026506bd004285cd"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#ad493f5410dd6d760026506bd004285cd">ConfigCategory</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>( &quot;ALIB&quot; )</td></tr>
+<tr class="separator:ad493f5410dd6d760026506bd004285cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abee878df7a0627f72de2e62aa99f2969"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#abee878df7a0627f72de2e62aa99f2969">Revision</a> =0</td></tr>
 <tr class="separator:abee878df7a0627f72de2e62aa99f2969"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa44d863f975cf49f3cf879b53f080a07"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html">SmartLock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#aa44d863f975cf49f3cf879b53f080a07">StdOutputStreamsLock</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html">SmartLock</a>()</td></tr>
 <tr class="separator:aa44d863f975cf49f3cf879b53f080a07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a811fc76ba0094b56a1ddbe6ac8d78915"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a811fc76ba0094b56a1ddbe6ac8d78915">Version</a> =1709</td></tr>
+<tr class="memitem:a811fc76ba0094b56a1ddbe6ac8d78915"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a811fc76ba0094b56a1ddbe6ac8d78915">Version</a> =1712</td></tr>
 <tr class="separator:a811fc76ba0094b56a1ddbe6ac8d78915"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbf46fb79e3d8c57bb6b0a4c92bf9ea5"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structcs_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html">VariableDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#acbf46fb79e3d8c57bb6b0a4c92bf9ea5">WAIT_FOR_KEY_PRESS</a></td></tr>
-<tr class="separator:acbf46fb79e3d8c57bb6b0a4c92bf9ea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad00c43d9ae3de2b4219630946b9951bb"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structcs_1_1aworx_1_1lib_1_1config_1_1VariableDecl.html">VariableDecl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#ad00c43d9ae3de2b4219630946b9951bb">WAIT_FOR_KEY_PRESS</a></td></tr>
+<tr class="separator:ad00c43d9ae3de2b4219630946b9951bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada43e256e3815ef07e1fa43666e356da"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#ada43e256e3815ef07e1fa43666e356da">WaitForKeyPressOnTermination</a></td></tr>
 <tr class="separator:ada43e256e3815ef07e1fa43666e356da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -123,6 +126,8 @@ Public Static Fields</h2></td></tr>
 Public Static Methods</h2></td></tr>
 <tr class="memitem:a7f8d4aeafdb18488a3759bb3b6cbffb2"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a7f8d4aeafdb18488a3759bb3b6cbffb2">Init</a> (String[] args=null)</td></tr>
 <tr class="separator:a7f8d4aeafdb18488a3759bb3b6cbffb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77b54b5ee9fbe4476e34b825fefeddbe"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a77b54b5ee9fbe4476e34b825fefeddbe">Init</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a> config)</td></tr>
+<tr class="separator:a77b54b5ee9fbe4476e34b825fefeddbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9848b7982b42f5f1d6e9f810d472f61b"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a9848b7982b42f5f1d6e9f810d472f61b">IsWindowsOS</a> ()</td></tr>
 <tr class="separator:a9848b7982b42f5f1d6e9f810d472f61b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af971932d642ede1447637ae4fd9ff5d1"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#af971932d642ede1447637ae4fd9ff5d1">ReadBoolean</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> src)</td></tr>
@@ -155,6 +160,11 @@ Private Static Fields</h2></td></tr>
 <tr class="memitem:af9e96e2665866b3811a07ba6261b80c2"><td class="memItemLeft" align="right" valign="top">static char []&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#af9e96e2665866b3811a07ba6261b80c2">trueValuesInclusion</a> = { 'i', 't', '1', 'y' }</td></tr>
 <tr class="separator:af9e96e2665866b3811a07ba6261b80c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
+Private Static Methods</h2></td></tr>
+<tr class="memitem:aedc913c139bb562646d3459b0ca28997"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#aedc913c139bb562646d3459b0ca28997">init</a> ()</td></tr>
+<tr class="separator:aedc913c139bb562646d3459b0ca28997"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a596d4413c8912a22a573fec275e406fa"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a596d4413c8912a22a573fec275e406fa">HasConsoleWindow</a><code> [get]</code></td></tr>
@@ -162,7 +172,7 @@ Properties</h2></td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a7f8d4aeafdb18488a3759bb3b6cbffb2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7f8d4aeafdb18488a3759bb3b6cbffb2">&#9670;&nbsp;</a></span>Init()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f8d4aeafdb18488a3759bb3b6cbffb2">&#9670;&nbsp;</a></span>Init() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -185,15 +195,78 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> This method must be called prior to using ALib, e.g. at the beginning of the <code>main()</code> method of an application. It is OK, to call this method more than once, which allows independent code blocks (e.g. libraries) to bootstrap ALIB independently. However, only the first invocation is effective with the exclamation that if command line parameters are provided with a call, those are set. Also, the very first invocation should not be interrupted by a parallel invocation of a second thread. Consequently, it has to be assured that this method is invoked once on the real bootstrap an app.</p>
-<p>In the C# version of the AWorx library, the invocation of this method is optional. However, it is good practice to invoke this method in the main() method of a process and provide the command line arguments. If no invocation is performed, no configuration plug-ins are set.</p>
-<dl class="section note"><dt>Note</dt><dd>If other, custom configuration data sources should be used already with this method (in the current implementation, the only configuration variable read with this method is <code>WAIT_FOR_KEY_PRESS</code>), then such plug-in(s) have to be added to singleton <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac7b578f72e6b1f48e14ad3a762c412db">Configuration.Default</a> prior to invoking this method.</dd></dl>
+<p> This method must be called prior to using <b>ALib</b>, e.g. at the beginning of the <code>main()</code> method of an application. It is OK, to call this method more than once, which allows independent code blocks (e.g. libraries) to bootstrap ALIB independently. However, only the first invocation is effective</p>
+<p>The very first invocation should not be interrupted by a parallel invocation of a second thread. Consequently, with more complex applications it is recommended to explicitly invoke this method once when the software is bootstrapped.</p>
+<p>If command line parameters should be used for configuring <b>ALox</b>, then the very first call to this method has to provide the argc and argv parameters. Subsequent calls to this method with different parameters do not change the setup.</p>
+<p>If other, custom configuration data sources should be used already with this method use overloaded method <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a77b54b5ee9fbe4476e34b825fefeddbe">ALIB.Init(Configuration)</a>.</p>
+<dl class="section note"><dt>Note</dt><dd>In the current implementation, the only configuration variable read with this method is <code>WAIT_FOR_KEY_PRESS</code>.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">args</td><td>Parameters taken from <em>standard C#</em> method <code>main()</code> (the list of command line arguments). Defaults to null. </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a77b54b5ee9fbe4476e34b825fefeddbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77b54b5ee9fbe4476e34b825fefeddbe">&#9670;&nbsp;</a></span>Init() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a>&#160;</td>
+          <td class="paramname"><em>config</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Variant of method <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a7f8d4aeafdb18488a3759bb3b6cbffb2">Init</a>, accepting a configuration. This will be stored in field <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a34430993f800b3bc4571bd4b9a6d9184">Config</a> and used for loading and storing <b>ALib</b> variables.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">config</td><td>The configuration object to use with <b>ALib</b> variables. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aedc913c139bb562646d3459b0ca28997"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedc913c139bb562646d3459b0ca28997">&#9670;&nbsp;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Used by <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a7f8d4aeafdb18488a3759bb3b6cbffb2">Init</a> functions. </p>
 
 </div>
 </div>
@@ -517,8 +590,8 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<a id="aaec7daa77dd5f01266a702e0b270216b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaec7daa77dd5f01266a702e0b270216b">&#9670;&nbsp;</a></span>ConfigCategoryName</h2>
+<a id="a34430993f800b3bc4571bd4b9a6d9184"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34430993f800b3bc4571bd4b9a6d9184">&#9670;&nbsp;</a></span>Config</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -527,7 +600,33 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> ConfigCategoryName = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>( &quot;ALIB&quot; )</td>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a> Config =null</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The configuration used by <b>ALox</b>. This is received or created with overloaded <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a7f8d4aeafdb18488a3759bb3b6cbffb2">Init</a> methods. It might be shared with other libraries or can be an instance explicitly dedicated to the <b>ALox</b> library.<br />
+ The option to use an exclusive one may be used to store <b>ALox</b> configuration variables in different configuration files, e.g. to reduce "clutter" of an applications' then "main" configuration file.<br />
+ Changes should only be made at very initial, single threaded bootstrap code, with the invocation of the according method <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a77b54b5ee9fbe4476e34b825fefeddbe">Init(Configuration)</a>.</p>
+<dl class="section see"><dt>See also</dt><dd>Field <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#ad493f5410dd6d760026506bd004285cd">ConfigCategory</a>. </dd></dl>
+
+</div>
+</div>
+<a id="ad493f5410dd6d760026506bd004285cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad493f5410dd6d760026506bd004285cd">&#9670;&nbsp;</a></span>ConfigCategory</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> ConfigCategory = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>( &quot;ALIB&quot; )</td>
         </tr>
       </table>
   </td>
@@ -697,7 +796,7 @@ Logging library <b>ALox</b>, which is built on ALib, will register whenever a <e
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">readonly int Version =1709</td>
+          <td class="memname">readonly int Version =1712</td>
         </tr>
       </table>
   </td>
@@ -710,8 +809,8 @@ Logging library <b>ALox</b>, which is built on ALib, will register whenever a <e
 
 </div>
 </div>
-<a id="acbf46fb79e3d8c57bb6b0a4c92bf9ea5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acbf46fb79e3d8c57bb6b0a4c92bf9ea5">&#9670;&nbsp;</a></span>WAIT_FOR_KEY_PRESS</h2>
+<a id="ad00c43d9ae3de2b4219630946b9951bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad00c43d9ae3de2b4219630946b9951bb">&#9670;&nbsp;</a></span>WAIT_FOR_KEY_PRESS</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -720,7 +819,7 @@ Logging library <b>ALox</b>, which is built on ALib, will register whenever a <e
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structcs_1_1aworx_1_1lib_1_1config_1_1VariableDefinition.html">VariableDefinition</a> WAIT_FOR_KEY_PRESS</td>
+          <td class="memname"><a class="el" href="structcs_1_1aworx_1_1lib_1_1config_1_1VariableDecl.html">VariableDecl</a> WAIT_FOR_KEY_PRESS</td>
         </tr>
       </table>
   </td>
@@ -729,7 +828,7 @@ Logging library <b>ALox</b>, which is built on ALib, will register whenever a <e
   </tr>
 </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= <span class="keyword">new</span> VariableDefinition(</div><div class="line"></div><div class="line">            ALIB.ConfigCategoryName,   null,     <span class="stringliteral">&quot;WAIT_FOR_KEY_PRESS&quot;</span>,</div><div class="line">            <span class="stringliteral">&quot;&quot;</span>,</div><div class="line">            <span class="charliteral">&#39;\0&#39;</span>, null, Variable.FormatHint.None,</div><div class="line">            <span class="stringliteral">&quot;If true, the process waits for a key stroke on termination. If empty, under Windows \n&quot;</span></div><div class="line">          + <span class="stringliteral">&quot;behavior is detected, under other OSes, defaults to false.&quot;</span> )</div></div><!-- fragment --><p>Configuration variable definition </p>
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="keyword">new</span> VariableDecl(</div><div class="line"></div><div class="line">            ALIB.ConfigCategory,   null,     <span class="stringliteral">&quot;WAIT_FOR_KEY_PRESS&quot;</span>,</div><div class="line">            <span class="stringliteral">&quot;&quot;</span>,</div><div class="line">            <span class="charliteral">&#39;\0&#39;</span>, null, Variable.FormatHint.None,</div><div class="line">            <span class="stringliteral">&quot;If true, the process waits for a key stroke on termination. If empty, under Windows \n&quot;</span></div><div class="line">          + <span class="stringliteral">&quot;behavior is detected, under other OSes, defaults to false.&quot;</span> )</div></div><!-- fragment --><p>Configuration variable declaration </p>
 
 </div>
 </div>
@@ -790,7 +889,7 @@ Logging library <b>ALox</b>, which is built on ALib, will register whenever a <e
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:48:00 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:17 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

@@ -6,12 +6,10 @@ digraph "ScopeStore&lt;StoreT&gt;"
   Node2 [label="map\<int, vector\<StoreT\>\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node3 [label="vector\<StoreT\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node6 [label="map\<K, T\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class. "];
-  Node12 [label="vector\<core::ScopeInfo::Scope\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-  Node15 [label="vector\<core::ScopeInfo::SourcePathTrimRule\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-  Node21 [label="map\<thread::id, Thread *\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-  Node26 [label="unordered_map\<aworx::String, Node *, lib::strings::std_Hash, lib::strings::std_Equals\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node12 [label="vector\<ScopeInfo::Scope\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node15 [label="vector\<ScopeInfo::SourcePathTrimRule\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node1 [label="ScopeStore\<StoreT\>",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
-  Node24 [label="StringTree\<StoreT\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1containers_1_1StringTree.html"];
+  Node23 [label="StringTree\<StoreT\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1util_1_1StringTree.html"];
   Node18 [label="PreallocatedString\<TCapacity\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html"];
   Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" threadInnerStore\nthreadOuterStore" ,fontname="Helvetica"];
   Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" walkThreadValues" ,fontname="Helvetica"];
@@ -22,11 +20,10 @@ digraph "ScopeStore&lt;StoreT&gt;"
   Node6 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" threadDictionary" ,fontname="Helvetica"];
   Node7 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" keys" ,fontname="Helvetica"];
   Node8 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
-  Node8 -> Node25 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" value" ,fontname="Helvetica"];
+  Node8 -> Node24 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" value" ,fontname="Helvetica"];
   Node9 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" threadName" ,fontname="Helvetica"];
   Node9 -> Node10 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" fullPath\nnameWOExt\ntrimmedPathPrefix\nname\ntrimmedPath" ,fontname="Helvetica"];
   Node9 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node9 -> Node26 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" keys" ,fontname="Helvetica"];
   Node10 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" cache\nlastSourceFile" ,fontname="Helvetica"];
   Node10 -> Node13 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" sourceFile" ,fontname="Helvetica"];
   Node11 -> Node10 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" origFile" ,fontname="Helvetica"];
@@ -41,15 +38,12 @@ digraph "ScopeStore&lt;StoreT&gt;"
   Node18 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" loxName" ,fontname="Helvetica"];
   Node18 -> Node19 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" name" ,fontname="Helvetica"];
   Node19 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" thread" ,fontname="Helvetica"];
-  Node19 -> Node21 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
+  Node20 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node20 -> Node19 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" runnable" ,fontname="Helvetica"];
-  Node21 -> Node19 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" threadMap" ,fontname="Helvetica"];
-  Node23 -> Node19 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" c11Thread" ,fontname="Helvetica"];
-  Node24 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" languageStore\nactStringTreeNode" ,fontname="Helvetica"];
-  Node25 -> Node24 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" root" ,fontname="Helvetica"];
-  Node25 -> Node25 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" parent" ,fontname="Helvetica"];
-  Node25 -> Node26 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
-  Node26 -> Node25 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" children" ,fontname="Helvetica"];
+  Node22 -> Node19 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" c11Thread" ,fontname="Helvetica"];
+  Node23 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" languageStore\nactStringTreeNode" ,fontname="Helvetica"];
+  Node24 -> Node23 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" root" ,fontname="Helvetica"];
+  Node24 -> Node24 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" parent" ,fontname="Helvetica"];
   Node4 [label="StoreT",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node5 [label="ScopeInfo",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1core_1_1ScopeInfo.html"];
   Node7 [label="K",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
@@ -62,7 +56,7 @@ digraph "ScopeStore&lt;StoreT&gt;"
   Node17 [label="AString",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1AString.html"];
   Node19 [label="Thread",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1threads_1_1Thread.html"];
   Node20 [label="Runnable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1threads_1_1Runnable.html"];
-  Node23 [label="thread",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class. "];
-  Node25 [label="Node",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1containers_1_1StringTree_1_1Node.html"];
+  Node22 [label="thread",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class. "];
+  Node24 [label="Node",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1util_1_1StringTree_1_1Node.html"];
 }
 

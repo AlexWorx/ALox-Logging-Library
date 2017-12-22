@@ -1,15 +1,10 @@
 <map id="Variable" name="Variable">
-<area shape="rect" id="node9" href="$classaworx_1_1lib_1_1config_1_1Configuration.html" title="Configuration" alt="" coords="1771,469,1869,496"/>
-<area shape="rect" id="node18" href="$classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html" title="InMemoryPlugin" alt="" coords="1487,529,1603,556"/>
-<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="657,191,860,217"/>
-<area shape="rect" id="node13" href="$classaworx_1_1lib_1_1threads_1_1Thread.html" title="Thread" alt="" coords="1165,269,1227,296"/>
-<area shape="rect" id="node7" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="432,123,497,149"/>
-<area shape="rect" id="node8" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="167,384,231,411"/>
-<area shape="rect" id="node10" href="$classaworx_1_1lib_1_1lang_1_1Ownable.html" title="Ownable" alt="" coords="541,377,613,404"/>
-<area shape="rect" id="node11" href="$classaworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="1335,681,1443,708"/>
-<area shape="rect" id="node14" href="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="1499,371,1590,397"/>
-<area shape="rect" id="node12" href="$classaworx_1_1lib_1_1strings_1_1String.html" title="String" alt="" coords="5,343,61,369"/>
-<area shape="rect" id="node15" href="$classaworx_1_1lib_1_1config_1_1EnvironmentPlugin.html" title="EnvironmentPlugin" alt="" coords="1479,479,1610,505"/>
-<area shape="rect" id="node16" href="$classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html" title="ConfigurationPlugin" alt="" coords="1129,515,1263,541"/>
-<area shape="rect" id="node17" href="$classaworx_1_1lib_1_1config_1_1CommandLinePlugin.html" title="CommandLinePlugin" alt="" coords="1474,580,1615,607"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1util_1_1PluginContainer.html" title="PluginContainer\&lt;ConfigurationPlugin, Priorities\&gt;" alt="" coords="523,461,823,488"/>
+<area shape="rect" id="node10" href="$classaworx_1_1lib_1_1config_1_1Configuration.html" title="Configuration" alt="" coords="1013,308,1112,335"/>
+<area shape="rect" id="node7" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="961,48,1164,75"/>
+<area shape="rect" id="node8" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="640,128,705,155"/>
+<area shape="rect" id="node9" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="233,275,297,301"/>
+<area shape="rect" id="node11" href="$classaworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="619,308,727,335"/>
+<area shape="rect" id="node12" href="$classaworx_1_1lib_1_1strings_1_1String.html" title="String" alt="" coords="5,236,61,263"/>
+<area shape="rect" id="node13" href="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="219,471,310,497"/>
 </map>

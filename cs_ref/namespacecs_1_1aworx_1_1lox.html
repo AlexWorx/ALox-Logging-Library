@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu"    href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu_hl" href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu"    href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu_hl" href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -120,11 +120,11 @@ Enumerations</h2></td></tr>
 <tr class="memitem:aaecc53892786f2fa11e682f633af84c6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> { <br />
 &#160;&#160;<a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Global</a>, 
 <a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a1ee3f312b05c55202500569aadfc8d9b">ThreadOuter</a>, 
-<a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Path</a>, 
 <a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a1351017ac6423911223bc19a8cb7c653">Filename</a>, 
+<a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4c3880bb027f159e801041b1021e88e8">Method</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4c3880bb027f159e801041b1021e88e8">Method</a>, 
-<a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6ae46b159c990fae9e712309bdb4d7b7c4">ThreadInner</a>
+&#160;&#160;<a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6ae46b159c990fae9e712309bdb4d7b7c4">ThreadInner</a>, 
+<a class="el" href="namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Path</a>
 <br />
  }</td></tr>
 <tr class="separator:aaecc53892786f2fa11e682f633af84c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -169,13 +169,13 @@ Enumerations</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="aaecc53892786f2fa11e682f633af84c6a1ee3f312b05c55202500569aadfc8d9b"></a>ThreadOuter&#160;</td><td class="fielddoc"><p>Denotes the actual thread as the scope. When used with <em>Scope Domains</em>, 'inner' scopes can be defined optionally by multiple definitions. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b"></a>Path&#160;</td><td class="fielddoc"><p>Denotes the actual source path as the scope. When used, optionally 'outer' <em>Scopes</em> of this scope level itself can be defined using parent directories of the path. </p>
-</td></tr>
 <tr><td class="fieldname"><a id="aaecc53892786f2fa11e682f633af84c6a1351017ac6423911223bc19a8cb7c653"></a>Filename&#160;</td><td class="fielddoc"><p>Denotes the actual source file as the scope </p>
 </td></tr>
 <tr><td class="fieldname"><a id="aaecc53892786f2fa11e682f633af84c6a4c3880bb027f159e801041b1021e88e8"></a>Method&#160;</td><td class="fielddoc"><p>Denotes the actual method as the scope </p>
 </td></tr>
 <tr><td class="fieldname"><a id="aaecc53892786f2fa11e682f633af84c6ae46b159c990fae9e712309bdb4d7b7c4"></a>ThreadInner&#160;</td><td class="fielddoc"><p>Denotes the actual thread as the scope. When used with <em>Scope Domains</em>, 'inner' scopes can be defined optionally by multiple definitions. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b"></a>Path&#160;</td><td class="fielddoc"><p>Denotes the actual source path as the scope. By adding positive integer values to this element, 'outer' <em>Scopes</em> of this scope level itself can be defined using parent directories of the path. </p>
 </td></tr>
 </table>
 
@@ -207,10 +207,10 @@ Enumerations</h2></td></tr>
 <li>Warning</li>
 <li>Error (lowest level).</li>
 </ul>
-<p>A value of this set is provided to <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a> in two different ways: First, all methods of class <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html">Lox</a> that execute a log operation assign a value of this enum to the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em>. Secondly, methods <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#adf2c597f5476b71077fa93d8126631af">Lox.SetVerbosity</a>, are defining the 'accepted' <em>minimal</em> <em>Verbosity</em> for a pair of <em>&lt;Logger/Log Domain&gt;</em>.</p>
+<p>A value of this set is provided to <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a> in two different ways: First, all methods of class <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html">Lox</a> that execute a log operation assign a value of this enum to the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em>. Secondly, methods <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a57455d6cf16f07d3e3d6d2acf71a71a1">Lox.SetVerbosity</a>, are defining the 'accepted' <em>minimal</em> <em>Verbosity</em> for a pair of <em>&lt;Logger/Log Domain&gt;</em>.</p>
 <p>ALox, when executing a statement, checks both values against each other. A <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> is executed, when the <em>&lt;Logger/Log Domain&gt;</em> setting is set to the same or a 'higher level'. For example if a <em>&lt;Logger/Log Domain&gt;</em> setting is <b>Warning</b>, then <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Statements</em> with associated <em>Verbosity</em> <b>Warning</b> and <b>Error</b> are executed and those with <b>Info</b> and <b>Verbose</b> are suppressed.</p>
-<p>If special value <b>Off</b> is used with <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#adf2c597f5476b71077fa93d8126631af">Lox.SetVerbosity</a>, all logging is switched Off for this pair of <em>&lt;Logger/Log Domain&gt;</em>.</p>
-<p>Some of the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Statements</em> accept the parameter directly (e.g. <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ae5fd2ea73b32edf3a6979dccef2d242a">Lox.Entry</a>, <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#adf12d740a5c327f144757d7893af1374">Lox.Once</a> and <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ab31c7787d9ae652246908ae84e5a0483">Lox.If</a>), others inherently use the right value as their method name suggests (e.g. <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a22b7fdc3f7e698be0491132233bc8bb7">Lox.Error</a>, <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ab81053ced02b4f2276cbfc841bb96cf2">Lox.Warning</a>, <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ad42b2772982a5c4f2198efff4d2f77cd">Lox.Info</a>, <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a43d08ebfbf1dafc8d22490fc7ebec75a">Lox.Verbose</a> and <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#abb354922fdc82fe18b6bd69468e05dec">Lox.Assert</a>). The latter group of methods do not support parameter <b>Off</b>.</p>
+<p>If special value <b>Off</b> is used with <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a57455d6cf16f07d3e3d6d2acf71a71a1">Lox.SetVerbosity</a>, all logging is switched Off for this pair of <em>&lt;Logger/Log Domain&gt;</em>.</p>
+<p>Some of the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Statements</em> accept the parameter directly (e.g. <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ae5fd2ea73b32edf3a6979dccef2d242a">Lox.Entry</a>, <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a29a0ad7eabed8e8b8f2a698d30250975">Lox.Once</a> and <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ab31c7787d9ae652246908ae84e5a0483">Lox.If</a>), others inherently use the right value as their method name suggests (e.g. <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a22b7fdc3f7e698be0491132233bc8bb7">Lox.Error</a>, <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ab81053ced02b4f2276cbfc841bb96cf2">Lox.Warning</a>, <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ad42b2772982a5c4f2198efff4d2f77cd">Lox.Info</a>, <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a43d08ebfbf1dafc8d22490fc7ebec75a">Lox.Verbose</a> and <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#abb354922fdc82fe18b6bd69468e05dec">Lox.Assert</a>). The latter group of methods do not support parameter <b>Off</b>.</p>
 <p>If special value <b>Off</b> is used with those <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Statements</em>, that allow to specify the <em>Verbosity</em> as a parameter, the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> is never executed This is useful if the parameter is determined at runtime, depending on the state of an application. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="abf3be10d03894afb391f3a2935e3b313ad4a9fa383ab700c5bdd6f31cf7df0faf"></a>Verbose&#160;</td><td class="fielddoc"><p>The 'highest' level of <em>Verbosity</em>. Statements with this value associated are logged only if a <em>Log Domain</em> is set to <b>Verbose</b> as well. </p>
@@ -232,7 +232,7 @@ Enumerations</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:48:00 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:17 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

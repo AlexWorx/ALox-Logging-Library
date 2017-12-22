@@ -1,8 +1,10 @@
 <map id="Ownable" name="Ownable">
-<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="125,80,216,107"/>
-<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html" title="ThreadLockNR" alt="" coords="241,80,349,107"/>
-<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1config_1_1Configuration.html" title="Configuration" alt="" coords="5,155,104,181"/>
-<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1threads_1_1SmartLock.html" title="SmartLock" alt="" coords="128,155,213,181"/>
-<area shape="rect" id="node6" href="$classaworx_1_1lox_1_1Lox.html" title="Lox" alt="" coords="237,155,280,181"/>
-<area shape="rect" id="node7" href="$classaworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="140,229,201,256"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="134,81,225,108"/>
+<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html" title="ThreadLockNR" alt="" coords="125,132,233,159"/>
+<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1util_1_1PluginContainer.html" title="PluginContainer\&lt;pTPlugin, pTPriorities\&gt;" alt="" coords="304,5,559,32"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1util_1_1PluginContainer.html" title="PluginContainer\&lt;ConfigurationPlugin, Priorities\&gt;" alt="" coords="281,56,581,83"/>
+<area shape="rect" id="node9" href="$classaworx_1_1lib_1_1config_1_1Configuration.html" title="Configuration" alt="" coords="629,56,728,83"/>
+<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1threads_1_1SmartLock.html" title="SmartLock" alt="" coords="389,107,474,133"/>
+<area shape="rect" id="node7" href="$classaworx_1_1lox_1_1Lox.html" title="Lox" alt="" coords="410,157,453,184"/>
+<area shape="rect" id="node8" href="$classaworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="648,107,709,133"/>
 </map>

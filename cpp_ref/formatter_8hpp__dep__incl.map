@@ -1,7 +1,9 @@
 <map id="formatter.hpp" name="formatter.hpp">
-<area shape="rect" id="node2" href="$formatterstdimpl_8hpp.html" title="formatterstdimpl.hpp" alt="" coords="101,80,242,107"/>
-<area shape="rect" id="node3" href="$formatterjavastyle_8hpp.html" title="formatterjavastyle.hpp" alt="" coords="5,155,156,181"/>
-<area shape="rect" id="node4" href="$formatterpythonstyle_8hpp.html" title="formatterpythonstyle.hpp" alt="" coords="180,155,347,181"/>
-<area shape="rect" id="node5" href="$textlogger_8hpp.html" title="textlogger.hpp" alt="" coords="56,229,159,256"/>
-<area shape="rect" id="node6" href="$simpletext_8hpp.html" title="simpletext.hpp" alt="" coords="210,229,317,256"/>
+<area shape="rect" id="node2" href="$formatterstdimpl_8hpp.html" title="formatterstdimpl.hpp" alt="" coords="193,80,334,107"/>
+<area shape="rect" id="node3" href="$propertyformatter_8hpp_source.html" title="propertyformatter.hpp" alt="" coords="367,80,512,107"/>
+<area shape="rect" id="node4" href="$formatterjavastyle_8hpp.html" title="formatterjavastyle.hpp" alt="" coords="5,155,156,181"/>
+<area shape="rect" id="node5" href="$formatterpythonstyle_8hpp.html" title="formatterpythonstyle.hpp" alt="" coords="180,155,347,181"/>
+<area shape="rect" id="node8" href="$propertyformatters_8hpp_source.html" title="propertyformatters.hpp" alt="" coords="371,155,524,181"/>
+<area shape="rect" id="node6" href="$textlogger_8hpp.html" title="textlogger.hpp" alt="" coords="56,229,159,256"/>
+<area shape="rect" id="node7" href="$simpletext_8hpp.html" title="simpletext.hpp" alt="" coords="210,229,317,256"/>
 </map>

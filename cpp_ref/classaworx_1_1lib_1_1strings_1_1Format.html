@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -99,11 +99,11 @@ Collaboration diagram for Format:</div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> This is a type applicable to objects of type <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a>. Various constructors consume integer and floating point types, along with formatting options. The specialization of struct <a class="el" href="structaworx_1_1lib_1_1strings_1_1T__Apply.html">T_Apply&lt;Format&gt;</a> will use a given (or defaulted) instance of class <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> to append the value to the <b>AString</b> in question.</p>
+<p> This is a type applicable to objects of type <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a>. Various constructors consume integer and floating point types, along with formatting options. The specialization of struct <a class="el" href="structaworx_1_1lib_1_1strings_1_1T__Apply.html">T_Apply</a> "T_Apply&lt;Format&gt;" will use a given (or defaulted) instance of class <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> to append the value to the <b>AString</b> in question.</p>
 <dl class="section note"><dt>Note</dt><dd>Within the same header file that this class in declared in, there are several specializations of <a class="el" href="structaworx_1_1lib_1_1strings_1_1T__Apply.html">T_Apply</a> defined for plain integer and floating point types. These specializations create an object of this type, providing the value only, hence, using this classes constructors' default values. The number format used as default by the constructors of this class is <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat::Computational</a>. As a result, the application of such core types, as in: <div class="fragment"><div class="line"><a class="code" href="classaworx_1_1lib_1_1strings_1_1AString.html">aworx::AString</a> sample;</div><div class="line">sample &lt;&lt; 1234.56;</div><div class="line">cout &lt;&lt; sample &lt;&lt; endl;</div></div><!-- fragment --> which produces: <div class="fragment"><div class="line">1234.56</div></div><!-- fragment --> </dd>
 <dd>
 does <b>not</b> use a locale specific number format. Instead it uses one that is exchangeable between applications independent from the locale setting of the executing machine.<br />
- Consequently, for locale specific output, an object of this class needs to be applied along with a locale enabled instance of <b>NumberFormat</b>. For example: <div class="fragment"><div class="line"><a class="code" href="classaworx_1_1lib_1_1strings_1_1AString.html">aworx::AString</a> sample;</div><div class="line">sample &lt;&lt; <a class="code" href="classaworx_1_1lib_1_1strings_1_1Format.html#aebd2ef66a70ded7e46635a08c8226a51">Format</a>( 1234.56 , &amp;<a class="code" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a90ba9664ea3142614578553e08d506a1">aworx::NumberFormat::Global</a> );</div><div class="line">cout &lt;&lt; sample &lt;&lt; endl;</div></div><!-- fragment --> which - dependent on the current local setting - might produce: <div class="fragment"><div class="line">1.234,56</div></div><!-- fragment --></dd></dl>
+ Consequently, for locale specific output, an object of this class needs to be applied along with a locale enabled instance of <b>NumberFormat</b>. For example: <div class="fragment"><div class="line"><a class="code" href="classaworx_1_1lib_1_1strings_1_1AString.html">aworx::AString</a> sample;</div><div class="line">sample &lt;&lt; <a class="code" href="classaworx_1_1lib_1_1strings_1_1Format.html#aebd2ef66a70ded7e46635a08c8226a51">Format</a>( 1234.56 , &amp;<a class="code" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a9c9a27c7479023730cc33644fc6c9164">aworx::NumberFormat::Global</a> );</div><div class="line">cout &lt;&lt; sample &lt;&lt; endl;</div></div><!-- fragment --> which - dependent on the current local setting - might produce: <div class="fragment"><div class="line">1.234,56</div></div><!-- fragment --></dd></dl>
 <p><b>Inner Types:</b><br />
  Besides accepting plain number types, this class in addition aggregates several public inner types, namely</p><ul>
 <li><a class="el" href="structaworx_1_1lib_1_1strings_1_1Format_1_1Tab.html">Format::Tab</a>,</li>
@@ -138,7 +138,7 @@ Public Fields</h2></td></tr>
 <tr class="separator:afecb8b906f7e79cb68adcdbce823de5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af24938d824f57b7af29025dfb0556f66"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Format.html#af24938d824f57b7af29025dfb0556f66">theWidth</a></td></tr>
 <tr class="separator:af24938d824f57b7af29025dfb0556f66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a382e9ea0d7bc529dee1b4a50ff8d10f2"><td class="memItemLeft" >union {</td></tr>
+<tr class="memitem:a47bf8637626e089a077b1c2b62f9baee"><td class="memItemLeft" >union {</td></tr>
 <tr class="memitem:af2f6bd725d898b52242b0b8826d52591"><td class="memItemLeft" >
 &#160;&#160;&#160;double&#160;&#160;&#160;<a class="el" href="classaworx_1_1lib_1_1strings_1_1Format.html#af2f6bd725d898b52242b0b8826d52591">fp</a></td></tr>
 <tr class="memdesc:af2f6bd725d898b52242b0b8826d52591"><td class="mdescLeft">&#160;</td><td class="mdescRight">The value when using constructor with type double. <br /></td></tr>
@@ -151,9 +151,9 @@ Public Fields</h2></td></tr>
 &#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="classaworx_1_1lib_1_1strings_1_1Format.html#ad9d337e738d698e3b57c8fe34127d82d">uInt</a></td></tr>
 <tr class="memdesc:ad9d337e738d698e3b57c8fe34127d82d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The value when using constructor with unsigned integer types. <br /></td></tr>
 <tr class="separator:ad9d337e738d698e3b57c8fe34127d82d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a382e9ea0d7bc529dee1b4a50ff8d10f2"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Format.html#a382e9ea0d7bc529dee1b4a50ff8d10f2">v</a></td></tr>
-<tr class="memdesc:a382e9ea0d7bc529dee1b4a50ff8d10f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The data.  <a href="#a382e9ea0d7bc529dee1b4a50ff8d10f2">More...</a><br /></td></tr>
-<tr class="separator:a382e9ea0d7bc529dee1b4a50ff8d10f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47bf8637626e089a077b1c2b62f9baee"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Format.html#a47bf8637626e089a077b1c2b62f9baee">v</a></td></tr>
+<tr class="memdesc:a47bf8637626e089a077b1c2b62f9baee"><td class="mdescLeft">&#160;</td><td class="mdescRight">The data.  <a href="#a47bf8637626e089a077b1c2b62f9baee">More...</a><br /></td></tr>
+<tr class="separator:a47bf8637626e089a077b1c2b62f9baee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8005d517c7a9e379314e1ce4f90a3dce"><td class="memItemLeft" align="right" valign="top"><a id="a8005d517c7a9e379314e1ce4f90a3dce"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Format.html#a8005d517c7a9e379314e1ce4f90a3dce">valueType</a></td></tr>
 <tr class="memdesc:a8005d517c7a9e379314e1ce4f90a3dce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag witch value to use (1= sInt, 2=uInt, 3=fp ) <br /></td></tr>
@@ -1085,8 +1085,8 @@ Public Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a382e9ea0d7bc529dee1b4a50ff8d10f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a382e9ea0d7bc529dee1b4a50ff8d10f2">&#9670;&nbsp;</a></span>v</h2>
+<a id="a47bf8637626e089a077b1c2b62f9baee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47bf8637626e089a077b1c2b62f9baee">&#9670;&nbsp;</a></span>v</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1109,7 +1109,7 @@ Public Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:15 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

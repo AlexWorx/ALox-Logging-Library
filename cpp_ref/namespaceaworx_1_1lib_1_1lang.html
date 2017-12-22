@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -82,6 +82,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#namespaces">Nested namespaces</a> &#124;
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
@@ -93,17 +94,38 @@ $(function() {
 <a name="details" id="details"></a><h2 class="groupheader">Namespace Description</h2>
 <div class="textblock"><hr/>
 <p> This namespace collects very basic utilities for <a class="el" href="namespaceaworx_1_1lib.html">ALib</a>, close to the C++ language.</p>
-<dl class="section note"><dt>Note</dt><dd>A list of <b>general enumerations</b> is found in this namespace. It is arguable and a matter of taste, whether enumerations should be declared near or inside the class which is using it, or in a separated place like this namespace introduced here.<br />
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>Within the source folder of this namespace, also file <code><a class="el" href="prepro_8hpp.html">prepro.hpp</a></code> is found, which sets up all basic <b>ALib</b> preprocessor definitions. Further preprocessor macros are defined in various places (where they belong to). An overview of all preprocessor symbols of this and other namespaces of <b>ALib</b> is given with <a class="el" href="group__GrpALibMacros.html">ALib Macros</a>.</li>
+<li>A list of <b>general enumerations</b> is found in this namespace. It is arguable and a matter of taste, whether enumerations should be declared near or inside the class which is using it, or in a separated place like this namespace introduced here.<br />
  <b>ALib</b> follows the second approach (not strictly, domain specific enums might appear also inside classes) and this has the following reasons:<ul>
 <li>To shorten the code when using the enums.</li>
 <li>To reach a maximum degree of source compatibility between the different programming language versions of <b>ALib</b>.</li>
 <li>To make the enums reusable with different classes. </li>
 </ul>
+</li>
+</ul>
 </dd></dl>
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Nested namespaces</h2></td></tr>
+<tr class="memitem:namespaceaworx_1_1lib_1_1lang_1_1detail"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang_1_1detail.html">detail</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1MemoryBlocks.html">MemoryBlocks</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1lang_1_1Enum.html">Enum</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1lang_1_1EnumIterator.html">EnumIterator</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1lang_1_1EnumMetaData.html">EnumMetaData</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1lang_1_1EnumReadWriteInfo.html">EnumReadWriteInfo</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Exception.html">Exception</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Lang.html">Lang</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html">Library</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Ownable.html">Ownable</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -115,7 +137,27 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1ReportWriterStdIO.html">ReportWriterStdIO</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1ResourcedTupleLoader.html">ResourcedTupleLoader</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Resources.html">Resources</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1lang_1_1Singleton.html">Singleton</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">T_EnumIsArithmetical</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">T_EnumIsBitwise</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsIteratable.html">T_EnumIsIteratable</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumMetaDataDecl.html">T_EnumMetaDataDecl</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumMetaDataDeclReadWrite.html">T_EnumMetaDataDeclReadWrite</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumMetaDataPreAndPostFix.html">T_EnumMetaDataPreAndPostFix</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumMetaDataSpecification.html">T_EnumMetaDataSpecification</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1lang_1_1T__Resourced.html">T_Resourced</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
@@ -124,9 +166,9 @@ Typedefs</h2></td></tr>
 <tr class="separator:a050df5b24462b4a6256f2ed69c6b50ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9eb8b6fb1aab7d526e9419b10fd5363"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#af9eb8b6fb1aab7d526e9419b10fd5363">intGap_t</a> = platform_specific</td></tr>
 <tr class="separator:af9eb8b6fb1aab7d526e9419b10fd5363"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae408aa856d7bc11ba1706acd119f34a3"><td class="memTemplParams" colspan="2">template&lt;typename TMapped &gt; </td></tr>
-<tr class="memitem:ae408aa856d7bc11ba1706acd119f34a3"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ae408aa856d7bc11ba1706acd119f34a3">TypeinfoMap</a> = std::unordered_map&lt; std::reference_wrapper&lt; const std::type_info &gt;, TMapped, RTTIMap_Hasher, RTTIMap_EqualTo &gt;</td></tr>
-<tr class="separator:ae408aa856d7bc11ba1706acd119f34a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbab97b1d07c87ce87a4e9e0a34f448b"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:afbab97b1d07c87ce87a4e9e0a34f448b"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#afbab97b1d07c87ce87a4e9e0a34f448b">RTTIUnorderedMap</a> = std::unordered_map&lt; <a class="el" href="namespaceaworx_1_1lib_1_1lang_1_1detail.html#ae6fadb29df248d69ddb96925f43f126d">detail::WrappedTypeInfo</a>, T, <a class="el" href="structaworx_1_1lib_1_1lang_1_1detail_1_1WrappedTypeInfoHasher.html">detail::WrappedTypeInfoHasher</a>, <a class="el" href="structaworx_1_1lib_1_1lang_1_1detail_1_1WrappedTypeInfoPredEqualTo.html">detail::WrappedTypeInfoPredEqualTo</a> &gt;</td></tr>
+<tr class="separator:afbab97b1d07c87ce87a4e9e0a34f448b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03b8595314b87c0141d68dc0c312f30e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a03b8595314b87c0141d68dc0c312f30e">uinteger</a> = platform_specific</td></tr>
 <tr class="separator:a03b8595314b87c0141d68dc0c312f30e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae89f60b8bbbc054d70fa7c5b19627b93"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ae89f60b8bbbc054d70fa7c5b19627b93">uintGap_t</a> = platform_specific</td></tr>
@@ -137,11 +179,17 @@ Enumerations</h2></td></tr>
 <tr class="memitem:acdfaca60ec19c0265bac2692d7982726"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726">Alignment</a> { <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726a945d5e233cf7d6240f6b783b36a374ff">Left</a>, 
 <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726a92b09c7c48c520c3c55e497875da437c">Right</a>, 
 <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726a4f1f6016fc9f3f2353c0cc7c67b292bd">Center</a>
- }</td></tr>
+ }<tr class="memdesc:acdfaca60ec19c0265bac2692d7982726"><td class="mdescLeft">&#160;</td><td class="mdescRight">[DOX_ALIB_LANG_ENUMS_PARSABLE_1]  <a href="namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726">More...</a><br /></td></tr>
+</td></tr>
 <tr class="separator:acdfaca60ec19c0265bac2692d7982726"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39db6982619d623273fad8a383489309"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a39db6982619d623273fad8a383489309">Bool</a> { <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a39db6982619d623273fad8a383489309af8320b26d30ab433c5a54546d21f414c">False</a>, 
+<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a39db6982619d623273fad8a383489309af827cf462f62848df37c5e1e94a4da74">True</a>
+ }</td></tr>
+<tr class="separator:a39db6982619d623273fad8a383489309"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9aab17a5e54a8bae6915bc24db13a17"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">Case</a> { <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">Sensitive</a>, 
 <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17afd038fc7f319e48f3115d92bf5bdbef9">Ignore</a>
- }</td></tr>
+ }<tr class="memdesc:ab9aab17a5e54a8bae6915bc24db13a17"><td class="mdescLeft">&#160;</td><td class="mdescRight">[DOX_ALIB_LANG_ENUMS_PARSABLE_1]  <a href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">More...</a><br /></td></tr>
+</td></tr>
 <tr class="separator:ab9aab17a5e54a8bae6915bc24db13a17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6d9cc1e6686eca6e60d57d959cf57fb"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#af6d9cc1e6686eca6e60d57d959cf57fb">ContainerOp</a> { <br />
 &#160;&#160;<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#af6d9cc1e6686eca6e60d57d959cf57fbaa458be0f08b7e4ff3c0f633c100176c0">Insert</a>, 
@@ -169,8 +217,8 @@ Enumerations</h2></td></tr>
 <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a00fc859257c8f09ff9198dde28121961a67b491789a29d0c717a2b4ebe369a936">SingleLocks</a>
  }</td></tr>
 <tr class="separator:a00fc859257c8f09ff9198dde28121961"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1c5184dc404edf057ed537bcfddef84"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ae1c5184dc404edf057ed537bcfddef84">Phase</a> { <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ae1c5184dc404edf057ed537bcfddef84a1a06729125544cab7cee73195fc044f0">Begin</a>, 
-<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ae1c5184dc404edf057ed537bcfddef84a87557f11575c0ad78e4e28abedc13b6e">End</a>
+<tr class="memitem:ae1c5184dc404edf057ed537bcfddef84"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ae1c5184dc404edf057ed537bcfddef84">Phase</a> { <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ae1c5184dc404edf057ed537bcfddef84a1a06729125544cab7cee73195fc044f0">Begin</a> = (1 &lt;&lt; 0), 
+<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ae1c5184dc404edf057ed537bcfddef84a87557f11575c0ad78e4e28abedc13b6e">End</a> = (1 &lt;&lt; 1)
  }</td></tr>
 <tr class="separator:ae1c5184dc404edf057ed537bcfddef84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeae0c2d4659a32ef54bd221d1a3da4e6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#aeae0c2d4659a32ef54bd221d1a3da4e6">Propagation</a> { <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#aeae0c2d4659a32ef54bd221d1a3da4e6a3f9823fc8c5bf8d5efbb0ad3be5f16c9">Omit</a>, 
@@ -185,12 +233,6 @@ Enumerations</h2></td></tr>
 <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab5305b978950ba3946cf79a4bccbf7afa6950810f0d2bba97a6f710c7b965b84e">Transfer</a>
  }</td></tr>
 <tr class="separator:ab5305b978950ba3946cf79a4bccbf7af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28287671eaf7406afd604bd055ba4066"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a28287671eaf7406afd604bd055ba4066">Result</a> { <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a28287671eaf7406afd604bd055ba4066ae0aa021e21dddbd6d8cecec71e9cf564">OK</a>, 
-<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a28287671eaf7406afd604bd055ba4066a902b0d55fddef6f8d651fe1035b7d4bd">Error</a>, 
-<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a28287671eaf7406afd604bd055ba4066aea1776502570f06ddc0569c079cb9ee2">FileExists</a>, 
-<a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a28287671eaf7406afd604bd055ba4066a5d0744802b24f44a161d350c25d76c7b">InvalidPath</a>
- }</td></tr>
-<tr class="separator:a28287671eaf7406afd604bd055ba4066"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c800527afe0a8a6c71ae4cceda6bf9d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a8c800527afe0a8a6c71ae4cceda6bf9d">Safeness</a> { <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a8c800527afe0a8a6c71ae4cceda6bf9dac6eea0560cd6f377e78dff2c85cc9122">Safe</a>, 
 <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a8c800527afe0a8a6c71ae4cceda6bf9dad3d57868b6ff9839eff631d2cc8acbce">Unsafe</a>
  }</td></tr>
@@ -220,12 +262,99 @@ Enumerations</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a20cbd716cfc046a49f72978689279f29"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a20cbd716cfc046a49f72978689279f29">DeleteSingletons</a> ()</td></tr>
 <tr class="separator:a20cbd716cfc046a49f72978689279f29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19e6db2f27ef9f486893d9188bc668fc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a19e6db2f27ef9f486893d9188bc668fc">ReadBoolean</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;src)</td></tr>
-<tr class="separator:a19e6db2f27ef9f486893d9188bc668fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1765f5d202bd73ecffd4ce52dfc6a2c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">Case</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab1765f5d202bd73ecffd4ce52dfc6a2c">ReadCase</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;src)</td></tr>
-<tr class="separator:ab1765f5d202bd73ecffd4ce52dfc6a2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a98a5e6229cb932f51f677d536c683b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a217539925b78b2eed40ae7817d5bee52">Inclusion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a7a98a5e6229cb932f51f677d536c683b">ReadInclusion</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;src)</td></tr>
-<tr class="separator:a7a98a5e6229cb932f51f677d536c683b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fd18b7e35e747c3e86275c57311cb1b"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:a2fd18b7e35e747c3e86275c57311cb1b"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt; TEnum &gt;::value, bool &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a2fd18b7e35e747c3e86275c57311cb1b">EnumContains</a> (TEnum tested, TEnum testFor) noexcept(true)</td></tr>
+<tr class="separator:a2fd18b7e35e747c3e86275c57311cb1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84494f1a492417b7b96bb8dfcd9c4c02"><td class="memTemplParams" colspan="2">template&lt;typename TEnum , typename TEnableIf  = typename std::enable_if&lt;std::is_enum&lt;TEnum&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a84494f1a492417b7b96bb8dfcd9c4c02"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::underlying_type&lt; TEnum &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a84494f1a492417b7b96bb8dfcd9c4c02">EnumValue</a> (TEnum element) noexcept(true)</td></tr>
+<tr class="separator:a84494f1a492417b7b96bb8dfcd9c4c02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5ecab83cce9a39585a8db8fdf597ee7"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:ac5ecab83cce9a39585a8db8fdf597ee7"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt; TEnum &gt;::value, TEnum &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ac5ecab83cce9a39585a8db8fdf597ee7">operator &amp;</a> (TEnum lhs, TEnum rhs) noexcept(true)</td></tr>
+<tr class="separator:ac5ecab83cce9a39585a8db8fdf597ee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09304aaeeffaac2fb8693a970692a534"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:a09304aaeeffaac2fb8693a970692a534"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt; TEnum &gt;::value, TEnum &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a09304aaeeffaac2fb8693a970692a534">operator &amp;=</a> (TEnum &amp;lhs, TEnum rhs) noexcept(true)</td></tr>
+<tr class="separator:a09304aaeeffaac2fb8693a970692a534"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b687109ec6e967dab9485ea66e65851"><td class="memTemplParams" colspan="2">template&lt;typename TEnum , typename TEnableIf  = typename std::enable_if&lt;aworx::lib::lang::T_EnumIsIteratable&lt;TEnum&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a6b687109ec6e967dab9485ea66e65851"><td class="memTemplItemLeft" align="right" valign="top">constexpr TEnum&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a6b687109ec6e967dab9485ea66e65851">operator+</a> (TEnum element, int addend) noexcept(true)</td></tr>
+<tr class="separator:a6b687109ec6e967dab9485ea66e65851"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b25f4952e506a7a23659009e64d3787"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:a9b25f4952e506a7a23659009e64d3787"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt; TEnum &gt;::value, TEnum &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a9b25f4952e506a7a23659009e64d3787">operator+</a> (TEnum lhs, TEnum rhs) noexcept(true)</td></tr>
+<tr class="separator:a9b25f4952e506a7a23659009e64d3787"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d68573ef09952c2ad3e8eeceb32e7a9"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:a5d68573ef09952c2ad3e8eeceb32e7a9"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt; TEnum &gt;::value, TEnum &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a5d68573ef09952c2ad3e8eeceb32e7a9">operator+</a> (TEnum lhs, typename std::underlying_type&lt; TEnum &gt;::type rhs) noexcept(true)</td></tr>
+<tr class="separator:a5d68573ef09952c2ad3e8eeceb32e7a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfffa54825a38b29a2e25113b63b67e6"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:abfffa54825a38b29a2e25113b63b67e6"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt; TEnum &gt;::value, TEnum &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#abfffa54825a38b29a2e25113b63b67e6">operator+</a> (TEnum lhs, TEnum rhs) noexcept(true)</td></tr>
+<tr class="separator:abfffa54825a38b29a2e25113b63b67e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3ce792ab1cdcb6a782c8d32e041f718"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:ac3ce792ab1cdcb6a782c8d32e041f718"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt; TEnum &gt;::value, TEnum &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ac3ce792ab1cdcb6a782c8d32e041f718">operator+=</a> (TEnum &amp;lhs, TEnum rhs) noexcept(true)</td></tr>
+<tr class="separator:ac3ce792ab1cdcb6a782c8d32e041f718"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3fb37d5ac3a482ca4da26fb893a4821"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:ae3fb37d5ac3a482ca4da26fb893a4821"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt; TEnum &gt;::value, TEnum &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ae3fb37d5ac3a482ca4da26fb893a4821">operator+=</a> (TEnum &amp;lhs, TEnum rhs) noexcept(true)</td></tr>
+<tr class="separator:ae3fb37d5ac3a482ca4da26fb893a4821"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c72c2a642aa360bb45eb7496417263b"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:a6c72c2a642aa360bb45eb7496417263b"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt; TEnum &gt;::value, TEnum &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a6c72c2a642aa360bb45eb7496417263b">operator+=</a> (TEnum &amp;lhs, typename std::underlying_type&lt; TEnum &gt;::type rhs) noexcept(true)</td></tr>
+<tr class="separator:a6c72c2a642aa360bb45eb7496417263b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd89e3596c9591d366884c3e9fe07455"><td class="memTemplParams" colspan="2">template&lt;typename TEnum , typename TEnableIf  = typename std::enable_if&lt;aworx::lib::lang::T_EnumIsIteratable&lt;TEnum&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:afd89e3596c9591d366884c3e9fe07455"><td class="memTemplItemLeft" align="right" valign="top">constexpr TEnum&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#afd89e3596c9591d366884c3e9fe07455">operator-</a> (TEnum element, int subtrahend) noexcept(true)</td></tr>
+<tr class="separator:afd89e3596c9591d366884c3e9fe07455"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3090ffd98fc9c5796bbe594a964903a6"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:a3090ffd98fc9c5796bbe594a964903a6"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt; TEnum &gt;::value, TEnum &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a3090ffd98fc9c5796bbe594a964903a6">operator-</a> (TEnum lhs, TEnum rhs) noexcept(true)</td></tr>
+<tr class="separator:a3090ffd98fc9c5796bbe594a964903a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36dbf1c0dea06c0523493060c2be305c"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:a36dbf1c0dea06c0523493060c2be305c"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt; TEnum &gt;::value, TEnum &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a36dbf1c0dea06c0523493060c2be305c">operator-</a> (TEnum lhs, TEnum rhs) noexcept(true)</td></tr>
+<tr class="separator:a36dbf1c0dea06c0523493060c2be305c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dace49d871148630290dcd0ff019970"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:a6dace49d871148630290dcd0ff019970"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt; TEnum &gt;::value, TEnum &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a6dace49d871148630290dcd0ff019970">operator-</a> (TEnum lhs, typename std::underlying_type&lt; TEnum &gt;::type rhs) noexcept(true)</td></tr>
+<tr class="separator:a6dace49d871148630290dcd0ff019970"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca7d98651a629a315ef0555bf5c6e0d7"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:aca7d98651a629a315ef0555bf5c6e0d7"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt; TEnum &gt;::value, TEnum &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#aca7d98651a629a315ef0555bf5c6e0d7">operator-=</a> (TEnum &amp;lhs, TEnum rhs) noexcept(true)</td></tr>
+<tr class="separator:aca7d98651a629a315ef0555bf5c6e0d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a751225eb2bd89d126ba103c5373e79fc"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:a751225eb2bd89d126ba103c5373e79fc"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt; TEnum &gt;::value, TEnum &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a751225eb2bd89d126ba103c5373e79fc">operator-=</a> (TEnum &amp;lhs, TEnum rhs) noexcept(true)</td></tr>
+<tr class="separator:a751225eb2bd89d126ba103c5373e79fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab36b6421e55a78b3bec5c2777484385e"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:ab36b6421e55a78b3bec5c2777484385e"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt; TEnum &gt;::value, TEnum &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab36b6421e55a78b3bec5c2777484385e">operator-=</a> (TEnum &amp;lhs, typename std::underlying_type&lt; TEnum &gt;::type rhs) noexcept(true)</td></tr>
+<tr class="separator:ab36b6421e55a78b3bec5c2777484385e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a194fdac61dda4e48112f0011b6363868"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:a194fdac61dda4e48112f0011b6363868"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt; TEnum &gt;::value, bool &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a194fdac61dda4e48112f0011b6363868">operator&lt;</a> (TEnum lhs, TEnum rhs) noexcept(true)</td></tr>
+<tr class="separator:a194fdac61dda4e48112f0011b6363868"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15a08108c9e8b46e7866f982e27a66c4"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:a15a08108c9e8b46e7866f982e27a66c4"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt; TEnum &gt;::value, bool &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a15a08108c9e8b46e7866f982e27a66c4">operator&lt;</a> (TEnum lhs, typename std::underlying_type&lt; TEnum &gt;::type rhs) noexcept(true)</td></tr>
+<tr class="separator:a15a08108c9e8b46e7866f982e27a66c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a192fbaa92a6426f658b45b6f1640d7fc"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:a192fbaa92a6426f658b45b6f1640d7fc"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt; TEnum &gt;::value, bool &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a192fbaa92a6426f658b45b6f1640d7fc">operator&lt;=</a> (TEnum &amp;lhs, TEnum rhs) noexcept(true)</td></tr>
+<tr class="separator:a192fbaa92a6426f658b45b6f1640d7fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d810d98dbbfd664bd045d6eea2aadd8"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:a7d810d98dbbfd664bd045d6eea2aadd8"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt; TEnum &gt;::value, bool &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a7d810d98dbbfd664bd045d6eea2aadd8">operator&lt;=</a> (TEnum &amp;lhs, typename std::underlying_type&lt; TEnum &gt;::type rhs) noexcept(true)</td></tr>
+<tr class="separator:a7d810d98dbbfd664bd045d6eea2aadd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cb24e92e506e634cf3d1e786e10e9f3"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:a7cb24e92e506e634cf3d1e786e10e9f3"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt; TEnum &gt;::value, bool &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a7cb24e92e506e634cf3d1e786e10e9f3">operator&gt;</a> (TEnum lhs, TEnum rhs) noexcept(true)</td></tr>
+<tr class="separator:a7cb24e92e506e634cf3d1e786e10e9f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af70de84a9014a8dacd466468bf3af35d"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:af70de84a9014a8dacd466468bf3af35d"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt; TEnum &gt;::value, bool &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#af70de84a9014a8dacd466468bf3af35d">operator&gt;</a> (TEnum lhs, typename std::underlying_type&lt; TEnum &gt;::type rhs) noexcept(true)</td></tr>
+<tr class="separator:af70de84a9014a8dacd466468bf3af35d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a108e0c832a369988fd1e4640537dd047"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:a108e0c832a369988fd1e4640537dd047"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt; TEnum &gt;::value, bool &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a108e0c832a369988fd1e4640537dd047">operator&gt;=</a> (TEnum &amp;lhs, TEnum rhs) noexcept(true)</td></tr>
+<tr class="separator:a108e0c832a369988fd1e4640537dd047"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94bbbfbd719b39d3d4da1ee15e5b7d91"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:a94bbbfbd719b39d3d4da1ee15e5b7d91"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt; TEnum &gt;::value, bool &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a94bbbfbd719b39d3d4da1ee15e5b7d91">operator&gt;=</a> (TEnum &amp;lhs, typename std::underlying_type&lt; TEnum &gt;::type rhs) noexcept(true)</td></tr>
+<tr class="separator:a94bbbfbd719b39d3d4da1ee15e5b7d91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b389332b4d0d5ed1f7118f173685d0e"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:a5b389332b4d0d5ed1f7118f173685d0e"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt; TEnum &gt;::value, TEnum &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a5b389332b4d0d5ed1f7118f173685d0e">operator^</a> (TEnum lhs, TEnum rhs) noexcept(true)</td></tr>
+<tr class="separator:a5b389332b4d0d5ed1f7118f173685d0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae596498f62f2978ab6cdcb97d61cfc83"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:ae596498f62f2978ab6cdcb97d61cfc83"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt; TEnum &gt;::value, TEnum &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ae596498f62f2978ab6cdcb97d61cfc83">operator^=</a> (TEnum &amp;lhs, TEnum rhs) noexcept(true)</td></tr>
+<tr class="separator:ae596498f62f2978ab6cdcb97d61cfc83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afce7a398d6d214cd36c3a28a2d868519"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:afce7a398d6d214cd36c3a28a2d868519"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt; TEnum &gt;::value, TEnum &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#afce7a398d6d214cd36c3a28a2d868519">operator|</a> (TEnum lhs, TEnum rhs) noexcept(true)</td></tr>
+<tr class="separator:afce7a398d6d214cd36c3a28a2d868519"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17407b3624b5cc4be4476378d4193082"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:a17407b3624b5cc4be4476378d4193082"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt; TEnum &gt;::value, TEnum &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a17407b3624b5cc4be4476378d4193082">operator|=</a> (TEnum &amp;lhs, TEnum rhs) noexcept(true)</td></tr>
+<tr class="separator:a17407b3624b5cc4be4476378d4193082"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0d1471f39a2064b7495ed403c43e247"><td class="memTemplParams" colspan="2">template&lt;typename TEnum &gt; </td></tr>
+<tr class="memitem:ab0d1471f39a2064b7495ed403c43e247"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt; TEnum &gt;::value, TEnum &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab0d1471f39a2064b7495ed403c43e247">operator~</a> (TEnum op) noexcept(true)</td></tr>
+<tr class="separator:ab0d1471f39a2064b7495ed403c43e247"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="a050df5b24462b4a6256f2ed69c6b50ae"></a>
@@ -265,24 +394,29 @@ Functions</h2></td></tr>
 <p>The lesson learned is that two more specializations are needed and that their types are dependent on the compiler and library used. Because it is not allowed to specialize simply with all possible extra variants (this would lead to doubly defined methods), a preprocessor switch that chooses the right types to fill the gap is needed.</p>
 <p>This type, together with <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ae89f60b8bbbc054d70fa7c5b19627b93">uintGap_t</a>, does exactly this: using the preprocessor to select the right "missing" type.</p>
 <p>To fix the sample above, the following two specializations of the template method need to be added:</p>
-<div class="fragment"><div class="line"><span class="keyword">template</span>&lt;&gt; <span class="keyword">const</span> <span class="keywordtype">char</span>* MyFunc( <a class="code" href="namespaceaworx.html#adea1bda61bf659bfe398c7f2f13242df">aworx:: intGap_t</a> ) { <span class="keywordflow">return</span> <span class="stringliteral">&quot;Type=  intGap_t&quot;</span>; }</div><div class="line"><span class="keyword">template</span>&lt;&gt; <span class="keyword">const</span> <span class="keywordtype">char</span>* MyFunc( <a class="code" href="namespaceaworx.html#a34d1e1a0600952dbf9f562aed36b873f">aworx::uintGap_t</a> ) { <span class="keywordflow">return</span> <span class="stringliteral">&quot;Type= uintGap_t&quot;</span>; }</div></div><!-- fragment --><p> When overloading functions with integer types, similar rules apply: To have the complete set of integer types covered, 10 overloads are needed: from type <b>int8_t</b> to type <b>int64_t</b>, type <b>intGap_t</b> and then those 5 types in 2 versions, signed and unsigned. Only with all overloads in place, compiler warnings (on high warning levels) and/or the necessity of explicit type conversions are avoided. </p>
+<div class="fragment"><div class="line"><span class="keyword">template</span>&lt;&gt; <span class="keyword">const</span> <span class="keywordtype">char</span>* MyFunc( <a class="code" href="namespaceaworx.html#adea1bda61bf659bfe398c7f2f13242df">aworx:: intGap_t</a> ) { <span class="keywordflow">return</span> <span class="stringliteral">&quot;Type=  intGap_t&quot;</span>; }</div><div class="line"><span class="keyword">template</span>&lt;&gt; <span class="keyword">const</span> <span class="keywordtype">char</span>* MyFunc( <a class="code" href="namespaceaworx.html#a34d1e1a0600952dbf9f562aed36b873f">aworx::uintGap_t</a> ) { <span class="keywordflow">return</span> <span class="stringliteral">&quot;Type= uintGap_t&quot;</span>; }</div></div><!-- fragment --><p> When overloading functions with integer types, similar rules apply: To have the complete set of integer types covered, 10 overloads are needed: from type <b>int8_t</b> to type <b>int64_t</b>, type <b>intGap_t</b> and then those five types in two versions, signed and unsigned. Only with all overloads in place, compiler warnings (on high warning levels) and/or the necessity of explicit type conversions are avoided. </p>
 
 </div>
 </div>
-<a id="ae408aa856d7bc11ba1706acd119f34a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae408aa856d7bc11ba1706acd119f34a3">&#9670;&nbsp;</a></span>TypeinfoMap</h2>
+<a id="afbab97b1d07c87ce87a4e9e0a34f448b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbab97b1d07c87ce87a4e9e0a34f448b">&#9670;&nbsp;</a></span>RTTIUnorderedMap</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ae408aa856d7bc11ba1706acd119f34a3">TypeinfoMap</a> =  std::unordered_map&lt; std::reference_wrapper&lt;const std::type_info&gt;, TMapped, RTTIMap_Hasher, RTTIMap_EqualTo&gt;</td>
+          <td class="memname">using <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#afbab97b1d07c87ce87a4e9e0a34f448b">RTTIUnorderedMap</a> =  std::unordered_map&lt; <a class="el" href="namespaceaworx_1_1lib_1_1lang_1_1detail.html#ae6fadb29df248d69ddb96925f43f126d">detail::WrappedTypeInfo</a>, T, <a class="el" href="structaworx_1_1lib_1_1lang_1_1detail_1_1WrappedTypeInfoHasher.html">detail::WrappedTypeInfoHasher</a>, <a class="el" href="structaworx_1_1lib_1_1lang_1_1detail_1_1WrappedTypeInfoPredEqualTo.html">detail::WrappedTypeInfoPredEqualTo</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Templated type definition for a hash map that stores objects of type <code>TMapped</code> with the key being a C++ <b>type_info</b> reference object.<br />
- This is mostly used by <b>ALib</b> internally to store pointers to objects to singletons of the provided type. </p>
+<p> Templated type definition for a <code>std::unordered_map</code> that uses key objects of type <a class="el" href="namespaceaworx_1_1lib_1_1lang_1_1detail.html#ae6fadb29df248d69ddb96925f43f126d">detail::WrappedTypeInfo</a>.<br />
+ This is used by <b>ALib</b> internally to store pointers to objects to singletons of the provided type. </p><dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The type of the objects to map. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -337,6 +471,8 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>[DOX_ALIB_LANG_ENUMS_PARSABLE_1] </p>
 <hr/>
 <p> Denotes Alignments. </p>
 <table class="fieldtable">
@@ -345,6 +481,37 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="acdfaca60ec19c0265bac2692d7982726a92b09c7c48c520c3c55e497875da437c"></a>Right&#160;</td><td class="fielddoc"><p>Chooses right alignment. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="acdfaca60ec19c0265bac2692d7982726a4f1f6016fc9f3f2353c0cc7c67b292bd"></a>Center&#160;</td><td class="fielddoc"><p>Chooses centered alignment. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a39db6982619d623273fad8a383489309"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39db6982619d623273fad8a383489309">&#9670;&nbsp;</a></span>Bool</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a39db6982619d623273fad8a383489309">Bool</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Enumeration representing a boolean value. While the use of this enumeration type seems senseless at the first sight (as the C++ has keywords <code>bool</code>, <code>false</code> and <code>true</code>), the reason for its existence is to have write and parse methods in place using the concept of <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumMetaDataDecl.html">ALib Enum Meta Information</a>.</p>
+<p>The default name translation table is equipped with various 'overloaded' element entries like "yes", "no", "on", "off", "1" or "0". Furthermore, if other languages should be supported, this can even be extended at runtime. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a39db6982619d623273fad8a383489309af8320b26d30ab433c5a54546d21f414c"></a>False&#160;</td><td class="fielddoc"><p>False value. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a39db6982619d623273fad8a383489309af827cf462f62848df37c5e1e94a4da74"></a>True&#160;</td><td class="fielddoc"><p>True value. </p>
 </td></tr>
 </table>
 
@@ -369,6 +536,8 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>[DOX_ALIB_LANG_ENUMS_PARSABLE_1] </p>
 <hr/>
 <p> Denotes upper and lower case character treatment. </p>
 <table class="fieldtable">
@@ -656,40 +825,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a28287671eaf7406afd604bd055ba4066"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a28287671eaf7406afd604bd055ba4066">&#9670;&nbsp;</a></span>Result</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a28287671eaf7406afd604bd055ba4066">Result</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<hr/>
-<p> Denotes result values across <b>ALib</b> functions </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a28287671eaf7406afd604bd055ba4066ae0aa021e21dddbd6d8cecec71e9cf564"></a>OK&#160;</td><td class="fielddoc"><p>Everything is fine. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a28287671eaf7406afd604bd055ba4066a902b0d55fddef6f8d651fe1035b7d4bd"></a>Error&#160;</td><td class="fielddoc"><p>An unspecified error occurred. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a28287671eaf7406afd604bd055ba4066aea1776502570f06ddc0569c079cb9ee2"></a>FileExists&#160;</td><td class="fielddoc"><p>File or directory already exists. This includes the case where pathname is a symbolic link, dangling or not. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a28287671eaf7406afd604bd055ba4066a5d0744802b24f44a161d350c25d76c7b"></a>InvalidPath&#160;</td><td class="fielddoc"><p>A directory component in pathname does not exist or is a dangling symbolic link. </p>
-</td></tr>
-</table>
-
-</div>
-</div>
 <a id="a8c800527afe0a8a6c71ae4cceda6bf9d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8c800527afe0a8a6c71ae4cceda6bf9d">&#9670;&nbsp;</a></span>Safeness</h2>
 
@@ -887,89 +1022,1607 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Deletes the singletons. Upon exit of the process, programmers might want to explicitly free the hash table to avoid the detection of memory leaks by metrics tools like <a href="http://valgrind.org/">Valgrind</a>. (Otherwise this can be omitted, as the memory is cleaned by the OS probably much faster when a process exits).</p>
-<p>When using singletons with the full implementation of <b>ALib</b> (in contrast in using just the module <b>ALib Singleton</b>), then the method <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a2a0bcae1f7341255492ebc90deab5f01">ALIB::TerminationCleanUp</a> invokes this method already.</p>
+<p>When using singletons with the full implementation of <b>ALib</b> (in contrast in using just the module <b>ALib Singleton</b>), then <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html">aworx::lib::lang::Library</a>library termination"" on singleton <a class="el" href="namespaceaworx_1_1lib.html#a82d1f1a7a150abed28776bc5c8df9fa0">aworx::lib::ALIB</a> invokes this method already.</p>
 <dl class="section note"><dt>Note</dt><dd>This method is not thread-safe and hence must be called only on termination of the process when all threads which are using singletons are terminated. </dd></dl>
 
 </div>
 </div>
-<a id="a19e6db2f27ef9f486893d9188bc668fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a19e6db2f27ef9f486893d9188bc668fc">&#9670;&nbsp;</a></span>ReadBoolean()</h2>
+<a id="a2fd18b7e35e747c3e86275c57311cb1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fd18b7e35e747c3e86275c57311cb1b">&#9670;&nbsp;</a></span>EnumContains()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> bool ReadBoolean </td>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt;TEnum&gt;::value, bool&gt;::type aworx::lib::lang::EnumContains </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">strings::String</a> &amp;&#160;</td>
-          <td class="paramname"><em>src</em></td><td>)</td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>tested</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>testFor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<hr/>
-<p> Interprets given <code>src</code> as a boolean value. If the case insensitive comparison of the first non-whitespace characters of the string with with values "t", "1", "y", "on", "ok" matches, <code>true</code> is returned. Otherwise, including the case that <code>src</code> is 'nulled', <code>false</code> is returned.</p>
+<p>Tests if given scoped enum value <code>tested</code> <b>xor assignment</b> contains (all) bit(s) set in scoped enum value <code>testFor</code>. In other words, returns result of: </p><pre class="fragment">  ( tested &amp; testFor ) == testFor
+</pre><p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">T_EnumIsBitwise</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">src</td><td>The string to 'parse'.</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">tested</td><td>Reference to the first operand. Receives the result. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">testFor</td><td>Second operand. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The <b>Case</b> value read. </dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if all bits of <code>testFor</code> are set in <code>tested</code>. </dd></dl>
 
 </div>
 </div>
-<a id="ab1765f5d202bd73ecffd4ce52dfc6a2c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab1765f5d202bd73ecffd4ce52dfc6a2c">&#9670;&nbsp;</a></span>ReadCase()</h2>
+<a id="a84494f1a492417b7b96bb8dfcd9c4c02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84494f1a492417b7b96bb8dfcd9c4c02">&#9670;&nbsp;</a></span>EnumValue()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">Case</a> ReadCase </td>
+          <td class="memname">constexpr std::underlying_type&lt;TEnum&gt;::type aworx::lib::lang::EnumValue </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">strings::String</a> &amp;&#160;</td>
-          <td class="paramname"><em>src</em></td><td>)</td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>element</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<hr/>
-<p> Interprets given <code>src</code> as a value of enum type <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#ab9aab17a5e54a8bae6915bc24db13a17">lang::Case</a>. If the case insensitive comparison of the first non-whitespace characters of the string with values "s", "y", "t", "1" matches, <b>Case::Sensitive</b> is returned. Otherwise, including the case that <code>src</code> is 'nulled', <b>Case::Ignore</b> is returned.</p>
+<p>Returns the "internal" integer type value of an enumeration value. This is useful for example, to return result codes to callers of different programming languages or command line programs.</p>
+<p>Selected by the compiler only if template parameter <code>TEnum</code> represents an enum type.</p>
+<dl class="section note"><dt>Note</dt><dd>While documented in namespace <code>aworx::lib::lang</code> in fact this function resides in namespace <a class="el" href="namespaceaworx.html">aworx</a>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>A different, and much more far-reaching approach is implemented with class <a class="el" href="structaworx_1_1lib_1_1lang_1_1Enum.html">Enum</a>.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">src</td><td>The string to 'parse'.</td></tr>
+    <tr><td class="paramname">element</td><td>The enumeration element. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The <b>Case</b> value read. </dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+    <tr><td class="paramname">TEnableIf</td><td>Internal. Do <b>not</b> specify!<br />
+ (Defaults to <code>std::enable_if</code> type, to enable the compiler to select this operator only for types that have <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">T_EnumIsBitwise</a> set.) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if all bits of <code>testFor</code> are set in <code>tested</code>. </dd></dl>
 
 </div>
 </div>
-<a id="a7a98a5e6229cb932f51f677d536c683b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a98a5e6229cb932f51f677d536c683b">&#9670;&nbsp;</a></span>ReadInclusion()</h2>
+<a id="ac5ecab83cce9a39585a8db8fdf597ee7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5ecab83cce9a39585a8db8fdf597ee7">&#9670;&nbsp;</a></span>operator &()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a217539925b78b2eed40ae7817d5bee52">Inclusion</a> ReadInclusion </td>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt;TEnum&gt;::value, TEnum&gt;::type aworx::lib::lang::operator&amp; </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">strings::String</a> &amp;&#160;</td>
-          <td class="paramname"><em>src</em></td><td>)</td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<hr/>
-<p> Interprets given <code>src</code> as a value of enum type <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a217539925b78b2eed40ae7817d5bee52">lang::Inclusion</a>. If the case insensitive comparison of the first non-whitespace characters of the string with values "i", "y", "t", "1" matches, <b>Inclusion::Include</b> is returned. Otherwise, including the case that <code>src</code> is 'nulled', <b>Inclusion::Exclude</b> is returned.</p>
+<p>Bitwise <b>and</b> operator useable with scoped enum types.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">T_EnumIsBitwise</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">src</td><td>The string to 'parse'.</td></tr>
+    <tr><td class="paramname">lhs</td><td>First operand. </td></tr>
+    <tr><td class="paramname">rhs</td><td>Second operand. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The <b>Inclusion</b> value read. </dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of a bitwise and operation of the underlying enum values. </dd></dl>
+
+</div>
+</div>
+<a id="a09304aaeeffaac2fb8693a970692a534"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09304aaeeffaac2fb8693a970692a534">&#9670;&nbsp;</a></span>operator &=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt;TEnum&gt;::value, TEnum&gt;::type aworx::lib::lang::operator&amp;= </td>
+          <td>(</td>
+          <td class="paramtype">TEnum &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Bitwise <b>and assignment</b> operator useable with scoped enum types.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">T_EnumIsBitwise</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">lhs</td><td>Reference to the first operand. Receives the result. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new value of <code>lhs</code> which is set to <code>lhs &amp; rhs</code>. </dd></dl>
+
+</div>
+</div>
+<a id="a6b687109ec6e967dab9485ea66e65851"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b687109ec6e967dab9485ea66e65851">&#9670;&nbsp;</a></span>operator+() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr TEnum aworx::lib::lang::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>element</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>addend</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Add operator useable with scoped enum types and integer values.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">T_EnumIsBitwise</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">element</td><td>First operand of <code>TEnum</code> type. </td></tr>
+    <tr><td class="paramname">addend</td><td>The addend as of <code>int</code> type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+    <tr><td class="paramname">TEnableIf</td><td>Internal. Do <b>not</b> specify!<br />
+ (Defaults to <code>std::enable_if</code> type, to enable the compiler to select this operator only for types that have <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsIteratable.html">T_EnumIsIteratable</a> set.) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The <em>"addend-th"</em> enum element after <code>element</code> . </dd></dl>
+
+</div>
+</div>
+<a id="a9b25f4952e506a7a23659009e64d3787"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b25f4952e506a7a23659009e64d3787">&#9670;&nbsp;</a></span>operator+() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt;TEnum&gt;::value, TEnum&gt;::type aworx::lib::lang::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Add operator between two enum elements.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">T_EnumIsArithmetical</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">lhs</td><td>Reference to the first operand. Receives the result. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The resulting enum element. </dd></dl>
+
+</div>
+</div>
+<a id="a5d68573ef09952c2ad3e8eeceb32e7a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d68573ef09952c2ad3e8eeceb32e7a9">&#9670;&nbsp;</a></span>operator+() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt;TEnum&gt;::value, TEnum&gt;::type aworx::lib::lang::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename std::underlying_type&lt; TEnum &gt;::type&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Add operator between an enum element and an integer value of underlying type.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">T_EnumIsArithmetical</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">lhs</td><td>Reference to the first operand. Receives the result. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The resulting enum element. </dd></dl>
+
+</div>
+</div>
+<a id="abfffa54825a38b29a2e25113b63b67e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfffa54825a38b29a2e25113b63b67e6">&#9670;&nbsp;</a></span>operator+() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt;TEnum&gt;::value, TEnum&gt;::type aworx::lib::lang::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Alias to bitwise <b>or</b> operator useable with scoped enum types.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">T_EnumIsBitwise</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>First operand. </td></tr>
+    <tr><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of a bitwise or operation of the underlying enum values. </dd></dl>
+
+</div>
+</div>
+<a id="ac3ce792ab1cdcb6a782c8d32e041f718"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3ce792ab1cdcb6a782c8d32e041f718">&#9670;&nbsp;</a></span>operator+=() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt;TEnum&gt;::value, TEnum&gt;::type aworx::lib::lang::operator+= </td>
+          <td>(</td>
+          <td class="paramtype">TEnum &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Add and assign operator between two enum elements.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">T_EnumIsArithmetical</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">lhs</td><td>Reference to the first operand. Receives the result. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new value of <code>lhs</code> which is set the resulting enum element. </dd></dl>
+
+</div>
+</div>
+<a id="ae3fb37d5ac3a482ca4da26fb893a4821"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3fb37d5ac3a482ca4da26fb893a4821">&#9670;&nbsp;</a></span>operator+=() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt;TEnum&gt;::value, TEnum&gt;::type aworx::lib::lang::operator+= </td>
+          <td>(</td>
+          <td class="paramtype">TEnum &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Alias for bitwise <b>or assignment</b> operator useable with scoped enum types.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">T_EnumIsBitwise</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">lhs</td><td>Reference to the first operand. Receives the result. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new value of <code>lhs</code> which is set to <code>lhs | rhs</code>. </dd></dl>
+
+</div>
+</div>
+<a id="a6c72c2a642aa360bb45eb7496417263b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c72c2a642aa360bb45eb7496417263b">&#9670;&nbsp;</a></span>operator+=() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt;TEnum&gt;::value, TEnum&gt;::type aworx::lib::lang::operator+= </td>
+          <td>(</td>
+          <td class="paramtype">TEnum &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename std::underlying_type&lt; TEnum &gt;::type&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Add and assgin operator between an enum element and an integer value of underlying type.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">T_EnumIsArithmetical</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">lhs</td><td>Reference to the first operand. Receives the result. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new value of <code>lhs</code> which is set the resulting enum element. </dd></dl>
+
+</div>
+</div>
+<a id="afd89e3596c9591d366884c3e9fe07455"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd89e3596c9591d366884c3e9fe07455">&#9670;&nbsp;</a></span>operator-() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr TEnum aworx::lib::lang::operator- </td>
+          <td>(</td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>element</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>subtrahend</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Subtract operator useable with scoped enum types and integer values.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">T_EnumIsBitwise</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">element</td><td>First operand of <code>TEnum</code> type. </td></tr>
+    <tr><td class="paramname">subtrahend</td><td>The subtrahend as of <code>int</code> type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+    <tr><td class="paramname">TEnableIf</td><td>Internal. Do <b>not</b> specify!<br />
+ (Defaults to <code>std::enable_if</code> type, to enable the compiler to select this operator only for types that have <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsIteratable.html">T_EnumIsIteratable</a> set.) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The <em>"subtrahend-th"</em> enum element before <code>element</code> . </dd></dl>
+
+</div>
+</div>
+<a id="a3090ffd98fc9c5796bbe594a964903a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3090ffd98fc9c5796bbe594a964903a6">&#9670;&nbsp;</a></span>operator-() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt;TEnum&gt;::value, TEnum&gt;::type aworx::lib::lang::operator- </td>
+          <td>(</td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Removes bit(s) found in <code>rhs</code> from <code>lhs</code> an returns result. This is a shortcut to: </p><pre class="fragment"> lhs &amp; !rhs
+</pre><p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">T_EnumIsBitwise</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">lhs</td><td>Reference to the first operand. Receives the result. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of <code>lhs &amp; !rhs</code>. </dd></dl>
+
+</div>
+</div>
+<a id="a36dbf1c0dea06c0523493060c2be305c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36dbf1c0dea06c0523493060c2be305c">&#9670;&nbsp;</a></span>operator-() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt;TEnum&gt;::value, TEnum&gt;::type aworx::lib::lang::operator- </td>
+          <td>(</td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Subtract operator between two enum elements.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">T_EnumIsArithmetical</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">lhs</td><td>Reference to the first operand. Receives the result. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The resulting enum element. </dd></dl>
+
+</div>
+</div>
+<a id="a6dace49d871148630290dcd0ff019970"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dace49d871148630290dcd0ff019970">&#9670;&nbsp;</a></span>operator-() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt;TEnum&gt;::value, TEnum&gt;::type aworx::lib::lang::operator- </td>
+          <td>(</td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename std::underlying_type&lt; TEnum &gt;::type&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Subtract operator between an enum element and an integer value of underlying type.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">T_EnumIsArithmetical</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">lhs</td><td>Reference to the first operand. Receives the result. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The resulting enum element. </dd></dl>
+
+</div>
+</div>
+<a id="aca7d98651a629a315ef0555bf5c6e0d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca7d98651a629a315ef0555bf5c6e0d7">&#9670;&nbsp;</a></span>operator-=() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt;TEnum&gt;::value, TEnum&gt;::type aworx::lib::lang::operator-= </td>
+          <td>(</td>
+          <td class="paramtype">TEnum &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Removes bit(s) found in <code>rhs</code> from <code>lhs</code>. This is a shortcut to: </p><pre class="fragment"> lhs &amp;= !rhs
+</pre><p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">T_EnumIsBitwise</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">lhs</td><td>Reference to the first operand. Receives the result. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new value of <code>lhs</code> which is set to <code>lhs &amp; ( ~rhs )</code>. </dd></dl>
+
+</div>
+</div>
+<a id="a751225eb2bd89d126ba103c5373e79fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a751225eb2bd89d126ba103c5373e79fc">&#9670;&nbsp;</a></span>operator-=() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt;TEnum&gt;::value, TEnum&gt;::type aworx::lib::lang::operator-= </td>
+          <td>(</td>
+          <td class="paramtype">TEnum &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Subtract and assign operator between two enum elements.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">T_EnumIsArithmetical</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">lhs</td><td>Reference to the first operand. Receives the result. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new value of <code>lhs</code> which is set the resulting enum element. </dd></dl>
+
+</div>
+</div>
+<a id="ab36b6421e55a78b3bec5c2777484385e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab36b6421e55a78b3bec5c2777484385e">&#9670;&nbsp;</a></span>operator-=() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt;TEnum&gt;::value, TEnum&gt;::type aworx::lib::lang::operator-= </td>
+          <td>(</td>
+          <td class="paramtype">TEnum &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename std::underlying_type&lt; TEnum &gt;::type&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Subtract and assign operator between an enum element and an integer value of underlying type.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">T_EnumIsArithmetical</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">lhs</td><td>Reference to the first operand. Receives the result. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new value of <code>lhs</code> which is set the resulting enum element. </dd></dl>
+
+</div>
+</div>
+<a id="a194fdac61dda4e48112f0011b6363868"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a194fdac61dda4e48112f0011b6363868">&#9670;&nbsp;</a></span>operator<() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt;TEnum&gt;::value, bool &gt;::type aworx::lib::lang::operator&lt; </td>
+          <td>(</td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Comparison operator <em>less</em>.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">T_EnumIsArithmetical</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>First operand. </td></tr>
+    <tr><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the comparison. </dd></dl>
+
+</div>
+</div>
+<a id="a15a08108c9e8b46e7866f982e27a66c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15a08108c9e8b46e7866f982e27a66c4">&#9670;&nbsp;</a></span>operator<() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt;TEnum&gt;::value, bool&gt;::type aworx::lib::lang::operator&lt; </td>
+          <td>(</td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename std::underlying_type&lt; TEnum &gt;::type&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Comparison operator <em>less</em> between an enum element and an integer value of underlying type.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">T_EnumIsArithmetical</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>First operand. </td></tr>
+    <tr><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the comparison. </dd></dl>
+
+</div>
+</div>
+<a id="a192fbaa92a6426f658b45b6f1640d7fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a192fbaa92a6426f658b45b6f1640d7fc">&#9670;&nbsp;</a></span>operator<=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt;TEnum&gt;::value, bool&gt;::type aworx::lib::lang::operator&lt;= </td>
+          <td>(</td>
+          <td class="paramtype">TEnum &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Comparison operator <em>less or equal</em> between two enum elements.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">T_EnumIsArithmetical</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">lhs</td><td>Reference to the first operand. Receives the result. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the comparison. </dd></dl>
+
+</div>
+</div>
+<a id="a7d810d98dbbfd664bd045d6eea2aadd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d810d98dbbfd664bd045d6eea2aadd8">&#9670;&nbsp;</a></span>operator<=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt;TEnum&gt;::value, bool&gt;::type aworx::lib::lang::operator&lt;= </td>
+          <td>(</td>
+          <td class="paramtype">TEnum &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename std::underlying_type&lt; TEnum &gt;::type&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Comparison operator <em>less or equal</em> between an enum element and an integer value of underlying type.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">T_EnumIsArithmetical</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">lhs</td><td>Reference to the first operand. Receives the result. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the comparison. </dd></dl>
+
+</div>
+</div>
+<a id="a7cb24e92e506e634cf3d1e786e10e9f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cb24e92e506e634cf3d1e786e10e9f3">&#9670;&nbsp;</a></span>operator>() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt;TEnum&gt;::value, bool&gt;::type aworx::lib::lang::operator&gt; </td>
+          <td>(</td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Comparison operator <em>greater</em> between two enum elements.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">T_EnumIsArithmetical</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>First operand. </td></tr>
+    <tr><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the comparison. </dd></dl>
+
+</div>
+</div>
+<a id="af70de84a9014a8dacd466468bf3af35d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af70de84a9014a8dacd466468bf3af35d">&#9670;&nbsp;</a></span>operator>() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt;TEnum&gt;::value, bool&gt;::type aworx::lib::lang::operator&gt; </td>
+          <td>(</td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename std::underlying_type&lt; TEnum &gt;::type&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Comparison operator <em>greater</em> between an enum element and an integer value of underlying type.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">T_EnumIsArithmetical</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>First operand. </td></tr>
+    <tr><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the comparison. </dd></dl>
+
+</div>
+</div>
+<a id="a108e0c832a369988fd1e4640537dd047"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a108e0c832a369988fd1e4640537dd047">&#9670;&nbsp;</a></span>operator>=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt;TEnum&gt;::value, bool&gt;::type aworx::lib::lang::operator&gt;= </td>
+          <td>(</td>
+          <td class="paramtype">TEnum &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Comparison operator <em>greater or equal</em> between two enum elements.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">T_EnumIsArithmetical</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">lhs</td><td>Reference to the first operand. Receives the result. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the comparison. </dd></dl>
+
+</div>
+</div>
+<a id="a94bbbfbd719b39d3d4da1ee15e5b7d91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94bbbfbd719b39d3d4da1ee15e5b7d91">&#9670;&nbsp;</a></span>operator>=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">aworx::lib::lang::T_EnumIsArithmetical</a>&lt;TEnum&gt;::value, bool&gt;::type aworx::lib::lang::operator&gt;= </td>
+          <td>(</td>
+          <td class="paramtype">TEnum &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename std::underlying_type&lt; TEnum &gt;::type&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Comparison operator <em>greater or equal</em> between an enum element and an integer value of underlying type.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html">T_EnumIsArithmetical</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">lhs</td><td>Reference to the first operand. Receives the result. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the comparison. </dd></dl>
+
+</div>
+</div>
+<a id="a5b389332b4d0d5ed1f7118f173685d0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b389332b4d0d5ed1f7118f173685d0e">&#9670;&nbsp;</a></span>operator^()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt;TEnum&gt;::value, TEnum&gt;::type aworx::lib::lang::operator^ </td>
+          <td>(</td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Bitwise <b>xor</b> operator useable with scoped enum types.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">T_EnumIsBitwise</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>First operand. </td></tr>
+    <tr><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of a bitwise xor operation of the underlying enum values. </dd></dl>
+
+</div>
+</div>
+<a id="ae596498f62f2978ab6cdcb97d61cfc83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae596498f62f2978ab6cdcb97d61cfc83">&#9670;&nbsp;</a></span>operator^=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt;TEnum&gt;::value, TEnum&gt;::type aworx::lib::lang::operator^= </td>
+          <td>(</td>
+          <td class="paramtype">TEnum &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Bitwise <b>xor assignment</b> operator useable with scoped enum types.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">T_EnumIsBitwise</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">lhs</td><td>Reference to the first operand. Receives the result. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new value of <code>lhs</code> which is set to <code>lhs ^ rhs</code>. </dd></dl>
+
+</div>
+</div>
+<a id="afce7a398d6d214cd36c3a28a2d868519"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afce7a398d6d214cd36c3a28a2d868519">&#9670;&nbsp;</a></span>operator|()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt;TEnum&gt;::value, TEnum&gt;::type aworx::lib::lang::operator| </td>
+          <td>(</td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Bitwise <b>or</b> operator useable with scoped enum types.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">T_EnumIsBitwise</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>First operand. </td></tr>
+    <tr><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of a bitwise or operation of the underlying enum values. </dd></dl>
+
+</div>
+</div>
+<a id="a17407b3624b5cc4be4476378d4193082"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17407b3624b5cc4be4476378d4193082">&#9670;&nbsp;</a></span>operator|=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt;TEnum&gt;::value, TEnum&gt;::type aworx::lib::lang::operator|= </td>
+          <td>(</td>
+          <td class="paramtype">TEnum &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Bitwise <b>or assignment</b> operator useable with scoped enum types.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">T_EnumIsBitwise</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">lhs</td><td>Reference to the first operand. Receives the result. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">rhs</td><td>Second operand. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new value of <code>lhs</code> which is set to <code>lhs | rhs</code>. </dd></dl>
+
+</div>
+</div>
+<a id="ab0d1471f39a2064b7495ed403c43e247"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0d1471f39a2064b7495ed403c43e247">&#9670;&nbsp;</a></span>operator~()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;<a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">aworx::lib::lang::T_EnumIsBitwise</a>&lt;TEnum&gt;::value, TEnum&gt;::type aworx::lib::lang::operator~ </td>
+          <td>(</td>
+          <td class="paramtype">TEnum&#160;</td>
+          <td class="paramname"><em>op</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Bitwise <b>not</b> operator useable with scoped enum types.</p>
+<p>Selected by the compiler only if <a class="el" href="structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html">T_EnumIsBitwise</a> is specialized for template enum type <code>TEnum</code> to inherit <code>std::true_type</code>.</p>
+<dl class="section note"><dt>Note</dt><dd>To remove one or more bits from a scoped enum value, of-course an <b>and assignment</b> operator with a negated operand can be used. However, a shortcut to this is given with <a class="el" href="namespaceaworx_1_1lib_1_1lang.html#a751225eb2bd89d126ba103c5373e79fc">operator-=</a>.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">op</td><td>The operand to be negated. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEnum</td><td>Enumeration type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of a bitwise negation of <code>op</code>. </dd></dl>
 
 </div>
 </div>
@@ -977,7 +2630,7 @@ Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:15 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

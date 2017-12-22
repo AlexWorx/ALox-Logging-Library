@@ -8,6 +8,7 @@ var searchData=
   ['aloxtypesandenums_2ehpp',['aloxtypesandenums.hpp',['../aloxtypesandenums_8hpp.html',1,'']]],
   ['ansilogger_2ehpp',['ansilogger.hpp',['../ansilogger_8hpp.html',1,'']]],
   ['applicables_2ehpp',['applicables.hpp',['../applicables_8hpp.html',1,'']]],
+  ['assert_2ehpp',['assert.hpp',['../assert_8hpp.html',1,'']]],
   ['astring_2ehpp',['astring.hpp',['../astring_8hpp.html',1,'']]],
   ['autosizes_2ehpp',['autosizes.hpp',['../autosizes_8hpp.html',1,'']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['verbosity',['Verbosity',['../namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313',1,'aworx::lox']]]
+  ['reach',['Reach',['../namespaceaworx_1_1lib_1_1lang.html#a9537c0a8df05f0a728b6e2a89c7f3a1b',1,'aworx::lib::lang']]],
+  ['responsibility',['Responsibility',['../namespaceaworx_1_1lib_1_1lang.html#ab5305b978950ba3946cf79a4bccbf7af',1,'aworx::lib::lang']]]
 ];

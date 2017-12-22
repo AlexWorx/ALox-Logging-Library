@@ -3,10 +3,6 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node176 [label="iterator",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-  Node0 [label="StringTree\<T, TKeyAllocator, TSeparator\>::StdIterator",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1containers_1_1StringTree_1_1StdIterator.html"];
-  Node178 [label="String::RandomAccessIteratorBase\<TPointer, TReference\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1String_1_1RandomAccessIteratorBase.html"];
-  Node176 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node176 -> Node178 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 [label="ScopeStoreType\<StoreT\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1core_1_1ScopeStoreType.html"];
 }
 

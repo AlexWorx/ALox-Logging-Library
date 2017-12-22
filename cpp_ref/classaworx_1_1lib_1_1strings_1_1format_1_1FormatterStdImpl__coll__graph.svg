@@ -15,34 +15,34 @@
 <polygon fill="#bfbfbf" stroke="#000000" points="407.5,-.5 407.5,-19.5 499.5,-19.5 499.5,-.5 407.5,-.5"/>
 <text text-anchor="middle" x="453.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">FormatterStdImpl</text>
 </g>
-<!-- Node17 -->
+<!-- Node16 -->
 <g id="node2" class="node">
-<title>Node17</title>
+<title>Node16</title>
 <g id="a_node2"><a xlink:title="STL class. ">
 <polygon fill="#ffffff" stroke="#bfbfbf" points="396,-238.5 396,-257.5 469,-257.5 469,-238.5 396,-238.5"/>
 <text text-anchor="middle" x="432.5" y="-245.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">vector&lt;Box&gt;</text>
 </a>
 </g>
 </g>
-<!-- Node16 -->
+<!-- Node15 -->
 <g id="node12" class="node">
-<title>Node16</title>
+<title>Node15</title>
 <g id="a_node12"><a xlink:href="classaworx_1_1lib_1_1boxing_1_1Boxes.html" target="_top" xlink:title="Boxes">
 <polygon fill="#ffffff" stroke="#000000" points="410.5,-159.5 410.5,-178.5 454.5,-178.5 454.5,-159.5 410.5,-159.5"/>
 <text text-anchor="middle" x="432.5" y="-166.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Boxes</text>
 </a>
 </g>
 </g>
-<!-- Node17&#45;&gt;Node16 -->
+<!-- Node16&#45;&gt;Node15 -->
 <g id="edge16" class="edge">
-<title>Node17&#45;&gt;Node16</title>
+<title>Node16&#45;&gt;Node15</title>
 <path fill="none" stroke="#191970" d="M432.5,-228.0339C432.5,-212.2875 432.5,-191.0062 432.5,-178.7662"/>
 <polygon fill="#191970" stroke="#191970" points="429.0001,-228.313 432.5,-238.313 436.0001,-228.3131 429.0001,-228.313"/>
 </g>
 <!-- Node5 -->
 <g id="node3" class="node">
 <title>Node5</title>
-<g id="a_node3"><a xlink:href="classaworx_1_1lib_1_1strings_1_1format_1_1Formatter.html" target="_top" xlink:title="Formatter">
+<g id="a_node3"><a xlink:href="classaworx_1_1lib_1_1strings_1_1format_1_1Formatter.html" target="_top" xlink:title="[DOX_ALIB_ENUM_META_DATA_SPECIFCATION_using_enum] ">
 <polygon fill="#ffffff" stroke="#000000" points="264,-68.5 264,-87.5 323,-87.5 323,-68.5 264,-68.5"/>
 <text text-anchor="middle" x="293.5" y="-75.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Formatter</text>
 </a>
@@ -118,18 +118,18 @@
 <text text-anchor="middle" x="290" y="-317.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> acquirementMethodName</text>
 <text text-anchor="middle" x="290" y="-306.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">acquirementSourcefile</text>
 </g>
-<!-- Node19 -->
+<!-- Node18 -->
 <g id="node7" class="node">
-<title>Node19</title>
+<title>Node18</title>
 <g id="a_node7"><a xlink:href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html" target="_top" xlink:title="NumberFormat">
 <polygon fill="#ffffff" stroke="#000000" points="0,-199.5 0,-218.5 81,-218.5 81,-199.5 0,-199.5"/>
 <text text-anchor="middle" x="40.5" y="-206.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">NumberFormat</text>
 </a>
 </g>
 </g>
-<!-- Node7&#45;&gt;Node19 -->
+<!-- Node7&#45;&gt;Node18 -->
 <g id="edge7" class="edge">
-<title>Node7&#45;&gt;Node19</title>
+<title>Node7&#45;&gt;Node18</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M176.298,-377.2018C143.9823,-372.9473 98.5653,-365.0293 85.5,-353 45.6133,-316.2761 40.8088,-244.791 40.4309,-218.771"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="175.9138,-380.6809 186.2722,-378.4549 176.7865,-373.7355 175.9138,-380.6809"/>
 <text text-anchor="middle" x="127.5" y="-345" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> Whitespaces</text>
@@ -155,18 +155,18 @@
 <path fill="none" stroke="#191970" d="M250.6816,-229.8425C261.341,-213.954 276.4175,-191.4815 284.948,-178.7662"/>
 <polygon fill="#191970" stroke="#191970" points="247.6636,-228.0588 244.9988,-238.313 253.4766,-231.9587 247.6636,-228.0588"/>
 </g>
-<!-- Node19&#45;&gt;Node4 -->
+<!-- Node18&#45;&gt;Node4 -->
 <g id="edge17" class="edge">
-<title>Node19&#45;&gt;Node4</title>
+<title>Node18&#45;&gt;Node4</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M39.9728,-189.1899C40.4337,-166.6755 44.5443,-130.0692 64.5,-107 119.1967,-43.7694 158.5529,-58.9139 239.5,-38 296.2753,-23.3312 363.6105,-16.1331 407.3762,-12.7536"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="36.4728,-189.2684 39.9929,-199.2613 43.4728,-189.2543 36.4728,-189.2684"/>
 <text text-anchor="middle" x="120.5" y="-132" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> DefaultNumberFormat</text>
 <text text-anchor="middle" x="120.5" y="-121" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">AlternativeNumberFormat</text>
 <text text-anchor="middle" x="120.5" y="-110" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">phaNF</text>
 </g>
-<!-- Node19&#45;&gt;Node19 -->
+<!-- Node18&#45;&gt;Node18 -->
 <g id="edge18" class="edge">
-<title>Node19&#45;&gt;Node19</title>
+<title>Node18&#45;&gt;Node18</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M91.3235,-214.6934C96.0317,-213.5187 99,-211.6208 99,-209 99,-204.8066 91.4013,-202.4643 81.235,-201.9728"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="90.69,-211.2467 81.235,-216.0272 91.6075,-218.1863 90.69,-211.2467"/>
 <text text-anchor="middle" x="130.5" y="-212" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> Global</text>
@@ -195,24 +195,24 @@
 <path fill="none" stroke="#191970" d="M499.397,-432.4598C435.7187,-421.1171 291.6929,-395.4625 234.5326,-385.2808"/>
 <polygon fill="#191970" stroke="#191970" points="498.7972,-435.908 509.2561,-434.2159 500.0249,-429.0164 498.7972,-435.908"/>
 </g>
-<!-- Node20 -->
+<!-- Node19 -->
 <g id="node9" class="node">
-<title>Node20</title>
+<title>Node19</title>
 <g id="a_node9"><a xlink:href="classaworx_1_1lib_1_1strings_1_1Substring.html" target="_top" xlink:title="Substring">
 <polygon fill="#ffffff" stroke="#000000" points="563.5,-305 563.5,-324 621.5,-324 621.5,-305 563.5,-305"/>
 <text text-anchor="middle" x="592.5" y="-312" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Substring</text>
 </a>
 </g>
 </g>
-<!-- Node8&#45;&gt;Node20 -->
+<!-- Node8&#45;&gt;Node19 -->
 <g id="edge10" class="edge">
-<title>Node8&#45;&gt;Node20</title>
+<title>Node8&#45;&gt;Node19</title>
 <path fill="none" stroke="#191970" d="M539.9282,-419.2196C553.3306,-392.523 577.4008,-344.5767 587.6576,-324.1458"/>
 <polygon fill="#191970" stroke="#191970" points="536.7237,-417.8018 535.365,-428.3092 542.9797,-420.9425 536.7237,-417.8018"/>
 </g>
-<!-- Node20&#45;&gt;Node4 -->
+<!-- Node19&#45;&gt;Node4 -->
 <g id="edge19" class="edge">
-<title>Node20&#45;&gt;Node4</title>
+<title>Node19&#45;&gt;Node4</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M597.8424,-295.0687C603.149,-274.0288 610.5,-239.3975 610.5,-209 610.5,-209 610.5,-209 610.5,-78 610.5,-52.9003 542.0784,-31.3052 495.5731,-19.5262"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="594.3911,-294.4309 595.2338,-304.9922 601.1612,-296.2106 594.3911,-294.4309"/>
 <text text-anchor="middle" x="647" y="-172" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> phaFormatSpec</text>
@@ -241,64 +241,64 @@
 <polygon fill="#9a32cd" stroke="#9a32cd" points="300.1226,-229.2068 305.5381,-238.313 306.9833,-227.8173 300.1226,-229.2068"/>
 <text text-anchor="middle" x="316" y="-206.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> owner</text>
 </g>
-<!-- Node16&#45;&gt;Node4 -->
+<!-- Node15&#45;&gt;Node4 -->
 <g id="edge14" class="edge">
-<title>Node16&#45;&gt;Node4</title>
+<title>Node15&#45;&gt;Node4</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M439.0727,-149.8016C440.005,-146.5593 440.8619,-143.2055 441.5,-140 450.3496,-95.5414 452.6959,-41.2037 453.299,-19.5583"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="435.6955,-148.8733 436.012,-159.4634 442.3686,-150.9873 435.6955,-148.8733"/>
 <text text-anchor="middle" x="476" y="-75.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> arguments</text>
 </g>
-<!-- Node16&#45;&gt;Node5 -->
+<!-- Node15&#45;&gt;Node5 -->
 <g id="edge15" class="edge">
-<title>Node16&#45;&gt;Node5</title>
+<title>Node15&#45;&gt;Node5</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M419.5664,-151.246C416.8874,-147.5387 414.0922,-143.6485 411.5,-140 401.1458,-125.4262 402.954,-117.5208 388.5,-107 369.2598,-92.9955 343.1571,-85.6625 323.1814,-81.8779"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="416.751,-153.3257 425.4562,-159.3647 422.417,-149.2151 416.751,-153.3257"/>
 <text text-anchor="middle" x="426.5" y="-121" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> boxes</text>
 </g>
-<!-- Node21 -->
+<!-- Node20 -->
 <g id="node13" class="node">
-<title>Node21</title>
+<title>Node20</title>
 <g id="a_node13"><a xlink:href="classaworx_1_1lib_1_1boxing_1_1Box.html" target="_top" xlink:title="Box">
 <polygon fill="#ffffff" stroke="#000000" points="711.5,-68.5 711.5,-87.5 745.5,-87.5 745.5,-68.5 711.5,-68.5"/>
 <text text-anchor="middle" x="728.5" y="-75.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Box</text>
 </a>
 </g>
 </g>
-<!-- Node21&#45;&gt;Node4 -->
+<!-- Node20&#45;&gt;Node4 -->
 <g id="edge20" class="edge">
-<title>Node21&#45;&gt;Node4</title>
+<title>Node20&#45;&gt;Node4</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M701.7994,-65.9852C681.0856,-57.0952 651.4563,-45.3079 624.5,-38 582.9802,-26.7439 534.4892,-19.3262 499.7704,-14.971"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="700.6355,-69.2959 711.201,-70.0843 703.4332,-62.8793 700.6355,-69.2959"/>
 <text text-anchor="middle" x="688" y="-41" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> phaArgument</text>
 </g>
-<!-- Node22 -->
+<!-- Node21 -->
 <g id="node14" class="node">
-<title>Node22</title>
+<title>Node21</title>
 <g id="a_node14"><a xlink:href="structaworx_1_1lib_1_1boxing_1_1BoxData.html" target="_top" xlink:title="BoxData">
 <polygon fill="#ffffff" stroke="#000000" points="701.5,-159.5 701.5,-178.5 755.5,-178.5 755.5,-159.5 701.5,-159.5"/>
 <text text-anchor="middle" x="728.5" y="-166.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">BoxData</text>
 </a>
 </g>
 </g>
-<!-- Node22&#45;&gt;Node21 -->
+<!-- Node21&#45;&gt;Node20 -->
 <g id="edge21" class="edge">
-<title>Node22&#45;&gt;Node21</title>
+<title>Node21&#45;&gt;Node20</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M728.5,-149.0002C728.5,-129.9867 728.5,-102.1991 728.5,-87.6686"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="725.0001,-149.2614 728.5,-159.2614 732.0001,-149.2614 725.0001,-149.2614"/>
 <text text-anchor="middle" x="739.5" y="-121" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> data</text>
 </g>
-<!-- Node23 -->
+<!-- Node22 -->
 <g id="node15" class="node">
-<title>Node23</title>
+<title>Node22</title>
 <g id="a_node15"><a xlink:href="classaworx_1_1lib_1_1boxing_1_1Boxer.html" target="_top" xlink:title="Boxer">
 <polygon fill="#ffffff" stroke="#000000" points="773.5,-159.5 773.5,-178.5 815.5,-178.5 815.5,-159.5 773.5,-159.5"/>
 <text text-anchor="middle" x="794.5" y="-166.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Boxer</text>
 </a>
 </g>
 </g>
-<!-- Node23&#45;&gt;Node21 -->
+<!-- Node22&#45;&gt;Node20 -->
 <g id="edge22" class="edge">
-<title>Node23&#45;&gt;Node21</title>
+<title>Node22&#45;&gt;Node20</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M783.7843,-150.7616C776.1135,-138.1315 765.2763,-121.1187 754.5,-107 749.3307,-100.2273 742.9514,-93.0963 737.8056,-87.6003"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="780.8418,-152.6606 788.9796,-159.445 786.8488,-149.0666 780.8418,-152.6606"/>
 <text text-anchor="middle" x="789.5" y="-121" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> boxer</text>

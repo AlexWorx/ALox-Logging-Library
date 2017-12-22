@@ -5,7 +5,7 @@
   <filterSection>
     <filterAttribute>doxygen</filterAttribute>
     <toc>
-      <section title="ALox V. 1709 R. 0" ref="index.html">
+      <section title="ALox V. 1712 R. 0" ref="index.html">
         <section title="Overview" ref="index.html" />
         <section title="Manual" ref="manual.html" />
         <section title="Tools" ref="tools.html" />
@@ -13,30 +13,29 @@
       </section>
     </toc>
     <keywords>
-      <keyword name="01 - About ALox" id="01 - About ALox" ref="man_intro.html" />
-      <keyword name="02 - Features and Limitations" id="02 - Features and Limitations" ref="man_features_and_limitations.html" />
-      <keyword name="03 - Terminology and Key Concepts" id="03 - Terminology and Key Concepts" ref="man_alox_terminology.html" />
-      <keyword name="04 - Log Domains" id="04 - Log Domains" ref="man_logdomains.html" />
-      <keyword name="05 - Scopes in ALox" id="05 - Scopes in ALox" ref="man_scopes.html" />
-      <keyword name="06 - Lox.Once()" id="06 - Lox.Once()" ref="man_log_once.html" />
-      <keyword name="07 - Prefix Logables" id="07 - Prefix Logables" ref="man_prefix_logables.html" />
-      <keyword name="08 - Log Data (Debug Variables)" id="08 - Log Data (Debug Variables)" ref="man_log_data.html" />
-      <keyword name="09 - Multi-Threaded Processes" id="09 - Multi-Threaded Processes" ref="man_multi_threaded.html" />
-      <keyword name="10 - Differences of Debug- and Release-Logging" id="10 - Differences of Debug- and Release-Logging" ref="man_debug_and_release_logging.html" />
-      <keyword name="11 - Internal Logging" id="11 - Internal Logging" ref="man_internal_domains.html" />
-      <keyword name="12 - External Configuration" id="12 - External Configuration" ref="man_external_configuration.html" />
-      <keyword name="13 - External Verbosity Configuration" id="13 - External Verbosity Configuration" ref="man_external_verbosity_configuration.html" />
-      <keyword name="14 - Trimming Source File Paths and Clickable IDE Output" id="14 - Trimming Source File Paths and Clickable IDE Output" ref="man_trim_source_path.html" />
-      <keyword name="15 - Log Domain Substitution" id="15 - Log Domain Substitution" ref="man_domain_substitution.html" />
-      <keyword name="16 - Colorful Loggers" id="16 - Colorful Loggers" ref="man_colorful_loggers.html" />
-      <keyword name="A - Loggers and Implementing Custom Types" id="A - Loggers and Implementing Custom Types" ref="man_ext_loggers.html" />
-      <keyword name="II -  ALox Auto-Configuration and Orthogonality" id="II -  ALox Auto-Configuration and Orthogonality" ref="man_apdx_auto_config.html" />
+      <keyword name="01 - About ALox" id="01 - About ALox" ref="alox_man_intro.html" />
+      <keyword name="02 - Features and Limitations" id="02 - Features and Limitations" ref="alox_man_features_and_limitations.html" />
+      <keyword name="03 - Terminology and Key Concepts" id="03 - Terminology and Key Concepts" ref="alox_man_terminology.html" />
+      <keyword name="04 - Log Domains" id="04 - Log Domains" ref="alox_man_logdomains.html" />
+      <keyword name="05 - Scopes in ALox" id="05 - Scopes in ALox" ref="alox_man_scopes.html" />
+      <keyword name="06 - Lox.Once()" id="06 - Lox.Once()" ref="alox_man_log_once.html" />
+      <keyword name="07 - Prefix Logables" id="07 - Prefix Logables" ref="alox_man_prefix_logables.html" />
+      <keyword name="08 - Log Data (Debug Variables)" id="08 - Log Data (Debug Variables)" ref="alox_man_log_data.html" />
+      <keyword name="09 - Multi-Threaded Processes" id="09 - Multi-Threaded Processes" ref="alox_man_multi_threaded.html" />
+      <keyword name="10 - Differences of Debug- and Release-Logging" id="10 - Differences of Debug- and Release-Logging" ref="alox_man_debug_and_release_logging.html" />
+      <keyword name="11 - Internal Logging" id="11 - Internal Logging" ref="alox_man_internal_domains.html" />
+      <keyword name="12 - External Configuration" id="12 - External Configuration" ref="alox_man_external_configuration.html" />
+      <keyword name="13 - External Verbosity Configuration" id="13 - External Verbosity Configuration" ref="alox_man_external_verbosity_configuration.html" />
+      <keyword name="14 - Trimming Source File Paths and Clickable IDE Output" id="14 - Trimming Source File Paths and Clickable IDE Output" ref="alox_man_trim_source_path.html" />
+      <keyword name="15 - Log Domain Substitution" id="15 - Log Domain Substitution" ref="alox_man_domain_substitution.html" />
+      <keyword name="16 - Colorful Loggers" id="16 - Colorful Loggers" ref="alox_man_colorful_loggers.html" />
+      <keyword name="A - Loggers and Implementing Custom Types" id="A - Loggers and Implementing Custom Types" ref="alox_man_ext_loggers.html" />
+      <keyword name="II -  ALox Auto-Configuration and Orthogonality" id="II -  ALox Auto-Configuration and Orthogonality" ref="alox_man_apdx_auto_config.html" />
       <keyword name="Contents" id="Contents" ref="manual.html" />
       <keyword name="Change Log" id="Change Log" ref="changelog.html" />
       <keyword name="FAQ - Frequently asked Questions for ALox" id="FAQ - Frequently asked Questions for ALox" ref="faq.html" />
       <keyword name="Tools for ALox" id="Tools for ALox" ref="tools.html" />
       <keyword name="I - Configuration Variables" id="I - Configuration Variables" ref="group__GrpALoxConfigVars.html" />
-      <keyword name="ALIB_RTE" id="Man.Ref.I.ConfigurationVariables.dox::ALIB_RTE" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#gac62abc7811e32bb6329a151fe9ba8881" />
       <keyword name="ALIB_LOCALE" id="Man.Ref.I.ConfigurationVariables.dox::ALIB_LOCALE" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#ga3ba85db0d6d1aff71681e17a2cfb5b3a" />
       <keyword name="ALIB_HAS_CONSOLE_WINDOW" id="Man.Ref.I.ConfigurationVariables.dox::ALIB_HAS_CONSOLE_WINDOW" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#ga0609e3155155dd75380c499571325be9" />
       <keyword name="ALIB_WAIT_FOR_KEY_PRESS" id="Man.Ref.I.ConfigurationVariables.dox::ALIB_WAIT_FOR_KEY_PRESS" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#ga8a40f5382d8a235f941b948b0fbd3727" />
@@ -85,30 +84,30 @@
       <file>search/mag_sel.png</file>
       <file>search/search.css</file>
       <file>search/search.js</file>
-      <file>man_intro.html</file>
-      <file>man_features_and_limitations.html</file>
-      <file>man_alox_terminology.html</file>
+      <file>alox_man_intro.html</file>
+      <file>alox_man_features_and_limitations.html</file>
+      <file>alox_man_terminology.html</file>
       <file>dot_inline_dotgraph_1.svg</file>
-      <file>man_logdomains.html</file>
+      <file>alox_man_logdomains.html</file>
       <file>dot_inline_dotgraph_2.svg</file>
-      <file>man_scopes.html</file>
-      <file>man_log_once.html</file>
-      <file>man_prefix_logables.html</file>
-      <file>man_log_data.html</file>
-      <file>man_multi_threaded.html</file>
-      <file>man_debug_and_release_logging.html</file>
-      <file>man_internal_domains.html</file>
-      <file>man_external_configuration.html</file>
-      <file>man_external_verbosity_configuration.html</file>
-      <file>man_trim_source_path.html</file>
-      <file>man_domain_substitution.html</file>
-      <file>man_colorful_loggers.html</file>
+      <file>alox_man_scopes.html</file>
+      <file>alox_man_log_once.html</file>
+      <file>alox_man_prefix_logables.html</file>
+      <file>alox_man_log_data.html</file>
+      <file>alox_man_multi_threaded.html</file>
+      <file>alox_man_debug_and_release_logging.html</file>
+      <file>alox_man_internal_domains.html</file>
+      <file>alox_man_external_configuration.html</file>
+      <file>alox_man_external_verbosity_configuration.html</file>
+      <file>alox_man_trim_source_path.html</file>
+      <file>alox_man_domain_substitution.html</file>
+      <file>alox_man_colorful_loggers.html</file>
       <file>dot_inline_dotgraph_3.svg</file>
       <file>dot_inline_dotgraph_4.svg</file>
-      <file>man_ext_loggers.html</file>
+      <file>alox_man_ext_loggers.html</file>
       <file>dot_inline_dotgraph_5.svg</file>
       <file>dot_inline_dotgraph_6.svg</file>
-      <file>man_apdx_auto_config.html</file>
+      <file>alox_man_apdx_auto_config.html</file>
       <file>manual.html</file>
       <file>changelog.html</file>
       <file>faq.html</file>
@@ -412,6 +411,31 @@
       <file>inherit_graph_289.svg</file>
       <file>inherit_graph_290.svg</file>
       <file>inherit_graph_291.svg</file>
+      <file>inherit_graph_292.svg</file>
+      <file>inherit_graph_293.svg</file>
+      <file>inherit_graph_294.svg</file>
+      <file>inherit_graph_295.svg</file>
+      <file>inherit_graph_296.svg</file>
+      <file>inherit_graph_297.svg</file>
+      <file>inherit_graph_298.svg</file>
+      <file>inherit_graph_299.svg</file>
+      <file>inherit_graph_300.svg</file>
+      <file>inherit_graph_301.svg</file>
+      <file>inherit_graph_302.svg</file>
+      <file>inherit_graph_303.svg</file>
+      <file>inherit_graph_304.svg</file>
+      <file>inherit_graph_305.svg</file>
+      <file>inherit_graph_306.svg</file>
+      <file>inherit_graph_307.svg</file>
+      <file>inherit_graph_308.svg</file>
+      <file>inherit_graph_309.svg</file>
+      <file>inherit_graph_310.svg</file>
+      <file>inherit_graph_311.svg</file>
+      <file>inherit_graph_312.svg</file>
+      <file>inherit_graph_313.svg</file>
+      <file>inherit_graph_314.svg</file>
+      <file>inherit_graph_315.svg</file>
+      <file>inherit_graph_316.svg</file>
       <file>pages.html</file>
     </files>
   </filterSection>

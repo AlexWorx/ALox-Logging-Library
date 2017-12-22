@@ -1,8 +1,8 @@
 <map id="StandardConverter" name="StandardConverter">
-<area shape="rect" id="node2" href="$interfacecom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" title="ObjectConverter" alt="" coords="1205,53,1321,80"/>
-<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterJavaStyle.html" title="FormatterJavaStyle" alt="" coords="1195,155,1331,181"/>
+<area shape="rect" id="node2" href="$interfacecom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" title="ObjectConverter" alt="" coords="1209,53,1325,80"/>
+<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterJavaStyle.html" title="FormatterJavaStyle" alt="" coords="1199,155,1335,181"/>
 <area shape="rect" id="node4" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html" title="FormatterStdImpl" alt="" coords="906,380,1029,407"/>
-<area shape="rect" id="node18" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html" title="FormatterPythonStyle" alt="" coords="1188,104,1337,131"/>
+<area shape="rect" id="node18" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html" title="FormatterPythonStyle" alt="" coords="1192,104,1341,131"/>
 <area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html" title="Formatter" alt="" coords="581,484,660,511"/>
 <area shape="rect" id="node6" href="$classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="245,447,335,473"/>
 <area shape="rect" id="node7" href="$enumcom_1_1aworx_1_1lib_1_1lang_1_1LockMode.html" title="LockMode" alt="" coords="18,409,101,436"/>

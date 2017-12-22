@@ -6,7 +6,6 @@ var searchData=
   ['end',['END',['../enumcom_1_1aworx_1_1lib_1_1lang_1_1Phase.html#a1de54bd922161dd5c6a353647f448fd6',1,'com.aworx.lib.lang.Phase.END()'],['../classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#abce9f5dc9c83f2639b72024fdee5d388',1,'com.aworx.lib.strings.Substring.end()']]],
   ['ends_5fwidth',['ENDS_WIDTH',['../enumcom_1_1aworx_1_1lox_1_1Lox_1_1DSRType.html#a2e9661a4f024a990056eba38c763b29f',1,'com::aworx::lox::Lox::DSRType']]],
   ['entries',['entries',['../classcom_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html#af8e3aafea9f106ab4aad6bf5786b63dc',1,'com::aworx::lib::config::InMemoryPlugin::Section']]],
-  ['environment',['environment',['../classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a6e379b90eb011f9df5cac51cf4e6abce',1,'com::aworx::lib::config::Configuration']]],
   ['eometa',['EOMETA',['../classcom_1_1aworx_1_1lox_1_1ESC.html#a1596beb824cb1c1952a448e48e2d9f8d',1,'com::aworx::lox::ESC']]],
   ['error',['ERROR',['../enumcom_1_1aworx_1_1lox_1_1Verbosity.html#a9eaada089c4de774cfc8b7aea4b9379a',1,'com::aworx::lox::Verbosity']]],
   ['error_5fopening_5ffile',['ERROR_OPENING_FILE',['../enumcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Status.html#a68e39564c8829e5ea3ac9e672309ddf4',1,'com::aworx::lib::config::IniFile::Status']]],

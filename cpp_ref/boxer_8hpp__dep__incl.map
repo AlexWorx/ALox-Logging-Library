@@ -1,9 +1,6 @@
 <map id="boxer.hpp" name="boxer.hpp">
-<area shape="rect" id="node2" href="$boxing_8hpp.html" title="boxing.hpp" alt="" coords="255,80,341,107"/>
+<area shape="rect" id="node2" href="$boxinglib_8hpp.html" title="boxinglib.hpp" alt="" coords="57,80,155,107"/>
 <area shape="rect" id="node3" href="$alib_8hpp.html" title="alib.hpp" alt="" coords="73,155,139,181"/>
-<area shape="rect" id="node4" href="$box_8hpp.html" title="box.hpp" alt="" coords="164,155,232,181"/>
-<area shape="rect" id="node5" href="$boxes_8hpp.html" title="boxes.hpp" alt="" coords="257,155,339,181"/>
-<area shape="rect" id="node6" href="$ftypes_8hpp.html" title="ftypes.hpp" alt="" coords="363,155,446,181"/>
-<area shape="rect" id="node7" href="$ownable_8hpp.html" title="ownable.hpp" alt="" coords="5,229,100,256"/>
-<area shape="rect" id="node8" href="$alox_8hpp.html" title="alox.hpp" alt="" coords="124,229,195,256"/>
+<area shape="rect" id="node4" href="$ownable_8hpp.html" title="ownable.hpp" alt="" coords="5,229,100,256"/>
+<area shape="rect" id="node5" href="$alox_8hpp.html" title="alox.hpp" alt="" coords="124,229,195,256"/>
 </map>

@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -84,23 +84,29 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">stringtuples.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="memoryblocks_8hpp_source.html">alib/lang/memoryblocks.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="memoryblocks_8hpp_source.html">alib/util/memoryblocks.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for stringtuples.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="stringtuples_8hpp__incl.svg" width="195" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="stringtuples_8hpp__incl.svg" width="188" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="stringtuples_8hpp__dep__incl.svg" width="164" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="stringtuples_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1util_1_1StringTuples.html">StringTuples&lt; TAssociatedTypes &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1util_1_1StringTable.html">StringTable&lt; TAssociatedTypes &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -116,15 +122,24 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:aa0aafb6be60b02340000199f1a508044"><td class="memTemplParams" colspan="2">template&lt;typename... TAssociatedTypes&gt; </td></tr>
-<tr class="memitem:aa0aafb6be60b02340000199f1a508044"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#aa0aafb6be60b02340000199f1a508044">StringTuples</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1util_1_1StringTuples.html">aworx::lib::strings::util::StringTuples</a>&lt; TAssociatedTypes... &gt;</td></tr>
-<tr class="separator:aa0aafb6be60b02340000199f1a508044"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e978518419b8c970cdfd8a30af02250"><td class="memTemplParams" colspan="2">template&lt;typename... TAssociatedTypes&gt; </td></tr>
+<tr class="memitem:a3e978518419b8c970cdfd8a30af02250"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a3e978518419b8c970cdfd8a30af02250">StringTable</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1util_1_1StringTable.html">aworx::lib::strings::util::StringTable</a>&lt; TAssociatedTypes... &gt;</td></tr>
+<tr class="separator:a3e978518419b8c970cdfd8a30af02250"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a6a099c1324d20ad8751ca4e2f0fb5e36"><td class="memTemplParams" colspan="2">template&lt;Case sensitivity, int T_StringColumn, typename... T_TupleTypes&gt; </td></tr>
+<tr class="memitem:a6a099c1324d20ad8751ca4e2f0fb5e36"><td class="memTemplItemLeft" align="right" valign="top">std::tuple&lt; T_TupleTypes... &gt; const  *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1util.html#a6a099c1324d20ad8751ca4e2f0fb5e36">FindStringInTupleVector</a> (const std::vector&lt; std::tuple&lt; T_TupleTypes... &gt;&gt; &amp;haystack, const String &amp;needle)</td></tr>
+<tr class="separator:a6a099c1324d20ad8751ca4e2f0fb5e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52fca63b4787aa77d8a3ebafc567c4fa"><td class="memTemplParams" colspan="2">template&lt;Case sensitivity, int T_StringColumn, size_t T_MinCharColumn, typename... T_TupleTypes&gt; </td></tr>
+<tr class="memitem:a52fca63b4787aa77d8a3ebafc567c4fa"><td class="memTemplItemLeft" align="right" valign="top">std::tuple&lt; T_TupleTypes... &gt; const  *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1util.html#a52fca63b4787aa77d8a3ebafc567c4fa">FindStringStartInTupleVector</a> (const std::vector&lt; std::tuple&lt; T_TupleTypes... &gt;&gt; &amp;haystack, const String &amp;needle)</td></tr>
+<tr class="separator:a52fca63b4787aa77d8a3ebafc567c4fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:57 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:15 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

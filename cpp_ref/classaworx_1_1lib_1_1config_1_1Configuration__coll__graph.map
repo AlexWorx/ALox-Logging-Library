@@ -1,17 +1,10 @@
 <map id="Configuration" name="Configuration">
-<area shape="rect" id="node12" href="$classaworx_1_1lib_1_1threads_1_1Thread.html" title="Thread" alt="" coords="654,124,717,151"/>
-<area shape="rect" id="node18" href="$classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html" title="InMemoryPlugin" alt="" coords="1051,492,1167,519"/>
-<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="167,53,369,80"/>
-<area shape="rect" id="node7" href="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="1063,213,1154,240"/>
-<area shape="rect" id="node8" href="$classaworx_1_1lib_1_1lang_1_1Ownable.html" title="Ownable" alt="" coords="649,220,721,247"/>
-<area shape="rect" id="node9" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="236,255,300,281"/>
-<area shape="rect" id="node10" href="$classaworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="857,375,965,401"/>
-<area shape="rect" id="node11" href="$classaworx_1_1lib_1_1strings_1_1String.html" title="String" alt="" coords="5,77,61,104"/>
-<area shape="rect" id="node13" href="$classaworx_1_1lib_1_1threads_1_1Runnable.html" title="Runnable" alt="" coords="230,107,306,133"/>
-<area shape="rect" id="node14" title="STL class. " alt="" coords="239,173,297,200"/>
-<area shape="rect" id="node15" href="$classaworx_1_1lib_1_1config_1_1EnvironmentPlugin.html" title="EnvironmentPlugin" alt="" coords="1043,391,1174,417"/>
-<area shape="rect" id="node16" href="$classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html" title="ConfigurationPlugin" alt="" coords="618,455,753,481"/>
-<area shape="rect" id="node17" href="$classaworx_1_1lib_1_1config_1_1CommandLinePlugin.html" title="CommandLinePlugin" alt="" coords="1038,441,1179,468"/>
-<area shape="rect" id="node19" href="$classaworx_1_1lib_1_1config_1_1XTernalizer.html" title="XTernalizer" alt="" coords="225,460,311,487"/>
-<area shape="rect" id="node20" href="$classaworx_1_1lib_1_1config_1_1InMemoryPlugin_1_1Section.html" title="Section" alt="" coords="235,511,301,537"/>
+<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1util_1_1PluginContainer.html" title="PluginContainer\&lt;ConfigurationPlugin, Priorities\&gt;" alt="" coords="995,83,1295,109"/>
+<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="713,107,803,133"/>
+<area shape="rect" id="node7" href="$classaworx_1_1lib_1_1lang_1_1Ownable.html" title="Ownable" alt="" coords="432,133,504,160"/>
+<area shape="rect" id="node8" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="167,277,231,304"/>
+<area shape="rect" id="node9" href="$classaworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="528,241,636,268"/>
+<area shape="rect" id="node10" href="$classaworx_1_1lib_1_1strings_1_1String.html" title="String" alt="" coords="5,319,61,345"/>
+<area shape="rect" id="node11" href="$classaworx_1_1lib_1_1threads_1_1Thread.html" title="Thread" alt="" coords="437,83,499,109"/>
+<area shape="rect" id="node12" href="$structaworx_1_1lib_1_1util_1_1PluginContainer_1_1Slot.html" title="Slot" alt="" coords="445,32,491,59"/>
 </map>

@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1709 R. 0</span>
+   &#160;<span id="projectnumber">V. 1712 R. 0</span>
    </div>
   </td>
  </tr>
@@ -37,10 +37,10 @@
 <table  class="aworx-menutable"  >
  <tbody>
  <tr style="height: 36px;">
-  <td> <a class="aworx-menu"    href="../index.html"                  >Home</a>                     </td>
-  <td> <a class="aworx-menu_hl" href="../cpp_ref/cppmainpage.html"    >ALox for C++</a>             </td>
-  <td> <a class="aworx-menu"    href="../cs_ref/csmainpage.html"      >ALox for C#</a>              </td>
-  <td> <a class="aworx-menu"    href="../java_ref/javamainpage.html"  >ALox for Java</a>            </td>
+  <td> <a class="aworx-menu"    href="../index.html"                                   >Home</a>                     </td>
+  <td> <a class="aworx-menu_hl" href="../cpp_ref/alox_cpp_mainpage.html"                >ALox for C++</a>             </td>
+  <td> <a class="aworx-menu"    href="../cs_ref/alox_cs_mainpage.html"                  >ALox for C#</a>              </td>
+  <td> <a class="aworx-menu"    href="../java_ref/alox_java_mainpage.html"              >ALox for Java</a>            </td>
   <td> <a class="aworx-menu"    href="https://github.com/AlexWorx/ALox-Logging-Library">Download</a></td>
  </tr>
  </tbody>
@@ -83,23 +83,23 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Nested namespaces</a> &#124;
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle">
 <div class="title">aworx::lib::strings Namespace Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a name="details" id="details"></a><h2 class="groupheader">Namespace Description</h2>
 <div class="textblock"><hr/>
- <h1><a class="anchor" id="alib_namespace_strings_intro"></a>
-Introduction</h1>
-<dl class="section note"><dt>Note</dt><dd>This is namespace documentation includes a lengthy introduction. Here are some quick links to the reference documentation section:<ul>
+<p> This is namespace documentation includes a lengthy introduction and manual section.<br />
+ <b>Reference documentation</b> is found below:</p>
+<ul>
 <li><a href="#namespaces">Nested Namespaces</a></li>
 <li><a href="#nested-classes">Classes</a></li>
 <li><a href="#typedef-members">Typedefs</a> and</li>
 <li><a href="#func-members">Functions</a></li>
 </ul>
-</dd></dl>
+<h1><a class="anchor" id="alib_namespace_strings_intro"></a>
+Introduction</h1>
 <p>This namespace of <b>ALib</b> provides classes that operate on character strings (following <a class="el" href="namespaceaworx_1_1lib.html">the principle design goals of <b>%ALib</b> ).</a>As the given C#/Java StringBuilder/Buffer classes are either "sealed" and/or do not provide direct access to the internal buffer, to avoid conversion to new immutable strings in certain situations, <b>ALib</b> implements its own string class.</p>
 <p>In contrast to the Java and C# versions of <b>ALib</b>, which merely provide a central string class named <b>AString</b> along with <b>Substring</b>, things became a little more complex in <b>ALib</b> for C++. The following feature overview illustrate the reasons for this:</p>
 <ul>
@@ -115,7 +115,7 @@ Introduction</h1>
 <li>Built-in debugging mechanics.</li>
 <li>But still: as much as possible/reasonable compatibility with strings in <b>ALib</b> for JAVA/C#.</li>
 </ul>
-<p>ALib strings in C++ are single byte strings. Conversion to and from unicode strings are available. It is the users responsibility that any internal encoding (e.g. UTF8) is consistently applied when using <b>ALib</b> strings.</p>
+<p><a class="el" href="classaworx_1_1lib_1_1ALib.html">ALib</a> strings in C++ are single byte strings. Conversion to and from unicode strings are available. It is the users responsibility that any internal encoding (e.g. UTF8) is consistently applied when using <b>ALib</b> strings.</p>
 <h1><a class="anchor" id="alib_namespace_strings_class_overview"></a>
 Classes overview</h1>
 <p>To understand the rationale behind introducing different string types, it is easiest to go quickly through them one by one. The classes are:</p><ul>
@@ -140,20 +140,21 @@ Class String</h2>
 </ul>
 <p>The use cases of the class concentrate on two scenarios:</p>
 <p><em>1. Using class <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> for <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> Constants:</em></p>
-<p>Often, some constant string data is needed. For example, let's look at class <b>ALib</b> and it's field <a class="el" href="classaworx_1_1lib_1_1ALIB.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALIB::ConfigCategoryName</a>. This field is used by <b>ALib</b> when getting configuration parameters, e.g. from environment variables. By default, this field is set to "ALIB", but an application might want to change it to something like "MYAPP". By having this field of type <code>String</code>, just any string type can be assigned to it. The user of <b>ALib</b> must not explicitly convert '<em>his'</em> string type to <b>ALib</b> types but just using the assignment operator <em>'='</em>. Furthermore, in advantage to type <em>const char*</em>, along with the pointer, the length of the string is stored. This gives a good performance improvement, as e.g. no <em>strlen()</em> call has to be made prior to copying this string to some other place.<br />
- </p><dl class="section attention"><dt>Attention</dt><dd>Same as with a use of <em>const char*</em>, when assigning a string to an <code><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a></code> object, it has to be made sure that this string is kept intact during the life-time of the target.</dd></dl>
+<p>Often, some constant string data is needed. By having this field of type <code>String</code>, just any string type can be assigned to it, especially string literals of-course. In advantage to type <em>const char*</em>, along with the pointer, the length of the string is stored. This gives a good performance improvement, as e.g. no <em>strlen()</em> call has to be made prior to copying a string to some other place.<br />
+</p>
+<p>Same as with a use of <em>const char*</em>, when assigning a string to an <code><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a></code> object, it has to be made sure that this string is kept intact during the life-time of the target.</p>
 <p><em>2. Using 'const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a>&amp;' as Method Parameter Type:</em></p>
 <p>All <b>ALib</b> interface methods that need some string input use a constant reference to <code>String</code> as parameter type (or to derived type <code>TString</code>, discussed later). Again, the using code does not need to care about conversion. References or pointers to any sort of string classes might be passed. In this case lifetime is deemed to be rather short, local and stack allocated. With having C++ 11 move constructor and assignment in place, no destructor, no virtual methods and just two members, objects of type <code>String</code> are a very lightweight and perfect candidates to be constructed implicitly for method parameter passing.<br />
  As a sample, see constructor of class <a class="el" href="classaworx_1_1lib_1_1system_1_1Directory.html#a3d2aef8216e51d8fea90c4f4b4f26959">Directory</a>. It is declared as: </p><div class="fragment"><div class="line"><a class="code" href="namespaceaworx.html#ae59166dff4149598acd5f636fe6760d8">Directory</a>( <span class="keyword">const</span> <a class="code" href="classaworx_1_1lib_1_1strings_1_1String.html">aworx::String</a>&amp; path );</div></div><!-- fragment --><p> With this declaration, it is possible to invoke that constructor passing using just any type of strings: </p><div class="fragment"><div class="line"><span class="comment">// Creating Directory object from C++ string literal</span></div><div class="line"><a class="code" href="namespaceaworx.html#ae59166dff4149598acd5f636fe6760d8">Directory</a> bin( <span class="stringliteral">&quot;/usr/bin&quot;</span> );</div><div class="line"></div><div class="line"><span class="comment">// Creating Directory object from std::string</span></div><div class="line">std::string libPath( <span class="stringliteral">&quot;/usr/lib&quot;</span> );</div><div class="line"><a class="code" href="namespaceaworx.html#ae59166dff4149598acd5f636fe6760d8">Directory</a> lib( libPath );</div><div class="line"></div><div class="line"><span class="comment">// Creating Directory object from std::string given as pointer</span></div><div class="line"><a class="code" href="namespaceaworx.html#ae59166dff4149598acd5f636fe6760d8">Directory</a> lib2( &amp;libPath );</div><div class="line"></div><div class="line"><span class="comment">// Creating Directory object from ALib AString</span></div><div class="line"><a class="code" href="classaworx_1_1lib_1_1strings_1_1AString.html">aworx::AString</a> srcPath( <span class="stringliteral">&quot;/usr/src&quot;</span> );</div><div class="line"><a class="code" href="namespaceaworx.html#ae59166dff4149598acd5f636fe6760d8">Directory</a> src( srcPath );</div><div class="line"></div><div class="line"><span class="comment">// Creating Directory object from ALib AString given as pointer</span></div><div class="line"><a class="code" href="namespaceaworx.html#ae59166dff4149598acd5f636fe6760d8">Directory</a> src2( &amp;srcPath );</div></div><!-- fragment --> <dl class="section note"><dt>Note</dt><dd><b>ALib</b> methods that continue to need the string data after their execution will create a copy of it. In other words, they will never expect that the buffer received in a parameter of type <code>String</code> still exists after the method exits.</dd></dl>
-<h3>Binding user types to ALib strings</h3>
+<h3>Binding user types to <a class="el" href="classaworx_1_1lib_1_1ALib.html">ALib</a> strings</h3>
 <p>With a little one-time effort of implementing a template struct with two small methods, also user defined string types (or types from other 3rd party library) can be made compatible easily. Due to template meta programming, variations of these types, like pointers or references, const or non-const, etc. will be accepted with minimum (mostly no) runtime impact, because TMP hooks in at compile time.<br />
  For more information on how to make <b>ALib</b> support user defined types see partially specialized template function <a class="el" href="structaworx_1_1lib_1_1strings_1_1T__String.html">T_String</a>.<br />
 </p>
-<p><a class="anchor" id="alib_namespace_strings_nullable"></a></p><h3>Nullable Strings</h3>
+<p><a class="anchor" id="alib_namespace_strings_nullable"></a></p><h3>Nullable <a class="el" href="classaworx_1_1lib_1_1strings_1_1Strings.html">Strings</a></h3>
 <p>Another important note is the fact that class <b>String</b> are 'nullable'. This term means here, that when they got constructed with no value, with <em>nullptr</em>, with other <em>nulled</em> <b>ALib</b> strings, etc., this state is detectable and is different from representing an empty string of zero length. This is very important for lean and clean user code.</p>
 <p>Derived mutable class <b>AString</b> (which is discussed below in more detail) inherits this ability See the sample exposed in <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#alib_namespace_strings_astring_nullable">Nullable AStrings</a> to get a better understanding of this concept.</p>
 <h3>Not Zero-Terminated</h3>
-<p>Strings represented by this class may be zero terminated. E.g. when constructed from a string literal they definitely are (as C++ string literals are zero terminated an not writable). However, class <b>String</b> does not count on that and treats its content as not zero-terminated. Therefore, the interface methods provided implement those standard string operations that are allowed (or can be implemented efficiently) on non-zero-terminated strings.</p>
+<p><a class="el" href="classaworx_1_1lib_1_1strings_1_1Strings.html">Strings</a> represented by this class may be zero terminated. E.g. when constructed from a string literal they definitely are (as C++ string literals are zero terminated an not writable). However, class <b>String</b> does not count on that and treats its content as not zero-terminated. Therefore, the interface methods provided implement those standard string operations that are allowed (or can be implemented efficiently) on non-zero-terminated strings.</p>
 <p>For further information about this type, note the reference documentation <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">class String</a>.</p>
 <h3>Lightweight and Volatile</h3>
 <p>Due to the minimum footprint (a pointer to the string buffer and an integer value for the strings' length), move construction and assignment is compiler defined and very fast. Even passing objects as value has a very limited (and sometimes no) performance impact.</p>
@@ -189,16 +190,17 @@ Class PreallocatedString</h2>
 <p>Template class <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">PreallocatedString&lt;int TCapacity&gt;</a>, derived from class <b>AString</b> uses an internal member of type <em>char[TCapacity]</em> with templated size to store the string data. The huge benefit lies in performance: The impact of frequent allocation of '<em>free memory</em>' (aka <em>heap allocation</em>) is often underestimated by developers. Therefore, for local string operations class <b>PreallocatedString</b> and its convenient type definitions <a class="el" href="namespaceaworx.html#a148a217c34a72b4360462205858b8f0e" title="Type alias name for PreallocatedString&lt;16&gt;. ">String16</a>, <a class="el" href="namespaceaworx.html#a221752691fb92bcd592c045d6c368289" title="Type alias name for PreallocatedString&lt;32&gt;. ">String32</a> ... <a class="el" href="namespaceaworx.html#a82395a8f3fac47787ebe8749679a2796" title="Type alias name for PreallocatedString&lt;1024&gt;. ">String1K</a>, <a class="el" href="namespaceaworx.html#a76f69ad445caecfbf03351c884637b09" title="Type alias name for PreallocatedString&lt;2048&gt;. ">String2K</a>, <a class="el" href="namespaceaworx.html#a772f06f37ace5e2b2eb8cafc0c859c44" title="Type alias name for PreallocatedString&lt;4096&gt;. ">String4K</a>. should be considered as a fast alternative for class <b>AString</b>.</p>
 <h3>Exceeding the Buffer Capacity</h3>
 <p>Although the internal buffer size is fixed at compile time and hence can not be expanded, a user of the class must not fear an assertion from '<em>buffer overflows</em>'. If the internal buffer capacity is exceeded, a regular allocated buffer from the <em>free memory</em> (aka '<em>heap'</em>) will be allocated. The slight disadvantage then is, that the memory of the internal buffer is (of-course) not freed.</p>
-<p>In debug compilations of <b>ALib</b>, already parent class <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> provides warning mechanism that enables the easy detection of such probably unwanted replacements of external buffers (in this case the '<em>member-allocated'</em> buffer). Using macro <a class="el" href="debug_8hpp.html#a7577d63e934e68269adef8746c176901">ALIB_WARN_ONCE_PER_INSTANCE_DECL</a> an <em>ALib Warning</em> will be issued when a buffer is replaced. There are two scenarios how a this mechanism might be used during development:</p><ul>
+<p>In debug compilations of <b>ALib</b>, already parent class <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> provides warning mechanism that enables the easy detection of such probably unwanted replacements of external buffers (in this case the '<em>member-allocated'</em> buffer). Using macro <a class="el" href="assert_8hpp.html#a7577d63e934e68269adef8746c176901">ALIB_WARN_ONCE_PER_INSTANCE_DECL</a> an <em><a class="el" href="classaworx_1_1lib_1_1ALib.html">ALib</a> Warning</em> will be issued when a buffer is replaced. There are two scenarios how a this mechanism might be used during development:</p><ul>
 <li>If the buffer should never be replaced, the capacity of an PreallocatedString has to be increased step by step when the warning is issued, until the member-buffer is huge enough.</li>
 <li>If it is OK, if the buffer is replaced every once in a while (because there special situations with higher capacity needs occur, but are relatively seldom) then, the warning should be switched off for this specific object, as it is explained in <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#ae6e756e6f5ccc142f9fc3ceb6ba18cf0">AString::ReplaceExternalBuffer</a>.</li>
 </ul>
+<dl class="section note"><dt>Note</dt><dd>If it is rather expected that a preallocated string gets replaced by a dynamically allocated buffer, then such warnings can be disabled using macro: <a class="el" href="assert_8hpp.html#a30e363647f8ea56f0af8e834768548bc">ALIB_WARN_ONCE_PER_INSTANCE_DISABLE(myPreallocatedString, ReplaceExternalBuffer)</a></dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Again, all warnings are effective only with debug compilations of <b>ALib</b>.</dd></dl>
 <h3>Aliases For Frequently Used Sizes</h3>
 <p>For commonly used sizes, some convenient alias names are defined. See aliases <a class="el" href="namespaceaworx.html#a148a217c34a72b4360462205858b8f0e" title="Type alias name for PreallocatedString&lt;16&gt;. ">String16</a>, <a class="el" href="namespaceaworx.html#a221752691fb92bcd592c045d6c368289" title="Type alias name for PreallocatedString&lt;32&gt;. ">String32</a>, <a class="el" href="namespaceaworx.html#ac2fdc487456a994238ba4284b3859c41" title="Type alias name for PreallocatedString&lt;64&gt;. ">String64</a> ... <a class="el" href="namespaceaworx.html#a82395a8f3fac47787ebe8749679a2796" title="Type alias name for PreallocatedString&lt;1024&gt;. ">String1K</a>, <a class="el" href="namespaceaworx.html#a76f69ad445caecfbf03351c884637b09" title="Type alias name for PreallocatedString&lt;2048&gt;. ">String2K</a>, <a class="el" href="namespaceaworx.html#a772f06f37ace5e2b2eb8cafc0c859c44" title="Type alias name for PreallocatedString&lt;4096&gt;. ">String4K</a>.</p>
 <h3>Implicit construction</h3>
 <p>While class <b>AString</b>, as <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#alib_namespace_strings_class_overview_astring_construction">noted above</a>, does not provide implicit construction, this class re-implements the common constructors of <b>AString</b> and exposes them as <em>implicit</em>. The rationale here is that although the data is copied (which might not be a very lightweight task), still the performance impact is far less compared to constructing an <b>AString</b> and it is taken into account that an <b>PreallocatedString</b> is created without explicit exposure of this creation. </p>
-<p>The following method, as a sample, takes three different <b>ALib</b> string types as parameters: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> TakeStrings( <span class="keyword">const</span> <a class="code" href="classaworx_1_1lib_1_1strings_1_1String.html">aworx::String</a>&amp; s1, <span class="keyword">const</span> <a class="code" href="classaworx_1_1lib_1_1strings_1_1AString.html">aworx::AString</a>&amp; s2, <span class="keyword">const</span> <a class="code" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">aworx::String64</a> s3 )</div></div><!-- fragment --><p>The following code will <em>not</em> compile: </p><div class="fragment"><div class="line">TakeStrings( <span class="stringliteral">&quot;Str1&quot;</span>, <span class="stringliteral">&quot;Str2&quot;</span>, <span class="stringliteral">&quot;Str3&quot;</span> );          <span class="comment">// Error, AString not implicitly constructable</span></div></div><!-- fragment --><p>Class <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> has to be explicitly created, the others don't: </p><div class="fragment"><div class="line">TakeStrings( <span class="stringliteral">&quot;Str1&quot;</span>, <a class="code" href="classaworx_1_1lib_1_1strings_1_1AString.html">aworx::AString</a>(<span class="stringliteral">&quot;Str2&quot;</span>), <span class="stringliteral">&quot;Str3&quot;</span> ); <span class="comment">// OK, AString explicit, AS and ASPrealloc implicit</span></div></div><!-- fragment --><p> In addition, besides having implicit construction, the default assign operator is defined as well. This allows to use objects of this type as class members that are initialized within the class declaration as shown here: </p><div class="fragment"><div class="line"><span class="keyword">class </span>MyClass</div><div class="line">{</div><div class="line">    <a class="code" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">aworx::PAString&lt;20&gt;</a> name=  <span class="stringliteral">&quot;(none)&quot;</span>;</div><div class="line">};</div></div><!-- fragment --><p>Such members are not allowed to be initialized in the declaration if their type is <b>AString</b>.</p>
+<p>The following method, as a sample, takes three different <b>ALib</b> string types as parameters: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> TakeStrings( <span class="keyword">const</span> <a class="code" href="classaworx_1_1lib_1_1strings_1_1String.html">aworx::String</a>&amp; s1, <span class="keyword">const</span> <a class="code" href="classaworx_1_1lib_1_1strings_1_1AString.html">aworx::AString</a>&amp; s2, <span class="keyword">const</span> <a class="code" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">aworx::String64</a> s3 )</div></div><!-- fragment --><p>The following code will <em>not</em> compile: </p><div class="fragment"><div class="line">TakeStrings( <span class="stringliteral">&quot;Str1&quot;</span>, <span class="stringliteral">&quot;Str2&quot;</span>, <span class="stringliteral">&quot;Str3&quot;</span> );          <span class="comment">// Error, AString not implicitly constructable</span></div></div><!-- fragment --><p>Class <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> has to be explicitly created, the others don't: </p><div class="fragment"><div class="line">TakeStrings( <span class="stringliteral">&quot;Str1&quot;</span>, <a class="code" href="classaworx_1_1lib_1_1strings_1_1AString.html">aworx::AString</a>(<span class="stringliteral">&quot;Str2&quot;</span>), <span class="stringliteral">&quot;Str3&quot;</span> ); <span class="comment">// OK, AString explicit, String and PreallocatedString implicit</span></div></div><!-- fragment --><p> In addition, besides having implicit construction, the default assign operator is defined as well. This allows to use objects of this type as class members that are initialized within the class declaration as shown here: </p><div class="fragment"><div class="line"><span class="keyword">class </span>MyClass</div><div class="line">{</div><div class="line">    <a class="code" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">aworx::PreallocatedString&lt;20&gt;</a> name=  <span class="stringliteral">&quot;(none)&quot;</span>;</div><div class="line">};</div></div><!-- fragment --><p>Such members are not allowed to be initialized in the declaration if their type is <b>AString</b>.</p>
 <h3>Move Constructor and Assignment</h3>
 <p>Class <b>PreallocatedString</b> provides a '<em>move constructor</em>' but no '<em>move assignment operator</em>'. See the <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">classes reference documentation</a> for more information.</p>
 <h2><a class="anchor" id="alib_namespace_strings_class_overview_substring"></a>
@@ -214,7 +216,7 @@ Class StringLiteral</h2>
 It is possible to enable 'external', user defined types to act as string literals as well. This is a rather unlikely scenario, but if requested, optionally and solely for a (potentially small) performance gain, these types can get adopted to <b>ALib</b> by implementing class <a class="el" href="structaworx_1_1lib_1_1strings_1_1T__StringLiteral.html">T_StringLiteral</a>. This process is not further documented or demonstrated by a sample. Interested users should consult the source code of <b>ALib</b> for doing it. The mechanism used is similar to what is used with template structs <a class="el" href="structaworx_1_1lib_1_1strings_1_1T__String.html">T_String</a> and <a class="el" href="structaworx_1_1lib_1_1strings_1_1T__Apply.html">T_Apply</a>.</dd></dl>
 <h1><a class="anchor" id="alib_namespace_strings_nonchecking"></a>
 'Non-Checking' Methods of ALib String Classes</h1>
-<p>Many of the methods found in the different string classes of <b>ALib</b> are template methods with a boolean template parameter named <em>TCheck</em>. This template parameter is defaulted with the value <code>true</code> which is sort of 'hiding' it in normal code. Consider the following piece of code: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> parse( <a class="code" href="classaworx_1_1lib_1_1strings_1_1Substring.html">aworx::Substring</a> line )</div><div class="line">{</div><div class="line">    <span class="comment">// object &#39;line&#39; is of type aworx::Substring</span></div><div class="line">    <a class="code" href="classaworx_1_1lib_1_1strings_1_1TString.html">aworx::TString</a> startWord= <span class="stringliteral">&quot;&lt;start&gt;&quot;</span>;</div><div class="line">    <a class="code" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> idx= line.<a class="code" href="classaworx_1_1lib_1_1strings_1_1String.html#a0b2db8c097f2e27a96c64807c8d0edc4">IndexOfSubstring</a>( startWord );</div><div class="line">    <span class="keywordflow">if</span>( idx &gt; 0 )</div><div class="line">        line.<a class="code" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aa92d18f63bf16bd73b4146c738a9b9eb">ConsumeChars</a>( idx + startWord.<a class="code" href="classaworx_1_1lib_1_1strings_1_1String.html#a78a515bdd031a8d3b713bb05edcf126c">Length</a>() );</div><div class="line">    <span class="comment">//...</span></div><div class="line">    <span class="comment">//...</span></div></div><!-- fragment --><p> The implementation of method <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aa92d18f63bf16bd73b4146c738a9b9eb">Substring::ConsumeChars</a> by default checks if object <em>line</em> is big enough to cut the given number of characters from the front. Obviously this check is redundant here, because <b>ConsumeChars</b> is invoked only if <b>IndexOfSubstring</b> had found the string <em>"\&lt;start\&gt;"</em>. To avoid the redundant check, we invoke the non-checking version of method <b>ConsumeChars</b> by providing template parameter <code>TCheck</code> with value <code>false:</code> </p><div class="fragment"><div class="line">    <span class="keywordflow">if</span>( idx &gt; 0 )</div><div class="line">        line.<a class="code" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aa92d18f63bf16bd73b4146c738a9b9eb">ConsumeChars</a>&lt;<span class="keyword">false</span>&gt;( idx + startWord.<a class="code" href="classaworx_1_1lib_1_1strings_1_1String.html#a78a515bdd031a8d3b713bb05edcf126c">Length</a>() ); <span class="comment">// No check for length of object &#39;line&#39;</span></div></div><!-- fragment --> <dl class="section note"><dt>Note</dt><dd>In this simple sample, especially as these methods are inlined, the compiler might detect already that the check is redundant and would remove it from the code. However, there are many occasions where the compiler is lacking the information and the possibility to detect such redundancy.</dd></dl>
+<p>Many of the methods found in the different string classes of <b>ALib</b> are template methods with a boolean template parameter named <em>TCheck</em>. This template parameter is defaulted with the value <code>true</code> which is sort of 'hiding' it in normal code. Consider the following piece of code: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> parse( <a class="code" href="classaworx_1_1lib_1_1strings_1_1Substring.html">aworx::Substring</a> line )</div><div class="line">{</div><div class="line">    <span class="comment">// object &#39;line&#39; is of type aworx::Substring</span></div><div class="line">    <a class="code" href="classaworx_1_1lib_1_1strings_1_1TString.html">aworx::TString</a> startWord= <span class="stringliteral">&quot;&lt;start&gt;&quot;</span>;</div><div class="line">    <a class="code" href="namespaceaworx.html#a2597f1982b18ebe4ea9e55b914bc49b4">integer</a> idx= line.<a class="code" href="classaworx_1_1lib_1_1strings_1_1String.html#a0d261d680a9f9036a43cb7a6a4baa268">IndexOfSubstring</a>( startWord );</div><div class="line">    <span class="keywordflow">if</span>( idx &gt; 0 )</div><div class="line">        line.<a class="code" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aa92d18f63bf16bd73b4146c738a9b9eb">ConsumeChars</a>( idx + startWord.<a class="code" href="classaworx_1_1lib_1_1strings_1_1String.html#a78a515bdd031a8d3b713bb05edcf126c">Length</a>() );</div><div class="line">    <span class="comment">//...</span></div><div class="line">    <span class="comment">//...</span></div></div><!-- fragment --><p> The implementation of method <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aa92d18f63bf16bd73b4146c738a9b9eb">Substring::ConsumeChars</a> by default checks if object <em>line</em> is big enough to cut the given number of characters from the front. Obviously this check is redundant here, because <b>ConsumeChars</b> is invoked only if <b>IndexOfSubstring</b> had found the string <em>"\&lt;start\&gt;"</em>. To avoid the redundant check, we invoke the non-checking version of method <b>ConsumeChars</b> by providing template parameter <code>TCheck</code> with value <code>false:</code> </p><div class="fragment"><div class="line">    <span class="keywordflow">if</span>( idx &gt; 0 )</div><div class="line">        line.<a class="code" href="classaworx_1_1lib_1_1strings_1_1Substring.html#aa92d18f63bf16bd73b4146c738a9b9eb">ConsumeChars</a>&lt;<span class="keyword">false</span>&gt;( idx + startWord.<a class="code" href="classaworx_1_1lib_1_1strings_1_1String.html#a78a515bdd031a8d3b713bb05edcf126c">Length</a>() ); <span class="comment">// No check for length of object &#39;line&#39;</span></div></div><!-- fragment --> <dl class="section note"><dt>Note</dt><dd>In this simple sample, especially as these methods are inlined, the compiler might detect already that the check is redundant and would remove it from the code. However, there are many occasions where the compiler is lacking the information and the possibility to detect such redundancy.</dd></dl>
 <p>In the C# and Java versions of <b>ALib</b>, where such template methods are not available, still some non-checking methods are provided, but less than in the C++ implementation. In these languages, these methods exist twice with the same name, the non-checking one with suffix <em>_NC</em>.</p>
 <p>The following general rules apply for all non-checking methods:</p><ul>
 <li><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> parameters are not checked for being nullptr.</li>
@@ -227,10 +229,10 @@ It is possible to enable 'external', user defined types to act as string literal
 <p>Apart from the previous points, the behavior and result of invoking a non-checking version of a method is the same as of invoking the original version. The only difference is in a higher execution performance.</p>
 <h1><a class="anchor" id="alib_namespace_strings_format"></a>
 Formatting Strings</h1>
-<p><b>ALib Strings</b> provide powerful formatting facilities for string data stored in <b>AString</b> objects through abstract class <a class="el" href="classaworx_1_1lib_1_1strings_1_1format_1_1Formatter.html">Formatter</a> and its specializations <a class="el" href="classaworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html">FormatterPythonStyle</a> <a class="el" href="classaworx_1_1lib_1_1strings_1_1format_1_1FormatterJavaStyle.html">FormatterJavaStyle</a>. Consult the reference documentation of these classes for further information.</p>
+<p><b>ALib <a class="el" href="classaworx_1_1lib_1_1strings_1_1Strings.html">Strings</a></b> provide powerful formatting facilities for string data stored in <b>AString</b> objects through abstract class <a class="el" href="classaworx_1_1lib_1_1strings_1_1format_1_1Formatter.html">Formatter</a> and its specializations <a class="el" href="classaworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html">FormatterPythonStyle</a> <a class="el" href="classaworx_1_1lib_1_1strings_1_1format_1_1FormatterJavaStyle.html">FormatterJavaStyle</a>. Consult the reference documentation of these classes for further information.</p>
 <h1><a class="anchor" id="alib_namespace_strings_compat"></a>
 Compatibility with External Libraries</h1>
-<p>ALib provides compatibility extensions with different class libraries. Currently the following extensions are provided: </p><h3>Standard C++ Library</h3>
+<p><a class="el" href="classaworx_1_1lib_1_1ALib.html">ALib</a> provides compatibility extensions with different class libraries. Currently the following extensions are provided: </p><h3>Standard C++ Library</h3>
 <ul>
 <li>Trough header file <em>"alib/compatibility/std_string.hpp"</em><ul>
 <li>Implements template struct <a class="el" href="structaworx_1_1lib_1_1strings_1_1T__String.html">T_String</a> to allow (implicit) conversion of objects of type <em>std::string</em> to type <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">aworx::String</a>.</li>
@@ -242,8 +244,8 @@ Compatibility with External Libraries</h1>
 <ul>
 <li>Trough header file <em>"alib/compatibility/std_iostream.hpp"</em><ul>
 <li>Provides <em>applicable</em> class <a class="el" href="classaworx_1_1lib_1_1strings_1_1thirdparty_1_1std_1_1ReadLineFromIStream.html">ReadLineFromIStream</a> and corresponding specialization of <a class="el" href="structaworx_1_1lib_1_1strings_1_1T__Apply.html">T_Apply</a> to allow reading lines of text from a <em>std::istream</em> into an object of type <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">aworx::AString</a>.</li>
-<li>Provides namespace functions <a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#aeecd3f446cd52e4903ec0506e139f778">operator&gt;&gt;(std::istream&amp;, AString&amp;)</a> and <a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#a6aa23a97a1b196f03878e58b3dac7624">operator&gt;&gt;(std::istream*, AString&amp;)</a> which are using aforementioned applicable class <b>ReadLineFromIStream</b> with default parameters to read a line from a <em>std::istream</em> into an object of type <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">aworx::AString</a>.</li>
-<li>Provides namespace functions <a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#abcce4a2cc847b6ab04e5eddbcfd0b4e2">operator&lt;&lt;(std::ostream&amp; os, const String&amp; as)</a> and <a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#a99efdef7cac234f403cc722fc28e3551">operator&lt;&lt;(std::ostream* os, const String&amp; as)</a> to write an object of type <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">aworx::String</a> into a <em>std::ostream</em>.</li>
+<li>Provides namespace functions <a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#a9651871e7daa6d9fc7cf18c22b11daa4">aworx::lib::strings::thirdparty::std::operator&gt;&gt;</a>(std::istream&amp; " AString&amp;)" and <a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#a9651871e7daa6d9fc7cf18c22b11daa4">aworx::lib::strings::thirdparty::std::operator&gt;&gt;</a>(std::istream* " AString&amp;)" which are using aforementioned applicable class <b>ReadLineFromIStream</b> with default parameters to read a line from a <em>std::istream</em> into an object of type <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">aworx::AString</a>.</li>
+<li>Provides namespace functions <a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#a87fbb8b7085a135eb378c01ad642ca62">aworx::lib::strings::thirdparty::std::operator&lt;&lt;</a>(std::ostream&amp; os " const String&amp; as)" and <a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1thirdparty_1_1std.html#a87fbb8b7085a135eb378c01ad642ca62">aworx::lib::strings::thirdparty::std::operator&lt;&lt;</a>(std::ostream* os " const String&amp; as)" to write an object of type <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">aworx::String</a> into a <em>std::ostream</em>.</li>
 </ul>
 </li>
 </ul>
@@ -290,6 +292,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">PreallocatedString</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1ResourceString.html">ResourceString</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1std__Equals.html">std_Equals</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1std__Hash.html">std_Hash</a></td></tr>
@@ -298,9 +302,13 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1StringLiteral.html">StringLiteral</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Strings.html">Strings</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1T__Apply.html">T_Apply</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1T__Apply_3_01typename_01format_1_1PropertyFormatterMapApplicablc5158e90efaae83a3ef8d8bf26dccb21.html">T_Apply&lt; typename format::PropertyFormatterMapApplicable&lt; TFormattable, TOptionEnum &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1T__IsTerminatable.html">T_IsTerminatable</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -322,58 +330,12 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">TString</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a78e0a4c7f228e5a0c57dff644b017570"><td class="memItemLeft" align="right" valign="top">NO_DOX NO_DOX <a class="el" href="group__GrpALibMacros.html#gaa23c944e6d67aa52d2e05a1399151423">ALIB_NAMESPACE_INIT_FLAG</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a78e0a4c7f228e5a0c57dff644b017570">Init</a> ()</td></tr>
-<tr class="separator:a78e0a4c7f228e5a0c57dff644b017570"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c636be17958f868656e4a9b991fee84"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a2c636be17958f868656e4a9b991fee84">TerminationCleanUp</a> ()</td></tr>
-<tr class="separator:a2c636be17958f868656e4a9b991fee84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a78e0a4c7f228e5a0c57dff644b017570"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78e0a4c7f228e5a0c57dff644b017570">&#9670;&nbsp;</a></span>Init()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void Init </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Initializes the <b>ALib <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a></b> namespace. In current version, all it does is invoking <a class="el" href="namespaceaworx_1_1lib_1_1strings_1_1boxing.html#a1e3b6d38df0786ccf7f938d60e386aae">aworx::lib::strings::boxing::Init()</a>. </p>
-<p>[DOX_ALIB_BOXING_SAMPLE_TEMPLATED_INTERFACE]</p>
-<p>[DOX_ALIB_BOXING_SAMPLE_TEMPLATED_INTERFACE] </p>
-
-</div>
-</div>
-<a id="a2c636be17958f868656e4a9b991fee84"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2c636be17958f868656e4a9b991fee84">&#9670;&nbsp;</a></span>TerminationCleanUp()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void TerminationCleanUp </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Frees resources of the <b>ALib <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a></b> namespace. In current version, all it does is deleting the global formatter object. </p>
-
-</div>
-</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 13 2017 18:47:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 22 2017 22:23:15 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

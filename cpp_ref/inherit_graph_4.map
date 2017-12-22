@@ -1,3 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structaworx_1_1lib_1_1boxing_1_1BoxData.html" title="BoxData" alt="" coords="5,5,77,32"/>
+<area shape="rect" id="node1" title="STL class. " alt="" coords="5,31,88,57"/>
+<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1strings_1_1util_1_1StringTable.html" title="StringTable\&lt;TAssociatedTypes\&gt;" alt="" coords="136,5,347,32"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1boxing_1_1Boxes.html" title="Boxes" alt="" coords="212,56,271,83"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1lang_1_1Report_1_1Message.html" title="Report::Message" alt="" coords="395,56,516,83"/>
 </map>
