@@ -22,6 +22,6 @@ var searchData=
   ['hexwordgroupchar',['HexWordGroupChar',['../classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a1681171be43099b162cbabd2f6b66b15',1,'aworx::lib::strings::NumberFormat']]],
   ['home',['Home',['../classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0a8cf04a9734132302f96da8e113e80ce5',1,'aworx::lib::system::Directory']]],
   ['homeconfig',['HomeConfig',['../classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0ae94961474a646742838ed46f32f89a47',1,'aworx::lib::system::Directory']]],
-  ['hour',['Hour',['../classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html#a9a7e982c278ab66497180395ad975b4b',1,'aworx::lib::time::TicksCalendarTime']]],
+  ['hour',['Hour',['../classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html#a9a7e982c278ab66497180395ad975b4b',1,'aworx::lib::time::TicksCalendarTime::Hour()'],['../classaworx_1_1lib_1_1time_1_1CalendarTime.html#a9a7e982c278ab66497180395ad975b4b',1,'aworx::lib::time::CalendarTime::Hour()']]],
   ['hours',['Hours',['../classaworx_1_1lib_1_1time_1_1TickSpan.html#a9039ccfcf02dd3340b9fdfa18517f2ae',1,'aworx::lib::time::TickSpan']]]
 ];

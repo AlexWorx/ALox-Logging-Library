@@ -1,13 +1,14 @@
 <map id="configuration.hpp" name="configuration.hpp">
-<area shape="rect" id="node2" href="$enumbitwise_8hpp.html" title="alib/lang/enumbitwise.hpp" alt="" coords="535,304,706,331"/>
-<area shape="rect" id="node3" href="$threadlock_8hpp.html" title="alib/threads/threadlock.hpp" alt="" coords="255,229,434,256"/>
-<area shape="rect" id="node4" href="$substring_8hpp.html" title="alib/strings/substring.hpp" alt="" coords="709,229,876,256"/>
-<area shape="rect" id="node5" href="$numberformat_8hpp.html" title="alib/strings/numberformat.hpp" alt="" coords="559,80,754,107"/>
-<area shape="rect" id="node6" href="$variable_8hpp.html" title="alib/config/variable.hpp" alt="" coords="1055,229,1210,256"/>
-<area shape="rect" id="node7" href="$plugins_8hpp.html" title="alib/config/plugins.hpp" alt="" coords="829,155,980,181"/>
-<area shape="rect" id="node8" href="$plugincontainer_8hpp.html" title="alib/util/plugincontainer.hpp" alt="" coords="519,155,698,181"/>
-<area shape="rect" id="node9" href="$inmemoryplugin_8hpp.html" title="alib/config/inmemoryplugin.hpp" alt="" coords="880,80,1081,107"/>
-<area shape="rect" id="node10" href="$threadlocknr_8hpp.html" title="alib/threads/threadlocknr.hpp" alt="" coords="287,304,475,331"/>
-<area shape="rect" id="node11" href="$threadlib_8hpp.html" title="threadlib.hpp" alt="" coords="166,304,262,331"/>
-<area shape="rect" id="node12" href="$ownable_8hpp.html" title="alib/lang/ownable.hpp" alt="" coords="393,379,539,405"/>
+<area shape="rect" id="node2" href="$enumbitwise_8hpp.html" title="alib/lang/enumbitwise.hpp" alt="" coords="582,304,753,331"/>
+<area shape="rect" id="node3" href="$threadlock_8hpp.html" title="alib/threads/threadlock.hpp" alt="" coords="302,229,481,256"/>
+<area shape="rect" id="node4" href="$substring_8hpp.html" title="alib/strings/substring.hpp" alt="" coords="756,229,923,256"/>
+<area shape="rect" id="node5" href="$numberformat_8hpp.html" title="alib/strings/numberformat.hpp" alt="" coords="606,80,801,107"/>
+<area shape="rect" id="node6" href="$variable_8hpp.html" title="alib/config/variable.hpp" alt="" coords="1102,229,1257,256"/>
+<area shape="rect" id="node7" href="$plugins_8hpp.html" title="alib/config/plugins.hpp" alt="" coords="876,155,1027,181"/>
+<area shape="rect" id="node8" href="$plugincontainer_8hpp.html" title="alib/util/plugincontainer.hpp" alt="" coords="566,155,745,181"/>
+<area shape="rect" id="node9" href="$inmemoryplugin_8hpp.html" title="alib/config/inmemoryplugin.hpp" alt="" coords="927,80,1128,107"/>
+<area shape="rect" id="node10" href="$enumarithmetical_8hpp.html" title="enumarithmetical.hpp" alt="" coords="594,379,741,405"/>
+<area shape="rect" id="node11" href="$threadlocknr_8hpp.html" title="alib/threads/threadlocknr.hpp" alt="" coords="313,304,501,331"/>
+<area shape="rect" id="node12" href="$threadlib_8hpp.html" title="threadlib.hpp" alt="" coords="193,304,289,331"/>
+<area shape="rect" id="node13" href="$ownable_8hpp.html" title="alib/lang/ownable.hpp" alt="" coords="393,379,539,405"/>
 </map>

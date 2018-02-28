@@ -9,6 +9,7 @@ var searchData=
   ['sortorder',['SortOrder',['../namespaceaworx.html#a086789c0b56e605b79bf57d0fd53b306',1,'aworx']]],
   ['sourcedata',['SourceData',['../namespaceaworx.html#acdb8e25ed050d0001a0389e38aa5ef75',1,'aworx']]],
   ['spaces',['Spaces',['../namespaceaworx.html#a9f69e16cb165fb1d0263890b165a5613',1,'aworx']]],
+  ['stopwatch',['StopWatch',['../namespaceaworx.html#a0a33224c071d1e29e6169e93249001e6',1,'aworx']]],
   ['string',['String',['../namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d',1,'aworx']]],
   ['string128',['String128',['../namespaceaworx.html#a2841f1443c3b2f3d6066d5774cf69dbc',1,'aworx']]],
   ['string16',['String16',['../namespaceaworx.html#a148a217c34a72b4360462205858b8f0e',1,'aworx']]],
@@ -23,7 +24,7 @@ var searchData=
   ['strings',['Strings',['../namespaceaworx.html#a3c0dd4e93e0c8297a10ca98eff7e4ea7',1,'aworx']]],
   ['stringtable',['StringTable',['../namespaceaworx.html#a3e978518419b8c970cdfd8a30af02250',1,'aworx']]],
   ['stringtree',['StringTree',['../namespaceaworx.html#a3f529e3fce337b034a15d71babf9f109',1,'aworx']]],
-  ['stringvector',['StringVector',['../classaworx_1_1lib_1_1debug_1_1Boxing.html#a3c8894068cb475f1327a41f564385523',1,'aworx::lib::debug::Boxing']]],
+  ['stringvector',['StringVector',['../classaworx_1_1lib_1_1debug_1_1Boxing.html#afd414243e71139c47514c95b350e6f69',1,'aworx::lib::debug::Boxing']]],
   ['substring',['Substring',['../namespaceaworx.html#afed2e22d908094b0badbf8ac4d5f3900',1,'aworx']]],
   ['switch',['Switch',['../namespaceaworx.html#a68e1ec4ff4ca04def6fdd7fe217a245a',1,'aworx']]],
   ['system',['System',['../namespaceaworx.html#aea0af9d6b00ede1a16d0af24fdaeebe0',1,'aworx']]]

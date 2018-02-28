@@ -26,8 +26,8 @@ var searchData=
   ['threadname',['threadName',['../classaworx_1_1lox_1_1core_1_1ScopeInfo.html#ab0235bb40987a8310ebd7e8500b96975',1,'aworx::lox::core::ScopeInfo']]],
   ['threadouterstore',['threadOuterStore',['../classaworx_1_1lox_1_1core_1_1ScopeStore.html#aaedb67f0bf7ce679a991c7ee988e1cc4',1,'aworx::lox::core::ScopeStore']]],
   ['threads',['THREADS',['../namespaceaworx_1_1lib.html#a2e2672eedb93d516b1696f3e692e40a2',1,'aworx::lib']]],
-  ['ticks',['ticks',['../classaworx_1_1lib_1_1time_1_1Ticks.html#a8669826df5054f2f4811eb2f71f8aade',1,'aworx::lib::time::Ticks']]],
-  ['time',['TIME',['../namespaceaworx_1_1lib.html#a657ba7f075d77ccf33b69a810f5f0860',1,'aworx::lib']]],
+  ['ticks',['ticks',['../classaworx_1_1lib_1_1time_1_1Ticks.html#ad06c9723586456a8a19434ba77721325',1,'aworx::lib::time::Ticks::ticks()'],['../classaworx_1_1lib_1_1time_1_1TimeSpan.html#ad06c9723586456a8a19434ba77721325',1,'aworx::lib::time::TimeSpan::ticks()'],['../classaworx_1_1lib_1_1time_1_1TimeStamp.html#ad06c9723586456a8a19434ba77721325',1,'aworx::lib::time::TimeStamp::ticks()']]],
+  ['time',['TIME',['../namespaceaworx_1_1lib.html#a0d2c9b08b32b399ab8df65df9ad48574',1,'aworx::lib']]],
   ['timediffdays',['TimeDiffDays',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#aa3f98d2aa27c33f8dc7c3cf4c6b1a0d8',1,'aworx::lox::core::textlogger::MetaInfo']]],
   ['timediffhours',['TimeDiffHours',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a20d1d3b476a6aafeeb5e87fbfacc5e52',1,'aworx::lox::core::textlogger::MetaInfo']]],
   ['timediffmicros',['TimeDiffMicros',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a661a09a8e1eb17581bc67aff1f132d56',1,'aworx::lox::core::textlogger::MetaInfo']]],
@@ -49,7 +49,7 @@ var searchData=
   ['trimreplacement',['TrimReplacement',['../structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#aab1aeee9def0c8b2181dd7ad92551cbc',1,'aworx::lox::core::ScopeInfo::SourcePathTrimRule']]],
   ['truevalues',['TrueValues',['../classaworx_1_1lib_1_1config_1_1Configuration.html#a5848fc835514e61005938ea4c9b9b772',1,'aworx::lib::config::Configuration']]],
   ['tuple',['Tuple',['../structaworx_1_1lib_1_1config_1_1VariableDecl.html#a6721f891e3a0b8cfc548529b6f439d65',1,'aworx::lib::config::VariableDecl']]],
-  ['type',['type',['../classaworx_1_1lib_1_1boxing_1_1Boxer.html#a0cb9a6a815046da9de1d8325a8db0e72',1,'aworx::lib::boxing::Boxer::type()'],['../structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html#ab6f4e6d3fde00ce906e46494f60dfe7a',1,'aworx::lox::Lox::DomainSubstitutionRule::type()'],['../classaworx_1_1lib_1_1lang_1_1Report_1_1Message.html#ae011432eaca3858364b05a111f4011d3',1,'aworx::lib::lang::Report::Message::Type()']]],
+  ['type',['Type',['../classaworx_1_1lib_1_1lang_1_1Report_1_1Message.html#ae011432eaca3858364b05a111f4011d3',1,'aworx::lib::lang::Report::Message::Type()'],['../classaworx_1_1lib_1_1boxing_1_1Boxer.html#a0cb9a6a815046da9de1d8325a8db0e72',1,'aworx::lib::boxing::Boxer::type()'],['../structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html#ab6f4e6d3fde00ce906e46494f60dfe7a',1,'aworx::lox::Lox::DomainSubstitutionRule::type()']]],
   ['typeinfo',['typeInfo',['../classaworx_1_1lib_1_1boxing_1_1Interface.html#a850d0a52a5a9215400d3f7e4d3b12025',1,'aworx::lib::boxing::Interface']]],
   ['typename',['TypeName',['../classaworx_1_1lox_1_1core_1_1Logger.html#a5a295fb1c491a3a0bc84efbe8ebe28c9',1,'aworx::lox::core::Logger']]]
 ];

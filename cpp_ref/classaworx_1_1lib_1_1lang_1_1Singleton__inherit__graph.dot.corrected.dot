@@ -14,15 +14,17 @@ digraph "Singleton&lt;TDerivedClass&gt;"
   Node8 [label="IIsLess_boxed_int\<IIsLess_boxed_int\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IIsLess__boxed__int.html"];
   Node9 [label="IIsLess_boxed_uint\<IIsLess_boxed_uint\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IIsLess__boxed__uint.html"];
   Node10 [label="IIsLess_double\<IIsLess_double\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1boxing_1_1ftypes_1_1IIsLess__double.html"];
-  Node11 [label="IIsNull_false\<IIsNull_false\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1boxing_1_1IIsNull__false.html"];
-  Node12 [label="IApply_BoxedAs_TApplicable\<IApply_BoxedAs_TApplicable\<TApplicable\>\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__BoxedAs__TApplicable.html"];
-  Node13 [label="IApply_TApplicable\<IApply_TApplicable\<TApplicable\>\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__TApplicable.html"];
-  Node14 [label="IApply_Tchar16_tArr\<IApply_Tchar16_tArr\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__Tchar16__tArr.html"];
-  Node15 [label="IApply_Tchar32_tArr\<IApply_Tchar32_tArr\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__Tchar32__tArr.html"];
-  Node16 [label="IApply_TcharArr\<IApply_TcharArr\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__TcharArr.html"];
-  Node17 [label="IApply_Twchar_tArr\<IApply_Twchar_tArr\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__Twchar__tArr.html"];
-  Node18 [label="IIsLess_Tchar_arr\<IIsLess_Tchar_arr\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1boxing_1_1IIsLess__Tchar__arr.html"];
-  Node19 [label="IFormat_TTicks\<IFormat_TTicks\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1time_1_1IFormat__TTicks.html"];
+  Node11 [label="IEquals_TComparable\<IEquals_TComparable\<TComparable\>\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1boxing_1_1IEquals__TComparable.html"];
+  Node12 [label="IIsNull_false\<IIsNull_false\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1boxing_1_1IIsNull__false.html"];
+  Node13 [label="IApply_BoxedAs_TApplicable\<IApply_BoxedAs_TApplicable\<TApplicable\>\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__BoxedAs__TApplicable.html"];
+  Node14 [label="IApply_TApplicable\<IApply_TApplicable\<TApplicable\>\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__TApplicable.html"];
+  Node15 [label="IApply_Tchar16_tArr\<IApply_Tchar16_tArr\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__Tchar16__tArr.html"];
+  Node16 [label="IApply_Tchar32_tArr\<IApply_Tchar32_tArr\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__Tchar32__tArr.html"];
+  Node17 [label="IApply_TcharArr\<IApply_TcharArr\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__TcharArr.html"];
+  Node18 [label="IApply_Twchar_tArr\<IApply_Twchar_tArr\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1boxing_1_1IApply__Twchar__tArr.html"];
+  Node19 [label="IIsLess_Tchar_arr\<IIsLess_Tchar_arr\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1boxing_1_1IIsLess__Tchar__arr.html"];
+  Node20 [label="IFormat_TimeStamp\<IFormat_TimeStamp\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1time_1_1IFormat__TimeStamp.html"];
+  Node21 [label="IFormat_TTicks\<IFormat_TTicks\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1time_1_1IFormat__TTicks.html"];
   Node0 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node0 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node0 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
@@ -42,5 +44,7 @@ digraph "Singleton&lt;TDerivedClass&gt;"
   Node0 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node0 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node0 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }
 

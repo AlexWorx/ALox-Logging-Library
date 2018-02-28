@@ -2,7 +2,7 @@ var searchData=
 [
   ['id',['id',['../classaworx_1_1lib_1_1threads_1_1Thread.html#a7441ef0865bcb3db9b8064dd7375c1ea',1,'aworx::lib::threads::Thread']]],
   ['idelogger',['IDELogger',['../classaworx_1_1lox_1_1Log.html#a7764bec073718f0cc7c022afbc17b4b9',1,'aworx::lox::Log']]],
-  ['inaccuracy',['inaccuracy',['../classaworx_1_1lib_1_1time_1_1Time.html#aa912f27400c5f13494ef9b2fb919ae20',1,'aworx::lib::time::Time']]],
+  ['inaccuracy',['inaccuracy',['../classaworx_1_1lib_1_1time_1_1TimeLib.html#aa912f27400c5f13494ef9b2fb919ae20',1,'aworx::lib::time::TimeLib']]],
   ['includestring',['IncludeString',['../structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a4dfbe3fa1c6cd975f1a6a3b17dc6ac8d',1,'aworx::lox::core::ScopeInfo::SourcePathTrimRule']]],
   ['indentfirstline',['IndentFirstLine',['../classaworx_1_1lib_1_1strings_1_1format_1_1SimpleText.html#a700bc66278e766c449f92d2a6588324b',1,'aworx::lib::strings::format::SimpleText']]],
   ['indentotherlines',['IndentOtherLines',['../classaworx_1_1lib_1_1strings_1_1format_1_1SimpleText.html#a451201f0b9928497081b306e819148df',1,'aworx::lib::strings::format::SimpleText']]],
@@ -11,7 +11,7 @@ var searchData=
   ['infliteral',['INFLiteral',['../classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a4cc2fe9387873552ba7934d551e12e49',1,'aworx::lib::strings::NumberFormat']]],
   ['initstate',['initState',['../classaworx_1_1lib_1_1lang_1_1Library.html#a3140b8a0756ba094c4b4ef748859bb8c',1,'aworx::lib::lang::Library']]],
   ['integralpartminimumwidth',['IntegralPartMinimumWidth',['../classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a2a4db10f06c84cfd604377afdf6d3678',1,'aworx::lib::strings::NumberFormat']]],
-  ['interfaces',['interfaces',['../classaworx_1_1lib_1_1boxing_1_1Boxer.html#a051a600ad34e4da563c83bbe86e02671',1,'aworx::lib::boxing::Boxer']]],
+  ['interfaces',['interfaces',['../classaworx_1_1lib_1_1boxing_1_1Boxer.html#a7bdea690619e22d7ca324318ece7adad',1,'aworx::lib::boxing::Boxer']]],
   ['internaldomains',['internalDomains',['../classaworx_1_1lox_1_1Lox.html#aa3529fb39b5e80492452d6fb4b669b4c',1,'aworx::lox::Lox::internalDomains()'],['../classaworx_1_1lox_1_1ALox.html#a27e1cb674b3172d5696b38af8479755d',1,'aworx::lox::ALox::InternalDomains()']]],
   ['internallogables',['internalLogables',['../classaworx_1_1lox_1_1Lox.html#a7f5630f0510932d63198d29a729373e4',1,'aworx::lox::Lox']]],
   ['internallogrecursioncounter',['internalLogRecursionCounter',['../classaworx_1_1lox_1_1Lox.html#a5e22390c19a647e38a318f563a189dea',1,'aworx::lox::Lox']]],

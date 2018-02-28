@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['regexmatcher_2ehpp',['regexmatcher.hpp',['../regexmatcher_8hpp.html',1,'']]],
   ['report_2ehpp',['report.hpp',['../report_8hpp.html',1,'']]],
   ['resourcedtupleloader_2ehpp',['resourcedtupleloader.hpp',['../resourcedtupleloader_8hpp.html',1,'']]],
   ['resources_2ehpp',['resources.hpp',['../resources_8hpp.html',1,'']]],

@@ -186,33 +186,33 @@
 <path fill="none" stroke="#191970" d="M977.7155,-392.3733C1004.0907,-383.1419 1044.0957,-369.1402 1073.2463,-358.9375"/>
 <polygon fill="#191970" stroke="#191970" points="1074.7821,-362.1082 1083.0645,-355.5011 1072.4696,-355.5012 1074.7821,-362.1082"/>
 </g>
-<!-- Node88 -->
+<!-- Node90 -->
 <g id="node49" class="node">
-<title>Node88</title>
+<title>Node90</title>
 <g id="a_node49"><a xlink:href="formatterjavastyle_8hpp.html" target="_top" xlink:title="alib/strings/format/formatterjavastyle.hpp">
 <polygon fill="#ffffff" stroke="#ff0000" points="1194.2105,-336.5 1194.2105,-355.5 1388.2105,-355.5 1388.2105,-336.5 1194.2105,-336.5"/>
 <text text-anchor="middle" x="1291.2105" y="-343.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">alib/strings/format/formatterjavastyle.hpp</text>
 </a>
 </g>
 </g>
-<!-- Node86&#45;&gt;Node88 -->
+<!-- Node86&#45;&gt;Node90 -->
 <g id="edge64" class="edge">
-<title>Node86&#45;&gt;Node88</title>
+<title>Node86&#45;&gt;Node90</title>
 <path fill="none" stroke="#191970" d="M1008.4431,-392.4369C1067.906,-382.6717 1160.1646,-367.5207 1223.0071,-357.2006"/>
 <polygon fill="#191970" stroke="#191970" points="1223.9176,-360.598 1233.2182,-355.5237 1222.7831,-353.6905 1223.9176,-360.598"/>
 </g>
-<!-- Node91 -->
+<!-- Node93 -->
 <g id="node50" class="node">
-<title>Node91</title>
+<title>Node93</title>
 <g id="a_node50"><a xlink:href="formatterpythonstyle_8hpp.html" target="_top" xlink:title="alib/strings/format/formatterpythonstyle.hpp">
 <polygon fill="#ffffff" stroke="#ff0000" points="782.2105,-336.5 782.2105,-355.5 988.2105,-355.5 988.2105,-336.5 782.2105,-336.5"/>
 <text text-anchor="middle" x="885.2105" y="-343.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">alib/strings/format/formatterpythonstyle.hpp</text>
 </a>
 </g>
 </g>
-<!-- Node86&#45;&gt;Node91 -->
+<!-- Node86&#45;&gt;Node93 -->
 <g id="edge65" class="edge">
-<title>Node86&#45;&gt;Node91</title>
+<title>Node86&#45;&gt;Node93</title>
 <path fill="none" stroke="#191970" d="M938.8884,-392.2455C929.2882,-383.9746 915.3213,-371.9416 904.041,-362.2232"/>
 <polygon fill="#191970" stroke="#191970" points="906.2635,-359.5182 896.4029,-355.6427 901.6945,-364.8214 906.2635,-359.5182"/>
 </g>
@@ -544,7 +544,7 @@
 <g id="node33" class="node">
 <title>Node43</title>
 <g id="a_node33"><a xlink:href="enumbitwise_8hpp.html" target="_top" xlink:title="alib/lang/enumbitwise.hpp">
-<polygon fill="#ffffff" stroke="#000000" points="322.2105,-.5 322.2105,-19.5 450.2105,-19.5 450.2105,-.5 322.2105,-.5"/>
+<polygon fill="#ffffff" stroke="#ff0000" points="322.2105,-.5 322.2105,-19.5 450.2105,-19.5 450.2105,-.5 322.2105,-.5"/>
 <text text-anchor="middle" x="386.2105" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">alib/lang/enumbitwise.hpp</text>
 </a>
 </g>
@@ -555,33 +555,33 @@
 <path fill="none" stroke="#191970" d="M2621.8464,-289.6344C2382.4283,-287.0202 971.9625,-270.5096 937.2105,-244 912.8409,-225.4103 917.2105,-208.6506 917.2105,-178 917.2105,-178 917.2105,-178 917.2105,-122 917.2105,-75.8812 606.5805,-34.7911 460.4892,-18.0164"/>
 <polygon fill="#191970" stroke="#191970" points="460.5935,-14.5057 450.2615,-16.8509 459.8009,-21.4607 460.5935,-14.5057"/>
 </g>
-<!-- Node44 -->
+<!-- Node45 -->
 <g id="node34" class="node">
-<title>Node44</title>
+<title>Node45</title>
 <g id="a_node34"><a xlink:href="enummetadata_8hpp.html" target="_top" xlink:title="alib/lang/enummetadata.hpp">
 <polygon fill="#ffffff" stroke="#ff0000" points="2368.7105,-224.5 2368.7105,-243.5 2507.7105,-243.5 2507.7105,-224.5 2368.7105,-224.5"/>
 <text text-anchor="middle" x="2438.2105" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">alib/lang/enummetadata.hpp</text>
 </a>
 </g>
 </g>
-<!-- Node2&#45;&gt;Node44 -->
+<!-- Node2&#45;&gt;Node45 -->
 <g id="edge33" class="edge">
-<title>Node2&#45;&gt;Node44</title>
+<title>Node2&#45;&gt;Node45</title>
 <path fill="none" stroke="#191970" d="M2622.148,-281.25C2585.3085,-271.7866 2526.3339,-256.6372 2485.1237,-246.0511"/>
 <polygon fill="#191970" stroke="#191970" points="2485.8711,-242.6295 2475.3147,-243.5314 2484.1294,-249.4094 2485.8711,-242.6295"/>
 </g>
-<!-- Node45 -->
+<!-- Node46 -->
 <g id="node35" class="node">
-<title>Node45</title>
+<title>Node46</title>
 <g id="a_node35"><a xlink:href="configlib_8hpp.html" target="_top" xlink:title="alib/config/configlib.hpp">
 <polygon fill="#ffffff" stroke="#ff0000" points="2525.7105,-224.5 2525.7105,-243.5 2644.7105,-243.5 2644.7105,-224.5 2525.7105,-224.5"/>
 <text text-anchor="middle" x="2585.2105" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">alib/config/configlib.hpp</text>
 </a>
 </g>
 </g>
-<!-- Node2&#45;&gt;Node45 -->
+<!-- Node2&#45;&gt;Node46 -->
 <g id="edge34" class="edge">
-<title>Node2&#45;&gt;Node45</title>
+<title>Node2&#45;&gt;Node46</title>
 <path fill="none" stroke="#191970" d="M2643.8433,-280.2455C2633.2551,-271.8943 2617.8041,-259.7076 2605.4212,-249.9408"/>
 <polygon fill="#191970" stroke="#191970" points="2607.4552,-247.0875 2597.4361,-243.6427 2603.1202,-252.5837 2607.4552,-247.0875"/>
 </g>

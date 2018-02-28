@@ -9,9 +9,9 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 62)">
 <title>Graphical Class Hierarchy</title>
 <polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-62 178,-62 178,4 -4,4"/>
-<!-- Node87 -->
+<!-- Node88 -->
 <g id="node1" class="node">
-<title>Node87</title>
+<title>Node88</title>
 <polygon fill="#ffffff" stroke="#bfbfbf" points="0,-19.5 0,-38.5 80,-38.5 80,-19.5 0,-19.5"/>
 <text text-anchor="middle" x="40" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">CharSequence</text>
 </g>
@@ -24,24 +24,24 @@
 </a>
 </g>
 </g>
-<!-- Node87&#45;&gt;Node0 -->
+<!-- Node88&#45;&gt;Node0 -->
 <g id="edge1" class="edge">
-<title>Node87&#45;&gt;Node0</title>
+<title>Node88&#45;&gt;Node0</title>
 <path fill="none" stroke="#191970" d="M90.2745,-38.0973C100.7782,-39.998 111.4009,-41.9202 120.4567,-43.5588"/>
 <polygon fill="#191970" stroke="#191970" points="90.7589,-34.6282 80.2954,-36.2916 89.5124,-41.5163 90.7589,-34.6282"/>
 </g>
-<!-- Node89 -->
+<!-- Node90 -->
 <g id="node3" class="node">
-<title>Node89</title>
+<title>Node90</title>
 <g id="a_node3"><a xlink:href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html" target="_top" xlink:title="Substring">
 <polygon fill="#ffffff" stroke="#000000" points="116,-.5 116,-19.5 174,-19.5 174,-.5 116,-.5"/>
 <text text-anchor="middle" x="145" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Substring</text>
 </a>
 </g>
 </g>
-<!-- Node87&#45;&gt;Node89 -->
+<!-- Node88&#45;&gt;Node90 -->
 <g id="edge2" class="edge">
-<title>Node87&#45;&gt;Node89</title>
+<title>Node88&#45;&gt;Node90</title>
 <path fill="none" stroke="#191970" d="M90.3994,-19.8801C99.0852,-18.3084 107.8478,-16.7228 115.7342,-15.2957"/>
 <polygon fill="#191970" stroke="#191970" points="89.5124,-16.4837 80.2954,-21.7084 90.7589,-23.3718 89.5124,-16.4837"/>
 </g>

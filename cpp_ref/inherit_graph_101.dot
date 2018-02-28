@@ -1,0 +1,33 @@
+digraph "Graphical Class Hierarchy"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node239 [label="false_type",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node239 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 [label="T_Boxing\< TBoxable \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1boxing_1_1T__Boxing.html"];
+  Node239 -> Node241 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node241 [label="T_EnumIsArithmetical\l\< TEnum, TCheckEnum \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html"];
+  Node239 -> Node242 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node242 [label="T_EnumIsBitwise\< TEnum,\l TCheckEnum \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html"];
+  Node239 -> Node243 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node243 [label="T_EnumIsIteratable\l\< TEnum, TCheckEnum \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1lang_1_1T__EnumIsIteratable.html"];
+  Node239 -> Node244 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node244 [label="T_EnumMetaDataDecl\l\< TEnum, TCheckEnum \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1lang_1_1T__EnumMetaDataDecl.html"];
+  Node239 -> Node245 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node245 [label="T_EnumMetaDataDeclReadWrite\l\< TEnum, TEnableIf \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1lang_1_1T__EnumMetaDataDeclReadWrite.html"];
+  Node239 -> Node246 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node246 [label="T_EnumMetaDataPreAndPost\lFix\< TEnum, TEnableIf \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1lang_1_1T__EnumMetaDataPreAndPostFix.html"];
+  Node239 -> Node247 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node247 [label="T_Resourced\< TResourced \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1lang_1_1T__Resourced.html"];
+  Node239 -> Node248 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node248 [label="T_Apply\< TApplicable,\l TEnableIf \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1strings_1_1T__Apply.html"];
+  Node239 -> Node249 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node249 [label="T_IsTerminatable\< Type \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1strings_1_1T__IsTerminatable.html"];
+  Node239 -> Node250 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node250 [label="T_String\< TStringLike \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1strings_1_1T__String.html"];
+  Node239 -> Node251 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node251 [label="T_StringLiteral\< TLiteral \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1strings_1_1T__StringLiteral.html"];
+  Node239 -> Node252 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node252 [label="T_EnumMetaDataDecl\l\< TEnum \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1lang_1_1T__EnumMetaDataDecl.html"];
+}

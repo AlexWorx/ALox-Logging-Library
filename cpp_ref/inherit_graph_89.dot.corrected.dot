@@ -3,32 +3,6 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node220 [label="false_type",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-  Node222 [label="T_EnumIsArithmetical\<TEnum, TCheckEnum\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1lang_1_1T__EnumIsArithmetical.html"];
-  Node223 [label="T_EnumIsBitwise\<TEnum, TCheckEnum\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1lang_1_1T__EnumIsBitwise.html"];
-  Node224 [label="T_EnumIsIteratable\<TEnum, TCheckEnum\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1lang_1_1T__EnumIsIteratable.html"];
-  Node225 [label="T_EnumMetaDataDecl\<TEnum, TCheckEnum\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1lang_1_1T__EnumMetaDataDecl.html"];
-  Node226 [label="T_EnumMetaDataDeclReadWrite\<TEnum, TEnableIf\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1lang_1_1T__EnumMetaDataDeclReadWrite.html"];
-  Node227 [label="T_EnumMetaDataPreAndPostFix\<TEnum, TEnableIf\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1lang_1_1T__EnumMetaDataPreAndPostFix.html"];
-  Node229 [label="T_Apply\<TApplicable, TEnableIf\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1strings_1_1T__Apply.html"];
-  Node0 [label="T_Boxing\<TBoxable\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1boxing_1_1T__Boxing.html"];
-  Node228 [label="T_Resourced\<TResourced\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1lang_1_1T__Resourced.html"];
-  Node230 [label="T_IsTerminatable\<Type\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1strings_1_1T__IsTerminatable.html"];
-  Node231 [label="T_String\<TStringLike\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1strings_1_1T__String.html"];
-  Node232 [label="T_StringLiteral\<TLiteral\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1strings_1_1T__StringLiteral.html"];
-  Node233 [label="T_EnumMetaDataDecl\<TEnum\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lib_1_1lang_1_1T__EnumMetaDataDecl.html"];
-  Node220 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node220 -> Node222 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node220 -> Node223 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node220 -> Node224 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node220 -> Node225 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node220 -> Node226 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node220 -> Node227 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node220 -> Node228 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node220 -> Node229 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node220 -> Node230 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node220 -> Node231 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node220 -> Node232 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node220 -> Node233 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+
 }
 

@@ -81,6 +81,7 @@ var searchData=
   ['errorinresultingformatstring',['ErrorInResultingFormatString',['../namespaceaworx_1_1lib_1_1strings_1_1format.html#a8d828d7f6e0c02a7815c7e1308d3b06eae082ea173080fc0f48162c5097d28b66',1,'aworx::lib::strings::format']]],
   ['erroropeningfile',['ErrorOpeningFile',['../namespaceaworx_1_1lib_1_1config.html#a8d828d7f6e0c02a7815c7e1308d3b06ead083aedf850e5989f336e50d1a539d44',1,'aworx::lib::config']]],
   ['errorwritingfile',['ErrorWritingFile',['../namespaceaworx_1_1lib_1_1config.html#a8d828d7f6e0c02a7815c7e1308d3b06ea4d772ffe878e53b6d4e62d6a5b488e36',1,'aworx::lib::config']]],
+  ['errorwritingreport',['ErrorWritingReport',['../namespaceaworx_1_1lib_1_1lang.html#a8d828d7f6e0c02a7815c7e1308d3b06ea7946215ab743bd9d347d313643ca72dd',1,'aworx::lib::lang']]],
   ['espipe',['espipe',['../namespaceaworx_1_1lib_1_1system.html#ac5e2a99610cedf5e55a4c97dba96bdffa9d8518f56ff41aaca687cf2d02b30a15',1,'aworx::lib::system']]],
   ['esrch',['esrch',['../namespaceaworx_1_1lib_1_1system.html#ac5e2a99610cedf5e55a4c97dba96bdffa492d011a404eb9c5ac1190f8377662b0',1,'aworx::lib::system']]],
   ['etime',['etime',['../namespaceaworx_1_1lib_1_1system.html#ac5e2a99610cedf5e55a4c97dba96bdffa4c16e8900ba303fe23d4cc417cab19ed',1,'aworx::lib::system']]],

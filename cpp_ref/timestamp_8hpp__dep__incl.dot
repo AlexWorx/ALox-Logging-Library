@@ -1,0 +1,18 @@
+digraph "timestamp.hpp"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node7 [label="timestamp.hpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="calendartime.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$calendartime_8hpp.html"];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="textlogger.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$textlogger_8hpp.html"];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="plaintextlogger.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$plaintextlogger_8hpp.html"];
+  Node9 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="ansilogger.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$ansilogger_8hpp.html"];
+  Node9 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="windowsconsolelogger.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$windowsconsolelogger_8hpp.html"];
+  Node7 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="stopwatch.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$stopwatch_8hpp.html"];
+}

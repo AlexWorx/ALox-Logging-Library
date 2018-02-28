@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classaworx_1_1lib_1_1config_1_1ConfigurationPlugin_1_1Iterator.html" title="ConfigurationPlugin::Iterator" alt="" coords="5,5,188,32"/>
+<area shape="rect" id="node1" href="$classaworx_1_1lib_1_1config_1_1ConfigurationPlugin.html" title="ConfigurationPlugin" alt="" coords="5,56,140,83"/>
+<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1config_1_1CLIArgs.html" title="CLIArgs" alt="" coords="211,5,281,32"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1config_1_1Environment.html" title="Environment" alt="" coords="199,56,293,83"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html" title="InMemoryPlugin" alt="" coords="188,107,304,133"/>
+<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1config_1_1IniFile.html" title="IniFile" alt="" coords="352,107,409,133"/>
 </map>

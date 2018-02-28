@@ -104,7 +104,7 @@ digraph "lox.hpp"
   Node39 [label="alib/lang/langlib.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$langlib_8hpp.html"];
   Node40 [label="alib/strings/boxing/stringboxing.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$stringboxing_8hpp.html"];
   Node41 [label="alib/lang/report.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$report_8hpp.html"];
-  Node43 [label="alib/lang/enumbitwise.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$enumbitwise_8hpp.html"];
+  Node43 [label="alib/lang/enumbitwise.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$enumbitwise_8hpp.html"];
   Node54 [label="internals/alox_symbols.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$alox__symbols_8hpp.html"];
   Node55 [label="internals/alox_macros.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$alox__macros_8hpp.html"];
   Node56 [label="alib/config/configuration.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$configuration_8hpp.html"];

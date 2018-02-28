@@ -12,7 +12,7 @@
 <!-- Node0 -->
 <g id="node1" class="node">
 <title>Node0</title>
-<g id="a_node1"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" xlink:href="./cpp_ref/structaworx_1_1lib_1_1boxing_1_1BoxData.html" target="_top" xlink:title="aworx::lib::boxing\l::BoxData">
+<g id="a_node1"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:./cpp_ref/" xlink:href="./cpp_ref/structaworx_1_1lib_1_1boxing_1_1BoxData.html" xlink:title="aworx::lib::boxing\l::BoxData">
 <polygon fill="#ffffff" stroke="#000000" points="0,-.5 0,-30.5 92,-30.5 92,-.5 0,-.5"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">aworx::lib::boxing</text>
 <text text-anchor="middle" x="46" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">::BoxData</text>

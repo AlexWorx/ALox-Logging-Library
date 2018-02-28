@@ -1,0 +1,9 @@
+<map id="plugincontainer.hpp" name="plugincontainer.hpp">
+<area shape="rect" id="node2" href="$enumbitwise_8hpp.html" title="alib/lang/enumbitwise.hpp" alt="" coords="567,155,737,181"/>
+<area shape="rect" id="node3" href="$threadlock_8hpp.html" title="alib/threads/threadlock.hpp" alt="" coords="239,80,417,107"/>
+<area shape="rect" id="node5" href="$substring_8hpp.html" title="alib/strings/substring.hpp" alt="" coords="575,80,742,107"/>
+<area shape="rect" id="node7" href="$enumarithmetical_8hpp.html" title="enumarithmetical.hpp" alt="" coords="579,229,725,256"/>
+<area shape="rect" id="node8" href="$threadlocknr_8hpp.html" title="alib/threads/threadlocknr.hpp" alt="" coords="97,155,285,181"/>
+<area shape="rect" id="node9" href="$threadlib_8hpp.html" title="threadlib.hpp" alt="" coords="309,155,405,181"/>
+<area shape="rect" id="node10" href="$ownable_8hpp.html" title="alib/lang/ownable.hpp" alt="" coords="5,229,152,256"/>
+</map>

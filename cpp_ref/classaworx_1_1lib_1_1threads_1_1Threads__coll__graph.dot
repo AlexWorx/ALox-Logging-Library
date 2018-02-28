@@ -1,0 +1,39 @@
+digraph "Threads"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node2 [label="Threads",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Library",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1lang_1_1Library.html"];
+  Node4 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" ResourceCategory" ,fontname="Helvetica"];
+  Node4 [label="TString",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1TString.html"];
+  Node5 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="String",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1String.html"];
+  Node6 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Res" ,fontname="Helvetica"];
+  Node6 [label="Resources",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1lang_1_1Resources.html"];
+  Node7 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" cache" ,fontname="Helvetica"];
+  Node7 [label="MemoryBlocks",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1util_1_1MemoryBlocks.html"];
+  Node10 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" variable" ,fontname="Helvetica"];
+  Node10 [label="Variable",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1config_1_1Variable.html"];
+  Node15 -> Node10 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Config" ,fontname="Helvetica"];
+  Node15 [label="Configuration",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1config_1_1Configuration.html"];
+  Node4 -> Node15 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" SubstitutionVariableStart\nSubstitutionVariableEnd\nSubstitutionVariableDelimiters" ,fontname="Helvetica"];
+  Node17 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" lock" ,fontname="Helvetica"];
+  Node17 [label="ThreadLock",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html"];
+  Node19 -> Node17 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" owner" ,fontname="Helvetica"];
+  Node19 [label="Thread",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1threads_1_1Thread.html"];
+  Node15 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Config" ,fontname="Helvetica"];
+  Node27 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" defaults\ncachedVariables" ,fontname="Helvetica"];
+  Node27 [label="map\< aworx::lib::strings\l::String, std::map\< aworx\l::lib::strings::String, aworx\l::lib::strings::String \> \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node5 -> Node27 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" keys" ,fontname="Helvetica"];
+  Node28 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dependencies" ,fontname="Helvetica"];
+  Node28 [label="vector\< aworx::lib\l::lang::Library *\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node3 -> Node28 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
+  Node15 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Config" ,fontname="Helvetica"];
+  Node29 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" CompilationFlagMeanings" ,fontname="Helvetica"];
+  Node29 [label="vector\< std::pair\<\l const char *, uint64_t \> \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node30 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" threadMap" ,fontname="Helvetica"];
+  Node30 [label="map\< std::thread::id,\l aworx::lib::threads\l::Thread *\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node19 -> Node30 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
+}

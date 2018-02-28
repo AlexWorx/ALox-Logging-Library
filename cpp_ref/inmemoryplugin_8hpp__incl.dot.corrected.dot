@@ -13,6 +13,6 @@ digraph "inmemoryplugin.hpp"
   Node2 [label="alib/config/variable.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$variable_8hpp.html"];
   Node3 [label="vector",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node4 [label="alib/strings/substring.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$substring_8hpp.html"];
-  Node5 [label="alib/lang/enumbitwise.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$enumbitwise_8hpp.html"];
+  Node5 [label="alib/lang/enumbitwise.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$enumbitwise_8hpp.html"];
 }
 

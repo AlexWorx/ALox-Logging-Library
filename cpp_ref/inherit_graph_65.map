@@ -1,5 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structaworx_1_1lib_1_1lang_1_1EnumMetaData.html" title="EnumMetaData\&lt;TEnum, TEnableIf\&gt;" alt="" coords="293,5,528,32"/>
-<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1lang_1_1Singleton.html" title="Singleton\&lt;EnumMetaData\&lt;TEnum\&gt;\&gt;" alt="" coords="5,31,245,57"/>
-<area shape="rect" id="node3" href="$structaworx_1_1lib_1_1lang_1_1EnumMetaData.html" title="EnumMetaData\&lt;TEnum\&gt;" alt="" coords="325,56,496,83"/>
+<area shape="rect" id="node1" href="$classaworx_1_1lib_1_1strings_1_1format_1_1SimpleText.html" title="SimpleText" alt="" coords="5,5,92,32"/>
 </map>

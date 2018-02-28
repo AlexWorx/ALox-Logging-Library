@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['calendartime',['CalendarTime',['.././cpp_ref/namespaceaworx.html#ae63e36615665781b2ebf0e40e8841578',1,'aworx']]],
   ['case',['Case',['.././cpp_ref/namespaceaworx.html#adcd43e032e2fb23c28fb20d22ccd2382',1,'aworx']]],
   ['config',['Config',['.././cpp_ref/namespaceaworx.html#a3ac3cce0d261b57a96a1f624cb858cb0',1,'aworx']]],
   ['configuration',['Configuration',['.././cpp_ref/namespaceaworx.html#a9b321d2f72b975b304aa678e20344e7a',1,'aworx']]],

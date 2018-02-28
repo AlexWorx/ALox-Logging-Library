@@ -1,6 +1,7 @@
 var searchData=
 [
   ['mapthreadname',['MapThreadName',['../classaworx_1_1lox_1_1Lox.html#a3911541857ea84938dede341ceb64ddd',1,'aworx::lox::Lox']]],
+  ['match',['Match',['../classaworx_1_1lib_1_1strings_1_1util_1_1RegexMatcher.html#af9984de2fc79f989c9151184cfb77a5d',1,'aworx::lib::strings::util::RegexMatcher::Match()'],['../classaworx_1_1lib_1_1strings_1_1util_1_1WildcardMatcher.html#a448383bee97e82227dff03c9f52448c0',1,'aworx::lib::strings::util::WildcardMatcher::Match()']]],
   ['memoryblocks',['MemoryBlocks',['../classaworx_1_1lib_1_1util_1_1MemoryBlocks.html#a6841865f27b3c18751b1317d9e474e5f',1,'aworx::lib::util::MemoryBlocks']]],
   ['memorylogger',['MemoryLogger',['../classaworx_1_1lox_1_1loggers_1_1MemoryLogger.html#a59248830037daf331304554a19a18fa1',1,'aworx::lox::loggers::MemoryLogger']]],
   ['message',['Message',['../classaworx_1_1lib_1_1lang_1_1Report_1_1Message.html#a6f3cf9d6e0d4aa1d2b6c1cb8eea97b40',1,'aworx::lib::lang::Report::Message']]],

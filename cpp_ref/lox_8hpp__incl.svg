@@ -238,7 +238,7 @@
 <g id="node38" class="node">
 <title>Node43</title>
 <g id="a_node38"><a xlink:href="enumbitwise_8hpp.html" target="_top" xlink:title="alib/lang/enumbitwise.hpp">
-<polygon fill="#ffffff" stroke="#000000" points="797,-.5 797,-19.5 925,-19.5 925,-.5 797,-.5"/>
+<polygon fill="#ffffff" stroke="#ff0000" points="797,-.5 797,-19.5 925,-19.5 925,-.5 797,-.5"/>
 <text text-anchor="middle" x="861" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">alib/lang/enumbitwise.hpp</text>
 </a>
 </g>

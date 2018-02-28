@@ -7,7 +7,7 @@ var searchData=
   ['scopeprefixes',['scopePrefixes',['../classaworx_1_1lox_1_1Lox.html#a16203901444c9c452c071b0e3a480bb7',1,'aworx::lox::Lox']]],
   ['scopes',['scopes',['../classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a412fb2d6ebe5a29737c92cd4717be9c9',1,'aworx::lox::core::ScopeInfo']]],
   ['search',['Search',['../structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html#ac5d8cc07dc3e4eea47354e7b7f6eb8a2',1,'aworx::lox::Lox::DomainSubstitutionRule']]],
-  ['second',['Second',['../classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html#af95fdbfb8f07e751f4396ef15bc70b5c',1,'aworx::lib::time::TicksCalendarTime']]],
+  ['second',['Second',['../classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html#af95fdbfb8f07e751f4396ef15bc70b5c',1,'aworx::lib::time::TicksCalendarTime::Second()'],['../classaworx_1_1lib_1_1time_1_1CalendarTime.html#af95fdbfb8f07e751f4396ef15bc70b5c',1,'aworx::lib::time::CalendarTime::Second()']]],
   ['seconds',['Seconds',['../classaworx_1_1lib_1_1time_1_1TickSpan.html#a3df113560f1b5fdd862befb68ddec3ac',1,'aworx::lib::time::TickSpan']]],
   ['sections',['Sections',['../classaworx_1_1lib_1_1config_1_1InMemoryPlugin.html#a4db383e1b52ed42586b8aaf43836c88d',1,'aworx::lib::config::InMemoryPlugin']]],
   ['sensitivity',['Sensitivity',['../structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a48bf193d2228373a7e76ba4e08137017',1,'aworx::lox::core::ScopeInfo::SourcePathTrimRule']]],
@@ -25,7 +25,7 @@ var searchData=
   ['stack',['stack',['../classaworx_1_1lib_1_1util_1_1StringTree_1_1StdIterator.html#aa1ced8936ccae566a7f694ce09fdfe3f',1,'aworx::lib::util::StringTree::StdIterator::stack()'],['../classaworx_1_1lib_1_1util_1_1StringTree_1_1Walker.html#a666522b478075da983dd563dc99ee2cf',1,'aworx::lib::util::StringTree::Walker::stack()']]],
   ['stacksize',['stackSize',['../classaworx_1_1lib_1_1util_1_1StringTree_1_1Walker.html#a46e5dff29239c8fa0aa9a630df41494a',1,'aworx::lib::util::StringTree::Walker']]],
   ['startidx',['startIdx',['../structaworx_1_1lib_1_1strings_1_1Format_1_1Escape.html#ae4561411b76fba95c490128eb3cca296',1,'aworx::lib::strings::Format::Escape']]],
-  ['starttime',['startTime',['../classaworx_1_1lib_1_1time_1_1TickWatch.html#ad4a637681761e440fc76c0c91a3a2737',1,'aworx::lib::time::TickWatch']]],
+  ['starttime',['startTime',['../classaworx_1_1lib_1_1time_1_1StopWatch.html#ae9194ffcffa3d7ae8beb08cc05a7b4cc',1,'aworx::lib::time::StopWatch::startTime()'],['../classaworx_1_1lib_1_1time_1_1TickWatch.html#ad4a637681761e440fc76c0c91a3a2737',1,'aworx::lib::time::TickWatch::startTime()']]],
   ['stat',['Stat',['../classaworx_1_1lib_1_1system_1_1ProcessInfo.html#aa1d0ce36cf7d7f9338610388ff42fa29',1,'aworx::lib::system::ProcessInfo']]],
   ['statpgrp',['StatPGRP',['../classaworx_1_1lib_1_1system_1_1ProcessInfo.html#addc0af2b9734569aba692c8c2600cefb',1,'aworx::lib::system::ProcessInfo']]],
   ['statstate',['StatState',['../classaworx_1_1lib_1_1system_1_1ProcessInfo.html#aa313b8c5a87a49b703b0887651b1eef7',1,'aworx::lib::system::ProcessInfo']]],
@@ -39,6 +39,6 @@ var searchData=
   ['substitutionvariabledelimiters',['SubstitutionVariableDelimiters',['../classaworx_1_1lib_1_1config_1_1Configuration.html#a822c543b34c30995bd4b8d7df220af83',1,'aworx::lib::config::Configuration']]],
   ['substitutionvariableend',['SubstitutionVariableEnd',['../classaworx_1_1lib_1_1config_1_1Configuration.html#af688cf13bb219d944adb4731a227451d',1,'aworx::lib::config::Configuration']]],
   ['substitutionvariablestart',['SubstitutionVariableStart',['../classaworx_1_1lib_1_1config_1_1Configuration.html#ab1b62c82d8f31bc322674109a0aaa905',1,'aworx::lib::config::Configuration']]],
-  ['sum',['sum',['../classaworx_1_1lib_1_1time_1_1TickWatch.html#ac78b14fce693b96514184f5ecb99f5fa',1,'aworx::lib::time::TickWatch']]],
+  ['sum',['sum',['../classaworx_1_1lib_1_1time_1_1StopWatch.html#ae2bb7a773e26c54d484110fa8f54aa4f',1,'aworx::lib::time::StopWatch::sum()'],['../classaworx_1_1lib_1_1time_1_1TickWatch.html#ac78b14fce693b96514184f5ecb99f5fa',1,'aworx::lib::time::TickWatch::sum()']]],
   ['system',['SYSTEM',['../namespaceaworx_1_1lib.html#a022ea76f2112c21695e4ab0ae5dbc0de',1,'aworx::lib']]]
 ];

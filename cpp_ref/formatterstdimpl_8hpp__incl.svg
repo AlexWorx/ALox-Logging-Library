@@ -57,18 +57,18 @@
 <path fill="none" stroke="#191970" d="M250.9174,-112.3733C227.5504,-103.2226 192.2138,-89.3844 166.2216,-79.2057"/>
 <polygon fill="#191970" stroke="#191970" points="167.3495,-75.8886 156.7618,-75.5011 164.797,-82.4066 167.3495,-75.8886"/>
 </g>
-<!-- Node49 -->
+<!-- Node50 -->
 <g id="node5" class="node">
-<title>Node49</title>
+<title>Node50</title>
 <g id="a_node5"><a xlink:href="exception_8hpp.html" target="_top" xlink:title="alib/lang/exception.hpp">
 <polygon fill="#ffffff" stroke="#ff0000" points="217.5,-56.5 217.5,-75.5 333.5,-75.5 333.5,-56.5 217.5,-56.5"/>
 <text text-anchor="middle" x="275.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">alib/lang/exception.hpp</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node49 -->
+<!-- Node1&#45;&gt;Node50 -->
 <g id="edge4" class="edge">
-<title>Node1&#45;&gt;Node49</title>
+<title>Node1&#45;&gt;Node50</title>
 <path fill="none" stroke="#191970" d="M275.5,-112.2455C275.5,-104.9382 275.5,-94.6944 275.5,-85.7046"/>
 <polygon fill="#191970" stroke="#191970" points="279.0001,-85.6426 275.5,-75.6427 272.0001,-85.6427 279.0001,-85.6426"/>
 </g>
@@ -136,7 +136,7 @@
 <g id="node10" class="node">
 <title>Node46</title>
 <g id="a_node10"><a xlink:href="enumbitwise_8hpp.html" target="_top" xlink:title="alib/lang/enumbitwise.hpp">
-<polygon fill="#ffffff" stroke="#000000" points="514.5,-.5 514.5,-19.5 642.5,-19.5 642.5,-.5 514.5,-.5"/>
+<polygon fill="#ffffff" stroke="#ff0000" points="514.5,-.5 514.5,-19.5 642.5,-19.5 642.5,-.5 514.5,-.5"/>
 <text text-anchor="middle" x="578.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">alib/lang/enumbitwise.hpp</text>
 </a>
 </g>

@@ -463,7 +463,7 @@
 <g id="node32" class="node">
 <title>Node43</title>
 <g id="a_node32"><a xlink:href="enumbitwise_8hpp.html" target="_top" xlink:title="alib/lang/enumbitwise.hpp">
-<polygon fill="#ffffff" stroke="#000000" points="3305,-.5 3305,-19.5 3433,-19.5 3433,-.5 3305,-.5"/>
+<polygon fill="#ffffff" stroke="#ff0000" points="3305,-.5 3305,-19.5 3433,-19.5 3433,-.5 3305,-.5"/>
 <text text-anchor="middle" x="3369" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">alib/lang/enumbitwise.hpp</text>
 </a>
 </g>
@@ -474,33 +474,33 @@
 <path fill="none" stroke="#191970" d="M1690.2049,-288.9689C1757.8143,-286.235 1905.2038,-276.5988 1942,-244 1964.848,-223.7584 1961,-208.5246 1961,-178 1961,-178 1961,-178 1961,-122 1961,-54.4469 3004.5027,-20.1989 3294.8351,-11.9775"/>
 <polygon fill="#191970" stroke="#191970" points="3294.9449,-15.4758 3304.8425,-11.696 3294.748,-8.4786 3294.9449,-15.4758"/>
 </g>
-<!-- Node44 -->
+<!-- Node45 -->
 <g id="node33" class="node">
-<title>Node44</title>
+<title>Node45</title>
 <g id="a_node33"><a xlink:href="enummetadata_8hpp.html" target="_top" xlink:title="alib/lang/enummetadata.hpp">
 <polygon fill="#ffffff" stroke="#000000" points="3132.5,-224.5 3132.5,-243.5 3271.5,-243.5 3271.5,-224.5 3132.5,-224.5"/>
 <text text-anchor="middle" x="3202" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">alib/lang/enummetadata.hpp</text>
 </a>
 </g>
 </g>
-<!-- Node2&#45;&gt;Node44 -->
+<!-- Node2&#45;&gt;Node45 -->
 <g id="edge32" class="edge">
-<title>Node2&#45;&gt;Node44</title>
+<title>Node2&#45;&gt;Node45</title>
 <path fill="none" stroke="#191970" d="M1690.219,-289.3676C1880.4534,-285.7856 2810.1331,-267.3994 3121.869,-243.9918"/>
 <polygon fill="#191970" stroke="#191970" points="3122.5483,-247.45 3132.2499,-243.1923 3122.0107,-240.4707 3122.5483,-247.45"/>
 </g>
-<!-- Node45 -->
+<!-- Node46 -->
 <g id="node34" class="node">
-<title>Node45</title>
+<title>Node46</title>
 <g id="a_node34"><a xlink:href="configlib_8hpp.html" target="_top" xlink:title="alib/config/configlib.hpp">
 <polygon fill="#ffffff" stroke="#ff0000" points="2693.5,-224.5 2693.5,-243.5 2812.5,-243.5 2812.5,-224.5 2693.5,-224.5"/>
 <text text-anchor="middle" x="2753" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">alib/config/configlib.hpp</text>
 </a>
 </g>
 </g>
-<!-- Node2&#45;&gt;Node45 -->
+<!-- Node2&#45;&gt;Node46 -->
 <g id="edge33" class="edge">
-<title>Node2&#45;&gt;Node45</title>
+<title>Node2&#45;&gt;Node46</title>
 <path fill="none" stroke="#191970" d="M1690.2855,-289.727C1819.2353,-288.4357 2287.5018,-281.362 2683.1249,-244.0934"/>
 <polygon fill="#191970" stroke="#191970" points="2683.7134,-247.5533 2693.3375,-243.123 2683.0513,-240.5847 2683.7134,-247.5533"/>
 </g>
@@ -771,9 +771,9 @@
 <path fill="none" stroke="#191970" d="M3322.2141,-224.3733C3295.208,-214.291 3252.9598,-198.5183 3225.3739,-188.2196"/>
 <polygon fill="#191970" stroke="#191970" points="3226.522,-184.9123 3215.9294,-184.6936 3224.0737,-191.4702 3226.522,-184.9123"/>
 </g>
-<!-- Node44&#45;&gt;Node26 -->
+<!-- Node45&#45;&gt;Node26 -->
 <g id="edge37" class="edge">
-<title>Node44&#45;&gt;Node26</title>
+<title>Node45&#45;&gt;Node26</title>
 <path fill="none" stroke="#191970" d="M3201.3033,-224.2455C3200.7813,-216.9382 3200.0496,-206.6944 3199.4075,-197.7046"/>
 <polygon fill="#191970" stroke="#191970" points="3202.8924,-197.3679 3198.6888,-187.6427 3195.9102,-197.8667 3202.8924,-197.3679"/>
 </g>

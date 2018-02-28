@@ -9,6 +9,8 @@ var searchData=
   ['tickspan_2ehpp',['tickspan.hpp',['.././cpp_ref/tickspan_8hpp.html',1,'']]],
   ['tickwatch_2ehpp',['tickwatch.hpp',['.././cpp_ref/tickwatch_8hpp.html',1,'']]],
   ['timelib_2ehpp',['timelib.hpp',['.././cpp_ref/timelib_8hpp.html',1,'']]],
+  ['timespan_2ehpp',['timespan.hpp',['.././cpp_ref/timespan_8hpp.html',1,'']]],
+  ['timestamp_2ehpp',['timestamp.hpp',['.././cpp_ref/timestamp_8hpp.html',1,'']]],
   ['tokenizer_2ehpp',['tokenizer.hpp',['.././cpp_ref/tokenizer_8hpp.html',1,'']]],
   ['tstring_2ehpp',['tstring.hpp',['.././cpp_ref/tstring_8hpp.html',1,'']]],
   ['types_2ehpp',['types.hpp',['.././cpp_ref/types_8hpp.html',1,'']]]

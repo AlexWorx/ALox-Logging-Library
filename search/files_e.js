@@ -10,6 +10,7 @@ var searchData=
   ['std_5fiostream_2ehpp',['std_iostream.hpp',['.././cpp_ref/std__iostream_8hpp.html',1,'']]],
   ['std_5fstring_2ehpp',['std_string.hpp',['.././cpp_ref/std__string_8hpp.html',1,'']]],
   ['std_5fvector_2ehpp',['std_vector.hpp',['.././cpp_ref/std__vector_8hpp.html',1,'']]],
+  ['stopwatch_2ehpp',['stopwatch.hpp',['.././cpp_ref/stopwatch_8hpp.html',1,'']]],
   ['string_2ehpp',['string.hpp',['.././cpp_ref/string_8hpp.html',1,'']]],
   ['stringboxing_2ehpp',['stringboxing.hpp',['.././cpp_ref/stringboxing_8hpp.html',1,'']]],
   ['stringlib_2ehpp',['stringlib.hpp',['.././cpp_ref/stringlib_8hpp.html',1,'']]],

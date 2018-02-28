@@ -6,8 +6,8 @@ digraph "textlogger.hpp"
   Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node0 -> Node82 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node0 -> Node86 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node0 -> Node87 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node0 -> Node90 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 -> Node89 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 -> Node92 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node54 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node55 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
@@ -38,8 +38,8 @@ digraph "textlogger.hpp"
   Node2 -> Node40 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 -> Node41 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 -> Node43 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 -> Node44 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 -> Node45 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node46 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 -> Node51 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 -> Node53 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node12 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
@@ -49,15 +49,10 @@ digraph "textlogger.hpp"
   Node56 -> Node65 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node56 -> Node66 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node56 -> Node67 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node56 -> Node68 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node64 -> Node43 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node66 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node67 -> Node64 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node67 -> Node66 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node68 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node68 -> Node43 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node68 -> Node57 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node68 -> Node64 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node72 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node73 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node73 -> Node56 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
@@ -65,10 +60,11 @@ digraph "textlogger.hpp"
   Node82 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node82 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node86 -> Node77 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node87 -> Node88 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node90 -> Node88 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node90 -> Node91 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node91 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node86 -> Node87 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node89 -> Node90 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node92 -> Node90 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node92 -> Node93 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node93 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 [label="alox/alox.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$alox_8hpp.html"];
   Node2 [label="alib/alib.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$alib_8hpp.html"];
   Node3 [label="assert.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
@@ -94,9 +90,9 @@ digraph "textlogger.hpp"
   Node39 [label="alib/lang/langlib.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$langlib_8hpp.html"];
   Node40 [label="alib/strings/boxing/stringboxing.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$stringboxing_8hpp.html"];
   Node41 [label="alib/lang/report.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$report_8hpp.html"];
-  Node43 [label="alib/lang/enumbitwise.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$enumbitwise_8hpp.html"];
-  Node44 [label="alib/lang/enummetadata.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$enummetadata_8hpp.html"];
-  Node45 [label="alib/config/configlib.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$configlib_8hpp.html"];
+  Node43 [label="alib/lang/enumbitwise.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$enumbitwise_8hpp.html"];
+  Node45 [label="alib/lang/enummetadata.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$enummetadata_8hpp.html"];
+  Node46 [label="alib/config/configlib.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$configlib_8hpp.html"];
   Node51 [label="alib/system/systemlib.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$systemlib_8hpp.html"];
   Node53 [label="alib/strings/applicables.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$applicables_8hpp.html"];
   Node54 [label="internals/alox_symbols.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$alox__symbols_8hpp.html"];
@@ -107,16 +103,16 @@ digraph "textlogger.hpp"
   Node65 [label="alib/strings/numberformat.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$numberformat_8hpp.html"];
   Node66 [label="alib/config/variable.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$variable_8hpp.html"];
   Node67 [label="alib/config/plugins.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$plugins_8hpp.html"];
-  Node68 [label="alib/util/plugincontainer.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$plugincontainer_8hpp.html"];
   Node71 [label="aloxtypesandenums.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$aloxtypesandenums_8hpp.html"];
   Node72 [label="log.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$log_8hpp.html"];
   Node73 [label="lox.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$lox_8hpp.html"];
   Node82 [label="alox/core/logger.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$logger_8hpp.html"];
   Node86 [label="alib/time/calendartime.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$calendartime_8hpp.html"];
   Node77 [label="alib/time/ticks.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$ticks_8hpp.html"];
-  Node87 [label="alib/strings/format/formatterjavastyle.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$formatterjavastyle_8hpp.html"];
-  Node88 [label="alib/strings/format/formatterstdimpl.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$formatterstdimpl_8hpp.html"];
-  Node90 [label="alib/strings/format/formatterpythonstyle.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$formatterpythonstyle_8hpp.html"];
-  Node91 [label="alib/strings/util/autosizes.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$autosizes_8hpp.html"];
+  Node87 [label="alib/time/timestamp.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$timestamp_8hpp.html"];
+  Node89 [label="alib/strings/format/formatterjavastyle.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$formatterjavastyle_8hpp.html"];
+  Node90 [label="alib/strings/format/formatterstdimpl.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$formatterstdimpl_8hpp.html"];
+  Node92 [label="alib/strings/format/formatterpythonstyle.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$formatterpythonstyle_8hpp.html"];
+  Node93 [label="alib/strings/util/autosizes.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$autosizes_8hpp.html"];
 }
 

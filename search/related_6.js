@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['stringtree',['StringTree',['.././cpp_ref/classaworx_1_1lib_1_1util_1_1StringTree_1_1Cursor.html#aa42c89c0eaa357d95820842673034eed',1,'aworx::lib::util::StringTree::Cursor::StringTree()'],['.././cpp_ref/classaworx_1_1lib_1_1util_1_1StringTree_1_1StdIterator.html#aa42c89c0eaa357d95820842673034eed',1,'aworx::lib::util::StringTree::StdIterator::StringTree()'],['.././cpp_ref/classaworx_1_1lib_1_1util_1_1StringTree_1_1Walker.html#aa42c89c0eaa357d95820842673034eed',1,'aworx::lib::util::StringTree::Walker::StringTree()']]]
+  ['preallocatedstring',['PreallocatedString',['.././cpp_ref/classaworx_1_1lib_1_1strings_1_1AString.html#ad3c3bba82982d562b15eb6c9f80bef1e',1,'aworx::lib::strings::AString']]]
 ];

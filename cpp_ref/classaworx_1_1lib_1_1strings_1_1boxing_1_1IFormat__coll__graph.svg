@@ -9,24 +9,24 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 80)">
 <title>IFormat</title>
 <polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-80 59,-80 59,4 -4,4"/>
-<!-- Node3 -->
+<!-- Node4 -->
 <g id="node1" class="node">
-<title>Node3</title>
+<title>Node4</title>
 <polygon fill="#bfbfbf" stroke="#000000" points="2.5,-.5 2.5,-19.5 52.5,-19.5 52.5,-.5 2.5,-.5"/>
 <text text-anchor="middle" x="27.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">IFormat</text>
 </g>
-<!-- Node4 -->
+<!-- Node5 -->
 <g id="node2" class="node">
-<title>Node4</title>
+<title>Node5</title>
 <g id="a_node2"><a xlink:href="classaworx_1_1lib_1_1boxing_1_1Interface.html" target="_top" xlink:title="Interface">
 <polygon fill="#ffffff" stroke="#000000" points="0,-56.5 0,-75.5 55,-75.5 55,-56.5 0,-56.5"/>
 <text text-anchor="middle" x="27.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Interface</text>
 </a>
 </g>
 </g>
-<!-- Node4&#45;&gt;Node3 -->
+<!-- Node5&#45;&gt;Node4 -->
 <g id="edge1" class="edge">
-<title>Node4&#45;&gt;Node3</title>
+<title>Node5&#45;&gt;Node4</title>
 <path fill="none" stroke="#191970" d="M27.5,-46.1575C27.5,-37.155 27.5,-26.9199 27.5,-19.6427"/>
 <polygon fill="#191970" stroke="#191970" points="24.0001,-46.2455 27.5,-56.2455 31.0001,-46.2456 24.0001,-46.2455"/>
 </g>

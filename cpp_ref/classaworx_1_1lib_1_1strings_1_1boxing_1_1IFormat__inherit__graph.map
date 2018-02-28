@@ -1,4 +1,5 @@
 <map id="IFormat" name="IFormat">
-<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1time_1_1IFormat__TTicks.html" title="IFormat_TTicks" alt="" coords="5,155,120,181"/>
-<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1boxing_1_1Interface.html" title="Interface" alt="" coords="26,5,99,32"/>
+<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1time_1_1IFormat__TimeStamp.html" title="IFormat_TimeStamp" alt="" coords="5,155,147,181"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1time_1_1IFormat__TTicks.html" title="IFormat_TTicks" alt="" coords="171,155,285,181"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1boxing_1_1Interface.html" title="Interface" alt="" coords="115,5,189,32"/>
 </map>

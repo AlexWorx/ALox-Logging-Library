@@ -35,8 +35,8 @@ digraph "ansilogger.hpp"
   Node2 -> Node40 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 -> Node41 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 -> Node43 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 -> Node44 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 -> Node45 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node46 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 -> Node51 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 -> Node53 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node56 -> Node43 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
@@ -66,8 +66,8 @@ digraph "ansilogger.hpp"
   Node86 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node86 -> Node82 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node86 -> Node87 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node86 -> Node88 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node86 -> Node91 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node86 -> Node90 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node86 -> Node93 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 [label="alox/alox.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$alox_8hpp.html"];
   Node2 [label="alib/alib.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$alib_8hpp.html"];
   Node3 [label="assert.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
@@ -92,9 +92,9 @@ digraph "ansilogger.hpp"
   Node39 [label="alib/lang/langlib.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$langlib_8hpp.html"];
   Node40 [label="alib/strings/boxing/stringboxing.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$stringboxing_8hpp.html"];
   Node41 [label="alib/lang/report.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$report_8hpp.html"];
-  Node43 [label="alib/lang/enumbitwise.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$enumbitwise_8hpp.html"];
-  Node44 [label="alib/lang/enummetadata.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$enummetadata_8hpp.html"];
-  Node45 [label="alib/config/configlib.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$configlib_8hpp.html"];
+  Node43 [label="alib/lang/enumbitwise.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$enumbitwise_8hpp.html"];
+  Node45 [label="alib/lang/enummetadata.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$enummetadata_8hpp.html"];
+  Node46 [label="alib/config/configlib.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$configlib_8hpp.html"];
   Node51 [label="alib/system/systemlib.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$systemlib_8hpp.html"];
   Node53 [label="alib/strings/applicables.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$applicables_8hpp.html"];
   Node54 [label="internals/alox_symbols.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$alox__symbols_8hpp.html"];
@@ -115,7 +115,7 @@ digraph "ansilogger.hpp"
   Node82 [label="alox/core/logger.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$logger_8hpp.html"];
   Node86 [label="alox/core/textlogger/textlogger.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$textlogger_8hpp.html"];
   Node87 [label="alib/time/calendartime.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$calendartime_8hpp.html"];
-  Node88 [label="alib/strings/format/formatterjavastyle.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$formatterjavastyle_8hpp.html"];
-  Node91 [label="alib/strings/format/formatterpythonstyle.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$formatterpythonstyle_8hpp.html"];
+  Node90 [label="alib/strings/format/formatterjavastyle.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$formatterjavastyle_8hpp.html"];
+  Node93 [label="alib/strings/format/formatterpythonstyle.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$formatterpythonstyle_8hpp.html"];
 }
 

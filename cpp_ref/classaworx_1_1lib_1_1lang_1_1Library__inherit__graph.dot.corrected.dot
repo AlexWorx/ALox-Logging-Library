@@ -19,7 +19,7 @@ digraph "Library"
   Node5 [label="Strings",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1Strings.html"];
   Node6 [label="System",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1system_1_1System.html"];
   Node7 [label="Threads",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1threads_1_1Threads.html"];
-  Node8 [label="Time",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1time_1_1Time.html"];
+  Node8 [label="TimeLib",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1time_1_1TimeLib.html"];
   Node9 [label="ALox",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1ALox.html"];
 }
 

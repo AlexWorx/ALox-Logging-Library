@@ -1,0 +1,56 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01char_01_5_01_4.html" title="T_Apply\&lt;char *\&gt;" alt="" coords="351,15,471,42"/>
+<area shape="rect" id="node3" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01char16__t_01_5_01_4.html" title="T_Apply\&lt;char16_t *\&gt;" alt="" coords="338,66,483,92"/>
+<area shape="rect" id="node4" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01char32__t_01_5_01_4.html" title="T_Apply\&lt;char32_t *\&gt;" alt="" coords="338,116,483,143"/>
+<area shape="rect" id="node5" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01wchar__t_01_5_01_4.html" title="T_Apply\&lt;wchar_t *\&gt;" alt="" coords="341,167,481,194"/>
+<area shape="rect" id="node6" href="$structaworx_1_1lib_1_1strings_1_1T__Apply_3_01typename_01format_1_1PropertyFormatterMapApplicablc5158e90efaae83a3ef8d8bf26dccb21.html" title="T_Apply\&lt;typename format::PropertyFormatterMapApplicable\&lt;TFormattable, TOptionEnum\&gt;\&gt;" alt="" coords="129,218,692,244"/>
+<area shape="rect" id="node7" href="$structaworx_1_1lib_1_1strings_1_1T__String_3_01char_01_5_01_4.html" title="T_String\&lt;char *\&gt;" alt="" coords="350,268,471,295"/>
+<area shape="rect" id="node8" href="$structaworx_1_1lib_1_1strings_1_1T__String_3_01char_01const_01_5_01_4.html" title="T_String\&lt;char const *\&gt;" alt="" coords="332,319,489,346"/>
+<area shape="rect" id="node9" href="$structaworx_1_1lib_1_1boxing_1_1T__Boxing_3_01BoxedAs_3_01TBoxed_01_4_01_4.html" title="T_Boxing\&lt;BoxedAs\&lt;TBoxed\&gt;\&gt;" alt="" coords="307,370,514,396"/>
+<area shape="rect" id="node10" href="$structaworx_1_1lib_1_1boxing_1_1T__Boxing_3_01std_1_1vector_3_01TElem_01_4_01_4.html" title="T_Boxing\&lt;vector\&lt;TElem\&gt;\&gt;" alt="" coords="319,420,502,447"/>
+<area shape="rect" id="node11" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01bool_01_4.html" title="T_Apply\&lt;bool\&gt;" alt="" coords="355,471,466,498"/>
+<area shape="rect" id="node12" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01double_01_4.html" title="T_Apply\&lt;double\&gt;" alt="" coords="349,522,473,548"/>
+<area shape="rect" id="node13" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01Enum_01_4.html" title="T_Apply\&lt;Enum\&gt;" alt="" coords="351,572,471,599"/>
+<area shape="rect" id="node14" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01float_01_4.html" title="T_Apply\&lt;float\&gt;" alt="" coords="355,623,466,650"/>
+<area shape="rect" id="node15" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01Format_01_4.html" title="T_Apply\&lt;Format\&gt;" alt="" coords="347,674,474,700"/>
+<area shape="rect" id="node16" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01Format_1_1Bin_01_4.html" title="T_Apply\&lt;Format::Bin\&gt;" alt="" coords="333,724,488,751"/>
+<area shape="rect" id="node17" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01Format_1_1Escape_01_4.html" title="T_Apply\&lt;Format::Escape\&gt;" alt="" coords="321,775,500,802"/>
+<area shape="rect" id="node18" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01Format_1_1Field_01_4.html" title="T_Apply\&lt;Format::Field\&gt;" alt="" coords="329,826,492,852"/>
+<area shape="rect" id="node19" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01Format_1_1Hex_01_4.html" title="T_Apply\&lt;Format::Hex\&gt;" alt="" coords="331,876,490,903"/>
+<area shape="rect" id="node20" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01Format_1_1Oct_01_4.html" title="T_Apply\&lt;Format::Oct\&gt;" alt="" coords="333,927,489,954"/>
+<area shape="rect" id="node21" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01Format_1_1Tab_01_4.html" title="T_Apply\&lt;Format::Tab\&gt;" alt="" coords="333,978,489,1004"/>
+<area shape="rect" id="node22" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01int16__t_01_4.html" title="T_Apply\&lt;int16_t\&gt;" alt="" coords="348,1028,473,1055"/>
+<area shape="rect" id="node23" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01int32__t_01_4.html" title="T_Apply\&lt;int32_t\&gt;" alt="" coords="348,1079,473,1106"/>
+<area shape="rect" id="node24" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01int64__t_01_4.html" title="T_Apply\&lt;int64_t\&gt;" alt="" coords="348,1130,473,1156"/>
+<area shape="rect" id="node25" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01int8__t_01_4.html" title="T_Apply\&lt;int8_t\&gt;" alt="" coords="351,1180,470,1207"/>
+<area shape="rect" id="node26" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01intGap__t_01_4.html" title="T_Apply\&lt;intGap_t\&gt;" alt="" coords="343,1231,478,1258"/>
+<area shape="rect" id="node27" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01lib_1_1boxing_1_1Box_01_4.html" title="T_Apply\&lt;lib::boxing::Box\&gt;" alt="" coords="323,1282,499,1308"/>
+<area shape="rect" id="node28" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01std_1_1type__info_01_4.html" title="T_Apply\&lt;type_info\&gt;" alt="" coords="341,1332,480,1359"/>
+<area shape="rect" id="node29" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01uint16__t_01_4.html" title="T_Apply\&lt;uint16_t\&gt;" alt="" coords="345,1383,477,1410"/>
+<area shape="rect" id="node30" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01uint32__t_01_4.html" title="T_Apply\&lt;uint32_t\&gt;" alt="" coords="345,1434,477,1460"/>
+<area shape="rect" id="node31" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01uint64__t_01_4.html" title="T_Apply\&lt;uint64_t\&gt;" alt="" coords="345,1484,477,1511"/>
+<area shape="rect" id="node32" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01uint8__t_01_4.html" title="T_Apply\&lt;uint8_t\&gt;" alt="" coords="348,1535,473,1562"/>
+<area shape="rect" id="node33" href="$structaworx_1_1lib_1_1strings_1_1applyto_1_1T__Apply_3_01uintGap__t_01_4.html" title="T_Apply\&lt;uintGap_t\&gt;" alt="" coords="339,1586,482,1612"/>
+<area shape="rect" id="node34" href="$structaworx_1_1lib_1_1strings_1_1boxing_1_1T__Boxing_3_01aworx_1_1lib_1_1strings_1_1PreallocatedString_3_01TCapacity_01_4_01_4.html" title="T_Boxing\&lt;PreallocatedString\&lt;TCapacity\&gt;\&gt;" alt="" coords="273,1636,548,1663"/>
+<area shape="rect" id="node35" href="$structaworx_1_1lib_1_1strings_1_1boxing_1_1T__Boxing_3_01strings_1_1StringLiteral_3_01TLength_01_4_01_4.html" title="T_Boxing\&lt;strings::StringLiteral\&lt;TLength\&gt;\&gt;" alt="" coords="275,1687,547,1714"/>
+<area shape="rect" id="node36" href="$structaworx_1_1lib_1_1strings_1_1T__IsTerminatable_3_01AString_01_4.html" title="T_IsTerminatable\&lt;AString\&gt;" alt="" coords="320,1738,501,1764"/>
+<area shape="rect" id="node37" href="$structaworx_1_1lib_1_1strings_1_1T__IsTerminatable_3_01PreallocatedString_3_01TCapacity_01_4_01_4.html" title="T_IsTerminatable\&lt;PreallocatedString\&lt;TCapacity\&gt;\&gt;" alt="" coords="251,1788,570,1815"/>
+<area shape="rect" id="node38" href="$structaworx_1_1lib_1_1strings_1_1T__StringLiteral_3_01char[TCapacity]_4.html" title="T_StringLiteral\&lt;char[TCapacity]\&gt;" alt="" coords="303,1839,518,1866"/>
+<area shape="rect" id="node39" href="$structaworx_1_1lib_1_1strings_1_1T__StringLiteral_3_01StringLiteral_3_01TLength_01_4_01_4.html" title="T_StringLiteral\&lt;StringLiteral\&lt;TLength\&gt;\&gt;" alt="" coords="283,1890,538,1916"/>
+<area shape="rect" id="node40" href="$structaworx_1_1lib_1_1strings_1_1thirdparty_1_1alox_1_1T__Apply_3_01lox_1_1core_1_1Logger_01_4.html" title="T_Apply\&lt;lox::core::Logger\&gt;" alt="" coords="319,1940,502,1967"/>
+<area shape="rect" id="node41" href="$structaworx_1_1lib_1_1strings_1_1thirdparty_1_1qt_1_1T__Apply_3_01QByteArray_01_4.html" title="T_Apply\&lt;QByteArray\&gt;" alt="" coords="333,1991,488,2018"/>
+<area shape="rect" id="node42" href="$structaworx_1_1lib_1_1strings_1_1thirdparty_1_1qt_1_1T__Apply_3_01QChar_01_4.html" title="T_Apply\&lt;QChar\&gt;" alt="" coords="349,2042,472,2068"/>
+<area shape="rect" id="node43" href="$structaworx_1_1lib_1_1strings_1_1thirdparty_1_1qt_1_1T__Apply_3_01QString_01_4.html" title="T_Apply\&lt;QString\&gt;" alt="" coords="345,2092,476,2119"/>
+<area shape="rect" id="node44" href="$structaworx_1_1lib_1_1strings_1_1thirdparty_1_1qt_1_1T__Apply_3_01QVector_3_01uint_01_4_01_4.html" title="T_Apply\&lt;QVector\&lt;uint\&gt;\&gt;" alt="" coords="325,2143,496,2170"/>
+<area shape="rect" id="node45" href="$structaworx_1_1lib_1_1strings_1_1thirdparty_1_1qt_1_1T__String_3_01QByteArray_01_4.html" title="T_String\&lt;QByteArray\&gt;" alt="" coords="333,2194,488,2220"/>
+<area shape="rect" id="node46" href="$structaworx_1_1lib_1_1strings_1_1thirdparty_1_1qt_1_1T__String_3_01QLatin1String_01_4.html" title="T_String\&lt;QLatin1String\&gt;" alt="" coords="327,2244,494,2271"/>
+<area shape="rect" id="node47" href="$structaworx_1_1lib_1_1strings_1_1thirdparty_1_1std_1_1T__Apply_3_01std_1_1u16string_01_4.html" title="T_Apply\&lt;u16string\&gt;" alt="" coords="341,2295,480,2322"/>
+<area shape="rect" id="node48" href="$structaworx_1_1lib_1_1strings_1_1thirdparty_1_1std_1_1T__Apply_3_01std_1_1u32string_01_4.html" title="T_Apply\&lt;u32string\&gt;" alt="" coords="341,2346,480,2372"/>
+<area shape="rect" id="node49" href="$structaworx_1_1lib_1_1strings_1_1thirdparty_1_1std_1_1T__Apply_3_01std_1_1vector_3_01char16__t_01_4_01_4.html" title="T_Apply\&lt;vector\&lt;char16_t\&gt;\&gt;" alt="" coords="317,2396,505,2423"/>
+<area shape="rect" id="node50" href="$structaworx_1_1lib_1_1strings_1_1thirdparty_1_1std_1_1T__Apply_3_01std_1_1vector_3_01char32__t_01_4_01_4.html" title="T_Apply\&lt;vector\&lt;char32_t\&gt;\&gt;" alt="" coords="317,2447,505,2474"/>
+<area shape="rect" id="node51" href="$structaworx_1_1lib_1_1strings_1_1thirdparty_1_1std_1_1T__Apply_3_01std_1_1vector_3_01wchar__t_01_4_01_4.html" title="T_Apply\&lt;vector\&lt;wchar_t\&gt;\&gt;" alt="" coords="319,2498,502,2524"/>
+<area shape="rect" id="node52" href="$structaworx_1_1lib_1_1strings_1_1thirdparty_1_1std_1_1T__Apply_3_01std_1_1wstring_01_4.html" title="T_Apply\&lt;wstring\&gt;" alt="" coords="347,2548,474,2575"/>
+<area shape="rect" id="node53" href="$structaworx_1_1lib_1_1strings_1_1thirdparty_1_1std_1_1T__Apply_3_01thirdparty_1_1std_1_1ReadLineFromIStream_01_4.html" title="T_Apply\&lt;thirdparty::ReadLineFromIStream\&gt;" alt="" coords="271,2599,550,2626"/>
+<area shape="rect" id="node54" href="$structaworx_1_1lib_1_1strings_1_1thirdparty_1_1std_1_1T__String_3_01std_1_1string_01_4.html" title="T_String\&lt;string\&gt;" alt="" coords="351,2650,470,2676"/>
+<area shape="rect" id="node55" href="$structaworx_1_1lib_1_1strings_1_1thirdparty_1_1std_1_1T__String_3_01std_1_1vector_3_01char_01_4_01_4.html" title="T_String\&lt;vector\&lt;char\&gt;\&gt;" alt="" coords="329,2700,493,2727"/>
+</map>

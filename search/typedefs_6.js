@@ -5,6 +5,7 @@ var searchData=
   ['iisempty',['IIsEmpty',['.././cpp_ref/namespaceaworx.html#ae6997e75801a3dcdc3a80cec77b1a62f',1,'aworx']]],
   ['iisless',['IIsLess',['.././cpp_ref/namespaceaworx.html#a95d240a6fb229f764a5176d6ec15ec41',1,'aworx']]],
   ['iisnull',['IIsNull',['.././cpp_ref/namespaceaworx.html#a95b27610e38c813268b4a843ef5ef173',1,'aworx']]],
+  ['iistrue',['IIsTrue',['.././cpp_ref/namespaceaworx.html#a8eed3b07a321612dad1f80d59cafd8ec',1,'aworx']]],
   ['inclusion',['Inclusion',['.././cpp_ref/namespaceaworx.html#a934720ec6a941ba8927467c410f9783c',1,'aworx']]],
   ['inifile',['IniFile',['.././cpp_ref/namespaceaworx.html#aef31dd55ee6403c15d9ba93325d3333d',1,'aworx']]],
   ['inmemoryplugin',['InMemoryPlugin',['.././cpp_ref/namespaceaworx.html#a5acd1ac5b29f64268c6bd7dea9e3a3bd',1,'aworx']]],

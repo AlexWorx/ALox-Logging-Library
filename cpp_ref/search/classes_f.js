@@ -82,7 +82,9 @@ var searchData=
   ['tickscalendartime',['TicksCalendarTime',['../classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html',1,'aworx::lib::time']]],
   ['tickspan',['TickSpan',['../classaworx_1_1lib_1_1time_1_1TickSpan.html',1,'aworx::lib::time']]],
   ['tickwatch',['TickWatch',['../classaworx_1_1lib_1_1time_1_1TickWatch.html',1,'aworx::lib::time']]],
-  ['time',['Time',['../classaworx_1_1lib_1_1time_1_1Time.html',1,'aworx::lib::time']]],
+  ['timelib',['TimeLib',['../classaworx_1_1lib_1_1time_1_1TimeLib.html',1,'aworx::lib::time']]],
+  ['timespan',['TimeSpan',['../classaworx_1_1lib_1_1time_1_1TimeSpan.html',1,'aworx::lib::time']]],
+  ['timestamp',['TimeStamp',['../classaworx_1_1lib_1_1time_1_1TimeStamp.html',1,'aworx::lib::time']]],
   ['tokenizer',['Tokenizer',['../classaworx_1_1lib_1_1strings_1_1util_1_1Tokenizer.html',1,'aworx::lib::strings::util']]],
   ['tstring',['TString',['../classaworx_1_1lib_1_1strings_1_1TString.html',1,'aworx::lib::strings']]],
   ['typedemangler',['TypeDemangler',['../classaworx_1_1lib_1_1debug_1_1TypeDemangler.html',1,'aworx::lib::debug']]]

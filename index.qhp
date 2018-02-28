@@ -5,7 +5,7 @@
   <filterSection>
     <filterAttribute>doxygen</filterAttribute>
     <toc>
-      <section title="ALox V. 1712 R. 0" ref="index.html">
+      <section title="ALox V. 1712 R. 1" ref="index.html">
         <section title="Overview" ref="index.html" />
         <section title="Manual" ref="manual.html" />
         <section title="Tools" ref="tools.html" />
@@ -436,6 +436,21 @@
       <file>inherit_graph_314.svg</file>
       <file>inherit_graph_315.svg</file>
       <file>inherit_graph_316.svg</file>
+      <file>inherit_graph_317.svg</file>
+      <file>inherit_graph_318.svg</file>
+      <file>inherit_graph_319.svg</file>
+      <file>inherit_graph_320.svg</file>
+      <file>inherit_graph_321.svg</file>
+      <file>inherit_graph_322.svg</file>
+      <file>inherit_graph_323.svg</file>
+      <file>inherit_graph_324.svg</file>
+      <file>inherit_graph_325.svg</file>
+      <file>inherit_graph_326.svg</file>
+      <file>inherit_graph_327.svg</file>
+      <file>inherit_graph_328.svg</file>
+      <file>inherit_graph_329.svg</file>
+      <file>inherit_graph_330.svg</file>
+      <file>inherit_graph_331.svg</file>
       <file>pages.html</file>
     </files>
   </filterSection>

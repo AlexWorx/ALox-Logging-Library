@@ -33,13 +33,13 @@ digraph "alox.hpp"
   Node1 -> Node39 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node40 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node42 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node1 -> Node43 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node44 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node45 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node50 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node52 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node7 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node24 -> Node25 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node43 -> Node25 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node44 -> Node25 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node55 -> Node42 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node55 -> Node56 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node55 -> Node63 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
@@ -97,9 +97,9 @@ digraph "alox.hpp"
   Node38 [label="alib/lang/langlib.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$langlib_8hpp.html"];
   Node39 [label="alib/strings/boxing/stringboxing.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$stringboxing_8hpp.html"];
   Node40 [label="alib/lang/report.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$report_8hpp.html"];
-  Node42 [label="alib/lang/enumbitwise.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$enumbitwise_8hpp.html"];
-  Node43 [label="alib/lang/enummetadata.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$enummetadata_8hpp.html"];
-  Node44 [label="alib/config/configlib.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$configlib_8hpp.html"];
+  Node42 [label="alib/lang/enumbitwise.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$enumbitwise_8hpp.html"];
+  Node44 [label="alib/lang/enummetadata.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$enummetadata_8hpp.html"];
+  Node45 [label="alib/config/configlib.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$configlib_8hpp.html"];
   Node50 [label="alib/system/systemlib.hpp",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$systemlib_8hpp.html"];
   Node52 [label="alib/strings/applicables.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$applicables_8hpp.html"];
   Node53 [label="internals/alox_symbols.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$alox__symbols_8hpp.html"];

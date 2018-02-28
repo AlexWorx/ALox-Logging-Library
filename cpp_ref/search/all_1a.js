@@ -32,6 +32,7 @@ var searchData=
   ['_7eplugincontainer',['~PluginContainer',['../classaworx_1_1lib_1_1util_1_1PluginContainer.html#af37e3c575ca5138ee9ffae6ae54cee1c',1,'aworx::lib::util::PluginContainer']]],
   ['_7epropertyformatters',['~PropertyFormatters',['../classaworx_1_1lib_1_1strings_1_1format_1_1PropertyFormatters.html#aa50605fb93d447aa15497041cd65544d',1,'aworx::lib::strings::format::PropertyFormatters']]],
   ['_7erecursiondata',['~RecursionData',['../structaworx_1_1lib_1_1util_1_1StringTree_1_1Walker_1_1RecursionData.html#a3224141064f9cbd37f59040b1b9e7cd4',1,'aworx::lib::util::StringTree::Walker::RecursionData']]],
+  ['_7eregexmatcher',['~RegexMatcher',['../classaworx_1_1lib_1_1strings_1_1util_1_1RegexMatcher.html#a8d6f06b791ae030364699531f70f0c98',1,'aworx::lib::strings::util::RegexMatcher']]],
   ['_7ereportwriter',['~ReportWriter',['../classaworx_1_1lib_1_1lang_1_1ReportWriter.html#aacb613601745319beb402a265be497e5',1,'aworx::lib::lang::ReportWriter']]],
   ['_7eresources',['~Resources',['../classaworx_1_1lib_1_1lang_1_1Resources.html#a30ec04f4b8de971374cb0d0b0748c7af',1,'aworx::lib::lang::Resources']]],
   ['_7erunnable',['~Runnable',['../classaworx_1_1lib_1_1threads_1_1Runnable.html#a93a94435fb3d643aacf328fcc497d9ab',1,'aworx::lib::threads::Runnable']]],

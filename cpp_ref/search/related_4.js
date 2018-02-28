@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['singleton_3c_20arrayboxert_3c_20telementtype_20_3e_20_3e',['Singleton&lt; ArrayBoxerT&lt; TElementType &gt; &gt;',['../classaworx_1_1lib_1_1boxing_1_1ArrayBoxerT.html#af6e405c4329b8149d4eefda083f7c337',1,'aworx::lib::boxing::ArrayBoxerT']]],
-  ['singleton_3c_20boxert_3c_20tboxable_20_3e_20_3e',['Singleton&lt; BoxerT&lt; TBoxable &gt; &gt;',['../classaworx_1_1lib_1_1boxing_1_1BoxerT.html#a5d634a6df1373ddf19444ae0bb87532c',1,'aworx::lib::boxing::BoxerT']]]
+  ['defaultboxing',['DefaultBoxing',['../classaworx_1_1lib_1_1boxing_1_1Box.html#a34465e3dfe6a07d5e53b7c9f7d8d9b79',1,'aworx::lib::boxing::Box']]],
+  ['defaultunboxing',['DefaultUnboxing',['../classaworx_1_1lib_1_1boxing_1_1Box.html#a28b628b92185f310ea42b146c15b9ce1',1,'aworx::lib::boxing::Box']]],
+  ['nextcliarg',['nextCLIArg',['../classaworx_1_1lib_1_1config_1_1CLIArgs.html#ad24fc6cc5489301e3dda46f8038a54b0',1,'aworx::lib::config::CLIArgs']]]
 ];

@@ -23,7 +23,7 @@ var searchData=
   ['blocks',['blocks',['../classaworx_1_1lib_1_1strings_1_1util_1_1StringTable.html#ad0337a186504be5501a77ce052e9c7c8',1,'aworx::lib::strings::util::StringTable::blocks()'],['../classaworx_1_1lib_1_1util_1_1MemoryBlocks.html#a8233bb73a8902511160c088a35036f8f',1,'aworx::lib::util::MemoryBlocks::blocks()']]],
   ['blue',['BLUE',['../classaworx_1_1lox_1_1ESC.html#aae0f71c16c24eca46ba82cb778a4511e',1,'aworx::lox::ESC']]],
   ['bold',['BOLD',['../classaworx_1_1lox_1_1ESC.html#a9f9f2126d9e6edff3218927c04074dcb',1,'aworx::lox::ESC']]],
-  ['box',['box',['../structaworx_1_1lib_1_1lang_1_1Enum.html#a3f4cc83f58ce3f06ff56c19ca1115221',1,'aworx::lib::lang::Enum']]],
+  ['boostregex',['boostRegex',['../classaworx_1_1lib_1_1strings_1_1util_1_1RegexMatcher.html#a949df27f6eb5c1bf9df760844075893b',1,'aworx::lib::strings::util::RegexMatcher']]],
   ['boxer',['boxer',['../classaworx_1_1lib_1_1boxing_1_1Box.html#ac9663bfd726a1b8c391b21f6e836c66e',1,'aworx::lib::boxing::Box']]],
   ['boxes',['boxes',['../classaworx_1_1lib_1_1strings_1_1format_1_1Formatter.html#a9c235ad71ffb912aa8ecc4e998d0eb0e',1,'aworx::lib::strings::format::Formatter::boxes()'],['../classaworx_1_1lib_1_1strings_1_1format_1_1SimpleText.html#a9c235ad71ffb912aa8ecc4e998d0eb0e',1,'aworx::lib::strings::format::SimpleText::boxes()']]],
   ['boxing',['BOXING',['../namespaceaworx_1_1lib.html#a80fa465a7f7929f6c478da90ea82f33f',1,'aworx::lib']]],
