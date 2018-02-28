@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -346,7 +346,11 @@ class TString : public String
      * @name Character and String Search
      ##@{ ########################################################################################*/
 
+        // Due to a doxygen bug in 1.8.14, we must not tell doxygen that we import overloaded methods.
+        //! @cond NO_DOX
         using String::IndexOf;
+        //! @endcond
+
 
         /** ****************************************************************************************
          * Search the given terminatable string in this object.
@@ -422,7 +426,7 @@ class TString : public String
          *       terminated needles needs to be invoked. This is possible, for example
          *       by writing e.g. <em>mystring.String::IndexOf()</em>.
          *
-         * @param needles    Pointer to a zero terminated set of characters to be taken into 
+         * @param needles    Pointer to a zero terminated set of characters to be taken into
          *                   account.
          * @param startIdx   The index to start the search at. If the given value is less than 0,
          *                   it is set to 0. If it exceeds the length of the string, the length of

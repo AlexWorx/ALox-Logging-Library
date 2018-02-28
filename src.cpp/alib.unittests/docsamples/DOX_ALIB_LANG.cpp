@@ -1,7 +1,7 @@
 // #################################################################################################
 //  aworx - Unit Tests
 //  Private, not published in git ( I hope! )
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alox/alox.hpp"
@@ -498,6 +498,15 @@ States maximized= States::HorizontallyMaximized | States::VerticallyMaximized;
         UT_INIT();
         UT_PRINT("*** Documentation Sample +**")
 
+        EnumMetaData<MyNamespace::Bits>::GetSingleton()->Table=
+        {
+            { EnumValue( Bits::One   ),  "One"       },
+            { EnumValue( Bits::Two   ),  "Two"       },
+            { EnumValue( Bits::Three ),  "Three"     },
+            { EnumValue( Bits::Four  ),  "Four"      },
+        };
+
+
         AString buf;
         for( auto bit : EnumIterator<Bits>() )
             buf << bit ;
@@ -545,6 +554,15 @@ States maximized= States::HorizontallyMaximized | States::VerticallyMaximized;
     {
         UT_INIT();
         UT_PRINT("*** Documentation Sample +**")
+
+        EnumMetaData<BitsParseable>::GetSingleton()->Table=
+        {
+            { EnumValue( BitsParseable::One   ),  "One"     , 1  },
+            { EnumValue( BitsParseable::Two   ),  "Two"     , 2  },
+            { EnumValue( BitsParseable::Three ),  "Three"   , 2  },
+            { EnumValue( BitsParseable::Four  ),  "Four"    , 1  },
+        };
+
 
         Substring s;
 
@@ -609,6 +627,22 @@ States maximized= States::HorizontallyMaximized | States::VerticallyMaximized;
         e-= 1;                          UT_EQ ( ArithmeticEnum::element0 , e );
         e+= 100;  UT_EQ ( ArithmeticEnum::element0 + 100, e );
                   UT_EQ ( ArithmeticEnum::element0 + 200, e + 100 );
+        e= ArithmeticEnum::element0;
+        UT_EQ ( ArithmeticEnum::element1 , ++e   );
+        UT_EQ ( ArithmeticEnum::element1 , e++   );
+        UT_EQ ( ArithmeticEnum::element2 , e     );
+        UT_EQ ( ArithmeticEnum::element2 , e--   );
+        UT_EQ ( ArithmeticEnum::element0 , --e   );
+        UT_EQ ( ArithmeticEnum::element2 , e+=2  );
+        UT_EQ ( ArithmeticEnum::element4 , e* 2  );
+        UT_EQ ( ArithmeticEnum::element4 , e*=2  );
+        UT_EQ ( ArithmeticEnum::element2 , e / 2 );
+        UT_EQ ( ArithmeticEnum::element2 , e/= 2 );
+        UT_EQ ( ArithmeticEnum::element1 , (e+3) % 2 );
+        UT_EQ ( ArithmeticEnum::element5 , e+= 3 );
+        UT_EQ ( ArithmeticEnum::element1 , e%= 2 );
+        UT_EQ ( ArithmeticEnum::element1 , +e    );
+        UT_EQ ( ArithmeticEnum::element1 , -(-e) );
     }
 
 

@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -75,7 +75,7 @@ template<typename T> struct StringTreeDefaultKeyAllocator
     static String allocate( const String& childName, T& value )
     {
         (void) value;
-        char* buffer= new char[ childName.Length() ];
+        char* buffer= new char[static_cast<size_t>(childName.Length()) ];
         memcpy( buffer, childName.Buffer(), static_cast<size_t>( childName.Length() ) );
         return String( buffer, childName.Length() );
     }

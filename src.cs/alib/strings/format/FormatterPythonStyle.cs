@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -117,7 +117,7 @@ namespace cs.aworx.lib.strings.format  {
  *     \b 'g' or \b 'G'.
  *   - Python specifies the formatting option \c '#' ("alternate form") for floating point values
  *     to not omit trailing zeros of the fractional part even if a fractional width was given.
- *     However, in scientific notation and in percentage output (type code \c '%'), python never omits
+ *     However, in scientific notation and in percentage output (type code \c '\%'), python never omits
  *     trailing zeros.<br>
  *     This implementation omits trailing zeros also in scientific notation and percentage
  *     output. Therefore, when defining fields with dedicated fractional part width, it is recommended
@@ -246,7 +246,7 @@ namespace cs.aworx.lib.strings.format  {
  *     output lines. Of-course, output is not completely tabular, only if those values that result
  *     in the biggest sizes are formatted first. If a perfect tabular output is desired, the data
  *     to be formatted may be processed twice: Once to temporary buffer which is disposed and then
- *     a second time to the desired output stream.
+ *     a second time to the desired output \b %AString.
  *
  *     \note Method \alib{strings.format,Formatter.ReleaseDefault} resets the auto size values
  *           in case no multiple (recursive) acquirements had been performed.
@@ -263,7 +263,7 @@ namespace cs.aworx.lib.strings.format  {
  *
  *   - <b>!Replace\<search\>\<replace\></b><br>
  *     Searches string \p search and replaces with \p replace. Both values have to be given
- *     enclosed by characters \c ’<' and \c ’>'. In the special case that \p search is empty
+ *     enclosed by characters \c '<' and \c '>'. In the special case that \p search is empty
  *     (<c>\<\></c>), string \p replace will be inserted if the field argument is an empty string.
  **************************************************************************************************/
 public class FormatterPythonStyle : FormatterStdImpl

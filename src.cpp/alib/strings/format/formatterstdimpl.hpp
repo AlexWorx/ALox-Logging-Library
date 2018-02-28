@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -192,7 +192,7 @@ class FormatterStdImpl : public Formatter
 
         /** If \c false the formatters specification expects argument to be numbered from
          * <c>0..N</c>. If \c true from <c>1..N</c>.                                              */
-        int                     argumentCountStartsWith1                                    = false;
+        bool                    argumentCountStartsWith1                                    = false;
 
     // #############################################################################################
     //  Placeholder attribute members
@@ -283,7 +283,7 @@ class FormatterStdImpl : public Formatter
         char                        phaFillChar;
 
         /** Forces the padding to be placed after the sign (if any) but before the digits.
-         *  This is used for printing fields in the form ‘+000000120’.
+         *  This is used for printing fields in the form ‘+000000120'.
          *  This alignment option is only valid for numeric types.
          *  Set to \c false in default implementation of #resetPHAs. */
         bool                        phaSignPaddingMode;
@@ -298,7 +298,7 @@ class FormatterStdImpl : public Formatter
         bool                        phaWriteBinOctHexPrefix;
 
         /** Can be \c true for float-types. If \c true, the value is multiplied with 100 and
-         *  a percentage symbol \c '%' is printed after the value.
+         *  a percentage symbol \c '\%' is printed after the value.
          *  Set to \c false in default implementation of #resetPHAs. */
         bool                        phaIsPercentage;
 
@@ -560,7 +560,13 @@ class FormatterStdImpl : public Formatter
 };
 
 
-}}}} // namespace [aworx::lib::strings::format]
+}}} // namespace [aworx::lib::strings::format]
+
+
+/** Type alias name in namespace #aworx. */
+using     FormatterStdImpl=            aworx::lib::strings::format::FormatterStdImpl;
+
+}  // namespace aworx
 
 
 

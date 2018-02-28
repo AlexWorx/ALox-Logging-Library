@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -64,7 +64,7 @@ Variable&    Variable::Declare( const VariableDecl&     declaration,
 
     // replace strings
     int replCnt= 1;
-    for ( auto replacement : replacements )
+    for ( auto& replacement : replacements )
     {
         String64 search("%"); search._( replCnt );
         if ( replacement.IsNotNull() ) { Category    .SearchAndReplace( search, replacement );

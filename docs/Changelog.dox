@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -14,6 +14,152 @@ and C# implementations.<br>
 The first version released was V. 1.0.1 in **May 2013**.
 
 This change log is sorted reversely in respect to chronology.
+
+\~Comment ####################################################################################### \~
+\~Comment #############################       V. 1712 R1     #################################### \~
+\~Comment ####################################################################################### \~
+
+## Version 1712, Revision 1, released February 28th, 2018 ##
+This is a bug fixing revision, almost exclusively concentrating on C++ version.
+
+<b>Changes in ALib all languages:</b><br>
+- Changed behaviour of externalization/internalization of config variable strings to be more
+  intuitive for end users. (Class ccj_aworx{lib::config,Xternalizer}.
+
+<b>Changes in ALib for C++:</b><br>
+- Changed CMake script \b alib.cmake to respect external settings of otherwise cached
+  variables. This allows to permanently change their "default" values, by setting
+  \alib CMake variables prior to invoking the script. On the same token, variable
+  \b ALIB_CMAKE_COTIRE_DEFAULT has been removed, as now just \b ALIB_CMAKE_COTIRE can be set
+  from outside.
+
+- Added macros \ref ALIB_CPP14, \ref ALIB_CPP17 and \ref ALIB_CPP14_CONSTEXPR.
+
+- It is now allowed to have an C++ enum type be defined
+  \ref aworx::lib::lang::T_EnumIsBitwise "bitwise" and
+  \ref aworx::lib::lang::T_EnumIsArithmetical "arithmetical" at the same time. To achieve this,
+  bitwise alias operators <c>+</c> (alias for <c>|</c>) and <c>+=</c> (alias for <c>|=</c>)
+  become disabled to avoid ambiguities with those operators introduced with arithmetical enum types.
+
+  Furthermore, the following operators have been added for arithmetical enums:
+  - <c>++</c>, <c>\-\-</c> (prefix and postfix version).
+  - <c>unary +</c>, <c>unary -</c>
+  - <c>*</c>, <c>*=</c>, <c>/</c>, <c>/=</c>, <c>\%</c>, <c>\%=</c>
+  - <c>\<\<</c>, <c>\<\<=</c>, <c>\>\></c>, <c>\>\>=</c>
+
+  Finally fixed the documentation of various operators and even a list of \e lhs arguments that
+  accidentally had been passed as reference are now correctly passed by value.
+
+- Fixed a bug with loading resourced enum meta data for enumerations declared with
+  \ref ALIB_LANG_ENUM_NAMED and \ref ALIB_LANG_RESOURCED.
+
+- Changed behavior of method \cpp_alib{lang,Exception::Code}. It now skips entries with
+  negative exception enum element values. This allow to declare pure informational entries, not
+  to be caught bei exception handlers, by giving them a negative enum element value.
+  See documentation of class \cpp_alib{lang,Exception} for further details.
+
+- Added enum class #aworx::lib::lang::Exceptions defining currently one exception, which is thrown
+  with erroneous ALib reports. (Usually format string errors).
+
+- Fixed an infinitive loop in method \cpp_alib{strings,AString::SearchAndReplace(char,char,integer)}.
+- Added operator methods <c><=</c> and <c>>=</c> to \cpp_alib{strings,Strings} for completeness.
+
+- Added new class \cpp_alib{strings::util,WildcardMatcher} which compiles wildcard patterns
+  (using wildcards \c '*' and \c '?') and enables to match strings against the pattern.
+
+- Added new class \cpp_alib{strings::util,RegexMatcher} which compiles regular expression patterns
+  using external [boost::regex library](http://www.boost.org).<br>
+  New compiler symbols \ref ALIB_FEAT_BOOST_REGEX_ON / \ref ALIB_FEAT_BOOST_REGEX_OFF control
+  the integration of this feature to \alib. Corresponding CMake variable
+  ALIB_FEAT_BOOST_REGEX was added.
+
+- As an alternative to already existing \cpp_alib{strings::UnorderedStringMap}, new type
+  \cpp_alib{strings::UnorderedStringMapIgnoreCase} was added that uses case insensitive string keys.
+  Furthermore types
+  \cpp_alib{strings::UnorderedAStringMap} and
+  \cpp_alib{strings::UnorderedAStringMapIgnoreCase} have been added, which hold an allocated
+  copy of a key string.
+
+- Fixed description resource string of  \cpp_alib{strings::format,Exceptions::ArgumentIndexOutOfBounds}.
+
+- Changed parameter type of method \cpp_alib{util,MemoryBlocks::Clear} from bool to
+  \cpp_alib{lang,CurrentData}.
+
+
+- Changed accessibility of inner class \cpp_alib{util,PluginContainer::Slot} from protected to
+  public to allow a plug-in container to pass its list of plug-ins to helper classes.
+
+- Default constructor of \cpp_alib{boxing,Box} is now trivial and therefore leaves boxes
+  uninitialized. Before, the default constructor initialized a nulled box, same as <c>Box(nullptr)</c>.<br>
+  Furthermore added explicitly defaulted copy and move constructors as well as copy and move
+  assign operators.
+
+- Added method \cpp_alib{boxing,Box::IsNotNull} for completeness.
+
+- Added templated implementation \cpp_alib{boxing,IEquals_TComparable} of boxing interface
+  \cpp_alib{boxing,Box::IEquals} usable for all types that defined C++ <c>operator==</c>.
+  In addition added corresponding convenience macro \ref ALIB_BOXING_DEFINE_IEQUALS_FOR_COMPARABLE_TYPE.
+
+- Added boxing interface \cpp_alib{boxing,IIsTrue}.
+
+- Added type definition \ref aworx::UnorderedBoxMap which uses new functors
+  \cpp_alib{boxing,std_Hash} and \cpp_alib{boxing,std_Equals} to with a <c>std::unordered_map</c>
+  with keys of type \b %Box.
+
+- Fixed missing deletion of report writer in \cpp_alib{lang,Lang.terminationCleanUp}.
+
+- Moved internal type definition \c %aworx::lib::lang::RTTIUnorderedMap to \ref aworx::TypeMap.
+
+- Added field \cpp_alib{strings::format,SimpleText::DetectedMaxLineWidth}.
+
+- Changed parameter of method \cpp_alib{strings::util,StringTable::Clear} from type \c bool to
+  more readable \cpp_alib{lang,CurrentData}.
+
+- Fixed conversion <c>!ATab</c> and <c>!AWidth</c> of class
+  \cpp_alib{lib::strings::format,FormatterPythonStyle} in respect to multi-line strings.
+  Furthermore, <c>!ATab</c> does not insert one minimum space character any more (which it was
+  never documented to do).
+
+- Fixed a (serious) bug in \cpp_alib{strings,NumberFormat::WriteFloat}, which could cause wrong
+  results when fractional parts unlimited length were written.
+- Changed method \cpp_alib{strings,NumberFormat::ParseFloat} to accept scientific separator
+  on integral numbers (without parsing a decimal point).
+
+- Resourced static strings \c "true" and \c "false" written when boolean values are applied
+  to type \b %AString.
+
+- Added classes
+  \cpp_alib{time,TimeStamp},
+  \cpp_alib{time,TimeSpan},
+  \cpp_alib{time,CalendarTime} and
+  \cpp_alib{time,StopWatch}.
+  These classes will replace classes
+  \cpp_alib{time,Ticks},
+  \cpp_alib{time,TicksCalendarTime} and
+  \cpp_alib{time,TickWatch} in the next release version (which are therefore to be considered
+  deprecated).
+
+
+- Though class is deprecated, added
+  \cpp_alib{time,Ticks::operator+},
+  \cpp_alib{time,Ticks::operator-},
+  \cpp_alib{time,Ticks::operator+=},
+  \cpp_alib{time,Ticks::operator-=},
+  \cpp_alib{time,Ticks::operator==},
+  \cpp_alib{time,Ticks::operator!=},
+  \cpp_alib{time,Ticks::operator<},
+  \cpp_alib{time,Ticks::operator<=},
+  \cpp_alib{time,Ticks::operator>},
+  \cpp_alib{time,Ticks::operator>=} and
+  \cpp_alib{time,Ticks::SetToAge}. Furthermore added
+  boxing/unboxing of \cpp_alib{time,Ticks} by value.
+
+- Added macro \ref ALIB_WARNINGS_ALLOW_SPARSE_ENUM_SWITCH.
+
+<b>Changes in ALox for C++:</b><br>
+- Slightly changed meanings of parameters \p domainPrefix and \p logPrefix of method
+  \cpp_alox{LogTools::Exception}
+
 
 \~Comment ####################################################################################### \~
 \~Comment #############################       V. 1712        #################################### \~
@@ -345,8 +491,8 @@ This change log is sorted reversely in respect to chronology.
     to \c const.
   - Fixed display of test name in gtest version of unittests.
   - Added structs
-    \ref aworx::lib::strings::std_Hash   "std_Hash" and
-    \ref aworx::lib::strings::std_Equals "std_Equals" to support ALib strings as key types
+    \b aworx::lib::strings::std_Hash    and
+    \b aworx::lib::strings::std_Equals  to support ALib strings as key types
     for \b std::unordered_map and similar classes.
   - Fixed some analyzer warnings (\b valgrind), for example by adding missing \b ALIB_STRING_DBG_UNTERMINATE
     statement in method \ref aworx::lib::strings::AString::SetLength "AString::SetLength".

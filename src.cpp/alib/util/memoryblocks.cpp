@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -25,12 +25,12 @@ MemoryBlocks::MemoryBlocks( int stdBlockSize )
 
 MemoryBlocks::~MemoryBlocks()
 {
-    Clear( true );
+    Clear( CurrentData::Clear );
 }
 
-void MemoryBlocks::Clear( bool deallocate )
+void MemoryBlocks::Clear( CurrentData currentData )
 {
-    if( deallocate )
+    if( currentData == CurrentData::Clear )
     {
         for ( auto& block : blocks )
             delete[] block.mem;

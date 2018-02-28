@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -224,7 +224,7 @@ class Configuration : public util::PluginContainer<ConfigurationPlugin, Prioriti
          *                       configuration variables.
          * @tparam TEnableIf     Not to be specified. Used by the compiler to select this constructor
          *                       only for associated custom C++ enum types.
-         **********************************************************************************************/
+         ******************************************************************************************/
         template<typename TEnum,
                  typename TEnableIf= typename std::enable_if<
                             std::is_same< VariableDecl::TTuple, typename lang::T_EnumMetaDataDecl<TEnum>::TTuple >::value

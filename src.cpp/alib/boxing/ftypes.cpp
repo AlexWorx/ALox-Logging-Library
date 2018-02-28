@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -96,11 +96,12 @@ bool IEquals_Tdouble::Invoke( const Box& box, const Box& comp )
         #pragma clang diagnostic push
         #pragma clang diagnostic ignored "-Wfloat-equal"
     #endif
+
     return      d1 == d2
-            // we are using the float epsilon which is already bigger than the double epsilon.
-            // furthermore, we double the epsilon!
-            ||  std::abs( d1 - d2 ) <
-                std::abs( (std::min)(d1, d2) * static_cast<double>( 2.0f * std::numeric_limits<float>::epsilon() ) );
+            // take rounding errors into account.
+            // We use the "float-epsilon" and double it to be even a little weaker!
+            ||  std::fabs( d1 - d2 ) <= static_cast<double>( 2.0f * std::numeric_limits<float>::epsilon() );
+
     #if defined(__clang__)
         #pragma clang diagnostic pop
     #endif

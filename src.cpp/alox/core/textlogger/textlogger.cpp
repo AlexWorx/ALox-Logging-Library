@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  aworx::lox::core - ALox Logging Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -75,7 +75,7 @@ StandardConverter::~StandardConverter()
     "\n  Note: This error indicates, that a previous format operation (log statement) containted\n"
       "        corrupt format values, which caused the formatter to behave undefined, including\n"
       "        the corruption of the the execution stack."                                          )
-    for( auto elem : recursionFormatters )
+    for( auto* elem : recursionFormatters )
     {
         delete elem->Next;
         delete elem;

@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -38,7 +38,7 @@ Finally, get it all *pruned* out of your release executable, same as your source
 On the other end of the list, \b %ALox  enables **release logging** for productive applications
 to collect mission critical **metrics from the field**.
 
-This is **Version 1712 Revision 0**, which incorporates only minor changes and fixes on the JAVA
+This is **Version 1712 Revision 1**, which incorporates only minor changes and fixes on the JAVA
 and C# side of things, but quite some new stuff in underlying <b>%ALib for C++</b>.
 
 We are optimistic that the simple [Bauhaus Style](\ref faq_bauhaus) architecture of the library allows you

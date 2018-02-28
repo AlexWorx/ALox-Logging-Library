@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  aworx::lox - ALox Logging Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -65,7 +65,7 @@ Lox::Lox(const String& name, bool doRegister )
 {
     // create internal sub-domains
     const char* internalDomainList[]= {"LGR", "DMN", "PFX", "THR", "LGD", "VAR" };
-    for ( auto it : internalDomainList )
+    for ( auto* it : internalDomainList )
         internalDomains.Find( it, 1, nullptr );
     maxDomainPathLength=  ALox::InternalDomains.Length() + 3;
 
@@ -155,7 +155,7 @@ void  Lox::clear()
     if ( scopeDomains.globalStore )
         delete scopeDomains.globalStore;
 
-    for ( auto it : *scopeDomains.languageStore )
+    for ( auto* it : *scopeDomains.languageStore )
         if( it )
             delete it;
 
@@ -174,7 +174,7 @@ void  Lox::clear()
     if ( scopePrefixes.globalStore )
         delete static_cast<PrefixLogable*>( scopePrefixes.globalStore );
 
-    for ( auto it : *scopePrefixes.languageStore )
+    for ( auto* it : *scopePrefixes.languageStore )
         if( it )
             delete static_cast<PrefixLogable*>( it );
 
@@ -195,7 +195,7 @@ void  Lox::clear()
     if ( scopeLogOnce.globalStore )
         delete scopeLogOnce.globalStore;
 
-    for ( auto it : *scopeLogOnce.languageStore )
+    for ( auto* it : *scopeLogOnce.languageStore )
         if( it )
             delete it;
     scopeLogOnce.languageStore->Clear();
@@ -214,7 +214,7 @@ void  Lox::clear()
     if ( scopeLogData.globalStore )
         delete scopeLogData.globalStore;
 
-    for ( auto map : *scopeLogData.languageStore )
+    for ( auto* map : *scopeLogData.languageStore )
         if( map )
             delete map;
     scopeLogData.languageStore->Clear();

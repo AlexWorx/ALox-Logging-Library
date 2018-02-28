@@ -1,7 +1,7 @@
 // #################################################################################################
 //  aworx - Unit Tests
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alox/alox.hpp"
@@ -516,37 +516,37 @@ UT_METHOD( ConvertFloats )
     as._();
     {
                             UT_EQ( 0.0,        as.ParseFloat  (           )  );
-        posOrig= pos= 0;    UT_EQ( 0.0,        as.ParseFloat  ( pos, &pos )  );     UT_EQ( pos, posOrig );
-        posOrig= pos= -5;   UT_EQ( 0.0,        as.ParseFloat  ( pos, &pos )  );     UT_EQ( pos, posOrig );
+        posOrig= pos= 0;    UT_EQ( 0.0,        as.ParseFloat  ( pos, &pos )  );     UT_EQ( posOrig, pos );
+        posOrig= pos= -5;   UT_EQ( 0.0,        as.ParseFloat  ( pos, &pos )  );     UT_EQ( posOrig, pos );
     }
 
     // parse on non number
     as._()._( "Hello");
     {
                             UT_EQ( 0.0,        as.ParseFloat  (           )  );
-        posOrig= pos= 0;    UT_EQ( 0.0,        as.ParseFloat  ( pos, &pos )  );     UT_EQ( pos, posOrig );
-        posOrig= pos= -5;   UT_EQ( 0.0,        as.ParseFloat  ( pos, &pos )  );     UT_EQ( pos, posOrig );
-        posOrig= pos= 2;    UT_EQ( 0.0,        as.ParseFloat  ( pos, &pos )  );     UT_EQ( pos, posOrig );
+        posOrig= pos= 0;    UT_EQ( 0.0,        as.ParseFloat  ( pos, &pos )  );     UT_EQ( posOrig, pos );
+        posOrig= pos= -5;   UT_EQ( 0.0,        as.ParseFloat  ( pos, &pos )  );     UT_EQ( posOrig, pos );
+        posOrig= pos= 2;    UT_EQ( 0.0,        as.ParseFloat  ( pos, &pos )  );     UT_EQ( posOrig, pos );
     }
 
     // check that leading whitespaces do not move pointer
     as._()._( "   Hello");
     {
                             UT_EQ( 0.0,        as.ParseFloat  ()             );
-        posOrig= pos= 0;    UT_EQ( 0.0,        as.ParseFloat  ( pos, &pos )  );     UT_EQ( pos, posOrig );
-        posOrig= pos= -5;   UT_EQ( 0.0,        as.ParseFloat  ( pos, &pos )  );     UT_EQ( pos, posOrig );
-        posOrig= pos= 2;    UT_EQ( 0.0,        as.ParseFloat  ( pos, &pos )  );     UT_EQ( pos, posOrig );
+        posOrig= pos= 0;    UT_EQ( 0.0,        as.ParseFloat  ( pos, &pos )  );     UT_EQ( posOrig, pos );
+        posOrig= pos= -5;   UT_EQ( 0.0,        as.ParseFloat  ( pos, &pos )  );     UT_EQ( posOrig, pos );
+        posOrig= pos= 2;    UT_EQ( 0.0,        as.ParseFloat  ( pos, &pos )  );     UT_EQ( posOrig, pos );
     }
 
     // parse NaN and INF
     {
-        as._()._( "nan");    UT_TRUE( isnan( as.ParseFloat( &pos ) ) );                                     UT_EQ( 3, pos );
-        as._()._("-nan");    UT_TRUE( isnan( as.ParseFloat( &pos ) ) );                                     UT_EQ( 4, pos );
-        as._()._( "nAN");    UT_TRUE( isnan( as.ParseFloat( &pos ) ) );                                     UT_EQ( 3, pos );
-        as._()._("-nAN");    UT_TRUE( isnan( as.ParseFloat( &pos ) ) );                                     UT_EQ( 4, pos );
+        as._()._( "nan");    UT_TRUE( isnan( as.ParseFloat( &pos ) ) );             UT_EQ( 3, pos );
+        as._()._("-nan");    UT_TRUE( isnan( as.ParseFloat( &pos ) ) );             UT_EQ( 4, pos );
+        as._()._( "nAN");    UT_TRUE( isnan( as.ParseFloat( &pos ) ) );             UT_EQ( 3, pos );
+        as._()._("-nAN");    UT_TRUE( isnan( as.ParseFloat( &pos ) ) );             UT_EQ( 4, pos );
 
-        as._()._( "inf");    UT_TRUE( isinf( as.ParseFloat( &pos ) ) );                                     UT_EQ( 3, pos );
-        as._()._("-inf");    UT_TRUE( isinf( as.ParseFloat( &pos ) ) );                                     UT_EQ( 4, pos );
+        as._()._( "inf");    UT_TRUE( isinf( as.ParseFloat( &pos ) ) );             UT_EQ( 3, pos );
+        as._()._("-inf");    UT_TRUE( isinf( as.ParseFloat( &pos ) ) );             UT_EQ( 4, pos );
 
         #if defined(__clang__)
             #pragma clang diagnostic push
@@ -603,7 +603,7 @@ UT_METHOD( ConvertFloats )
         as._()._( "1.234E0") ;       UT_EQ( 1.234,            as.ParseFloat( 0, &nf, &pos  ) );  UT_EQ(  0 + as.Length() , pos );
         as._()._( "1.234E-1");       UT_NEAR( 0.1234,         as.ParseFloat( 0, &nf, &pos  ) , 0.0000000001);  UT_EQ(  0  + as.Length() , pos );
         as._()._( "1.234E");         UT_EQ( 1.234,            as.ParseFloat( 0, &nf, &pos  ) );  UT_EQ(       as.Length() , pos );
-        as._()._( "1.234Ex");        UT_EQ( 1.234,            as.ParseFloat( 0, &nf, &pos  ) );  UT_EQ(       as.Length()-1,pos );
+        as._()._( "1.234Ex");        UT_EQ( 1.234,            as.ParseFloat( 0, &nf, &pos  ) );  UT_EQ(       as.Length()-2,pos );
     }
 
     // write and parse doubles, non scientific mode
@@ -797,6 +797,9 @@ UT_METHOD( ConvertFloats )
         floatTest( ut,     0.00099          ,'.' ,  1,  4 ,     "0.0010"             );
         floatTest( ut,     1.099            ,'.' ,  1,  1 ,     "1.1"                );
         floatTest( ut,     0.00999          ,'.' ,  1,  4 ,     "0.0100"             );
+
+        floatTest( ut,     2.3-1.2          ,'.' ,  -1,  -1 ,   "1.1"                );
+
 
 
 
@@ -1323,17 +1326,17 @@ UT_METHOD( FormatterJavaStyle )
     checkFormat(ut,  "Infinity"             , "%s"              ,  std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "-Infinity"            , "%s"              , -std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "0.0"                  , "%s"              ,  0.0 );
-    checkFormat(ut,  "-0.0"                 , "%s"              , -0.0 ); // negative zero
+    checkFormat(ut,  "0.0"                  , "%s"              , -0.0 ); // negative zero
     checkFormat(ut,  "NaN"                  , "%+g"            ,  std::nan("") );
     checkFormat(ut,  "+Infinity"            , "%+g"            ,  std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "-Infinity"            , "%+g"            , -std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "+0.000000"            , "%+g"            ,  0.0 );
-    checkFormat(ut,  "-0.000000"            , "%+g"            , -0.0 ); // negative zero
+    checkFormat(ut,  "+0.000000"            , "%+g"            , -0.0 ); // negative zero
     checkFormat(ut,  "NaN"                  , "%+G"            ,  std::nan("") );
     checkFormat(ut,  "+INFINITY"            , "%+G"            ,  std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "-INFINITY"            , "%+G"            , -std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "+0.000000"            , "%+G"            ,  0.0 );
-    checkFormat(ut,  "-0.000000"            , "%+G"            , -0.0 ); // negative zero
+    checkFormat(ut,  "+0.000000"            , "%+G"            , -0.0 ); // negative zero
 
 
     //-------  Nan,Inf, -0.0, field width -------
@@ -1341,25 +1344,25 @@ UT_METHOD( FormatterJavaStyle )
     checkFormat(ut,  "  Infinity"           , "%10g"           ,  std::numeric_limits<double>::infinity() );
     checkFormat(ut,  " -Infinity"           , "%10g"           , -std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "  0.000000"           , "%10g"           ,  0.0 );
-    checkFormat(ut,  " -0.000000"           , "%10g"           , -0.0 ); // negative zero
+    checkFormat(ut,  "  0.000000"           , "%10g"           , -0.0 ); // negative zero
 
     checkFormat(ut,  "       NaN"           , "%+10g"         ,  std::nan("") );
     checkFormat(ut,  " +Infinity"           , "%+10g"         ,  std::numeric_limits<double>::infinity() );
     checkFormat(ut,  " -Infinity"           , "%+10g"         , -std::numeric_limits<double>::infinity() );
     checkFormat(ut,  " +0.000000"           , "%+10g"         ,  0.0 );
-    checkFormat(ut,  " -0.000000"           , "%+10g"         , -0.0 ); // negative zero
+    checkFormat(ut,  " +0.000000"           , "%+10g"         , -0.0 ); // negative zero
 
     checkFormat(ut,  "       NaN"           , "%010g"          ,  std::nan("") );
     checkFormat(ut,  "  Infinity"           , "%010g"          ,  std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "- Infinity"           , "%010g"          , -std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "00000000.0"           , "%010.1g"        ,  0.0 );
-    checkFormat(ut,  "-0000000.0"           , "%010.1g"        , -0.0 ); // negative zero
+    checkFormat(ut,  "00000000.0"           , "%010.1g"        , -0.0 ); // negative zero
 
     checkFormat(ut,  "NaN       "           , "%-10g"          ,  std::nan("") );
     checkFormat(ut,  "Infinity  "           , "%-10g"          ,  std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "-Infinity "           , "%-10g"          , -std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "0.0       "           , "%-10.1g"        ,  0.0 );
-    checkFormat(ut,  "-0.0      "           , "%-10.1g"        , -0.0 ); // negative zero
+    checkFormat(ut,  "0.0       "           , "%-10.1g"        , -0.0 ); // negative zero
 
 
     // -------------------------------- scientific -------------------------------------------
@@ -1388,12 +1391,12 @@ UT_METHOD( FormatterJavaStyle )
     checkFormat(ut,  "INFINITY"             , "%E"            ,  std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "-INFINITY"            , "%E"            , -std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "0.000000E+00"         , "%E"            ,  0.0 );
-    checkFormat(ut,  "-0.000000E+00"        , "%E"            , -0.0 ); // negative zero
+    checkFormat(ut,  "0.000000E+00"         , "%E"            , -0.0 ); // negative zero
     checkFormat(ut,  "NaN"                  , "%+e"           ,  nan("") );
     checkFormat(ut,  "+Infinity"            , "%+e"           ,  std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "-Infinity"            , "%+e"           , -std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "+0.000000e+00"        , "%+e"           ,  0.0 );
-    checkFormat(ut,  "-0.000000e+00"        , "%+e"           , -0.0 ); // negative zero
+    checkFormat(ut,  "+0.000000e+00"        , "%+e"           , -0.0 ); // negative zero
 
 
     // -------------------------------- FixedPoint -------------------------------------------
@@ -1542,20 +1545,23 @@ UT_METHOD( FormatterPythonStyle )
     checkFormat(ut, "Tab10xxxxxx         X"      , "Tab10xxxxxx{!Tab10}"       , "X"      );
     checkFormat(ut, "Tab10xxxxxx*********X"      , "Tab10xxxxxx{!TabC*10}"     , "X"      );
 
-    checkFormat(ut, "ATab2 X"                    , "ATab2{!ATab2}"            , "X"           );
-    checkFormat(ut, "ATab2x  X"                  , "ATab2x{!ATab2}"           , "X"           );
-    checkFormat(ut, "ATab2xx X"                  , "ATab2xx{!ATab2}"          , "X"           );
-    checkFormat(ut, "ATab2xxx  X"                , "ATab2xxx{!ATab2}"         , "X"           );
-    checkFormat(ut, "ATab2xxxx X"                , "ATab2xxxx{!ATab2}"        , "X"           );
-    checkFormat(ut, "ATab2x    X"                , "ATab2x{!ATab2}"           , "X"           );
-    checkFormat(ut, "ATab2x    X Y"              , "ATab2x{!ATab2}{!ATab3}"   , "X"   , "Y"   );
-    checkFormat(ut, "ATab2x    Xxx   Y"          , "ATab2x{!ATab2}{!ATab3}"   , "Xxx" , "Y"   );
-    checkFormat(ut, "ATab2x    Xxxx  Y"          , "ATab2x{!ATab2}{!ATab3}"   , "Xxxx", "Y"   );
-    checkFormat(ut, "          ABC   123"        , "{!ATab2}{!ATab3}"         , "ABC" , "123" );
-    checkFormat(ut, "          abc   123"        , "{!ATab2!L}{!ATab3}"       , "ABC" , "123" );
-    checkFormat(ut, "==========abc---123"        , "{!ATabC=2!L}{!ATabC-3}"   , "ABC" , "123" );
-    checkFormat(ut, " X Y"                       , "{!ATabRes!ATab2}{!ATab3}" , "X"   , "Y"   );
-    checkFormat(ut, "   X\n   Y"                 , "{!Tab3}\\n{!Tab3}"        , "X", "Y" );
+    checkFormat(ut, "ATab2X"                     , "ATab2{!ATab2}"             , "X"           );
+    checkFormat(ut, "ATab2x  X"                  , "ATab2x{!ATab2}"            , "X"           );
+    checkFormat(ut, "ATab2xx X"                  , "ATab2xx{!ATab2}"           , "X"           );
+    checkFormat(ut, "ATab2xxxX"                  , "ATab2xxx{!ATab2}"          , "X"           );
+    checkFormat(ut, "ATab2xxxx  X"               , "ATab2xxxx{!ATab2}"         , "X"           );
+    checkFormat(ut, "ATab2x     X"               , "ATab2x{!ATab2}"            , "X"           );
+    checkFormat(ut, "ATab2x     XY"              , "ATab2x{!ATab2}{!ATab3}"    , "X"   , "Y"   );
+    checkFormat(ut, "ATab2x     Xxx   Y"         , "ATab2x{!ATab2}{!ATab3}"    , "Xxx" , "Y"   );
+    checkFormat(ut, "ATab2x     Xxxx  Y"         , "ATab2x{!ATab2}{!ATab3}"    , "Xxxx", "Y"   );
+    checkFormat(ut, "           ABC   123"       , "{!ATab2}{!ATab3}"          , "ABC" , "123" );
+    checkFormat(ut, "           abc   123"       , "{!ATab2!L}{!ATab3}"        , "ABC" , "123" );
+    checkFormat(ut, "===========abc---123"       , "{!ATabC=2!L}{!ATabC-3}"    , "ABC" , "123" );
+    checkFormat(ut, "12A"                        , "{!ATabRes!ATab2}{!ATab3}"  , "12"  , "A"   );
+    checkFormat(ut, "x  123   A"                 , "x{!ATab2}{!ATab3}"         , "123" , "A"   );
+    checkFormat(ut, "x  123   A\n   456   B"     , "x{!ATab2}{!ATab3}\\n{!ATab2}{!ATab3}"  , "123" , "A", "456" , "B"   );
+    checkFormat(ut, "IJ"                         , "{!ATabRes!ATab2}{!ATab3}"  , "I"   , "J"   );
+    checkFormat(ut, "   X\n   Y"                 , "{!Tab3}\\n{!Tab3}"         , "X"   , "Y"   );
     formatterPS.Reset();
 
     checkFormat(ut, "\\r\\n\\t"                   , "{!ESC<}"                  , "\r\n\t" );
@@ -2229,42 +2235,42 @@ UT_METHOD( FormatterPythonStyle )
     checkFormat(ut,  "inf"                  , "{}"              ,  std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "-inf"                 , "{}"              , -std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "0.0"                  , "{}"              ,  0.0 );
-    checkFormat(ut,  "-0.0"                 , "{}"              , -0.0 ); // negative zero
+    checkFormat(ut,  "0.0"                  , "{}"              , -0.0 ); // negative zero
     checkFormat(ut,  "nan"                  , "{:+}"            ,  std::nan("") );
     checkFormat(ut,  "+inf"                 , "{:+}"            ,  std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "-inf"                 , "{:+}"            , -std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "+0.0"                 , "{:+}"            ,  0.0 );
-    checkFormat(ut,  "-0.0"                 , "{:+}"            , -0.0 ); // negative zero
+    checkFormat(ut,  "+0.0"                 , "{:+}"            , -0.0 ); // negative zero
 
     //-------  Nan,Inf, -0.0 -------
     checkFormat(ut,  "       nan"           , "{:10}"           ,  std::nan("") );
     checkFormat(ut,  "       inf"           , "{:10}"           ,  std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "      -inf"           , "{:10}"           , -std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "       0.0"           , "{:10}"           ,  0.0 );
-    checkFormat(ut,  "      -0.0"           , "{:10}"           , -0.0 ); // negative zero
+    checkFormat(ut,  "       0.0"           , "{:10}"           , -0.0 ); // negative zero
 
     checkFormat(ut,  "       nan"           , "{:+10}"          ,  std::nan("") );
     checkFormat(ut,  "      +inf"           , "{:+10}"          ,  std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "      -inf"           , "{:+10}"          , -std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "      +0.0"           , "{:+10}"          ,  0.0 );
-    checkFormat(ut,  "      -0.0"           , "{:+10}"          , -0.0 ); // negative zero
+    checkFormat(ut,  "      +0.0"           , "{:+10}"          , -0.0 ); // negative zero
 
     checkFormat(ut,  "       nan"           , "{:010}"          ,  std::nan("") );
     checkFormat(ut,  "       inf"           , "{:010}"          ,  std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "-      inf"           , "{:010}"          , -std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "00000000.0"           , "{:010}"          ,  0.0 );
-    checkFormat(ut,  "-0000000.0"           , "{:010}"          , -0.0 ); // negative zero
+    checkFormat(ut,  "00000000.0"           , "{:010}"          , -0.0 ); // negative zero
 
     checkFormat(ut,  "nan       "           , "{:<10}"          ,  std::nan("") );
     checkFormat(ut,  "inf       "           , "{:<10}"          ,  std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "-inf      "           , "{:<10}"          , -std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "0.0       "           , "{:<10}"          ,  0.0 );
-    checkFormat(ut,  "-0.0      "           , "{:<10}"          , -0.0 ); // negative zero
+    checkFormat(ut,  "0.0       "           , "{:<10}"          , -0.0 ); // negative zero
     checkFormat(ut,  "       nan"           , "{:>10}"          ,  std::nan("") );
     checkFormat(ut,  "       inf"           , "{:>10}"          ,  std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "      -inf"           , "{:>10}"          , -std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "       0.0"           , "{:>10}"          ,  0.0 );
-    checkFormat(ut,  "      -0.0"           , "{:>10}"          , -0.0 ); // negative zero
+    checkFormat(ut,  "       0.0"           , "{:>10}"          , -0.0 ); // negative zero
 
     // -------------------------------- scientific -------------------------------------------
 
@@ -2292,12 +2298,12 @@ UT_METHOD( FormatterPythonStyle )
     checkFormat(ut,  "INF"                  , "{:E}"            ,  std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "-INF"                 , "{:E}"            , -std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "0.0E+00"              , "{:E}"            ,  0.0 );
-    checkFormat(ut,  "-0.0E+00"             , "{:E}"            , -0.0 ); // negative zero
+    checkFormat(ut,  "0.0E+00"              , "{:E}"            , -0.0 ); // negative zero
     checkFormat(ut,  "nan"                  , "{:+e}"           ,  nan("") );
     checkFormat(ut,  "+inf"                 , "{:+e}"           ,  std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "-inf"                 , "{:+e}"           , -std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "+0.0e+00"             , "{:+e}"           ,  0.0 );
-    checkFormat(ut,  "-0.0e+00"             , "{:+e}"           , -0.0 ); // negative zero
+    checkFormat(ut,  "+0.0e+00"             , "{:+e}"           , -0.0 ); // negative zero
 
 
     // -------------------------------- FixedPoint -------------------------------------------
@@ -2325,23 +2331,23 @@ UT_METHOD( FormatterPythonStyle )
     checkFormat(ut,  "inf"                  , "{:f}"            ,  std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "-inf"                 , "{:f}"            , -std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "0.000000"             , "{:f}"            ,  0.0 );
-    checkFormat(ut,  "-0.000000"            , "{:f}"            , -0.0 ); // negative zero
+    checkFormat(ut,  "0.000000"             , "{:f}"            , -0.0 ); // negative zero
     checkFormat(ut,  "NAN"                  , "{:+F}"           ,  nan("") );
     checkFormat(ut,  "+INF"                 , "{:+F}"           ,  std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "-INF"                 , "{:+F}"           , -std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "+0.000000"            , "{:+F}"           ,  0.0 );
-    checkFormat(ut,  "-0.000000"            , "{:+F}"           , -0.0 ); // negative zero
+    checkFormat(ut,  "+0.000000"            , "{:+F}"           , -0.0 ); // negative zero
 
     checkFormat(ut,  "nan"                  , "{:#f}"            ,  nan("") );
     checkFormat(ut,  "inf"                  , "{:#f}"            ,  std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "-inf"                 , "{:#f}"            , -std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "0.000000"             , "{:#f}"            ,  0.0 );
-    checkFormat(ut,  "-0.000000"            , "{:#f}"            , -0.0 ); // negative zero
+    checkFormat(ut,  "0.000000"             , "{:#f}"            , -0.0 ); // negative zero
     checkFormat(ut,  "NAN"                  , "{:#+F}"           ,  nan("") );
     checkFormat(ut,  "+INF"                 , "{:#+F}"           ,  std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "-INF"                 , "{:#+F}"           , -std::numeric_limits<double>::infinity() );
     checkFormat(ut,  "+0.000000"            , "{:#+F}"           ,  0.0 );
-    checkFormat(ut,  "-0.000000"            , "{:#+F}"           , -0.0 ); // negative zero
+    checkFormat(ut,  "+0.000000"            , "{:#+F}"           , -0.0 ); // negative zero
 
 
     checkFormat(ut,              "   0.0"       , "{:06,.5}"            ,  0.0         );

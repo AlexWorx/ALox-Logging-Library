@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -81,7 +81,11 @@ namespace aworx { namespace lib { namespace lang {
  *   stored error codes of arbitrary enum elements can be received.
  * - \alib{lang,T_EnumMetaDataDecl,ALib Enum Meta Data} to equip elements of arbitrary enum
  *   types with static meta information. This, besides other things is used to define
- * - \alib{lang,Resources,ALib Resource Data} which contains further exception details.
+ *   the information text of enum entries.
+ * - \alib{lang,Resources,ALib Resource Data}, which allows to change the information text of
+ *   exceptions (e.g. translate to different languages or to tailor descriptions of exceptions
+ *   defined in different code libraries to the appropriate wording of the software using such
+ *   library).
  *
  * Finally, to convert an \b %Exceptions, including its list of entries into user readable
  * form:
@@ -166,6 +170,7 @@ namespace aworx { namespace lib { namespace lang {
  *           throw;
  *        }
  *
+ \~Comment ####################################################################################### \~
  * ## Lifecycle Of Arguments ##
  *
  * The arbitrary arguments added to exception entries are internally stored in \alib{boxing,Boxes}.
@@ -187,6 +192,17 @@ namespace aworx { namespace lib { namespace lang {
  * implemented. They both clear the entry vector of the source object. Hence, Exceptions can not
  * by "duplicated" by assigning one to another.
  *
+ \~Comment ####################################################################################### \~
+ * ## Using Negative %Exception Codes ##
+ *
+ * A final feature of class exception is implemented with method \alib{lang,Exception::Code}.
+ * This method usually returns the \alib{lang,Enum} object added to the exception most recently.
+ * But this is only half the truth: In fact, the method returns the last object in the list of
+ * entries that has a positive enumeration value. This way, entries that are purely considered
+ * "additional information" - in contrast to entries that somehow change the meaning of an
+ * exception - may be declared using negative enumeration code. This way, the final
+ * catch handler does not need to switch over just all exception codes that can be thrown, but
+ * just over those that are considered to bring a different meaning to an exception.
  *
  \~Comment ####################################################################################### \~
  * ## Sample Code ##
@@ -243,7 +259,7 @@ class Exception
             const TString  File;          ///< Source information of the place of entry creation.
             int            Line;          ///< Source information of the place of entry creation.
             const TString  Func;          ///< Source information of the place of entry creation.
-            Enum           Code;          ///< An enum element of an "exception enabled" enum type.
+            const Enum     Code;          ///< An enum element of an "exception enabled" enum type.
             Boxes          Args;          ///< The arguments provided by the creator of the entry.
             Library&       EnumLibrary;   ///< The library object that stores meta information of
                                           ///< the enum type used. Will be used with method
@@ -348,13 +364,20 @@ class Exception
     // Interface
     // #############################################################################################
          /**
-          * Returns field \alib{lang,Exception::Entry::Code,Entry::Code} of the \b
-          * last entry in the list.
-          * Other codes might be accessing through public field #Entries directly.
+          * Returns field \alib{lang,Exception::Entry::Code,Entry::Code} of the \b last entry in
+          * the list that has a positive underlying enum element value.
+          *
+          * The rational here is explained in the class' documentation. In short, this allows
+          * to add informational entries to the exception that are not changing the main exception
+          * code and hence reduce the number of 'real' exceptions to be caught by
+          * catch-handlers.
+          *
+          * Note that other codes might be accessed through public field #Entries directly.
+          *
           * @return The most high level exception code.
           */
-        inline
-        Enum&   Code()          { return Entries.back().Code; }
+        ALIB_API
+        const Enum&   Code();
 
         /**
          * Adds an entry.
@@ -465,5 +488,7 @@ ALIB_ENUM_SPECIFICATION(  aworx::lib::lang::Exception,                          
                                TEnum, ResourceLibrary, ResourceName )                              \
 //! [DOX_ALIB_ENUM_META_DATA_SPECIFCATION_macro]
 
+// Just use the macro now for the exceptions of namespace aworx::lib::lang
+ALIB_LANG_EXCEPTIONS(  aworx::lib::lang::Exceptions, aworx::lib::LANG, "Exceptions" )
 
 #endif // HPP_ALIB_LANG_EXCEPTION

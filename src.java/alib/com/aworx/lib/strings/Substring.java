@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -1735,13 +1735,14 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Searches the first difference with given string.
+         * If this string starts with \p needle, then the length of \p needle is returned.
          *
          * @param needle       The String to search.
          * @param sensitivity  Case sensitivity of the comparison.
          *                     Optional and defaults to \b Case.SENSITIVE.
          * @param startIdx     The index to start the search at.
          *                     Optional and defaults to \c 0.
-         * @return    -1 if the \e String is not found. Otherwise the index of first occurrence.
+         * @return   The index of the first difference found in \p needle or the neele's length.
          ******************************************************************************************/
         public int indexOfFirstDifference(CharSequence needle, Case sensitivity, int startIdx  )
         {

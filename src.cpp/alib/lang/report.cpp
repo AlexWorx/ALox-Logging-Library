@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -114,8 +114,16 @@ void Report::DoReport( const Message& message )
         return;
     recursionBlocker= true;
 
-        if ( writers.size() > 0 )
-            writers.top()->Report( message  );
+        try
+        {
+            if ( writers.size() > 0 )
+                writers.top()->Report( message  );
+        }
+        catch( Exception& e )
+        {
+            e.Add( message.File, message.Line, message.Func, lang::Exceptions::ErrorWritingReport );
+            throw;
+        }
 
         #if ALIB_DEBUG
             int haltFlags= haltAfterReport.top();

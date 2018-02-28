@@ -236,10 +236,13 @@
     <ClInclude Include="..\..\..\src.cpp\alib\threads\threadlock.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\threads\threadlocknr.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\time\calendartime.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\time\stopwatch.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\time\ticks.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\time\tickspan.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\time\tickwatch.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\time\timelib.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\time\timespan.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\time\timestamp.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\util\memoryblocks.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alox\alox.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alox\aloxtypesandenums.hpp" />
@@ -317,6 +320,7 @@
     <ClCompile Include="..\..\..\src.cpp\alib\time\calendartime.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\time\ticks.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\time\tickspan.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\time\timelib.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\util\memoryblocks.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox\alox.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox\aloxtypesandenums.cpp" />

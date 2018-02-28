@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -177,8 +177,8 @@ bool    FormatterStdImpl::setArgument( int pos )
     size_t  argIdx= static_cast<size_t>( argOffset + phaArgumentIdx );
     if( argIdx >= arguments->size() )
         throw Exception(ALIB_SRCPOS_REL_NULLED, Exceptions::ArgumentIndexOutOfBounds,
-                        phaArgumentIdx    + argumentCountStartsWith1,
-                        arguments->size(),
+                        argIdx    + argumentCountStartsWith1,
+                        arguments->size() - static_cast<size_t>( argOffset ),
                         formatString, formatString->Length() - parser.Length() - 1 );
 
     phaArgument= &(*arguments)[argIdx];
@@ -374,10 +374,19 @@ void    FormatterStdImpl::writeStdArgument()
 
             if (phaSignPaddingMode)
             {
+                auto classification=  std::fpclassify(value);
+
                 // write sign upfront and set fill character to 0
-                if( !std::isnan( value ) )
+                if( classification != FP_NAN  )
                 {
-                    if( std::signbit(value) )
+                    bool negative= std::signbit(value);
+                    if( classification == FP_ZERO && negative )
+                    {
+                        value= 0.0;
+                        negative= false;
+                    }
+
+                    if( negative )
                     {
                         targetString->_NC( '-' );
                         phaWidth--;

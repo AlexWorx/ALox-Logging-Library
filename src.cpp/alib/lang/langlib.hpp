@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -43,6 +43,16 @@ namespace aworx { namespace lib {
  *    - To make the enums reusable with different classes.
  **************************************************************************************************/
 namespace lang {
+
+/** ************************************************************************************************
+ * Exception codes of namespace #aworx::lib::lang.
+ **************************************************************************************************/
+enum class Exceptions
+{
+    /** Error when writing a report. This typically indicates an erroneous format string in an
+     *  \ref ALIB_ASSERT_ERROR or related macro. */
+    ErrorWritingReport= 1,
+};
 
 /** ************************************************************************************************
  * The library class for namespace \ref aworx::lib::lang.
@@ -96,5 +106,7 @@ ALIB_API
 extern lang::Lang  LANG;
 
 }} // namespace [aworx::lib]
+
+
 
 #endif // HPP_ALIB_STRINGS_STRING_LIB

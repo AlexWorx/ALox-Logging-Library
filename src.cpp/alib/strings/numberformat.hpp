@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -15,8 +15,7 @@
     #error "include 'alib/alib.hpp' instead of this header"
 #endif
 
-namespace aworx { namespace lib { namespace strings
-{
+namespace aworx { namespace lib { namespace strings {
 /** ***********************************************************************************************
  * Defines various values needed to convert integer and floating point values
  * to string representations and vice versa.
@@ -304,7 +303,7 @@ class NumberFormat
     /**
      * This character is written instead of a grouping character in the case that a certain
      * output width is requested but a grouping character would be the first character to write.
-     * Writing this character instead, assures the field width be as requested.
+     * Writing this character instead, assures the field width to be as requested.
      * Defaults to space (<c>' '</c>).
      */
     char           LeadingGroupCharReplacement;
@@ -794,7 +793,6 @@ class NumberFormat
     /** ********************************************************************************************
      * Writes the given double value as string representation.
      *
-     * Converts the given long value to a string representation.<br>
      * Negative numbers have to be converted to positive values when invoking this method.
      * the digits and optional grouping characters. The method does not check any overflow within
      * the given character buffer.
@@ -843,8 +841,6 @@ class NumberFormat
      **********************************************************************************************/
     ALIB_API
     integer  writeDecUnsigned( uint64_t value, char* buffer, integer idx, int width  );
-
-
 };
 
 

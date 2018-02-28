@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  aworx::lox::core - ALox Logging Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -63,6 +63,8 @@ void  ALox::init( Phases phase )
     if( phase == Phases::resourceset )
     {
 
+        #define EOS ,
+
         lib::ALIB.CheckCompatibility( ALIB_VERSION, ALIB_COMPILATION_FLAGS );
 
         Res->AddBulk( ResourceCategory.ToCString(),
@@ -106,14 +108,14 @@ void  ALox::init( Phases phase )
         "VC01", "If true, the creation of an additional, ide-specific debug logger is suppressed." "\n"
                 "(In particular suppresses DebugLogger (C#) and VStudioLogger (C++))",
 
-        "VC02", "Influences the type of console logger to be created by method"                 "\n"
-                "Lox::CreateConsoleLogger which is also used by Log::AddDebugLogger"            "\n"
+        "VC02", "Influences the type of console logger to be created by method"                    "\n"
+                "Lox::CreateConsoleLogger which is also used by Log::AddDebugLogger"               "\n"
                 "Possible values are: default, plain, ansi, windows, noqtcreator",
 
-        "VC03", "The verbosities of logger \"%2\" in lox \"%1\". Use 'writeback [VAR_NAME] ;'"  "\n"
+        "VC03", "The verbosities of logger \"%2\" in lox \"%1\". Use 'writeback [VAR_NAME] ;'"     "\n"
                 "to enable automatic writing on application exit.",
 
-        "VC04", "Defines global source path trim rules (applicable for all Lox instances)."     "\n"
+        "VC04", "Defines global source path trim rules (applicable for all Lox instances)."        "\n"
                 "   Format: [*]sourcepath [, inclusion, trimoffset, sensitivity, replacement] [ ; … ]",
 
         "VC05", "Defines source path trim rules for Lox \"%1\". "           "\n"
@@ -169,14 +171,14 @@ void  ALox::init( Phases phase )
                               "2,Warnings,1," //allow with trailing s when reading
                               "3,Error,1,"
                               "3,Errors,1,"   //allow with trailing s when reading
-                              "4,Off,1",
+                              "4,Off,1"    EOS
 
         "Scope",              "0,Global,1,"
                               "1,ThreadOuter,7,"
                               "2,Filename,1,"
                               "3,Method,1,"
                               "4,ThreadInner,7,"
-                              "5,Path,7",
+                              "5,Path,7"   EOS
 
         "StateInfo",  "0" ","   "NONE"              ",1,"
                       "1" ","   "Basic"             ",1,"
@@ -192,7 +194,7 @@ void  ALox::init( Phases phase )
                     "256" ","   "Once"              ",1,"
                    "1024" ","   "ThreadMappings"    ",1,"
                "0x200000" ","   "CompilationFlags"  ",1,"
-             "0xFFFFFFFF" ","   "All"               ",1,",
+             "0xFFFFFFFF" ","   "All"               ",1"  EOS
 
         "LightColorUsage",    "0,Auto,1,"
                               "1,Never,1,"
@@ -259,7 +261,7 @@ Lox*     ALox::Get( const String& name, Create create )
     LOCK_HERE_WITH(loxManagement)
 
     // search
-    for( auto it : loxes )
+    for( auto* it : loxes )
         if( it->GetName().Equals<Case::Ignore>( name ) )
             return it;
 
@@ -302,7 +304,7 @@ void     ALox::Register( Lox* lox, ContainerOp operation )
     // insert
     else
     {
-        for( auto it : loxes )
+        for( auto* it : loxes )
             if( it->GetName().Equals( lox->GetName() ) )
             {
                 ALIB_ERROR( "A lox named {!Q} was already registered. Registration ignored.",

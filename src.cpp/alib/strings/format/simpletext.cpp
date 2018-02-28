@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -23,6 +23,7 @@
     #include "alib/lang/exception.hpp"
 #endif
 
+#include <algorithm>
 
 using namespace std;
 
@@ -83,7 +84,9 @@ void   SimpleText::Add( Boxes&  args )
 {
     integer startIdx= Text.Length();
     Formatter.Format( Text, args );
-    SimpleText::FormatParagraph( Text, startIdx, LineWidth, JustifyChar, IndentFirstLine, IndentOtherLines );
+    integer maxLineWidth;
+    SimpleText::FormatParagraph( Text, startIdx, LineWidth, JustifyChar, maxLineWidth, IndentFirstLine, IndentOtherLines );
+    DetectedMaxLineWidth= (std::max)(DetectedMaxLineWidth, maxLineWidth );
 
     if ( Text.IsNotEmpty() && !Text.EndsWith( NewLine ) )
         Text << NewLine;
@@ -152,8 +155,10 @@ void   SimpleText::AddMarked( Boxes&  args )
             parser.ConsumeChars<false, lang::CurrentData::Keep>( pos, Text, 1 );
             parser.ConsumeChar( '\r' );
             Text << NewLine;
+            integer maxLineWidth;
             SimpleText::FormatParagraph( Text, lastTextStart, LineWidth, JustifyChar,
-                                         IndentFirstLine, IndentOtherLines );
+                                         maxLineWidth, IndentFirstLine, IndentOtherLines );
+            DetectedMaxLineWidth= (std::max)(DetectedMaxLineWidth, maxLineWidth );
             lastTextStart=  Text.Length();
             continue;
         }
@@ -227,9 +232,12 @@ void   SimpleText::AddMarked( Boxes&  args )
     }
 
     if( lastTextStart < Text.Length() )
-        SimpleText::FormatParagraph( Text, lastTextStart, LineWidth, JustifyChar,
+    {
+        integer maxLineWidth;
+        SimpleText::FormatParagraph( Text, lastTextStart, LineWidth, JustifyChar, maxLineWidth,
                                      IndentFirstLine, IndentOtherLines );
-
+        DetectedMaxLineWidth= (std::max)(DetectedMaxLineWidth, maxLineWidth );
+    }
     if ( Text.IsNotEmpty() && !Text.EndsWith( NewLine ) )
         Text << NewLine;
 }
@@ -238,12 +246,12 @@ void   SimpleText::AddMarked( Boxes&  args )
 // #################################################################################################
 // The static formatter method
 // #################################################################################################
-
 void  SimpleText::FormatParagraph( AString& text, integer startIdx, integer lineWidth,
-                                    char justifyChar,
-                                    const String& pIndentFirstLine,
-                                    const String& pIndentOtherLines  )
+                                   char justifyChar, integer& maxLineWidth,
+                                   const String& pIndentFirstLine,
+                                   const String& pIndentOtherLines                         )
 {
+    maxLineWidth= 0;
     String indentFirstLines= pIndentFirstLine .IsNotNull()  ? pIndentFirstLine  : EmptyString;
     String indentOtherLines= pIndentOtherLines.IsNotNull()  ? pIndentOtherLines : pIndentFirstLine;
 
@@ -252,8 +260,12 @@ void  SimpleText::FormatParagraph( AString& text, integer startIdx, integer line
     String indent= NullString;
     bool   indentAreJustSpaces= false;
 
+    integer maxLineWidthDetectionStartIdx= startIdx;
     while ( startIdx < text.Length() )
     {
+        maxLineWidth= (std::max)( maxLineWidth, startIdx - maxLineWidthDetectionStartIdx -1 );
+        maxLineWidthDetectionStartIdx= startIdx;
+
         // skip lines beginning with newline characters, unless indent has non-space characters
         int isWinNL=  text[ startIdx ] == '\r' ? 1 : 0;
         if ( text[ startIdx + isWinNL ] == '\n' )
@@ -372,6 +384,8 @@ void  SimpleText::FormatParagraph( AString& text, integer startIdx, integer line
 
         startIdx= idx;
     }
+
+    maxLineWidth= (std::max)( maxLineWidth, startIdx - maxLineWidthDetectionStartIdx -1 );
 }
 
 
@@ -385,8 +399,8 @@ SimpleText& SimpleText::AddException( Exception&  e )
     size_t entryNo= 1;
     for ( auto entry= e.Entries.begin(); entry < e.Entries.end(); entry++ )
     {
-        Add( "E{}: {}", entryNo, entry->Code );
-        PushIndent( "      " );
+        Add( "E{}: <{}>", entryNo, entry->Code );
+        PushIndent( "    " );
         Exception::Describe( buf.Clear(), *entry );
         tknzr.Set( buf, '\n' );
         while( tknzr.HasNext() )

@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -187,7 +187,7 @@ public class FormatterJavaStyle : FormatterStdImpl
 
 
         /** ****************************************************************************************
-         * Searches for \c '%' which is not '%%' or '%n'.
+         * Searches for \c '\%' which is not '%%' or '%n'.
          *
          * @return The index found, -1 if not found.
          ******************************************************************************************/
@@ -481,7 +481,7 @@ public class FormatterJavaStyle : FormatterStdImpl
         }
 
         /** ****************************************************************************************
-         * Replaces \c "%%" with \c '%' and \c "%n" with ascii \c 0x0a. In addition applies
+         * Replaces \c "%%" with \c '\%' and \c "%n" with ascii \c 0x0a. In addition applies
          * \ref cs.aworx.lib.strings.AString.Escape "AString.Escape" on \p target which replaces
          * standard codes like \c "\\n", \c "\\r" or \c "\\t" with corresponding ascii codes.
          * (The latter is an extension to the standard behavior of Java formatter.)

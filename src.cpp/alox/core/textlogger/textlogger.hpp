@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  aworx::lox::core - ALox Logging Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -623,7 +623,7 @@ class TextLogger : public Logger
                                Verbosity          verbosity,
                                AString&           msg,
                                core::ScopeInfo&   scope,
-                               int                lineNumber)    =0;
+                               int                lineNumber)                                    =0;
 
         /** ****************************************************************************************
          * Abstract method to be implemented by descendants. This message is called only when
@@ -634,7 +634,7 @@ class TextLogger : public Logger
          *
          * @param phase  Indicates the beginning or end of a multi-line operation.
          ******************************************************************************************/
-        virtual void notifyMultiLineOp (lib::lang::Phase phase)     =0;
+        virtual void notifyMultiLineOp (lib::lang::Phase phase)                                  =0;
 
     // #############################################################################################
     // Abstract method implementations

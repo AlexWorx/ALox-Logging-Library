@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ut_aworx - AWorx Unit Test Support using ALib and ALox
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 //
 //  Defines some preprocessor macros and classes so that GTest and MSVC Unit Tests can live in
@@ -23,6 +23,7 @@
 #define HPP_ALIB_ALOX_UNIT_TESTS 1
 
 #include "alox/alox_console_loggers.hpp"
+#include "alox/logtools.hpp"
 
 #if !defined(HPP_ALIB_SYSTEM_DIRECTORY)
     #include "alib/system/directory.hpp"
@@ -222,8 +223,15 @@ class AWorxUnitTesting : public aworx::lib::lang::ReportWriter
         template <typename... T>
         void Print (  const aworx::String& file, int line, aworx::Verbosity verbosity,  T&&... args  )
         {
+            aworx::Boxes argsBoxed(std::forward<T>( args )...);
+            if( argsBoxed.size() == 1 && argsBoxed.back().IsType<aworx::Exception*>() )
+            {
+                aworx::LogTools::Exception( lox, *argsBoxed.back().Unbox<aworx::Exception*>()  );
+                return;
+            }
+
             lox.Acquire(file, line, ActTestName);
-                lox.GetLogableContainer().Add( std::forward<T>( args )... );
+                lox.GetLogableContainer().Add( argsBoxed );
                 lox.Entry( Domain, verbosity );
             lox.Release();
         }

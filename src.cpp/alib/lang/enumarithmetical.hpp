@@ -3,7 +3,7 @@
 //
 //  Essential ALib types needed by every module
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -83,7 +83,7 @@ namespace aworx { namespace lib { namespace lang {
  *   This was done to have the documentation of the operator functions and this struct just in one
  *   place!
  * \attention
- *   Due to the template meta programming, this does not ’clutter' the global namespace and does
+ *   Due to the template meta programming, this does not 'clutter' the global namespace and does
  *   not interfere with any existing user code, while still there is the advantage of
  *   not needing to put a using statement like
  *
@@ -184,7 +184,7 @@ operator<  (TEnum  lhs, typename std::underlying_type<TEnum>::type rhs) noexcept
  * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
  * template enum type \p TEnum to inherit \c std::true_type.
  *
- * @param[in,out]  lhs Reference to the first operand. Receives the result.
+ * @param  lhs         First operand.
  * @param  rhs         Second operand.
  * @tparam TEnum       Enumeration type.
  * @return The result of the comparison.
@@ -192,7 +192,7 @@ operator<  (TEnum  lhs, typename std::underlying_type<TEnum>::type rhs) noexcept
 template<typename TEnum>
 constexpr
 typename  std::enable_if<aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, bool>::type
-operator<=  (TEnum&  lhs, TEnum rhs) noexcept(true)
+operator<=  (TEnum  lhs, TEnum rhs) noexcept(true)
 {
     using TValue= typename std::underlying_type<TEnum>::type;
     return TValue(lhs) <= TValue(rhs);
@@ -205,7 +205,7 @@ operator<=  (TEnum&  lhs, TEnum rhs) noexcept(true)
  * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
  * template enum type \p TEnum to inherit \c std::true_type.
  *
- * @param[in,out]  lhs Reference to the first operand. Receives the result.
+ * @param  lhs         First operand.
  * @param  rhs         Second operand.
  * @tparam TEnum       Enumeration type.
  * @return The result of the comparison.
@@ -213,7 +213,7 @@ operator<=  (TEnum&  lhs, TEnum rhs) noexcept(true)
 template<typename TEnum>
 constexpr
 typename  std::enable_if<aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, bool>::type
-operator<=  (TEnum&  lhs, typename std::underlying_type<TEnum>::type rhs) noexcept(true)
+operator<=  (TEnum lhs, typename std::underlying_type<TEnum>::type rhs) noexcept(true)
 {
     using TValue= typename std::underlying_type<TEnum>::type;
     return TValue(lhs) <= rhs;
@@ -266,7 +266,7 @@ operator>  (TEnum  lhs, typename std::underlying_type<TEnum>::type rhs) noexcept
  * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
  * template enum type \p TEnum to inherit \c std::true_type.
  *
- * @param[in,out]  lhs Reference to the first operand. Receives the result.
+ * @param  lhs         First operand.
  * @param  rhs         Second operand.
  * @tparam TEnum       Enumeration type.
  * @return The result of the comparison.
@@ -274,7 +274,7 @@ operator>  (TEnum  lhs, typename std::underlying_type<TEnum>::type rhs) noexcept
 template<typename TEnum>
 constexpr
 typename  std::enable_if<aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, bool>::type
-operator>=  (TEnum&  lhs, TEnum rhs) noexcept(true)
+operator>=  (TEnum lhs, TEnum rhs) noexcept(true)
 {
     using TValue= typename std::underlying_type<TEnum>::type;
     return TValue(lhs) >= TValue(rhs) ;
@@ -288,7 +288,7 @@ operator>=  (TEnum&  lhs, TEnum rhs) noexcept(true)
  * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
  * template enum type \p TEnum to inherit \c std::true_type.
  *
- * @param[in,out]  lhs Reference to the first operand. Receives the result.
+ * @param  lhs         First operand.
  * @param  rhs         Second operand.
  * @tparam TEnum       Enumeration type.
  * @return The result of the comparison.
@@ -296,7 +296,7 @@ operator>=  (TEnum&  lhs, TEnum rhs) noexcept(true)
 template<typename TEnum>
 constexpr
 typename  std::enable_if<aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, bool>::type
-operator>=  (TEnum&  lhs, typename std::underlying_type<TEnum>::type rhs) noexcept(true)
+operator>=  (TEnum lhs, typename std::underlying_type<TEnum>::type rhs) noexcept(true)
 {
     using TValue= typename std::underlying_type<TEnum>::type;
     return TValue(lhs) >= rhs ;
@@ -309,7 +309,7 @@ operator>=  (TEnum&  lhs, typename std::underlying_type<TEnum>::type rhs) noexce
  * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
  * template enum type \p TEnum to inherit \c std::true_type.
  *
- * @param[in,out]  lhs Reference to the first operand. Receives the result.
+ * @param  lhs         First operand.
  * @param  rhs         Second operand.
  * @tparam TEnum       Enumeration type.
  * @return The resulting enum element.
@@ -329,7 +329,7 @@ operator+  (TEnum  lhs, TEnum rhs) noexcept(true)
  * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
  * template enum type \p TEnum to inherit \c std::true_type.
  *
- * @param[in,out]  lhs Reference to the first operand. Receives the result.
+ * @param  lhs         First operand.
  * @param  rhs         Second operand.
  * @tparam TEnum       Enumeration type.
  * @return The resulting enum element.
@@ -343,8 +343,9 @@ operator+  (TEnum  lhs, typename std::underlying_type<TEnum>::type rhs) noexcept
     return TEnum( TValue(lhs) + rhs );
 }
 
+
 /**
- * Add and assign operator between two enum elements.
+ * Add assignment operator between two enum elements.
  *
  * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
  * template enum type \p TEnum to inherit \c std::true_type.
@@ -357,14 +358,14 @@ operator+  (TEnum  lhs, typename std::underlying_type<TEnum>::type rhs) noexcept
 template<typename TEnum>
 constexpr
 typename  std::enable_if<aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, TEnum>::type
-operator+=  (TEnum&  lhs, TEnum rhs) noexcept(true)
+operator+=  (TEnum& lhs, TEnum rhs) noexcept(true)
 {
     using TValue= typename std::underlying_type<TEnum>::type;
     return lhs= TEnum( TValue(lhs) + TValue(rhs) );
 }
 
 /**
- * Add and assgin operator between an enum element and an integer value of underlying type.
+ * Add assignment operator between an enum element and an integer value of underlying type.
  *
  * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
  * template enum type \p TEnum to inherit \c std::true_type.
@@ -383,6 +384,45 @@ operator+=  (TEnum&  lhs, typename std::underlying_type<TEnum>::type rhs) noexce
     return lhs= TEnum( TValue(lhs) + rhs );
 }
 
+/**
+ * Prefix increment operator.
+ *
+ * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
+ * template enum type \p TEnum to inherit \c std::true_type.
+ *
+ * @param[in,out]  arg Reference to the enum value to be incremented.
+ * @tparam TEnum       Enumeration type.
+ * @return The new value of \p lhs which is set the resulting enum element.
+ */
+template<typename TEnum>
+constexpr
+typename  std::enable_if<aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, TEnum>::type
+operator++  (TEnum&  arg) noexcept(true)
+{
+    using TValue= typename std::underlying_type<TEnum>::type;
+    return arg= TEnum( TValue(arg) + 1 );
+}
+
+/**
+ * Postfix increment operator.
+ *
+ * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
+ * template enum type \p TEnum to inherit \c std::true_type.
+ *
+ * @param[in,out]  arg Reference to the enum value to be incremented.
+ * @tparam TEnum       Enumeration type.
+ * @return The old value of \p arg.
+ */
+template<typename TEnum>
+ALIB_CPP14_CONSTEXPR
+typename  std::enable_if<aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, TEnum>::type
+operator++  (TEnum&  arg, int) noexcept(true)
+{
+    using TValue= typename std::underlying_type<TEnum>::type;
+    TEnum tmp= arg;
+    arg= TEnum( TValue(arg) + 1 );
+    return tmp;
+}
 
 /**
  * Subtract operator between two enum elements.
@@ -390,7 +430,7 @@ operator+=  (TEnum&  lhs, typename std::underlying_type<TEnum>::type rhs) noexce
  * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
  * template enum type \p TEnum to inherit \c std::true_type.
  *
- * @param[in,out]  lhs Reference to the first operand. Receives the result.
+ * @param  lhs         First operand.
  * @param  rhs         Second operand.
  * @tparam TEnum       Enumeration type.
  * @return The resulting enum element.
@@ -411,7 +451,7 @@ operator-  (TEnum  lhs, TEnum rhs) noexcept(true)
  * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
  * template enum type \p TEnum to inherit \c std::true_type.
  *
- * @param[in,out]  lhs Reference to the first operand. Receives the result.
+ * @param  lhs         First operand.
  * @param  rhs         Second operand.
  * @tparam TEnum       Enumeration type.
  * @return The resulting enum element.
@@ -426,7 +466,7 @@ operator-  (TEnum  lhs, typename std::underlying_type<TEnum>::type rhs) noexcept
 }
 
 /**
- * Subtract and assign operator between two enum elements.
+ * Subtract assignment operator between two enum elements.
  *
  * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
  * template enum type \p TEnum to inherit \c std::true_type.
@@ -446,7 +486,7 @@ operator-=  (TEnum&  lhs, TEnum rhs) noexcept(true)
 }
 
 /**
- * Subtract and assign operator between an enum element and an integer value of underlying type.
+ * Subtract assignment operator between an enum element and an integer value of underlying type.
  *
  * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
  * template enum type \p TEnum to inherit \c std::true_type.
@@ -463,6 +503,291 @@ operator-=  (TEnum&  lhs, typename std::underlying_type<TEnum>::type rhs) noexce
 {
     using TValue= typename std::underlying_type<TEnum>::type;
     return lhs= TEnum( TValue(lhs) - rhs );
+}
+
+/**
+ * Prefix decrement operator.
+ *
+ * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
+ * template enum type \p TEnum to inherit \c std::true_type.
+ *
+ * @param[in,out]  arg Reference to the enum value to be decremented.
+ * @tparam TEnum       Enumeration type.
+ * @return The new value of \p lhs which is set the resulting enum element.
+ */
+template<typename TEnum>
+constexpr
+typename  std::enable_if<aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, TEnum>::type
+operator--  (TEnum&  arg) noexcept(true)
+{
+    using TValue= typename std::underlying_type<TEnum>::type;
+    return arg= TEnum( TValue(arg) - 1 );
+}
+
+
+/**
+ * Postfix decrement operator.
+ *
+ * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
+ * template enum type \p TEnum to inherit \c std::true_type.
+ *
+ * @param[in,out]  arg Reference to the enum value to be decremented.
+ * @tparam TEnum       Enumeration type.
+ * @return The old value of \p arg.
+ */
+template<typename TEnum>
+ALIB_CPP14_CONSTEXPR
+typename  std::enable_if<aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, TEnum>::type
+operator--  (TEnum&  arg, int) noexcept(true)
+{
+    using TValue= typename std::underlying_type<TEnum>::type;
+    TEnum tmp= arg;
+    arg= TEnum( TValue(arg) - 1 );
+    return tmp;
+}
+
+/**
+ * Unary plus operator for enum elements.
+ *
+ * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
+ * template enum type \p TEnum to inherit \c std::true_type.
+ *
+ * @param  arg         Operand.
+ * @tparam TEnum       Enumeration type.
+ * @return Parameter \p arg (identical value).
+ */
+template<typename TEnum>
+constexpr
+typename  std::enable_if<aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, TEnum>::type
+operator+  (TEnum  arg) noexcept(true)
+{
+    return arg;
+}
+
+/**
+ * Unary minus operator for enum elements.
+ *
+ * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
+ * template enum type \p TEnum to inherit \c std::true_type.
+ *
+ * @param  arg         Operand.
+ * @tparam TEnum       Enumeration type.
+ * @return The resulting enum element.
+ */
+template<typename TEnum>
+constexpr
+typename  std::enable_if<aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, TEnum>::type
+operator-  (TEnum  arg) noexcept(true)
+{
+    using TValue= typename std::underlying_type<TEnum>::type;
+    return TEnum( - TValue(arg) );
+}
+
+
+/**
+ * Multiplication operator between an enum element and an integer value of underlying type.
+ *
+ * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
+ * template enum type \p TEnum to inherit \c std::true_type.
+ *
+ * @param  lhs         First operand.
+ * @param  rhs         Second operand.
+ * @tparam TEnum       Enumeration type.
+ * @return The resulting enum element.
+ */
+template<typename TEnum>
+constexpr
+typename  std::enable_if<aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, TEnum>::type
+operator*  (TEnum  lhs, typename std::underlying_type<TEnum>::type rhs) noexcept(true)
+{
+    using TValue= typename std::underlying_type<TEnum>::type;
+    return TEnum( TValue(lhs) * rhs );
+}
+
+/**
+ * Multiplication assignment operator between an enum element and an integer value of underlying
+ * type.
+ *
+ * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
+ * template enum type \p TEnum to inherit \c std::true_type.
+ *
+ * @param[in,out]  lhs Reference to the first operand. Receives the result.
+ * @param  rhs         Second operand.
+ * @tparam TEnum       Enumeration type.
+ * @return The resulting enum element.
+ */
+template<typename TEnum>
+constexpr
+typename  std::enable_if<aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, TEnum>::type
+operator*= (TEnum& lhs, typename std::underlying_type<TEnum>::type rhs) noexcept(true)
+{
+    using TValue= typename std::underlying_type<TEnum>::type;
+    return lhs= TEnum( TValue(lhs) * rhs );
+}
+
+/**
+ * Division operator between an enum element and an integer value of underlying type.
+ *
+ * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
+ * template enum type \p TEnum to inherit \c std::true_type.
+ *
+ * @param  lhs         First operand.
+ * @param  rhs         Second operand.
+ * @tparam TEnum       Enumeration type.
+ * @return The resulting enum element.
+ */
+template<typename TEnum>
+constexpr
+typename  std::enable_if<aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, TEnum>::type
+operator/  (TEnum  lhs, typename std::underlying_type<TEnum>::type rhs) noexcept(true)
+{
+    using TValue= typename std::underlying_type<TEnum>::type;
+    return TEnum( TValue(lhs) / rhs );
+}
+
+/**
+ * Division assignment operator between an enum element and an integer value of underlying
+ * type.
+ *
+ * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
+ * template enum type \p TEnum to inherit \c std::true_type.
+ *
+ * @param[in,out]  lhs Reference to the first operand. Receives the result.
+ * @param  rhs         Second operand.
+ * @tparam TEnum       Enumeration type.
+ * @return The resulting enum element.
+ */
+template<typename TEnum>
+constexpr
+typename  std::enable_if<aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, TEnum>::type
+operator/= (TEnum& lhs, typename std::underlying_type<TEnum>::type rhs) noexcept(true)
+{
+    using TValue= typename std::underlying_type<TEnum>::type;
+    return lhs= TEnum( TValue(lhs) / rhs );
+}
+
+
+/**
+ * Modulo operator between an enum element and an integer value of underlying type.
+ *
+ * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
+ * template enum type \p TEnum to inherit \c std::true_type.
+ *
+ * @param  lhs         First operand.
+ * @param  rhs         Second operand.
+ * @tparam TEnum       Enumeration type.
+ * @return The resulting enum element.
+ */
+template<typename TEnum>
+constexpr
+typename  std::enable_if<aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, TEnum>::type
+operator%  (TEnum  lhs, typename std::underlying_type<TEnum>::type rhs) noexcept(true)
+{
+    using TValue= typename std::underlying_type<TEnum>::type;
+    return TEnum( TValue(lhs) % rhs );
+}
+
+/**
+ * Modulo assignment operator between an enum element and an integer value of underlying
+ * type.
+ *
+ * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
+ * template enum type \p TEnum to inherit \c std::true_type.
+ *
+ * @param[in,out]  lhs Reference to the first operand. Receives the result.
+ * @param  rhs         Second operand.
+ * @tparam TEnum       Enumeration type.
+ * @return The resulting enum element.
+ */
+template<typename TEnum>
+constexpr
+typename  std::enable_if<aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, TEnum>::type
+operator%= (TEnum& lhs, typename std::underlying_type<TEnum>::type rhs) noexcept(true)
+{
+    using TValue= typename std::underlying_type<TEnum>::type;
+    return lhs= TEnum( TValue(lhs) % rhs );
+}
+
+
+/**
+ * Shift-left operator between an enum element and an integer value of underlying type.
+ *
+ * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
+ * template enum type \p TEnum to inherit \c std::true_type.
+ *
+ * @param  lhs         First operand.
+ * @param  rhs         Second operand.
+ * @tparam TEnum       Enumeration type.
+ * @return The resulting enum element.
+ */
+template<typename TEnum>
+constexpr
+typename  std::enable_if<aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, TEnum>::type
+operator<<  (TEnum  lhs, typename std::underlying_type<TEnum>::type rhs) noexcept(true)
+{
+    using TValue= typename std::underlying_type<TEnum>::type;
+    return TEnum( TValue(lhs) << rhs );
+}
+
+/**
+ * Shift-left assignment operator between an enum element and an integer value of underlying type.
+ *
+ * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
+ * template enum type \p TEnum to inherit \c std::true_type.
+ *
+ * @param[in,out]  lhs Reference to the first operand. Receives the result.
+ * @param  rhs         Second operand.
+ * @tparam TEnum       Enumeration type.
+ * @return The resulting enum element.
+ */
+template<typename TEnum>
+constexpr
+typename  std::enable_if<aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, TEnum>::type
+operator<<= (TEnum& lhs, typename std::underlying_type<TEnum>::type rhs) noexcept(true)
+{
+    using TValue= typename std::underlying_type<TEnum>::type;
+    return lhs= TEnum( TValue(lhs) << rhs );
+}
+
+
+/**
+ * Shift-right operator between an enum element and an integer value of underlying type.
+ *
+ * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
+ * template enum type \p TEnum to inherit \c std::true_type.
+ *
+ * @param  lhs         First operand.
+ * @param  rhs         Second operand.
+ * @tparam TEnum       Enumeration type.
+ * @return The resulting enum element.
+ */
+template<typename TEnum>
+constexpr
+typename  std::enable_if<aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, TEnum>::type
+operator>>  (TEnum  lhs, typename std::underlying_type<TEnum>::type rhs) noexcept(true)
+{
+    using TValue= typename std::underlying_type<TEnum>::type;
+    return TEnum( TValue(lhs) << rhs );
+}
+
+/**
+ * Shift-right assignment operator between an enum element and an integer value of underlying type.
+ *
+ * Selected by the compiler only if \alib{lang,T_EnumIsArithmetical} is specialized for
+ * template enum type \p TEnum to inherit \c std::true_type.
+ *
+ * @param[in,out]  lhs Reference to the first operand. Receives the result.
+ * @param  rhs         Second operand.
+ * @tparam TEnum       Enumeration type.
+ * @return The resulting enum element.
+ */
+template<typename TEnum>
+constexpr
+typename  std::enable_if<aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, TEnum>::type
+operator>>= (TEnum& lhs, typename std::underlying_type<TEnum>::type rhs) noexcept(true)
+{
+    using TValue= typename std::underlying_type<TEnum>::type;
+    return lhs= TEnum( TValue(lhs) >> rhs );
 }
 
 

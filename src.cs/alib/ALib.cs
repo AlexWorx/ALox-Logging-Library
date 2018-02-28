@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -72,7 +72,7 @@ public static class ALIB
          * revision \e 0. Pure bug-fix releases that do not change the interface of ALib
          * are holding the same #Version but an increased number in this field.
          */
-        public static readonly  int                    Revision                                  =0;
+        public static readonly  int                    Revision                                  =1;
 
         /**
          * The configuration used by \alox. This is received or created with overloaded

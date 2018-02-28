@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -33,7 +33,7 @@ namespace aworx { namespace lib { namespace config {
 
 
 /** ************************************************************************************************
- * Exception codes
+ * Exception codes of namespace #aworx::lib::config.
  **************************************************************************************************/
 enum class Exceptions
 {
@@ -45,11 +45,15 @@ enum class Exceptions
 };
 
 /** ************************************************************************************************
- * \alib{lang,T_EnumIsBitwise,Bitwise} enumeration of slots used for plug-ins. The associated
- * \alib{lang,T_EnumMetaDataDecl,enum meta data table} contains the slot priorities.
+ * \alib{lang,T_EnumIsArithmetical,Arithmetical enumeration} used to prioritize
+ * of type \alib{config,ConfigurationPlugin} objects attached to instances of
+ * class \alib{config,Configuration}.
  **************************************************************************************************/
 enum class Priorities
 {
+    /** Used to denote that no variable or plug-in was found.  */
+    NONE                    = 0,
+
     /**
      * Constant providing a priority which is even lower than default. This priority is not used by
      * any standard plug-ins and currently not even anywhere in core \alib. The rational to
@@ -59,33 +63,32 @@ enum class Priorities
      * the configuration.<br>
      * The underlying integer value is \c 500.
      */
-    AutoDetected           = 500,
+    AutoDetected            = 500,
 
     /**
      * Used to store default values. By default, a plug-in of type \alib{config,InMemoryPlugin} is
      * installed here.. The underlying integer value is \c 500. \c 10000.
      */
-    DefaultValues          = 10000,
+    DefaultValues           = 10000,
 
 
     /**
      * Used to attach the main application configuration plug-in.   For example an plug-in of type
      * \alib{config,IniFile}. The underlying integer value is \c 500. \c 20000.
      */
-    Standard               = 20000,
+    Standard                = 20000,
 
 
     /**
      * Used with plug-in \alib{config,Environment}.  The underlying integer value is \c 30000.
      */
-    Environment            = 30000,
+    Environment             = 30000,
 
 
     /**
      * Used with plug-in \alib{config,CLIArgs}. The underlying integer value is \c 40000.
      */
-    CLI                    = 40000,
-
+    CLI                     = 40000,
 
     /**
      * Used to store protected values. By default, a plug-in of type \alib{config,InMemoryPlugin} is
@@ -93,13 +96,7 @@ enum class Priorities
      * defined in a plug-in with this priority.<br>
      * The underlying integer value is  <c>std::numeric_limits<int>::max()</c>.
      */
-    ProtectedValues        = (std::numeric_limits<int>::max)(),
-
-
-    /** Used to denote that no variable or plug-in was found.  */
-    NONE                   = 0,
-
-
+    ProtectedValues         = (std::numeric_limits<int>::max)(),
 };
 
 /** ************************************************************************************************

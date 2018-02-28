@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -118,16 +118,15 @@ namespace applyto {
     template<> struct       T_Apply<bool> : public std::true_type
     {
         /** ****************************************************************************************
-         * Writes the words "true" or "false" to the given AString
+         * By default, writes the words "true" or "false" to the given AString.
+         * The names are resourced in library \alib{strings,Strings} with keys
+         * \c "APPLY_T" and \c "APPLY_F".
          * @param target The object that \b Apply was invoked on.
          * @param b      The boolean to write to \p target.
          * @return The number of characters appended to target.
          ******************************************************************************************/
-        static inline integer Apply( AString& target, bool& b )
-        {
-            target._<false>( b ? "true" : "false" );
-            return 1;
-        }
+        ALIB_API
+        static integer Apply( AString& target, bool& b );
     };
 
 
@@ -141,11 +140,8 @@ namespace applyto {
          * @param type   The type to write to \p target.
          * @return The number of characters appended to target.
          ******************************************************************************************/
-        static inline integer Apply( AString& target, const std::type_info& type )
-        {
-            target._<false>( debug::TypeDemangler( type ).Get() );
-            return 1;
-        }
+        ALIB_API
+        static integer Apply( AString& target, const std::type_info& type );
     };
 #endif
 

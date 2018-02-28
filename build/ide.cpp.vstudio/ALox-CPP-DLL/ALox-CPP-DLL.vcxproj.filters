@@ -358,6 +358,15 @@
     <ClInclude Include="..\..\..\src.cpp\alib\strings\format\simpletext.hpp">
       <Filter>alib\strings\format</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\time\stopwatch.hpp">
+      <Filter>alib\time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\time\timestamp.hpp">
+      <Filter>alib\time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\time\timespan.hpp">
+      <Filter>alib\time</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ALox-CPP-DLL.cpp">
@@ -563,6 +572,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib\strings\format\simpletext.cpp">
       <Filter>alib\strings\format</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\time\timelib.cpp">
+      <Filter>alib\time</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

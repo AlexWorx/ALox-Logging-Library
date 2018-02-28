@@ -3,7 +3,7 @@
 //
 //  Essential ALib types needed by every module
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -48,13 +48,13 @@ namespace detail {
  *   \alib features for parsing string values.
  *
  *
- * @param tupleType The \c typeid() of the tuples in \p  table
+ * @param tupleType The either \c 2 if named tuple, or \c 3 if parsable.
  * @param table     The table to the enum tuple given as <c>void*</c>
  * @param library   Reference to a library object used.
  * @param name      The resource name.
  */
 ALIB_API extern
-void   loadStandardEnumTable( const std::type_info&        tupleType,
+void   loadStandardEnumTable( int                          tupleType,
                               void*                        table,
                               aworx::Library&              library,
                               const aworx::String&         name          );
@@ -461,7 +461,7 @@ struct EnumMetaData :  public lang::Singleton<EnumMetaData<TEnum>>
                       || std::is_same<typename T_EnumMetaDataDecl<TEnum>::TTuple,
                               std::tuple<typename std::underlying_type<TEnum>::type,String,int>>::value )
               )
-                detail::loadStandardEnumTable( typeid( typename T_EnumMetaDataDecl<TEnum>::TTuple ),
+                detail::loadStandardEnumTable( std::tuple_size<typename T_EnumMetaDataDecl<TEnum>::TTuple>::value,
                                                &Table,
                                                T_Resourced<TEnum>::Lib(),
                                                T_Resourced<TEnum>::Name()         );
@@ -1334,7 +1334,7 @@ struct  T_Apply<TEnum, typename std::enable_if<(     T_EnumMetaDataDeclReadWrite
                 // check if was covered by a previous entry
                 if( EnumContains( covered, tableValue ) )
                     continue;
-                covered+= tableValue;
+                covered|= tableValue;
 
                 target << EnumReadWriteInfo<TEnum>::Name( enumMD, i ) << ',';
             }

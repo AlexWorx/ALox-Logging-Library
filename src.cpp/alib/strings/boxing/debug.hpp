@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -42,7 +42,7 @@ class Boxing
         AString         dump;
 
         /** The return type of various methods of this class */
-        using           StringVector   =   std::vector<aworx::String>;
+        using           StringVector   =   std::vector<aworx::AString>;
 
         /** A vector of strings that is used to collect and return information. */
         StringVector    strings;
@@ -172,8 +172,8 @@ class Boxing
      * @param box           The box object to get the type from.
      * @return A string containing the requested information.
      */
-    ALIB_API
-    AString&  GetType        ( const Box &box );
+    static ALIB_API
+    String64      GetType            ( const Box &box );
 
     /**
      * Returns a \b %StringBlock with a list of types received with

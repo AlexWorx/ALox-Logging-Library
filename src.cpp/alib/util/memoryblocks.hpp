@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -137,10 +137,10 @@ class MemoryBlocks
          * The allocated memory blocks will be freed only if parameter \p deallocate is \c true.
          * In this case, future invocations of #GetMemory will allocate new blocks.
          *
-         * @param deallocate If \c true, all allocated memory chunks are freed. Otherwise, they
-         *                   will be reused with future #GetMemory invocations.
+         * @param currentData Denotes if the currently allocated memory chunks is to be freed or
+         *                    to be reused with future #GetMemory invocations.
          ******************************************************************************************/
-        ALIB_API void    Clear( bool deallocate );
+        ALIB_API void    Clear( CurrentData currentData = CurrentData::Keep );
 
 
         #if ALIB_MODULE_STRINGS

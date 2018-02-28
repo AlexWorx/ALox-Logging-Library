@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -35,10 +35,10 @@ The following information is found in the C++ sub pages:
 ## IDE / Build System Setup ##
 The C++ Version got tested on the following platform combinations:
 - GNU/Linux (Arch Linux)
-    - GNU Compiler Collection 7.2.0
-    - clang compiler 4.0.1
-    - CMake 3.92
-    - CLion 2017.2
+    - GNU Compiler Collection 7.3.0
+    - clang compiler 5.0.1
+    - CMake 3.10.2
+    - CLion 2018.1 EAP
     - QT Creator V. 4.4.0
     - valgrind V. 3.13.0
 

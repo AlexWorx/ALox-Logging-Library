@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -22,13 +22,14 @@ void System::init( Phases phase )
 {
     if( phase == Phases::resourceset )
     {
+        #define EOS ,
         Res->AddBulk( ResourceCategory.ToCString(),
             "ExceptionsPrefix" , "system::" ,
             "ExceptionsPostfix", ""         ,
             "Exceptions",      "0,OK"               "NIY,"
                                "1,Error"            "NIY,"
                                "2,FileExists"       "NIY,"
-                               "3,InvalidPath"      "NIY",
+                               "3,InvalidPath"      "NIY"  EOS
 
             "SpecialFolder",   "0,Root"        ",1,"
                                "1,Current"     ",1,"
@@ -36,7 +37,7 @@ void System::init( Phases phase )
                                "2,Home"        ",1,"
                                "4,Module"      ",1,"
                                "5,Temp"        ",1,"
-                               "6,VarTemp"     ",1",
+                               "6,VarTemp"     ",1"        EOS
 
 
         #if defined (__GLIBC__) || defined(__APPLE__)
@@ -197,12 +198,13 @@ void System::init( Phases phase )
         "129"    ","    "EKEYREJECTED"      ","  "OSERR"  ","
 #endif
         "130"    ","    "EOWNERDEAD"        ","  "OSERR"  ","
-        "131"    ","    "ENOTRECOVERABLE"   ","  "OSERR"  ","
+        "131"    ","    "ENOTRECOVERABLE"   ","  "OSERR"
 #if !defined(__APPLE__)
+                                                          ","
         "132"    ","    "ERFKILL"           ","  "OSERR"  ","
         "133"    ","    "EHWPOISON"         ","  "OSERR"
 #endif
-                                                           ,
+                                                           EOS
 
 #elif defined(_WIN32)
           "1"    ","    "EPERM"             ","  "OSERR"  ","
@@ -284,7 +286,7 @@ void System::init( Phases phase )
         "137"    ","    "ETIME"             ","  "OSERR"  ","
         "138"    ","    "ETIMEDOUT"         ","  "OSERR"  ","
         "139"    ","    "ETXTBSY"           ","  "OSERR"  ","
-        "140"    ","    "EWOULDBLOCK"       ","  "OSERR"   ,
+        "140"    ","    "EWOULDBLOCK"       ","  "OSERR"  EOS
 #endif
 
         // end of AddBulk()

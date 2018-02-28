@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -340,6 +340,18 @@ void    FormatterPythonStyle::replaceEscapeSequences( integer startIdx )
     targetString->SearchAndReplace( "{{" , "{" , startIdx );
     targetString->SearchAndReplace( "}}" , "}" , startIdx );
     targetString->_<false>( Format::Escape( Switch::Off, startIdx ) );
+
+    // search the last newline character in the just written portion of the target string.
+    // If one is found, reset autosizes and actual start of string.
+    integer lastNewLine=-1;
+    integer actNewLine = startIdx - 1;
+    while( (actNewLine= targetString->IndexOf('\n', actNewLine + 1)) > 0 )
+        lastNewLine= actNewLine;
+    if( lastNewLine >= 0 )
+    {
+        targetStringStartLength= lastNewLine + 1;
+        autoSizes.Start();
+    }
 }
 
 bool    FormatterPythonStyle::preAndPostProcess( integer startIdx, AString* target )
@@ -402,13 +414,11 @@ bool    FormatterPythonStyle::preAndPostProcess( integer startIdx, AString* targ
                 int growth;
                 if( !conversion.ConsumeDecDigits<int>( growth ) )
                     growth= 3;
-                else
-                    growth--;
 
                 if( isPreProcess )
                 {
                     integer actPos= targetString->Length() - targetStringStartLength;
-                    integer tabStop= autoSizes.Next( actPos + 1, growth );
+                    integer tabStop= autoSizes.Next( actPos , growth );
                     targetString->InsertChars<false>( tabChar, tabStop - actPos );
                 }
             }

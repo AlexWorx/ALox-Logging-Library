@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -237,6 +237,7 @@ class CString
         /** ************************************************************************************
          * Static method that returns the index of the first character which not equal
          * within two strings.
+         * If \p haystack starts with \p needle, then the length of \p needle is returned.
          *
          * @param haystack        Pointer to the start of the string.
          * @param haystackLength  The length of the string or the maximum position to search.
@@ -249,7 +250,7 @@ class CString
          * @param sensitivity     Denotes whether the comparison should be made case sensitive
          *                        or not.
          *
-         * @return The index of the first character found which is not equal in given strings
+         * @return The index of the first character found which is not equal in given strings.
          **************************************************************************************/
         ALIB_API
         static integer IndexOfFirstDifference( const char*  haystack,   integer  haystackLength,

@@ -1,7 +1,7 @@
 // #################################################################################################
 //  aworx - Unit Tests
 //  Private, not published in git ( I hope! )
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alox/alox.hpp"
@@ -36,7 +36,7 @@ class JustOne : public aworx::Singleton<JustOne>
 
     // import the map of singletons. This is not done in the header files!
     namespace aworx { namespace lib { namespace lang {
-        extern ALIB_API RTTIUnorderedMap<void*>  singletonMap;
+        extern ALIB_API TypeMap<void*>  singletonMap;
     }}}
 //! [DOX_ALIB_LANG_SINGLETON_DEBUG_LIST_1]
 
@@ -52,7 +52,7 @@ namespace dox_lang_singleton {
     {
         std::cout << "Debug-Mode: Dumping Singletons: " << std::endl;
 
-        for( auto it : aworx::lib::lang::singletonMap )
+        for( auto& it : aworx::lib::lang::singletonMap )
             std::cout << "  "
                  << aworx::lib::debug::TypeDemangler(it.first.get()).Get()
                  << " = 0x" << std::hex

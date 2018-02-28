@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -465,7 +465,7 @@ double NumberFormat::ParseFloat( const String& src, integer& startIdx )
 
     // +/- sign
     bool negative;
-    if  ( (negative= (*buf == '-')) == true || *buf == '+' )
+    if  ( (negative= (*buf == '-')) || *buf == '+' )
     {
         buf++;
         integer skip= CString::IndexOfAnyExcluded(             buf     , bufEnd - buf,
@@ -495,7 +495,8 @@ double NumberFormat::ParseFloat( const String& src, integer& startIdx )
 
     // read number before dot?
     char c= *buf;
-    if ( c != DecimalPointChar )
+    bool integralPartFound= isdigit(c);
+    if ( integralPartFound )
     {
         if (  c < '0' || c > '9' )
             return 0.0;
@@ -506,31 +507,37 @@ double NumberFormat::ParseFloat( const String& src, integer& startIdx )
             buf+= intIdx;
         }
 
-        // no dot following?
-        if (     buf >= bufEnd
-             ||  DecimalPointChar != *buf  )
+        // end?
+        ALIB_ASSERT_ERROR( buf <= bufEnd, "Error in float parsing algorithm." )
+        if ( buf == bufEnd )
         {
             startIdx= buf - src.Buffer();
             return negative ? -result : result;
         }
     }
 
-    // consume dot
-    buf++;
-
-    // read number after dot
-    if (      buf <  bufEnd
-         &&  *buf >= '0'  &&  *buf <= '9' )
+    if( DecimalPointChar == *buf  )
     {
-        integer intIdx= 0;
-        double intValue= static_cast<double>( ParseDecDigits( String(buf, bufEnd - buf), intIdx ) );
-        buf+= intIdx;
-        result+= ( intValue / pow( 10, intIdx ) );
+        // consume dot
+        buf++;
+
+        // read number after dot
+        if (      buf <  bufEnd
+             &&  *buf >= '0'  &&  *buf <= '9' )
+        {
+            integer intIdx= 0;
+            double intValue= static_cast<double>( ParseDecDigits( String(buf, bufEnd - buf), intIdx ) );
+            buf+= intIdx;
+            result+= ( intValue / pow( 10, intIdx ) );
+        }
     }
+    else if( !integralPartFound )
+        return 0.0; // index not moved, indicates failure.
 
     // read eNNN
     if ( buf <  bufEnd )
     {
+        auto oldBuf= buf;
         bool eSepFound=  false;
         integer  sepLen= ExponentSeparator.Length();
         if ( buf + sepLen < bufEnd )
@@ -542,7 +549,7 @@ double NumberFormat::ParseFloat( const String& src, integer& startIdx )
             if ( (eSepFound= ( pos == sepLen ) ) == true )
                 buf += pos;
         }
-        else if ( *buf == 'e' || *buf == 'E' )
+        if ( !eSepFound && ( *buf == 'e' || *buf == 'E' ) )
         {
             buf++;
             eSepFound= true;
@@ -559,8 +566,16 @@ double NumberFormat::ParseFloat( const String& src, integer& startIdx )
             {
                 integer idx= 0;
                 int exp= static_cast<int>( ParseDecDigits( String(buf, bufEnd - buf), idx ) );
-                buf+= idx;
-                result*= pow( 10, negativeE ? -exp : exp );
+                if( idx > 0 )
+                {
+                    buf+= idx;
+                    result*= pow( 10, negativeE ? -exp : exp );
+                }
+                else
+                {
+                    // no number found behind e. restore buf and ignore.
+                    buf= oldBuf;
+                }
             }
         }
     }
@@ -1032,23 +1047,31 @@ integer NumberFormat::WriteFloat( double value,  char* buffer, integer idx, int 
 {
     int integralWidth= overrideWidth != 0 ? overrideWidth : IntegralPartMinimumWidth;
 
-    // check for NaN
-    if( std::isnan( value ) )    {  return idx+= NANLiteral.CopyTo(buffer + idx);   }
 
-    // sign
-    if ( std::signbit(value) )
+    // check for NaN, negative zero
+    auto classification=  std::fpclassify(value);
+    if( classification == FP_NAN )    {  return idx+= NANLiteral.CopyTo(buffer + idx);   }
+    bool isNegative= std::signbit(value);
+    if ( isNegative )
     {
-        buffer[idx++]= '-';
-        value= -value;
-    }
-    else
-    {
-        if ( PlusSign != '\0' )
-            buffer[idx++]= PlusSign;
+        if( classification == FP_ZERO )
+        {
+            isNegative= false;
+            value     = 0.0;
+        }
+        else
+            value= -value;
     }
 
     // +/-inf
-    if( std::isinf( value ) )    {  return idx+= INFLiteral.CopyTo(buffer + idx);   }
+    if( classification == FP_INFINITE )
+    {
+        if ( isNegative )
+            buffer[idx++]= '-';
+        else if ( PlusSign != '\0' )
+            buffer[idx++]= PlusSign;
+        return idx+= INFLiteral.CopyTo(buffer + idx);
+    }
 
 
     constexpr int MaxFloatSignificantDigits= 16;
@@ -1141,13 +1164,13 @@ integer NumberFormat::WriteFloat( double value,  char* buffer, integer idx, int 
     {
 
         uint64_t rest= fractPart % pow10_0to19[ unusedFractDigits ];
-                fractPart= fractPart / pow10_0to19[ unusedFractDigits ];
+        fractPart    = fractPart / pow10_0to19[ unusedFractDigits ];
         if ( rest > pow10_0to19[ unusedFractDigits ] / 2 )
         {
             fractPart++;
             int  overflowDigit= 0;
             bool overflow=      false;
-            while (     overflowDigit <= fractionalDigits
+            while (    (overflowDigit <= fractionalDigits || fractionalDigits < 0 )
                     && (overflow|= fractPart == pow10_0to19[ overflowDigit ]) == false
                     &&  fractPart > pow10_0to19[ overflowDigit ]
                    )
@@ -1168,6 +1191,18 @@ integer NumberFormat::WriteFloat( double value,  char* buffer, integer idx, int 
             }
         }
     }
+
+    // write sign. Do it only if this is not a 0 value after rounding.
+    if ( isNegative )
+    {
+        if(    intPart
+            || (    fractPart
+                 && ( fractionalDigits < 0 || fractionalDigits > firstNonZero -1)
+           ) )
+            buffer[idx++]= '-';
+    }
+    else if ( PlusSign != '\0' )
+        buffer[idx++]= PlusSign;
 
     // write int part
     if ( intPart != 0L || integralWidth != 0 )

@@ -1,13 +1,17 @@
 // #################################################################################################
 //  aworx - Unit Tests
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alox/alox.hpp"
 
 #if !defined (HPP_ALIB_STRINGS_FORMAT_SIMPLETEXT)
     #include "alib/strings/format/simpletext.hpp"
+#endif
+
+#if !defined (HPP_ALIB_STRINGS_UTIL_WILDCARDMATCHER)
+    #include "alib/strings/util/wildcardmatcher.hpp"
 #endif
 
 #define TESTCLASSNAME       CPP_ALib_Strings_Util
@@ -319,11 +323,62 @@ UT_METHOD( SimpleTextMarked )
         }
         UT_TRUE( caught );
 
-
-
-
-
     }
+}
+
+//--------------------------------------------------------------------------------------------------
+//--- WildcardMatcher
+//--------------------------------------------------------------------------------------------------
+WildcardMatcher wildcardMatcher;
+void TestMatcher(AWorxUnitTesting& ut, const String& haystack, const String& pattern, bool result )
+{
+    wildcardMatcher.Compile(pattern);
+    UT_EQ( result, wildcardMatcher.Match( haystack ) );
+}
+
+UT_METHOD( WildcardMatcher )
+{
+    UT_INIT();
+
+    TestMatcher( ut, "abc.conf", "abc.conf"       , true    );
+    TestMatcher( ut, "abc.conf", "ABC.conf"       , false   );
+    TestMatcher( ut, "abc.conf", "abc.c*"         , true    );
+    TestMatcher( ut, "abc.conf", "abc.c?*"        , true    );
+    TestMatcher( ut, "abc.conf", "abc.c?"         , false   );
+    TestMatcher( ut, "abc.conf", "abc.c??"        , false   );
+    TestMatcher( ut, "abc.conf", "abc.?c??"       , false   );
+    TestMatcher( ut, "abc.conf", "abc.?o??"       , true    );
+    TestMatcher( ut, "abc.conf", "*.???"          , false   );
+    TestMatcher( ut, "abc.conf", "*.????"         , true    );
+    TestMatcher( ut, "abc.conf", "*.????"         , true    );
+    TestMatcher( ut, "abc.conf", "*.?*???"        , true    );
+    TestMatcher( ut, "abc.conf", "*.?**?*?*?"     , true    );
+    TestMatcher( ut, "abc.conf", "*.?**??*?*?"    , false   );
+    TestMatcher( ut, "abc.conf", "?b?.*"          , true    );
+    TestMatcher( ut, "abc.conf", "a?c.*"          , true    );
+    TestMatcher( ut, "abc.conf", "ab?.*"          , true    );
+    TestMatcher( ut, "abc.conf", "?b?.*"          , true    );
+    TestMatcher( ut, "abc.conf", "??c.*"          , true    );
+    TestMatcher( ut, "abc.conf", "???.*"          , true    );
+    TestMatcher( ut, "abc.conf", "???*"           , true    );
+    TestMatcher( ut, "abc.conf", "????????"       , true    );
+    TestMatcher( ut, "abc.conf", "?????????"      , false   );
+    TestMatcher( ut, "abc.conf", "??????????"     , false   );
+    TestMatcher( ut, "abc.conf", "ab???????"      , false   );
+    TestMatcher( ut, "abc.conf", "ab??????"       , true    );
+    TestMatcher( ut, "abc.conf", "*bc.conf"       , true    );
+    TestMatcher( ut, "abc.conf", "a*bc.conf"      , true    );
+    TestMatcher( ut, "abc.conf", "a*c.conf"       , true    );
+    TestMatcher( ut, "abc.conf", "a*c*"           , true    );
+    TestMatcher( ut, "abc.conf", "a*o*"           , true    );
+    TestMatcher( ut, "abc.conf", "a*x*"           , false   );
+
+    // quick test for case insenstive matching:
+    WildcardMatcher wcm("*bc.c*"  );
+    UT_EQ( true , wcm.Match( "abc.conf" , Case::Ignore ) );
+    UT_EQ( true , wcm.Match( "abC.conf" , Case::Ignore ) );
+    UT_EQ( true , wcm.Match( "ABC.CONF" , Case::Ignore ) );
+    UT_EQ( false, wcm.Match( "ABx.CONF" , Case::Ignore ) );
 }
 
 UT_CLASS_END

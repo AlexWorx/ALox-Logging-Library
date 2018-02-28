@@ -1,7 +1,7 @@
 # #################################################################################################
-#  CMakeLists.txt - ALox Samples
+#  CMakeLists.txt - ALox Unit Tests
 #
-#  Copyright 2017 A-Worx GmbH, Germany
+#  Copyright 2015-2018 A-Worx GmbH, Germany
 #  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 #
 #  This CMake file just includes the main CMake file found in build/cmake.cpp/unittests.
@@ -18,7 +18,7 @@ cmake_minimum_required( VERSION 3.1.0 )
 # -------------------------------------------------------------------------------------------------
 
     ### uncomment to force cotire on clean cmake built
-    #set( ALIB_CMAKE_COTIRE_DEFAULT   "On" )
+    #set( ALIB_CMAKE_COTIRE      "On" )
 
 
 # -------------------------------------------------------------------------------------------------

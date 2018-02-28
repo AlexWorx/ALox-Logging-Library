@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  aworx::lox::core - ALox Logging Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -37,6 +37,7 @@ Domain::Domain( Domain* parent, const String& name )
 : SubDomains()
 , Data()
 {
+    ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( Name,  ReplaceExternalBuffer );
     // store parameters
     this->Parent=   parent;
     Name=           name;

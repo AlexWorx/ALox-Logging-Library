@@ -8,8 +8,6 @@ build/ide.java.eclipse/ALox-Java-1.6-Test/bin.pruned
 build/ide.java.eclipse/ALox-Java-Android-Test-Release-Log/proguard
 build/ide.java.eclipse/ALox-Java-Android-Test-Release-Log/gen
 build/ide.java.eclipse/ALox-Java-1.6-Test/unittest_testiniFile.cfg*
-build/cmake.cpp/unittests/DownloadProject.cmake
-build/cmake.cpp/unittests/DownloadProject.CMakeLists.cmake.in
 build/_builds_
 docs/ALox.JAVA/generated/
 docs/ALox.CPP/generated/
@@ -18,7 +16,6 @@ docs/doxygen/dot
 docs/doxygenDotFixer.cfg
 *.zip
 *.userprefs
-DownloadProject.*
 cotire.cmake
 .directory
 # not yet released
@@ -49,8 +46,6 @@ tasks.xml
 
 
 # Build results
-
-[Dd]ebug/
 [Rr]elease/
 x64/
 [Bb]in/

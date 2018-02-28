@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -39,6 +39,15 @@ Exception::~Exception()
 }
 
 
+const Enum&   Exception::Code()
+{
+    auto it= Entries.end();
+    while(--it > Entries.begin() )
+        if( it->Code.Value() >= 0 )
+            break;
+    return it->Code;
+}
+
 void   Exception::copyStrings()
 {
     for( auto& box : Entries.back().Args )
@@ -46,7 +55,7 @@ void   Exception::copyStrings()
         if( box.IsArrayOf<char>() )
             box= BoxedAs<AString>(* new AString( box.Unbox<String>() ));
 
-        // TOWCHAR: when we have WAstring, uncomment this line.
+        // TOWCHAR: when we have WAString, uncomment this line.
         // if( box.IsArrayOf<wchar_>() )
         //     box= BoxedAs<AStringW>(* new AStringW<wchar_t>( box.Unbox<String>() ));
     }
@@ -59,7 +68,6 @@ void   Exception::Describe( AString& target, Entry& entry )
     aworx::Formatter::AcquireDefault( ALIB_SRCPOS_REL_EMPTY );
         fmt.Format( target, formatString, entry.Args );
     aworx::Formatter::ReleaseDefault();
-
 }
 
 

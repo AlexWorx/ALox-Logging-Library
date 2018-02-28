@@ -1,7 +1,7 @@
 # #################################################################################################
-#  CMakeLists.txt - ALox Logging Library
+#  CMakeLists.txt - ALox Logging Library - Unit Tests
 #
-#  Copyright 2015 A-Worx GmbH, Germany
+#  Copyright 2015-2018 A-Worx GmbH, Germany
 #  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 #
 #  How to use:
@@ -16,7 +16,7 @@
 # -------------------------------------------------------------------------------------------------
 
     ### uncomment to force cotire on clean cmake built
-    #set( ALIB_CMAKE_COTIRE_DEFAULT   "On" )
+    #set( ALIB_CMAKE_COTIRE   "On" )
 
 # -------------------------------------------------------------------------------------------------
 # General
@@ -62,25 +62,9 @@
 ## -------------------------------------------------------------------------------------------------
 
     if ( ${ALIB_GTEST} )
-        # GTest
-        # For Google Test, we first download CMake tool "Crascit/DownloadProject" that allows
-        # downloading and integrating projects 8-)
-        if( NOT EXISTS  ${CMAKE_CURRENT_SOURCE_DIR}/DownloadProject.cmake )
-            message( STATUS "Downloading 'DownloadProject.cmake' from github" )
-            file( DOWNLOAD
-                  "https://raw.githubusercontent.com/Crascit/DownloadProject/master/DownloadProject.cmake"
-                  "${CMAKE_CURRENT_SOURCE_DIR}/DownloadProject.cmake" )
-            file( DOWNLOAD
-                  "https://raw.githubusercontent.com/Crascit/DownloadProject/master/DownloadProject.CMakeLists.cmake.in"
-                  "${CMAKE_CURRENT_SOURCE_DIR}/DownloadProject.CMakeLists.cmake.in" )
-        endif()
 
-        if( NOT EXISTS  ${CMAKE_CURRENT_SOURCE_DIR}/DownloadProject.cmake )
-            message( "Error downloading 'DownloadProject.cmake'")
-        endif()
-
-        # ...now we use the download tool on gtest
-        include(DownloadProject.cmake)
+        # Include CMake download script of "crascit". (See license note in corresponding directory)
+        include(${ALIB_BASE_DIR}/build/cmake.cpp/crascit_download/DownloadProject.cmake)
 
         if (CMAKE_VERSION VERSION_LESS 3.2)
             set(UPDATE_DISCONNECTED_IF_AVAILABLE "")

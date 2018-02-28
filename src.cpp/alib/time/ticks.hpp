@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -28,6 +28,8 @@
 namespace aworx { namespace lib { namespace time {
 
 /** ************************************************************************************************
+ * \note This class is deprecated and will be removed with the next version of \alib.
+ *
  * This class provides an interface into system dependent timer values (usually 64 bit
  * tick counters) that we call *ticks*. Ticks and this class allow to store and calculate time
  * values in an efficient and highly accurate way.
@@ -60,7 +62,7 @@ class Ticks
     // #############################################################################################
     protected:
         /** The internal time value. */
-        Time::TRaw                ticks                                                         =0L;
+        TimeLib::TRaw             ticks                                                         =0L;
 
     // #############################################################################################
     // Constructors
@@ -78,7 +80,7 @@ class Ticks
          * @param initialTicks The value to copy into this.
          ******************************************************************************************/
         inline
-        Ticks( Time::TRaw initialTicks )   { this->ticks=    initialTicks;    }
+        Ticks( TimeLib::TRaw initialTicks )   { this->ticks=    initialTicks;    }
 
     // #############################################################################################
     // Interface
@@ -94,7 +96,7 @@ class Ticks
                 struct timespec t;
                 ALIB_ASSERT_RESULT_EQUALS( clock_gettime(CLOCK_MONOTONIC, &t),  0 );
 
-                ticks= ( t.tv_sec * Time::NanosPerSecond  ) + t.tv_nsec ;
+                ticks= ( t.tv_sec * TimeLib::NanosPerSecond  ) + t.tv_nsec ;
             #elif defined( _WIN32 )
                     LARGE_INTEGER v;
                     ALIB_ASSERT_RESULT_NOT_EQUALS( QueryPerformanceCounter( &v ) , 0 );
@@ -118,14 +120,14 @@ class Ticks
          * @param value The number of ticks this object should represent.
          ******************************************************************************************/
         inline
-        void         SetRaw( Time::TRaw value )        { this->ticks=    value;           }
+        void         SetRaw( TimeLib::TRaw value )     { this->ticks=    value;           }
 
         /** ****************************************************************************************
          * Gets the internally stored system dependent time in raw ticks.
          * @return  The internal value
          ******************************************************************************************/
         inline
-        Time::TRaw      Raw()    const                 { return ticks;                    }
+        TimeLib::TRaw   Raw()    const                 { return ticks;                    }
 
         /** ****************************************************************************************
          * Adds time (span) represented by the given Ticks instance to this instance.
@@ -139,7 +141,7 @@ class Ticks
          * @param other The ticks to add.
          ******************************************************************************************/
         inline
-        void         Add( Time::TRaw other )           { this->ticks+=    other;         }
+        void         Add( TimeLib::TRaw other )        { this->ticks+=    other;         }
 
         /** ****************************************************************************************
          * Subtracts the point in time or time span represented by the given Ticks instance from
@@ -155,7 +157,89 @@ class Ticks
          * @param other The ticks to subtract.
          ******************************************************************************************/
         inline
-        void         Sub( Time::TRaw other )           { this->ticks-=    other;         }
+        void         Sub( TimeLib::TRaw other )        { this->ticks-=    other;         }
+
+        /** ****************************************************************************************
+         * Addition operator.
+         * @param other The ticks left-hand side object to add.
+         * @return A ticks object containing the sum.
+         ******************************************************************************************/
+        inline
+        Ticks operator+( const Ticks& other )       { return Ticks(this->ticks +    other.ticks);  }
+
+        /** ****************************************************************************************
+         * Substractions operator.
+         * @param other The right-hand side ticks object to substract.
+         * @return A ticks object containing the sum.
+         ******************************************************************************************/
+        inline
+        Ticks operator-( const Ticks& other )       { return Ticks(this->ticks -    other.ticks);  }
+
+        /** ****************************************************************************************
+         * Assignment by sum operator.
+         * @param other The ticks object subtract.
+         * @return A reference to this object.
+         ******************************************************************************************/
+        inline
+        Ticks& operator+=( const Ticks& other )     { this->ticks+=    other.ticks; return *this;  }
+
+        /** ****************************************************************************************
+         * Assignment by difference operator.
+         * @param other The ticks object subtract.
+         * @return A reference to this object.
+         ******************************************************************************************/
+        inline
+        Ticks& operator-=( const Ticks& other )     { this->ticks-=    other.ticks; return *this;  }
+
+        /** ****************************************************************************************
+         * Equal to operator.
+         * @param other The ticks to compare.
+         * @return The result of the comparison.
+         ******************************************************************************************/
+        inline
+        bool   operator==( const Ticks& other )     { return this->ticks == other.ticks;  }
+
+
+        /** ****************************************************************************************
+         * Not equal to operator.
+         * @param other The ticks to compare.
+         * @return The result of the comparison.
+         ******************************************************************************************/
+        inline
+        bool   operator!=( const Ticks& other )     { return this->ticks != other.ticks;  }
+
+        /** ****************************************************************************************
+         * Less than operator.
+         * @param other The ticks to compare.
+         * @return A reference to this object.
+         ******************************************************************************************/
+        inline
+        bool   operator<( const Ticks& other )      { return this->ticks <  other.ticks;  }
+
+        /** ****************************************************************************************
+         * Less than or equal to operator.
+         * @param other The ticks to compare.
+         * @return The result of the comparison.
+         ******************************************************************************************/
+        inline
+        bool   operator<=( const Ticks& other )     { return this->ticks <=  other.ticks;  }
+
+        /** ****************************************************************************************
+         * Greater than operator.
+         * @param other The ticks to compare.
+         * @return The result of the comparison.
+         ******************************************************************************************/
+        inline
+        bool   operator>( const Ticks& other )      { return this->ticks >  other.ticks;  }
+
+        /** ****************************************************************************************
+         * Greater than or equal to operator.
+         * @param other The ticks to compare.
+         * @return The result of the comparison.
+         ******************************************************************************************/
+        inline
+        bool   operator>=( const Ticks& other )     { return this->ticks >=  other.ticks;  }
+
 
     // #############################################################################################
     // Interface Age, Since
@@ -174,6 +258,19 @@ class Ticks
             Ticks result;
             result.Sub( ticks );
             return result;
+        }
+
+        /** ****************************************************************************************
+         * Sets this object to represent the time span between its creation (or otherwise currently
+         * stored point in time) and the current system tim.e
+         *
+         * If the internal value represents a historic point in time, the resulting time span is
+         * positive.
+         ******************************************************************************************/
+        inline
+        void    SetToAge()
+        {
+            *this= Ticks() - *this;
         }
 
         /** ****************************************************************************************
@@ -219,7 +316,7 @@ class Ticks
         int           InDays()       const
         {
             #if defined (__GLIBCXX__) || defined(__APPLE__)
-                return static_cast<int>( ticks /    Time::NanosPerDay );
+                return static_cast<int>( ticks /    TimeLib::NanosPerDay );
             #elif defined( _WIN32 )
                 return    (int) ( ticks /    (TIME.ticksPerSecond * 60 * 60 * 24) );
             #else
@@ -236,7 +333,7 @@ class Ticks
         int           InHours()      const
         {
             #if defined (__GLIBCXX__) || defined(__APPLE__)
-                return static_cast<int>( ticks /    Time::NanosPerHour );
+                return static_cast<int>( ticks /    TimeLib::NanosPerHour );
             #elif defined( _WIN32 )
                 return    (int) ( ticks /    (TIME.ticksPerSecond * 60 * 60 ) );
             #else
@@ -252,7 +349,7 @@ class Ticks
         int           InMinutes()    const
         {
             #if defined (__GLIBCXX__) || defined(__APPLE__)
-                return static_cast<int>( ticks /    Time::NanosPerMinute );
+                return static_cast<int>( ticks /    TimeLib::NanosPerMinute );
             #elif defined( _WIN32 )
                 return    (int) ( ticks /    (TIME.ticksPerSecond * 60) );
             #else
@@ -268,7 +365,7 @@ class Ticks
         int           InSeconds()    const
         {
             #if defined (__GLIBCXX__) || defined(__APPLE__)
-                return    static_cast<int>(ticks /    Time::NanosPerSecond);
+                return    static_cast<int>(ticks /    TimeLib::NanosPerSecond);
             #elif defined( _WIN32 )
                 return    (int) ( ticks /    TIME.ticksPerSecond );
             #else
@@ -284,7 +381,7 @@ class Ticks
         int64_t  InMillis()    const
         {
             #if defined (__GLIBCXX__) || defined(__APPLE__)
-                return    ticks /    Time::NanosPerMillisecond;
+                return    ticks /    TimeLib::NanosPerMillisecond;
             #elif defined( _WIN32 )
                 return    ( ticks * 1000 /   TIME.ticksPerSecond );
 
@@ -301,7 +398,7 @@ class Ticks
         int64_t  InMicros()    const
         {
             #if defined (__GLIBCXX__) || defined(__APPLE__)
-                return    ticks /    Time::NanosPerMicrosecond;
+                return    ticks /    TimeLib::NanosPerMicrosecond;
             #elif defined( _WIN32 )
                 return    ( ticks * 1000000 /   TIME.ticksPerSecond );
             #else
@@ -345,9 +442,9 @@ class Ticks
         Ticks&       FromDays   ( int           days )
         {
             #if defined (__GLIBCXX__) || defined(__APPLE__)
-                ticks=                   days *    Time::NanosPerDay   ;
+                ticks=                   days *    TimeLib::NanosPerDay   ;
             #elif defined( _WIN32 )
-                ticks= (Time::TRaw) (  ((int64_t) days) * 24 * 60 * 60 *  TIME.ticksPerSecond + 1  );
+                ticks= (TimeLib::TRaw) (  ((int64_t) days) * 24 * 60 * 60 *  TIME.ticksPerSecond + 1  );
             #else
                 #pragma message ("Unknown Platform in file: " __FILE__ )
             #endif
@@ -363,9 +460,9 @@ class Ticks
         Ticks&       FromHours  ( int           hours )
         {
             #if defined (__GLIBCXX__) || defined(__APPLE__)
-                ticks=                   hours *    Time::NanosPerHour   ;
+                ticks=                   hours *    TimeLib::NanosPerHour   ;
             #elif defined( _WIN32 )
-                ticks= (Time::TRaw) (  ((int64_t) hours) * 60 * 60 *  TIME.ticksPerSecond    + 1 );
+                ticks= (TimeLib::TRaw) (  ((int64_t) hours) * 60 * 60 *  TIME.ticksPerSecond    + 1 );
             #else
                 #pragma message ("Unknown Platform in file: " __FILE__ )
             #endif
@@ -381,9 +478,9 @@ class Ticks
         Ticks&       FromMinutes( int           mins )
         {
             #if defined (__GLIBCXX__) || defined(__APPLE__)
-                ticks=                   mins *    Time::NanosPerMinute   ;
+                ticks=                   mins *    TimeLib::NanosPerMinute   ;
             #elif defined( _WIN32 )
-                ticks= (Time::TRaw) (  ((int64_t) mins) * 60 *  TIME.ticksPerSecond  + 1  );
+                ticks= (TimeLib::TRaw) (  ((int64_t) mins) * 60 *  TIME.ticksPerSecond  + 1  );
             #else
                 #pragma message ("Unknown Platform in file: " __FILE__ )
             #endif
@@ -399,9 +496,9 @@ class Ticks
         Ticks&       FromSeconds( int           secs )
         {
             #if defined (__GLIBCXX__) || defined(__APPLE__)
-                ticks=                   secs *    Time::NanosPerSecond   ;
+                ticks=                   secs *    TimeLib::NanosPerSecond   ;
             #elif defined( _WIN32 )
-                ticks= (Time::TRaw) (  ((int64_t) secs) *  TIME.ticksPerSecond  + 1  );
+                ticks= (TimeLib::TRaw) (  ((int64_t) secs) *  TIME.ticksPerSecond  + 1  );
             #else
                 #pragma message ("Unknown Platform in file: " __FILE__ )
             #endif
@@ -417,9 +514,9 @@ class Ticks
         Ticks&       FromMillis ( int64_t  millis )
         {
             #if defined (__GLIBCXX__) || defined(__APPLE__)
-                ticks=                   millis *    Time::NanosPerMillisecond   ;
+                ticks=                   millis *    TimeLib::NanosPerMillisecond   ;
             #elif defined( _WIN32 )
-                ticks= (Time::TRaw) (  ((int64_t) millis) *  TIME.ticksPerSecond / 1000   + 1 );
+                ticks= (TimeLib::TRaw) (  ((int64_t) millis) *  TIME.ticksPerSecond / 1000   + 1 );
             #else
                 #pragma message ("Unknown Platform in file: " __FILE__ )
             #endif
@@ -435,9 +532,9 @@ class Ticks
         Ticks&       FromMicros ( int64_t  micros )
         {
             #if defined (__GLIBCXX__) || defined(__APPLE__)
-                ticks=                   micros *    Time::NanosPerMicrosecond ;
+                ticks=                   micros *    TimeLib::NanosPerMicrosecond ;
             #elif defined( _WIN32 )
-                ticks= (Time::TRaw) (  ((int64_t) micros) *  TIME.ticksPerSecond / 1000000  + 1 );
+                ticks= (TimeLib::TRaw) (  ((int64_t) micros) *  TIME.ticksPerSecond / 1000000  + 1 );
             #else
                 #pragma message ("Unknown Platform in file: " __FILE__ )
             #endif
@@ -455,7 +552,7 @@ class Ticks
             #if defined (__GLIBCXX__) || defined(__APPLE__)
                 ticks=    nanos;
             #elif defined( _WIN32 )
-                ticks=  (Time::TRaw) (  nanos / 1000000000.0 *  (double) TIME.ticksPerSecond );
+                ticks=  (TimeLib::TRaw) (  nanos / 1000000000.0 *  (double) TIME.ticksPerSecond );
             #else
                 #pragma message ("Unknown Platform in file: " __FILE__ )
             #endif
@@ -485,7 +582,7 @@ class Ticks
              * Converts the internal value into seconds since January 1, 1970, 00:00:00 GMT.
              * The conversion is dependent on time zone and system clock setting of the host.
              * Changes in the system clock setting of the host are reflected only with explicit
-             * invocation of \alib{time,Time::SyncClock} on the static library singleton.
+             * invocation of \alib{time,TimeLib::SyncClock} on the static library singleton.
              * \note  GLib specific. For Windows OS see #InSystemTime and #InFileTime.
              *
              * @return Seconds in the epoch.
@@ -497,7 +594,7 @@ class Ticks
              * 1970, 00:00:00 GMT. The conversion is dependent on time zone and system clock
              * setting of the host.
              * Changes in the system clock setting of the host are reflected only with explicit
-             * invocation of \alib{time,Time::SyncClock} on the static library singleton.
+             * invocation of \alib{time,TimeLib::SyncClock} on the static library singleton.
              * \note  GLib specific. For Windows OS see #SetFromSystemTime and #SetFromFileTime.
              *
              * @param epochSeconds The milliseconds in the epoch to convert.
@@ -512,7 +609,7 @@ class Ticks
              * 12:00 A.M. January 1, 1601 UTC. The conversion is dependent on time zone and system
              * clock setting of the host.
              * Changes in the system clock setting of the host are reflected only with explicit
-             * invocation of \alib{time,Time::SyncClock} on the static library singleton.
+             * invocation of \alib{time,TimeLib::SyncClock} on the static library singleton.
              * \note  Microsoft Windows specific. On other systems see #InEpochSeconds.
              *
              * @param result Pointer to a FILETIME struct to store the result in.
@@ -525,7 +622,7 @@ class Ticks
              * 12:00 A.M. January 1, 1601 UTC. The conversion is dependent on time zone and system
              * clock setting of the host.
              * Changes in the system clock setting of the host are reflected only with explicit
-             * invocation of \alib{time,Time::SyncClock} on the static library singleton.
+             * invocation of \alib{time,TimeLib::SyncClock} on the static library singleton.
              * \note  Microsoft Windows specific. On other systems see #InEpochSeconds.
              *
              * @param result A reference to a LARGE_INTEGER struct to store the result in.
@@ -538,7 +635,7 @@ class Ticks
              * that have elapsed since 12:00 A.M. January 1, 1601 UTC.
              * The conversion is dependent on time zone and system clock setting of the host.
              * Changes in the system clock setting of the host are reflected only with explicit
-             * invocation of \alib{time,Time::SyncClock} on the static library singleton.
+             * invocation of \alib{time,TimeLib::SyncClock} on the static library singleton.
              * \note  Microsoft Windows specific. On other systems see #SetFromEpochSeconds.
              *
              * @param fileTime The file time to set.
@@ -551,7 +648,7 @@ class Ticks
              * that have elapsed since 12:00 A.M. January 1, 1601 UTC.
              * The conversion is dependent on time zone and system clock setting of the host.
              * Changes in the system clock setting of the host are reflected only with explicit
-             * invocation of \alib{time,Time::SyncClock} on the static library singleton.
+             * invocation of \alib{time,TimeLib::SyncClock} on the static library singleton.
              * \note  Microsoft Windows specific. On other systems see #SetFromEpochSeconds.
              *
              * @param fileTime The file time to set.
@@ -562,7 +659,7 @@ class Ticks
              * Converts the internal value into windows specific system time struct.
              * The conversion is dependent on time zone and system clock setting of the host.
              * Changes in the system clock setting of the host are reflected only with explicit
-             * invocation of \alib{time,Time::SyncClock} on the static library singleton.
+             * invocation of \alib{time,TimeLib::SyncClock} on the static library singleton.
              * \note  Microsoft Windows specific. On other systems see #SetFromEpochSeconds.
              *
              * @param result   Pointer to a SYSTEMTIME struct to store the result in.
@@ -576,7 +673,7 @@ class Ticks
              * Sets the internal value to represent the point in time provided as windows system
              * time. The conversion is dependent on time zone and system clock setting of the host.
              * Changes in the system clock setting of the host are reflected only with explicit
-             * invocation of \alib{time,Time::SyncClock} on the static library singleton.
+             * invocation of \alib{time,TimeLib::SyncClock} on the static library singleton.
              * \note  Microsoft Windows specific. On other systems see #SetFromEpochSeconds.
              *
              * @param systemTime Pointer to a SYSTEMTIME struct that holds the system time to set.
@@ -589,10 +686,32 @@ class Ticks
 
 };
 
+}} // namespace lib::time
+
+/** Type alias name in namespace #aworx. */
+using     Ticks=                aworx::lib::time::Ticks;
+
+}  // namespace aworx
 
 
 #if ALIB_MODULE_BOXING
+//! @cond NO_DOX
+namespace aworx { namespace lib { namespace boxing  {
+ALIB_BOXING_SPECIALIZE_CB_CUB( aworx::lib::time::Ticks , aworx::lib::time::Ticks , false, true );
+inline  void  T_Boxing<aworx::lib::time::Ticks>::Boxing(Box& box, const aworx::lib::time::Ticks& o)
+{
+    box.data.Value= static_cast<boxvalue>( o.Raw() );
+    box.data.Length= 0;
+}
 
+inline  aworx::lib::time::Ticks T_Boxing<aworx::lib::time::Ticks>::Unboxing( const Box& box )
+{
+    return aworx::lib::time::Ticks( static_cast<time::TimeLib::TRaw>( box.data.Value ) );
+}
+}}}
+//! @endcond
+
+namespace aworx { namespace lib { namespace time {
 /**
  * Implementation of \ref aworx::lib::strings::boxing::IFormat "IFormat" for boxable type
  * <c>Ticks*</c>.<br>
@@ -613,13 +732,8 @@ class IFormat_TTicks: public strings::boxing::IFormat, public Singleton<IFormat_
     virtual void Invoke( const Box& box, const String& formatSpec, AString& target )                       override;
 };
 
-#endif
+}}} // namespace [aworx::lib::time]
+#endif //ALIB_MODULE_BOXING
 
-}} // namespace lib::time
-
-/** Type alias name in namespace #aworx. */
-using     Ticks=                aworx::lib::time::Ticks;
-
-}  // namespace aworx
 
 #endif // HPP_ALIB_TIME_TICKS

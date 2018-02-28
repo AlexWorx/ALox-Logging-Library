@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Unit Tests - AWorx Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package ut_alox;
@@ -274,14 +274,15 @@ public class UT_alox_logger extends AWorxUnitTesting
     {
         UT_INIT();
 
-        testFormatConfig( "Test"                                , "Test", null,null,null,null     );
-        testFormatConfig( "\"Test"                              , "Test", null,null,null,null     );
-        testFormatConfig( "\"Test\""                            , "Test", null,null,null,null     );
-        testFormatConfig( "  \" Test  \"  s"                    , " Test  s",null,null,null,null  );
+        testFormatConfig( "Test"                                , "Test"                      , null,null,null,null  );
+        testFormatConfig( "\"Test"                              , "\"Test"                    , null,null,null,null  );
+        testFormatConfig( "\\\"Test"                            , "\"Test"                    , null,null,null,null  );
+        testFormatConfig( "\"Test\""                            , "Test"                      , null,null,null,null  );
+        testFormatConfig( "  \" Test \"        X "              , "\" Test \"        X"       , null,null,null,null  );
+        testFormatConfig( "\"  Te\"st \""                       , "  Te\"st "                 , null,null,null,null  );
 
-        testFormatConfig( " Test , a ,b, c,d  "                 , "Test", "a","b","c","d"         );
-        testFormatConfig( "\" Test, a\" ,b, \"c\",d  "          , " Test, a","b","c", "d",null    );
-        testFormatConfig( "\" Test, a\" ,b, \"c,d\"  "          , " Test, a","b","c,d",null,null  );
+        testFormatConfig( " Test , a ,b,   c,d  "               , "Test", "a","b","c","d"                            );
+        testFormatConfig( " Test , a ,b,\" ,  c\",d  "          , "Test", "a","b"," ,  c","d"                        );
     }
 
 

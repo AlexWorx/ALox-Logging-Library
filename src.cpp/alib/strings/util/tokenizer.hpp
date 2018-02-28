@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -103,11 +103,10 @@ class Tokenizer
     // #############################################################################################
     public:
         /** ****************************************************************************************
-         * Constructs an empty tokenizer. Before use, method #Set to initialize needs to be invoked.
+         * Constructs an empty tokenizer. To initialize, method #Set needs to be invoked.
          ******************************************************************************************/
         Tokenizer()
-        {
-        }
+        {}
 
         /** ****************************************************************************************
          * Constructs a tokenizer to work on a given string.

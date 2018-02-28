@@ -1,7 +1,7 @@
 # #################################################################################################
 #  ALox.cmake - CMake file for ALox.
 #
-#  Copyright 2017 A-Worx GmbH, Germany
+#  Copyright 2015-2018 A-Worx GmbH, Germany
 #  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 #
 #  Note: This cmake file includes ALib.cmake and expects this script in the very same folder.

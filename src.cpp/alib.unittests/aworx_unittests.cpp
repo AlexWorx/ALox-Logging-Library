@@ -1,7 +1,7 @@
 // #################################################################################################
 //  aworx - Unit Tests
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -28,7 +28,6 @@ using namespace aworx::lox::core;
 namespace ut_aworx {
 
 
-
 // #################################################################################################
 // Fields
 // #################################################################################################
@@ -36,6 +35,7 @@ String128 AWorxUnitTesting::LastAutoSizes;
 AString   AWorxUnitTesting::GeneratedSamplesDir;
 String    AWorxUnitTesting::GeneratedSamplesSearchDir= "docs/ALox.CPP/";
 AString   AWorxUnitTesting::CustomMetaInfoFormat;
+
 
 // #################################################################################################
 // Constructors/destructor
@@ -79,7 +79,7 @@ AWorxUnitTesting::AWorxUnitTesting( const TString& pdomain, const TString& testN
     #else
         utl= Lox::CreateConsoleLogger();
 
-        // check if we are in CLion. Here it is important to switch of the use of dark/light colors
+        // check if we are in CLion. Here it is important to switch off the use of dark/light colors
         if( utl->GetName().Equals("ANSI_CONSOLE") )
         {
             AString classPath;
@@ -96,6 +96,7 @@ AWorxUnitTesting::AWorxUnitTesting( const TString& pdomain, const TString& testN
         utl->AutoSizes.Import( LastAutoSizes, CurrentData::Keep );
 
     lox.Acquire(ALIB_SRCPOS);
+        lox.SetVerbosity( utl, Verbosity::Verbose, "/" );
         lox.SetVerbosity( utl, Verbosity::Verbose, Domain);
         lox.SetVerbosity( utl, Verbosity::Warning, ALox::InternalDomains );
         lox.SetVerbosity( utl, Verbosity::Info,    String64() << ALox::InternalDomains << "UT_REPORT" );
@@ -182,7 +183,10 @@ void AWorxUnitTesting::WriteResultFile(const String& name, const String& outputR
     }
 
     if ( GeneratedSamplesDir.IsNotNull() && GeneratedSamplesDir.IsEmpty() )
+    {
+        ALIB_ERROR( "Samples directory \"/generated\" not found in upward path search" )
         return;
+    }
 
     String256 fileName( GeneratedSamplesDir );
     fileName._( name );

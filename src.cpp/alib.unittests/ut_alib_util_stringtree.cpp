@@ -1,7 +1,7 @@
 // #################################################################################################
 //  aworx - Unit Tests
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alox/alox.hpp"
@@ -170,7 +170,7 @@ UT_METHOD(StringTree_Cursor)
         {
             (cursor= pm.Root()).MoveTo("a");
             int cnt= 0;
-            for( auto rangeIt : cursor )
+            for( auto& rangeIt : cursor )
             {
                 (void) rangeIt;
                 cnt++;
@@ -204,7 +204,7 @@ UT_METHOD(StringTree_Cursor)
 template <typename TStartValue>
 int doWalk( StringTree<AString,aworx::lib::util::StringTreeConstKeyAllocator<AString>>::Walker& walker, TStartValue startValue )
 {
-    String spaces= Spaces::Get();
+    String& spaces= Spaces::Get();
 
     int cnt= 0;
     for ( walker.SetStart( startValue ); walker.IsValid() ; walker.Next() )
