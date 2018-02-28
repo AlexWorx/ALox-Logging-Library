@@ -5,7 +5,7 @@
 //  header files to include.
 //  The sole purpose is to define which modules are included in a distribution.
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 

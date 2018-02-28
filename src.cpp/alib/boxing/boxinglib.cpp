@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -41,12 +41,12 @@ Contents of the <b>manual</b> section:
 &nbsp;&nbsp; \ref alib_namespace_boxing_prereq_reading        "1.3 How To Read This Documentation"                           <br>
 
 \ref              alib_namespace_boxing_intro               "2. Introduction to Boxing"                                      <br>
-&nbsp;&nbsp; \ref alib_namespace_boxing_intro_goals           "2.1 Goals of ALib Boxing"                                    <br>
+&nbsp;&nbsp; \ref alib_namespace_boxing_intro_goals           "2.1 Goals of ALib Boxing"                                     <br>
 &nbsp;&nbsp; \ref alib_namespace_boxing_intro_boxing          "2.2 The Term 'Boxing'"                                        <br>
 &nbsp;&nbsp; \ref alib_namespace_boxing_intro_cpp             "2.3 Boxing In C++?"                                           <br>
 &nbsp;&nbsp; \ref alib_namespace_boxing_intro_templated       "2.4 Using A Templated Constructor"                            <br>
                                                                                                                              <br>
-\ref              alib_namespace_boxing_basics             "3. Basics Of ALib Boxing"                                       <br>
+\ref              alib_namespace_boxing_basics             "3. Basics Of ALib Boxing"                                        <br>
 &nbsp;&nbsp; \ref alib_namespace_boxing_basics_tmp           "3.1 Perfect Auto-Boxing in C++ With Template Meta Programming" <br>
 &nbsp;&nbsp; \ref alib_namespace_boxing_basics_boxer         "3.2 Class Boxer: The Master Of A Boxed Type"                   <br>
 &nbsp;&nbsp; \ref alib_namespace_boxing_basics_dots          "3.3 Struct BoxData: The Values Stored in a Box"                <br>
@@ -100,6 +100,7 @@ The term "module" here means, that this feature of \b %ALib may be used independ
 the \b %ALib class library itself. We have designed module <b>%ALib %Boxing</b> to have (almost) \b no
 dependencies to other portions of \b %ALib in respect to header file inclusion, the use of other common
 ALib types, macros and other sweet \b %ALib sugar.
+
 
 The rational for this effort lies in the fact that this way the community can use <b>%ALib %Boxing</b>
 without including the complete \b %ALib stack of utilities.
@@ -168,7 +169,7 @@ generalized, extensible approach that is not limited to variadic function argume
 Thinking further, it quickly becomes clear that identifying the original type of an object and
 retrieving its original value is not sufficient: With multiple-inheritance in place, it is often
 not interesting if an unknown object originates from a certain base type.
-The main purpose of multiple-inheritance is to be able to invoke an interface method that a second
+The main purpose of multiple-inheritance is to be able to invoke an interface method that a
 base type provides. (This statement is arguable: our justification for stating this is the
 observation that e.g. in programming language \e Java, multiple-inheritance is limited to
 implementing interface classes - a limitation that does not seem to be very severe for
@@ -241,7 +242,7 @@ function:
     using reference types (\c '&') is not. The advantage of using
     reference types is that in the case the parameter is provided already as a value of the expected
      type (and therefore no implicit construction is needed).
-  - If C++ keyword \c explicit used with constructor declarations instructs the compiler to suppress
+  - C++ keyword \c explicit used with constructor declarations, instructs the compiler to suppress
     implicit invocations.
   - Implicit constructor invocation is only performed on <b>one direct level</b>. Possible nested
     invocations are not detected and need manual insertion of constructor calls.
@@ -281,7 +282,7 @@ compiler.
 \anchor alib_namespace_boxing_basics_tmp
 ## 3.1 Perfect Auto-Boxing in C++ With Template Meta Programming
 
-The solution of this library for implementing the templated constructor discussed above is the
+The solution of this library for implementing the templated constructor discussed above, is the
 use of template meta programming (aka [TMP](https://en.wikipedia.org/wiki/Template_metaprogramming)).
 \b %ALib class
 \ref aworx::lib::boxing::Box "Box" utilizes TMP utilities found in standard library header
@@ -372,7 +373,7 @@ Let us summarize what was described so far about the classes and relationships:
   - an integer value to store the length of arrays and container types.
 
 Together, these are \b three values. On a typical 64-Bit machine, each value is 64-Bit long. The
-size of a boxed value hence there is 24 bytes.
+size of a \b %Box hence is 24 bytes.
 
 Furthermore it was said, that class \b %Box uses a templated constructor.
 This constructor needs to set the three values.
@@ -415,7 +416,8 @@ value, the type is specified with the template parameter of the method. The impl
 the method is very simple and thus performs fast: the method compares the pointer to the boxer
 singleton stored in the box with that boxer singleton that would be used if a value
 of template parameter \p TBoxable was boxed. Now, due to the template meta programming, this is
-quite all done by the compiler at compile time.
+quite all done by the compiler at compile time. The assembly code is just comparing two memory
+addresses.
 
 \~Comment ####################################################################################### \~
 \anchor alib_namespace_boxing_basics_nonbij
@@ -757,7 +759,7 @@ Sometimes it is very helpful to allow unboxing a certain boxed type back to seve
 source types. We will learn later in this documentation details about boxing string types.
 What we will see is that various string types, like string literals, character pointers,
 \c std::string, <b>%ALib Strings </b>, QT-Strings, etc., are all boxed to the same destination type,
-namely array of characters. Now, the implementation allows to unbox all of the named custom
+namely an array of characters. Now, the implementation allows to unbox all of the named custom
 string types from boxed character arrays. This means: A function accepting boxed strings, may
 be invoked with any sort of custom string type, while internally it uses solely "its preferred" type
 by unboxing into it and processing the string in the format of desire!
@@ -792,6 +794,22 @@ The following code shows a quick sample:
 \snippet "DOX_ALIB_BOXING.cpp"     DOX_ALIB_BOXING_SAMPLE_ENUMS
 \snippet "DOX_ALIB_BOXING.cpp"     DOX_ALIB_BOXING_SAMPLE_ENUMS_2
 
+\note
+  While C++ 11 introduced <c>enum class</c> types, still these are 'limited' classes in the respect
+  that enum classes do not provide inheritance. Thus, you can not define an interface method
+  that accepts enums coming from custom derived types. This is quite often a problem. Of-course,
+  using module \alibmod_nolink_boxing, an interface method now may accept a box, which allows just any
+  type passed. But such then accepts anything else and this is not what was wanted.
+
+\note
+  For this reason \alib provides class \alib{lang,Enum} which builds on \alib boxing and provides
+  a special box that is restricted to boxing enumerations. With overloaded <c>operator==</c>, etc.,
+  this class is often the better choice if the goal is to accept different enum types. A good
+  sample use case is found with class \alib{lang,Exception}.
+
+\note
+  Note, that this class is not included in module distribution of module \alibmod_boxing, but only
+  with the full distribution of \alib.
 
 
 \~Comment ####################################################################################### \~
@@ -799,7 +817,7 @@ The following code shows a quick sample:
 # 4.5 %Boxing Types As They Are
 
 There might be situations, where the bijective, simplifying nature of <b>%ALib %Boxing</b>
-should be suppressed an a type that usually would be converted when boxed, passed as is.
+should be suppressed and a type that usually would be converted when boxed, passed as is.
 To do so, a wrapper class is needed. Such class is provided with template
 \ref aworx::lib::boxing::BoxedAs "BoxedAs<Type>". The class is very simple and stores a reference
 to the type while accepting references and pointers in its constructors.
@@ -1316,21 +1334,20 @@ This is changed with interface
 an additional parameter \p formatSpec, which is a string value providing information about how
 the contents is written. The format specification is fully type and implementation specific.
 
- For example, \b %ALIb class
-\ref aworx::lib::time::TicksCalendarTime "TicksCalendarTime" provides (native) method
-\ref aworx::lib::time::TicksCalendarTime::Format "TicksCalendarTime::Format" to write time and
-date values in a human readable, customizable way. This method also requires a format specification.
-Because \b %TicksCalendarTime is only a helper class, the boxing interface class that
-invokes TicksCalendarTime::Format, is available for boxed values of type
-\ref aworx::lib::time::Ticks "Ticks". The interface attached to boxed values of this type
-is found with boxing interface class
-\ref aworx::lib::time::IFormat_TTicks "IFormat_TTicks". The implementation of the interface
-method \b %Invoke is therefore again rather simple:
+For example, \b %ALIb class \alib{time,CalendarTime} provides (native) method
+\alib{time::CalendarTime,Format} to write time and date values in a human readable and customizable
+way. This method also requires a format specification.
+Because \b %CalendarTime is only a helper class, the boxing interface class that
+invokes CalendarTime::Format, is available for boxed values of type
+\alib{time,TimeStamp}. The interface attached to boxed values of this type is found with boxing
+interface class
+\alib{time,IFormat_TimeStamp}. The implementation of the interface method \b %Invoke is therefore
+again rather simple:
 
-\snippet "alib/time/ticks.cpp"     DOX_ALIB_BOXING_IFORMAT_TTICKS
+\snippet "alib/time/timelib.cpp"     DOX_ALIB_BOXING_IFORMAT_TIMESTAMP
 
 %Boxing interface \b %IFormat is used by \b %ALib internally in module <b>%ALib Strings</b> with class
-\ref aworx::lib::strings::format::Formatter "Formatter" which is used to format the contents of \b %AString
+\alib{strings::format,Formatter} which is used to format the contents of \b %AString
 objects. The whole class relies on <b>%ALib %Boxing</b> and therefore it is not included
 with the single module distribution of <b>%ALib Strings</b> (which excludes boxing).
 
@@ -1679,20 +1696,18 @@ used for collecting such documentation).
 ## 8.3 Lifecycle Management And Data Deletion
 
 This chapter now can be kept really short: <b>%ALib %Boxing</b> does not provide lifecycle
-management or data deletion mechanisms in respect to values (objects) that get boxed.
+management or data creation or deletion mechanisms in respect to values (objects) that get boxed.
 
-The rationale for this is simple: It is always a good design pattern to keep the responsibility
-for the deletion (destruction) of objects in the hands of those code parts, which create
-the object. Now, <b>%ALib %Boxing</b> does not create objects. Instead it just "boxes" already
-existing ones.
+Instead, a box is just a very lightweight wrapper class and the responsibility for the data
+wrapped remains where it is (in the hands of those code parts, which created the boxed object).
 
 Of-course, if a box contains a pointer to data (which is the default when custom types are boxed),
-then the pointer (and data) has to be valid until the box is not used anymore.
+then the pointer has to remain valid until the box is not used anymore.
 
 When reconsidering the \ref alib_namespace_boxing_intro_goals "goals" of this
 software library, the main use case is to enable functions and methods to accept just anything
-possible as a parameter. Now, as long as such "receiving" functions and methods do not store
-the contents of the box, everything is very safe: The box is created on the program stack
+possible as a parameter defined as <c>const Box&</c>.
+Here, everything is very safe: The box is created on the program stack
 (implicitly constructed by the compiler) and when the receiving function (method) returns, the
 stack is [unwinded](https://en.wikipedia.org/wiki/Call_stack#Unwinding)
 and the box object is gone. In this standard use case, the only thing that
@@ -1703,18 +1718,16 @@ really all standard C++ behavior.
   the life-cycle management of boxed data.
 
 As a final note, boxes are rather "immutable" objects. Unless custom interface methods do so,
-there is no method that overwrites or otherwise changes the contents of a box.
-And for the same reasons as mentioned above, there is no need for providing such.
-In the (unlikely) case that a new value should be written into an existing box instance, the
-standard assignment operator might be used. As the box is a POD-type class, standard compiler
-implementation with move semantics is used if possible.<br>
+there is no method that overwrites or otherwise changes the data wrapped in a box.
+But in respect of changing the data that the box wraps, the box is very mutable! Just as
+with construction, assignment operator might be used. As the box is a POD-type class, standard
+compiler implementation move semantics is used.<br>
 Here is an example on how to change the contents (and type!) of a box:
 \snippet "DOX_ALIB_BOXING.cpp"     DOX_ALIB_BOXING_BOX_SET
 
-In the moment an instance of class \b Box is boxed, the TMP constructor detects this and
-copies the contents of the given box. As a result, the originating box may be deleted while the
-"new" box object remains valid. Of-course the boxed data of the originating box may not be
-deleted while the new box is still used.
+In the moment an instance of class \b %Box is boxed, the TMP constructor detects this and
+copies the contents of the given box. As a result, both boxes wrap the same object instead of
+having one box wrapping the other.
 
 \~Comment ####################################################################################### \~
 \anchor alib_namespace_boxing_usage_performance
@@ -1875,7 +1888,6 @@ about how C++ types are boxed. The type is passed as a template parameter:
 The output is:
 
 \snippet "DOX_ALIB_BOXING_DEBUG_4.txt"     OUTPUT
-
 
 
 To inspect the type of a box, the following code may be used:
@@ -2078,10 +2090,11 @@ void Boxing::Init()
 #endif
     {
         // set built-in boxer interfaces
-        DefineDefaultInterface<IEquals    >();
+        DefineDefaultInterface<IEquals >();
         DefineDefaultInterface<IIsLess >();
-        DefineDefaultInterface<IIsNull    >();
-        DefineDefaultInterface<IIsEmpty   >();
+        DefineDefaultInterface<IIsNull >();
+        DefineDefaultInterface<IIsEmpty>();
+        DefineDefaultInterface<IIsTrue >();
 
         #if ALIB_FEAT_BOXING_FTYPES
 
@@ -2112,8 +2125,8 @@ void Boxing::TerminationCleanUp()
     // delete boxer and interface singletons. This is to be done only for tools like
     // valgrind, hence in debug mode.
     ALIB_DBG(
-        for( auto it: dbgKnownBoxers         ) delete it.second;
-        for( auto it: dbgKnownInterfaceImpl  ) delete it.second;
+        for( auto& it : dbgKnownBoxers         ) delete it.second;
+        for( auto& it : dbgKnownInterfaceImpl  ) delete it.second;
     )
 }
 
@@ -2122,7 +2135,7 @@ std::vector<const std::type_info*>        Boxing::DbgGetInterfaces( const std::t
 {
     std::vector<const std::type_info*> target;
     Boxer* boxer= dbgKnownBoxers[boxerType];
-    for( auto it : boxer->interfaces )
+    for( auto& it : boxer->interfaces )
         target.emplace_back( &it.first.get() );
     return target;
 }
@@ -2130,7 +2143,7 @@ std::vector<const std::type_info*>        Boxing::DbgGetInterfaces( const std::t
 std::vector<const std::type_info*>        Boxing::DbgGetKnownBoxers()
 {
     std::vector<const std::type_info*> target;
-    for( auto it: dbgKnownBoxers )
+    for( auto& it: dbgKnownBoxers )
         target.emplace_back( &it.first.get() );
     return target;
 }
@@ -2138,7 +2151,7 @@ std::vector<const std::type_info*>        Boxing::DbgGetKnownBoxers()
 std::vector<const std::type_info*>        Boxing::DbgGetKnownInterfaces()
 {
     std::vector<const std::type_info*> target;
-    for( auto it: dbgKnownInterfaces )
+    for( auto& it: dbgKnownInterfaces )
         target.emplace_back( &it.first.get() );
     return target;
 }
@@ -2146,7 +2159,7 @@ std::vector<const std::type_info*>        Boxing::DbgGetKnownInterfaces()
 std::vector<const std::type_info*>        Boxing::DbgGetDefaultInterfaces()
 {
     std::vector<const std::type_info*> target;
-    for( auto it: Boxer::defaultInterfaces )
+    for( auto& it: Boxer::defaultInterfaces )
         target.emplace_back( &it.first.get() );
     return target;
 }
@@ -2154,7 +2167,7 @@ std::vector<const std::type_info*>        Boxing::DbgGetDefaultInterfaces()
 std::vector<const std::type_info*>        Boxing::DbgGetKnownInterfaceImpl()
 {
     std::vector<const std::type_info*> target;
-    for( auto it: dbgKnownInterfaceImpl )
+    for( auto& it: dbgKnownInterfaceImpl )
         target.emplace_back( &it.first.get() );
     return target;
 }
@@ -2204,7 +2217,7 @@ bool Box::operator< (const Box& rhs)  const
 // #################################################################################################
 
 // static member definition
-lang::RTTIUnorderedMap<Interface*>   Boxer::defaultInterfaces;
+TypeMap<Interface*>   Boxer::defaultInterfaces;
 
 
 bool IEquals::Invoke( const Box& box, const Box& comp )
@@ -2223,10 +2236,9 @@ bool IEquals::Invoke( const Box& box, const Box& comp )
 
     return    box.UnboxRaw() == 0
            || box.Length() == 0
-           || memcmp( reinterpret_cast<void*>( box .UnboxRaw() ),
-                      reinterpret_cast<void*>( comp.UnboxRaw() ),
-                      static_cast     <size_t >( box.Length() ) * box.ArrayElementSize()     ) == 0;
-
+           || memcmp( reinterpret_cast<void* >( box .UnboxRaw() ),
+                      reinterpret_cast<void* >( comp.UnboxRaw() ),
+                      static_cast     <size_t>( box.Length() ) * box.ArrayElementSize()     ) == 0;
 }
 
 

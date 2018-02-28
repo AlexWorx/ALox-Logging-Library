@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -284,7 +284,7 @@ public abstract class FormatterStdImpl extends Formatter
         protected char                        phaFillChar;
 
         /** Forces the padding to be placed after the sign (if any) but before the digits.
-         *  This is used for printing fields in the form ‘+000000120’.
+         *  This is used for printing fields in the form ‘+000000120'.
          *  This alignment option is only valid for numeric types.
          *  Set to \c false in default implementation of #resetPHAs. */
         protected boolean                     phaSignPaddingMode;
@@ -299,7 +299,7 @@ public abstract class FormatterStdImpl extends Formatter
         protected boolean                     phaWriteBinOctHexPrefix;
 
         /** Can be \c true for float-types. If \c true, the value is multiplied with 100 and
-         *  a percentage symbol \c '%' is printed after the value.
+         *  a percentage symbol \c '\%' is printed after the value.
          *  Set to \c false in default implementation of #resetPHAs. */
         protected boolean                     phaIsPercentage;
 

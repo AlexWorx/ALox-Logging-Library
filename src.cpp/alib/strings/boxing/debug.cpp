@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -49,12 +49,14 @@ AString&  Boxing::GetTypeName( const std::type_info &type )
     return target;
 }
 
-AString&  Boxing::GetType( const Box& box )
+String64  Boxing::GetType( const Box& box )
 {
-    target._()._( box.GetTypeInfo() );
+    String64 result;
+    ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( result, ReplaceExternalBuffer )
+    result <<  box.GetTypeInfo();
     if ( box.IsArray() )
-        target._( "[]" );
-    return target;
+        result << "[]";
+    return result;
 }
 
 //! @cond NO_DOX

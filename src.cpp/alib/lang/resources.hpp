@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -87,9 +87,8 @@ namespace lang {
  **************************************************************************************************/
 class Resources
 {
-
     // #############################################################################################
-    // public fields
+    // internal fields
     // #############################################################################################
     protected:
     #if ALIB_MODULE_CONFIGURATION
@@ -134,16 +133,21 @@ class Resources
 
 
     #if ALIB_MODULE_CONFIGURATION
-        /**  The configuration object for custom resource data.<br>
-         *   This field is only available with \ref ALIB_MODULE_CONFIGURATION set.  */
+        /**  An only locally used object. Declared as field member to be reusable (performance
+         *   optimization preferred against memory consumption). */
         config::Variable*           variable                                              = nullptr;
+    #endif
 
+    // #############################################################################################
+    // public fields
+    // #############################################################################################
     public:
+    #if ALIB_MODULE_CONFIGURATION
         /**  The configuration object for custom resource data.<br>
          *   This field is only available with \ref ALIB_MODULE_CONFIGURATION set.  */
         config::Configuration*      Config                                                = nullptr;
-
     #endif
+
 
 
     // #############################################################################################

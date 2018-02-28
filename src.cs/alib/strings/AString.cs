@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -545,14 +545,14 @@ public class AString
             return this;
         }
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          * Inserts the given character n-times at the end of this string (appends).
          *
          * @param c      The character to append.
          * @param qty    The quantity of characters to append.
          *
          * @return  \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString InsertChars( char c, int qty )
         {
             if ( qty > 0 )
@@ -1037,7 +1037,7 @@ public class AString
      * @name Appending characters and strings
      ##@{ ########################################################################################*/
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          *  Appends a region of a character array.
          * \attention Non checking variant of original method.
          *            See \ref CS_ASTRING_NC "Non-checking methods" for <em>_NC</em> method
@@ -1048,7 +1048,7 @@ public class AString
          * @param regionLength   The length of the region in src to append.
          *
          * @return \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _NC( char[] src, int regionStart, int regionLength )
         {
             // big enough?
@@ -1063,12 +1063,12 @@ public class AString
             return this;
         }
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          * Appends an object by invoking \c ToString on it.
          *
          * @param src    The AString compatible type to append
          * @return \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _( Object src  )
         {
             // check null argument
@@ -1084,7 +1084,7 @@ public class AString
                                     return _( src.ToString()  );
         }
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          * Appends an object by invoking \c ToString on it.
          * \attention Non checking variant of original method.
          *            See \ref CS_ASTRING_NC "Non-checking methods" for <em>_NC</em> method
@@ -1092,7 +1092,7 @@ public class AString
          *
          * @param src    The AString compatible type to append
          * @return \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _NC( Object src  )
         {
             // check null argument
@@ -1108,12 +1108,12 @@ public class AString
                                     return _NC( src.ToString()  );
         }
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          *  Append the given AString.
          *
          * @param src  The AString to append.
          * @return \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _( AString src )
         {
             // check null argument
@@ -1146,7 +1146,7 @@ public class AString
             return this;
         }
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          *  Append a region of an AString.
          *
          * @param src            The AString to append.
@@ -1154,7 +1154,7 @@ public class AString
          * @param regionLength   The maximum length of the region in src to append.
          *                       Defaults to int.MaxValue.
          * @return \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _( AString src, int regionStart, int regionLength= int.MaxValue )
         {
             // check null argument
@@ -1186,7 +1186,7 @@ public class AString
             return this;
         }
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          *  Append the given AString.
          *  \attention Non checking variant of original method.
          *             See \ref CS_ASTRING_NC "Non-checking methods" for <em>_NC</em> method
@@ -1194,7 +1194,7 @@ public class AString
          *
          * @param src  The AString to append.
          * @return \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _NC( AString src )
         {
             int srcLength= src.length;
@@ -1211,7 +1211,7 @@ public class AString
             return this;
         }
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          *  Append a region of an AString.
          *  \attention Non checking variant of original method.
          *             See \ref CS_ASTRING_NC "Non-checking methods" for <em>_NC</em> method
@@ -1221,7 +1221,7 @@ public class AString
          * @param regionStart    The start of the region in src to append.
          * @param regionLength   The maximum length of the region in src to append.
          * @return \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _NC( AString src, int regionStart, int regionLength )
         {
             // big enough?
@@ -1236,12 +1236,12 @@ public class AString
             return this;
         }
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          * Append the given char[].
          *
          * @param src     The source array.
          * @return \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _( char[] src )
         {
             // check null argument
@@ -1273,7 +1273,7 @@ public class AString
             return this;
         }
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          * Append a region of a char[].
          *
          * @param src            The source array.
@@ -1282,7 +1282,7 @@ public class AString
          *                       Defaults to int.MaxValue.
          *
          * @return \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _( char[] src, int regionStart, int regionLength= int.MaxValue )
         {
             // check null argument
@@ -1314,13 +1314,13 @@ public class AString
             return this;
         }
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          *  Append a Substring.
          *
          * @param substring   The source array.
          *
          * @return \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _( Substring substring )
         {
             // check null argument
@@ -1330,7 +1330,7 @@ public class AString
             return _( substring.Buf, substring.Start, substring.Length() );
         }
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          *  Append a Substring.
          *  \attention Non checking variant of original method.
          *             See \ref CS_ASTRING_NC "Non-checking methods" for <em>_NC</em> method
@@ -1339,18 +1339,18 @@ public class AString
          * @param src   The source Substring.
          *
          * @return \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _NC( Substring src )
         {
             return _NC( src.Buf, src.Start, src.Length() );
         }
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          * Append a String.
          *
          * @param src   The String to append.
          * @return \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _( String src )
         {
             // check null argument
@@ -1382,7 +1382,7 @@ public class AString
             return this;
         }
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          * Append a region of a String.
          *
          * @param src            The String to append.
@@ -1391,7 +1391,7 @@ public class AString
          *                       Defaults to int.MaxValue
          *
          * @return \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _( String src, int regionStart, int regionLength=int.MaxValue )
         {
             // check null argument
@@ -1423,7 +1423,7 @@ public class AString
         }
 
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          *  Append a String.
          *  \attention Non checking variant of original method.
          *             See \ref CS_ASTRING_NC "Non-checking methods" for <em>_NC</em> method
@@ -1431,7 +1431,7 @@ public class AString
          *
          * @param src            The String to append.
          * @return \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _NC( String src)
         {
             int srcLength= src.Length;
@@ -1448,7 +1448,7 @@ public class AString
             return this;
         }
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          *  Append a region of a String.
          *  \attention Non checking variant of original method.
          *             See \ref CS_ASTRING_NC "Non-checking methods" for <em>_NC</em> method
@@ -1459,7 +1459,7 @@ public class AString
          * @param regionLength   The maximum length of the region in src to append.
          *
          * @return \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _NC( String src, int regionStart, int regionLength )
         {
             // big enough?
@@ -1474,12 +1474,12 @@ public class AString
             return this;
         }
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          * Append the given StringBuilder.
          *
          * @param src          The StringBuilder to append.
          * @return    \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _( StringBuilder src )
         {
             // check null argument
@@ -1517,14 +1517,14 @@ public class AString
             return this;
         }
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          * Append a region of a StringBuilder.
          * @param src          The StringBuilder to append.
          * @param regionStart  The start of the region in src to append.
          * @param regionLength The maximum length of the region in src to append.
          *                     Defaults to int.MaxValue.
          * @return    \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _( StringBuilder src, int regionStart, int regionLength= int.MaxValue )
         {
             // check null argument
@@ -1563,12 +1563,12 @@ public class AString
         }
 
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          * Append the given character.
          * @param c    The character to append.
          *
          * @return \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _( char c )
         {
             // flag us dirty (as we will be manipulated)
@@ -2798,7 +2798,7 @@ public class AString
      * @name Convert
      ##@{ ########################################################################################*/
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          * Format and append a signed 32-Bit integer value.
          *
          * Parameter \p numberFormat defaults to \c null, which denotes this method to use
@@ -2817,7 +2817,7 @@ public class AString
          *                      \ref cs.aworx.lib.strings.NumberFormat.DecMinimumFieldWidth "NumberFormat.DecMinimumFieldWidth".
          * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _( int value, int overrideWidth= 0, NumberFormat numberFormat= null )
         {
             hash= 0;
@@ -2846,7 +2846,7 @@ public class AString
             return _( value, 0, numberFormat );
         }
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          * Format and append an unsigned 32-Bit integer value.
          *
          * Parameter \p numberFormat defaults to \c null, which denotes this method to use
@@ -2865,7 +2865,7 @@ public class AString
          *                      \ref cs.aworx.lib.strings.NumberFormat.DecMinimumFieldWidth "NumberFormat.DecMinimumFieldWidth".
          * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _( uint value, int overrideWidth= 0, NumberFormat numberFormat= null )
         {
             hash= 0;
@@ -2895,7 +2895,7 @@ public class AString
         }
 
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          * Format and append a signed 64-Bit integer value.
          *
          * Parameter \p numberFormat defaults to \c null, which denotes this method to use
@@ -2914,7 +2914,7 @@ public class AString
          *                      \ref cs.aworx.lib.strings.NumberFormat.DecMinimumFieldWidth "NumberFormat.DecMinimumFieldWidth".
          * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _( long value, int overrideWidth= 0, NumberFormat numberFormat= null )
         {
             hash= 0;
@@ -2943,7 +2943,7 @@ public class AString
             return _( value, 0, numberFormat );
         }
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          * Format and append an unsigned 64-Bit integer value.
          *
          * Parameter \p numberFormat defaults to \c null, which denotes this method to use
@@ -2962,7 +2962,7 @@ public class AString
          *                      \ref cs.aworx.lib.strings.NumberFormat.DecMinimumFieldWidth "NumberFormat.DecMinimumFieldWidth".
          * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _( ulong value, int overrideWidth= 0, NumberFormat numberFormat= null )
         {
             hash= 0;
@@ -2991,7 +2991,7 @@ public class AString
             return _( value, 0, numberFormat );
         }
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          * Append a unsigned 64-Bit integer value in binary format.
          *
          * Parameter \p numberFormat defaults to \c null, which denotes this method to use
@@ -3010,7 +3010,7 @@ public class AString
          *                      \ref cs.aworx.lib.strings.NumberFormat.BinFieldWidth "NumberFormat.BinFieldWidth".
          * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _Bin( ulong value, int overrideWidth= 0,  NumberFormat numberFormat= null )
         {
             hash= 0;
@@ -3040,7 +3040,7 @@ public class AString
         }
 
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          * Append a unsigned 64-Bit integer value in hexadecimal format.
          *
          * Parameter \p numberFormat defaults to \c null, which denotes this method to use
@@ -3059,7 +3059,7 @@ public class AString
          *                      \ref cs.aworx.lib.strings.NumberFormat.HexFieldWidth "NumberFormat.HexFieldWidth".
          * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _Hex( ulong value, int overrideWidth= 0,  NumberFormat numberFormat= null )
         {
             hash= 0;
@@ -3089,7 +3089,7 @@ public class AString
         }
 
 
-        /** ********************************************************************************************
+        /** ****************************************************************************************
          * Append a unsigned 64-Bit integer value in octal format.
          *
          * Parameter \p numberFormat defaults to \c null, which denotes this method to use
@@ -3108,7 +3108,7 @@ public class AString
          *                      \ref cs.aworx.lib.strings.NumberFormat.OctFieldWidth "NumberFormat.OctFieldWidth".
          * @param numberFormat  The format definition. Defaults to \c null.
          * @return  \c this to allow concatenated calls.
-         **********************************************************************************************/
+         ******************************************************************************************/
         public AString _Oct( ulong value, int overrideWidth= 0,  NumberFormat numberFormat= null )
         {
             hash= 0;

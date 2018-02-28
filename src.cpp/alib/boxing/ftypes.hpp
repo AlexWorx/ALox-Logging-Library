@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -39,7 +39,7 @@ namespace aworx { namespace lib { namespace boxing { namespace ftypes
 // Specializations of struct T_Boxing
 // #################################################################################################
 
-#if !defined(DOX_PARSER)
+//! @cond NO_DOX
 
 ALIB_BOXING_SPECIALIZE_CB_CUB(bool         , bool               , false , true  );
 ALIB_BOXING_SPECIALIZE_CB_CUB(char         , char               , false , true  );
@@ -142,7 +142,7 @@ inline char32_t   T_Boxing<char32_t>::Unboxing( const Box& box )  { return stati
 inline  int64_t   T_Boxing< int64_t>::Unboxing( const Box& box )  { return static_cast< int64_t>( box.data.Value ); }
 inline uint64_t   T_Boxing<uint64_t>::Unboxing( const Box& box )  { return static_cast<uint64_t>( box.data.Value ); }
 
-#endif // !defined(DOX_PARSER)
+//! @endcond
 
 // #################################################################################################
 // Specializations of T_SGetArraySize<> for character types

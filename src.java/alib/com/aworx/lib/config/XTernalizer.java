@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -17,8 +17,8 @@ import com.aworx.lib.strings.Substring;
  * from an external string.
  *
  * Class \b %ConfigurationPlugin owns a default object with field
- * \alib{config.ConfigurationPlugin.defaultStringConverter}, to which field
- * \alib{config.ConfigurationPlugin.stringConverter} by default points to.
+ * \alib{config::ConfigurationPlugin,defaultStringConverter} which by default points to field
+ * \alib{config::ConfigurationPlugin,stringConverter}.
  *
  * \note
  *   Replacing the converters is deemed to be an advanced usage of \b %ALib. Consult the source code
@@ -40,7 +40,8 @@ import com.aworx.lib.strings.Substring;
  * - Loading variables from external strings:
  *   - If provided variable has a valid delimiter set, this character is used to tokenize
  *     the external string.
- *   - Delimiters found within a pair of quotes \c " are ignored.
+ *   - Values are trimmed, unless quoted. Quotes characters themselves are removed.
+ *   - Delimiters found within a pair of quotes are ignored.
  *   - Each value found is internalized separately
  **************************************************************************************************/
 public class XTernalizer
@@ -55,7 +56,10 @@ public class XTernalizer
     protected       Substring       tmpSubs2        = new Substring();
 
     /** ********************************************************************************************
-     * Parses values found in string \p src and adds them to \p variable.
+     * If field \alib{config,Variable.delim} is <c>'\0'</c>, just invokes #internalizeValue.
+     * Otherwise, parses values using the delimiter. Quotes are removed and parts within quotes
+     * are kept as is. Also, delimiters in quotes are ignored.
+     *
      * @param  variable The destination variable.
      * @param  src      The source string
      **********************************************************************************************/
@@ -128,17 +132,7 @@ public class XTernalizer
     }
 
     /** ********************************************************************************************
-     * Internalizes a variable value that is provided in externalized format.
-     * Specifically first the value is trimmed, then non-escaped quotes are removed, including
-     * any whitespaces found between quoted strings. For example, the following sequence:
-     *
-     *          "one" - two" - "three"- four"
-     *
-     * would be read as:
-     *
-     *          one- two - three- four
-     *
-     * Furthermore, escaped characters are converted into their original value.
+     * Trims \p src, removes surrounding quotes and , un-escapes characters.
      *
      * @param  src      The source string
      * @param  dest     The destination string
@@ -147,8 +141,11 @@ public class XTernalizer
     public void internalizeValue( Substring src, AString dest )
     {
         src.trim();
-        boolean inUnquoted=   true;
-        boolean inQuote=      false;
+        if(src.charAtStart() == '"'  && src.charAtEnd() == '"')
+        {
+            src.consumeChar();
+            src.consumeCharFromEnd();
+        }
         boolean lastWasSlash= false;
 
         while( src.isNotEmpty() )
@@ -180,24 +177,7 @@ public class XTernalizer
                 continue;
             }
 
-            if( c== '"' )
-            {
-                inQuote= !inQuote;
-                inUnquoted= false;
-                continue;
-            }
-
-            if( inQuote || inUnquoted )
-            {
-                dest._(c);
-                continue;
-            }
-
-            if( CString.indexOf( c, CString.DEFAULT_WHITESPACES ) >= 0 )
-                continue;
-            inUnquoted= true;
-
-            dest._(c);
+            dest._NC(c);
         }
     }
 
@@ -228,7 +208,9 @@ public class XTernalizer
 
 
         boolean needsQuotes=       subs.charAtStart() == ' '
+                               ||  subs.charAtStart() == '\t'
                                ||  subs.charAtEnd()   == ' '
+                               ||  subs.charAtEnd()   == '\t'
                                ||  subs.indexOf( delim ) >= 0;
         if ( needsQuotes )
             dest._('"');
@@ -239,8 +221,9 @@ public class XTernalizer
 
             switch(c)
             {
+                case '"'    : dest._NC( needsQuotes ? "\\\"" : "\"");
+                              break;
                 case '\\'   : dest._NC("\\\\"); break;
-                case '"'    : dest._NC("\\\""); break;
                 case '\r'   : dest._NC("\\r" ); break;
                 case '\n'   : dest._NC("\\n" ); break;
                 case '\t'   : dest._NC("\\t" ); break;

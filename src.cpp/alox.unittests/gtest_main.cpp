@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Unit Tests - ALox Logging Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -49,6 +49,7 @@ int main( int argc, char **argv )
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_AString.Count";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Substring.*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Format.*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Format.ConvertFloats";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Format.FormatterJavaStyle";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Format.FormatterPythonStyle";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Format.ConvertIntegers";

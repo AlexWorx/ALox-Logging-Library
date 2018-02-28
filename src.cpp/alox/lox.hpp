@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  aworx::lox - ALox Logging Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -51,8 +51,7 @@
 #endif
 
 
-namespace aworx { namespace lox { namespace core
-{
+namespace aworx { namespace lox { namespace core {
     class Logger;
     namespace textlogger
     {

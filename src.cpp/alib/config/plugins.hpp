@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -43,10 +43,8 @@ namespace aworx { namespace lib { namespace config {
  * from an external string.
  *
  * Class \b %ConfigurationPlugin owns a default object with field
- * \ref aworx::lib::config::ConfigurationPlugin::defaultStringConverter "ConfigurationPlugin::defaultStringConverter",
- * to which field
- * \ref aworx::lib::config::ConfigurationPlugin::StringConverter "ConfigurationPlugin::StringConverter"
- * by default points to.
+ * \alib{config::ConfigurationPlugin,defaultStringConverter} which by default points to field
+ * \alib{config::ConfigurationPlugin,StringConverter}.
  *
  * \note
  *   Replacing the converters is deemed to be an advanced usage of \b %ALib. Consult the source code
@@ -68,7 +66,8 @@ namespace aworx { namespace lib { namespace config {
  * - Loading variables from external strings:
  *   - If provided variable has a valid delimiter set, this character is used to tokenize
  *     the external string.
- *   - Delimiters found within a pair of quotes \c " are ignored.
+ *   - Values are trimmed, unless quoted. Quotes characters themselves are removed.
+ *   - Delimiters found within a pair of quotes are ignored.
  *   - Each value found is internalized separately
  **************************************************************************************************/
 class XTernalizer
@@ -81,7 +80,10 @@ class XTernalizer
     virtual ~XTernalizer()  {}
 
     /** ********************************************************************************************
-     * Parses values found in string \p src and adds them to \p variable.
+     * If field \alib{config,Variable::Delim} is <c>'\0'</c>, just invokes #InternalizeValue.
+     * Otherwise, parses values using the delimiter. Quotes are removed and parts within quotes
+     * are kept as is. Also, delimiters in quotes are ignored.
+     *
      * @param  variable The destination variable.
      * @param  src      The source string
      **********************************************************************************************/
@@ -90,17 +92,7 @@ class XTernalizer
     void    LoadFromString( Variable& variable, const String& src );
 
     /** ********************************************************************************************
-     * Internalizes a variable value that is provided in externalized format.
-     * Specifically first the value is trimmed, then non-escaped quotes are removed, including
-     * any whitespaces found between quoted strings. For example, the following sequence:
-     *
-     *          "one" - two" - "three"- four"
-     *
-     * would be read as:
-     *
-     *          one- two - three- four
-     *
-     * Furthermore, escaped characters are converted into their original value.
+     * Trims \p src, removes surrounding quotes and , un-escapes characters.
      *
      * @param  src      The source string
      * @param  dest     The destination string

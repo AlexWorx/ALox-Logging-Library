@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -112,6 +112,14 @@ class SimpleText
          */
         std::stack<integer>             IndentSizesOtherLines;
 
+        /**
+         * This field is increased whenever a line of text added is longer than its current
+         * value.
+         * Might be used by to detect the maximum line width when field #LineWidth is set to \c 0
+         * and hence no auto wrap is done.
+         */
+        integer                         DetectedMaxLineWidth                                     =0;
+
     protected:
         /** Internally reused list of boxes. */
         Boxes                           boxes;
@@ -154,19 +162,21 @@ class SimpleText
          * variables, simplify the use of this method, when indirectly used through an instance of
          * the class.
          *
-         * @param text             The text containing the paragraph to format.
-         * @param startIdx         The start of the paragraph.
-         * @param lineWidth        The width of the line. If \c 0 or negative, no line wrap is
-         *                         performed.
-         * @param justifyChar      If this is unequal to <c>'\0'</c> it  denotes the fill
-         *                         character used to justify the paragraph. If <c>'\0'</c>,
-         *                         paragraph is not justified.
-         * @param indentFirstLine  The indent string of the first line. Defaults to \c nullptr.
-         * @param indentOtherLines The indent string of subsequent lines. Defaults to \c nullptr.
+         * @param text              The text containing the paragraph to format.
+         * @param startIdx          The start of the paragraph.
+         * @param lineWidth         The width of the line. If \c 0 or negative, no line wrap is
+         *                          performed.
+         * @param justifyChar       If this is unequal to <c>'\0'</c> it  denotes the fill
+         *                          character used to justify the paragraph. If <c>'\0'</c>,
+         * @param[out] maxLineWidth Provides the maximum width of all text lines written.
+         *                          paragraph is not justified.
+         * @param indentFirstLine   The indent string of the first line. Defaults to \c nullptr.
+         * @param indentOtherLines  The indent string of subsequent lines. Defaults to \c nullptr.
          *******************************************************************************************/
         ALIB_API
         static
         void    FormatParagraph( AString& text, integer startIdx, integer lineWidth, char justifyChar,
+                                 integer& maxLineWidth,
                                  const String& indentFirstLine = nullptr,
                                  const String& indentOtherLines= nullptr  );
 

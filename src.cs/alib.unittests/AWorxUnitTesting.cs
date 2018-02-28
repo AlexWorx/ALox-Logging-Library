@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ut_cs_aworx - AWorx Unit Test Support using ALib and ALox
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 //
 //  Relies on ALox logging library, which in turn relies on ALib. Hence, ALibs' unit

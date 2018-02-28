@@ -185,7 +185,7 @@ public class FormatterJavaStyle extends FormatterStdImpl
 
 
         /** ****************************************************************************************
-         * Searches for \c '%' which is not '%%' or '%n'.
+         * Searches for \c '\%' which is not '%%' or '%n'.
          *
          * @return The index found, -1 if not found.
          ******************************************************************************************/
@@ -487,7 +487,7 @@ public class FormatterJavaStyle extends FormatterStdImpl
         }
 
         /** ****************************************************************************************
-         * Replaces \c "%%" with \c '%' and \c "%n" with ascii \c 0x0a. In addition applies
+         * Replaces \c "%%" with \c '\%' and \c "%n" with ascii \c 0x0a. In addition applies
          * \ref com.aworx.lib.strings.AString.escape "AString.escape" on \p target which replaces
          * standard codes like \c "\\n", \c "\\r" or \c "\\t" with corresponding ascii codes.
          * (The latter is an extension to the standard behavior of Java formatter.)

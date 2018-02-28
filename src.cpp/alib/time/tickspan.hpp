@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -39,25 +39,25 @@ namespace aworx { namespace lib { namespace time
 class TickSpan
 {
     public:
-        /// The number of days within the time span
+        /** The number of days within the time span  */
         int                     Days;
 
-        /// The number of hours (not the total, hence 0-23) within the time span
+        /** The number of hours (not the total, hence 0-23) within the time span.    */
         int                     Hours;
 
-        /// The number of minutes (not the total, hence 0-59) within the time span
+        /** The number of minutes (not the total, hence 0-59) within the time span.  */
         int                     Minutes;
 
-        /// The number of seconds (not the total, hence 0-59) within the time span
+        /** The number of seconds (not the total, hence 0-59) within the time span.  */
         int                     Seconds;
 
-        /// The number of milliseconds (not the total, hence 0-999) within the time span
+        /** The number of milliseconds (not the total, hence 0-999) within the time span. */
         int                     Milliseconds;
 
-        /// The number of microseconds (not the total, hence 0-999) within the time span
+        /** The number of microseconds (not the total, hence 0-999) within the time span. */
         int                     Microseconds;
 
-        /// The number of nanoseconds (not the total, hence 0-999) within the time span
+        /** The number of nanoseconds (not the total, hence 0-999) within the time span.  */
         int                     Nanoseconds;
 
     /** ********************************************************************************************
@@ -80,7 +80,7 @@ class TickSpan
      *  @param ticks The value in ticks to use for setting the public fields
      **********************************************************************************************/
     inline
-    TickSpan( Time::TRaw ticks )                         { Set(ticks); }
+    TickSpan( TimeLib::TRaw ticks )                         { Set(ticks); }
 
     /** ********************************************************************************************
      *  Constructs the object using the two Tick objects that mark the start and end points in time
@@ -98,7 +98,7 @@ class TickSpan
      *  @param ticks The Ticks object to use for setting the public fields
      **********************************************************************************************/
     inline
-             void              Set( const Ticks& ticks )   { Set( ticks.Raw() ); }
+             void               Set( const Ticks& ticks )   { Set( ticks.Raw() ); }
 
     /** ********************************************************************************************
      *  Sets the public fields to represent the given ticks value.
@@ -106,19 +106,19 @@ class TickSpan
      *  parameter.
      *  @param ticks The value in ticks to use for setting the public fields
      **********************************************************************************************/
-    ALIB_API void              Set( Time::TRaw ticks );
+    ALIB_API void               Set( TimeLib::TRaw ticks );
 
     /** ********************************************************************************************
      *  Takes the current values of the public fields and calculates a time span value in ticks.
      *  Such value can be used with class Ticks, e.g. to add or subtract time spans.
      *  @returns The time span represented by the public fields of this class.
      **********************************************************************************************/
-    ALIB_API Time::TRaw      Get();
+    ALIB_API TimeLib::TRaw         Get();
 
     /** ********************************************************************************************
      *  Sets all public values to 0.
      **********************************************************************************************/
-    ALIB_API void              Clear();
+    ALIB_API void               Clear();
 };
 
 

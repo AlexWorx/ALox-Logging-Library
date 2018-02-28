@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  aworx::lox - ALox Logging Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -72,14 +72,14 @@ void getStateDomainsWithDiffVerb( Domain* dom, int loggerNo, vector<Domain*>& re
         ||  dom->Parent->GetVerbosity(loggerNo) != dom->GetVerbosity(loggerNo) )
         results.emplace_back( dom );
 
-    for( auto it : dom->SubDomains )
+    for( auto* it : dom->SubDomains )
         getStateDomainsWithDiffVerb( it, loggerNo, results );
 }
 
 void getStateCollectPrefixes( Domain* dom, integer indentSpaces, AString& target );
 void getStateCollectPrefixes( Domain* dom, integer indentSpaces, AString& target )
 {
-    for ( auto pfl : dom->PrefixLogables )
+    for ( auto& pfl : dom->PrefixLogables )
     {
         target.InsertChars( ' ', indentSpaces );
         target << '"';
@@ -94,7 +94,7 @@ void getStateCollectPrefixes( Domain* dom, integer indentSpaces, AString& target
         target._NC( "<domain>           [" )._NC( dom->FullPath )._NC(']').NewLine();
     }
 
-    for( auto it : dom->SubDomains )
+    for( auto* it : dom->SubDomains )
         getStateCollectPrefixes( it, indentSpaces, target );
 }
 //! @endcond
@@ -260,7 +260,7 @@ void Lox::GetState( AString& buf, StateInfo flags )
         if ( threadDictionary.size() == 0 )
             buf._NC("  <no thread name mappings set>" ).NewLine();
         else
-            for ( auto pair : threadDictionary )
+            for ( auto& pair : threadDictionary )
             {
                 buf._NC( "  " ) << Format::Field( String32() << '(' << pair.first << "):", 7, Alignment::Left )
                                 << '\"' << pair.second << '\"';

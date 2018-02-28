@@ -1,7 +1,7 @@
 #// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -47,14 +47,38 @@ namespace aworx { namespace lib {
 namespace time {
 
 
+class TimeStamp;
+class CalendarTime;
+class TicksCalendarTime;
+
 /** ************************************************************************************************
  * The library class for namespace \ref aworx::lib::time.
  **************************************************************************************************/
-class Time  : public lang::Library
+class TimeLib  : public lang::Library
 {
-    /** Friend class Ticks accesses internals.  */
-    friend class aworx::lib::time::Ticks;
+    /** Library class \b %Ticks accesses internals.  */
+    friend class Ticks;
 
+    /** Library class \b %CalendarTime accesses internals.  */
+    friend class TicksCalendarTime;
+
+    /** Library class \b %Timestamp accesses internals.  */
+    friend class TimeStamp;
+
+    /** Library class \b %Timestamp accesses internals.  */
+    friend class TimeSpan;
+
+    /** Library class \b %CalendarTime accesses internals.  */
+    friend class CalendarTime;
+
+    protected:
+        /** Table of string representations of the twelve months. Read from resource string
+         *  \b "Months".   */
+        static String        months[12];
+
+        /** Table of string representations of the seven days of a week. Read from resource string
+         *  \b "Days".   */
+        static String          days[ 7];
 
     // #############################################################################################
     // Types & constants
@@ -64,12 +88,11 @@ class Time  : public lang::Library
         using   TRaw =             int64_t;
 
         static constexpr auto NanosPerDay         =  INT64_C( 86400000000000 ); ///< Constant denoting number of nanoseconds of a day.
-        static constexpr auto NanosPerHour        =  INT64_C(  3600000000000 ); ///< Constant denoting number of nanoseconds of a hour.
+        static constexpr auto NanosPerHour        =  INT64_C(  3600000000000 ); ///< Constant denoting number of nanoseconds of an hour.
         static constexpr auto NanosPerMinute      =  INT64_C(    60000000000 ); ///< Constant denoting number of nanoseconds of a minute.
         static constexpr auto NanosPerSecond      =  INT64_C(     1000000000 ); ///< Constant denoting number of nanoseconds of a second.
         static constexpr auto NanosPerMillisecond =  INT64_C(        1000000 ); ///< Constant denoting number of nanoseconds of a millisecond.
         static constexpr auto NanosPerMicrosecond =  INT64_C(           1000 ); ///< Constant denoting number of nanoseconds of a microsecond.
-
 
 
     // #############################################################################################
@@ -97,7 +120,7 @@ class Time  : public lang::Library
     // Constructor
     // #############################################################################################
     public:
-        inline  Time()
+        inline  TimeLib()
         : lang::Library( ALIB_VERSION, ALIB_REVISION, "ALIB_TIME" )
         {}
 
@@ -188,12 +211,10 @@ class Time  : public lang::Library
  * The static library singleton of namespace #aworx::lib::time.
  **************************************************************************************************/
 ALIB_API
-extern time::Time TIME;
+extern time::TimeLib TIME;
 
 } // namespace aworx[::lib]
 
-/** Type alias name in namespace #aworx. */
-using     Time=                 aworx::lib::time::Time;
 
 } // namespace [aworx]
 

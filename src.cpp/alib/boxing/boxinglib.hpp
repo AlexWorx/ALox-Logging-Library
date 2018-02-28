@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -68,13 +68,13 @@ class Boxing
 
     protected:
         /** Map of boxers. Available only in debug compilations. */
-        lang::RTTIUnorderedMap<Boxer*>      dbgKnownBoxers;
+        TypeMap<Boxer*>                     dbgKnownBoxers;
 
         /** Map of box interfaces. Available only in debug compilations. */
-        lang::RTTIUnorderedMap<Interface*>  dbgKnownInterfaces;
+        TypeMap<Interface*>                 dbgKnownInterfaces;
 
         /** Map of box interface implementations. Available only in debug compilations. */
-        lang::RTTIUnorderedMap<Interface*>  dbgKnownInterfaceImpl;
+        TypeMap<Interface*>                 dbgKnownInterfaceImpl;
 
         /** Internal method doing checks in debug compilation version of the library.
          * @param boxer  The boxer to check.                                            */
@@ -371,19 +371,37 @@ extern boxing::Boxing BOXING;
  * @param isUnboxable        Used as return value of \ref aworx::lib::boxing::T_Boxing::IsUnboxable       "T_Boxing<TSrc>::IsUnboxable".
  *
  *
+ * \def  ALIB_BOXING_DEFINE_IEQUALS_FOR_COMPARABLE_TYPE
+ *
+ * This macro creates a singleton object of templated boxing interface class
+ * \alib{boxing,IEquals_TComparable} for the given type and passes it to namespace function
+ * \ref aworx::lib::boxing::DefineInterface.
+ *
+ * The macro is to be placed in the bootstrap section of an application, for any type that
+ * disposes of an implementation of C++ <c>operator==</c>. This operator will be used
+ * for implementing boxing interface \alib{boxing,IEquals}.
+ *
+ * \note
+ *   As by default, custom types get boxed as pointers, the type in question usually has to
+ *   be provided here as pointer type, for example:
+ *
+ *          ALIB_BOXING_DEFINE_IEQUALS_FOR_COMPARABLE_TYPE( my_namespace::MyType* )
+ *
+ *
+ * @param TComparable  The comparable, usually given as pointer type.
+ *
  *
  * \def  ALIB_BOXING_DEFINE_IAPPLY_FOR_APPLICABLE_TYPE
  *
  * This macro creates a singleton object of templated boxing interface class
- * \ref aworx::lib::strings::boxing::IApply_TApplicable "IApply_TApplicable" for the given
- * type and passes it to namespace function
+ * \alib{strings::boxing,IApply_TApplicable} for the given type and passes it to namespace function
  * \ref aworx::lib::boxing::DefineInterface.
  *
- * The macro may be placed in the bootstrap section of an application, for any type that is
+ * The macro is to be placed in the bootstrap section of an application, for any type that is
  * \ref aworx::lib::strings::T_Apply "applicable" to class \b %AString.
  *
  * \note
- *   As by default, custom types get boxed as pointers, the type in question should be
+ *   As by default, custom types get boxed as pointers, the type in question usually has to
  *   provided here as pointer type, for example:
  *
  *          ALIB_BOXING_DEFINE_IAPPLY_FOR_APPLICABLE_TYPE( my_namespace::MyType* )
@@ -477,13 +495,9 @@ struct BoxData
     integer             Length;
 
     /**
-     * Default constructor. Does \b not initialize values.
+     * Trivial default constructor.
      */
-    inline
-    BoxData()
-    : Value()
-    , Length()
-    {}
+    BoxData() = default;
 
     /**
      * Constructor providing both values.

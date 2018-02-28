@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -18,16 +18,24 @@ namespace aworx { namespace lib { namespace boxing {
 /** ************************************************************************************************
  * This is one of the built-in \alib{boxing,Interface} classes of <b>%ALib %Boxing</b>.
  * This interface is invokable with all boxable types, as a default implementation is registered
- * (see \alib{boxing,Boxer::DefineDefaultInterface}.
+ * (see \alib{boxing,Boxer::DefineDefaultInterface} and is internally invoked by
+ * \alib{boxing,Box::operator==}.
+ *
  * The default implementation is provided with this base interface class itself.
  *
- * The default implementation is implemented with this base interface class itself.
  * For non-array types, this default implementation checks if both boxes share the same type and
  * data, without interpreting the data in any way.<br>
  * For array types, the contents of the array is checked using \c memcmp() if types and lengths
  * are the same.
  *
- * This interface is invoked by \alib{boxing,Box::operator==}.
+ * For custom types boxed as pointers (the common, default), a templated default implementation
+ * is available that relies on the availability of <c>operator==</c> for the type. Hence, the
+ * preferred way of providing this interface for custom types is:
+ *
+ * 1. Implement C++ <c>operator==</c> for the custom type.
+ * 2. Place maco ALIB_BOXING_DEFINE_IEQUALS_FOR_COMPARABLE_TYPE in the bootstrap section of the
+ *    software.
+ *
  **************************************************************************************************/
 class IEquals : public Interface
 {
@@ -63,6 +71,38 @@ class IEquals : public Interface
     virtual bool Invoke( const Box& lhs, const Box& rhs );
 };
 
+/**
+ * Templated implementation of #IEquals for boxable types which have <c>operator==</c> implemented.
+ *
+ * To define this interface for a custom type, macro
+ * \ref ALIB_BOXING_DEFINE_IEQUALS_FOR_COMPARABLE_TYPE has to be placed in bootstrap section of
+ * a software that uses this type.
+ */
+template<typename TComparable>
+class IEquals_TComparable : public IEquals, public Singleton<IEquals_TComparable<TComparable>>
+{
+    public:
+    /**
+     * The interface method, writing the applicable type.
+     * @param lhs  The box that the interface was invoked on.
+     * @param rhs  The boxed value to compare us to.
+     * @return \c true if \p lhs equals \p rhs, \c false otherwise.
+     */
+    virtual inline
+    bool Invoke( const Box& lhs, const Box& rhs )                                           override
+    {
+        return *lhs.Unbox<TComparable>() ==  *rhs.Unbox<TComparable>();
+    }
+};
+
+#define ALIB_BOXING_DEFINE_IEQUALS_FOR_COMPARABLE_TYPE(TComparable)                                \
+aworx::lib::boxing::DefineInterface<TComparable ,                                                  \
+                                    false,                                                         \
+                                    aworx::lib::boxing::IEquals_TComparable<TComparable>>();
+
+
+
+
 /** ************************************************************************************************
  * This is one of the built-in \alib{boxing,Interface} classes of <b>%ALib %Boxing</b>.
  * This interface is invokable with all boxable types, as a default implementation is registered
@@ -88,16 +128,16 @@ class IEquals : public Interface
  *
  *      return std::type_index( lhs.GetTypeInfo() ) < std::type_index( rhs.GetTypeInfo() );
  *
- * The important thing is the last line: if types  are not comparable return
- * the result of the comparison of the \c std::type_index of the two boxed types.
+ * The important thing is the last line: if types are not comparable the result of the comparison
+ * of the \c std::type_index of the two boxed types is returned.
  * Only with this, for example \c std::sort will work properly on containers of boxes of
  * mixed types.
  *
  * \note
  *   It is a matter of the compiler (and can not be determined by the user code) how the
- *   types are sorted. Furthermore, the data value might not be reasonably comparable
- *   between boxes of the same type. Reasonably in respect to retrieving a reasonable
- *   sort order.
+ *   types are sorted (outer sorting). Furthermore, the data value might not be reasonably comparable
+ *   between boxes of the same type. "Reasonably" here means in respect to retrieving a
+ *   reasonable sort order.
  *
  *   Consequently, the use of this comparison operator with custom types is subject to
  *   "knowing what I am doing" and knowing how the comparison is implemented for
@@ -159,7 +199,7 @@ class IIsLess : public Interface
  * <em>"nullable types"</em>, e.g. pointer types or custom types that (already) support the concept
  * of being \e nullable.
  *
- * This default implementation returns \c true if the raw value of box data equals \c 0, otherwise
+ * The default implementation returns \c true if the raw value of box data equals \c 0, otherwise
  * \c false. This gives a good default behaviour for all boxable types
  * stored as pointers to the original object.
  *
@@ -196,7 +236,7 @@ class IIsNull : public Interface
      * See class description.
      *
      * @param box   The box that the interface was invoked on.
-     * @return \c true if \p box represents a nulled value.
+     * @return \c true if \p box represents a nulled value, \c false otherwise.
      */
     virtual bool Invoke( const Box& box )
     {
@@ -219,7 +259,7 @@ class IIsNull_false : public IIsNull , public Singleton<IIsNull_false>
      * Returns constant \c false. See class description for more information.
      *
      * @param box   The box that the interface was invoked on. This value is ignored.
-     * @return Constant \c false .
+     * @return Constant \c false.
      */
     virtual bool Invoke( const Box& box )
     {
@@ -239,9 +279,8 @@ class IIsNull_false : public IIsNull , public Singleton<IIsNull_false>
  * <em>"emptiness"</em> of boxed objects.
  * E.g. array and string types are candidates where such definition makes sense.
  *
- * For array types (see \ref aworx::lib::boxing::ArrayBoxerT "ArrayBoxerT"), this default
- * implementation returns \c true if method
- * \ref aworx::lib::boxing::Box::Length "Box::Length" returns \c 0 for \p box.
+ * For array types (see \ref aworx::lib::boxing::ArrayBoxerT "ArrayBoxerT"), the default
+ * implementation returns \c true if method \alib{boxing,Box::Length} returns \c 0 for \p box.
  *
  * For non-array types this default implementation returns the result of the invocation of
  * interface #IIsNull on \p box.
@@ -277,7 +316,7 @@ class IIsEmpty : public Interface
      * Overridable method that evaluates if the provided box object is \e "empty".
      *
      * @param box   The box that the interface was invoked on.
-     * @return \c true if \p box represents an empty value.
+     * @return \c true if \p box represents an empty value, \c false otherwise.
      */
     ALIB_API
     virtual bool Invoke( const Box& box )
@@ -286,6 +325,59 @@ class IIsEmpty : public Interface
                              : box.Invoke<IIsNull, bool>();
     }
 };
+
+/** ************************************************************************************************
+ * This is one of the built-in \ref aworx::lib::boxing::Interface "Interface" classes of
+ * <b>%ALib %Boxing</b>. This interface is invokable with all boxable types, as a
+ * default implementation is registered (see
+ * \ref aworx::lib::boxing::Boxer::DefineDefaultInterface "Boxer::DefineDefaultInterface").
+ *
+ * This interface is used to give an answer to the question if a boxed value represents boolean
+ * value \c true or \c false. This is useful if "yes/no" decisions should be taken based on
+ * arbitrary boxed values.
+ *
+ * For non-array types, the raw boxed value is taken: If it is not \c 0, \c true is returned,
+ * otherwise \c false.
+ *
+ * For array types (see \ref aworx::lib::boxing::ArrayBoxerT "ArrayBoxerT"), the default
+ * implementation returns \c true if method \alib{boxing,Box::Length} returns a value different
+ * to \c 0, otherwise \c false is returned.
+ **************************************************************************************************/
+class IIsTrue : public Interface
+{
+    public:
+
+    /**
+     * Declares a static singleton used for the default interface registration and returns that.
+     * \note We do not inherit template class Singleton here, because each of our descendants
+     *       needs to do this as well, which would lead to some confusion.
+     * @return A singleton instance of myself.
+     */
+    static IIsTrue* GetDefaultSingleton()
+    {
+        static IIsTrue me;
+        return &me;
+    }
+
+    /**
+     * Constructor providing our runtime type to the parent
+     */
+    IIsTrue() : Interface( typeid(IIsTrue) ) {}
+
+    /**
+     * Overridable method that evaluates if the provided box object is \e "true".
+     *
+     * @param box   The box that the interface was invoked on.
+     * @return \c true if \p box represents a "true-value", \c false otherwise.
+     */
+    ALIB_API
+    virtual bool Invoke( const Box& box )
+    {
+        return box.IsArray() ? box.Length  () != 0
+                             : box.UnboxRaw() != 0;
+    }
+};
+
 
 }} // namespace aworx[::lib::boxing]
 
@@ -301,6 +393,8 @@ using     IIsEmpty   =   aworx::lib::boxing::IIsEmpty;
 /** Type alias name in namespace #aworx. */
 using     IIsLess    =   aworx::lib::boxing::IIsLess;
 
+/** Type alias name in namespace #aworx. */
+using     IIsTrue    =   aworx::lib::boxing::IIsTrue;
 } // namespace aworx
 
 #endif // HPP_ALIB_BOXING_INTERFACE_BUILTIN

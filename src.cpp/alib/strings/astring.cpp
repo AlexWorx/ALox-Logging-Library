@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -112,7 +112,10 @@ void AString::SetBuffer( integer newCapacity )
 
     // create new Buffer
     #if !ALIB_DEBUG_STRINGS
-        char* newBuffer=    new char[ newCapacity  + 1 ];
+        char* newBuffer=    new char[ static_cast<size_t>( newCapacity  + 1 )];
+        #if ALIB_AVOID_ANALYZER_WARNINGS
+            memset( newBuffer, 0, newCapacity  + 1 );
+        #endif
     #else
         // add 16 bytes of padding at start/end
         char* newBuffer=    new char[ newCapacity  + 1 + 32 ] + 16;
@@ -302,7 +305,7 @@ AString& AString::Append( const wchar_t* src, integer srcLength )
         // if possible, use a local buffer of fixed size
         wchar_t stackBuffer[2048];
         wchar_t* buffer;
-        buffer= ( srcLength > 2048 ) ?  new wchar_t[srcLength]
+        buffer= ( srcLength > 2048 ) ?  new wchar_t[static_cast<size_t>(srcLength)]
                                      :  reinterpret_cast<wchar_t*>( &stackBuffer );
 
         // copy data and invoke wchar_t version
@@ -403,15 +406,18 @@ integer AString::SearchAndReplace(  char       needle,
 
     // replacement loop
     integer cntReplacements=    0;
-    for(;;)
+    do
     {
         startIdx= IndexOfOrLength<false>( needle, startIdx  );
-        if ( startIdx >= length  )
-            return cntReplacements;
+        if ( startIdx == length  )
+            break;
         vbuffer[ startIdx ]= replacement;
         cntReplacements++;
     }
+    while(  ++startIdx < length ) ;
+    return cntReplacements;
 }
+
 
 integer AString::SearchAndReplace(  const TString&  needle,
                                     const String&   replacement,
@@ -511,7 +517,7 @@ integer AString::SearchAndReplace(  const TString&  needle,
         int GetSingletons( strings::AString& target )
         {
             auto types= GetSingletons();
-            for( auto it : types )
+            for( auto& it : types )
                 target << it.first <<  " = 0x" << Format::Hex(reinterpret_cast<uint64_t>(it.second) ) << NewLine;
 
             return static_cast<int>( types.size() );

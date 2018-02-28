@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ut_com_aworx - AWorx Unit Test Support using ALib and ALox
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 //
 //  Relies on ALox logging library, which in turn relies on ALib. Hence, ALibs' unit
@@ -39,7 +39,7 @@ public class UTWriter implements ReportWriter
 
         logger= Lox.createConsoleLogger( "UT ALib ReportWriter" );
 
-        // check if we are in IntelliJ. Here it is important to switch of the use of dark/light colors
+        // check if we are in IntelliJ. Here it is important to switch off the use of dark/light colors
         if( logger.getTypeName().equals("ANSI_CONSOLE") )
         {
             AString classPath= new AString( System.getenv("CLASSPATH" ) );

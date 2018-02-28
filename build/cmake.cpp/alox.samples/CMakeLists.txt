@@ -1,7 +1,7 @@
 # #################################################################################################
 #  CMakeLists.txt - ALox Samples
 #
-#  Copyright 2017 A-Worx GmbH, Germany
+#  Copyright 2015-2018 A-Worx GmbH, Germany
 #  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 #
 #  How to use:
@@ -16,7 +16,7 @@
 # -------------------------------------------------------------------------------------------------
 
     ### uncomment to force cotire on clean cmake built
-    # set( ALIB_CMAKE_COTIRE_DEFAULT   "On" )
+    # set( ALIB_CMAKE_COTIRE  "On" )
 
 
 # -------------------------------------------------------------------------------------------------

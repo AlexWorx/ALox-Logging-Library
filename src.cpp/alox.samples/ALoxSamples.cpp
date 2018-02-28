@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALox Samples
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -444,7 +444,7 @@ int main( int argc, char *argv[] )
         "##################################################################################################\n"
         "# ALox Samples INI file (created when running ALox Samples)\n"
         "#\n"
-        "# Copyright 2013-2017 A-Worx GmbH, Germany\n"
+        "# Copyright 2013-2018 A-Worx GmbH, Germany\n"
         "# Published under 'Boost Software License' (a free software license, see LICENSE.txt)\n"
         "##################################################################################################\n"
         );

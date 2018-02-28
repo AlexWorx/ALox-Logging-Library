@@ -1,7 +1,7 @@
 // #################################################################################################
 //  aworx - Unit Tests
 //  Private, not published in git ( I hope! )
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alox/alox.hpp"
@@ -414,7 +414,10 @@ const  char32_t*  u32CString=  U"\u03B7\u03B8\u03B9";  useBox( u32CString );
 // sample for method Box::Set
 //! [DOX_ALIB_BOXING_BOX_SET]
 aworx::Box box(5);
-box= aworx::Box(3.14); // assign a new value AND type (uses move semantics)
+assert( box.IsType<boxed_int>() );
+
+box= 3.14; // box a new value (uses implicit construction and move semantics)
+assert( box.IsType<double>() );
 //! [DOX_ALIB_BOXING_BOX_SET]
 }
 
@@ -823,8 +826,7 @@ void sampleFunc()
 aworx::Box box( "Character Array" );
 
 #if ALIB_DEBUG
-    aworx::lib::debug::Boxing dbgBoxing;
-    cout << dbgBoxing.GetType( box  ) << endl;
+    cout << aworx::lib::debug::Boxing::GetType( box  ) << endl;
 #endif
 //! [DOX_ALIB_BOXING_DEBUG]
 }
@@ -833,8 +835,8 @@ void sampleFunc2()
 //! [DOX_ALIB_BOXING_DEBUG_2]
 #if ALIB_DEBUG
     aworx::lib::debug::Boxing dbgBoxing;
-    auto strings= dbgBoxing.GetInterfaces( "abc" );
-    for( auto it : strings )
+    auto& strings= dbgBoxing.GetInterfaces( "abc" );
+    for( auto& it : strings )
         cout << "  " << it << endl;
 #endif
 //! [DOX_ALIB_BOXING_DEBUG_2]

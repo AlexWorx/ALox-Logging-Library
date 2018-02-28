@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -57,14 +57,16 @@ void Config::init( Phases phase )
             ALIB_BOXING_DEFINE_IAPPLY_FOR_APPLICABLE_TYPE( aworx::lib::config::Priorities )
         #endif
 
+        #define EOS ,
+
         Res->AddBulk( ResourceCategory.ToCString(),
 
         "ExceptionsPrefix" , "config::" ,
         "ExceptionsPostfix", ""         ,
         "Exceptions",
-            "0"  ","    "OK"                ","  ""    ","
-            "1"  ","    "ErrorOpeningFile"  ","  "EOF" ","
-            "2"  ","    "ErrorWritingFile"  ","  "EWF"  ,
+            "0"  ","    "OK"                ","  ""     ","
+            "1"  ","    "ErrorOpeningFile"  ","  "EOF"  ","
+            "2"  ","    "ErrorWritingFile"  ","  "EWF"  EOS
 
          "EOF", "Can't open {}file '{}' for reading." ,
          "EWF", "Can't open {}file '{}' for writing." ,
@@ -77,7 +79,7 @@ void Config::init( Phases phase )
           "20000"   ","   "Standard"               ",1"      ","
           "30000"   ","   "Environment"            ",1"      ","
           "40000"   ","   "CLI"                    ",1"      ","
-          "-1"      ","   "ProtectedValues"        ",1"       ,
+          "-1"      ","   "ProtectedValues"        ",1"      EOS
 
 
         // names of the configuration plug-ins added to configuration in default construction.

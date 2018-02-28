@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  aworx::lox::core - ALox Logging Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -73,7 +73,7 @@ void PlainTextLogger::logText( Domain&          ,   Verbosity  ,
 
                 if ( tabStop > column )
                 {
-                    auto spaces= Spaces::Get();
+                    auto& spaces= Spaces::Get();
                     integer spacesLength= spaces.Length();
                     integer qty= tabStop - column;
                     while ( qty > 0 )

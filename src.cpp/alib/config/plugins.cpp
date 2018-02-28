@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -26,8 +26,11 @@ namespace aworx { namespace lib { namespace config {
 void XTernalizer::InternalizeValue( Substring& src, AString& dest )
 {
     src.Trim();
-    bool inUnquoted=   true;
-    bool inQuote=      false;
+    if(src.CharAtStart() == '"'  && src.CharAtEnd() == '"')
+    {
+        src.ConsumeChar       <false>();
+        src.ConsumeCharFromEnd<false>();
+    }
     bool lastWasSlash= false;
 
     while( src.IsNotEmpty() )
@@ -59,23 +62,6 @@ void XTernalizer::InternalizeValue( Substring& src, AString& dest )
             continue;
         }
 
-        if( c== '"' )
-        {
-            inQuote= !inQuote;
-            inUnquoted= false;
-            continue;
-        }
-
-        if( inQuote || inUnquoted )
-        {
-            dest._<false>(c);
-            continue;
-        }
-
-        if( DefaultWhitespaces.IndexOf(c) >= 0 )
-            continue;
-        inUnquoted= true;
-
         dest._<false>(c);
     }
 }
@@ -83,7 +69,9 @@ void XTernalizer::InternalizeValue( Substring& src, AString& dest )
 void XTernalizer::ExternalizeValue( Substring& src, AString& dest, char delim )
 {
     bool needsQuotes=       src.CharAtStart() == ' '
+                        ||  src.CharAtStart() == '\t'
                         ||  src.CharAtEnd()   == ' '
+                        ||  src.CharAtEnd()   == '\t'
                         ||  src.IndexOf( delim ) >= 0;
     if ( needsQuotes )
         dest._<false>('"');
@@ -94,8 +82,9 @@ void XTernalizer::ExternalizeValue( Substring& src, AString& dest, char delim )
 
         switch(c)
         {
+            case '"'    : dest._<false>(needsQuotes ? "\\\"" : "\"");
+                          break;
             case '\\'   : dest._<false>("\\\\"); break;
-            case '"'    : dest._<false>("\\\""); break;
             case '\r'   : dest._<false>("\\r" ); break;
             case '\n'   : dest._<false>("\\n" ); break;
             case '\t'   : dest._<false>("\\t" ); break;
@@ -160,6 +149,7 @@ void XTernalizer::LoadFromString( Variable& variable, const String& value )
             idx= 0;
         }
     }
+
     if ( src.IsNotEmpty() )
     {
         InternalizeValue( src, *varValue );

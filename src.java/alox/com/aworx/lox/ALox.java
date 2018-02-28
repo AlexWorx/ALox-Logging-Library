@@ -1,7 +1,7 @@
 // #################################################################################################
 //  com.aworx.lox - ALox Logging Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package com.aworx.lox;
@@ -115,7 +115,7 @@ public abstract class ALox
          * revision \e 0. Pure maintenance releases that do not change the interface of \b %ALox
          * are holding the same #version but an increased number in this field.
          */
-        public static final int         revision                                                 =0;
+        public static final int         revision                                                 =1;
 
         /**
          * The configuration used by \alox. This is received or created with overloaded

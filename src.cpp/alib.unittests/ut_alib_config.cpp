@@ -1,7 +1,7 @@
 // #################################################################################################
 //  aworx - Unit Tests
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alox/alox.hpp"
@@ -75,7 +75,7 @@ UT_METHOD(ConfigCommandLineArgs)
     UT_EQ( Priorities::CLI,    cfg.Load   ( var.Declare( "ALIB",  "test"         )) );   UT_EQ( "passed",        *var.GetString()     );
     UT_EQ( Priorities::NONE,   cfg.Load   ( var.Declare( "",      "notexistent"  )) );   UT_EQ( 0.0,              var.GetFloat() );
 
-    auto it= cfg.GetPluginTypeSafe<lib::config::CLIArgs>()->GetIterator("ALIB");
+    auto* it= cfg.GetPluginTypeSafe<lib::config::CLIArgs>()->GetIterator("ALIB");
     UT_TRUE ( it->Next( var ) ); UT_EQ(String("ITER") , var.Name );  UT_EQ( "x",        *var.GetString()     );
     UT_TRUE ( it->Next( var ) ); UT_EQ(String("ITER2"), var.Name );  UT_EQ( "y",        *var.GetString()     );
     UT_TRUE ( it->Next( var ) ); UT_EQ(String("TEST") , var.Name );  UT_EQ( "passed",        *var.GetString()     );
@@ -134,7 +134,7 @@ UT_METHOD(ConfigCommandLineArgsWChar)
     UT_EQ( Priorities::CLI,    cfg.Load   ( var.Declare( "IGNORE","Homexyz"      )) );   UT_EQ( "overwritten",   *var.GetString()    );
 
 
-    auto it= cfg.GetPluginTypeSafe<lib::config::CLIArgs>()->GetIterator("ALIB");
+    auto* it= cfg.GetPluginTypeSafe<lib::config::CLIArgs>()->GetIterator("ALIB");
     UT_TRUE ( it->Next( var ) ); UT_EQ(String("ITER") , var.Name );  UT_EQ( "x",        *var.GetString()     );
     UT_TRUE ( it->Next( var ) ); UT_EQ(String("ITER2"), var.Name );  UT_EQ( "y",        *var.GetString()     );
     UT_TRUE ( it->Next( var ) ); UT_EQ(String("TEST") , var.Name );  UT_EQ( "passed",        *var.GetString()     );
@@ -580,7 +580,7 @@ UT_METHOD(ConfigIteration)
     cliArgs.SetArgs( &args );
     lox::ALOX.Config->InsertPlugin( &cliArgs, Priorities::CLI + 1 );
 
-    auto it= lox::ALOX.Config->GetIterator("ALOX");
+    auto* it= lox::ALOX.Config->GetIterator("ALOX");
     int cntVars= 0;
     int cntALOX_CONSOLE_TYPE= 0;
 
@@ -594,10 +594,8 @@ UT_METHOD(ConfigIteration)
         }
         UT_PRINT( "Iteration: Variable found {}={!Q}", it->Actual.Fullname, it->Actual.GetString() );
     }
-    UT_TRUE( cntVars > 5 );
+    UT_TRUE( cntVars >= 3 );
     UT_EQ  ( 1, cntALOX_CONSOLE_TYPE );
-
-
 
     lox::ALOX.Config->RemovePlugin( &cliArgs );
     delete it;

@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -52,73 +52,84 @@ String                IniFile::DefaultFileExtension                             
 // #################################################################################################
 void IniFile::Entry::ToVariable( const InMemoryPlugin& parent, Variable& variable )
 {
-    // if we are still raw, then parse the INI file content
-    if ( Values.size() == 0 )
+    // if this had been done before, use base method
+    if ( Values.size() > 0 )
     {
-        ALIB_ASSERT( Delim == '\0' );
-        Delim= variable.Delim;
-        variable.Comments._()._( Comments );
-
-        //-----  remove INI-File specific from raw value -----
-        String512 raw;
-        ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( raw,  ReplaceExternalBuffer);
-        raw._( RawValue );
-
-        // remove '='
-        raw.TrimStart();
-        if ( raw.CharAtStart() != '=' )
-        {
-            ALIB_WARNING( "No equal sign in INI-file variable \"", variable.Fullname.ToCString(), "\"." );
-        }
-        else
-            raw.DeleteStart(1).TrimStart();
-
-
-        // remove "\\n"
-        integer startIdx= 0;
-        while ( (startIdx= raw.IndexOf( '\n', startIdx )) >= 0 )
-        {
-            // find \\n and trim around this location
-            int delLen= 2;
-            if ( raw.CharAt( --startIdx) == '\r' )
-            {
-                delLen= 3;
-                --startIdx;
-            }
-            ALIB_ASSERT( raw.CharAt(startIdx) == '\\' );
-            raw.Delete( startIdx, delLen );
-
-            startIdx= raw.TrimAt( startIdx );
-
-            // if now the next value is starting with a comment symbol, we remove to the next \n
-            for(;;)
-            {
-                char c= raw.CharAt( startIdx );
-                if (     c != '#'
-                    &&   c != ';'
-                    && ( c != '/' || raw.CharAt( startIdx + 1 ) != '/' ) )
-                    break;
-
-                integer idx= raw.IndexOf( '\n', startIdx );
-                if (idx < 0 ) idx= raw.Length();
-                raw.Delete( startIdx, idx - startIdx + 1 );
-                if( startIdx >= raw.Length() )
-                    break;
-                startIdx= raw.TrimAt( startIdx );
-            }
-        }
-
-        // now convert
-        parent.StringConverter->LoadFromString( variable, raw );
-
-        // copy the parsed values back to our entry and store the delimiter
-        for( int i= 0; i < variable.Size() ; i++ )
-            Values.emplace_back( AString( variable.GetString( i ) ) );
+        InMemoryPlugin::Entry::ToVariable( parent, variable );
+        return;
     }
 
-    // otherwise, use base method
+    // store delim and comment
+    Delim= variable.Delim;
+    variable.Comments._()._( Comments );
+
+    // parse the INI file content
+
+    //-----  remove INI-File specific from raw value -----
+    String512 raw;
+    ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( raw,  ReplaceExternalBuffer);
+    raw._( RawValue );
+
+    // remove '='
+    raw.TrimStart();
+    if ( raw.CharAtStart() == '=' )
+        raw.DeleteStart(1).TrimStart();
     else
-        InMemoryPlugin::Entry::ToVariable( parent, variable );
+    {
+        ALIB_WARNING( "No equal sign in INI-file variable \"", variable.Fullname.ToCString(), "\"." );
+    }
+
+
+    // remove "\\n"
+    integer startIdx= 0;
+    while ( (startIdx= raw.IndexOf( '\n', startIdx )) >= 0 )
+    {
+        // find \\n and trim around this location
+        int delLen= 2;
+        if ( raw.CharAt( --startIdx) == '\r' )
+        {
+            delLen= 3;
+            --startIdx;
+        }
+        ALIB_ASSERT( raw.CharAt(startIdx) == '\\' );
+        raw.Delete( startIdx, delLen );
+
+        startIdx= raw.TrimAt( startIdx );
+        if( startIdx >= raw.Length() )
+            break;
+
+        // remove endquote of first line and start quote of second
+        if( startIdx >0 && raw[startIdx-1] == '"' && raw[startIdx] == '"' )
+        {
+            startIdx--;
+            raw.Delete( startIdx, 2);
+        }
+
+
+        // if now the next value is starting with a comment symbol, we remove to the next \n
+        for(;;)
+        {
+            char c= raw.CharAt( startIdx );
+            if (     c != '#'
+                &&   c != ';'
+                && ( c != '/' || raw.CharAt( startIdx + 1 ) != '/' ) )
+                break;
+
+            integer idx= raw.IndexOf( '\n', startIdx );
+            if (idx < 0 ) idx= raw.Length();
+            raw.Delete( startIdx, idx - startIdx + 1 );
+            if( startIdx >= raw.Length() )
+                break;
+            startIdx= raw.TrimAt( startIdx );
+        }
+    }
+
+    // now convert
+    parent.StringConverter->LoadFromString( variable, raw );
+
+    // copy the parsed values back to our entry
+    for( int i= 0; i < variable.Size() ; i++ )
+        Values.emplace_back( AString( variable.GetString( i ) ) );
 }
 
 void IniFile::Entry::FromVariable( const InMemoryPlugin& parent, Variable& variable )
@@ -181,7 +192,7 @@ void  IniFile::Reset()
 
 IniFile::Section*  IniFile::createSection(const String& sectionName )
 {
-    auto section= new IniFile::Section( sectionName );
+    auto* section= new IniFile::Section( sectionName );
     String comments= lib::CONFIG.GetTry(String128("INI_CMT_")._(sectionName) );
     if( comments.IsNotEmpty() )
     {

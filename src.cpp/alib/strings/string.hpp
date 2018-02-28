@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -168,7 +168,7 @@ class String;
  *   As shown in the sample, if a specialized version of this struct for a custom type exists, such
  *   type becomes automatically also an "applicable" type to class #AString, because template meta
  *   programming of method \b %AString::Apply checks for the existence of the specialization as well
- *   as the constructor of class #String.
+ *   as the constructor of class \b %String.
  *
  * A compile time assertion will be raised when a String is constructed with a type that has
  * no specialization of this struct.
@@ -212,8 +212,8 @@ template<> struct T_String<char*> : public std::true_type
 {
     /**
      * Returns the buffer of the literal.
-     * @param src The pointer to the source string
-     * @return The buffer of the literal
+     * @param src The pointer to the source string.
+     * @return The buffer of the literal.
      */
     static inline constexpr const char*   Buffer(char* const & src)
     {
@@ -222,7 +222,7 @@ template<> struct T_String<char*> : public std::true_type
 
     /**
      * Returns the length of the string evaluated with \c std::strlen.
-     * @param src The pointer to the source string
+     * @param src The pointer to the source string.
      * @return The length.
      */
     static inline integer      Length(char* const & src)
@@ -242,8 +242,8 @@ template<> struct T_String<char const*> : public std::true_type
 {
     /**
      * Returns the buffer of the literal.
-     * @param src The pointer to the source string
-     * @return The buffer of the literal
+     * @param src The pointer to the source string.
+     * @return The buffer of the literal.
      */
     static inline constexpr const char*   Buffer(const char* const & src)
     {
@@ -252,7 +252,7 @@ template<> struct T_String<char const*> : public std::true_type
 
     /**
      * Returns the length of the string evaluated with \c std::strlen.
-     * @param src The pointer to the source string
+     * @param src The pointer to the source string.
      * @return The length.
      */
     static inline integer      Length(const char* const & src)
@@ -286,13 +286,13 @@ struct T_StringLiteral  : public std::false_type
 
     /**
      * Returns the buffer of the literal.
-     * @return The buffer of the literal
+     * @return The buffer of the literal.
      */
     static inline constexpr char* Buffer(const TLiteral& )  { return nullptr; }
 
     /**
      * Returns the constant length (length is depending only on type \p TLiteral)
-     * @return The length
+     * @return The length.
      */
     static inline constexpr integer Length()      { return  1;      };
 
@@ -308,8 +308,8 @@ struct T_StringLiteral<char[TCapacity]>  : public std::true_type
 {
     /**
      * Returns the buffer of the literal.
-     * @param src The source string
-     * @return The buffer of the literal
+     * @param src The source string.
+     * @return The buffer of the literal.
      */
     static inline constexpr const char*    Buffer( char  const (&src) [TCapacity]   ) { return src; }
 
@@ -678,8 +678,7 @@ class String
          * '\0' is returned.
          *
          * @tparam TCheck  Defaults to \c true which is the normal invocation mode.
-         *                 If \c \<false\> is added to the method name, no range check is
-         *                 performed.
+         *                 If \c false is given, no range check is performed.
          * @param idx      The index of the character to read.
          * @return The character at the given index, or '\0' if index out of range.
          ******************************************************************************************/
@@ -699,8 +698,8 @@ class String
          * Retrieves the first character. In case of an empty or \e nulled string, '\0' is returned.
          *
          * @tparam TCheck  Defaults to \c true which is the normal invocation mode.
-         *                 If \c \<false\> is added to the method name, no check for an empty
-         *                 or \e nulled object is performed.
+         *                 If \c false is given, no check for an empty or \e nulled object is
+         *                 performed.
          * @return The first character in the %String.
          *         If this instance's length is zero,  '\0' is returned.
          ******************************************************************************************/
@@ -721,8 +720,8 @@ class String
          * Retrieves the last character. In case of an empty or \e nulled string, '\0' is returned.
          *
          * @tparam TCheck  Defaults to \c true which is the normal invocation mode.
-         *                 If \c \<false\> is added to the method name, no check for an empty
-         *                 or \e nulled object is performed.
+         *                 If \c false is given, no check for an empty or \e nulled object is
+         *                 performed.
          *
          * @return The last character in the %String.
          *         If this instance's length is zero,  '\0' is returned.
@@ -770,7 +769,8 @@ class String
 
         /** ****************************************************************************************
          * Compares this with given %String.
-         * \c true is returned if both are \e nulled or empty. If only one is \e nulled, \c false is returned.
+         * \c true is returned if both are \e nulled or empty.
+         * If only one is \e nulled, \c false is returned.
          *
          * @param needle        An %String that is compared to this.
          * @tparam TSensitivity Determines if comparison is case sensitive (the default) or not.
@@ -807,7 +807,7 @@ class String
          *                      returned.
          * @param pos           The position to search for needle.
          * @tparam TCheck       Defaults to \c true which is the normal invocation mode.
-         *                      If \c <false\> is added to the method name, no check on parameter
+         *                      If \c <false\> is given, no check on parameter
          *                      \p pos is performed and \p needle must not be \e nulled.
          * @tparam TSensitivity Determines if comparison is case sensitive (the default) or not.
          * @return \c true if \p needle is found at the given position. False otherwise. *
@@ -830,8 +830,9 @@ class String
             else
             {
                 ALIB_ASSERT_ERROR( pos >= 0 && pos + needleLength <= length && !needle.IsNull(),
-                                 "Non checking and index out of range" );
-                ALIB_ASSERT_ERROR( needleLength != 0, "Non checking and emtpy compare string" );
+                                   "Non checking and index out of range" );
+                ALIB_ASSERT_ERROR( needleLength != 0,
+                                   "Non checking and emtpy compare string" );
             }
 
             return 0 == ( TSensitivity == lang::Case::Sensitive
@@ -846,18 +847,34 @@ class String
          * @param needle        The string to compare the start of this string with.
          *                      If \e nulled or empty, \c true is returned.
          * @tparam TSensitivity Determines if comparison is case sensitive (the default) or not.
+         * @tparam TCheck       Defaults to \c true which is the normal invocation mode.
+         *                      If \c <false\> is given, the given needle must not be empty
+         *                      and must not be longer than this string!
+         *                      \p pos is performed and \p needle must not be \e nulled.
          * @return \c true if \p needle is found at the start of this, \c false otherwise. *
          ******************************************************************************************/
-        template<lang::Case TSensitivity =lang::Case::Sensitive>
+        template<lang::Case  TSensitivity =lang::Case::Sensitive,
+                 bool        TCheck      = true                   >
         inline
         bool StartsWith( const String& needle )
         const
         {
             integer needleLength= needle.length;
-            if ( needleLength > length )
-                return false;
-            if ( needleLength == 0 )
-                return true;
+            if ( TCheck )
+            {
+                if ( needleLength > length )
+                    return false;
+                if ( needleLength == 0 )
+                    return true;
+            }
+            else
+            {
+                ALIB_ASSERT_ERROR( needleLength <= length,
+                                  "Non checking and needle longer than this string." );
+                ALIB_ASSERT_ERROR( needleLength != 0,
+                                  "Non checking and emtpy needle given." );
+            }
+
             return 0 == ( TSensitivity == lang::Case::Sensitive
                             ?   strncmp             ( buffer,  needle.buffer, static_cast<size_t>(needleLength) )
                             :   CString::strncasecmp( buffer,  needle.buffer, needleLength ) );
@@ -891,8 +908,8 @@ class String
          * Compares this with another %String.
          *
          * @tparam TCheck       Defaults to \c true which is the normal invocation mode.
-         *                      If \c \<false\> is added to the method name, no check for \e nulled
-         *                      object is performed and this string must not be of zero length
+         *                      If \c false is given, no check for a \e nulled object (this)
+         *                      performed and this string must not be of zero length
          *                      (while \p needle might be of zero length).
          * @param  needle       The string to compare this string with.
          * @tparam TSensitivity Determines if comparison is case sensitive (the default) or not.
@@ -941,11 +958,11 @@ class String
          *                           with.
          *                           Defaults to CString::MaxLen;
          * @tparam TCheck            Defaults to \c true which is the normal invocation mode.
-         *                           If \c \<false\> is added to the method name, no check for a \e nulled
-         *                           comparison object is performed and this string must not be empty.
-         *                           Furthermore, no check is performed whether the given region fits
-         *                           to parameter \p needle. This also means that the default value must
-         *                           not be used with <em>TCheck==\<\c false\></em>.
+         *                           If \c false is given, no check for a \e nulled comparison
+         *                           object is performed and this string must not be empty.
+         *                           Furthermore, no check is performed whether the given region
+         *                           fits to parameter \p needle. This also means that the default
+         *                           value must not be used with <em>TCheck==\<\c false\></em>.
          * @tparam TSensitivity      Determines if comparison is case sensitive (the default) or not.
          *
          * @return
@@ -988,8 +1005,8 @@ class String
          * @param regionLength   The length of the region in this object to compare with.
          *                        Defaults to CString::MaxLen;
          * @tparam TCheck         Defaults to \c true which is the normal invocation mode.
-         *                        If \c \<false\> is added to the method name, no check for a \e nulled
-         *                        comparison object is performed and this string must not be empty.
+         *                        If \c false is given, no check for a \e nulled comparison
+         *                        object is performed and this string must not be empty.
          *                        Furthermore, no check is performed whether the given regions fit
          *                        to this object respectively the other region to the object given
          *                        with parameter \p needle.
@@ -1037,7 +1054,17 @@ class String
          * @param op The string to compare this string with.
          * @returns \c true if this is lexically smaller then \p op, \c false otherwise.
          */
+        inline
         bool     operator<  (const String& op) const { return CompareTo( op ) <  0 ;  }
+
+        /**
+         * Uses method #CompareTo with parameter \p op to perform a lexical comparison.
+         *
+         * @param op The string to compare this string with.
+         * @returns \c true if this is lexically smaller or equal then \p op, \c false otherwise.
+         */
+        inline
+        bool     operator<= (const String& op) const { return CompareTo( op ) <=  0 ;  }
 
         /**
          * Uses method #CompareTo with parameter \p op to perform a lexical comparison.
@@ -1045,7 +1072,17 @@ class String
          * @param op The string to compare this string with.
          * @returns \c true if this is lexically greater then \p op, \c false otherwise.
          */
+        inline
         bool     operator>  (const String& op) const { return CompareTo( op ) >  0 ;  }
+
+        /**
+         * Uses method #CompareTo with parameter \p op to perform a lexical comparison.
+         *
+         * @param op The string to compare this string with.
+         * @returns \c true if this is lexically greater or equal then \p op, \c false otherwise.
+         */
+        inline
+        bool     operator>= (const String& op) const { return CompareTo( op ) >=  0 ;  }
 
         /**
          * Uses method #Equals with parameter \p op to test on equality.
@@ -1053,6 +1090,7 @@ class String
          * @param op The string to compare this string with.
          * @returns \c true if the strings are equal, \c false otherwise.
          */
+        inline
         bool     operator== (const String& op) const { return Equals( op );  }
 
         /**
@@ -1061,6 +1099,7 @@ class String
          * @param op The string to compare this string with.
          * @returns \c true if the strings are equal, \c false otherwise.
          */
+        inline
         bool     operator!= (const String& op) const { return !Equals( op ) != 0 ;  }
 
     /** ############################################################################################
@@ -1089,8 +1128,7 @@ class String
          * Searches a character starting from a given position.
          *
          * @tparam TCheck   Defaults to \c true which is the normal invocation mode.
-         *                  If \c \<false\> is added to the method name, no range check is
-         *                  performed.
+         *                  If \c false is given, no range check is performed.
          * @param needle    The character to search for.
          * @param startIdx  The index in this to start searching the character.
          *
@@ -1125,8 +1163,7 @@ class String
          * Searches a character within a region of this.
          *
          * @tparam TCheck      Defaults to \c true which is the normal invocation mode.
-         *                     If \c \<false\> is added to the method name, no range check is
-         *                     performed.
+         *                     If \c false is given, no range check is performed.
          * @param needle       The character to search for.
          * @param regionStart  The start of the region to search the character in.
          * @param regionLength The length of the region to search the character in.
@@ -1190,6 +1227,8 @@ class String
          *
          * @param needle    The character to search for.
          * @param startIdx  The index in this to start searching the character.
+         * @tparam TCheck   Defaults to \c true which is the normal invocation mode.
+         *                  If \c false is given, no range check is performed.
          * @return  This strings #Length if the character \p needle is not found.
          *          Otherwise the index of first occurrence.
          ******************************************************************************************/
@@ -1219,8 +1258,8 @@ class String
          * Searches a character starting backwards from the end or a given start index.
          *
          * @tparam TCheck      Defaults to \c true which is the normal invocation mode.
-         *                     If \c \<false\> is added to the method name, no range check is
-         *                     performed. Also, in this case, parameter startIndex must be provided.
+         *                     If \c false is given, no range check is performed.
+         *                     Also, in this case, parameter startIndex must be provided.
          *
          * @param needle       The character to search for.
          * @param startIndex   The index in this to start searching the character.
@@ -1274,7 +1313,7 @@ class String
          *                    that is included or that is not excluded in the set of needle
          *                    characters.
          * @tparam TCheck     Defaults to \c true which is the normal invocation mode.
-         *                    If \c <false\> is added to the method name, no parameter checks are
+         *                    If \c <false\> is given, no parameter checks are performed.
          *
          * @return The index of the first character found which is included, respectively not
          *         included, in the given set of characters.
@@ -1320,7 +1359,7 @@ class String
          *                    that is included or that is not excluded in the set of needle
          *                    characters.
          * @tparam TCheck     Defaults to \c true which is the normal invocation mode.
-         *                    If \c <false\> is added to the method name, no parameter checks are
+         *                    If \c <false\> is given, no parameter checks are performed.
          *
          * @return The index of the first character found which is included, respectively not
          *         included, in the given set of characters.
@@ -1364,8 +1403,8 @@ class String
          * @tparam TSensitivity   Case sensitivity of the comparison.
          *                        Optional and defaults to \b Case::Sensitive.
          * @tparam TCheck         Defaults to \c true which is the normal invocation mode.
-         *                        If \c \<false\> is added to the method name, parameter \p startIdx
-         *                        must be valid and \p needle must not be empty.
+         *                        If \c false is given, parameter \p startIdx must be valid and
+         *                        \p needle must not be empty.
          *
          * @return    -1 if the string is not found. Otherwise the index of first occurrence.
          ******************************************************************************************/
@@ -1419,17 +1458,17 @@ class String
 
         /** ****************************************************************************************
          * Searches the first difference with given string.
+         * If this string starts with \p needle, then the length of \p needle is returned.
          *
          * @tparam TCheck      Defaults to \c true which is the normal invocation mode.
-         *                     If \c \<false\> is added to the method name, no range check is
-         *                     performed.
+         *                     If \c false is given, no range check is performed.
          * @param needle       The character to search for.
          * @param sensitivity  Case sensitivity of the comparison.
          *                     Optional and defaults to \b Case::Sensitive.
          * @param idx          The index in this to start comparing with \p needle.
          *                     Optional and defaults to \c 0.
          *
-         * @return  The index of the first difference in \p needle.
+         * @return   The index of the first difference found in \p needle or the neele's length.
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
@@ -1465,8 +1504,7 @@ class String
          * @param startPos  The index to start the counting.
          *                  Optional and defaults to \c 0.
          * @tparam TCheck   Defaults to \c true which is the normal invocation mode.
-         *                  If \c \<false\> is added to the method name, no range check is
-         *                  performed.
+         *                  If \c false is given, no range check is performed.
          *
          * @return  The index of the first difference in \p needle.
          ******************************************************************************************/
@@ -1511,8 +1549,7 @@ class String
          * @param startPos  The index to start the counting.
          *                  Optional and defaults to \c 0.
          * @tparam TCheck   Defaults to \c true which is the normal invocation mode.
-         *                  If \c \<false\> is added to the method name, no range check is
-         *                  performed.
+         *                  If \c false is given, no range check is performed.
          *
          * @return  The index of the first difference in \p needle.
          ******************************************************************************************/
@@ -1558,8 +1595,8 @@ class String
          * @tparam TSensitivity Case sensitivity of the comparison.
          *                      Optional and defaults to \b Case::Sensitive.
          * @tparam TCheck       Defaults to \c true which is the normal invocation mode.
-         *                      If \c \<false\> is added to the method name, parameter \p startIdx
-         *                      must be valid and \p needle must not be empty.
+         *                      If \c false is given, parameter \p startIdx must be valid and
+         *                      \p needle must not be empty.
          *
          * @return  The index of the first difference in \p needle.
          ******************************************************************************************/
@@ -1607,8 +1644,8 @@ class String
          * @tparam sensitivity Case sensitivity of the comparison.
          *                     Optional and defaults to \b Case::Sensitive.
          * @tparam TCheck      Defaults to \c true which is the normal invocation mode.
-         *                     If \c \<false\> is added to the method name, parameter \p startIdx
-         *                     must be valid and \p needle must not be empty.
+         *                     If \c false is given, parameter \p startIdx must be valid and
+         *                     \p needle must not be empty.
          *
          * @return  The index of the first difference in \p needle.
          ******************************************************************************************/
@@ -1948,20 +1985,21 @@ class String
 }; // class %String
 
 
-/** ********************************************************************************************
- * Implements a hash function  for class \ref aworx::lib::strings::String "String" usable
- * with types found in namespace \b std.
+/** ************************************************************************************************
+ * Implements a hash functor for class \alib{strings,String}, usable with types found in
+ * namespace \b std.<br>
  * Instead of implementing \b std::hash inside namespace \b std, this struct can be
- * provided as template parameter, e.g. to \b std::unordered_map.
- **********************************************************************************************/
-struct std_Hash
+ * provided as template parameter, e.g. to \b std::unordered_map, for which a templated type
+ * definition is provided for with \ref aworx::UnorderedStringMap.
+ **************************************************************************************************/
+struct std_StringHash
 {
     /**
      * Calculates the hash code for class \b String.
      * @param src The string object to hash.
      * @return The hash code.
      */
-    size_t operator()(const String src) const
+    size_t operator()(const String& src) const
     {
         integer result= 0xc70f6907UL;
 
@@ -1972,13 +2010,14 @@ struct std_Hash
     }
 };
 
-/** ********************************************************************************************
- * Implements a comparison function for objects of class
- * \ref aworx::lib::strings::String "String", usable with types found in namespace \b std.
+/** ************************************************************************************************
+ * Implements a comparison functor for objects of class \alib{strings,String}, usable with types
+ * found in namespace \b std.<br>
  * Instead of implementing the operator inside namespace \b std, this struct can be
- * provided as template parameter, e.g. to \b std::unordered_map.
- **********************************************************************************************/
-struct std_Equals
+ * provided as template parameter, e.g. to \b std::unordered_map., for which a templated type
+ * definition is provided for with \ref aworx::UnorderedStringMap.
+ **************************************************************************************************/
+struct std_StringEquals
 {
     /**
      * Invokes \ref aworx::lib::strings::String::Equals "String::Equals" on \p lhs, passing
@@ -1987,26 +2026,75 @@ struct std_Equals
      * @param rhs The second string object.
      * @return The hash code.
      */
-    bool operator()(const String lhs,
-                    const String rhs) const
+    bool operator()(const String& lhs, const String& rhs) const
     {
         return lhs.Equals( rhs );
     }
 };
 
+/** ************************************************************************************************
+ * Implements a case insensitive hash functor for class \alib{strings,String}, usable with types
+ * found in namespace \b std.<br>
+ * Instead of implementing \b std::hash inside namespace \b std, this struct can be
+ * provided as template parameter, e.g. to \b std::unordered_map, for which a templated type
+ * definition is provided for with \ref aworx::UnorderedStringMapIgnoreCase.
+ **************************************************************************************************/
+struct std_StringHashIgnoreCase
+{
+    /**
+     * Calculates the hash code for class \b String.
+     * @param src The string object to hash.
+     * @return The hash code.
+     */
+    size_t operator()(const String& src) const
+    {
+        integer result= 0xc70f6907UL;
+
+        for (int i = 0; i < src.Length(); i++)
+            result = 31*result + toupper(src.CharAt<false>(i++));
+
+        return static_cast<size_t>( result );
+    }
+};
+
+/** ************************************************************************************************
+ * Implements a case insensitive comparison functor for objects of class \alib{strings,String},
+ * usable with types found in namespace \b std.<br>
+ * Instead of implementing the operator inside namespace \b std, this struct can be
+ * provided as template parameter, e.g. to \b std::unordered_map., for which a templated type
+ * definition is provided for with \ref aworx::UnorderedStringMapIgnoreCase.
+ **************************************************************************************************/
+struct std_StringEqualsIgnoreCase
+{
+    /**
+     * Invokes \ref aworx::lib::strings::String::Equals "String::Equals" on \p lhs, passing
+     * \p rhs.
+     * @param lhs The first string object.
+     * @param rhs The second string object.
+     * @return The hash code.
+     */
+    bool operator()(const String& lhs, const String& rhs) const
+    {
+        return lhs.Equals<Case::Ignore>( rhs );
+    }
+};
 }} // namespace lib::strings
 
 
 /** Type alias name in namespace #aworx. */
 using     String                =   aworx::lib::strings::String;
 
-/** Type alias name in namespace #aworx. */
+/** Unordered map using a key of type \alib{strings,String}. */
 template<typename TValue>
-using     UnorderedStringMap    =   std::unordered_map<String, TValue,
-                                                       lib::strings::std_Hash,
-                                                       lib::strings::std_Equals>;
+using     UnorderedStringMap           =   std::unordered_map<String, TValue,
+                                                              lib::strings::std_StringHash,
+                                                              lib::strings::std_StringEquals>;
 
-
+/** Unordered map using a case insensitive key of type \alib{strings,String}. */
+template<typename TValue>
+using     UnorderedStringMapIgnoreCase =   std::unordered_map<String, TValue,
+                                                             lib::strings::std_StringHashIgnoreCase,
+                                                             lib::strings::std_StringEqualsIgnoreCase>;
 
 // #################################################################################################
 // aworx namespace string singletons

@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  aworx::lox::core - ALox Logging Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -69,7 +69,7 @@ class ScopeStore
     // #############################################################################################
     // Public fields
     // These fields are public, but publicly accessed only for State and Reset()
-    // (bauhaus code style, omitting getters. For library users this is still invisible, as
+    // (Bauhaus code style, omitting getters. For library users this is still invisible, as
     // the stores are protected in class Lox)
     // #############################################################################################
     public:

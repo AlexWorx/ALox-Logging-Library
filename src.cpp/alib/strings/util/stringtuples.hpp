@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -215,10 +215,11 @@ class StringTable  : public std::vector<std::tuple<String, TAssociatedTypes...>>
          * or completely. (Parameter \c deallocate is forwarded to
          * \ref aworx::lib::lang::MemoryBlocks::Clear "MemoryBlocks::Clear".)
          *
-         * @param deallocate If \c true, all allocated memory chunks are freed. Otherwise, they
+         * @param deallocate If \b %CurrentData::Clear , all allocated memory chunks are freed.
+         *                   If \b %CurrentData::Keep, which is the default, they
          *                   will be reused for future new strings that are added.
          ******************************************************************************************/
-        void    Clear( bool deallocate= false )
+        void    Clear( CurrentData deallocate= CurrentData::Keep )
         {
             VectorType::clear();
             blocks.Clear( deallocate );

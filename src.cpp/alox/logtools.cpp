@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  aworx::lox - ALox Logging Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -36,8 +36,8 @@ void LogTools::Exception( Lox&                lox,
     size_t entryNo= 1;
     lox.Acquire( ALIB_SRCPOS_REL_NULLED );
 
-        lox.SetDomain( domainPrefix, Scope::ThreadOuter );
-        lox.SetPrefix( logPrefix   , Scope::ThreadOuter );
+        if( domainPrefix.IsNotNull() ) lox.SetDomain( domainPrefix, Scope::ThreadOuter );
+        if( logPrefix   .IsNotNull() ) lox.SetPrefix( logPrefix   , Scope::ThreadOuter );
         for ( auto entry= e.Entries.begin(); entry < e.Entries.end(); entry++ )
         {
             lox.Acquire( entry->File, entry->Line, entry->Func );
@@ -48,7 +48,7 @@ void LogTools::Exception( Lox&                lox,
                 {
                     auto& logables= lox.GetLogableContainer();
                     if( firstLine )
-                        logables.Add( "E{}: [{}]", entryNo, entry->Code );
+                        logables.Add( "{}{}: [{}]", (entry->Code.Value() >= 0 ? 'E' : 'I'), entryNo, entry->Code );
                     else
                         logables.Add( "    {}"         , tknzr.Next()                    );
 
@@ -58,8 +58,8 @@ void LogTools::Exception( Lox&                lox,
             lox.Release();
             entryNo++;
         }
-        lox.SetDomain( nullptr, Scope::ThreadOuter );
-        lox.SetPrefix( nullptr, Scope::ThreadOuter );
+        if( domainPrefix.IsNotNull() ) lox.SetDomain( nullptr, Scope::ThreadOuter );
+        if( logPrefix   .IsNotNull() ) lox.SetPrefix( nullptr, Scope::ThreadOuter );
     lox.Release();
 
 }

@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -52,21 +52,21 @@ class Boxer
     protected:
         /** Information about the encapsulated type. In case of arrays, this represents the
          *  boxer type, while the element type is provided in #elemType. */
-        const std::type_info&               type;
+        const std::type_info&   type;
 
         /** In case of array types, information about the element type. */
-        const std::type_info&               elemType;
+        const std::type_info&   elemType;
 
         /** In case of array types, information about the size of the element type. */
-        const size_t                        sizeofElemType;
+        const size_t            sizeofElemType;
 
         /** Box interfaces attached using #DefineInterface. */
-        lang::RTTIUnorderedMap<Interface*>  interfaces;
+        TypeMap<Interface*>     interfaces;
 
         /** This static singleton field holds default interfaces that apply to each and every
          * boxed type. See #DefineDefaultInterface  for more information. */
         static ALIB_API
-        lang::RTTIUnorderedMap<Interface*>  defaultInterfaces;
+        TypeMap<Interface*>     defaultInterfaces;
 
 
 

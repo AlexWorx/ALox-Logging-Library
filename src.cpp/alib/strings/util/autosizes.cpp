@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -22,22 +22,21 @@ int   AutoSizes::Actual( integer requestedSize, integer growthPadding )
     // grow arrays as needed
     if ( values.size() == static_cast<size_t>(ActualIndex) )
     {
-        values          .emplace_back( 0 );
-        sessionValues   .emplace_back( 0 );
+        values          .emplace_back( -1 );
+        sessionValues   .emplace_back( -1 );
     }
 
     // get size as it would be for this session (for saving the session later)
     integer size=    sessionValues[ static_cast<size_t>(ActualIndex) ];
     if ( size <  requestedSize )
-        sessionValues[ static_cast<size_t>(ActualIndex) ]=  requestedSize + ( size == 0 ? 0 : growthPadding );
+        sessionValues[ static_cast<size_t>(ActualIndex) ]=  (requestedSize + ( size == -1 ? 0 : growthPadding ));
 
 
     // get size as it is for actual values (the ones that might have been imported)
-    size=    values[ static_cast<size_t>(ActualIndex) ];
+    size=                   values[ static_cast<size_t>(ActualIndex) ];
     if ( size <  requestedSize )
     {
-        size=
-        values[ static_cast<size_t>(ActualIndex) ]=         requestedSize + ( size == 0 ? 0 : growthPadding );
+        size=  values[ static_cast<size_t>(ActualIndex) ]=  (requestedSize + ( size == -1 ? 0 : growthPadding ));
     }
 
     return static_cast<int>(size);

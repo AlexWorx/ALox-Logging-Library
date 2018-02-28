@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -35,6 +35,23 @@ namespace aworx { namespace lib { namespace strings {
  *   #aworx::lib::strings.
  */
 namespace applyto {
+#endif
+
+// #################################################################################################
+// bool, std::type_info
+// #################################################################################################
+integer T_Apply<bool>::Apply( AString& target, bool& b )
+{
+    target._<false>( lib::STRINGS.Get( b ? "APPLY_T" : "APPLY_F" ));
+    return 1;
+}
+
+#if ALIB_DEBUG
+integer T_Apply<std::type_info>::Apply( AString& target, const std::type_info& type )
+{
+    target._<false>( debug::TypeDemangler( type ).Get() );
+    return 1;
+}
 #endif
 
 // #################################################################################################

@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -473,6 +473,7 @@ public class CString
     /** ********************************************************************************************
      * Static method that returns the index of the first character which not equal
      * within two strings.
+     * If \p haystack starts with \p needle, then the length of \p needle is returned.
      *
      * @param haystack        Character array that is searched in.
      * @param haystackStart   The start of the region within haystack.

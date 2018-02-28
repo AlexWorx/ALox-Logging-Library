@@ -2,7 +2,7 @@
 //  Unit Tests - ALox Logging Library
 //  (Unit Tests to create tutorial sample code and output)
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alox/alox.hpp"
@@ -442,12 +442,14 @@ UT_METHOD(Log_TextLogger_FormatConfig)
 {
     UT_INIT();
     testFormatConfig( ut, "Test"                                , "Test"                     );
-    testFormatConfig( ut, "\"Test"                              , "Test"                     );
+    testFormatConfig( ut, "\"Test"                              , "\"Test"                   );
     testFormatConfig( ut, "\\\"Test"                            , "\"Test"                   );
     testFormatConfig( ut, "\"Test\""                            , "Test"                     );
-    testFormatConfig( ut, "  \" Test \"        X"               , " Test X"                  );
+    testFormatConfig( ut, "  \" Test \"        X "              , "\" Test \"        X"      );
+    testFormatConfig( ut, "\"  Te\"st \""                       , "  Te\"st "                );
 
     testFormatConfig( ut, " Test , a ,b,   c,d  "               , "Test", "a","b","c","d"    );
+    testFormatConfig( ut, " Test , a ,b,\" ,  c\",d  "          , "Test", "a","b"," ,  c","d");
 }
 
 /** ********************************************************************************************

@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -248,7 +248,7 @@ namespace aworx { namespace lib { namespace strings                             
 {                                                                                                  \
     template<> struct       T_Apply<TYPE> : public std::true_type                                  \
     {                                                                                              \
-        static integer Apply( AString& target, const TYPE src );                                   \
+        ALIB_API static integer Apply( AString& target, const TYPE src );                          \
     };                                                                                             \
 }}}                                                                                                \
 
@@ -737,8 +737,8 @@ class AString : public TString
         }
 
         /** ****************************************************************************************
-         *  Clears this object and uses <em>Apply</em> to append objects of arbitrary type.
-         *  See \ref Apply for more information.
+         * Clears this object and uses <em>Apply</em> to append objects of arbitrary type.
+         * See \ref Apply for more information.
          *
          * \note In general, it might be advisable to use a combination of #Clear and #_(const T&)
          *       instead of using assignments.
@@ -746,16 +746,15 @@ class AString : public TString
          *       for an explanation.
          *
          * @tparam T      The type of parameter \p source.
-         * @param  op     The source of type T to append.
-         *
-         * @return    \c *this to allow concatenated calls.
+         * @param  arg    The source of type T to append.
+         * @return \c *this to allow concatenated calls.
          ******************************************************************************************/
-        template <class T>
+        template<typename T>
         inline
-        AString& operator= (const  T& op )
+        AString& operator= (const  T& arg )
         {
             Clear();
-            if ( Apply<true>( op ) < 0 )
+            if ( Apply<true>( arg ) < 0 )
                 SetNull();
             return *this;
         }
@@ -766,38 +765,38 @@ class AString : public TString
      ##@{ ########################################################################################*/
 
         /** ****************************************************************************************
-         *  Resizes the internal buffer to meet exactly the given size.
+         * Resizes the internal buffer to meet exactly the given size.
          *
-         *  The following rules apply:
-         *  - The string represented by this instance is copied to the new buffer.
-         *    If this is larger than the new buffer size, the string is cut at the end to fit.
-         *  - If the desired new size is 0, then the currently allocated buffer will be released
-         *    and the objects state is \e nulled.
-         *  - If the current buffers' life-cycle is managed externally (e.g. was set using
-         *    #SetBuffer(char*,integer,integer, lang::Responsibility)
-         *    with parameter \p responsibility being \c Responsibility::KeepWithSender), this method
-         *    will replace the buffer by a new one, even if the new requested size is the same as
-         *    the external buffers' size. In other words, the only case when this method does not
-         *    replace the current buffer is when the current buffers' life-cycle is (already)
-         *    internally managed and it has the same size than what is requested.
-         *  - In the C++ version of \b %ALib, the \c true allocation size is + 1 of what is given
-         *    in parameter \p newCapacity. This is is to duly apply to a constraint given by parent
-         *    #TString.
+         * The following rules apply:
+         * - The string represented by this instance is copied to the new buffer.
+         *   If this is larger than the new buffer size, the string is cut at the end to fit.
+         * - If the desired new size is 0, then the currently allocated buffer will be released
+         *   and the objects state is \e nulled.
+         * - If the current buffers' life-cycle is managed externally (e.g. was set using
+         *   #SetBuffer(char*,integer,integer, lang::Responsibility)
+         *   with parameter \p responsibility being \c Responsibility::KeepWithSender), this method
+         *   will replace the buffer by a new one, even if the new requested size is the same as
+         *   the external buffers' size. In other words, the only case when this method does not
+         *   replace the current buffer is when the current buffers' life-cycle is (already)
+         *   internally managed and it has the same size than what is requested.
+         * - In the C++ version of \b %ALib, the \c true allocation size is + 1 of what is given
+         *   in parameter \p newCapacity. This is is to duly apply to a constraint given by parent
+         *   #TString.
          *
-         *  \note Any methods of this class that extend the length of the string represented, will
-         *        invoke this method if the current buffer size is not sufficient.
-         *        If a future string length of an \b %AString is predictable, then it is advisable
-         *        to allocate such size prior to start appending the data to avoid recurring
-         *        allocations (performance optimization).
-         *  <p>
+         * \note Any methods of this class that extend the length of the string represented, will
+         *       invoke this method if the current buffer size is not sufficient.
+         *       If a future string length of an \b %AString is predictable, then it is advisable
+         *       to allocate such size prior to start appending the data to avoid recurring
+         *       allocations (performance optimization).
+         * <p>
          *
-         *  \note
-         *    If currently an external buffer is set (this means a buffer whose life-cycle
-         *    is not controlled by this instance), an one-time warning per instance is
-         *    issued.
-         *    To enable/disable this warning use macro
-         *    - \ref ALIB_WARN_ONCE_PER_INSTANCE_ENABLE(theInstanceInQuestion, ReplaceExternalBuffer) or
-         *    - \ref ALIB_WARN_ONCE_PER_INSTANCE_DISABLE(theInstanceInQuestion, ReplaceExternalBuffer).
+         * \note
+         *   If currently an external buffer is set (this means a buffer whose life-cycle
+         *   is not controlled by this instance), an one-time warning per instance is
+         *   issued.
+         *   To enable/disable this warning use macro
+         *   - \ref ALIB_WARN_ONCE_PER_INSTANCE_ENABLE(theInstanceInQuestion, ReplaceExternalBuffer) or
+         *   - \ref ALIB_WARN_ONCE_PER_INSTANCE_DISABLE(theInstanceInQuestion, ReplaceExternalBuffer).
 
          *
          * @param newCapacity   The new capacity of the internal buffer.
@@ -807,22 +806,22 @@ class AString : public TString
 
 
         /** ****************************************************************************************
-         *  This methods replaces the current buffer with the one provided.
+         * This methods replaces the current buffer with the one provided.
          *
-         *  The following rules apply:
-         *  - If a nullptr is provided still, the current buffer is released.
-         *  - If provided buffer is not nullptr, its size provided with parameter \p extBufferSize
-         *    has to be at least 1 for
-         *    providing the space for a termination character.
-         *  - After the operation, #Capacity will report \p extBufferSize \p -1.
-         *  - Optional parameter \p responsibility can be used to pass the responsibility for the
-         *    deletion of the buffer to this object.
-         *  - The length of the content provided with parameter \p extLength must not exceed
-         *    the value of parameter \p extBufferSize \p -1.
-         *  - In no event any data of an existing buffer is copied into the new one. The rationale
-         *    here is that in most use cases, this is not needed. Should this be desired,
-         *    then the contents has to be copied manually, e.g. by invoking
-         *    <code>strcpy( extBuffer, target.ToCString() )</code> prior to invoking this method.
+         * The following rules apply:
+         * - If a nullptr is provided still, the current buffer is released.
+         * - If provided buffer is not nullptr, its size provided with parameter \p extBufferSize
+         *   has to be at least 1 for
+         *   providing the space for a termination character.
+         * - After the operation, #Capacity will report \p extBufferSize \p -1.
+         * - Optional parameter \p responsibility can be used to pass the responsibility for the
+         *   deletion of the buffer to this object.
+         * - The length of the content provided with parameter \p extLength must not exceed
+         *   the value of parameter \p extBufferSize \p -1.
+         * - In no event any data of an existing buffer is copied into the new one. The rationale
+         *   here is that in most use cases, this is not needed. Should this be desired,
+         *   then the contents has to be copied manually, e.g. by invoking
+         *   <code>strcpy( extBuffer, target.ToCString() )</code> prior to invoking this method.
          *
          * @param extBuffer       The external buffer to use.
          * @param extBufferSize   The size of the given buffer.
@@ -953,9 +952,9 @@ class AString : public TString
         }
 
         /** ****************************************************************************************
-         *  The current size of the internal buffer (this is excluding the trailing '\0'character)
-         *  which is reserved to terminate the represented character array if needed.
-         *  In other words, the internal memory allocated is the size returned here plus one.
+         * The current size of the internal buffer (this is excluding the trailing '\0'character)
+         * which is reserved to terminate the represented character array if needed.
+         * In other words, the internal memory allocated is the size returned here plus one.
          *
          * @return The size of the allocated buffer.
          ******************************************************************************************/
@@ -967,15 +966,15 @@ class AString : public TString
         }
 
         /** ****************************************************************************************
-         *  Returns \c true, if the buffer was allocated by this class itself. If the buffer was
-         *  set using #SetBuffer(char*,integer,integer,lang::Responsibility) with parameter \p responsibility
-         *  given as \c Responsibility::KeepWithSender (and not automatically replaced, yet,
-         *  because it became too small) then \c false is returned.
-         *  \note Derived class
-         *        \ref aworx::lib::strings::PreallocatedString "PreallocatedString" will report \c false here.
-         *        This sounds wrong on the first sight, as the buffer is allocated by an 'internal'
-         *        member. But from an AString's perspective, class <em>PreallocatedString</em> works on
-         *        an 'external' buffer.
+         * Returns \c true, if the buffer was allocated by this class itself. If the buffer was
+         * set using #SetBuffer(char*,integer,integer,lang::Responsibility) with parameter \p responsibility
+         * given as \c Responsibility::KeepWithSender (and not automatically replaced, yet,
+         * because it became too small) then \c false is returned.
+         * \note Derived class
+         *       \ref aworx::lib::strings::PreallocatedString "PreallocatedString" will report \c false here.
+         *       This sounds wrong on the first sight, as the buffer is allocated by an 'internal'
+         *       member. But from an AString's perspective, class <em>PreallocatedString</em> works on
+         *       an 'external' buffer.
          *
          * @return \c true if the buffer is internally allocated and will be deleted with the
          *         deletion of this object. False otherwise.
@@ -1295,13 +1294,13 @@ class AString : public TString
 
 
         /** ****************************************************************************************
-         *  Deletes a region from the Buffer. A range check is performed and the region is cut
-         *  to fit to the string.
+         * Deletes a region from the Buffer. A range check is performed and the region is cut
+         * to fit to the string.
          *
-         *  The non-checking version (\p TCheck = \c false) still allows to leave parameter
-         *  \p regionLength as default (respectively allows the sum of parameters
-         *  \p regionStart and \p regionLength to be longer than the length of this \b %AString).
-         *   In this case, this string is cut starting from index \p regionStart.
+         * The non-checking version (\p TCheck = \c false) still allows to leave parameter
+         * \p regionLength as default (respectively allows the sum of parameters
+         * \p regionStart and \p regionLength to be longer than the length of this \b %AString).
+         *  In this case, this string is cut starting from index \p regionStart.
          *
          * \note See also methods #Clear, #DeleteStart and #DeleteEnd.
          *
@@ -1362,7 +1361,7 @@ class AString : public TString
         }
 
         /** ****************************************************************************************
-         *  Deletes the given number of characters from the start of the string.
+         * Deletes the given number of characters from the start of the string.
          *
          * @tparam TCheck       Defaults to \c true which is the normal invocation mode.
          *                      If \c \<false\> is added to the method name, no parameter checks are
@@ -1402,7 +1401,7 @@ class AString : public TString
         }
 
         /** ****************************************************************************************
-         *  Deletes the given number of characters from the end of the string.
+         * Deletes the given number of characters from the end of the string.
          *
          * @tparam TCheck       Defaults to \c true which is the normal invocation mode.
          *                      If \c \<false\> is added to the method name, no parameter checks are
@@ -1624,41 +1623,41 @@ class AString : public TString
 
 
         /** ****************************************************************************************
-         *  This generic method allows to apply an object of custom type \p TApplicable.
-         *  For most types, 'apply' means to append a string representation of the given object.<br>
-         *  In detail, the implementation of this method proceeds as follows:
-         *  - If a pointer type is detected and value is nullptr, nothing is done and -1 is returned.
-         *    This allows the caller to react on nullptr values (e.g. the assignment operator,
-         *    would set this object to \e nulled state if -1 was returned).
-         *  - If a character type (\c char, \c wchar_t, \c char16_t or \c char32_t) is passed,
-         *    it is appended.
-         *  - If a reference or pointer to a type representing a string value is detected, the
-         *    string is appended. %String types detected are:
-         *    - \c char*, \c char[]
-         *    - \c w_char*, \c w_char[]
-         *    - \c char16_t*, \c char16_t[]
-         *    - \c char32_t*, \c char32_t[]
-         *    - \ref String, \ref StringLiteral, \ref TString, \ref Substring
-         *    - Custom types that have a specialization of template struct
-         *      \ref T_String.
-         *  - If above does not match, it is checked for a specialization of template struct
-         *    \ref T_Apply for the given type \p TApplicable. For this, unnecessary qualifiers
-         *    are removed and if \p TApplicable is a pointer type, even this is ignored.
-         *    (Hence pointers can be passed to this method without de-referencing them and with only
-         *    one specialization of struct \b %TApply.)
-         *  - If a matching (partially implemented) template struct is found, its method
-         *    \b T_Apply<TApplicable>::Apply
-         *    is invoked and this way the custom specialization defines what 'applying' of an
-         *    object of this type means.
+         * This generic method allows to apply an object of custom type \p TApplicable.
+         * For most types, 'apply' means to append a string representation of the given object.<br>
+         * In detail, the implementation of this method proceeds as follows:
+         * - If a pointer type is detected and value is nullptr, nothing is done and -1 is returned.
+         *   This allows the caller to react on nullptr values (e.g. the assignment operator,
+         *   would set this object to \e nulled state if -1 was returned).
+         * - If a character type (\c char, \c wchar_t, \c char16_t or \c char32_t) is passed,
+         *   it is appended.
+         * - If a reference or pointer to a type representing a string value is detected, the
+         *   string is appended. %String types detected are:
+         *   - \c char*, \c char[]
+         *   - \c w_char*, \c w_char[]
+         *   - \c char16_t*, \c char16_t[]
+         *   - \c char32_t*, \c char32_t[]
+         *   - \ref String, \ref StringLiteral, \ref TString, \ref Substring
+         *   - Custom types that have a specialization of template struct
+         *     \ref T_String.
+         * - If above does not match, it is checked for a specialization of template struct
+         *   \ref T_Apply for the given type \p TApplicable. For this, unnecessary qualifiers
+         *   are removed and if \p TApplicable is a pointer type, even this is ignored.
+         *   (Hence pointers can be passed to this method without de-referencing them and with only
+         *   one specialization of struct \b %TApply.)
+         * - If a matching (partially implemented) template struct is found, its method
+         *   \b T_Apply<TApplicable>::Apply
+         *   is invoked and this way the custom specialization defines what 'applying' of an
+         *   object of this type means.
          *
-         *  See \ref T_Apply for information on how to implement a supporting template struct to
-         *  allow the application of user defined types.
+         * See \ref T_Apply for information on how to implement a supporting template struct to
+         * allow the application of user defined types.
          *
-         *  \note
-         *    A static assertion tries to detect unsupported types (types that are missing
-         *    a specialization of \b %T_Apply) at compile time. However, for technical reasons,
-         *    there might be a few types not fetched by this static assert.
-         *    In this case an ALIB_WARNING is raised at runtime and 0 is returned.
+         * \note
+         *   A static assertion tries to detect unsupported types (types that are missing
+         *   a specialization of \b %T_Apply) at compile time. However, for technical reasons,
+         *   there might be a few types not fetched by this static assert.
+         *   In this case an ALIB_WARNING is raised at runtime and 0 is returned.
          *
          * <b>Usage</b><p>
          *  This method not directly used by standard user code. However, indirectly it is used
@@ -1953,10 +1952,10 @@ class AString : public TString
 
 
         /** ****************************************************************************************
-         *  Wrapper method around #Apply that returns \c *this to allow concatenated calls.
+         * Wrapper method around #Apply that returns \c *this to allow concatenated calls.
          *
-         *  With template parameter TCheck equal to \c true, this method is equivalent to
-         *  invoking #operator<<(const T&).
+         * With template parameter TCheck equal to \c true, this method is equivalent to
+         * invoking #operator<<(const T&).
          *
          * @tparam TCheck  Defaults to \c true which is the normal invocation mode.
          *                 If \c \<false\> is added to the method name, checks are omitted.
@@ -2021,12 +2020,12 @@ class AString : public TString
         }
 
         /** ****************************************************************************************
-         *  Invokes #Apply to append string-type objects and to generically 'apply' objects of
-         *  arbitrary type.
-         *  This template method wraps an invocation of #Apply, ignoring its return value
-         *  and instead returns \c *this to allow concatenated calls.
-         *  This operator is equivalent to invoking #_<true>(const T&).
-         *  \see Method \ref Apply for more information.
+         * Invokes #Apply to append string-type objects and to generically 'apply' objects of
+         * arbitrary type.
+         * This template method wraps an invocation of #Apply, ignoring its return value
+         * and instead returns \c *this to allow concatenated calls.
+         * This operator is equivalent to invoking #_<true>(const T&).
+         * \see Method \ref Apply for more information.
          *
          * @tparam T   The type of parameter \p source.
          * @param  op  The object of type T to append.
@@ -2041,8 +2040,8 @@ class AString : public TString
         }
 
         /** ****************************************************************************************
-         *  Appends platform specific new line character(s) by appending literal string
-         *  \ref aworx::NewLine "NewLine".
+         * Appends platform specific new line character(s) by appending literal string
+         * \ref aworx::NewLine "NewLine".
          * @return \c *this to allow concatenated calls.
          ******************************************************************************************/
         inline
@@ -2172,8 +2171,8 @@ class AString : public TString
      ##@{ ########################################################################################*/
     public:
         /**
-         *  While parent class \b %String provides a constant iterator, we are exposing the same
-         *  thing in a mutable fashion.
+         * While parent class \b %String provides a constant iterator, we are exposing the same
+         * thing in a mutable fashion.
          */
         using Iterator= RandomAccessIteratorBase<char*, char&>;
 
@@ -2258,14 +2257,122 @@ class AString : public TString
             ALIB_API
             int GetSingletons( strings::AString& target );
         #endif
+
+        } // aworx::lib[::debug]
+        namespace strings {
     #endif
 
 
-}} // namespace aworx[::lib::strings] (respectively aworx[::lib::debug])
+/** ************************************************************************************************
+ * Implements a hash functor for class \alib{strings,String}, usable with types found in
+ * namespace \b std.<br>
+ * Instead of implementing \b std::hash inside namespace \b std, this struct can be
+ * provided as template parameter, e.g. to \b std::unordered_map, for which a templated type
+ * definition is provided for with \ref aworx::UnorderedStringMap.
+ **************************************************************************************************/
+struct std_AStringHash
+{
+    /**
+     * Calculates the hash code for class \b String.
+     * @param src The string object to hash.
+     * @return The hash code.
+     */
+    size_t operator()(const String& src) const
+    {
+        integer result= 0xc70f6907UL;
+
+        for (int i = 0; i < src.Length(); i++)
+            result = 31*result + src.CharAt<false>(i++);
+
+        return static_cast<size_t>( result );
+    }
+};
+
+/** ************************************************************************************************
+ * Implements a comparison functor for objects of class \alib{strings,String}, usable with types
+ * found in namespace \b std.<br>
+ * Instead of implementing the operator inside namespace \b std, this struct can be
+ * provided as template parameter, e.g. to \b std::unordered_map., for which a templated type
+ * definition is provided for with \ref aworx::UnorderedStringMap.
+ **************************************************************************************************/
+struct std_AStringEquals
+{
+    /**
+     * Invokes \ref aworx::lib::strings::String::Equals "String::Equals" on \p lhs, passing
+     * \p rhs.
+     * @param lhs The first string object.
+     * @param rhs The second string object.
+     * @return The hash code.
+     */
+    bool operator()(const String& lhs, const String& rhs) const
+    {
+        return lhs.Equals( rhs );
+    }
+};
+
+/** ************************************************************************************************
+ * Implements a case insensitive hash functor for class \alib{strings,String}, usable with types
+ * found in namespace \b std.<br>
+ * Instead of implementing \b std::hash inside namespace \b std, this struct can be
+ * provided as template parameter, e.g. to \b std::unordered_map, for which a templated type
+ * definition is provided for with \ref aworx::UnorderedStringMapIgnoreCase.
+ **************************************************************************************************/
+struct std_AStringHashIgnoreCase
+{
+    /**
+     * Calculates the hash code for class \b String.
+     * @param src The string object to hash.
+     * @return The hash code.
+     */
+    size_t operator()(const String& src) const
+    {
+        integer result= 0xc70f6907UL;
+
+        for (int i = 0; i < src.Length(); i++)
+            result = 31*result + toupper(src.CharAt<false>(i++));
+
+        return static_cast<size_t>( result );
+    }
+};
+
+/** ************************************************************************************************
+ * Implements a case insensitive comparison functor for objects of class \alib{strings,String},
+ * usable with types found in namespace \b std.<br>
+ * Instead of implementing the operator inside namespace \b std, this struct can be
+ * provided as template parameter, e.g. to \b std::unordered_map., for which a templated type
+ * definition is provided for with \ref aworx::UnorderedStringMapIgnoreCase.
+ **************************************************************************************************/
+struct std_AStringEqualsIgnoreCase
+{
+    /**
+     * Invokes \ref aworx::lib::strings::String::Equals "String::Equals" on \p lhs, passing
+     * \p rhs.
+     * @param lhs The first string object.
+     * @param rhs The second string object.
+     * @return The hash code.
+     */
+    bool operator()(const String& lhs, const String& rhs) const
+    {
+        return lhs.Equals<Case::Ignore>( rhs );
+    }
+};
+}} // namespace lib::strings
+
 
 /** Type alias name in namespace #aworx. */
-using     AString   =       aworx::lib::strings::AString;
+using     AString                      =   aworx::lib::strings::AString;
 
+/** Unordered map using a key of type \alib{strings,String}. */
+template<typename TValue>
+using     UnorderedAStringMap          =   std::unordered_map<AString, TValue,
+                                                              lib::strings::std_AStringHash,
+                                                              lib::strings::std_AStringEquals>;
+
+/** Unordered map using a case insensitive key of type \alib{strings,String}. */
+template<typename TValue>
+using     UnorderedAStringMapIgnoreCase=   std::unordered_map<AString, TValue,
+                                                             lib::strings::std_AStringHashIgnoreCase,
+                                                             lib::strings::std_AStringEqualsIgnoreCase>;
 } // namespace aworx
 
 

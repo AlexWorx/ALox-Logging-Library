@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -228,15 +228,20 @@ class PreallocatedString : public AString
             return static_cast<PreallocatedString<TCapacity>&>( Append<false>( copy.Buffer(), copy.Length() ) );
         }
 
+        // Due to a doxygen bug in 1.8.14, we must not tell doxygen that we import overloaded methods.
+        //! @cond NO_DOX
         using AString::operator=;
+        //! @endcond
+
+
 }; // class PreallocatedString
 
 // #################################################################################################
 // Namespace methods
 // #################################################################################################
     /** ********************************************************************************************
-     * Partial specialization of struct <em>T_IsTerminatable</em> which is designed to test objects of
-     * arbitrary type if it is allowed in the case that they are not terminated,
+     * Partial specialization of struct <em>T_IsTerminatable</em> which is designed to test objects
+     * of arbitrary type if it is allowed in the case that they are not terminated,
      * to write termination character '\0' into their character buffer at the first position after
      * their last character.
      * This implementation inherits from std::true_type for all sizes of type

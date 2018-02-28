@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -70,21 +70,38 @@ class Box
         #endif
 
         /** ****************************************************************************************
-         * Default constructor. Created a nulled box (method #IsNull will return \c true after
-         * construction). The box is equivalent to a box that is constructed with \c nullptr.
-         *****************************************************************************************/
-        inline
-        Box()
-        : boxer( BoxerT<decltype(nullptr)>::GetSingleton() )
-        , data (0)
-        {}
+         * Trivial default constructor.
+         * Creates an uninitialized boxed which must not be used prior to assignment of values.
+         ******************************************************************************************/
+        Box()  = default;
 
+        /** ****************************************************************************************
+         * Trivial default constructor.
+         ******************************************************************************************/
+        Box( const Box& )   = default;
+
+        /** ****************************************************************************************
+         * Trivial default move constructor.
+         ******************************************************************************************/
+        Box( Box&& )  = default;
+
+        /** ****************************************************************************************
+         * Trivial default copy assign operator.
+         * @return A reference to \c this.
+         ******************************************************************************************/
+        Box& operator=( const Box&  )= default;
+
+        /** ****************************************************************************************
+         * Trivial default move assign operator.
+         * @return A reference to \c this.
+         ******************************************************************************************/
+        Box& operator=(       Box&& )= default;
 
         /** ****************************************************************************************
          * Constructor fetching type \c void* values.
          *
          * @param src The \p void* value to be boxed.
-         *****************************************************************************************/
+         ******************************************************************************************/
         inline
         Box( void* src ) // void* would not compile if passed through the TMP constructor.
         : boxer( T_Boxing<void*>::value ? BoxerT<T_Boxing<void*>::Type>::GetSingleton()
@@ -97,25 +114,28 @@ class Box
          *
          * @tparam TEnum  Enum type
          * @param  src    Enum element.
-         *****************************************************************************************/
+         ******************************************************************************************/
         template <typename TEnum,
                   typename TEnableIf= typename std::enable_if<std::is_enum<TEnum>::value>::type >
         inline
         Box( TEnum src )
         {
-            boxer=       BoxerT<TEnum>::GetSingleton();
+            boxer=      BoxerT<TEnum>::GetSingleton();
             data.Value= static_cast<boxvalue>( src );
             data.Length= 0;
             return;
         }
 
         /** ****************************************************************************************
-         * Constructor using template meta programming to fetch any type of \b %ALib Strings,
-         * unknown pointer types and nullptr.
+         * Constructor using template meta programming to fetch any type of C++ value.
+         *
+         * Types derived from class \b %Box itself are boxed by coping the internal values
+         * of the box. This means, that boxing objects of derived types is similar to
+         * "downcasting" the object to class \b %Box..
          *
          * @tparam TBoxable  Any C++ type to be boxed.
          * @param  src       The src of (template) type \c T.
-         *****************************************************************************************/
+         ******************************************************************************************/
         template <typename TBoxable,
                   typename TEnableIf= typename std::enable_if< !std::is_enum<TBoxable>::value  >::type >
         inline
@@ -153,6 +173,18 @@ class Box
             // boxing a box?
             if( std::is_same<Box, TPlain>::value )
             {
+                ALIB_ASSERT( std::is_pointer<TBoxable>::value ) // references are fetched with copy/move constructors
+
+                ALIB_ASSERT_ERROR( * (TPlain **)  &src != nullptr, "Can't box type Box* of value nullptr." );
+                boxer=        (* (Box **) &src) ->boxer;
+                data.Value=   (* (Box **) &src) ->data.Value;
+                data.Length=  (* (Box **) &src) ->data.Length;
+                return;
+            }
+
+            // boxing a derived box type? (e.g. class Enum)
+            if( std::is_base_of<Box, TPlain>::value )
+            {
                 if( std::is_pointer<TBoxable>::value )
                 {
                     ALIB_ASSERT_ERROR( * (TPlain **)  &src != nullptr, "Can't box type Box* of value nullptr." );
@@ -162,7 +194,9 @@ class Box
                 }
                 else
                 {
-                    ALIB_ERROR( "This can't happen" );
+                    boxer=        ( (Box *) &src) ->boxer;
+                    data.Value=   ( (Box *) &src) ->data.Value;
+                    data.Length=  ( (Box *) &src) ->data.Length;
                 }
                 return;
             }
@@ -311,7 +345,7 @@ class Box
         /** ****************************************************************************************
          * Checks if this box stores a value of type \p TBoxable.
          * @return \c true if this box stores a value of type \p TBoxable, \c false otherwise.
-         *****************************************************************************************/
+         ******************************************************************************************/
         template<typename TBoxable>
         inline
         bool            IsType()        const
@@ -337,7 +371,7 @@ class Box
          * the stored value is <c>decltype(nullptr)</c>.
          *
          * @return \c true if this box does not contain a value.
-         *****************************************************************************************/
+         ******************************************************************************************/
         inline
         bool            IsNull()        const
         {
@@ -345,11 +379,22 @@ class Box
         }
 
         /** ****************************************************************************************
+         * Returns negation of #IsNull.
+         *
+         * @return \c true if this box contains a value.
+         ******************************************************************************************/
+        inline
+        bool            IsNotNull()        const
+        {
+            return !IsNull();
+        }
+
+        /** ****************************************************************************************
          * Checks if this box stores a value of type \c void*. This special treatment of this type
          * is necessary for technical reasons.
          * To unbox a \c void* use #UnboxRaw().
          * @return \c true if this box stores a value of type \p TBoxable, \c false otherwise.
-         *****************************************************************************************/
+         ******************************************************************************************/
         inline
         bool            IsVoidPointer()        const
         {
@@ -443,11 +488,11 @@ class Box
 
         /** ****************************************************************************************
          * Returns the length of the boxed object. The length is only applicable for array-type
-         * objects or for custom-type objects that use this field for arbitrary (in which case
+         * objects or for custom-type objects that use this field for arbitrary data (in which case
          * the name of this method might be misleading).
          *
          * @return The length of the boxed object.
-         *****************************************************************************************/
+         ******************************************************************************************/
         inline
         integer         Length()        const
         {
@@ -717,7 +762,7 @@ class Box
          *
          * @param rhs The right hand side argument of the comparison.
          * @return \c true if this object is smaller than \p lhs, otherwise \c false.
-         *****************************************************************************************/
+         ******************************************************************************************/
         inline
         bool operator>= (const Box& rhs)  const
         {
@@ -727,11 +772,65 @@ class Box
 
 }; // class Box
 
+/** ************************************************************************************************
+ * Implements a hash functor for class \alib{boxing,Box}, usable with types found in
+ * namespace \b std.
+ * Instead of implementing \b std::hash inside namespace \b std, this struct can be
+ * provided as template parameter, e.g. to \b std::unordered_map, for which a templated type
+ * definition is provided for with \ref aworx::UnorderedBoxMap.
+ **************************************************************************************************/
+struct std_Hash
+{
+    /**
+     * Calculates the hash code for class \b %Box.
+     * @param src The box object to hash.
+     * @return The hash code.
+     */
+    size_t operator()(const Box& src) const
+    {
+        return static_cast<size_t>(   0xcf670957UL
+                                   + static_cast<uinteger>( src.GetTypeInfo<0>().hash_code() )
+                                   + static_cast<uinteger>( src.GetTypeInfo<1>().hash_code() )
+                                   + static_cast<uinteger>( src.UnboxRaw() * 32194735        )
+                                   + static_cast<uinteger>( src.Length()   * 321947          ) );
+    }
+};
+
+/** ************************************************************************************************
+ * Implements a comparison functor for objects of class \alib{boxing,Box}, usable with types
+ * found in namespace \b std.
+ * Instead of implementing the operator inside namespace \b std, this struct can be
+ * provided as template parameter, e.g. to \b std::unordered_map., for which a templated type
+ * definition is provided for with \ref aworx::UnorderedBoxMap.
+ **************************************************************************************************/
+struct std_Equals
+{
+    /**
+     * Invokes \alib{boxing,Box::operator==} on \p lhs and \p rhs.
+     * @param lhs The left-hand side box..
+     * @param rhs The right-hand side box..
+     * @return The hash code.
+     */
+    bool operator()(const Box& lhs,
+                    const Box& rhs) const
+    {
+        return lhs == rhs;
+    }
+};
+
 
 }} // namespace aworx[::lib::boxing]
 
 /** Type alias name in namespace #aworx. */
 using     Box=         aworx::lib::boxing::Box;
+
+/** An \c std::unordered_map with key type \b %aworx::Box. */
+template<typename TValue>
+using     UnorderedBoxMap    =   std::unordered_map< Box, TValue,
+                                                     lib::boxing::std_Hash,
+                                                     lib::boxing::std_Equals >;
+
+
 
 } // namespace aworx
 

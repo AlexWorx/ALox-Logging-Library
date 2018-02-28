@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -70,16 +70,17 @@ class PluginContainer   : public threads::ThreadLock
         /** This exposes the template parameter \p pTPlugin to the outer world.    */
         using TPriorities=      pTPriorities;
 
-    // #############################################################################################
-    // internal fields
-    // #############################################################################################
-    protected:
         /** Type definition for elements of the list of plug-ins with their priority */
         struct  Slot
         {
             TPriorities priority;  ///< The priority of the plug-in.
             TPlugin*    plugin;    ///< The plug-in.
         };
+
+    // #############################################################################################
+    // internal fields
+    // #############################################################################################
+    protected:
 
         /** The plug-ins we have attached in in descending priority order. */
         std::vector<Slot>           plugins;

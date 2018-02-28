@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -139,72 +139,78 @@ public class IniFile extends InMemoryPlugin
             @Override
             public void toVariable( InMemoryPlugin parent, Variable variable )
             {
-                // if we are still raw, then parse the INI file content
-                if ( values.size() == 0 )
+                // if this had been done before, use base method
+                if ( values.size() > 0 )
                 {
-                    com.aworx.lib.ALIB_DBG.ASSERT( delim == '\0' );
-                    delim= variable.delim;
-                    variable.comments._()._( comments );
-
-                    //-----  remove INI-File specific from raw value -----
-                    AString raw= new AString();
-                    raw._( rawValue );
-
-                    // remove '='
-                    raw.trimStart();
-                    if ( raw.charAtStart() != '=' )
-                    {
-                        com.aworx.lib.ALIB_DBG.WARNING( "No equal sign in variable \"" + variable.fullname + "\" of INI file." );
-                    }
-                    else
-                        raw.deleteStart(1).trimStart();
-
-
-                    // remove "\\n"
-                    int startIdx= 0;
-                    while ( (startIdx= raw.indexOf( '\n', startIdx )) >= 0 )
-                    {
-                        // find \\n and trim around this location
-                        int delLen= 2;
-                        if ( raw.charAt( --startIdx) == '\r' )
-                        {
-                            delLen= 3;
-                            --startIdx;
-                        }
-                        com.aworx.lib.ALIB_DBG.ASSERT( raw.charAt(startIdx) == '\\' );
-                        raw.delete( startIdx, delLen );
-
-                        startIdx= raw.trimAt( startIdx );
-
-                        // if now the next value is starting with a comment symbol, we remove to the next \n
-                        for(;;)
-                        {
-                            char c= raw.charAt( startIdx );
-                            if (     c != '#'
-                                &&   c != ';'
-                                && ( c != '/' || raw.charAt( startIdx + 1 ) != '/' ) )
-                                break;
-
-                            int idx= raw.indexOf( '\n' );
-                            if (idx < 0 ) idx= raw.length();
-                            raw.delete( startIdx, idx - startIdx + 1 );
-                            if( startIdx >= raw.length() )
-                                break;
-                            startIdx= raw.trimAt( startIdx );
-                        }
-                    }
-
-                    // now convert
-                    parent.stringConverter.loadFromString( variable, raw );
-
-                    // copy the parsed values back to our entry and store the delimiter
-                    for( int i= 0; i < variable.size() ; i++ )
-                        values.add( new AString( variable.getString( i ) ) );
+                    super.toVariable( parent, variable );
+                    return;
                 }
 
-                // otherwise, use base method
+                // store delim and comment
+                delim= variable.delim;
+                variable.comments._()._( comments );
+
+                //-----  remove INI-File specific from raw value -----
+                AString raw= new AString();
+                raw._( rawValue );
+
+                // remove '='
+                raw.trimStart();
+                if ( raw.charAtStart() == '=' )
+                    raw.deleteStart(1).trimStart();
                 else
-                    super.toVariable( parent, variable );
+                    com.aworx.lib.ALIB_DBG.WARNING( "No equal sign in variable \"" + variable.fullname + "\" of INI file." );
+
+
+                // remove "\\n"
+                int startIdx= 0;
+                while ( (startIdx= raw.indexOf( '\n', startIdx )) >= 0 )
+                {
+                    // find \\n and trim around this location
+                    int delLen= 2;
+                    if ( raw.charAt( --startIdx) == '\r' )
+                    {
+                        delLen= 3;
+                        --startIdx;
+                    }
+                    com.aworx.lib.ALIB_DBG.ASSERT( raw.charAt(startIdx) == '\\' );
+                    raw.delete( startIdx, delLen );
+
+                    startIdx= raw.trimAt( startIdx );
+                    if( startIdx >= raw.length() )
+                        break;
+
+                    // remove endquote of first line and start quote of second
+                    if( startIdx >0 && raw.charAt(startIdx-1) == '"' && raw.charAt(startIdx) == '"' )
+                    {
+                        startIdx--;
+                        raw.delete( startIdx, 2);
+                    }
+
+                    // if now the next value is starting with a comment symbol, we remove to the next \n
+                    for(;;)
+                    {
+                        char c= raw.charAt( startIdx );
+                        if (     c != '#'
+                            &&   c != ';'
+                            && ( c != '/' || raw.charAt( startIdx + 1 ) != '/' ) )
+                            break;
+
+                        int idx= raw.indexOf( '\n' );
+                        if (idx < 0 ) idx= raw.length();
+                        raw.delete( startIdx, idx - startIdx + 1 );
+                        if( startIdx >= raw.length() )
+                            break;
+                        startIdx= raw.trimAt( startIdx );
+                    }
+                }
+
+                // now convert
+                parent.stringConverter.loadFromString( variable, raw );
+
+                // copy the parsed values back to our entry and store the delimiter
+                for( int i= 0; i < variable.size() ; i++ )
+                    values.add( new AString( variable.getString( i ) ) );
             }
 
             /**

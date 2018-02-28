@@ -3,7 +3,7 @@
 //
 //  Essential ALib types needed by every module
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -15,6 +15,10 @@
 
 #ifndef HPP_ALIB_LANG_ENUM_BITWISE
 #define HPP_ALIB_LANG_ENUM_BITWISE 1
+
+#if !defined(HPP_ALIB_LANG_ENUM_ARITHMETICAL)
+#   include "enumarithmetical.hpp"
+#endif
 
 namespace aworx { namespace lib { namespace lang {
 
@@ -112,7 +116,7 @@ namespace aworx { namespace lib { namespace lang {
  *   in reality they are defined in <b>no namespace</b> (global namespace).
  *   This was done to have the documentation of the operator functions and this struct just in one place!
  * \attention
- *   Due to the template meta programming, this does not ’clutter' the global namespace and does
+ *   Due to the template meta programming, this does not 'clutter' the global namespace and does
  *   not interfere with any existing user code, while still there is the advantage of
  *   not needing to put a using statement like
  *
@@ -208,7 +212,7 @@ operator&  (TEnum  lhs, TEnum rhs) noexcept(true)
 }
 
 /**
- * Bitwise <b>and assignment</b> operator useable with scoped enum types.
+ * Bitwise assignment operator useable with scoped enum types.
  *
  * Selected by the compiler only if \alib{lang,T_EnumIsBitwise} is specialized for
  * template enum type \p TEnum to inherit \c std::true_type.
@@ -313,9 +317,9 @@ operator^=  (TEnum&  lhs, TEnum rhs) noexcept(true)
  * Selected by the compiler only if \alib{lang,T_EnumIsBitwise} is specialized for
  * template enum type \p TEnum to inherit \c std::true_type.
  *
- * \note To remove one or more bits from a scoped enum value, of-course an <b>and assignment</b>
- *       operator with a negated operand can be used. However, a shortcut to this is given with
- *       \ref operator-=.
+ * \note To remove one or more bits from a scoped enum value, operator <b>&=</b> with this operator
+ *       applied to \p  op can be used.
+ *       A shortcut to this is given with \ref operator-=.
  *
  * @param  op         The operand to be negated.
  * @tparam TEnum      Enumeration type.
@@ -335,7 +339,9 @@ operator~ (TEnum  op) noexcept(true)
  * Alias to bitwise \b or operator useable with scoped enum types.
  *
  * Selected by the compiler only if \alib{lang,T_EnumIsBitwise} is specialized for
- * template enum type \p TEnum to inherit \c std::true_type.
+ * template enum type \p TEnum to inherit \c std::true_type and if \alib{lang,T_EnumIsArithmetical}
+ * is \b not specialized to inherit  \c std::true_type. The latter is to avoid ambiguities in
+ * situations where an enum is both, arithmetical and bitwise.
  *
  * @param  lhs        First operand.
  * @param  rhs        Second operand.
@@ -344,7 +350,8 @@ operator~ (TEnum  op) noexcept(true)
  */
 template<typename TEnum>
 constexpr
-typename  std::enable_if<aworx::lib::lang::T_EnumIsBitwise<TEnum>::value, TEnum>::type
+typename  std::enable_if<    aworx::lib::lang::T_EnumIsBitwise     <TEnum>::value
+                         && !aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, TEnum>::type
 operator+  (TEnum  lhs, TEnum rhs) noexcept(true)
 {
     using TBits= typename std::underlying_type<TEnum>::type;
@@ -355,7 +362,9 @@ operator+  (TEnum  lhs, TEnum rhs) noexcept(true)
  * Alias for bitwise <b>or assignment</b> operator useable with scoped enum types.
  *
  * Selected by the compiler only if \alib{lang,T_EnumIsBitwise} is specialized for
- * template enum type \p TEnum to inherit \c std::true_type.
+ * template enum type \p TEnum to inherit \c std::true_type  and if \alib{lang,T_EnumIsArithmetical}
+ * is \b not specialized to inherit \c std::true_type. The latter is to avoid ambiguities in
+ * situations where an enum is both, arithmetical and bitwise.
  *
  * @param[in,out]  lhs Reference to the first operand. Receives the result.
  * @param  rhs         Second operand.
@@ -364,7 +373,8 @@ operator+  (TEnum  lhs, TEnum rhs) noexcept(true)
  */
 template<typename TEnum>
 constexpr
-typename  std::enable_if<aworx::lib::lang::T_EnumIsBitwise<TEnum>::value, TEnum>::type
+typename  std::enable_if<    aworx::lib::lang::T_EnumIsBitwise     <TEnum>::value
+                         && !aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, TEnum>::type
 operator+=  (TEnum&  lhs, TEnum rhs) noexcept(true)
 {
     using TBits= typename std::underlying_type<TEnum>::type;
@@ -377,16 +387,19 @@ operator+=  (TEnum&  lhs, TEnum rhs) noexcept(true)
  *      lhs & !rhs
  *
  * Selected by the compiler only if \alib{lang,T_EnumIsBitwise} is specialized for
- * template enum type \p TEnum to inherit \c std::true_type.
+ * template enum type \p TEnum to inherit \c std::true_type  and if \alib{lang,T_EnumIsArithmetical}
+ * is \b not specialized to inherit  \c std::true_type. The latter is to avoid ambiguities in
+ * situations where an enum is both, arithmetical and bitwise.
  *
- * @param[in,out]  lhs Reference to the first operand. Receives the result.
+ * @param  lhs         First operand.
  * @param  rhs         Second operand.
  * @tparam TEnum       Enumeration type.
  * @return The result of <c>lhs & !rhs</c>.
  */
 template<typename TEnum>
 constexpr
-typename  std::enable_if<aworx::lib::lang::T_EnumIsBitwise<TEnum>::value, TEnum>::type
+typename  std::enable_if<    aworx::lib::lang::T_EnumIsBitwise     <TEnum>::value
+                         && !aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, TEnum>::type
 operator-  (TEnum  lhs, TEnum rhs) noexcept(true)
 {
     using TBits= typename std::underlying_type<TEnum>::type;
@@ -399,7 +412,9 @@ operator-  (TEnum  lhs, TEnum rhs) noexcept(true)
  *      lhs &= !rhs
  *
  * Selected by the compiler only if \alib{lang,T_EnumIsBitwise} is specialized for
- * template enum type \p TEnum to inherit \c std::true_type.
+ * template enum type \p TEnum to inherit \c std::true_type and if \alib{lang,T_EnumIsArithmetical}
+ * is \b not specialized to inherit  \c std::true_type. The latter is to avoid ambiguities in
+ * situations where an enum is both, arithmetical and bitwise.
  *
  * @param[in,out]  lhs Reference to the first operand. Receives the result.
  * @param  rhs         Second operand.
@@ -408,7 +423,8 @@ operator-  (TEnum  lhs, TEnum rhs) noexcept(true)
  */
 template<typename TEnum>
 constexpr
-typename  std::enable_if<aworx::lib::lang::T_EnumIsBitwise<TEnum>::value, TEnum>::type
+typename  std::enable_if<    aworx::lib::lang::T_EnumIsBitwise     <TEnum>::value
+                             && !aworx::lib::lang::T_EnumIsArithmetical<TEnum>::value, TEnum>::type
 operator-=  (TEnum&  lhs, TEnum rhs) noexcept(true)
 {
     using TBits= typename std::underlying_type<TEnum>::type;
@@ -425,7 +441,7 @@ operator-=  (TEnum&  lhs, TEnum rhs) noexcept(true)
  * Selected by the compiler only if \alib{lang,T_EnumIsBitwise} is specialized for
  * template enum type \p TEnum to inherit \c std::true_type.
  *
- * @param[in,out] tested Reference to the first operand. Receives the result.
+ * @param  tested        Bitset to be tested.
  * @param  testFor       Second operand.
  * @tparam TEnum         Enumeration type.
  * @return \c true if all bits of \p testFor are set in \p tested.

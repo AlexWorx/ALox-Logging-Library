@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -148,7 +148,7 @@ namespace aworx { namespace lib { namespace strings { namespace format {
  * of each \b '\%' symbol. The string of the example given above would then look like this:
  *
  *          "@name%s is aged @age%d and his/her hobby is @hobby%s"
- * Doing it this way, the \b ’\%’ symbol acts as a very natural delimiter for the custom identifier.
+ * Doing it this way, the \b '\%' symbol acts as a very natural delimiter for the custom identifier.
  *
  * As a final note, with the second element of tuple \ref TCallbackTableEntry, it is possible
  * to allow abbreviations of identifier names. This column denotes the minimum

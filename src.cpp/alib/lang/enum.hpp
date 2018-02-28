@@ -3,7 +3,7 @@
 //
 //  Essential ALib types needed by every module
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -19,6 +19,8 @@
 
 
 namespace aworx { namespace lib { namespace lang {
+
+struct std_EnumHash;
 
 /** ************************************************************************************************
  * The class is useful to store and pass around enum values of arbitrary C++ scoped enum types in
@@ -44,8 +46,8 @@ namespace aworx { namespace lib { namespace lang {
  *   with this class.
  *
  * \note
- *   The advantage of doing so, is that the internal box element (which is exposed as a public
- *   field) may be used as if the enum element was just boxed, instead of being emplaced in this
+ *   The advantage of doing so, is that objects of this type (which is derived from class \b %Box)
+ *   may be used as if the enum element was just boxed, instead of being emplaced in this
  *   class. This way, custom boxing interfaces that exist for enum types, may be used with instances
  *   of this class.
  *
@@ -56,19 +58,12 @@ namespace aworx { namespace lib { namespace lang {
  *   This means, that if this interface is set for the boxed C++ 11 enum type already, then
  *   objects of this type can be applied without further (setup) effort of the user code.
  **************************************************************************************************/
-struct Enum
+struct Enum : public Box
 {
-    /**
-     * The enumeration element as a \ref aworx::lib::boxing "boxed" value. Although the member
-     * name starts with a lower case letter, the value is still public (Bauhaus style).
-     * However, usually the element does not need to be accessed directly.
-     */
-    const Box      box;
-
     /** ********************************************************************************************
-     * Deleted default constructor.
+     * Default constructor.
      **********************************************************************************************/
-    Enum()= delete;
+    Enum() :Box(nullptr) {}
 
     /** ********************************************************************************************
      * Implicit constructor which accepts arbitrary elements of scoped or non-scoped enum types.
@@ -80,7 +75,7 @@ struct Enum
     template<typename  TEnum,
              typename  TEnableIf  = typename std::enable_if<std::is_enum<TEnum>::value>::type >
     constexpr Enum( TEnum element )
-    : box( element )                        {}
+    : Box( element )                        {}
 
     /** ********************************************************************************************
      * This is a shortcut to \alib{boxing,Box::Unbox,Box::Unbox<TEnum>()} to retrieve the
@@ -95,7 +90,7 @@ struct Enum
      **********************************************************************************************/
     template<typename  TEnum,
              typename  TEnableIf  = typename std::enable_if<std::is_enum<TEnum>::value>::type >
-    TEnum   Get()                    const  { return box.Unbox<TEnum>();  }
+    TEnum   Get()                    const  { return Unbox<TEnum>();  }
 
     /** ********************************************************************************************
      * Returns the underlying integer value of the original enum element.
@@ -105,7 +100,7 @@ struct Enum
      * @return The underlying integer value.
      **********************************************************************************************/
     inline
-    int  Value()                     const  { return static_cast<int>( box.UnboxRaw() );  }
+    int  Value()                     const  { return static_cast<int>( UnboxRaw() );  }
 
     /** ********************************************************************************************
      * Checks if the this instance has an enum element of type \p TEnum stored.
@@ -117,7 +112,7 @@ struct Enum
     template<typename  TEnum,
              typename  TEnableIf  = typename std::enable_if<std::is_enum<TEnum>::value>::type >
     inline
-    bool IsType()                     const { return box.IsType<TEnum>(); }
+    bool IsType()                     const { return IsType<TEnum>(); }
 
     /** ********************************************************************************************
      * Checks if the given other object encapsulates the same enumeration type.
@@ -129,7 +124,7 @@ struct Enum
     inline
     bool IsSameType(Enum const& lhs) const
     {
-        return box.GetTypeInfo<0>() == lhs.box.GetTypeInfo<0>();
+        return GetTypeInfo<0>() == lhs.GetTypeInfo<0>();
     }
 
     /** ********************************************************************************************
@@ -139,7 +134,7 @@ struct Enum
      * @return \c true if this object equals \p lhs, \c false otherwise.
      **********************************************************************************************/
     inline
-    bool operator==(Enum const& lhs)  const { return box ==  lhs.box;  }
+    bool operator==(Enum const& lhs)  const { return this->Box::operator==(lhs);  }
 
     /** ********************************************************************************************
      * Comparison operator.
@@ -148,7 +143,7 @@ struct Enum
      * @return \c true if this object does not equal \p lhs, \c false otherwise.
      **********************************************************************************************/
     inline
-    bool operator!=(Enum const& lhs)  const { return box !=  lhs.box;  }
+    bool operator!=(Enum const& lhs)  const { return this->Box::operator!=(lhs);  }
 
     /** ********************************************************************************************
      * Comparison operator.
@@ -160,7 +155,7 @@ struct Enum
              typename  TEnableIf  = typename std::enable_if<std::is_enum<TEnum>::value>::type >
     inline
     bool operator==(TEnum lhs)       const  { return    Value() == EnumValue( lhs )
-                                                     && box.GetTypeInfo<0>() == typeid( TEnum ); }
+                                                     && GetTypeInfo<0>() == typeid( TEnum ); }
 
     /** ********************************************************************************************
      * Comparison operator.
@@ -172,7 +167,7 @@ struct Enum
              typename  TEnableIf  = typename std::enable_if<std::is_enum<TEnum>::value>::type >
     inline
     bool operator!=(TEnum lhs)       const  { return    Value() != EnumValue( lhs )
-                                                     || box.GetTypeInfo<0>() != typeid( TEnum );  }
+                                                     || GetTypeInfo<0>() != typeid( TEnum );  }
 
 
     /** ********************************************************************************************
@@ -197,17 +192,71 @@ struct Enum
     inline
     bool operator< (Enum const& lhs)  const
     {
-        return      (    std::type_index(    box.GetTypeInfo<0>() )
-                       < std::type_index(lhs.box.GetTypeInfo<0>() )          )
-                ||   (    box.GetTypeInfo<0>() == lhs.box.GetTypeInfo<0>()
+        return      (    std::type_index(    GetTypeInfo<0>() )
+                       < std::type_index(lhs.GetTypeInfo<0>() )          )
+                ||   (    GetTypeInfo<0>() == lhs.GetTypeInfo<0>()
                        && Value() <  lhs.Value()                                         );
     }
 
 };
+
+/** ************************************************************************************************
+ * Implements a hash functor for class \alib{lang,Enum}, usable with types found in
+ * namespace \b std.
+ * Instead of implementing \b std::hash inside namespace \b std, this struct can be
+ * provided as template parameter, e.g. to \b std::unordered_map, for which a templated type
+ * definition is provided for with \ref aworx::UnorderedEnumMap.
+ **************************************************************************************************/
+struct std_EnumHash
+{
+    /**
+     * Calculates the hash code for class \b Enum.
+     * @param src The \b %Enum object to hash.
+     * @return The hash code.
+     */
+    size_t operator()(const Enum& src) const
+    {
+        return static_cast<size_t>(   0xe32ff792UL
+                                   + static_cast<uinteger>( src.GetTypeInfo<0>().hash_code() )
+                                   + static_cast<uinteger>( src.GetTypeInfo<1>().hash_code() )
+                                   + static_cast<uinteger>( src.UnboxRaw() * 32194735        )
+                                   + static_cast<uinteger>( src.Length()   * 321947          ) );
+    }
+};
+
+/** ************************************************************************************************
+ * Implements a comparison functor for objects of class \alib{lang,Enum}, usable with types
+ * found in namespace \b std.
+ * Instead of implementing the operator inside namespace \b std, this struct can be
+ * provided as template parameter, e.g. to \b std::unordered_map., for which a templated type
+ * definition is provided for with \ref aworx::UnorderedEnumMap.
+ **************************************************************************************************/
+struct std_EnumEquals
+{
+    /**
+     * Invokes \alib{lang,Enum::operator==} on \p lhs and \p rhs.
+     * @param lhs The left-hand side \b %Enum.
+     * @param rhs The right-hand side \b %Enum.
+     * @return The hash code.
+     */
+    bool operator()(const Enum lhs,
+                    const Enum rhs) const
+    {
+        return lhs == rhs;
+    }
+};
+
+
 }} // namespace aworx[::lib::lang]
 
 /** Type alias name in namespace #aworx. */
 using     Enum=              aworx::lib::lang::Enum;
+
+/** An \c std::unordered_map with key type \b %aworx::Enum. */
+template<typename TValue>
+using     UnorderedEnumMap =   std::unordered_map< Enum, TValue,
+                                                   lib::lang::std_EnumHash,
+                                                   lib::lang::std_EnumEquals >;
 
 } // namespace [aworx]
 
@@ -251,10 +300,10 @@ template<> struct       T_Apply<Enum> : public std::true_type
      */
     static integer Apply( AString& target, const aworx::lib::lang::Enum& src )
     {
-        if( src.box.HasInterface<aworx::lib::strings::boxing::IApply>() )
-            src.box.Invoke<aworx::lib::strings::boxing::IApply>( target );
+        if( src.HasInterface<aworx::lib::strings::boxing::IApply>() )
+            src.Invoke<aworx::lib::strings::boxing::IApply>( target );
         else
-            target << ALIB_REL_DBG( "Enum", src.box.GetTypeInfo() )
+            target << ALIB_REL_DBG( "Enum", src.GetTypeInfo() )
                    << '(' << src.Value() << ')';
 
         return 1;

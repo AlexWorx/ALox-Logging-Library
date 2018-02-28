@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -299,10 +299,12 @@ namespace aworx { namespace lib { namespace strings { namespace format {
  *     output lines. Of-course, output is not completely tabular, only if those values that result
  *     in the biggest sizes are formatted first. If a perfect tabular output is desired, the data
  *     to be formatted may be processed twice: Once to temporary buffer which is disposed and then
- *     a second time to the desired output stream.
+ *     a second time to the desired output \b %AString.
  *
  *     \note Method \alib{strings::format,Formatter::ReleaseDefault} resets the auto size values
  *           in case no multiple (recursive) acquirements had been performed.
+ *           Also, in multi-line format strings, the auto-positions/-width list is starting to
+ *           count with position \c 0 with every new line.
  *
  *   - <b>!AWidth[NNN|Reset]</b><br>
  *     Increases field width with repetitive invocations of format whenever a field value did not
@@ -316,7 +318,7 @@ namespace aworx { namespace lib { namespace strings { namespace format {
  *
  *   - <b>!Replace\<search\>\<replace\></b><br>
  *     Searches string \p search and replaces with \p replace. Both values have to be given
- *     enclosed by characters \c ’<' and \c ’>'. In the special case that \p search is empty
+ *     enclosed by characters \c '<' and \c '>'. In the special case that \p search is empty
  *     (<c>\<\></c>), string \p replace will be inserted if the field argument is an empty string.
  *
 \~Comment ####################################################################################### \~

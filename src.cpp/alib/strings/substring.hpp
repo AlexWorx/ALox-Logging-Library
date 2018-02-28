@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -51,8 +51,11 @@ class Substring : public String
      ##@{ ########################################################################################*/
 
     public:
-        /** Import parent constructors */
+        // Import parent constructors
+        // Due to a doxygen bug in 1.8.14, we must not tell doxygen that we import overloaded methods.
+        //! @cond NO_DOX
         using String::String;
+        //! @endcond
 
         /** ****************************************************************************************
          * Parameterless constructor.

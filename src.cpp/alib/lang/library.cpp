@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -43,7 +43,7 @@ namespace aworx { namespace lib {  namespace lang {
 
 bool Library::Init( InitLevels level )
 {
-    auto phases= Phases( EnumValue( level ) );
+    Phases phases= Phases( EnumValue( level ) );
     if ( EnumContains( initState, phases) )
         return false;
 
@@ -52,7 +52,7 @@ bool Library::Init( InitLevels level )
 
 bool Library::Init( int argc, char    **argv, InitLevels level )
 {
-    auto phases= Phases( EnumValue( level ) );
+    Phases phases= Phases( EnumValue( level ) );
     if ( EnumContains( initState, phases ) )
     {
         ALIB_WARNING( "Command line args ignored, library is alredy initialized" );
@@ -65,7 +65,7 @@ bool Library::Init( int argc, char    **argv, InitLevels level )
 
 bool Library::Init( int argc, wchar_t **argv, InitLevels level )
 {
-    auto phases= Phases( EnumValue( level ) );
+    Phases phases= Phases( EnumValue( level ) );
     if ( EnumContains( initState, phases ) )
     {
         ALIB_WARNING( "Command line args ignored, library is alredy initialized" );
@@ -77,7 +77,7 @@ bool Library::Init( int argc, wchar_t **argv, InitLevels level )
     return doInit( phases, argc, nullptr, argv );
 }
 
-bool Library::doInit( Phases   phases,
+bool Library::doInit( Phases       phases,
                       int          argc,
                       char**       argv,
                       wchar_t**    wargv   )
@@ -139,7 +139,7 @@ void Library::doInitRecursion( Phases phase )
     initState+= phase;
 
     // loop over all dependent libraries
-    for( auto lib : dependencies )
+    for( auto* lib : dependencies )
     {
         // already initialized?
         if( EnumContains( lib->initState, phase) )
@@ -178,7 +178,7 @@ void Library::TerminationCleanUp()
     initState= Phases::TERMINATED;
 
     // loop over all dependent libraries
-    for( auto lib : dependencies )
+    for( auto* lib : dependencies )
     {
         // already initialized?
         if( EnumContains( lib->initState, Phases::TERMINATED) )

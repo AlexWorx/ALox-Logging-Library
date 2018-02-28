@@ -1,7 +1,7 @@
 #// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -25,9 +25,14 @@
     #include "alib/time/ticks.hpp"
 #endif
 
-namespace aworx { namespace lib { namespace time
-{
+#if !defined (HPP_ALIB_TIME_TIMESTAMP)
+    #include "alib/time/timestamp.hpp"
+#endif
+
+namespace aworx { namespace lib { namespace time  {
 /** ************************************************************************************************
+ * \note This class is deprecated and will be removed with the next version of \alib.
+ *
  *  This class represents a point in time as a set of calendar values (year, month, day, hour...).
  *  It provides methods to import from and to object of type
  *  \ref aworx::lib::time::Ticks "Ticks".
@@ -41,37 +46,37 @@ class TicksCalendarTime
 {
     #if defined (__GLIBCXX__) || defined(__APPLE__)
         protected:
-        /// the TM struct field for daylight saving information
+        /** the TM struct field for daylight saving information */
         int                     tm_isdst;
     #endif
 
     public:
-        /// The calendar year (e.g. 2017)
+        /** The calendar year (e.g. 2018)   */
         int                     Year;
 
-        /// The calendar month (1..12)
+        /** The calendar month (1..12)      */
         int                     Month;
 
-        /// The calendar day (1..31)
+        /** The calendar day (1..31)        */
         int                     Day;
 
-        /// The calendar day of week (this is ignored, when converted back to a time value)
+        /** The calendar day of week (this is ignored, when converted back to a time value) */
         int                     DayOfWeek;
 
-        /// The calendar hour (0..23)
+        /** The calendar hour (0..23)       */
         int                     Hour;
 
-        /// The calendar minute (0..59)
+        /** The calendar minute (0..59)     */
         int                     Minute;
 
-        /// The calendar second (0..59)
+        /** The calendar second (0..59)     */
         int                     Second;
 
-        /// The calendar millisecond (0..999)
+        /** The calendar millisecond (0..999) */
         int                     Millisecond;
 
     /** ********************************************************************************************
-     * Constructs the object to represent a time span of 0. (Sets all public fields to 0.)
+     * Constructs an unset object.
      **********************************************************************************************/
     inline
     TicksCalendarTime()
@@ -80,8 +85,7 @@ class TicksCalendarTime
     }
 
     /** ********************************************************************************************
-     *  Constructs the object using the given Tick objects ticks value.
-     *  After construction, the public fields are set properly
+     *  Constructs the object according to the given tick object.
      *  @param ticks    The Ticks object to use for setting the public fields
      *  @param timezone Denote if the time that is calculated should be local or UTC.
      *                  Defaults to \c TimeZone::Local.
@@ -100,7 +104,7 @@ class TicksCalendarTime
      *                  Defaults to \c TimeZone::Local.
      **********************************************************************************************/
     inline
-     TicksCalendarTime( Time::TRaw ticks, lang::Timezone timezone =lang::Timezone::Local )
+     TicksCalendarTime( TimeLib::TRaw ticks, lang::Timezone timezone =lang::Timezone::Local )
      {
         Set(ticks, timezone);
      }
@@ -125,7 +129,7 @@ class TicksCalendarTime
      *                  Defaults to \c TimeZone::Local.
      **********************************************************************************************/
     ALIB_API
-    void         Set( Time::TRaw ticks, lang::Timezone timezone =lang::Timezone::Local  );
+    void         Set( TimeLib::TRaw ticks, lang::Timezone timezone =lang::Timezone::Local  );
 
     /** ********************************************************************************************
      *  Takes the current values of the public fields and calculates a raw ticks value.
@@ -138,10 +142,160 @@ class TicksCalendarTime
      *  @returns The time span represented by the public fields of this class.
      **********************************************************************************************/
     ALIB_API
-    Time::TRaw Get( lang::Timezone timezone =lang::Timezone::Local );
+    TimeLib::TRaw Get( lang::Timezone timezone =lang::Timezone::Local );
 
     /** ********************************************************************************************
      *     Sets all public values to 0.
+     **********************************************************************************************/
+    ALIB_API
+    void         Clear();
+
+    /** ********************************************************************************************
+     * Formats the date using a given pattern string. Within the pattern string, different symbols
+     * are interpreted as tokens. The format is compatible with C# time format strings, as well as
+     * with class SimpleDateFormat of the Java APIs.<br>
+     * Strings within the format text that should not be interpreted as tokens may be surrounded
+     * by single quotes. Two single quotes in a row, will be replaced by one single quote.<br>
+     * The following tokens are supported:
+     *
+     *  <center>Token</center>  | <center>Description</center>
+     *  - - - - -| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+     *   y       |The year with as many digits as it has (for current dates this is 4).</TD> </TR>
+     *   yy      |The year, truncated to 2 digits (modulo 100).</TD> </TR>
+     *   yyy...y |The year with a minimum amount of digits as amount of y-characters given.</TD> </TR>
+     *   M       |The month as numbers from 1..12.</TD> </TR>
+     *   MM      |The month as numbers from 01..12.</TD> </TR>
+     *   MMM     |The month as abbreviated, 3-digit word in English language.</TD> </TR>
+     *   MMMM    |The month as word in English language.</TD> </TR>
+     *   d       |The day as numbers from 1..31.</TD> </TR>
+     *   dd      |The day as numbers from 01..31.</TD> </TR>
+     *   ddd     |The day as abbreviated, 3-digit word in English language.</TD> </TR>
+     *   dddd    |The day as word in English language.</TD> </TR>
+     *   H       |The hour as numbers from 0..23.</TD> </TR>
+     *   HH      |The hour as numbers from 00..23.</TD> </TR>
+     *   K       |The hour as numbers from 0..11 am/pm.</TD> </TR>
+     *   KK      |The hour as numbers from 00..11 am/pm.</TD> </TR>
+     *   m       |The minute as numbers from 0..59.</TD> </TR>
+     *   mm      |The minute as numbers from 00..59.</TD> </TR>
+     *   s       |The second as numbers from 0..59.</TD> </TR>
+     *   ss      |The second as numbers from 00..59.</TD> </TR>
+     *
+     * @param format     The format pattern string.
+     * @param target     A reference to an AString that gets the result of the format processing
+     *                   appended.
+     * @param targetData If \c CurrentData::Keep (the default) the string is appended to \p target.
+     *                   if \c CurrentData::Clear, \p target is cleared.
+     * @returns \p target (for convenience).
+     **********************************************************************************************/
+    ALIB_API
+    AString&    Format( Substring format, AString& target,
+                        lib::lang::CurrentData targetData= lib::lang::CurrentData::Keep  );
+};
+
+
+/** ************************************************************************************************
+ * This class represents a point in time as a set of calendar values (year, month, day, hour...).
+ * It provides methods to import from and to object of type
+ * \alib{time,TimeStamp}.
+ *
+ * In addition, a method to format the date and time into human readable string value is available.
+ *
+ * \note This class is using system specific calendar methods and relies on the locale and time zone
+ *       settings of the machine.
+ **************************************************************************************************/
+class CalendarTime
+{
+    public:
+        /** The calendar year (e.g. 2018)  */
+        int                     Year;
+
+        /** The calendar month (1..12)     */
+        int                     Month;
+
+        /** The calendar day (1..31)       */
+        int                     Day;
+
+        /** The calendar day of week (this is ignored, when converted back to a time value) */
+        int                     DayOfWeek;
+
+        /** The calendar hour (0..23)     */
+        int                     Hour;
+
+        /** The calendar minute (0..59)   */
+        int                     Minute;
+
+        /** The calendar second (0..59)   */
+        int                     Second;
+
+        /** The calendar millisecond (0..999) */
+        int                     Millisecond;
+
+    /** ********************************************************************************************
+     * Constructs an unset object.
+     **********************************************************************************************/
+    inline
+    CalendarTime()
+    {
+        Clear();
+    }
+
+    /** ********************************************************************************************
+     * Constructs the object according to the given timestamp object and time zone.
+     * @param timeStamp The point in time to use for setting the public fields
+     * @param timezone  Denotes if the time that is calculated should be local or UTC.
+     *                  Defaults to \c TimeZone::Local.
+     **********************************************************************************************/
+    inline
+    CalendarTime( const TimeStamp timeStamp, lang::Timezone timezone =lang::Timezone::Local )
+     {
+        Set( timeStamp.Raw(), timezone );
+     }
+
+    /** ********************************************************************************************
+     * Constructs the object according to the given date and time values.
+     * @param year        The year of the calendar time.
+     * @param month       The month of the calendar time.
+     * @param day         The day of the calendar time.
+     * @param hour        The hour of the calendar time.
+     * @param minute      The minute of the calendar time.
+     * @param second      The second of the calendar time.
+     * @param millisecond The millisecond of the calendar time.
+     **********************************************************************************************/
+    inline
+    CalendarTime( int year, int month= 1, int day= 1,
+                  int hour= 0, int minute= 0, int second= 0, int millisecond= 0 )
+    : Year        ( year       )
+    , Month       ( month      )
+    , Day         ( day        )
+    , Hour        ( hour       )
+    , Minute      ( minute     )
+    , Second      ( second     )
+    , Millisecond ( millisecond)
+    {}
+
+    /** ********************************************************************************************
+     * Sets the public fields according to the given timestamp object.
+     * @param timeStamp The point in time to use for setting the public fields
+     * @param timezone  Denotes if the time that is calculated should be local or UTC.
+     *                  Defaults to \c TimeZone::Local.
+     **********************************************************************************************/
+    void         Set( TimeStamp timeStamp, lang::Timezone timezone =lang::Timezone::Local );
+
+    /** ********************************************************************************************
+     * Takes the current values of the public fields and calculates a time stamp object.
+     * \attention
+     * The resolution and possible time range of class \b %TimeStamp is platform dependent.
+     * This method must not be used to create time stamp for dates which are out of range.
+     *
+     * @param timezone Denote if the time that is calculated should be local or UTC.
+     *                 Defaults to \c TimeZone::Local.
+     * @returns The time span represented by the public fields of this class.
+     **********************************************************************************************/
+    ALIB_API
+    TimeStamp Get( lang::Timezone timezone =lang::Timezone::Local );
+
+    /** ********************************************************************************************
+     * Sets all public values to \c 0.
      **********************************************************************************************/
     ALIB_API
     void         Clear();
@@ -193,6 +347,10 @@ class TicksCalendarTime
 
 /** Type alias name in namespace #aworx. */
 using     TicksCalendarTime=    aworx::lib::time::TicksCalendarTime;
+
+/** Type alias name in namespace #aworx. */
+using     CalendarTime=    aworx::lib::time::CalendarTime;
+
 
 }  // namespace aworx
 

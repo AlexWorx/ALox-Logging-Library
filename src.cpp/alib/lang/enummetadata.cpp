@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -15,16 +15,16 @@ namespace aworx { namespace lib { namespace lang {
 
 namespace detail {
 
-void   loadStandardEnumTable( const std::type_info&        tupleType,
+void   loadStandardEnumTable( int                          tupleType,
                               void*                        table,
                               aworx::lib::lang::Library&   library,
                               const aworx::String&         name          )
 {
-    using TTupleNamed=     std::tuple< unsigned int, aworx::lib::strings::String>;
-    using TTupleParsable=  std::tuple< unsigned int, aworx::lib::strings::String, int>;
+    using TTupleNamed=     std::tuple< int, aworx::lib::strings::String>;
+    using TTupleParsable=  std::tuple< int, aworx::lib::strings::String, int>;
 
-    if( tupleType == typeid(TTupleNamed) )
-        ResourcedTupleLoader::LoadTable( *reinterpret_cast< std::vector<TTupleNamed>*  >(table),
+    if( tupleType == 2 )
+        ResourcedTupleLoader::LoadTable( *reinterpret_cast< std::vector<TTupleNamed>*    >(table),
                                          library, name                                            );
     else
         ResourcedTupleLoader::LoadTable( *reinterpret_cast< std::vector<TTupleParsable>* >(table),

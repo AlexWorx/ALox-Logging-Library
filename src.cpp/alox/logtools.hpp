@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  aworx::lox - ALox Logging Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -63,9 +63,10 @@ class LogTools
          * @param e             The exception to log.
          * @param verbosity     The verbosity of the log output.<br>
          *                      Defaults to \b Verbosity::Error.
-         * @param domainPrefix  The domain to log into.<br>
-         *                      Defaults to \e "/ERR"
-         * @param logPrefix     A log prefix string.<br>
+         * @param domainPrefix  The domain to log into. If \c NullString, no domain is set and
+         *                      the default domain is used instead.<br>
+         *                      Defaults to \e "/ERR".
+         * @param logPrefix     A log prefix string. If \c NullString, no prefix is set<br>
          *                      Defaults to <b>"  "</b> (two spaces).
          ******************************************************************************************/
         ALIB_API

@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  aworx::lox::core - ALox Logging Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -47,7 +47,7 @@ ScopeInfo::ScopeInfo( const String& pName, const std::map<int, String32>&  pThre
 {
     loxName.ToUpper();
     ALIB_ASSERT_ERROR( !loxName.Equals( "GLOBAL" ), "Name \"GLOBAL\" not allowed for Lox instances" );
-    cache= new SourceFile[cacheSize= DefaultCacheSize];
+    cache= new SourceFile[static_cast<size_t>(cacheSize= DefaultCacheSize)];
     lastSourceFile= &cache[0];
 
     // read trim rules from config

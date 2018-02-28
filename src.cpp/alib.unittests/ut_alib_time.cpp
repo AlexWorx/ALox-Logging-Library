@@ -1,7 +1,7 @@
 // #################################################################################################
 //  aworx - Unit Tests
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alox/alox.hpp"
@@ -33,14 +33,6 @@ UT_CLASS()
 //--------------------------------------------------------------------------------------------------
 //--- MeasureIncreasingDoublingLoop
 //--------------------------------------------------------------------------------------------------
-
-void dateFormatCheck( AWorxUnitTesting& ut, TicksCalendarTime& ct,  const char * fmt, const char * expected )
-{
-    String128 res;
-    ct.Format( fmt, res );
-    UT_PRINT( (String128("TicksCalendarTime.Format: ") << fmt << " ->")._(Format::Tab(20)) << res );
-    UT_EQ( expected, String(res) );
-}
 
 
 UT_METHOD(Basics)
@@ -152,7 +144,7 @@ UT_METHOD(SpeedTest)
             UT_TRUE ( averageNanos < 10000 ); // Windows QueryPerformanceCounter is really slow!
                                                   // Intrinsics should do much better
         #else
-            UT_TRUE ( averageNanos <   500 );
+            UT_TRUE ( averageNanos < 5000 );
         #endif
     }
 }
@@ -422,19 +414,19 @@ UT_METHOD(Ages)
 //--------------------------------------------------------------------------------------------------
 //--- MeasureIncreasingDoublingLoop
 //--------------------------------------------------------------------------------------------------
-UT_METHOD(MeasureIncreasingDoublingLoop)
+UT_METHOD(SpeedTestIndexOf)
 {
     UT_INIT();
 
-    string      testString("-------------------------------------------------------------------------------------------#");
+    std::string testString("-------------------------------------------------------------------------------------------#");
     AString     testAString( testString );
 
     TickWatch   ttString;
     TickWatch   ttAString;
     AString        output;
-    for (int run= 4; run < 20; run++ )
+    for (int run= 4; run < 18; run++ )
     {
-        int qtyLoops= (run == 0)  ? 0 : (1 << (run -1));
+        int qtyLoops= 1 << run;
         integer nonOptimizableUsedResultValue= 0;
 
         // use String.IndexOf()
@@ -464,6 +456,15 @@ UT_METHOD(MeasureIncreasingDoublingLoop)
     }
 }
 
+void dateFormatCheck( AWorxUnitTesting& ut, TicksCalendarTime& ct,  const char * fmt, const char * expected )
+{
+    String128 res;
+    ct.Format( fmt, res );
+    UT_PRINT( (String128("TicksCalendarTime.Format: ") << fmt << " ->")._(Format::Tab(20)) << res );
+    UT_EQ( expected, String(res) );
+}
+
+
 UT_METHOD(DateFormat)
 {
     UT_INIT();
@@ -477,7 +478,6 @@ UT_METHOD(DateFormat)
     ct.Second   =    7;
     ct.DayOfWeek=    2;
 
-    String32 res;
     dateFormatCheck( ut, ct,     "y"        ,        "2015" );
     dateFormatCheck( ut, ct,    "yy"        ,          "15" );
     dateFormatCheck( ut, ct,   "yyy"        ,        "2015" );
@@ -520,6 +520,64 @@ UT_METHOD(DateFormat)
 
     dateFormatCheck( ut, ct, "yyyy-MM-dd HH:mm:ss",  "2015-04-03 05:06:07" );
 }
+
+UT_METHOD(TimeSpanConversion)
+{
+    UT_INIT();
+
+    double  d= 3.14;
+    integer i= 3;
+    TimeSpan ts;
+    ts= TimeSpan::FromDays        ( d );   UT_NEAR( d, ts.InDays        () ,0.0001);   UT_EQ( i, ts.InAbsoluteDays        () );
+    ts= TimeSpan::FromHours       ( d );   UT_NEAR( d, ts.InHours       () ,0.0001);   UT_EQ( i, ts.InAbsoluteHours       () );
+    ts= TimeSpan::FromMinutes     ( d );   UT_NEAR( d, ts.InMinutes     () ,0.0001);   UT_EQ( i, ts.InAbsoluteMinutes     () );
+    ts= TimeSpan::FromSeconds     ( d );   UT_NEAR( d, ts.InSeconds     () ,0.0001);   UT_EQ( i, ts.InAbsoluteSeconds     () );
+    ts= TimeSpan::FromMilliseconds( d );   UT_NEAR( d, ts.InMilliseconds() ,0.0001);   UT_EQ( i, ts.InAbsoluteMilliseconds() );
+    ts= TimeSpan::FromMicroseconds( d );   UT_NEAR( d, ts.InMicroseconds() ,0.1   );   UT_EQ( i, ts.InAbsoluteMicroseconds() );
+    #if !defined( _WIN32 )
+    ts= TimeSpan::FromNanoseconds ( i );   UT_EQ( i, ts.InNanoseconds () );
+    #endif
+}
+
+void timeSpanToStringCheck( AWorxUnitTesting& ut, TimeSpan& ts, const String& expected )
+{
+    String128 res;
+    res << ts;
+    UT_EQ( expected, String(res) );
+}
+
+UT_METHOD(TimeSpanApply)
+{
+    UT_INIT();
+    NumberFormat::Global.SetComputational();
+
+    TimeSpan ts= 0;                           timeSpanToStringCheck( ut, ts, "zero time"          );
+    ts=  TimeSpan::FromDays        (-15 );    timeSpanToStringCheck( ut, ts, "- 15.00 days"       );
+    ts=  TimeSpan::FromDays        ( 15 );    timeSpanToStringCheck( ut, ts, "15.00 days"         );
+    ts+= TimeSpan::FromHours       ( 12 );    timeSpanToStringCheck( ut, ts, "15.50 days"         );
+
+    ts=  TimeSpan::FromDays        (  5 );    timeSpanToStringCheck( ut, ts, "5 days 0.00 hours"  );
+    ts+= TimeSpan::FromHours       ( 12 );    timeSpanToStringCheck( ut, ts, "5 days 12.00 hours" );
+
+
+    ts=  TimeSpan::FromHours       (  5 );    timeSpanToStringCheck( ut, ts, "5 hours 0 minutes"  );
+    ts+= TimeSpan::FromMinutes     ( 12 );    timeSpanToStringCheck( ut, ts, "5 hours 12 minutes" );
+    ts-= TimeSpan::FromMinutes     ( 11 );    timeSpanToStringCheck( ut, ts, "5 hours 1 minute"   );
+
+
+    ts=  TimeSpan::FromMinutes     (  5 );    timeSpanToStringCheck( ut, ts, "5 minutes 0 seconds"  );
+    ts+= TimeSpan::FromSeconds     ( 12 );    timeSpanToStringCheck( ut, ts, "5 minutes 12 seconds" );
+    ts-= TimeSpan::FromSeconds     ( 11 );    timeSpanToStringCheck( ut, ts, "5 minutes 1 second"   );
+
+    ts=  TimeSpan::FromSeconds     (   5 );   timeSpanToStringCheck( ut, ts, "5.00 seconds"       );
+    ts+= TimeSpan::FromMilliseconds( 500 );   timeSpanToStringCheck( ut, ts, "5.50 seconds"       );
+    ts-= TimeSpan::FromMilliseconds( 250 );   timeSpanToStringCheck( ut, ts, "5.25 seconds"       );
+
+    ts=  TimeSpan::FromMilliseconds(   5 );   timeSpanToStringCheck( ut, ts, "005 ms" );
+    ts=  TimeSpan::FromMicroseconds( 500 );   timeSpanToStringCheck( ut, ts, "500 \xC2\xB5s"      );
+    ts=  TimeSpan::FromNanoseconds ( 250 );   timeSpanToStringCheck( ut, ts, "250 ns"             );
+}
+
 
 
 UT_CLASS_END

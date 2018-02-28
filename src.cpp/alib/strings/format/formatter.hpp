@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -70,7 +70,7 @@ namespace format {
 enum class Exceptions
 {
     // general formatter errors
-    /** Argument index ’0’ not allowed. */
+    /** Argument index '0' not allowed. */
     ArgumentIndexIs0                    =11,
 
     /** Argument index greater than number of arguments available.  */
@@ -82,11 +82,11 @@ enum class Exceptions
 
     // Formatter Python Style
     /** Thrown by \alib{strings::format,FormatterPythonStyle}:
-     *  Closing bracket <c>’}'</c> not found.                       */
+     *  Closing bracket <c>'}'</c> not found.                       */
     MissingClosingBracket               =101,
 
     /** Thrown by \alib{strings::format,FormatterPythonStyle}:
-     *  Missing precision integer value after <c>’.'</c> character. */
+     *  Missing precision integer value after <c>'.'</c> character. */
     MissingPrecisionValuePS             =102,
 
     /** Thrown by \alib{strings::format,FormatterPythonStyle}:
@@ -98,11 +98,11 @@ enum class Exceptions
     UnknownTypeCode                     =104,
 
     /** Thrown by \alib{strings::format,FormatterPythonStyle}:
-     *  Expected <c>’!'</c> not found.                              */
+     *  Expected <c>'!'</c> not found.                              */
     ExclamationMarkExpected             =105,
 
     /** Thrown by \alib{strings::format,FormatterPythonStyle}:
-     *  Unknown conversion after <c>’!'</c>.                        */
+     *  Unknown conversion after <c>'!'</c>.                        */
     UnknownConversionPS                 =106,
 
     /** Thrown by \alib{strings::format,FormatterPythonStyle}:
@@ -121,7 +121,7 @@ enum class Exceptions
     NegativeValuesInBracketsNotSupported=201,
 
     /** Thrown by \alib{strings::format,FormatterJavaStyle}:
-     *  Missing precision integer value after <c>’.'</c> character. */
+     *  Missing precision integer value after <c>'.'</c> character. */
     MissingPrecisionValueJS             =202,
 
     /** Thrown by \alib{strings::format,FormatterJavaStyle}:
@@ -404,7 +404,7 @@ class Formatter
          * \ref aworx::lib::lang::Report "Report" messages).
          * Applications can acquire and use this instance using #AcquireDefault and #ReleaseDefault.
          */
-        static Formatter*           defaultFormatter;
+        static Formatter*               defaultFormatter;
 
         #if ALIB_MODULE_ALL
             /** Lock to protect access to #defaultFormatter. Used by #AcquireDefault and

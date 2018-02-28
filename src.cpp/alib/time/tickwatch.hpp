@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 /** @file */ // Hello Doxygen
@@ -28,6 +28,8 @@
 namespace aworx { namespace lib { namespace time
 {
 /** ************************************************************************************************
+ * \note This class is deprecated and will be removed with the next version of \alib.
+ *
  *  This class encapsulates a system dependent time value (Ticks) and provides some basic
  *  interface for measuring time spans, including multiple samples and their average.
  **************************************************************************************************/
@@ -123,9 +125,9 @@ class TickWatch
         const Ticks    Sample    ()
         {
             cntSamples++;
-            Time::TRaw st=    startTime.Raw();
+            TimeLib::TRaw st=    startTime.Raw();
             startTime.Set();
-            Time::TRaw diff=  startTime.Raw() - st;
+            TimeLib::TRaw diff=  startTime.Raw() - st;
 
             Ticks sample( diff );
             sum.Add( diff );
@@ -162,7 +164,6 @@ class TickWatch
             return Ticks ( cntSamples== 0 ? 0L     :    ( sum.Raw() / cntSamples) );
         }
 };
-
 
 }} // namespace lib::time
 

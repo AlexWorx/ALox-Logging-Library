@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 //
 // Notes:
@@ -612,7 +612,7 @@ int main(int argc, char *argv[])
     Inifile->FileComments=
      "======================================================================================" "\n" \
      "ALib - A-Worx Utility Library"                                                          "\n" \
-     "Copyright 2013-2017 A-Worx GmbH, Germany"                                               "\n" \
+     "Copyright 2013-2018 A-Worx GmbH, Germany"                                               "\n" \
      "Published under 'Boost Software License' (a free software license, see LICENSE.txt)"    "\n" \
      "======================================================================================" "\n" \
      "This tool replaces simple, pure integer template instantiation nodes in doxygen"        "\n" \

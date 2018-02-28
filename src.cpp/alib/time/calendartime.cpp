@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -35,6 +35,8 @@
 
 namespace aworx { namespace lib { namespace time {
 
+
+
 void TicksCalendarTime::Clear()
 {
     Year=
@@ -52,7 +54,7 @@ void TicksCalendarTime::Clear()
 
 }
 
-void TicksCalendarTime::Set( Time::TRaw ticks, Timezone timezone )
+void TicksCalendarTime::Set( TimeLib::TRaw ticks, Timezone timezone )
 {
     Clear();
     Ticks t(ticks);
@@ -91,7 +93,7 @@ void TicksCalendarTime::Set( Time::TRaw ticks, Timezone timezone )
     #endif
 }
 
-Time::TRaw  TicksCalendarTime::Get( Timezone timezone )
+TimeLib::TRaw  TicksCalendarTime::Get( Timezone timezone )
 {
     Ticks t(0);
 
@@ -134,15 +136,6 @@ Time::TRaw  TicksCalendarTime::Get( Timezone timezone )
 
     return t.Raw();
 }
-
-
-
-//! @cond NO_DOX
-const TString months[]= { "January", "February", "March", "April", "May", "June",
-                          "July", "August",  "September", "October", "November", "December"   };
-const TString   days[]= { "Sunday", "Monday", "Tuesday", "Wednesday",
-                          "Thursday", "Friday", "Saturday"                                    };
-//! @endcond
 
 AString& TicksCalendarTime::Format( Substring format, AString& target, CurrentData targetData )
 {
@@ -210,14 +203,14 @@ AString& TicksCalendarTime::Format( Substring format, AString& target, CurrentDa
 
             case 'd': // day
                      if ( n <= 2 )     target._NC( strings::Format( Day, n, nf) );
-                else if ( n == 3 )     target._NC( days[DayOfWeek], 0, 3 );
-                else                   target._NC( days[DayOfWeek]    );
+                else if ( n == 3 )     target._NC( TimeLib::days[DayOfWeek], 0, 3 );
+                else                   target._NC( TimeLib::days[DayOfWeek]    );
                 break;
 
             case 'M': // month
                      if ( n <= 2 )     target._NC( strings::Format( Month, n, nf ) );
-                else if ( n == 3 )     target._NC( months[Month-1], 0, 3 );
-                else                   target._NC( months[Month-1]     );
+                else if ( n == 3 )     target._NC( TimeLib::months[Month-1], 0, 3 );
+                else                   target._NC( TimeLib::months[Month-1]     );
                 break;
 
             case 'y': // year
@@ -235,6 +228,205 @@ AString& TicksCalendarTime::Format( Substring format, AString& target, CurrentDa
 
     return target;
 }
+
+
+void CalendarTime::Clear()
+{
+    Year=
+    Month=
+    Day=
+    DayOfWeek=
+    Hour=
+    Minute=
+    Second=
+    Millisecond=    0;
+}
+
+void CalendarTime::Set( TimeStamp timeStamp, Timezone timezone )
+{
+    Clear();
+
+    #if defined (__GLIBCXX__) || defined(__APPLE__)
+        struct tm  tm;
+        time_t tt= timeStamp.InEpochSeconds();
+        if ( timezone == Timezone::UTC )
+        {
+            tm.tm_isdst=      0; // daylight saving off
+            gmtime_r( &tt, &tm );
+        }
+        else
+        {
+            tm.tm_isdst=     -1; // daylight saving auto
+            localtime_r( &tt, &tm );
+        }
+
+        Year=       tm.tm_year + 1900;
+        Day=        tm.tm_mday;
+        DayOfWeek=  tm.tm_wday;
+        Month=      tm.tm_mon + 1;
+        Second=     tm.tm_sec;
+        Hour=       tm.tm_hour;
+        Minute=     tm.tm_min;
+
+    #elif defined( _WIN32 )
+        SYSTEMTIME st;
+        timeStamp.InSystemTime( &st, timezone );
+
+        Year=       st.wYear;
+        Day=        st.wDay;
+        DayOfWeek=  st.wDayOfWeek;
+        Month=      st.wMonth;
+        Hour=       st.wHour;
+        Minute=     st.wMinute;
+        Second=     st.wSecond;
+
+    #else
+        #pragma message ("Unknown Platform in file: " __FILE__ )
+    #endif
+}
+
+TimeStamp  CalendarTime::Get( Timezone timezone )
+{
+    Ticks t(0);
+
+    #if defined (__GLIBCXX__) || defined(__APPLE__)
+        struct tm  tm;
+        tm.tm_year=       Year - 1900;
+        tm.tm_mday=       Day;
+        tm.tm_mon=        Month -1;
+        tm.tm_hour=       Hour;
+        tm.tm_min=        Minute;
+        tm.tm_sec=        Second;
+
+        time_t tt;
+        if ( timezone == Timezone::UTC )
+        {
+            tm.tm_isdst=      0; // daylight saving off
+            tt= timegm( &tm );
+        }
+        else
+        {
+            tm.tm_isdst=     -1; // daylight saving auto
+            tt= mktime( &tm );
+        }
+
+        t.SetFromEpochSeconds( tt );
+
+
+    #elif defined( _WIN32 )
+
+        SYSTEMTIME st;
+        st.wYear=           (WORD) Year;
+        st.wDay=            (WORD) Day;
+        st.wDayOfWeek=      (WORD) DayOfWeek;
+        st.wMonth=          (WORD) Month;
+        st.wHour=           (WORD) Hour;
+        st.wMinute=         (WORD) Minute;
+        st.wSecond=         (WORD) Second;
+        st.wMilliseconds=   0;
+
+        t.SetFromSystemTime( st, timezone );
+
+    #else
+        #pragma message ("Unknown Platform in file: " __FILE__ )
+    #endif
+
+    return t.Raw();
+}
+
+
+AString& CalendarTime::Format( Substring format, AString& target, CurrentData targetData )
+{
+    if ( targetData == CurrentData::Clear )
+        target.Clear();
+
+    // this ensures that target is not nulled, as all other appends are NC-versions
+    target._("");
+    NumberFormat* nf= &NumberFormat::Computational;
+
+    while ( format.IsNotEmpty() )
+    {
+        // read n equal characters
+        int  n=  1;
+        char c=  format.ConsumeChar();
+        while (  format.ConsumeChar(c) )
+            n++;
+
+        switch (c)
+        {
+            case '\'': // single quotes
+            {
+                // one or more pairs of single quotes?
+                if ( n > 1 )
+                {
+                    int pairs= n >> 1;
+                    target.InsertChars<false>( '\'', pairs );
+                    n-= (pairs << 1);
+                }
+
+                // one single quote?
+                if ( n == 1 )
+                {
+                    // search end
+                    integer end= format.IndexOf( '\'' );
+                    if ( end < 1 )
+                    {
+                        ALIB_WARNING( "Format Error: Missing single Quote" );
+                        target << "Format Error: Missing single Quote";
+                        return target;
+                    }
+
+                    target._NC( format, 0, end );
+                    format.ConsumeChars<false>( end + 1 );
+                }
+
+            } break;
+
+            case 's': // second
+                target._NC( strings::Format( Second, n, nf ) );
+                break;
+
+            case 'm': //minute
+                target._NC( strings::Format( Minute, n, nf ) );
+                break;
+
+            case 'K': // hour 0..11
+                target._NC( strings::Format( Hour % 12, n, nf ) );
+                target._NC( Hour < 12 ? " am" : " pm" );
+                break;
+
+            case 'H': // hour 0..23
+                target._NC( strings::Format( Hour,   n, nf ) );
+                break;
+
+            case 'd': // day
+                     if ( n <= 2 )     target._NC( strings::Format( Day, n, nf) );
+                else if ( n == 3 )     target._NC( TimeLib::days[DayOfWeek], 0, 3 );
+                else                   target._NC( TimeLib::days[DayOfWeek]    );
+                break;
+
+            case 'M': // month
+                     if ( n <= 2 )     target._NC( strings::Format( Month, n, nf ) );
+                else if ( n == 3 )     target._NC( TimeLib::months[Month-1], 0, 3 );
+                else                   target._NC( TimeLib::months[Month-1]     );
+                break;
+
+            case 'y': // year
+                     if ( n == 1 )     target._NC( strings::Format(Year,        1, nf) );
+                else if ( n == 2 )     target._NC( strings::Format(Year %  100, 2, nf) );
+                else                   target._NC( strings::Format(Year,        n, nf) );
+                break;
+
+            default: // otherwise: copy what was in
+                target.InsertChars<false>( c, n );
+                break;
+        }
+
+    }
+
+    return target;
+}
+
 
 
 }}}// namespace [aworx::lib::time]

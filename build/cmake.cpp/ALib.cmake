@@ -1,7 +1,7 @@
 # #################################################################################################
 #  ALib.cmake - CMake file for projects using ALib
 #
-#  Copyright 2017 A-Worx GmbH, Germany
+#  Copyright 2015-2018 A-Worx GmbH, Germany
 #  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 #
 #  Note: ALox.cmake will include this file automatically.
@@ -9,8 +9,9 @@
 
 # --------------------------------------------------------------------------------------------------
 # set cache variables
+# The variables are only set, if not alreay predefined prior to invoking this script.
 # --------------------------------------------------------------------------------------------------
-    set( ALIB_VERSION                   "1712R0"                                        CACHE STRING
+    set( ALIB_VERSION                   "1712R1"                                        CACHE STRING
          "The ALib version. Not modifiable (will be overwritten on generation!)"        FORCE )
 
     set( temp "${CMAKE_CURRENT_LIST_DIR}/../.." )
@@ -18,48 +19,68 @@
     set( ALIB_BASE_DIR                  ${temp}                                         CACHE   PATH
          "The base path to ALib containing source code, project files, tools, docs, etc.")
 
-    if( NOT DEFINED  ALIB_DEBUG )
-        if( CMAKE_BUILD_TYPE STREQUAL "Debug" )
-             set( ALIB_DEBUG   "ON" )
-        else()
-             set( ALIB_DEBUG   "OFF" )
-        endif()
-    endif()
 
     if ( CMAKE_BUILD_TYPE STREQUAL "Debug" )
         set( tmp_default_val   "On" )
     else()
         set( tmp_default_val   "Off" )
     endif()
-    set( ALIB_DEBUG                     ${tmp_default_val}                              CACHE   BOOL
-         "Enable/disable ALib debug code. Defaults to true in debug compilations, otherwise to false." )
 
-    set( ALIB_DEBUG_GLIB                "Off"                                           CACHE   BOOL
-         "Defaults to false. If true, compiler symbols '_GLIBCXX_DEBUG', '_GLIBCXX_DEBUG_PEDANTIC' and '_GLIBCPP_CONCEPT_CHECKS' are set." )
-    set( ALIB_DEBUG_STRINGS             "Off"                                           CACHE   BOOL
-         "Defaults to false. Adds consistency checks to ALib string classes. Useful when developing code to manipulate strings externally, i.e T_Apply to specializations.")
 
-    set( ALIB_FEAT_THREADS              "On"                                            CACHE   BOOL
-         "Defaults to true. If false, multi-threading support is removed from ALib. Thread/Lock classes still exist and compile but are not effective.")
+    if( NOT DEFINED  ALIB_DEBUG )
+        set( ALIB_DEBUG                     ${tmp_default_val}                          CACHE   BOOL
+             "Enable/disable ALib debug code. Defaults to true in debug compilations, otherwise to false." )
+    endif()
+
+    if( NOT DEFINED  ALIB_DEBUG_GLIB )
+        set( ALIB_DEBUG_GLIB                "Off"                                       CACHE   BOOL
+             "Defaults to false. If true, compiler symbols '_GLIBCXX_DEBUG', '_GLIBCXX_DEBUG_PEDANTIC' and '_GLIBCPP_CONCEPT_CHECKS' are set." )
+    endif()
+
+    if( NOT DEFINED  ALIB_DEBUG_STRINGS )
+        set( ALIB_DEBUG_STRINGS             "Off"                                       CACHE   BOOL
+             "Defaults to false. Adds consistency checks to ALib string classes. Useful when developing code to manipulate strings externally, i.e T_Apply to specializations.")
+    endif()
+
+    if( NOT DEFINED  ALIB_FEAT_THREADS )
+        set( ALIB_FEAT_THREADS              "On"                                        CACHE   BOOL
+             "Defaults to true. If false, multi-threading support is removed from ALib. Thread/Lock classes still exist and compile but are not effective.")
+    endif()
 
     if ( ${WIN32} )
         set( tmp_default_val   "On" )
     else()
         set( tmp_default_val   "Off" )
     endif()
-    set( ALIB_FEAT_SINGLETON_MAPPED     ${tmp_default_val}                              CACHE   BOOL
-         "Defaults to true on Windows OS, which then selects code to implement class Singleton to work with multiple data segments, as imposed by the use of Windows DLLs.")
+    if( NOT DEFINED  ALIB_FEAT_SINGLETON_MAPPED )
+        set( ALIB_FEAT_SINGLETON_MAPPED     ${tmp_default_val}                          CACHE   BOOL
+             "Defaults to true on Windows OS, which then selects code to implement class Singleton to work with multiple data segments, as imposed by the use of Windows DLLs.")
+    endif()
 
-    set( ALIB_FEAT_BOXING_FTYPES        "On"                                            CACHE   BOOL
-         "Defaults to true. If false, built-in boxing of fundamental types is switched off. Allowed to be switched off only in 'ALib Boxing' module distribution!")
-    set( ALIB_FEAT_BOXING_STD_VECTOR    "On"                                            CACHE   BOOL
-         "Defaults to true. If false, built-in boxing of std::vector objects (to array types) is switched off. ")
+    if( NOT DEFINED  ALIB_FEAT_BOXING_FTYPES )
+        set( ALIB_FEAT_BOXING_FTYPES        "On"                                        CACHE   BOOL
+             "Defaults to true. If false, built-in boxing of fundamental types is switched off. Allowed to be switched off only in 'ALib Boxing' module distribution!")
+    endif()
+    if( NOT DEFINED  ALIB_FEAT_BOXING_STD_VECTOR )
+        set( ALIB_FEAT_BOXING_STD_VECTOR    "On"                                        CACHE   BOOL
+             "Defaults to true. If false, built-in boxing of std::vector objects (to array types) is switched off. ")
+    endif()
+
+    if (NOT DEFINED ALIB_FEAT_BOOST_REGEX)
+        set( ALIB_FEAT_BOOST_REGEX          "Off"                                       CACHE   BOOL
+             "Defaults to false. If true, activates ALib classes that use boost regular expressions, for example strings::util::RegexMatcher. The corresponding boost library is searched and added to CMake variable ALIB_EXTERNAL_LIBS.")
+    endif()
 
 
-    set( ALIB_AVOID_ANALYZER_WARNINGS   "Off"                                           CACHE   BOOL
-         "Defaults to false. If true, minor code modifications are made to avoid unnecessary warnings with tools like 'valgrind'.")
-    set( AWORX_COVERAGE_COMPILE         "Off"                                           CACHE   BOOL
-         "Defaults to false. If true, option --coverag is added to GNU compiler command line.")
+    if( NOT DEFINED  ALIB_AVOID_ANALYZER_WARNINGS )
+        set( ALIB_AVOID_ANALYZER_WARNINGS   "Off"                                       CACHE   BOOL
+             "Defaults to false. If true, minor code modifications are made to avoid unnecessary warnings with tools like 'valgrind'.")
+    endif()
+
+    if( NOT DEFINED  AWORX_COVERAGE_COMPILE )
+        set( AWORX_COVERAGE_COMPILE         "Off"                                       CACHE   BOOL
+             "Defaults to false. If true, option --coverag is added to GNU compiler command line.")
+    endif()
 
 
     if ( $ENV{CLION_IDE} )
@@ -67,20 +88,21 @@
     else()
         set( tmp_default_val   "Off" )
     endif()
-    set( ALIB_GDB_PP_SUPPRESS_CHILDREN    ${tmp_default_val}                              CACHE   BOOL
-         "Defaults to false. If true, a corresponding symbol gets set in debug compilations which is detected by GDB pretty printer scripts provided with ALib/ALox.")
-    set( ALIB_GDB_PP_FIND_POINTER_TYPES ${tmp_default_val}                              CACHE   BOOL
-         "Defaults to false. If true, a corresponding symbol gets set in debug compilations which is detected by GDB pretty printer scripts provided with ALib/ALox.")
+    if( NOT DEFINED  ALIB_GDB_PP_SUPPRESS_CHILDREN )
+        set( ALIB_GDB_PP_SUPPRESS_CHILDREN    ${tmp_default_val}                        CACHE   BOOL
+             "Defaults to false. If true, a corresponding symbol gets set in debug compilations which is detected by GDB pretty printer scripts provided with ALib/ALox.")
+    endif()
+    if( NOT DEFINED  ALIB_GDB_PP_FIND_POINTER_TYPES )
+        set( ALIB_GDB_PP_FIND_POINTER_TYPES ${tmp_default_val}                          CACHE   BOOL
+             "Defaults to false. If true, a corresponding symbol gets set in debug compilations which is detected by GDB pretty printer scripts provided with ALib/ALox.")
+    endif()
 
 
     # use 'cotire'? (https://github.com/sakra/cotire/)
-    if ( ${ALIB_CMAKE_COTIRE_DEFAULT} )
-        set( tmp_default_val   "On" )
-    else()
-        set( tmp_default_val   "Off" )
+    if( NOT DEFINED  ALIB_CMAKE_COTIRE )
+        set( ALIB_CMAKE_COTIRE              "Off"                                       CACHE   BOOL
+             "If true, CMake compilation tool 'cotire' (https://github.com/sakra/cotire/) is downloaded and may be used to speedup builds." )
     endif()
-    set( ALIB_CMAKE_COTIRE              ${tmp_default_val}                                  CACHE   BOOL
-         "If true, CMake compilation tool 'cotire' (https://github.com/sakra/cotire/) is downloaded and may be used to speedup builds. Set variable ALIB_CMAKE_COTIRE_DEFAULT prior to invoking 'ALib.cmake' to change default cached value." )
 
 
 
@@ -130,54 +152,60 @@
 # --------------------------------------------------------------------------------------------------
 
     if ( ${ALIB_DEBUG} )
-        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_DEBUG_ON"          )
+        list( APPEND ALIB_COMPILER_DEFINITIONS    "ALIB_DEBUG_ON"          )
     else()
-        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_DEBUG_OFF"         )
+        list( APPEND ALIB_COMPILER_DEFINITIONS    "ALIB_DEBUG_OFF"         )
     endif()
     if ( ${ALIB_DEBUG_STRINGS} )
-        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_DEBUG_STRINGS_ON"  )
+        list( APPEND ALIB_COMPILER_DEFINITIONS    "ALIB_DEBUG_STRINGS_ON"  )
     else()
-        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_DEBUG_STRINGS_OFF" )
+        list( APPEND ALIB_COMPILER_DEFINITIONS    "ALIB_DEBUG_STRINGS_OFF" )
     endif()
     if ( ${ALIB_DEBUG_GLIB} )
-        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "_GLIBCXX_DEBUG"
-                                                                "_GLIBCXX_DEBUG_PEDANTIC"
-                                                                "_GLIBCPP_CONCEPT_CHECKS" )
+        list( APPEND ALIB_COMPILER_DEFINITIONS    "_GLIBCXX_DEBUG"
+                                                  "_GLIBCXX_DEBUG_PEDANTIC"
+                                                  "_GLIBCPP_CONCEPT_CHECKS" )
     endif()
 
     if ( ${ALIB_FEAT_THREADS} )
-        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_FEAT_THREADS_ON"   )
+        list( APPEND ALIB_COMPILER_DEFINITIONS    "ALIB_FEAT_THREADS_ON"   )
     else()
-        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_FEAT_THREADS_OFF"  )
+        list( APPEND ALIB_COMPILER_DEFINITIONS    "ALIB_FEAT_THREADS_OFF"  )
     endif()
     if ( ${ALIB_FEAT_SINGLETON_MAPPED} )
-        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_FEAT_SINGLETON_MAPPED_ON"   )
+        list( APPEND ALIB_COMPILER_DEFINITIONS    "ALIB_FEAT_SINGLETON_MAPPED_ON"   )
     else()
-        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_FEAT_SINGLETON_MAPPED_OFF"  )
+        list( APPEND ALIB_COMPILER_DEFINITIONS    "ALIB_FEAT_SINGLETON_MAPPED_OFF"  )
     endif()
     if ( ${ALIB_FEAT_BOXING_FTYPES} )
-        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_FEAT_BOXING_FTYPES_ON"   )
+        list( APPEND ALIB_COMPILER_DEFINITIONS    "ALIB_FEAT_BOXING_FTYPES_ON"   )
     else()
-        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_FEAT_BOXING_FTYPES_OFF"  )
+        list( APPEND ALIB_COMPILER_DEFINITIONS    "ALIB_FEAT_BOXING_FTYPES_OFF"  )
     endif()
     if ( ${ALIB_FEAT_BOXING_STD_VECTOR} )
-        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_FEAT_BOXING_STD_VECTOR_ON"   )
+        list( APPEND ALIB_COMPILER_DEFINITIONS    "ALIB_FEAT_BOXING_STD_VECTOR_ON"   )
     else()
-        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_FEAT_BOXING_STD_VECTOR_OFF"  )
+        list( APPEND ALIB_COMPILER_DEFINITIONS    "ALIB_FEAT_BOXING_STD_VECTOR_OFF"  )
+    endif()
+
+    if ( ${ALIB_FEAT_BOOST_REGEX} )
+        list( APPEND ALIB_COMPILER_DEFINITIONS    "ALIB_FEAT_BOOST_REGEX_ON"   )
+    else()
+        list( APPEND ALIB_COMPILER_DEFINITIONS    "ALIB_FEAT_BOOST_REGEX_OFF"  )
     endif()
 
 
     if ( ${ALIB_AVOID_ANALYZER_WARNINGS} )
-        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_AVOID_ANALYZER_WARNINGS_ON"  )
+        list( APPEND ALIB_COMPILER_DEFINITIONS    "ALIB_AVOID_ANALYZER_WARNINGS_ON"  )
     else()
-        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_AVOID_ANALYZER_WARNINGS_OFF" )
+        list( APPEND ALIB_COMPILER_DEFINITIONS    "ALIB_AVOID_ANALYZER_WARNINGS_OFF" )
     endif()
 
     if ( ${ALIB_GDB_PP_SUPPRESS_CHILDREN} )
-        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_GDB_PP_SUPPRESS_CHILDREN"  )
+        list( APPEND ALIB_COMPILER_DEFINITIONS    "ALIB_GDB_PP_SUPPRESS_CHILDREN"  )
     endif()
     if ( ${ALIB_GDB_PP_FIND_POINTER_TYPES} )
-        set( ALIB_COMPILER_DEFINITIONS  ${ALIB_COMPILER_DEFINITIONS}    "ALIB_GDB_PP_FIND_POINTER_TYPES"  )
+        list( APPEND ALIB_COMPILER_DEFINITIONS    "ALIB_GDB_PP_FIND_POINTER_TYPES"  )
     endif()
 
 
@@ -185,13 +213,24 @@
 # --------------------------------------------------------------------------------------------------
 # External libraries
 # --------------------------------------------------------------------------------------------------
-    # multithreading
     if ( ${ALIB_FEAT_THREADS} )
 
 #! [DOXYGEN_CMAKE_FIND_THREADS]
-find_package(Threads)
-list( APPEND  ALIB_EXTERNAL_LIBS  ${CMAKE_THREAD_LIBS_INIT} )
+    find_package(Threads)
+    list( APPEND  ALIB_EXTERNAL_LIBS  ${CMAKE_THREAD_LIBS_INIT} )
 #! [DOXYGEN_CMAKE_FIND_THREADS]
+
+    endif()
+
+    if ( ${ALIB_FEAT_BOOST_REGEX} )
+        find_package( Boost REQUIRED COMPONENTS regex )
+
+        if(Boost_FOUND)
+            #recommended but does not work currently: "Boost::regex"
+            list( APPEND  ALIB_EXTERNAL_LIBS  boost_regex )
+        else()
+            MESSAGE("Attention: Boost::regex requested, but library not found!")
+        endif()
 
     endif()
 
@@ -282,8 +321,8 @@ list( APPEND  ALIB_EXTERNAL_LIBS  ${CMAKE_THREAD_LIBS_INIT} )
 #
 # Note:
 #   To enable/disable change CMake cache variable ALIB_CMAKE_COTIRE.
-#   To change the default value for this variable (on clean cmake builds), set non-cached CMake
-#   variable ALIB_CMAKE_COTIRE_DEFAULT prior to invoking this script.
+#   To change the variable permanently (on clean cmake builds), set the variable prior
+#   to invoking this script.
 # -------------------------------------------------------------------------------------------------
 
 # download cotire (once)

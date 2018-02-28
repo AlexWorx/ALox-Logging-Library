@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2017 A-Worx GmbH, Germany
+//  Copyright 2013-2018 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 #include "alib/alib.hpp"
@@ -75,10 +75,17 @@ void Lang::init( Phases phase )
             debug::DbgSimpleALibMsg_Plugin= debug::ALib_Dbg_Report_Plugin;
         #endif
 
-//        auto& catMap= Resources->AcquireStaticCategory( ResourceCategory );
         Res->AddBulk( ResourceCategory.ToCString(),
 
+        // aworx::lib::lang::Exceptions
+        "ExceptionsPrefix" , "lang::" ,
+        "ExceptionsPostfix", ""         ,
+        "Exceptions",
+            "1"  ","    "ErrorWritingReport"  ","  "EX1" ,
 
+         "EX1", "Error writing ALib report.",
+
+        // enums
 //! [DOX_ALIB_LANG_ENUMS_PARSABLE_MULTIPLE]
 "Bool",         "0,False,1,"
                 "1,True,1,"
@@ -172,6 +179,9 @@ void Lang::init( Phases phase )
 
 void Lang::terminationCleanUp()
 {
+    #if ALIB_MODULE_ALL
+       Report::TerminationCleanUp();
+    #endif
 }
 
 

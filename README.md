@@ -23,11 +23,11 @@ ALox attempts to make logging as easy and intuitive as possible. We want you to 
 
 On the other end of the list, ALox  enables **release logging** for productive applications to collect mission critical **metrics from the field**.
 
-This is **Version 1712 Revision 0**. 
+This is **Version 1712 Revision 1**. 
 
 ## Features ##
 
-* Available for **C++ 11 ** (GNU/Linux, Windows OS, macOS),  **C#** (.Net, Windows, Linux, Microsoft, Mono) and **Java**
+* Available for **C++ 11** (GNU/Linux, Windows OS, macOS),  **C#** (.Net, Windows, Linux, Microsoft, Mono) and **Java**
   (with Android support and extensions).
 
 * **Free software**, published under Boost Software License.
