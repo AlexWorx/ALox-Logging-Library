@@ -12,7 +12,7 @@
 <!-- Node6 -->
 <g id="node1" class="node">
 <title>Node6</title>
-<polygon fill="#bfbfbf" stroke="#000000" points="205.5,-.5 205.5,-19.5 311.5,-19.5 311.5,-.5 205.5,-.5"/>
+<polygon fill="#bfbfbf" stroke="#000000" points="204.5,-.5 204.5,-19.5 312.5,-19.5 312.5,-.5 204.5,-.5"/>
 <text text-anchor="middle" x="258.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">CLRDebuggerLogger</text>
 </g>
 <!-- Node7 -->
@@ -182,7 +182,7 @@
 <g id="node10" class="node">
 <title>Node15</title>
 <g id="a_node10"><a xlink:href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" target="_top" xlink:title="ObjectConverter">
-<polygon fill="#ffffff" stroke="#000000" points="300,-182.5 300,-201.5 387,-201.5 387,-182.5 300,-182.5"/>
+<polygon fill="#ffffff" stroke="#000000" points="299.5,-182.5 299.5,-201.5 387.5,-201.5 387.5,-182.5 299.5,-182.5"/>
 <text text-anchor="middle" x="343.5" y="-189.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ObjectConverter</text>
 </a>
 </g>
@@ -248,7 +248,7 @@
 <title>Node19&#45;&gt;Node8</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M410.1693,-177.5115C394.5814,-169.313 374.2702,-159.2772 355.5,-152 334.5815,-143.8899 310.3315,-136.8899 291.3111,-131.9174"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="408.7387,-180.7153 419.2086,-182.3378 412.0356,-174.5403 408.7387,-180.7153"/>
-<text text-anchor="middle" x="404.5" y="-155" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> AutoSizes</text>
+<text text-anchor="middle" x="405" y="-155" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> AutoSizes</text>
 </g>
 </g>
 </svg>

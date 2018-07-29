@@ -12,7 +12,7 @@
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<polygon fill="#bfbfbf" stroke="#000000" points="7,-.5 7,-19.5 109,-19.5 109,-.5 7,-.5"/>
+<polygon fill="#bfbfbf" stroke="#000000" points="6,-.5 6,-19.5 110,-19.5 110,-.5 6,-.5"/>
 <text text-anchor="middle" x="58" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Domain.LoggerData</text>
 </g>
 <!-- Node2 -->
@@ -91,8 +91,8 @@
 <title>Node6&#45;&gt;Node2</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M41.2614,-271.8263C37.1366,-260.6863 32.4245,-246.2703 30,-233 20.0116,-178.3282 21.5315,-111.1816 22.5335,-86.5977"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="38.075,-273.291 44.9423,-281.3589 44.6051,-270.7694 38.075,-273.291"/>
-<text text-anchor="middle" x="58.5" y="-176" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> timeOfCreation</text>
-<text text-anchor="middle" x="58.5" y="-165" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">timeOfLastLog</text>
+<text text-anchor="middle" x="59" y="-176" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> timeOfCreation</text>
+<text text-anchor="middle" x="59" y="-165" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">timeOfLastLog</text>
 </g>
 <!-- Node6&#45;&gt;Node4 -->
 <g id="edge5" class="edge">
@@ -106,14 +106,14 @@
 <title>Node6&#45;&gt;Node6</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M79.816,-296.7822C84.4,-295.8815 87.5,-293.954 87.5,-291 87.5,-286.1523 79.1518,-284.0694 69.5969,-284.7511"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="79.4268,-293.2963 69.5969,-297.2489 79.7462,-300.289 79.4268,-293.2963"/>
-<text text-anchor="middle" x="128" y="-294" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> tempTicks</text>
-<text text-anchor="middle" x="128" y="-283" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">creationTimeTicks</text>
+<text text-anchor="middle" x="127.5" y="-294" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> tempTicks</text>
+<text text-anchor="middle" x="127.5" y="-283" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">creationTimeTicks</text>
 </g>
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
-<polygon fill="#ffffff" stroke="#bfbfbf" points="39.5,-202.5 39.5,-232.5 202.5,-232.5 202.5,-202.5 39.5,-202.5"/>
-<text text-anchor="start" x="47.5" y="-220.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ArrayList&lt; com.aworx.lib.threads.</text>
+<polygon fill="#ffffff" stroke="#bfbfbf" points="39,-202.5 39,-232.5 203,-232.5 203,-202.5 39,-202.5"/>
+<text text-anchor="start" x="47" y="-220.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ArrayList&lt; com.aworx.lib.threads.</text>
 <text text-anchor="middle" x="121" y="-209.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ThreadLock &gt;</text>
 </g>
 <!-- Node7&#45;&gt;Node3 -->

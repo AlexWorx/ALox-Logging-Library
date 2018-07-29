@@ -34,7 +34,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<polygon fill="#ffffff" stroke="#bfbfbf" points="19.5,-135.5 19.5,-154.5 99.5,-154.5 99.5,-135.5 19.5,-135.5"/>
+<polygon fill="#ffffff" stroke="#bfbfbf" points="19,-135.5 19,-154.5 100,-154.5 100,-135.5 19,-135.5"/>
 <text text-anchor="middle" x="59.5" y="-142.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">CharSequence</text>
 </g>
 <!-- Node3&#45;&gt;Node2 -->

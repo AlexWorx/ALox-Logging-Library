@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1712 R. 1</span>
+   &#160;<span id="projectnumber">V. 1805 R. 0</span>
    </div>
   </td>
  </tr>
@@ -96,14 +96,12 @@ $(function() {
 <div class="dynheader">
 Inheritance diagram for FormatterJavaStyle:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterJavaStyle__inherit__graph.svg" width="147" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterJavaStyle__inherit__graph.svg" width="147" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for FormatterJavaStyle:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterJavaStyle__coll__graph.svg" width="1220" height="616"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterJavaStyle__coll__graph.svg" width="1223" height="616"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
@@ -121,7 +119,7 @@ Collaboration diagram for FormatterJavaStyle:</div>
 <li>If standard field type <code>'s'</code> is given together with a precision, the field is cut, even if it cuts the number somewhere. (This is just a warning and same behavior as in original specification.)</li>
 <li>For lower case floating point format types (<code>'f'</code>, <code>'g'</code> and <code>'e'</code>), the values specified in attributes <b>ExponentSeparator</b>, <b>NANLiteral</b> and <b>INFLiteral</b> of object <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#aa7126090b0797d7a5a967bbc9bff6e41">alternativeNumberFormat</a> are used. For upper case types (<code>'G'</code> and <code>'E'</code>), the corresponding attributes in <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a1c6cb1f7fddf8dd9d3fe14688753c01d">defaultNumberFormat</a> apply.</li>
 <li>Fixed point format (<code>'f'</code> ) is not supported to use arbitrary length. See class <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> for the limits. Due to this limitation, the default number of fractional digits is not set with type <code>'f'</code>, while in Java it is set to <code>6</code>. This is to allow higher numbers up to <code>1.e13</code> to be printed in non-scientific format</li>
-<li>When both, a <code>width</code> and a <code>precision</code> is given, then the <code>precision</code> determines the fractional part, even if the type is <b>'g'</b> or <b>'G'</b>. This is different than specified with Java formatter, which uses <code>precision</code> as the overall width in case of types <b>'g'</b> or <b>'G'</b>.</li>
+<li>When both, a <span>width</span> and a <span>precision</span> is given, then the <span>precision</span> determines the fractional part, even if the type is <b>'g'</b> or <b>'G'</b>. This is different than specified with Java formatter, which uses <span>precision</span> as the overall width in case of types <b>'g'</b> or <b>'G'</b>.</li>
 </ul>
 </li>
 </ul>
@@ -444,7 +442,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Parses placeholder field in Java syntax. The portion <code>format_spec</code> is not set as this is not supported by the syntax.</p>
+<p> Parses placeholder field in Java syntax. The portion <span>format_spec</span> is not set as this is not supported by the syntax.</p>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> on success, <code>false</code> on errors. </dd></dl>
 
 </div>
@@ -547,7 +545,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Replaces <code>"%%"</code> with <code>'%'</code> and <code>"%n"</code> with ascii <code>0x0a</code>. In addition applies <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#ac4172e37495305db4701901722d7651b">AString.escape</a> on <code>target</code> which replaces standard codes like <code>"\\n"</code>, <code>"\\r"</code> or <code>"\\t"</code> with corresponding ascii codes. (The latter is an extension to the standard behavior of Java formatter.)</p>
+<p> Replaces <code>"%%"</code> with <code>'%'</code> and <code>"%n"</code> with ascii <code>0x0a</code>. In addition applies <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#ac4172e37495305db4701901722d7651b">AString.escape</a> on <span>target</span> which replaces standard codes like <code>"\\n"</code>, <code>"\\r"</code> or <code>"\\t"</code> with corresponding ascii codes. (The latter is an extension to the standard behavior of Java formatter.)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">startIdx</td><td>The start of the region to replace </td></tr>
@@ -707,7 +705,7 @@ Additional Inherited Members</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Feb 28 2018 20:09:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2018 20:36:52 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.14
 </small></address>

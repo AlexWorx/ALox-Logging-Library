@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1712 R. 1</span>
+   &#160;<span id="projectnumber">V. 1805 R. 0</span>
    </div>
   </td>
  </tr>
@@ -97,8 +97,7 @@ $(function() {
 <div class="dynheader">
 Collaboration diagram for Configuration:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration__coll__graph.svg" width="538" height="292"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration__coll__graph.svg" width="540" height="292"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
@@ -211,7 +210,7 @@ Protected Fields</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Constructs a <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a>. If <code>addDefaultPlugins</code> is <code>true</code>, registers the initial plug-ins as follows</p>
+<p> Constructs a <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a>. If <span>addDefaultPlugins</span> is <code>true</code>, registers the initial plug-ins as follows</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Priority  </th><th class="markdownTableHeadNone">Plug-in Type ---------------&mdash;   </th></tr>
@@ -268,7 +267,7 @@ Protected Fields</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> This method fetches all values from a plug-in of priority <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#acc96dac6a4ac6625c609dae85ed53e0e">PrioDefaultValues</a>, which are not present in the given plug-in <code>dest</code> and stores them in that. This is useful to collect all generated default values and store them in a users' configuration file. This way, the user can identify configurable options easily.</p>
+<p> This method fetches all values from a plug-in of priority <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#acc96dac6a4ac6625c609dae85ed53e0e">PrioDefaultValues</a>, which are not present in the given plug-in <span>dest</span> and stores them in that. This is useful to collect all generated default values and store them in a users' configuration file. This way, the user can identify configurable options easily.</p>
 <dl class="section note"><dt>Note</dt><dd>Applications might want to copy only a portion of the default values (of a section) to not blow up a users' configuration. To achieve this, a custom method to fetch selected values has to be implemented. In this respect, this method is a very simple default and its source might be used as a jump start.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -391,7 +390,7 @@ Protected Fields</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Searches all plug-ins for the first found with type <code>TPluginType</code>.</p>
+<p> Searches all plug-ins for the first found with type <span>TPluginType</span>.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">TPluginType</td><td>The type of the plugin to search. </td></tr>
@@ -542,7 +541,7 @@ Protected Fields</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Receives and optionally creates configuration variable.</p>
-<p>If the variable was not found and <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#ae4b47533ee1b78ad20c12f235d7ef958">Variable.DefaultValue</a> in <code>variable</code> is set, the method adds the value value to a plug-in of priority <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#acc96dac6a4ac6625c609dae85ed53e0e">PrioDefaultValues</a>, (respectively to the plug-in found at or below <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#acc96dac6a4ac6625c609dae85ed53e0e">PrioDefaultValues</a>). For the conversion of the value, field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#aca2a6ae76bd8edc4dc6426ec1818154e">ConfigurationPlugin.StringConverter</a> of field a plug-in of priority <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#acc96dac6a4ac6625c609dae85ed53e0e">PrioDefaultValues</a>, is used. (Which has to be present.)</p>
+<p>If the variable was not found and <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#ae4b47533ee1b78ad20c12f235d7ef958">Variable.DefaultValue</a> in <span>variable</span> is set, the method adds the value value to a plug-in of priority <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#acc96dac6a4ac6625c609dae85ed53e0e">PrioDefaultValues</a>, (respectively to the plug-in found at or below <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#acc96dac6a4ac6625c609dae85ed53e0e">PrioDefaultValues</a>). For the conversion of the value, field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugin.html#aca2a6ae76bd8edc4dc6426ec1818154e">ConfigurationPlugin.StringConverter</a> of field a plug-in of priority <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#acc96dac6a4ac6625c609dae85ed53e0e">PrioDefaultValues</a>, is used. (Which has to be present.)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">variable</td><td>The variable to receive.</td></tr>
@@ -681,9 +680,9 @@ Protected Fields</h2></td></tr>
 <hr/>
 <p> Convenience method that stores the variable with priority <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a99234e433b0f7d5a269426910e255637">Configuration.PrioProtectedValues</a>.</p>
 <p>The variable value is determined as follows:</p><ul>
-<li>If optional parameter <code>externalizedValue</code> is provided and not <em>nulled</em>, the values are loaded from that string.</li>
+<li>If optional parameter <span>externalizedValue</span> is provided and not <em>nulled</em>, the values are loaded from that string.</li>
 <li>Otherwise, if the variable has no values set but field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#ae4b47533ee1b78ad20c12f235d7ef958">Variable.DefaultValue</a> is not <em>nulled</em> then values are loaded from this field.</li>
-<li>If all is unset (the variable values, parameter <code>externalizedValue</code> and field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#ae4b47533ee1b78ad20c12f235d7ef958">Variable.DefaultValue</a>), then the unset variable is stored, which results ~ in removing an existing protection value from the configuration.</li>
+<li>If all is unset (the variable values, parameter <span>externalizedValue</span> and field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#ae4b47533ee1b78ad20c12f235d7ef958">Variable.DefaultValue</a>), then the unset variable is stored, which results ~ in removing an existing protection value from the configuration.</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -801,7 +800,7 @@ Protected Fields</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Writes the variable to the configuration. In general, this is done by asking each of our installed plug-ins - in the order of their priority - to do so. As soon as the first plug-in returns <code>true</code>, the variable is considered written and no other plug-in is asked. This way, the variable is stored by the plug-in with the highest priority.</p>
-<p>The maximum priority to start the loop with depends on field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#a4450b0bad265ba3bd24e994f70aec802">Variable.Priority</a> of the given <code>variable</code>. The rules are as follows:</p><ul>
+<p>The maximum priority to start the loop with depends on field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#a4450b0bad265ba3bd24e994f70aec802">Variable.Priority</a> of the given <span>variable</span>. The rules are as follows:</p><ul>
 <li>If the value is <code>0</code>, which is the default value of new variables or ones that were freshly declared, then prior to storing the value, the variable is (tried to be) loaded first (without actually overwriting the values). After that, one of the next two rules apply.</li>
 <li>If the value is <code>0</code>, which indicates that a previous load operation failed, the loop starts with <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#acc96dac6a4ac6625c609dae85ed53e0e">PrioDefaultValues</a> (and usually ends there, as standard configuration sets do not have plug-ins with lower priorities installed). In other words, newly created variables are stored in the plug-in of priority <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#acc96dac6a4ac6625c609dae85ed53e0e">PrioDefaultValues</a> (usually an <b><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html">InMemoryPlugin</a></b>). This way, they are not written to external configuration files, unless the application explicitly moves such new default values to dedicated other plug-ins (e.g. on termination).</li>
 <li>If the value is greater than <code>0</code>, the value is used as the start of the loop. This way, an already defined variable will be stored in the same plug-in as it was found or one with a lower priority, if that plug-in does not provide writing capabilities.</li>
@@ -815,10 +814,10 @@ Protected Fields</h2></td></tr>
 </ul>
 <p>The method returns the priority of the configuration plug-in that the value was written to as well as storing this value in field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#a4450b0bad265ba3bd24e994f70aec802">Variable.Priority</a>. If the result is <code>0</code>, the variable was not written. This might only happen if</p><ul>
 <li>either field default plug-in of priority <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#acc96dac6a4ac6625c609dae85ed53e0e">PrioDefaultValues</a> was modified (removed or exchanged with a different plug-in that does not write the value)</li>
-<li>or if field <code>Priority</code> of the variable was set below <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#acc96dac6a4ac6625c609dae85ed53e0e">PrioDefaultValues</a> and greater than <code>0</code>.</li>
+<li>or if field <span>Priority</span> of the variable was set below <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#acc96dac6a4ac6625c609dae85ed53e0e">PrioDefaultValues</a> and greater than <code>0</code>.</li>
 <li>The detected (!) priority was #<a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a99234e433b0f7d5a269426910e255637">PrioProtectedValues</a>. In this case, obviously the application does not want to allow changes and writing the variable into a different plug-in has no effect. This way, such variables also do not appear in a users' configuration in the case that on program termination, new default values are copied there.</li>
 </ul>
-<p>Optional parameter <code>externalizedValue</code> allows to provide a string that is parsed by the storing plug-in to reset the variables' values prior to writing.</p>
+<p>Optional parameter <span>externalizedValue</span> allows to provide a string that is parsed by the storing plug-in to reset the variables' values prior to writing.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">variable</td><td>The variable object. </td></tr>
@@ -866,9 +865,9 @@ Protected Fields</h2></td></tr>
 <hr/>
 <p> Convenience method that stores the variable with priority <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#acc96dac6a4ac6625c609dae85ed53e0e">Configuration.PrioDefaultValues</a>.</p>
 <p>The variable value is determined as follows:</p><ul>
-<li>If optional parameter <code>externalizedValue</code> is provided and not <em>nulled</em>, the values are loaded from that string.</li>
+<li>If optional parameter <span>externalizedValue</span> is provided and not <em>nulled</em>, the values are loaded from that string.</li>
 <li>Otherwise, if the variable has no values set but field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#ae4b47533ee1b78ad20c12f235d7ef958">Variable.DefaultValue</a> is not <em>nulled</em>, then values are loaded from ~ this field.</li>
-<li>If all is unset (the variable values, parameter <code>externalizedValue</code> and field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#ae4b47533ee1b78ad20c12f235d7ef958">Variable.DefaultValue</a>), then the unset variable is stored, which results ~ in removing an existing default value from the configuration.</li>
+<li>If all is unset (the variable values, parameter <span>externalizedValue</span> and field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#ae4b47533ee1b78ad20c12f235d7ef958">Variable.DefaultValue</a>), then the unset variable is stored, which results ~ in removing an existing default value from the configuration.</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1170,7 +1169,7 @@ Protected Fields</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Feb 28 2018 20:09:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2018 20:36:51 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.14
 </small></address>

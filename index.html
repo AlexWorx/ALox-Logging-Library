@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1712 R. 1</span>
+   &#160;<span id="projectnumber">V. 1805 R. 0</span>
    </div>
   </td>
  </tr>
@@ -99,14 +99,15 @@ $(function() {
 What is ALox?</h1>
 <p>ALox is a software library that provides an ecosystem to support structured and organized log output.</p>
 <p>ALox has three language incarnations:</p><ul>
-<li><a href="http://alexworx.github.io/ALox-Logging-Library/cpp_ref/alox_cpp_mainpage.html">ALox for C++ 11</a>,</li>
+<li><a href="http://alexworx.github.io/ALox-Logging-Library/cpp_ref/alox_cpp_mainpage.html">ALox for C++</a>,</li>
 <li><a href="http://alexworx.github.io/ALox-Logging-Library/cs_ref/alox_cs_mainpage.html">ALox for C#</a> and</li>
 <li><a href="http://alexworx.github.io/ALox-Logging-Library/java_ref/alox_java_mainpage.html">ALox for Java</a>.</li>
 </ul>
-<p>To reach this goal, <b>ALox</b> is featured by <b>ALib</b>, which is a basic utility library that among other goals provides <em>"source-compatible"</em> types for the three languages. (See ALib for <a href="http://alexworx.github.io/ALox-Logging-Library/cpp_ref/namespaceaworx_1_1lib.html">C++</a>, <a href="http://alexworx.github.io/ALox-Logging-Library/cs_ref/namespacecs_1_1aworx_1_1lib.html">C#</a>, <a href="http://alexworx.github.io/ALox-Logging-Library/java_ref/namespacecom_1_1aworx_1_1lib.html">Java</a>.)</p>
+<p>To reach this goal, <b>ALox</b> is featured by <b>ALib</b>, which is a basic utility library that among other goals provides <em>"source-compatible"</em> types for the three languages. (See ALib for <a href="http://alexworx.github.io/ALib-Class-Library">C++</a>, <a href="http://alexworx.github.io/ALox-Logging-Library/cs_ref/namespacecs_1_1aworx_1_1lib.html">C#</a>, <a href="http://alexworx.github.io/ALox-Logging-Library/java_ref/namespacecom_1_1aworx_1_1lib.html">Java</a>.)</p>
+<dl class="section attention"><dt>Attention</dt><dd>As of library version 1805, the C++ sources of <b>ALox</b> have been moved to an own, dedicated repository. The rationale for this was, that the relationship of <b>ALib</b> and <b>ALox</b> has been reversed: In the C++ world, <b>ALox</b> is now one of several modules of the general purpose library <b>ALib</b>, instead of building on it (as it is still explained above).</dd></dl>
 <p>ALox attempts to make logging as easy and lightweight as possible. We want you to <b>stop adding temporary debug output lines</b> into your code. Instead, write (with less effort!) short, nice and readable <em>ALox statements</em> that live in your code as if they were comment lines. Let <b>ALox</b> do the rest: Add meta information to the output, format the output, filter output based on <em>Verbosity</em> and based on your current topic of interest (what we call <em>'Log Domain'</em>). Finally, get it all <em>pruned</em> out of your release executable, same as your source comments.</p>
 <p>On the other end of the list, <b>ALox</b> enables <b>release logging</b> for productive applications to collect mission critical <b>metrics from the field</b>.</p>
-<p>This is <b>Version 1712 Revision 1</b>, which incorporates only minor changes and fixes on the JAVA and C# side of things, but quite some new stuff in underlying <b>ALib for C++</b>.</p>
+<p>This is <b>Version 1805 Revision 0</b>, which incorporates only minor changes and fixes on the JAVA and C# side of things, but which has some quite dramatic changes in the C++ version, including a <a href="https://github.com/AlexWorx/ALib-Class-Library">new Github repository home for the C++ code</a>.</p>
 <p>We are optimistic that the simple <a class="el" href="faq.html#faq_bauhaus">Bauhaus Style</a> architecture of the library allows you to easily use it and even to extend it with logging features you need.</p>
 <p>We would be happy to receive your feedback and feature requests.</p>
 <h1><a class="anchor" id="mainpage_features"></a>
@@ -201,7 +202,7 @@ Alternatives</h1>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Feb 28 2018 20:09:21 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2018 20:36:54 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.14
 </small></address>

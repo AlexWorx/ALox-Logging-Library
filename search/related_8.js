@@ -1,8 +1,4 @@
 var searchData=
 [
-  ['t_5fboxing',['T_Boxing',['.././cpp_ref/classaworx_1_1lib_1_1boxing_1_1Box.html#a0acd27547301a0bb7c2d2fbdbd709df3',1,'aworx::lib::boxing::Box']]],
-  ['ticks',['Ticks',['.././cpp_ref/classaworx_1_1lib_1_1time_1_1TimeLib.html#a017339b6b6865c43fb1fdbee79a35314',1,'aworx::lib::time::TimeLib']]],
-  ['tickscalendartime',['TicksCalendarTime',['.././cpp_ref/classaworx_1_1lib_1_1time_1_1TimeLib.html#a9c915c8890f454dad7e42b9c5ad95b61',1,'aworx::lib::time::TimeLib']]],
-  ['timespan',['TimeSpan',['.././cpp_ref/classaworx_1_1lib_1_1time_1_1TimeLib.html#a232e94649f10656bc5e840cd5a1f8b15',1,'aworx::lib::time::TimeLib']]],
-  ['timestamp',['TimeStamp',['.././cpp_ref/classaworx_1_1lib_1_1time_1_1TimeLib.html#a397fdccbc3637d7c75ecd8b5a98f992e',1,'aworx::lib::time::TimeLib::TimeStamp()'],['.././cpp_ref/classaworx_1_1lib_1_1time_1_1TimeSpan.html#a397fdccbc3637d7c75ecd8b5a98f992e',1,'aworx::lib::time::TimeSpan::TimeStamp()']]]
+  ['stringtree',['StringTree',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1util_1_1StringTree_1_1Cursor.html#aa42c89c0eaa357d95820842673034eed',1,'aworx::lib::util::StringTree::Cursor::StringTree()'],['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1util_1_1StringTree_1_1Node.html#aa42c89c0eaa357d95820842673034eed',1,'aworx::lib::util::StringTree::Node::StringTree()'],['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1util_1_1StringTree_1_1StdIterator.html#aa42c89c0eaa357d95820842673034eed',1,'aworx::lib::util::StringTree::StdIterator::StringTree()'],['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1util_1_1StringTree_1_1Walker.html#aa42c89c0eaa357d95820842673034eed',1,'aworx::lib::util::StringTree::Walker::StringTree()']]]
 ];

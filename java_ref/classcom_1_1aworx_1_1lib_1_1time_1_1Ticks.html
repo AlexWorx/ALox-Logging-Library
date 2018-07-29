@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1712 R. 1</span>
+   &#160;<span id="projectnumber">V. 1805 R. 0</span>
    </div>
   </td>
  </tr>
@@ -98,8 +98,7 @@ $(function() {
 <div class="dynheader">
 Collaboration diagram for Ticks:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lib_1_1time_1_1Ticks__coll__graph.svg" width="198" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lib_1_1time_1_1Ticks__coll__graph.svg" width="196" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
@@ -157,8 +156,8 @@ Public Methods</h2></td></tr>
 <tr class="separator:a31c83e65e3095303c4bb97c449aa13bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65458ace3466e99435e4e29e031ede2c"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html#a65458ace3466e99435e4e29e031ede2c">inEpochMillis</a> ()</td></tr>
 <tr class="separator:a65458ace3466e99435e4e29e031ede2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79a577b2b9e92f87b0a1e0291b9bea5d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html#a79a577b2b9e92f87b0a1e0291b9bea5d">inHertz</a> (int nDigitsPrec)</td></tr>
-<tr class="separator:a79a577b2b9e92f87b0a1e0291b9bea5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac353aba1e1426dfb4ea98ed0f4db8ad9"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html#ac353aba1e1426dfb4ea98ed0f4db8ad9">inHertz</a> (int qtyFractionalDigits)</td></tr>
+<tr class="separator:ac353aba1e1426dfb4ea98ed0f4db8ad9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79000c6bfb66957e25dc6a88c36c1d20"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html#a79000c6bfb66957e25dc6a88c36c1d20">inHertz</a> ()</td></tr>
 <tr class="separator:a79000c6bfb66957e25dc6a88c36c1d20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53fb0405457ab45aba7fd9b732c87d1a"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html#a53fb0405457ab45aba7fd9b732c87d1a">inHours</a> ()</td></tr>
@@ -689,8 +688,8 @@ Package Access Static Methods</h2></td></tr>
 
 </div>
 </div>
-<a id="a79a577b2b9e92f87b0a1e0291b9bea5d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a79a577b2b9e92f87b0a1e0291b9bea5d">&#9670;&nbsp;</a></span>inHertz() <span class="overload">[1/2]</span></h2>
+<a id="ac353aba1e1426dfb4ea98ed0f4db8ad9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac353aba1e1426dfb4ea98ed0f4db8ad9">&#9670;&nbsp;</a></span>inHertz() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -699,7 +698,7 @@ Package Access Static Methods</h2></td></tr>
           <td class="memname">double inHertz </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>nDigitsPrec</em></td><td>)</td>
+          <td class="paramname"><em>qtyFractionalDigits</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -708,7 +707,7 @@ Package Access Static Methods</h2></td></tr>
 <p> Returns 1 divided by internal value in seconds, hence the number of Hertz that this <a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html">Ticks</a> object represents when interpreted as a time span.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nDigitsPrec</td><td>Number of digits that the return value will be rounded to. Defaults to -1 which means no rounding.</td></tr>
+    <tr><td class="paramname">qtyFractionalDigits</td><td>Number of digits that the return value will be rounded to. Defaults to -1 which means no rounding.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1334,7 +1333,7 @@ Package Access Static Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Feb 28 2018 20:09:20 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2018 20:36:52 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.14
 </small></address>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['grpalibstringsmacros',['GrpALibStringsMacros',['../group__GrpALibStringsMacros.html',1,'']]]
+  ['grpalibstringsmacros',['GrpALibStringsMacros',['https://alexworx.github.io/ALib-Class-Library/group__GrpALibStringsMacros.html',1,'']]]
 ];

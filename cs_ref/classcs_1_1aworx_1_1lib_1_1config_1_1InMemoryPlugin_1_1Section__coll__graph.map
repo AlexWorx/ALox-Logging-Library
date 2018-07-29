@@ -1,8 +1,8 @@
 <map id="InMemoryPlugin.Section" name="InMemoryPlugin.Section">
-<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="105,5,170,32"/>
-<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html" title="Variable" alt="" coords="94,393,162,420"/>
-<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html" title="Configuration" alt="" coords="208,291,307,317"/>
-<area shape="rect" id="node6" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="341,133,449,159"/>
-<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="581,133,659,159"/>
-<area shape="rect" id="node7" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1Tokenizer.html" title="Tokenizer" alt="" coords="418,343,497,369"/>
+<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="106,5,171,32"/>
+<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html" title="Variable" alt="" coords="95,393,163,420"/>
+<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html" title="Configuration" alt="" coords="209,291,308,317"/>
+<area shape="rect" id="node6" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="341,133,451,159"/>
+<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="584,133,661,159"/>
+<area shape="rect" id="node7" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1Tokenizer.html" title="Tokenizer" alt="" coords="421,343,499,369"/>
 </map>

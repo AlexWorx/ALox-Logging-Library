@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['keep',['Keep',['.././cs_ref/namespacecs_1_1aworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4a02bce93bff905887ad2233110bf9c49e',1,'cs::aworx::lib::lang::Keep()'],['.././cs_ref/namespacecs_1_1aworx_1_1lib_1_1lang.html#ad4a46f9fb632511f6be7c53e05f330f7a02bce93bff905887ad2233110bf9c49e',1,'cs::aworx::lib::lang::Keep()'],['.././cpp_ref/namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4a02bce93bff905887ad2233110bf9c49e',1,'aworx::lib::lang::Keep()'],['.././cpp_ref/namespaceaworx_1_1lib_1_1lang.html#ad4a46f9fb632511f6be7c53e05f330f7a02bce93bff905887ad2233110bf9c49e',1,'aworx::lib::lang::Keep()']]],
-  ['keepwithsender',['KeepWithSender',['.././cpp_ref/namespaceaworx_1_1lib_1_1lang.html#ab5305b978950ba3946cf79a4bccbf7afa2540530a938da82bfe62957f4aff599b',1,'aworx::lib::lang']]]
+  ['jump',['Jump',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1expressions_1_1detail_1_1VirtualMachine_1_1Command.html#a1e7d74cfa04b5f0335eea9a33d62abeda101f693f72287a2819a364f64ca1c0ed',1,'aworx::lib::expressions::detail::VirtualMachine::Command']]],
+  ['jumpiffalse',['JumpIfFalse',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1expressions_1_1detail_1_1VirtualMachine_1_1Command.html#a1e7d74cfa04b5f0335eea9a33d62abedaf8bbf32f00c942d974ade428e24b021f',1,'aworx::lib::expressions::detail::VirtualMachine::Command']]]
 ];

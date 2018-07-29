@@ -189,7 +189,7 @@
 <g id="node10" class="node">
 <title>Node15</title>
 <g id="a_node10"><a xlink:href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" target="_top" xlink:title="ObjectConverter">
-<polygon fill="#ffffff" stroke="#000000" points="377,-182.5 377,-201.5 464,-201.5 464,-182.5 377,-182.5"/>
+<polygon fill="#ffffff" stroke="#000000" points="376.5,-182.5 376.5,-201.5 464.5,-201.5 464.5,-182.5 376.5,-182.5"/>
 <text text-anchor="middle" x="420.5" y="-189.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ObjectConverter</text>
 </a>
 </g>
@@ -253,9 +253,9 @@
 <!-- Node19&#45;&gt;Node8 -->
 <g id="edge17" class="edge">
 <title>Node19&#45;&gt;Node8</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M60.5879,-172.1133C60.9495,-165.005 62.6862,-157.4212 67.5,-152 78.0682,-140.0985 118.4046,-132.243 147.8801,-127.96"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="57.0917,-172.2984 60.8744,-182.1949 64.0888,-172.0994 57.0917,-172.2984"/>
-<text text-anchor="middle" x="91.5" y="-155" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> AutoSizes</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M60.0262,-172.1548C60.2024,-165.0513 61.761,-157.4601 66.5,-152 77.0532,-139.8409 118.0047,-132.0249 147.8117,-127.8227"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="56.5361,-172.4321 60.5874,-182.2217 63.5253,-172.0424 56.5361,-172.4321"/>
+<text text-anchor="middle" x="91" y="-155" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> AutoSizes</text>
 </g>
 </g>
 </svg>

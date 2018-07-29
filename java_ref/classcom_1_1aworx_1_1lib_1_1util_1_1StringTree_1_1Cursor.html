@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1712 R. 1</span>
+   &#160;<span id="projectnumber">V. 1805 R. 0</span>
    </div>
   </td>
  </tr>
@@ -97,8 +97,7 @@ $(function() {
 <div class="dynheader">
 Collaboration diagram for StringTree&lt; T &gt;.Cursor:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Cursor__coll__graph.svg" width="268" height="231"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Cursor__coll__graph.svg" width="270" height="231"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
@@ -288,7 +287,7 @@ Package Access Methods</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Creates child nodes corresponding to the given <code>path</code>. If the first node already exists, nothing is done and <code>null</code> is returned as this is considered an error. If the given path is empty the given node is returned as this is <b>not</b> considered an error.</p>
+<p>Creates child nodes corresponding to the given <span>path</span>. If the first node already exists, nothing is done and <code>null</code> is returned as this is considered an error. If the given path is empty the given node is returned as this is <b>not</b> considered an error.</p>
 <p>Child names <code>"."</code> and <code>".."</code> are ignored, but considered an error. In debug builds, an <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB__DBG.html#a9b1aad252bf508514b6b07265ae71ff5">ALIB_DBG.WARNING</a> is reported.</p>
 <p>The final leaf node is returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -298,7 +297,7 @@ Package Access Methods</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The leaf node of all created nodes. <code>null</code> in the case that the first child given in <code>path</code> already exists. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The leaf node of all created nodes. <code>null</code> in the case that the first child given in <span>path</span> already exists. </dd></dl>
 
 </div>
 </div>
@@ -317,7 +316,7 @@ Package Access Methods</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Deletes the child named <code>childName</code> from the node that this cursor refers to. The cursor itself is not changed.</p>
+<p>Deletes the child named <span>childName</span> from the node that this cursor refers to. The cursor itself is not changed.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">childName</td><td>The name of the desired child. </td></tr>
@@ -431,8 +430,8 @@ Package Access Methods</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Finds a child node along the <code>path</code> given, but does not create new nodes. Incomplete results may occur if a child along the path was not found. In this case, parameter <code>path</code> contains the remaining path, excluding a leading separator.</p>
-<p>A leading slash (aka <a class="el" href="classcom_1_1aworx_1_1lib_1_1util_1_1StringTree.html#a6989953791434c8ea982054551c9e154">separator</a>) allows absolute path addressing, which means the root of <code>node</code> is searched if a leading separator is found.</p>
+<p>Finds a child node along the <span>path</span> given, but does not create new nodes. Incomplete results may occur if a child along the path was not found. In this case, parameter <span>path</span> contains the remaining path, excluding a leading separator.</p>
+<p>A leading slash (aka <a class="el" href="classcom_1_1aworx_1_1lib_1_1util_1_1StringTree.html#a6989953791434c8ea982054551c9e154">separator</a>) allows absolute path addressing, which means the root of <span>node</span> is searched if a leading separator is found.</p>
 <p>Besides normal child names, this method accepts</p><ul>
 <li>multiple separator characters (ignored)</li>
 <li>child name "." (ignored)</li>
@@ -562,7 +561,7 @@ Package Access Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Moves this cursor along the given path.<br />
- The method supports absolute and relative path addressing: If <code>path</code> begins with a separation character, then the cursor is moved to the root of the <b>StringTree</b>. Furthermore, child name <code>"."</code> is ignored and just skipped while if <code>".."</code> is found in the path, the cursor is moved to its parent. Repeated separation characters are ignored.</p>
+ The method supports absolute and relative path addressing: If <span>path</span> begins with a separation character, then the cursor is moved to the root of the <b>StringTree</b>. Furthermore, child name <code>"."</code> is ignored and just skipped while if <code>".."</code> is found in the path, the cursor is moved to its parent. Repeated separation characters are ignored.</p>
 <p>If a child along the path does not exist, this cursor remains unchanged and <code>false</code> is returned. This includes the case that child name <code>".."</code> is read while the cursor references the root node.</p>
 <p>See <a class="el" href="classcom_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Cursor.html#ad2de9f6314459f6849837b31980fb9c0">moveToExistingPart</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Cursor.html#a868feba8da3b2576fed4d4dac88f2412">moveToAndCreateNonExistingPart</a> for alternatives.</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -571,7 +570,7 @@ Package Access Methods</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A std.pair of a reference to this cursor and a boolean value. The boolean value indicates if the path existed and the move to the node specified by <code>path</code> was performed. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A std.pair of a reference to this cursor and a boolean value. The boolean value indicates if the path existed and the move to the node specified by <span>path</span> was performed. </dd></dl>
 
 </div>
 </div>
@@ -644,8 +643,8 @@ Package Access Methods</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Moves this cursor to the child node named <code>childName</code>. If no child with this name exists, the cursor remains as is and <code>false</code> is returned.</p>
-<p>This method does not check the given <code>childName</code> to to be valid (i.e not equal to <code>"."</code> or <code>".."</code> or contain a separator character. Children with this name do not exist and should not be found. However, in debug compilations, an <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB__DBG.html#a9b1aad252bf508514b6b07265ae71ff5">ALIB_DBG.WARNING</a> is reported.</p>
+<p>Moves this cursor to the child node named <span>childName</span>. If no child with this name exists, the cursor remains as is and <code>false</code> is returned.</p>
+<p>This method does not check the given <span>childName</span> to to be valid (i.e not equal to <code>"."</code> or <code>".."</code> or contain a separator character. Children with this name do not exist and should not be found. However, in debug compilations, an <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB__DBG.html#a9b1aad252bf508514b6b07265ae71ff5">ALIB_DBG.WARNING</a> is reported.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">childName</td><td>The name of the desired child. </td></tr>
@@ -671,8 +670,8 @@ Package Access Methods</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Moves this cursor to the child node named <code>childName</code>. If no child with this name exists, one will be created.</p>
-<p>This method checks the given <code>childName</code> to not equal to <code>"."</code> or <code>".."</code> and that it does not contain the separation character. If it does, <code>false</code> is returned and in debug compilations an <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB__DBG.html#a9b1aad252bf508514b6b07265ae71ff5">ALIB_DBG.WARNING</a> is reported.</p>
+<p>Moves this cursor to the child node named <span>childName</span>. If no child with this name exists, one will be created.</p>
+<p>This method checks the given <span>childName</span> to not equal to <code>"."</code> or <code>".."</code> and that it does not contain the separation character. If it does, <code>false</code> is returned and in debug compilations an <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB__DBG.html#a9b1aad252bf508514b6b07265ae71ff5">ALIB_DBG.WARNING</a> is reported.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">childName</td><td>The name of the desired child. </td></tr>
@@ -732,7 +731,7 @@ Package Access Methods</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The unconsumed portion of the path. Empty if the path existed. The object returned is identical to given <code>path</code>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The unconsumed portion of the path. Empty if the path existed. The object returned is identical to given <span>path</span>. </dd></dl>
 
 </div>
 </div>
@@ -867,7 +866,7 @@ Package Access Methods</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">target</td><td>The target to append the path to. </td></tr>
-    <tr><td class="paramname">targetData</td><td>Denotes whether <code>target</code> should be cleared prior to appending the path. Defaults to CurrentData.Clear. </td></tr>
+    <tr><td class="paramname">targetData</td><td>Denotes whether <span>target</span> should be cleared prior to appending the path. Defaults to CurrentData.Clear. </td></tr>
   </table>
   </dd>
 </dl>
@@ -891,7 +890,7 @@ Package Access Methods</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Overloaded version providing default value <code>CurrentData.CLEAR</code> for paramter <code>targetData</code>.</p>
+<p>Overloaded version providing default value <code>CurrentData.CLEAR</code> for paramter <span>targetData</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">target</td><td>The target to append the path to. </td></tr>
@@ -1015,7 +1014,7 @@ Package Access Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Feb 28 2018 20:09:20 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2018 20:36:52 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.14
 </small></address>

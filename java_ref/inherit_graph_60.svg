@@ -127,7 +127,7 @@
 <g id="node7" class="node">
 <title>Node6</title>
 <g id="a_node7"><a xlink:href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" target="_top" xlink:title="ConsoleLogger">
-<polygon fill="#ffffff" stroke="#000000" points="543,-114.5 543,-133.5 624,-133.5 624,-114.5 543,-114.5"/>
+<polygon fill="#ffffff" stroke="#000000" points="542.5,-114.5 542.5,-133.5 624.5,-133.5 624.5,-114.5 542.5,-114.5"/>
 <text text-anchor="middle" x="583.5" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ConsoleLogger</text>
 </a>
 </g>

@@ -12,7 +12,7 @@
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<polygon fill="#bfbfbf" stroke="#000000" points="4,-.5 4,-19.5 67,-19.5 67,-.5 4,-.5"/>
+<polygon fill="#bfbfbf" stroke="#000000" points="3.5,-.5 3.5,-19.5 67.5,-19.5 67.5,-.5 3.5,-.5"/>
 <text text-anchor="middle" x="35.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">TickWatch</text>
 </g>
 <!-- Node2 -->

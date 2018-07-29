@@ -1,17 +1,15 @@
 var searchData=
 [
-  ['textfilelogger_2ehpp',['textfilelogger.hpp',['.././cpp_ref/textfilelogger_8hpp.html',1,'']]],
-  ['textlogger_2ehpp',['textlogger.hpp',['.././cpp_ref/textlogger_8hpp.html',1,'']]],
-  ['threadlib_2ehpp',['threadlib.hpp',['.././cpp_ref/threadlib_8hpp.html',1,'']]],
-  ['threadlock_2ehpp',['threadlock.hpp',['.././cpp_ref/threadlock_8hpp.html',1,'']]],
-  ['threadlocknr_2ehpp',['threadlocknr.hpp',['.././cpp_ref/threadlocknr_8hpp.html',1,'']]],
-  ['ticks_2ehpp',['ticks.hpp',['.././cpp_ref/ticks_8hpp.html',1,'']]],
-  ['tickspan_2ehpp',['tickspan.hpp',['.././cpp_ref/tickspan_8hpp.html',1,'']]],
-  ['tickwatch_2ehpp',['tickwatch.hpp',['.././cpp_ref/tickwatch_8hpp.html',1,'']]],
-  ['timelib_2ehpp',['timelib.hpp',['.././cpp_ref/timelib_8hpp.html',1,'']]],
-  ['timespan_2ehpp',['timespan.hpp',['.././cpp_ref/timespan_8hpp.html',1,'']]],
-  ['timestamp_2ehpp',['timestamp.hpp',['.././cpp_ref/timestamp_8hpp.html',1,'']]],
-  ['tokenizer_2ehpp',['tokenizer.hpp',['.././cpp_ref/tokenizer_8hpp.html',1,'']]],
-  ['tstring_2ehpp',['tstring.hpp',['.././cpp_ref/tstring_8hpp.html',1,'']]],
-  ['types_2ehpp',['types.hpp',['.././cpp_ref/types_8hpp.html',1,'']]]
+  ['textfilelogger_2ehpp',['textfilelogger.hpp',['https://alexworx.github.io/ALib-Class-Library/textfilelogger_8hpp.html',1,'']]],
+  ['textlogger_2ehpp',['textlogger.hpp',['https://alexworx.github.io/ALib-Class-Library/textlogger_8hpp.html',1,'']]],
+  ['threadlib_2ehpp',['threadlib.hpp',['https://alexworx.github.io/ALib-Class-Library/threadlib_8hpp.html',1,'']]],
+  ['threadlock_2ehpp',['threadlock.hpp',['https://alexworx.github.io/ALib-Class-Library/threadlock_8hpp.html',1,'']]],
+  ['threadlocknr_2ehpp',['threadlocknr.hpp',['https://alexworx.github.io/ALib-Class-Library/threadlocknr_8hpp.html',1,'']]],
+  ['ticks_2ehpp',['ticks.hpp',['https://alexworx.github.io/ALib-Class-Library/ticks_8hpp.html',1,'']]],
+  ['ticksconverter_2ehpp',['ticksconverter.hpp',['https://alexworx.github.io/ALib-Class-Library/ticksconverter_8hpp.html',1,'']]],
+  ['timelib_2ehpp',['timelib.hpp',['https://alexworx.github.io/ALib-Class-Library/timelib_8hpp.html',1,'']]],
+  ['timepointbase_2ehpp',['timepointbase.hpp',['https://alexworx.github.io/ALib-Class-Library/timepointbase_8hpp.html',1,'']]],
+  ['tokenizer_2ehpp',['tokenizer.hpp',['https://alexworx.github.io/ALib-Class-Library/tokenizer_8hpp.html',1,'']]],
+  ['tstring_2ehpp',['tstring.hpp',['https://alexworx.github.io/ALib-Class-Library/tstring_8hpp.html',1,'']]],
+  ['types_2ehpp',['types.hpp',['https://alexworx.github.io/ALib-Class-Library/types_8hpp.html',1,'']]]
 ];

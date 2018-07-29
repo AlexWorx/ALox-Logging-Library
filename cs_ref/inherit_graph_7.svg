@@ -22,7 +22,7 @@
 <g id="node2" class="node">
 <title>Node1</title>
 <g id="a_node2"><a xlink:href="classcs_1_1aworx_1_1lib_1_1config_1_1CLIArgs.html" target="_top" xlink:title="CLIArgs">
-<polygon fill="#ffffff" stroke="#000000" points="154.5,-76.5 154.5,-95.5 206.5,-95.5 206.5,-76.5 154.5,-76.5"/>
+<polygon fill="#ffffff" stroke="#000000" points="154,-76.5 154,-95.5 207,-95.5 207,-76.5 154,-76.5"/>
 <text text-anchor="middle" x="180.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">CLIArgs</text>
 </a>
 </g>
@@ -30,7 +30,7 @@
 <!-- Node0&#45;&gt;Node1 -->
 <g id="edge1" class="edge">
 <title>Node0&#45;&gt;Node1</title>
-<path fill="none" stroke="#191970" d="M92.9189,-60.3994C113.1311,-66.3076 136.6698,-73.1881 154.2512,-78.3273"/>
+<path fill="none" stroke="#191970" d="M93.1248,-60.4596C113.1295,-66.3071 136.3548,-73.096 153.8297,-78.2041"/>
 <polygon fill="#191970" stroke="#191970" points="93.8848,-57.0353 83.3045,-57.589 91.9208,-63.7542 93.8848,-57.0353"/>
 </g>
 <!-- Node2 -->

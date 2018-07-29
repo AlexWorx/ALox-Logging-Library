@@ -13897,8 +13897,8 @@
       <type>double</type>
       <name>inHertz</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html</anchorfile>
-      <anchor>a79a577b2b9e92f87b0a1e0291b9bea5d</anchor>
-      <arglist>(int nDigitsPrec)</arglist>
+      <anchor>ac353aba1e1426dfb4ea98ed0f4db8ad9</anchor>
+      <arglist>(int qtyFractionalDigits)</arglist>
     </member>
     <member kind="function">
       <type>double</type>

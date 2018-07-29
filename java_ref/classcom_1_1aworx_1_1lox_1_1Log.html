@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1712 R. 1</span>
+   &#160;<span id="projectnumber">V. 1805 R. 0</span>
    </div>
   </td>
  </tr>
@@ -95,8 +95,7 @@ $(function() {
 <div class="dynheader">
 Collaboration diagram for Log:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lox_1_1Log__coll__graph.svg" width="1640" height="1520"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lox_1_1Log__coll__graph.svg" width="1647" height="1520"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
@@ -287,7 +286,7 @@ Public Static Methods</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> In the case that the original <b>ALib</b> ReportWriterStdIO is still in place, <a class="el" href="classcom_1_1aworx_1_1lib_1_1lang_1_1Report.html#a62143a94b68c059953ea6734fe9be0d9">Report.pushWriter</a> is invoked to provide a ReportWriter of type <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALoxReportWriter.html">ALoxReportWriter</a>.</p>
-<dl class="section note"><dt>Note</dt><dd>This method is effective only in debug compilations. Usually it is invoked indirectly by using method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#afd7ff33d8bad2b6577c6ff34156743ce">addDebugLogger</a>. Applications that do not use that method (e.g. because they are using release logging exclusively), should invoke this method on bootstrap providing their (release) lox. In this case, the <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> of the internal domain used by class <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALoxReportWriter.html">ALoxReportWriter</a> has to be set for the the logger(s) in given <code>lox</code> in question.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This method is effective only in debug compilations. Usually it is invoked indirectly by using method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#afd7ff33d8bad2b6577c6ff34156743ce">addDebugLogger</a>. Applications that do not use that method (e.g. because they are using release logging exclusively), should invoke this method on bootstrap providing their (release) lox. In this case, the <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> of the internal domain used by class <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALoxReportWriter.html">ALoxReportWriter</a> has to be set for the the logger(s) in given <span>lox</span> in question.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lox</td><td>The lox that the <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALoxReportWriter.html">ALoxReportWriter</a> created will be using. </td></tr>
@@ -359,7 +358,7 @@ Public Static Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> This method invokes <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#afd7ff33d8bad2b6577c6ff34156743ce">addDebugLogger(Lox)</a> providing the static debug instance <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a9291aece8829db000d6508daa16f67fc">LOX</a>. for parameter <code>lox</code>. </p>
+<p> This method invokes <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#afd7ff33d8bad2b6577c6ff34156743ce">addDebugLogger(Lox)</a> providing the static debug instance <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a9291aece8829db000d6508daa16f67fc">LOX</a>. for parameter <span>lox</span>. </p>
 
 </div>
 </div>
@@ -397,7 +396,7 @@ Public Static Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Logs a list of <em>Logables</em> only if parameter <code>condition</code> is not <code>true</code>. For this, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a605a4dff16f775da81792443bde401e3">Lox.Assert</a> is invoked on static object <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a9291aece8829db000d6508daa16f67fc">LOX</a> used for debug logging.</p>
+<p> Logs a list of <em>Logables</em> only if parameter <span>condition</span> is not <code>true</code>. For this, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a605a4dff16f775da81792443bde401e3">Lox.Assert</a> is invoked on static object <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a9291aece8829db000d6508daa16f67fc">LOX</a> used for debug logging.</p>
 <dl class="section note"><dt>Note</dt><dd>This Method's name starts with capital letter, as <code>'assert'</code> is a Java keyword.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -566,7 +565,7 @@ Public Static Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> This method collects state information about this lox in a formatted multi-line AString. Parameter <code>flags</code> is a bit field with bits defined in constants of class <b>Lox</b> prefixed with <b>"STATE_INFO_"</b>, e.g. <code>STATE_INFO_LOGGERS</code>.</p>
+<p> This method collects state information about this lox in a formatted multi-line AString. Parameter <span>flags</span> is a bit field with bits defined in constants of class <b>Lox</b> prefixed with <b>"STATE_INFO_"</b>, e.g. <code>STATE_INFO_LOGGERS</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">buf</td><td>The target string. </td></tr>
@@ -623,7 +622,7 @@ Public Static Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Logs a list of <em>Logables</em> only if the parameter <code>condition</code> is <code>true</code>. For this, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ab4f9deec17d6cbbca1bee3c5f553c273">Lox.If</a> is invoked on static object <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a9291aece8829db000d6508daa16f67fc">LOX</a> used for debug logging.</p>
+<p> Logs a list of <em>Logables</em> only if the parameter <span>condition</span> is <code>true</code>. For this, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ab4f9deec17d6cbbca1bee3c5f553c273">Lox.If</a> is invoked on static object <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a9291aece8829db000d6508daa16f67fc">LOX</a> used for debug logging.</p>
 <dl class="section note"><dt>Note</dt><dd>This Method's name starts with capital letter, as <code>'if'</code> is a Java keyword.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -677,7 +676,7 @@ Public Static Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Logs a list of <em>Logables</em> only if the parameter <code>condition</code> is <code>true</code>. For this, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ab4f9deec17d6cbbca1bee3c5f553c273">Lox.If</a> is invoked on static object <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a9291aece8829db000d6508daa16f67fc">LOX</a> used for debug logging. This overloaded version omits parameter <code>domain</code>.</p>
+<p> Logs a list of <em>Logables</em> only if the parameter <span>condition</span> is <code>true</code>. For this, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ab4f9deec17d6cbbca1bee3c5f553c273">Lox.If</a> is invoked on static object <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a9291aece8829db000d6508daa16f67fc">LOX</a> used for debug logging. This overloaded version omits parameter <span>domain</span>.</p>
 <dl class="section note"><dt>Note</dt><dd>This Method's name starts with capital letter, as <code>'if'</code> is a Java keyword.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -867,11 +866,11 @@ Public Static Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Logs given <em>logables</em> once, up to <code>quantity</code> times or every n-th time. In its simplest overloaded version, the counter is bound to the source code line, hence, only the first execution of this exact <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> is executed.</p>
-<p>Using parameter <code>group</code>, a set of <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statements</em> that share the same group key, can be grouped and of such set, only the one which is first executed actually logs.<br />
- Alternatively, when <code>key</code> is omitted (or null or empty), but a <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> is given with parameter <code>scope</code>, then the counter is associated with the scope.<br />
- Finally, parameters <code>key</code> and <code>scope</code> can also be used in combination. The key is then unique in respect to the <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> provided.</p>
-<p>Using, none, one or both of the parameters <code>group</code> and <code>scope</code>, among others, the following use cases can be achieved.</p><ul>
+<p> Logs given <em>logables</em> once, up to <span>quantity</span> times or every n-th time. In its simplest overloaded version, the counter is bound to the source code line, hence, only the first execution of this exact <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> is executed.</p>
+<p>Using parameter <span>group</span>, a set of <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statements</em> that share the same group key, can be grouped and of such set, only the one which is first executed actually logs.<br />
+ Alternatively, when <span>key</span> is omitted (or null or empty), but a <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> is given with parameter <span>scope</span>, then the counter is associated with the scope.<br />
+ Finally, parameters <span>key</span> and <span>scope</span> can also be used in combination. The key is then unique in respect to the <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> provided.</p>
+<p>Using, none, one or both of the parameters <span>group</span> and <span>scope</span>, among others, the following use cases can be achieved.</p><ul>
 <li>Log a specific statement up to n-times.</li>
 <li>Log only the first n of a group of statements.</li>
 <li>Log only the first n statements within a method.</li>
@@ -891,8 +890,8 @@ Public Static Methods</h2></td></tr>
 <li>Log a <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> n-times per new thread.</li>
 <li>Log only the first n statements of a group of statements executed by a specific thread.</li>
 </ul>
-<dl class="section note"><dt>Note</dt><dd>Unlike other methods of this class which accept more than one logable, this method and its overloaded variants accept only one object. To supply several objects at once, an <code>Object</code>[] may be passed with parameter <code>logables</code>, like in the following sample: <div class="fragment"><div class="line">Log.once( <span class="keyword">new</span> Object[] {<span class="stringliteral">&quot;One - {} - {}!&quot;</span>, <span class="stringliteral">&quot;two&quot;</span>, 3}  );</div></div><!-- fragment --> </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Due to the limitations of the Java language to dissolve ambiguities when invoking overloaded methods, most of the overloads provided await parameters <code>domain</code> and <code>verbosity</code> at the start. This is in difference to <b>ALox for C++</b> and <b>ALox forC#</b>, where overloaded methods always default these parameters to <code>null</code> respectively <code>Verbosity.INFO</code>.<br />
+<dl class="section note"><dt>Note</dt><dd>Unlike other methods of this class which accept more than one logable, this method and its overloaded variants accept only one object. To supply several objects at once, an <code>Object</code>[] may be passed with parameter <span>logables</span>, like in the following sample: <div class="fragment"><div class="line">Log.once( <span class="keyword">new</span> Object[] {<span class="stringliteral">&quot;One - {} - {}!&quot;</span>, <span class="stringliteral">&quot;two&quot;</span>, 3}  );</div></div><!-- fragment --> </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Due to the limitations of the Java language to dissolve ambiguities when invoking overloaded methods, most of the overloads provided await parameters <span>domain</span> and <span>verbosity</span> at the start. This is in difference to <b>ALox for C++</b> and <b>ALox forC#</b>, where overloaded methods always default these parameters to <code>null</code> respectively <code>Verbosity.INFO</code>.<br />
  Fortunate exceptions are<ul>
 <li><b>once(Object logable)</b> and</li>
 <li><b>once(Object logable, int quantity)</b>.</li>
@@ -906,16 +905,16 @@ Furthermore, to to cover the most frequent use cases, methods<ul>
 </ul>
 </dd>
 <dd>
-have been added. While their parameter order is 'wrong' and therefore need <code>quantity</code> to be specified, still they are nice shortcuts.</dd></dl>
-<p>When parameter <code>quantity</code> is a negative value, the log statement is executed every n-th time instead n-times. E.g, if <code>quantity</code> is <code>-5</code>, the first statement is executed and afterwards every fifth invocation.</p>
+have been added. While their parameter order is 'wrong' and therefore need <span>quantity</span> to be specified, still they are nice shortcuts.</dd></dl>
+<p>When parameter <span>quantity</span> is a negative value, the log statement is executed every n-th time instead n-times. E.g, if <span>quantity</span> is <code>-5</code>, the first statement is executed and afterwards every fifth invocation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domain</td><td>Optional <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em> which is combined with <em>Scope Domains</em> set for the <em>Scope</em> of invocation. </td></tr>
     <tr><td class="paramname">verbosity</td><td>The <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> (if performed). </td></tr>
     <tr><td class="paramname">logables</td><td>The object(s) to log. (Multiple objects may be provided as an Object[].) </td></tr>
-    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <code>scope</code>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is Scope.Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
+    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <span>scope</span>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <span>scope</span> is Scope.Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the group or counter is bound to. </td></tr>
-    <tr><td class="paramname">pkgLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a> to reference parent packages. Optional and defaults to <code>0</code>. </td></tr>
+    <tr><td class="paramname">pkgLevel</td><td>Used only if parameter <span>scope</span> equals <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a> to reference parent packages. Optional and defaults to <code>0</code>. </td></tr>
     <tr><td class="paramname">quantity</td><td>The number of logs to be performed. As the name of the method indicates, this defaults to <code>1</code>. </td></tr>
   </table>
   </dd>
@@ -987,9 +986,9 @@ have been added. While their parameter order is 'wrong' and therefore need <code
     <tr><td class="paramname">domain</td><td>Optional <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em> which is combined with <em>Scope Domains</em> set for the <em>Scope</em> of invocation. </td></tr>
     <tr><td class="paramname">verbosity</td><td>The <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> (if performed). </td></tr>
     <tr><td class="paramname">logables</td><td>The object(s) to log. (Multiple objects may be provided as an Object[].) </td></tr>
-    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <code>scope</code>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is Scope.Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
+    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <span>scope</span>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <span>scope</span> is Scope.Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the group or counter is bound to. </td></tr>
-    <tr><td class="paramname">pkgLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a> to reference parent packages. Optional and defaults to <code>0</code>. </td></tr>
+    <tr><td class="paramname">pkgLevel</td><td>Used only if parameter <span>scope</span> equals <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a> to reference parent packages. Optional and defaults to <code>0</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1054,7 +1053,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
     <tr><td class="paramname">domain</td><td>Optional <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em> which is combined with <em>Scope Domains</em> set for the <em>Scope</em> of invocation. </td></tr>
     <tr><td class="paramname">verbosity</td><td>The <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> (if performed). </td></tr>
     <tr><td class="paramname">logables</td><td>The object(s) to log. (Multiple objects may be provided as an Object[].) </td></tr>
-    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <code>scope</code>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is Scope.Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
+    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <span>scope</span>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <span>scope</span> is Scope.Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the group or counter is bound to. </td></tr>
   </table>
   </dd>
@@ -1114,7 +1113,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
     <tr><td class="paramname">domain</td><td>Optional <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em> which is combined with <em>Scope Domains</em> set for the <em>Scope</em> of invocation. </td></tr>
     <tr><td class="paramname">verbosity</td><td>The <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> (if performed). </td></tr>
     <tr><td class="paramname">logables</td><td>The object(s) to log. (Multiple objects may be provided as an Object[].) </td></tr>
-    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <code>scope</code>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is Scope.Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
+    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <span>scope</span>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <span>scope</span> is Scope.Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1179,7 +1178,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
     <tr><td class="paramname">domain</td><td>Optional <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em> which is combined with <em>Scope Domains</em> set for the <em>Scope</em> of invocation. </td></tr>
     <tr><td class="paramname">verbosity</td><td>The <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> (if performed). </td></tr>
     <tr><td class="paramname">logables</td><td>The object(s) to log. (Multiple objects may be provided as an Object[].) </td></tr>
-    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <code>scope</code>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is Scope.Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
+    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <span>scope</span>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <span>scope</span> is Scope.Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
     <tr><td class="paramname">quantity</td><td>The number of logs to be performed. As the name of the method indicates, this defaults to <code>1</code>. </td></tr>
   </table>
   </dd>
@@ -1252,7 +1251,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
     <tr><td class="paramname">verbosity</td><td>The <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> (if performed). </td></tr>
     <tr><td class="paramname">logables</td><td>The object(s) to log. (Multiple objects may be provided as an Object[].) </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the group or counter is bound to. </td></tr>
-    <tr><td class="paramname">pkgLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a> to reference parent packages. Optional and defaults to <code>0</code>. </td></tr>
+    <tr><td class="paramname">pkgLevel</td><td>Used only if parameter <span>scope</span> equals <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a> to reference parent packages. Optional and defaults to <code>0</code>. </td></tr>
     <tr><td class="paramname">quantity</td><td>The number of logs to be performed. As the name of the method indicates, this defaults to <code>1</code>. </td></tr>
   </table>
   </dd>
@@ -1319,7 +1318,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
     <tr><td class="paramname">verbosity</td><td>The <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> (if performed). </td></tr>
     <tr><td class="paramname">logables</td><td>The object(s) to log. (Multiple objects may be provided as an Object[].) </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the group or counter is bound to. </td></tr>
-    <tr><td class="paramname">pkgLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a> to reference parent packages. Optional and defaults to <code>0</code>. </td></tr>
+    <tr><td class="paramname">pkgLevel</td><td>Used only if parameter <span>scope</span> equals <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a> to reference parent packages. Optional and defaults to <code>0</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1620,7 +1619,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
   <table class="params">
     <tr><td class="paramname">logables</td><td>The object(s) to log. (Multiple objects may be provided as an Object[].) </td></tr>
     <tr><td class="paramname">quantity</td><td>The number of logs to be performed. As the name of the method indicates, this defaults to <code>1</code>. </td></tr>
-    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <code>scope</code>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is Scope.Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
+    <tr><td class="paramname">group</td><td>The optional name of the statement group . If used, all statements that share the same group name are working on the same counter (according to the <span>scope</span>.) If omitted (or empty or null), the counter is is bound to the <em>Scope</em> provided. If omitted and <span>scope</span> is Scope.Global, then the counter is associated exclusively with the single <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1679,7 +1678,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
     <tr><td class="paramname">logables</td><td>The object(s) to log. (Multiple objects may be provided as an Object[].) </td></tr>
     <tr><td class="paramname">quantity</td><td>The number of logs to be performed. As the name of the method indicates, this defaults to <code>1</code>. </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the group or counter is bound to. </td></tr>
-    <tr><td class="paramname">pkgLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a> to reference parent packages. Optional and defaults to <code>0</code>. </td></tr>
+    <tr><td class="paramname">pkgLevel</td><td>Used only if parameter <span>scope</span> equals <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a> to reference parent packages. Optional and defaults to <code>0</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1885,7 +1884,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Removes logger named <code>loggerName</code> from this container.</p>
+<p> Removes logger named <span>loggerName</span> from this container.</p>
 <dl class="section note"><dt>Note</dt><dd>To (temporarily) disable a logger without removing it, a call to <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a941880afa9b81bbc7922ec6989050c68">setVerbosity( logger, Verbosity.OFF )</a> can be used.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1938,7 +1937,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
 </div><div class="memdoc">
 <hr/>
 <p> This method is used to remove an <em>explicitly given</em> domain path from the list of domain paths set for <em>Scope.THREAD_OUTER</em> and <em>Scope.THREAD_INNER</em>.</p>
-<p>To remove the most recently added domain path from such thread-related <em>Scope</em>, use one of the overloaded methods <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a9f2baed1e3dd3172488f447f23dfed49">setDomain</a> and provide an empty or nulled value for parameter <code>scopeDomain</code> (the same as how domain paths of other <em>Scopes</em> are removed).</p>
+<p>To remove the most recently added domain path from such thread-related <em>Scope</em>, use one of the overloaded methods <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a9f2baed1e3dd3172488f447f23dfed49">setDomain</a> and provide an empty or nulled value for parameter <span>scopeDomain</span> (the same as how domain paths of other <em>Scopes</em> are removed).</p>
 <dl class="section note"><dt>Note</dt><dd>The long name of the method already indicates that this method is a little special. Only seldom, more than one <em>Scope Domain</em> is needed to be added. And if this is needed, then such <em>Scope Domains</em> usually get removed in reverse order of their definition, with is performed using the standard interface that allows 'removing' any other <em>Scope Domain</em>. (Passing an empty or nulled domain path to method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a9f2baed1e3dd3172488f447f23dfed49">setDomain</a>.)</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1985,7 +1984,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overload version providing default value for parameter <code>thread</code>.</p>
+<p> Overload version providing default value for parameter <span>thread</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">scopeDomain</td><td>The domain path to register. </td></tr>
@@ -2063,14 +2062,14 @@ have been added. While their parameter order is 'wrong' and therefore need <code
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Retrieves an object which was previously stored using <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a9a4a2308acb8d6ce42663049617e24c5">store</a>. Optional parameters <code>key</code> and <code>scope</code> offer various possibilities to reference such objects.<br />
+<p> Retrieves an object which was previously stored using <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a9a4a2308acb8d6ce42663049617e24c5">store</a>. Optional parameters <span>key</span> and <span>scope</span> offer various possibilities to reference such objects.<br />
 </p>
 <dl class="section note"><dt>Note</dt><dd><em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> is a feature provided by <b>ALox</b> to support debug-logging. It is not advised to use <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> to implement application logic.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">key</td><td>The optional key to the data. If omitted (or empty or null), the data is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a78d63915b0cc8b7545ac7e84c538896f">Scope.GLOBAL</a>, then the data is unique to the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></em>. </td></tr>
+    <tr><td class="paramname">key</td><td>The optional key to the data. If omitted (or empty or null), the data is bound to the <em>Scope</em> provided. If omitted and <span>scope</span> is <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a78d63915b0cc8b7545ac7e84c538896f">Scope.GLOBAL</a>, then the data is unique to the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></em>. </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the data is bound to. </td></tr>
-    <tr><td class="paramname">pkgLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a> to reference parent packages. Optional and defaults to <code>0</code>. </td></tr>
+    <tr><td class="paramname">pkgLevel</td><td>Used only if parameter <span>scope</span> equals <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a> to reference parent packages. Optional and defaults to <code>0</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2115,7 +2114,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
 <p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a81733f249880b338626d6be2a2c5a0a7">retrieve</a> which omits parameters.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">key</td><td>The optional key to the data. If omitted (or empty or null), the data is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a78d63915b0cc8b7545ac7e84c538896f">Scope.GLOBAL</a>, then the data is unique to the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></em>. </td></tr>
+    <tr><td class="paramname">key</td><td>The optional key to the data. If omitted (or empty or null), the data is bound to the <em>Scope</em> provided. If omitted and <span>scope</span> is <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a78d63915b0cc8b7545ac7e84c538896f">Scope.GLOBAL</a>, then the data is unique to the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></em>. </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the data is bound to. </td></tr>
   </table>
   </dd>
@@ -2151,7 +2150,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
 <p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a81733f249880b338626d6be2a2c5a0a7">retrieve</a> which omits parameters.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">key</td><td>The optional key to the data. If omitted (or empty or null), the data is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a78d63915b0cc8b7545ac7e84c538896f">Scope.GLOBAL</a>, then the data is unique to the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></em>. </td></tr>
+    <tr><td class="paramname">key</td><td>The optional key to the data. If omitted (or empty or null), the data is bound to the <em>Scope</em> provided. If omitted and <span>scope</span> is <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a78d63915b0cc8b7545ac7e84c538896f">Scope.GLOBAL</a>, then the data is unique to the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></em>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2225,7 +2224,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the data is bound to. </td></tr>
-    <tr><td class="paramname">pkgLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a> to reference parent packages. Optional and defaults to <code>0</code>. </td></tr>
+    <tr><td class="paramname">pkgLevel</td><td>Used only if parameter <span>scope</span> equals <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a> to reference parent packages. Optional and defaults to <code>0</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2308,14 +2307,14 @@ have been added. While their parameter order is 'wrong' and therefore need <code
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> The given <code>scopeDomain</code> becomes the default domain path for given <code>scope</code>. This means, that any subsequent log invocations (from within this same scope) can omit the domain parameter, or if they provide one, this <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> Domain path is prepended. If subsequent log calls specify a domain name with a leading '/' character, then the <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> Domain of the scope is ignored.<br />
- Furthermore, if the given scope is an inner scope, outer scopes are prepended to the given <code>scopeDomain</code> when the resulting domain of a log invocation is evaluated. Again, this behavior can be overruled by prepending a leading '/' character to <code>scopeDomain</code>.</p>
-<p>To remove a previously set <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> Domain a nulled or empty string has to be passed with parameter <code>scopeDomain</code>.</p>
+<p> The given <span>scopeDomain</span> becomes the default domain path for given <span>scope</span>. This means, that any subsequent log invocations (from within this same scope) can omit the domain parameter, or if they provide one, this <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> Domain path is prepended. If subsequent log calls specify a domain name with a leading '/' character, then the <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> Domain of the scope is ignored.<br />
+ Furthermore, if the given scope is an inner scope, outer scopes are prepended to the given <span>scopeDomain</span> when the resulting domain of a log invocation is evaluated. Again, this behavior can be overruled by prepending a leading '/' character to <span>scopeDomain</span>.</p>
+<p>To remove a previously set <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> Domain a nulled or empty string has to be passed with parameter <span>scopeDomain</span>.</p>
 <p>For <em>Scope.THREAD_OUTER</em> and <em>Scope.THREAD_INNER</em>, passing an empty or nulled string removes the most recently added domain path. For removing an explicitly named domain path of <em>Scope.THREAD_OUTER</em> and <em>Scope.THREAD_INNER</em> use method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a3b8dc68ae1affc16843951d411a6a253">removeThreadDomain</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">scopeDomain</td><td>The domain path to register. </td></tr>
-    <tr><td class="paramname">scope</td><td>The scope that should the given <code>domain</code> be registered for. Available <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> definitions are platform/language dependent. </td></tr>
+    <tr><td class="paramname">scope</td><td>The scope that should the given <span>domain</span> be registered for. Available <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> definitions are platform/language dependent. </td></tr>
     <tr><td class="paramname">packageLevel</td><td>Used only with <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a>. Cuts the given number of package parts (separated with '.') from the end of the packages. Optional and defaults to <code>0</code>. </td></tr>
   </table>
   </dd>
@@ -2357,11 +2356,11 @@ have been added. While their parameter order is 'wrong' and therefore need <code
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a9f2baed1e3dd3172488f447f23dfed49">setDomain</a> providing default value <code>0</code> for parameter <code>packageLevel</code>.</p>
+<p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a9f2baed1e3dd3172488f447f23dfed49">setDomain</a> providing default value <code>0</code> for parameter <span>packageLevel</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">scopeDomain</td><td>The domain path to register. </td></tr>
-    <tr><td class="paramname">scope</td><td>The scope that should the given <code>domain</code> be registered for. Available <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> definitions are platform/language dependent. </td></tr>
+    <tr><td class="paramname">scope</td><td>The scope that should the given <span>domain</span> be registered for. Available <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> definitions are platform/language dependent. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2409,7 +2408,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
 </div><div class="memdoc">
 <hr/>
 <p> This overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a9f2baed1e3dd3172488f447f23dfed49">setDomain</a> is applicable only for <em>Scope.THREAD_OUTER</em> and <em>Scope.THREAD_INNER</em> and allows to specify the thread that the setting should be associated with.</p>
-<p>If <code>scopeDomain</code> is null or empty, the most recently added domain path is removed. For removing an explicitly named domain associated with a thread use method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a3b8dc68ae1affc16843951d411a6a253">removeThreadDomain</a>.</p>
+<p>If <span>scopeDomain</span> is null or empty, the most recently added domain path is removed. For removing an explicitly named domain associated with a thread use method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a3b8dc68ae1affc16843951d411a6a253">removeThreadDomain</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">scopeDomain</td><td>The domain path to register. </td></tr>
@@ -2455,23 +2454,23 @@ have been added. While their parameter order is 'wrong' and therefore need <code
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Adds a <em>Domain Substitution Rule</em>. <em>Domain Substitution</em> is performed as a last step when evaluating the domain path of a <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em>, taking <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> Domains</em> and the optional parameter <code>domain</code> of the statement into account.<br />
+<p> Adds a <em>Domain Substitution Rule</em>. <em>Domain Substitution</em> is performed as a last step when evaluating the domain path of a <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em>, taking <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> Domains</em> and the optional parameter <span>domain</span> of the statement into account.<br />
 </p>
 <p><b>Wildcards</b><br />
- Parameter <code>domainPath</code> supports <b>'wildcard'</b> character <code> '*'</code> at its beginning and at its end (or both). This allows to have four types of rules:</p><ul>
+ Parameter <span>domainPath</span> supports <b>'wildcard'</b> character <code> '*'</code> at its beginning and at its end (or both). This allows to have four types of rules:</p><ul>
 <li>Exact match</li>
-<li>Prefix match (<code>*</code> at the end of <code>domainPath</code>)</li>
-<li>Suffix match (<code>*</code> at the start of <code>domainPath</code>)</li>
-<li>Substring match (<code>*</code> at both, start and the end of <code>domainPath</code>)</li>
+<li>Prefix match (<code>*</code> at the end of <span>domainPath</span>)</li>
+<li>Suffix match (<code>*</code> at the start of <span>domainPath</span>)</li>
+<li>Substring match (<code>*</code> at both, start and the end of <span>domainPath</span>)</li>
 </ul>
-<p>Only minimal checks are performed, e.g. if an exact match is requested, but <code>domainPath</code> does not start with character <code> '/'</code>. In this and some other cases, the rule is not stored and an internal warning is logged. Further checks, for example for illegal domain path characters are not performed (those will be eliminated when the resulting domain path is to be created internally).</p>
+<p>Only minimal checks are performed, e.g. if an exact match is requested, but <span>domainPath</span> does not start with character <code> '/'</code>. In this and some other cases, the rule is not stored and an internal warning is logged. Further checks, for example for illegal domain path characters are not performed (those will be eliminated when the resulting domain path is to be created internally).</p>
 <p><b>Circular Dependencies</b><br />
  If the given rules have circular dependencies, only a limited number (ten) replacements are performed. If this number of replacements for one <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> is exceeded, an internal warning message is logged. This is done only <em>once</em> over the life-time of a <em>Logger</em>.</p>
 <p><b>Application of Rules</b><br />
  Rules are applied in the order of their definition. After all rules have been applied this is repeated as long as at least one rule matched (up to ten times).</p>
-<p><b>Deletion of Rules</b> To delete a rule, invoke the method with same parameter <code>domainPath</code> and a 'nulled' or empty string for parameter <code>replacement</code>. To delete all rules, invoke the method with parameter <code>domainPath</code> 'nulled' or empty.</p>
+<p><b>Deletion of Rules</b> To delete a rule, invoke the method with same parameter <span>domainPath</span> and a 'nulled' or empty string for parameter <span>replacement</span>. To delete all rules, invoke the method with parameter <span>domainPath</span> 'nulled' or empty.</p>
 <p><b>Final remarks</b> Domain substitution is useful to permanently change ('redirect') domain paths of 3rd party code (e.g. libraries using <b>ALox</b>) or log statements that must not be changed for other reasons. It is advised to not 'overuse' this feature, as side effects are inherent to the concept of <em>Domain Substitution</em>. For example, an unwanted side effect might be that <em>Prefix Logables</em> are not applicable to the substituted domain, while other <em>Prefix Logables</em> are bound to the resulting domain.</p>
-<p>For <b>Lox</b> objects that should be protected of external manipulation, it is advisable, to remove all <em>Domain Substitution Rules</em> right after the <b>Lox</b> was created by invoking this method with a nulled value for parameter <code>domainPath</code>. The reason is, that otherwise, through configuration files or command line parameters, domains of the <b>Lox</b> can be substituted and then the resulting domains <em>Verbosities</em> be <em>overwritten</em> using further configuration variables. Any prioritized <em>'internal'</em> setting of <em>Verbosities</em> this way could be circumvented!</p>
+<p>For <b>Lox</b> objects that should be protected of external manipulation, it is advisable, to remove all <em>Domain Substitution Rules</em> right after the <b>Lox</b> was created by invoking this method with a nulled value for parameter <span>domainPath</span>. The reason is, that otherwise, through configuration files or command line parameters, domains of the <b>Lox</b> can be substituted and then the resulting domains <em>Verbosities</em> be <em>overwritten</em> using further configuration variables. Any prioritized <em>'internal'</em> setting of <em>Verbosities</em> this way could be circumvented!</p>
 <p>For more information consult the <a href="../man_domain_substitution.html">ALox User Manual</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2523,8 +2522,8 @@ have been added. While their parameter order is 'wrong' and therefore need <code
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> The given <code>prefix</code> becomes a <em>Prefix Logable</em> provided to loggers with each log statement executed within the given <code>scope</code>. The list of objects received by a logger is sorted from outer scope to inner scope. The logable of the <em>Log Statement</em> itself, is the last in the list, except one or more <em>Prefix Logables</em> of <em>Scope.ThreadInner</em> are set. Those are (similar to how this <em>Scope</em> is used with <em>Scope Domains</em>) appended to the end of the list.</p>
-<p>To remove a previously set <em>Prefix Logable</em>, <code>null</code> has to be passed with parameter <code>logable</code>. For <em>Scope.THREAD_OUTER</em> and <em>Scope.THREAD_INNER</em>, passing <code>null</code> removes the most recently added <em>Prefix Logable</em>.</p>
+<p> The given <span>prefix</span> becomes a <em>Prefix Logable</em> provided to loggers with each log statement executed within the given <span>scope</span>. The list of objects received by a logger is sorted from outer scope to inner scope. The logable of the <em>Log Statement</em> itself, is the last in the list, except one or more <em>Prefix Logables</em> of <em>Scope.ThreadInner</em> are set. Those are (similar to how this <em>Scope</em> is used with <em>Scope Domains</em>) appended to the end of the list.</p>
+<p>To remove a previously set <em>Prefix Logable</em>, <code>null</code> has to be passed with parameter <span>logable</span>. For <em>Scope.THREAD_OUTER</em> and <em>Scope.THREAD_INNER</em>, passing <code>null</code> removes the most recently added <em>Prefix Logable</em>.</p>
 <dl class="section note"><dt>Note</dt><dd>Unlike other methods of this class which accept more than one logable, this method and its overloaded variants accept only one (the prefix). To supply several objects to be prefix logables at once, those may be passed as an Object[] like shown in the following sample: <div class="fragment"><div class="line">Log.setPrefix( <span class="keyword">new</span> Object[] {<span class="stringliteral">&quot;One, &quot;</span>, <span class="stringliteral">&quot;two, &quot;</span>, 3 },  Scope.GLOBAL   );</div></div><!-- fragment --> </dd>
 <dd>
 The word 'prefix' in this methods' name and in the name of <b>ALox</b> feature <em>Prefix Logables</em> is chosen for the fact that with text loggers (which is the most widely applied use case for <b>ALox</b>) such objects are prefixes to the log message. Of-course, with using <em>Scope.THREAD_INNER</em>, this turns into a suffix!<br />
@@ -2532,7 +2531,7 @@ The word 'prefix' in this methods' name and in the name of <b>ALox</b> feature <
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">prefix</td><td>The <em>Prefix Logable(s)</em> to set. </td></tr>
-    <tr><td class="paramname">scope</td><td>The scope that should the given <code>logable</code> be registered for. Available <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> definitions are platform/language dependent. </td></tr>
+    <tr><td class="paramname">scope</td><td>The scope that should the given <span>logable</span> be registered for. Available <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> definitions are platform/language dependent. </td></tr>
     <tr><td class="paramname">packageLevel</td><td>Used only with <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a>. Cuts the given number of package parts (separated with '.') from the end of the packages. Optional and defaults to <code>0</code>. </td></tr>
   </table>
   </dd>
@@ -2574,11 +2573,11 @@ The word 'prefix' in this methods' name and in the name of <b>ALox</b> feature <
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a78c4c48e023274144f1cd06a7f7cc237">setPrefix</a> providing value <code>0</code> as default for parameter <code>packageLevel</code>.</p>
+<p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a78c4c48e023274144f1cd06a7f7cc237">setPrefix</a> providing value <code>0</code> as default for parameter <span>packageLevel</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">prefix</td><td>The <em>Prefix Logable(s)</em> to set. </td></tr>
-    <tr><td class="paramname">scope</td><td>The scope that should the given <code>logable</code> be registered for. Available <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> definitions are platform/language dependent. </td></tr>
+    <tr><td class="paramname">scope</td><td>The scope that should the given <span>logable</span> be registered for. Available <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> definitions are platform/language dependent. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2626,7 +2625,7 @@ The word 'prefix' in this methods' name and in the name of <b>ALox</b> feature <
 </div><div class="memdoc">
 <hr/>
 <p> This overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a78c4c48e023274144f1cd06a7f7cc237">setPrefix</a> is applicable only for <em>Scope.THREAD_OUTER</em> and <em>Scope.THREAD_INNER</em> and allows to specify the thread that the setting should be associated with.</p>
-<p>If <code>logable</code> is <code>null</code>, the most recently added <em>Prefix Logable</em> is removed.</p>
+<p>If <span>logable</span> is <code>null</code>, the most recently added <em>Prefix Logable</em> is removed.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logable</td><td>The <em>Prefix Logable</em> to set. </td></tr>
@@ -2678,9 +2677,9 @@ The word 'prefix' in this methods' name and in the name of <b>ALox</b> feature <
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> The given <code>logable</code> becomes a <em>Prefix Logable</em> associated to the given <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em>. <em>Prefix Logables</em> associated with the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em> are added to the list of <em>Logables</em> right before the main <em>Logable</em> of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. Multiple <em>Prefix Logables</em> can be added per <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em>.</p>
-<p>To remove the most recently added <em>Prefix Logable</em> associated with a <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em>, <code>null</code> has to be passed with parameter <code>logable</code>.</p>
-<dl class="section attention"><dt>Attention</dt><dd>The same as with most interface methods of this class, the given <code>domain</code> parameter is combined with <em>Scope Domains</em> set for the callers' <em>Scope</em>. To suppress this, an absolute domain path can be used. (Still any <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> Domain</em> of <em>Scope.THREAD_INNER</em> will be applied). The default value of parameter <code>domain</code> is <code>""</code> which addresses the domain evaluated for the current scope.</dd></dl>
+<p> The given <span>logable</span> becomes a <em>Prefix Logable</em> associated to the given <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em>. <em>Prefix Logables</em> associated with the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em> are added to the list of <em>Logables</em> right before the main <em>Logable</em> of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em> itself. Multiple <em>Prefix Logables</em> can be added per <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em>.</p>
+<p>To remove the most recently added <em>Prefix Logable</em> associated with a <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em>, <code>null</code> has to be passed with parameter <span>logable</span>.</p>
+<dl class="section attention"><dt>Attention</dt><dd>The same as with most interface methods of this class, the given <span>domain</span> parameter is combined with <em>Scope Domains</em> set for the callers' <em>Scope</em>. To suppress this, an absolute domain path can be used. (Still any <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> Domain</em> of <em>Scope.THREAD_INNER</em> will be applied). The default value of parameter <span>domain</span> is <code>""</code> which addresses the domain evaluated for the current scope.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logable</td><td>The <em>Prefix Logable</em> to set. </td></tr>
@@ -2726,7 +2725,7 @@ The word 'prefix' in this methods' name and in the name of <b>ALox</b> feature <
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a78c4c48e023274144f1cd06a7f7cc237">setPrefix</a> providing default value <code><a class="el" href="enumcom_1_1aworx_1_1lib_1_1lang_1_1Inclusion.html#a7142aafb51bbc0998c5e45e9235f67fe" title="Chooses inclusion. ">Inclusion.INCLUDE</a></code> for parameter <code>otherPLs</code>.</p>
+<p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a78c4c48e023274144f1cd06a7f7cc237">setPrefix</a> providing default value <code><a class="el" href="enumcom_1_1aworx_1_1lib_1_1lang_1_1Inclusion.html#a7142aafb51bbc0998c5e45e9235f67fe" title="Chooses inclusion. ">Inclusion.INCLUDE</a></code> for parameter <span>otherPLs</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logable</td><td>The <em>Prefix Logable</em> to set. </td></tr>
@@ -2761,7 +2760,7 @@ The word 'prefix' in this methods' name and in the name of <b>ALox</b> feature <
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a78c4c48e023274144f1cd06a7f7cc237">setPrefix</a> providing default value <code><a class="el" href="enumcom_1_1aworx_1_1lib_1_1lang_1_1Inclusion.html#a7142aafb51bbc0998c5e45e9235f67fe" title="Chooses inclusion. ">Inclusion.INCLUDE</a></code> for parameter <code>otherPLs</code> and default value <code>null</code> for parameter <code>domain</code>.</p>
+<p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a78c4c48e023274144f1cd06a7f7cc237">setPrefix</a> providing default value <code><a class="el" href="enumcom_1_1aworx_1_1lib_1_1lang_1_1Inclusion.html#a7142aafb51bbc0998c5e45e9235f67fe" title="Chooses inclusion. ">Inclusion.INCLUDE</a></code> for parameter <span>otherPLs</span> and default value <code>null</code> for parameter <span>domain</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logable</td><td>The <em>Prefix Logable</em> to set. </td></tr>
@@ -2841,7 +2840,7 @@ The word 'prefix' in this methods' name and in the name of <b>ALox</b> feature <
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#aca5f6a9fc5be0ff05f3bd7b3c2c22489">setStartTime( Date, String )</a> providing default value <code>null</code> for parameter <code>loggerName</code>.</p>
+<p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#aca5f6a9fc5be0ff05f3bd7b3c2c22489">setStartTime( Date, String )</a> providing default value <code>null</code> for parameter <span>loggerName</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">startTime</td><td>Optional parameter with the new start time. Defaults to DateTime.Now if omitted. </td></tr>
@@ -2874,7 +2873,7 @@ The word 'prefix' in this methods' name and in the name of <b>ALox</b> feature <
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#aca5f6a9fc5be0ff05f3bd7b3c2c22489">setStartTime( Date, String )</a> providing default values <code>null</code> for parameters <code>startTime</code> and <code>loggerName</code>. </p>
+<p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#aca5f6a9fc5be0ff05f3bd7b3c2c22489">setStartTime( Date, String )</a> providing default values <code>null</code> for parameters <span>startTime</span> and <span>loggerName</span>. </p>
 
 </div>
 </div>
@@ -2924,20 +2923,20 @@ The word 'prefix' in this methods' name and in the name of <b>ALox</b> feature <
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Sets the <em>Verbosity</em> of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em> which is evaluated from parameter <code>domain</code> and applicable <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> Domains</em>. The <code>verbosity</code> given, is set recursively for all sub-domains.</p>
-<p>With the first invocation of this method for a distinct <code>logger</code>, this <em>Logger</em> is registered with this <em>Lox</em>. In this case, prior to setting the given <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> for the evaluated sub-domain, the <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> for all domains is set to <b>Verbosity.Off</b>.</p>
-<p>To deregister a <em>Logger</em> with a <b><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></b>, use method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a7ffce9599fa306280caf0a805bb421b8">removeLogger</a>. To 'disable' a <em>Logger</em>, invoke this method with parameters <code>verbosity</code> equaling to <b>Verbosity.Off</b> and <code>domain</code> to <code>"/"</code>.</p>
-<p>Optional parameter <code>priority</code> defaults to <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ae4177d538925ca1d6b9858078c3ea513">Configuration.PRIO_DEFAULT_VALUES</a>, which is a lower priority than those of the standard plug-ins of external configuration data. Therefore, external configuration by default 'overwrite' settings made from 'within the source code', which simply means by invoking this method.<br />
+<p> Sets the <em>Verbosity</em> of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em> which is evaluated from parameter <span>domain</span> and applicable <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> Domains</em>. The <span>verbosity</span> given, is set recursively for all sub-domains.</p>
+<p>With the first invocation of this method for a distinct <span>logger</span>, this <em>Logger</em> is registered with this <em>Lox</em>. In this case, prior to setting the given <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> for the evaluated sub-domain, the <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> for all domains is set to <b>Verbosity.Off</b>.</p>
+<p>To deregister a <em>Logger</em> with a <b><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></b>, use method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a7ffce9599fa306280caf0a805bb421b8">removeLogger</a>. To 'disable' a <em>Logger</em>, invoke this method with parameters <span>verbosity</span> equaling to <b>Verbosity.Off</b> and <span>domain</span> to <code>"/"</code>.</p>
+<p>Optional parameter <span>priority</span> defaults to <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ae4177d538925ca1d6b9858078c3ea513">Configuration.PRIO_DEFAULT_VALUES</a>, which is a lower priority than those of the standard plug-ins of external configuration data. Therefore, external configuration by default 'overwrite' settings made from 'within the source code', which simply means by invoking this method.<br />
  The parameter can be provided for two main reasons:</p><ul>
 <li>To 'lock' a verbosity setting against external manipulation.</li>
 <li>to 'break' the standard mechanism that an invocation of this method sets all sub-domains recursively. If a sub-domain was set with a higher priority (e.g. <code>PRIO_SOURCE + 1</code>, then this sub-domain will not be affected by future invocations of this method with standard-priority given.</li>
 </ul>
-<dl class="section attention"><dt>Attention</dt><dd>The same as with most interface methods of this class, the given <code>domain</code> parameter is combined with <em>Scope Domains</em> set for the callers' <em>Scope</em>. In standard use cases of <b>ALox</b>, the <em>Verbosity</em> of a <em>Domain</em> is set using absolute domain path addressing. Therefore, it is recommended to have any domain path passed to this method starting with <code> '/'</code>, which suppresses the concatenation of <em>Scope Domains</em>.<br />
+<dl class="section attention"><dt>Attention</dt><dd>The same as with most interface methods of this class, the given <span>domain</span> parameter is combined with <em>Scope Domains</em> set for the callers' <em>Scope</em>. In standard use cases of <b>ALox</b>, the <em>Verbosity</em> of a <em>Domain</em> is set using absolute domain path addressing. Therefore, it is recommended to have any domain path passed to this method starting with <code> '/'</code>, which suppresses the concatenation of <em>Scope Domains</em>.<br />
  This is why this parameter with this method defaults to <code> '/'</code>, while with other methods of this class, it defaults to an empty string.</dd>
 <dd>
 Even when using an absolute domain path, <em>Scope Domains</em> of <em>Scope.THREAD_INNER</em>, will still apply. This means that from within a thread that has such <em>Scope Domain</em> set, this method is (almost) not usable! This all aligns with the concept (advice), that <em>Loggers</em> and their <em>Verbosity</em> are generally set outside of such scopes, hence in configuration sections of a process.</dd>
 <dd>
-Consequently, this method may be (mis-) used to modify the 'actual' (default) scope when explicitly giving an empty string with parameter <code>domain</code>. This is useful, to temporarily adjust a scope. But remember: <b>ALox</b> was designed to avoid temporary code lines...</dd></dl>
+Consequently, this method may be (mis-) used to modify the 'actual' (default) scope when explicitly giving an empty string with parameter <span>domain</span>. This is useful, to temporarily adjust a scope. But remember: <b>ALox</b> was designed to avoid temporary code lines...</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logger</td><td>The logger to be to be affected (case insensitive). </td></tr>
@@ -2990,7 +2989,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a941880afa9b81bbc7922ec6989050c68">setVerbosity</a> providing default value <code>PRIO_SOURCE</code> for parameter <code>priority</code>.</p>
+<p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a941880afa9b81bbc7922ec6989050c68">setVerbosity</a> providing default value <code>PRIO_SOURCE</code> for parameter <span>priority</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logger</td><td>The logger to be to be affected. </td></tr>
@@ -3037,8 +3036,8 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 </div><div class="memdoc">
 <hr/>
 <p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a941880afa9b81bbc7922ec6989050c68">setVerbosity</a> providing</p><ul>
-<li>default value <code>PRIO_SOURCE</code> for parameter <code>priority</code> and</li>
-<li>default value <code> '/'</code> for parameter <code>domain</code>.</li>
+<li>default value <code>PRIO_SOURCE</code> for parameter <span>priority</span> and</li>
+<li>default value <code> '/'</code> for parameter <span>domain</span>.</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -3150,7 +3149,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a3950e43f5860a48472cac13adf4eb902">setVerbosity</a> providing default value <code>PRIO_SOURCE</code> for parameter <code>priority</code>.</p>
+<p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a3950e43f5860a48472cac13adf4eb902">setVerbosity</a> providing default value <code>PRIO_SOURCE</code> for parameter <span>priority</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">loggerName</td><td>The logger to be to be affected, identified by its name (case insensitive). </td></tr>
@@ -3197,8 +3196,8 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 </div><div class="memdoc">
 <hr/>
 <p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a3950e43f5860a48472cac13adf4eb902">setVerbosity</a> providing</p><ul>
-<li>default value <code>PRIO_SOURCE</code> for parameter <code>priority</code> and</li>
-<li>default value <code> '/'</code> for parameter <code>domain</code>.</li>
+<li>default value <code>PRIO_SOURCE</code> for parameter <span>priority</span> and</li>
+<li>default value <code> '/'</code> for parameter <span>domain</span>.</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -3310,7 +3309,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#ad486233db36ceb232a9ade1a96efe641">state</a> providing default value <code>STATE_INFO_ALL</code> for parameter <code>flags</code>.</p>
+<p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#ad486233db36ceb232a9ade1a96efe641">state</a> providing default value <code>STATE_INFO_ALL</code> for parameter <span>flags</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domain</td><td>Optional <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domain</em> which is combined with <em>Scope Domains</em> set for the <em>Scope</em> of invocation. </td></tr>
@@ -3368,18 +3367,18 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Stores an object which was can afterwards be retrieved by invoking <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a81733f249880b338626d6be2a2c5a0a7">retrieve</a>. Optional parameters <code>key</code> and <code>scope</code> offer various possibilities to reference this data later.<br />
+<p> Stores an object which was can afterwards be retrieved by invoking <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a81733f249880b338626d6be2a2c5a0a7">retrieve</a>. Optional parameters <span>key</span> and <span>scope</span> offer various possibilities to reference this data later.<br />
 </p>
-<p>To remove data from the store, pass <code>null</code> with parameter <code>data</code>.</p>
+<p>To remove data from the store, pass <code>null</code> with parameter <span>data</span>.</p>
 <dl class="section attention"><dt>Attention</dt><dd>When data objects are 'overwritten', previous objects will be deleted internally. Hence, only pointers to heap-allocated objects (created with <code>new</code>) may be passed!<br />
  For more information, consult the <a href="../manual.html">ALox User Manual</a>.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd><em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> is a feature provided by <b>ALox</b> to support debug-logging. It is not advised to use <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Data</em> to implement application logic.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>The data object to store. If <code>null</code>, currently stored data will be removed. </td></tr>
-    <tr><td class="paramname">key</td><td>The optional key to the data. If omitted (or empty or null), the data is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a78d63915b0cc8b7545ac7e84c538896f">Scope.GLOBAL</a>, then the data is unique to the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></em>. </td></tr>
+    <tr><td class="paramname">key</td><td>The optional key to the data. If omitted (or empty or null), the data is bound to the <em>Scope</em> provided. If omitted and <span>scope</span> is <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a78d63915b0cc8b7545ac7e84c538896f">Scope.GLOBAL</a>, then the data is unique to the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></em>. </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the data is bound to. </td></tr>
-    <tr><td class="paramname">pkgLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a> to reference parent packages. Optional and defaults to <code>0</code>. </td></tr>
+    <tr><td class="paramname">pkgLevel</td><td>Used only if parameter <span>scope</span> equals <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a> to reference parent packages. Optional and defaults to <code>0</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -3430,7 +3429,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>The data object to store. If <code>null</code>, currently stored data will be removed. </td></tr>
-    <tr><td class="paramname">key</td><td>The optional key to the data. If omitted (or empty or null), the data is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a78d63915b0cc8b7545ac7e84c538896f">Scope.GLOBAL</a>, then the data is unique to the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></em>. </td></tr>
+    <tr><td class="paramname">key</td><td>The optional key to the data. If omitted (or empty or null), the data is bound to the <em>Scope</em> provided. If omitted and <span>scope</span> is <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a78d63915b0cc8b7545ac7e84c538896f">Scope.GLOBAL</a>, then the data is unique to the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></em>. </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the data is bound to. </td></tr>
   </table>
   </dd>
@@ -3476,7 +3475,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>The data object to store. If <code>null</code>, currently stored data will be removed. </td></tr>
-    <tr><td class="paramname">key</td><td>The optional key to the data. If omitted (or empty or null), the data is bound to the <em>Scope</em> provided. If omitted and <code>scope</code> is <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a78d63915b0cc8b7545ac7e84c538896f">Scope.GLOBAL</a>, then the data is unique to the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></em>. </td></tr>
+    <tr><td class="paramname">key</td><td>The optional key to the data. If omitted (or empty or null), the data is bound to the <em>Scope</em> provided. If omitted and <span>scope</span> is <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a78d63915b0cc8b7545ac7e84c538896f">Scope.GLOBAL</a>, then the data is unique to the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></em>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -3561,7 +3560,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
   <table class="params">
     <tr><td class="paramname">data</td><td>The data object to store. If <code>null</code>, currently stored data will be removed. </td></tr>
     <tr><td class="paramname">scope</td><td>The <em>Scope</em> that the data is bound to. </td></tr>
-    <tr><td class="paramname">pkgLevel</td><td>Used only if parameter <code>scope</code> equals <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a> to reference parent packages. Optional and defaults to <code>0</code>. </td></tr>
+    <tr><td class="paramname">pkgLevel</td><td>Used only if parameter <span>scope</span> equals <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e">Scope.PACKAGE</a> to reference parent packages. Optional and defaults to <code>0</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -3734,7 +3733,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Feb 28 2018 20:09:20 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2018 20:36:52 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.14
 </small></address>

@@ -75,8 +75,8 @@
 <title>Node15&#45;&gt;Node11</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M20.0354,-204.865C15.8369,-193.7376 11.1264,-179.3214 9,-166 .2134,-110.9529 14.4766,-44.0321 20.5083,-19.553"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="16.868,-206.3729 23.8028,-214.3828 23.3766,-203.7965 16.868,-206.3729"/>
-<text text-anchor="middle" x="42.5" y="-109" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> timeOfCreation</text>
-<text text-anchor="middle" x="42.5" y="-98" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">timeOfLastLog</text>
+<text text-anchor="middle" x="43" y="-109" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> timeOfCreation</text>
+<text text-anchor="middle" x="43" y="-98" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">timeOfLastLog</text>
 </g>
 <!-- Node15&#45;&gt;Node13 -->
 <g id="edge4" class="edge">
@@ -90,14 +90,14 @@
 <title>Node15&#45;&gt;Node15</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M58.816,-229.7822C63.4,-228.8815 66.5,-226.954 66.5,-224 66.5,-219.1523 58.1518,-217.0694 48.5969,-217.7511"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="58.4268,-226.2963 48.5969,-230.2489 58.7462,-233.289 58.4268,-226.2963"/>
-<text text-anchor="middle" x="107" y="-227" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> tempTicks</text>
-<text text-anchor="middle" x="107" y="-216" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">creationTimeTicks</text>
+<text text-anchor="middle" x="106.5" y="-227" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> tempTicks</text>
+<text text-anchor="middle" x="106.5" y="-216" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">creationTimeTicks</text>
 </g>
 <!-- Node16 -->
 <g id="node6" class="node">
 <title>Node16</title>
-<polygon fill="#ffffff" stroke="#bfbfbf" points="18.5,-135.5 18.5,-165.5 181.5,-165.5 181.5,-135.5 18.5,-135.5"/>
-<text text-anchor="start" x="26.5" y="-153.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ArrayList&lt; com.aworx.lib.threads.</text>
+<polygon fill="#ffffff" stroke="#bfbfbf" points="18,-135.5 18,-165.5 182,-165.5 182,-135.5 18,-135.5"/>
+<text text-anchor="start" x="26" y="-153.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ArrayList&lt; com.aworx.lib.threads.</text>
 <text text-anchor="middle" x="100" y="-142.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ThreadLock &gt;</text>
 </g>
 <!-- Node16&#45;&gt;Node12 -->

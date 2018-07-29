@@ -1,7 +1,7 @@
 <map id="InMemoryPlugin.Entry" name="InMemoryPlugin.Entry">
-<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="159,5,224,32"/>
-<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html" title="Variable" alt="" coords="127,381,195,408"/>
-<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html" title="Configuration" alt="" coords="289,291,387,317"/>
-<area shape="rect" id="node6" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="411,133,519,159"/>
-<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="651,133,729,159"/>
+<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="160,5,225,32"/>
+<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html" title="Variable" alt="" coords="128,381,196,408"/>
+<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html" title="Configuration" alt="" coords="290,291,389,317"/>
+<area shape="rect" id="node6" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="411,133,521,159"/>
+<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="654,133,731,159"/>
 </map>

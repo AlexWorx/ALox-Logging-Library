@@ -34,7 +34,7 @@
 <title>log&#45;&gt;lox</title>
 <path fill="none" stroke="#000000" d="M151,-168.4397C151,-157.1601 151,-143.1085 151,-130.8783"/>
 <polygon fill="#000000" stroke="#000000" points="151,-120.7149 155.5001,-130.7148 151,-125.7149 151.0001,-130.7149 151.0001,-130.7149 151.0001,-130.7149 151,-125.7149 146.5001,-130.7149 151,-120.7149 151,-120.7149"/>
-<text text-anchor="middle" x="195.5" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Contains 1 singleton</text>
+<text text-anchor="middle" x="196" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Contains 1 singleton</text>
 </g>
 <!-- logrs -->
 <g id="node3" class="node">

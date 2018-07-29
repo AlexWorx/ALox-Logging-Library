@@ -19,7 +19,7 @@
 <g id="node2" class="node">
 <title>Node1</title>
 <g id="a_node2"><a xlink:href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" target="_top" xlink:title="ObjectConverter">
-<polygon fill="#ffffff" stroke="#000000" points="5.5,-56.5 5.5,-75.5 92.5,-75.5 92.5,-56.5 5.5,-56.5"/>
+<polygon fill="#ffffff" stroke="#000000" points="5,-56.5 5,-75.5 93,-75.5 93,-56.5 5,-56.5"/>
 <text text-anchor="middle" x="49" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ObjectConverter</text>
 </a>
 </g>

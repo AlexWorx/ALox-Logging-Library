@@ -1,10 +1,10 @@
 <map id="FormatterPythonStyle" name="FormatterPythonStyle">
-<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html" title="FormatterStdImpl" alt="" coords="194,428,317,455"/>
-<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html" title="Formatter" alt="" coords="216,301,295,327"/>
-<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="59,173,137,200"/>
-<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="229,173,319,200"/>
-<area shape="rect" id="node6" href="$classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="247,83,301,109"/>
-<area shape="rect" id="node8" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="477,173,543,200"/>
-<area shape="rect" id="node9" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="556,301,664,327"/>
-<area shape="rect" id="node10" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html" title="AutoSizes" alt="" coords="341,428,423,455"/>
+<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html" title="FormatterStdImpl" alt="" coords="195,428,318,455"/>
+<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1Formatter.html" title="Formatter" alt="" coords="217,301,296,327"/>
+<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="61,173,138,200"/>
+<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="230,173,321,200"/>
+<area shape="rect" id="node6" href="$classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="248,83,303,109"/>
+<area shape="rect" id="node8" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="479,173,544,200"/>
+<area shape="rect" id="node9" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="557,301,666,327"/>
+<area shape="rect" id="node10" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html" title="AutoSizes" alt="" coords="342,428,425,455"/>
 </map>

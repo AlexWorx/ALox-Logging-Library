@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1712 R. 1</span>
+   &#160;<span id="projectnumber">V. 1805 R. 0</span>
    </div>
   </td>
  </tr>
@@ -99,14 +99,12 @@ $(function() {
 <div class="dynheader">
 Inheritance diagram for FormatterStdImpl:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl__inherit__graph.svg" width="320" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl__inherit__graph.svg" width="320" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for FormatterStdImpl:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl__coll__graph.svg" width="702" height="460"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl__coll__graph.svg" width="703" height="460"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
@@ -142,13 +140,13 @@ Collaboration diagram for FormatterStdImpl:</div>
  If the format syntax of the formatter contains a separated format specification string (a substring of the placeholder string), then the method may store such format substring in field <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a0f6bad7a5f9e88d63e69e580dcecedd4">phaFormatSpec</a>.</li>
 <li>Next, it is checked if an argument was set by <b>parsePlaceholder</b>. If not, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a152c01e5e4a6cd17db886f522f2cf082">setArgument</a> is invoked providing <code>-1</code> for the index to indicate auto-indexing. <dl class="section note"><dt>Note</dt><dd>If auto-indexing should be implemented differently than done with default method <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a152c01e5e4a6cd17db886f522f2cf082">setArgument</a>, then a custom formatter might either override the method or, in the case no index is given in the format string, just set fields <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#ac8664a270b9aeb6b55bae5ef05143ae9">phaArgument</a> and <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a376a7b963e937b5de093019a4e66d1cd">phaArgumentIdx</a> already in <b>parsePlaceholder</b> according to its own strategy</dd></dl>
 </li>
-<li>Method <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#afa1cbe6ecfbef9793c83b4680cc2826d">preAndPostProcess</a> is invoked with parameter <code>startIdx</code> equalling <code>-1</code> (indicating pre-processing). This allows for example to insert tab fill-characters (tab stops) prior to writing the contents of the field.</li>
+<li>Method <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#afa1cbe6ecfbef9793c83b4680cc2826d">preAndPostProcess</a> is invoked with parameter <span>startIdx</span> equalling <code>-1</code> (indicating pre-processing). This allows for example to insert tab fill-characters (tab stops) prior to writing the contents of the field.</li>
 <li>Method <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a3b2c47d21b5c0d3c7a19c2986a1aed80">writeCustomFormat</a> is invoked. This allows derived formatters to write arguments in a custom way. If the method returns <code>true</code>, the loop is continued ( &rarr; Step 4.). <br />
  The default implementation checks if a format specification was stored in <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a0f6bad7a5f9e88d63e69e580dcecedd4">phaFormatSpec</a>" and if yes, if <b>C#</b> interface <a href="https://msdn.microsoft.com/en-us/library/system.iformattable(v=vs.110).aspx">IFormattable</a> in implemented for <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#ac8664a270b9aeb6b55bae5ef05143ae9">phaArgument</a>. If this is true, the interface is invoked and <code>true</code> is returned.</li>
 <li>Again, if a format specification was stored in <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a0f6bad7a5f9e88d63e69e580dcecedd4">phaFormatSpec</a> method <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#ae9f0815655ccdb872b3f9fdc59b4dab0">parseStdFormatSpec</a> is invoked which needs to set further attributes in the <b>Placeholder</b> object according to to the standard format specification of the formatter.</li>
 <li>Now, as all fields that represent formatting attributes (fields with prefix <code>pha</code>) are well set (or kept with their defaulted value), method <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a2b2eead1a36f22f912353d36741bb884">checkStdFieldAgainstArgument</a> is invoked. This method is virtual but not abstract. Its default implementation checks the placeholder attributes against the provided argument type and raises an error if the argument does not fit to the placeholder format specification.</li>
 <li>Method <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#ad925d2abdf3708b373134186a58ad16a">writeStdArgument</a> is invoked. This method is virtual but not abstract. Its default implementation writes the argument value formatted according to the attribute fields.</li>
-<li>Finally <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#afa1cbe6ecfbef9793c83b4680cc2826d">preAndPostProcess</a> is invoked with parameter <code>startIdx</code> pointing to the first character in <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a8bb2954a9d7f67e355b5dd8052c6294a">targetString</a> of the argument written. Here, actions like case conversion might be done on the field written.<ol type="a">
+<li>Finally <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#afa1cbe6ecfbef9793c83b4680cc2826d">preAndPostProcess</a> is invoked with parameter <span>startIdx</span> pointing to the first character in <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a8bb2954a9d7f67e355b5dd8052c6294a">targetString</a> of the argument written. Here, actions like case conversion might be done on the field written.<ol type="a">
 <li>End of loop ( &rarr; Step 4.) </li>
 </ol>
 </li>
@@ -584,7 +582,7 @@ Additional Inherited Members</h2></td></tr>
     <tr><td class="paramname">targetString</td><td>An <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> that takes the result. </td></tr>
     <tr><td class="paramname">formatString</td><td>The format string. </td></tr>
     <tr><td class="paramname">arguments</td><td>The objects to convert. </td></tr>
-    <tr><td class="paramname">argOffset</td><td>The first object in <code>arguments</code> to use.</td></tr>
+    <tr><td class="paramname">argOffset</td><td>The first object in <span>arguments</span> to use.</td></tr>
   </table>
   </dd>
 </dl>
@@ -798,7 +796,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Virtual method to do pre- and post- processing of the field written. Pre-processing could for example be adding tabulator spaces, letter case conversions,</p>
-<p>A negative given index <code>startIdx</code> indicates the pre-processing phase. If <code>target</code> is given, this indicates an "intermediate phase": The argument has been written, but no alignment or cutting has been done, yet. This phase should usually be ignored, but is for example important for search and replacement actions. If a field has a custom format implementation (e.g. time and date values), then the intermediate phase is never called.</p>
+<p>A negative given index <span>startIdx</span> indicates the pre-processing phase. If <span>target</span> is given, this indicates an "intermediate phase": The argument has been written, but no alignment or cutting has been done, yet. This phase should usually be ignored, but is for example important for search and replacement actions. If a field has a custom format implementation (e.g. time and date values), then the intermediate phase is never called.</p>
 <dl class="section note"><dt>Note</dt><dd>The reason why this method is <b>not</b> implemented as two different ones is that derived classes might do some more complicated parsing of parts of the placeholder string in this method. In this case, the parsing is needed to be implemented only once, while the finally parsed commands are only conditionally executed depending if executed as pre or post phase.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -915,12 +913,12 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Helper method (overridable) that usually is invoked by implementation of <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a5febbc3b151ebba0124b6a7622138bbc">parsePlaceholder</a> when an argument index is read from the format string,</p>
-<p>If this does not happen, method <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a7af7adaf2c862fb535bd71f8b4968159">format</a> will invoke this method providing <code>-1</code> for value of parameter <code>pos</code> to automatically choose the next argument.</p>
-<p>Consequently, this method sets the fields <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#ac8664a270b9aeb6b55bae5ef05143ae9">Argument</a> and <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a376a7b963e937b5de093019a4e66d1cd">ArgumentIdx</a> in given <code>field</code>. For auto-values, it increments <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a229659cea85046009034b301b8c772cc">nextAutoIdx</a>. Finally, this method is responsible for the correct book-keeping of <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a277c7607ec7714d48a412b5e54997ded">argsConsumed</a>.</p>
+<p>If this does not happen, method <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a7af7adaf2c862fb535bd71f8b4968159">format</a> will invoke this method providing <code>-1</code> for value of parameter <span>pos</span> to automatically choose the next argument.</p>
+<p>Consequently, this method sets the fields <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#ac8664a270b9aeb6b55bae5ef05143ae9">Argument</a> and <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a376a7b963e937b5de093019a4e66d1cd">ArgumentIdx</a> in given <span>field</span>. For auto-values, it increments <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a229659cea85046009034b301b8c772cc">nextAutoIdx</a>. Finally, this method is responsible for the correct book-keeping of <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a277c7607ec7714d48a412b5e54997ded">argsConsumed</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pos</td><td>The index of the argument. If <code>-1</code> is given, the index is auto-incremented using field <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a229659cea85046009034b301b8c772cc">nextAutoIdx</a>. </td></tr>
-    <tr><td class="paramname">countStartsWith_1</td><td>If <code>true</code>, given <code>pos</code> is counting arguments with <code>1</code> being the first. Otherwise with <code>0</code>. </td></tr>
+    <tr><td class="paramname">countStartsWith_1</td><td>If <code>true</code>, given <span>pos</span> is counting arguments with <code>1</code> being the first. Otherwise with <code>0</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1666,7 +1664,7 @@ Additional Inherited Members</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Feb 28 2018 20:09:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2018 20:36:51 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.14
 </small></address>

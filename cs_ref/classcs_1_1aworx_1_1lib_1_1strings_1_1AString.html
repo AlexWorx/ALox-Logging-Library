@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1712 R. 1</span>
+   &#160;<span id="projectnumber">V. 1805 R. 0</span>
    </div>
   </td>
  </tr>
@@ -104,7 +104,7 @@ $(function() {
 <p>In general, AString methods are internally checking the provided parameters. For example, method <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a47326ffd04c7a2fb6d4658401b2512b7">_</a>( <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> src, int regionStart, int regionLength = int.MaxValue) is adjusting the provided region information to fit to the size of the provided AString.<br />
  Chances are high, that the code invoking this method "knows" about the correctness of the region. In this case, the checks are redundant.</p>
 <p>For avoiding unnecessary checks, various methods are provided by AString that omit such checks. These methods share the same name as the standard one, with the suffix "_NC" appended (NC stands for "no checks").</p>
-<p>In the sample above, if the calling code was sure about the parameters <code>regionStart</code> and <code>regionLength</code> being in the bounds of <code>src</code>, method <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a7e2f603873c045e66305817610772c47">_NC( AString src, int regionStart, int regionLength )</a> can be used.</p>
+<p>In the sample above, if the calling code was sure about the parameters <span>regionStart</span> and <span>regionLength</span> being in the bounds of <span>src</span>, method <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a7e2f603873c045e66305817610772c47">_NC( AString src, int regionStart, int regionLength )</a> can be used.</p>
 <dl class="section attention"><dt>Attention</dt><dd>The following rules apply to all methods which suffixed by <em>_NC</em>:<ul>
 <li>Parameters are not checked for being null.</li>
 <li>Index, size, length, region start/end and other parameters are not checked to be correct</li>
@@ -1303,7 +1303,7 @@ Character access</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Format and append a signed 32-Bit integer value.</p>
-<p>Parameter <code>numberFormat</code> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a>. To generate output better readable for humans, provide <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a9c9a27c7479023730cc33644fc6c9164">NumberFormat.Global</a>, or a customized object of that type.</p>
+<p>Parameter <span>numberFormat</span> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a>. To generate output better readable for humans, provide <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a9c9a27c7479023730cc33644fc6c9164">NumberFormat.Global</a>, or a customized object of that type.</p>
 <p>See <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> for more information on formatting options.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1404,7 +1404,7 @@ Character access</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Format and append an unsigned 32-Bit integer value.</p>
-<p>Parameter <code>numberFormat</code> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a>. To generate output better readable for humans, provide <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a9c9a27c7479023730cc33644fc6c9164">NumberFormat.Global</a>, or a customized object of that type.</p>
+<p>Parameter <span>numberFormat</span> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a>. To generate output better readable for humans, provide <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a9c9a27c7479023730cc33644fc6c9164">NumberFormat.Global</a>, or a customized object of that type.</p>
 <p>See <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> for more information on formatting options.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1505,7 +1505,7 @@ Character access</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Format and append a signed 64-Bit integer value.</p>
-<p>Parameter <code>numberFormat</code> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a>. To generate output better readable for humans, provide <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a9c9a27c7479023730cc33644fc6c9164">NumberFormat.Global</a>, or a customized object of that type.</p>
+<p>Parameter <span>numberFormat</span> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a>. To generate output better readable for humans, provide <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a9c9a27c7479023730cc33644fc6c9164">NumberFormat.Global</a>, or a customized object of that type.</p>
 <p>See <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> for more information on formatting options.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1606,7 +1606,7 @@ Character access</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Format and append an unsigned 64-Bit integer value.</p>
-<p>Parameter <code>numberFormat</code> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a>. To generate output better readable for humans, provide <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a9c9a27c7479023730cc33644fc6c9164">NumberFormat.Global</a>, or a customized object of that type.</p>
+<p>Parameter <span>numberFormat</span> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a>. To generate output better readable for humans, provide <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a9c9a27c7479023730cc33644fc6c9164">NumberFormat.Global</a>, or a customized object of that type.</p>
 <p>See <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> for more information on formatting options.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1707,7 +1707,7 @@ Character access</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Formats and appends a double floating point value.</p>
-<p>Parameter <code>numberFormat</code> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a>. To generate output better readable for humans, provide <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a9c9a27c7479023730cc33644fc6c9164">NumberFormat.Global</a>, or a customized object of that type.</p>
+<p>Parameter <span>numberFormat</span> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a>. To generate output better readable for humans, provide <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a9c9a27c7479023730cc33644fc6c9164">NumberFormat.Global</a>, or a customized object of that type.</p>
 <p>See <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> for more information on formatting options.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1808,7 +1808,7 @@ Character access</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Append a unsigned 64-Bit integer value in binary format.</p>
-<p>Parameter <code>numberFormat</code> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a>. To generate output better readable for humans, provide <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a9c9a27c7479023730cc33644fc6c9164">NumberFormat.Global</a>, or a customized object of that type.</p>
+<p>Parameter <span>numberFormat</span> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a>. To generate output better readable for humans, provide <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a9c9a27c7479023730cc33644fc6c9164">NumberFormat.Global</a>, or a customized object of that type.</p>
 <p>See <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> for more information on formatting options.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1909,7 +1909,7 @@ Character access</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Append a unsigned 64-Bit integer value in hexadecimal format.</p>
-<p>Parameter <code>numberFormat</code> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a>. To generate output better readable for humans, provide <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a9c9a27c7479023730cc33644fc6c9164">NumberFormat.Global</a>, or a customized object of that type.</p>
+<p>Parameter <span>numberFormat</span> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a>. To generate output better readable for humans, provide <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a9c9a27c7479023730cc33644fc6c9164">NumberFormat.Global</a>, or a customized object of that type.</p>
 <p>See <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> for more information on formatting options.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2309,7 +2309,7 @@ Character access</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Append a unsigned 64-Bit integer value in octal format.</p>
-<p>Parameter <code>numberFormat</code> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a>. To generate output better readable for humans, provide <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a9c9a27c7479023730cc33644fc6c9164">NumberFormat.Global</a>, or a customized object of that type.</p>
+<p>Parameter <span>numberFormat</span> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a>. To generate output better readable for humans, provide <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a9c9a27c7479023730cc33644fc6c9164">NumberFormat.Global</a>, or a customized object of that type.</p>
 <p>See <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> for more information on formatting options.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2704,9 +2704,9 @@ Character access</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li>0 if this and <code>needle</code> are <em>nulled</em> or if both have a length of 0 or if both share the same content</li>
-<li>&lt;0 if this is <em>nulled</em> and <code>needle</code> is not or if this is smaller than <code>needle</code>.</li>
-<li>&gt;0 if this is not <em>nulled</em> but <code>needle</code> is or if this is greater than <code>needle</code>. </li>
+<li>0 if this and <span>needle</span> are <em>nulled</em> or if both have a length of 0 or if both share the same content</li>
+<li>&lt;0 if this is <em>nulled</em> and <span>needle</span> is not or if this is smaller than <span>needle</span>.</li>
+<li>&gt;0 if this is not <em>nulled</em> but <span>needle</span> is or if this is greater than <span>needle</span>. </li>
 </ul>
 </dd></dl>
 
@@ -2783,9 +2783,9 @@ Character access</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li>0 if this and <code>needle</code> are <em>nulled</em> or if both have a length of 0 or if both share the same content</li>
-<li>&lt;0 if this is <em>nulled</em> and <code>needle</code> is not or if this is smaller than <code>needle</code>.</li>
-<li>&gt;0 if this is not <em>nulled</em> but <code>needle</code> is or if this is greater than <code>needle</code>. </li>
+<li>0 if this and <span>needle</span> are <em>nulled</em> or if both have a length of 0 or if both share the same content</li>
+<li>&lt;0 if this is <em>nulled</em> and <span>needle</span> is not or if this is smaller than <span>needle</span>.</li>
+<li>&gt;0 if this is not <em>nulled</em> but <span>needle</span> is or if this is greater than <span>needle</span>. </li>
 </ul>
 </dd></dl>
 
@@ -2862,9 +2862,9 @@ Character access</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li>0 if this and <code>needle</code> are <em>nulled</em> or if both have a length of 0 or if both share the same content</li>
-<li>&lt;0 if this is <em>nulled</em> and <code>needle</code> is not or if this is smaller than <code>needle</code>.</li>
-<li>&gt;0 if this is not <em>nulled</em> but <code>needle</code> is or if this is greater than <code>needle</code>. </li>
+<li>0 if this and <span>needle</span> are <em>nulled</em> or if both have a length of 0 or if both share the same content</li>
+<li>&lt;0 if this is <em>nulled</em> and <span>needle</span> is not or if this is smaller than <span>needle</span>.</li>
+<li>&gt;0 if this is not <em>nulled</em> but <span>needle</span> is or if this is greater than <span>needle</span>. </li>
 </ul>
 </dd></dl>
 
@@ -2926,9 +2926,9 @@ Character access</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li>0 if this and <code>needle</code> are <em>nulled</em> or if both have a length of 0 or if both share the same content</li>
-<li>&lt;0 if this is <em>nulled</em> and <code>needle</code> is not or if this is smaller than <code>needle</code>.</li>
-<li>&gt;0 if this is not <em>nulled</em> but <code>needle</code> is or if this is greater than <code>needle</code>. </li>
+<li>0 if this and <span>needle</span> are <em>nulled</em> or if both have a length of 0 or if both share the same content</li>
+<li>&lt;0 if this is <em>nulled</em> and <span>needle</span> is not or if this is smaller than <span>needle</span>.</li>
+<li>&gt;0 if this is not <em>nulled</em> but <span>needle</span> is or if this is greater than <span>needle</span>. </li>
 </ul>
 </dd></dl>
 
@@ -3236,7 +3236,7 @@ Character access</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Cuts out a region from the Buffer. </p><dl class="section attention"><dt>Attention</dt><dd>Non checking variant of original method. See <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#CS_ASTRING_NC">Non-checking methods</a> for <em>_NC</em> method variants. Like with method <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a8c5ba7abc3c9da86dcb72df05a9ac922">Delete</a>, it is allowed that the sum of parameters <code>regionStart</code> and <code>regionLength</code> is longer than the length of this AString. In this case, this string is cut starting from index <code>regionStart</code>.</dd></dl>
+<p> Cuts out a region from the Buffer. </p><dl class="section attention"><dt>Attention</dt><dd>Non checking variant of original method. See <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#CS_ASTRING_NC">Non-checking methods</a> for <em>_NC</em> method variants. Like with method <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a8c5ba7abc3c9da86dcb72df05a9ac922">Delete</a>, it is allowed that the sum of parameters <span>regionStart</span> and <span>regionLength</span> is longer than the length of this AString. In this case, this string is cut starting from index <span>regionStart</span>.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">regionStart</td><td>The start of the region to delete. </td></tr>
@@ -4206,7 +4206,7 @@ Character access</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>This strings <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#ad2cc1673d4ad954556c5356c3ad51550">Length</a> if the character <code>needle</code> is not found. Otherwise the index of first occurrence. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>This strings <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#ad2cc1673d4ad954556c5356c3ad51550">Length</a> if the character <span>needle</span> is not found. Otherwise the index of first occurrence. </dd></dl>
 
 </div>
 </div>
@@ -4252,7 +4252,7 @@ Character access</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>This strings <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#ad2cc1673d4ad954556c5356c3ad51550">Length</a> if the character <code>needle</code> is not found. Otherwise the index of first occurrence. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>This strings <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#ad2cc1673d4ad954556c5356c3ad51550">Length</a> if the character <span>needle</span> is not found. Otherwise the index of first occurrence. </dd></dl>
 
 </div>
 </div>
@@ -4303,14 +4303,14 @@ Character access</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Inserts a portion of the given char[] at a given position. If the position is not between 0 and the length of the target, nothing is inserted.</p>
-<dl class="section attention"><dt>Attention</dt><dd>Parameters <code>cStart</code> and <code>cLength</code> are not checked to match the size of <code>src</code>.</dd></dl>
+<dl class="section attention"><dt>Attention</dt><dd>Parameters <span>cStart</span> and <span>cLength</span> are not checked to match the size of <span>src</span>.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>To insert a string with replacing a different one at the same time, use <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a9a298293c0a30e45d7d64f7fd647528b">ReplaceSubstring(src, pos, regionLength)</a>.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">src</td><td>The <em>char[]</em> to insert characters from. </td></tr>
-    <tr><td class="paramname">cStart</td><td>The start of the substring in <code>src</code> to insert. </td></tr>
-    <tr><td class="paramname">cLength</td><td>The length of the substring in <code>src</code> to insert. </td></tr>
-    <tr><td class="paramname">pos</td><td>The position in this object insert the portion of <code>src</code>. </td></tr>
+    <tr><td class="paramname">cStart</td><td>The start of the substring in <span>src</span> to insert. </td></tr>
+    <tr><td class="paramname">cLength</td><td>The length of the substring in <span>src</span> to insert. </td></tr>
+    <tr><td class="paramname">pos</td><td>The position in this object insert the portion of <span>src</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -4357,7 +4357,7 @@ Character access</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">src</td><td>The <em>char[]</em> to insert characters from. </td></tr>
-    <tr><td class="paramname">pos</td><td>The position in this object insert the portion of <code>src</code>. </td></tr>
+    <tr><td class="paramname">pos</td><td>The position in this object insert the portion of <span>src</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -4404,7 +4404,7 @@ Character access</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">src</td><td>The <em>char[]</em> to insert characters from. </td></tr>
-    <tr><td class="paramname">pos</td><td>The position in this object insert the portion of <code>src</code>. </td></tr>
+    <tr><td class="paramname">pos</td><td>The position in this object insert the portion of <span>src</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -4451,7 +4451,7 @@ Character access</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">src</td><td>The <em>char[]</em> to insert characters from. </td></tr>
-    <tr><td class="paramname">pos</td><td>The position in this object insert the portion of <code>src</code>. </td></tr>
+    <tr><td class="paramname">pos</td><td>The position in this object insert the portion of <span>src</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -4498,7 +4498,7 @@ Character access</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">src</td><td>The <em>char[]</em> to insert characters from. </td></tr>
-    <tr><td class="paramname">pos</td><td>The position in this object insert the portion of <code>src</code>. </td></tr>
+    <tr><td class="paramname">pos</td><td>The position in this object insert the portion of <span>src</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -4549,9 +4549,9 @@ Character access</h2></td></tr>
 <p> Inserts the given character n-times at a given position. If the given position is out of range, nothing is inserted.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">c</td><td>The character to insert <code>qty</code> times. </td></tr>
+    <tr><td class="paramname">c</td><td>The character to insert <span>qty</span> times. </td></tr>
     <tr><td class="paramname">qty</td><td>The quantity of characters to insert. </td></tr>
-    <tr><td class="paramname">pos</td><td>The index in this object where <code>c</code> is inserted <code>qty</code> times. </td></tr>
+    <tr><td class="paramname">pos</td><td>The index in this object where <span>c</span> is inserted <span>qty</span> times. </td></tr>
   </table>
   </dd>
 </dl>
@@ -4826,7 +4826,7 @@ Character access</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>-1 if the character <code>needle</code> is not found. Otherwise the index of its last occurrence relative to the start index. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>-1 if the character <span>needle</span> is not found. Otherwise the index of its last occurrence relative to the start index. </dd></dl>
 
 </div>
 </div>
@@ -4978,15 +4978,15 @@ Character access</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Reads an unsigned 64-bit integer in binary format at the given position from this <b>AString</b>. This is done, by invoking <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a9109ec19ed07e27a9640f057b6484f8a">NumberFormat.ParseBin</a> on the given <code>numberFormat</code> instance.<br />
- Parameter <code>numberFormat</code> defaults to <code>null</code>. This denotes static singleton <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a> which is configured to not using - and therefore also not parsing - grouping characters.</p>
-<p>Optional output parameter <code>newIdx</code> may be used to detect if parsing was successful. If not, it receives the value of <code>startIdx</code>, even if leading whitespaces had been read.</p>
+<p> Reads an unsigned 64-bit integer in binary format at the given position from this <b>AString</b>. This is done, by invoking <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a9109ec19ed07e27a9640f057b6484f8a">NumberFormat.ParseBin</a> on the given <span>numberFormat</span> instance.<br />
+ Parameter <span>numberFormat</span> defaults to <code>null</code>. This denotes static singleton <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a> which is configured to not using - and therefore also not parsing - grouping characters.</p>
+<p>Optional output parameter <span>newIdx</span> may be used to detect if parsing was successful. If not, it receives the value of <span>startIdx</span>, even if leading whitespaces had been read.</p>
 <p>For more information on number conversion, see class <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>. All of its interface methods have a corresponding implementation within class <b>AString</b>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index for parsing. Optional and defaults to <code>0</code>. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">numberFormat</td><td>The format definition. Defaults to <code>null</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <code>startIdx</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <span>startIdx</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -5078,7 +5078,7 @@ Character access</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index for parsing. Optional and defaults to <code>0</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <code>startIdx</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <span>startIdx</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -5242,16 +5242,16 @@ Character access</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Reads an unsigned 64-bit integer in standard decimal format at the given position from this AString. This is done, by invoking <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a0497fb74d1186bd522de85d748cc9caa">NumberFormat.ParseDec</a> on the given <code>numberFormat</code> instance.<br />
- Parameter <code>numberFormat</code> defaults to <code>null</code>. This denotes static singleton <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a> which is configured to not using - and therefore also not parsing - grouping characters.</p>
-<p>Optional output parameter <code>newIdx</code> may be used to detect if parsing was successful. If not, it receives the value of <code>startIdx</code>, even if leading whitespaces had been read.</p>
+<p> Reads an unsigned 64-bit integer in standard decimal format at the given position from this AString. This is done, by invoking <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a0497fb74d1186bd522de85d748cc9caa">NumberFormat.ParseDec</a> on the given <span>numberFormat</span> instance.<br />
+ Parameter <span>numberFormat</span> defaults to <code>null</code>. This denotes static singleton <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a> which is configured to not using - and therefore also not parsing - grouping characters.</p>
+<p>Optional output parameter <span>newIdx</span> may be used to detect if parsing was successful. If not, it receives the value of <span>startIdx</span>, even if leading whitespaces had been read.</p>
 <p>Sign literals <code>'-'</code> or <code>'+'</code> are <b>not</b> accepted and parsing will fail. For reading signed integer values, see methods <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a27b3cb97005a61c9e579c868bd821610">ParseInt</a>, for floating point numbers <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#ad679ddd3338ce5ca2f7163222177d3c1">ParseFloat</a>.</p>
 <p>For more information on number conversion, see class <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>. All of its interface methods have a corresponding implementation within class <b>AString</b>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index for parsing. Optional and defaults to <code>0</code>. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">numberFormat</td><td>The format definition. Defaults to <code>null</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <code>startIdx</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <span>startIdx</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -5343,7 +5343,7 @@ Character access</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index for parsing. Optional and defaults to <code>0</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <code>startIdx</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <span>startIdx</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -5554,15 +5554,15 @@ Unlike with <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.ht
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Reads a floating point number at the given position from this <b>AString</b>. This is done, by invoking <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#ad6f1d03ed8874c34818494b4ca026695">NumberFormat.ParseFloat</a> on the given <code>numberFormat</code> instance.<br />
- Parameter <code>numberFormat</code> defaults to <code>null</code>. This denotes static singleton <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a> which is configured to 'international' settings (not using the locale) and therefore also not parsing grouping characters.</p>
-<p>Optional output parameter <code>newIdx</code> may be used to detect if parsing was successful. If not, it receives the value of <code>startIdx</code>, even if leading whitespaces had been read.</p>
+<p> Reads a floating point number at the given position from this <b>AString</b>. This is done, by invoking <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#ad6f1d03ed8874c34818494b4ca026695">NumberFormat.ParseFloat</a> on the given <span>numberFormat</span> instance.<br />
+ Parameter <span>numberFormat</span> defaults to <code>null</code>. This denotes static singleton <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a> which is configured to 'international' settings (not using the locale) and therefore also not parsing grouping characters.</p>
+<p>Optional output parameter <span>newIdx</span> may be used to detect if parsing was successful. If not, it receives the value of <span>startIdx</span>, even if leading whitespaces had been read.</p>
 <p>For more information on parsing options for floating point numbers and number conversion in general, see class <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>. All of its interface methods have a corresponding implementation within class <b>AString</b>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index for parsing. Optional and defaults to <code>0</code>. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">numberFormat</td><td>The format definition. Defaults to <code>null</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <code>startIdx</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <span>startIdx</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -5654,7 +5654,7 @@ Unlike with <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.ht
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index for parsing. Optional and defaults to <code>0</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <code>startIdx</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <span>startIdx</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -5818,15 +5818,15 @@ Unlike with <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.ht
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Reads an unsigned 64-bit integer in hexadecimal format at the given position from this <b>AString</b>. This is done, by invoking <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#ac0a67f10e928ab55cfd49e58a3df2565">NumberFormat.ParseHex</a> on the given <code>numberFormat</code> instance.<br />
- Parameter <code>numberFormat</code> defaults to <code>null</code>. This denotes static singleton <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a> which is configured to not using - and therefore also not parsing - grouping characters.</p>
-<p>Optional output parameter <code>newIdx</code> may be used to detect if parsing was successful. If not, it receives the value of <code>startIdx</code>, even if leading whitespaces had been read.</p>
+<p> Reads an unsigned 64-bit integer in hexadecimal format at the given position from this <b>AString</b>. This is done, by invoking <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#ac0a67f10e928ab55cfd49e58a3df2565">NumberFormat.ParseHex</a> on the given <span>numberFormat</span> instance.<br />
+ Parameter <span>numberFormat</span> defaults to <code>null</code>. This denotes static singleton <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a> which is configured to not using - and therefore also not parsing - grouping characters.</p>
+<p>Optional output parameter <span>newIdx</span> may be used to detect if parsing was successful. If not, it receives the value of <span>startIdx</span>, even if leading whitespaces had been read.</p>
 <p>For more information on number conversion, see class <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>. All of its interface methods have a corresponding implementation within class <b>AString</b>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index for parsing. Optional and defaults to <code>0</code>. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">numberFormat</td><td>The format definition. Defaults to <code>null</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <code>startIdx</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <span>startIdx</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -5918,7 +5918,7 @@ Unlike with <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.ht
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index for parsing. Optional and defaults to <code>0</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <code>startIdx</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <span>startIdx</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -6082,15 +6082,15 @@ Unlike with <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.ht
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Parses a long integer value in decimal, binary, hexadecimal or octal format from the string by invoking method <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a5c77787bdd5932fb020c4d9d5c1b6b2a">NumberFormat.ParseInt</a> on the given <code>numberFormat</code> instance.<br />
- Parameter <code>numberFormat</code> defaults to <code>null</code>. This denotes static singleton <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a> which is configured to not using - and therefore also not parsing - grouping characters.</p>
-<p>Optional output parameter <code>newIdx</code> may be used to detect if parsing was successful. If not, it receives the value of <code>startIdx</code>, even if leading whitespaces had been read.</p>
+<p> Parses a long integer value in decimal, binary, hexadecimal or octal format from the string by invoking method <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a5c77787bdd5932fb020c4d9d5c1b6b2a">NumberFormat.ParseInt</a> on the given <span>numberFormat</span> instance.<br />
+ Parameter <span>numberFormat</span> defaults to <code>null</code>. This denotes static singleton <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a> which is configured to not using - and therefore also not parsing - grouping characters.</p>
+<p>Optional output parameter <span>newIdx</span> may be used to detect if parsing was successful. If not, it receives the value of <span>startIdx</span>, even if leading whitespaces had been read.</p>
 <p>For more information on number conversion, see class <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>. All of its interface methods have a corresponding implementation within class <b>AString</b>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index for parsing. Optional and defaults to <code>0</code>. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">numberFormat</td><td>The format definition. Defaults to <code>null</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <code>startIdx</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <span>startIdx</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -6182,7 +6182,7 @@ Unlike with <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.ht
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index for parsing. Optional and defaults to <code>0</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <code>startIdx</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <span>startIdx</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -6346,15 +6346,15 @@ Unlike with <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.ht
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Reads an unsigned 64-bit integer in octal format at the given position from this <b>AString</b>. This is done, by invoking <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#af3d94aee110737f523cc60f03df4eb0b">NumberFormat.ParseOct</a> on the given <code>numberFormat</code> instance.<br />
- Parameter <code>numberFormat</code> defaults to <code>null</code>. This denotes static singleton <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a> which is configured to not using - and therefore also not parsing - grouping characters.</p>
-<p>Optional output parameter <code>newIdx</code> may be used to detect if parsing was successful. If not, it receives the value of <code>startIdx</code>, even if leading whitespaces had been read.</p>
+<p> Reads an unsigned 64-bit integer in octal format at the given position from this <b>AString</b>. This is done, by invoking <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#af3d94aee110737f523cc60f03df4eb0b">NumberFormat.ParseOct</a> on the given <span>numberFormat</span> instance.<br />
+ Parameter <span>numberFormat</span> defaults to <code>null</code>. This denotes static singleton <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#acf46ddfeb324ad3027ecf50f6f48e149">NumberFormat.Computational</a> which is configured to not using - and therefore also not parsing - grouping characters.</p>
+<p>Optional output parameter <span>newIdx</span> may be used to detect if parsing was successful. If not, it receives the value of <span>startIdx</span>, even if leading whitespaces had been read.</p>
 <p>For more information on number conversion, see class <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>. All of its interface methods have a corresponding implementation within class <b>AString</b>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index for parsing. Optional and defaults to <code>0</code>. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">numberFormat</td><td>The format definition. Defaults to <code>null</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <code>startIdx</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <span>startIdx</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -6446,7 +6446,7 @@ Unlike with <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.ht
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index for parsing. Optional and defaults to <code>0</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <code>startIdx</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <span>startIdx</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -6677,12 +6677,12 @@ Unlike with <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.ht
 </div><div class="memdoc">
 <hr/>
 <p> Replaces a region in this object by a portion of a character array. If the region does not fit to this object, then nothing is done.</p>
-<dl class="section attention"><dt>Attention</dt><dd>Parameters <code>cStart</code> and <code>cLength</code> are not checked to match the size of <code>src</code>.</dd></dl>
+<dl class="section attention"><dt>Attention</dt><dd>Parameters <span>cStart</span> and <span>cLength</span> are not checked to match the size of <span>src</span>.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">src</td><td>The <em>char[]</em> to insert characters from. </td></tr>
-    <tr><td class="paramname">cStart</td><td>The start of the substring in <code>src</code> to insert. </td></tr>
-    <tr><td class="paramname">cLength</td><td>The length of the substring in <code>src</code> to insert. </td></tr>
+    <tr><td class="paramname">cStart</td><td>The start of the substring in <span>src</span> to insert. </td></tr>
+    <tr><td class="paramname">cLength</td><td>The length of the substring in <span>src</span> to insert. </td></tr>
     <tr><td class="paramname">regionStart</td><td>The start of the region. </td></tr>
     <tr><td class="paramname">regionLength</td><td>The length of the region. </td></tr>
   </table>
@@ -7985,7 +7985,7 @@ Unlike with <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.ht
 </div><div class="memdoc">
 <hr/>
 <p> All characters defined in given set at, left of and right of the given index are removed from the string.<br />
- The method returns index of the first character of those characters that were behind the trimmed region. With legal <code>index</code> given, this value can only be smaller or equal to <code>index</code>. If <code>index</code> is out of bounds, the length of the string is returned.</p>
+ The method returns index of the first character of those characters that were behind the trimmed region. With legal <span>index</span> given, this value can only be smaller or equal to <span>index</span>. If <span>index</span> is out of bounds, the length of the string is returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">idx</td><td>The index to perform the trim operation at. Has to be between zero and <em><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#ad2cc1673d4ad954556c5356c3ad51550">Length()</a> -1</em>. </td></tr>
@@ -8178,7 +8178,7 @@ Unlike with <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.ht
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Feb 28 2018 20:09:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2018 20:36:51 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.14
 </small></address>

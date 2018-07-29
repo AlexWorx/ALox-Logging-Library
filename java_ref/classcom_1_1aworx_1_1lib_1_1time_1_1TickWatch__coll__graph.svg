@@ -5,39 +5,39 @@
  -->
 <!-- Title: TickWatch Pages: 1 -->
 <svg width="159pt" height="119pt"
- viewBox="0.00 0.00 159.00 119.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ viewBox="0.00 0.00 158.50 119.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 115)">
 <title>TickWatch</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-115 155,-115 155,4 -4,4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-115 154.5,-115 154.5,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<polygon fill="#bfbfbf" stroke="#000000" points="0,-.5 0,-19.5 63,-19.5 63,-.5 0,-.5"/>
-<text text-anchor="middle" x="31.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">TickWatch</text>
+<polygon fill="#bfbfbf" stroke="#000000" points="0,-.5 0,-19.5 64,-19.5 64,-.5 0,-.5"/>
+<text text-anchor="middle" x="32" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">TickWatch</text>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html" target="_top" xlink:title="Ticks">
-<polygon fill="#ffffff" stroke="#000000" points="11,-90.5 11,-109.5 52,-109.5 52,-90.5 11,-90.5"/>
-<text text-anchor="middle" x="31.5" y="-97.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Ticks</text>
+<polygon fill="#ffffff" stroke="#000000" points="11.5,-90.5 11.5,-109.5 52.5,-109.5 52.5,-90.5 11.5,-90.5"/>
+<text text-anchor="middle" x="32" y="-97.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Ticks</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge1" class="edge">
 <title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M31.5,-80.22C31.5,-61.4155 31.5,-33.9332 31.5,-19.5623"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="28.0001,-80.3684 31.5,-90.3684 35.0001,-80.3685 28.0001,-80.3684"/>
-<text text-anchor="middle" x="54.5" y="-63" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> sum</text>
-<text text-anchor="middle" x="54.5" y="-52" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">tempTicks</text>
-<text text-anchor="middle" x="54.5" y="-41" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ticks</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M32,-80.22C32,-61.4155 32,-33.9332 32,-19.5623"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="28.5001,-80.3684 32,-90.3684 35.5001,-80.3685 28.5001,-80.3684"/>
+<text text-anchor="middle" x="55" y="-63" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> sum</text>
+<text text-anchor="middle" x="55" y="-52" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">tempTicks</text>
+<text text-anchor="middle" x="55" y="-41" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ticks</text>
 </g>
 <!-- Node2&#45;&gt;Node2 -->
 <g id="edge2" class="edge">
 <title>Node2&#45;&gt;Node2</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M62.316,-107.4829C66.9,-106.3172 70,-103.8229 70,-100 70,-93.7266 61.6518,-91.0309 52.0969,-91.9131"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="61.873,-104.0029 52.0969,-108.0869 62.286,-110.9907 61.873,-104.0029"/>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M62.816,-107.4829C67.4,-106.3172 70.5,-103.8229 70.5,-100 70.5,-93.7266 62.1518,-91.0309 52.5969,-91.9131"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="62.373,-104.0029 52.5969,-108.0869 62.786,-110.9907 62.373,-104.0029"/>
 <text text-anchor="middle" x="110.5" y="-103" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> tempTicks</text>
 <text text-anchor="middle" x="110.5" y="-92" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">creationTimeTicks</text>
 </g>

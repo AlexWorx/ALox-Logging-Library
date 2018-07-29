@@ -167,7 +167,7 @@
 <g id="node9" class="node">
 <title>Node17</title>
 <g id="a_node9"><a xlink:href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" target="_top" xlink:title="ObjectConverter">
-<polygon fill="#ffffff" stroke="#000000" points="300,-125.5 300,-144.5 387,-144.5 387,-125.5 300,-125.5"/>
+<polygon fill="#ffffff" stroke="#000000" points="299.5,-125.5 299.5,-144.5 387.5,-144.5 387.5,-125.5 299.5,-125.5"/>
 <text text-anchor="middle" x="343.5" y="-132.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ObjectConverter</text>
 </a>
 </g>
@@ -233,7 +233,7 @@
 <title>Node21&#45;&gt;Node10</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M410.1693,-120.5115C394.5814,-112.313 374.2702,-102.2772 355.5,-95 334.5815,-86.8899 310.3315,-79.8899 291.3111,-74.9174"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="408.7387,-123.7153 419.2086,-125.3378 412.0356,-117.5403 408.7387,-123.7153"/>
-<text text-anchor="middle" x="404.5" y="-98" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> AutoSizes</text>
+<text text-anchor="middle" x="405" y="-98" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> AutoSizes</text>
 </g>
 </g>
 </svg>

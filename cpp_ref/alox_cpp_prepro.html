@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1712 R. 1</span>
+   &#160;<span id="projectnumber">V. 1805 R. 0</span>
    </div>
   </td>
  </tr>
@@ -73,7 +73,7 @@ $(function() {
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
+<iframe src="javascript:void(0)" frameborder="0"
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
@@ -84,142 +84,41 @@ $(function() {
 <div class="title">ALox and the C++ Preprocessor </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#alox_cpp_prepro_intro">2. Introduction</a><ul><li class="level2"><a href="#alox_cpp_prepro_intro1">2.1. Structure of ALox Preprocessor Usage</a></li>
-<li class="level2"><a href="#alox_cpp_prepro_intro2">1.2. Preprocessor symbols introduced by ALib</a></li>
-</ul>
-</li>
-<li class="level1"><a href="#alox_cpp_prepro_compsymbols">3. Compilation Symbols</a></li>
-<li class="level1"><a href="#alox_cpp_prepro_code_selection_symbols">4. Code Selection Symbols</a></li>
-<li class="level1"><a href="#alox_cpp_prepro_macros">5. C++ Macros</a><ul><li class="level2"><a href="#alox_cpp_prepro_44">5.1. ALib Macros</a></li>
-<li class="level2"><a href="#alox_cpp_prepro_42">5.2. ALox Logging Macros</a></li>
-<li class="level2"><a href="#alox_cpp_prepro_43">5.3. ALox Low Level Macros</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="textblock"><h1>1. Reference Guide</h1>
-<p>This is a reference list to the preprocessor symbols discussed in the following sections:</p>
-<p><a class="el" href="alox_cpp_prepro.html#alox_cpp_prepro_compsymbols">3. Compilation Symbols</a></p><ul>
-<li><a class="el" href="group__GrpALibCompilerSymbols.html">ALib Compilation Symbols</a></li>
-<li><a class="el" href="group__GrpALoxCompilerSymbols.html">ALox Compilation Symbols</a></li>
-</ul>
-<p><a class="el" href="alox_cpp_prepro.html#alox_cpp_prepro_code_selection_symbols">4. Code Selection Symbols</a></p><ul>
-<li><a class="el" href="group__GrpALibCodeSelectorSymbols.html">ALib Symbols To Select Code Fragments</a></li>
-<li><a class="el" href="group__GrpALoxCodeSelectorSymbols.html">ALox Symbols to Select Code Fragments</a></li>
-</ul>
-<p><a class="el" href="alox_cpp_prepro.html#alox_cpp_prepro_macros">5. C++ Macros</a></p><ul>
-<li><a class="el" href="group__GrpALibMacros.html">ALib Macros</a></li>
-<li><a class="el" href="group__GrpMacrosDebugLog.html">ALox Macros For Debug Logging</a></li>
-<li><a class="el" href="group__GrpMacrosReleaseLog.html">ALox Macros For Release Logging</a></li>
-<li><a class="el" href="group__GrpALoxMacrosLowLevel.html">ALox Low level Macros</a></li>
-</ul>
-<h1><a class="anchor" id="alox_cpp_prepro_intro"></a>
-2. Introduction</h1>
-<h2><a class="anchor" id="alox_cpp_prepro_intro1"></a>
-2.1. Structure of ALox Preprocessor Usage</h2>
-<p>Generally, the (mis-)use of the C/C++ preprocessor can lead to confusion and hard to understand compile time errors. For all software, it is advisable to restrict the use of the preprocessor facilities of C++ to achieve the following:</p><ul>
-<li>Provide project specific configuration information to the compiler using the compiler's options to pass symbol definitions to the compile process from 'outside' (from the make process).</li>
-<li>Select different versions of the code dependent on the platform</li>
-<li>Select different versions of the code dependent on the type of <em>'build'</em> that is to be achieved (e.g. debug or release builds, builds that enable/disable certain features, builds designed for maximizing performance or minimizing code size, etc.)</li>
-</ul>
-<p>ALox (as well as its underlying utility library <em>ALib</em>) volunteers to adhere to a strict separation of what we call <em>Compilation Symbols</em>, <em>Code Selection Symbols</em> and <em>Macros</em> in respect to naming and documentation:<br />
-</p><ol type="1">
-<li><b>Compilation Symbols:</b> These are variables that can be passed to the compiler (usually using the -D option)</li>
-<li><b>Code Selection Symbols:</b> These are preprocessor variables that are used for conditional compilation. Mostly their existence is derived from compilation symbols.</li>
-<li><b>Macros:</b> Finally, we are calling those preprocessor symbols, that stand for (and get replaced by) a piece of C++ code a <em>Macro</em>.</li>
-</ol>
-<p>All <em>macros</em> introduced by ALib/ALox perform a conditional compilation by having different definitions depending on some code selection symbol. They are introduced for the sake of avoiding the use of <em>#if / #endif </em> statements around code lines.</p>
-<p>Consequently, for all important methods of ALox classes to implement logging a preprocessor macro exists, because</p><ul>
-<li>debug logging is deemed to be <em>pruned</em> in release builds</li>
-<li>release logging can be configured using <em>compilation symbols</em> (e.g. to incorporate scope information in the release build or not.</li>
-</ul>
-<dl class="section note"><dt>Note</dt><dd>In other words: While ALox logging is incorporated into the users' code mostly using preprocessor macros, this is still <b> conforming to modern C++ programming style</b>, because all macros are introduced for one reason: to select different C++ code depending on the type of build that compiled (which can not be achieved differently).</dd></dl>
-<h2><a class="anchor" id="alox_cpp_prepro_intro2"></a>
-1.2. Preprocessor symbols introduced by ALib</h2>
-<p>ALox for C++ builds on <a class="el" href="namespaceaworx_1_1lib.html">A-Worx Library</a> (aka <em>ALib</em>) which provides classes that are not related to logging but are general purpose utility classes. To keep things simple, ALib is not compiled into a separated library but included in source into ALox. ALib sources neither refer to any ALox sources nor do they depend on ALox compilation symbols. The other way round, is different: The same as ALox makes use of ALib sources, ALox makes use of ALib preprocessor symbols (and so may any other code that uses Alox).</p>
-<p>Consequently, some of the preprocessor symbols documented here are originating from ALib.</p>
-<h1><a class="anchor" id="alox_cpp_prepro_compsymbols"></a>
-3. Compilation Symbols</h1>
-<p>As stated above, ALox volunteers to separate everything that is related to the C++ preprocessor into three different categories. This section is about symbols that can be passed to the compiler.</p>
-<p><b>Naming</b><br />
- Many of the symbols are named using suffixex <em>_ON</em> or <em>_OFF</em> what indicates that they can be used to switch a code selection symbol (see next sections) which is named the same but excluding the suffix. As a sample, the <em>compilation symbols</em> <a class="el" href="group__GrpALoxCompilerSymbols.html#ga1d6b17b1dc814c44f312baf8d6f56688">ALOX_DBG_LOG_ON</a> and <a class="el" href="group__GrpALoxCompilerSymbols.html#gaf2de46ee4b30ee640266f7ac5de25bb9">ALOX_DBG_LOG_OFF</a> are controlling the definition of the <em>code selection symbol</em> <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga2c6ba32fb7e34be7cee2100578b84a6e">ALOX_DBG_LOG</a>.</p>
-<p><b>Default values</b><br />
- If no compilation symbols are given, appropriate default values are chosen by ALox headers. Some of these default values refer to the somehow standard symbols <em>NDEBUG</em>, <em>DEBUG</em> and <em>_DEBUG</em> used by other libraries. These default settings include:</p>
-<ul>
-<li>extra debug code is switched off.</li>
-<li>multi threading support is switched on.</li>
-<li>debug logging is switched on in debug builds and switched off in release builds.</li>
-<li>debug logging scope information is switched on.</li>
-<li>release logging is switched on.</li>
-<li>release logging scope information is switched off.</li>
-</ul>
-<p><b>Avoiding library compilation problems</b><br />
- As with other C++ libraries, some of the compilation symbols change the interface and footprint ('sizeof()') of some of the classes. Linking a code unit that was compiled with different settings for one of these symbols, can fail. Even worse: in some cases, linking still works, but a process running these code units crashes unexpectedly. Such crashes are never easy to understand and to debug. So it is advised to be careful modifying compiler symbols and make sure that those symbols whose documentation hints to the fact that they change the footprint of the code, share the same value across all compilation units and the ALox library itself.<br />
- A mechanism to detect compilation setup problems exists with method <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#a2f125437b5a6d80e4026f4153c1cb8c5">ALib::VerifyCompilationFlags</a> which is called automatically when invoking <a class="el" href="classaworx_1_1lib_1_1lang_1_1Library.html#abad644913fc967938ede0607a353e29c">ALox::Init</a>, which should be done explicitly on bootstrap, but which is also be done implicitly, when ALox is used (and no explicit invocation was made before).</p>
-<p><b>Reference guide:</b><br />
- The compilation symbols for ALox and ALib are listed here:</p><ul>
-<li><a class="el" href="group__GrpALibCompilerSymbols.html">ALib Compilation Symbols</a></li>
-<li><a class="el" href="group__GrpALoxCompilerSymbols.html">ALox Compilation Symbols</a></li>
-</ul>
-<p><br />
- </p>
-<h1><a class="anchor" id="alox_cpp_prepro_code_selection_symbols"></a>
-4. Code Selection Symbols</h1>
-<p>These symbols are mostly derived (by the ALib/ALox header files) from the <b>Compilation Symbols </b>(<a class="el" href="group__GrpALibCompilerSymbols.html">ALib</a>, <a class="el" href="group__GrpALoxCompilerSymbols.html">ALox</a>) discussed in the previous section and, their naming often corresponds to these, excluding suffixes <em>_ON</em> and <em>_OFF</em>.</p>
-<p>These symbols must not be passed to the compiler and must not be set manually from within code entities that use ALox libraries. They can be used in code entities that use ALox to select code depending on the same settings of the ALox library compilation. (Besides ALox specific symbols of that type, of-course, also platform specific symbols are used to select code, e.g. <em>__GNUC__</em>, <em>__GLIBCXX__</em>, <em>_MSC_VER</em>, <em>_WIN32</em>, etc.).</p>
-<p>Code selection symbols could be used to implement ALox logging using pairs of </p><pre class="fragment">#if defined(ALOX_XYZ_SYMBOL)
-#endif
-</pre><p>While they are useful to implement rather large extra code blocks which are only used if certain logging is enabled, in general it is not recommended to use this mechanism for each and every <em>Log Statement</em>. Instead, it is recommended to use the ALox macros discussed in the next section.</p>
-<p>ALox itself uses these symbols to enable the compilation of specific versions of the library and to conditionally select the definition of the ALox macros.</p>
-<p>For a complete reference, please refer to:</p><ul>
-<li><a class="el" href="group__GrpALibCodeSelectorSymbols.html">ALib Symbols To Select Code Fragments</a></li>
-<li><a class="el" href="group__GrpALoxCodeSelectorSymbols.html">ALox Symbols to Select Code Fragments</a>.</li>
-</ul>
-<h1><a class="anchor" id="alox_cpp_prepro_macros"></a>
-5. C++ Macros</h1>
-<h2><a class="anchor" id="alox_cpp_prepro_44"></a>
-5.1. ALib Macros</h2>
-<p>As mentioned already, the ALox class library includes some utility classes, packaged into ALib. There are also a few macros available that are provided by ALib. These are not related to logging but might be useful in general.</p>
-<p>For people who are interested in and may want to use these macros within projects that use ALib/ALox anyhow, the documentation is found here: <a class="el" href="group__GrpALibMacros.html">ALib Macros</a>.</p>
-<h2><a class="anchor" id="alox_cpp_prepro_42"></a>
-5.2. ALox Logging Macros</h2>
-<p>As stated in the introduction, ALox for C++ makes extensive use of preprocessor macros which still is adhering to modern C++ programming style, because the purpose of the macros are exclusively to select code variations depending on the library build configuration.</p>
+<div class="textblock"><p>This <b>ALib</b> module adheres to the same <a class="elRef" doxygen="ALib/html/cpp_ref.tag:https://alexworx.github.io/ALib-Class-Library/" href="https://alexworx.github.io/ALib-Class-Library/alib_ref_prepro.html">voluntary separation of preprocessor macros</a> as all other modules of the library do.</p>
+<p>A general overview on <b>ALib's</b> use of the preprocessor is given <a class="elRef" doxygen="ALib/html/cpp_ref.tag:https://alexworx.github.io/ALib-Class-Library/" href="https://alexworx.github.io/ALib-Class-Library/alib_ref_prepro.html">here</a>.</p>
+<h2>ALox Macros</h2>
+<p><b>ALox</b> for C++ makes extensive use of preprocessor macros.</p>
 <p>The code selection mainly achieves:</p>
 <ul>
 <li><b>Pruning of log code</b><br />
  Using the logging macros provided, allows to selectively remove all <em><em>debug</em> logging</em> or <em>release logging</em> invocations from the code. (For an explanation of the concept of '<em>pruning'</em>, see <a href="../faq.html#faq_pruning">What is Pruning?</a>.)<br />
- To configure logging (e.g. create certain loggers, configure the log output, etc.) the macro <a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a> and <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a> are provided (which are empty, hence remove all enclosed code on request).</li>
+ To configure logging (e.g. create certain loggers, configure the log output, etc.) the macro <a class="elRef" doxygen="ALib/html/cpp_ref.tag:https://alexworx.github.io/ALib-Class-Library/" href="https://alexworx.github.io/ALib-Class-Library/group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a> and <a class="elRef" doxygen="ALib/html/cpp_ref.tag:https://alexworx.github.io/ALib-Class-Library/" href="https://alexworx.github.io/ALib-Class-Library/group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a> are provided (which are empty, hence remove all enclosed code on request).</li>
 </ul>
 <ul>
 <li><b>Adding scope information</b><br />
- ALox uses built-in standard preprocessor symbols like "__FILE__" and "__LINE__" to provide information about the position of logging statement within the source. Especially for release logging, one problematic fact is that such logging source information could disclose internals if the release software unit was reverse engineered. Therefore, the use of source information is configurable and disabled by default.<br />
- Also, hiding the use of the built-in symbols by using dedicated ALox macros, reliefs the source code from a lot of clutter and overhead.</li>
+ <b>ALox</b> uses built-in standard preprocessor symbols like "__FILE__" and "__LINE__" to provide information about the position of logging statement within the source. Especially for release logging, one problematic fact is that such logging source information could disclose internals if the release software unit was reverse engineered. Therefore, the use of source information is configurable and disabled by default.<br />
+ Also, hiding the use of the built-in symbols by using dedicated <b>ALox</b> macros, reliefs the source code from a lot of clutter and overhead.</li>
 </ul>
-<dl class="section note"><dt>Note</dt><dd>We think, from the fact that source code editors which color C++ macros specifically, a next small benefit is seen when looking at the source code: Similar to colored comment lines, all log lines shine in their own preprocessor color.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Other language implementations of ALox (<em>ALox for C#</em> and <em>ALox for Java</em>) implement pruning with different, language specific mechanisms. In C++, by providing not only a set of macros to implement debug logging, but also one for release logging, one of the differences to such other ALox implementations is, that this allows to prune <em>release logging</em> from the code the same as to prune <em>debug logging</em>. This extra flexibility is not provided with the other implementations by default, but might be achieved by adding language specific extensions by the user of the libraries.<br />
+<dl class="section note"><dt>Note</dt><dd>Other language implementations of <b>ALox</b> (<em>ALox for C#</em> and <em>ALox for Java</em>) implement pruning with different, language specific mechanisms. In C++, by providing not only a set of macros to implement debug logging, but also one for release logging, one of the differences to such other <b>ALox</b> implementations is, that this allows to prune <em>release logging</em> from the code the same as to prune <em>debug logging</em>. This extra flexibility is not provided with the other implementations by default, but might be achieved by adding language specific extensions by the user of the libraries.<br />
  It might be important to understand the difference: When release logging is just <em>disabled</em>, the code for release logging still remains in the binaries, which has an impact on their size and an (probably marginal) impact on their speed. In addition it is possibility to reverse engineer such binaries and learn about internals of the software (should someone do so).<br />
- In this respect, ALox for C++ is the most flexible implementation of ALox as two different release builds are possible: such with release logging incorporated and such with release logging pruned.</dd></dl>
+ In this respect, <b>ALox</b> for C++ is the most flexible implementation of <b>ALox</b> as two different release builds are possible: such with release logging incorporated and such with release logging pruned.</dd></dl>
 <p>The macros and their documentation are divided into two different groups:<br />
-</p><ul>
-<li><a class="el" href="group__GrpMacrosDebugLog.html">ALox Macros For Debug Logging</a></li>
-<li><a class="el" href="group__GrpMacrosReleaseLog.html">ALox Macros For Release Logging</a></li>
+</p>
+<ul>
+<li><a class="elRef" doxygen="ALib/html/cpp_ref.tag:https://alexworx.github.io/ALib-Class-Library/" href="https://alexworx.github.io/ALib-Class-Library/group__GrpMacrosDebugLog.html">ALox Macros For Debug Logging</a></li>
+<li><a class="elRef" doxygen="ALib/html/cpp_ref.tag:https://alexworx.github.io/ALib-Class-Library/" href="https://alexworx.github.io/ALib-Class-Library/group__GrpMacrosReleaseLog.html">ALox Macros For Release Logging</a></li>
 </ul>
+<p>(Note that both links refer to the <b>ALib</b> project website!)</p>
 <p>While all macros for debug logging start with the prefix <b>Log_</b>, those for release logging are using the prefix <b>Lox_</b>. Otherwise, their naming and parameters are the same.<br />
- The rest of the macro names in most cases corresponds to methods found in class <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a>.</p>
-<dl class="section note"><dt>Note</dt><dd>This naming convention provides maximum source compatibility to ALox for C# and ALox for Java, in which debug logging and its pruning is performed using a "mirror" class of class <b>Lox</b> which is called <em>Log</em>.</dd></dl>
-<p>Both macro sets include macro <a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>, respectively <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>. All that these two macros do is pruning the code that is passed to them in the moment that debug logging (respectively release logging) is supposed to be pruned.</p>
-<p>For an introduction of how to use these macros, see <a class="el" href="alox_cpp_tutorial.html">ALox for C++ Tutorial</a>.</p>
-<h2><a class="anchor" id="alox_cpp_prepro_43"></a>
-5.3. ALox Low Level Macros</h2>
-<p>The two sets of ALox macros for debug and release logging that where introduced in the previous chapter, rely on a small set of low level macros. While these macros are not deemed to be used directly, using or even manipulating them might be another way for expert users to tweak ALox.</p>
-<p>The macros are listed and documented here: <a class="el" href="group__GrpALoxMacrosLowLevel.html">ALox Low level Macros</a>.</p>
-<p>For developers who are interested in manipulating them, please refer to the source code of ALox to get an understanding on how such manipulation would influence the existing <a class="el" href="group__GrpMacrosDebugLog.html">ALox Macros For Debug Logging</a> and <a class="el" href="group__GrpMacrosReleaseLog.html">ALox Macros For Release Logging</a>, and also how to build your own macros upon them. </p>
+ The rest of the macro names in most cases corresponds to methods found in class <a class="elRef" doxygen="ALib/html/cpp_ref.tag:https://alexworx.github.io/ALib-Class-Library/" href="https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1lox_1_1Lox.html">Lox</a>.</p>
+<dl class="section note"><dt>Note</dt><dd>This naming convention provides maximum source compatibility to <b>ALox</b> for C# and <b>ALox</b> for Java, in which debug logging and its pruning is performed using a "mirror" class of class <b>Lox</b> which is called <em>Log</em>.</dd></dl>
+<p>Both macro sets include macro <a class="elRef" doxygen="ALib/html/cpp_ref.tag:https://alexworx.github.io/ALib-Class-Library/" href="https://alexworx.github.io/ALib-Class-Library/group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>, respectively <a class="elRef" doxygen="ALib/html/cpp_ref.tag:https://alexworx.github.io/ALib-Class-Library/" href="https://alexworx.github.io/ALib-Class-Library/group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>. All that these two macros do is pruning the code that is passed to them in the moment that debug logging (respectively release logging) is supposed to be pruned.</p>
+<p>For an introduction of how to use these macros, see <a class="el" href="alox_cpp_tutorial.html">ALox for C++ Tutorial</a>. </p>
 </div></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Feb 28 2018 20:08:33 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2018 20:36:50 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.14
 </small></address>

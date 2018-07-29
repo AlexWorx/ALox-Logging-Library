@@ -59,8 +59,8 @@
 <title>Node6&#45;&gt;Node5</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M123.7639,-215.1221C127.0464,-197.7864 131.6661,-173.3886 134.186,-160.0802"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="120.257,-214.8302 121.8354,-225.3068 127.1348,-216.1325 120.257,-214.8302"/>
-<text text-anchor="middle" x="178.5" y="-199" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> stringConverter</text>
-<text text-anchor="middle" x="178.5" y="-188" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">defaultStringConverter</text>
+<text text-anchor="middle" x="179" y="-199" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> stringConverter</text>
+<text text-anchor="middle" x="179" y="-188" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">defaultStringConverter</text>
 </g>
 <!-- Node7 -->
 <g id="node5" class="node">
@@ -90,7 +90,7 @@
 <!-- Node8 -->
 <g id="node6" class="node">
 <title>Node8</title>
-<polygon fill="#ffffff" stroke="#bfbfbf" points="43,-360.5 43,-379.5 123,-379.5 123,-360.5 43,-360.5"/>
+<polygon fill="#ffffff" stroke="#bfbfbf" points="42.5,-360.5 42.5,-379.5 123.5,-379.5 123.5,-360.5 42.5,-360.5"/>
 <text text-anchor="middle" x="83" y="-367.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">CharSequence</text>
 </g>
 <!-- Node8&#45;&gt;Node7 -->
@@ -125,16 +125,16 @@
 <!-- Node10 -->
 <g id="node8" class="node">
 <title>Node10</title>
-<polygon fill="#ffffff" stroke="#bfbfbf" points="204.5,-135.5 204.5,-165.5 361.5,-165.5 361.5,-135.5 204.5,-135.5"/>
-<text text-anchor="start" x="212.5" y="-153.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ArrayList&lt; com.aworx.lib.config.</text>
-<text text-anchor="middle" x="283" y="-142.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">InMemoryPlugin.Section &gt;</text>
+<polygon fill="#ffffff" stroke="#bfbfbf" points="205,-135.5 205,-165.5 363,-165.5 363,-135.5 205,-135.5"/>
+<text text-anchor="start" x="213" y="-153.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ArrayList&lt; com.aworx.lib.config.</text>
+<text text-anchor="middle" x="284" y="-142.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">InMemoryPlugin.Section &gt;</text>
 </g>
 <!-- Node10&#45;&gt;Node4 -->
 <g id="edge8" class="edge">
 <title>Node10&#45;&gt;Node4</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M243.5842,-130.7921C215.0229,-116.5115 177.642,-97.821 155.3003,-86.6501"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="242.3881,-134.1071 252.8976,-135.4488 245.5186,-127.8461 242.3881,-134.1071"/>
-<text text-anchor="middle" x="233" y="-108" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> sections</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M244.6906,-130.9781C215.8881,-116.6741 178.0231,-97.8696 155.4316,-86.6501"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="243.1797,-134.1356 253.6929,-135.4488 246.2933,-127.8661 243.1797,-134.1356"/>
+<text text-anchor="middle" x="234" y="-108" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> sections</text>
 </g>
 <!-- Node11 -->
 <g id="node9" class="node">
@@ -163,7 +163,7 @@
 <title>Node12&#45;&gt;Node3</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M318.295,-62.264C305.6475,-54.6427 289.6998,-45.4106 275,-38 260.8464,-30.8647 244.452,-23.8107 231.6691,-18.5678"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="316.4952,-65.2658 326.8561,-67.4798 320.1372,-59.2879 316.4952,-65.2658"/>
-<text text-anchor="middle" x="339" y="-41" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> linesWithReadErrors</text>
+<text text-anchor="middle" x="340" y="-41" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> linesWithReadErrors</text>
 </g>
 </g>
 </svg>

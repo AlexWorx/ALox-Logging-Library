@@ -1,9 +1,0 @@
-<map id="Domain::LoggerData" name="Domain::LoggerData">
-<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1threads_1_1SmartLock.html" title="SmartLock" alt="" coords="271,184,356,211"/>
-<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="5,184,208,211"/>
-<area shape="rect" id="node4" href="$classaworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="283,288,344,315"/>
-<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="231,5,321,32"/>
-<area shape="rect" id="node7" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="54,95,119,121"/>
-<area shape="rect" id="node8" href="$classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html" title="ThreadLockNR" alt="" coords="370,95,478,121"/>
-<area shape="rect" id="node9" href="$classaworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="381,184,435,211"/>
-</map>

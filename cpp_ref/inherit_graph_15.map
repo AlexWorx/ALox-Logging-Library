@@ -1,5 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1lang_1_1EnumIterator_1_1RandomAccessIteratorBase.html" title="EnumIterator\&lt;TEnum, TEnableIf\&gt;::RandomAccessIteratorBase\&lt;TPointer, TReference\&gt;" alt="" coords="116,5,645,32"/>
-<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1String_1_1RandomAccessIteratorBase.html" title="String::RandomAccessIteratorBase\&lt;TPointer, TReference\&gt;" alt="" coords="197,56,564,83"/>
-<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1util_1_1StringTree_1_1StdIterator.html" title="StringTree\&lt;T, TKeyAllocator, TSeparator\&gt;::StdIterator" alt="" coords="213,107,548,133"/>
-</map>

@@ -1,4 +1,28 @@
 var searchData=
 [
-  ['numberformat',['NumberFormat',['.././cpp_ref/namespaceaworx.html#a4105ad142b7282bab44c0f051d36e350',1,'aworx']]]
+  ['nastring',['NAString',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#af6808b9762d6f5665bb9f7dc2487dddf',1,'aworx']]],
+  ['nchar',['nchar',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#a1c1d3a35b0a83dedccba1d22b1f7b656',1,'aworx']]],
+  ['nformat',['NFormat',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#a16045e3a42e1801936a8e4bc69a3a7aa',1,'aworx']]],
+  ['nformatter',['NFormatter',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#acacd770f91456b6440699aa7a7e15cec',1,'aworx']]],
+  ['nformatterjavastyle',['NFormatterJavaStyle',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#afee139e5f44cce8f264437971be62238',1,'aworx']]],
+  ['nformatterpythonstyle',['NFormatterPythonStyle',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#ac0fae6ac8906abb62a007a1456089d1a',1,'aworx']]],
+  ['nnumberformat',['NNumberFormat',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#a2a34fc26238f78d7ac29e1eafb4e142e',1,'aworx']]],
+  ['npreallocatedstring',['NPreallocatedString',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#a51d0909b677ca8cef602bcc9f6eb1cdc',1,'aworx']]],
+  ['nsimpletext',['NSimpleText',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#a65d711e8f1455318d3412b280e932e03',1,'aworx']]],
+  ['nsliteral',['NSLiteral',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#acdd37b479faa2819f3990aa87ba9e936',1,'aworx']]],
+  ['nstring',['NString',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#a7af8a9e3564064047a575c7ff5462de9',1,'aworx']]],
+  ['nstring128',['NString128',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#a900b490acd47ffcf2dff7fc2117a58e9',1,'aworx']]],
+  ['nstring16',['NString16',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#a909bcddeed9106ff2941eb99ea2dbab7',1,'aworx']]],
+  ['nstring1k',['NString1K',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#a380079aa9f77e82f9f1eb199a7754972',1,'aworx']]],
+  ['nstring256',['NString256',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#aa5134f8b2c2e453c822dc8da57088ce6',1,'aworx']]],
+  ['nstring2k',['NString2K',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#ae05adb4f1cf91a4a7f7e139813fbc5a0',1,'aworx']]],
+  ['nstring32',['NString32',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#a6342913579bbbf52eebaab0f4cd54c0b',1,'aworx']]],
+  ['nstring4k',['NString4K',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#ad74d1cfa73fecfec18cf4f89708482e9',1,'aworx']]],
+  ['nstring512',['NString512',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#ab219e62d934dfc51553b3d6e60072e8b',1,'aworx']]],
+  ['nstring64',['NString64',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#a7a9a2ff9515de3c4884ef1fd1346ec06',1,'aworx']]],
+  ['nstring8',['NString8',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#affd16b06c90efe69423e89a55302ad2e',1,'aworx']]],
+  ['nsubstring',['NSubstring',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#a86fbfa6b4ddc0d28ed2c43f1c9677e77',1,'aworx']]],
+  ['nsubstringsearch',['NSubstringSearch',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#a521e20c9355380a932c3a4e664595025',1,'aworx']]],
+  ['ntstring',['NTString',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#a856b8910f2187f65650e4d24de8971bc',1,'aworx']]],
+  ['numberformat',['NumberFormat',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#a657afa4b3b994aec8e091c5f84a8b862',1,'aworx']]]
 ];

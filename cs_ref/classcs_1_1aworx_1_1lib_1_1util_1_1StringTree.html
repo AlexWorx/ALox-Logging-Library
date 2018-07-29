@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1712 R. 1</span>
+   &#160;<span id="projectnumber">V. 1805 R. 0</span>
    </div>
   </td>
  </tr>
@@ -96,18 +96,17 @@ $(function() {
 <div class="dynheader">
 Collaboration diagram for StringTree&lt; T &gt;:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lib_1_1util_1_1StringTree__coll__graph.svg" width="224" height="127"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lib_1_1util_1_1StringTree__coll__graph.svg" width="224" height="127"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
 <p> This class manages an object of internal type <a class="el" href="classcs_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Node.html">Node</a>, which consists of</p><ul>
-<li>A value of custom (template) type <code>T</code>,</li>
+<li>A value of custom (template) type <span>T</span>,</li>
 <li>A pointer to a parent <b>Node</b> and</li>
 <li>A hash table which recursively stores pointers to <b><a class="el" href="classcs_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Node.html">Node</a></b> objects, referred to by a string-type key.</li>
 </ul>
 <p>This recursive data structure is what comprises a graph with named edges. As this object does not allow insertion of nodes with circular dependencies, the graph is of tree type. The way from the root node to the leafs usually is called "path" and the class incorporates functionality to work with string representations of such paths where names of edges are concatenated and separated by a special separation character. Now, this explains why this class is called <b>StringTree</b>.</p>
-<p>The search and creation of tree nodes by using aforementioned path strings, is very similar to what is well known from addressing files and folders in file systems. The difference is however, that this class does not differentiate between 'folders' and 'files', hence between 'nodes' and 'leafs'. Every node has the same value type <code>T</code> and may or may not have child nodes. If such differentiation - or other semantics - is wanted, this may be modeled in custom attributes provided in template type <code>T</code>.</p>
+<p>The search and creation of tree nodes by using aforementioned path strings, is very similar to what is well known from addressing files and folders in file systems. The difference is however, that this class does not differentiate between 'folders' and 'files', hence between 'nodes' and 'leafs'. Every node has the same value type <span>T</span> and may or may not have child nodes. If such differentiation - or other semantics - is wanted, this may be modeled in custom attributes provided in template type <span>T</span>.</p>
 <p>The internal node structure is not exposed publically and the class has no direct interface to manipulate nodes. Instead, the interface is defined by two public inner types. Those are:</p><ul>
 <li><a class="el" href="classcs_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Cursor.html">Cursor</a> and</li>
 <li><a class="el" href="classcs_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Walker.html">Walker</a>.</li>
@@ -326,7 +325,7 @@ Protected Fields</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Feb 28 2018 20:09:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2018 20:36:51 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.14
 </small></address>

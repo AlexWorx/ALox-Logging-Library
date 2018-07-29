@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1712 R. 1</span>
+   &#160;<span id="projectnumber">V. 1805 R. 0</span>
    </div>
   </td>
  </tr>
@@ -94,14 +94,12 @@ $(function() {
 <div class="dynheader">
 Inheritance diagram for AString:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lib_1_1strings_1_1AString__inherit__graph.svg" width="118" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lib_1_1strings_1_1AString__inherit__graph.svg" width="119" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for AString:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lib_1_1strings_1_1AString__coll__graph.svg" width="118" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lib_1_1strings_1_1AString__coll__graph.svg" width="119" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
@@ -114,7 +112,7 @@ Collaboration diagram for AString:</div>
 <p>In general, AString methods are internally checking the provided parameters. For example, method <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a336b72f4d70d93433fbc310931c54589">_( CharSequence src, int regionStart, int regionLength )</a> is adjusting the provided region information to fit to the size of the provided AString (in Java CharSequence).<br />
  Chances are high, that the code invoking this method "knows" about the correctness of the region. In this case, the checks are redundant.</p>
 <p>For avoiding unnecessary checks, various methods are provided by AString that omit such checks. These methods share the same name as the standard one, with the suffix "_NC" appended (NC stands for "no checks").</p>
-<p>In the sample above, if the calling code was sure about the parameters <code>regionStart</code> and <code>regionLength</code> being in the bounds of <code>src</code>, method <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a7e2f603873c045e66305817610772c47">_NC( AString src, int regionStart, int regionLength )</a> can be used.</p>
+<p>In the sample above, if the calling code was sure about the parameters <span>regionStart</span> and <span>regionLength</span> being in the bounds of <span>src</span>, method <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a7e2f603873c045e66305817610772c47">_NC( AString src, int regionStart, int regionLength )</a> can be used.</p>
 <dl class="section attention"><dt>Attention</dt><dd>The following rules apply to all methods suffixed by <em>_NC</em>:<ul>
 <li>Parameters are not checked for being null.</li>
 <li>Index, size, length, region start/end and other parameters are not checked to be correct</li>
@@ -1187,7 +1185,7 @@ Java std library interface implementation</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Format and append a 32-Bit integer value.</p>
-<p>Parameter <code>numberFormat</code> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a>. To generate output better readable for humans, provide <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a57b001277f79d9f58dd266598d107317">NumberFormat.global</a>, or a customized object of that type.</p>
+<p>Parameter <span>numberFormat</span> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a>. To generate output better readable for humans, provide <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a57b001277f79d9f58dd266598d107317">NumberFormat.global</a>, or a customized object of that type.</p>
 <p>See <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> for more information on formatting options.<br />
 </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -1337,7 +1335,7 @@ Java std library interface implementation</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Format and append a 64-Bit integer value.</p>
-<p>Parameter <code>numberFormat</code> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a>. To generate output better readable for humans, provide <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a57b001277f79d9f58dd266598d107317">NumberFormat.global</a>, or a customized object of that type.</p>
+<p>Parameter <span>numberFormat</span> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a>. To generate output better readable for humans, provide <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a57b001277f79d9f58dd266598d107317">NumberFormat.global</a>, or a customized object of that type.</p>
 <p>See <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> for more information on formatting options.<br />
 </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -1636,7 +1634,7 @@ Java std library interface implementation</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Append a 64-Bit integer value in binary format.</p>
-<p>Parameter <code>numberFormat</code> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a>. To generate output better readable for humans, provide <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a57b001277f79d9f58dd266598d107317">NumberFormat.global</a>, or a customized object of that type.</p>
+<p>Parameter <span>numberFormat</span> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a>. To generate output better readable for humans, provide <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a57b001277f79d9f58dd266598d107317">NumberFormat.global</a>, or a customized object of that type.</p>
 <p>See <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> for more information on formatting options.<br />
 </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -1787,7 +1785,7 @@ Java std library interface implementation</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Append a 64-Bit integer value in hexadecimal format.</p>
-<p>Parameter <code>numberFormat</code> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a>. To generate output better readable for humans, provide <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a57b001277f79d9f58dd266598d107317">NumberFormat.global</a>, or a customized object of that type.</p>
+<p>Parameter <span>numberFormat</span> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a>. To generate output better readable for humans, provide <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a57b001277f79d9f58dd266598d107317">NumberFormat.global</a>, or a customized object of that type.</p>
 <p>See <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> for more information on formatting options.<br />
 </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -2182,7 +2180,7 @@ Java std library interface implementation</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Append a 64-Bit integer value in octal format.</p>
-<p>Parameter <code>numberFormat</code> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a>. To generate output better readable for humans, provide <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a57b001277f79d9f58dd266598d107317">NumberFormat.global</a>, or a customized object of that type.</p>
+<p>Parameter <span>numberFormat</span> defaults to <code>null</code>, which denotes this method to use the static singleton found in <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a>. To generate output better readable for humans, provide <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a57b001277f79d9f58dd266598d107317">NumberFormat.global</a>, or a customized object of that type.</p>
 <p>See <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a> for more information on formatting options.<br />
 </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -3090,7 +3088,7 @@ Java std library interface implementation</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#afe07a09a17860a48e8cf09f7d99a19ae">delete(int,int)</a> that provides the default value Integer.MAX_VALUE as parameter <code>regionLength</code>.</p>
+<p> Overloaded version of <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#afe07a09a17860a48e8cf09f7d99a19ae">delete(int,int)</a> that provides the default value Integer.MAX_VALUE as parameter <span>regionLength</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">regionStart</td><td>The start of the region to delete.</td></tr>
@@ -3128,7 +3126,7 @@ Java std library interface implementation</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Cuts out a region from the Buffer. </p><dl class="section note"><dt>Note</dt><dd>See also methods <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a0db6c33803a57a12ce1ecc711f323003">clear</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#ac9ebeb5de64951132191993a184707e6">deleteStart</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#af5ada9158e4224653981cda75dea4858">deleteStart_NC</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#afb5c75fde5447148afe22bde63c4789f">deleteEnd</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a65096dc66963adab0dc9d38376cde05b">deleteEnd_NC</a>.</dd></dl>
-<dl class="section attention"><dt>Attention</dt><dd>Non checking variant of original method. See <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#JAVA_ASTRING_NC">Non-checking methods</a> for <em>_NC</em> method variants. Like with method <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#afe07a09a17860a48e8cf09f7d99a19ae">delete(int, int)</a>, it is allowed that the sum of parameters <code>regionStart</code> and <code>regionLength</code> is longer than the length of this <b>AString</b>. In this case, this string is cut starting from index <code>regionStart</code>.</dd></dl>
+<dl class="section attention"><dt>Attention</dt><dd>Non checking variant of original method. See <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#JAVA_ASTRING_NC">Non-checking methods</a> for <em>_NC</em> method variants. Like with method <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#afe07a09a17860a48e8cf09f7d99a19ae">delete(int, int)</a>, it is allowed that the sum of parameters <span>regionStart</span> and <span>regionLength</span> is longer than the length of this <b>AString</b>. In this case, this string is cut starting from index <span>regionStart</span>.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">regionStart</td><td>The start of the region to delete. </td></tr>
@@ -4413,7 +4411,7 @@ Java std library interface implementation</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>This strings <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a9f59b34b1f25fe00023291b678246bcc">length</a> if the character <code>needle</code> is not found. Otherwise the index of first occurrence. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>This strings <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a9f59b34b1f25fe00023291b678246bcc">length</a> if the character <span>needle</span> is not found. Otherwise the index of first occurrence. </dd></dl>
 
 </div>
 </div>
@@ -4451,7 +4449,7 @@ Java std library interface implementation</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>This strings <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a9f59b34b1f25fe00023291b678246bcc">length</a> if the character <code>needle</code> is not found. Otherwise the index of first occurrence. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>This strings <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a9f59b34b1f25fe00023291b678246bcc">length</a> if the character <span>needle</span> is not found. Otherwise the index of first occurrence. </dd></dl>
 
 </div>
 </div>
@@ -4486,7 +4484,7 @@ Java std library interface implementation</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">src</td><td>The <em>CharSequence</em> to insert characters from. </td></tr>
-    <tr><td class="paramname">pos</td><td>The position in this object insert the portion of <code>src</code>. </td></tr>
+    <tr><td class="paramname">pos</td><td>The position in this object insert the portion of <span>src</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -4529,9 +4527,9 @@ Java std library interface implementation</h2></td></tr>
 <p> Inserts the given character n-times at a given position. If the given position is out of range, nothing is inserted.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">c</td><td>The character to insert <code>qty</code> times. </td></tr>
+    <tr><td class="paramname">c</td><td>The character to insert <span>qty</span> times. </td></tr>
     <tr><td class="paramname">qty</td><td>The quantity of characters to insert. </td></tr>
-    <tr><td class="paramname">pos</td><td>The index in this object where <code>c</code> is inserted <code>qty</code> times. </td></tr>
+    <tr><td class="paramname">pos</td><td>The index in this object where <span>c</span> is inserted <span>qty</span> times. </td></tr>
   </table>
   </dd>
 </dl>
@@ -4689,7 +4687,7 @@ Java std library interface implementation</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>-1 if the character <code>needle</code> is not found. Otherwise the index of its last occurrence relative to the start index. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>-1 if the character <span>needle</span> is not found. Otherwise the index of its last occurrence relative to the start index. </dd></dl>
 
 </div>
 </div>
@@ -4716,7 +4714,7 @@ Java std library interface implementation</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>-1 if the character <code>needle</code> is not found. Otherwise the index of its last occurrence relative to the start index. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>-1 if the character <span>needle</span> is not found. Otherwise the index of its last occurrence relative to the start index. </dd></dl>
 
 </div>
 </div>
@@ -4874,20 +4872,20 @@ Java std library interface implementation</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Reads an unsigned 64-bit integer in binary format at the given position from this <b>AString</b>. This is done, by invoking <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#ab2d118a021a1240cfc7d905015af7524">NumberFormat.parseBin</a> on the given <code>numberFormat</code> instance.<br />
- Parameter <code>numberFormat</code> defaults <code>null</code>. This denotes static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a> which is configured to not using - and therefore also not parsing - grouping characters.</p>
-<p>Optional output parameter <code>newIdx</code> may be used to detect if parsing was successful. If not, it receives the value of <code>startIdx</code>, even if leading whitespaces had been read.</p>
+<p> Reads an unsigned 64-bit integer in binary format at the given position from this <b>AString</b>. This is done, by invoking <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#ab2d118a021a1240cfc7d905015af7524">NumberFormat.parseBin</a> on the given <span>numberFormat</span> instance.<br />
+ Parameter <span>numberFormat</span> defaults <code>null</code>. This denotes static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a> which is configured to not using - and therefore also not parsing - grouping characters.</p>
+<p>Optional output parameter <span>newIdx</span> may be used to detect if parsing was successful. If not, it receives the value of <span>startIdx</span>, even if leading whitespaces had been read.</p>
 <p>For more information on number conversion, see class <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>. All of its interface methods have a corresponding implementation within class <b>AString</b>.</p>
 <dl class="section note"><dt>Note</dt><dd>Although Java does not support unsigned integer, the value that is read with this method is correct in respect to the bits set in the signed value returned. In other words, if the most significant bit (#64), is set, the return value is negative.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index for parsing. Optional and defaults to <code>0</code>. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">numberFormat</td><td>The format definition. Defaults to <code>null</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <code>startIdx</code>.</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <span>startIdx</span>.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The parsed value. In addition, the output parameter <code>newIdx</code> is set to point to the first character behind the parsed number. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The parsed value. In addition, the output parameter <span>newIdx</span> is set to point to the first character behind the parsed number. </dd></dl>
 
 </div>
 </div>
@@ -5006,7 +5004,7 @@ Java std library interface implementation</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index from where the integer value is tried to be parsed. Optional and defaults to <code>0</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the float number that was parsed. On failure, it will be set to the initial value <code>startIdx</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the float number that was parsed. On failure, it will be set to the initial value <span>startIdx</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -5138,9 +5136,9 @@ Java std library interface implementation</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Reads an unsigned 64-bit integer in standard decimal format at the given position from this <b>AString</b>. This is done, by invoking <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#aa56f70695b932a3d339e5fb6fc09ed57">NumberFormat.parseDec</a> on the given <code>numberFormat</code> instance.<br />
- Parameter <code>numberFormat</code> defaults <code>null</code>. This denotes static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a> which is configured to not using - and therefore also not parsing - grouping characters.</p>
-<p>Optional output parameter <code>newIdx</code> may be used to detect if parsing was successful. If not, it receives the value of <code>startIdx</code>, even if leading whitespaces had been read.</p>
+<p> Reads an unsigned 64-bit integer in standard decimal format at the given position from this <b>AString</b>. This is done, by invoking <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#aa56f70695b932a3d339e5fb6fc09ed57">NumberFormat.parseDec</a> on the given <span>numberFormat</span> instance.<br />
+ Parameter <span>numberFormat</span> defaults <code>null</code>. This denotes static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a> which is configured to not using - and therefore also not parsing - grouping characters.</p>
+<p>Optional output parameter <span>newIdx</span> may be used to detect if parsing was successful. If not, it receives the value of <span>startIdx</span>, even if leading whitespaces had been read.</p>
 <p>Sign literals <code>'-'</code> or <code>'+'</code> are <b>not</b> accepted and parsing will fail. For reading signed integer values, see methods <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a7d9e415772a30d06bc483a3d5cd2d4ca">parseInt</a>, for floating point numbers <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a5e533263cc253aeb9f8de43516183e20">parseFloat</a>.</p>
 <p>For more information on number conversion, see class <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>. All of its interface methods have a corresponding implementation within class <b>AString</b>.</p>
 <dl class="section note"><dt>Note</dt><dd>Because Java does not support unsigned integer, the value to read is limited to <code>Long.MAX_VALUE</code> in this language implementation of <b>ALib</b>.</dd></dl>
@@ -5148,11 +5146,11 @@ Java std library interface implementation</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index for parsing. Optional and defaults to <code>0</code>. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">numberFormat</td><td>The format definition. Defaults to <code>null</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <code>startIdx</code>.</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <span>startIdx</span>.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The parsed value. In addition, the output parameter <code>newIdx</code> is set to point to the first character behind the parsed number. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The parsed value. In addition, the output parameter <span>newIdx</span> is set to point to the first character behind the parsed number. </dd></dl>
 
 </div>
 </div>
@@ -5271,7 +5269,7 @@ Java std library interface implementation</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index from where the integer value is tried to be parsed. Optional and defaults to <code>0</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the float number that was parsed. On failure, it will be set to the initial value <code>startIdx</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the float number that was parsed. On failure, it will be set to the initial value <span>startIdx</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -5402,7 +5400,7 @@ Unlike with <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.h
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index for parsing. Optional and defaults to <code>0</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <code>startIdx</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <span>startIdx</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -5442,19 +5440,19 @@ Unlike with <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.h
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Reads a floating point number at the given position from this <b>AString</b>. This is done, by invoking <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a851c54495b2d0b150e28433e9a92018a">NumberFormat.parseFloat</a> on the given <code>numberFormat</code> instance.<br />
- Parameter <code>numberFormat</code> defaults <code>null</code>. This denotes static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a> which is configured to 'international' settings (not using the locale) and therefore also not parsing grouping characters.</p>
-<p>Optional output parameter <code>newIdx</code> may be used to detect if parsing was successful. If not, it receives the value of <code>startIdx</code>, even if leading whitespaces had been read.</p>
+<p> Reads a floating point number at the given position from this <b>AString</b>. This is done, by invoking <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a851c54495b2d0b150e28433e9a92018a">NumberFormat.parseFloat</a> on the given <span>numberFormat</span> instance.<br />
+ Parameter <span>numberFormat</span> defaults <code>null</code>. This denotes static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a> which is configured to 'international' settings (not using the locale) and therefore also not parsing grouping characters.</p>
+<p>Optional output parameter <span>newIdx</span> may be used to detect if parsing was successful. If not, it receives the value of <span>startIdx</span>, even if leading whitespaces had been read.</p>
 <p>For more information on parsing options for floating point numbers and number conversion in general, see class <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>. All of its interface methods have a corresponding implementation within class <b>AString</b>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index for parsing. Optional and defaults to <code>0</code>. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">numberFormat</td><td>The format definition. Defaults to <code>null</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <code>startIdx</code>.</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <span>startIdx</span>.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The parsed value. In addition, the output parameter <code>newIdx</code> is set to point to the first character behind any found float number. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The parsed value. In addition, the output parameter <span>newIdx</span> is set to point to the first character behind any found float number. </dd></dl>
 
 </div>
 </div>
@@ -5573,7 +5571,7 @@ Unlike with <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.h
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index from where the integer value is tried to be parsed. Optional and defaults to <code>0</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the float number that was parsed. On failure, it will be set to the initial value <code>startIdx</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the float number that was parsed. On failure, it will be set to the initial value <span>startIdx</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -5705,20 +5703,20 @@ Unlike with <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.h
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Reads an unsigned 64-bit integer in hexadecimal format at the given position from this <b>AString</b>. This is done, by invoking <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a2e994945725decf5a420709314223937">NumberFormat.parseHex</a> on the given <code>numberFormat</code> instance.<br />
- Parameter <code>numberFormat</code> defaults <code>null</code>. This denotes static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a> which is configured to not using - and therefore also not parsing - grouping characters.</p>
-<p>Optional output parameter <code>newIdx</code> may be used to detect if parsing was successful. If not, it receives the value of <code>startIdx</code>, even if leading whitespaces had been read.</p>
+<p> Reads an unsigned 64-bit integer in hexadecimal format at the given position from this <b>AString</b>. This is done, by invoking <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a2e994945725decf5a420709314223937">NumberFormat.parseHex</a> on the given <span>numberFormat</span> instance.<br />
+ Parameter <span>numberFormat</span> defaults <code>null</code>. This denotes static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a> which is configured to not using - and therefore also not parsing - grouping characters.</p>
+<p>Optional output parameter <span>newIdx</span> may be used to detect if parsing was successful. If not, it receives the value of <span>startIdx</span>, even if leading whitespaces had been read.</p>
 <p>For more information on number conversion, see class <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>. All of its interface methods have a corresponding implementation within class <b>AString</b>.</p>
 <dl class="section note"><dt>Note</dt><dd>Although Java does not support unsigned integer, the value that is read with this method is correct in respect to the bits set in the signed value returned. In other words, if the most significant bit (#64), is set, the return value is negative. For this, 16 hexadecimal digits need to be read and the first of them needs to be greater or equal to <b>0x8</b>.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index for parsing. Optional and defaults to <code>0</code>. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">numberFormat</td><td>The format definition. Defaults to <code>null</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <code>startIdx</code>.</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <span>startIdx</span>.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The parsed value. In addition, the output parameter <code>newIdx</code> is set to point to the first character behind the parsed number. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The parsed value. In addition, the output parameter <span>newIdx</span> is set to point to the first character behind the parsed number. </dd></dl>
 
 </div>
 </div>
@@ -5837,7 +5835,7 @@ Unlike with <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.h
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index from where the integer value is tried to be parsed. Optional and defaults to <code>0</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the float number that was parsed. On failure, it will be set to the initial value <code>startIdx</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the float number that was parsed. On failure, it will be set to the initial value <span>startIdx</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -5969,15 +5967,15 @@ Unlike with <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.h
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Parses a long integer value in decimal, binary, hexadecimal or octal format from the string by invoking method <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a265378d3cb69ceb00e51fd307db9105d">NumberFormat.parseInt</a> on the given <code>numberFormat</code> instance.<br />
- Parameter <code>numberFormat</code> defaults <code>null</code>. This denotes static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a> which is configured to 'international' settings (not using the locale) and therefore also not parsing grouping characters.</p>
-<p>Optional output parameter <code>newIdx</code> may be used to detect if parsing was successful. If not, it receives the value of <code>startIdx</code>, even if leading whitespaces had been read.</p>
+<p> Parses a long integer value in decimal, binary, hexadecimal or octal format from the string by invoking method <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a265378d3cb69ceb00e51fd307db9105d">NumberFormat.parseInt</a> on the given <span>numberFormat</span> instance.<br />
+ Parameter <span>numberFormat</span> defaults <code>null</code>. This denotes static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a> which is configured to 'international' settings (not using the locale) and therefore also not parsing grouping characters.</p>
+<p>Optional output parameter <span>newIdx</span> may be used to detect if parsing was successful. If not, it receives the value of <span>startIdx</span>, even if leading whitespaces had been read.</p>
 <p>For more information on number conversion, see class <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>. All of its interface methods have a corresponding implementation within class <b>AString</b>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index for parsing. Optional and defaults to <code>0</code>. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">numberFormat</td><td>The format definition. Defaults to <code>null</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <code>startIdx</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <span>startIdx</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -6100,7 +6098,7 @@ Unlike with <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.h
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index from where the integer value is tried to be parsed. Optional and defaults to <code>0</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the float number that was parsed. On failure, it will be set to the initial value <code>startIdx</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the float number that was parsed. On failure, it will be set to the initial value <span>startIdx</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -6232,20 +6230,20 @@ Unlike with <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.h
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Reads an unsigned 64-bit integer in octal format at the given position from this <b>AString</b>. This is done, by invoking <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a517296cf9db7667ae951866d447ba8de">NumberFormat.parseOct</a> on the given <code>numberFormat</code> instance.<br />
- Parameter <code>numberFormat</code> defaults <code>null</code>. This denotes static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a> which is configured to not using - and therefore also not parsing - grouping characters.</p>
-<p>Optional output parameter <code>newIdx</code> may be used to detect if parsing was successful. If not, it receives the value of <code>startIdx</code>, even if leading whitespaces had been read.</p>
+<p> Reads an unsigned 64-bit integer in octal format at the given position from this <b>AString</b>. This is done, by invoking <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a517296cf9db7667ae951866d447ba8de">NumberFormat.parseOct</a> on the given <span>numberFormat</span> instance.<br />
+ Parameter <span>numberFormat</span> defaults <code>null</code>. This denotes static singleton <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a15966a6f02a12c0342b42479825472f8">NumberFormat.computational</a> which is configured to not using - and therefore also not parsing - grouping characters.</p>
+<p>Optional output parameter <span>newIdx</span> may be used to detect if parsing was successful. If not, it receives the value of <span>startIdx</span>, even if leading whitespaces had been read.</p>
 <p>For more information on number conversion, see class <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>. All of its interface methods have a corresponding implementation within class <b>AString</b>.</p>
 <dl class="section note"><dt>Note</dt><dd>Although Java does not support unsigned integer, the value that is read with this method is correct in respect to the bits set in the signed value returned. In other words, if the most significant bit (#64), is set, the return value is negative. For this, 22 octal digits need to be read with the first being <code>1</code>.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index for parsing. Optional and defaults to <code>0</code>. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">numberFormat</td><td>The format definition. Defaults to <code>null</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <code>startIdx</code>.</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the number parsed. On failure, it will be set to the initial value <span>startIdx</span>.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The parsed value. In addition, the output parameter <code>newIdx</code> is set to point to the first character behind the parsed number. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The parsed value. In addition, the output parameter <span>newIdx</span> is set to point to the first character behind the parsed number. </dd></dl>
 
 </div>
 </div>
@@ -6364,7 +6362,7 @@ Unlike with <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.h
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">startIdx</td><td>The start index from where the integer value is tried to be parsed. Optional and defaults to <code>0</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the float number that was parsed. On failure, it will be set to the initial value <code>startIdx</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">newIdx</td><td>Optional output variable that will point to the first character in this string after the float number that was parsed. On failure, it will be set to the initial value <span>startIdx</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -7405,7 +7403,7 @@ Unlike with <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.h
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded method of <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a298e4335e8c3d574c7c9bccac3989f06">tab(int, int, char)</a>, providing ' ' (space) as default value for parameter <code>tabChar</code>.</p>
+<p> Overloaded method of <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a298e4335e8c3d574c7c9bccac3989f06">tab(int, int, char)</a>, providing ' ' (space) as default value for parameter <span>tabChar</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tabSize</td><td>The tab positions are multiples of this parameter. </td></tr>
@@ -7433,7 +7431,7 @@ Unlike with <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.h
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded method of <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a298e4335e8c3d574c7c9bccac3989f06">tab(int, int, char)</a>, providing ' ' (space) as default value for parameter <code>tabChar</code> and 1 as default value for parameter <code>minPad</code>.</p>
+<p> Overloaded method of <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a298e4335e8c3d574c7c9bccac3989f06">tab(int, int, char)</a>, providing ' ' (space) as default value for parameter <span>tabChar</span> and 1 as default value for parameter <span>minPad</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tabSize</td><td>The tab positions are multiples of this parameter.</td></tr>
@@ -7825,7 +7823,7 @@ Unlike with <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.h
 </div><div class="memdoc">
 <hr/>
 <p> All characters defined in given set at, left of and right of the given index are removed from the string.<br />
- The method returns index of the first character of those characters that were behind the trimmed region. With legal <code>index</code> given, this value can only be smaller or equal to <code>index</code>. If <code>index</code> is out of bounds, the length of the string is returned.</p>
+ The method returns index of the first character of those characters that were behind the trimmed region. With legal <span>index</span> given, this value can only be smaller or equal to <span>index</span>. If <span>index</span> is out of bounds, the length of the string is returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">idx</td><td>The index to perform the trim operation at. Has to be between zero and <em>Length() -1</em>. </td></tr>
@@ -7853,7 +7851,7 @@ Unlike with <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.h
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Overloaded method providing default <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1CString.html#adf335b90f078b735d79bfb3ea1ba52fa">CString.DEFAULT_WHITESPACES</a> value for parameter <code>trimChars</code>.</p>
+<p> Overloaded method providing default <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1CString.html#adf335b90f078b735d79bfb3ea1ba52fa">CString.DEFAULT_WHITESPACES</a> value for parameter <span>trimChars</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">index</td><td>The index to perform the trim operation at. Has to be between zero and <em>Length() -1</em>. </td></tr>
@@ -8106,7 +8104,7 @@ Unlike with <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.h
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Feb 28 2018 20:09:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2018 20:36:52 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.14
 </small></address>

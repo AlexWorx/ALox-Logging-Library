@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1712 R. 1</span>
+   &#160;<span id="projectnumber">V. 1805 R. 0</span>
    </div>
   </td>
  </tr>
@@ -271,20 +271,20 @@ Public Static Methods</h2></td></tr>
  No parameter checks are performed. Null and empty checks and proper region bounds have to be provided (this is a helper method for other compareTo methods).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">needle</td><td>An object of type <em>CharSequence</em> that is compared to <code>haystack</code>. </td></tr>
-    <tr><td class="paramname">needleStart</td><td>The start of the region in <code>needle</code> that is to be compared. </td></tr>
-    <tr><td class="paramname">needleLength</td><td>The length of the region in <code>needle</code>. </td></tr>
+    <tr><td class="paramname">needle</td><td>An object of type <em>CharSequence</em> that is compared to <span>haystack</span>. </td></tr>
+    <tr><td class="paramname">needleStart</td><td>The start of the region in <span>needle</span> that is to be compared. </td></tr>
+    <tr><td class="paramname">needleLength</td><td>The length of the region in <span>needle</span>. </td></tr>
     <tr><td class="paramname">haystack</td><td>The character buffer that is compared. </td></tr>
-    <tr><td class="paramname">haystackStart</td><td>The start of the substring within <code>haystack</code>. </td></tr>
-    <tr><td class="paramname">haystackLength</td><td>The length of the substring within <code>haystack</code>. </td></tr>
+    <tr><td class="paramname">haystackStart</td><td>The start of the substring within <span>haystack</span>. </td></tr>
+    <tr><td class="paramname">haystackLength</td><td>The length of the substring within <span>haystack</span>. </td></tr>
     <tr><td class="paramname">sensitivity</td><td>Case sensitivity of the operation.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li>0 if <code>haystack</code> and <code>needle</code> are <em>null</em> or if both have a length of 0 or if both share the same content.</li>
-<li>&lt;0 if <code>haystack</code> is <em>nulled</em> and <code>needle</code> is not or if <code>haystack</code> is smaller than <code>needle</code>.</li>
-<li>&gt;0 if <code>haystack</code> is not <em>nulled</em> but <code>needle</code> is or if <code>haystack</code> is greater than <code>needle</code>. </li>
+<li>0 if <span>haystack</span> and <span>needle</span> are <em>null</em> or if both have a length of 0 or if both share the same content.</li>
+<li>&lt;0 if <span>haystack</span> is <em>nulled</em> and <span>needle</span> is not or if <span>haystack</span> is smaller than <span>needle</span>.</li>
+<li>&gt;0 if <span>haystack</span> is not <em>nulled</em> but <span>needle</span> is or if <span>haystack</span> is greater than <span>needle</span>. </li>
 </ul>
 </dd></dl>
 
@@ -360,8 +360,8 @@ Public Static Methods</h2></td></tr>
     <tr><td class="paramname">needleStart</td><td>The index of the start of the needle within the character array. </td></tr>
     <tr><td class="paramname">needleLength</td><td>The length of the needle within the character array. </td></tr>
     <tr><td class="paramname">haystack</td><td>The character array to look in for the needle. </td></tr>
-    <tr><td class="paramname">haystackPos</td><td>The position to look at in <code>haystack</code>. </td></tr>
-    <tr><td class="paramname">haystackLimit</td><td>The length of the <code>haystack</code> (may be equal or less than haystack.length(). </td></tr>
+    <tr><td class="paramname">haystackPos</td><td>The position to look at in <span>haystack</span>. </td></tr>
+    <tr><td class="paramname">haystackLimit</td><td>The length of the <span>haystack</span> (may be equal or less than haystack.length(). </td></tr>
     <tr><td class="paramname">sensitivity</td><td>Case sensitivity of the comparison.</td></tr>
   </table>
   </dd>
@@ -427,8 +427,8 @@ Public Static Methods</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">needle</td><td>The string to search. </td></tr>
     <tr><td class="paramname">haystack</td><td>The character array to look in for the needle. </td></tr>
-    <tr><td class="paramname">haystackPos</td><td>The position to look at in <code>haystack</code>. </td></tr>
-    <tr><td class="paramname">haystackLimit</td><td>The length of the <code>haystack</code> (may be equal or less than haystack.length(). </td></tr>
+    <tr><td class="paramname">haystackPos</td><td>The position to look at in <span>haystack</span>. </td></tr>
+    <tr><td class="paramname">haystackLimit</td><td>The length of the <span>haystack</span> (may be equal or less than haystack.length(). </td></tr>
     <tr><td class="paramname">sensitivity</td><td>Case sensitivity of the comparison.</td></tr>
   </table>
   </dd>
@@ -762,7 +762,7 @@ Public Static Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Static method that returns the index of the first character which not equal within two strings. If <code>haystack</code> starts with <code>needle</code>, then the length of <code>needle</code> is returned.</p>
+<p> Static method that returns the index of the first character which not equal within two strings. If <span>haystack</span> starts with <span>needle</span>, then the length of <span>needle</span> is returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">haystack</td><td>Character array that is searched in. </td></tr>
@@ -773,7 +773,7 @@ Public Static Methods</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The index within <code>needle</code> with the first difference. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The index within <span>needle</span> with the first difference. </dd></dl>
 
 </div>
 </div>
@@ -939,7 +939,7 @@ Public Static Methods</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><em>-1</em> if the String is not found. Otherwise the index of first occurrence relative to <code>haystackStart</code>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><em>-1</em> if the String is not found. Otherwise the index of first occurrence relative to <span>haystackStart</span>. </dd></dl>
 
 </div>
 </div>
@@ -1191,7 +1191,7 @@ Public Static Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Feb 28 2018 20:09:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2018 20:36:52 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.14
 </small></address>

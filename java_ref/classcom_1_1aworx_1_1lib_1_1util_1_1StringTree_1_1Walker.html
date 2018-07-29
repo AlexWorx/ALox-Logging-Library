@@ -25,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1712 R. 1</span>
+   &#160;<span id="projectnumber">V. 1805 R. 0</span>
    </div>
   </td>
  </tr>
@@ -97,13 +97,12 @@ $(function() {
 <div class="dynheader">
 Collaboration diagram for StringTree&lt; T &gt;.Walker:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Walker__coll__graph.svg" width="806" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Walker__coll__graph.svg" width="810" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
 <p> This public, inner class implements an iterator that does <b>not</b> apply to the concept of standard Java iterators. The rational for this is the fact that the class provides mechanics to sorting the child nodes, which requires allocation of quite more resources than a usual container iterator. Therefore objects of this type are not supposed to be passed around and copied on the fly. Instead, instances should rather created once and then re-used in subsequent iterations.</p>
-<p>Sorting of child nodes can be done using a built-in comparison function which works on the child names (path names) and allows to choose ascending and descending order and to ignore letter case, respectively be sensitive about it. Besides this, a custom comparison function for child name based sorting can be established as well as a custom function used to sort by attributes of the custom template type <code>T</code>. See methods <a class="el" href="classcom_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Walker.html#a64715df007500dd8799fcf392ac5ef4c">sortByPathname</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Walker.html#a1f2e43b3669a7111d50b4c3a276ca975">sortByValue</a> for details on sorting.</p>
+<p>Sorting of child nodes can be done using a built-in comparison function which works on the child names (path names) and allows to choose ascending and descending order and to ignore letter case, respectively be sensitive about it. Besides this, a custom comparison function for child name based sorting can be established as well as a custom function used to sort by attributes of the custom template type <span>T</span>. See methods <a class="el" href="classcom_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Walker.html#a64715df007500dd8799fcf392ac5ef4c">sortByPathname</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Walker.html#a1f2e43b3669a7111d50b4c3a276ca975">sortByValue</a> for details on sorting.</p>
 <p>Objects of this type can initialized, respectively reset to distinct start nodes by providing objects of type</p><ul>
 <li><b>StringTree</b> </li>
 <li><b>StringTree.StdIterator</b> </li>
@@ -311,7 +310,7 @@ Protected Methods</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">target</td><td>The target to append the path to. </td></tr>
-    <tr><td class="paramname">targetData</td><td>Denotes whether <code>target</code> should be cleared prior to appending the path. Defaults to CurrentData.Clear. </td></tr>
+    <tr><td class="paramname">targetData</td><td>Denotes whether <span>target</span> should be cleared prior to appending the path. Defaults to CurrentData.Clear. </td></tr>
   </table>
   </dd>
 </dl>
@@ -334,7 +333,7 @@ Protected Methods</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Overloaded version providing default value <code>CurrentData.CLEAR</code> for paramter <code>targetData</code>.</p>
+<p>Overloaded version providing default value <code>CurrentData.CLEAR</code> for paramter <span>targetData</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">target</td><td>The target to append the path to. </td></tr>
@@ -741,7 +740,7 @@ Protected Methods</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Overloaded version providing default value <code><a class="el" href="enumcom_1_1aworx_1_1lib_1_1lang_1_1Case.html#a6ece700224ae83a646bc5b2c07c6fee8">Case.IGNORE</a></code> for parameter <code>sensitivity</code>.</p>
+<p>Overloaded version providing default value <code><a class="el" href="enumcom_1_1aworx_1_1lib_1_1lang_1_1Case.html#a6ece700224ae83a646bc5b2c07c6fee8">Case.IGNORE</a></code> for parameter <span>sensitivity</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">order</td><td>The sort order. Defaults to <b>SortOrder.Ascending</b>. </td></tr>
@@ -887,7 +886,7 @@ Protected Methods</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The sorter object. This is a fixed member of the parent class providing a method to sort children by name or value type <code>T</code>. </p>
+<p>The sorter object. This is a fixed member of the parent class providing a method to sort children by name or value type <span>T</span>. </p>
 
 </div>
 </div>
@@ -944,7 +943,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.12-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Feb 28 2018 20:09:20 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2018 20:36:52 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.14
 </small></address>
