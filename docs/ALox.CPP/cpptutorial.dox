@@ -58,12 +58,12 @@ in the code samples given here. We want you to understand a little of the class 
 are reading yourself through this tutorial. This is why a very brief explanation of the macros is given here:
 
 - The most important interface into ALox is class
-[Lox](@ref #aworx::lox::Lox) which is is a container to hold one or more instances of abstract class
-[Logger](@ref #aworx::lox::core::Logger). Through the interface of class \b Lox, the log
+[Lox](@ref aworx::lib::lox::Lox) which is is a container to hold one or more instances of abstract class
+[Logger](@ref aworx::lib::lox::core::Logger). Through the interface of class \b Lox, the log
 statements are invoked. Log statements are forwarded to the \e Loggers attached.
 
 - The most simple case is that you have just one \b Lox instance, holding exactly one \e %Logger which logs its output to the
-standard output stream of your process (e.g. [AnsiConsoleLogger](@ref #aworx::lox::loggers::AnsiConsoleLogger)).
+standard output stream of your process (e.g. [AnsiConsoleLogger](@ref aworx::lib::lox::loggers::AnsiConsoleLogger)).
 ALox supports much more complex scenarios and the preprocessor macros must support this as well.<br>
 In this tutorial we stick to the simple case, maybe adding a second \e Logger here and there.
 
@@ -78,7 +78,7 @@ In this tutorial we stick to the simple case, maybe adding a second \e Logger he
         Log_Info( "Hello ALox" )
 
   This means that method
-  [Info](@ref #aworx::lox::Lox::Info) is invoked on the predefined singleton of class \b Lox which
+  [Info](@ref aworx::lib::lox::Lox::Info) is invoked on the predefined singleton of class \b Lox which
   is by default used for debug logging.
 
 - In addition to the macros that actually perform a <em>Log Statement</em> or otherwise interface with class \b Lox,
@@ -90,8 +90,7 @@ In this tutorial we stick to the simple case, maybe adding a second \e Logger he
 
 In the tutorial language we do not further explain these macros. So do not be surprised when the presented sample code
 shows a macro, while the explaining text refers to the method invocations that are represented by these macros.
-For a full introduction into the ALox' macros for logging, please refer to
-\ref alox_cpp_prepro_macros "C++ Macros".
+For a information on ALox macros for logging, please refer to \ref alox_cpp_prepro "ALox Macros".
 
 \~Comment ####################################################################################### \~
 # 3. Create a tutorial project or equip your current project with ALox #   {#alox_tutcpp_createproject}
@@ -115,7 +114,7 @@ And add a statement to use namespaces \c std and \ref aworx to your source file:
 \snippet ut_dox_tutorial.cpp        Tut_using_statement
 
 \note Although ALib and ALox are organized in several sub-namespaces (below #aworx::lib respectively
-      aworx::lox), it is enough in most cases to just <em>'use'</em> namespace \b %aworx. The design and
+      aworx::lib::lox), it is enough in most cases to just <em>'use'</em> namespace \b %aworx. The design and
       reason behind is explained in the documentation of namespace \ref aworx.
 
 
@@ -123,7 +122,7 @@ And add a statement to use namespaces \c std and \ref aworx to your source file:
 # 4. Class Logger ##  {#alox_tutcpp_logger}
 
 While class \b %Lox is the main interface to ALox logging, abstract class
-\ref aworx::lox::core::Logger  "Logger" is performing the log. 'Performing' here means that
+\ref aworx::lib::lox::core::Logger  "Logger" is performing the log. 'Performing' here means that
 derived instances of this abstract class are responsible for writing the \e 'Logables' (the message
 or data that is logged) to a 'drain', for example the console or a text file.
 
@@ -149,8 +148,8 @@ creates two \e Loggers: one for the console and one for your IDE output, when AL
 detect and support such IDE.<br>
 For information about what is currently supported and how (with environment variables,
 configuration files or command line parameters) this behavior can be changed, see methods
-[Log::AddDebugLogger](@ref #aworx::lox::Log::AddDebugLogger) and
-[Lox::CreateConsoleLogger](@ref #aworx::lox::Lox::CreateConsoleLogger) which this macro invokes.
+[Log::AddDebugLogger](@ref aworx::lib::lox::Log::AddDebugLogger) and
+[Lox::CreateConsoleLogger](@ref aworx::lib::lox::Lox::CreateConsoleLogger) which this macro invokes.
 
 We never interface with a \c Logger directly. After it is created and added to the \c Lox, we
 can mostly forget about it.
@@ -171,7 +170,7 @@ should look like this:
 
 When you run your project, output similar to this:
 
-\verbinclude ALox.CPP/generated/Tut_ALox_Logger.txt
+\verbinclude pages/generated/Tut_ALox_Logger.txt
 
 should appear in your IDE or your console.
 
@@ -238,8 +237,8 @@ are logging out during developing and debugging your software, it is all automat
 release version.
 
 This is achieved by providing the right set of
-\ref alox_cpp_prepro_compsymbols "Compilation Symbols" when
-\ref alox_cpp_setup "setting up the project". Only project configurations that have the symbol
+\ref GrpALibCompilerSymbols "Compilation Symbols" when
+\ref alib_man_setup "setting up the project". Only project configurations that have the symbol
 \b ALOX_DBG_LOG_ON set will contain ALox debug logging statements.
 
 This has a lot of benefits:
@@ -251,13 +250,13 @@ This has a lot of benefits:
 \~Comment ####################################################################################### \~
 # 6. Controlling the 'Verbosity' #     {#alox_tutcpp_verbosity}
 
-The code above uses the method [Lox::Info()](@ref #aworx::lox::Lox::Info) (embedded in a preprocessor macro) to create the
+The code above uses the method [Lox::Info()](@ref aworx::lib::lox::Lox::Info) (embedded in a preprocessor macro) to create the
 log output. There are three other Versions of that method, together constituting the four <em>'Verbosities'</em>:
 
--  [Lox::Error()]    (@ref #aworx::lox::Lox::Error)
--  [Lox::Warning()]  (@ref #aworx::lox::Lox::Warning)
--  [Lox::Info()]     (@ref #aworx::lox::Lox::Info)
--  [Lox::Verbose()]  (@ref #aworx::lox::Lox::Verbose)
+-  [Lox::Error()]    (@ref aworx::lib::lox::Lox::Error)
+-  [Lox::Warning()]  (@ref aworx::lib::lox::Lox::Warning)
+-  [Lox::Info()]     (@ref aworx::lib::lox::Lox::Info)
+-  [Lox::Verbose()]  (@ref aworx::lib::lox::Lox::Verbose)
 
 Let us see what happens when extending our sample as follows:
 
@@ -265,7 +264,7 @@ Let us see what happens when extending our sample as follows:
 
 If you run your application now (in "Debug" mode), the following output should appear:
 
-\verbinclude ALox.CPP/generated/Tut_Verbosity.txt
+\verbinclude pages/generated/Tut_Verbosity.txt
 
 The little space in the meta information, right after the thread name [main] fills
 with text-markers <b>[ERR]</b>, <b>[WRN]</b> and <b>[***]</b>, giving info about
@@ -284,7 +283,7 @@ to identify those log messages of \e Verbosity 'Error'.
 Now, we want to control the \e Verbosity of the log output. Let's say we just want to see
 'Error' and 'Warning' messages, and suppress those of \e Verbosity 'Info' and 'Verbose'.
 ALox allows to control this on a 'per \e %Logger' basis using method
-\ref aworx::lox::Lox::SetVerbosity "Lox::SetVerbosity". We add the line:
+\ref aworx::lib::lox::Lox::SetVerbosity "Lox::SetVerbosity". We add the line:
 
 \snippet ut_dox_tutorial.cpp        Tut_Verbosity_SetVerbosity
 
@@ -302,12 +301,12 @@ Our sample now looks like this:
 
 and produces the following output:
 
-\verbinclude ALox.CPP/generated/Tut_Verbosity_2.txt
+\verbinclude pages/generated/Tut_Verbosity_2.txt
 
 As you see, only the <em>Log Statements</em> with \e Verbosity 'Error' and 'Warning' survived.
 
 Obviously ALox uses the attribute \e Verbosity, defined in enum class
-\ref aworx::lox::Verbosity "Verbosity" two times:
+\ref aworx::lib::lox::Verbosity "Verbosity" two times:
 - every <em>Log Statement</em> has a \e Verbosity assigned.
 - A \e Logger attached to a \e Lox has a \e Verbosity assigned.
 
@@ -320,7 +319,7 @@ Then ALox matches both attributes to decide whether a <em>Log Statement</em> is 
     (and no need!) to register a \e %Logger with a \b %Lox.
   - To switch off all log output, use \e Verbosity.Off.
   - To remove (for any reason) a \e %Logger from a \b %Lox, use method
-    \ref aworx::lox::Lox::RemoveLogger "Lox::RemoveLogger".
+    \ref aworx::lib::lox::Lox::RemoveLogger "Lox::RemoveLogger".
   - Method \b AddDebugLogger, by default sets \e %Verbosity.Verbose for the \e Logger created.
 
 
@@ -346,7 +345,7 @@ two <em>Log Statements</em>:
 As you see, two parameters are given now. The first denotes the <em>Log Domain</em>. The string provided can
 be arbitrarily chosen. Let us quickly look at the log output:
 
-\verbinclude ALox.CPP/generated/Tut_Domains.txt
+\verbinclude pages/generated/Tut_Domains.txt
 
 In the meta information of the log output, just before the line number, formerly appeared
 <c>[/]</c> (what we did not explain, yet). Now it says <c>[/HTTP]</c>, respectively <c>[/UI]</c>.
@@ -362,7 +361,7 @@ you have some problems with HTTP connections:
 
 Now the output is:
 
-\verbinclude ALox.CPP/generated/Tut_Domains_2.txt
+\verbinclude pages/generated/Tut_Domains_2.txt
 
 Although both <em>Log Statement</em> share the same \e Verbosity, only the one that belongs to <em>Log Domain</em> "HTTP" is shown.
 
@@ -383,14 +382,14 @@ Look at the following sample:
 
 and its output:
 
-\verbinclude ALox.CPP/generated/Tut_DomainsHierarchical.txt
+\verbinclude pages/generated/Tut_DomainsHierarchical.txt
 
 We can use a slash (<c> '/'</c>) to separate <em>Log Domains</em> and organize them in a tree structure, just as
 we do with directories in a file system. In the sample above, <em>Log Domains</em> \b "DLG" and \b "MOUSE" are
 Sub-<em>Log Domains</em> of <em>Log Domain</em> "UI".
 
 With this information, it is important to understand that method
-\ref aworx::lox::Lox::SetVerbosity "Lox::SetVerbosity" always sets the given <em>Log Domain</em> and
+\ref aworx::lib::lox::Lox::SetVerbosity "Lox::SetVerbosity" always sets the given <em>Log Domain</em> and
 <b>all its sub-domains</b> to the \e Verbosity value provided. Consequently, the following statement
 switches <em>Log Domains</em> \b "UI", \b "UI/MOUSE" and \b "UI/DLG" to the same \e %Verbosity.Warning:
 
@@ -429,7 +428,7 @@ more about why the hierarchical organization of <em>Log Domains</em> is extremel
 \~Comment ####################################################################################### \~
 # 9. Scope Domains  #     {#alox_tutcpp_scope_domains}
 
-As we saw, optional parameter \p domain of <em>Log Statements</em> allows us to group the log output into
+As we saw, optional parameter \p{domain} of <em>Log Statements</em> allows us to group the log output into
 different areas of interest and control the \e Verbosity per group. This is nice, but
 - We have to type more
 - We have to recall the 'actual' <em>Log Domains</em>' name when we insert a <em>Log Statement</em>
@@ -446,13 +445,13 @@ carry the same <em>Log Domain</em>. In other words, we can set a 'default value'
 all <em>Log Statements</em> of a method.
 
 The interface in ALox which provides this feature is found with the set of overloaded versions of
-\ref aworx::lox::Lox::SetDomain "Lox::SetDomain". Here is a sample:
+\ref aworx::lib::lox::Lox::SetDomain "Lox::SetDomain". Here is a sample:
 
 \snippet ut_dox_tutorial.cpp        Tut_ScopeDomains
 
 and its output:
 
-\verbinclude ALox.CPP/generated/Tut_ScopeDomains.txt
+\verbinclude pages/generated/Tut_ScopeDomains.txt
 
 You see, all disadvantages we just listed are blown away using <em>Scope Domains</em>.
 
@@ -467,7 +466,7 @@ sample:
 
 and its output when both sample methods are executed:
 
-\verbinclude ALox.CPP/generated/Tut_ScopeDomains_Zipper.txt
+\verbinclude pages/generated/Tut_ScopeDomains_Zipper.txt
 
 Imagine, the source file of class Zipper resides in a source directory, together with other
 'utility classes'. Somewhere in these classes, probably at the place where this 'utility library'
@@ -478,25 +477,25 @@ is initialized (once, when bootstrapping a process), the following statement mig
 This sets <em>Log Domain</em> "UTIL" for \e %Scope.Path, which is again an <b>outer scope</b> of \e %Scope.Filename.
 Without changing the code in class Zipper, invoking its methods then leads to the output:
 
-\verbinclude ALox.CPP/generated/Tut_ScopeDomains_Zipper_Path.txt
+\verbinclude pages/generated/Tut_ScopeDomains_Zipper_Path.txt
 
-What happens when <em>Scope Domains</em> are set and we still use optional parameter \p domain with a <em>Log Statement</em>? Let
+What happens when <em>Scope Domains</em> are set and we still use optional parameter \p{domain} with a <em>Log Statement</em>? Let
 us just try out:
 
 \snippet ut_dox_tutorial.cpp        Tut_ScopeDomains_ParamDom
 
-\verbinclude ALox.CPP/generated/Tut_ScopeDomains_ParamDom.txt
+\verbinclude pages/generated/Tut_ScopeDomains_ParamDom.txt
 
-As you see, the path provided with parameter \p domain gets appended to the path of <em>Scope Domains</em> evaluated.
+As you see, the path provided with parameter \p{domain} gets appended to the path of <em>Scope Domains</em> evaluated.
 You can consider this parameter being a 'local' \e Scope, or an <b>inner</b> scope of \e %Scope::Method!
 
 Finally, imagine you want to 'overwrite' current applicable <em>Scope Domains</em> and direct a certain <em>Log Statement</em>
-to a different <em>Log Domain</em>. All you need to do is to use an absolute domain path with parameter \p domain:
+to a different <em>Log Domain</em>. All you need to do is to use an absolute domain path with parameter \p{domain}:
 
 \snippet ut_dox_tutorial.cpp        Tut_ScopeDomains_ParamDom_2
 
 
-\verbinclude ALox.CPP/generated/Tut_ScopeDomains_ParamDom_2.txt
+\verbinclude pages/generated/Tut_ScopeDomains_ParamDom_2.txt
 
 In this sample, the second <em>Log Statement</em> uses an absolute path. The reason is, that the error dectected
 in the code, obviously belongs to a different topic. The sample suggests, that it is not related
@@ -514,16 +513,16 @@ in the [ALox User Manual](../manual.html). Among other things, you will find:
 \~Comment ####################################################################################### \~
 # 10. Formatting #   {#alox_tutcpp_formatting}
 While talking about rather complicated things like <em>Log Domains</em> and \e Scopes, we must not
-forget to talk about the log output itself. \b %ALox is designed to be able to pass any type of
+forget to talk about the log output itself. \alox is designed to be able to pass any type of
 data to one or more \e Loggers. In the default case, a textual output of these \e "Logables" is wanted.
 We have seen in previous samples already, that if two objects are passed, their textual representation
 is just concatenated:
 
 \snippet ut_dox_tutorial.cpp        Tut_Format_1
-\verbinclude ALox.CPP/generated/Tut_Format_1.txt
+\verbinclude pages/generated/Tut_Format_1.txt
 
 But in fact, this concatenation is just the "fallback" strategy of a quite powerful formatting
-system coming with \b %ALox. In short, \b %ALox here relies on underlying library \b %ALib, which
+system coming with \alox. In short, \alox here relies on underlying library \alib, which
 provides abstract class \ref aworx::lib::strings::format::Formatter "Formatter"
 allowing to format a set of arguments in accordance with a given format string that contains placeholder symbols.
 
@@ -531,7 +530,7 @@ Now there are two tricks implemented: First, if no format string is recognized, 
 concatenation is performed. This is what we already saw. But secondly, if one formatter does not
 recognize a format string, a next formatter can be asked.
 
-Two formatters are provided by \b %ALib and \b %ALox (by default) installs both in parallel:
+Two formatters are provided by \alib and \alox (by default) installs both in parallel:
 1. \ref aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle"<br>
    Implements an extended version of
    [Python String Fromat Syntax](https://docs.python.org/3.5/library/string.html#format-string-syntax),
@@ -565,7 +564,7 @@ Of-course it is even allowed to mix Python style and Java style format strings i
 
 The output is:
 
-\verbinclude ALox.CPP/generated/Tut_Format_Mix.txt
+\verbinclude pages/generated/Tut_Format_Mix.txt
 
 However, please note that it is \b not allowed to mix Python and Java styles within one format
 string!
@@ -578,7 +577,7 @@ within the C++ version of <b>%ALib/%ALox</b> is found with documentation of clas
 with some more samples:
 
 \snippet ut_dox_tutorial.cpp        Tut_Format_Sample_1
-\verbinclude ALox.CPP/generated/Tut_Format_Sample_1.txt
+\verbinclude pages/generated/Tut_Format_Sample_1.txt
 
 
 \~Comment ####################################################################################### \~
@@ -592,7 +591,7 @@ sample:
 \snippet ut_dox_tutorial.cpp        Tut_ConditionalLogging
 
 The last two lines can be replaced by one using method
-[Lox::Assert()] (@ref #aworx::lox::Lox::Assert) as follows:
+[Lox::Assert()] (@ref aworx::lib::lox::Lox::Assert) as follows:
 
 \snippet ut_dox_tutorial.cpp        Tut_ConditionalLogging2
 
@@ -608,9 +607,9 @@ As with using *Assert()* the evaluation of the expression is definitely pruned f
 ## 11.2. Lox.If  ##
 
 A similar method to \b %Lox.Assert this is
-[Lox.If]       (@ref #aworx::lox::Lox::If). The differences to \b Lox.Assert are:
+[Lox.If]       (@ref aworx::lib::lox::Lox::If). The differences to \b Lox.Assert are:
 - The given condition is interpreted the other way round: if \c true, the <em>Log Statement</em> is executed.
-- The \e Verbosity of the <em>Log Statement</em> is not fixed but can (has to) be specified with parameter \p verbosity.
+- The \e Verbosity of the <em>Log Statement</em> is not fixed but can (has to) be specified with parameter \p{verbosity}.
 
 Hence, the very same effect as given in the previous sample can be achieved with:
 
@@ -619,7 +618,7 @@ Hence, the very same effect as given in the previous sample can be achieved with
 ## 11.3. Log.Once  ##
 
 Another useful <em>Log Statement</em> provided by ALox is
-[Lox.Once]   (@ref #aworx::lox::Lox::Once). As the method name suggests, the statement
+[Lox.Once]   (@ref aworx::lib::lox::Lox::Once). As the method name suggests, the statement
 
 \snippet ut_dox_tutorial.cpp        Tut_ConditionalLoggingOnce
 
@@ -650,7 +649,7 @@ from other output. You could do this by
 - Start each log line with a clearly visible 'marker text'.
 
 These things can be achieved with ALox using method
-[Lox.SetPrefix]   (@ref #aworx::lox::Lox::SetPrefix). With this method, additional \e Logables
+[Lox.SetPrefix]   (@ref aworx::lib::lox::Lox::SetPrefix). With this method, additional \e Logables
 are passed to \e %Loggers attached to a \b Lox. When logging text messages (we have not even
 talked in this tutorial about <b>logging arbitrary objects</b>) these objects are simply prepended
 to the log message itself.
@@ -667,7 +666,7 @@ The real simple sample looks like this:
 
 \snippet ut_dox_tutorial.cpp        Tut_Prefix
 
-\verbinclude ALox.CPP/generated/Tut_Prefix.txt
+\verbinclude pages/generated/Tut_Prefix.txt
 
 For colorizing (depending on the availability of a console that supports colors) the following
 prefix would be suitable:
@@ -732,11 +731,11 @@ You are invited to send us your proposals of log tool code for common libraries 
 
 In multi-threaded applications, ALox by default logs information about the thread id or name
 that executed the code containing your log statements.
-(This can be configured for ALox textual \e Loggers with class \ref aworx::lox::core::textlogger::MetaInfo "MetaInfo".)
+(This can be configured for ALox textual \e Loggers with class \ref aworx::lib::lox::core::textlogger::MetaInfo "MetaInfo".)
 
 Often threads do not have a name, but just an ID. It would be much nicer to see a
 name instead. ALox provides a simple mechanism to overwrite thread names with method
-[Lox::MapThreadName](@ref #aworx::lox::Lox::MapThreadName).
+[Lox::MapThreadName](@ref aworx::lib::lox::Lox::MapThreadName).
 
 Let us go back to the Hello ALox sample and add one line to rename the currently executed thread:
 
@@ -744,7 +743,7 @@ Let us go back to the Hello ALox sample and add one line to rename the currently
 
 The generated output is:
 
-\verbinclude ALox.CPP/generated/Tut_ThreadName.txt
+\verbinclude pages/generated/Tut_ThreadName.txt
 
 As you see, the currently executed thread is now named *BKGRND*. All <em>Log Statements</em> that will
 be executed by this thread after the mapping takes place, will log this name.
@@ -765,7 +764,7 @@ the lifecycle of the program, but may be mapped multiple times. Therefore, the g
 - Make sure that this code is executed early in the lifecycle of your application, so that all log lines are
 equipped with the right thread name mapping.
 
-For the sample of UI Frameworks, a good place to invoke [Lox::MapThreadName](@ref #aworx::lox::Lox::MapThreadName)
+For the sample of UI Frameworks, a good place to invoke [Lox::MapThreadName](@ref aworx::lib::lox::Lox::MapThreadName)
 is the initial creation callback of your main application UI component. Normally, it is
 enough to put this statement only in one component (the main one), because all other components
 will be initialized by the same Framework thread.
@@ -795,9 +794,9 @@ ALox API, the data is nicely 'encapsulated' and the probability of creating side
 reduced in comparison to other ways to introduce temporary variables used for debugging.
 
 The methods to store and retrieve <em>Log Data</em> with ALox are
-\ref aworx::lox::Lox::Store "Lox::Store" and
-\ref aworx::lox::Lox::Retrieve "Lox::Retrieve". The objects stored are of type
-\ref aworx::lib::boxing::Box "Box". In the C++ implementation of \b %ALox it is notable, that in the case
+\ref aworx::lib::lox::Lox::Store "Lox::Store" and
+\ref aworx::lib::lox::Lox::Retrieve "Lox::Retrieve". The objects stored are of type
+\ref aworx::lib::boxing::Box "Box". In the C++ implementation of \alox it is notable, that in the case
 that the data provided is not a value type (in respect to \ref aworx::lib::boxing "ALib Boxing", the
 data has to be kept in memory as long it is stored and potentially retrieved.
 
@@ -812,7 +811,7 @@ Now, whenever it might be interesting, this file version can be accessed:
 
 The output will be:
 
-\verbinclude ALox.CPP/generated/Tut_LogData.txt
+\verbinclude pages/generated/Tut_LogData.txt
 
 If it was not sure, that <em>Log Data</em> was set, then using macro \ref Log_Retrieve as shown
 above, allows to do checks on the object returned, because it is declared as a local variable.
@@ -836,14 +835,14 @@ The same applies when working in a team.
 
 
 Let us create a sample, do some ALox configuration and then invoke method
-\ref aworx::lox::Lox::State "Lox::State":
+\ref aworx::lib::lox::Lox::State "Lox::State":
 
 \snippet ut_dox_tutorial.cpp        Tut_LogState
 
 \b %Lox.State gathers internal configuration information and logs it out.
 The output is quite self explanatory:
 
-\verbinclude ALox.CPP/generated/Tut_LogState.txt
+\verbinclude pages/generated/Tut_LogState.txt
 
 Besides this, there is a <b>second option</b> to inspect what happens internally in class *Lox*.
 ALox is equipped with an internal <em>Log Domain</em>. This domain is used by ALox to
@@ -854,22 +853,22 @@ domain to verbose for our debug \e Logger:
 
 The output will be:
 
-\verbinclude ALox.CPP/generated/Tut_LogInternalDomains.txt
+\verbinclude pages/generated/Tut_LogInternalDomains.txt
 
 This way, you can exactly observe what is going on inside ALox.
 
 To summarize: We have to ways to look into ALox:
 
-1. Method [Lox::State()](@ref #aworx::lox::Lox::State) logs a "snapshot" of the current states. The advantage of this is,
+1. Method [Lox::State()](@ref aworx::lib::lox::Lox::State) logs a "snapshot" of the current states. The advantage of this is,
    that it is all logged sequentially in one place and does not clutter your log output.
 2. By setting the *Verbosity* of the internal <em>Log Domain</em>
-   \ref aworx::lox::ALox::InternalDomains "ALox::InternalDomains"
+   \ref aworx::lib::lox::ALox::InternalDomains "ALox::InternalDomains"
    to a more verbose level. While this clutters your log output and you
    might have to search the pieces in your overall log stream, the advantage here is that you see the scope information and therefore
    you see "where" a certain manipulation of the settings took place...and you can click on it!
 
 \note
-    The internal <em>Log Domain</em> found in static, constant field \ref aworx::lox::ALox::InternalDomains "ALox::InternalDomains"
+    The internal <em>Log Domain</em> found in static, constant field \ref aworx::lib::lox::ALox::InternalDomains "ALox::InternalDomains"
     is not just a domain name string. In fact it specifies a completely different <b>domain tree</b>
     which is not related to those domains created when using ALox. Even when changing
     the \e Verbosity for a \e Logger on the root domain \c /, this domain is not affected, because

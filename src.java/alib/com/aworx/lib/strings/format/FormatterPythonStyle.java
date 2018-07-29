@@ -111,9 +111,9 @@ import com.aworx.lib.lang.Case;
  *     Finally, if flag
  *     \ref com.aworx.lib.strings.NumberFormat.forceScientific "forceScientific"
  *     of field #defaultNumberFormat is \c true, types \c 'f' and 'F' behave like types \c 'e' and 'E'.
- *   - When both, a \p width and a \p precision is given, then the \p precision determines the
+ *   - When both, a \p{width} and a \p{precision} is given, then the \p{precision} determines the
  *     fractional part, even if the type is \b 'g' or \b 'G'. This is different than specified with
- *     Python formatter, which uses \p precision as the overall width in case of types
+ *     Python formatter, which uses \p{precision} as the overall width in case of types
  *     \b 'g' or \b 'G'.
  *   - Python specifies the formatting option \c '#' ("alternate form") for floating point values
  *     to not omit trailing zeros of the fractional part even if a fractional width was given.
@@ -124,7 +124,7 @@ import com.aworx.lib.lang.Case;
  *     to use the alternate form by adding \c '#' the the format specification. This way, all
  *     numbers written have the same size, independent of the value of their fractional part.
  *   - The 'general format' type for floats, specified with \c 'g' or \c 'G' in the python
- *     implementation limits the precision of the fractional part, even if \p precision is not
+ *     implementation limits the precision of the fractional part, even if \p{precision} is not
  *     further specified. This implementation does limit the precision only if type is \c 'f' or \c 'F'.
  *
  * <p>
@@ -267,9 +267,9 @@ import com.aworx.lib.lang.Case;
  *     arguments (which usually are hard-coded).
  *
  *   - <b>!Replace\<search\>\<replace\></b><br>
- *     Searches string \p search and replaces with \p replace. Both values have to be given
- *     enclosed by characters \c '<' and \c '>'. In the special case that \p search is empty
- *     (<c>\<\></c>), string \p replace will be inserted if the field argument is an empty string.
+ *     Searches string \p{search} and replaces with \p{replace}. Both values have to be given
+ *     enclosed by characters \c '<' and \c '>'. In the special case that \p{search} is empty
+ *     (<c>\<\></c>), string \p{replace} will be inserted if the field argument is an empty string.
  **************************************************************************************************/
 public class FormatterPythonStyle extends FormatterStdImpl
 {
@@ -297,7 +297,8 @@ public class FormatterPythonStyle extends FormatterStdImpl
         /** Constant string array */
         protected static char[]               constColonAndClosingBracket      = ":}".toCharArray();
 
-        /** Storage of sizes for auto-tabulator feature ("!ATab")  */
+        /** Storage of sizes for auto-tabulator feature <b>{!ATab}</b> and auto field width feature
+        <b>{!AWidth}</b>  */
         protected AutoSizes                   autoSizes                           = new AutoSizes();
 
 
@@ -406,7 +407,7 @@ public class FormatterPythonStyle extends FormatterStdImpl
         //! @endcond
 
         /** ****************************************************************************************
-         * Parses placeholder field in python notation. The portion \p format_spec is not
+         * Parses placeholder field in python notation. The portion \p{format_spec} is not
          * parsed but stored in member
          * \ref com.aworx.lib.strings.format.FormatterStdImpl.phaFormatSpec "Formatter.phaFormatSpec".
          *
@@ -674,7 +675,7 @@ public class FormatterPythonStyle extends FormatterStdImpl
         /** ****************************************************************************************
          * Implementation of abstract method.<br>
          * Replaces \c "{{" with \c "{" and \c "}}" with \c "}". In addition applies
-         * \ref com.aworx.lib.strings.AString.escape "AString.escape" on \p target which
+         * \ref com.aworx.lib.strings.AString.escape "AString.escape" on \p{target} which
          * replaces standard codes like \c "\\n", \c "\\r" or \c "\\t" with corresponding ascii
          * codes.
          *

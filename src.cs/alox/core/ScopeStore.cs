@@ -267,7 +267,7 @@ public class ScopeStore<T>
      * @param scope          Scope to use.
      * @param pathLevel      Used with Scope.FilePath to determine outer level.
      * @param thread         The associated thread (for thread-related scopes only).
-     *                       If \c 0 is given, the ID from \p scopeInfo is used.
+     *                       If \c 0 is given, the ID from \p{scopeInfo} is used.
      ******************************************************************************************/
     public void InitAccess( Scope scope, int pathLevel, Thread thread )
     {

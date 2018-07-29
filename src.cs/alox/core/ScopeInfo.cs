@@ -366,10 +366,10 @@ public class ScopeInfo
          *
          * @param path            The path to search for. If not starting with <c> '*'</c>,
          *                        a prefix is searched.
-         * @param includeString   Determines if \p path should be included in the trimmed path
+         * @param includeString   Determines if \p{path} should be included in the trimmed path
          *                        or not.
-         * @param trimOffset      Adjusts the portion of \p path that is trimmed. 999999 to clear!
-         * @param sensitivity     Determines if the comparison of \p path with a source files' path
+         * @param trimOffset      Adjusts the portion of \p{path} that is trimmed. 999999 to clear!
+         * @param sensitivity     Determines if the comparison of \p{path} with a source files' path
          *                        is performed case sensitive or not.
          * @param trimReplacement Replacement string for trimmed portion of the path.
          * @param reach           Denotes whether the rule is applied locally (to this \b %Lox only)

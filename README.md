@@ -10,20 +10,30 @@ Please find all about the **ALox Logging Library**, including
 at the [ALox Homepage](http://alexworx.github.io/ALox-Logging-Library).
 
 
+
 ## Overview ##
 
 ALox is a software library providing an ecosystem for structured and organized log output.
 
 ALox is available as [ALox for C++ 11](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/cppmainpage.html), [ALox for C#](http://alexworx.github.io/ALox-Logging-Library/cs_ref/csmainpage.html) and [ALox for Java](http://alexworx.github.io/ALox-Logging-Library/java_ref/javamainpage.html).
 
-To reach this goal, ALox is featured by **ALib** (see ALib for [C++](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/namespaceaworx_1_1lib.html),[C#](http://alexworx.github.io/ALox-Logging-Library/cs_ref/namespacecs_1_1aworx_1_1lib.html),[Java](http://alexworx.github.io/ALox-Logging-Library/java_ref/namespacecom_1_1aworx_1_1lib.html)), which is a basic utility library that among other goals
+To reach this goal, ALox is featured by **ALib** (see ALib for [C++](https://alexworx.github.io/ALib-Class-Library/index.html),[C#](http://alexworx.github.io/ALox-Logging-Library/cs_ref/alox_cs_mainpage.html),[Java](http://alexworx.github.io/ALox-Logging-Library/java_ref/alox_cs_mainpage.html)), which is a basic utility library that among other goals
 provides *'source-compatible'* types for the three languages.
 
 ALox attempts to make logging as easy and intuitive as possible. We want you to **stop adding temporary debug output lines** into your code. Instead, write (with less effort!) short, nice and readable *ALox statements* that live in your code as if they were comment lines. Let ALox do the rest: Add meta information to the output, format the output, filter output based on verbosity level and based on your current topic of interest. Finally, get it all *pruned* out of your release executable, same as your source comments.
 
 On the other end of the list, ALox  enables **release logging** for productive applications to collect mission critical **metrics from the field**.
 
-This is **Version 1712 Revision 1**. 
+This is **Version 1805 Revision 0**.
+
+## C++ Version ##
+As of library version 1805, the C++ codebase was extracted from this repository.
+**ALox for C++** became a "module" of general purpose class library **"ALib"**.
+Consequently, the C++ sources of ALox are to be retrieved at
+[ALib for C++ Github Repository](https://github.com/AlexWorx/ALib-Class-Library). 
+
+**ALib for C++** also disposes about a dedicated [homepage](http://alexworx.github.io/ALib-Class-Library).
+
 
 ## Features ##
 
@@ -78,7 +88,7 @@ This is **Version 1712 Revision 1**.
     * Logging **Exceptions** (recursively with inner exceptions)
     * Logging **XML trees**
 
-* C++ version: 
+* C++ version:
   * Compiled and tested on **GNU/Linux**, **Windows OS** and Apple **macOS**.
   * Accepts **arbitrary objects** to be logged. This goal is reached by using underlying library [ALib Boxing](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/namespaceaworx_1_1lib_1_1boxing.html) which allows to pass 'anything' as a parameter to C++ functions and methods.
   * Accepts **3rd party string types**. This goal is reached by using underlying library [ALib Strings](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/namespaceaworx_1_1lib_1_1strings.html).
@@ -89,25 +99,25 @@ This is **Version 1712 Revision 1**.
 The following alternatives to **ALox** may be worth mentioning:
 
 **For C++:**
-- [boost.Log](http://www.boost.org/doc/libs/1_55_0/libs/log/doc/html/index.html) 
-- [Google glog](https://github.com/google/glog) 
-- [Pantheios](http://www.pantheios.org/) 
-- [log4cplus](https://sourceforge.net/p/log4cplus/wiki/Home/)  
-- [log4cpp](http://log4cpp.sourceforge.net/)  
+- [boost.Log](http://www.boost.org/doc/libs/1_55_0/libs/log/doc/html/index.html)
+- [Google glog](https://github.com/google/glog)
+- [Pantheios](http://www.pantheios.org/)
+- [log4cplus](https://sourceforge.net/p/log4cplus/wiki/Home/)
+- [log4cpp](http://log4cpp.sourceforge.net/)
 
 **For C#:**
-- [Apache Log4net](https://logging.apache.org/log4net/)  
-- [nlog](http://nlog-project.org/)  
-- CSharp-Source.Net provides an [extensive list](http://csharp-source.net/open-source/logging) of further alternatives.  
- 
+- [Apache Log4net](https://logging.apache.org/log4net/)
+- [nlog](http://nlog-project.org/)
+- CSharp-Source.Net provides an [extensive list](http://csharp-source.net/open-source/logging) of further alternatives.
+
 
 **For Java:**
-- [built-in java.util.logging](https://docs.oracle.com/javase/7/docs/api/java/util/logging/package-summary.html) 
-- [Apache Log4j](https://logging.apache.org/log4)  
-- Java-Source.Net provides an [extensive list](http://java-source.net/open-source/logging) of further alternatives.  
- 
+- [built-in java.util.logging](https://docs.oracle.com/javase/7/docs/api/java/util/logging/package-summary.html)
+- [Apache Log4j](https://logging.apache.org/log4)
+- Java-Source.Net provides an [extensive list](http://java-source.net/open-source/logging) of further alternatives.
 
- 
+
+
 
 
 

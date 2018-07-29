@@ -10,319 +10,31 @@
 
 \tableofcontents
 
+
 \~Comment ####################################################################################### \~
 # 1. Introduction # {#alox_cpp_setupcppsetup_1}
 
-To use \b %ALox, you need to compile the ALox library and configure your project to link the library.
-This should not be too difficult to set up and this does not differ from the use of other C++ libraries.
+The C++ version of \alox is distributed in a separated repository. This repository solely
+contains the C# and Java language versions.
 
-In addition, \b %ALox should get configured to meet your needs. Especially, the format of the log
-output should be recognizable by your IDE: the source code file name and line number that generated
-the output should become "clickable" in the log: It should link back to the source in the editor.
-While different IDEs have different abilities and syntax for that, unfortunately, there are some IDEs that do not
-support such "clickable log output" at all.<br>
-This document gives some tips for different IDEs in later chapters.
-We hope that the IDE you are using is listed here.
-Otherwise, it may need a little testing, maybe some trial and error process, to see how the output
-needs to be done to be properly consumed by your IDE.
+The repository of \alib for C++ is found at: [github.com/AlexWorx/ALib](https://github.com/AlexWorx/ALib-Class-Library)
 
-Currently, <b>ALox for C++</b> compiles on the following platforms:
-- GNU/Linux 32 and 64 bit
-- Microsoft Windows 32 and 64 bit
-- Mac OSX 64 bit
-
-Ready to use project files are provided for
-- <em>CMake</em>
-- <em>Microsoft Visual Studio</em>.
-- <em>QTCreator</em>.
-
-Due to the CMake support, many other IDEs like
-- <em>CLion</em>,
-- <em>KDevelop 5</em> or
-- <em>QT Creator</em>
-
-can import or natively use the \b %ALox library projects very easily.
-
-\note
-  For Mac OSX development, we are currently using [JetBrains CLion](https://www.jetbrains.com/clion/)
-  and CMake files. XCode project files are not provided. Your help and input for Mac OSX project file and
-  general compatibility assurance is very welcome!
-
-
-If you compile your C++ code with a different build system/IDE, all you need to know is two things:
-- the list of source files and
-- which \ref alox_cpp_prepro_compsymbols "Compilation Symbols"
-  need to be set on compilation of debug and release configurations.
-
-To keep this document simple in language, the following terms are used:
-- *project*: A source code entity defined in an IDE or other build system. Could be a library, an
-  executable or other entity.
-- *solution*: A 'container' defined in an IDE or other build system that comprises a set of
-  projects that belong together.
-
-As a sample: using CMake, the solution would be the <em>CMakeLists.txt</em> file, and the projects would
-be the targets within such file.
-
-\~Comment ####################################################################################### \~
-# 2. Basics #      {#alox_cpp_setupcppsetup_aloxfolder}
-Clone the ALox repository from [Alox at GitHub](https://github.com/AlexWorx/ALox-Logging-Library)
-to a place where you commonly store 3rd party libraries that your projects are using.
-Alternatively, download and unpack the ZIP file.
-
-We call this place the <b><em>ALOX_LIB_PATH</em></b>.
-After a fresh installation, it should contain at least the following subfolders:
-
-        ALOX_LIB_PATH/build
-        ALOX_LIB_PATH/docs
-        ALOX_LIB_PATH/html
-        ALOX_LIB_PATH/src.cpp
-        ALOX_LIB_PATH/tools
-
-Depending on the platform and build system you are using, folder \c build may contain
-configuration files that suit your needs and you are quickly set.
-
-If not, it should not be too hard to compile \b %ALox from scratch.
-Note that \b %ALox relies on \b %ALib, a very basic utilitiy library.
-The sources of both are found in the following two folders and their sub-folders:
-
-        ALOX_LIB_PATH/src.cpp/alib
-        ALOX_LIB_PATH/src.cpp/alox
-
-
-All you need to do is to setup a library project with the ALox sources and link this library
-to your own project.<p>
-
-Optionally, the unit tests (which do not belong into the library) are found in:
-
-        ALOX_LIB_PATH/src.cpp/alib.unittests
-        ALOX_LIB_PATH/src.cpp/alox.unittests
-
-
-Both, the ALox library and your project might need to pass symbols to the C++ compiler.
-Be sure to read about the \ref alox_cpp_prepro carefully if you setup a project from scratch.
-
-To test your setup, add minimum ALox functionality to your project (as described in the first
-chapter of \ref alox_cpp_tutorial) into your main method or anywhere you think it is appropriate.
-
-You are set if:
-- your project compiles and runs without error
-- you see the log output when running the debug version
-- you can click the log line in your IDE and it links to the log statement in the editor
-- you do not see the log output when running the release version
+Documentation for compiling the library is given with \ref alib_man_setup.
 
 
 
 \~Comment ####################################################################################### \~
-# 3. Using ALox with CMake#    {#alox_cpp_setupcppsetup_cmake}
-
-\~Comment ####################################################################################### \~
-## 3.1 CMake Files and Targets ## {#alox_cpp_setupcppsetup_cmake_intro}
-
-The CMake files provided with \b %ALox were developed and tested with the latest CMake on
-GNU/Linux (Arch Linux), with the most recent GNU and CLang Compiler Suites.
-We hope you do not run into too much trouble on other platforms.
-
-As \b %ALox builds upon \ref aworx::lib "ALib", there are two CMake files that configure both
-libraries. These files are
-
-        ALOX_LIB_PATH/build/cmake.cpp/ALib.cmake
-        ALOX_LIB_PATH/build/cmake.cpp/ALox.cmake
-
-The second includes the first automatically, therefore only \e ALox.cmake needs to
-be included from any project's CMake file, like this:
-
-\snippet "../../build/cmake.cpp/alox.samples/CMakeLists.txt"        DOXYGEN_CMAKE_INCLUDE
-
-(This snippet is taken from a sample project that resides in a sub-folder, therefore the \e "../../..").
-
-Several cached CMake variables are created on the first
-invocation. Most of them directly correspond to preprocessor symbols as specified in the ALib/ALox
-documentation: \ref alox_cpp_prepro "Compilation Symbols".
-
-
-With the inclusion of \b ALox.cmake in your own cmake file two targets, named \b ALox_StaticLib and
-\b ALox_SharedLib get defined.
-Now, all that is needed is to add the library to your own CMake target, as shown in the
-following sample:
-\snippet "../../build/cmake.cpp/alox.samples/CMakeLists.txt"        DOXYGEN_CMAKE_SAMPLE_TARGET
-
-Notes:
-- The include directory for ALib/ALox header files (which is implicitly 'inherited' from the \b %ALox
-  library target, here \e ALox_SharedLib) is:
-
-        ALOX_LIB_PATH/src.cpp/
-
-  This means that in your projects' source code, header files have to be included using the
-  prefixes \e 'alib/' and \e 'alox/', for example, the main header files are included as:
-
-        #include "alib/alib.hpp"
-        #include "alox/alox.hpp"
-
-  This is to avoid any collisions with your own or other libraries header file names.
-
-- The variables \e AWORX_COMPILER_FEATURES, \e AWORX_COMPILER_WARNINGS, \e AWORX_COMPILER_FLAGS and
-  \e AWORX_LINKER_FLAGS define C++ compiler and linker
-  options for target \e ALox_StaticLib. Of-course, for your target, you can use your own options.
-  Here, we are reusing them, as this snippet comes from an ALox sample project.
-
-- When CMake variable \e ALIB_FEAT_THREADS is \c true (the default), then
-  the following CMake commands are executed in CMake script \e ALib.cmake:
-  \snippet "../../build/cmake.cpp/ALib.cmake"        DOXYGEN_CMAKE_FIND_THREADS
-  Therefore, when adding \e ALIB_EXTERNAL_LIBS with CMake command \e target_link_libraries,
-  multi-threading support is already added to your target.<br>
-  In the current version of ALib/ALox, no other external library dependencies are set and this is
-  very unlikely to change in the future. This means that CMake variable \e ALOX_EXTERNAL_LIBS which is also
-  added in the snippet above to the target, is empty and provided only for completeness.
-
-
-\~Comment ####################################################################################### \~
-## 3.2 Building The Sample Project ## {#alox_cpp_setupcppsetup_cmake_sample}
-
-To build the sample project, perform the following steps:
-
-- open a console window and cd into directory:
-
-        ALOX_LIB_PATH/build/cmake.cpp/alox.samples/
-
-- create two sub-directories from here, one named *debug* and the other *release*
-- cd into directory *debug* and type
-
-        cmake ..
-
-- once cmake has run, type
-
-        make
-
-The compiled sample executable should have been created and you can start it with
-
-    ./ALoxSamples
-
-When you run it, the output should contain the following lines:
-
-    cout: Do some debug logging:
-    ALoxSamples.cpp:43:DebugLog [0.000 +---   ][MAIN][/]#001: Hello ALox, this is debug logging
-
-    cout: Do some release logging:
-    [0.000+171 µs][MAIN][/](001): Hello ALox, this is release logging
-
-
-For a <b>release build</b>, the steps are the same with one important exclamation.
-After you cd into the 'release' folder, the cmake command is:
-
-    cmake -DCMAKE_BUILD_TYPE=Release ..
-
-instead of just *cmake ..*. (The *CMAKE_BUILD_TYPE* is set to *Debug* by default.)<br>
-
-When you run the executable, the output should contain the following lines:
-
-    cout: Do some debug logging:
-    cout: should not have logged something (this is the release version)
-
-    cout: Do some release logging:
-    ALoxSamples.cpp:75: ReleaseLog           [0.001 +001 ms][MAIN][/   ]   #001:       Hello ALox, this is release logging
-
-As you can see, the release version is missing the debug log output.
-You have successfully compiled ALox and a sample project on your platform. Now it is
-your task to configure your own project that is supposed to use ALox accordingly.
-
-
-\~Comment ####################################################################################### \~
-## 3.3 Compiling The Unit Tests ## {#alox_cpp_setupcppsetup_cmake_unittests}
-
-Compiling the unit tests is similar to the steps described above. The project location is
-
-ALOX_LIB_PATH/build/cmake.cpp/unittests/
-
-For the unit tests, \e Google \e gtest gets downloaded (once) and incorporated
-as a source project within the binary folder. This means:
- - This library does not need to be installed anywhere else on the system
- - This library gets deleted when deleting the CMake build folder
-   (in the sample above named "debug" respectively "release").
- - For the download and setup of these libraries, a quick CMake script is downloaded (once):
-   [Crascit/DownloadProject](https://github.com/Crascit/DownloadProject).
-   This scripts downloads the source zip-file once and stores them within the CMake build folder.
-   Hence, even after a "make clean", \e gtest will not be downloaded twice.
-
-
-\~Comment ####################################################################################### \~
-## 3.4 Using Cotire To Speed-Up Builds ## {#alox_cpp_setupcppsetup_cmake_cotire}
-
-[Cotire](https://github.com/sakra/cotire/) is an open source CMake script which modifies C++ CMake
-targets in a way to speed up compilation. This is achieved using mainly two techniques: Precompiled
-header files and so called "unity builds".
-
-The provided CMake script \c %ALib.cmake defines CMake cache variable \c ALIB_CMAKE_COTIRE. If
-this variable evaluates to  \c true, then the script downloads
-[Cotire](https://github.com/sakra/cotire/) (once) and includes it.
-Then, script \c %ALox.cmake applies cotire to the library targets.
-
-To benefit from the unity build option (which cuts build time quite dramatically!) you have two
-options:
-1. Setup your target to use project \c ALox_SharedLib_unity instead of \c ALox_SharedLib
-   (respectively \c ALox_StaticLib_unity instead of \c ALox_StaticLib).
-   This should be done depending on the setting of the CMake variable, as shown in the following
-   sample:
-
-   \snippet "../../tools/DoxygenGraphTemplateInstanceRemover/CMakeLists.txt"    DOXYGEN_CMAKE_COTIRE_TARGET
-
-2. Use cotire for your project as well and then choose the new make target with suffix "_unity"
-   for building. This target will automatically use the "_unity" target version of the \b %ALox
-   library as well.
-   This second approach is used in the provided \b ALoxSample project and CMake file.
-
-By default, [Cotire](https://github.com/sakra/cotire/) is switched off in the make files provided.
-This is because it adds a next layer of complexity for compiling <b>%ALib/%ALox</b>.
-But it is generally worth to have a try!
-
-\~Comment ####################################################################################### \~
-## 3.5 Further Notes On CMake ## {#alox_cpp_setupcppsetup_cmake_notes}
-
-- To analyze compiler and linker flags, do a manual build from the shell as follows:
-
-    make VERBOSE=1 |grep "/usr/bin/c++"
-
-  (this is not ALox specific, just a reminder, might look different depending on your setup)
-- Do not hesitate to open and read the CMake files
-
-        ALOX_LIB_PATH/build/cmake.cpp/ALib.cmake
-        ALOX_LIB_PATH/build/cmake.cpp/ALox.cmake
-
-  They are well documented and may contain some first hints if problems arise.
-- Currently, there is no 'installable' version available of ALib/ALox. To avoid compiling
-  the library with your project, you have to compile the project found in:
-
-        ALOX_LIB_PATH/build/cmake.cpp/alox.lib/
-
-  and include the library to your CMake project \e 'manually'
-
-- The library names get some name extensions depending on the \ref alox_cpp_prepro "Compilation Symbols"
-  chosen. It is important to not link compilation units with mixed compilation symbols.
-  Library classes  \alib{ALib} and \alox{ALox} use optional feature of their parent class
-  \b library, exposed with method \alib{lang,Library::VerifyCompilationFlags}.
-  This method should be called from custom bootstrap called as to verify that all compilation
-  units share the same flags. Code for doing so looks like this:
-
-        lib::ALIB.CheckCompatibility( ALIB_VERSION, ALIB_COMPILATION_FLAGS );
-        lox::ALOX.VerifyCompilationFlags( ALOX_COMPILATION_FLAGS );
-
-
-  \note
-    In previous \alib/\alox versions something similar was automatically invoked with former method
-    <b>ALox::Init</b>, but with the introduction of class \b %Library, this is - for technical
-    reasons - not the case anymore.
-
-\~Comment ####################################################################################### \~
-# 4. Using ALox with Different IDEs#    {#alox_cpp_setupcppsetup_ides}
+# 2. Using ALox with Different IDEs#    {#alox_cpp_setupcppsetup_ides}
 In the following sections, the use of ALox with different IDEs are discussed. Besides specifics
-in respect to project setup, an overview about how \b %ALox clickable log output is supported - and
+in respect to project setup, an overview about how \alox clickable log output is supported - and
 achieved! "Achieving" here means most of all to configure the output format in a way that the
 IDE "understands" the source file and line number information and links them to the editor and source.
 
 To change the format of the log output, field
-\ref #aworx::lox::core::textlogger::MetaInfo::Format "Format" of object
-\ref #aworx::lox::core::textlogger::TextLogger::MetaInfo "TextLogger::MetaInfo" has to be
+\ref #aworx::lib::lox::core::textlogger::MetaInfo::Format "Format" of object
+\ref #aworx::lib::lox::core::textlogger::TextLogger::MetaInfo "TextLogger::MetaInfo" has to be
 modified. This can be done either programatically, or, if available in the external configuration
-of an application. If you are new to \b %ALox, the easiest way to play around with different log
+of an application. If you are new to \alox, the easiest way to play around with different log
 output formats, is to compile and run the sample project. This will generate an INI-file
 (in your personal OS-specific configuration folder) and within this file you will find an entry for
 configuration variable
@@ -336,30 +48,19 @@ then still reading these might help you in understanding how such support is pos
 
 
 \~Comment ####################################################################################### \~
-## 4.1. QT Creator##    {#alox_cpp_setupcppsetup_qtcreator}
+## 2.1. QT Creator##    {#alox_cpp_setupcppsetup_qtcreator}
 
 [QT Creator](http://doc.qt.io/qtcreator/index.html) can be used in two different "modes", with
 CMake files and with QMake files. Unfortunately, in respect to clickable log-output there is a
-tremendous difference in the behavior of QT Creator. Therefore, we have split this into two
-different sections.
+tremendous difference in the behavior of QT Creator.
 
-\note When using %ALib classes in your project or you want to debug into or extend \b %ALox,
-      please note the special support of \b %ALox for QT Creator
+\note When using %ALib classes in your project or you want to debug into or extend \alox,
+      please note the special support of \alox for QT Creator
       [pretty printers](../tools.html#tools_debug_helpers_qtcreator).
 
 
 \~Comment ####################################################################################### \~
-### 4.1.1 Using QT Creator with QMake ### {#alox_cpp_setupcppsetup_qtcreator_qm}
-
-The <b><em>ALOX_LIB_PATH</em></b> contains ready to use library, sample, and unit testing projects
-for <em>QT Creator</em> using its default build system QMake. Those are found in sub-folder:
-
-        ALOX_LIB_PATH/build/ide.cpp.qtcreator/
-
-Please refer to the
-[QT Creator](http://doc.qt.io/qtcreator/) and
-[QMake](http://doc.qt.io/qt-5/qmake-manual.html)
-documentation for details on how to use them.
+### 2.1.1 Using QT Creator with QMake ### {#alox_cpp_setupcppsetup_qtcreator_qm}
 
 In respect to log output file name recognition, we have made the following observations:
 
@@ -379,18 +80,18 @@ In respect to log output file name recognition, we have made the following obser
   that turns relative source file paths (provided by QMake to the C++ compiler) into absolute ones.
 
 From these observations, the following advice can be given:
-- A plain (non-colorful!) logger of type [ConsoleLogger] (@ref #aworx::lox::loggers::ConsoleLogger)
+- A plain (non-colorful!) logger of type [ConsoleLogger] (@ref aworx::lib::lox::loggers::ConsoleLogger)
   is to be used created.<br>
-- The string [MetaInfo::Format] (@ref #aworx::lox::core::textlogger::MetaInfo::Format) needs to start with
+- The string [MetaInfo::Format] (@ref aworx::lib::lox::core::textlogger::MetaInfo::Format) needs to start with
   \c "   Loc: [..." .
 - No square brackets must be used in the meta information (and the log output itself).
 - In addition, all square brackets are removed from Fields
-  [MetaInfo::VerbosityVerbose] (@ref #aworx::lox::core::textlogger::MetaInfo::VerbosityVerbose),
-  [MetaInfo::VerbosityInfo]    (@ref #aworx::lox::core::textlogger::MetaInfo::VerbosityInfo),
-  [MetaInfo::VerbosityWarning] (@ref #aworx::lox::core::textlogger::MetaInfo::VerbosityWarning) and
-  [MetaInfo::VerbosityError]   (@ref #aworx::lox::core::textlogger::MetaInfo::VerbosityError).
+  [MetaInfo::VerbosityVerbose] (@ref aworx::lib::lox::core::textlogger::MetaInfo::VerbosityVerbose),
+  [MetaInfo::VerbosityInfo]    (@ref aworx::lib::lox::core::textlogger::MetaInfo::VerbosityInfo),
+  [MetaInfo::VerbosityWarning] (@ref aworx::lib::lox::core::textlogger::MetaInfo::VerbosityWarning) and
+  [MetaInfo::VerbosityError]   (@ref aworx::lib::lox::core::textlogger::MetaInfo::VerbosityError).
 - Finally, using method
-  [TextLogger::SetReplacement] (@ref #aworx::lox::core::textlogger::TextLogger::SetReplacement),
+  [TextLogger::SetReplacement] (@ref aworx::lib::lox::core::textlogger::TextLogger::SetReplacement),
   replacement rules may be added which will replace all square brackets within the contents
   of <em>Log Statements</em> by curly braces.
 
@@ -409,16 +110,16 @@ contain the following entries:
 
 
 \~Comment ####################################################################################### \~
-### 4.1.2 Using QT Creator with CMake ###   {#alox_cpp_setupcppsetup_qtcreator_cm}
+### 2.1.2 Using QT Creator with CMake ###   {#alox_cpp_setupcppsetup_qtcreator_cm}
 
-<em>QT Creator</em> has a built in CMake support which works really well (as of the time of
-this writing).
+<em>QT Creator</em> has a built in CMake support which works really well with the CMake files
+provided with the project (as of the time of this writing).
 
 To use the pre-build CMake files of ALox with <em>QT Creator</em>, open menu \e File of
 <em>QT Creator</em> and choose <em>Open File or Project...</em> and
 select the file:
 
-        ALOX_LIB_PATH/build/cmake.cpp/alox.samples/CMakeLists.txt
+        ALIB_LIB_PATH/build/cmake/samples/ALox/CMakeLists.txt
 
 Follow the project setup as <em>QT Creator</em> documentation suggests.
 When the CMake run dialog appears, for debug builds, no arguments need to be passed. For release
@@ -429,8 +130,6 @@ builds, provide
 as the CMake Arguments
 
 The ALox sample project is now ready to be build in <em>QT Creator</em>
-
-When you run it, the output should look like suggested in chapter \ref alox_cpp_setupcppsetup_cmake "Using ALox with CMake".
 
 In respect to log output file name recognition, there is some bad news now: When used with CMake
 projects, QT Creator does not support clickable log lines. At least, we have not found out how!
@@ -445,12 +144,12 @@ Therefore, we recommend to set the following two configuration variables:
 
 
 \~Comment ####################################################################################### \~
-## 4.2. Using ALox with Visual Studio##    {#alox_cpp_setupcppsetup_vstudio}
+## 2.2. Using ALox with Visual Studio##    {#alox_cpp_setupcppsetup_vstudio}
 
 When you are new to ALox and you just want to play around with it a bit, the easiest thing
 is to open the Visual studio solution found in
 
-        ALOX_LIB_PATH/build/ide.cpp.vstudio/Solution/ALox-CPP.sln
+        ALIB_LIB_PATH/build/ide.vstudio/Solution/ALox-CPP.sln
 
 You are set! For example you could walk through the \ref alox_cpp_tutorial by adding the tutorial
 code to the \c main() function of the project *ALox-CPP-Samples*.
@@ -458,7 +157,7 @@ code to the \c main() function of the project *ALox-CPP-Samples*.
 ALox provides a Visual Studio project that compiles ALox into a DLL.
 The projects is located in:
 
-        ALOX_LIB_PATH/build/ide.cpp.vstudio/ALox-CPP-DLL/
+        ALIB_LIB_PATH/build/ide.vstudio/ALox-CPP-DLL/
 
 Add this project to your solution and set a build dependency from your project to the just added
 *ALox-CPP-DLL* project. Furthermore, the *ALox-CP-DLL project* has to be added as a reference to
@@ -478,35 +177,35 @@ Finally, the ALox include directory has to be added to your project.
 <b>Clickable Log Output with Visual Studio:</b><br>
 As far as we know, clickable log output is only possible to have when launching a project
 in debug mode. In this case, ALox automatically adds a second logger of type
-\ref aworx::lox::loggers::VStudioLogger "VStudioLogger". (This is the default behavior by default,
-implemented with method \ref aworx::lox::Log::AddDebugLogger "Log::AddDebugLogger".)
+\ref aworx::lib::lox::loggers::VStudioLogger "VStudioLogger". (This is the default behavior by default,
+implemented with method \ref aworx::lib::lox::Log::AddDebugLogger "Log::AddDebugLogger".)
 
 This logger does everything right to have clickable log lines in Visual Studio. No
 adjustments need to be done.
 
 
 \~Comment ####################################################################################### \~
-## 4.3 Using ALox with JetBrains CLion ## {#alox_cpp_setupcppsetup_clion}
+## 2.3 Using ALox with JetBrains CLion ## {#alox_cpp_setupcppsetup_clion}
 
 [CLion](https://www.jetbrains.com/clion/)s' build system relies on \e CMake.
 Pre-configured project folders are provides with
 
 
-    ALOX_LIB_PATH/build/ide.cpp.clion/alox.samples
-    ALOX_LIB_PATH/build/ide.cpp.clion/unittests
+    ALIB_LIB_PATH/build/ide.clion/samples/ALox
+    ALIB_LIB_PATH/build/ide.clion/unittests
 
 The \e CMake files within these directories are just including the the corresponding \e CMake files
 found in
 
-    ALOX_LIB_PATH/build/cmake.cpp/alox.samples
-    ALOX_LIB_PATH/build/cmake.cpp/unittests
+    ALIB_LIB_PATH/build/cmake/samples/ALox
+    ALIB_LIB_PATH/build/cmake/unittests
 
-The advantage of this approach is that the "generic" folders found in folder \e cmake.cpp are
+The advantage of this approach is that the "generic" folders found in folder \e cmake are
 kept free from \e CLion project files.
 
 Therefore, \e CLion users should be ready to compile by just opening these project folders.
 
-For debugging ALib and ALox code, you might want to install the
+For debugging \alib and \alox code, you might want to install the
 [Pretty Printers for GNU Debugger](../tools.html#tools_debug_helpers_gdb).
 
 

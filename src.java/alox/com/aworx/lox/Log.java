@@ -75,7 +75,7 @@ public abstract class Log
 
         /** ************************************************************************************
          * This method invokes #addDebugLogger(Lox) providing the static debug instance #LOX.
-         * for parameter \p lox.
+         * for parameter \p{lox}.
          **************************************************************************************/
         public static void addDebugLogger()
         {
@@ -130,7 +130,7 @@ public abstract class Log
          * providing their (release) lox.
          * In this case, the \e Verbosity of the internal domain used by class
          * \ref com.aworx.lox.ALoxReportWriter "ALoxReportWriter" has to be set for the
-         * the logger(s) in given \p lox in question.
+         * the logger(s) in given \p{lox} in question.
          *
          * @param lox  The lox that the
          *             \ref com.aworx.lox.ALoxReportWriter "ALoxReportWriter" created will be using.
@@ -222,7 +222,7 @@ public abstract class Log
     }
 
     /** ********************************************************************************************
-     * Removes logger named \p loggerName from this container.
+     * Removes logger named \p{loggerName} from this container.
      *
      * \note To (temporarily) disable a logger without removing it, a call to
      *       \ref setVerbosity  "setVerbosity( logger, Verbosity.OFF )"
@@ -237,19 +237,19 @@ public abstract class Log
     }
 
     /** ********************************************************************************************
-     * Sets the \e %Verbosity of the <em>Log Domain</em> which is evaluated from parameter \p domain and
-     * applicable <em>Scope Domains</em>. The \p verbosity given, is set recursively for all sub-domains.
+     * Sets the \e %Verbosity of the <em>Log Domain</em> which is evaluated from parameter \p{domain} and
+     * applicable <em>Scope Domains</em>. The \p{verbosity} given, is set recursively for all sub-domains.
      *
-     * With the first invocation of this method for a distinct \p logger, this \e %Logger
+     * With the first invocation of this method for a distinct \p{logger}, this \e %Logger
      * is registered with this \e %Lox. In this case, prior to setting the given \e Verbosity
      * for the evaluated sub-domain, the \e Verbosity for all domains is set to
      * \b %Verbosity.Off.
      *
      * To deregister a \e Logger with a \b Lox, use method #removeLogger.
-     * To 'disable' a \e Logger, invoke this method with parameters \p verbosity equaling to
-     * \b %Verbosity.Off and \p domain to \c "/".
+     * To 'disable' a \e Logger, invoke this method with parameters \p{verbosity} equaling to
+     * \b %Verbosity.Off and \p{domain} to \c "/".
      *
-     * Optional parameter \p priority defaults to
+     * Optional parameter \p{priority} defaults to
      * \ref com.aworx.lox.Configuration.PRIO_DEFAULT_VALUES "Configuration.PRIO_DEFAULT_VALUES", which is a lower priority
      * than those of the standard plug-ins of external configuration data. Therefore, external
      * configuration by default 'overwrite' settings made from 'within the source code', which
@@ -263,7 +263,7 @@ public abstract class Log
      *
      *
      * \attention
-     *   The same as with most interface methods of this class, the given \p domain parameter is
+     *   The same as with most interface methods of this class, the given \p{domain} parameter is
      *   combined with <em>%Scope Domains</em> set for the callers' \e %Scope. In standard use
      *   cases of \b %ALox, the \e %Verbosity of a \e Domain is set using absolute domain path
      *   addressing. Therefore, it is recommended to have any domain path passed to this method
@@ -279,7 +279,7 @@ public abstract class Log
      *   process.<p>
      * \attention
      *   Consequently, this method may be (mis-) used to modify the 'actual' (default) scope
-     *   when explicitly giving an empty string with parameter \p domain. This is useful, to
+     *   when explicitly giving an empty string with parameter \p{domain}. This is useful, to
      *   temporarily adjust a scope. But remember: \b %ALox was designed to avoid temporary code
      *   lines...
      *
@@ -300,7 +300,7 @@ public abstract class Log
 
     /** ********************************************************************************************
      * Overloaded version of \ref setVerbosity(Logger,Verbosity,String,int) "setVerbosity" providing
-     * default value \c PRIO_SOURCE for parameter \p priority.
+     * default value \c PRIO_SOURCE for parameter \p{priority}.
      *
      * @param logger     The logger to be to be affected.
      * @param verbosity  The 'level of verboseness' to be set.
@@ -315,8 +315,8 @@ public abstract class Log
 
     /** ********************************************************************************************
      * Overloaded version of \ref setVerbosity(Logger,Verbosity,String,int) "setVerbosity" providing
-     * - default value \c PRIO_SOURCE for parameter \p priority and
-     * - default value <c> '/'</c> for parameter \p domain.
+     * - default value \c PRIO_SOURCE for parameter \p{priority} and
+     * - default value <c> '/'</c> for parameter \p{domain}.
      *
      * @param logger     The logger to be to be affected.
      * @param verbosity  The 'level of verboseness' to be set.
@@ -350,7 +350,7 @@ public abstract class Log
 
     /** ********************************************************************************************
      * Overloaded version of \ref setVerbosity(String,Verbosity,String) "setVerbosity" providing
-     * default value \c PRIO_SOURCE for parameter \p priority.
+     * default value \c PRIO_SOURCE for parameter \p{priority}.
      *
      * @param loggerName  The logger to be to be affected, identified by its name (case
      *                    insensitive).
@@ -366,8 +366,8 @@ public abstract class Log
 
     /** ********************************************************************************************
      * Overloaded version of \ref setVerbosity(String,Verbosity,String) "setVerbosity" providing
-     * - default value \c PRIO_SOURCE for parameter \p priority and
-     * - default value <c> '/'</c> for parameter \p domain.
+     * - default value \c PRIO_SOURCE for parameter \p{priority} and
+     * - default value <c> '/'</c> for parameter \p{domain}.
      *
      * @param loggerName  The logger to be to be affected, identified by its name (case
      *                    insensitive).
@@ -379,19 +379,19 @@ public abstract class Log
     }
 
     /** ********************************************************************************************
-     * The given \p scopeDomain becomes the default domain path for given \p scope.
+     * The given \p{scopeDomain} becomes the default domain path for given \p{scope}.
      * This means, that any subsequent log invocations (from within this same scope) can omit the
      * domain parameter, or if they provide one, this Scope Domain path is prepended.
      * If subsequent log calls specify a domain name with a leading '/' character,
      * then the Scope Domain of the scope is ignored.<br>
      * Furthermore, if the given scope is an inner scope, outer scopes are prepended to the
-     * given \p scopeDomain when the resulting domain of a log invocation is evaluated.
+     * given \p{scopeDomain} when the resulting domain of a log invocation is evaluated.
      * Again, this behavior can be overruled by prepending a leading '/' character to
-     * \p scopeDomain.
+     * \p{scopeDomain}.
      *
      *
      * To remove a previously set Scope Domain a nulled or empty string has to be passed with
-     * parameter \p scopeDomain.
+     * parameter \p{scopeDomain}.
      *
      * For \e %Scope.THREAD_OUTER and \e %Scope.THREAD_INNER, passing an empty or nulled string
      * removes the most recently added domain path. For removing an explicitly named
@@ -400,7 +400,7 @@ public abstract class Log
      *
      *
      * @param scopeDomain  The domain path to register.
-     * @param scope        The scope that should the given \p domain be registered for.
+     * @param scope        The scope that should the given \p{domain} be registered for.
      *                     Available Scope definitions are platform/language dependent.
      * @param packageLevel Used only with
      *                     \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE".
@@ -414,10 +414,10 @@ public abstract class Log
 
     /** ********************************************************************************************
      * Overloaded version of \ref setDomain( String, Scope, int) "setDomain"
-     * providing default value \c 0 for parameter \p packageLevel.
+     * providing default value \c 0 for parameter \p{packageLevel}.
      *
      * @param scopeDomain    The domain path to register.
-     * @param scope        The scope that should the given \p domain be registered for.
+     * @param scope        The scope that should the given \p{domain} be registered for.
      *                     Available Scope definitions are platform/language dependent.
      **********************************************************************************************/
     public static void setDomain( String scopeDomain, Scope scope)
@@ -431,7 +431,7 @@ public abstract class Log
      * is applicable only for \e %Scope.THREAD_OUTER and \e %Scope.THREAD_INNER and allows to
      * specify the thread that the setting should be associated with.
      *
-     * If \p scopeDomain is null or empty, the most recently added domain path is removed.
+     * If \p{scopeDomain} is null or empty, the most recently added domain path is removed.
      * For removing an explicitly named domain associated with  a thread use method
      * #removeThreadDomain.
      *
@@ -451,7 +451,7 @@ public abstract class Log
      *
      * To remove the most recently added domain path from such thread-related \e %Scope,
      * use one of the overloaded methods #setDomain and provide an empty or nulled
-     * value for parameter \p scopeDomain (the same as how domain paths of other \e %Scopes
+     * value for parameter \p{scopeDomain} (the same as how domain paths of other \e %Scopes
      * are removed).
      *
      * \note
@@ -474,7 +474,7 @@ public abstract class Log
     }
 
     /** ****************************************************************************************
-     * Overload version providing default value for parameter \p thread.
+     * Overload version providing default value for parameter \p{thread}.
      *
      * @param scopeDomain The domain path to register.
      * @param scope       Either \e %Scope.THREAD_OUTER and \e %Scope.THREAD_INNER. With other values,
@@ -488,18 +488,18 @@ public abstract class Log
     /** ****************************************************************************************
      * Adds a <em>Domain Substitution Rule</em>.
      * <em>Domain Substitution</em> is performed as a last step when evaluating the domain path of a <em>Log Statement</em>,
-     * taking <em>Scope Domains</em> and the optional parameter \p domain of the statement into
+     * taking <em>Scope Domains</em> and the optional parameter \p{domain} of the statement into
      * account.<br>
      *
      * <b>Wildcards</b><br>
-     * Parameter \p domainPath supports \b 'wildcard' character <c> '*'</c> at its beginning
+     * Parameter \p{domainPath} supports \b 'wildcard' character <c> '*'</c> at its beginning
      * and at its end (or both). This allows to have four types of rules:
      * - Exact match
-     * - Prefix match (\c * at the end of \p domainPath)
-     * - Suffix match (\c * at the start of \p domainPath)
-     * - Substring match (\c * at both, start and the end of \p domainPath)
+     * - Prefix match (\c * at the end of \p{domainPath})
+     * - Suffix match (\c * at the start of \p{domainPath})
+     * - Substring match (\c * at both, start and the end of \p{domainPath})
      *
-     * Only minimal checks are performed, e.g. if an exact match is requested, but \p domainPath
+     * Only minimal checks are performed, e.g. if an exact match is requested, but \p{domainPath}
      * does not start with character <c> '/'</c>. In this and some other cases, the rule is not
      * stored and an internal warning is logged. Further checks, for example for illegal
      * domain path characters are not performed (those will be eliminated when the resulting
@@ -515,9 +515,9 @@ public abstract class Log
      * this is repeated as long as at least one rule matched (up to ten times).
      *
      * <b>Deletion of Rules</b>
-     * To delete a rule, invoke the method with same parameter \p domainPath and a 'nulled'
-     * or empty string for parameter \p replacement.
-     * To delete all rules, invoke the method with parameter \p domainPath 'nulled'
+     * To delete a rule, invoke the method with same parameter \p{domainPath} and a 'nulled'
+     * or empty string for parameter \p{replacement}.
+     * To delete all rules, invoke the method with parameter \p{domainPath} 'nulled'
      * or empty.
      *
      * <b>Final remarks</b>
@@ -530,7 +530,7 @@ public abstract class Log
      *
      * For \b %Lox objects that should be protected of external manipulation, it is advisable,
      * to remove all <em>Domain Substitution Rules</em> right after the \b %Lox was created by invoking this method with
-     * a nulled value for parameter \p domainPath. The reason is, that otherwise, through
+     * a nulled value for parameter \p{domainPath}. The reason is, that otherwise, through
      * configuration files or command line parameters, domains of the \b %Lox can be substituted
      * and then the resulting domains \e Verbosities be \e overwritten using further configuration
      * variables. Any prioritized \e 'internal' setting of \e Verbosities this way could be
@@ -547,8 +547,8 @@ public abstract class Log
     }
 
     /** ****************************************************************************************
-     * The given \p prefix becomes a <em>Prefix Logable</em> provided to loggers with each log
-     * statement executed within the given \p scope.
+     * The given \p{prefix} becomes a <em>Prefix Logable</em> provided to loggers with each log
+     * statement executed within the given \p{scope}.
      * The list of objects received by a logger is sorted from outer scope to inner scope.
      * The logable of the <em>%Log Statement</em> itself, is the last in the list, except one or
      * more <em>Prefix Logables</em> of \e %Scope.ThreadInner are set. Those are (similar to how
@@ -556,7 +556,7 @@ public abstract class Log
      * list.
      *
      * To remove a previously set <em>Prefix Logable</em>, \c null has to be passed with
-     * parameter \p logable.
+     * parameter \p{logable}.
      * For \e %Scope.THREAD_OUTER and \e %Scope.THREAD_INNER, passing \c null
      * removes the most recently added <em>Prefix Logable</em>.
      *
@@ -579,7 +579,7 @@ public abstract class Log
      *   Think of 'SetContext' and <em>Context Objects</em> instead.
      *
      * @param prefix       The <em>Prefix Logable(s)</em> to set.
-     * @param scope        The scope that should the given \p logable be registered for.
+     * @param scope        The scope that should the given \p{logable} be registered for.
      *                     Available Scope definitions are platform/language dependent.
      * @param packageLevel Used only with
      *                     \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE".
@@ -593,10 +593,10 @@ public abstract class Log
 
     /** ****************************************************************************************
      * Overloaded version of \ref setPrefix(Object,Scope,int) "setPrefix" providing value \c 0
-     * as default for parameter \p packageLevel.
+     * as default for parameter \p{packageLevel}.
      *
      * @param prefix      The <em>Prefix Logable(s)</em> to set.
-     * @param scope       The scope that should the given \p logable be registered for.
+     * @param scope       The scope that should the given \p{logable} be registered for.
      *                    Available Scope definitions are platform/language dependent.
      ******************************************************************************************/
     public static  void setPrefix( Object prefix, Scope scope  )
@@ -610,7 +610,7 @@ public abstract class Log
      * \e %Scope.THREAD_OUTER and \e %Scope.THREAD_INNER and allows to specify the thread that
      * the setting should be associated with.
      *
-     * If \p logable is \c null, the most recently added <em>Prefix Logable</em>
+     * If \p{logable} is \c null, the most recently added <em>Prefix Logable</em>
      * is removed.
      *
      * @param logable     The <em>Prefix Logable</em> to set.
@@ -625,20 +625,20 @@ public abstract class Log
 
 
     /** ****************************************************************************************
-     * The given \p logable becomes a <em>Prefix Logable</em> associated to the given <em>Log Domain</em>.
+     * The given \p{logable} becomes a <em>Prefix Logable</em> associated to the given <em>Log Domain</em>.
      * <em>Prefix Logables</em> associated with the <em>Log Domain</em> are added to the list of \e Logables right
      * before the main \e Logable of the <em>Log Statement</em> itself.
      * Multiple <em>Prefix Logables</em> can be added per <em>Log Domain</em>.
      *
      * To remove the most recently added <em>Prefix Logable</em> associated with a <em>Log Domain</em>,
-     * \c null has to be passed with parameter \p logable.
+     * \c null has to be passed with parameter \p{logable}.
      *
      * \attention
-     *   The same as with most interface methods of this class, the given \p domain parameter is
+     *   The same as with most interface methods of this class, the given \p{domain} parameter is
      *   combined with <em>%Scope Domains</em> set for the callers' \e %Scope.
      *   To suppress this, an absolute domain path can be used. (Still any <em>Scope Domain</em> of
      *   \e %Scope.THREAD_INNER will be applied).
-     *   The default value of parameter \p domain is \c "" which addresses the domain evaluated
+     *   The default value of parameter \p{domain} is \c "" which addresses the domain evaluated
      *   for the current scope.
      *
      * @param logable     The <em>Prefix Logable</em> to set.
@@ -656,7 +656,7 @@ public abstract class Log
 
     /** ****************************************************************************************
      * Overloaded version of #setPrefix providing
-     * default value \c Inclusion.INCLUDE for parameter \p otherPLs.
+     * default value \c Inclusion.INCLUDE for parameter \p{otherPLs}.
      *
      * @param logable     The <em>Prefix Logable</em> to set.
      * @param domain      The domain path. Defaults to \c null, resulting in
@@ -669,8 +669,8 @@ public abstract class Log
 
     /** ****************************************************************************************
      * Overloaded version of #setPrefix providing
-     * default value \c Inclusion.INCLUDE for parameter \p otherPLs and
-     * default value \c null for parameter \p domain.
+     * default value \c Inclusion.INCLUDE for parameter \p{otherPLs} and
+     * default value \c null for parameter \p{domain}.
      *
      * @param logable     The <em>Prefix Logable</em> to set.
      ******************************************************************************************/
@@ -703,7 +703,7 @@ public abstract class Log
 
     /** ********************************************************************************************
      * Overloaded version of #setStartTime( Date, String ) providing default value \c null
-     * for parameter \p loggerName.
+     * for parameter \p{loggerName}.
      *
      * @param startTime     Optional parameter with the  new start time. Defaults to DateTime.Now if
      *                      omitted.
@@ -715,7 +715,7 @@ public abstract class Log
 
     /** ********************************************************************************************
      * Overloaded version of #setStartTime( Date, String ) providing default values
-     * \c null for parameters \p startTime and \p loggerName.
+     * \c null for parameters \p{startTime} and \p{loggerName}.
      **********************************************************************************************/
     public static  void setStartTime()
     {
@@ -748,10 +748,10 @@ public abstract class Log
 
     /** ****************************************************************************************
      * Stores an object which was can afterwards be retrieved by invoking #retrieve.
-     * Optional parameters \p key and \p scope offer various possibilities to reference
+     * Optional parameters \p{key} and \p{scope} offer various possibilities to reference
      * this data later.<br>
      *
-     * To remove data from the store, pass \c null with parameter \p data.
+     * To remove data from the store, pass \c null with parameter \p{data}.
      *
      * \attention
      * When data objects are 'overwritten', previous objects will be deleted internally.
@@ -765,10 +765,10 @@ public abstract class Log
      *                  If \c null, currently stored data will be removed.
      * @param key       The optional key to the data.
      *                  If omitted (or empty or null), the data is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.GLOBAL, then the
+     *                  provided. If omitted and \p{scope} is Scope.GLOBAL, then the
      *                  data is unique to the \e Lox.
      * @param scope     The \e %Scope that the data is bound to.
-     * @param pkgLevel  Used only if parameter \p scope equals
+     * @param pkgLevel  Used only if parameter \p{scope} equals
      *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      ******************************************************************************************/
@@ -784,7 +784,7 @@ public abstract class Log
      *                  If \c null, currently stored data will be removed.
      * @param key       The optional key to the data.
      *                  If omitted (or empty or null), the data is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.GLOBAL, then the
+     *                  provided. If omitted and \p{scope} is Scope.GLOBAL, then the
      *                  data is unique to the \e Lox.
      * @param scope     The \e %Scope that the data is bound to.
      ******************************************************************************************/
@@ -800,7 +800,7 @@ public abstract class Log
      *                  If \c null, currently stored data will be removed.
      * @param key       The optional key to the data.
      *                  If omitted (or empty or null), the data is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.GLOBAL, then the
+     *                  provided. If omitted and \p{scope} is Scope.GLOBAL, then the
      *                  data is unique to the \e Lox.
      ******************************************************************************************/
     public static void store( Object data, String key )
@@ -824,7 +824,7 @@ public abstract class Log
      * @param data      The data object to store.
      *                  If \c null, currently stored data will be removed.
      * @param scope     The \e %Scope that the data is bound to.
-     * @param pkgLevel  Used only if parameter \p scope equals
+     * @param pkgLevel  Used only if parameter \p{scope} equals
      *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      ******************************************************************************************/
@@ -846,7 +846,7 @@ public abstract class Log
 
     /** ****************************************************************************************
      * Retrieves an object which was previously stored using #store.
-     * Optional parameters \p key and \p scope offer various possibilities to reference
+     * Optional parameters \p{key} and \p{scope} offer various possibilities to reference
      * such objects.<br>
      *
      * \note <em>Log Data</em> is a feature provided by \b %ALox to support debug-logging.
@@ -854,10 +854,10 @@ public abstract class Log
      *
      * @param key       The optional key to the data.
      *                  If omitted (or empty or null), the data is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.GLOBAL, then the
+     *                  provided. If omitted and \p{scope} is Scope.GLOBAL, then the
      *                  data is unique to the \e Lox.
      * @param scope     The \e %Scope that the data is bound to.
-     * @param pkgLevel  Used only if parameter \p scope equals
+     * @param pkgLevel  Used only if parameter \p{scope} equals
      *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      * @return The object, \c null if nothing was found.
@@ -872,7 +872,7 @@ public abstract class Log
      *
      * @param key       The optional key to the data.
      *                  If omitted (or empty or null), the data is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.GLOBAL, then the
+     *                  provided. If omitted and \p{scope} is Scope.GLOBAL, then the
      *                  data is unique to the \e Lox.
      * @param scope     The \e %Scope that the data is bound to.
      * @return The object, \c null if nothing was found.
@@ -887,7 +887,7 @@ public abstract class Log
      *
      * @param key       The optional key to the data.
      *                  If omitted (or empty or null), the data is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.GLOBAL, then the
+     *                  provided. If omitted and \p{scope} is Scope.GLOBAL, then the
      *                  data is unique to the \e Lox.
      * @return The object, \c null if nothing was found.
      ******************************************************************************************/
@@ -910,7 +910,7 @@ public abstract class Log
      * Overloaded version of #retrieve which omits parameters.
      *
      * @param scope     The \e %Scope that the data is bound to.
-     * @param pkgLevel  Used only if parameter \p scope equals
+     * @param pkgLevel  Used only if parameter \p{scope} equals
      *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      * @return The object, \c null if nothing was found.
@@ -956,7 +956,7 @@ public abstract class Log
     }
 
     /** ********************************************************************************************
-     * Overloaded version of #state providing default value \c STATE_INFO_ALL for parameter \p flags.
+     * Overloaded version of #state providing default value \c STATE_INFO_ALL for parameter \p{flags}.
      *
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
@@ -970,7 +970,7 @@ public abstract class Log
 
     /** ********************************************************************************************
      * This method collects state information about this lox in a formatted multi-line AString.
-     * Parameter \p flags is a bit field with bits defined in constants of class \b %Lox
+     * Parameter \p{flags} is a bit field with bits defined in constants of class \b %Lox
      * prefixed with \b "STATE_INFO_", e.g. \c %STATE_INFO_LOGGERS.
      *
      * @param buf       The target string.
@@ -1054,7 +1054,7 @@ public abstract class Log
     }
 
     /** ********************************************************************************************
-     * Logs a list of \e Logables only if parameter \p condition is not \c true.
+     * Logs a list of \e Logables only if parameter \p{condition} is not \c true.
      * For this, \ref com.aworx.lox.Lox.Assert "Lox.Assert" is invoked on static object
      * \ref com.aworx.lox.Log.LOX "LOX" used for debug logging.
      *
@@ -1069,7 +1069,7 @@ public abstract class Log
     }
 
     /** ********************************************************************************************
-     * Logs a list of \e Logables only if the parameter \p condition is \c true.
+     * Logs a list of \e Logables only if the parameter \p{condition} is \c true.
      * For this, \ref com.aworx.lox.Lox.If "Lox.If" is invoked on static object
      * \ref com.aworx.lox.Log.LOX "LOX" used for debug logging.
      *
@@ -1087,10 +1087,10 @@ public abstract class Log
     }
 
     /** ********************************************************************************************
-     * Logs a list of \e Logables only if the parameter \p condition is \c true.
+     * Logs a list of \e Logables only if the parameter \p{condition} is \c true.
      * For this, \ref com.aworx.lox.Lox.If "Lox.If" is invoked on static object
      * \ref com.aworx.lox.Log.LOX "LOX" used for debug logging.
-     * This overloaded version omits parameter \p domain.
+     * This overloaded version omits parameter \p{domain}.
      *
      * \note This Method's name starts with capital letter, as <c>'if'</c> is a Java keyword.
      *
@@ -1105,19 +1105,19 @@ public abstract class Log
 
 
     /** ********************************************************************************************
-     * Logs given \e logables once, up to \p quantity times or every n-th time.
+     * Logs given \e logables once, up to \p{quantity} times or every n-th time.
      * In its simplest overloaded version, the counter is bound to the source code line, hence,
      * only the first execution of this exact <em>Log Statement</em> is executed.
      *
-     * Using parameter \p group, a set of <em>Log Statements</em> that share the same group key, can be
+     * Using parameter \p{group}, a set of <em>Log Statements</em> that share the same group key, can be
      * grouped and of such set, only the one which is first executed actually logs.<br>
-     * Alternatively, when \p key is omitted (or null or empty), but a
-     * \ref com.aworx.lox.Scope "Scope" is given with parameter \p scope, then the
+     * Alternatively, when \p{key} is omitted (or null or empty), but a
+     * \ref com.aworx.lox.Scope "Scope" is given with parameter \p{scope}, then the
      * counter is associated with the scope.<br>
-     * Finally, parameters \p key and \p scope can also be used in combination. The key is
+     * Finally, parameters \p{key} and \p{scope} can also be used in combination. The key is
      * then unique in respect to the \ref com.aworx.lox.Scope "Scope" provided.
      *
-     * Using, none, one or both of the parameters \p group and \p scope, among others, the
+     * Using, none, one or both of the parameters \p{group} and \p{scope}, among others, the
      * following use cases can be achieved.
      * - %Log a specific statement up to n-times.
      * - %Log only the first n of a group of statements.
@@ -1138,7 +1138,7 @@ public abstract class Log
      * \note
      *   Unlike other methods of this class which accept more than one logable, this
      *   method and its overloaded variants accept only one object. To supply several objects
-     *   at once, an \c Object[] may be passed with parameter \p logables, like in the
+     *   at once, an \c Object[] may be passed with parameter \p{logables}, like in the
      *   following sample:
      *   \snippet "UT_alox_lox.java"      DOX_ALOX_LOX_ONCE
      *
@@ -1147,7 +1147,7 @@ public abstract class Log
      * \note
      *   Due to the limitations of the Java language to dissolve ambiguities when invoking
      *   overloaded methods, most of the overloads provided await parameters
-     *   \p domain and \p verbosity at the start. This is in difference to <b>%ALox for C++</b> and
+     *   \p{domain} and \p{verbosity} at the start. This is in difference to <b>%ALox for C++</b> and
      *   <b>%ALox forC#</b>,
      *   where overloaded methods always default these parameters to \c null respectively
      *   \c %Verbosity.INFO.<br>
@@ -1162,11 +1162,11 @@ public abstract class Log
      *   - <b>%once(Object logable, int quantity, %Scope scope)</b>
      *
      * \note
-     *   have been added.  While their parameter order is 'wrong' and therefore need \p quantity to be specified,
+     *   have been added.  While their parameter order is 'wrong' and therefore need \p{quantity} to be specified,
      *   still they are nice shortcuts.
      *
-     * When parameter \p quantity is a negative value, the log statement is executed every n-th time
-     * instead n-times. E.g, if \p quantity is \c -5, the first statement is executed and afterwards
+     * When parameter \p{quantity} is a negative value, the log statement is executed every n-th time
+     * instead n-times. E.g, if \p{quantity} is \c -5, the first statement is executed and afterwards
      * every fifth invocation.
      *
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
@@ -1175,12 +1175,12 @@ public abstract class Log
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
-     *                  to the \p scope.)
+     *                  to the \p{scope}.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pkgLevel  Used only if parameter \p scope equals
+     * @param pkgLevel  Used only if parameter \p{scope} equals
      *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
@@ -1200,12 +1200,12 @@ public abstract class Log
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
-     *                  to the \p scope.)
+     *                  to the \p{scope}.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pkgLevel  Used only if parameter \p scope equals
+     * @param pkgLevel  Used only if parameter \p{scope} equals
      *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      **********************************************************************************************/
@@ -1223,9 +1223,9 @@ public abstract class Log
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
-     *                  to the \p scope.)
+     *                  to the \p{scope}.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
      **********************************************************************************************/
@@ -1243,9 +1243,9 @@ public abstract class Log
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
-     *                  to the \p scope.)
+     *                  to the \p{scope}.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      **********************************************************************************************/
     public static void once(String domain, Verbosity verbosity, Object logables, String group )
@@ -1262,9 +1262,9 @@ public abstract class Log
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
-     *                  to the \p scope.)
+     *                  to the \p{scope}.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
@@ -1282,7 +1282,7 @@ public abstract class Log
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pkgLevel  Used only if parameter \p scope equals
+     * @param pkgLevel  Used only if parameter \p{scope} equals
      *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
@@ -1301,7 +1301,7 @@ public abstract class Log
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pkgLevel  Used only if parameter \p scope equals
+     * @param pkgLevel  Used only if parameter \p{scope} equals
      *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      **********************************************************************************************/
@@ -1382,9 +1382,9 @@ public abstract class Log
      *                  this defaults to \c 1.
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
-     *                  to the \p scope.)
+     *                  to the \p{scope}.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
     **********************************************************************************************/
     public static void once( Object logables, int quantity, String group  )
@@ -1399,7 +1399,7 @@ public abstract class Log
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pkgLevel  Used only if parameter \p scope equals
+     * @param pkgLevel  Used only if parameter \p{scope} equals
      *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
     **********************************************************************************************/

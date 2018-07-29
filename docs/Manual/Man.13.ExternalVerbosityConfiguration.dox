@@ -20,7 +20,7 @@ which are associated with pairs of a <em>Log Domains</em> and a \e %Logger.
 
 Setting such \e Verbosity by invoking
 <b>%Lox.SetVerbosity</b>
-([C++] (@ref      #aworx::lox::Lox::SetVerbosity),
+([C++] (@ref aworx::lib::lox::Lox::SetVerbosity),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetVerbosity),
  [Java](@ref #com::aworx::lox::Lox::setVerbosity)) is easy and straightforward. However, when
 working in a team, different team members, working on different parts of a software, naturally
@@ -46,9 +46,9 @@ In the
   [Java](@ref alox_java_tutorial)), in chapter \ref alox_man_logdomains and elsewhere in the
 ALox documentation, so far, we have just ignored an optional parameter of overlaoded methods:
 <b>%Lox.SetVerbosity</b>
-([C++] (@ref      #aworx::lox::Lox::SetVerbosity),
+([C++] (@ref aworx::lib::lox::Lox::SetVerbosity),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetVerbosity),
- [Java](@ref #com::aworx::lox::Lox::setVerbosity)). The parameter is named \p priority.
+ [Java](@ref #com::aworx::lox::Lox::setVerbosity)). The parameter is named \p{priority}.
 We did so, because this parameter, while extending the flexibility of ALox, brings a new
 new level of complexity to the table.
 The good news is that (as explained in \ref alox_man_apdx_auto_config) when the parameter
@@ -123,12 +123,12 @@ The following table gives an overview of these constants:
 
 Constant|Value
 - - - - |- - - - - - - - - - - - - - - - -
-<b>PrioProtectedValues</b>     ([C++] (@ref #aworx::lib::config::Priorities "Priorities::DefaultValues"),  [C#](@ref #cs::aworx::lib::config::Configuration::PrioProtectedValues),    [Java](@ref #com::aworx::lib::config::Configuration::PRIO_PROTECTED_VALUES)) | \<max int\>
-<b>PrioCLIParameters</b>       ([C++] (@ref #aworx::lib::config::Priorities "Priorities::Standard"),       [C#](@ref #cs::aworx::lib::config::Configuration::PrioCLIArgs),            [Java](@ref #com::aworx::lib::config::Configuration::PRIO_CLI_ARGS))         | 40000
-<b>PrioEnvironment</b>         ([C++] (@ref #aworx::lib::config::Priorities "Priorities::Environment"),    [C#](@ref #cs::aworx::lib::config::Configuration::PrioEnvironment),        [Java](@ref #com::aworx::lib::config::Configuration::PRIO_ENVIRONMENT))      | 30000
-<b>PrioStandard</b>            ([C++] (@ref #aworx::lib::config::Priorities "Priorities::CLI"),            [C#](@ref #cs::aworx::lib::config::Configuration::PrioStandard),           [Java](@ref #com::aworx::lib::config::Configuration::PRIO_STANDARD))         | 20000
-<b>PrioDefaultValues</b>       ([C++] (@ref #aworx::lib::config::Priorities "Priorities::ProtectedValues"),[C#](@ref #cs::aworx::lib::config::Configuration::PrioDefaultValues),      [Java](@ref #com::aworx::lib::config::Configuration::PRIO_DEFAULT_VALUES))   | 10000
-<b>PrioAutodetect</b>          ([C++] (@ref #aworx::lib::config::Priorities "Priorities::AutoDetected"),   [C#](@ref #cs::aworx::lib::config::Configuration::PrioAutodetect),         [Java](@ref #com::aworx::lib::config::Configuration::PRIO_AUTO_DETECT))      |   500
+<b>PrioProtectedValues</b>     ([C++] (@ref aworx::lib::config::Priorities "Priorities::DefaultValues"),  [C#](@ref #cs::aworx::lib::config::Configuration::PrioProtectedValues),    [Java](@ref #com::aworx::lib::config::Configuration::PRIO_PROTECTED_VALUES)) | \<max int\>
+<b>PrioCLIParameters</b>       ([C++] (@ref aworx::lib::config::Priorities "Priorities::Standard"),       [C#](@ref #cs::aworx::lib::config::Configuration::PrioCLIArgs),            [Java](@ref #com::aworx::lib::config::Configuration::PRIO_CLI_ARGS))         | 40000
+<b>PrioEnvironment</b>         ([C++] (@ref aworx::lib::config::Priorities "Priorities::Environment"),    [C#](@ref #cs::aworx::lib::config::Configuration::PrioEnvironment),        [Java](@ref #com::aworx::lib::config::Configuration::PRIO_ENVIRONMENT))      | 30000
+<b>PrioStandard</b>            ([C++] (@ref aworx::lib::config::Priorities "Priorities::CLI"),            [C#](@ref #cs::aworx::lib::config::Configuration::PrioStandard),           [Java](@ref #com::aworx::lib::config::Configuration::PRIO_STANDARD))         | 20000
+<b>PrioDefaultValues</b>       ([C++] (@ref aworx::lib::config::Priorities "Priorities::ProtectedValues"),[C#](@ref #cs::aworx::lib::config::Configuration::PrioDefaultValues),      [Java](@ref #com::aworx::lib::config::Configuration::PRIO_DEFAULT_VALUES))   | 10000
+<b>PrioAutodetect</b>          ([C++] (@ref aworx::lib::config::Priorities "Priorities::AutoDetected"),   [C#](@ref #cs::aworx::lib::config::Configuration::PrioAutodetect),         [Java](@ref #com::aworx::lib::config::Configuration::PRIO_AUTO_DETECT))      |   500
 
 
 \note
@@ -141,9 +141,9 @@ When a \e Verbosity setting is read by ALox from external configuration, the pri
 that provided the data is used as the priority of the setting, just as if this value was
 passed to method
 <b>%Lox.SetVerbosity</b>
-([C++] (@ref      #aworx::lox::Lox::SetVerbosity),
+([C++] (@ref aworx::lib::lox::Lox::SetVerbosity),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetVerbosity),
- [Java](@ref #com::aworx::lox::Lox::setVerbosity)) using optional parameter \p priority.
+ [Java](@ref #com::aworx::lox::Lox::setVerbosity)) using optional parameter \p{priority}.
 
 As a programmer, you need nothing special to do. The same as ALox creates <em>Log Domains</em> on the fly as soon
 as you are using them, the same it reads configuration data for these <em>Log Domains</em> without having
@@ -157,7 +157,7 @@ topics in respect to the priority values given in the table above.
 
 1. <b>%PrioDefaultValues</b><br>
 As we have learned, constant <b>%Configuration.PrioDefaultValues</b> is the default value for optional
-parameter \p priority of method <b>%Lox.SetVerbosity</b>. Having the lowest value of all constants,
+parameter \p{priority} of method <b>%Lox.SetVerbosity</b>. Having the lowest value of all constants,
 this shows that any external configuration by default overwrites what is defined as
 for the \e Verbosity "in the source code".<br>
 When you consider what was said in the introduction section of this chapter, then this makes
@@ -178,7 +178,7 @@ very important:
   to disallow to disable such logging. This can be achieved using priority constant
   <b>%Configuration.PrioProtectedValues</b> with method
   <b>%Lox.SetVerbosity</b>
-  ([C++] (@ref      #aworx::lox::Lox::SetVerbosity),
+  ([C++] (@ref aworx::lib::lox::Lox::SetVerbosity),
    [C#]  (@ref  #cs::aworx::lox::Lox::SetVerbosity),
    [Java](@ref #com::aworx::lox::Lox::setVerbosity)). A <em>Log Domain</em> can not be "deactivated" with
   command line parameters or environment variables, as soon as this priority value is used.
@@ -205,7 +205,7 @@ necht section) and just concentrate on:
 <c> [*]domainpath[*] = verbosity </c>
 
 which can appear repeatedly separated by a semicolon <c>';'</c>.
-The pairs of  \p domainpath and \p verbosity have the following meaning:
+The pairs of  \p{domainpath} and \p{verbosity} have the following meaning:
 
 - <c>domainpath</c> denotes the path of the <em>Log Domain</em> whose \e Verbosity
   is to be set. Optionally the value may contain wildcard character <c>'*'</c>
@@ -214,14 +214,14 @@ The pairs of  \p domainpath and \p verbosity have the following meaning:
 - <b>Parameter verbosity</b><br>
   The verbosity value as listed in enum class
   <b>%Verbosity</b>
-  ([C++] (@ref      #aworx::lox::Verbosity),
+  ([C++] (@ref aworx::lib::lox::Verbosity),
    [C#]  (@ref  #cs::aworx::lox::Verbosity),
    [Java](@ref #com::aworx::lox::Verbosity)). The names given here are treated case insensitive.
 
 With having the ability to provide wildcards, the possibilities to define the \e Verbosity
 is a little different than when using method
 <b>%Lox.SetVerbosity</b>
-  ([C++] (@ref      #aworx::lox::Lox::SetVerbosity),
+  ([C++] (@ref aworx::lib::lox::Lox::SetVerbosity),
    [C#]  (@ref  #cs::aworx::lox::Lox::SetVerbosity),
    [Java](@ref #com::aworx::lox::Lox::setVerbosity))! The differences are:
 
@@ -257,9 +257,9 @@ variables from within the source code.
     ([C++] (@ref      #aworx::lib::config::Priorities::DefaultValues),
      [C#]  (@ref  #cs::aworx::lib::config::Configuration::PrioDefaultValues),
      [Java](@ref #com::aworx::lib::config::Configuration::PRIO_DEFAULT_VALUES))
-  of the public static singleton of class \b %ALox found in field
+  of the public static singleton of class \alox found in field
     <b>%Configuration.Default</b>
-     ([C++] (@ref      #aworx::lox::ALox::Config),
+     ([C++] (@ref aworx::lib::lox::ALox::Config),
       [C#]  (@ref  #cs::aworx::lox::ALox::Config),
       [Java](@ref #com::aworx::lox::ALox::config)).
   Of-course,you do this instead of invoking \b %Lox.SetVerbosity.
@@ -340,7 +340,7 @@ the current configuration and your INI might look like this:
 
 
 This of-course saves you some work. But there are more benefits. As you see,
-ALox preserves the attribute \p writeback in the variable. And you should
+ALox preserves the attribute \p{writeback} in the variable. And you should
 keep this in. This way, on the next run of your software, the list might get
 extended by <em>Log Domains</em> that had not been registered on the previous
 runs. The reason is that ALox recognizes only those domains that are actually
@@ -427,7 +427,7 @@ You can still fine-tune the verbosity setting in \b LOG_DEBUG_LOGGER_VERBOSITY
 or chose different execution paths of your software. On each run, ALox will
 save what is found in variable \b ALOX_LOG_DEBUG_LOGGER_VERBOSITY to
 variable \b MYSTUFF_X11_DEBUG_VERB! Once you think that
-the setting is OK, you can stop the \p writeback feature by changing the
+the setting is OK, you can stop the \p{writeback} feature by changing the
 \e Loggers \e Verbosity setting in the INI file to:
 
         [ALOX]
@@ -479,7 +479,7 @@ To conclude, lets take some further notes on what was said above:
   but will contain new domains (or those that previously had not been touched
   by the execution path).
 
-- For the variable name optionally provided with argument \p writeback,
+- For the variable name optionally provided with argument \p{writeback},
   if in anonymous category, the same rules on using the underscore
   character \c '_' apply as it is described in
   <b>Variable Substitution</b>
@@ -519,13 +519,13 @@ To conclude, lets take some further notes on what was said above:
 
 As a summary, these are the takeaways of this chapter:
 
-- ALox has an optional \p priority with method \b %Lox.SetVerbosity which is fully orthogonal
+- ALox has an optional \p{priority} with method \b %Lox.SetVerbosity which is fully orthogonal
   in its use. This means, when omitted ALox works as if this feature was not existing.
 - The priority of \e Verbosity settings taken by itself is not a fundamental game changer in
   respect to the flexibility and overall value of ALox. Nevertheless in some situations,
   some tricky things might be performed. (OK, here is another sample: an external library periodically
   changes the \e Verbosity of certain <em>Log Domains</em> - which by design it should not do. As we do not
-  have access to the source code of that library, using a higher \p priority for a setting
+  have access to the source code of that library, using a higher \p{priority} for a setting
   from outside the library fixes this)
 - The recommended way to set \e Verbosities - especially when working in a team - is to use
   external configuration variables.

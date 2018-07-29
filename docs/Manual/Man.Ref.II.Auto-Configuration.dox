@@ -96,16 +96,16 @@ To perform a thorough bootstrap, ALox itself as well as underlying utility libra
   [C#]  (@ref  cs::aworx::lib::ALIB::Init),
   [Java](@ref com::aworx::lib::ALIB::init)) and
 <b>%ALox.Init</b>
-  ([C++](@ref      aworx::lox::ALox::init),
+  ([C++](@ref aworx::lib::lox::ALox::init),
   [C#]  (@ref  cs::aworx::lox::ALox::Init),
   [Java](@ref com::aworx::lox::ALox::init))).
 
 \note In the C++ version, the initialization and termination (see below) calls are to be performed
       on static library singletons
-      \ref #aworx::lib::ALIB and
-      \ref #aworx::lox::ALOX.
+      \ref aworx::lib::ALIB and
+      \ref aworx::lib::ALOX.
 
-\b %ALox.Init invokes \b ALib.Init internally. With debug-logging, it is best practice to
+\alox.Init invokes \b ALib.Init internally. With debug-logging, it is best practice to
 explicitly invoke \b ALox.Init and provide optional parameters as needed.
 However, if omitted, ALox detects that (in different ways in the different language versions of ALox)
 and fixes this providing default values. In addition, ALox is tolerant to multiple invocations.
@@ -125,7 +125,7 @@ source plug-ins ( see namespace
    ([C++] (@ref      #aworx::lib::config::Configuration),
     [C#]  (@ref  #cs::aworx::lib::config::Configuration),
     [Java](@ref #com::aworx::lib::config::Configuration))
-prior to invoking \b %ALox.Init - especially
+prior to invoking \alox.Init - especially
 in the case that configuration variables read by the initialization methods and defined in
 these custom sources should be taken into account.
 
@@ -145,7 +145,7 @@ The same applies for methods
   [C#]  (@ref  cs::aworx::lib::ALIB::TerminationCleanUp),
   [Java](@ref com::aworx::lib::ALIB::terminationCleanUp)) and
 <b>%ALox.TerminationCleanUp</b>
-  ([C++](@ref      aworx::lox::ALox::Init),
+  ([C++](@ref aworx::lib::lox::ALox::Init),
   [C#]  (@ref  cs::aworx::lox::ALox::Init),
   [Java](@ref com::aworx::lox::ALox::init)).
 
@@ -163,13 +163,13 @@ More information on this is given in chapter \b alox_man_debug_and_release_loggi
 ### 2.1.3 Adding and Removing Loggers to a Lox ### {#alox_man_apdx_auto_config_list_init_addlogger}
 While method
 <b>%Lox.RemoveLogger</b>
-  ([C++](@ref      aworx::lox::Lox::RemoveLogger),
+  ([C++](@ref aworx::lib::lox::Lox::RemoveLogger),
   [C#]  (@ref  cs::aworx::lox::Lox::RemoveLogger),
   [Java](@ref com::aworx::lox::Lox::removeLogger)) is available for removing a \e %Logger from a
 \b %Lox instance, there is no method for explictly adding one. Instead, the method that allows
 to control the \e Verbosity of a <em>Log Domain</em> and its sub-domains for a \e %Logger,
 <b>%Lox.SetVerbosity</b>
-  ([C++](@ref      aworx::lox::Lox::SetVerbosity),
+  ([C++](@ref aworx::lib::lox::Lox::SetVerbosity),
   [C#]  (@ref  cs::aworx::lox::Lox::SetVerbosity),
   [Java](@ref com::aworx::lox::Lox::setVerbosity)) adds a \e %Logger in the moment the one provided
 is not known to the \b %Lox, yet. Consequently, the very first time a \e Verbosity of a \e %Logger
@@ -187,7 +187,7 @@ in parallel to one that logs into a text file, both \e %Loggers will have differ
 
 However, if for example two different loggers of type
 <b>%TextLogger</b>
-  ([C++](@ref      aworx::lox::loggers::TextLogger),
+  ([C++](@ref aworx::lib::lox::loggers::TextLogger),
   [C#]  (@ref  cs::aworx::lox::loggers::TextLogger),
   [Java](@ref com::aworx::lox::loggers::TextLogger)) are to be added to one \b %Lox, then with their
 creation, a dedicated, distinguishable name has to be provided.
@@ -198,19 +198,19 @@ that external configuration data stay "compatible" in the moment a different \e 
 for a certain task. On the other hand: this is \e not necessary for the standard debug \e %Logger
 created automatically or explicitly by calling
 <b>%Log.AddDebugLogger</b>
-  ([C++](@ref      aworx::lox::Log::AddDebugLogger),
+  ([C++](@ref aworx::lib::lox::Log::AddDebugLogger),
   [C#]  (@ref  cs::aworx::lox::Log::AddDebugLogger),
   [Java](@ref com::aworx::lox::Log::addDebugLogger)) (see more info on this below), because
 such \e %Loggers are always named \c "DEBUG_LOGGER".
 
 <b>%Lox.RemoveLogger</b>
-  ([C++](@ref      aworx::lox::Lox::RemoveLogger),
+  ([C++](@ref aworx::lib::lox::Lox::RemoveLogger),
   [C#]  (@ref  cs::aworx::lox::Lox::RemoveLogger),
   [Java](@ref com::aworx::lox::Lox::removeLogger)) is available for removing a \e %Logger from a
 \b %Lox instance, there is no method for explictly adding one. Instead, the method that allows
 to control the \e Verbosity of a <em>Log Domain</em> and its sub-domains for a \e %Logger,
 <b>%Lox.SetVerbosity</b>
-  ([C++](@ref      aworx::lox::Lox::SetVerbosity),
+  ([C++](@ref aworx::lib::lox::Lox::SetVerbosity),
   [C#]  (@ref  cs::aworx::lox::Lox::SetVerbosity),
   [Java](@ref com::aworx::lox::Lox::setVerbosity)) adds a \e %Logger in the moment the one provided
 is not known to the \b %Lox, yet. Consequently, the very first time a \e Verbosity of a \e %Logger
@@ -232,7 +232,7 @@ concurrent access in multi-threaded applications.
 ### 2.1.6 Console Loggers and Debug Logger ### {#alox_man_apdx_auto_config_list_init_consoleloggers}
 Method
 <b>%Lox.CreateConsoleLogger</b>
-  ([C++](@ref      aworx::lox::Lox::CreateConsoleLogger),
+  ([C++](@ref aworx::lib::lox::Lox::CreateConsoleLogger),
   [C#]  (@ref  cs::aworx::lox::Lox::CreateConsoleLogger),
   [Java](@ref com::aworx::lox::Lox::createConsoleLogger)) creates an appropriate type of \e Logger
 depending on the operating system, IDE used (if in IDE), implementation language, configuration
@@ -244,7 +244,7 @@ release-logging of-course).
 
 Furthermore, method
 <b>%Log.AddDebugLogger</b>
-  ([C++](@ref      aworx::lox::Log::AddDebugLogger),
+  ([C++](@ref aworx::lib::lox::Log::AddDebugLogger),
   [C#]  (@ref  cs::aworx::lox::Log::AddDebugLogger),
   [Java](@ref com::aworx::lox::Log::addDebugLogger)) uses this method to attach a \e Logger to
 the \b %Lox singleton used for debug-logging.
@@ -277,9 +277,9 @@ For more information see chapter \ref alox_man_trim_source_path.
 <em>Log Domains</em> are created on the fly as needed (used). <em>Log Domain</em>, once created, are never deleted and a user does
 not need to care about their management.
 New, unknown <em>Log Domains</em> inherit their \b Verbosity from their parent, unless optional parameter
-\p priority  of method
+\p{priority}  of method
 <b>%Lox.SetVerbosity</b>
-  ([C++](@ref      aworx::lox::Lox::SetVerbosity),
+  ([C++](@ref aworx::lib::lox::Lox::SetVerbosity),
   [C#]  (@ref  cs::aworx::lox::Lox::SetVerbosity),
   [Java](@ref com::aworx::lox::Lox::setVerbosity)) is used.
 
@@ -287,7 +287,7 @@ Furthermore, when obtaining \e Verbosity settings from external configuration, a
 prioritization is applied: First INI file settings, which are overwritten by environment variable
 settings, which are overwritten by command-line parameters. All of them are overwriting
 settings made invocations of \b %Lox.SetVerbosity in the source code - as long as optional
-parameter \p priority is not given.<br>
+parameter \p{priority} is not given.<br>
 More information on this is found in \ref alox_man_external_verbosity_configuration.
 
 \~Comment ####################################################################################### \~
@@ -304,14 +304,14 @@ objects is found in \ref alox_man_ext_loggers.
 ### 2.4.2 Namespace 'textlogger' ###  {#alox_man_apdx_auto_config_list_logables_textlogger}
 When logging text, classes found in
 <b>%[cs::|com::]%aworx::lox::core::textlogger</b>
-  ([C++](@ref      aworx::lox::core::textlogger),
+  ([C++](@ref aworx::lib::lox::core::textlogger),
   [C#]  (@ref  cs::aworx::lox::core::textlogger),
   [Java](@ref com::aworx::lox::core::textlogger)) are doing quite a bit of things in the
 background that are not obvious to the user. For example:
 
 - ALox
  <b>%ESC codes</b>
-   ([C++](@ref      aworx::lox::ESC),
+   ([C++](@ref aworx::lib::lox::ESC),
    [C#]  (@ref  cs::aworx::lox::ESC),
    [Java](@ref com::aworx::lox::ESC)) are removed from textual \e Logables if a \e Logger
  does not support them. (For more information see \ref alox_man_colorful_loggers.)
@@ -322,7 +322,7 @@ background that are not obvious to the user. For example:
 
 - With the help of utility class
  <b>%AutoSizes</b>
-   ([C++](@ref      aworx::lox::core::textlogger::AutoSizes),
+   ([C++](@ref aworx::lib::lox::core::textlogger::AutoSizes),
    [C#]  (@ref  cs::aworx::lox::core::textlogger::AutoSizes),
    [Java](@ref com::aworx::lox::core::textlogger::AutoSizes)), class \b %TextLogger
  formats the log output into columns that grow over time.
@@ -332,11 +332,11 @@ background that are not obvious to the user. For example:
  higher than needed after all. In the next run, the smaller sizes are restored.
  The read and write of the values is performed in methods
  <b>%TextLogger::AddAcquirer</b>
-   ([C++](@ref      aworx::lox::core::textlogger::TextLogger::AddAcquirer),
+   ([C++](@ref aworx::lib::lox::core::textlogger::TextLogger::AddAcquirer),
    [C#]  (@ref  cs::aworx::lox::core::textlogger::TextLogger::AddAcquirer),
    [Java](@ref com::aworx::lox::core::textlogger::TextLogger::addAcquirer)) and
  <b>%TextLogger::RemoveAcquirer</b>
-   ([C++](@ref      aworx::lox::core::textlogger::TextLogger::RemoveAcquirer),
+   ([C++](@ref aworx::lib::lox::core::textlogger::TextLogger::RemoveAcquirer),
    [C#]  (@ref  cs::aworx::lox::core::textlogger::TextLogger::RemoveAcquirer),
    [Java](@ref com::aworx::lox::core::textlogger::TextLogger::removeAcquirer)) which are invoked
  when a \e Logger is added, respectively removed from a \b %Lox.

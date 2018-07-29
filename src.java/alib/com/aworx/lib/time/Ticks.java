@@ -320,12 +320,12 @@ import java.util.GregorianCalendar;
          *  Returns 1 divided by internal value in seconds, hence the number of Hertz that this Ticks
          *  object represents when interpreted as a time span.
          *
-         * @param nDigitsPrec  Number of digits that the return value will be rounded to.
-         *                     Defaults to -1 which means no rounding.
+         * @param qtyFractionalDigits  Number of digits that the return value will be rounded to.
+         *                             Defaults to -1 which means no rounding.
          *
          * @return A double value representing the frequency in hertz.
          ******************************************************************************************/
-        public    double        inHertz    ( int nDigitsPrec )
+        public    double        inHertz    ( int qtyFractionalDigits )
         {
             // check
             if ( ticks == 0 )
@@ -335,11 +335,11 @@ import java.util.GregorianCalendar;
             double hz= 1000000000d / ticks;
 
             // no rounding? that's it
-            if ( nDigitsPrec < 0 )
+            if ( qtyFractionalDigits < 0 )
                 return hz;
 
             // round
-            double mag= Math.pow( 10, nDigitsPrec );
+            double mag= Math.pow( 10, qtyFractionalDigits );
             return ( (int) ( hz * mag + ( hz < 0 ? -0.5 : 0.5 )) ) / mag;
         }
 

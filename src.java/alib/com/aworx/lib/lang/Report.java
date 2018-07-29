@@ -216,14 +216,14 @@ public class Report
          * If this is set for the type of message, the program halts or suspends into the debugger
          * (platform and language specific).
          *
-         * If parameter \p is '0', the report is considered a \e severe error, otherwise a warning.
+         * If parameter \p{is} '0', the report is considered a \e severe error, otherwise a warning.
          * User defined implementations of class \e %ReportWriter may interpret this field
          * arbitrarily.
          *
          * \note
          *   In Java, assertions are disabled by default. Therefore, to really have your program
          *   'halted' on reports, assertions have to be enabled, by providing parameter
-         *   \p -enableassertions to the Java virtual machine.
+         *   \c -enableassertions to the Java virtual machine.
          *
          * @param type The report type.
          * @param msg  The report message.

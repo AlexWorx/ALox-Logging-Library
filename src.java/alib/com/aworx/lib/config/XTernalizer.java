@@ -132,7 +132,7 @@ public class XTernalizer
     }
 
     /** ********************************************************************************************
-     * Trims \p src, removes surrounding quotes and , un-escapes characters.
+     * Trims \p{src}, removes surrounding quotes and , un-escapes characters.
      *
      * @param  src      The source string
      * @param  dest     The destination string
@@ -183,7 +183,7 @@ public class XTernalizer
 
 
     /** ********************************************************************************************
-     * Converts the given \p src string to an external representation.
+     * Converts the given \p{src} string to an external representation.
      *
      * @param  src      The source string
      * @param  dest     The destination string

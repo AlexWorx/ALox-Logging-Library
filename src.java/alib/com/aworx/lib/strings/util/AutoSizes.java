@@ -180,7 +180,7 @@ public class AutoSizes
         /** ****************************************************************************************
          * Imports values from the given substring by parsing it. The numbers in the string have
          * to be separated by ' ' characters (space).
-         * If the provided boolean parameter \p newSession is set to true, then the current
+         * If the provided boolean parameter \p{newSession} is set to true, then the current
          * session values are set to 0. Else they are set to be the same as the imported values.
          *
          * @param source       The Substring that is parsed for the numbers

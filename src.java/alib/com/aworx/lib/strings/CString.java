@@ -105,8 +105,8 @@ public class CString
          * @param needleStart   The index of the start of the needle within the character array.
          * @param needleLength  The length of the needle within the character array.
          * @param haystack      The character array to look in for the needle.
-         * @param haystackPos   The position to look at in \p haystack.
-         * @param haystackLimit The length of the \p haystack (may be equal or less than
+         * @param haystackPos   The position to look at in \p{haystack}.
+         * @param haystackLimit The length of the \p{haystack} (may be equal or less than
          *                      haystack.length().
          * @param sensitivity   Case sensitivity of the comparison.
          *
@@ -155,8 +155,8 @@ public class CString
          *
          * @param needle        The string to search.
          * @param haystack      The character array to look in for the needle.
-         * @param haystackPos   The position to look at in \p haystack.
-         * @param haystackLimit The length of the \p haystack (may be equal or less than
+         * @param haystackPos   The position to look at in \p{haystack}.
+         * @param haystackLimit The length of the \p{haystack} (may be equal or less than
          *                      haystack.length().
          * @param sensitivity   Case sensitivity of the comparison.
          *
@@ -212,21 +212,21 @@ public class CString
          * No parameter checks are performed. Null and empty checks and proper region bounds
          * have to be provided (this is a helper method for other compareTo methods).
          *
-         * @param needle         An object of type \e CharSequence that is compared to \p haystack.
-         * @param needleStart    The start of the region in \p needle that is to be compared.
-         * @param needleLength   The length of the region in \p needle.
+         * @param needle         An object of type \e CharSequence that is compared to \p{haystack}.
+         * @param needleStart    The start of the region in \p{needle} that is to be compared.
+         * @param needleLength   The length of the region in \p{needle}.
          * @param haystack       The character buffer that is compared.
-         * @param haystackStart  The start of the substring within \p haystack.
-         * @param haystackLength The length of the substring within \p haystack.
+         * @param haystackStart  The start of the substring within \p{haystack}.
+         * @param haystackLength The length of the substring within \p{haystack}.
          * @param sensitivity    Case sensitivity of the operation.
          *
          * @return
-         *  -  0 if \p haystack and \p needle are \e null or if both have a length of 0 or if
+         *  -  0 if \p{haystack} and \p{needle} are \e null or if both have a length of 0 or if
          *     both  share the same content.
-         *  - <0 if \p haystack is \e nulled and \p needle is not or if \p haystack is smaller
-         *    than \p needle.
-         *  - >0 if \p haystack is not \e nulled but \p needle is or if \p haystack is greater
-         *    than \p needle.
+         *  - <0 if \p{haystack} is \e nulled and \p{needle} is not or if \p{haystack} is smaller
+         *    than \p{needle}.
+         *  - >0 if \p{haystack} is not \e nulled but \p{needle} is or if \p{haystack} is greater
+         *    than \p{needle}.
          ******************************************************************************************/
         static
         public int compareTo( CharSequence needle,   int   needleStart,    int needleLength,
@@ -362,7 +362,7 @@ public class CString
      *                        Optional and defaults to Case.Sensitive.
      *
      * @return  \e -1 if the String is not found. Otherwise the index of first occurrence relative
-     *          to \p haystackStart.
+     *          to \p{haystackStart}.
      **********************************************************************************************/
     public static int indexOfString( CharSequence needle,
                                      char[] haystack, int haystackStart, int haystackLength,
@@ -424,14 +424,14 @@ public class CString
     /** ********************************************************************************************
      * Static method that returns the index of the first character which not equal
      * within two strings.
-     * If \p haystack starts with \p needle, then the length of \p needle is returned.
+     * If \p{haystack} starts with \p{needle}, then the length of \p{needle} is returned.
      *
      * @param haystack        Character array that is searched in.
      * @param haystackStart   The start of the region within haystack.
      * @param haystackLength  The length of the region within haystack.
      * @param needle          The string to be searched for.
      * @param sensitivity     The sensitivity to the case of characters of the operation.
-     * @return  The index within \p needle with the first difference.
+     * @return  The index within \p{needle} with the first difference.
      **********************************************************************************************/
     public static int indexOfFirstDifference(  char[]        haystack,
                                                int           haystackStart,

@@ -19,7 +19,7 @@ For a better understanding of what is explained in this chapter, it might be adv
   language-related \e Scopes (including the 'global' \e Scope) and thread-related \e Scopes.
   Both types are 'interwoven' and form the complete set, as denoted in enum-class
   <b>%Scope</b>
-  ([C++] (@ref      #aworx::lox::Scope),
+  ([C++] (@ref aworx::lib::lox::Scope),
    [C#]  (@ref  #cs::aworx::lox::Scope),
    [Java](@ref #com::aworx::lox::Scope)).
 
@@ -30,7 +30,7 @@ For a better understanding of what is explained in this chapter, it might be adv
   Especially the use cases that arise from using and combining the different
   parameters of method
   <b>%Lox.Once</b>
-  ([C++] (@ref      #aworx::lox::Lox::Once),
+  ([C++] (@ref aworx::lib::lox::Lox::Once),
    [C#]  (@ref  #cs::aworx::lox::Lox::Once),
    [Java](@ref #com::aworx::lox::Lox::once)), which are explained in a high degree of detail in
   the above mentioned chapter, is not repeated here. If all aspects of using \b %Lox.Once are
@@ -72,11 +72,11 @@ generated giving more information about where and why the exception occurred.
 
 The interface for setting and retrieving <em>Log Data</em> is provided with methods
 <b>%Lox.Store</b>
-([C++] (@ref      #aworx::lox::Lox::Store),
+([C++] (@ref aworx::lib::lox::Lox::Store),
  [C#]  (@ref  #cs::aworx::lox::Lox::Store),
  [Java](@ref #com::aworx::lox::Lox::store)), and
 <b>%Lox.Retrieve</b>
-([C++] (@ref      #aworx::lox::Lox::Retrieve),
+([C++] (@ref aworx::lib::lox::Lox::Retrieve),
  [C#]  (@ref  #cs::aworx::lox::Lox::Retrieve),
  [Java](@ref #com::aworx::lox::Lox::retrieve)).
 
@@ -84,17 +84,17 @@ The type of data stored is \b Object in Java and C# implementations and
 \ref aworx::lib::boxing::Box "Box" in <b>%ALox for C++</b>.
 
 While in Chapter \ref alox_man_log_once of this manual, it was explained in detail how parameters
-\p group and \p scope of method
+\p{group} and \p{scope} of method
 <b>%Lox.Once</b>
-([C++] (@ref      #aworx::lox::Lox::Once),
+([C++] (@ref aworx::lib::lox::Lox::Once),
  [C#]  (@ref  #cs::aworx::lox::Lox::Once),
  [Java](@ref #com::aworx::lox::Lox::once)), can be omitted, how one of them can be used and what
 happens when both are used, we do not want to repeat these details in this chapter.
 
 Instead we want to discuss the differences:
 - Instead of storing a counter (in \b %Lox.Once), with \b %Lox.Store, the data object is stored.
-- Parameter \p group of method \b %Log.Once is named \p key in methods \b %Log.Store / \b %Log.Retrieve.
-- If both parameters (\p group and \p scope) are omitted, \b %Log.Once defaults to the 'most inner \e Scope possible'
+- Parameter \p{group} of method \b %Log.Once is named \p{key} in methods \b %Log.Store / \b %Log.Retrieve.
+- If both parameters (\p{group} and \p{scope}) are omitted, \b %Log.Once defaults to the 'most inner \e Scope possible'
   (by switching the \e %Scope.Filename and creating a unique key from the line number), which
   is the single log line itself. In contrast to this, \b %Log.Store / \b %Log.Retrieve in the
   parameterless version refers to the 'most outer \e Scope possible', hence a global singleton object
@@ -103,18 +103,18 @@ Instead we want to discuss the differences:
 As a result, the use of <em>Log Data</em> can be summarized as follows:
 - An otherwise parameterless invocation the methods \b %Log.Store / \b %Log.Retrieve stores and retrieves
   a global anonymous <em>Log Data</em> object.
-- If parameter \p key is provided while parameter \p scope is omitted (or set to \e %Scope.Global),
+- If parameter \p{key} is provided while parameter \p{scope} is omitted (or set to \e %Scope.Global),
   a named <em>Log Data</em> object is stored and can be retrieved using the same key.
-- If parameter \p scope is provided while parameter \p key is omitted (or nulled or empty),
+- If parameter \p{scope} is provided while parameter \p{key} is omitted (or nulled or empty),
   an anonymous <em>Log Data</em> object is stored and can be retrieved (only) from within the same
-  \p Scope as they were set.
-- If both parameters, \p key and \p scope are provided, then the key is bound to the provided
+  \p{Scope} as they were set.
+- If both parameters, \p{key} and \p{scope} are provided, then the key is bound to the provided
   \e Scope and for this scope a named <em>Log Data</em> object is stored. Consequently, it can be
-  retrieved (only) from within the same \p Scope as it was set and with using the same \p key.
+  retrieved (only) from within the same \p{Scope} as it was set and with using the same \p{key}.
 
 For clarification, this means, that different <em>Log Data</em> objects are stored in different scopes
-even if parameters \p scope and \p key are the same. For example,
-an object stored using \p Scope.Method can not be retrieved from a different method and will also not be overwritten
+even if parameters \p{scope} and \p{key} are the same. For example,
+an object stored using \p{Scope}.Method can not be retrieved from a different method and will also not be overwritten
 within a different method. Again, the consequences and use cases of this design may become
 clearer when reading chapter \ref alox_man_log_once "Lox.Once".
 

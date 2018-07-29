@@ -14,14 +14,14 @@
 \~Comment ####################################################################################### \~
 # 1. Class Logger # {#alox_man_loggers_logger}
 
-\b %ALox is designed to support different log streams. A log stream is a destination for the \e Logables
+\alox is designed to support different log streams. A log stream is a destination for the \e Logables
 and can be the IDE console, the terminal console, a file, a web service or anything that accepts
 data streams. Abstract class
 <b>Logger</b>
   ([C++] (@ref #aworx::lox::core::Logger),
    [C#]  (@ref #cs::aworx::lox::core::Logger),
    [Java](@ref #com::aworx::lox::core::Logger))
-represents such a log stream. While some specializations of the class are provided with \b %ALox,
+represents such a log stream. While some specializations of the class are provided with \alox,
 custom specializations may log information to any 'data drain' in any format you like.
 
 \dot
@@ -57,7 +57,7 @@ class \c Object in C# and Java, respectively in C++ an instance of class
 This allows to create \e Loggers that take any type of (binary) data and use the data for writing
 a log entry in any custom way.
 
-While all \b %ALox code tries to be short and simple, class \b %Logger is particularly simple!
+While all \alox code tries to be short and simple, class \b %Logger is particularly simple!
 So, let us quickly walk through the class by looking at its members.
 
 \~Comment ####################################################################################### \~
@@ -72,19 +72,19 @@ There are just a few fields in class
 ### 1.1.1 Name and TypeName ### {#alox_man_loggers_logger_fields_name}
 class \b %Logger has two members,
 <b>Name</b>
-  ([C++] (@ref      #aworx::lox::core::Logger::Name),
+  ([C++] (@ref aworx::lib::lox::core::Logger::Name),
    [C#]  (@ref  #cs::aworx::lox::core::Logger::Name),
    [Java](@ref #com::aworx::lox::core::Logger::name)) and
 <b>TypeName</b>
-  ([C++] (@ref      #aworx::lox::core::Logger::TypeName),
+  ([C++] (@ref aworx::lib::lox::core::Logger::TypeName),
    [C#]  (@ref  #cs::aworx::lox::core::Logger::TypeName),
    [Java](@ref #com::aworx::lox::core::Logger::typeName)) that can be read using.
 <b>GetName</b>
-  ([C++] (@ref      #aworx::lox::core::Logger::GetName),
+  ([C++] (@ref aworx::lib::lox::core::Logger::GetName),
    [C#]  (@ref  #cs::aworx::lox::core::Logger::GetName),
    [Java](@ref #com::aworx::lox::core::Logger::getName)) and
 <b>GetTypName</b>
-  ([C++] (@ref      #aworx::lox::core::Logger::GetTypeName),
+  ([C++] (@ref aworx::lib::lox::core::Logger::GetTypeName),
    [C#]  (@ref  #cs::aworx::lox::core::Logger::GetTypeName),
    [Java](@ref #com::aworx::lox::core::Logger::getTypeName)).
 
@@ -125,7 +125,7 @@ to output with each log line.
 Besides the protected constructor, which just initializes some default values for the \e Loggers'
 fields, abstract method
 <b>Log</b>
-  ([C++] (@ref      #aworx::lox::core::Logger::Log),
+  ([C++] (@ref aworx::lib::lox::core::Logger::Log),
    [C#]  (@ref  #cs::aworx::lox::core::Logger::Log),
    [Java](@ref #com::aworx::lox::core::Logger::log)) is the most important.
 
@@ -167,8 +167,8 @@ get displayed on your debug console. We think the use of a logging ecosystem for
 quite simple purpose is advisable as soon as a software project bigger than
 two pages of code!
 
-While \b %ALox wants to be a perfect tool for quick, easy and comfortable debug logging,
-the goals of \b %ALox go beyond that. This is why \b %ALox logging interface methods
+While \alox wants to be a perfect tool for quick, easy and comfortable debug logging,
+the goals of \alox go beyond that. This is why \alox logging interface methods
 are not restricted to string types, but accept any object to be passed to any derived
 \e Logger type.
 
@@ -186,18 +186,18 @@ Class
    [Java](@ref #com::aworx::lox::core::textlogger::TextLogger)),
 which is described in this chapter, is exactly about the first thing: Log any object that
 is passed to it as a textual representation, hence into a character stream.
-All of the provided \b %ALox \e Loggers that produce text output, derive from this base
+All of the provided \alox \e Loggers that produce text output, derive from this base
 class instead of deriving directly from \e Logger. Among these classes are
 <b>ConsoleLogger</b>
-  ([C++] (@ref      #aworx::lox::loggers::ConsoleLogger),
+  ([C++] (@ref aworx::lib::lox::loggers::ConsoleLogger),
    [C#]  (@ref  #cs::aworx::lox::loggers::ConsoleLogger),
    [Java](@ref #com::aworx::lox::loggers::ConsoleLogger)),
 <b>MemoryLogger</b>
-  ([C++] (@ref      #aworx::lox::loggers::MemoryLogger),
+  ([C++] (@ref aworx::lib::lox::loggers::MemoryLogger),
    [C#]  (@ref  #cs::aworx::lox::loggers::MemoryLogger),
    [Java](@ref #com::aworx::lox::loggers::MemoryLogger)) and
 <b>AnsiLogger</b>
-  ([C++] (@ref      #aworx::lox::loggers::AnsiLogger),
+  ([C++] (@ref aworx::lib::lox::loggers::AnsiLogger),
    [C#]  (@ref  #cs::aworx::lox::loggers::AnsiLogger),
    [Java](@ref #com::aworx::lox::loggers::AnsiLogger)).
 Hence, the class diagram above is a little simplified. It rather looks like this:
@@ -222,7 +222,7 @@ digraph TextLoggers
 \note
  - Even this diagram is simplified. Refer to the language specific reference documentation of class
    <b>TextLogger</b>
-    ([C++] (@ref      #aworx::lox::core::textlogger::TextLogger),
+    ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger),
      [C#]  (@ref  #cs::aworx::lox::core::textlogger::TextLogger),
      [Java](@ref #com::aworx::lox::core::textlogger::TextLogger)) to get the full picture.
  - Of-course you can also derive your own *Logger* types without using class \b %TextLogger
@@ -232,7 +232,7 @@ digraph TextLoggers
 ## 2.1 Helper classes for TextLogger ## {#alox_man_loggers_textlogger_helpers}
 Class
   <b>TextLogger</b>
-  ([C++] (@ref      #aworx::lox::core::textlogger::TextLogger),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger),
    [C#]  (@ref  #cs::aworx::lox::core::textlogger::TextLogger),
    [Java](@ref #com::aworx::lox::core::textlogger::TextLogger))
 contains two helper classes as public fields.
@@ -246,13 +246,13 @@ The helper classes are described in the following two paragraphs.
 ### 2.1.1 Class MetaInfo ### {#alox_man_loggers_textlogger_MetaInfo}
 Class
   <b>MetaInfo</b>
-  ([C++] (@ref #aworx::lox::core::textlogger::MetaInfo),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo),
    [C#]  (@ref #cs::aworx::lox::core::textlogger::MetaInfo),
    [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo))
 is used by
 class
   <b>TextLogger</b>
-  ([C++] (@ref #aworx::lox::core::textlogger::TextLogger),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger),
    [C#]  (@ref #cs::aworx::lox::core::textlogger::TextLogger),
    [Java](@ref #com::aworx::lox::core::textlogger::TextLogger))
 to  assemble the meta information of each log line, which incorporates things like date and time,
@@ -290,9 +290,9 @@ The set of these format variables available are:
 
 \note
   The available format variables vary slightly across programming languages and platforms supported by
-  \b %ALox. The details are documented in the corresponding class reference of
+  \alox. The details are documented in the corresponding class reference of
   <b>MetaInfo.Format</b>
-  ([C++] (@ref      #aworx::lox::core::textlogger::MetaInfo::Format),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo::Format),
    [C#]  (@ref  #cs::aworx::lox::core::textlogger::MetaInfo::Format),
    [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo::format)).
 
@@ -305,7 +305,7 @@ The set of these format variables available are:
 
 Changing the format string
 <b>MetaInfo.Format</b>
- ([C++] (@ref      #aworx::lox::core::textlogger::MetaInfo::Format),
+ ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo::Format),
   [C#]  (@ref  #cs::aworx::lox::core::textlogger::MetaInfo::Format),
   [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo::format))
 provides an easy way to change the look of your log output. For example, if you are not interested
@@ -314,7 +314,7 @@ in thread information, just remove the "[%tN] " part from the original string.
 If you want to modify the output of a certain variable or if you want to add your own variables,
 you can derive your on implementation of *MetaInfo* and override the virtual method
 <b>MetaInfo.processVariable</b>
-  ([C++] (@ref #aworx::lox::core::textlogger::MetaInfo::processVariable),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo::processVariable),
   [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo::processVariable),
   [Java] (@ref #com::aworx::lox::core::textlogger::MetaInfo::processVariable))
 Within the implementation, just fetch your own variables and/or modify existing and call
@@ -324,7 +324,7 @@ Finally, if you really want to customize the logging of meta information in the 
 completely and maybe do not want to even rely on a format string, then feel free to derive
 your on implementation of *MetaInfo* and override the virtual method
 <b>MetaInfo.Write</b>
-  ([C++] (@ref #aworx::lox::core::textlogger::MetaInfo::Write),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo::Write),
   [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo::Write),
   [Java] (@ref #com::aworx::lox::core::textlogger::MetaInfo::write))!
 
@@ -332,12 +332,12 @@ your on implementation of *MetaInfo* and override the virtual method
 ### 2.1.2 Class ObjectConverter ### {#alox_man_loggers_textlogger_ObjectConverter}
 Class
 <b>ObjectConverter</b>
-  ([C++] (@ref      #aworx::lox::core::textlogger::ObjectConverter),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::ObjectConverter),
    [C#]  (@ref  #cs::aworx::lox::core::textlogger::ObjectConverter),
    [Java](@ref #com::aworx::lox::core::textlogger::ObjectConverter))
 is used by class
 <b>TextLogger</b>
-  ([C++] (@ref      #aworx::lox::core::textlogger::TextLogger),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger),
    [C#]  (@ref  #cs::aworx::lox::core::textlogger::TextLogger),
    [Java](@ref #com::aworx::lox::core::textlogger::TextLogger))
 to convert the \e Logables that get passed by the user through the <em>Log Statements</em> to the
@@ -345,15 +345,15 @@ to convert the \e Logables that get passed by the user through the <em>Log State
 While \b %ObjectConverter is abstract and declares only one simple interface method, the standard
 implementation used with the built-in loggers is provided with type
 <b>StandardConverter</b>
-  ([C++] (@ref      #aworx::lox::core::textlogger::StandardConverter),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::StandardConverter),
    [C#]  (@ref  #cs::aworx::lox::core::textlogger::StandardConverter),
    [Java](@ref #com::aworx::lox::core::textlogger::StandardConverter)).
 
 This class is still is extremely simple, as it transfers this responsibility
 to objects of type derived from class \b %Formatter! This abstract class and corresponding
-implementations are provided with \b %ALib, the utility library that \b %ALox builds upon.
+implementations are provided with \alib, the utility library that \alox builds upon.
 
-Please consult the \b %ALib documentation of classes
+Please consult the \alib documentation of classes
 <b>Formatter</b>
   ([C++] (@ref      #aworx::lib::strings::Formatter),
    [C#]  (@ref  #cs::aworx::lib::strings::Formatter),
@@ -379,7 +379,7 @@ functionality in respect to converting the \e Logables while using class \b %Tex
 
 <p>
 \note
-  In <em>C# and Java versions</em> of \b %ALox, the logging of arbitrary complex objects is additionally
+  In <em>C# and Java versions</em> of \alox, the logging of arbitrary complex objects is additionally
   supported with class
   <b>LogTools</b>
   ([C#]   (@ref #cs::aworx::lox::tools::LogTools),
@@ -392,7 +392,7 @@ functionality in respect to converting the \e Logables while using class \b %Tex
 ## 2.2 The multi-line features of class TextLogger ## {#alox_man_loggers_textlogger_multiline}
 Class
   <b>%TextLogger</b>
-  ([C++] (@ref      #aworx::lox::core::textlogger::TextLogger),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger),
    [C#]  (@ref  #cs::aworx::lox::core::textlogger::TextLogger),
    [Java](@ref #com::aworx::lox::core::textlogger::TextLogger))
 provides a feature to log a message into multiple lines.
@@ -402,7 +402,7 @@ into multiple lines in a very controlled way.
 
 Multi-line output behavior of class *TextLogger* is configured by the field
 <b>%TextLogger.MultiLineMsgMode</b>
-  ([C++] (@ref      #aworx::lox::core::textlogger::TextLogger::MultiLineMsgMode),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger::MultiLineMsgMode),
    [C#]  (@ref  #cs::aworx::lox::core::textlogger::TextLogger::MultiLineMsgMode),
    [Java](@ref #com::aworx::lox::core::textlogger::TextLogger::multiLineMsgMode)).
 
@@ -414,12 +414,12 @@ The following modes are available:
   (CR, LF or CRLF).
   Therefore, using this mode, it is recommended to set the fields
   <b>%TextLogger.MultiLineDelimiter</b>
-  ([C++] (@ref      #aworx::lox::core::textlogger::TextLogger::MultiLineDelimiter),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger::MultiLineDelimiter),
    [C#]  (@ref  #cs::aworx::lox::core::textlogger::TextLogger::MultiLineDelimiter),
    [Java](@ref #com::aworx::lox::core::textlogger::TextLogger::multiLineDelimiter))
   and
   <b>%TextLogger.MultiLineDelimiterRepl</b>
-  ([C++] (@ref      #aworx::lox::core::textlogger::TextLogger::MultiLineDelimiterRepl),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger::MultiLineDelimiterRepl),
    [C#]  (@ref  #cs::aworx::lox::core::textlogger::TextLogger::MultiLineDelimiterRepl),
    [Java](@ref #com::aworx::lox::core::textlogger::TextLogger::multiLineDelimiterRepl))
   in a way that your log file does not get cluttered.
@@ -439,17 +439,17 @@ The following modes are available:
 ## 2.3 Deriving your own Logger from class TextLogger ## {#alox_man_loggers_textlogger_derive}
 As mentioned above, class
 <b>%TextLogger</b>
-  ([C++] (@ref      #aworx::lox::core::textlogger::TextLogger),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger),
    [C#]  (@ref  #cs::aworx::lox::core::textlogger::TextLogger),
    [Java](@ref #com::aworx::lox::core::textlogger::TextLogger)) is still abstract.
 While it implements the abstract interface method
 <b>%Logger.Log</b>
-  ([C++] (@ref      #aworx::lox::core::Logger::Log),
+  ([C++] (@ref aworx::lib::lox::core::Logger::Log),
    [C#]  (@ref  #cs::aworx::lox::core::Logger::Log),
    [Java](@ref #com::aworx::lox::core::Logger::log)) it introduces a new abstract interface method in turn!
 This method is
 <b>%TextLogger.logText</b>
-  ([C++] (@ref      #aworx::lox::core::textlogger::TextLogger::logText),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger::logText),
    [C#]  (@ref  #cs::aworx::lox::core::textlogger::TextLogger::logText),
    [Java](@ref #com::aworx::lox::core::textlogger::TextLogger::logText)).
 Class \b TextLogger takes care to build the complete textual representation of the log line,
@@ -460,18 +460,18 @@ override this method and just copy (write) the provided buffer to its final dest
 
 Those custom \e Loggers that wish to ignore any special formatting and colorizing codes of class
 <b>%ESC</b>
-  ([C++] (@ref      #aworx::lox::ESC),
+  ([C++] (@ref aworx::lib::lox::ESC),
    [C#]  (@ref  #cs::aworx::lox::ESC),
    [Java](@ref #com::aworx::lox::ESC)) might rather want to extend abstract class
 <b>PlainTextLogger</b>
-  ([C++] (@ref      #aworx::lox::core::textlogger::PlainTextLogger),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::PlainTextLogger),
    [C#]  (@ref  #cs::aworx::lox::core::textlogger::PlainTextLogger),
    [Java](@ref #com::aworx::lox::core::textlogger::PlainTextLogger)) which takes care of the removal
 of such codes. Class \b PlainTextLogger implements <b>%TextLogger.logText</b> and introduces
 in turn other abstract methods. As a simple sample of how \b PlainTextLogger can be derived,
 see the source code of class
 <b>MemoryLogger</b>
-  ([C++] (@ref      #aworx::lox::loggers::MemoryLogger),
+  ([C++] (@ref aworx::lib::lox::loggers::MemoryLogger),
    [C#]  (@ref  #cs::aworx::lox::loggers::MemoryLogger),
    [Java](@ref #com::aworx::lox::loggers::MemoryLogger)).
 
@@ -482,7 +482,7 @@ On this topic, see also chapter \ref alox_man_colorful_loggers.
 
 Class
 <b>TextLogger</b>
-  ([C++] (@ref      #aworx::lox::core::textlogger::TextLogger),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger),
    [C#]  (@ref  #cs::aworx::lox::core::textlogger::TextLogger),
    [Java](@ref #com::aworx::lox::core::textlogger::TextLogger)) optionally uses a facility
 of ALib to avoid concurrent access to the <em>standard output stream</em> and
@@ -495,11 +495,11 @@ This feature is described in the reference documentation of
    [Java](@ref #com::aworx::lib::ALIB::stdOutputStreamsLock)).
 
 To enable the use of this locker for a custom types, all that has to be done is providing
-value \c true for parameter \p usesStdStreams of the protected constructor of class \b TextLogger.
+value \c true for parameter \p{usesStdStreams} of the protected constructor of class \b TextLogger.
 
-If an application writes to those streams in parallel to \b %ALox (e.g. using \b std::cout in C++,
+If an application writes to those streams in parallel to \alox (e.g. using \b std::cout in C++,
 \b Console.WriteLine in C# or \b System.out.println in Java), then to avoid mixing such output
-with \b %ALox output, such direct writes should be performed only after the \b %ALIB.StdOutputStreamsLock
+with \alox output, such direct writes should be performed only after the \b %ALIB.StdOutputStreamsLock
 was 'acquired'. Also, such application has to register once with \b %ALIB.StdOutputStreamsLock.
 Then, together with the \e Logger, the critical number of two 'acquirers' are reached and the
 <b>%SmartLock</b>
@@ -520,18 +520,18 @@ variables or such members need to be created per recursion.
 
 Hence, not only class class
 <b>%Lox</b>
-([C++](@ref      #aworx::lox::Lox),
+([C++](@ref aworx::lib::lox::Lox),
 [C#]  (@ref  #cs::aworx::lox::Lox),
 [Java](@ref #com::aworx::lox::Lox)) needs to support recursion, but also the logger classes
 themselves.
 
 Class
 <b>%TextLogger</b>
-([C++](@ref      #aworx::lox::core::textlogger::TextLogger),
+([C++](@ref aworx::lib::lox::core::textlogger::TextLogger),
 [C#]  (@ref  #cs::aworx::lox::core::textlogger::TextLogger),
 [Java](@ref #com::aworx::lox::core::textlogger::TextLogger)) and its utility class
 <b>%StandardConverter</b>
-([C++](@ref      #aworx::lox::core::textlogger::StandardConverter),
+([C++](@ref aworx::lib::lox::core::textlogger::StandardConverter),
 [C#]  (@ref  #cs::aworx::lox::core::textlogger::StandardConverter),
 [Java](@ref #com::aworx::lox::core::textlogger::StandardConverter)) are well prepared and as long
 as custom loggers are built on those, recursion should not be a problem. This is because abstract method
@@ -548,25 +548,25 @@ classes is done, the possibility of recursion of log calls has to be taken into 
 While the abstract classes \b %Logger, \b %TextLogger and \b %PlainTextLogger are located in the
 namespaces (packages)
 - <b>\[com.|cs.\]%aworx.lox.core</b>
- ([C++](@ref      #aworx::lox::core),
+ ([C++](@ref aworx::lib::lox::core),
  [C#]  (@ref  #cs::aworx::lox::core),
  [Java](@ref #com::aworx::lox::core)) and
 - <b>\[com.|cs.\]%aworx.lox.core::textlogger</b>
- ([C++](@ref      #aworx::lox::core::textlogger),
+ ([C++](@ref aworx::lib::lox::core::textlogger),
  [C#]  (@ref  #cs::aworx::lox::core::textlogger),
  [Java](@ref #com::aworx::lox::core::textlogger))
 
 you can checkout which 'ready to use' \e %Logger implementations are available today for your
-preferred language version of \b %ALox, by referring to the reference documentation of namespace (package)
+preferred language version of \alox, by referring to the reference documentation of namespace (package)
 
 - <b>\[com.|cs.\]%aworx.lox.loggers</b>
- ([C++](@ref #aworx::lox::loggers),
+ ([C++](@ref aworx::lib::lox::loggers),
  [C#]  (@ref #cs::aworx::lox::loggers),
  [Java](@ref #com::aworx::lox::loggers)).
 
 For convenience, method
 <b>%Lox.CreateConsoleLogger</b>
-  ([C++] (@ref      #aworx::lox::Lox::CreateConsoleLogger ),
+  ([C++] (@ref aworx::lib::lox::Lox::CreateConsoleLogger ),
    [C#]  (@ref  #cs::aworx::lox::Lox::CreateConsoleLogger ),
    [Java](@ref #com::aworx::lox::Lox::createConsoleLogger )) is provided. This method chooses
 an appropriate implementation of class \b %Logger suitable for human readable log output.
@@ -574,14 +574,14 @@ The \e %Logger chosen depends on the platform and configuration settings.
 
 For debug logging, method
 <b>%Log.AddDebugLogger</b>
-  ([C++] (@ref      #aworx::lox::Log::AddDebugLogger ),
+  ([C++] (@ref aworx::lib::lox::Log::AddDebugLogger ),
    [C#]  (@ref  #cs::aworx::lox::Log::AddDebugLogger ),
    [Java](@ref #com::aworx::lox::Log::addDebugLogger )) is provided. This may even choose and attach
 more than one \e %Logger, depending on language, platform and IDE.
 
 A noteworthy, built-in specialization of \b %Logger is found with class
  <b>MemoryLogger</b>
-  ([C++] (@ref      #aworx::lox::loggers::MemoryLogger),
+  ([C++] (@ref aworx::lib::lox::loggers::MemoryLogger),
    [C#]  (@ref  #cs::aworx::lox::loggers::MemoryLogger),
    [Java](@ref #com::aworx::lox::loggers::MemoryLogger)). It uses an internal character buffer of ALib-type
  <b>AString</b>
@@ -594,7 +594,7 @@ As \b MemoryLogger does not log to the console or any other slow thing, is extre
 record was over on million log entries per second in a single-thread!
 (Achieved on Intel(R) Haswell Core(TM) i7 CPU @4.0GHz, using <b>ALox for C++</b>, doing release logging.)
 
-This gives an indication that the \b %ALox ecosystem, in combination with its \b MemoryLogger is extremely
+This gives an indication that the \alox ecosystem, in combination with its \b MemoryLogger is extremely
 useful in performance critical sections of your code. If you would do 100 log entries per second,
 the performance loss for your application would be around 0.01%. (Yes, that is why
 we love Bauhaus coding style.)
@@ -609,10 +609,10 @@ The following summarizes the takeaways of this chapter:
   in a human readable format.
 - We saw how the output format of class \b %TextLogger can be manipulated without introducing
   new code and also, more complex but powerful, with introducing new code.
-- Furthermore, it was explained that \b %ALox, with the help of underlying utility library \b %ALib,
+- Furthermore, it was explained that \alox, with the help of underlying utility library \alib,
   provides a mechanism to lock standard output streams and protect against 'clashing' of output
   coming from different loggers or the application itself.
-- Then we briefly looked at the currently existing \e Logger types in the \b %ALox ecosystem.
+- Then we briefly looked at the currently existing \e Logger types in the \alox ecosystem.
 
 If you developed an interesting \e %Logger, like one that
 - is supporting a specific IDE with 'clickable' log lines
@@ -620,7 +620,7 @@ If you developed an interesting \e %Logger, like one that
 - is reporting to an analytics/metrics server
 - is logging into the Linux journal or Windows OS event log
 
-then please do not hesitate to propose the code to us as an extension of the open source project \b %ALox!
+then please do not hesitate to propose the code to us as an extension of the open source project \alox!
 <p>
 
 --------------------------------------------------------------------

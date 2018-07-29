@@ -37,7 +37,7 @@ public class Spaces
         /** ****************************************************************************************
          * Receives an AString full of spaces. The AString returned must not be altered.
          * \attention
-         *   Parameter \p minSize should be omitted and the size of the object returned accepted.
+         *   Parameter \p{minSize} should be omitted and the size of the object returned accepted.
          *   Requesting a higher size, might result in slightly more efficiency.
          *   In multithreaded processes, changing the size must be performed during bootstrap,
          *   e.g. directly after invoking \ref com.aworx.lib.ALIB.init "ALIB.init" by calling

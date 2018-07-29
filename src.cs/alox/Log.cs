@@ -219,7 +219,7 @@ public static class Log
          * providing their (release) lox.
          * In this case, the \e Verbosity of the internal domain used by class
          * \ref cs.aworx.lox.ALoxReportWriter "ALoxReportWriter" has to be set for the
-         * the logger(s) in given \p lox in question.
+         * the logger(s) in given \p{lox} in question.
          *
          * @param lox  The lox that the
          *             \ref cs.aworx.lox.ALoxReportWriter "ALoxReportWriter" created will be using.
@@ -290,51 +290,51 @@ public static class Log
     // #############################################################################################
 
     /** ****************************************************************************************
-     * Adds \p path to an internal list of substrings that are used to trim the path of
+     * Adds \p{path} to an internal list of substrings that are used to trim the path of
      * a source file name. Trimmed paths are used for \e Scope mechanisms and can be
      * logged (e.g. with meta information of class \b TextLogger.
      *
      * By default such setting affects all instances of class \b Lox, not only
-     * this instance. This can be altered using parameter \p global.
+     * this instance. This can be altered using parameter \p{global}.
      * one other The given trim information can either
      *
-     * If given \p path starts with character <c> '*'</c>, the rest of the string is searched
+     * If given \p{path} starts with character <c> '*'</c>, the rest of the string is searched
      * within source paths. Otherwise, it is checked if a source path starts with the given
      * path.
      *
-     * Parameter \p includeString determines if the searched substring should be included in the
-     * resulting source path or not. In addition, parameter \p trimOffset, which can be negative
+     * Parameter \p{includeString} determines if the searched substring should be included in the
+     * resulting source path or not. In addition, parameter \p{trimOffset}, which can be negative
      * or positive, is added to the position of trimming. This can be used to increase the
      * length of the search path, and then cut only a portion of what was searched for.
      *
-     * Parameter \p trimReplacement optionally provides a replacement string for the trimmed
+     * Parameter \p{trimReplacement} optionally provides a replacement string for the trimmed
      * path. This can be used for example to provide the right absolute path for an IDE
      * to find source files of a library.
      *
-     * Finally, parameter \p sensitivity determines whether the match is performed case
+     * Finally, parameter \p{sensitivity} determines whether the match is performed case
      * sensitive or not. It defaults to non-sensitive, for convenience and for the fact that
      * for example Microsoft C++ compilers' preprocessor passes lower case path-strings!
      *
      * \note
      *   If the platform (compiler) specific path separator is <c>'/'</c>, then characters
-     *   <c>'\'</c> found in parameters \p path and \p trimReplacement are replaced by <c>'\'</c>
+     *   <c>'\'</c> found in parameters \p{path} and \p{trimReplacement} are replaced by <c>'\'</c>
      *   and vice versa. This allows to specify paths and substrings thereof in a platform
      *   independent way.
      *
      * \attention
-     *   Setting global rules (when parameter \p global equals \c Inclusion.Include) is not
+     *   Setting global rules (when parameter \p{global} equals \c Inclusion.Include) is not
      *   protected by a \c mutex against concurrent access. Therefore, global rules have
      *   to be either at bootstrap of a process, before threads are created, or such creation
      *   has to 'manually' be protected by locking all existing instances of this class!
      *
      * @param path            The path to search for. If not starting with <c> '*'</c>,
      *                        a prefix is searched.
-     * @param includeString   Determines if \p path should be included in the trimmed
+     * @param includeString   Determines if \p{path} should be included in the trimmed
      *                        path or not.
      *                        Optional and defaults to \b %Inclusion.Exclude.
-     * @param trimOffset      Adjusts the portion of \p path that is trimmed.
+     * @param trimOffset      Adjusts the portion of \p{path} that is trimmed.
      *                        Optional and defaults to \c 0.
-     * @param sensitivity     Determines if the comparison of \p path with a source
+     * @param sensitivity     Determines if the comparison of \p{path} with a source
      *                        files' path is performed case sensitive or not.
      *                        Optional and defaults to \b Case.Ignore.
      * @param reach           Denotes whether the rule is applied locally (to this \b %Lox only)
@@ -367,10 +367,10 @@ public static class Log
 
     /** ****************************************************************************************
      * Removes all local trimming rules set with #SetSourcePathTrimRule.
-     * If parameter \p global is set to \b Inclusion.Include, the global rules are cleared
+     * If parameter \p{global} is set to \b Inclusion.Include, the global rules are cleared
      * in addition.
      *
-     * Setting parameter \p allowAutoRule to \c false, allows to suppress the creation of an
+     * Setting parameter \p{allowAutoRule} to \c false, allows to suppress the creation of an
      * automatic rule based on the executables path.
      *
      * \see [ALox User Manual](../manual.html) for more information.
@@ -415,19 +415,19 @@ public static class Log
     }
 
     /** ********************************************************************************************
-     * Sets the \e %Verbosity of the <em>Log Domain</em> which is evaluated from parameter \p domain and
-     * applicable <em>Scope Domains</em>. The \p verbosity given, is set recursively for all sub-domains.
+     * Sets the \e %Verbosity of the <em>Log Domain</em> which is evaluated from parameter \p{domain} and
+     * applicable <em>Scope Domains</em>. The \p{verbosity} given, is set recursively for all sub-domains.
      *
-     * With the first invocation of this method for a distinct \p logger, this \e %Logger
+     * With the first invocation of this method for a distinct \p{logger}, this \e %Logger
      * is registered with this \e %Lox. In this case, prior to setting the given \e Verbosity
      * for the evaluated sub-domain, the \e Verbosity for all domains is set to
      * \b %Verbosity.Off.
      *
      * To deregister a \e Logger with a \b Lox, use method #RemoveLogger.
-     * To 'disable' a \e Logger, invoke this method with parameters \p verbosity equaling to
-     * \b %Verbosity.Off and \p domain to \c "/".
+     * To 'disable' a \e Logger, invoke this method with parameters \p{verbosity} equaling to
+     * \b %Verbosity.Off and \p{domain} to \c "/".
      *
-     * Optional parameter \p priority defaults to
+     * Optional parameter \p{priority} defaults to
      * \ref cs.aworx.lib.config.Configuration.PrioDefaultValues "Configuration.PrioDefaultValues", which
      * is a lower priority than those of the standard plug-ins of external configuration data.
      * Therefore, external configuration by default 'overwrite' settings made from
@@ -440,7 +440,7 @@ public static class Log
      *   future invocations of this method with standard-priority given.
      *
      * \attention
-     *   The same as with most interface methods of this class, the given \p domain parameter is
+     *   The same as with most interface methods of this class, the given \p{domain} parameter is
      *   combined with <em>%Scope Domains</em> set for the callers' \e %Scope. In standard use
      *   cases of \b %ALox, the \e %Verbosity of a \e Domain is set using absolute domain path
      *   addressing. Therefore, it is recommended to have any domain path passed to this method
@@ -456,7 +456,7 @@ public static class Log
      *   process.<p>
      * \attention
      *   Consequently, this method may be (mis-) used to modify the 'actual' (default) scope
-     *   when explicitly giving an empty string with parameter \p domain. This is useful, to
+     *   when explicitly giving an empty string with parameter \p{domain}. This is useful, to
      *   temporarily adjust a scope. But remember: \b %ALox was designed to avoid temporary code
      *   lines...
      *
@@ -555,7 +555,7 @@ public static class Log
     }
 
     /** ********************************************************************************************
-     * Removes logger named \p loggerName from this container.
+     * Removes logger named \p{loggerName} from this container.
      *
      * \note To (temporarily) disable a logger without removing it, a call to
      *       \ref SetVerbosity "SetVerbosity( logger, Verbosity.Off )"
@@ -577,7 +577,7 @@ public static class Log
     }
 
     /** ********************************************************************************************
-     * Removes logger named \p loggerName from this container.
+     * Removes logger named \p{loggerName} from this container.
      *
      * \note To (temporarily) disable a logger without removing it, a call to
      *       \ref SetVerbosity "SetVerbosity( logger, Verbosity.Off )"
@@ -601,18 +601,18 @@ public static class Log
     }
 
     /** ********************************************************************************************
-     * The given \p scopeDomain becomes the default domain path for given \p scope.
+     * The given \p{scopeDomain} becomes the default domain path for given \p{scope}.
      * This means, that any subsequent log invocations (from within this same scope) can omit the
      * domain parameter, or if they provide one, this Scope Domain path is prepended.
      * If subsequent log calls specify a domain name with a leading '/' character,
      * then the Scope Domain of the scope is ignored.<br>
      * Furthermore, if the given scope is an inner scope, outer scopes are prepended to the
-     * given \p scopeDomain when the resulting domain of a log invocation is evaluated.
+     * given \p{scopeDomain} when the resulting domain of a log invocation is evaluated.
      * Again, this behavior can be overruled by prepending a leading '/' character to
-     * \p scopeDomain.
+     * \p{scopeDomain}.
      *
      * To remove a previously set Scope Domain a nulled or empty string has to be passed with
-     * parameter \p scopeDomain.
+     * parameter \p{scopeDomain}.
      *
      * For \e %Scope.ThreadOuter and \e %Scope.ThreadInner, passing an empty or nulled string
      * removes the most recently added domain path. For removing an explicitly named
@@ -621,7 +621,7 @@ public static class Log
      *
      *
      * @param scopeDomain    The domain path to register.
-     * @param scope     The scope that should the given \p domain be registered for.
+     * @param scope     The scope that should the given \p{domain} be registered for.
      *                  Available Scope definitions are platform/language dependent.
      *
      * @param cln (Optional) Caller info, compiler generated. Please omit.
@@ -643,7 +643,7 @@ public static class Log
      * is applicable only for \e %Scope.ThreadOuter and \e %Scope.ThreadInner and allows to
      * specify the thread that the setting should be associated with.
      *
-     * If \p scopeDomain is null or empty, the most recently added domain path is removed.
+     * If \p{scopeDomain} is null or empty, the most recently added domain path is removed.
      * For removing an explicitly named domain associated with  a thread use method
      * #RemoveThreadDomain.
      *
@@ -671,7 +671,7 @@ public static class Log
      *
      * To remove the most recently added domain path from such thread-related \e %Scope,
      * use one of the overloaded methods #SetDomain and provide an empty or nulled
-     * value for parameter \p scopeDomain (the same as how domain paths of other \e %Scopes
+     * value for parameter \p{scopeDomain} (the same as how domain paths of other \e %Scopes
      * are removed).
      *
      * \note
@@ -704,18 +704,18 @@ public static class Log
     /** ****************************************************************************************
      * Adds a <em>Domain Substitution Rule</em>.
      * <em>Domain Substitution</em> is performed as a last step when evaluating the domain path of a <em>Log Statement</em>,
-     * taking <em>Scope Domains</em> and the optional parameter \p domain of the statement into
+     * taking <em>Scope Domains</em> and the optional parameter \p{domain} of the statement into
      * account.<br>
      *
      * <b>Wildcards</b><br>
-     * Parameter \p domainPath supports \b 'wildcard' character <c> '*'</c> at its beginning
+     * Parameter \p{domainPath} supports \b 'wildcard' character <c> '*'</c> at its beginning
      * and at its end (or both). This allows to have four types of rules:
      * - Exact match
-     * - Prefix match (\c * at the end of \p domainPath)
-     * - Suffix match (\c * at the start of \p domainPath)
-     * - Substring match (\c * at both, start and the end of \p domainPath)
+     * - Prefix match (\c * at the end of \p{domainPath})
+     * - Suffix match (\c * at the start of \p{domainPath})
+     * - Substring match (\c * at both, start and the end of \p{domainPath})
      *
-     * Only minimal checks are performed, e.g. if an exact match is requested, but \p domainPath
+     * Only minimal checks are performed, e.g. if an exact match is requested, but \p{domainPath}
      * does not start with character <c> '/'</c>. In this and some other cases, the rule is not
      * stored and an internal warning is logged. Further checks, for example for illegal
      * domain path characters are not performed (those will be eliminated when the resulting
@@ -731,9 +731,9 @@ public static class Log
      * this is repeated as long as at least one rule matched (up to ten times).
      *
      * <b>Deletion of Rules</b>
-     * To delete a rule, invoke the method with same parameter \p domainPath and a 'nulled'
-     * or empty string for parameter \p replacement.
-     * To delete all rules, invoke the method with parameter \p domainPath 'nulled'
+     * To delete a rule, invoke the method with same parameter \p{domainPath} and a 'nulled'
+     * or empty string for parameter \p{replacement}.
+     * To delete all rules, invoke the method with parameter \p{domainPath} 'nulled'
      * or empty.
      *
      * <b>Final remarks</b>
@@ -746,7 +746,7 @@ public static class Log
      *
      * For \b %Lox objects that should be protected of external manipulation, it is advisable,
      * to remove all <em>Domain Substitution Rules</em> right after the \b %Lox was created by invoking this method with
-     * a nulled value for parameter \p domainPath. The reason is, that otherwise, through
+     * a nulled value for parameter \p{domainPath}. The reason is, that otherwise, through
      * configuration files or command line parameters, domains of the \b %Lox can be substituted
      * and then the resulting domains \e Verbosities be \e overwritten using further configuration
      * variables. Any prioritized \e 'internal' setting of \e Verbosities this way could be
@@ -770,8 +770,8 @@ public static class Log
     }
 
     /** ****************************************************************************************
-     * The given \p prefix becomes a <em>Prefix Logable</em> provided to loggers with each log
-     * statement executed within the given \p scope.
+     * The given \p{prefix} becomes a <em>Prefix Logable</em> provided to loggers with each log
+     * statement executed within the given \p{scope}.
      * The list of objects received by a logger is sorted from outer scope to inner scope.
      * The logable of the <em>%Log Statement</em> itself, is the last in the list, except one or
      * more <em>Prefix Logables</em> of \e %Scope.ThreadInner are set. Those are (similar to how
@@ -779,7 +779,7 @@ public static class Log
      * list.
      *
      * To remove a previously set <em>Prefix Logable</em>, \c null has to be passed with
-     * parameter \p logable.
+     * parameter \p{logable}.
      * For \e %Scope.ThreadOuter and \e %Scope.ThreadInner, passing \c null
      * removes the most recently added <em>Prefix Logable</em>.
      *
@@ -802,7 +802,7 @@ public static class Log
      *   Think of 'SetContext' and <em>Context Objects</em> instead.
      *
      * @param logable     The <em>Prefix Logable</em> to set.
-     * @param scope       The scope that should the given \p logable be registered for.
+     * @param scope       The scope that should the given \p{logable} be registered for.
      *                    Available Scope definitions are platform/language dependent.
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
@@ -824,7 +824,7 @@ public static class Log
      * \e %Scope.ThreadOuter and \e %Scope.ThreadInner and allows to specify the thread that
      * the setting should be associated with.
      *
-     * If \p logable is null, the most recently added <em>Prefix Logable</em> is removed.
+     * If \p{logable} is null, the most recently added <em>Prefix Logable</em> is removed.
      *
      * @param logable     The <em>Prefix Logable</em> to set.
      * @param scope       Either \e %Scope.ThreadOuter or \e %Scope.ThreadInner. With other values,
@@ -844,20 +844,20 @@ public static class Log
     }
 
     /** ****************************************************************************************
-     * The given \p logable becomes a <em>Prefix Logable</em> associated to the given <em>Log Domain</em>.
+     * The given \p{logable} becomes a <em>Prefix Logable</em> associated to the given <em>Log Domain</em>.
      * <em>Prefix Logables</em> associated with the <em>Log Domain</em> are added to the list of \e Logables right
      * before the main \e Logable of the <em>Log Statement</em> itself.
      * Multiple <em>Prefix Logables</em> can be added per <em>Log Domain</em>.
      *
      * To remove the most recently added <em>Prefix Logable</em> associated with a <em>Log Domain</em>,
-     * \c null has to be passed with parameter \p logable.
+     * \c null has to be passed with parameter \p{logable}.
      *
      * \attention
-     *   The same as with most interface methods of this class, the given \p domain parameter is
+     *   The same as with most interface methods of this class, the given \p{domain} parameter is
      *   combined with <em>%Scope Domains</em> set for the callers' \e %Scope.
      *   To suppress this, an absolute domain path can be used. (Still any <em>Scope Domain</em> of
      *   \e %Scope.Thread.Inner will be applied).
-     *   The default value of parameter \p domain is \c "" which addresses the domain evaluated
+     *   The default value of parameter \p{domain} is \c "" which addresses the domain evaluated
      *   for the current scope.
      *
      * @param logable     The <em>Prefix Logable</em> to set.
@@ -931,10 +931,10 @@ public static class Log
 
     /** ****************************************************************************************
      * Stores an object which can afterwards be retrieved by invoking #Retrieve.
-     * Optional parameters \p key and \p scope offer various possibilities to reference
+     * Optional parameters \p{key} and \p{scope} offer various possibilities to reference
      * this data later.<br>
      *
-     * To remove data from the store, pass \c null with parameter \p data.
+     * To remove data from the store, pass \c null with parameter \p{data}.
      *
      * \attention
      * When data objects are 'overwritten', previous objects will be deleted internally.
@@ -948,7 +948,7 @@ public static class Log
      *                  If \c null, currently stored data will be removed.
      * @param key       The optional key to the data.
      *                  If omitted (or empty or null), the data is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  data is unique to the \e Lox.
      * @param scope     The \e %Scope that the data is bound to.
      *
@@ -968,7 +968,7 @@ public static class Log
 
     /** ****************************************************************************************
      * Overloaded version of
-     * Store(Object*,const TString&,Scope,int) "Store" which omits parameter \p key.
+     * Store(Object*,const TString&,Scope,int) "Store" which omits parameter \p{key}.
      *
      * @param data      The data object to store.
      *                  If \c null, currently stored data will be removed.
@@ -990,7 +990,7 @@ public static class Log
 
     /** ****************************************************************************************
      * Retrieves \b %ALox <em>Log Data</em> which was previously stored using #Store.
-     * Optional parameters \p key and \p scope offer various possibilities to reference
+     * Optional parameters \p{key} and \p{scope} offer various possibilities to reference
      * such objects.<br>
      *
      * \note <em>Log Data</em> is a feature provided by \b %ALox to support debug-logging.
@@ -998,7 +998,7 @@ public static class Log
      *
      * @param key       The optional key to the data.
      *                  If omitted (or empty or null), the data is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  data is unique to the \e Lox.
      * @param scope     The \e %Scope that the data is bound to.
      *
@@ -1018,7 +1018,7 @@ public static class Log
     }
 
     /** ****************************************************************************************
-     * Overloaded version of #Retrieve which omits parameter \p key.
+     * Overloaded version of #Retrieve which omits parameter \p{key}.
      *
      * \note <em>Log Data</em> is a feature provided by \b %ALox to support debug-logging.
      *       It is not advised to use <em>Log Data</em> to implement application logic.
@@ -1077,7 +1077,7 @@ public static class Log
 
     /** ********************************************************************************************
      * This method collects state information about this lox in a formatted multi-line AString.
-     * Parameter \p flags is a bit field with bits defined in enum
+     * Parameter \p{flags} is a bit field with bits defined in enum
      * \ref cs.aworx.lox.Lox.StateInfo "Lox.StateInfo".
      *
      * @param buf       The target string.
@@ -1138,7 +1138,7 @@ public static class Log
      *
      * @param logableOrDomain  The first logable or the domain path.
      * @param optLog2          Optional logable
-     *                         (or the first logable if \p logableOrDomain was the domain).
+     *                         (or the first logable if \p{logableOrDomain} was the domain).
      * @param optLog3          Optional logable.
      * @param optLog4          Optional logable.
      * @param cln (Optional) Caller info, compiler generated. Please omit.
@@ -1166,7 +1166,7 @@ public static class Log
      *
      * @param logableOrDomain  The first logable or the domain path.
      * @param optLog2          Optional logable
-     *                         (or the first logable if \p logableOrDomain was the domain).
+     *                         (or the first logable if \p{logableOrDomain} was the domain).
      * @param optLog3          Optional logable.
      * @param optLog4          Optional logable.
      * @param cln (Optional) Caller info, compiler generated. Please omit.
@@ -1195,7 +1195,7 @@ public static class Log
      *
      * @param logableOrDomain  The first logable or the domain path.
      * @param optLog2          Optional logable
-     *                         (or the first logable if \p logableOrDomain was the domain).
+     *                         (or the first logable if \p{logableOrDomain} was the domain).
      * @param optLog3          Optional logable.
      * @param optLog4          Optional logable.
      * @param cln (Optional) Caller info, compiler generated. Please omit.
@@ -1224,7 +1224,7 @@ public static class Log
      *
      * @param logableOrDomain  The first logable or the domain path.
      * @param optLog2          Optional logable
-     *                         (or the first logable if \p logableOrDomain was the domain).
+     *                         (or the first logable if \p{logableOrDomain} was the domain).
      * @param optLog3          Optional logable.
      * @param optLog4          Optional logable.
      * @param cln (Optional) Caller info, compiler generated. Please omit.
@@ -1247,14 +1247,14 @@ public static class Log
 
 
     /** ********************************************************************************************
-     * Logs given logables only if the parameter \p condition is not \c true.
+     * Logs given logables only if the parameter \p{condition} is not \c true.
      * For this, \ref cs.aworx.lox.Lox.Assert "Lox.Assert" is invoked on static object
      * \ref cs.aworx.lox.Log.LOX "LOX" used for debug logging.
      *
      * @param condition If \c false, the <em>Log Statement</em> is executed.
      * @param logableOrDomain  The first logable or the domain path.
      * @param optLog2          Optional logable
-     *                         (or the first logable if \p logableOrDomain was the domain).
+     *                         (or the first logable if \p{logableOrDomain} was the domain).
      * @param optLog3          Optional logable.
      * @param optLog4          Optional logable.
      * @param cln (Optional) Caller info, compiler generated. Please omit.
@@ -1277,7 +1277,7 @@ public static class Log
     }
 
     /** ********************************************************************************************
-     * Logs a \e Logable only if the parameter \p condition is \c true.
+     * Logs a \e Logable only if the parameter \p{condition} is \c true.
      * For this, \ref cs.aworx.lox.Lox.If "Lox.If" is invoked on static object
      * \ref cs.aworx.lox.Log.LOX "LOX" used for debug logging.
      *
@@ -1307,10 +1307,10 @@ public static class Log
     }
 
     /** ********************************************************************************************
-     * Logs a \e Logable only if the parameter \p condition is \c true.
+     * Logs a \e Logable only if the parameter \p{condition} is \c true.
      * For this, \ref cs.aworx.lox.Lox.If "Lox.If" is invoked on static object
      * \ref cs.aworx.lox.Log.LOX "LOX" used for debug logging.
-     * This overloaded version omits parameter \p domain.
+     * This overloaded version omits parameter \p{domain}.
      *
      * @param condition  If \c false, the <em>Log Statement</em> is executed.
      * @param verbosity  The verbosity.
@@ -1336,19 +1336,19 @@ public static class Log
     }
 
     /** ********************************************************************************************
-     * Logs given \e logables once, up to \p quantity times or every n-th time.
+     * Logs given \e logables once, up to \p{quantity} times or every n-th time.
      * In its simplest overloaded version, the counter is bound to the source code line, hence,
      * only the first execution of this exact <em>Log Statement</em> is executed.
      *
-     * Using parameter \p group, a set of <em>Log Statements</em> that share the same group key,
+     * Using parameter \p{group}, a set of <em>Log Statements</em> that share the same group key,
      * can be grouped and of such set, only the one which is first executed actually logs.<br>
-     * Alternatively, when \p key is omitted (or null or empty), but a
-     * \ref cs.aworx.lox.Scope "Scope" is given with parameter \p scope, then the
+     * Alternatively, when \p{key} is omitted (or null or empty), but a
+     * \ref cs.aworx.lox.Scope "Scope" is given with parameter \p{scope}, then the
      * counter is associated with the scope.<br>
-     * Finally, parameters \p key and \p scope can also be used in combination. The key is
+     * Finally, parameters \p{key} and \p{scope} can also be used in combination. The key is
      * then unique in respect to the \ref cs.aworx.lox.Scope "Scope" provided.
      *
-     * Using, none, one or both of the parameters \p group and \p scope, among others, the
+     * Using, none, one or both of the parameters \p{group} and \p{scope}, among others, the
      * following use cases can be achieved.
      * - %Log a specific statement up to n-times.
      * - %Log only the first n of a group of statements.
@@ -1366,14 +1366,14 @@ public static class Log
      * - %Log a <em>Log Statement</em> n-times per new thread.
      * - %Log only the first n statements of a group of statements executed by a specific thread.
      *
-     * When parameter \p quantity is a negative value, the log statement is executed every n-th time
-     * instead n-times. E.g, if \p quantity is \c -5, the first statement is executed and afterwards
+     * When parameter \p{quantity} is a negative value, the log statement is executed every n-th time
+     * instead n-times. E.g, if \p{quantity} is \c -5, the first statement is executed and afterwards
      * every fifth invocation.
      *
      * \note
      *   Unlike other methods of this class which accept more than one logable, this
      *   method and its overloaded variants accept only one object. To supply several objects
-     *   at once, an \c Object[] may be passed with parameter \p logables, like in the
+     *   at once, an \c Object[] may be passed with parameter \p{logables}, like in the
      *   following sample:
      *   \snippet "UT_alox_lox.cs"      DOX_ALOX_LOX_ONCE
      *
@@ -1381,7 +1381,7 @@ public static class Log
      *<p>
      * \note
      *   C# autoboxes parameter values of type 'int', which leads to ambiguous statements.
-     *   This is why all %Once methods are doubled with a String-type parameter \p logable
+     *   This is why all %Once methods are doubled with a String-type parameter \p{logable}
      *   to avoid ambiguities when a simple string is to be logged. Unfortunately, this leads
      *   to a large amount of overloaded versions.
      *
@@ -1391,9 +1391,9 @@ public static class Log
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
-     *                  to the \p scope.)
+     *                  to the \p{scope}.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
@@ -1422,9 +1422,9 @@ public static class Log
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].).
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
-     *                  to the \p scope.)
+     *                  to the \p{scope}.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
@@ -1451,9 +1451,9 @@ public static class Log
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].).
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
-     *                  to the \p scope.)
+     *                  to the \p{scope}.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
@@ -1500,9 +1500,9 @@ public static class Log
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].).
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
-     *                  to the \p scope.)
+     *                  to the \p{scope}.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
@@ -1620,9 +1620,9 @@ public static class Log
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].).
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
-     *                  to the \p scope.)
+     *                  to the \p{scope}.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
@@ -1650,9 +1650,9 @@ public static class Log
      * @param logable   The string message to log.
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
-     *                  to the \p scope.)
+     *                  to the \p{scope}.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
@@ -1680,9 +1680,9 @@ public static class Log
      * @param logable   The string message to log.
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
-     *                  to the \p scope.)
+     *                  to the \p{scope}.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
@@ -1709,9 +1709,9 @@ public static class Log
      * @param logable   The string message to log.
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
-     *                  to the \p scope.)
+     *                  to the \p{scope}.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
@@ -1758,9 +1758,9 @@ public static class Log
      * @param logable   The string message to log.
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
-     *                  to the \p scope.)
+     *                  to the \p{scope}.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
@@ -1878,9 +1878,9 @@ public static class Log
      * @param logable   The string message to log.
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
-     *                  to the \p scope.)
+     *                  to the \p{scope}.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.

@@ -62,8 +62,8 @@ import com.aworx.lib.lang.Switch;
  *  These methods share the same name as the standard one, with the suffix "_NC" appended (NC
  *  stands for "no checks").
  *
- *  In the sample above, if the calling code was sure about the parameters \p regionStart and
- *  \p regionLength being in the bounds of \p src, method
+ *  In the sample above, if the calling code was sure about the parameters \p{regionStart} and
+ *  \p{regionLength} being in the bounds of \p{src}, method
  *  \ref _NC( AString src, int regionStart, int regionLength ) can be used.
  *
  *  \attention The following rules apply to all methods suffixed by <em>_NC</em>:
@@ -411,7 +411,7 @@ public class AString implements CharSequence
          *   one of the overloaded methods #replaceSubstring.
          *
          * @param  src      The \e CharSequence to insert characters from.
-         * @param  pos      The position in this object insert the portion of \p src.
+         * @param  pos      The position in this object insert the portion of \p{src}.
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
         public AString insertAt( CharSequence src, int pos )
@@ -433,9 +433,9 @@ public class AString implements CharSequence
          * Inserts the given character n-times at a given position.
          * If the given position is out of range, nothing is inserted.
          *
-         * @param c     The character to insert \p qty times.
+         * @param c     The character to insert \p{qty} times.
          * @param qty   The quantity of characters to insert.
-         * @param pos   The index in this object where \p c is inserted \p qty times.
+         * @param pos   The index in this object where \p{c} is inserted \p{qty} times.
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
         public AString insertChars( char c, int qty, int pos )
@@ -560,7 +560,7 @@ public class AString implements CharSequence
 
         /** ****************************************************************************************
          * Overloaded version of #delete(int,int) that provides the default value
-         * Integer.MAX_VALUE as parameter \p regionLength.
+         * Integer.MAX_VALUE as parameter \p{regionLength}.
          *
          * @param regionStart    The start of the region to delete.
          *
@@ -578,8 +578,8 @@ public class AString implements CharSequence
          *             See \ref JAVA_ASTRING_NC "Non-checking methods" for <em>_NC</em> method
          *             variants.
          *             Like with method #delete(int, int), it is allowed that the sum of parameters
-         *             \p regionStart and \p regionLength is longer than the length of this \b %AString.
-         *             In this case, this string is cut starting from index \p regionStart.
+         *             \p{regionStart} and \p{regionLength} is longer than the length of this \b %AString.
+         *             In this case, this string is cut starting from index \p{regionStart}.
          *
          * @param regionStart  The start of the region to delete.
          * @param regionLength The length of the region to delete.
@@ -716,8 +716,8 @@ public class AString implements CharSequence
          * All characters defined in given set at, left of and right of the given index
          * are removed from the string.<br>
          * The method returns index of the first character of those characters that were behind the
-         * trimmed region. With legal \p index given, this value can only be smaller or equal to
-         * \p index. If \p index is out of bounds, the length of the string is returned.
+         * trimmed region. With legal \p{index} given, this value can only be smaller or equal to
+         * \p{index}. If \p{index} is out of bounds, the length of the string is returned.
          *
          * @param idx         The index to perform the trim operation at. Has to be between zero
          *                    and <em>Length() -1</em>.
@@ -752,7 +752,7 @@ public class AString implements CharSequence
 
         /** ****************************************************************************************
          * Overloaded method providing default \ref CString.DEFAULT_WHITESPACES value for
-         * parameter \p trimChars.
+         * parameter \p{trimChars}.
          *
          * @param index       The index to perform the trim operation at. Has to be between zero
          *                    and <em>Length() -1</em>.
@@ -876,7 +876,7 @@ public class AString implements CharSequence
 
         /** ****************************************************************************************
          * Overloaded method of #tab(int, int, char), providing ' ' (space) as default value
-         * for parameter \p tabChar.
+         * for parameter \p{tabChar}.
          *
          * @param tabSize       The tab positions are multiples of this parameter.
          * @param minPad        The minimum pad characters to add. Defaults to 1.
@@ -888,7 +888,7 @@ public class AString implements CharSequence
 
         /** ****************************************************************************************
          * Overloaded method of #tab(int, int, char), providing ' ' (space) as default value
-         * for parameter \p tabChar and 1 as default value for parameter \p minPad.
+         * for parameter \p{tabChar} and 1 as default value for parameter \p{minPad}.
          *
          * @param tabSize   The tab positions are multiples of this parameter.
          *
@@ -2321,7 +2321,7 @@ public class AString implements CharSequence
          * lead to shorter and more efficient code.
          *
          * @param needle  The character to search for.
-         * @return  This strings #length if the character \p needle is not found.
+         * @return  This strings #length if the character \p{needle} is not found.
          *          Otherwise the index of first occurrence.
          ******************************************************************************************/
         public int    indexOfOrLength( char needle )
@@ -2341,7 +2341,7 @@ public class AString implements CharSequence
          *
          * @param needle    The character to search for.
          * @param startIdx  The index in this to start searching the character.
-         * @return  This strings #length if the character \p needle is not found.
+         * @return  This strings #length if the character \p{needle} is not found.
          *          Otherwise the index of first occurrence.
          ******************************************************************************************/
         public int    indexOfOrLength( char needle, int startIdx )
@@ -2453,7 +2453,7 @@ public class AString implements CharSequence
          * @param startIndex   The index in this to start searching the character.
          *                     Defaults to the end of this string.
          *
-         * @return  -1 if the character \p needle is not found.
+         * @return  -1 if the character \p{needle} is not found.
          *          Otherwise the index of its last occurrence relative to the start index.
          ******************************************************************************************/
         public int lastIndexOf( char needle, int startIndex )
@@ -2473,7 +2473,7 @@ public class AString implements CharSequence
          *
          * @param needle       The character to search for.
          *
-         * @return  -1 if the character \p needle is not found.
+         * @return  -1 if the character \p{needle} is not found.
          *          Otherwise the index of its last occurrence relative to the start index.
          ******************************************************************************************/
         public int lastIndexOf( char needle )
@@ -2982,7 +2982,7 @@ public class AString implements CharSequence
         /** ****************************************************************************************
          * Format and append a 32-Bit integer value.
          *
-         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * Parameter \p{numberFormat} defaults to \c null, which denotes this method to use
          * the static singleton found in
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational".
          * To generate output better readable for humans, provide
@@ -3055,7 +3055,7 @@ public class AString implements CharSequence
         /** ****************************************************************************************
          * Format and append a 64-Bit integer value.
          *
-         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * Parameter \p{numberFormat} defaults to \c null, which denotes this method to use
          * the static singleton found in
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational".
          * To generate output better readable for humans, provide
@@ -3128,7 +3128,7 @@ public class AString implements CharSequence
         /** ****************************************************************************************
          * Append a 64-Bit integer value in binary format.
          *
-         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * Parameter \p{numberFormat} defaults to \c null, which denotes this method to use
          * the static singleton found in
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational".
          * To generate output better readable for humans, provide
@@ -3201,7 +3201,7 @@ public class AString implements CharSequence
         /** ****************************************************************************************
          * Append a 64-Bit integer value in hexadecimal format.
          *
-         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * Parameter \p{numberFormat} defaults to \c null, which denotes this method to use
          * the static singleton found in
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational".
          * To generate output better readable for humans, provide
@@ -3277,7 +3277,7 @@ public class AString implements CharSequence
         /** ****************************************************************************************
          * Append a 64-Bit integer value in octal format.
          *
-         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * Parameter \p{numberFormat} defaults to \c null, which denotes this method to use
          * the static singleton found in
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational".
          * To generate output better readable for humans, provide
@@ -3495,7 +3495,7 @@ public class AString implements CharSequence
          *                     Optional and defaults to \c 0.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the number parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          * @return  The parsed value. In addition, the output parameter \b newIdx is set to
          *          point to the first character behind the parsed number.
          ******************************************************************************************/
@@ -3508,14 +3508,14 @@ public class AString implements CharSequence
          * Parses a long integer value in decimal, binary, hexadecimal or octal format from
          * the string by invoking method
          * \ref com.aworx.lib.strings.NumberFormat.parseInt "NumberFormat.parseInt"
-         * on the given \p numberFormat instance.<br>
-         * Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         * Parameter \p{numberFormat} defaults \c null. This denotes static singleton
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to 'international' settings (not using the locale) and therefore
          * also not parsing grouping characters.
          *
-         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
-         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * Optional output parameter \p{newIdx} may be used to detect if parsing was successful.
+         * If not, it receives the value of \p{startIdx}, even if leading whitespaces had been
          * read.
          *
          * For more information on number conversion, see class
@@ -3527,7 +3527,7 @@ public class AString implements CharSequence
          * @param numberFormat The format definition. Defaults to \c null.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the number parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          * @return  The parsed value. In addition, the output parameter \b newIdx is set to
          *          point to the first character behind the parsed number.
          ******************************************************************************************/
@@ -3588,7 +3588,7 @@ public class AString implements CharSequence
          *                     Optional and defaults to \c 0.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the float number that was parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          * @return  The parsed value. In addition, the output parameter \b newIdx is set to
          *          point to the first character behind the parsed number.
          ******************************************************************************************/
@@ -3651,13 +3651,13 @@ public class AString implements CharSequence
          * Reads an unsigned 64-bit integer in standard decimal format at the given position
          * from this \b %AString. This is done, by invoking
          * \ref com.aworx.lib.strings.NumberFormat.parseDec "NumberFormat.parseDec"
-         * on the given \p numberFormat instance.<br>
-         * Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         * Parameter \p{numberFormat} defaults \c null. This denotes static singleton
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
-         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
-         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * Optional output parameter \p{newIdx} may be used to detect if parsing was successful.
+         * If not, it receives the value of \p{startIdx}, even if leading whitespaces had been
          * read.
          *
          * Sign literals \c '-' or \c '+' are \b not accepted and parsing will fail.
@@ -3677,9 +3677,9 @@ public class AString implements CharSequence
          * @param numberFormat The format definition. Defaults to \c null.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the number parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          *
-         * @return  The parsed value. In addition, the output parameter \p newIdx is set to point
+         * @return  The parsed value. In addition, the output parameter \p{newIdx} is set to point
          *          to the first character behind the parsed number.
          ******************************************************************************************/
         public long  parseDec( int startIdx, NumberFormat numberFormat, int[] newIdx )
@@ -3739,7 +3739,7 @@ public class AString implements CharSequence
          *                     Optional and defaults to \c 0.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the float number that was parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          * @return  The parsed value. In addition, the output parameter \b newIdx is set to
          *          point to the first character behind the parsed number.
          ******************************************************************************************/
@@ -3802,13 +3802,13 @@ public class AString implements CharSequence
          * Reads an unsigned 64-bit integer in binary format at the given position
          * from this \b %AString. This is done, by invoking
          * \ref com.aworx.lib.strings.NumberFormat.parseBin "NumberFormat.parseBin"
-         * on the given \p numberFormat instance.<br>
-         * Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         * Parameter \p{numberFormat} defaults \c null. This denotes static singleton
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
-         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
-         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * Optional output parameter \p{newIdx} may be used to detect if parsing was successful.
+         * If not, it receives the value of \p{startIdx}, even if leading whitespaces had been
          * read.
          *
          * For more information on number conversion, see class
@@ -3825,9 +3825,9 @@ public class AString implements CharSequence
          * @param numberFormat The format definition. Defaults to \c null.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the number parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          *
-         * @return  The parsed value. In addition, the output parameter \p newIdx is set to point
+         * @return  The parsed value. In addition, the output parameter \p{newIdx} is set to point
          *          to the first character behind the parsed number.
          ******************************************************************************************/
         public long  parseBin( int startIdx, NumberFormat numberFormat, int[] newIdx )
@@ -3887,7 +3887,7 @@ public class AString implements CharSequence
          *                     Optional and defaults to \c 0.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the float number that was parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          * @return  The parsed value. In addition, the output parameter \b newIdx is set to
          *          point to the first character behind the parsed number.
          ******************************************************************************************/
@@ -3950,13 +3950,13 @@ public class AString implements CharSequence
          * Reads an unsigned 64-bit integer in hexadecimal format at the given position
          * from this \b %AString. This is done, by invoking
          * \ref com.aworx.lib.strings.NumberFormat.parseHex "NumberFormat.parseHex"
-         * on the given \p numberFormat instance.<br>
-         * Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         * Parameter \p{numberFormat} defaults \c null. This denotes static singleton
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
-         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
-         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * Optional output parameter \p{newIdx} may be used to detect if parsing was successful.
+         * If not, it receives the value of \p{startIdx}, even if leading whitespaces had been
          * read.
          *
          * For more information on number conversion, see class
@@ -3974,9 +3974,9 @@ public class AString implements CharSequence
          * @param numberFormat The format definition. Defaults to \c null.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the number parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          *
-         * @return  The parsed value. In addition, the output parameter \p newIdx is set to point
+         * @return  The parsed value. In addition, the output parameter \p{newIdx} is set to point
          *          to the first character behind the parsed number.
          ******************************************************************************************/
         public long  parseHex( int startIdx, NumberFormat numberFormat, int[] newIdx )
@@ -4036,7 +4036,7 @@ public class AString implements CharSequence
          *                     Optional and defaults to \c 0.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the float number that was parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          * @return  The parsed value. In addition, the output parameter \b newIdx is set to
          *          point to the first character behind the parsed number.
          ******************************************************************************************/
@@ -4099,13 +4099,13 @@ public class AString implements CharSequence
          * Reads an unsigned 64-bit integer in octal format at the given position
          * from this \b %AString. This is done, by invoking
          * \ref com.aworx.lib.strings.NumberFormat.parseOct "NumberFormat.parseOct"
-         * on the given \p numberFormat instance.<br>
-         * Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         * Parameter \p{numberFormat} defaults \c null. This denotes static singleton
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
-         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
-         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * Optional output parameter \p{newIdx} may be used to detect if parsing was successful.
+         * If not, it receives the value of \p{startIdx}, even if leading whitespaces had been
          * read.
          *
          * For more information on number conversion, see class
@@ -4122,9 +4122,9 @@ public class AString implements CharSequence
          * @param numberFormat The format definition. Defaults to \c null.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the number parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          *
-         * @return  The parsed value. In addition, the output parameter \p newIdx is set to point
+         * @return  The parsed value. In addition, the output parameter \p{newIdx} is set to point
          *          to the first character behind the parsed number.
          ******************************************************************************************/
         public long  parseOct( int startIdx, NumberFormat numberFormat, int[] newIdx )
@@ -4184,7 +4184,7 @@ public class AString implements CharSequence
          *                     Optional and defaults to \c 0.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the float number that was parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          * @return  The parsed value. In addition, the output parameter \b newIdx is set to
          *          point to the first character behind the parsed number.
          ******************************************************************************************/
@@ -4247,14 +4247,14 @@ public class AString implements CharSequence
          * Reads a floating point number at the given position from this \b %AString.
          * This is done, by invoking
          * \ref com.aworx.lib.strings.NumberFormat.parseFloat "NumberFormat.parseFloat"
-         * on the given \p numberFormat instance.<br>
-         * Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         * Parameter \p{numberFormat} defaults \c null. This denotes static singleton
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to 'international' settings (not using the locale) and therefore
          * also not parsing grouping characters.
          *
-         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
-         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * Optional output parameter \p{newIdx} may be used to detect if parsing was successful.
+         * If not, it receives the value of \p{startIdx}, even if leading whitespaces had been
          * read.
          *
          * For more information on parsing options for floating point numbers and number
@@ -4267,9 +4267,9 @@ public class AString implements CharSequence
          * @param numberFormat The format definition. Defaults to \c null.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the number parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          *
-         * @return  The parsed value. In addition, the output parameter \p newIdx is set to point
+         * @return  The parsed value. In addition, the output parameter \p{newIdx} is set to point
          *          to the first character behind any found float number.
          ******************************************************************************************/
         public double  parseFloat( int startIdx, NumberFormat numberFormat, int[] newIdx )
@@ -4329,7 +4329,7 @@ public class AString implements CharSequence
          *                     Optional and defaults to \c 0.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the float number that was parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          * @return  The parsed value. In addition, the output parameter \b newIdx is set to
          *          point to the first character behind the parsed number.
          ******************************************************************************************/

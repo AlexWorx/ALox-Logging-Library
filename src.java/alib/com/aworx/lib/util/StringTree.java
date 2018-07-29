@@ -24,7 +24,7 @@ import java.util.*;
 /** ************************************************************************************************
  * This class manages an object of internal type
  * \ref com.aworx.lib.util.StringTree.Node "Node", which consists of
- * - A value of custom (template) type \p T,
+ * - A value of custom (template) type \p{T},
  * - A pointer to a parent \b %Node and
  * - A hash table which recursively stores pointers to \b Node objects, referred to by
  *   a string-type key.
@@ -39,10 +39,10 @@ import java.util.*;
  * The search and creation of tree nodes by using aforementioned path strings, is very similar to
  * what is well known from addressing files and folders in file systems.
  * The difference is however, that this class does not differentiate between 'folders' and 'files',
- * hence between 'nodes' and 'leafs'. Every node has the same value type \p T and may or may not
+ * hence between 'nodes' and 'leafs'. Every node has the same value type \p{T} and may or may not
  * have child nodes.
  * If such differentiation - or other semantics - is wanted, this may be modeled in custom
- * attributes provided in template type \p T.
+ * attributes provided in template type \p{T}.
  *
  * The internal node structure is not exposed publically and the class has no direct interface to
  * manipulate nodes. Instead, the interface is defined by two public inner types.
@@ -198,7 +198,7 @@ public class StringTree<T>
             }
 
             /**
-             * Returns a child node identified by parameter \p childName.
+             * Returns a child node identified by parameter \p{childName}.
              * If the child is not found or is illegal (empty, <c>"."</c> or <c>".."</c>
              * or contain a separator character), \c null is returned.
              * In debug compilations, an \ref com.aworx.lib.ALIB_DBG.WARNING "ALIB_DBG.WARNING"
@@ -259,7 +259,7 @@ public class StringTree<T>
 
             /**
              * Searches and - if no existent - creates a child node.<br>
-             * If a child  needs to be created, \p childName  is first checked to not equal
+             * If a child  needs to be created, \p{childName}  is first checked to not equal
              * to <c>"."</c> or <c>".."</c> and that it does not contain the separation character.
              * If it does, still \c true is returned and with \c null for the new child.
              * Furthermore, an \ref ALIB_DBG.WARNING is reported.
@@ -311,7 +311,7 @@ public class StringTree<T>
 
 
         /** ****************************************************************************************
-         * Constructor providing default value \c '/' for paramter \p _separator.
+         * Constructor providing default value \c '/' for paramter \p{_separator}.
          ******************************************************************************************/
         public StringTree()
         {
@@ -376,13 +376,13 @@ public class StringTree<T>
                 }
 
                 /**
-                 * Finds a child node along the \p path given, but does not create new nodes.
+                 * Finds a child node along the \p{path} given, but does not create new nodes.
                  * Incomplete results may occur if a child along the path was not found.
-                 * In this case, parameter \p path contains
+                 * In this case, parameter \p{path} contains
                  * the remaining path, excluding a leading separator.
                  *
                  * A leading slash (aka #separator) allows absolute path
-                 * addressing, which means the root of \p node is searched if a leading separator
+                 * addressing, which means the root of \p{node} is searched if a leading separator
                  * is found.
                  *
                  * Besides normal child names, this method accepts
@@ -452,7 +452,7 @@ public class StringTree<T>
                 }
 
                 /**
-                 * Creates child nodes corresponding to the given \p path.
+                 * Creates child nodes corresponding to the given \p{path}.
                  * If the first node already exists, nothing is done and \c null is returned as
                  * this is considered an error.
                  * If the given path is empty the given node is returned as this is \b not
@@ -466,7 +466,7 @@ public class StringTree<T>
                  * @param         node The start node.
                  * @param[in,out] path Creation path. Will be consumed if not errorneous.
                  * @return The leaf node of all created nodes. \c null in the case that the
-                 *         first child given in \p path already exists.
+                 *         first child given in \p{path} already exists.
                  */
                 protected Node createPathAndReturnLeaf( Node node, Substring path )
                 {
@@ -603,10 +603,10 @@ public class StringTree<T>
                 }
 
                 /**
-                 * Moves this cursor to the child node named \p childName. If no child with this
+                 * Moves this cursor to the child node named \p{childName}. If no child with this
                  * name exists, the cursor remains as is and \c false is returned.
                  *
-                 * This method does not check the given \p childName to to be valid (i.e not equal
+                 * This method does not check the given \p{childName} to to be valid (i.e not equal
                  * to <c>"."</c> or <c>".."</c> or contain a separator character.
                  * Children with this name do not exist and should not be found. However, in
                  * debug compilations, an \ref ALIB_DBG.WARNING is reported.
@@ -626,10 +626,10 @@ public class StringTree<T>
                 }
 
                 /**
-                 * Moves this cursor to the child node named \p childName. If no child with this
+                 * Moves this cursor to the child node named \p{childName}. If no child with this
                  * name exists, one will be created.
                  *
-                 * This method checks the given \p childName to not equal to <c>"."</c> or
+                 * This method checks the given \p{childName} to not equal to <c>"."</c> or
                  * <c>".."</c> and that it does not contain the separation character.
                  * If it does, \c false is returned and in debug compilations an
                  * \ref ALIB_DBG.WARNING is reported.
@@ -650,7 +650,7 @@ public class StringTree<T>
 
                 /**
                  * Moves this cursor along the given path.<br>
-                 * The method supports absolute and relative path addressing: If \p path begins
+                 * The method supports absolute and relative path addressing: If \p{path} begins
                  * with a separation character, then the cursor is moved to the root of the
                  * \b %StringTree. Furthermore, child name <c>"."</c> is ignored and just skipped while if
                  * <c>".."</c> is found in the path, the cursor is moved to its parent.
@@ -665,7 +665,7 @@ public class StringTree<T>
                  * @param path      The path to move along.
                  * @return A std.pair of a reference to this cursor and a boolean value.
                  *         The boolean value indicates if the path existed and the move to the node
-                 *         specified by \p path was performed.
+                 *         specified by \p{path} was performed.
                  */
                 public boolean    moveTo( String path )
                 {
@@ -696,7 +696,7 @@ public class StringTree<T>
                  *
                  * @param path  The path to move along.
                  * @return The unconsumed portion of the path. Empty if the path existed.
-                 *         The object returned is identical to given \p path.
+                 *         The object returned is identical to given \p{path}.
                  */
                 public Substring   moveToExistingPart( Substring path )
                 {
@@ -754,7 +754,7 @@ public class StringTree<T>
                 }
 
                 /**
-                 * Deletes the child named \p childName from the node that this cursor refers to.
+                 * Deletes the child named \p{childName} from the node that this cursor refers to.
                  * The cursor itself is not changed.
                  *
                  * @param   childName   The name of the desired child.
@@ -854,7 +854,7 @@ public class StringTree<T>
                  * purposes or really rare cases.
                  *
                  * @param target        The target to append the path to.
-                 * @param targetData    Denotes whether \p target should be cleared prior to
+                 * @param targetData    Denotes whether \p{target} should be cleared prior to
                  *                      appending the path. Defaults to CurrentData.Clear.
                  */
                 public void searchPath( AString target, CurrentData targetData )
@@ -885,7 +885,7 @@ while( !iter.isRoot() )          // <- not root?
 
                /**
                  * Overloaded version providing default value <c>CurrentData.CLEAR</c> for
-                 * paramter \p targetData.
+                 * paramter \p{targetData}.
                  *
                  * @param target        The target to append the path to.
                  */
@@ -966,7 +966,7 @@ while( !iter.isRoot() )          // <- not root?
          * on the child names (path names) and allows to choose ascending and descending order and
          * to ignore letter case, respectively be sensitive about it. Besides this, a custom
          * comparison function for child name based sorting can be established as well as a
-         * custom function used to sort by attributes of the custom template type \p T.
+         * custom function used to sort by attributes of the custom template type \p{T}.
          * See methods #sortByPathname and #sortByValue for details on sorting.
          *
          * Objects of this type can initialized, respectively reset to distinct start nodes by
@@ -1113,7 +1113,7 @@ while( !iter.isRoot() )          // <- not root?
                 protected AString               actPath                             = new AString();
 
                 /** The sorter object. This is a fixed member of the parent class providing a method
-                 *  to sort children by name or value type \p T.*/
+                 *  to sort children by name or value type \p{T}.*/
                 protected Sorter                sorter                               = new Sorter();
 
                 /** The requested depth of iteration recursion. */
@@ -1262,7 +1262,7 @@ while( !iter.isRoot() )          // <- not root?
 
                 /**
                  * Overloaded version providing default value \c Case.IGNORE for parameter
-                 * \p sensitivity.
+                 * \p{sensitivity}.
                  *
                  * @param order         The sort order.
                  *                      Defaults to \b %SortOrder.Ascending.
@@ -1450,7 +1450,7 @@ while( !iter.isRoot() )          // <- not root?
                  * #pathGeneration.
                  *
                  * @param target        The target to append the path to.
-                 * @param targetData    Denotes whether \p target should be cleared prior to
+                 * @param targetData    Denotes whether \p{target} should be cleared prior to
                  *                      appending the path. Defaults to CurrentData.Clear.
                  * @return The given string to allow concatenated operations
                  */
@@ -1469,7 +1469,7 @@ while( !iter.isRoot() )          // <- not root?
 
                 /**
                  * Overloaded version providing default value <c>CurrentData.CLEAR</c> for
-                 * paramter \p targetData.
+                 * paramter \p{targetData}.
                  *
                  * @param target        The target to append the path to.
                  * @return The given string to allow concatenated operations

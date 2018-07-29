@@ -15,19 +15,19 @@ What does "logging" have to do with multi-threaded applications? Quite a bit, as
 in this chapter.
 
 As a prerequisite the differences of accessing thread information with the different language
-incarnations of \b %ALox, namely
+incarnations of \alox, namely
 [ALox for C++](cpp_ref/alox_cpp_mainpage.html),
 [ALox for C#](cs_ref/alox_cs_mainpage.html) and
 [ALox for Java](java_ref/alox_java_mainpage.html) should be highlighted.
 
 C# and Java provide thread management with their standard library, which simplifies
 things a lot. Any "native" 3rd party thread library which might be used by C# and Java
-applications are surely not compatible with the thread features of \b %ALox, but there are only
+applications are surely not compatible with the thread features of \alox, but there are only
 a few around and those are quite seldom.
 
-In contrast to that, things are not so standardized in C++. But as \b %ALox is using C++ 11 as a minimum
+In contrast to that, things are not so standardized in C++. But as \alox is using C++ 11 as a minimum
 version, there is now some good start of support found in namespace \c std.
-\b %ALib, the utility library that \b %ALox is built upon, has a design goal to align the three languages
+\alib, the utility library that \alox is built upon, has a design goal to align the three languages
 wherever possible and reasonable. In respect to thread management, <b>%ALib for C++</b> adds a very
 <b>thin layer</b>
   ([C++] (@ref      #aworx::lib::threads),
@@ -42,14 +42,14 @@ Roughly it works as follows:
   the current thread. If no corresponding \b %Thread instance is found in the aforementioned
   static list of threads, then a new object is created, added to the list and returned.
 
-As a consequence, \b %ALox detects all those threads rightfully that are detected by
+As a consequence, \alox detects all those threads rightfully that are detected by
 <b>std::this_thread::get_id()</b>. In general this works with all major combinations of modern
 operating systems, C++ 11 libraries and thread libraries. Should threads not be detected, check
 out whether the thread library you are using is compatible with thread tools found C++ 11 library \c "std".
 The other way round: if you are using a threading library that creates threads that are detected
-by C++ 11 library \c "std", then you can use \b %ALox thread features without any further action.
+by C++ 11 library \c "std", then you can use \alox thread features without any further action.
 If not, you should consider either to switch your library to something that is compatible with
-this modern standard, or use the thread classes provided with \b %ALib (if you use \b %ALox, you have
+this modern standard, or use the thread classes provided with \alib (if you use \alox, you have
 ALib available). But the latter is a quite simplified limited piece of art - enough for simple
 applications, but not more!
 
@@ -57,26 +57,26 @@ applications, but not more!
 # 2. Mapping Thread Names # {#alox_man_multi_threaded_mapping}
 ALox collects information about the thread that was executing a <em>Log Statement</em>. For textual logging, class
 <b>%MetaInfo</b>
-  ([C++] (@ref      #aworx::lox::core::textlogger::MetaInfo),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo),
    [C#]  (@ref  #cs::aworx::lox::core::textlogger::MetaInfo),
    [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo)), which is a plugged-in tool class of class
 <b>%TextLogger</b>
-  ([C++] (@ref      #aworx::lox::core::textlogger::TextLogger),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger),
    [C#]  (@ref  #cs::aworx::lox::core::textlogger::TextLogger),
    [Java](@ref #com::aworx::lox::core::textlogger::TextLogger)), writes the name of the
 executing thread by default. This default is defined with substring "%tN" in field
 <b>%MetaInfo.Format</b>
-  ([C++] (@ref      #aworx::lox::core::textlogger::MetaInfo::Format),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo::Format),
    [C#]  (@ref  #cs::aworx::lox::core::textlogger::MetaInfo::Format),
    [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo::format)). Now, if you want to change
 the name (without changing your applications' true thread name), then method
 <b>%Lox.MapThreadName</b>
-  ([C++] (@ref      #aworx::lox::Lox::MapThreadName),
+  ([C++] (@ref aworx::lib::lox::Lox::MapThreadName),
    [C#]  (@ref  #cs::aworx::lox::Lox::MapThreadName),
    [Java](@ref #com::aworx::lox::Lox::mapThreadName)) does the job. With this method, you do
 not rename a thread, you just tell the \b %Lox to provide a different name to the \e %Loggers in future
 <em>Log Statements</em>. Thread names can be mapped for the current thread or for threads passed via optional parameter
-\p thread, respectively \p id.
+\p{thread}, respectively \p{id}.
 
 A sample for using this method is given in the tutorial chapter
 <b>Name Your Threads</b>
@@ -87,9 +87,9 @@ A sample for using this method is given in the tutorial chapter
 \~Comment ####################################################################################### \~
 # 3. Thread-Related Scopes # {#alox_man_multi_threaded_scopes}
 
-With the fundamental concept of having \e %Scopes in \b %ALox, and in particular with the fact
-that \b %ALox "interweaves" so called \b %Scope.ThreadInner and \b %Scope.ThreadOuter with other
-language-related scopes (e.g. \b %Scope.Method) and the global \e Scope, \b %ALox supports much more
+With the fundamental concept of having \e %Scopes in \alox, and in particular with the fact
+that \alox "interweaves" so called \b %Scope.ThreadInner and \b %Scope.ThreadOuter with other
+language-related scopes (e.g. \b %Scope.Method) and the global \e Scope, \alox supports much more
 of multi-threaded applications than just mapping new names to threads!
 
 This is a complex topic and there is a whole bunch of chapters we have to refer you to:
@@ -103,7 +103,7 @@ To name just a few "applications" of the features described in the chapters abov
 - Execute a <em>Log Statement</em> only if executed (or just not executed) by a certain thread.
 - Separate <em>Log Statements</em> depending on the thread they are executed by, and control the \e Verbosity
   independently from each other. By mixing thread-related <em>Scope Domains</em> and language related <em>Scope Domains</em> with each other,
-  a user of \b %ALox is enabled to fine-tune the log output very granular, even for logging code that
+  a user of \alox is enabled to fine-tune the log output very granular, even for logging code that
   he/she has no access to.
 - Execute <em>Log Statements</em> once per thread.
 - Assign prefix strings (respectively arbitrary \e Logables) to each <em>Log Statement</em> executed by a certain thread.

@@ -101,9 +101,9 @@ public class Substring implements CharSequence
          *  Constructs the %Substring to be a region of given AString.
          *  If the provided values start and length get out of range, they get adjusted.
          * @param src           The string we work on.
-         * @param regionStart   The start of the region within \p src.  Defaults to 0.
-         * @param regionLength  The length of the region within \p src. Defaults to the length
-         *                      of \p src.
+         * @param regionStart   The start of the region within \p{src}.  Defaults to 0.
+         * @param regionLength  The length of the region within \p{src}. Defaults to the length
+         *                      of \p{src}.
          ******************************************************************************************/
         public Substring( AString src, int regionStart, int regionLength )
         {
@@ -114,7 +114,7 @@ public class Substring implements CharSequence
          *  Constructs the %Substring to be a region of given AString.
          *  If the provided values start and length get out of range, they get adjusted.
          * @param src           The string we work on.
-         * @param regionStart   The start of the region within \p src.  Defaults to 0.
+         * @param regionStart   The start of the region within \p{src}.  Defaults to 0.
          ******************************************************************************************/
         public Substring( AString src, int regionStart )
         {
@@ -136,9 +136,9 @@ public class Substring implements CharSequence
          *  Constructs the sub-string to work on the provided character array.
          *
          * @param src           The string we work on.
-         * @param regionStart   The start of the region within \p src.  Defaults to 0.
-         * @param regionLength  The length of the region within \p src. Defaults to the length
-         *                      of \p src.
+         * @param regionStart   The start of the region within \p{src}.  Defaults to 0.
+         * @param regionLength  The length of the region within \p{src}. Defaults to the length
+         *                      of \p{src}.
          ******************************************************************************************/
         public Substring( char[] src, int regionStart, int regionLength )
         {
@@ -149,7 +149,7 @@ public class Substring implements CharSequence
          *  Constructs the sub-string to work on the provided character array.
          *
          * @param src           The string we work on.
-         * @param regionStart   The start of the region within \p src.  Defaults to 0.
+         * @param regionStart   The start of the region within \p{src}.  Defaults to 0.
          ******************************************************************************************/
         public Substring( char[] src, int regionStart )
         {
@@ -171,9 +171,9 @@ public class Substring implements CharSequence
          *  Constructs the sub-string to work on the provided \e String.
          *
          * @param src           The string we work on.
-         * @param regionStart   The start of the region within \p src.  Defaults to 0.
-         * @param regionLength  The length of the region within \p src. Defaults to the length
-         *                      of \p src.
+         * @param regionStart   The start of the region within \p{src}.  Defaults to 0.
+         * @param regionLength  The length of the region within \p{src}. Defaults to the length
+         *                      of \p{src}.
          ******************************************************************************************/
         public Substring( String src, int regionStart, int regionLength )
         {
@@ -184,7 +184,7 @@ public class Substring implements CharSequence
          *  Constructs the sub-string to work on the provided \e String.
          *
          * @param src           The string we work on.
-         * @param regionStart   The start of the region within \p src.  Defaults to 0.
+         * @param regionStart   The start of the region within \p{src}.  Defaults to 0.
          ******************************************************************************************/
         public Substring( String src, int regionStart )
         {
@@ -209,8 +209,8 @@ public class Substring implements CharSequence
          *  Sets the substring to represent a region of the given \b %Substring.
          *
          * @param src          The string to work on.
-         * @param regionStart  The start of the region within \p src.  Defaults to 0.
-         * @param regionLength The length of the region within \p src.
+         * @param regionStart  The start of the region within \p{src}.  Defaults to 0.
+         * @param regionLength The length of the region within \p{src}.
          *                     If negative, length of the provided \e src is used.
          *                     Defaults to -1.
          * @return  \c this to allow concatenated calls.
@@ -227,7 +227,7 @@ public class Substring implements CharSequence
          *  Sets the substring to represent a region of the given \b %Substring.
          *
          * @param src         The string to work on.
-         * @param regionStart The start of the region within \p src.  Defaults to 0.
+         * @param regionStart The start of the region within \p{src}.  Defaults to 0.
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
         public Substring set( Substring src, int regionStart )
@@ -253,9 +253,9 @@ public class Substring implements CharSequence
          *  Resets the sub-string to work on the provided AString.
          *
          * @param src           The string to work on.
-         * @param regionStart   The start of the region within \p src.  Defaults to 0.
-         * @param regionLength  The length of the region within \p src. Defaults to the length
-         *                      of \p src.
+         * @param regionStart   The start of the region within \p{src}.  Defaults to 0.
+         * @param regionLength  The length of the region within \p{src}. Defaults to the length
+         *                      of \p{src}.
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
         public Substring set( AString src, int regionStart, int regionLength )
@@ -279,7 +279,7 @@ public class Substring implements CharSequence
          *  Resets the sub-string to work on the provided AString.
          *
          * @param src           The string to work on.
-         * @param regionStart   The start of the region within \p src.  Defaults to 0.
+         * @param regionStart   The start of the region within \p{src}.  Defaults to 0.
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
         public Substring set( AString src, int regionStart )
@@ -324,9 +324,9 @@ public class Substring implements CharSequence
          *  Resets the sub-string to work on the provided character array.
          *
          * @param src           The string to work on.
-         * @param regionStart   The start of the region within \p src.  Defaults to 0.
-         * @param regionLength  The length of the region within \p src. Defaults to the length
-         *                      of \p src.
+         * @param regionStart   The start of the region within \p{src}.  Defaults to 0.
+         * @param regionLength  The length of the region within \p{src}. Defaults to the length
+         *                      of \p{src}.
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
         public Substring set( char[] src, int regionStart, int regionLength )
@@ -347,7 +347,7 @@ public class Substring implements CharSequence
          *  Resets the sub-string to work on the provided character array.
          *
          * @param src           The string to work on.
-         * @param regionStart   The start of the region within \p src.  Defaults to 0.
+         * @param regionStart   The start of the region within \p{src}.  Defaults to 0.
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
         public Substring set( char[] src, int regionStart )
@@ -369,9 +369,9 @@ public class Substring implements CharSequence
         /** ****************************************************************************************
          *  Resets the sub-string to work on the provided String
          * @param src           The string to work on.
-         * @param regionStart   The start of the region within \p src.  Defaults to 0.
-         * @param regionLength  The length of the region within \p src. Defaults to the length
-         *                      of \p src.
+         * @param regionStart   The start of the region within \p{src}.  Defaults to 0.
+         * @param regionLength  The length of the region within \p{src}. Defaults to the length
+         *                      of \p{src}.
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
         public Substring set( String src, int regionStart, int regionLength )
@@ -383,7 +383,7 @@ public class Substring implements CharSequence
         /** ****************************************************************************************
          *  Resets the sub-string to work on the provided String
          * @param src           The string to work on.
-         * @param regionStart   The start of the region within \p src.  Defaults to 0.
+         * @param regionStart   The start of the region within \p{src}.  Defaults to 0.
          * @return  \c this to allow concatenated calls.
          ******************************************************************************************/
         public Substring set( String src, int regionStart)
@@ -509,10 +509,10 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Cuts the given number of characters from the end of the Substring and optionally
-         * places the portion that was cut in parameter \p target (if provided).<br>
-         * Parameter \p regionLength is checked to be between 0 and length. If negative, nothing
-         * is cut and \p target is set empty. If \p regionLength is greater than this
-         * objects' length, all contents is 'moved' to \p target.
+         * places the portion that was cut in parameter \p{target} (if provided).<br>
+         * Parameter \p{regionLength} is checked to be between 0 and length. If negative, nothing
+         * is cut and \p{target} is set empty. If \p{regionLength} is greater than this
+         * objects' length, all contents is 'moved' to \p{target}.
          *
          * @param regionLength  The length of the region at the start to delete.
          * @param target        An optional target \b %Substring that receives the portion that
@@ -541,8 +541,8 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Cuts the given number of characters from the end of the Substring.<br>
-         * Parameter \p regionLength is checked to be between 0 and length. If negative, nothing
-         * is cut. If \p regionLength is greater than this objects' length, all contents is cleared.
+         * Parameter \p{regionLength} is checked to be between 0 and length. If negative, nothing
+         * is cut. If \p{regionLength} is greater than this objects' length, all contents is cleared.
          *
          * @param regionLength  The length of the region at the start to delete.
          *
@@ -555,14 +555,14 @@ public class Substring implements CharSequence
 
 
         /** ****************************************************************************************
-         * Checks if this object starts with the given character \p consumable. If it does, this
+         * Checks if this object starts with the given character \p{consumable}. If it does, this
          * character is cut from this object.
          *
          * @param consumable        The consumable character
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
          *                          consume operation. Defaults to \b Whitespaces.KEEP.
-         * @return \c true, if this object was starting with \p consumable and consequently the
+         * @return \c true, if this object was starting with \p{consumable} and consequently the
          *         string was cut by one.
          ******************************************************************************************/
         public boolean consumeChar(char        consumable,
@@ -582,11 +582,11 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Overloaded version of original method
-         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP.
+         * providing default parameter \p{trimBeforeConsume} with value \b Whitespaces.KEEP.
          *
          * @param consumable        The consumable character
          * @param sensitivity       The sensitivity of the comparison.
-         * @return \c true, if this object was starting with \p consumable and consequently the
+         * @return \c true, if this object was starting with \p{consumable} and consequently the
          *         string was cut by one.
          ******************************************************************************************/
         public boolean consumeChar(char consumable, Case sensitivity )
@@ -596,11 +596,11 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Overloaded version of original method
-         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP
-         * and default parameter \p sensitivity with value \c Case.SENSITIVE.
+         * providing default parameter \p{trimBeforeConsume} with value \b Whitespaces.KEEP
+         * and default parameter \p{sensitivity} with value \c Case.SENSITIVE.
          *
          * @param consumable        The consumable character
-         * @return \c true, if this object was starting with \p consumable and consequently the
+         * @return \c true, if this object was starting with \p{consumable} and consequently the
          *         string was cut by one.
          ******************************************************************************************/
         public boolean consumeChar(char consumable  )
@@ -610,14 +610,14 @@ public class Substring implements CharSequence
 
 
         /** ****************************************************************************************
-         * Checks if this object ends with the given character \p consumable. If it does, this
+         * Checks if this object ends with the given character \p{consumable}. If it does, this
          * character is cut from the end of object.
          *
          * @param consumable The consumable character
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (right-) trimmed before the
          *                          consume operation. Defaults to \b Whitespaces.KEEP.
-         * @return \c true, if this object was starting with \p consumable and consequently the
+         * @return \c true, if this object was starting with \p{consumable} and consequently the
          *         string was cut by one.
          ******************************************************************************************/
         public boolean consumeCharFromEnd(char        consumable,
@@ -637,11 +637,11 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Overloaded version of original method
-         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP.
+         * providing default parameter \p{trimBeforeConsume} with value \b Whitespaces.KEEP.
          *
          * @param consumable    The consumable character
          * @param sensitivity   The sensitivity of the comparison.
-         * @return \c true, if this object was starting with \p consumable and consequently the
+         * @return \c true, if this object was starting with \p{consumable} and consequently the
          *         string was cut by one.
          ******************************************************************************************/
         public boolean consumeCharFromEnd(char consumable, Case sensitivity )
@@ -651,11 +651,11 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Overloaded version of original method
-         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP
-         * and default parameter \p sensitivity with value \c Case.SENSITIVE.
+         * providing default parameter \p{trimBeforeConsume} with value \b Whitespaces.KEEP
+         * and default parameter \p{sensitivity} with value \c Case.SENSITIVE.
          *
          * @param consumable The consumable character
-         * @return \c true, if this object was starting with \p consumable and consequently the
+         * @return \c true, if this object was starting with \p{consumable} and consequently the
          *         string was cut by one.
          ******************************************************************************************/
         public boolean consumeCharFromEnd(char consumable )
@@ -665,10 +665,10 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Cuts the given number of characters from the beginning of the Substring and optionally
-         * places the portion that was cut in parameter \p target (if provided).<br>
-         * Parameter \p regionLength is checked to be between 0 and length. If negative, nothing
-         * is cut and \p target is set empty. If \p regionLength is greater than this
-         * objects' length, all contents is 'moved' to \p target.
+         * places the portion that was cut in parameter \p{target} (if provided).<br>
+         * Parameter \p{regionLength} is checked to be between 0 and length. If negative, nothing
+         * is cut and \p{target} is set empty. If \p{regionLength} is greater than this
+         * objects' length, all contents is 'moved' to \p{target}.
          *
          * @param regionLength  The length of the region at the start to delete.
          * @param target        An optional target \b %Substring that receives the portion that
@@ -696,8 +696,8 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Cuts the given number of characters from the beginning of the Substring.<br>
-         * Parameter \p regionLength is checked to be between 0 and length. If negative, nothing
-         * is cut. If \p regionLength is greater than this objects' length, all contents cleared.
+         * Parameter \p{regionLength} is checked to be between 0 and length. If negative, nothing
+         * is cut. If \p{regionLength} is greater than this objects' length, all contents cleared.
          *
          * @param regionLength  The length of the region at the start to delete.
          *
@@ -709,7 +709,7 @@ public class Substring implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Searches \p separator and cuts the beginning of this string, including the separator.
+         * Searches \p{separator} and cuts the beginning of this string, including the separator.
          * What was consumed is returned, excluding the separator.
          *
          * If the separator is not found, all of this string is consumed and returned.
@@ -733,14 +733,14 @@ public class Substring implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Checks if this object starts with the given string \p consumable. If it does, this
+         * Checks if this object starts with the given string \p{consumable}. If it does, this
          * string is cut from this object.
          *
          * @param consumable        The consumable string
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
          *                          consume operation. Defaults to \b Whitespaces.KEEP.
-         * @return \c true, if this object was starting with \p consumable and consequently the
+         * @return \c true, if this object was starting with \p{consumable} and consequently the
          *         string was cut.
          ******************************************************************************************/
         public boolean consumeString(CharSequence consumable,
@@ -759,11 +759,11 @@ public class Substring implements CharSequence
         }
         /** ****************************************************************************************
          * Overloaded version of original method
-         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP.
+         * providing default parameter \p{trimBeforeConsume} with value \b Whitespaces.KEEP.
          *
          * @param consumable        The consumable string
          * @param sensitivity       The sensitivity of the comparison.
-         * @return \c true, if this object was starting with \p consumable and consequently the
+         * @return \c true, if this object was starting with \p{consumable} and consequently the
          *         string was cut.
          ******************************************************************************************/
         public boolean consumeString(CharSequence consumable, Case sensitivity )
@@ -773,11 +773,11 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Overloaded version of original method
-         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP
-         * and default parameter \p sensitivity with value \c Case.SENSITIVE.
+         * providing default parameter \p{trimBeforeConsume} with value \b Whitespaces.KEEP
+         * and default parameter \p{sensitivity} with value \c Case.SENSITIVE.
          *
          * @param consumable        The consumable string
-         * @return \c true, if this object was starting with \p consumable and consequently the
+         * @return \c true, if this object was starting with \p{consumable} and consequently the
          *         string was cut.
          ******************************************************************************************/
         public boolean consumeString(CharSequence consumable )
@@ -786,14 +786,14 @@ public class Substring implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Checks if this object ends with the given string \p consumable. If it does, this
+         * Checks if this object ends with the given string \p{consumable}. If it does, this
          * string is cut from the end of object.
          *
          * @param consumable        The consumable string
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (right-) trimmed before the
          *                          consume operation. Defaults to \b Whitespaces.KEEP.
-         * @return \c true, if this object was starting with \p consumable and consequently the
+         * @return \c true, if this object was starting with \p{consumable} and consequently the
          *         string was cut.
          ******************************************************************************************/
         public boolean consumeStringFromEnd(CharSequence consumable,
@@ -811,11 +811,11 @@ public class Substring implements CharSequence
         }
         /** ****************************************************************************************
          * Overloaded version of original method
-         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP.
+         * providing default parameter \p{trimBeforeConsume} with value \b Whitespaces.KEEP.
          *
          * @param consumable        The consumable string
          * @param sensitivity       The sensitivity of the comparison.
-         * @return \c true, if this object was starting with \p consumable and consequently the
+         * @return \c true, if this object was starting with \p{consumable} and consequently the
          *         string was cut.
          ******************************************************************************************/
         public boolean consumeStringFromEnd(CharSequence consumable, Case sensitivity )
@@ -825,11 +825,11 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Overloaded version of original method
-         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP
-         * and default parameter \p sensitivity with value \c Case.SENSITIVE.
+         * providing default parameter \p{trimBeforeConsume} with value \b Whitespaces.KEEP
+         * and default parameter \p{sensitivity} with value \c Case.SENSITIVE.
          *
          * @param consumable        The consumable string
-         * @return \c true, if this object was starting with \p consumable and consequently the
+         * @return \c true, if this object was starting with \p{consumable} and consequently the
          *         string was cut.
          ******************************************************************************************/
         public boolean consumeStringFromEnd(CharSequence consumable )
@@ -838,7 +838,7 @@ public class Substring implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Consumes a minimum of \p minChars of string \c consumable from the start of this
+         * Consumes a minimum of \p{minChars} of string \c consumable from the start of this
          * substring. If the minimum characters could not be found, nothing is consumed, otherwise
          * as much as possible.<br>
          * This method is useful for example to read commands from a string that may be
@@ -846,7 +846,7 @@ public class Substring implements CharSequence
          *
          * @param consumable        The consumable string.
          * @param minChars          The minimum amount of characters to consume. If \c 0 or
-         *                          negative, the length of \p consumable is chosen.
+         *                          negative, the length of \p{consumable} is chosen.
          *                          Optional and defaults to \c 1.
          * @param sensitivity       The sensitivity of the comparison.
          *                          Defaults to \b Case.Ignore.
@@ -878,7 +878,7 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Overloaded version of original method
-         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP.
+         * providing default parameter \p{trimBeforeConsume} with value \b Whitespaces.KEEP.
          *
          * @param consumable        The consumable string.
          * @param minChars          The minimum amount of characters to consume.
@@ -895,8 +895,8 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Overloaded version of original method
-         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP and
-         * \p sensitivity with value \b Case.Sensitive.
+         * providing default parameter \p{trimBeforeConsume} with value \b Whitespaces.KEEP and
+         * \p{sensitivity} with value \b Case.Sensitive.
          *
          * @param consumable        The consumable string.
          * @param minChars          The minimum amount of characters to consume.
@@ -911,8 +911,8 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Overloaded version of original method
-         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP,
-         * \p sensitivity with value \b Case.Sensitive and \p minChars with value \c 1.
+         * providing default parameter \p{trimBeforeConsume} with value \b Whitespaces.KEEP,
+         * \p{sensitivity} with value \b Case.Sensitive and \p{minChars} with value \c 1.
          *
          * @param consumable        The consumable string.
          * @return The amount of characters consumed.
@@ -971,7 +971,7 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Overloaded version of original method
-         * providing default parameter \p trimBeforeConsume with value \b Whitespaces.KEEP.
+         * providing default parameter \p{trimBeforeConsume} with value \b Whitespaces.KEEP.
          *
          * @param  startChar  The start character of the field to consume.
          * @param  endChar    The end character of the field to consume.
@@ -985,15 +985,15 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Splits this substring into two parts. What remains in this object is the region
-         * from 0 to \p position.
-         * \p target receives the rest. If optional parameter \p separatorWidth is given,
-         * this is subtracted from the front of \p target.
+         * from 0 to \p{position}.
+         * \p{target} receives the rest. If optional parameter \p{separatorWidth} is given,
+         * this is subtracted from the front of \p{target}.
          *
          * @param position        The index where this object is split.
          * @param target          The target substring to receive the right part of the string.
          * @param separatorWidth  This does not change what remains in this object, but defines
          *                        the number of characters that are cut from the front of the
-         *                        \p target. Defaults to 0.
+         *                        \p{target}. Defaults to 0.
          *
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
@@ -1654,7 +1654,7 @@ public class Substring implements CharSequence
          * lead to shorter and more efficient code.
          *
          * @param needle  The character to search for.
-         * @return  This strings #length if the character \p needle is not found.
+         * @return  This strings #length if the character \p{needle} is not found.
          *          Otherwise the index of first occurrence.
          ******************************************************************************************/
         public int    indexOfOrLength( char needle )
@@ -1674,7 +1674,7 @@ public class Substring implements CharSequence
          *
          * @param needle    The character to search for.
          * @param startIdx  The index in this to start searching the character.
-         * @return  This strings #length if the character \p needle is not found.
+         * @return  This strings #length if the character \p{needle} is not found.
          *          Otherwise the index of first occurrence.
          ******************************************************************************************/
         public int    indexOfOrLength( char needle, int startIdx )
@@ -1735,14 +1735,14 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Searches the first difference with given string.
-         * If this string starts with \p needle, then the length of \p needle is returned.
+         * If this string starts with \p{needle}, then the length of \p{needle} is returned.
          *
          * @param needle       The String to search.
          * @param sensitivity  Case sensitivity of the comparison.
          *                     Optional and defaults to \b Case.SENSITIVE.
          * @param startIdx     The index to start the search at.
          *                     Optional and defaults to \c 0.
-         * @return   The index of the first difference found in \p needle or the neele's length.
+         * @return   The index of the first difference found in \p{needle} or the neele's length.
          ******************************************************************************************/
         public int indexOfFirstDifference(CharSequence needle, Case sensitivity, int startIdx  )
         {
@@ -1754,7 +1754,7 @@ public class Substring implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Overloaded version providing default paramter \p startIdx with value \c 0.
+         * Overloaded version providing default paramter \p{startIdx} with value \c 0.
          *
          * @param needle       The String to search.
          * @param sensitivity  Case sensitivity of the comparison.
@@ -1767,8 +1767,8 @@ public class Substring implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Overloaded version providing default paramter \p startIdx with value \c 0 and
-         * \p sensitivity with value \b Case.SENSITIVE.
+         * Overloaded version providing default paramter \p{startIdx} with value \c 0 and
+         * \p{sensitivity} with value \b Case.SENSITIVE.
          *
          * @param needle       The String to search.
          * @return    -1 if the \e String is not found. Otherwise the index of first occurrence.
@@ -1882,7 +1882,7 @@ public class Substring implements CharSequence
      ##@{ ########################################################################################*/
 
         /** ****************************************************************************************
-         * Moves the start marker to the first character not found in parameter \p whiteSpaces.
+         * Moves the start marker to the first character not found in parameter \p{whiteSpaces}.
          * @param whiteSpaces  The characters used for trimming. Defaults to
          *                     \ref com.aworx.lib.strings.CString.DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
          * @return \c this to allow concatenated calls.
@@ -1912,7 +1912,7 @@ public class Substring implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Moves the start marker to the first character not found in parameter \p whiteSpaces.
+         * Moves the start marker to the first character not found in parameter \p{whiteSpaces}.
          * @param whiteSpaces  The characters used for trimming. Defaults to
          *                     \ref com.aworx.lib.strings.CString.DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
          * @return \c this to allow concatenated calls.
@@ -2015,7 +2015,7 @@ public class Substring implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Overloaded version providing default parameter \p regionLength as \c Integer.MAX_VALUE.
+         * Overloaded version providing default parameter \p{regionLength} as \c Integer.MAX_VALUE.
          *
          * @param regionStart   The start index of the region in this to create the string from.
          *
@@ -2048,8 +2048,8 @@ public class Substring implements CharSequence
          * Consumes a long integer value in decimal, binary, hexadecimal or octal format from
          * the start of the string by invoking method
          * \ref com.aworx.lib.strings.NumberFormat.parseInt "NumberFormat.parseInt"
-         * on the given \p numberFormat instance.<br>
-         Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         Parameter \p{numberFormat} defaults \c null. This denotes static singleton
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to 'international' settings (not using the locale) and therefore
          * also not parsing grouping characters.
@@ -2073,7 +2073,7 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Overloaded version of #consumeInt(NumberFormat) providing default value \c null for
-         * parameter \p numberFormat (which selects gloabl object
+         * parameter \p{numberFormat} (which selects gloabl object
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational").
          *
          * @return  \c true if an value could be parsed, \c false otherwise.
@@ -2087,8 +2087,8 @@ public class Substring implements CharSequence
          * Consumes an unsigned 64-bit integer in standard decimal format at the given position
          * from the start of this string. This is done, by invoking
          * \ref com.aworx.lib.strings.NumberFormat.parseDec "NumberFormat.parseDec"
-         * on the given \p numberFormat instance.<br>
-         Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         Parameter \p{numberFormat} defaults \c null. This denotes static singleton
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
@@ -2122,7 +2122,7 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Overloaded version of #consumeDec(NumberFormat) providing default value \c null for
-         * parameter \p numberFormat (which selects gloabl object
+         * parameter \p{numberFormat} (which selects gloabl object
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational").
          *
          * @return  \c true if an value could be parsed, \c false otherwise.
@@ -2136,8 +2136,8 @@ public class Substring implements CharSequence
          * Consumes an unsigned 64-bit integer in binary format at the given position
          * from this string. This is done, by invoking
          * \ref com.aworx.lib.strings.NumberFormat.parseBin "NumberFormat.parseBin"
-         * on the given \p numberFormat instance.<br>
-         Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         Parameter \p{numberFormat} defaults \c null. This denotes static singleton
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
@@ -2168,7 +2168,7 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Overloaded version of #consumeBin(NumberFormat) providing default value \c null for
-         * parameter \p numberFormat (which selects gloabl object
+         * parameter \p{numberFormat} (which selects gloabl object
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational").
          *
          * @return  \c true if an value could be parsed, \c false otherwise.
@@ -2182,8 +2182,8 @@ public class Substring implements CharSequence
          * Reads an unsigned 64-bit integer in hexadecimal format at the given position
          * from this \b %AString. This is done, by invoking
          * \ref com.aworx.lib.strings.NumberFormat.parseHex "NumberFormat.parseHex"
-         * on the given \p numberFormat instance.<br>
-         Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         Parameter \p{numberFormat} defaults \c null. This denotes static singleton
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
@@ -2215,7 +2215,7 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Overloaded version of #consumeHex(NumberFormat) providing default value \c null for
-         * parameter \p numberFormat (which selects gloabl object
+         * parameter \p{numberFormat} (which selects gloabl object
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational").
          *
          * @return  \c true if an value could be parsed, \c false otherwise.
@@ -2229,8 +2229,8 @@ public class Substring implements CharSequence
          * Consumes an unsigned 64-bit integer in octal format at the given position
          * from this string. This is done, by invoking
          * \ref com.aworx.lib.strings.NumberFormat.parseOct "NumberFormat.parseOct"
-         * on the given \p numberFormat instance.<br>
-         Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         Parameter \p{numberFormat} defaults \c null. This denotes static singleton
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
@@ -2261,7 +2261,7 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Overloaded version of #consumeOct(NumberFormat) providing default value \c null for
-         * parameter \p numberFormat (which selects gloabl object
+         * parameter \p{numberFormat} (which selects gloabl object
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational").
          *
          * @return  \c true if an value could be parsed, \c false otherwise.
@@ -2275,8 +2275,8 @@ public class Substring implements CharSequence
          * Consumes a floating point number at the given position from this \b %AString.
          * This is done, by invoking
          * \ref com.aworx.lib.strings.NumberFormat.parseFloat "NumberFormat.parseFloat"
-         * on the given \p numberFormat instance.<br>
-         Parameter \p numberFormat defaults \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         Parameter \p{numberFormat} defaults \c null. This denotes static singleton
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational"
          * which is configured to 'international' settings (not using the locale) and therefore
          * also not parsing - grouping characters.
@@ -2304,7 +2304,7 @@ public class Substring implements CharSequence
 
         /** ****************************************************************************************
          * Overloaded version of #consumeFloat(NumberFormat) providing default value \c null for
-         * parameter \p numberFormat (which selects gloabl object
+         * parameter \p{numberFormat} (which selects gloabl object
          * \ref com.aworx.lib.strings.NumberFormat.computational "NumberFormat.computational").
          *
          * @return  \c true if an value could be parsed, \c false otherwise.

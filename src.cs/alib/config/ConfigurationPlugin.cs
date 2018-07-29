@@ -134,7 +134,7 @@ public class XTernalizer
     }
 
     /** ********************************************************************************************
-     * Trims \p src, removes surrounding quotes and , un-escapes characters.
+     * Trims \p{src}, removes surrounding quotes and , un-escapes characters.
      *
      * @param  src      The source string
      * @param  dest     The destination string
@@ -185,7 +185,7 @@ public class XTernalizer
 
 
     /** ********************************************************************************************
-     * Converts the given \p src string to an external representation.
+     * Converts the given \p{src} string to an external representation.
      *
      * @param  src      The source string
      * @param  dest     The destination string
@@ -282,7 +282,7 @@ public abstract class ConfigurationPlugin
         /** ****************************************************************************************
          * Abstract method that has to be overwritten by descendants.
          * Searches and by default retrieves the value of a configuration variable.
-         * If \p searchOnly is \c true, then the variable value is not read.
+         * If \p{searchOnly} is \c true, then the variable value is not read.
          *
          * @param variable      The variable to retrieve.
          * @param searchOnly    If \c true, the variable must not be read. Defaults to \c false.

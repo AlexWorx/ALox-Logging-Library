@@ -11,9 +11,9 @@
 \~Comment ####################################################################################### \~
 # 1. Introduction # {#alox_man_domain_substitution_intro}
 
-<em>Domain Substitution</em> is a concept of \b %ALox that allows to manipulate the effective domain of <em>Log Statements</em> without changing
+<em>Domain Substitution</em> is a concept of \alox that allows to manipulate the effective domain of <em>Log Statements</em> without changing
 neither these statements nor the <em>Scope Domains</em> that apply to them. Therefore, <em>Domain Substitution</em> is useful when
-those changes can not be performed (e.g. because the corresponding \b %ALox code is residing in
+those changes can not be performed (e.g. because the corresponding \alox code is residing in
 a library) or because a temporary "redirect" of certain domains is wanted.
 
 As with <em>Scope Domain</em> settings, the concept of <em>Domain Substitution</em> in general should not be 'overused'. Otherwise, things
@@ -21,25 +21,25 @@ might get complicated.
 
 The rules are set and removed with method
 <b>%Lox.SetDomainSubstitutionRule</b>
-([C++] (@ref      #aworx::lox::Lox::SetDomainSubstitutionRule),
+([C++] (@ref aworx::lib::lox::Lox::SetDomainSubstitutionRule),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomainSubstitutionRule),
  [Java](@ref #com::aworx::lox::Lox::setDomainSubstitutionRule)), which accepts two parameters:
-- \p domainPath:<br>
+- \p{domainPath}:<br>
   The domain path (substring) that is to be searched and replaced. For the search, a simple
   \e 'wildcard' mechanism is aplied: It is allowed to use character <c> '*'</c> at the beginning and/or
   the end of the search string. As a result, four \e 'types' of rules can be created
   - Exact match (no \c * given)
-  - Prefix match (\c * at the end of \p domainPath)
-  - Suffix match (\c * at the start of \p domainPath)
-  - Substring match (\c * at both, start and the end of \p domainPath)
+  - Prefix match (\c * at the end of \p{domainPath})
+  - Suffix match (\c * at the start of \p{domainPath})
+  - Substring match (\c * at both, start and the end of \p{domainPath})
 
-- \p replacement:<br>
-  This is the string that replaces the string in \p domainPath when the rule matches.
+- \p{replacement}:<br>
+  This is the string that replaces the string in \p{domainPath} when the rule matches.
   If this is empty (or nulled), the rule is removed from the \b %Lox.
 
 If for any reason, all rules should be deleted at once, invoke method \b %Lox.SetDomainSubstitutionRule
-with providing a nulled or empty string for \p domainPath. There is no explicit other method
-for clearing the rules given, because the designers of \b %ALox do not see a use case for doing this.
+with providing a nulled or empty string for \p{domainPath}. There is no explicit other method
+for clearing the rules given, because the designers of \alox do not see a use case for doing this.
 
 
 \~Comment ####################################################################################### \~
@@ -51,15 +51,15 @@ configuration files (or command line, etc.) are applied first.
 Rules might influence each other, hide each oder or even be circular. When setting the rules,
 ALox does not check for such (sometimes wanted) dependencies of the rules. It might happen,
 that a rule that was defined earlier than a different one, would be effective only after
-the second rule was applied. Therefore, \b %ALox repeats the application of all rules
+the second rule was applied. Therefore, \alox repeats the application of all rules
 as long as at least one of the rules matched. Because of the possibility of having circular
 dependencies, a maximum amount of ten loops is performed.
-After that, \b %ALox stops processing <em>Domain Substitution</em> and writes a <em>Log Statement</em> of \e %Verbosity.Error to the
+After that, \alox stops processing <em>Domain Substitution</em> and writes a <em>Log Statement</em> of \e %Verbosity.Error to the
 internal domain. The error message is only issued once. However the flag is reset
-when all rules are cleared (by providing a nulled string value for parameter \p domainPath
+when all rules are cleared (by providing a nulled string value for parameter \p{domainPath}
 of method
 <b>%Lox.SetDomainSubstitutionRule</b>
-([C++] (@ref      #aworx::lox::Lox::SetDomainSubstitutionRule),
+([C++] (@ref aworx::lib::lox::Lox::SetDomainSubstitutionRule),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomainSubstitutionRule),
  [Java](@ref #com::aworx::lox::Lox::setDomainSubstitutionRule))).
 
@@ -76,12 +76,12 @@ working in a team such changes might not be appreciated by other team members. I
 other situations it is advisable to retrieve <em>Domain Substitution Rules</em> from external configuration data, command-line
 parameters or other sources at runtime.
 
-For <em>Domain Substitution Rules</em> and also other configuration data, \b %ALox leverages the configuration facility provided
-by underlying utility library \b %ALib.
+For <em>Domain Substitution Rules</em> and also other configuration data, \alox leverages the configuration facility provided
+by underlying utility library \alib.
 
 \note
- For general information on \b %ALox configuration variables consult \ref GrpALoxConfigVars.<br>
- For information on how to pass configuration data from custom sources to \b %ALox, refer to
+ For general information on \alox configuration variables consult \ref GrpALoxConfigVars.<br>
+ For information on how to pass configuration data from custom sources to \alox, refer to
  namespace documentation
  <b>%aworx::lib::config</b>
     ([C++] (@ref      #aworx::lib::config),
@@ -95,7 +95,7 @@ the \b %Lox in question.
 The variable itself may contain a list of <em>Domain Substitution Rules</em> separated by semicolons <c> ';'</c>.
 Each rule consists of two strings which correspond to the two parameters of method
 <b>%Lox.SetDomainSubstitutionRule</b>
-([C++] (@ref      #aworx::lox::Lox::SetDomainSubstitutionRule),
+([C++] (@ref aworx::lib::lox::Lox::SetDomainSubstitutionRule),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomainSubstitutionRule),
  [Java](@ref #com::aworx::lox::Lox::setDomainSubstitutionRule)).
 These two strings are to be separated by <c>'->'</c>.

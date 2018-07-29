@@ -110,7 +110,7 @@ remain in the code. Such remaining <em>release logging</em> might be deactivated
 activated in case of runtime errors, external triggers, or other special events.
 
 For details on how pruning is implemented in the different flavors of ALox, refer to
-\ref alox_cpp_prepro_macros   "Pruning ALox for C++",
+\ref alox_cpp_prepro          "ALox C++ Macros",
 \ref alox_cs_pruning          "Pruning ALox for C#" and
 \ref alox_java_setup_pruning  "Pruning ALox for Java".
 

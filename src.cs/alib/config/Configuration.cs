@@ -395,7 +395,7 @@ public class Configuration
     // Initialization
     // #############################################################################################
         /** ****************************************************************************************
-         * Constructs a Configuration. If \p addDefaultPlugins is \c true, registers the initial
+         * Constructs a Configuration. If \p{addDefaultPlugins} is \c true, registers the initial
          * plug-ins as follows
          *
          *  Priority         | Plug-in Type
@@ -551,7 +551,7 @@ public class Configuration
         }
 
         /** ****************************************************************************************
-         * Searches all plug-ins for the first found with type \p TPluginType.
+         * Searches all plug-ins for the first found with type \p{TPluginType}.
          *
          * @tparam TPluginType The type of the plugin to search.
          * @return The plug-in of requested type. \c null if not available.
@@ -584,7 +584,7 @@ public class Configuration
 
         /** ****************************************************************************************
          * This method fetches all values from a plug-in of priority #PrioDefaultValues, which are
-         * not present in the given plug-in \p dest and stores them in that.
+         * not present in the given plug-in \p{dest} and stores them in that.
          * This is useful to collect all generated default values and store them in a users'
          * configuration file. This way, the user can identify configurable options easily.
          *
@@ -649,7 +649,7 @@ public class Configuration
          * Receives and optionally creates configuration variable.
          *
          * If the variable was not found and \alib{config,Variable.DefaultValue}
-         * in \p variable is set, the method adds the value value to a plug-in of priority
+         * in \p{variable} is set, the method adds the value value to a plug-in of priority
          * #PrioDefaultValues, (respectively to the plug-in found at or below #PrioDefaultValues).
          * For the conversion of the value, field
          * \alib{config,ConfigurationPlugin.StringConverter} of field a plug-in of priority
@@ -682,7 +682,7 @@ public class Configuration
          *
          * The maximum priority to start the loop with depends on field
          * \ref cs.aworx.lib.config.Variable.Priority "Variable.Priority"
-         * of the given \p variable. The rules are as follows:
+         * of the given \p{variable}. The rules are as follows:
          * - If the value is \c 0, which is the default value of new variables or ones that
          *   were freshly declared, then prior to storing the value, the variable is (tried to be)
          *   loaded first (without actually overwriting the values).
@@ -721,7 +721,7 @@ public class Configuration
          * If the result is \c 0, the variable was not written. This might only happen if
          * - either field default plug-in of priority #PrioDefaultValues was modified
          *   (removed or exchanged with a different  plug-in that does not write the value)
-         * - or if field \p Priority of the variable was set below #PrioDefaultValues and greater
+         * - or if field \p{Priority} of the variable was set below #PrioDefaultValues and greater
          *   than \c 0.
          * - The detected (!) priority was ##PrioProtectedValues.
          *   In this case, obviously the application does not want to allow changes and writing the
@@ -729,7 +729,7 @@ public class Configuration
          *   This way, such variables also do not appear in a users' configuration
          *   in the case that on program termination, new default values are copied there.
          *
-         * Optional parameter \p externalizedValue allows to provide a string that is parsed
+         * Optional parameter \p{externalizedValue} allows to provide a string that is parsed
          * by the storing plug-in to reset the variables' values prior to writing.
          *
          * @param variable              The variable object.
@@ -804,12 +804,12 @@ public class Configuration
          * \ref cs.aworx.lib.config.Configuration.PrioDefaultValues "Configuration.PrioDefaultValues".
          *
          * The variable value is determined as follows:
-         * - If optional parameter \p externalizedValue is provided and not \e nulled, the values
+         * - If optional parameter \p{externalizedValue} is provided and not \e nulled, the values
          *   are loaded from that string.
          * - Otherwise, if the variable has no values set but field
          *   \alib{config,Variable.DefaultValue} is not \e nulled, then values are loaded from
          ~   this field.
-         * - If all is unset (the variable values, parameter \p externalizedValue and field
+         * - If all is unset (the variable values, parameter \p{externalizedValue} and field
          *   \alib{config,Variable.DefaultValue}), then the unset variable is stored, which results
          ~   in removing an existing default value from the configuration.
          *
@@ -842,12 +842,12 @@ public class Configuration
          * \ref cs.aworx.lib.config.Configuration.PrioProtectedValues "Configuration.PrioProtectedValues".
          *
          * The variable value is determined as follows:
-         * - If optional parameter \p externalizedValue is provided and not \e nulled, the values
+         * - If optional parameter \p{externalizedValue} is provided and not \e nulled, the values
          *   are loaded from that string.
          * - Otherwise, if the variable has no values set but field
          *   \alib{config,Variable.DefaultValue} is not \e nulled
          *   then values are loaded from this field.
-         * - If all is unset (the variable values, parameter \p externalizedValue and field
+         * - If all is unset (the variable values, parameter \p{externalizedValue} and field
          *   \alib{config,Variable.DefaultValue}), then the unset variable is stored, which results
          ~   in removing an existing protection value from the configuration.
          *

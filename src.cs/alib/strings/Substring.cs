@@ -147,8 +147,8 @@ public class Substring
          * Sets the substring to represent a region of the given \b %Substring.
          *
          * @param src          The substring to copy from.
-         * @param regionStart  The start of the region within \p src.  Defaults to 0.
-         * @param regionLength The length of the region within \p src.
+         * @param regionStart  The start of the region within \p{src}.  Defaults to 0.
+         * @param regionLength The length of the region within \p{src}.
          *                     If negative, length of the provided \e src is used.
          *                     Defaults to -1.
          * @return  \c this to allow concatenated calls.
@@ -393,14 +393,14 @@ public class Substring
         }
 
         /** ****************************************************************************************
-         * Checks if this object starts with the given character \p consumable. If it does, this
+         * Checks if this object starts with the given character \p{consumable}. If it does, this
          * character is cut from this object.
          *
          * @param consumable        The consumable character
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
          *                          consume operation. Defaults to \b Whitespaces.Keep.
-         * @return \c true, if this object was starting with \p consumable and consequently the
+         * @return \c true, if this object was starting with \p{consumable} and consequently the
          *         string was cut by one.
          ******************************************************************************************/
         public bool   ConsumeChar( char         consumable,
@@ -419,14 +419,14 @@ public class Substring
         }
 
         /** ****************************************************************************************
-         * Checks if this object ends with the given character \p consumable. If it does, this
+         * Checks if this object ends with the given character \p{consumable}. If it does, this
          * character is cut from the end of object.
          *
          * @param consumable The consumable character
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (right-) trimmed before the
          *                          consume operation. Defaults to \b Whitespaces.Keep.
-         * @return \c true, if this object was starting with \p consumable and consequently the
+         * @return \c true, if this object was starting with \p{consumable} and consequently the
          *         string was cut by one.
          ******************************************************************************************/
         public bool   ConsumeCharFromEnd( char         consumable,
@@ -446,10 +446,10 @@ public class Substring
 
         /** ****************************************************************************************
          * Cuts the given number of characters from the beginning of the Substring and optionally
-         * places the portion that was cut in parameter \p target (if provided).<br>
-         * Parameter \p regionLength is checked to be between 0 and length. If negative, nothing
-         * is cut and \p target is set empty. If \p regionLength is greater than this
-         * objects' length, all contents is 'moved' to \p target.
+         * places the portion that was cut in parameter \p{target} (if provided).<br>
+         * Parameter \p{regionLength} is checked to be between 0 and length. If negative, nothing
+         * is cut and \p{target} is set empty. If \p{regionLength} is greater than this
+         * objects' length, all contents is 'moved' to \p{target}.
          *
          * @param regionLength  The length of the region at the start to delete.
          * @param target        An optional target \b %Substring that receives the portion that
@@ -478,10 +478,10 @@ public class Substring
 
         /** ****************************************************************************************
          * Cuts the given number of characters from the end of the Substring and optionally
-         * places the portion that was cut in parameter \p target (if provided).<br>
-         * Parameter \p regionLength is checked to be between 0 and length. If negative, nothing
-         * is cut and \p target is set empty. If \p regionLength is greater than this
-         * objects' length, all contents is 'moved' to \p target.
+         * places the portion that was cut in parameter \p{target} (if provided).<br>
+         * Parameter \p{regionLength} is checked to be between 0 and length. If negative, nothing
+         * is cut and \p{target} is set empty. If \p{regionLength} is greater than this
+         * objects' length, all contents is 'moved' to \p{target}.
          *
          * @param regionLength  The length of the region at the start to delete.
          * @param target        An optional target \b %Substring that receives the portion that
@@ -509,7 +509,7 @@ public class Substring
         }
 
         /** ****************************************************************************************
-         * Searches \p separator and cuts the beginning of this string, including the separator.
+         * Searches \p{separator} and cuts the beginning of this string, including the separator.
          * What was consumed is returned, excluding the separator.
          *
          * If the separator is not found, all of this string is consumed and returned.
@@ -533,14 +533,14 @@ public class Substring
         }
 
         /** ****************************************************************************************
-         * Checks if this object starts with the given string \p consumable. If it does, this
+         * Checks if this object starts with the given string \p{consumable}. If it does, this
          * string is cut from this object.
          *
          * @param consumable        The consumable string
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
          *                          consume operation. Defaults to \b Whitespaces.Keep.
-         * @return \c true, if this object was starting with \p consumable and consequently the
+         * @return \c true, if this object was starting with \p{consumable} and consequently the
          *         string was cut.
          ******************************************************************************************/
         public bool  ConsumeString( String       consumable,
@@ -559,14 +559,14 @@ public class Substring
         }
 
         /** ****************************************************************************************
-         * Checks if this object starts with the given string \p consumable. If it does, this
+         * Checks if this object starts with the given string \p{consumable}. If it does, this
          * string is cut from this object.
          *
          * @param consumable        The consumable string
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
          *                          consume operation. Defaults to \b Whitespaces.Keep.
-         * @return \c true, if this object was starting with \p consumable and consequently the
+         * @return \c true, if this object was starting with \p{consumable} and consequently the
          *         string was cut.
          ******************************************************************************************/
         public bool  ConsumeString( AString      consumable,
@@ -585,14 +585,14 @@ public class Substring
         }
 
         /** ****************************************************************************************
-         * Checks if this object starts with the given string \p consumable. If it does, this
+         * Checks if this object starts with the given string \p{consumable}. If it does, this
          * string is cut from this object.
          *
          * @param consumable        The consumable string
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
          *                          consume operation. Defaults to \b Whitespaces.Keep.
-         * @return \c true, if this object was starting with \p consumable and consequently the
+         * @return \c true, if this object was starting with \p{consumable} and consequently the
          *         string was cut.
          ******************************************************************************************/
         public bool  ConsumeString( Substring    consumable,
@@ -611,14 +611,14 @@ public class Substring
         }
 
         /** ****************************************************************************************
-         * Checks if this object ends with the given string \p consumable. If it does, this
+         * Checks if this object ends with the given string \p{consumable}. If it does, this
          * string is cut from the end of object.
          *
          * @param consumable        The consumable string
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (right-) trimmed before the
          *                          consume operation. Defaults to \b Whitespaces.Keep.
-         * @return \c true, if this object was starting with \p consumable and consequently the
+         * @return \c true, if this object was starting with \p{consumable} and consequently the
          *         string was cut.
          ******************************************************************************************/
         public bool  ConsumeStringFromEnd( String       consumable,
@@ -636,14 +636,14 @@ public class Substring
         }
 
         /** ****************************************************************************************
-         * Checks if this object ends with the given string \p consumable. If it does, this
+         * Checks if this object ends with the given string \p{consumable}. If it does, this
          * string is cut from the end of object.
          *
          * @param consumable        The consumable string
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (right-) trimmed before the
          *                          consume operation. Defaults to \b Whitespaces.Keep.
-         * @return \c true, if this object was starting with \p consumable and consequently the
+         * @return \c true, if this object was starting with \p{consumable} and consequently the
          *         string was cut.
          ******************************************************************************************/
         public bool  ConsumeStringFromEnd( AString      consumable,
@@ -661,14 +661,14 @@ public class Substring
         }
 
         /** ****************************************************************************************
-         * Checks if this object ends with the given string \p consumable. If it does, this
+         * Checks if this object ends with the given string \p{consumable}. If it does, this
          * string is cut from the end of object.
          *
          * @param consumable        The consumable string
          * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (right-) trimmed before the
          *                          consume operation. Defaults to \b Whitespaces.Keep.
-         * @return \c true, if this object was starting with \p consumable and consequently the
+         * @return \c true, if this object was starting with \p{consumable} and consequently the
          *         string was cut.
          ******************************************************************************************/
         public bool  ConsumeStringFromEnd( Substring    consumable,
@@ -686,7 +686,7 @@ public class Substring
         }
 
         /** ****************************************************************************************
-         * Consumes a minimum of \p minChars of string \c consumable from the start of this
+         * Consumes a minimum of \p{minChars} of string \c consumable from the start of this
          * substring. If the minimum characters could not be found, nothing is consumed, otherwise
          * as much as possible.<br>
          * This method is useful for example to read commands from a string that may be
@@ -694,7 +694,7 @@ public class Substring
          *
          * @param consumable        The consumable string.
          * @param minChars          The minimum amount of characters to consume. If \c 0 or
-         *                          negative, the length of \p consumable is chosen.
+         *                          negative, the length of \p{consumable} is chosen.
          *                          Optional and defaults to \c 1.
          * @param sensitivity       The sensitivity of the comparison.
          *                          Defaults to \b Case.Ignore.
@@ -772,7 +772,7 @@ public class Substring
 
         /** ****************************************************************************************
          * Consumes all characters \c '0' to \c '9' at the start of this object and stores the
-         * number value they represent in \p result.
+         * number value they represent in \p{result}.
          * <br>Unlike with #ConsumeInt or #ConsumeDec, no sign, whitespaces or group characters are
          * consumed.
          *
@@ -793,7 +793,7 @@ public class Substring
 
         /** ****************************************************************************************
          * Overloaded version of #ConsumeDecDigits(out ulong)
-         * accepting an \p int value.
+         * accepting an \p{int} value.
          *
          * @param[out] result  A reference to the result value.
          * @return  \c true if a number was consumed, \c false otherwise.
@@ -813,8 +813,8 @@ public class Substring
          * Parses a long integer value in decimal, binary, hexadecimal or octal format from
          * the string by invoking method
          * \ref cs.aworx.lib.strings.NumberFormat.ParseInt "NumberFormat.ParseInt"
-         * on the given \p numberFormat instance.<br>
-         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         * Parameter \p{numberFormat} defaults to \c null. This denotes static singleton
          * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
@@ -844,7 +844,7 @@ public class Substring
 
         /** ****************************************************************************************
          * Overloaded version of #ConsumeInt(out long,NumberFormat =)
-         * accepting an \p int value.
+         * accepting an \p{int} value.
          *
          * @param[out] result  A reference to the result value.
          * @param numberFormat Defines the input format.
@@ -868,8 +868,8 @@ public class Substring
          * Reads an unsigned 64-bit integer in standard decimal format at the given position
          * from this %AString. This is done, by invoking
          * \ref cs.aworx.lib.strings.NumberFormat.ParseDec "NumberFormat.ParseDec"
-         * on the given \p numberFormat instance.<br>
-         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         * Parameter \p{numberFormat} defaults to \c null. This denotes static singleton
          * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
@@ -903,7 +903,7 @@ public class Substring
 
         /** ****************************************************************************************
          * Overloaded version of #ConsumeDec(out ulong,NumberFormat =)
-         * accepting an \p uint value.
+         * accepting an \p{uint} value.
          *
          * @param[out] result  A reference to the result value.
          * @param numberFormat Defines the input format.
@@ -927,8 +927,8 @@ public class Substring
          * Reads an unsigned 64-bit integer in binary format at the given position
          * from this \b %AString. This is done, by invoking
          * \ref cs.aworx.lib.strings.NumberFormat.ParseBin "NumberFormat.ParseBin"
-         * on the given \p numberFormat instance.<br>
-         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         * Parameter \p{numberFormat} defaults to \c null. This denotes static singleton
          * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
@@ -958,7 +958,7 @@ public class Substring
 
         /** ****************************************************************************************
          * Overloaded version of #ConsumeBin(out ulong,NumberFormat =)
-         * accepting an \p uint value.
+         * accepting an \p{uint} value.
          *
          * @param[out] result  A reference to the result value.
          * @param numberFormat Defines the input format.
@@ -982,8 +982,8 @@ public class Substring
          * Reads an unsigned 64-bit integer in hexadecimal format at the given position
          * from this \b %AString. This is done, by invoking
          * \ref cs.aworx.lib.strings.NumberFormat.ParseHex "NumberFormat.ParseHex"
-         * on the given \p numberFormat instance.<br>
-         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         * Parameter \p{numberFormat} defaults to \c null. This denotes static singleton
          * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
@@ -1013,7 +1013,7 @@ public class Substring
 
         /** ****************************************************************************************
          * Overloaded version of #ConsumeHex(out ulong,NumberFormat =)
-         * accepting an \p uint value.
+         * accepting an \p{uint} value.
          *
          * @param[out] result  A reference to the result value.
          * @param numberFormat Defines the input format.
@@ -1037,8 +1037,8 @@ public class Substring
          * Reads an unsigned 64-bit integer in octal format at the given position
          * from this \b %AString. This is done, by invoking
          * \ref cs.aworx.lib.strings.NumberFormat.ParseOct "NumberFormat.ParseOct"
-         * on the given \p numberFormat instance.<br>
-         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         * Parameter \p{numberFormat} defaults to \c null. This denotes static singleton
          * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
@@ -1068,7 +1068,7 @@ public class Substring
 
         /** ****************************************************************************************
          * Overloaded version of #ConsumeOct(out ulong,NumberFormat =)
-         * accepting an \p uint value.
+         * accepting an \p{uint} value.
          *
          * @param[out] result  A reference to the result value.
          * @param numberFormat Defines the input format.
@@ -1092,8 +1092,8 @@ public class Substring
          * Reads a floating point number at the given position from this \b %AString.
          * This is done, by invoking
          * \ref cs.aworx.lib.strings.NumberFormat.ParseFloat "NumberFormat.ParseFloat"
-         * on the given \p numberFormat instance.<br>
-         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         * Parameter \p{numberFormat} defaults to \c null. This denotes static singleton
          * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to 'international' settings (not using the locale) and therefore
          * also not parsing grouping characters.
@@ -1125,15 +1125,15 @@ public class Substring
 
         /** ****************************************************************************************
          * Splits this substring into two parts. What remains in this object is the region
-         * from 0 to \p position.
-         * \p target receives the rest. If \p separatorWidth is given, this is subtracted from
-         * the front of \p target.
+         * from 0 to \p{position}.
+         * \p{target} receives the rest. If \p{separatorWidth} is given, this is subtracted from
+         * the front of \p{target}.
          *
          * @param position        The index where this object is split.
          * @param target          The target substring to receive the right part of the string.
          * @param separatorWidth  This does not change what remains in this object, but defines
          *                        the number of characters that are cut from the front of the
-         *                        \p target. Defaults to 0.
+         *                        \p{target}. Defaults to 0.
          *
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
@@ -1183,7 +1183,7 @@ public class Substring
          * lead to shorter and more efficient code.
          *
          * @param needle  The character to search for.
-         * @return  This strings #Length if the character \p needle is not found.
+         * @return  This strings #Length if the character \p{needle} is not found.
          *          Otherwise the index of first occurrence.
          ******************************************************************************************/
         public int    IndexOfOrLength( char needle )
@@ -1203,7 +1203,7 @@ public class Substring
          *
          * @param needle    The character to search for.
          * @param startIdx  The index in this to start searching the character.
-         * @return  This strings #Length if the character \p needle is not found.
+         * @return  This strings #Length if the character \p{needle} is not found.
          *          Otherwise the index of first occurrence.
          ******************************************************************************************/
         public int    IndexOfOrLength( char needle, int startIdx )
@@ -1278,13 +1278,13 @@ public class Substring
 
         /** ****************************************************************************************
          * Searches the first difference with given string.
-         * If this string starts with \p needle, then the length of \p needle is returned.
+         * If this string starts with \p{needle}, then the length of \p{needle} is returned.
          *
          * @param needle       The String to search.
          * @param sensitivity  Case sensitivity of the comparison.
          *                     Optional and defaults to \b Case.Sensitive.
          * @param startIdx     The index to start the search at. Optional and defaults to \c 0.
-         * @return   The index of the first difference found in \p needle or the neele's length.
+         * @return   The index of the first difference found in \p{needle} or the neele's length.
          ******************************************************************************************/
         public int IndexOfFirstDifference( String needle, Case sensitivity= Case.Sensitive, int startIdx= 0  )
         {
@@ -1371,10 +1371,10 @@ public class Substring
          *                           to be compared. Defaults to
          *                           Integer.MAX_VALUE.
          * @return
-         *  -  0 if this and \p needle are \e nulled or if both have a length of 0 or if both
+         *  -  0 if this and \p{needle} are \e nulled or if both have a length of 0 or if both
          *       share the same content
-         *  - <0 if this is \e nulled and \p needle is not or if this is smaller than \p needle.
-         *  - >0 if this is not \e nulled but \p needle is or if this is greater than \p needle.
+         *  - <0 if this is \e nulled and \p{needle} is not or if this is smaller than \p{needle}.
+         *  - >0 if this is not \e nulled but \p{needle} is or if this is greater than \p{needle}.
          ******************************************************************************************/
         public int CompareTo(   String              needle,
                                 Case                sensitivity         = Case.Sensitive,
@@ -1415,10 +1415,10 @@ public class Substring
          *                            to be compared. Defaults to
          *                            Integer.MAX_VALUE.
          * @return
-         *  -  0 if this and \p needle are \e nulled or if both have a length of 0 or if both
+         *  -  0 if this and \p{needle} are \e nulled or if both have a length of 0 or if both
          *       share the same content
-         *  - <0 if this is \e nulled and \p needle is not or if this is smaller than \p needle.
-         *  - >0 if this is not \e nulled but \p needle is or if this is greater than \p needle.
+         *  - <0 if this is \e nulled and \p{needle} is not or if this is smaller than \p{needle}.
+         *  - >0 if this is not \e nulled but \p{needle} is or if this is greater than \p{needle}.
          ******************************************************************************************/
         public int CompareTo(   AString       needle,
                                 Case          sensitivity           = Case.Sensitive,
@@ -1460,10 +1460,10 @@ public class Substring
          *                            to be compared. Defaults to
          *                            Integer.MAX_VALUE.
          * @return
-         *  -  0 if this and \p needle are \e nulled or if both have a length of 0 or if both
+         *  -  0 if this and \p{needle} are \e nulled or if both have a length of 0 or if both
          *       share the same content
-         *  - <0 if this is \e nulled and \p needle is not or if this is smaller than \p needle.
-         *  - >0 if this is not \e nulled but \p needle is or if this is greater than \p needle.
+         *  - <0 if this is \e nulled and \p{needle} is not or if this is smaller than \p{needle}.
+         *  - >0 if this is not \e nulled but \p{needle} is or if this is greater than \p{needle}.
          ******************************************************************************************/
         public int CompareTo(   char[]        needle,
                                 Case          sensitivity           = Case.Sensitive,
@@ -1498,10 +1498,10 @@ public class Substring
          *                     to be compared. Defaults to
          *                     Integer.MAX_VALUE.
          * @return
-         *  -  0 if this and \p needle are \e nulled or if both have a length of 0 or if both
+         *  -  0 if this and \p{needle} are \e nulled or if both have a length of 0 or if both
          *       share the same content
-         *  - <0 if this is \e nulled and \p needle is not or if this is smaller than \p needle.
-         *  - >0 if this is not \e nulled but \p needle is or if this is greater than \p needle.
+         *  - <0 if this is \e nulled and \p{needle} is not or if this is smaller than \p{needle}.
+         *  - >0 if this is not \e nulled but \p{needle} is or if this is greater than \p{needle}.
          ******************************************************************************************/
         public int CompareTo(   Substring     needle,
                                 Case          sensitivity                  = Case.Sensitive,
@@ -1820,7 +1820,7 @@ public class Substring
      ##@{ ########################################################################################*/
 
         /** ****************************************************************************************
-         * Moves the start marker to the first character not found in parameter \p whiteSpaces.
+         * Moves the start marker to the first character not found in parameter \p{whiteSpaces}.
          * @param whiteSpaces  The characters used for trimming. Defaults to
          *                     \ref cs.aworx.lib.strings.CString.DefaultWhitespaces "CString.DefaultWhitespaces".
          * @return \c this to allow concatenated calls.
@@ -1853,7 +1853,7 @@ public class Substring
         }
 
         /** ****************************************************************************************
-         * Moves the start marker to the first character not found in parameter \p whiteSpaces.
+         * Moves the start marker to the first character not found in parameter \p{whiteSpaces}.
          * @param whiteSpaces  The characters used for trimming. Defaults to
          *                     \ref cs.aworx.lib.strings.CString.DefaultWhitespaces "CString.DefaultWhitespaces".
          * @return \c this to allow concatenated calls.

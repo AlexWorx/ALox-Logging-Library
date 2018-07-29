@@ -183,7 +183,7 @@ public class AnsiLogger : TextLogger
          * @param usesStdStreams Denotes whether this logger writes to the
          *                       <em>standard output streams</em>.
          * @param name           The name of the \e Logger, defaults to what is provided with
-         *                       parameter \p typeName.
+         *                       parameter \p{typeName}.
          * @param typeName       The type of the \e Logger, defaults to "ANSI".
          ******************************************************************************************/
         public AnsiLogger( System.IO.TextWriter textWriter, bool usesStdStreams,

@@ -286,7 +286,7 @@ public class Variable
          * Constructs a variable from a declaration.
          * Strings named \c "%1", \c "%2" ... \c "%N" found in the fields #Category, #Name,
          * #Comments and #DefaultValue are replaced with given replacement strings found
-         * in vector \p replacements.
+         * in vector \p{replacements}.
          *
          * @param declaration    The declaration data of the variable.
          * @param replacements   List of objects that will be converted to strings using
@@ -333,7 +333,7 @@ public class Variable
         /** ****************************************************************************************
          * Re-initializes a variable from a declaration. Strings named \c "%1", \c "%2" ... \c "%N"
          * found in the fields  #Category, #Name, #Comments and #DefaultValue are replaced with
-         * given replacement string arguments in vector \p replacements.
+         * given replacement string arguments in vector \p{replacements}.
          *
          * @param declaration    The declaration data of the variable.
          * @param replacements   List of objects that will be converted to strings using
@@ -454,8 +454,8 @@ public class Variable
 
         /** ****************************************************************************************
          * Clears the value, respectively the list of values set.
-         * After invoking this method, #Size will return \p startIdx and #GetString will
-         * return \c null for any index greater or equal to \p startIdx.
+         * After invoking this method, #Size will return \p{startIdx} and #GetString will
+         * return \c null for any index greater or equal to \p{startIdx}.
          *
          * @param  startIdx  The index of the first value to be cleared. Defaults to \c 0.
          * @return \c this to allow concatenated operations.
@@ -510,7 +510,7 @@ public class Variable
         }
 
         /** ****************************************************************************************
-         * Replaces the value at \p idx with the values of the given other variable.
+         * Replaces the value at \p{idx} with the values of the given other variable.
          *
          * @param  idx          The index of the value to replace.
          * @param  replVariable The variable providing the replacement values.
@@ -539,7 +539,7 @@ public class Variable
        }
 
         /** ****************************************************************************************
-         * Returns the value with the given index. Valid values for parameter \p idx are
+         * Returns the value with the given index. Valid values for parameter \p{idx} are
          * between \c 0 and #Size <c>- 1</c>.
          * If no value is set for the given index, \c null is returned.
          *
@@ -548,7 +548,7 @@ public class Variable
          *  e.g. for a subsequent store operation.
          *
          * @param  idx  The index of the value to be retrieved.  Defaults to \c 0.
-         * @return The value at \p idx.
+         * @return The value at \p{idx}.
          ******************************************************************************************/
         public AString    GetString( int idx= 0 )
         {
@@ -557,11 +557,11 @@ public class Variable
         }
 
         /** ****************************************************************************************
-         * Returns the value at \p idx interpreted as an integer.
+         * Returns the value at \p{idx} interpreted as an integer.
          * If the index is invalid, \c 0 is returned.
          *
          * @param  idx  The index of the value to be retrieved.  Defaults to \c 0.
-         * @return The value at \p idx interpreted as an integer value.
+         * @return The value at \p{idx} interpreted as an integer value.
          ******************************************************************************************/
         public long             GetInteger(int idx= 0)
         {
@@ -570,13 +570,13 @@ public class Variable
         }
 
         /** ****************************************************************************************
-         * Returns the value at \p idx interpreted as a double value.
+         * Returns the value at \p{idx} interpreted as a double value.
          * If the index is invalid, \c 0.0 is returned.
          * Parsing is done using field \c NumberFormat of field #Config, respectively, if this is
          * not set, the static singleton \alib{strings,NumberFormat.Global}.
          *
          * @param  idx  The index of the value to be retrieved.  Defaults to \c 0.
-         * @return The value at \p idx interpreted as a double value.
+         * @return The value at \p{idx} interpreted as a double value.
          ******************************************************************************************/
         public double           GetFloat(int idx= 0)
         {
@@ -591,7 +591,7 @@ public class Variable
          * singleton \ref cs.aworx.lib.ALIB.Config "ALIB.Config".
          *
          * @param  idx  The index of the value to be retrieved.  Defaults to \c 0.
-         * @return The value at \p idx interpreted as a boolean value.
+         * @return The value at \p{idx} interpreted as a boolean value.
          ******************************************************************************************/
         public bool             IsTrue(int idx= 0)
         {
@@ -602,7 +602,7 @@ public class Variable
         /** ****************************************************************************************
          * Searches in the values of this variable for the pattern
          * <c>attrName = result</c> and
-         * sets parameter \p result to the string following this pattern.
+         * sets parameter \p{result} to the string following this pattern.
          *
          * @param      attrName     The name of the attribute searched.
          * @param[out] result       A substring with the result.

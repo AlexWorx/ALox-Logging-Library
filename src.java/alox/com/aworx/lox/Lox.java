@@ -258,12 +258,12 @@ public class Lox extends ThreadLock
     // #############################################################################################
 
     /** ********************************************************************************************
-     * Constructs a new, empty Lox with the given \p name.
+     * Constructs a new, empty Lox with the given \p{name}.
      * The name is immutable and all \b %Lox objects registered with \b %ALox must be unique.
      * Lower case letters in the name are converted to upper case.
      * The name \c "Log" is reserved for the internal default singleton used for debug-logging.
      *
-     * If parameter \p register is \c true (the default), static method
+     * If parameter \p{register} is \c true (the default), static method
      * \ref com.aworx.lox.ALox.register "ALox.register" is invoked and the object will be
      * retrievable with static method
      * \ref com.aworx.lox.ALox.get "ALox.get". In some situations, such 'registration'
@@ -280,7 +280,7 @@ public class Lox extends ThreadLock
     }
 
     /** ********************************************************************************************
-     * Overloaded constructor providing value \c true for parameter \p doRegister.
+     * Overloaded constructor providing value \c true for parameter \p{doRegister}.
      * @param name       The name of the Lox. Will be converted to upper case.
      **********************************************************************************************/
     public Lox( String name )
@@ -370,7 +370,7 @@ public class Lox extends ThreadLock
 
     /** ********************************************************************************************
      * Status of registration with \b %ALox. To keep a \b %Lox "private" using parameter
-     * \p doRegister of the constructor, allows to suppress registration.
+     * \p{doRegister} of the constructor, allows to suppress registration.
      * Registered instances of this class can be statically received (by their name) using
      * \ref com.aworx.lox.ALox.get "ALox.get".
      *
@@ -665,7 +665,7 @@ public class Lox extends ThreadLock
     }
 
     /** ********************************************************************************************
-     * Removes logger named \p loggerName from this container.
+     * Removes logger named \p{loggerName} from this container.
      *
      * \note To (temporarily) disable a logger without removing it, a call to
      *       \ref setVerbosity  "setVerbosity( logger, Verbosity.OFF )"
@@ -713,19 +713,19 @@ public class Lox extends ThreadLock
     }
 
     /** ********************************************************************************************
-     * Sets the \e %Verbosity of the <em>Log Domain</em> which is evaluated from parameter \p domain and
-     * applicable <em>Scope Domains</em>. The \p verbosity given, is set recursively for all sub-domains.
+     * Sets the \e %Verbosity of the <em>Log Domain</em> which is evaluated from parameter \p{domain} and
+     * applicable <em>Scope Domains</em>. The \p{verbosity} given, is set recursively for all sub-domains.
      *
-     * With the first invocation of this method for a distinct \p logger, this \e %Logger
+     * With the first invocation of this method for a distinct \p{logger}, this \e %Logger
      * is registered with this \e %Lox. In this case, prior to setting the given \e Verbosity
      * for the evaluated sub-domain, the \e Verbosity for all domains is set to
      * \b %Verbosity.Off.
      *
      * To deregister a \e Logger with a \b Lox, use method #removeLogger.
-     * To 'disable' a \e Logger, invoke this method with parameters \p verbosity equaling to
-     * \b %Verbosity.Off and \p domain to \c "/".
+     * To 'disable' a \e Logger, invoke this method with parameters \p{verbosity} equaling to
+     * \b %Verbosity.Off and \p{domain} to \c "/".
      *
-     * Optional parameter \p priority defaults to
+     * Optional parameter \p{priority} defaults to
      * \ref com.aworx.lib.config.Configuration.PRIO_DEFAULT_VALUES "Configuration.PRIO_DEFAULT_VALUES",
      * which is a lower priority than those of the standard plug-ins of external configuration data. Therefore, external
      * configuration by default 'overwrite' settings made from 'within the source code', which
@@ -741,7 +741,7 @@ public class Lox extends ThreadLock
      * on protecting verbosity settings, consult the [ALox User Manual](../manual.html).
      *
      * \attention
-     *   The same as with most interface methods of this class, the given \p domain parameter is
+     *   The same as with most interface methods of this class, the given \p{domain} parameter is
      *   combined with <em>%Scope Domains</em> set for the callers' \e %Scope. In standard use
      *   cases of \b %ALox, the \e %Verbosity of a \e Domain is set using absolute domain path
      *   addressing. Therefore, it is recommended to have any domain path passed to this method
@@ -757,7 +757,7 @@ public class Lox extends ThreadLock
      *   process.<p>
      * \attention
      *   Consequently, this method may be (mis-) used to modify the 'actual' (default) scope
-     *   when explicitly giving an empty string with parameter \p domain. This is useful, to
+     *   when explicitly giving an empty string with parameter \p{domain}. This is useful, to
      *   temporarily adjust a scope. But remember: \b %ALox was designed to avoid temporary code
      *   lines...
      *
@@ -870,7 +870,7 @@ public class Lox extends ThreadLock
 
     /** ********************************************************************************************
      * Overloaded version of \ref setVerbosity(Logger,Verbosity,String) "setVerbosity" providing
-     * default value \c PRIO_SOURCE for parameter \p priority.
+     * default value \c PRIO_SOURCE for parameter \p{priority}.
      *
      * @param logger     The logger to be to be affected.
      * @param verbosity  The 'level of verboseness' to be set.
@@ -885,8 +885,8 @@ public class Lox extends ThreadLock
 
     /** ********************************************************************************************
      * Overloaded version of \ref setVerbosity(Logger,Verbosity,String) "setVerbosity" providing
-     * - default value \c PRIO_SOURCE for parameter \p priority and
-     * - default value <c> '/'</c> for parameter \p domain.
+     * - default value \c PRIO_SOURCE for parameter \p{priority} and
+     * - default value <c> '/'</c> for parameter \p{domain}.
      *
      * @param logger     The logger to be to be affected.
      * @param verbosity  The 'level of verboseness' to be set.
@@ -966,7 +966,7 @@ public class Lox extends ThreadLock
 
     /** ********************************************************************************************
      * Overloaded version of \ref setVerbosity(String,Verbosity,String,int) "setVerbosity" providing
-     * default value \c PRIO_SOURCE for parameter \p priority.
+     * default value \c PRIO_SOURCE for parameter \p{priority}.
      *
      * @param loggerName  The logger to be to be affected, identified by its name (case
      *                    insensitive).
@@ -983,8 +983,8 @@ public class Lox extends ThreadLock
 
     /** ********************************************************************************************
      * Overloaded version of \ref setVerbosity(String,Verbosity,String,int) "setVerbosity" providing
-     * - default value \c PRIO_SOURCE for parameter \p priority and
-     * - default value <c> '/'</c> for parameter \p domain.
+     * - default value \c PRIO_SOURCE for parameter \p{priority} and
+     * - default value <c> '/'</c> for parameter \p{domain}.
      *
      * @param loggerName  The logger to be to be affected, identified by its name (case
      *                    insensitive).
@@ -996,19 +996,19 @@ public class Lox extends ThreadLock
     }
 
     /** ********************************************************************************************
-     * The given \p scopeDomain becomes the default domain path for given \p scope.
+     * The given \p{scopeDomain} becomes the default domain path for given \p{scope}.
      * This means, that any subsequent log invocations (from within this same scope) can omit the
      * domain parameter, or if they provide one, this Scope Domain path is prepended.
      * If subsequent log calls specify a domain name with a leading '/' character,
      * then the Scope Domain of the scope is ignored.<br>
      * Furthermore, if the given scope is an inner scope, outer scopes are prepended to the
-     * given \p scopeDomain when the resulting domain of a log invocation is evaluated.
+     * given \p{scopeDomain} when the resulting domain of a log invocation is evaluated.
      * Again, this behavior can be overruled by prepending a leading '/' character to
-     * \p scopeDomain.
+     * \p{scopeDomain}.
      *
      *
      * To remove a previously set Scope Domain a nulled or empty string has to be passed with
-     * parameter \p scopeDomain.
+     * parameter \p{scopeDomain}.
      *
      * For \e %Scope.THREAD_OUTER and \e %Scope.THREAD_INNER, passing an empty or nulled string
      * removes the most recently added domain path. For removing an explicitly named
@@ -1017,9 +1017,9 @@ public class Lox extends ThreadLock
      *
      *
      * @param scopeDomain  The domain path to register.
-     * @param scope        The scope that should the given \p domain be registered for.
+     * @param scope        The scope that should the given \p{domain} be registered for.
      *                     Available Scope definitions are platform/language dependent.
-     * @param packageLevel Used only if parameter \p scope equals
+     * @param packageLevel Used only if parameter \p{scope} equals
      *                     \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                    to reference parent packages. Optional and defaults to \c 0.
      **********************************************************************************************/
@@ -1030,10 +1030,10 @@ public class Lox extends ThreadLock
 
     /** ********************************************************************************************
      * Overloaded version of \ref setDomain( String, Scope, int) "setDomain"
-     * providing default value \c 0 for parameter \p packageLevel.
+     * providing default value \c 0 for parameter \p{packageLevel}.
      *
      * @param scopeDomain    The domain path to register.
-     * @param scope        The scope that should the given \p domain be registered for.
+     * @param scope        The scope that should the given \p{domain} be registered for.
      *                     Available Scope definitions are platform/language dependent.
      **********************************************************************************************/
     public void setDomain(String scopeDomain, Scope scope)
@@ -1047,7 +1047,7 @@ public class Lox extends ThreadLock
      * is applicable only for \e %Scope.THREAD_OUTER and \e %Scope.THREAD_INNER and allows to
      * specify the thread that the setting should be associated with.
      *
-     * If \p scopeDomain is \c null or empty, the most recently added domain path is removed.
+     * If \p{scopeDomain} is \c null or empty, the most recently added domain path is removed.
      * For removing an explicitly named domain associated with  a thread use method
      * #removeThreadDomain.
      *
@@ -1068,7 +1068,7 @@ public class Lox extends ThreadLock
      *
      * To remove the most recently added domain path from such thread-related \e %Scope,
      * use one of the overloaded methods #setDomain and provide an empty or nulled
-     * value for parameter \p scopeDomain (the same as how domain paths of other \e %Scopes
+     * value for parameter \p{scopeDomain} (the same as how domain paths of other \e %Scopes
      * are removed).
      *
      * \note
@@ -1106,7 +1106,7 @@ public class Lox extends ThreadLock
     }
 
     /** ********************************************************************************************
-     * Overload version providing default value for parameter \p thread.
+     * Overload version providing default value for parameter \p{thread}.
      *
      * @param scopeDomain The domain path to register.
      * @param scope       Either \e %Scope.THREAD_OUTER and \e %Scope.THREAD_INNER. With other values,
@@ -1120,18 +1120,18 @@ public class Lox extends ThreadLock
     /** ********************************************************************************************
      * Adds a <em>Domain Substitution Rule</em>.
      * <em>Domain Substitution</em> is performed as a last step when evaluating the domain path of a <em>Log Statement</em>,
-     * taking <em>Scope Domains</em> and the optional parameter \p domain of the statement into
+     * taking <em>Scope Domains</em> and the optional parameter \p{domain} of the statement into
      * account.<br>
      *
      * <b>Wildcards</b><br>
-     * Parameter \p domainPath supports \b 'wildcard' character <c> '*'</c> at its beginning
+     * Parameter \p{domainPath} supports \b 'wildcard' character <c> '*'</c> at its beginning
      * and at its end (or both). This allows to have four types of rules:
      * - Exact match
-     * - Prefix match (\c * at the end of \p domainPath)
-     * - Suffix match (\c * at the start of \p domainPath)
-     * - Substring match (\c * at both, start and the end of \p domainPath)
+     * - Prefix match (\c * at the end of \p{domainPath})
+     * - Suffix match (\c * at the start of \p{domainPath})
+     * - Substring match (\c * at both, start and the end of \p{domainPath})
      *
-     * Only minimal checks are performed, e.g. if an exact match is requested, but \p domainPath
+     * Only minimal checks are performed, e.g. if an exact match is requested, but \p{domainPath}
      * does not start with character <c> '/'</c>. In this and some other cases, the rule is not
      * stored and an internal warning is logged. Further checks, for example for illegal
      * domain path characters are not performed (those will be eliminated when the resulting
@@ -1147,9 +1147,9 @@ public class Lox extends ThreadLock
      * this is repeated as long as at least one rule matched (up to ten times).
      *
      * <b>Deletion of Rules</b>
-     * To delete a rule, invoke the method with same parameter \p domainPath and a 'nulled'
-     * or empty string for parameter \p replacement.
-     * To delete all rules, invoke the method with parameter \p domainPath 'nulled'
+     * To delete a rule, invoke the method with same parameter \p{domainPath} and a 'nulled'
+     * or empty string for parameter \p{replacement}.
+     * To delete all rules, invoke the method with parameter \p{domainPath} 'nulled'
      * or empty.
      *
      * <b>Final remarks</b>
@@ -1162,7 +1162,7 @@ public class Lox extends ThreadLock
      *
      * For \b %Lox objects that should be protected of external manipulation, it is advisable,
      * to remove all <em>Domain Substitution Rules</em> right after the \b %Lox was created by invoking this method with
-     * a nulled value for parameter \p domainPath. The reason is, that otherwise, through
+     * a nulled value for parameter \p{domainPath}. The reason is, that otherwise, through
      * configuration files or command line parameters, domains of the \b %Lox can be substituted
      * and then the resulting domains \e Verbosities be \e overwritten using further configuration
      * variables. Any prioritized \e 'internal' setting of \e Verbosities this way could be
@@ -1244,8 +1244,8 @@ public class Lox extends ThreadLock
     }
 
     /** ********************************************************************************************
-     * The given \p prefix becomes a <em>Prefix Logable</em> provided to loggers with each log
-     * statement executed within the given \p scope.
+     * The given \p{prefix} becomes a <em>Prefix Logable</em> provided to loggers with each log
+     * statement executed within the given \p{scope}.
      * The list of objects received by a logger is sorted from outer scope to inner scope.
      * The logable of the <em>%Log Statement</em> itself, is the last in the list, except one or
      * more <em>Prefix Logables</em> of \e %Scope.ThreadInner are set. Those are (similar to how
@@ -1253,7 +1253,7 @@ public class Lox extends ThreadLock
      * list.
      *
      * To remove a previously set <em>Prefix Logable</em>, \c null has to be passed with
-     * parameter \p logable.
+     * parameter \p{logable}.
      * For \e %Scope.THREAD_OUTER and \e %Scope.THREAD_INNER, passing \c null
      * removes the most recently added <em>Prefix Logable</em>.
      *
@@ -1276,7 +1276,7 @@ public class Lox extends ThreadLock
      *   Think of 'SetContext' and <em>Context Objects</em> instead.
      *
      * @param prefix       The <em>Prefix Logable(s)</em> to set.
-     * @param scope        The scope that should the given \p logable be registered for.
+     * @param scope        The scope that should the given \p{logable} be registered for.
      *                     Available Scope definitions are platform/language dependent.
      * @param packageLevel Used only with
      *                     \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE".
@@ -1290,10 +1290,10 @@ public class Lox extends ThreadLock
 
     /** ********************************************************************************************
      * Overloaded version of \ref setPrefix(Object,Scope,int) "setPrefix" providing value \c 0
-     * as default for parameter \p packageLevel.
+     * as default for parameter \p{packageLevel}.
      *
      * @param prefix  The <em>Prefix Logable(s)</em> to set.
-     * @param scope   The scope that should the given \p logable be registered for.
+     * @param scope   The scope that should the given \p{logable} be registered for.
      *                Available Scope definitions are platform/language dependent.
      **********************************************************************************************/
     public void        setPrefix( Object prefix, Scope scope  )
@@ -1307,7 +1307,7 @@ public class Lox extends ThreadLock
      * \e %Scope.THREAD_OUTER and \e %Scope.THREAD_INNER and allows to specify the thread that
      * the setting should be associated with.
      *
-     * If \p logable is \c null, the most recently added <em>Prefix Logable</em>
+     * If \p{logable} is \c null, the most recently added <em>Prefix Logable</em>
      * is removed.
      *
      * @param prefix  The <em>Prefix Logable(s)</em> to set.
@@ -1321,21 +1321,21 @@ public class Lox extends ThreadLock
     }
 
     /** ********************************************************************************************
-     * The given \p logable becomes a <em>Prefix Logable</em> associated to the given
+     * The given \p{logable} becomes a <em>Prefix Logable</em> associated to the given
      * <em>Log Domain</em>.  <em>Prefix Logables</em> associated with the <em>Log Domain</em> are
      * added to the list of \e Logables right before the main \e Logable of the
      * <em>Log Statement</em> itself.
      * Multiple <em>Prefix Logables</em> can be added per <em>Log Domain</em>.
      *
      * To remove the most recently added <em>Prefix Logable</em> associated with a <em>Log Domain</em>,
-     * \c null has to be passed with parameter \p logable.
+     * \c null has to be passed with parameter \p{logable}.
      *
      * \attention
-     *   The same as with most interface methods of this class, the given \p domain parameter is
+     *   The same as with most interface methods of this class, the given \p{domain} parameter is
      *   combined with <em>%Scope Domains</em> set for the callers' \e %Scope.
      *   To suppress this, an absolute domain path can be used. (Still any <em>Scope Domain</em> of
      *   \e %Scope.Thread.Inner will be applied).
-     *   The default value of parameter \p domain is \c "" which addresses the domain evaluated
+     *   The default value of parameter \p{domain} is \c "" which addresses the domain evaluated
      *   for the current scope.
      *
      * <p>
@@ -1403,7 +1403,7 @@ public class Lox extends ThreadLock
 
     /** ********************************************************************************************
      * Overloaded version of #setPrefix providing
-     * default value \c Inclusion.INCLUDE for parameter \p otherPLs.
+     * default value \c Inclusion.INCLUDE for parameter \p{otherPLs}.
      *
      * @param logable     The <em>Prefix Logable(s)</em> to set.
      * @param domain      The domain path. Defaults to \c null, resulting in
@@ -1416,8 +1416,8 @@ public class Lox extends ThreadLock
 
     /** ********************************************************************************************
      * Overloaded version of #setPrefix providing
-     * default value \c Inclusion.INCLUDE for parameter \p otherPLs and
-     * default value \c null for parameter \p domain.
+     * default value \c Inclusion.INCLUDE for parameter \p{otherPLs} and
+     * default value \c null for parameter \p{domain}.
      *
      * @param logable     The <em>Prefix Logable(s)</em> to set.
      **********************************************************************************************/
@@ -1476,7 +1476,7 @@ public class Lox extends ThreadLock
 
     /** ********************************************************************************************
      * Overloaded version of #setStartTime( Date, String ) providing default value \c null
-     * for parameter \p loggerName.
+     * for parameter \p{loggerName}.
      *
      * @param startTime     Optional parameter with the  new start time. Defaults to DateTime.Now if
      *                      omitted.
@@ -1488,7 +1488,7 @@ public class Lox extends ThreadLock
 
     /** ********************************************************************************************
      * Overloaded version of #setStartTime( Date, String ) providing default values
-     * \c null for parameters \p startTime and \p loggerName.
+     * \c null for parameters \p{startTime} and \p{loggerName}.
      **********************************************************************************************/
     public void setStartTime()
     {
@@ -1541,10 +1541,10 @@ public class Lox extends ThreadLock
 
     /** ****************************************************************************************
      * Stores an object which can afterwards be retrieved by invoking #retrieve.
-     * Optional parameters \p key and \p scope offer various possibilities to reference
+     * Optional parameters \p{key} and \p{scope} offer various possibilities to reference
      * this data later.<br>
      *
-     * To remove data from the store, pass \c null with parameter \p data.
+     * To remove data from the store, pass \c null with parameter \p{data}.
      *
      * \attention
      * When data objects are 'overwritten', previous objects will be deleted internally.
@@ -1558,10 +1558,10 @@ public class Lox extends ThreadLock
      *                  If \c null, currently stored data will be removed.
      * @param key       The optional key to the data.
      *                  If omitted (or empty or \c null), the data is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.GLOBAL, then the
+     *                  provided. If omitted and \p{scope} is Scope.GLOBAL, then the
      *                  data is unique to the \e Lox.
      * @param scope     The \e %Scope that the data is bound to.
-     * @param pkgLevel  Used only if parameter \p scope equals
+     * @param pkgLevel  Used only if parameter \p{scope} equals
      *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      **********************************************************************************************/
@@ -1637,7 +1637,7 @@ public class Lox extends ThreadLock
      *                  If \c null, currently stored data will be removed.
      * @param key       The optional key to the data.
      *                  If omitted (or empty or \c null), the data is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.GLOBAL, then the
+     *                  provided. If omitted and \p{scope} is Scope.GLOBAL, then the
      *                  data is unique to the \e Lox.
      * @param scope     The \e %Scope that the data is bound to.
      **********************************************************************************************/
@@ -1653,7 +1653,7 @@ public class Lox extends ThreadLock
      *                  If \c null, currently stored data will be removed.
      * @param key       The optional key to the data.
      *                  If omitted (or empty or \c null), the data is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.GLOBAL, then the
+     *                  provided. If omitted and \p{scope} is Scope.GLOBAL, then the
      *                  data is unique to the \e Lox.
      **********************************************************************************************/
     public void store( Object data, String key )
@@ -1677,7 +1677,7 @@ public class Lox extends ThreadLock
      * @param data      The data object to store.
      *                  If \c null, currently stored data will be removed.
      * @param scope     The \e %Scope that the data is bound to.
-     * @param pkgLevel  Used only if parameter \p scope equals
+     * @param pkgLevel  Used only if parameter \p{scope} equals
      *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      **********************************************************************************************/
@@ -1700,7 +1700,7 @@ public class Lox extends ThreadLock
 
     /** ********************************************************************************************
      * Retrieves an object which was previously stored by invoking using #store.
-     * Optional parameters \p key and \p scope offer various possibilities to reference
+     * Optional parameters \p{key} and \p{scope} offer various possibilities to reference
      * such objects.<br>
      *
      * \note If no <em>Log Data</em> object is found, an empty object is stored and returned.
@@ -1711,10 +1711,10 @@ public class Lox extends ThreadLock
      *
      * @param key       The optional key to the data.
      *                  If omitted (or empty or \c null), the data is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.GLOBAL, then the
+     *                  provided. If omitted and \p{scope} is Scope.GLOBAL, then the
      *                  data is unique to the \e Lox.
      * @param scope     The \e %Scope that the data is bound to.
-     * @param pkgLevel  Used only if parameter \p scope equals
+     * @param pkgLevel  Used only if parameter \p{scope} equals
      *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      * @return The object, \c null if nothing was found.
@@ -1765,7 +1765,7 @@ public class Lox extends ThreadLock
      *
      * @param key       The optional key to the data.
      *                  If omitted (or empty or \c null), the data is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.GLOBAL, then the
+     *                  provided. If omitted and \p{scope} is Scope.GLOBAL, then the
      *                  data is unique to the \e Lox.
      * @param scope     The \e %Scope that the data is bound to.
      * @return The object, \c null if nothing was found.
@@ -1780,7 +1780,7 @@ public class Lox extends ThreadLock
      *
      * @param key       The optional key to the data.
      *                  If omitted (or empty or \c null), the data is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.GLOBAL, then the
+     *                  provided. If omitted and \p{scope} is Scope.GLOBAL, then the
      *                  data is unique to the \e Lox.
      * @return The object, \c null if nothing was found.
      **********************************************************************************************/
@@ -1803,7 +1803,7 @@ public class Lox extends ThreadLock
      * Overloaded version of #retrieve which omits parameters.
      *
      * @param scope     The \e %Scope that the data is bound to.
-     * @param pkgLevel  Used only if parameter \p scope equals
+     * @param pkgLevel  Used only if parameter \p{scope} equals
      *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      * @return The object, \c null if nothing was found.
@@ -1857,7 +1857,7 @@ public class Lox extends ThreadLock
     }
 
     /** ********************************************************************************************
-     * Overloaded version of #state providing default value \c STATE_INFO_ALL for parameter \p flags.
+     * Overloaded version of #state providing default value \c STATE_INFO_ALL for parameter \p{flags}.
      *
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
@@ -1871,7 +1871,7 @@ public class Lox extends ThreadLock
 
     /** ********************************************************************************************
      * This method collects state information about this lox in a formatted multi-line AString.
-     * Parameter \p flags is a bit field with bits defined in constants of class \b %Lox
+     * Parameter \p{flags} is a bit field with bits defined in constants of class \b %Lox
      * prefixed with \b "STATE_INFO_", e.g. \c %STATE_INFO_LOGGERS.
      *
      * @param buf       The target string.
@@ -2346,7 +2346,7 @@ public class Lox extends ThreadLock
 
 
     /** ********************************************************************************************
-     * Logs a list of \e Logables only if parameter \p condition is not \c true.
+     * Logs a list of \e Logables only if parameter \p{condition} is not \c true.
      *
      * If executed, \ref Verbosity.ERROR is used.
      *
@@ -2375,7 +2375,7 @@ public class Lox extends ThreadLock
     }
 
     /** ********************************************************************************************
-     * Logs a list of \e Logables only if the parameter \p condition is \c true.
+     * Logs a list of \e Logables only if the parameter \p{condition} is \c true.
      *
      * If one of the arguments (or a single argument given) is of type \c Object[], then the
      * contents of this list is inserted into the list of logables.
@@ -2401,8 +2401,8 @@ public class Lox extends ThreadLock
     }
 
     /** ********************************************************************************************
-     * Logs a list of \e Logables only if the parameter \p condition is \c true.
-     * This overloaded version omits parameter \p domain.
+     * Logs a list of \e Logables only if the parameter \p{condition} is \c true.
+     * This overloaded version omits parameter \p{domain}.
      *
      * The first \e logable provided may be a domain name. All values are passed to
      * #entryDetectDomain. See documentation of this method for information on how to avoid
@@ -2430,19 +2430,19 @@ public class Lox extends ThreadLock
     }
 
     /** ********************************************************************************************
-     * Logs given \e logables once, up to \p quantity times or every n-th time.
+     * Logs given \e logables once, up to \p{quantity} times or every n-th time.
      * In its simplest overloaded version, the counter is bound to the source code line, hence,
      * only the first execution of this exact <em>Log Statement</em> is executed.
      *
-     * Using parameter \p group, a set of <em>Log Statements</em> that share the same group key, can be
+     * Using parameter \p{group}, a set of <em>Log Statements</em> that share the same group key, can be
      * grouped and of such set, only the one which is first executed actually logs.<br>
-     * Alternatively, when \p key is omitted (or null or empty), but a
-     * \ref com.aworx.lox.Scope "Scope" is given with parameter \p scope, then the
+     * Alternatively, when \p{key} is omitted (or null or empty), but a
+     * \ref com.aworx.lox.Scope "Scope" is given with parameter \p{scope}, then the
      * counter is associated with the scope.<br>
-     * Finally, parameters \p key and \p scope can also be used in combination. The key is
+     * Finally, parameters \p{key} and \p{scope} can also be used in combination. The key is
      * then unique in respect to the \ref com.aworx.lox.Scope "Scope" provided.
      *
-     * Using, none, one or both of the parameters \p group and \p scope, among others, the
+     * Using, none, one or both of the parameters \p{group} and \p{scope}, among others, the
      * following use cases can be achieved.
      * - %Log a specific statement up to n-times.
      * - %Log only the first n of a group of statements.
@@ -2463,7 +2463,7 @@ public class Lox extends ThreadLock
      * \note
      *   Unlike other methods of this class which accept more than one logable, this
      *   method and its overloaded variants accept only one object. To supply several objects
-     *   at once, an \c Object[] may be passed with parameter \p logables, like in the
+     *   at once, an \c Object[] may be passed with parameter \p{logables}, like in the
      *   following sample:
      *   \snippet "UT_alox_lox.java"      DOX_ALOX_LOX_ONCE
      *
@@ -2472,7 +2472,7 @@ public class Lox extends ThreadLock
      * \note
      *   Due to the limitations of the Java language to dissolve ambiguities when invoking
      *   overloaded methods, most of the overloads provided await parameters
-     *   \p domain and \p verbosity at the start. This is in difference to <b>ALox for C++</b>
+     *   \p{domain} and \p{verbosity} at the start. This is in difference to <b>ALox for C++</b>
      *   and <b>ALox for C#</b>, where overloaded methods always default these parameters to \c null
      *   respectively \c %Verbosity.INFO.<br>
      *   Fortunate exceptions are
@@ -2486,11 +2486,11 @@ public class Lox extends ThreadLock
      *   - <b>%once(Object logable, int quantity, %Scope scope)</b>
      *
      * \note
-     *   have been added.  While their parameter order is 'wrong' and therefore need \p quantity to be specified,
+     *   have been added.  While their parameter order is 'wrong' and therefore need \p{quantity} to be specified,
      *   still they are nice shortcuts.
      *
-     * When parameter \p quantity is a negative value, the log statement is executed every n-th time
-     * instead n-times. E.g, if \p quantity is \c -5, the first statement is executed and afterwards
+     * When parameter \p{quantity} is a negative value, the log statement is executed every n-th time
+     * instead n-times. E.g, if \p{quantity} is \c -5, the first statement is executed and afterwards
      * every fifth invocation.
      *
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
@@ -2499,12 +2499,12 @@ public class Lox extends ThreadLock
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
-     *                  to the \p scope.)
+     *                  to the \p{scope}.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pkgLevel  Used only if parameter \p scope equals
+     * @param pkgLevel  Used only if parameter \p{scope} equals
      *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
@@ -2600,12 +2600,12 @@ public class Lox extends ThreadLock
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
-     *                  to the \p scope.)
+     *                  to the \p{scope}.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pkgLevel  Used only if parameter \p scope equals
+     * @param pkgLevel  Used only if parameter \p{scope} equals
      *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      **********************************************************************************************/
@@ -2623,9 +2623,9 @@ public class Lox extends ThreadLock
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
-     *                  to the \p scope.)
+     *                  to the \p{scope}.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param scope     The \e %Scope that the group or counter is bound to.
      **********************************************************************************************/
@@ -2643,9 +2643,9 @@ public class Lox extends ThreadLock
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
-     *                  to the \p scope.)
+     *                  to the \p{scope}.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      **********************************************************************************************/
     public void once(String domain, Verbosity verbosity, Object logables, String group )
@@ -2662,9 +2662,9 @@ public class Lox extends ThreadLock
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
-     *                  to the \p scope.)
+     *                  to the \p{scope}.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
@@ -2682,7 +2682,7 @@ public class Lox extends ThreadLock
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pkgLevel  Used only if parameter \p scope equals
+     * @param pkgLevel  Used only if parameter \p{scope} equals
      *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
@@ -2701,7 +2701,7 @@ public class Lox extends ThreadLock
      * @param verbosity The \e Verbosity of the <em>Log Statement</em> (if performed).
      * @param logables  The object(s) to log. (Multiple objects may be provided as an Object[].)
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pkgLevel  Used only if parameter \p scope equals
+     * @param pkgLevel  Used only if parameter \p{scope} equals
      *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
      **********************************************************************************************/
@@ -2782,9 +2782,9 @@ public class Lox extends ThreadLock
      *                  this defaults to \c 1.
      * @param group     The optional name of the statement group . If used, all statements that
      *                  share the same group name are working on the same counter (according
-     *                  to the \p scope.)
+     *                  to the \p{scope}.)
      *                  If omitted (or empty or null), the counter is is bound to the \e %Scope
-     *                  provided. If omitted and \p scope is Scope.Global, then the
+     *                  provided. If omitted and \p{scope} is Scope.Global, then the
      *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
     **********************************************************************************************/
     public void once( Object logables, int quantity, String group  )
@@ -2799,7 +2799,7 @@ public class Lox extends ThreadLock
      * @param quantity  The number of logs to be performed. As the name of the method indicates,
      *                  this defaults to \c 1.
      * @param scope     The \e %Scope that the group or counter is bound to.
-     * @param pkgLevel  Used only if parameter \p scope equals
+     * @param pkgLevel  Used only if parameter \p{scope} equals
      *                  \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                  to reference parent packages. Optional and defaults to \c 0.
     **********************************************************************************************/
@@ -2827,10 +2827,10 @@ public class Lox extends ThreadLock
     // #############################################################################################
 
     /** ****************************************************************************************
-     * Assembles the resulting domain from the given \p domainPath and the Scope Domain paths
+     * Assembles the resulting domain from the given \p{domainPath} and the Scope Domain paths
      * (see #setDomain) according to the scope identified by scopeInfo.
      * The resulting full domain string is assembled from inner to outer scope.
-     * If \p domainPath, respectively as soon as any of the scope levels' Scope Domain paths
+     * If \p{domainPath}, respectively as soon as any of the scope levels' Scope Domain paths
      * starts with the character defined in
      * \ref com.aworx.lox.core.Domain.PATH_SEPARATOR "Domain.PATH_SEPARATOR",
      * the evaluation is stopped (the path is interpreted as absolute).
@@ -3074,7 +3074,7 @@ public class Lox extends ThreadLock
     }
 
     /** ********************************************************************************************
-     * Simple helper method that inserts a logable at the front of given \p list.
+     * Simple helper method that inserts a logable at the front of given \p{list}.
      * If the logable is an object array, each object will be inserted.
      *
      * @param list      The logable list
@@ -3193,9 +3193,9 @@ public class Lox extends ThreadLock
      * Implementation of the interface method fetching all possible parameters.
      *
      * @param scopeDomain  The domain path to register.
-     * @param scope        The scope that the given \p domain should be registered for.
+     * @param scope        The scope that the given \p{domain} should be registered for.
      *                     Available Scope definitions are platform/language dependent.
-     * @param packageLevel Used only if parameter \p scope equals
+     * @param packageLevel Used only if parameter \p{scope} equals
      *                     \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE"
      *                     to reference parent packages. Optional and defaults to \c 0.
      * @param removeNTRSD  Used to remove thread-related Scope Domains (and is true only when
@@ -3204,7 +3204,7 @@ public class Lox extends ThreadLock
      **********************************************************************************************/
     protected void setDomainImpl(String scopeDomain, Scope scope, int packageLevel, boolean removeNTRSD, Thread thread)
     {
-        //note: the public class interface assures that \p removeNTRSD (named thread-related
+        //note: the public class interface assures that \p{removeNTRSD} (named thread-related
         //      scope domain) only evaluates true for thread related scopes
         try { acquire();
 
@@ -3280,7 +3280,7 @@ public class Lox extends ThreadLock
      * Implementation of the interface method fetching all possible parameters.
      *
      * @param prefix       The <em>Prefix Logable(s)</em> to set.
-     * @param scope        The scope that the given \p logable should be registered for.
+     * @param scope        The scope that the given \p{logable} should be registered for.
      *                     Available Scope definitions are platform/language dependent.
      * @param packageLevel Used only with
      *                     \ref com.aworx.lox.Scope.PACKAGE "Scope.PACKAGE".
@@ -3346,7 +3346,7 @@ public class Lox extends ThreadLock
      * Checks if given scope is thread-related.
      *
      * @param scope     The scope that is to be checked.
-     * @return \c true if \p scope is thread-related, \c false else.
+     * @return \c true if \p{scope} is thread-related, \c false else.
      **********************************************************************************************/
     protected boolean isThreadRelatedScope(Scope scope)
     {
@@ -3365,9 +3365,9 @@ public class Lox extends ThreadLock
     /** ********************************************************************************************
      * Reads the verbosity for the given logger and domain from the \b %ALib configuration system.
      * This internal method is used in two occasions:
-     * - when a new logger is added: recursively for all existing domains (\p configStr is
+     * - when a new logger is added: recursively for all existing domains (\p{configStr} is
      *   given)
-     * - when a new domain is created on the fly(\p configStr is not given)
+     * - when a new domain is created on the fly(\p{configStr} is not given)
      *
      * @param logger      The logger to set the verbosity for.
      * @param dom         The domain to set the verbosity for.

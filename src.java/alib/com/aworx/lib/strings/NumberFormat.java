@@ -646,13 +646,13 @@ public class NumberFormat
      * Static method to read digits \c '0' to \c '9' into a positive integer value.
      *
      * @param buffer        The character array to read the value from.
-     * @param idx           The start point for parsing within \p buffer.
+     * @param idx           The start point for parsing within \p{buffer}.
      * @param maxIdx        The maximum index to look at. Must be smaller than the buffers' length.
      * @param[out] newIdx   Optional output parameter (in array position 0) that  Will be set to
      *                      point behind the last character consumed. If parsing fails, it will be
      *                      set to the value of parameter idx which indicates that no parsable
      *                      number was found.
-     * @return The parsed value. In addition, the parameter \p newIdx is set to point to the
+     * @return The parsed value. In addition, the parameter \p{newIdx} is set to point to the
      *         first character behind any found number.
      **********************************************************************************************/
     public static long  parseDecDigits( char[] buffer, int idx, int maxIdx, int[] newIdx )
@@ -692,13 +692,13 @@ public class NumberFormat
      * invokes one of the methods #parseDec, #parseBin, #parseHex or #parseOct.
      *
      * @param buffer        The character array to read the value from.
-     * @param idx           The start point for parsing within \p buffer.
+     * @param idx           The start point for parsing within \p{buffer}.
      * @param maxIdx        The maximum index to look at. Must be smaller than the buffers' length.
      * @param[out] newIdx   Optional output parameter (in array position 0) that  Will be set to
      *                      point behind the last character consumed. If parsing fails, it will be
      *                      set to the value of parameter idx which indicates that no parsable
      *                      number was found.
-     * @return The parsed value. In addition, the parameter \p newIdx is set to point to the
+     * @return The parsed value. In addition, the parameter \p{newIdx} is set to point to the
      *         first character behind any found number.
      **********************************************************************************************/
     public long   parseInt( char[] buffer, int idx, int maxIdx, int[] newIdx )
@@ -799,13 +799,13 @@ public class NumberFormat
      *       <c>Long.MAX_VALUE</c> in this implementation of \b %ALib.
      *
      * @param buffer        The character array to read the value from.
-     * @param idx           The start point for parsing within \p buffer.
+     * @param idx           The start point for parsing within \p{buffer}.
      * @param maxIdx        The maximum index to look at. Must be smaller than the buffers' length.
      * @param[out] newIdx   Optional output parameter (in array position 0) that  Will be set to
      *                      point behind the last character consumed. If parsing fails, it will be
      *                      set to the value of parameter idx which indicates that no parsable
      *                      number was found.
-     * @return The parsed value. In addition, the parameter \p newIdx is set to point to the
+     * @return The parsed value. In addition, the parameter \p{newIdx} is set to point to the
      *         first character behind any found number.
      **********************************************************************************************/
     public long parseDec( char[] buffer, int idx, int maxIdx, int[] newIdx )
@@ -861,13 +861,13 @@ public class NumberFormat
      *       bit number 64 is set.
      *
      * @param buffer        The character array to read the value from.
-     * @param idx           The start point for parsing within \p buffer.
+     * @param idx           The start point for parsing within \p{buffer}.
      * @param maxIdx        The maximum index to look at. Must be smaller than the buffers' length.
      * @param[out] newIdx   Optional output parameter (in array position 0) that  Will be set to
      *                      point behind the last character consumed. If parsing fails, it will be
      *                      set to the value of parameter idx which indicates that no parsable
      *                      number was found.
-     * @return The parsed value. In addition, the parameter \p newIdx is set to point to the
+     * @return The parsed value. In addition, the parameter \p{newIdx} is set to point to the
      *         first character behind any found number.
      **********************************************************************************************/
     public long  parseBin( char[] buffer, int idx, int maxIdx, int[] newIdx )
@@ -941,13 +941,13 @@ public class NumberFormat
      *       bit number 64 is set.
      *
      * @param buffer        The character array to read the value from.
-     * @param idx           The start point for parsing within \p buffer.
+     * @param idx           The start point for parsing within \p{buffer}.
      * @param maxIdx        The maximum index to look at. Must be smaller than the buffers' length.
      * @param[out] newIdx   Optional output parameter (in array position 0) that  Will be set to
      *                      point behind the last character consumed. If parsing fails, it will be
      *                      set to the value of parameter idx which indicates that no parsable
      *                      number was found.
-     * @return The parsed value. In addition, the parameter \p newIdx is set to point to the
+     * @return The parsed value. In addition, the parameter \p{newIdx} is set to point to the
      *         first character behind any found number.
      **********************************************************************************************/
     public long  parseHex( char[] buffer, int idx, int maxIdx, int[] newIdx )
@@ -1028,13 +1028,13 @@ public class NumberFormat
      *       bit number 64 is set.
      *
      * @param buffer        The character array to read the value from.
-     * @param idx           The start point for parsing within \p buffer.
+     * @param idx           The start point for parsing within \p{buffer}.
      * @param maxIdx        The maximum index to look at. Must be smaller than the buffers' length.
      * @param[out] newIdx   Optional output parameter (in array position 0) that  Will be set to
      *                      point behind the last character consumed. If parsing fails, it will be
      *                      set to the value of parameter idx which indicates that no parsable
      *                      number was found.
-     * @return The parsed value. In addition, the parameter \p newIdx is set to point to the
+     * @return The parsed value. In addition, the parameter \p{newIdx} is set to point to the
      *         first character behind any found number.
      **********************************************************************************************/
     public long  parseOct( char[] buffer, int idx, int maxIdx, int[] newIdx )
@@ -1234,8 +1234,8 @@ public class NumberFormat
      *
      * @param value         The value to write.
      * @param buffer        The character array to write the value to. Needs to be long enough
-     *                      (after \p idx) to carry the string written.
-     * @param idx           The index within \p buffer to start writing.
+     *                      (after \p{idx}) to carry the string written.
+     * @param idx           The index within \p{buffer} to start writing.
      * @param overrideWidth May be used to override value of field #decMinimumFieldWidth.
      *                      Defaults to \c 0, which denotes to  use the fields' value.
      * @return  The index pointing to behind the last character written in \b buffer.
@@ -1299,14 +1299,14 @@ public class NumberFormat
      * #leadingGroupCharReplacement.
      *
      * The minimum width of the output is taken from field #decMinimumFieldWidth unless overwritten
-     * by parameter \p overrideWidth. If the width is greater than the sum of digits and
-     * grouping characters found in \p value, then \c '0' digits are prepended between the sign and
+     * by parameter \p{overrideWidth}. If the width is greater than the sum of digits and
+     * grouping characters found in \p{value}, then \c '0' digits are prepended between the sign and
      * the number.
      *
      * @param value         The value to write.
      * @param buffer        The character array to write the value to. Needs to be long enough
-     *                      (after \p idx) to carry the string written.
-     * @param idx           The index within \p buffer to start writing.
+     *                      (after \p{idx}) to carry the string written.
+     * @param idx           The index within \p{buffer} to start writing.
      * @param overrideWidth May be used to override value of field #decMinimumFieldWidth.
      *                      Defaults to \c 0, which denotes to  use the fields' value.
      * @return  The index pointing to behind the last character written in \b buffer.
@@ -1330,7 +1330,7 @@ public class NumberFormat
      * #binWordGroupChar, #binWord32GroupChar and #leadingGroupCharReplacement.
      *
      * The minimum width of the output is taken from field #binFieldWidth unless overwritten
-     * by parameter \p overrideWidth. If the width is greater than digits found in \p value,
+     * by parameter \p{overrideWidth}. If the width is greater than digits found in \p{value},
      * \c '0' digits are prepended. The width is taking group characters into account.
      *
      * \attention
@@ -1344,8 +1344,8 @@ public class NumberFormat
      *
      * @param value         The value to write.
      * @param buffer        The character array to write the value to. Needs to be long enough
-     *                      (after \p idx) to carry the string written.
-     * @param idx           The index within \p buffer to start writing.
+     *                      (after \p{idx}) to carry the string written.
+     * @param idx           The index within \p{buffer} to start writing.
      * @param overrideWidth May be used to override value of field #binFieldWidth.
      *                      Defaults to \c 0, which denotes to  use the fields' value.
      * @return  The index pointing to behind the last character written in \b buffer.
@@ -1449,7 +1449,7 @@ public class NumberFormat
      * #hexWord32GroupChar and #leadingGroupCharReplacement.
      *
      * The minimum width of the output is taken from field #hexFieldWidth unless overwritten
-     * by parameter \p overrideWidth. If the width is greater than digits found in \p value,
+     * by parameter \p{overrideWidth}. If the width is greater than digits found in \p{value},
      * \c '0' digits are prepended. The width is taking group characters into account.
      *
      * \attention
@@ -1463,8 +1463,8 @@ public class NumberFormat
      *
      * @param value         The value to write.
      * @param buffer        The character array to write the value to. Needs to be long enough
-     *                      (after \p idx) to carry the string written.
-     * @param idx           The index within \p buffer to start writing.
+     *                      (after \p{idx}) to carry the string written.
+     * @param idx           The index within \p{buffer} to start writing.
      * @param overrideWidth May be used to override value of field #hexFieldWidth.
      *                      Defaults to \c 0, which denotes to  use the fields' value.
      * @return  The index pointing to behind the last character written in \b buffer.
@@ -1567,7 +1567,7 @@ public class NumberFormat
      * #leadingGroupCharReplacement.
      *
      * The minimum width of the output is taken from field #octFieldWidth unless overwritten
-     * by parameter \p overrideWidth. If the width is greater than digits found in \p value,
+     * by parameter \p{overrideWidth}. If the width is greater than digits found in \p{value},
      * \c '0' digits are prepended. The width is taking group characters into account.
      *
      * \attention
@@ -1581,8 +1581,8 @@ public class NumberFormat
      *
      * @param value         The value to write.
      * @param buffer        The character array to write the value to. Needs to be long enough
-     *                      (after \p idx) to carry the string written.
-     * @param idx           The index within \p buffer to start writing.
+     *                      (after \p{idx}) to carry the string written.
+     * @param idx           The index within \p{buffer} to start writing.
      * @param overrideWidth May be used to override value of field #octFieldWidth.
      *                      Defaults to \c 0, which denotes to  use the fields' value.
      * @return  The index pointing to behind the last character written in \b buffer.
@@ -1675,8 +1675,8 @@ public class NumberFormat
      * #thousandsGroupChar and #leadingGroupCharReplacement.
      *
      * The minimum width of the the integral part of the output is taken from field
-     * #integralPartMinimumWidth unless overwritten by parameter \p overrideWidth.
-     * If the width is greater than integral digits found in \p value,
+     * #integralPartMinimumWidth unless overwritten by parameter \p{overrideWidth}.
+     * If the width is greater than integral digits found in \p{value},
      * \c '0' digits are prepended. The width is taking group characters into account.
      *
      * If field #fractionalPartWidth as well as the width of the integral part ( provided or set)
@@ -1691,8 +1691,8 @@ public class NumberFormat
      *
      * @param value         The value to write.
      * @param buffer        The character array to write the value to. Needs to be long enough
-     *                      (after \p idx) to carry the string written.
-     * @param idx           The index within \p buffer to start writing.
+     *                      (after \p{idx}) to carry the string written.
+     * @param idx           The index within \p{buffer} to start writing.
      * @param overrideWidth May be used to override value of field #integralPartMinimumWidth.
      *                      Defaults to \c 0, which denotes to  use the fields' value.
      * @return  The index pointing to behind the last character written in \b buffer.
@@ -1950,8 +1950,8 @@ public class NumberFormat
      *
      * @param value     The value to write.
      * @param buffer    The character array to write the value to. Needs to be long enough
-     *                  (after \p idx) to carry the string written.
-     * @param idx       The index within \p buffer to start writing.
+     *                  (after \p{idx}) to carry the string written.
+     * @param idx       The index within \p{buffer} to start writing.
      * @param width     The overall minimum width to write.
      * @return  The index pointing to behind the last character written in \b buffer.
      **********************************************************************************************/

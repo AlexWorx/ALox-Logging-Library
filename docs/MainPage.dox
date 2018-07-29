@@ -17,29 +17,37 @@
 ALox is a software library that provides an ecosystem to support structured and organized log output.
 
 ALox has three language incarnations:
-- [ALox for C++ 11](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/alox_cpp_mainpage.html),
+- [ALox for C++](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/alox_cpp_mainpage.html),
 - [ALox for C#](http://alexworx.github.io/ALox-Logging-Library/cs_ref/alox_cs_mainpage.html) and
 - [ALox for Java](http://alexworx.github.io/ALox-Logging-Library/java_ref/alox_java_mainpage.html).
 
-To reach this goal, \b %ALox is featured by **ALib**, which is a basic utility library that among other
+To reach this goal, \alox is featured by **ALib**, which is a basic utility library that among other
 goals provides <em>\"source-compatible\"</em> types for the three languages.
 (See ALib for
-[C++](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/namespaceaworx_1_1lib.html),
+[C++](http://alexworx.github.io/ALib-Class-Library),
 [C#](http://alexworx.github.io/ALox-Logging-Library/cs_ref/namespacecs_1_1aworx_1_1lib.html),
 [Java](http://alexworx.github.io/ALox-Logging-Library/java_ref/namespacecom_1_1aworx_1_1lib.html).)
 
+\attention
+  As of library version 1805, the C++ sources of \alox have been moved to an own, dedicated
+  repository. The rationale for this was, that the relationship of \alib and \alox has been reversed:
+  In the C++ world, \alox is now one of several modules of the general purpose library \alib, instead
+  of building on it (as it is still explained above).
+
+
 ALox attempts to make logging as easy and lightweight as possible. We want you to **stop adding
 temporary debug output lines** into your code. Instead, write (with less effort!) short, nice
-and readable *ALox statements* that live in your code as if they were comment lines. Let \b %ALox do
+and readable *ALox statements* that live in your code as if they were comment lines. Let \alox do
 the rest: Add meta information to the output, format the output, filter output based on \e Verbosity
 and based on your current topic of interest (what we call <em>'Log Domain'</em>).
 Finally, get it all *pruned* out of your release executable, same as your source comments.
 
-On the other end of the list, \b %ALox  enables **release logging** for productive applications
+On the other end of the list, \alox  enables **release logging** for productive applications
 to collect mission critical **metrics from the field**.
 
-This is **Version 1712 Revision 1**, which incorporates only minor changes and fixes on the JAVA
-and C# side of things, but quite some new stuff in underlying <b>%ALib for C++</b>.
+This is **Version 1805 Revision 0**, which incorporates only minor changes and fixes on the JAVA
+and C# side of things, but which has some quite dramatic changes in the C++ version, including
+a [new Github repository home for the C++ code](https://github.com/AlexWorx/ALib-Class-Library).
 
 We are optimistic that the simple [Bauhaus Style](\ref faq_bauhaus) architecture of the library allows you
 to easily use it and even to extend it with logging features you need.
@@ -49,7 +57,7 @@ We would be happy to receive your feedback and feature requests.
 
 \section mainpage_features        Features and Limitations
 
-To get an overview about what \b %ALox offers, read \ref alox_man_features_and_limitations.
+To get an overview about what \alox offers, read \ref alox_man_features_and_limitations.
 
 
 \section mainpage_documentation   Documentation
@@ -120,7 +128,7 @@ Our thanks go to all supporters to that did and do help realizing this project, 
   - Microsoft for providing [Visual Studio Community Edition](https://www.visualstudio.com/vs/community/) project,
   - Mr. Lafortune to provide [ProGuard](http://http://proguard.sourceforge.net),
   - To Mr. van Heesch for providing [Doxygen](http://www.stack.nl/~dimitri/doxygen/) software.
-  - To [JetBrains](www.jetbrains.com) for the supporting of \b %ALox development by providing a free
+  - To [JetBrains](www.jetbrains.com) for the supporting of \alox development by providing a free
     [Open Source License](https://www.jetbrains.com/buy/opensource/)
     of their absolutely superb set of IDEs.
 - Special thanks also to C. Darwin, who created life on earth hundreds of millions of years ago,

@@ -331,12 +331,12 @@ public class Ticks : IFormattable
          * object represents when interpreted as a time span.
          *
          *
-         * @param nDigitsPrec     Number of digits that the return value will be rounded to.
-         *                        Defaults to -1 which means no rounding.
+         * @param qtyFractionalDigits  Number of digits that the return value will be rounded to.
+         *                             Defaults to -1 which means no rounding.
          *
          * @return  A double value representing the frequency in hertz.
          ******************************************************************************************/
-        public    double        InHertz    ( int nDigitsPrec= -1 )
+        public    double        InHertz    ( int qtyFractionalDigits= -1 )
         {
             // check
             if ( ticks == 0)
@@ -346,11 +346,11 @@ public class Ticks : IFormattable
             double hz= 10000000d / ticks;
 
             // no rounding? that's it
-            if ( nDigitsPrec < 0 )
+            if ( qtyFractionalDigits < 0 )
                 return hz;
 
             // round
-            double mag= Math.Pow( 10, nDigitsPrec );
+            double mag= Math.Pow( 10, qtyFractionalDigits );
             return ( (int) ( hz * mag + ( hz < 0 ? -0.5 : 0.5 )) ) / mag;
         }
 
@@ -445,7 +445,7 @@ public class Ticks : IFormattable
     // platform/language specifics
     // #############################################################################################
         /** ****************************************************************************************
-         * Returns a  String that represents this object formatted according to \p formatString.
+         * Returns a  String that represents this object formatted according to \p{formatString}.
          * For this, an object of .Net type \b %DateTime is created and its \b %ToString method
          * is invoked. Hence, the format string follows the syntax defined for class \b %DateTime.
          *

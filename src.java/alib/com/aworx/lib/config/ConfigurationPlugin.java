@@ -60,7 +60,7 @@ public abstract class ConfigurationPlugin
         /** ****************************************************************************************
          * Abstract method that has to be overwritten by descendants.
          * Searches and by default retrieves the value of a configuration variable.
-         * If \p searchOnly is \c true, then the variable value is not read.
+         * If \p{searchOnly} is \c true, then the variable value is not read.
          *
          * @param variable      The variable to retrieve.
          * @param searchOnly    If \c true, the variable must not be set. Defaults to \c false.
@@ -69,7 +69,7 @@ public abstract class ConfigurationPlugin
         public abstract boolean  load( Variable variable, boolean searchOnly  );
 
         /** ****************************************************************************************
-         * Overloaded method providing default value \c false  for parameter \p searchOnly.
+         * Overloaded method providing default value \c false  for parameter \p{searchOnly}.
          *
          * @param variable  The variable to retrieve.
          * @return \c true if variable was found within this configuration source, \c false if not.

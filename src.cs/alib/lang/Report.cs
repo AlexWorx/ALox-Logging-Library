@@ -265,7 +265,7 @@ public class Report
          * If this is set for the type of message, the program halts or suspends into the debugger
          * (platform and language specific).
          *
-         * If parameter \p is '0', the report is considered a \e severe error, otherwise a warning.
+         * If parameter \p{is} '0', the report is considered a \e severe error, otherwise a warning.
          * User defined implementations of class \e %ReportWriter may interpret this field
          * arbitrarily.
          *

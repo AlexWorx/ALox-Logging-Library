@@ -64,8 +64,8 @@ namespace cs.aworx.lib.strings  {
  *  These methods share the same name as the standard one, with the suffix "_NC" appended (NC
  *  stands for "no checks").
  *
- *  In the sample above, if the calling code was sure about the parameters \p regionStart and
- *  \p regionLength being in the bounds of \p src, method
+ *  In the sample above, if the calling code was sure about the parameters \p{regionStart} and
+ *  \p{regionLength} being in the bounds of \p{src}, method
  *  \ref _NC( AString src, int regionStart, int regionLength ) can be used.
  *
  *  \attention The following rules apply to all methods which suffixed by <em>_NC</em>:
@@ -415,16 +415,16 @@ public class AString
          * If the position is not between 0 and the length of the target, nothing is inserted.
          *
          * \attention
-         *  Parameters \p cStart and \p cLength are not checked to match the size of \p src.
+         *  Parameters \p{cStart} and \p{cLength} are not checked to match the size of \p{src}.
          *
          * \note
          *   To insert a string with replacing a different one at the same time, use
          *   \ref ReplaceSubstring "ReplaceSubstring(src, pos, regionLength)".
          *
          * @param  src      The <em>char[]</em> to insert characters from.
-         * @param  cStart   The start of the substring in \p src to insert.
-         * @param  cLength  The length of the substring in \p src to insert.
-         * @param  pos      The position in this object insert the portion of \p src.
+         * @param  cStart   The start of the substring in \p{src} to insert.
+         * @param  cLength  The length of the substring in \p{src} to insert.
+         * @param  pos      The position in this object insert the portion of \p{src}.
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
         public AString InsertAt( char[]  src, int cStart, int cLength, int pos )
@@ -446,7 +446,7 @@ public class AString
          *   one of the overloaded methods #ReplaceSubstring.
          *
          * @param  src      The <em>char[]</em> to insert characters from.
-         * @param  pos      The position in this object insert the portion of \p src.
+         * @param  pos      The position in this object insert the portion of \p{src}.
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
         public AString InsertAt( AString  src, int pos )
@@ -465,7 +465,7 @@ public class AString
          *   one of the overloaded methods #ReplaceSubstring.
          *
          * @param  src      The <em>char[]</em> to insert characters from.
-         * @param  pos      The position in this object insert the portion of \p src.
+         * @param  pos      The position in this object insert the portion of \p{src}.
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
         public AString InsertAt( Substring  src, int pos )
@@ -483,7 +483,7 @@ public class AString
          *   one of the overloaded methods #ReplaceSubstring.
          *
          * @param  src      The <em>char[]</em> to insert characters from.
-         * @param  pos      The position in this object insert the portion of \p src.
+         * @param  pos      The position in this object insert the portion of \p{src}.
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
         public AString InsertAt( String  src, int pos )
@@ -508,7 +508,7 @@ public class AString
          *   one of the overloaded methods #ReplaceSubstring.
          *
          * @param  src      The <em>char[]</em> to insert characters from.
-         * @param  pos      The position in this object insert the portion of \p src.
+         * @param  pos      The position in this object insert the portion of \p{src}.
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
         public AString InsertAt( StringBuilder  src, int pos )
@@ -528,9 +528,9 @@ public class AString
          * Inserts the given character n-times at a given position.
          * If the given position is out of range, nothing is inserted.
          *
-         * @param c     The character to insert \p qty times.
+         * @param c     The character to insert \p{qty} times.
          * @param qty   The quantity of characters to insert.
-         * @param pos   The index in this object where \p c is inserted \p qty times.
+         * @param pos   The index in this object where \p{c} is inserted \p{qty} times.
          * @return \c this to allow concatenated calls.
          ******************************************************************************************/
         public AString InsertChars( char c, int qty, int pos )
@@ -579,11 +579,11 @@ public class AString
          * If the region does not fit to this object, then nothing is done.
          *
          * \attention
-         *  Parameters \p cStart and \p cLength are not checked to match the size of \p src.
+         *  Parameters \p{cStart} and \p{cLength} are not checked to match the size of \p{src}.
          *
          * @param src           The <em>char[]</em> to insert characters from.
-         * @param cStart        The start of the substring in \p src to insert.
-         * @param cLength       The length of the substring in \p src to insert.
+         * @param cStart        The start of the substring in \p{src} to insert.
+         * @param cLength       The length of the substring in \p{src} to insert.
          * @param regionStart   The start of the region.
          * @param regionLength  The length of the region.
          * @return \c this to allow concatenated calls.
@@ -712,8 +712,8 @@ public class AString
          *            See \ref CS_ASTRING_NC "Non-checking methods" for <em>_NC</em> method
          *            variants.
          *            Like with method #Delete, it is allowed that the sum of parameters
-         *            \p regionStart and \p regionLength is longer than the length of this %AString.
-         *            In this case, this string is cut starting from index \p regionStart.
+         *            \p{regionStart} and \p{regionLength} is longer than the length of this %AString.
+         *            In this case, this string is cut starting from index \p{regionStart}.
          *
          * @param regionStart  The start of the region to delete.
          * @param regionLength The length of the region to delete.
@@ -843,8 +843,8 @@ public class AString
          * All characters defined in given set at, left of and right of the given index
          * are removed from the string.<br>
          * The method returns index of the first character of those characters that were behind the
-         * trimmed region. With legal \p index given, this value can only be smaller or equal to
-         * \p index. If \p index is out of bounds, the length of the string is returned.
+         * trimmed region. With legal \p{index} given, this value can only be smaller or equal to
+         * \p{index}. If \p{index} is out of bounds, the length of the string is returned.
          *
          * @param idx         The index to perform the trim operation at. Has to be between zero
          *                    and <em>Length() -1</em>.
@@ -1747,10 +1747,10 @@ public class AString
          *                           to be compared. Defaults to
          *                           Integer.MAX_VALUE.
          * @return
-         *  -  0 if this and \p needle are \e nulled or if both have a length of 0 or if both
+         *  -  0 if this and \p{needle} are \e nulled or if both have a length of 0 or if both
          *       share the same content
-         *  - <0 if this is \e nulled and \p needle is not or if this is smaller than \p needle.
-         *  - >0 if this is not \e nulled but \p needle is or if this is greater than \p needle.
+         *  - <0 if this is \e nulled and \p{needle} is not or if this is smaller than \p{needle}.
+         *  - >0 if this is not \e nulled but \p{needle} is or if this is greater than \p{needle}.
          ******************************************************************************************/
         public int CompareTo(   String              needle,
                                 Case                sensitivity         = Case.Sensitive,
@@ -1791,10 +1791,10 @@ public class AString
          *                            to be compared. Defaults to
          *                            Integer.MAX_VALUE.
          * @return
-         *  -  0 if this and \p needle are \e nulled or if both have a length of 0 or if both
+         *  -  0 if this and \p{needle} are \e nulled or if both have a length of 0 or if both
          *       share the same content
-         *  - <0 if this is \e nulled and \p needle is not or if this is smaller than \p needle.
-         *  - >0 if this is not \e nulled but \p needle is or if this is greater than \p needle.
+         *  - <0 if this is \e nulled and \p{needle} is not or if this is smaller than \p{needle}.
+         *  - >0 if this is not \e nulled but \p{needle} is or if this is greater than \p{needle}.
          ******************************************************************************************/
         public int CompareTo(   AString       needle,
                                 Case          sensitivity           = Case.Sensitive,
@@ -1836,10 +1836,10 @@ public class AString
          *                            to be compared. Defaults to
          *                            Integer.MAX_VALUE.
          * @return
-         *  -  0 if this and \p needle are \e nulled or if both have a length of 0 or if both
+         *  -  0 if this and \p{needle} are \e nulled or if both have a length of 0 or if both
          *       share the same content
-         *  - <0 if this is \e nulled and \p needle is not or if this is smaller than \p needle.
-         *  - >0 if this is not \e nulled but \p needle is or if this is greater than \p needle.
+         *  - <0 if this is \e nulled and \p{needle} is not or if this is smaller than \p{needle}.
+         *  - >0 if this is not \e nulled but \p{needle} is or if this is greater than \p{needle}.
          ******************************************************************************************/
         public int CompareTo(   char[]        needle,
                                 Case          sensitivity           = Case.Sensitive,
@@ -1875,10 +1875,10 @@ public class AString
          *                     to be compared. Defaults to
          *                     Integer.MAX_VALUE.
          * @return
-         *  -  0 if this and \p needle are \e nulled or if both have a length of 0 or if both
+         *  -  0 if this and \p{needle} are \e nulled or if both have a length of 0 or if both
          *       share the same content
-         *  - <0 if this is \e nulled and \p needle is not or if this is smaller than \p needle.
-         *  - >0 if this is not \e nulled but \p needle is or if this is greater than \p needle.
+         *  - <0 if this is \e nulled and \p{needle} is not or if this is smaller than \p{needle}.
+         *  - >0 if this is not \e nulled but \p{needle} is or if this is greater than \p{needle}.
          ******************************************************************************************/
         public int CompareTo(   Substring     needle,
                                 Case          sensitivity                  = Case.Sensitive,
@@ -2231,7 +2231,7 @@ public class AString
          * lead to shorter and more efficient code.
          *
          * @param needle  The character to search for.
-         * @return  This strings #Length if the character \p needle is not found.
+         * @return  This strings #Length if the character \p{needle} is not found.
          *          Otherwise the index of first occurrence.
          ******************************************************************************************/
         public int    IndexOfOrLength( char needle )
@@ -2251,7 +2251,7 @@ public class AString
          *
          * @param needle    The character to search for.
          * @param startIdx  The index in this to start searching the character.
-         * @return  This strings #Length if the character \p needle is not found.
+         * @return  This strings #Length if the character \p{needle} is not found.
          *          Otherwise the index of first occurrence.
          ******************************************************************************************/
         public int    IndexOfOrLength( char needle, int startIdx )
@@ -2350,7 +2350,7 @@ public class AString
          * @param startIndex   The index in this to start searching the character.
          *                     Defaults to CString.MaxLen.
          *
-         * @return  -1 if the character \p needle is not found.
+         * @return  -1 if the character \p{needle} is not found.
          *          Otherwise the index of its last occurrence relative to the start index.
          ******************************************************************************************/
         public int LastIndexOf( char needle, int startIndex= int.MaxValue )
@@ -2801,7 +2801,7 @@ public class AString
         /** ****************************************************************************************
          * Format and append a signed 32-Bit integer value.
          *
-         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * Parameter \p{numberFormat} defaults to \c null, which denotes this method to use
          * the static singleton found in
          * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational".
          * To generate output better readable for humans, provide
@@ -2849,7 +2849,7 @@ public class AString
         /** ****************************************************************************************
          * Format and append an unsigned 32-Bit integer value.
          *
-         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * Parameter \p{numberFormat} defaults to \c null, which denotes this method to use
          * the static singleton found in
          * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational".
          * To generate output better readable for humans, provide
@@ -2898,7 +2898,7 @@ public class AString
         /** ****************************************************************************************
          * Format and append a signed 64-Bit integer value.
          *
-         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * Parameter \p{numberFormat} defaults to \c null, which denotes this method to use
          * the static singleton found in
          * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational".
          * To generate output better readable for humans, provide
@@ -2946,7 +2946,7 @@ public class AString
         /** ****************************************************************************************
          * Format and append an unsigned 64-Bit integer value.
          *
-         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * Parameter \p{numberFormat} defaults to \c null, which denotes this method to use
          * the static singleton found in
          * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational".
          * To generate output better readable for humans, provide
@@ -2994,7 +2994,7 @@ public class AString
         /** ****************************************************************************************
          * Append a unsigned 64-Bit integer value in binary format.
          *
-         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * Parameter \p{numberFormat} defaults to \c null, which denotes this method to use
          * the static singleton found in
          * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational".
          * To generate output better readable for humans, provide
@@ -3043,7 +3043,7 @@ public class AString
         /** ****************************************************************************************
          * Append a unsigned 64-Bit integer value in hexadecimal format.
          *
-         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * Parameter \p{numberFormat} defaults to \c null, which denotes this method to use
          * the static singleton found in
          * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational".
          * To generate output better readable for humans, provide
@@ -3092,7 +3092,7 @@ public class AString
         /** ****************************************************************************************
          * Append a unsigned 64-Bit integer value in octal format.
          *
-         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * Parameter \p{numberFormat} defaults to \c null, which denotes this method to use
          * the static singleton found in
          * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational".
          * To generate output better readable for humans, provide
@@ -3141,7 +3141,7 @@ public class AString
         /** ****************************************************************************************
          * Formats and appends a double floating point value.
          *
-         * Parameter \p numberFormat defaults to \c null, which denotes this method to use
+         * Parameter \p{numberFormat} defaults to \c null, which denotes this method to use
          * the static singleton found in
          * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational".
          * To generate output better readable for humans, provide
@@ -3282,13 +3282,13 @@ public class AString
          * Parses a long integer value in decimal, binary, hexadecimal or octal format from
          * the string by invoking method
          * \ref cs.aworx.lib.strings.NumberFormat.ParseInt "NumberFormat.ParseInt"
-         * on the given \p numberFormat instance.<br>
-         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         * Parameter \p{numberFormat} defaults to \c null. This denotes static singleton
          * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
-         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
-         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * Optional output parameter \p{newIdx} may be used to detect if parsing was successful.
+         * If not, it receives the value of \p{startIdx}, even if leading whitespaces had been
          * read.
          *
          * For more information on number conversion, see class
@@ -3301,7 +3301,7 @@ public class AString
          * @param numberFormat The format definition. Defaults to \c null.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the number parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          * @return  The parsed value. In addition, the output parameter \b newIdx is set to
          *          point to the first character behind the parsed number.
          ******************************************************************************************/
@@ -3337,7 +3337,7 @@ public class AString
          *                     Optional and defaults to \c 0.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the number parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          * @return  The parsed value. In addition, the output parameter \b newIdx is set to
          *          point to the first character behind the parsed number.
          ******************************************************************************************/
@@ -3402,13 +3402,13 @@ public class AString
          * Reads an unsigned 64-bit integer in standard decimal format at the given position
          * from this %AString. This is done, by invoking
          * \ref cs.aworx.lib.strings.NumberFormat.ParseDec "NumberFormat.ParseDec"
-         * on the given \p numberFormat instance.<br>
-         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         * Parameter \p{numberFormat} defaults to \c null. This denotes static singleton
          * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
-         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
-         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * Optional output parameter \p{newIdx} may be used to detect if parsing was successful.
+         * If not, it receives the value of \p{startIdx}, even if leading whitespaces had been
          * read.
          *
          * Sign literals \c '-' or \c '+' are \b not accepted and parsing will fail.
@@ -3425,7 +3425,7 @@ public class AString
          * @param numberFormat The format definition. Defaults to \c null.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the number parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          * @return  The parsed value. In addition, the output parameter \b newIdx is set to
          *          point to the first character behind the parsed number.
          ******************************************************************************************/
@@ -3461,7 +3461,7 @@ public class AString
          *                     Optional and defaults to \c 0.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the number parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          * @return  The parsed value. In addition, the output parameter \b newIdx is set to
          *          point to the first character behind the parsed number.
          ******************************************************************************************/
@@ -3526,13 +3526,13 @@ public class AString
          * Reads an unsigned 64-bit integer in binary format at the given position
          * from this \b %AString. This is done, by invoking
          * \ref cs.aworx.lib.strings.NumberFormat.ParseBin "NumberFormat.ParseBin"
-         * on the given \p numberFormat instance.<br>
-         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         * Parameter \p{numberFormat} defaults to \c null. This denotes static singleton
          * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
-         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
-         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * Optional output parameter \p{newIdx} may be used to detect if parsing was successful.
+         * If not, it receives the value of \p{startIdx}, even if leading whitespaces had been
          * read.
          *
          * For more information on number conversion, see class
@@ -3544,7 +3544,7 @@ public class AString
          * @param numberFormat The format definition. Defaults to \c null.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the number parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          * @return  The parsed value. In addition, the output parameter \b newIdx is set to
          *          point to the first character behind the parsed number.
          ******************************************************************************************/
@@ -3580,7 +3580,7 @@ public class AString
          *                     Optional and defaults to \c 0.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the number parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          * @return  The parsed value. In addition, the output parameter \b newIdx is set to
          *          point to the first character behind the parsed number.
          ******************************************************************************************/
@@ -3645,13 +3645,13 @@ public class AString
          * Reads an unsigned 64-bit integer in hexadecimal format at the given position
          * from this \b %AString. This is done, by invoking
          * \ref cs.aworx.lib.strings.NumberFormat.ParseHex "NumberFormat.ParseHex"
-         * on the given \p numberFormat instance.<br>
-         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         * Parameter \p{numberFormat} defaults to \c null. This denotes static singleton
          * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
-         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
-         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * Optional output parameter \p{newIdx} may be used to detect if parsing was successful.
+         * If not, it receives the value of \p{startIdx}, even if leading whitespaces had been
          * read.
          *
          * For more information on number conversion, see class
@@ -3663,7 +3663,7 @@ public class AString
          * @param numberFormat The format definition. Defaults to \c null.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the number parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          * @return  The parsed value. In addition, the output parameter \b newIdx is set to
          *          point to the first character behind the parsed number.
          ******************************************************************************************/
@@ -3699,7 +3699,7 @@ public class AString
          *                     Optional and defaults to \c 0.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the number parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          * @return  The parsed value. In addition, the output parameter \b newIdx is set to
          *          point to the first character behind the parsed number.
          ******************************************************************************************/
@@ -3764,13 +3764,13 @@ public class AString
          * Reads an unsigned 64-bit integer in octal format at the given position
          * from this \b %AString. This is done, by invoking
          * \ref cs.aworx.lib.strings.NumberFormat.ParseOct "NumberFormat.ParseOct"
-         * on the given \p numberFormat instance.<br>
-         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         * Parameter \p{numberFormat} defaults to \c null. This denotes static singleton
          * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to not using - and therefore also not parsing - grouping characters.
          *
-         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
-         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * Optional output parameter \p{newIdx} may be used to detect if parsing was successful.
+         * If not, it receives the value of \p{startIdx}, even if leading whitespaces had been
          * read.
          *
          * For more information on number conversion, see class
@@ -3782,7 +3782,7 @@ public class AString
          * @param numberFormat The format definition. Defaults to \c null.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the number parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          * @return  The parsed value. In addition, the output parameter \b newIdx is set to
          *          point to the first character behind the parsed number.
          ******************************************************************************************/
@@ -3818,7 +3818,7 @@ public class AString
          *                     Optional and defaults to \c 0.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the number parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          * @return  The parsed value. In addition, the output parameter \b newIdx is set to
          *          point to the first character behind the parsed number.
          ******************************************************************************************/
@@ -3883,14 +3883,14 @@ public class AString
          * Reads a floating point number at the given position from this \b %AString.
          * This is done, by invoking
          * \ref cs.aworx.lib.strings.NumberFormat.ParseFloat "NumberFormat.ParseFloat"
-         * on the given \p numberFormat instance.<br>
-         * Parameter \p numberFormat defaults to \c null. This denotes static singleton
+         * on the given \p{numberFormat} instance.<br>
+         * Parameter \p{numberFormat} defaults to \c null. This denotes static singleton
          * \ref cs.aworx.lib.strings.NumberFormat.Computational "NumberFormat.Computational"
          * which is configured to 'international' settings (not using the locale) and therefore
          * also not parsing grouping characters.
          *
-         * Optional output parameter \p newIdx may be used to detect if parsing was successful.
-         * If not, it receives the value of \p startIdx, even if leading whitespaces had been
+         * Optional output parameter \p{newIdx} may be used to detect if parsing was successful.
+         * If not, it receives the value of \p{startIdx}, even if leading whitespaces had been
          * read.
          *
          * For more information on parsing options for floating point numbers and number
@@ -3903,7 +3903,7 @@ public class AString
          * @param numberFormat The format definition. Defaults to \c null.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the number parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          * @return  The parsed value. In addition, the output parameter \b newIdx is set to
          *          point to the first character behind the parsed number.
          ******************************************************************************************/
@@ -3939,7 +3939,7 @@ public class AString
          *                     Optional and defaults to \c 0.
          * @param[out] newIdx  Optional output variable that will point to the first
          *                     character in this string after the number parsed.
-         *                     On failure, it will be set to the initial value \p startIdx.
+         *                     On failure, it will be set to the initial value \p{startIdx}.
          * @return  The parsed value. In addition, the output parameter \b newIdx is set to
          *          point to the first character behind the parsed number.
          ******************************************************************************************/

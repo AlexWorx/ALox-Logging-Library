@@ -315,7 +315,7 @@ public class IniFile extends InMemoryPlugin
          *   and just to the users home directory otherwise
          *
          *
-         * If the given file name \p filePathAndName starts with '*', no file is read and field
+         * If the given file name \p{filePathAndName} starts with '*', no file is read and field
          * #autoSave is set to \c false.
          *
          * @param filePathAndName  The name (and path) of the file to read and write.
@@ -330,7 +330,7 @@ public class IniFile extends InMemoryPlugin
 
 
         /** ****************************************************************************************
-         * Overloaded constructor providing default value \c null for parameter \p filePathName.
+         * Overloaded constructor providing default value \c null for parameter \p{filePathName}.
          ******************************************************************************************/
         public IniFile()
         {

@@ -43,7 +43,7 @@ Configuration Variable ALOX_USE_SYSTEM_OUT_PRINT;
 <b>AWorx Configuration System:</b><p>
 Trough the use of ALib class
 <b>Configuration</b>
- ([C++] (@ref #aworx::lib::config::Configuration),
+ ([C++] (@ref aworx::lib::config::Configuration),
   [C#]  (@ref #cs::aworx::lib::config::Configuration),
   [Java](@ref #com::aworx::lib::config::Configuration))
 and its plug-in concept, ALox and ALib itself access configuration variables to
@@ -53,7 +53,7 @@ by setting environment variables, providing command line parameters or by any cu
 While this is a reference appendix chapter, for general information refer to
 - The documentation of namespace
     <b>[com::|cs::]%aworx::lib::config</b>
-        ([C++] (@ref #aworx::lib::config),
+        ([C++] (@ref aworx::lib::config),
         [C#]  (@ref #cs::aworx::lib::config),
         [Java](@ref #com::aworx::lib::config)) and to
 - The ALox user manual chapter \ref alox_man_external_configuration.
@@ -98,7 +98,7 @@ get an overview, refer to [Wikipedia](https://en.wikipedia.org/wiki/Environment_
   C#, Java: not applicable).<br>
 \e Default Value: \c "" (empty string)<br>
 
-This variable is evaluated within [ALIB::init] (@ref #aworx::lib::ALib::init). The behavior is
+This variable is evaluated within [ALIB::init] (@ref aworx::lib::ALib::init). The behavior is
 as follows:
 - if not set, the environment variables <em>LANG</em> and <em>LANGUAGE</em> are evaluated and
   if set, their value is passed to glibc method <em>setlocale()</em>.
@@ -132,12 +132,12 @@ This boolean configuration variable overwrites the value determined in method
 \e Default Value: \c "" (empty string)<br>
 This boolean variable is evaluated within
 <b>%ALIB::Init</b>
- ([C++] (@ref #aworx::lib::ALib::Init),
+ ([C++] (@ref aworx::lib::ALib::Init),
   [C#]  (@ref #cs::aworx::lib::ALIB::Init)).
 
 If set, it overrules the default behavior of detecting an appropriate value for field
 <b>ALIB::WaitForKeyPressOnTermination</b>
- ([C++] (@ref #aworx::lib::ALib::WaitForKeyPressOnTermination),
+ ([C++] (@ref aworx::lib::ALib::WaitForKeyPressOnTermination),
   [C#]  (@ref #cs::aworx::lib::ALIB::WaitForKeyPressOnTermination)).
 */
 
@@ -166,18 +166,18 @@ Setting this variable, this behavior can be overwritten.
 \var  ALOX_CONSOLE_TYPE
 \e Declaration:
 <b>%ALox::CONSOLE_TYPE</b>
- ([C++]      (@ref #aworx::lox::ALox::CONSOLE_TYPE),
+ ([C++] (@ref aworx::lib::lox::ALox::CONSOLE_TYPE),
   [C#]   (@ref #cs::aworx::lox::ALox::CONSOLE_TYPE),
   [Java](@ref #com::aworx::lox::ALox::CONSOLE_TYPE))<br>
 \e Default Value: \c "default"<br>
 
 Influences the type of console logger to be will be created by method
 <b>%Log::CreateConsoleLogger</b>
- ([C++] (@ref #aworx::lox::Lox::CreateConsoleLogger),
+ ([C++] (@ref #aworx::lib::lox::Lox::CreateConsoleLogger),
   [C#]  (@ref #cs::aworx::lox::Lox::CreateConsoleLogger),
   [Java](@ref #com::aworx::lox::Lox::createConsoleLogger)) which is also used by
 <b>%Log::AddDebugLogger</b>
- ([C++] (@ref #aworx::lox::Log::AddDebugLogger),
+ ([C++] (@ref #aworx::lib::lox::Log::AddDebugLogger),
   [C#]  (@ref #cs::aworx::lox::Log::AddDebugLogger),
   [Java](@ref #com::aworx::lox::Log::addDebugLogger)).
 
@@ -185,9 +185,9 @@ Possible values are:
 <center>Value</center>   | <center>Effect</center>
 - - - - - - - - - - - - -| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    Default    | No influence, same as if variable was not set (An OS-specific, colorful logger is chosen).
-   Plain      | Plain text \e Logger of type <b>ConsoleLogger</b> ([C++] (@ref #aworx::lox::loggers::ConsoleLogger), [C#]  (@ref #cs::aworx::lox::loggers::ConsoleLogger), [Java](@ref #com::aworx::lox::loggers::ConsoleLogger)) is created.
-   Ansi       | A \e Logger of type \b AnsiLogger ([C++] (@ref #aworx::lox::loggers::AnsiLogger), [C#]  (@ref #cs::aworx::lox::loggers::AnsiLogger), [Java](@ref #com::aworx::lox::loggers::AnsiLogger)) is created
-   Windows    | In C++, a \e Logger of type [WindowsConsoleLogger] (@ref #aworx::lox::loggers::WindowsConsoleLogger) is created.<br> In C#, a \e Logger of type [ColorConsoleLogger] (@ref #cs::aworx::lox::loggers::ColorConsoleLogger) is created.<br> (It is advisable to use this value when in Windows operating system, while using ANSI for colorful output under Linux/Mono.)<br> In Java, this value is not supported.<br>
+   Plain      | Plain text \e Logger of type <b>ConsoleLogger</b> ([C++] (@ref #aworx::lib::lox::loggers::ConsoleLogger), [C#]  (@ref #cs::aworx::lox::loggers::ConsoleLogger), [Java](@ref #com::aworx::lox::loggers::ConsoleLogger)) is created.
+   Ansi       | A \e Logger of type \b AnsiLogger ([C++] (@ref #aworx::lib::lox::loggers::AnsiLogger), [C#]  (@ref #cs::aworx::lox::loggers::AnsiLogger), [Java](@ref #com::aworx::lox::loggers::AnsiLogger)) is created
+   Windows    | In C++, a \e Logger of type [WindowsConsoleLogger] (@ref #aworx::lib::lox::loggers::WindowsConsoleLogger) is created.<br> In C#, a \e Logger of type [ColorConsoleLogger] (@ref #cs::aworx::lox::loggers::ColorConsoleLogger) is created.<br> (It is advisable to use this value when in Windows operating system, while using ANSI for colorful output under Linux/Mono.)<br> In Java, this value is not supported.<br>
 */
 
 
@@ -195,7 +195,7 @@ Possible values are:
 \var  ALOX_CONSOLE_LIGHT_COLORS
 \e Declaration:
 <b>%ALox::CONSOLE_LIGHT_COLORS</b>
- ([C++]      (@ref #aworx::lox::ALox::CONSOLE_LIGHT_COLORS),
+ ([C++] (@ref aworx::lib::lox::ALox::CONSOLE_LIGHT_COLORS),
   [C#]   (@ref #cs::aworx::lox::ALox::CONSOLE_LIGHT_COLORS),
   [Java](@ref #com::aworx::lox::ALox::CONSOLE_LIGHT_COLORS))<br>
 \e Default Value: \c "" (empty string)<br>
@@ -203,11 +203,11 @@ Possible values are:
 Evaluated by colorful loggers that dispose about light and dark colors to
 adjust their foreground color accordingly. E.g. for instances of class
 <b>%AnsiLogger</b>
- ([C++] (@ref      #aworx::lox::loggers::AnsiLogger),
+ ([C++] (@ref aworx::lib::lox::loggers::AnsiLogger),
   [C#]  (@ref  #cs::aworx::lox::loggers::AnsiLogger),
   [Java](@ref #com::aworx::lox::loggers::AnsiLogger)) field
 <b>%AnsiLogger::UseLightColors</b>
- ([C++] (@ref      #aworx::lox::loggers::AnsiLogger::UseLightColors),
+ ([C++] (@ref aworx::lib::lox::loggers::AnsiLogger::UseLightColors),
   [C#]  (@ref  #cs::aworx::lox::loggers::AnsiLogger::UseLightColors),
   [Java](@ref #com::aworx::lox::loggers::AnsiLogger::useLightColors)) is
 set.
@@ -237,20 +237,20 @@ Value options are:
 \var  ALOX_NO_IDE_LOGGER
 \e Declaration:
 <b>%ALox::NO_IDE_LOGGER</b>
- ([C++]      (@ref #aworx::lox::ALox::NO_IDE_LOGGER),
+ ([C++] (@ref aworx::lib::lox::ALox::NO_IDE_LOGGER),
   [C#]   (@ref #cs::aworx::lox::ALox::NO_IDE_LOGGER),
   Java: not applicable)<br>
 \e Default Value: \c "false"<br>
 
 Boolean variable that is evaluated in method
 <b>Log::AddDebugLogger</b>
- ([C++] (@ref #aworx::lox::Log::AddDebugLogger),
+ ([C++] (@ref #aworx::lib::lox::Log::AddDebugLogger),
   [C#]  (@ref #cs::aworx::lox::Log::AddDebugLogger)).
 If not set, when debugging, an additional \e Logger supporting the log output of the IDE is created.
 Such loggers currently are:
 
 - [C#:  CLRDebuggerLogger] (@ref #cs::aworx::lox::loggers::CLRDebuggerLogger)
-- [C++: VStudioLogger]     (@ref #aworx::lox::loggers::VStudioLogger)
+- [C++: VStudioLogger](@ref aworx::lib::lox::loggers::VStudioLogger)
 
 This variable can be used to suppress this.
 */
@@ -259,14 +259,14 @@ This variable can be used to suppress this.
 \var  ALOX_CODE_PAGE
 \e Declaration:
 <b>%ALox::CODE_PAGE</b>
- ([C++, Windows only]      (@ref #aworx::lox::ALox::CODEPAGE),
+ ([C++, Windows only] (@ref aworx::lib::lox::ALox::CODEPAGE),
   C#, Java: not applicable)<br>
 \e Default Value: \c 65001<br>
 
 Evaluated once in the constructor of class
-[WindowsConsoleLogger] (@ref #aworx::lox::loggers::WindowsConsoleLogger).
+[WindowsConsoleLogger] (@ref #aworx::lib::lox::loggers::WindowsConsoleLogger).
 Overwrites the default value of field
-[WindowsConsoleLogger::CodePage] (@ref #aworx::lox::loggers::WindowsConsoleLogger::CodePage).
+[WindowsConsoleLogger::CodePage] (@ref #aworx::lib::lox::loggers::WindowsConsoleLogger::CodePage).
 For possible values refer to
 [Microsoft documentation] (https://msdn.microsoft.com/EN-US/library/windows/desktop/dd317756%28v=vs.85%29.aspx).
 */
@@ -276,14 +276,14 @@ For possible values refer to
 \var  ALOX_LOGGERNAME_AUTO_SIZES
 \e Declaration:
 <b>%ALox::AUTO_SIZES</b>
- ([C++]      (@ref #aworx::lox::ALox::AUTO_SIZES),
+ ([C++] (@ref aworx::lib::lox::ALox::AUTO_SIZES),
   [C#]   (@ref #cs::aworx::lox::ALox::AUTO_SIZES),
   [Java](@ref #com::aworx::lox::ALox::AUTO_SIZES))<br>
 \e Default Value: none.<br>
 
 This variable is used by \e Loggers of type
 <b>%TextLogger</b>
- ([C++]      (@ref #aworx::lox::core::textlogger::TextLogger),
+ ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger),
   [C#]   (@ref #cs::aworx::lox::core::textlogger::TextLogger),
   [Java](@ref #com::aworx::lox::core::textlogger::TextLogger)).
 It is read when a \b %TextLogger is registered with a \b %Lox and written back when it is
@@ -292,14 +292,14 @@ This mechanism maintains automatically adjusted tabulator positions across diffe
 of a software.
 See field
 <b>%TextLogger.AutoSizes</b>
- ([C++]      (@ref #aworx::lox::core::textlogger::TextLogger.AutoSizes),
+ ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger.AutoSizes),
   [C#]   (@ref #cs::aworx::lox::core::textlogger::TextLogger.AutoSizes),
   [Java](@ref #com::aworx::lox::core::textlogger::TextLogger.autoSizes)) for more information.
 
 Note that the portion <c>'LOGGERNAME'</c> in the variable name is replaced by ALox
 with the value of
 <b>%Logger.GetName</b>
-  ([C++]      (@ref #aworx::lox::core::Logger::GetName),
+  ([C++] (@ref aworx::lib::lox::core::Logger::GetName),
    [C#]   (@ref #cs::aworx::lox::core::Logger::GetName),
    [Java](@ref #com::aworx::lox::core::Logger::getName)). This allows to have different sizes for
 different \e %Loggers.
@@ -315,7 +315,7 @@ is available.
 \var  ALOX_LOGGERNAME_MAX_ELAPSED_TIME
 \e Declaration:
 <b>%ALox::MAX_ELAPSED_TIME</b>
- ([C++]      (@ref #aworx::lox::ALox::MAX_ELAPSED_TIME),
+ ([C++] (@ref aworx::lib::lox::ALox::MAX_ELAPSED_TIME),
   [C#]   (@ref #cs::aworx::lox::ALox::MAX_ELAPSED_TIME),
   [Java](@ref #com::aworx::lox::ALox::MAX_ELAPSED_TIME))<br>
 \e Default Value: \c "0, limit=59"<br>
@@ -324,7 +324,7 @@ Format: <c> ALOX_\<LOGGERNAME\>_MAX_ELAPSED_TIME = maximum [, limit= limitValue]
 
 This variable is used by \e Loggers of type
 <b>%TextLogger</b>
- ([C++]      (@ref #aworx::lox::core::textlogger::TextLogger),
+ ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger),
   [C#]   (@ref #cs::aworx::lox::core::textlogger::TextLogger),
   [Java](@ref #com::aworx::lox::core::textlogger::TextLogger)).
 It is read when a \b %TextLogger is registered with a \b %Lox and written back when it is
@@ -336,7 +336,7 @@ is stored as the new maximum of all sessions.<br>
  The value is used to determine the number of 'digits' displayed in the meta information output
 of utility class
 <b>%MetaInfo</b>
- ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo),
+ ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo),
   [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo),
   [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo)) for format parameter \c "%TC".
 
@@ -349,7 +349,7 @@ when a new session starts.
 Note that the portion <c>'LOGGERNAME'</c> in the variable name is replaced by ALox
 with the value of
 <b>%Logger.GetName</b>
-  ([C++]      (@ref #aworx::lox::core::Logger::GetName),
+  ([C++] (@ref aworx::lib::lox::core::Logger::GetName),
    [C#]   (@ref #cs::aworx::lox::core::Logger::GetName),
    [Java](@ref #com::aworx::lox::core::Logger::getName)). This allows to have different values for
 different \e %Loggers.
@@ -362,39 +362,39 @@ different \e %Loggers.
 \var  ALOX_LOGGERNAME_FORMAT
 \e Declaration:
 <b>%ALox::FORMAT</b>
- ([C++]      (@ref #aworx::lox::ALox::FORMAT),
+ ([C++] (@ref aworx::lib::lox::ALox::FORMAT),
   [C#]   (@ref #cs::aworx::lox::ALox::FORMAT),
   [Java](@ref #com::aworx::lox::ALox::FORMAT))<br>
 \e Default Value: Set to the default values of the class members (fields).<br>
 
 This variable is used by \e Loggers of type
 <b>%TextLogger</b>
- ([C++]      (@ref #aworx::lox::core::textlogger::TextLogger),
+ ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger),
   [C#]   (@ref #cs::aworx::lox::core::textlogger::TextLogger),
   [Java](@ref #com::aworx::lox::core::textlogger::TextLogger)).<br>
 It is read when a \e Logger of that type is added to a \b %Lox and if found, fields
 - <b>%MetaInfo.Format</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.Format),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo.Format),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.Format),
    [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.format))
 - <b>%MetaInfo.VerbosityError</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.VerbosityError),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo.VerbosityError),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.VerbosityError),
    [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.verbosityError))
 - <b>%MetaInfo.VerbosityWarning</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.VerbosityWarning),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo.VerbosityWarning),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.VerbosityWarning),
    [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.verbosityWarning))
 - <b>%MetaInfo.VerbosityInfo</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.VerbosityInfo),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo.VerbosityInfo),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.VerbosityInfo),
    [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.verbosityInfo))
 - <b>%MetaInfo.VerbosityVerbose</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.VerbosityVerbose),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo.VerbosityVerbose),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.VerbosityVerbose),
    [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.verbosityVerbose))
 - <b>%TextLogger.FmtMsgSuffix</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::TextLogger.FmtMsgSuffix),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger.FmtMsgSuffix),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::TextLogger.FmtMsgSuffix),
    [Java](@ref #com::aworx::lox::core::textlogger::TextLogger.fmtMsgSuffix))
 
@@ -409,12 +409,12 @@ need to be enclosed by quotation marks (<c>\"</c>).
 Note that the portion <c>'LOGGERNAME'</c> in the variable name is replaced by ALox as follows:
 - First, value of
     <b>%Logger.GetName</b>
-     ([C++]      (@ref #aworx::lox::core::Logger::GetName),
+     ([C++] (@ref aworx::lib::lox::core::Logger::GetName),
       [C#]   (@ref #cs::aworx::lox::core::Logger::GetName),
       [Java](@ref #com::aworx::lox::core::Logger::getName))  of the \b Logger constructed is used.
 - If no configuration setting is found for that name, the value of
     <b>%Logger::GetTypeName</b>
-     ([C++]      (@ref #aworx::lox::core::Logger::GetTypeName),
+     ([C++] (@ref aworx::lib::lox::core::Logger::GetTypeName),
       [C#]   (@ref #cs::aworx::lox::core::Logger::GetTypeName),
       [Java](@ref #com::aworx::lox::core::Logger::getTypeName)) is used.
 
@@ -422,7 +422,7 @@ This allows to configure either a single \e %Logger or a whole class of \e %Logg
 
 As a sample, configuration variable \b ALOX_ANSI_CONSOLE_LOGGER_FORMAT, affects all loggers of type
 <b>%AnsiConsoleLogger</b>
- ([C++]      (@ref #aworx::lox::loggers::AnsiConsoleLogger),
+ ([C++] (@ref aworx::lib::lox::loggers::AnsiConsoleLogger),
   [C#]   (@ref #cs::aworx::lox::loggers::AnsiConsoleLogger),
   [Java](@ref #com::aworx::lox::loggers::AnsiConsoleLogger)) as long as no specific name
 is set when such \e %Logger is constructed and no separate configuration for that name is set.
@@ -439,7 +439,7 @@ the IDE might be created. Its' name is \c "IDE_LOGGER".
 \var  ALOX_LOGGERNAME_FORMAT_DATE_TIME
 \e Declaration:
 <b>%ALox::FORMAT_DATE_TIME</b>
- ([C++]      (@ref #aworx::lox::ALox::FORMAT_DATE_TIME),
+ ([C++] (@ref aworx::lib::lox::ALox::FORMAT_DATE_TIME),
   [C#]   (@ref #cs::aworx::lox::ALox::FORMAT_DATE_TIME),
   [Java](@ref #com::aworx::lox::ALox::FORMAT_DATE_TIME))<br>
 \e Default Value: Set to the default values of the class members (fields).<br>
@@ -448,15 +448,15 @@ This variable is used and applied in the same way as \ref ALOX_LOGGERNAME_FORMAT
 defines the following fields:
 
 - <b>%MetaInfo.DateFormat</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.DateFormat),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo.DateFormat),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.DateFormat),
    [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.dateFormat))
 - <b>%MetaInfo.TimeOfDayFormat</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.TimeOfDayFormat),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo.TimeOfDayFormat),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.TimeOfDayFormat),
    [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.timeOfDayFormat)) and
 - <b>%MetaInfo.TimeElapsedDays</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.TimeElapsedDays),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo.TimeElapsedDays),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.TimeElapsedDays),
    [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.timeElapsedDays)).
 
@@ -467,7 +467,7 @@ defines the following fields:
 \var ALOX_LOGGERNAME_REPLACEMENTS
 \e Declaration:
 <b>%ALox::LOGGERNAME_REPLACEMENTS</b>
- ([C++]      (@ref #aworx::lox::ALox::REPLACEMENTS),
+ ([C++] (@ref aworx::lib::lox::ALox::REPLACEMENTS),
   [C#]   (@ref #cs::aworx::lox::ALox::REPLACEMENTS),
   [Java](@ref #com::aworx::lox::ALox::REPLACEMENTS))<br>
 
@@ -479,7 +479,7 @@ Note that the portion <c>'LOGGERNAME'</c> in the variable name is replaced as do
 The variable allows to set pairs of search and replace strings for a text logger.
 Pairs found here, are set using method
 <b>%TextLogger::SetReplacement</b>
- ([C++]      (@ref #aworx::lox::core::textlogger::TextLogger::SetReplacement),
+ ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger::SetReplacement),
   [C#]   (@ref #cs::aworx::lox::core::textlogger::TextLogger::SetReplacement),
   [Java](@ref #com::aworx::lox::core::textlogger::TextLogger::setReplacement)).
 
@@ -494,7 +494,7 @@ need to be enclosed by quotation marks (<c>\"</c>).
 \var  ALOX_LOGGERNAME_FORMAT_TIME_DIFF
 \e Declaration:
 <b>%ALox::FORMAT_TIME_DIFF</b>
- ([C++]      (@ref #aworx::lox::ALox::FORMAT_TIME_DIFF),
+ ([C++] (@ref aworx::lib::lox::ALox::FORMAT_TIME_DIFF),
   [C#]   (@ref #cs::aworx::lox::ALox::FORMAT_TIME_DIFF),
   [Java](@ref #com::aworx::lox::ALox::FORMAT_TIME_DIFF))<br>
 \e Default Value: Set to the default values of the class members (fields).<br>
@@ -503,39 +503,39 @@ This variable is used and applied in the same way as \ref ALOX_LOGGERNAME_FORMAT
 defines the following fields:
 
 - <b>%MetaInfo.TimeDiffMinimum</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.TimeDiffMinimum),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo.TimeDiffMinimum),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.TimeDiffMinimum),
    [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.timeDiffMinimum))
 - <b>%MetaInfo.TimeDiffNone</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.TimeDiffNone),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo.TimeDiffNone),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.TimeDiffNone),
    [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.timeDiffNone))
 - <b>%MetaInfo.TimeDiffNanos</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.TimeDiffNanos),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo.TimeDiffNanos),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.TimeDiffNanos),
    [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.timeDiffNanos))
 - <b>%MetaInfo.TimeDiffMicros</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.TimeDiffMicros),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo.TimeDiffMicros),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.TimeDiffMicros),
    [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.timeDiffMicros))
 - <b>%MetaInfo.TimeDiffMillis</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.TimeDiffMillis),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo.TimeDiffMillis),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.TimeDiffMillis),
    [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.timeDiffMillis))
 - <b>%MetaInfo.TimeDiffSecs</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.TimeDiffSecs),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo.TimeDiffSecs),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.TimeDiffSecs),
    [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.timeDiffSecs))
 - <b>%MetaInfo.TimeDiffMins</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.TimeDiffMins),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo.TimeDiffMins),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.TimeDiffMins),
    [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.timeDiffMins))
 - <b>%MetaInfo.TimeDiffHours</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.TimeDiffHours),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo.TimeDiffHours),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.TimeDiffHours),
    [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.timeDiffHours)) and
 - <b>%MetaInfo.TimeDiffDays</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.TimeDiffDays),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo.TimeDiffDays),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.TimeDiffDays),
    [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.timeDiffDays)).
 
@@ -545,7 +545,7 @@ defines the following fields:
 \var  ALOX_LOGGERNAME_FORMAT_MULTILINE
 \e Declaration:
 <b>%ALox::FORMAT_MULTILINE</b>
- ([C++]      (@ref #aworx::lox::ALox::FORMAT_MULTILINE),
+ ([C++] (@ref aworx::lib::lox::ALox::FORMAT_MULTILINE),
   [C#]   (@ref #cs::aworx::lox::ALox::FORMAT_MULTILINE),
   [Java](@ref #com::aworx::lox::ALox::FORMAT_MULTILINE))<br>
 \e Default Value: Set to the default values of the class members (fields).<br>
@@ -554,27 +554,27 @@ This variable is used and applied in the same way as \ref ALOX_LOGGERNAME_FORMAT
 defines the following fields:
 
 - <b>%MultiLineMsgMode</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::TextLogger::MultiLineMsgMode),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger::MultiLineMsgMode),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::TextLogger::MultiLineMsgMode),
    [Java](@ref #com::aworx::lox::core::textlogger::TextLogger::multiLineMsgMode))
 - <b>%FmtMultiLineMsgHeadline</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::TextLogger::FmtMultiLineMsgHeadline),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger::FmtMultiLineMsgHeadline),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::TextLogger::FmtMultiLineMsgHeadline),
    [Java](@ref #com::aworx::lox::core::textlogger::TextLogger::fmtMultiLineMsgHeadline))
 - <b>%FmtMultiLinePrefix</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::TextLogger::FmtMultiLinePrefix),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger::FmtMultiLinePrefix),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::TextLogger::FmtMultiLinePrefix),
    [Java](@ref #com::aworx::lox::core::textlogger::TextLogger::fmtMultiLinePrefix))
 - <b>%FmtMultiLineSuffix</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::TextLogger::FmtMultiLineSuffix),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger::FmtMultiLineSuffix),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::TextLogger::FmtMultiLineSuffix),
    [Java](@ref #com::aworx::lox::core::textlogger::TextLogger::fmtMultiLineSuffix))
 - <b>%MultiLineDelimiter</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::TextLogger::MultiLineDelimiter),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger::MultiLineDelimiter),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::TextLogger::MultiLineDelimiter),
    [Java](@ref #com::aworx::lox::core::textlogger::TextLogger::multiLineDelimiter)) and
 - <b>%MultiLineDelimiter</b>
-  ([C++]      (@ref #aworx::lox::core::textlogger::TextLogger::MultiLineDelimiter),
+  ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger::MultiLineDelimiter),
    [C#]   (@ref #cs::aworx::lox::core::textlogger::TextLogger::MultiLineDelimiter),
    [Java](@ref #com::aworx::lox::core::textlogger::TextLogger::multiLineDelimiter))
 */
@@ -583,7 +583,7 @@ defines the following fields:
 \var  ALOX_LOXNAME_DOMAIN_SUBSTITUTION
 \e Declaration:
 <b>%ALox::DOMAIN_SUBSTITUTION</b>
- ([C++]      (@ref #aworx::lox::ALox::DOMAIN_SUBSTITUTION),
+ ([C++] (@ref aworx::lib::lox::ALox::DOMAIN_SUBSTITUTION),
   [C#]   (@ref #cs::aworx::lox::ALox::DOMAIN_SUBSTITUTION),
   [Java](@ref #com::aworx::lox::ALox::DOMAIN_SUBSTITUTION))<br>
 \e Default Value: none.<br>
@@ -601,7 +601,7 @@ Details are described in \ref alox_man_domain_substitution_config "Substitution 
 \var  ALOX_GLOBAL_SOURCE_PATH_TRIM_RULES
 \e Declaration:
 <b>%ALox::SPTR_GLOBAL</b>
- ([C++]      (@ref #aworx::lox::ALox::SPTR_GLOBAL),
+ ([C++] (@ref aworx::lib::lox::ALox::SPTR_GLOBAL),
   [C#]   (@ref #cs::aworx::lox::ALox::SPTR_GLOBAL),
   Java: not applicable)<br>
 \e Default Value: \c "" (empty string).<br>
@@ -620,7 +620,7 @@ Details are described in \ref alox_man_trim_source_path_set_config "External Con
 \var  ALOX_LOXNAME_SOURCE_PATH_TRIM_RULES
 \e Declaration:
 <b>%ALox::SPTR_LOX</b>
- ([C++]      (@ref #aworx::lox::ALox::SPTR_LOX),
+ ([C++] (@ref aworx::lib::lox::ALox::SPTR_LOX),
   [C#]   (@ref #cs::aworx::lox::ALox::SPTR_LOX),
   Java: not applicable)<br>
 \e Default Value: \c "" (empty string).<br>
@@ -639,7 +639,7 @@ Details are described in \ref alox_man_trim_source_path_set_config "External Con
 \var  ALOX_LOXNAME_LOGGERNAME_VERBOSITY
 \e Declaration:
 <b>%ALox::VERBOSITY</b>
- ([C++]      (@ref #aworx::lox::ALox::VERBOSITY),
+ ([C++] (@ref aworx::lib::lox::ALox::VERBOSITY),
   [C#]   (@ref #cs::aworx::lox::ALox::VERBOSITY),
   [Java](@ref #com::aworx::lox::ALox::VERBOSITY))<br>
 \e Default Value: \c "writeback" (empty string).<br>
@@ -657,7 +657,7 @@ Details are described in \ref alox_man_external_verbosity_configuration "Externa
 \var  ALOX_LOXNAME_PREFIXES
 \e Declaration:
 <b>%ALox::PREFIXES</b>
- ([C++]      (@ref #aworx::lox::ALox::PREFIXES),
+ ([C++] (@ref aworx::lib::lox::ALox::PREFIXES),
   [C#]   (@ref #cs::aworx::lox::ALox::PREFIXES),
   [Java](@ref #com::aworx::lox::ALox::PREFIXES))<br>
 \e Default Value: \c "" (empty string).<br>
@@ -670,20 +670,20 @@ Format: <c> ALOX_\<LOXNAME\>_PREFIXES = [*]domainpath[*] = prefixstring [, inclu
 
 The variable value may contain more than one definition, separated by semicolons \b ';'.
 Each definition contains of the following parameters:
-- \p domainpath<br>
+- \p{domainpath}<br>
   An absolute or relative domain path. When using the optional asterisk characters \b '*',
   a start of a domain path, the end of a domain path or
   an arbitrary substring of a domain path can also be denoted.
   This way, more than one <em>Log Domain</em> might be affected.
-- \p prefixstring<br>
+- \p{prefixstring}<br>
   The <em>Prefix Logable</em> to set. The string is trimmed from whitespaces, unless surrounded
   by quotation marks, \b ". Outer quotation marks are trimmed as well.
-- \p inclusion<br>
+- \p{inclusion}<br>
   Can evaluate to the terms <em>Include</em> or <em>Exclude</em>. Can be arbitrarily abbreviated
   (i.e. \b "E" is enough) and is read in case insensitive way.
-  The meaning is the same as parameter \p otherPLs of method
+  The meaning is the same as parameter \p{otherPLs} of method
   <b>Log.SetPrefix</b>
-     ([C++] (@ref      #aworx::lox::Lox::SetPrefix(const Box&,const String&,lib::lang::Inclusion)),
+     ([C++] (@ref aworx::lib::lox::Lox::SetPrefix(const Box&,const NString&,lib::lang::Inclusion)),
       [C#]  (@ref  #cs::aworx::lox::Lox::SetPrefix(Object,String,Inclusion otherPLs, int,String,String)),
       [Java](@ref #com::aworx::lox::Lox::setPrefix(Object,String,Inclusion otherPLs)))
 */
@@ -693,7 +693,7 @@ Each definition contains of the following parameters:
 \var  ALOX_LOXNAME_DUMP_STATE_ON_EXIT
 \e Declaration:
 <b>%ALox::DUMP_STATE_ON_EXIT</b>
- ([C++]      (@ref #aworx::lox::ALox::DUMP_STATE_ON_EXIT),
+ ([C++] (@ref aworx::lib::lox::ALox::DUMP_STATE_ON_EXIT),
   [C#]   (@ref #cs::aworx::lox::ALox::DUMP_STATE_ON_EXIT),
   [Java](@ref #com::aworx::lox::ALox::DUMP_STATE_ON_EXIT))<br>
 \e Default Value: \c "none, verbosity=info, domain=/ALOX" (empty string).<br>
@@ -715,7 +715,7 @@ the name of the instance of class \b %Lox in question.
 
 If this variable is defined, class Lox will automatically invoke method
 <b>%Lox.State</b>
-  ([C++](@ref      #aworx::lox::Lox::State),
+  ([C++](@ref aworx::lib::lox::Lox::State),
   [C#]  (@ref  #cs::aworx::lox::Lox::State),
   [Java](@ref #com::aworx::lox::Lox::state)) in the moment a first \e Logger is removed. In most
 cases this would be the at the end of the process.
@@ -730,7 +730,7 @@ identifiers are letter case agnostic.
 <b>1. State Information Flags:</b><br>
 The state information flags are language specific. See reference documentation of
 <b>%Lox.State</b>
-  ([C++](@ref      #aworx::lox::Lox::State),
+  ([C++](@ref aworx::lib::lox::Lox::State),
   [C#]  (@ref  #cs::aworx::lox::Lox::State),
   [Java](@ref #com::aworx::lox::Lox::state)) for more information. The identifiers expected
 in this variables' arguments are:
@@ -759,7 +759,7 @@ in this variables' arguments are:
 <b>2. Attributes:</b><br>
 Two attributes are affecting the invocation of
 <b>%Lox.State</b>
-  ([C++](@ref      #aworx::lox::Lox::State),
+  ([C++](@ref aworx::lib::lox::Lox::State),
   [C#]  (@ref  #cs::aworx::lox::Lox::State),
   [Java](@ref #com::aworx::lox::Lox::state)) can be provided as arguments:
 
@@ -778,13 +778,13 @@ As a sample, take the following external variable:
 When the process terminates (precisely the first \e Logger is removed from the standard
 debug \b %Lox called \b "LOG"), then method
 <b>%Lox.State</b>
-  ([C++](@ref      #aworx::lox::Lox::State),
+  ([C++](@ref aworx::lib::lox::Lox::State),
   [C#]  (@ref  #cs::aworx::lox::Lox::State),
   [Java](@ref #com::aworx::lox::Lox::state))
 is invoked, with
-- absolute domain \b '/DEBUG' provided for parameter \p domain,
-- value \c %Verbosity.Info for parameter \p verbosity and
-- parameter \p flags set to <c>( LogData & ScopeDomains )</c>
+- absolute domain \b '/DEBUG' provided for parameter \p{domain},
+- value \c %Verbosity.Info for parameter \p{verbosity} and
+- parameter \p{flags} set to <c>( LogData & ScopeDomains )</c>
 
 
 */

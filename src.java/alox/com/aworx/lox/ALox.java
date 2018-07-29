@@ -57,9 +57,9 @@ public abstract class ALox
          * AString.
          *
          * @param verbosity The enum value to retrieve a string representation for.
-         * @param priority  The priority of the \p verbosity setting.
+         * @param priority  The priority of the \p{verbosity} setting.
          * @param target    The target to write into.
-         * @returns \p target to allow concatenated calls.
+         * @returns \p{target} to allow concatenated calls.
          ******************************************************************************************/
         public static AString toString( Verbosity verbosity, int priority, AString target )
         {
@@ -76,7 +76,7 @@ public abstract class ALox
         }
 
         /** ****************************************************************************************
-         * Interprets given \p src as a verbosity.
+         * Interprets given \p{src} as a verbosity.
          * A case insensitive comparison of only the first (!) character of the start of the string
          * is performed (against 'v', 'i', 'w' and 'e').
          * If no match is found, \e %Verbosity.Off is returned.
@@ -108,14 +108,14 @@ public abstract class ALox
          * Besides this version number, field #revision indicates if this is a revised version
          * of a former release.
          */
-        public static final int         version                                               =1712;
+        public static final int         version                                               =1805;
 
         /**
          * The revision number of this release. Each \b %ALox #version is initially released as
          * revision \e 0. Pure maintenance releases that do not change the interface of \b %ALox
          * are holding the same #version but an increased number in this field.
          */
-        public static final int         revision                                                 =1;
+        public static final int         revision                                                 =0;
 
         /**
          * The configuration used by \alox. This is received or created with overloaded
@@ -339,7 +339,7 @@ public abstract class ALox
 
         /**
          * This is the path for logging to the internal domain. By manipulating this
-         *  <em>Log Domains' Verbosity</em>, the verbosity of \b %ALox itself can be controlled.
+         *  <em>%Log %Domain's %Verbosity</em>, the verbosity of \b %ALox itself can be controlled.
          * For example, with \e Verbosity.INFO, the 'on the fly' creation of <em>Log Domains</em>
          * are logged, which can be helpful to determine the <em>Log Domains</em> that are
          * created by libraries and larger projects.
@@ -457,7 +457,7 @@ public abstract class ALox
         /** ****************************************************************************************
          * Returns the \b Lox with the given name.
          * A lox is only found if it was created and registered with \b %ALox using #register.
-         * If not found, and parameter \p create is \c true (the default), a new \b Lox is created,
+         * If not found, and parameter \p{create} is \c true (the default), a new \b Lox is created,
          * registered and returned.
          *
          * @param name      The name of the \b %Lox to search and optionally to create.
@@ -489,7 +489,7 @@ public abstract class ALox
 
         /** ****************************************************************************************
          * Overloaded version of #get providing value \c Create.ifNotExistent as default for
-         * parameter \p create.
+         * parameter \p{create}.
          *
          * @param name      The name of the \b %Lox to search and optionally to create.
          * @return The \b Lox found, \c null in case of failure.
@@ -516,7 +516,7 @@ public abstract class ALox
          * Therefore, to keep a \b Lox private, an optional parameter is available.
          *
          * @param lox       The \b %Lox to register.
-         * @param operation If \b %ContainerOp.REMOVE, the given \p Lox is deregistered.
+         * @param operation If \b %ContainerOp.REMOVE, the given \p{Lox} is deregistered.
          *                  Defaults to \b %ContainerOp.INSERT.
          ******************************************************************************************/
         public static

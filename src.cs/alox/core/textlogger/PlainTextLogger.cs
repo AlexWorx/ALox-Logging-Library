@@ -72,8 +72,8 @@ public abstract class PlainTextLogger : TextLogger
      * the given AString to the destination.
      *
      * @param buffer   The string to write a portion of.
-     * @param start    The start of the portion in \p buffer to write out.
-     * @param length   The length of the portion in \p buffer to write out.
+     * @param start    The start of the portion in \p{buffer} to write out.
+     * @param length   The length of the portion in \p{buffer} to write out.
      * @return If \c false is returned, the log line is aborted without an invocation of
      *         \ref notifyLogOp "notifyLogOp(Phase.End)".
      **********************************************************************************************/

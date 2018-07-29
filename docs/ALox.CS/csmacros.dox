@@ -18,17 +18,17 @@ introduced by ALox for C#:
 
 
 - **ALIB_IDE_VSTUDIO**<br>
-  Enables code that supports compiling/running \b %ALib in development environment
+  Enables code that supports compiling/running \alib in development environment
   [Microsoft Visual Studio](http://visualstudio.com).
   <p>
 
 - **ALIB_IDE_RIDER**<br>
-  Enables code that supports compiling/running \b %ALib in development environment
+  Enables code that supports compiling/running \alib in development environment
   [JetBrains Rider](https://www.jetbrains.com/rider/).
   <p>
 
 - **ALIB_IDE_MONODEVELOP**<br>
-  Enables code that supports compiling/running \b %ALib in development environment
+  Enables code that supports compiling/running \alib in development environment
   [MonoDevelop](http://www.monodevelop.com).
   <p>
 

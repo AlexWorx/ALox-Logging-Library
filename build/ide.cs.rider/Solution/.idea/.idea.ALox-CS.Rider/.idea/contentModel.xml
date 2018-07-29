@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="$USER_HOME$/.Rider2018.1/system/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_ALox-CS.Rider.1734369862.00" t="ExcludeRecursive" />
+    <e p="/app" t="IncludeRecursive" />
+    <e p="/fe62a68c" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.Rider2018.2/system/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.Rider2018.2/system/resharper-host/local/Transient/ReSharperHost/v182/SolutionCaches/_ALox-CS.Rider.1734369862.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$/../../../LICENSE.txt" t="Include" />
     <e p="$PROJECT_DIR$/../../../README.md" t="Include" />
     <e p="$PROJECT_DIR$/../../_builds_/ide.cs.rider/ALox-CS-.Net45-DLL/bin/Debug" t="ExcludeRecursive" />

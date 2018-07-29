@@ -69,11 +69,11 @@ public abstract class Logger extends SmartLock
 
         /** ****************************************************************************************
          * This is the central method that derived logger classes have to implement to log a
-         * message. When it is invoked the <em>Log Domains' Verbosity</em> was already checked against
-         * parameter \p verbosity. The only action to take is to perform the log itself.<br>
-         * Parameter \p logables contains at least one object, the one provided with the log
+         * message. When it is invoked the <em>%Log %Domain's %Verbosity</em> was already checked against
+         * parameter \p{verbosity}. The only action to take is to perform the log itself.<br>
+         * Parameter \p{logables} contains at least one object, the one provided with the log
          * statement. Other objects that might be included in the list, are <em>Prefix Objects</em>
-         * corresponding to the \p scope.
+         * corresponding to the \p{scope}.
          *
          * @param domain    The <em>Log Domain</em>.
          * @param verbosity The verbosity.

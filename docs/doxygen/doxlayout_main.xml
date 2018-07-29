@@ -5,6 +5,7 @@
         <tab type="mainpage"                visible="yes" title="Overview"             intro="" />
         <tab type="user"                    visible="yes" title="Manual"               url="@ref manual"/>
         <tab type="user"                    visible="yes" title="Tools"                url="@ref tools" />
+        <tab type="user"                    visible="yes" title="Changlog"             url="@ref changelog"   />
         <tab type="user"                    visible="yes" title="FAQ"                  url="@ref faq"   />
 
         <!--  disabled features  -->

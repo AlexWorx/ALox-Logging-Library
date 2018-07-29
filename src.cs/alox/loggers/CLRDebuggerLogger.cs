@@ -86,8 +86,8 @@ public class CLRDebuggerLogger : PlainTextLogger
      * Write the given region of the given AString to the destination buffer.
      *
      * @param buffer   The string to write a portion of.
-     * @param start    The start of the portion in \p buffer to write out.
-     * @param length   The length of the portion in \p buffer to write out.
+     * @param start    The start of the portion in \p{buffer} to write out.
+     * @param length   The length of the portion in \p{buffer} to write out.
      * @return Always returns true.
      **********************************************************************************************/
     override

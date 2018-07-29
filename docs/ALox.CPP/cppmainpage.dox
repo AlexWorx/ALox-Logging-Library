@@ -13,77 +13,41 @@
 # Welcome to ALox for C++! #
 
 This part of the ALox Logging library documentation is specific to its C++ Implementation.<br>
-\note ALox for C++ uses (and requires) an C++ 11 compiler. On platforms that do not support C++ 11
-ALox will not compile.
+ALox for C++ uses (and requires) <b>C++ 11</b>.
 
-The following information is found in the C++ sub pages:
+\attention
+  As of release version 1805 (May 2018), the C++ sources of \alox have been moved to an own, dedicated
+  repository. The rationale for this was, that the relationship of \alib and \alox has been reversed:
+  In the C++ world, \alox is now one of several modules of the general purpose library \alib, instead
+  of building on it.
 
 
 ## Documentation ##
+
+With the transition of the C++ source code into a dedicated project and repository, the documentation
+of \alox is consequently located in two different places:
+
+<b>Documentation located at the ALox website (this):</b>
+
 - Walk yourself through the [ALox for C++ Tutorial ](alox_cpp_tutorial.html). This is allows you a fast overview and intro
   if you are new to ALox.
 
 - Consult the general (language agnostic) [ALox User Manual](../manual.html) for in-depth information
   on various topics.
 
-- In addition, a complete [C++ Reference Documentation](annotated.html) is available...
+- Information on configuring \alox for different C++ IDEs is provided with \ref alox_cpp_setup.
+
+- \alox uses some essential <em>preprocessor macros</em> that form the 'highest' level API into \alox.
+  Such information is provided with: \ref alox_cpp_prepro  "ALox Macros"
+
+
+<b>Documentation located at the [ALib Class Library Website](http://alexworx.github.io/ALib-Class-Library):</b>
+
+- \ref alib_man_setup
+- \ref alib_changelog
+- [C++ Reference Documentation](https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1lox.html) of \alox classes
   created with marvelous [Doxygen](http://www.stack.nl/~dimitri/doxygen/)!
-
-<p>
-
-
-## IDE / Build System Setup ##
-The C++ Version got tested on the following platform combinations:
-- GNU/Linux (Arch Linux)
-    - GNU Compiler Collection 7.3.0
-    - clang compiler 5.0.1
-    - CMake 3.10.2
-    - CLion 2018.1 EAP
-    - QT Creator V. 4.4.0
-    - valgrind V. 3.13.0
-
-- Windows 10
-    - Visual Studio 2017 Update 1 (Version 15.3.3)
-
-- macOS Sierra (V.10.12)
-    - CLion 2016.3
-
-Check out \ref alox_cpp_setup for details of how to compile and use ALox in your C++ environment.
-
-## ALox Logging Macros  ##
-After working yourself through the tutorial and after having set up your projects to use
-ALox, it is recommended to read some information about <em>preprocessor macros</em> that
-form the 'highest' level API into ALox.
-Such information is provided here: \ref alox_cpp_prepro_macros  "C++ Macros"
-
-## ALib ##
-
-\b %ALox builds on \b %ALib which is a general utility library available in C++, C# and Java language
-variants.
-Next to the provision of basic system and language related functionality, the motivation for
-creating \b %ALib (in contrast to using some existing 3rd party library) is to have  a similar interface
-and a certain level of source code compatibility between the different language versions of \b %ALox.
-
-\b %ALib is bundled with \b ALox and currently not released as a separate project. An exclamation
-to this bundled release are the so called <b>%ALib Modules</b>. They are provided for C++ only and each
-provide a subset of \b %ALib. Fore more information, refer to the \ref aworx::lib "ALib Documentation".
-
-## Organization of code ##
-
-\b %ALib classes are found in namespace
-- #aworx::lib
-
-and sub namespaces.
-
-ALox itself consist of three namespaces.
-The main classes that the user of ALox interfaces with reside in:
-- #aworx::lox
-
-Some specific loggers are found in:
-- #aworx::lox::loggers
-
-Internal classes are located in
-- #aworx::lox::core
+- \ref alib_man_modules "Documentation of other ALib modules"
 
 */
 

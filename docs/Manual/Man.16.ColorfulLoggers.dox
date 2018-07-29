@@ -10,34 +10,34 @@
 \~Comment ####################################################################################### \~
 # 1. Technical Prerequisites #
 
-To explain the use of colorful log output in \b %ALox, it is best to elaborate roughly on some
-details of the \b %ALox software architecture.
+To explain the use of colorful log output in \alox, it is best to elaborate roughly on some
+details of the \alox software architecture.
 
-While \b %ALox in principle is designed to process \e Logables of arbitrary type, the most
+While \alox in principle is designed to process \e Logables of arbitrary type, the most
 widely spread use case is logging textual information. For this reason,
 abstract class
 <b>%Logger</b>
-([C++] (@ref      #aworx::lox::core::Logger),
+([C++] (@ref aworx::lib::lox::core::Logger),
  [C#]  (@ref  #cs::aworx::lox::core::Logger),
  [Java](@ref #com::aworx::lox::core::Logger)) is specialized by class
 <b>%TextLogger</b>
-([C++] (@ref      #aworx::lox::core::textlogger::TextLogger),
+([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger),
  [C#]  (@ref  #cs::aworx::lox::core::textlogger::TextLogger),
  [Java](@ref #com::aworx::lox::core::textlogger::TextLogger)) (still abstract).
 Besides providing basic features useful for textual log output, for example generating
 human readable meta information of <em>Log Statements</em>, class \b %TextLogger introduces a set of 'escape sequences'.
 These sequences are gathered in class
 <b>%ESC</b>
-([C++] (@ref      #aworx::lox::ESC),
+([C++] (@ref aworx::lib::lox::ESC),
  [C#]  (@ref  #cs::aworx::lox::ESC),
  [Java](@ref #com::aworx::lox::ESC)) which is (for convenience) located in namespace
 <b>%[com.|cs.]%aworx.lox</b>
-([C++] (@ref      #aworx::lox::ESC),
+([C++] (@ref aworx::lib::lox::ESC),
  [C#]  (@ref  #cs::aworx::lox::ESC)). The ESC-sequences are quite similar to those known from
 ANSI terminals. They provide settings of foreground and background colors and font styles.
 The ESC-sequences may occur in the (string type) \e Logables and as well in field
 <b>%MetaInfo.Format</b>
-([C++] (@ref      #aworx::lox::core::textlogger::MetaInfo.Format),
+([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo.Format),
  [C#]  (@ref  #cs::aworx::lox::core::textlogger::MetaInfo.Format),
  [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.format)).
 
@@ -49,7 +49,7 @@ Now, if a output 'drain' does not support the modification of colors (e.g. when 
 a text file), these codes need to be removed before the textual log message is written.
 This task is done by class
 <b>%PlainTextLogger</b>
-([C++] (@ref      #aworx::lox::core::textlogger::PlainTextLogger),
+([C++] (@ref aworx::lib::lox::core::textlogger::PlainTextLogger),
  [C#]  (@ref  #cs::aworx::lox::core::textlogger::PlainTextLogger),
  [Java](@ref #com::aworx::lox::core::textlogger::PlainTextLogger)) which in turn specializes \b %TextLogger
 and which also is still abstract. The following diagram visualizes what was said so far:
@@ -98,12 +98,12 @@ digraph TextLoggers
 The takeaways from this short technical spotlight are now fairly obvious:
 
 - The \e Logables of <em>Log Statements</em> as well as <em>Prefix Logables</em> may contain ESC-sequences.
-- A user of \b %ALox does not need to care about whether \e %Loggers are used that support colorized output
+- A user of \alox does not need to care about whether \e %Loggers are used that support colorized output
   (or similar ESC-sequences) or not. They are ignored if not supported.
-- With the introduction of own, <b>%ALox</b>-specific escape codes, software that uses \b %ALox becomes
-  independent from the underlying, platform-specific sequences. For example, \b %ALox is not relying
+- With the introduction of own, <b>%ALox</b>-specific escape codes, software that uses \alox becomes
+  independent from the underlying, platform-specific sequences. For example, \alox is not relying
   on ANSI color codes, which are not supported by colorful Windows consoles. Instead, on each platform,
-  dedicated \e Loggers will perform the translation of \b %ALox codes to platform-specific ones.
+  dedicated \e Loggers will perform the translation of \alox codes to platform-specific ones.
 - A developer of a custom \e %Logger that should not be enabled to support ESC-sequences, simply can
   derive from class \b %PlainTextLogger which finds and removes ESC-sequences before the
   messages are passed to the custom type.

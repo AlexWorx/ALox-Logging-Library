@@ -327,16 +327,16 @@ public abstract class Formatter
 
         /** ****************************************************************************************
          * The abstract format method that needs to be implemented by descendants.
-         * Note that parameter \p startIdx and the demanded return value together comprise the
+         * Note that parameter \p{startIdx} and the demanded return value together comprise the
          * possibility to use more than one formatter in parallel and to perform multiple format
          * operations on suitable argument lists. This demands the implementation of this method to
-         * \b not copy the format string to the \p target in the case that no 'escape sequence'
+         * \b not copy the format string to the \p{target} in the case that no 'escape sequence'
          * was found. For further information, see the general documentation of this class.
          *
          * @param target        The %AString that takes the result.
          * @param formatString  The format string.
          * @param args          The objects to apply.
-         * @param startArgument The first object in \p args to convert.
+         * @param startArgument The first object in \p{args} to convert.
          *
          * @return The number of args consumed.
          ******************************************************************************************/

@@ -245,7 +245,7 @@ public class Domain
     /** ****************************************************************************************
      * Returns logger of given number.
      * @param no  The number of the \e Logger to return.
-     * @return The \e Logger found with number \p no.
+     * @return The \e Logger found with number \p{no}.
      ******************************************************************************************/
     public Logger  getLogger( int no )
     {
@@ -337,7 +337,7 @@ public class Domain
      * Determines if the domain is active in respect to the given Verbosity.
      *
      * @param loggerNo  The number of the \e Logger whose \e Verbosity is to be evaluated against
-     *                  \p statement.
+     *                  \p{statement}.
      * @param statement The \e Verbosity to check.
      * @return  \c true if domain is active (log should be performed)
      **********************************************************************************************/

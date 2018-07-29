@@ -167,8 +167,8 @@ public class TextFileLogger : PlainTextLogger
      * Write the given region of the given AString to the destination buffer.
      *
      * @param buffer   The string to write a portion of.
-     * @param start    The start of the portion in \p buffer to write out.
-     * @param length   The length of the portion in \p buffer to write out.
+     * @param start    The start of the portion in \p{buffer} to write out.
+     * @param length   The length of the portion in \p{buffer} to write out.
      * @return The IO status (\c true if OK).
      **********************************************************************************************/
     protected override bool logSubstring( AString buffer, int start, int length )

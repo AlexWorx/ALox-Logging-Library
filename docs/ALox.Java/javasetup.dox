@@ -43,7 +43,7 @@ We call this folder the *ALOX_LIB_PATH*. Within the folder you should find at le
 \~Comment ####################################################################################### \~
 ## 1.2. Eclipse ## {#alox_java_setup_eclipse}
 
-Predefined projects for Eclipse IDE (compatible with Luna, Mars, Neon, Oxygen) are found in
+Predefined projects for Eclipse IDE (compatible with Luna, Mars, Neon, Oxygen, Photon) are found in
 
         ALOXLIBPATH/build/ide.java.eclipse
 
@@ -418,7 +418,7 @@ From now on you can just ignore this advice!
 \~Comment ####################################################################################### \~
 # 3. Tweaking The Log Output #  {#alox_java_setup_logformat}
 
-In addition to setting up the project, the format of the log output of \b %ALox should be
+In addition to setting up the project, the format of the log output of \alox should be
 recognizable by your IDE: the source code file name and line number that generated
 the output should become "clickable" in the log: It should link back to the source in the editor.
 

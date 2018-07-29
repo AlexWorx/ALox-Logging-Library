@@ -43,7 +43,6 @@
       <sourceFolder url="file://$MODULE_DIR$/../../_builds_/android_studio/ide.java.android-studio/ALoxAndroidTest/generated/res/resValues/androidTest/debug" type="java-test-resource" />
       <excludeFolder url="file://$MODULE_DIR$/../../_builds_/android_studio/ide.java.android-studio/ALoxAndroidTest/intermediates/assets" />
       <excludeFolder url="file://$MODULE_DIR$/../../_builds_/android_studio/ide.java.android-studio/ALoxAndroidTest/intermediates/blame" />
-      <excludeFolder url="file://$MODULE_DIR$/../../_builds_/android_studio/ide.java.android-studio/ALoxAndroidTest/intermediates/builds" />
       <excludeFolder url="file://$MODULE_DIR$/../../_builds_/android_studio/ide.java.android-studio/ALoxAndroidTest/intermediates/classes" />
       <excludeFolder url="file://$MODULE_DIR$/../../_builds_/android_studio/ide.java.android-studio/ALoxAndroidTest/intermediates/incremental" />
       <excludeFolder url="file://$MODULE_DIR$/../../_builds_/android_studio/ide.java.android-studio/ALoxAndroidTest/intermediates/incremental-classes" />
@@ -102,7 +101,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/shaders" isTestSource="true" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 22 Platform" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android API 27 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="ALox" exported="" />
   </component>

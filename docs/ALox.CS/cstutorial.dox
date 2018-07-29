@@ -410,7 +410,7 @@ more about why the hierarchical organization of <em>Log Domains</em> is extremel
 \~Comment ####################################################################################### \~
 # 9. Scope Domains  #     {#tutcs_scope_domains}
 
-As we saw, optional parameter \p domain of <em>Log Statements</em> allows us to group the log output into
+As we saw, optional parameter \p{domain} of <em>Log Statements</em> allows us to group the log output into
 different areas of interest and control the \e Verbosity per group. This is nice, but
 - We have to type more
 - We have to recall the 'actual' <em>Log Domains</em>' name when we insert a <em>Log Statement</em>
@@ -461,7 +461,7 @@ Without changing the code in class Zipper, invoking its methods then leads to th
 
 \verbinclude ALox.CS/generated/Tut_ScopeDomains_Zipper_Path.txt
 
-What happens when <em>Scope Domains</em> are set and we still use optional parameter \p domain with a <em>Log Statement</em>? Let
+What happens when <em>Scope Domains</em> are set and we still use optional parameter \p{domain} with a <em>Log Statement</em>? Let
 us just try out:
 
 \snippet UT_dox_tutorial.cs        Tut_ScopeDomains_ParamDom
@@ -469,11 +469,11 @@ us just try out:
 
 \verbinclude ALox.CS/generated/Tut_ScopeDomains_ParamDom.txt
 
-As you see, the path provided with parameter \p domain gets appended to the path of <em>Scope Domains</em> evaluated.
+As you see, the path provided with parameter \p{domain} gets appended to the path of <em>Scope Domains</em> evaluated.
 You can consider this parameter being a 'local' \e Scope, or an <b>inner</b> scope of \e %Scope.Method!
 
 Finally, imagine you want to 'overwrite' current applicable <em>Scope Domains</em> and direct a certain <em>Log Statement</em>
-to a different <em>Log Domain</em>. All you need to do is to use an absolute domain path with parameter \p domain:
+to a different <em>Log Domain</em>. All you need to do is to use an absolute domain path with parameter \p{domain}:
 
 \snippet UT_dox_tutorial.cs        Tut_ScopeDomains_ParamDom_2
 
@@ -495,7 +495,7 @@ in the [ALox User Manual](../manual.html). Among other things, you will find:
 \~Comment ####################################################################################### \~
 # 10. Formatting #   {#tutcs_formatting}
 While talking about rather complicated things like <em>Log Domains</em> and \e Scopes, we must not
-forget to talk about the log output itself. \b %ALox is designed to be able to pass any type of
+forget to talk about the log output itself. \alox is designed to be able to pass any type of
 data to one or more \e Loggers. In the default case, a textual output of these \e "Logables" is wanted.
 We have seen in previous samples already, that if two objects are passed, their textual representation
 is just concatenated:
@@ -504,7 +504,7 @@ is just concatenated:
 \verbinclude ALox.CS/generated/Tut_Format_1.txt
 
 But in fact, this concatenation is just the "fallback" strategy of a quite powerful formatting
-system coming with \b %ALox. In short, \b %ALox here relies on underlying library \b %ALib, which
+system coming with \alox. In short, \alox here relies on underlying library \alib, which
 provides abstract class \ref cs::aworx::lib::strings::format::Formatter "Formatter"
 allowing to format a set of arguments in accordance with a given format string that contains placeholder symbols.
 
@@ -512,7 +512,7 @@ Now there are two tricks implemented: First, if no format string is recognized, 
 concatenation is performed. This is what we already saw. But secondly, if one formatter does not
 recognize a format string, a next formatter can be asked.
 
-Two formatters are provided by \b %ALib and \b %ALox (by default) installs both in parallel:
+Two formatters are provided by \alib and \alox (by default) installs both in parallel:
 1. \ref cs::aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle"<br>
    Implements an extended version of
    [Python String Fromat Syntax](https://docs.python.org/3.5/library/string.html#format-string-syntax),
@@ -599,7 +599,7 @@ As with using *Assert()* the evaluation of the expression is definitely pruned f
 A similar method to \b %Lox.Assert this is
 [Lox.If]       (@ref #cs::aworx::lox::Lox::If). The differences to \b Lox.Assert are:
 - The given condition is interpreted the other way round: if \c true, the <em>Log Statement</em> is executed.
-- The \e Verbosity of the <em>Log Statement</em> is not fixed but can (has to) be specified with parameter \p verbosity.
+- The \e Verbosity of the <em>Log Statement</em> is not fixed but can (has to) be specified with parameter \p{verbosity}.
 
 Hence, the very same effect as given in the previous sample can be achieved with:
 

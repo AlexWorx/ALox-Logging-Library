@@ -42,7 +42,7 @@ Furthermore, there are other features in ALox that use \e Scopes. Those are elab
 
 ALox \e Scopes are enumerated in enum-class
 <b>%Scope</b>
-([C++] (@ref      #aworx::lox::Scope),
+([C++] (@ref aworx::lib::lox::Scope),
  [C#]  (@ref  #cs::aworx::lox::Scope),
  [Java](@ref #com::aworx::lox::Scope)). The \e Scopes found here are separated in two sets:
 
@@ -111,10 +111,10 @@ The good news is: This is absolutely OK! The rational for claiming this is:
   information.
 - In respect to method
   <b>%Lox.Once</b>
-    ([C++] (@ref      #aworx::lox::Lox::Once),
+    ([C++] (@ref aworx::lib::lox::Lox::Once),
      [C#]  (@ref  #cs::aworx::lox::Lox::Once),
      [Java](@ref #com::aworx::lox::Lox::once)):<br>
-  For release logging, the optional parameter \p group certainly does the job. It should be used
+  For release logging, the optional parameter \p{group} certainly does the job. It should be used
   because, this makes release logging statements to be more explicit and readable.
 - In respect to <em>Prefix Logables</em>:<br>
   The most important use case for them are to make the output better readable, e.g. by adding
@@ -165,12 +165,12 @@ The scope information collected by ALox for each <em>Log Statement</em> incorpor
 'package' name of the class and method that is executing it.
 Therefore, using method
 <b>%Lox.SetDomain</b>
-([C++] (@ref      #aworx::lox::Lox::SetDomain(const String&, Scope)),
+([C++] (@ref aworx::lib::lox::Lox::SetDomain(const NString&, Scope)),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
  [Java](@ref #com::aworx::lox::Lox::setDomain)) with \e Scope PACKAGE
 in Java instructs ALox to use the given <em>Scope Domain</em> for all <em>Log Statements</em> residing in any
 class of the package.
-Now, method <b>%Lox.SetDomain</b> optionally offers a parameter \p packageLevel which defaults
+Now, method <b>%Lox.SetDomain</b> optionally offers a parameter \p{packageLevel} which defaults
 to \c 0. This parameter is ignored with other \e Scopes. For \e %Scope.PACKAGE, however it
 allows to refer to an 'outer package'. If this parameter is set to \c 1, ALox searches the last '.'
 in the package name and cuts this and the rest of the name off. This way, \e %Scope.PACKAGE can
@@ -236,7 +236,7 @@ path.
 
 \note
   Because ALox is designed to tolerate errors as much as possible, the use of values for
-  parameter \p packageLevel (in Java, respectively in C++/C# the use of adding interger values to enum element \b %Scope::Path)
+  parameter \p{packageLevel} (in Java, respectively in C++/C# the use of adding interger values to enum element \b %Scope::Path)
   that are higher than the number of sub-packages (respectively directories) that can be cut, does *not* result in an error.
   Instead, an empty package/path name is registered and consequently, a registration
   with, lets say level \c 42 would simply be overwritten by a subsequent registration with level \c 43
@@ -298,7 +298,7 @@ language versions compatible (and also in favor to not overcomplicate things!), 
 
 But there is an obvious way to reach the goal of setting  sub-domains for <em>Log Statements</em> within a
 block of code: Simply equip each <em>Log Statement</em> of an anonymous source scope with a relative path
-using parameter \p domain. Such relative domain paths provided with
+using parameter \p{domain}. Such relative domain paths provided with
 a <em>Log Statement</em> are placed by ALox within the evaluated, resulting domain path, as if they
 resulted from a <em>Scope Domain</em> setting of an inner \e Scope of \e %Scope.Method.
 
@@ -360,7 +360,7 @@ the most central (important) class of such package.
 
 A snapshot of all current settings can be logged using
 <b>%Lox.State</b>
-([C++] (@ref      #aworx::lox::Lox::State),
+([C++] (@ref aworx::lib::lox::Lox::State),
  [C#]  (@ref  #cs::aworx::lox::Lox::State),
  [Java](@ref #com::aworx::lox::Lox::state)) to investigate which settings have been performed.
 Alternatively, if the snapshot is not enough to understand what is set, overwritten and used where,
@@ -375,11 +375,11 @@ See \ref alox_man_internal_domains for more information about how to enable inte
 This section adds two new \e Scope 'levels', named:
 
 - <b>%Scope.ThreadOuter</b>
-  ([C++] (@ref      #aworx::lox::Scope.ThreadOuter),
+  ([C++] (@ref aworx::lib::lox::Scope.ThreadOuter),
    [C#]  (@ref  #cs::aworx::lox::Scope.ThreadOuter),
    [Java](@ref #com::aworx::lox::Scope.THREAD_OUTER)) and
 - <b>%Scope.ThreadInner</b>
-  ([C++] (@ref      #aworx::lox::Scope.ThreadInner),
+  ([C++] (@ref aworx::lib::lox::Scope.ThreadInner),
    [C#]  (@ref  #cs::aworx::lox::Scope.ThreadInner),
    [Java](@ref #com::aworx::lox::Scope.THREAD_INNER))
 
@@ -395,11 +395,11 @@ beginning of the evaluated <em>Log Domains</em> path, directly after \e %Scope.G
 For \e %Scope.ThreadInner, the <em>Scope Domain</em> set is appended at the very end
 of the evaluated <em>Log Domains</em> path. The term 'very end' is important: This is not only the most
 'inner' of all \e Scopes, it is appended to the assembled <em>Log Domains</em> path even after the
-optional parameter \p domain of a <em>Log Statement</em>.
+optional parameter \p{domain} of a <em>Log Statement</em>.
 In other words, it could be said, that \e %Scope.ThreadInner is even more 'inner' than the local,
-optional parameter \p domain of a <em>Log Statement</em>.
+optional parameter \p{domain} of a <em>Log Statement</em>.
 
-The whole list of <em>Scope Domains</em>, together with the parameter \p domain, which are all concatenated
+The whole list of <em>Scope Domains</em>, together with the parameter \p{domain}, which are all concatenated
 (as long as none of them is an absolute path) results to:
 
 1. [L] Scope.Global
@@ -407,7 +407,7 @@ The whole list of <em>Scope Domains</em>, together with the parameter \p domain,
 3. [L] Scope.Path (PACKAGE)
 4. [L] Scope.Filename (CLASS)
 5. [L] Scope.Method
-6. Parameter \p domain of a <em>Log Statement</em>
+6. Parameter \p{domain} of a <em>Log Statement</em>
 7. [T] Scope.ThreadInner
 
 <em>Remark: [L] and [T] here indicate language-related and thread-related \e Scopes.</em>
@@ -477,10 +477,10 @@ interest or by only increasing the \e Verbosity of the thread of interest.
 Finally it is noteworthy to mention the impact of \e %Scope.ThreadInner being the most inner
 <em>Scope Domain</em> that is evaluated:
 1. A <em>Log Statement</em> that provides an absolute domain path directly in its statement using
-   optional parameter \p domain, can still be split by <em>Scope Domains</em> of
+   optional parameter \p{domain}, can still be split by <em>Scope Domains</em> of
    \e %Scope.ThreadInner.
 2. If an absolute domain path is provided for a <em>Scope Domain</em> of \e %Scope.ThreadInner, then
-   this 'flattens' all log output into exactly this single domain. (Even parameter \p domain
+   this 'flattens' all log output into exactly this single domain. (Even parameter \p{domain}
    of a <em>Log Statement</em> will not be used!)
 
 
@@ -488,9 +488,9 @@ Finally it is noteworthy to mention the impact of \e %Scope.ThreadInner being th
 ## 3.3 Multiple Use of Thread-Related Scopes ##  {#alox_man_scopes_thread_multiple}
 
 We learned in section \ref alox_man_scopes_language_path, that this \e Scope through the use of
-optional parameter \p pathLevel of method
+optional parameter \p{pathLevel} of method
 <b>%Lox.SetDomain</b>
-([C++] (@ref      #aworx::lox::Lox::SetDomain(const String&, Scope)),
+([C++] (@ref aworx::lib::lox::Lox::SetDomain(const NString&, Scope)),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
  [Java](@ref #com::aworx::lox::Lox::setDomain)) may be seen as whole set of nested
 \e Scopes itself.
@@ -504,7 +504,7 @@ Hereby, subsequent settings are 'inner' \e Scopes of the previous ones. This mea
 during program execution the first <em>Scope Domain</em> that is set, results in a higher level within
 the domain tree. Subsequent <em>Scope Domains</em> set result in direct sub-domains of the former
 ones.<br>
-ALox, when passing a nulled string with parameter \p scopeDomain of method \b %Lox.SetDomain removes
+ALox, when passing a nulled string with parameter \p{scopeDomain} of method \b %Lox.SetDomain removes
 the most recently set <em>Scope Domain</em> first. But also an out-of-order removal of thread-related \e Scopes is possible.
 More details on setting and removing <em>Scope Domains</em> for thread-related \e Scopes is given
 in the next section.
@@ -515,23 +515,23 @@ in the next section.
 
 The same method,
 <b>%Lox.SetDomain</b>
-([C++] (@ref      #aworx::lox::Lox::SetDomain(const String&, Scope)),
+([C++] (@ref aworx::lib::lox::Lox::SetDomain(const NString&, Scope)),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
  [Java](@ref #com::aworx::lox::Lox::setDomain)) which is used for language-related \e Scopes
 is used to set and remove thread-related \e Scopes.
 
-If a domain path is given with parameter \p scopeDomain and either \e %Scope.ThreadOuter or
-\e %Scope.ThreadInner for parameter \p scope, then this domain path is added to the list of
+If a domain path is given with parameter \p{scopeDomain} and either \e %Scope.ThreadOuter or
+\e %Scope.ThreadInner for parameter \p{scope}, then this domain path is added to the list of
 corresponding domains set. The list reflects a set of nested \e Scopes for itself.
 
 To remove the most recently added <em>Scope Domain</em>, it is sufficient to do the same call, with
-an empty or nulled parameter \p scopeDomain. Again, this is the same as with removing or 'un-setting'
+an empty or nulled parameter \p{scopeDomain}. Again, this is the same as with removing or 'un-setting'
 <em>Scope Domains</em> of other \e Scope types.
 
 For the case that the reverse order of adding and removing thread-related <em>Scope Domains</em>
 can not be guaranteed, class \b Lox offers method
 <b>%Lox.RemoveThreadDomain</b>
-([C++] (@ref      #aworx::lox::Lox::RemoveThreadDomain),
+([C++] (@ref aworx::lib::lox::Lox::RemoveThreadDomain),
  [C#]  (@ref  #cs::aworx::lox::Lox::RemoveThreadDomain),
  [Java](@ref #com::aworx::lox::Lox::removeThreadDomain)) which accepts the domain path
 to be removed explicitly as a parameter.
@@ -540,14 +540,14 @@ It was discussed in \ref alox_man_scopes_language_setting, that those types of \
 set from 'within' the \e Scope to be set (the same or an inner \e Scope). This is different
 with thread-related \e Scopes. Method
 <b>%Lox.SetDomain</b>
-([C++] (@ref      #aworx::lox::Lox::SetDomain(const String&, Scope)),
+([C++] (@ref aworx::lib::lox::Lox::SetDomain(const NString&, Scope)),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
  [Java](@ref #com::aworx::lox::Lox::setDomain)) as well as
 <b>%Lox.RemoveThreadDomain</b>
-([C++] (@ref      #aworx::lox::Lox::RemoveThreadDomain),
+([C++] (@ref aworx::lib::lox::Lox::RemoveThreadDomain),
  [C#]  (@ref  #cs::aworx::lox::Lox::RemoveThreadDomain),
  [Java](@ref #com::aworx::lox::Lox::removeThreadDomain)) accept an optional parameter
-\p thread which allows to explicitly provide the thread object to associate a thread-related
+\p{thread} which allows to explicitly provide the thread object to associate a thread-related
 <em>Scope Domain</em> to. Of-course, if this parameter is omitted, the 'actual \e Scope',
 hence the current thread, is used.
 
@@ -569,7 +569,7 @@ hence the current thread, is used.
 
 When things get more complicated, same as with language related scopes, a snapshot of all current
 settings can be logged using <b>%Lox.State</b>
-([C++] (@ref      #aworx::lox::Lox::State),
+([C++] (@ref aworx::lib::lox::Lox::State),
  [C#]  (@ref  #cs::aworx::lox::Lox::State),
  [Java](@ref #com::aworx::lox::Lox::state)) to investigate which settings have been performed.
 

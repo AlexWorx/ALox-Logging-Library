@@ -51,9 +51,9 @@ import com.aworx.lib.strings.CString;
  *     Due to this limitation, the default number of fractional digits is not set with type \c 'f',
  *     while in Java it is set to \c 6. This is to allow higher numbers up to \c 1.e13 to be printed
  *     in non-scientific format
- *   - When both, a \p width and a \p precision is given, then the \p precision determines the
+ *   - When both, a \p{width} and a \p{precision} is given, then the \p{precision} determines the
  *     fractional part, even if the type is \b 'g' or \b 'G'. This is different than specified with
- *     Java formatter, which uses \p precision as the overall width in case of types
+ *     Java formatter, which uses \p{precision} as the overall width in case of types
  *     \b 'g' or \b 'G'.
  *
  *<p>
@@ -218,7 +218,7 @@ public class FormatterJavaStyle extends FormatterStdImpl
         //! @endcond
 
         /** ****************************************************************************************
-         * Parses placeholder field in Java syntax. The portion \p format_spec is not set as this
+         * Parses placeholder field in Java syntax. The portion \p{format_spec} is not set as this
          * is not supported by the syntax.
          *
          * @return \c true on success, \c false on errors.
@@ -488,7 +488,7 @@ public class FormatterJavaStyle extends FormatterStdImpl
 
         /** ****************************************************************************************
          * Replaces \c "%%" with \c '\%' and \c "%n" with ascii \c 0x0a. In addition applies
-         * \ref com.aworx.lib.strings.AString.escape "AString.escape" on \p target which replaces
+         * \ref com.aworx.lib.strings.AString.escape "AString.escape" on \p{target} which replaces
          * standard codes like \c "\\n", \c "\\r" or \c "\\t" with corresponding ascii codes.
          * (The latter is an extension to the standard behavior of Java formatter.)
          *

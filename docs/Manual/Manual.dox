@@ -92,9 +92,26 @@ user manual, but we have just decided not to hint to this fact all of the time.
 Wherever reasonable, language specific differences are named and briefly explained.
 
 <b>Documentation of ALib</b>:<br>
-Underlying class library <b>%ALib</b> does not provide a user manual. Instead, important information
-about the relationship of classes and their general use is found in the reference documentation
-of the different namespaces (Java: packages). Those are:
+
+General purpose classes (aka those that are not directly related to logging) are collected
+under the name \alib. As the standard C++ class library is far less complete than the <b>.Net</b> and
+\b Java class libraries, \b "ALib For C++" had to be much richer than the other language versions.
+Historically, a goal of the C++ version was to provide a sort of "compatibility layer", hence to
+mimic \b C# and \b Java classes in \b C++.
+
+Since release version \b 1805 however, the C++ version of \alib has been launched as an own
+project. With this launch, \b "ALox for C++" became a part of \b "ALib for C++".
+It could be said, that the relationship between \alib and \alox has been reversed in that language version!
+
+Consequently, all \b C++ source code including that of \b "ALox for C++" has been
+[moved to this project](https://alexworx.github.io/ALib-Class-Library/) which includes all
+reference documentation of \alib and \alox.
+
+For \b C# and \b Java, underlying class library <b>%ALib</b> does not provide an own project
+site and user manual. It is exclusively published as a part of the \alox project.
+
+Important information about the relationship of classes and their general use is found in
+the reference documentation of the different namespaces (in Java: "packages"). Those are:
 
 - <b>[com::|cs::]%aworx::lib</b>
  ([C++] (@ref      #aworx::lib),
@@ -128,20 +145,15 @@ of the different namespaces (Java: packages). Those are:
   [Java](@ref #com::aworx::lib::time))
 
 
-For advanced users of ALox, reading and understanding concepts described in
-<b>[com::|cs::]%aworx::lib::config</b>
+For advanced users of ALox, reading and understanding the types provided with namespaces
+<b>config</b>
     ([C++] (@ref      #aworx::lib::config),
      [C#]  (@ref  #cs::aworx::lib::config),
      [Java](@ref #com::aworx::lib::config)) and
-<b>[com::|cs::]%aworx::lib::strings</b>
+<b>strings</b>
     ([C++] (@ref      #aworx::lib::strings),
      [C#]  (@ref  #cs::aworx::lib::strings),
      [Java](@ref #com::aworx::lib::strings))
 is very recommended.
-
-
-
-
-
 */
 

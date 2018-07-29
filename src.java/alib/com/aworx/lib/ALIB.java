@@ -66,14 +66,14 @@ public final class ALIB
          * Besides this version number, field #revision indicates if this is a revised version
          * of a former release.
          */
-        public static final int         version                                               =1712;
+        public static final int         version                                               =1805;
 
         /**
          * The revision number of this release. Each \b %ALib #version is initially released as
          * revision \e 0. Pure maintenance releases that do not change the interface of \b %ALox
          * are holding the same #version but an increased number in this field.
          */
-        public static final int         revision                                                 =1;
+        public static final int         revision                                                 =0;
 
 
         /**
@@ -317,12 +317,12 @@ public final class ALIB
          private static char[]  trueValuesBoolean= { 't', '1', 'y' };
 
         /** ****************************************************************************************
-         * Interprets given \p src as a boolean value.
+         * Interprets given \p{src} as a boolean value.
          * \ref com.aworx.lib.lang.Inclusion "enums.Inclusion".
          * If the case insensitive comparison of the first non-whitespace characters of the string with
          * with values "t", "1", "y", "on", "ok"
          * matches, \c true is returned.
-         * Otherwise, including the case that \p src is 'nulled', \c false is returned.
+         * Otherwise, including the case that \p{src} is 'nulled', \c false is returned.
          *
          * @param src The string to 'parse'.
          *
@@ -349,12 +349,12 @@ public final class ALIB
          private static char[]  trueValuesCase= { 's', 't', '1', 'y' };
 
         /** ****************************************************************************************
-         * Interprets given \p src as a value of enum type
+         * Interprets given \p{src} as a value of enum type
          * \ref com.aworx.lib.lang.Case "enums.Case".
          * If the case insensitive comparison of the first non-whitespace characters of the string
          * with values "s", "y", "t", "1"
          * matches, \b %Case.SENSITIVE is returned.
-         * Otherwise, including the case that \p src is 'nulled', \b %Case.IGNORE is returned.
+         * Otherwise, including the case that \p{src} is 'nulled', \b %Case.IGNORE is returned.
          *
          * @param src The string to 'parse'.
          *
@@ -377,12 +377,12 @@ public final class ALIB
         private static char[]   trueValuesInclusion= { 'i', 't', '1', 'y' };
 
         /** ****************************************************************************************
-         * Interprets given \p src as a value of enum type
+         * Interprets given \p{src} as a value of enum type
          * \ref com.aworx.lib.lang.Inclusion "enums.Inclusion".
          * If the case insensitive comparison of the first non-whitespace characters of the string
          * with values "i", "y", "t", "1"
          * matches, \b %Inclusion.INCLUDE is returned.
-         * Otherwise, including the case that \p src is 'nulled', \b %Inclusion.EXCLUDE is returned.
+         * Otherwise, including the case that \p{src} is 'nulled', \b %Inclusion.EXCLUDE is returned.
          *
          * @param src The string to 'parse'.
          *

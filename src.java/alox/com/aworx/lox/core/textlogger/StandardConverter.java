@@ -60,7 +60,7 @@ public class StandardConverter implements ObjectConverter
 
     /** ********************************************************************************************
      * The conversion method.
-     * Passes \p target and \p logables to #formatterPS.
+     * Passes \p{target} and \p{logables} to #formatterPS.
      * @param logables   The objects to convert.
      * @param target     An AString that takes the result.
      **********************************************************************************************/

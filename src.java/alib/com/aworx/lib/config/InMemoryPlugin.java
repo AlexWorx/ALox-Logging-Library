@@ -61,7 +61,7 @@ public class InMemoryPlugin extends ConfigurationPlugin
             }
 
             /**
-             * Virtual method that copies the values of an entry to the given \p variable.
+             * Virtual method that copies the values of an entry to the given \p{variable}.
              *
              * @param parent    The plug-in we belong to.
              * @param variable  The variable to fill with our values.
@@ -82,7 +82,7 @@ public class InMemoryPlugin extends ConfigurationPlugin
             }
 
             /**
-             * Virtual method that copies the values of the given \p variable to us.
+             * Virtual method that copies the values of the given \p{variable} to us.
              *
              * @param parent    The plug-in we belong to.
              * @param variable  The variable to fill with our values.

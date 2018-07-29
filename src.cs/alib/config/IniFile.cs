@@ -303,7 +303,7 @@ public class IniFile : InMemoryPlugin
          * ".ini" while the file path is retrieved using
          * <em>Environment.GetFolderPath( Environment.SpecialFolder.ApplicationData )</em>.
          *
-         * If the given file name \p filePathAndName starts with '*', no file is read and field
+         * If the given file name \p{filePathAndName} starts with '*', no file is read and field
          * #AutoSave is set to \c false.
          *
          * @param filePathAndName  The name (and path) of the file to read and write.

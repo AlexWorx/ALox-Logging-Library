@@ -191,7 +191,7 @@ You are set if:
 \~Comment ####################################################################################### \~
 # 4. Tweaking The Log Output #  {#alox_cs_setup_logformat}
 
-In addition to setting up the project, the format of the log output of \b %ALox should be
+In addition to setting up the project, the format of the log output of \alox should be
 recognizable by your IDE: the source code file name and line number that generated
 the output should become "clickable" in the log: It should link back to the source in the editor.
 

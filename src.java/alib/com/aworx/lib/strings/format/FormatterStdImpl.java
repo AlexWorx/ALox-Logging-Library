@@ -123,7 +123,7 @@ import com.aworx.lib.lang.Alignment;
  *       \ref com.aworx.lib.strings.format.FormatterStdImpl.phaArgumentIdx "phaArgumentIdx"
  *       already in \b %parsePlaceholder according to its own strategy
  *
- * 9.  Method #preAndPostProcess is invoked with parameter \p startIdx equalling \c -1
+ * 9.  Method #preAndPostProcess is invoked with parameter \p{startIdx} equalling \c -1
  *     (indicating pre-processing). This allows for example to insert tab fill-characters
  *     (tab stops) prior to writing the contents of the field.
  *
@@ -148,7 +148,7 @@ import com.aworx.lib.lang.Alignment;
  *     Its default implementation writes the argument value formatted according to the attribute
  *     fields.
  *
- * 14. Finally #preAndPostProcess is invoked with parameter \p startIdx pointing to the first
+ * 14. Finally #preAndPostProcess is invoked with parameter \p{startIdx} pointing to the first
  *     character in #ptargetString of the argument written.
  *     Here, actions like case conversion might be done on the field written.
  *
@@ -418,7 +418,7 @@ public abstract class FormatterStdImpl extends Formatter
          * @param targetString  An AString that takes the result.
          * @param formatString  The format string.
          * @param arguments     The objects to convert.
-         * @param argOffset     The first object in \p arguments to use.
+         * @param argOffset     The first object in \p{arguments} to use.
          *
          * @return The number of args consumed.
          ******************************************************************************************/
@@ -907,8 +907,8 @@ public abstract class FormatterStdImpl extends Formatter
          * Virtual method to do pre- and post- processing of the field written.
          * Pre-processing could for example be adding tabulator spaces, letter case conversions,
          *
-         * A negative given index \p startIdx indicates the pre-processing phase.
-         * If \p target is given, this indicates an "intermediate phase": The argument has been
+         * A negative given index \p{startIdx} indicates the pre-processing phase.
+         * If \p{target} is given, this indicates an "intermediate phase": The argument has been
          * written, but no alignment or cutting has been done, yet. This phase should usually
          * be ignored, but is for example important for search and replacement actions.
          * If a field has a custom format implementation (e.g. time and date values), then
@@ -939,18 +939,18 @@ public abstract class FormatterStdImpl extends Formatter
          * #parsePlaceholder when an argument index is read from the format string,
          *
          * If this does not happen, method #format will invoke this method providing \c -1 for
-         * value of parameter \p pos to automatically choose the next argument.
+         * value of parameter \p{pos} to automatically choose the next argument.
          *
          * Consequently, this method sets the fields
          * \ref com.aworx.lib.strings.format.FormatterStdImpl.phaArgument    "Argument" and
          * \ref com.aworx.lib.strings.format.FormatterStdImpl.phaArgumentIdx "ArgumentIdx"
-         * in given \p field.
+         * in given \p{field}.
          * For auto-values, it increments #nextAutoIdx.
          * Finally, this method is responsible for the correct book-keeping of #argsConsumed.
          *
          * @param pos   The index of the argument.
          *              If \c -1 is given, the index is auto-incremented using field #nextAutoIdx.
-         * @param countStartsWith_1 If \c true, given \p pos is counting arguments with \c 1 being
+         * @param countStartsWith_1 If \c true, given \p{pos} is counting arguments with \c 1 being
          *                         the first. Otherwise with \c 0.
          * @return \c true on success, \c false on errors.
          ******************************************************************************************/
