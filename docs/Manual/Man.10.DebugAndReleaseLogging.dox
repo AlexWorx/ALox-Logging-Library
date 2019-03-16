@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -21,7 +21,7 @@ easiest to explain when comparing both types of logging and listing the differen
 As previous chapters described, any logging with ALox is roughly performed as follows:
 - A dedicated instance of class
   <b>Lox</b>
-    ([C++](@ref aworx::lox::Lox),
+    ([C++](@ref aworx::lib::lox::Lox),
     [C#]  (@ref cs::aworx::lox::Lox),
     [Java](@ref com::aworx::lox::Lox)) is created.
 - This \b %Lox object is configured, mainly by populating it with one or more <em>Loggers</em> which get
@@ -62,7 +62,7 @@ Now, with <em>debug logging</em>, there are some specialties that do not apply i
      are copied are the same in respect to method names and parameters, the only difference is that
      they are static and just forward the parameters to the static debug-Lox object.
    - In C++, an own set of preprocessor macros each type of logging exist
-     (\ref GrpMacrosDebugLog and \ref GrpMacrosReleaseLog).
+     (\ref GrpALibMacros "documented here").
      The almost only difference is, that those macros used for <em>debug logging</em>
      (that log into the debug-Lox singleton and get pruned in release compilations),
      are prefixed <em>Log_</em>, while those that are used for release logging are prefixed <em>Lox_</em>.
@@ -84,7 +84,7 @@ identify how release logging differs and derive a guideline on how to implement 
 
 1. An object of type
    <b>Lox</b>
-    ([C++](@ref aworx::lox::Lox),
+    ([C++](@ref aworx::lib::lox::Lox),
     [C#]  (@ref cs::aworx::lox::Lox),
     [Java](@ref com::aworx::lox::Lox)) has to be created.
     (In more complex scenarios two or even more of such objects might be created
@@ -95,9 +95,9 @@ identify how release logging differs and derive a guideline on how to implement 
 
 2. One or more objects of (abstract) type
    <b>Logger</b>
-    ([C++](@ref aworx::lox::core::Logger),
-    [C#]  (@ref cs::aworx::lox::core::Logger),
-    [Java](@ref com::aworx::lox::core::Logger)) have to be created and attached to the
+    ([C++](@ref aworx::lib::lox::detail::Logger),
+    [C#]  (@ref cs::aworx::lox::detail::Logger),
+    [Java](@ref com::aworx::lox::detail::Logger)) have to be created and attached to the
    release-Lox object(s), usually with setting the right <em>Verbosity</em> for different
    <em>Log Domains</em>.<br>
    (Both actions are usually performed at the beginning of the life-cycle of a software process, what
@@ -107,15 +107,15 @@ identify how release logging differs and derive a guideline on how to implement 
    and look similar to <em>debug logging</em>, because as already explained above:
    - in Java and C# versions of ALox, the <em>debug logging</em> interface of class
      <b>Log</b>
-        ([C++](@ref aworx::lox::Log),
+        ([C++](@ref aworx::lib::lox::Log),
         [C#]  (@ref cs::aworx::lox::Log),
         [Java](@ref com::aworx::lox::Log)) simply mimics the original interface of class
      <b>Lox</b>
-        ([C++](@ref aworx::lox::Lox),
+        ([C++](@ref aworx::lib::lox::Lox),
         [C#]  (@ref cs::aworx::lox::Lox),
         [Java](@ref com::aworx::lox::Lox)), while
    - In C++, an own set of preprocessor macros each type of logging exist that differ only in their
-     prefixes <em>Log_</em> and <em>Lox_</em> (\ref GrpMacrosDebugLog and \ref GrpMacrosReleaseLog).<br>
+     prefixes <em>Log_</em> and <em>Lox_</em> (see \ref GrpALibMacros).<br>
      In C++, each code entity has to set the preprocessor macro \ref LOX_LOX prior to using
      <em>release logging</em> macros. This can be done in a general header file of the software,
      (e.g. the same that exposes the release-Lox object to that source), or, in more complex
@@ -256,15 +256,17 @@ A demonstration of how to do this is found in the \alox release logging sample c
   <b>ALox for C++</b> does not provide a corresponding preprocessor macro.
   Instead, macro \b Log_Prune (not \b %Lox_Prune!) should be used to perform the
   the invocation of \b %Log::AddALibReportWriter and \b %Log::RemoveALibReportWriter in debug builds.
-  The following code samples a proper bootstrap:
+  The following code samples a proper bootstrap. First the following header has to be included
+  by the compilation unit:
+  \snippet "ut_dox_manual.cpp"     DOX_ALOX_INSTALL_REPORT_WRITER_0
+
+\note
+  Then this code adds the report writer:
   \snippet "ut_dox_manual.cpp"     DOX_ALOX_INSTALL_REPORT_WRITER
+
+\note
   Upon termination, such report writer is to be removed as sampled here:
   \snippet "ut_dox_manual.cpp"     DOX_ALOX_INSTALL_REPORT_WRITER_2
-
-
-
-
-
 
 
 

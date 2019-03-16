@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -64,7 +64,7 @@ Some specific \e Loggers are found in:
 - **com.aworx.lox.loggers**
 
 Internal classes are located in:
-- **com.aworx.lox.core**
+- **com.aworx.lox.detail**
 
 
 

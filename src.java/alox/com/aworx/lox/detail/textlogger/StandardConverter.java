@@ -1,22 +1,23 @@
 // #################################################################################################
-//  com.aworx.lox.core - ALox Logging Library
+//  com.aworx.lox.detail - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-package com.aworx.lox.core.textlogger;
+package com.aworx.lox.detail.textlogger;
 
 import java.util.ArrayList;
 
 import com.aworx.lib.strings.AString;
+import com.aworx.lib.strings.util.AutoSizes;
 import com.aworx.lib.strings.format.FormatterPythonStyle;
 import com.aworx.lib.strings.format.FormatterJavaStyle;
 import com.aworx.lib.strings.format.FormatterStdImpl;
 
 /** ************************************************************************************************
  * Implements the interface
- * \ref com.aworx.lox.core.textlogger.ObjectConverter "ObjectConverter". Class
- * \ref com.aworx.lox.core.textlogger.TextLogger      "TextLogger" creates an instance of this
+ * \ref com.aworx.lox.detail.textlogger.ObjectConverter "ObjectConverter". Class
+ * \ref com.aworx.lox.detail.textlogger.TextLogger      "TextLogger" creates an instance of this
  * type in the moment no other (custom) type was set prior to the first log statement.
  *
  * This implementation uses
@@ -50,7 +51,7 @@ public class StandardConverter implements ObjectConverter
 
     /** ****************************************************************************************
      * Constructor.
-     ******************************************************************************************/
+     ************************6******************************************************************/
     public StandardConverter()
     {
         formatterPS     = new FormatterPythonStyle();
@@ -94,6 +95,29 @@ public class StandardConverter implements ObjectConverter
         formatter.format( target, logables );
 
         cntRecursion--;
-
     }
+
+    /** ********************************************************************************************
+     * Returns a pointer to the auto sizes object of the formatter #formatterPS.
+     * @return The auto sizes object of the main formatter.
+     **********************************************************************************************/
+    @Override
+    public AutoSizes   getAutoSizes()
+    {
+        return formatterPS.sizes;
+    }
+
+    /** ********************************************************************************************
+     * Resets automatically widened tab stops and field widths of this converter.
+     **********************************************************************************************/
+    @Override
+    public void        resetAutoSizes()
+    {
+        for( FormatterPythonStyle elem : recursionFormatters )
+        {
+            elem   .sizes.reset();
+        }
+        formatterPS.sizes.reset();
+    }
+
 }

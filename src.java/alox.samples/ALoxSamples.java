@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALox Samples
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -19,7 +19,7 @@ import com.aworx.lox.Log;
 import com.aworx.lox.Lox;
 import com.aworx.lox.Scope;
 import com.aworx.lox.Verbosity;
-import com.aworx.lox.core.textlogger.TextLogger;
+import com.aworx.lox.detail.textlogger.TextLogger;
 import com.aworx.lox.loggers.MemoryLogger;
 import com.aworx.lox.loggers.TextFileLogger;
 
@@ -321,7 +321,7 @@ public class ALoxSamples
             "##################################################################################################\n" +
             "# ALox Samples INI file (created when running ALox Samples)\n"                                        +
             "#\n"                                                                                                  +
-            "# Copyright 2013-2018 A-Worx GmbH, Germany\n"                                                         +
+            "# Copyright 2013-2019 A-Worx GmbH, Germany\n"                                                         +
             "# Published under 'Boost Software License' (a free software license, see LICENSE.txt)\n"                    +
             "##################################################################################################\n"
             );

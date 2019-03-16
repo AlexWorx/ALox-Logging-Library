@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -134,7 +134,7 @@ Constant|Value
 \note
     While in C# and Java langauge versions of \alib, the constants are properties of class
     class \b %Configuration, in C++ they are implemented as
-    \cpp_alib{lang,T_EnumMetaDataDecl,enum meta data}" of enumeration type
+    \cpp_alib{resources,T_EnumMetaDataDecl,enum meta data}" of enumeration type
     \cpp_alib{config,Priorities}.
 
 When a \e Verbosity setting is read by ALox from external configuration, the priority of the plug-in
@@ -439,8 +439,8 @@ the setting is OK, you can stop the \p{writeback} feature by changing the
 
 Now we are using a feature of the ALib configuration system called
 <b>Variable Substitution</b>
-  ([C++] (@ref  cpp_alib_namespace_config_substitution),
-   [C#]  (@ref   cs_alib_namespace_config_substitution),
+  ([C++] (@ref  alib_config_substitution),
+   [C#]  (@ref    cs_alib_namespace_config_substitution),
    [Java](@ref java_alib_namespace_config_substitution)):
 With the preceding \c '$' symbol (this is
 the default and can be changed), class \b Configuration substitutes what is
@@ -483,8 +483,8 @@ To conclude, lets take some further notes on what was said above:
   if in anonymous category, the same rules on using the underscore
   character \c '_' apply as it is described in
   <b>Variable Substitution</b>
-   ([C++] (@ref  cpp_alib_namespace_config_substitution),
-    [C#]  (@ref   cs_alib_namespace_config_substitution),
+   ([C++] (@ref  alib_config_substitution),
+    [C#]  (@ref  cs_alib_namespace_config_substitution),
     [Java](@ref java_alib_namespace_config_substitution)).
 
 - With more complex use cases, there are even new options: For example,

@@ -1,7 +1,7 @@
 // #################################################################################################
-//  com.aworx.lox.core - ALox Logging Library
+//  com.aworx.lox.detail - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -9,7 +9,7 @@
 /** ************************************************************************************************
  * This namespaces defines class \b TextLogger and its helpers.
  **************************************************************************************************/
-package com.aworx.lox.core.textlogger;
+package com.aworx.lox.detail.textlogger;
 
 import java.util.ArrayList;
 
@@ -25,9 +25,9 @@ import com.aworx.lib.threads.ThreadLock;
 import com.aworx.lox.ALox;
 import com.aworx.lox.ESC;
 import com.aworx.lox.Verbosity;
-import com.aworx.lox.core.Domain;
-import com.aworx.lox.core.Logger;
-import com.aworx.lox.core.ScopeInfo;
+import com.aworx.lox.detail.Domain;
+import com.aworx.lox.detail.Logger;
+import com.aworx.lox.detail.ScopeInfo;
 
 /** ************************************************************************************************
  * This class is a still abstract implementation of class Logger which is used as the super class
@@ -76,9 +76,9 @@ public abstract class TextLogger extends Logger
 
         /**
          * A helper object to get textual representation of logable objects.
-         * If no converter is set when this logger is used, a converter of type
-         * \ref com.aworx.lox.core.textlogger.StandardConverter "StandardConverter" is created and used.
-         * In the destructor of this class, the current object converter will be deleted.
+         * If no converter is set when this logger is attached to a lox, a converter of type
+         * \alox{detail::textlogger,StandardConverter} is created and used.
+         * Custom loggers might create their own, custom converter objects here.
          *
          * To extend class \b %TextLogger to support logging custom objects, custom converters can
          * set. The preferred alternative is however, to make custom types be formattable
@@ -186,7 +186,7 @@ public abstract class TextLogger extends Logger
         {
             super( name, typeName );
             this.usesStdStreams= usesStdStreams;
-            converter= new com.aworx.lox.core.textlogger.StandardConverter();
+            converter= new com.aworx.lox.detail.textlogger.StandardConverter();
         }
 
     // #############################################################################################
@@ -204,6 +204,9 @@ public abstract class TextLogger extends Logger
         @Override @SuppressWarnings ("boxing")
         public int   addAcquirer( ThreadLock newAcquirer )
         {
+            if ( converter == null )
+                converter= new StandardConverter();
+
             // register with ALIB lockers (if not done yet)
             if ( usesStdStreams )
             {
@@ -219,9 +222,23 @@ public abstract class TextLogger extends Logger
 
             Variable variable= new Variable();
 
-            // import autosizes from configuration (last session)
-            if ( ALox.config.load(variable.declare( ALox.AUTO_SIZES, getName() )) != 0 )
-                autoSizes.importValues( variable.getString() );
+            // import auto-sizes from configuration (last session)
+            if ( ALox.config.load(variable.declare( ALox.AUTO_SIZES, getName())) != 0 )
+            {
+                Substring importMI = new Substring( variable.getString() );
+                Substring importLog= new Substring();
+                int sepPos= importMI.indexOf(';');
+                if( sepPos >= 0 )
+                    importMI.split( sepPos, importLog, 1 );
+                autoSizes.importValues( importMI );
+
+                AutoSizes autoSizesLog= converter.getAutoSizes();
+                if( autoSizesLog != null && importLog.isNotEmpty() )
+                {
+                    autoSizesLog.importValues( importLog );
+                }
+            }
+
 
             // import "max elapsed time" from configuration (last session)
             if ( ALox.config.load(variable.declare( ALox.MAX_ELAPSED_TIME, getName() )) != 0 )
@@ -387,10 +404,18 @@ public abstract class TextLogger extends Logger
 
             Variable variable= new Variable();
 
-            // export autosizes to configuration
+            // export auto-sizes to configuration
             variable.declare( ALox.AUTO_SIZES, getName() );
-            autoSizes.exportValues( variable.add() );
+            AString exportString= variable.add();
+            autoSizes.exportValues( exportString );
+            AutoSizes autoSizesLog= converter.getAutoSizes();
+            if( autoSizesLog != null )
+            {
+                exportString._( ';' );
+                autoSizesLog.exportValues( exportString );
+            }
             ALox.config.store(variable);
+
 
             // export "max elapsed time" to configuration
             variable.declare( ALox.MAX_ELAPSED_TIME, getName() );
@@ -451,6 +476,19 @@ public abstract class TextLogger extends Logger
         public void  clearReplacements()
         {
             replacements.clear();
+        }
+
+        /** ****************************************************************************************
+         * Resets automatically widened tab stops and field widths of this logger by calling
+         * \alox{detail::textlogger::StandardConverter,resetAutoSizes} on field #converter.
+         *
+         * \note The sizes affected are the ones used to format the custom log output, not
+         *       the ones uses for the meta information. To reset the auto-sizes of the meta
+         *       information, invoke \alib{strings::util,AutoSizes::reset} on field #autoSizes.
+         ******************************************************************************************/
+        public void    resetAutoSizes()
+        {
+            converter.resetAutoSizes();
         }
 
 
@@ -514,10 +552,6 @@ public abstract class TextLogger extends Logger
                                    ArrayList<Object> logables,
                                    ScopeInfo         scope       )
         {
-            // check
-            if ( converter == null )
-                converter= new StandardConverter();
-
             // we store the current msgBuf length and reset the buffer to this length when exiting.
             // This allows recursive calls! Recursion might happen with the evaluation of the
             // logables (in the next line!)
@@ -532,7 +566,7 @@ public abstract class TextLogger extends Logger
             // setup log buffer with meta info << ESC.EOMETA
             logBuf.clear();
             autoSizes.start();
-            int qtyESCTabsWritten=  metaInfo.write( this, logBuf, domain, verbosity, scope );
+            metaInfo.write( this, logBuf, domain, verbosity, scope );
             logBuf._NC( ESC.EOMETA );
 
             // check for empty messages
@@ -668,7 +702,7 @@ public abstract class TextLogger extends Logger
                     if (lineNo != 0 )
                     {
                         logBuf.clear()._( ESC.EOMETA );
-                        autoSizes.actualIndex=  qtyTabStops + qtyESCTabsWritten;
+                        autoSizes.actualIndex=  qtyTabStops;
                     }
                 }
                 else

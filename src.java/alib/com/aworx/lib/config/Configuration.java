@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -381,7 +381,7 @@ public class Configuration
 
         /**
          * Constant providing a priority which is even lower than default. This priority is
-         * not used by any standard plug-ins and currently not even anywhere in core \alib.
+         * not used by any standard plug-ins and currently not even anywhere in detail \alib.
          * The rational to provide it is for third party libraries that may use this value
          * in cases where values are estimated or detected - instead of defaulted.
          * A user of the library may then overwrite such auto-detection by setting a default value
@@ -694,64 +694,66 @@ public class Configuration
         }
 
         /** ****************************************************************************************
-         * Writes the variable to the configuration.
-         * In general, this is done by asking  each of our installed plug-ins - in the order of
-         * their priority - to do so.
-         * As soon as the first plug-in returns \c true, the variable is considered written and no
-         * other plug-in is asked.
-         * This way, the variable is stored by the plug-in with the highest priority.
+         * Writes the variable into one of the plug-ins registered with this configuration object.
+         * The plug-ins are looped in descending order of priority, until a first plug-in
+         * confirms the variable to be written.
          *
-         * The maximum priority to start the loop with depends on field
-         * \ref com.aworx.lib.config.Variable.priority "Variable.priority"
-         * of the given \p{variable}. The rules are as follows:
-         * - If the value is \c 0, which is the default value of new variables or ones that
-         *   were freshly declared, then prior to storing the value, the variable is (tried to be)
-         *   loaded first (without actually overwriting the values).
-         *   After that, one of the next two rules apply.
-         * - If the value is \c 0, which indicates that a previous load operation failed, the
-         *   loop starts with #PRIO_DEFAULT_VALUES
-         *   (and usually ends there, as standard configuration sets
-         *   do not have plug-ins with lower priorities installed). In other words, newly created
-         *   variables are stored in the plug-in of priority #PRIO_DEFAULT_VALUES (usually an
-         *   \b InMemoryPlugin). This way, they are
-         *   not written to external configuration files, unless the application explicitly moves
-         *   such new default values to dedicated other plug-ins (e.g. on termination).
-         * - If the value is greater than \c 0, the value is used as the start of the loop.
-         *   This way, an already defined variable will be stored in the same plug-in as it was
-         *   found or one with a lower priority, if that plug-in does not provide writing
-         *   capabilities.
+         * The first (most highly prioritized) plug-in to start the loop with, is defined by
+         * field \alib{config,Variable::priority} of the given \p{variable}.
          *
-         * Consequently, as field \alib{config,Variable.priority} is public, the behavior
-         * can be manipulated, by setting the field explicitly prior to invoking this method.
-         * Some frequent use cases shall be named here:
-         * - Setting the field to #PRIO_PROTECTED_VALUES allows to protect the variable value in
-         *   respect to external manipulation.
-         * - By setting the field to #PRIO_DEFAULT_VALUES, the value becomes just a default
-         *   and does not overwrite externally specified values.
-         * - Setting the field to a distinct priority value that names a user-specific configuration
-         *   (vs. a system-wide configuration) to store into.
-         * - Setting the field to #PRIO_PROTECTED_VALUES <c>- 1</c>, allows to store the
-         *   variable just in the plug-in with highest possible priority, for example
-         *   a user specific configuration is preferred to a system wide configuration)
-         * - A variable might be related to a second one. If the priority of the second one is
-         *   known, that priority might be set to possibly have both variables stored in the same
-         *   plug-in.
+         * If this is unset (\c 0), which is the default value of the field
+         * for freshly declared variable objects, the starting priority value  of the loop is
+         * \b detected.
+         *
+         * Detection is made by searching the variable in the plug-ins prior to storing it.
+         * The search order is likewise by priority, starting with the highest.
+         * If the variable was not found, #PRIO_DEFAULT_VALUES
+         * is chosen. Usually the writing loop then will also already end there,
+         * because standard configuration sets have a write-enabled in-memory plug-in at
+         * that priority.
+         *
+         * If the variable was found in the plug-in of priority
+         * #PRIO_PROTECTED_VALUES, the method stops without storing anything.
+         *
+         *
+         * This approach of storing variables, supports various use cases very nicely.
+         * Some of the frequent ones shall be named here:
+         * - By setting the field to #PRIO_DEFAULT_VALUES, the value
+         *   becomes just a default and does not overwrite externally specified values.
+         * - Leaving the field to its uninitialized state (\c 0),
+         *   allows to store the variable in the plug-in that it was originally read from,
+         *   or - if not stored already - in default values.
+         * - Setting the field to #PRIO_PROTECTED_VALUES allows to protect the
+         *   variable value in respect to external manipulation.
+         * - Setting the field to #PRIO_PROTECTED_VALUES <c>- 1</c>,
+         *   allows to store the variable just in the plug-in with highest possible priority.
+         * - Finally, an application specific reason might motivate a caller of this method to
+         *   preset a distinct priority value prior to invoking this method. For example, a variable
+         *   might be related to a second one. If the priority of the second one is
+         *   known, that priority might be set prior to invoking this message, to have both
+         *   variables potentially stored in the same plug-in.
          *
          * The method returns the priority of the configuration plug-in that the value was written
-         * to as well as storing this value in field \alib{config,Variable.priority}.
-         * If the result is \c 0, the variable was not written. This might only happen if
-         * - either field default plug-in of priority #PRIO_DEFAULT_VALUES was modified
-         *   (removed or exchanged with a different  plug-in that does not write the value)
-         * - or if field \p{Priority} of the variable was set below #PRIO_DEFAULT_VALUES and greater
-         *   than \c 0.
-         * - The detected (!) priority was #PRIO_PROTECTED_VALUES.
-         *   In this case, obviously the application does not want to allow changes and writing the
+         * to. This value is as well stored in field \alib{config,Variable::priority} of the given
+         * object.
+         *
+         * A result of \c 0 (no priority) indicates that the variable was not written.
+         * This might only happen if
+         * - the default plug-in of this configuration is not configured or does not support
+         *   writing variables,
+         * - field \p{Priority} of the variable was set below #PRIO_DEFAULT_VALUES
+         *   (but greater than \c 0),
+         * - the \b detected priority was #PRIO_PROTECTED_VALUES.
+         *   (In this case, obviously the application does not want to allow changes and writing the
          *   variable into a different plug-in has no effect.
          *   This way, such variables also do not appear in a users' configuration
-         *   in the case that on program termination, new default values are copied there.
+         *   in the case that on program termination, new default values are copied there.)
          *
          * Optional parameter \p{externalizedValue} allows to provide a string that is parsed
          * by the storing plug-in to reset the variables' values prior to writing.
+         *
+         * \see Default variables are often to be stored with the termination of a process.
+         *      For this, see method #fetchFromDefault.
          *
          * @param variable              The variable object.
          * @param externalizedValue     Optional externalized value string. If given, the variable
@@ -783,8 +785,7 @@ public class Configuration
             variable.config= this;
 
             // detect?
-            boolean detected= variable.priority <= 0;
-            if ( detected )
+            if ( variable.priority <= 0 )
             {
                 variable.priority= 0;
                 for ( PluginAndPrio ppp : plugins )
@@ -793,16 +794,13 @@ public class Configuration
                         variable.priority= ppp.prio;
                         break;
                     }
+                if( variable.priority == Configuration.PRIO_PROTECTED_VALUES)
+                    return (variable.priority= 0);
             }
 
             // new variables go to default
             if ( variable.priority == 0 )
                 variable.priority= Configuration.PRIO_DEFAULT_VALUES;
-
-            // we do not store if detected priority is protected
-            else if( detected && variable.priority == Configuration.PRIO_PROTECTED_VALUES)
-                return (variable.priority= 0);
-
 
             // store
             for ( PluginAndPrio ppp : plugins )

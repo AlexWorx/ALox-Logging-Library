@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ut_com_aworx - AWorx Unit Test Support using ALib and ALox
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 //
 //  Relies on ALox logging library, which in turn relies on ALib. Hence, ALibs' unit
@@ -19,7 +19,7 @@ import com.aworx.lox.ESC;
 import com.aworx.lox.Lox;
 import com.aworx.lox.Verbosity;
 import com.aworx.lox.loggers.*;
-import com.aworx.lox.core.textlogger.TextLogger;
+import com.aworx.lox.detail.textlogger.TextLogger;
 
 /** ****************************************************************************************
  * Used for writing messages is unit tests. Creates an own Lox and adds a text Logger.

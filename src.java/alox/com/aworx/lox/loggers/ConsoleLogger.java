@@ -1,7 +1,7 @@
 // #################################################################################################
 //  com.aworx.lox.loggers - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -18,7 +18,7 @@ import com.aworx.lib.config.Variable;
 import com.aworx.lib.lang.Phase;
 import com.aworx.lib.strings.AString;
 import com.aworx.lox.ALox;
-import com.aworx.lox.core.textlogger.PlainTextLogger;
+import com.aworx.lox.detail.textlogger.PlainTextLogger;
 
 /** ************************************************************************************************
  * A logger that logs all messages to the Java console using <em>System.out.print()</em> or

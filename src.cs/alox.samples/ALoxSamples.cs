@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALox Samples
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
@@ -18,7 +18,7 @@ using cs.aworx.lox.tools;
 using cs.aworx;
 using cs.aworx.lib.strings;
 using cs.aworx.lib.lang;
-using cs.aworx.lox.core.textlogger;
+using cs.aworx.lox.detail.textlogger;
 using cs.aworx.lib.config;
 
 namespace ALox_CS_Test_Perf  {
@@ -48,7 +48,7 @@ class AloxSamples
             "##################################################################################################\n" +
             "# ALox Samples INI file (created when running ALox Samples)\n"                                        +
             "#\n"                                                                                                  +
-            "# Copyright 2013-2018 A-Worx GmbH, Germany\n"                                                               +
+            "# Copyright 2013-2019 A-Worx GmbH, Germany\n"                                                               +
             "# Published under 'Boost Software License' (a free software license, see LICENSE.txt)\n"                               +
             "##################################################################################################\n"
             );

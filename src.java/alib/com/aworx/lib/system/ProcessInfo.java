@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -19,7 +19,7 @@ import com.aworx.lib.strings.AString;
 /** ************************************************************************************************
  * Information about processes.
  * \note
- *   In the Java Version of \b %ALib, this class is very reduced, because java core classes provide
+ *   In the Java Version of \b %ALib, this class is very reduced, because java detail classes provide
  *   enough functionality.
  **************************************************************************************************/
 public class ProcessInfo

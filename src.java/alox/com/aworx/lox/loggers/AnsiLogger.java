@@ -1,7 +1,7 @@
 // #################################################################################################
 //  com.aworx.lox.loggers - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -17,12 +17,13 @@ import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.Substring;
 import com.aworx.lib.strings.util.Tokenizer;
 import com.aworx.lib.strings.util.Spaces;
+import com.aworx.lib.strings.util.AutoSizes;
 import com.aworx.lox.ALox;
 import com.aworx.lox.ESC;
 import com.aworx.lox.Verbosity;
-import com.aworx.lox.core.Domain;
-import com.aworx.lox.core.ScopeInfo;
-import com.aworx.lox.core.textlogger.TextLogger;
+import com.aworx.lox.detail.Domain;
+import com.aworx.lox.detail.ScopeInfo;
+import com.aworx.lox.detail.textlogger.TextLogger;
 
 /** ************************************************************************************************
  * A logger that logs all messages to the <em>PrintStream</em> instance provided in the constructor.
@@ -366,7 +367,7 @@ public class AnsiLogger extends TextLogger
                 int extraSpace=  c >= '0' && c <= '9' ? ( c - '0' )
                                                       : ( c - 'A' ) + 10;
 
-                int tabStop= autoSizes.next( column, extraSpace );
+                int tabStop= autoSizes.next( AutoSizes.Types.Tabstop, column, extraSpace );
                 Spaces.write( out, tabStop - column );
                 column= tabStop;
             }

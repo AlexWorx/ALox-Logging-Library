@@ -1,13 +1,13 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox.unittests - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
 using System.Threading;
 using System.Xml.Linq;
-using cs.aworx.lox.core.textlogger;
+using cs.aworx.lox.detail.textlogger;
 using cs.aworx.lib.strings;
 using ut_cs_aworx;
 using cs.aworx.lib.lang;
@@ -22,7 +22,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using cs.aworx.lib;
 using cs.aworx.lox;
-using cs.aworx.lox.core;
+using cs.aworx.lox.detail;
 using cs.aworx.lox.loggers;
 using cs.aworx.lox.tools;
 using System.Collections.Generic;
@@ -645,47 +645,47 @@ namespace ut_cs_aworx_lox
             MemoryLogger ml= new MemoryLogger();
 
 
-            Log.SetDomain( "/MLine", Scope.Method );
-            Log.SetVerbosity( Log.DebugLogger, Verbosity.Verbose, "/MLine" );
-            Log.SetVerbosity( ml, Verbosity.Verbose, "/MLine" );
+            Log.SetDomain( "/MLINE", Scope.Method );
+            Log.SetVerbosity( Log.DebugLogger, Verbosity.Verbose, "/MLINE" );
+            Log.SetVerbosity( ml, Verbosity.Verbose, "/MLINE" );
 
 
             Log.DebugLogger.MultiLineMsgMode= 0;
             Log.Info( "" );
             Log.Info( "-------- ML Mode = 0 (single line) --------" );
-            Log.State( "MLine", Verbosity.Info, "Our Log configuration is:" );
+            Log.State( "MLINE", Verbosity.Info, "Our Log configuration is:" );
 
             Log.DebugLogger.MultiLineMsgMode= 0;
             Log.DebugLogger.MultiLineDelimiterRepl= "~|~";
             Log.Info( "" );
             Log.Info( "-------- ML Mode = 0 (single line) with delimiter replacement set to ~|~ --------" );
-            Log.State( "MLine", Verbosity.Info, "Our Log configuration is:" );
+            Log.State( "MLINE", Verbosity.Info, "Our Log configuration is:" );
 
             Log.DebugLogger.MultiLineMsgMode= 0;
             Log.DebugLogger.MultiLineDelimiter= "";
             Log.Info( "" );
             Log.Info( "-------- ML Mode = 0 (single line) with delimiter set to \"\" (stops multi line processing) --------" );
-            Log.State( "MLine", Verbosity.Info, "Our Log configuration is:" );
+            Log.State( "MLINE", Verbosity.Info, "Our Log configuration is:" );
 
             Log.DebugLogger.MultiLineMsgMode= 1;
             Log.Info( "" );
             Log.Info( "-------- ML Mode = 1 (multi line, all meta info per line) --------" );
-            Log.State( "MLine", Verbosity.Info, "Our Log configuration is:" );
+            Log.State( "MLINE", Verbosity.Info, "Our Log configuration is:" );
 
             Log.DebugLogger.MultiLineMsgMode= 2;
             Log.Info( "" );
             Log.Info( "-------- ML Mode = 2 (multi line, meta info blanked) --------" );
-            Log.State( "MLine", Verbosity.Info, "Our Log configuration is:" );
+            Log.State( "MLINE", Verbosity.Info, "Our Log configuration is:" );
 
             Log.DebugLogger.MultiLineMsgMode= 3;
             Log.Info( "" );
             Log.Info( "-------- ML Mode = 3 (multi line, print headline with info, text starts at pos 0) --------" );
-            Log.State( "MLine", Verbosity.Info, "Our Log configuration is:" );
+            Log.State( "MLINE", Verbosity.Info, "Our Log configuration is:" );
 
             Log.DebugLogger.MultiLineMsgMode= 4;
             Log.Info( "" );
             Log.Info( "-------- ML Mode = 4 (pure multi line, no meta info, no headline, starts at pos 0)) --------" );
-            Log.State( "MLine", Verbosity.Info, "Our Log configuration is:" );
+            Log.State( "MLINE", Verbosity.Info, "Our Log configuration is:" );
         #endif
     }
 

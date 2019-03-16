@@ -1,8 +1,8 @@
 ﻿
 // #################################################################################################
-//  cs.aworx.lox.core - ALox Logging Library
+//  cs.aworx.lox.detail - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -18,12 +18,12 @@ using cs.aworx.lib.lang;
 using cs.aworx.lib.threads;
 using cs.aworx.lib.config;
 using cs.aworx.lox;
-using cs.aworx.lox.core;
+using cs.aworx.lox.detail;
 
 /** ************************************************************************************************
  * This namespaces defines class \b TextLogger and its helpers.
 **************************************************************************************************/
-namespace cs.aworx.lox.core.textlogger
+namespace cs.aworx.lox.detail.textlogger
 {
 
 /** ************************************************************************************************
@@ -85,9 +85,9 @@ public abstract class TextLogger : Logger
 
     /**
      * A helper object to get textual representation of logable objects.
-     * If no converter is set when this logger is used, a converter of type
-     * \ref cs.aworx.lox.core.textlogger.StandardConverter "StandardConverter" is created and used.
-     * In the destructor of this class, the current object converter will be deleted.
+     * If no converter is set when this logger is attached to a lox, a converter of type
+     * \alox{detail::textlogger,StandardConverter} is created and used.
+     * Custom loggers might create their own, custom converter objects here.
      *
      * To extend class \b %TextLogger to support logging custom objects, custom converters can
      * set. The preferred alternative is however, to make custom types be formattable
@@ -213,6 +213,9 @@ public abstract class TextLogger : Logger
          ******************************************************************************************/
         public override int   AddAcquirer( ThreadLock newAcquirer )
         {
+            if ( Converter == null )
+                Converter= new StandardConverter();
+
             // register with ALIB lockers (if not done yet)
             if ( usesStdStreams )
             {
@@ -227,9 +230,23 @@ public abstract class TextLogger : Logger
 
             Variable variable= new Variable();
 
-            // import autosizes from configuration (last session)
+            // import auto-sizes from configuration (last session)
             if ( ALox.Config.Load(variable.Declare( ALox.AUTO_SIZES, GetName())) != 0 )
-                AutoSizes.Import( variable.GetString() );
+            {
+                Substring importMI = new Substring( variable.GetString() );
+                Substring importLog= new Substring();
+                int sepPos= importMI.IndexOf(';');
+                if( sepPos >= 0 )
+                    importMI.Split( sepPos, importLog, 1 );
+                AutoSizes.Import( importMI );
+
+                AutoSizes autoSizesLog= Converter.GetAutoSizes();
+                if( autoSizesLog != null && importLog.IsNotEmpty() )
+                {
+                    autoSizesLog.Import( importLog );
+                }
+            }
+
 
             // import "max elapsed time" from configuration (last session)
             if ( ALox.Config.Load(variable.Declare( ALox.MAX_ELAPSED_TIME, GetName()))  != 0 )
@@ -394,10 +411,18 @@ public abstract class TextLogger : Logger
 
             Variable variable= new Variable();
 
-            // export autosizes to configuration
+            // export auto-sizes to configuration
             variable.Declare( ALox.AUTO_SIZES, GetName() );
-            AutoSizes.Export( variable.Add() );
+            AString exportString= variable.Add();
+            AutoSizes.Export( exportString );
+            AutoSizes autoSizesLog= Converter.GetAutoSizes();
+            if( autoSizesLog != null )
+            {
+                exportString._( ';' );
+                autoSizesLog.Export( exportString );
+            }
             ALox.Config.Store(variable);
+
 
             // export "max elapsed time" to configuration
             variable.Declare( ALox.MAX_ELAPSED_TIME, GetName() );
@@ -458,6 +483,19 @@ public abstract class TextLogger : Logger
         public void  ClearReplacements()
         {
             replacements.Clear();
+        }
+
+        /** ****************************************************************************************
+         * Resets automatically widened tab stops and field widths of this logger by calling
+         * \alox{detail::textlogger::StandardConverter,ResetAutoSizes} on field #Converter.
+         *
+         * \note The sizes affected are the ones used to format the custom log output, not
+         *       the ones uses for the meta information. To reset the auto-sizes of the meta
+         *       information, invoke \alib{strings::util,AutoSizes::Reset} on field #AutoSizes.
+         ******************************************************************************************/
+        public void    ResetAutoSizes()
+        {
+            Converter.ResetAutoSizes();
         }
 
     // #############################################################################################
@@ -522,10 +560,6 @@ public abstract class TextLogger : Logger
                                    List<Object>  logables,
                                    ScopeInfo     scope  )
         {
-            // check
-            if ( Converter == null )
-                Converter= new StandardConverter();
-
             // we store the current msgBuf length and reset the buffer to this length when exiting.
             // This allows recursive calls! Recursion might happen with the evaluation of the
             // logables (in the next line!)
@@ -540,7 +574,7 @@ public abstract class TextLogger : Logger
             // setup log buffer with meta info << ESC.EOMETA
             logBuf.Clear();
             AutoSizes.Start();
-            int qtyESCTabsWritten=  MetaInfo.Write( this, logBuf, domain, verbosity, scope );
+            MetaInfo.Write( this, logBuf, domain, verbosity, scope );
             logBuf._NC( ESC.EOMETA );
 
             // check for empty messages
@@ -676,7 +710,7 @@ public abstract class TextLogger : Logger
                     if (lineNo != 0 )
                     {
                         logBuf.Clear()._( ESC.EOMETA );
-                        AutoSizes.ActualIndex=  qtyTabStops + qtyESCTabsWritten;
+                        AutoSizes.ActualIndex=  qtyTabStops;
                     }
                 }
                 // reset logBuf length to marked position

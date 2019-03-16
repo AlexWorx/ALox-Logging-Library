@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  cs.aworx.unittests - AWorx Util
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
@@ -49,7 +49,7 @@ namespace ut_cs_aworx_lib
 
             Log.AddDebugLogger();
             Log.MapThreadName( "UnitTest" );
-            Log.SetDomain( "TestTLock", Scope.Method );
+            Log.SetDomain( "TESTTLOCK", Scope.Method );
             Log.SetVerbosity( Log.DebugLogger, Verbosity.Verbose, "ALIB" );
 
             // lock a recursive lock
@@ -129,7 +129,7 @@ namespace ut_cs_aworx_lib
 
             Log.SetVerbosity( new ConsoleLogger(),Verbosity.Verbose, "/" );
             Log.MapThreadName( "UnitTest" );
-            Log.SetDomain( "TestTLock", Scope.Filename );
+            Log.SetDomain( "TESTTLOCK", Scope.Filename );
             Log.SetVerbosity( "CONSOLE", Verbosity.Verbose, "ALIB" );
 
             ThreadLock aLock= new ThreadLock();
@@ -266,7 +266,7 @@ namespace ut_cs_aworx_lib
             UT_INIT();
             Log.SetVerbosity( new ConsoleLogger(), Verbosity.Verbose, "/" );
             Log.MapThreadName( "UnitTest" );
-            Log.SetDomain( "TestTLock", Scope.Filename );
+            Log.SetDomain( "TESTTLOCK", Scope.Filename );
 
             ThreadLock aLock= new ThreadLock();
 
@@ -315,7 +315,7 @@ namespace ut_cs_aworx_lib
 
             Log.SetVerbosity( new ConsoleLogger(), Verbosity.Verbose, "/" );
             Log.MapThreadName( "UnitTest" );
-            Log.SetDomain( "TestTLock", Scope.Method );
+            Log.SetDomain( "TESTTLOCK", Scope.Method );
 
             ThreadLock aLock= new ThreadLock();
 

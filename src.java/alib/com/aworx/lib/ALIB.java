@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -23,7 +23,7 @@
 
 
 /**
- * This is the Java package for core utility classes developed by A-Worx GmbH, Germany,
+ * This is the Java package for detail utility classes developed by A-Worx GmbH, Germany,
  * published under <em>Boost Software License</em>.
  *
  * The set of classes and things found within this namespace and its descendants is referred
@@ -32,7 +32,7 @@
  * Besides Java, this library is available in C# and C++, with language specific differences.
  * The design goals of the three are:
  * - Be small, efficient and easy to understand
- * - Keep C++, C# and Java versions similar and mimic functionality of core classes of all
+ * - Keep C++, C# and Java versions similar and mimic functionality of detail classes of all
  *   three languages whenever this is appropriate.
  */
 package com.aworx.lib;
@@ -66,7 +66,7 @@ public final class ALIB
          * Besides this version number, field #revision indicates if this is a revised version
          * of a former release.
          */
-        public static final int         version                                               =1805;
+        public static final int         version                                               =1903;
 
         /**
          * The revision number of this release. Each \b %ALib #version is initially released as
@@ -145,6 +145,13 @@ public final class ALIB
          *   not mixed, but separated in different Lines.
          */
         public static     SmartLock              stdOutputStreamsLock             = new SmartLock();
+
+        /**
+         * The ID of the thread that initialized this static field. This is supposedly thread
+         * "main".
+         */
+        public static     Long                    mainThreadID     = Thread.currentThread().getId();
+
 
     // #############################################################################################
     // Init/TerminationCleanUp()

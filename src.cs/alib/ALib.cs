@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -16,6 +16,8 @@ using cs.aworx.lib.time;
 using cs.aworx.lib.strings;
 using cs.aworx.lib.lang;
 
+namespace cs {
+namespace aworx {
 /**
  * This is the outer C++ namespace for all classes published by A-Worx GmbH, Germany.
  * There is nothing inside this namespace but other namespaces.<p>
@@ -26,7 +28,7 @@ using cs.aworx.lib.lang;
  *   This is for having classes with the same names existing in C++, C# and Java not collide
  *   within the [Doxygen](http://www.stack.nl/~dimitri/doxygen) documentation system.
  */
-namespace cs.aworx {}
+}}
 
 
 /**
@@ -41,7 +43,7 @@ namespace cs.aworx {}
  * - Be small, efficient and easy to understand
  * - Keep C++, C# and Java versions similar and mimic functionality of core classes of all
  *   three languages whenever this is appropriate, with the intent to keep source code building
- *   upon the library to a certain degree similar and exchangable.
+ *   upon the library to a certain degree similar and exchangeable.
  */
 namespace cs.aworx.lib {
 
@@ -65,14 +67,14 @@ public static class ALIB
          * Besides this version number, field #Revision indicates if this is a revised version
          * of a former release.
          */
-        public static readonly  int                    Version                                =1805;
+        public static readonly  int         Version                                           =1903;
 
         /**
          * The revision number of this release. Each ALib #Version is initially released as
          * revision \e 0. Pure bug-fix releases that do not change the interface of ALib
          * are holding the same #Version but an increased number in this field.
          */
-        public static readonly  int                    Revision                                  =0;
+        public static readonly  int         Revision                                             =0;
 
         /**
          * The configuration used by \alox. This is received or created with overloaded
@@ -86,19 +88,19 @@ public static class ALIB
          *
          * \see  Field #ConfigCategory.
          */
-        public static      Configuration               Config                                 =null;
+        public static      Configuration    Config                                            =null;
 
         /**
          * The name of the configuration category of configuration variables used by the AWorx
          * library.<br>
-         * Defaults to "ALIB".<br>
+         * Defaults to "ALIB".<br>6
          * This value can be changed to avoid conflicts between applications (especially in
          * respect to environment variable settings). Changes should be placed at very initial
          * bootstrap code, before the invocation of #Init.
          */
-        public  static      AString                    ConfigCategory   = new AString( "ALIB" );
+        public  static      AString         ConfigCategory                  = new AString( "ALIB" );
 
-        /** Configuration variable declaration */
+        /** Configuration variable declaration. */
         public static       VariableDecl      WAIT_FOR_KEY_PRESS = new VariableDecl(
 
             ALIB.ConfigCategory,   null,     "WAIT_FOR_KEY_PRESS",
@@ -117,7 +119,7 @@ public static class ALIB
         * [ALIB_WAIT_FOR_KEY_PRESS](../group__GrpALoxConfigVars.html).<br>
         * In addition, this public flag may be modified at runtime.
         */
-        public static       bool                    WaitForKeyPressOnTermination;
+        public static       bool            WaitForKeyPressOnTermination;
 
         /**
          * This is a smart mutex that allows to lock an applications' <em>standard output
@@ -163,7 +165,15 @@ public static class ALIB
          *   instance prior to writing. This way, log output and other application output is
          *   not mixed, but separated in different Lines.
          */
-        public static     SmartLock              StdOutputStreamsLock             = new SmartLock();
+        public static     SmartLock         StdOutputStreamsLock                  = new SmartLock();
+
+                                                /**
+        /**
+         * The ID of the thread that initialized this static field. This is supposedly the
+         * "main" thread.
+         */
+        public static readonly  int         MainThreadID     = Thread.CurrentThread.ManagedThreadId;
+
 
     // #############################################################################################
     // Environment definition/detection

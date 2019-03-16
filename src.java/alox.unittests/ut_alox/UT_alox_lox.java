@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Unit Tests - AWorx Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package ut_alox;
@@ -188,7 +188,7 @@ public class UT_alox_lox  extends AWorxUnitTesting
 
 
         // test sub domains
-        Log.setVerbosity( Log.debugLogger, Verbosity.VERBOSE, "/test" );
+        Log.setVerbosity( Log.debugLogger, Verbosity.VERBOSE, "/TEST" );
         Log.state( "/TEST",   Verbosity.INFO, "Dumping Log Configuration:" );
 
         Log.setVerbosity( Log.debugLogger, Verbosity.INFO,   "/DFLT"      );

@@ -1,10 +1,10 @@
 // ##############int###################################################################################
-//  com.aworx.lox.core - ALox Logging Library
+//  com.aworx.lox.detail - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-package com.aworx.lox.core;
+package com.aworx.lox.detail;
 
 
 import java.util.HashMap;
@@ -13,6 +13,7 @@ import java.util.Vector;
 
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.time.Ticks;
+import com.aworx.lib.ALIB;
 
 
 /** ************************************************************************************************
@@ -33,40 +34,44 @@ public class ScopeInfo
         /** A reference to list of prefixes of \e 'packages.classes.methods' maintained by our lox*/
         private   Vector<String>          omittablePackagePrefixes;
 
-        /** A reference to thread dictionary maintained by our lox  */
-        private   HashMap <Long, String>  threadDictionary;
-
         /** The thread that invoked the call. */
         private   Thread                  thread;
 
         /** Name and path of the source code file the log call is placed in. */
-        private   AString                 threadName                  = new AString(32);
+        private   AString                 threadName                              = new AString(32);
 
         /** Flag that indicates whether stack trace information was retrieved already (false) or not
          *  (true). */
-        private   boolean                 lazyStackTrace              = true;
+        private   boolean                 lazyStackTrace                                     = true;
 
         /** Name and path of the source code file the log call is placed in. */
-        private   AString                 packageName                 = new AString(32);
+        private   AString                 packageName                             = new AString(32);
 
         /** Name of the method the log call is placed in. */
-        private   AString                 className                   = new AString(32);
+        private   AString                 className                               = new AString(32);
 
         /** Name of the method the log call is placed in. */
-        private   AString                 methodName                  = new AString(32);
+        private   AString                 methodName                              = new AString(32);
 
         /** Name  of the source code file the log call is placed in. */
-        private   AString                 fileName                    = new AString(32);
+        private   AString                 fileName                                = new AString(32);
 
         /** The line number within the source file where the log call is placed in. */
         private   int                     lineNumber;
 
     // #############################################################################################
-    // public fields
+    // Public members (in C++ this is protected and Lox is a friend)
     // #############################################################################################
 
         /** Time of the call represented by this instance. */
-        public      Ticks                   timeStamp                   = new Ticks();
+        public      Ticks                   timeStamp                                 = new Ticks();
+
+        /**
+         * Dictionary to translate thread IDs into something maybe nicer/shorter.
+         * The dictionary may be filled by the user of the library using \alox{Lox.mapThreadName}.
+         */
+        public      HashMap <Long, String>  threadDictionary          = new HashMap<Long, String>();
+
 
     // #############################################################################################
     // public interface
@@ -76,18 +81,16 @@ public class ScopeInfo
          * Constructs a scope info.
          * @param name              The name of the Lox we belong to.
          *                          Will be converted to upper case.
-         * @param threadDictionary  A dictionary to map thread IDs to user friendly names which is
-         *                          managed outside of this class.
          * @param omittablePackagePrefixes A list of prefixes of package names that are ignored, when
          *                                 the calling method is identified from the top of the calling
          *                                 stack.
          ******************************************************************************************/
-        public ScopeInfo( String name,  HashMap <Long, String> threadDictionary,
-                          Vector<String> omittablePackagePrefixes                    )
+        public ScopeInfo( String name,  Vector<String> omittablePackagePrefixes        )
         {
             this.loxName=                   name.toUpperCase( Locale.US );
-            this.threadDictionary=          threadDictionary;
             this.omittablePackagePrefixes=  omittablePackagePrefixes;
+            threadDictionary.put(ALIB.mainThreadID, "PROCESS" );
+
         }
 
         /** ****************************************************************************************

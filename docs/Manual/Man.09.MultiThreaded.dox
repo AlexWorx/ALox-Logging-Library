@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -57,18 +57,18 @@ applications, but not more!
 # 2. Mapping Thread Names # {#alox_man_multi_threaded_mapping}
 ALox collects information about the thread that was executing a <em>Log Statement</em>. For textual logging, class
 <b>%MetaInfo</b>
-  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo),
-   [C#]  (@ref  #cs::aworx::lox::core::textlogger::MetaInfo),
-   [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo)), which is a plugged-in tool class of class
+  ([C++] (@ref aworx::lib::lox::detail::textlogger::MetaInfo),
+   [C#]  (@ref  #cs::aworx::lox::detail::textlogger::MetaInfo),
+   [Java](@ref #com::aworx::lox::detail::textlogger::MetaInfo)), which is a plugged-in tool class of class
 <b>%TextLogger</b>
-  ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger),
-   [C#]  (@ref  #cs::aworx::lox::core::textlogger::TextLogger),
-   [Java](@ref #com::aworx::lox::core::textlogger::TextLogger)), writes the name of the
+  ([C++] (@ref aworx::lib::lox::detail::textlogger::TextLogger),
+   [C#]  (@ref  #cs::aworx::lox::detail::textlogger::TextLogger),
+   [Java](@ref #com::aworx::lox::detail::textlogger::TextLogger)), writes the name of the
 executing thread by default. This default is defined with substring "%tN" in field
 <b>%MetaInfo.Format</b>
-  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo::Format),
-   [C#]  (@ref  #cs::aworx::lox::core::textlogger::MetaInfo::Format),
-   [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo::format)). Now, if you want to change
+  ([C++] (@ref aworx::lib::lox::detail::textlogger::MetaInfo::Format),
+   [C#]  (@ref  #cs::aworx::lox::detail::textlogger::MetaInfo::Format),
+   [Java](@ref #com::aworx::lox::detail::textlogger::MetaInfo::format)). Now, if you want to change
 the name (without changing your applications' true thread name), then method
 <b>%Lox.MapThreadName</b>
   ([C++] (@ref aworx::lib::lox::Lox::MapThreadName),

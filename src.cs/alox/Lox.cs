@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -20,9 +20,9 @@ using cs.aworx.lib.time;
 using cs.aworx.lib.strings;
 using cs.aworx.lib.strings.util;
 using cs.aworx.lib.threads;
-using cs.aworx.lox.core;
+using cs.aworx.lox.detail;
 using cs.aworx.lox.loggers;
-using cs.aworx.lox.core.textlogger;
+using cs.aworx.lox.detail.textlogger;
 
 /** ************************************************************************************************
  * This is the C++ namespace for code of the <b>%ALox Logging Library</b>.
@@ -117,15 +117,11 @@ public class Lox : ThreadLock
         /** Used for tabular output of logger lists */
         protected int                           maxDomainPathLength                             = 0;
 
-        /** Dictionary to translate thread ids into something maybe nicer/shorter.
-         *  The dictionary has to be filled by the user of the library. */
-        protected Dictionary<int, String>       threadDictionary =new Dictionary<int, String>();
-
         /** A key value used in stores if no key is given (global object).  */
         protected readonly String               noKeyHashKey                                  = "$";
 
-        /** A list of lists of objects. The list is passed to the \e Loggers. For each recursive call,
-         *  one list is created.    */
+        /** A list of lists of objects. The list is passed to the \e Loggers. For each recursive
+         *  call, one list is created.    */
         protected List<List<Object>>            logableLists             = new List<List<Object>>();
 
         /** A temporary AString, following the "create once and reuse" design pattern. */
@@ -254,7 +250,8 @@ public class Lox : ThreadLock
             // acquired more than once
             #if ALOX_DBG_LOG || ALOX_REL_LOG
 
-                scopeInfo=      new ScopeInfo( name, threadDictionary );
+                // create scope info
+                scopeInfo=      new ScopeInfo( name );
                 scopeDomains=   new ScopeStore<AString                     >( scopeInfo, false );
                 scopePrefixes=  new ScopeStore<Object                      >( scopeInfo, false );
                 scopeLogData=   new ScopeStore<Dictionary<AString, Object> >( scopeInfo, true  );
@@ -1026,9 +1023,6 @@ public class Lox : ThreadLock
                 loggerAddedSinceLastDebugState= true;
             }
 
-            // do
-            dom.SetVerbosity( no, verbosity, priority );
-
             // get verbosities from configuration
             if( isNewLogger )
             {
@@ -1045,6 +1039,9 @@ public class Lox : ThreadLock
                     getAllVerbosities( logger, internalDomains , variable );
                 }
             }
+
+            // do
+            dom.SetVerbosity( no, verbosity, priority );
 
             intMsg._()._("Logger \"")._( logger.GetName() )._NC( "\":").Tab(11 + maxLoggerNameLength)
                           ._('\'')._NC( dom.FullPath )
@@ -1096,22 +1093,17 @@ public class Lox : ThreadLock
             Domain dom= evaluateResultDomain( domain );
 
             // get logger
+            Logger logger;
             int no= dom.GetLoggerNo( loggerName );
-            if( no < 0 )
+            if (no >= 0)
+                logger=dom.GetLogger( no );
+            else
             {
                 // we have to check if the logger was added in the 'other' tree
-                Domain actualTree= dom.GetRoot();
-                Domain otherTree=  actualTree == domains ? internalDomains
-                                                         : domains;
+                Domain otherTree= dom.GetRoot() == domains ? internalDomains
+                                                           : domains;
                 no= otherTree.GetLoggerNo( loggerName );
-                if ( no >= 0 )
-                {
-                    SetVerbosity( otherTree.GetLogger( no ), Verbosity.Off,
-                                  actualTree.FullPath.ToString(), Configuration.PrioDefaultValues    ,cln,csf,cmn );
-                    no= dom.GetLoggerNo( loggerName );
-                    ALIB_DBG.ASSERT( no >= 0 );
-                }
-                else
+                if ( no < 0 )
                 {
                     intMsg._()._NC( "Logger not found. Request was: SetVerbosity( \"")._(loggerName)._NC("\", \"")
                               ._(dom.FullPath)  ._NC("\", Verbosity.")
@@ -1121,23 +1113,12 @@ public class Lox : ThreadLock
                     logInternal( Verbosity.Warning, "LGR", intMsg );
                     return;
                 }
+
+                logger=otherTree.GetLogger(no);
             }
 
-            // do
-            dom.SetVerbosity( no, verbosity, priority );
-
-            // log info on this
-            intMsg._()._("Logger \"")._( dom.GetLogger( no ).GetName() )._NC( "\":").Tab(11 + maxLoggerNameLength)
-                      ._('\'')._NC( dom.FullPath )
-                      ._( '\'' ).InsertChars(' ', maxDomainPathLength - dom.FullPath.Length() + 1 )
-                      ._( "= Verbosity." );
-                      ALox.ToString( verbosity, priority, intMsg ).TrimEnd()._('.');
-            Verbosity actVerbosity= dom.GetVerbosity( no );
-            if( actVerbosity != verbosity )
-                intMsg._( " Lower priority (")._( priority )
-                      ._( " < ")._(dom.GetPriority(no))
-                      ._( "). Remains " )._NC( actVerbosity )._( '.' );
-            logInternal( Verbosity.Info, "LGR", intMsg );
+            // use the overloaded method
+            SetVerbosity( logger, verbosity, domain, priority );
 
         } finally { Release(); }
         #endif
@@ -1634,7 +1615,7 @@ public class Lox : ThreadLock
                 }
 
                 // add entry
-                threadDictionary[id]= threadName;
+                scopeInfo.threadDictionary[id]= threadName;
 
                 // log info on this
                 intMsg.Clear()._NC("Mapped thread ID ")
@@ -1940,7 +1921,7 @@ public class Lox : ThreadLock
         #if ALOX_DBG_LOG || ALOX_REL_LOG
             try { Acquire(cln, csf, cmn);
 
-                ScopeDump scopeDump= new ScopeDump( threadDictionary, noKeyHashKey, buf );
+                ScopeDump scopeDump= new ScopeDump( scopeInfo.threadDictionary, noKeyHashKey, buf );
 
 
                 // basic lox info
@@ -2064,13 +2045,13 @@ public class Lox : ThreadLock
                 if( (flags & Lox.StateInfo.ThreadMappings ) != 0 )
                 {
                     buf._NC( "Named Threads:   " ).NewLine();
-                    if ( threadDictionary.Count == 0 )
+                    if ( scopeInfo.threadDictionary.Count == 0 )
                         buf._NC("  No thread name mappings" ).NewLine();
                     else
-                        foreach ( int key in threadDictionary.Keys )
+                        foreach ( int key in scopeInfo.threadDictionary.Keys )
                         {
                             buf._NC( "  " ).Field()._('(')._(key)._NC( "):").Field( 7, Alignment.Left )
-                                           ._('\"')._NC( threadDictionary[key] ) ._('\"');
+                                           ._('\"')._NC( scopeInfo.threadDictionary[key] ) ._('\"');
                             buf.NewLine();
                         }
                     buf.NewLine();
@@ -2662,7 +2643,6 @@ public class Lox : ThreadLock
      * @param verbosity  The verbosity.
      * @param firstLog   The first logable or the domain path.
      * @param optLog2    Optional logable
-     * @param optLog3    Optional logable.
      * @param optLog3    Optional logable.
      * @param optLog4    Optional logable.
      * @param cln (Optional) Caller info, compiler generated. Please omit.
@@ -3263,13 +3243,13 @@ public class Lox : ThreadLock
          * The resulting full domain string is assembled from inner to outer scope.
          * If \p{domainPath}, respectively as soon as any of the scope levels' Scope Domain paths
          * starts with the character defined in
-         * \ref cs.aworx.lox.core.Domain.Separator "Domain.Separator",
+         * \ref cs.aworx.lox.detail.Domain.Separator "Domain.Separator",
          * the evaluation is stopped (the path is interpreted as absolute).
          *
          * @param domainPath The domain path. If starting with the character defined in
-         *                   \ref cs.aworx.lox.core.Domain.Separator "Domain.Separator",
+         *                   \ref cs.aworx.lox.detail.Domain.Separator "Domain.Separator",
          *                   no Scope Domains are applied.
-         * @return The resulting \ref cs.aworx.lox.core.Domain "Domain".
+         * @return The resulting \ref cs.aworx.lox.detail.Domain "Domain".
          ******************************************************************************************/
         protected  Domain evaluateResultDomain( String domainPath )
         {
@@ -3307,7 +3287,7 @@ public class Lox : ThreadLock
          *
          * @param domainSystem  The domain system. Either the standard or the internal one.
          * @param domainPath    The domain path.
-         * @return The resulting \ref cs.aworx.lox.core.Domain "Domain".
+         * @return The resulting \ref cs.aworx.lox.detail.Domain "Domain".
          ******************************************************************************************/
         Domain findDomain( Domain domainSystem, AString domainPath )
         {
@@ -3882,7 +3862,7 @@ public class Lox : ThreadLock
             bool groupWasEmtpy;
             if ( (groupWasEmtpy= tmpAS.IsEmpty()) )
             {
-                // GLOBAL scope: exact code line match match
+                // GLOBAL scope: exact code line match
                 if ( scope == Scope.Global )
                 {
                     scope= Scope.Filename;

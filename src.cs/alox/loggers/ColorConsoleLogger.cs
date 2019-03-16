@@ -1,13 +1,13 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox.loggers - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 using System;
 using System.Runtime.CompilerServices;
-using cs.aworx.lox.core.textlogger;
+using cs.aworx.lox.detail.textlogger;
 using cs.aworx.lib;
 using cs.aworx.lib.strings;
 using cs.aworx.lib.strings.util;
@@ -19,7 +19,7 @@ using cs.aworx.lib.strings.util;
  *
  *  Developed by A-Worx GmbH and published under Boost Software License.
  **************************************************************************************************/
-using cs.aworx.lox.core;
+using cs.aworx.lox.detail;
 using cs.aworx.lib.lang;
 using cs.aworx.lib.config;
 
@@ -274,7 +274,7 @@ public class ColorConsoleLogger : TextLogger
                 int extraSpace=  c >= '0' && c <= '9' ? (int)  ( c - '0' )
                                                       : (int)  ( c - 'A' ) + 10;
 
-                int tabStop= AutoSizes.Next( column, extraSpace );
+                int tabStop= AutoSizes.Next( AutoSizes.Types.Tabstop, column, extraSpace );
 
                 Spaces.Write( Console.Out, tabStop - column );
                 column= tabStop;

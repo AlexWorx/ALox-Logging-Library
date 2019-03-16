@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -212,10 +212,10 @@ As an example, an INI file of an application might have the following sub-sectio
 This would install two rules. Note that values of parameters 2 and 4, which in the method
 declaration carry enum types
 <b>%Inclusion</b>
-([C++] (@ref      #aworx::lib::lang::Inclusion),
+([C++] (@ref      #aworx::lib::Inclusion),
  [C#]  (@ref  #cs::aworx::lib::lang::Inclusion)) and
 <b>%Case</b>
-([C++] (@ref      #aworx::lib::lang::Case),
+([C++] (@ref      #aworx::lib::Case),
  [C#]  (@ref  #cs::aworx::lib::lang::Case)), in the INI file are expressed by boolean values
 as follows:
 
@@ -329,8 +329,8 @@ then the directory prior to the tree of namespace directories should be included
 \note
   This section is about textual logging with the use of \e Loggers derived from class
   <b>%TextLogger</b>
-    ([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger),
-     [C#]  (@ref  #cs::aworx::lox::core::textlogger::TextLogger)), provided with \alox. For other
+    ([C++] (@ref aworx::lib::lox::detail::textlogger::TextLogger),
+     [C#]  (@ref  #cs::aworx::lox::detail::textlogger::TextLogger)), provided with \alox. For other
   \e Loggers, other considerations might apply.
 
 Due to the rich meta information that \alox provides, the log output lines quickly become quite wide.
@@ -339,8 +339,8 @@ distinguish all files properly, can help a lot to reduce such width.
 
 Class
 <b>%MetaInfo</b>
-  ([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo),
-   [C#]  (@ref  #cs::aworx::lox::core::textlogger::MetaInfo)), with its instance found in every
+  ([C++] (@ref aworx::lib::lox::detail::textlogger::MetaInfo),
+   [C#]  (@ref  #cs::aworx::lox::detail::textlogger::MetaInfo)), with its instance found in every
 ALox \b TextLogger, provides a format string to structure the meta info.
 For the source path, two format parameters exists:
 - <b>%SP</b>: Provides the full path name

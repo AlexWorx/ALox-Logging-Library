@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -111,11 +111,11 @@ There is one occasion where this is already, by default done. \alox builds on un
 and hence uses an own way to have at least a minimum, fundamental way to communicate problems
 to the outer world. This communication is implemented using \alib classes
 <b>%Report</b>
-  ([C++](@ref      aworx::lib::lang::Report),
+  ([C++](@ref      aworx::lib::results::Report),
   [C#]  (@ref  cs::aworx::lib::lang::Report),
   [Java](@ref com::aworx::lib::lang::Report)) and
 <b>%ReportWriter</b>
-  ([C++](@ref      aworx::lib::lang::ReportWriter),
+  ([C++](@ref      aworx::lib::results::ReportWriter),
   [C#]  (@ref  cs::aworx::lib::lang::ReportWriter),
   [Java](@ref com::aworx::lib::lang::ReportWriter)).
 These classes together implement a pattern of having a 'pluggable' object that handles report

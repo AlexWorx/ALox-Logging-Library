@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -59,7 +59,7 @@ are reading yourself through this tutorial. This is why a very brief explanation
 
 - The most important interface into ALox is class
 [Lox](@ref aworx::lib::lox::Lox) which is is a container to hold one or more instances of abstract class
-[Logger](@ref aworx::lib::lox::core::Logger). Through the interface of class \b Lox, the log
+[Logger](@ref aworx::lib::lox::detail::Logger). Through the interface of class \b Lox, the log
 statements are invoked. Log statements are forwarded to the \e Loggers attached.
 
 - The most simple case is that you have just one \b Lox instance, holding exactly one \e %Logger which logs its output to the
@@ -122,7 +122,7 @@ And add a statement to use namespaces \c std and \ref aworx to your source file:
 # 4. Class Logger ##  {#alox_tutcpp_logger}
 
 While class \b %Lox is the main interface to ALox logging, abstract class
-\ref aworx::lib::lox::core::Logger  "Logger" is performing the log. 'Performing' here means that
+\ref aworx::lib::lox::detail::Logger  "Logger" is performing the log. 'Performing' here means that
 derived instances of this abstract class are responsible for writing the \e 'Logables' (the message
 or data that is logged) to a 'drain', for example the console or a text file.
 
@@ -238,8 +238,8 @@ release version.
 
 This is achieved by providing the right set of
 \ref GrpALibCompilerSymbols "Compilation Symbols" when
-\ref alib_man_setup "setting up the project". Only project configurations that have the symbol
-\b ALOX_DBG_LOG_ON set will contain ALox debug logging statements.
+\ref alib_manual_build "setting up the project". Only project configurations that have the symbol
+\ref ALOX_DBG_LOG_ON set will contain ALox debug logging statements.
 
 This has a lot of benefits:
 - your release code executes faster,
@@ -523,7 +523,7 @@ is just concatenated:
 
 But in fact, this concatenation is just the "fallback" strategy of a quite powerful formatting
 system coming with \alox. In short, \alox here relies on underlying library \alib, which
-provides abstract class \ref aworx::lib::strings::format::Formatter "Formatter"
+provides abstract class \ref aworx::lib::stringformat::Formatter "Formatter"
 allowing to format a set of arguments in accordance with a given format string that contains placeholder symbols.
 
 Now there are two tricks implemented: First, if no format string is recognized, a simple
@@ -531,11 +531,11 @@ concatenation is performed. This is what we already saw. But secondly, if one fo
 recognize a format string, a next formatter can be asked.
 
 Two formatters are provided by \alib and \alox (by default) installs both in parallel:
-1. \ref aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle"<br>
+1. \ref aworx::lib::stringformat::FormatterPythonStyle "FormatterPythonStyle"<br>
    Implements an extended version of
    [Python String Fromat Syntax](https://docs.python.org/3.5/library/string.html#format-string-syntax),
    which is also similar to what C# offers.
-2. \ref aworx::lib::strings::format::FormatterJavaStyle "FormatterJavaStyle"<br>
+2. \ref aworx::lib::stringformat::FormatterJavaStyle "FormatterJavaStyle"<br>
    Implements the
    [formatting standards of the Java language](http://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html),
    which in turn are a little like good old \c printf, but of-course much more powerful and also type-safe.
@@ -572,8 +572,8 @@ string!
 In general, we are recommending to use Python style syntax with \b ALox, because it is more powerful and
 probably also better readable. The full documentation of the formats and how this is adopted
 within the C++ version of <b>%ALib/%ALox</b> is found with documentation of classes
-\ref aworx::lib::strings::format::FormatterPythonStyle "FormatterPythonStyle" and
-\ref aworx::lib::strings::format::FormatterJavaStyle   "FormatterJavaStyle". Let us conclude this chapter
+\ref aworx::lib::stringformat::FormatterPythonStyle "FormatterPythonStyle" and
+\ref aworx::lib::stringformat::FormatterJavaStyle   "FormatterJavaStyle". Let us conclude this chapter
 with some more samples:
 
 \snippet ut_dox_tutorial.cpp        Tut_Format_Sample_1
@@ -716,8 +716,8 @@ When implementing an object dump, you should not place a <em>Log Statement</em> 
 every attribute. In contrast, you should collect the whole dump within an #aworx::AString
 (or any string type you like) and then log this String as a whole.
 
-So, currently class \alox{LogTools} just provides one static method for logging
-\alib{lang,Exception,ALib Exceptions}.
+So, currently class \alox{LogTools} just provides one static method for logging an
+\alib{results,Exception}.
 
 For future versions of ALox for C++, it is planned to provide:
 - Working with debug information to implement log tools for user defined classes
@@ -731,7 +731,7 @@ You are invited to send us your proposals of log tool code for common libraries 
 
 In multi-threaded applications, ALox by default logs information about the thread id or name
 that executed the code containing your log statements.
-(This can be configured for ALox textual \e Loggers with class \ref aworx::lib::lox::core::textlogger::MetaInfo "MetaInfo".)
+(This can be configured for ALox textual \e Loggers with class \ref aworx::lib::lox::detail::textlogger::MetaInfo "MetaInfo".)
 
 Often threads do not have a name, but just an ID. It would be much nicer to see a
 name instead. ALox provides a simple mechanism to overwrite thread names with method
@@ -916,7 +916,8 @@ important things not covered in the tutorial are:
 
 
 If however, you just want to start using ALox and get to know more details over time, you should
-only read \ref alox_cpp_setup and probably \ref GrpMacrosDebugLog.
+only read \ref alox_cpp_setup and probably section "ALox Macros For Debug Logging"
+in \ref GrpALibMacros.
 
 Finally, for the daily work, the [ALox class reference](annotated.html) gives a lot of help!
 */

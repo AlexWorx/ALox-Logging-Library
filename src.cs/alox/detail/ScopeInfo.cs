@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
-//  cs.aworx.lox.core - ALox Logging Library
+//  cs.aworx.lox.detail - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -18,15 +18,15 @@ using System.Diagnostics;
 using System.Threading;
 using cs.aworx.lib.config;
 
-namespace cs.aworx.lox.core {
-/** ************************************************************************************************
+namespace cs.aworx.lox.detail {
+#if ALOX_DBG_LOG || ALOX_REL_LOG
+
+    /** ********************************************************************************************
  * Encapsulates information of the caller that can be collected. This is platform specific, in
  * this case, .NET 4.5. What we currently can get from the .NET compiler, is the source file name
  * of the calling code, the line number within the source file name and the name of the method
  * the call is placed. We do not get the class name of the object or even its instance.
  **************************************************************************************************/
-#if ALOX_DBG_LOG || ALOX_REL_LOG
-
 public class ScopeInfo
 {
     // #############################################################################################
@@ -34,12 +34,7 @@ public class ScopeInfo
     // #############################################################################################
 
         /** The name of the Lox we are attached to */
-        protected        String                    loxName;
-
-        /** The dictionary for thread names (a copy of that from our Lox)  */
-        protected        Dictionary<int, String>   threadDictionary;
-
-
+        protected        String                     loxName;
 
         /** Information of a single source file. Stored in field #cache */
         protected class SourceFile
@@ -101,7 +96,7 @@ public class ScopeInfo
         protected        int                        threadID;
 
         /** The name of the thread that executed the log.  **/
-        protected        AString                    threadName                     = new AString(32);
+        protected        AString                    threadName                    = new AString(32);
 
         /**
          *  If true, next time a source path can not be trimmed successfully with custom
@@ -119,10 +114,10 @@ public class ScopeInfo
          * parameters rely on method invocations wich incorporate log statements), objects of this
          * class are stored in stack #scopes.
          */
-    protected class Scope
+        protected class Scope
         {
             /** Time of the call represented by this instance.  **/
-            public           Ticks                  timeStamp                     = new Ticks();
+            public           Ticks                  timeStamp                         = new Ticks();
 
             /**  Line number within the source file (given by the diagnostics)  **/
             public           int                    origLine;
@@ -145,7 +140,7 @@ public class ScopeInfo
         protected        SourceFile                 lastSourceFile;
 
     // #############################################################################################
-    // Public memebers (in C++ this is protected and Lox is a friend)
+    // Public members (in C++ this is protected and Lox is a friend)
     // #############################################################################################
         /**  Defines portions of source paths to be ignored  */
         public class SourcePathTrimRule
@@ -166,7 +161,15 @@ public class ScopeInfo
         public         List<SourcePathTrimRule> LocalSPTRs = new List<SourcePathTrimRule>();
 
         /**  Flag to determine if global rules have been read from config already  */
-        public static bool                      GlobalSPTRsReadFromConfig           = false;
+        public static bool                      GlobalSPTRsReadFromConfig                   = false;
+
+        /**
+         * Dictionary to translate thread IDs into something maybe nicer/shorter.
+         * The dictionary may be filled by the user of the library using \alox{Lox.MapThreadName}.
+         */
+        public         Dictionary<int, String>  threadDictionary     =new Dictionary<int, String>();
+
+
 
     // #############################################################################################
     // public interface
@@ -176,15 +179,13 @@ public class ScopeInfo
          * Constructs a scope info.
          * @param name              The name of the Lox we belong to.
          *                          Will be converted to upper case.
-         * @param threadDictionary  A dictionary to map thread IDs to user friendly names which is
-         *                          managed outside of this class.
          ******************************************************************************************/
-        public ScopeInfo( String name,  Dictionary<int, String> threadDictionary )
+        public ScopeInfo( String name )
         {
             loxName= name.ToUpper();
             ALIB_DBG.ASSERT_ERROR( !loxName.Equals( "GLOBAL" ), "Name \"GLOBAL\" not allowed for Lox instances" );
 
-            this.threadDictionary= threadDictionary;
+            threadDictionary[ALIB.MainThreadID]= "PROCESS";
 
             cache=  new SourceFile[cacheSize= DefaultCacheSize];
             for ( int i= 0; i< cacheSize; i++ )

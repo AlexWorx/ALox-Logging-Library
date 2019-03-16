@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Unit Tests - AWorx Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package ut_alox.scopeP1.scopeP2;
@@ -343,7 +343,7 @@ Log.info( "*msg*" ); PFXCHECK( "One, two, 3*msg*"    ,ml );
         //-------------------- associated to scope package -----------------
         for (int i= 0; i < 5 ; i++ )
         {
-            Log.once( "Subdom", Verbosity.INFO, "Once(Scope package) 4x", Scope.PACKAGE, 0, 4 );
+            Log.once( "SUBDOM", Verbosity.INFO, "Once(Scope package) 4x", Scope.PACKAGE, 0, 4 );
             logOnceMethod();
         }
         Log.once( "", Verbosity.INFO, "Once(Scope package) 4x", Scope.PACKAGE, 0, 4 );

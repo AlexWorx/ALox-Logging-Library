@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -32,9 +32,9 @@ ALox is designed to support different log streams. A log stream is a destination
 and can be the IDE console, the terminal console, a file, a web service or anything that accepts
 data streams. Abstract class
 <b>Logger</b>
-  ([C++] (@ref #aworx::lox::core::Logger),
-   [C#]  (@ref #cs::aworx::lox::core::Logger),
-   [Java](@ref #com::aworx::lox::core::Logger))
+  ([C++] (@ref #aworx::lib::lox::detail::Logger),
+   [C#]  (@ref #cs::aworx::lox::detail::Logger),
+   [Java](@ref #com::aworx::lox::detail::Logger))
 represents such a log stream. While some implementations of class \b %Logger are provided with the \alox package,
 the system allows custom implementations of \e Loggers that log information to any 'data drain' in
 any format you like.
@@ -111,9 +111,9 @@ in the different language versions:
 In the case of textual logging (the standard case, including 'simple' debug logging), all \e Logables
 are processed by instances of derived types of class
 <b>%Formatter</b>
- ([C++](@ref      #aworx::lib::strings::Formatter),
- [C#]  (@ref  #cs::aworx::lib::strings::Formatter),
- [Java](@ref #com::aworx::lib::strings::Formatter)). This abstract class is defined in underlying
+ ([C++](@ref      #aworx::lib::stringformat::Formatter),
+ [C#]  (@ref  #cs::aworx::lib::strings::format::Formatter),
+ [Java](@ref #com::aworx::lib::strings::format::Formatter)). This abstract class is defined in underlying
 library \alib.
 This is why \alox logging optionally allows to pass format strings which include placeholders
 and formatting options, like field width, alignment, tabulators, quotes, and much more.
@@ -123,13 +123,13 @@ concatenated and logged. This way, formatting the output is just an option.
 And the flexibility goes even beyond that: By default, \b two built-in incarnations of this class
 are used:
 <b>%FormatterPythonStyle</b>
- ([C++](@ref      #aworx::lib::strings::FormatterPythonStyle),
- [C#]  (@ref  #cs::aworx::lib::strings::FormatterPythonStyle),
- [Java](@ref #com::aworx::lib::strings::FormatterPythonStyle)) and
+ ([C++](@ref      #aworx::lib::stringformat::FormatterPythonStyle),
+ [C#]  (@ref  #cs::aworx::lib::strings::format::FormatterPythonStyle),
+ [Java](@ref #com::aworx::lib::strings::format::FormatterPythonStyle)) and
 <b>%FormatterJavaStyle</b>
- ([C++](@ref      #aworx::lib::strings::FormatterJavaStyle),
- [C#]  (@ref  #cs::aworx::lib::strings::FormatterJavaStyle),
- [Java](@ref #com::aworx::lib::strings::FormatterJavaStyle)). The two types are used in parallel!
+ ([C++](@ref      #aworx::lib::stringformat::FormatterJavaStyle),
+ [C#]  (@ref  #cs::aworx::lib::strings::format::FormatterJavaStyle),
+ [Java](@ref #com::aworx::lib::strings::format::FormatterJavaStyle)). The two types are used in parallel!
 This means, that the already optional and auto-detected format strings may follow either the
 [Python String Fromat Syntax](https://docs.python.org/3.5/library/string.html#format-string-syntax),
 which is also similar to what C# offers, or the
@@ -363,9 +363,9 @@ While those interface methods in class
 arbitrary amount of \e Logables as parameters, this list can even be extended by further objects
 which are then all together passed to method
 <b>%Logger.Log</b>
-  ([C++] (@ref aworx::lib::lox::core::Logger::Log),
-   [C#]  (@ref  #cs::aworx::lox::core::Logger::Log),
-   [Java](@ref #com::aworx::lox::core::Logger::log)) of each \e Logger attached.
+  ([C++] (@ref aworx::lib::lox::detail::Logger::Log),
+   [C#]  (@ref  #cs::aworx::lox::detail::Logger::Log),
+   [Java](@ref #com::aworx::lox::detail::Logger::log)) of each \e Logger attached.
 
 Such additional objects are called <b>Prefix Logables</b>.
 In short, \alox allows to associate \e Logables to \e Scopes. This way, all <em>Log Statements</em> 'collect'
@@ -430,7 +430,7 @@ and removed (pruned) from the release version of a software.
 To achieve all goals and provide a very simple interface into debug logging, the \alox ecosystem
 provides class
 <b>Log</b>
-  ([C++] (@ref #aworx::lox::Log),
+  ([C++] (@ref #aworx::lib::lox::Log),
    [C#]  (@ref #cs::aworx::lox::Log),
    [Java](@ref #com::aworx::lox::Log))
 This class is a 100% static interface into
@@ -444,7 +444,7 @@ digraph example
     edge [shape=record, fontname=Helvetica, fontsize=10];
     log  [ label="{Log|1:1 static prunable interface into Lox}"     URL="\ref cs.aworx.lox.Lox"];
     lox  [ label="Lox"                                              URL="\ref cs.aworx.lox.Lox"];
-    logrs[ label="Loggers"                                          URL="\ref cs.aworx.lox.core.Logger"];
+    logrs[ label="Loggers"                                          URL="\ref cs.aworx.lox.detail.Logger"];
     doms [ label="Domains" ];
     cfg  [ label="Configuration Data"];
     log -> lox  [ label= "Contains 1 singleton" arrowhead="open", style="solid" ];

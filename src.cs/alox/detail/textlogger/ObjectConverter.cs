@@ -1,7 +1,7 @@
 // #################################################################################################
-//  cs.aworx.lox.core - ALox Logging Library
+//  cs.aworx.lox.detail - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using cs.aworx.lib.strings;
@@ -15,10 +15,11 @@ using System.Text;
 
 using cs.aworx.lib;
 using cs.aworx.lib.strings.format;
+using cs.aworx.lib.strings.util;
 using cs.aworx.lox;
-using cs.aworx.lox.core;
+using cs.aworx.lox.detail;
 
-namespace cs.aworx.lox.core.textlogger
+namespace cs.aworx.lox.detail.textlogger
 {
 
 /** ************************************************************************************************
@@ -33,14 +34,27 @@ public abstract class ObjectConverter
      * @param target     An AString that takes the result.
      * @param logables   The objects to convert.
      **********************************************************************************************/
-    abstract public void ConvertObjects(AString target, List<Object> logables);
-} // class
+    abstract public void        ConvertObjects(AString target, List<Object> logables);
+
+    /** ****************************************************************************************
+     * If this converter uses an \alib{strings::util,AutoSizes} object, this method returns
+     * such object.
+     * @return The auto sizes used, \c nullptr if not applicable.
+     ******************************************************************************************/
+    abstract public AutoSizes   GetAutoSizes();
+
+    /** ****************************************************************************************
+     * If this converter uses an \alib{strings::util,AutoSizes} object, values of this field
+     * are reset.
+     ******************************************************************************************/
+    abstract public void        ResetAutoSizes();
+}
 
 
 /** ************************************************************************************************
  * Implements the interface
- * \ref cs.aworx.lox.core.textlogger.ObjectConverter "ObjectConverter". Class
- * \ref cs.aworx.lox.core.textlogger.TextLogger      "TextLogger" creates an instance of this
+ * \ref cs.aworx.lox.detail.textlogger.ObjectConverter "ObjectConverter". Class
+ * \ref cs.aworx.lox.detail.textlogger.TextLogger      "TextLogger" creates an instance of this
  * type in the moment no other (custom) type was set prior to the first log statement.
  *
  * This implementation uses
@@ -116,6 +130,27 @@ public class StandardConverter : ObjectConverter
         formatter.Format( target, logables );
 
         cntRecursion--;
+    }
+
+    /** ********************************************************************************************
+     * Returns a pointer to the auto sizes object of the formatter #FormatterPS.
+     * @return The auto sizes object of the main formatter.
+     **********************************************************************************************/
+    public override AutoSizes   GetAutoSizes()
+    {
+        return FormatterPS.Sizes;
+    }
+
+    /** ********************************************************************************************
+     * Resets automatically widened tab stops and field widths of this converter.
+     **********************************************************************************************/
+    public override void        ResetAutoSizes()
+    {
+        foreach( FormatterPythonStyle elem in recursionFormatters )
+        {
+            elem   .Sizes.Reset();
+        }
+        FormatterPS.Sizes.Reset();
     }
 }
 

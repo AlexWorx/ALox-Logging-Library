@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -62,10 +62,11 @@ builds are possible: such with release logging incorporated and such with releas
 
 The macros and their documentation are divided into two different groups:<br>
 
-- \ref GrpMacrosDebugLog   "ALox Macros For Debug Logging"
-- \ref GrpMacrosReleaseLog "ALox Macros For Release Logging"
+- ALox Macros For Debug Logging
+- ALox Macros For Release Logging
 
-(Note that both links refer to the \alib project website!)
+Documentation for those are found in the corresponding subsections of the
+\ref GrpALibMacros "macro reference pages" of the \alib project website.
 
 While all macros for debug logging start with the prefix <b>Log_</b>, those for release
 logging are using the prefix <b>Lox_</b>. Otherwise, their naming and parameters are the

@@ -1,7 +1,7 @@
 // #################################################################################################
 //  com.aworx.lox.android  - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -16,9 +16,9 @@ package com.aworx.lox.android;
 
 import com.aworx.lib.lang.Phase;
 import com.aworx.lib.strings.AString;
-import com.aworx.lox.core.ScopeInfo;
-import com.aworx.lox.core.Domain;
-import com.aworx.lox.core.textlogger.TextLogger;
+import com.aworx.lox.detail.ScopeInfo;
+import com.aworx.lox.detail.Domain;
+import com.aworx.lox.detail.textlogger.TextLogger;
 import com.aworx.lox.Verbosity;
 
 /** ************************************************************************************************

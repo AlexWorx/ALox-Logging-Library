@@ -1,13 +1,13 @@
 ﻿// #################################################################################################
-//  cs.aworx.lox.core - ALox Logging Library
+//  cs.aworx.lox.detail - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
 using System;
 using cs.aworx.lib;
-using cs.aworx.lox.core;
+using cs.aworx.lox.detail;
 using cs.aworx.lib.time;
 using cs.aworx.lib.strings;
 using cs.aworx.lib.lang;
@@ -24,7 +24,7 @@ using System.Collections.Generic;
  *
  * Developed by A-Worx GmbH and published under Boost Software License.
  **************************************************************************************************/
-namespace cs.aworx.lox.core {
+namespace cs.aworx.lox.detail {
 
 /** ************************************************************************************************
  * This is central class of the \b %ALox logging implementation. It is **not** recommended to use this

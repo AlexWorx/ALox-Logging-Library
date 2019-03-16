@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -90,7 +90,7 @@ namespace cs.aworx.lib.strings.format  {
  *     \ref cs.aworx.lib.strings.format.FormatterStdImpl.DefaultNumberFormat "DefaultNumberFormat",
  *     for lower case formats from
  *     \ref cs.aworx.lib.strings.format.FormatterStdImpl.AlternativeNumberFormat "AlternativeNumberFormat".
- *     However, in a alignment with the \b Python specification, \b both default to lower case
+ *     However, in alignment with the \b Python specification, \b both default to lower case
  *     literals \c "0b", \c "0o" and \c "0x". All defaults may be changed by the user.
  *
  *
@@ -292,9 +292,12 @@ public class FormatterPythonStyle : FormatterStdImpl
         /** Constant string array */
         protected static char[]               constColonAndClosingBracket      = ":}".ToCharArray();
 
+    // #############################################################################################
+    // Public fields
+    // #############################################################################################
         /** Storage of sizes for auto-tabulator feature <b>{!ATab}</b> and auto field width
         feature <b>{!AWidth}</b>  */
-        protected AutoSizes                   autoSizes                           = new AutoSizes();
+        public    AutoSizes                   Sizes                               = new AutoSizes();
 
 
     // #############################################################################################
@@ -319,12 +322,12 @@ public class FormatterPythonStyle : FormatterStdImpl
     //  Implementation of FormatterStdImpl interface
     // #############################################################################################
         /** ****************************************************************************************
-         * Resets #autoSizes.
+         * Resets #Sizes.
          ******************************************************************************************/
         public  override void      Reset()
         {
             base.Reset();
-            autoSizes.Reset();
+            Sizes.Reset();
         }
 
         /** ****************************************************************************************
@@ -333,7 +336,7 @@ public class FormatterPythonStyle : FormatterStdImpl
         protected override void    initializeFormat()
         {
             base.initializeFormat();
-            autoSizes.Start();
+            Sizes.Start();
         }
 
         /** ****************************************************************************************
@@ -665,6 +668,18 @@ public class FormatterPythonStyle : FormatterStdImpl
             targetString.SearchAndReplace( "{{" , "{" , startIdx );
             targetString.SearchAndReplace( "}}" , "}" , startIdx );
             targetString.Escape( Switch.Off, startIdx );
+
+            // search the last newline character in the just written portion of the target string.
+            // If one is found, reset auto sizes and actual start of string.
+            int lastNewLine=-1;
+            int actNewLine = startIdx - 1;
+            while( (actNewLine= targetString.IndexOf('\n', actNewLine + 1)) > 0 )
+                lastNewLine= actNewLine;
+            if( lastNewLine >= 0 )
+            {
+                targetStringStartLength= lastNewLine + 1;
+                Sizes.Start();
+            }
         }
 
 
@@ -728,7 +743,7 @@ public class FormatterPythonStyle : FormatterStdImpl
                     if( conversion.ConsumePartOf("Reset"     ) > 0 )
                     {
                         if(isPreProcess)
-                            autoSizes.Reset();
+                            Sizes.Reset();
                     }
                     else
                     {
@@ -745,7 +760,7 @@ public class FormatterPythonStyle : FormatterStdImpl
                         if( isPreProcess )
                         {
                             int actPos= targetString.Length() - targetStringStartLength;
-                            int tabStop= autoSizes.Next( actPos + 1, growth );
+                            int tabStop= Sizes.Next( AutoSizes.Types.Tabstop, actPos + 1, growth );
                             targetString.InsertChars( tabChar, tabStop - actPos );
                         }
                     }
@@ -756,7 +771,7 @@ public class FormatterPythonStyle : FormatterStdImpl
                     if( conversion.ConsumePartOf("Reset"      ) > 0 )
                     {
                         if(isPreProcess)
-                            autoSizes.Reset();
+                            Sizes.Reset();
                     }
                     else
                     {
@@ -764,9 +779,9 @@ public class FormatterPythonStyle : FormatterStdImpl
                         conversion.ConsumeDecDigits( out extraPadding );
 
                         if( isPreProcess )
-                            phaWidth= autoSizes.Actual( 0, extraPadding );
+                            phaWidth= Sizes.Actual( AutoSizes.Types.Field, 0, extraPadding );
                         else if( isPostProcess )
-                            autoSizes.Next( targetString.Length() - startIdx, extraPadding );
+                            Sizes.Next( AutoSizes.Types.Field, targetString.Length() - startIdx, extraPadding );
                     }
                 }
 

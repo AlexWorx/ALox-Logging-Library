@@ -70,6 +70,33 @@
     <Compile Include="..\..\..\src.cs\alib\util\StringTree.cs">
       <Link>ALib/util/StringTree.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\src.cs\alox\detail\Domain.cs">
+      <Link>ALox/detail/Domain.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\detail\Logger.cs">
+      <Link>ALox/detail/Logger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\detail\ScopeDump.cs">
+      <Link>ALox/detail/ScopeDump.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\detail\ScopeInfo.cs">
+      <Link>ALox/detail/ScopeInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\detail\ScopeStore.cs">
+      <Link>ALox/detail/ScopeStore.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\detail\textlogger\MetaInfo.cs">
+      <Link>ALox/detail/textlogger/MetaInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\detail\textlogger\ObjectConverter.cs">
+      <Link>ALox/detail/textlogger/ObjectConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\detail\textlogger\PlainTextLogger.cs">
+      <Link>ALox/detail/textlogger/PlainTextLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\detail\textlogger\TextLogger.cs">
+      <Link>ALox/detail/textlogger/TextLogger.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\..\..\src.cs\alib\config\Configuration.cs">
       <Link>ALib\config\Configuration.cs</Link>
@@ -101,15 +128,6 @@
     <Compile Include="..\..\..\src.cs\alib\ALib.cs">
       <Link>ALib\ALib.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alox\core\textlogger\MetaInfo.cs">
-      <Link>ALox\core\textlogger\MetaInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src.cs\alox\core\textlogger\ObjectConverter.cs">
-      <Link>ALox\core\textlogger\ObjectConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src.cs\alox\core\textlogger\TextLogger.cs">
-      <Link>ALox\core\textlogger\TextLogger.cs</Link>
-    </Compile>
     <Compile Include="..\..\..\src.cs\alox\loggers\AnsiLogger.cs">
       <Link>ALox\loggers\AnsiLogger.cs</Link>
     </Compile>
@@ -134,32 +152,14 @@
     <Compile Include="..\..\..\src.cs\alox\tools\LogTools.cs">
       <Link>ALox\tools\LogTools.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alox\core\Logger.cs">
-      <Link>ALox\core\Logger.cs</Link>
-    </Compile>
     <Compile Include="..\..\..\src.cs\alox\Log.cs">
       <Link>ALox\Log.cs</Link>
     </Compile>
     <Compile Include="..\..\..\src.cs\alox\Lox.cs">
       <Link>ALox\Lox.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alox\core\textlogger\PlainTextLogger.cs">
-      <Link>ALox\core\textlogger\PlainTextLogger.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src.cs\alox\core\Domain.cs">
-      <Link>ALox\core\Domain.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src.cs\alox\core\ScopeStore.cs">
-      <Link>ALox\core\ScopeStore.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src.cs\alox\core\ScopeInfo.cs">
-      <Link>ALox\core\ScopeInfo.cs</Link>
-    </Compile>
     <Compile Include="..\..\..\src.cs\alib\threads\SmartLock.cs">
       <Link>ALib\threads\SmartLock.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src.cs\alox\core\ScopeDump.cs">
-      <Link>ALox\core\ScopeDump.cs</Link>
     </Compile>
     <Compile Include="..\..\..\src.cs\alox\ALox.cs">
       <Link>ALox\ALox.cs</Link>
@@ -205,8 +205,7 @@
     <RemoveDir Directories="$(ProjectDir)doc\html;$(ProjectDir)doc\latex" />
   </Target>
   <ItemGroup>
-    <Folder Include="ALox\core\textlogger" />
-    <Folder Include="ALox\core\textlogger\" />
+    <Folder Include="ALox\detail\textlogger\" />
     <Folder Include="ALib\strings\" />
     <Folder Include="ALib\threads\" />
     <Folder Include="ALib\config\" />

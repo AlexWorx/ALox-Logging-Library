@@ -18,6 +18,8 @@ docs/doxygenDotFixer.cfg
 *.userprefs
 cotire.cmake
 .directory
+sqlite3
+
 # not yet released
 __pycache__
 tools/unreleased

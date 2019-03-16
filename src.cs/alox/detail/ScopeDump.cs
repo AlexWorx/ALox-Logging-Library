@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
-//  cs.aworx.lox.core - ALox Logging Library
+//  cs.aworx.lox.detail - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -15,7 +15,7 @@ using System.IO;
 using System.Threading;
 using cs.aworx.lib.util;
 
-namespace cs.aworx.lox.core {
+namespace cs.aworx.lox.detail {
 /** ************************************************************************************************
  * This class is an internal helper to export current scope values.
  * It was extracted from class \b %Lox to keep that class clean from this somehow 'cluttered' code.

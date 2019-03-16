@@ -1,10 +1,10 @@
 // #####################################################################oggeg############################
-//  com.aworx.lox.core - ALox Logging Library
+//  com.aworx.lox.detail - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-package com.aworx.lox.core;
+package com.aworx.lox.detail;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +14,7 @@ import com.aworx.lib.util.StringTree;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.Substring;
 import com.aworx.lox.Scope;
-import com.aworx.lox.core.ScopeInfo;
+import com.aworx.lox.detail.ScopeInfo;
 
 /** ************************************************************************************************
  * This class is responsible for scope-related functionality of class Lox.

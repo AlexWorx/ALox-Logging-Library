@@ -1,7 +1,7 @@
 // #################################################################################################
 //  com.aworx.lox - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -33,12 +33,12 @@ import com.aworx.lib.strings.Substring;
 import com.aworx.lib.strings.util.Tokenizer;
 import com.aworx.lib.threads.ThreadLock;
 import com.aworx.lib.time.Ticks;
-import com.aworx.lox.core.Domain;
-import com.aworx.lox.core.Logger;
-import com.aworx.lox.core.ScopeDump;
-import com.aworx.lox.core.ScopeInfo;
-import com.aworx.lox.core.ScopeStore;
-import com.aworx.lox.core.textlogger.TextLogger;
+import com.aworx.lox.detail.Domain;
+import com.aworx.lox.detail.Logger;
+import com.aworx.lox.detail.ScopeDump;
+import com.aworx.lox.detail.ScopeInfo;
+import com.aworx.lox.detail.ScopeStore;
+import com.aworx.lox.detail.textlogger.TextLogger;
 import com.aworx.lox.loggers.AnsiConsoleLogger;
 import com.aworx.lox.loggers.ConsoleLogger;
 
@@ -112,12 +112,6 @@ public class Lox extends ThreadLock
 
     /** Information about the source code, method, thread, etc. invoking a log  call */
     protected ScopeInfo             scopeInfo;
-
-    /**
-     *  Dictionary to translate thread IDs into something maybe nicer/shorter.
-     *  The dictionary has to be filled by the user of the library.
-     */
-    protected HashMap<Long, String> threadDictionary                  = new HashMap<Long, String>();
 
     /** The resulting domain name. */
     protected AString               resDomain                                   = new AString( 32 );
@@ -306,7 +300,7 @@ public class Lox extends ThreadLock
         omittablePackagePrefixes.add( "com.aworx.lox" );
 
         // create scope info
-        scopeInfo=      new ScopeInfo( name,  threadDictionary, omittablePackagePrefixes );
+        scopeInfo=      new ScopeInfo( name,  omittablePackagePrefixes );
         scopeDomains=   new ScopeStore<AString                 >( scopeInfo, false );
         scopeLogData=   new ScopeStore<HashMap<AString, Object>>( scopeInfo, true  );
         scopeLogOnce=   new ScopeStore<HashMap<AString, int[]> >( scopeInfo, true  );
@@ -830,9 +824,6 @@ public class Lox extends ThreadLock
                 loggerAddedSinceLastDebugState= true;
             }
 
-            // do
-            dom.setVerbosity( no, verbosity, priority );
-
             // get verbosities from configuration
             if (isNewLogger)
             {
@@ -851,6 +842,9 @@ public class Lox extends ThreadLock
                     getAllVerbosities( logger, internalDomains , variable );
                 }
             }
+
+            // do
+            dom.setVerbosity( no, verbosity, priority );
 
             intMsg._()._("Logger \"")._( logger.getName() )._NC( "\":").tab(11 + maxLoggerNameLength)
                       ._('\'')._NC( dom.fullPath )
@@ -919,22 +913,17 @@ public class Lox extends ThreadLock
             Domain dom= evaluateResultDomain( domain );
 
             // get logger
+            Logger logger;
             int no= dom.getLoggerNo( loggerName );
-            if (no < 0)
+            if (no >= 0)
+                logger= dom.getLogger( no );
+            else
             {
                 // we have to check if the logger was added in the 'other' tree
-                Domain actualTree= dom.getRoot();
-                Domain otherTree=  actualTree == domains ? internalDomains
-                                                         : domains;
+                Domain otherTree=  dom.getRoot() == domains ? internalDomains
+                                                            : domains;
                 no= otherTree.getLoggerNo( loggerName );
-                if ( no >= 0 )
-                {
-                    setVerbosity( otherTree.getLogger( no ),      Verbosity.OFF,
-                                  actualTree.fullPath.toString(), Configuration.PRIO_DEFAULT_VALUES);
-                    no= dom.getLoggerNo( loggerName );
-                    com.aworx.lib.ALIB_DBG.ASSERT( no >= 0 );
-                }
-                else
+                if ( no < 0 )
                 {
                     intMsg._()._NC( "Logger not found. Request was: setVerbosity( \"")._(loggerName)._NC("\", \"")
                               ._(dom.fullPath)  ._NC("\", ")
@@ -943,23 +932,12 @@ public class Lox extends ThreadLock
                     logInternal( Verbosity.WARNING, "LGR", intMsg );
                     return;
                 }
+
+                logger= otherTree.getLogger( no );
             }
 
-            // do
-            dom.setVerbosity( no, verbosity, priority );
-
-            // log info on this
-            intMsg._()._("Logger \"")._( dom.getLogger( no ).getName() )._NC( "\":").tab(11 + maxLoggerNameLength)
-                      ._('\'')._NC( dom.fullPath )
-                      ._( '\'' ).insertChars(' ', maxDomainPathLength - dom.fullPath.length() + 1 )
-                      ._( "= Verbosity." );
-                      ALox.toString( verbosity, priority, intMsg ).trimEnd()._('.');
-            Verbosity actVerbosity= dom.getVerbosity( no );
-            if( actVerbosity != verbosity )
-                intMsg._( " Lower priority (")._( priority )
-                      ._(" < ")._(dom.getPriority(no))
-                      ._( "). Remains " )._NC( actVerbosity )._( '.' );
-            logInternal( Verbosity.INFO, "LGR", intMsg );
+            // use the overloaded method
+            setVerbosity( logger, verbosity, domain, priority );
 
         } finally { release(); }
     }
@@ -1518,7 +1496,7 @@ public class Lox extends ThreadLock
             }
 
             // add entry
-            threadDictionary.put( new Long( id ), threadName );
+            scopeInfo.threadDictionary.put( new Long( id ), threadName );
 
             // log info on this
             intMsg.clear()._( "Mapped thread ID " )._( (int) id )._( " to \"" )._( threadName )._( "\"." );
@@ -1881,7 +1859,7 @@ public class Lox extends ThreadLock
     {
         try { acquire();
 
-            ScopeDump scopeDump= new ScopeDump( threadDictionary, noKeyHashKey, buf );
+            ScopeDump scopeDump= new ScopeDump( scopeInfo.threadDictionary, noKeyHashKey, buf );
 
             // basic lox info
             if( (flags & Lox.STATE_INFO_BASIC) != 0 )
@@ -1968,13 +1946,13 @@ public class Lox extends ThreadLock
             if( (flags & Lox.STATE_INFO_THREAD_MAPPINGS) != 0 )
             {
                 buf._NC( "Named Threads:   " ).newLine();
-                if (threadDictionary.size() == 0)
+                if (scopeInfo.threadDictionary.size() == 0)
                     buf._NC( "  No thread name mappings" ).newLine();
                 else
-                    for (long key : threadDictionary.keySet())
+                    for (long key : scopeInfo.threadDictionary.keySet())
                     {
                         buf._NC( "  " ).field()._( '(' )._( key )._( "):" ).field( 7, Alignment.LEFT )._( '\"' )
-                                ._( threadDictionary.get( new Long( key ) ) )._( '\"' );
+                                ._( scopeInfo.threadDictionary.get( new Long( key ) ) )._( '\"' );
                         buf.newLine();
                     }
                 buf.newLine();
@@ -2832,13 +2810,13 @@ public class Lox extends ThreadLock
      * The resulting full domain string is assembled from inner to outer scope.
      * If \p{domainPath}, respectively as soon as any of the scope levels' Scope Domain paths
      * starts with the character defined in
-     * \ref com.aworx.lox.core.Domain.PATH_SEPARATOR "Domain.PATH_SEPARATOR",
+     * \ref com.aworx.lox.detail.Domain.PATH_SEPARATOR "Domain.PATH_SEPARATOR",
      * the evaluation is stopped (the path is interpreted as absolute).
      *
      * @param domainPath The domain path. If starting with the character defined in
-     *                   \ref com.aworx.lox.core.Domain.PATH_SEPARATOR "Domain.PATH_SEPARATOR",
+     *                   \ref com.aworx.lox.detail.Domain.PATH_SEPARATOR "Domain.PATH_SEPARATOR",
      *                   no Scope Domains are applied.
-     * @return The resulting \ref com.aworx.lox.core.Domain "Domain".
+     * @return The resulting \ref com.aworx.lox.detail.Domain "Domain".
      **********************************************************************************************/
     protected Domain evaluateResultDomain(String domainPath)
     {
@@ -2872,7 +2850,7 @@ public class Lox extends ThreadLock
      * not known before.
      * @param domainSystem The domain system. Either the standard or the internal one.
      * @param domainPath   The domain path.
-     * @return The resulting \ref com.aworx.lox.core.Domain "Domain".
+     * @return The resulting \ref com.aworx.lox.detail.Domain "Domain".
      **********************************************************************************************/
     @SuppressWarnings ("null")
     Domain findDomain(Domain domainSystem, AString domainPath)

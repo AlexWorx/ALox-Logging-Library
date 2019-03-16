@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -45,15 +45,15 @@ Finally, get it all *pruned* out of your release executable, same as your source
 On the other end of the list, \alox  enables **release logging** for productive applications
 to collect mission critical **metrics from the field**.
 
-This is **Version 1805 Revision 0**, which incorporates only minor changes and fixes on the JAVA
-and C# side of things, but which has some quite dramatic changes in the C++ version, including
-a [new Github repository home for the C++ code](https://github.com/AlexWorx/ALib-Class-Library).
+This is **Version 1903 Revision 0**, which incorporates only minor changes and fixes on the JAVA
+and C# side of things.
+The [C++ version](https://github.com/AlexWorx/ALib-Class-Library) that was released a few days
+earlier, underwent heavy refactoring,
 
 We are optimistic that the simple [Bauhaus Style](\ref faq_bauhaus) architecture of the library allows you
 to easily use it and even to extend it with logging features you need.
 
 We would be happy to receive your feedback and feature requests.
-
 
 \section mainpage_features        Features and Limitations
 
@@ -132,7 +132,7 @@ Our thanks go to all supporters to that did and do help realizing this project, 
     [Open Source License](https://www.jetbrains.com/buy/opensource/)
     of their absolutely superb set of IDEs.
 - Special thanks also to C. Darwin, who created life on earth hundreds of millions of years ago,
-  until he died 1882 - when things became too crazy!
+  until he disappiert 1882 - obviously when things became too crazy!
 
 
 \section mainpage_alternatives        Alternatives

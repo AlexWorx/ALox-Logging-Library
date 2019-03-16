@@ -1,7 +1,7 @@
 // #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -90,7 +90,7 @@ import com.aworx.lib.lang.Case;
  *     \ref com.aworx.lib.strings.format.FormatterStdImpl.defaultNumberFormat "defaultNumberFormat",
  *     for lower case formats from
  *     \ref com.aworx.lib.strings.format.FormatterStdImpl.alternativeNumberFormat "alternativeNumberFormat".
- *     However, in a alignment with the \b Python specification, \b both default to lower case
+ *     However, in alignment with the \b Python specification, \b both default to lower case
  *     literals \c "0b", \c "0o" and \c "0x". All defaults may be changed by the user.
  *
  *
@@ -297,9 +297,12 @@ public class FormatterPythonStyle extends FormatterStdImpl
         /** Constant string array */
         protected static char[]               constColonAndClosingBracket      = ":}".toCharArray();
 
+    // #############################################################################################
+    // Public fields
+    // #############################################################################################
         /** Storage of sizes for auto-tabulator feature <b>{!ATab}</b> and auto field width feature
         <b>{!AWidth}</b>  */
-        protected AutoSizes                   autoSizes                           = new AutoSizes();
+        public    AutoSizes                   sizes                               = new AutoSizes();
 
 
     // #############################################################################################
@@ -333,13 +336,13 @@ public class FormatterPythonStyle extends FormatterStdImpl
     //  Implementation of FormatterStdImpl interface
     // #############################################################################################
         /** ****************************************************************************************
-         * Resets #autoSizes.
+         * Resets #sizes.
          ******************************************************************************************/
         @Override
         public void                reset()
         {
             super.reset();
-            autoSizes.reset();
+            sizes.reset();
         }
 
         /** ****************************************************************************************
@@ -349,7 +352,7 @@ public class FormatterPythonStyle extends FormatterStdImpl
         protected void                initializeFormat()
         {
             super.initializeFormat();
-            autoSizes.start();
+            sizes.start();
         }
 
         /** ****************************************************************************************
@@ -687,6 +690,19 @@ public class FormatterPythonStyle extends FormatterStdImpl
             ptargetString.searchAndReplace( "{{" , "{" , startIdx );
             ptargetString.searchAndReplace( "}}" , "}" , startIdx );
             ptargetString.escape( Switch.OFF, startIdx );
+
+            // search the last newline character in the just written portion of the target string.
+            // If one is found, reset auto sizes and actual start of string.
+            int lastNewLine=-1;
+            int actNewLine = startIdx - 1;
+            while( (actNewLine= ptargetString.indexOf('\n', actNewLine + 1)) > 0 )
+                lastNewLine= actNewLine;
+            if( lastNewLine >= 0 )
+            {
+                targetStringStartLength= lastNewLine + 1;
+                sizes.start();
+            }
+
         }
 
 
@@ -750,7 +766,7 @@ public class FormatterPythonStyle extends FormatterStdImpl
                     if( conversion.consumePartOf("Reset"  , 1) > 0 )
                     {
                         if(isPreProcess)
-                            autoSizes.reset();
+                            sizes.reset();
                     }
                     else
                     {
@@ -765,7 +781,7 @@ public class FormatterPythonStyle extends FormatterStdImpl
                         if( isPreProcess )
                         {
                             int actPos= ptargetString.length() - targetStringStartLength;
-                            int tabStop= autoSizes.next( actPos + 1, growth );
+                            int tabStop= sizes.next( AutoSizes.Types.Tabstop, actPos + 1, growth );
                             ptargetString.insertChars( tabChar, tabStop - actPos );
                         }
                     }
@@ -776,7 +792,7 @@ public class FormatterPythonStyle extends FormatterStdImpl
                     if( conversion.consumePartOf("Reset"      ) > 0 )
                     {
                         if(isPreProcess)
-                            autoSizes.reset();
+                            sizes.reset();
                     }
                     else
                     {
@@ -785,9 +801,9 @@ public class FormatterPythonStyle extends FormatterStdImpl
                                     : 0;
 
                         if( isPreProcess )
-                            phaWidth= autoSizes.actual( 0, extraPadding );
+                            phaWidth= sizes.actual( AutoSizes.Types.Field, 0, extraPadding );
                         else if( isPostProcess )
-                            autoSizes.next( ptargetString.length() - startIdx, extraPadding );
+                            sizes.next( AutoSizes.Types.Field, ptargetString.length() - startIdx, extraPadding );
                     }
                 }
 

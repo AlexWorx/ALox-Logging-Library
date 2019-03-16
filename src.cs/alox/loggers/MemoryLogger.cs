@@ -1,14 +1,14 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox.loggers - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
 using System.Runtime.CompilerServices;
-using cs.aworx.lox.core.textlogger;
+using cs.aworx.lox.detail.textlogger;
 using cs.aworx.lib;
-using cs.aworx.lox.core;
+using cs.aworx.lox.detail;
 using cs.aworx.lib.strings;
 using cs.aworx.lib.lang;
 

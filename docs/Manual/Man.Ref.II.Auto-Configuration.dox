@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -92,18 +92,14 @@ To perform a thorough bootstrap, ALox itself as well as underlying utility libra
   [C#]  (@ref  cs::aworx::lib),
   [Java](@ref com::aworx::lib)) each provide a static initialization method (
 <b>%ALIB.Init</b>
-  ([C++](@ref      aworx::lib::ALib::init),
-  [C#]  (@ref  cs::aworx::lib::ALIB::Init),
+  ([C#]  (@ref  cs::aworx::lib::ALIB::Init),
   [Java](@ref com::aworx::lib::ALIB::init)) and
 <b>%ALox.Init</b>
-  ([C++](@ref aworx::lib::lox::ALox::init),
-  [C#]  (@ref  cs::aworx::lox::ALox::Init),
+  ([C#]  (@ref  cs::aworx::lox::ALox::Init),
   [Java](@ref com::aworx::lox::ALox::init))).
 
-\note In the C++ version, the initialization and termination (see below) calls are to be performed
-      on static library singletons
-      \ref aworx::lib::ALIB and
-      \ref aworx::lib::ALOX.
+\note In the C++ version, the bootstrapping of the library
+      with \ref alib_manual_bootstrapping "is documented here".
 
 \alox.Init invokes \b ALib.Init internally. With debug-logging, it is best practice to
 explicitly invoke \b ALox.Init and provide optional parameters as needed.
@@ -131,7 +127,7 @@ these custom sources should be taken into account.
 
 \note In the C++ version, the initialization is performed in different phases. Therefore, the
       addition of user defined configuration plug-ins with C++ is not done "prior" to
-      initialization, but in the right phase. See documentation of \cpp_alib{lang,Library}
+      initialization, but in the right phase. See documentation of \cpp_alib{Module}
       for details.
 
 \attention
@@ -141,11 +137,11 @@ these custom sources should be taken into account.
 
 The same applies for methods
 <b>%ALIB.TerminationCleanUp</b>
-  ([C++](@ref      aworx::lib::ALib::terminationCleanUp),
+  ([C++](@ref    aworx::lib::Module::TerminationCleanUp),
   [C#]  (@ref  cs::aworx::lib::ALIB::TerminationCleanUp),
   [Java](@ref com::aworx::lib::ALIB::terminationCleanUp)) and
 <b>%ALox.TerminationCleanUp</b>
-  ([C++](@ref aworx::lib::lox::ALox::Init),
+  ([C++](@ref    aworx::lib::Module::Init),
   [C#]  (@ref  cs::aworx::lox::ALox::Init),
   [Java](@ref com::aworx::lox::ALox::init)).
 
@@ -187,9 +183,9 @@ in parallel to one that logs into a text file, both \e %Loggers will have differ
 
 However, if for example two different loggers of type
 <b>%TextLogger</b>
-  ([C++](@ref aworx::lib::lox::loggers::TextLogger),
-  [C#]  (@ref  cs::aworx::lox::loggers::TextLogger),
-  [Java](@ref com::aworx::lox::loggers::TextLogger)) are to be added to one \b %Lox, then with their
+  ([C++](@ref aworx::lib::lox::detail::textlogger::TextLogger),
+  [C#]  (@ref  cs::aworx::lox::detail::textlogger::TextLogger),
+  [Java](@ref com::aworx::lox::detail::textlogger::TextLogger)) are to be added to one \b %Lox, then with their
 creation, a dedicated, distinguishable name has to be provided.
 
 In addition, when reading \e Verbosity settings from external configuration (as described in
@@ -303,10 +299,10 @@ objects is found in \ref alox_man_ext_loggers.
 
 ### 2.4.2 Namespace 'textlogger' ###  {#alox_man_apdx_auto_config_list_logables_textlogger}
 When logging text, classes found in
-<b>%[cs::|com::]%aworx::lox::core::textlogger</b>
-  ([C++](@ref aworx::lib::lox::core::textlogger),
-  [C#]  (@ref  cs::aworx::lox::core::textlogger),
-  [Java](@ref com::aworx::lox::core::textlogger)) are doing quite a bit of things in the
+<b>%[cs::|com::]%aworx::lox::detail::textlogger</b>
+  ([C++](@ref aworx::lib::lox::detail::textlogger),
+  [C#]  (@ref  cs::aworx::lox::detail::textlogger),
+  [Java](@ref com::aworx::lox::detail::textlogger)) are doing quite a bit of things in the
 background that are not obvious to the user. For example:
 
 - ALox
@@ -322,9 +318,9 @@ background that are not obvious to the user. For example:
 
 - With the help of utility class
  <b>%AutoSizes</b>
-   ([C++](@ref aworx::lib::lox::core::textlogger::AutoSizes),
-   [C#]  (@ref  cs::aworx::lox::core::textlogger::AutoSizes),
-   [Java](@ref com::aworx::lox::core::textlogger::AutoSizes)), class \b %TextLogger
+   ([C++](@ref      aworx::lib::strings::util::AutoSizes),
+   [C#]  (@ref  cs::aworx::lib::strings::util::AutoSizes),
+   [Java](@ref com::aworx::lib::strings::util::AutoSizes)), class \b %TextLogger
  formats the log output into columns that grow over time.
  In the moment a write-enabled configuration plug-in is attached (e.g. an INI file), such sizes
  are restored when a process is re-launched. Also automatic shrinking happens. This is done
@@ -332,13 +328,13 @@ background that are not obvious to the user. For example:
  higher than needed after all. In the next run, the smaller sizes are restored.
  The read and write of the values is performed in methods
  <b>%TextLogger::AddAcquirer</b>
-   ([C++](@ref aworx::lib::lox::core::textlogger::TextLogger::AddAcquirer),
-   [C#]  (@ref  cs::aworx::lox::core::textlogger::TextLogger::AddAcquirer),
-   [Java](@ref com::aworx::lox::core::textlogger::TextLogger::addAcquirer)) and
+   ([C++](@ref aworx::lib::lox::detail::textlogger::TextLogger::AddAcquirer),
+   [C#]  (@ref  cs::aworx::lox::detail::textlogger::TextLogger::AddAcquirer),
+   [Java](@ref com::aworx::lox::detail::textlogger::TextLogger::addAcquirer)) and
  <b>%TextLogger::RemoveAcquirer</b>
-   ([C++](@ref aworx::lib::lox::core::textlogger::TextLogger::RemoveAcquirer),
-   [C#]  (@ref  cs::aworx::lox::core::textlogger::TextLogger::RemoveAcquirer),
-   [Java](@ref com::aworx::lox::core::textlogger::TextLogger::removeAcquirer)) which are invoked
+   ([C++](@ref aworx::lib::lox::detail::textlogger::TextLogger::RemoveAcquirer),
+   [C#]  (@ref  cs::aworx::lox::detail::textlogger::TextLogger::RemoveAcquirer),
+   [Java](@ref com::aworx::lox::detail::textlogger::TextLogger::removeAcquirer)) which are invoked
  when a \e Logger is added, respectively removed from a \b %Lox.
 
 - The standard output streams (e.g. in C++ <c>'std::cout'</c> and <c>'std::cerr'</c>) are locked against
@@ -348,7 +344,7 @@ background that are not obvious to the user. For example:
   case, locking takes place already when only one \e %Logger which uses the streams is established.
   See
   <b>%ALIB.StdOutputStreamsLock</b>
-   ([C++](@ref      aworx::lib::ALib.StdOutputStreamsLock),
+   ([C++](@ref      aworx::lib::threads::SmartLock::StdOutputStreams),
    [C#]  (@ref  cs::aworx::lib::ALIB.StdOutputStreamsLock),
    [Java](@ref com::aworx::lib::ALIB::stdOutputStreamsLock)) for more information on how to do that.
 
@@ -359,15 +355,4 @@ to transparently pass just any sort of string object to <em>Log Statements</em>,
 any custom string type - without any sort of prior conversion!
 This is achieved using 'template meta programming' of C++ 11.
 Information on how to adopt custom string types is found here: \ref aworx::lib::strings "ALib strings".
-
-
-
-
-\~Comment
-- Also sample TextLogger "Multi-Line" Logging with \n separators?
-
-
-\~
-
-
 */

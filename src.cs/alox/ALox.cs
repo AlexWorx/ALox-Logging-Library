@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -9,9 +9,9 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System;
 using cs.aworx.lib;
-using cs.aworx.lox.core;
+using cs.aworx.lox.detail;
 using cs.aworx.lox.loggers;
-using cs.aworx.lox.core.textlogger;
+using cs.aworx.lox.detail.textlogger;
 using cs.aworx.lib.strings;
 using cs.aworx.lib.lang;
 using System.Threading;
@@ -126,7 +126,7 @@ public static class ALox
          * Besides this version number, field #Revision indicates if this is a revised version
          * of a former release.
          */
-        public static readonly int                   Version                                  =1805;
+        public static readonly int                   Version                                  =1903;
 
         /**
          * The revision number of this release. Each ALox #Version is initially released as
@@ -147,7 +147,7 @@ public static class ALox
          *
          * \see  Field #ConfigCategory.
          */
-        public static      Configuration               Config                                 =null;
+        public static      Configuration             Config                                   =null;
 
         /**
          * The name of the configuration category of configuration variables used by ALox.<br>
@@ -157,7 +157,7 @@ public static class ALox
          * bootstrap code, before the invocation of #Init.<br>
          * See also \ref cs.aworx.lib.ALIB.ConfigCategory "ALIB.ConfigCategory".
          */
-        public  static         AString               ConfigCategory      = new AString("ALOX" );
+        public  static         AString               ConfigCategory          = new AString("ALOX" );
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
@@ -187,7 +187,7 @@ public static class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref cs.aworx.lox.core.textlogger.TextLogger "TextLogger".
+         * used by \ref cs.aworx.lox.detail.textlogger.TextLogger "TextLogger".
          */
         public static          VariableDecl           AUTO_SIZES = new VariableDecl(
             ConfigCategory,   null,     "%1_AUTO_SIZES",
@@ -198,7 +198,7 @@ public static class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref cs.aworx.lox.core.textlogger.TextLogger "TextLogger".
+         * used by \ref cs.aworx.lox.detail.textlogger.TextLogger "TextLogger".
          */
         public static          VariableDecl           MAX_ELAPSED_TIME = new VariableDecl(
             ConfigCategory,   null,     "%1_MAX_ELAPSED_TIME",
@@ -294,7 +294,7 @@ public static class ALox
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
          * used by colorful specializations of class
-         * \ref cs.aworx.lox.core.textlogger.TextLogger "TextLogger".
+         * \ref cs.aworx.lox.detail.textlogger.TextLogger "TextLogger".
          */
         public static          VariableDecl           CONSOLE_LIGHT_COLORS = new VariableDecl(
             ConfigCategory,   null,     "CONSOLE_LIGHT_COLORS",
@@ -309,7 +309,7 @@ public static class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref cs.aworx.lox.core.textlogger.TextLogger "TextLogger".
+         * used by \ref cs.aworx.lox.detail.textlogger.TextLogger "TextLogger".
          */
         public static          VariableDecl           FORMAT = new VariableDecl(
             ConfigCategory,   null,     "%1_FORMAT",
@@ -324,7 +324,7 @@ public static class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref cs.aworx.lox.core.textlogger.TextLogger "TextLogger".
+         * used by \ref cs.aworx.lox.detail.textlogger.TextLogger "TextLogger".
          */
         public static          VariableDecl           FORMAT_DATE_TIME = new VariableDecl(
             ConfigCategory,   null,     "%1_FORMAT_DATE_TIME",
@@ -338,7 +338,7 @@ public static class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref cs.aworx.lox.core.textlogger.TextLogger "TextLogger".
+         * used by \ref cs.aworx.lox.detail.textlogger.TextLogger "TextLogger".
          */
         public static          VariableDecl           FORMAT_TIME_DIFF = new VariableDecl(
             ConfigCategory,   null,     "%1_FORMAT_TIME_DIFF",
@@ -353,7 +353,7 @@ public static class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref cs.aworx.lox.core.textlogger.TextLogger "TextLogger".
+         * used by \ref cs.aworx.lox.detail.textlogger.TextLogger "TextLogger".
          */
         public static          VariableDecl           FORMAT_MULTILINE = new VariableDecl(
             ConfigCategory,   null,     "%1_FORMAT_MULTILINE",
@@ -368,7 +368,7 @@ public static class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref cs.aworx.lox.core.textlogger.TextLogger "TextLogger".
+         * used by \ref cs.aworx.lox.detail.textlogger.TextLogger "TextLogger".
          */
         public static          VariableDecl           REPLACEMENTS     = new VariableDecl(
             ConfigCategory,   null,     "%1_REPLACEMENTS",

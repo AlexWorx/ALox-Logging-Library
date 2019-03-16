@@ -1,10 +1,10 @@
 // #################################################################################################ests
-//  com.aworx.lox.core - ALox Logging Library
+//  com.aworx.lox.detail - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-package com.aworx.lox.core.textlogger;
+package com.aworx.lox.detail.textlogger;
 
 import java.text.FieldPosition;
 import java.text.SimpleDateFormat;
@@ -18,12 +18,13 @@ import com.aworx.lib.lang.Whitespaces;
 import com.aworx.lib.system.ProcessInfo;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.Substring;
+import com.aworx.lib.strings.util.AutoSizes;
 import com.aworx.lib.strings.util.Tokenizer;
 import com.aworx.lib.time.TickSpan;
 import com.aworx.lib.time.Ticks;
 import com.aworx.lox.Verbosity;
-import com.aworx.lox.core.Domain;
-import com.aworx.lox.core.ScopeInfo;
+import com.aworx.lox.detail.Domain;
+import com.aworx.lox.detail.ScopeInfo;
 
 
 /** ************************************************************************************************
@@ -216,15 +217,13 @@ public class MetaInfo
      * @param verbosity The verbosity. This has been checked to be active already on this
      *                  stage and is provided to be able to be logged out only.
      * @param scope     Information about the scope of the <em>Log Statement</em>..
-     * @return The number of tab sequences that were written (by adding ESC.TAB to the buffer).
      **********************************************************************************************/
-    protected int write( TextLogger logger, AString buf, Domain domain, Verbosity verbosity, ScopeInfo scope )
+    protected void write( TextLogger logger, AString   buf,
+                          Domain     domain, Verbosity verbosity, ScopeInfo scope )
     {
-        int qtyTabStops= 0;
-
         // check
         if ( format == null || format.isEmpty() )
-            return 0;
+            return;
 
         // set date object only once per loop
         calInstanceSet=  false;
@@ -243,10 +242,8 @@ public class MetaInfo
                 break;
 
             // process the found variable
-            qtyTabStops+= processVariable( logger, domain, verbosity, scope, buf, tTok.rest );
+            processVariable( logger, domain, verbosity, scope, buf, tTok.rest );
         }
-
-        return qtyTabStops;
     }
 
     /** ********************************************************************************************
@@ -262,10 +259,9 @@ public class MetaInfo
      * @param scope     Information about the scope of the <em>Log Statement</em>..
      * @param dest      The buffer to write meta information into.
      * @param variable  The variable to read (may have more characters appended)
-     *
-     * @return The number of tab sequences that were written (by adding ESC.TAB to the buffer).
      **********************************************************************************************/
-    protected int processVariable( TextLogger logger, Domain domain, Verbosity verbosity, ScopeInfo scope, AString dest, Substring variable )
+    protected void processVariable( TextLogger logger, Domain  domain, Verbosity verbosity,
+                                    ScopeInfo  scope,  AString dest,   Substring variable   )
     {
         // process commands
         char c2;
@@ -284,7 +280,7 @@ public class MetaInfo
                               s == 'C' ?    scope.getClassName()     :
                               s == 'M' ?    scope.getMethodName()    : new AString("#ERROR") );
             }
-            return 0;
+            return;
 
 
             // %Tx: Time
@@ -394,7 +390,7 @@ public class MetaInfo
                     dest._( "%ERROR" );
                 }
 
-                return 0;
+                return;
             }
 
             // Thread
@@ -406,14 +402,14 @@ public class MetaInfo
                     AString threadName= scope.getThreadName();
                     dest.field()
                          ._( threadName )
-                       .field( logger.autoSizes.next( threadName.length(), 0 ), Alignment.CENTER );
+                       .field( logger.autoSizes.next( AutoSizes.Types.Field, threadName.length(), 0 ), Alignment.CENTER );
                 }
                 else if ( c2 == 'I' )
                 {
                     tmpAString._()._( scope.getThreadID() );
                     dest.field()
                          ._( tmpAString )
-                       .field( logger.autoSizes.next( tmpAString.length(), 0 ), Alignment.CENTER );
+                       .field( logger.autoSizes.next( AutoSizes.Types.Field, tmpAString.length(), 0 ), Alignment.CENTER );
                 }
                 else
                 {
@@ -425,7 +421,7 @@ public class MetaInfo
                     dest._( "%ERROR" );
                 }
 
-                return 0;
+                return;
             }
 
             case 'L':
@@ -441,53 +437,47 @@ public class MetaInfo
                         com.aworx.lib.ALIB_DBG.WARNING( "Unknown format variable '%L" + c2 + "\' (only one warning)" );
                     }
                     dest._( "%ERROR" );
-                    return 0;
+                    return;
                 }
-                return 0;
+                return;
             }
 
             case 'P':
             {
                 dest._NC( ProcessInfo.getCurrentProcessName() );
-                return 0;
+                return;
             }
 
             case 'V':    dest._( verbosity == Verbosity.ERROR    ?  verbosityError     :
                                  verbosity == Verbosity.WARNING  ?  verbosityWarning   :
                                  verbosity == Verbosity.INFO     ?  verbosityInfo      :
                                                                     verbosityVerbose        );
-                        return 0;
+                        return;
 
             case 'D':
             {
-                dest.field()._( domain.fullPath ).field( logger.autoSizes.next( domain.fullPath.length(), 0 ), Alignment.LEFT );
-                return 0;
+                dest.field()._( domain.fullPath ).field( logger.autoSizes.next( AutoSizes.Types.Field, domain.fullPath.length(), 0 ), Alignment.LEFT );
+                return;
             }
 
             case '#':    dest._( logger.cntLogs, logNumberMinDigits );
-                         return 0;
+                         return;
 
             // A: Auto tab
             case 'A':
             {
                 // read extra space from format string
-                int extraSpace= 1;
-                if ( variable.consumeDecDigits() )
-                    extraSpace=  (int) variable.consumedLong;
-
-                // insert ESC code to jump to next tab level
-                extraSpace= Math.min( extraSpace, 10 + ('Z'-'A') );
-                char escNo= extraSpace < 10 ?   (char) ( '0' + extraSpace )
-                                            :   (char) ( 'A' + extraSpace );
-
-                dest._( "\033t" )._( escNo );
-                return 1;
+                int extraSpace= variable.consumeDecDigits() ? (int) variable.consumedLong : 1;
+                int currentLength= dest.length();
+                int tabPos= logger.autoSizes.next( AutoSizes.Types.Tabstop, currentLength, extraSpace );
+                dest.insertChars(' ', tabPos - currentLength );
+                return;
             }
 
             default:
             {
                 com.aworx.lib.ALIB_DBG.ERROR( "Unknown format character \'" + variable.buf[variable.start - 1] + "\'" );
-                return 0;
+                return;
             }
         }
 

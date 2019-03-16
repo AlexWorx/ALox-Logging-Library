@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -19,7 +19,7 @@ contains the C# and Java language versions.
 
 The repository of \alib for C++ is found at: [github.com/AlexWorx/ALib](https://github.com/AlexWorx/ALib-Class-Library)
 
-Documentation for compiling the library is given with \ref alib_man_setup.
+Documentation for compiling the library is given with \ref alib_manual_build "4. Building The Library".
 
 
 
@@ -31,8 +31,8 @@ achieved! "Achieving" here means most of all to configure the output format in a
 IDE "understands" the source file and line number information and links them to the editor and source.
 
 To change the format of the log output, field
-\ref #aworx::lib::lox::core::textlogger::MetaInfo::Format "Format" of object
-\ref #aworx::lib::lox::core::textlogger::TextLogger::MetaInfo "TextLogger::MetaInfo" has to be
+\ref #aworx::lib::lox::detail::textlogger::MetaInfo::Format "Format" of object
+\ref #aworx::lib::lox::detail::textlogger::TextLogger::MetaInfo "TextLogger::MetaInfo" has to be
 modified. This can be done either programatically, or, if available in the external configuration
 of an application. If you are new to \alox, the easiest way to play around with different log
 output formats, is to compile and run the sample project. This will generate an INI-file
@@ -82,16 +82,16 @@ In respect to log output file name recognition, we have made the following obser
 From these observations, the following advice can be given:
 - A plain (non-colorful!) logger of type [ConsoleLogger] (@ref aworx::lib::lox::loggers::ConsoleLogger)
   is to be used created.<br>
-- The string [MetaInfo::Format] (@ref aworx::lib::lox::core::textlogger::MetaInfo::Format) needs to start with
+- The string [MetaInfo::Format] (@ref aworx::lib::lox::detail::textlogger::MetaInfo::Format) needs to start with
   \c "   Loc: [..." .
 - No square brackets must be used in the meta information (and the log output itself).
 - In addition, all square brackets are removed from Fields
-  [MetaInfo::VerbosityVerbose] (@ref aworx::lib::lox::core::textlogger::MetaInfo::VerbosityVerbose),
-  [MetaInfo::VerbosityInfo]    (@ref aworx::lib::lox::core::textlogger::MetaInfo::VerbosityInfo),
-  [MetaInfo::VerbosityWarning] (@ref aworx::lib::lox::core::textlogger::MetaInfo::VerbosityWarning) and
-  [MetaInfo::VerbosityError]   (@ref aworx::lib::lox::core::textlogger::MetaInfo::VerbosityError).
+  [MetaInfo::VerbosityVerbose] (@ref aworx::lib::lox::detail::textlogger::MetaInfo::VerbosityVerbose),
+  [MetaInfo::VerbosityInfo]    (@ref aworx::lib::lox::detail::textlogger::MetaInfo::VerbosityInfo),
+  [MetaInfo::VerbosityWarning] (@ref aworx::lib::lox::detail::textlogger::MetaInfo::VerbosityWarning) and
+  [MetaInfo::VerbosityError]   (@ref aworx::lib::lox::detail::textlogger::MetaInfo::VerbosityError).
 - Finally, using method
-  [TextLogger::SetReplacement] (@ref aworx::lib::lox::core::textlogger::TextLogger::SetReplacement),
+  [TextLogger::SetReplacement] (@ref aworx::lib::lox::detail::textlogger::TextLogger::SetReplacement),
   replacement rules may be added which will replace all square brackets within the contents
   of <em>Log Statements</em> by curly braces.
 

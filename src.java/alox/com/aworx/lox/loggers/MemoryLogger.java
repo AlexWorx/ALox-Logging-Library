@@ -1,14 +1,14 @@
 // #################################################################################################
 //  com.aworx.lox.loggers - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package com.aworx.lox.loggers;
 
 import com.aworx.lib.lang.Phase;
 import com.aworx.lib.strings.AString;
-import com.aworx.lox.core.textlogger.PlainTextLogger;
+import com.aworx.lox.detail.textlogger.PlainTextLogger;
 
 
 /** ************************************************************************************************

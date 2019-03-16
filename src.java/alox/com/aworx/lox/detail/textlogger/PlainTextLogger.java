@@ -1,17 +1,18 @@
 // #################################################################################################
 //  com.aworx.lox.loggers - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
-package com.aworx.lox.core.textlogger;
+package com.aworx.lox.detail.textlogger;
 
 import com.aworx.lib.lang.Phase;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.util.Spaces;
+import com.aworx.lib.strings.util.AutoSizes;
 import com.aworx.lox.Verbosity;
-import com.aworx.lox.core.Domain;
-import com.aworx.lox.core.ScopeInfo;
+import com.aworx.lox.detail.Domain;
+import com.aworx.lox.detail.ScopeInfo;
 
 
 /** ************************************************************************************************
@@ -131,7 +132,7 @@ public abstract class PlainTextLogger extends TextLogger
                         int extraSpace=  c >= '0' && c <= '9' ? ( c - '0' )
                                                               : ( c - 'A' ) + 10;
 
-                        int tabStop= autoSizes.next( column, extraSpace );
+                        int tabStop= autoSizes.next( AutoSizes.Types.Tabstop, column, extraSpace );
 
                         if ( tabStop > column )
                         {

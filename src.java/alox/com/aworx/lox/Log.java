@@ -1,7 +1,7 @@
 // #################################################################################################
 //  com.aworx.lox - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package com.aworx.lox;
@@ -13,8 +13,8 @@ import com.aworx.lib.lang.ContainerOp;
 import com.aworx.lib.lang.Inclusion;
 import com.aworx.lib.lang.Report;
 import com.aworx.lib.strings.AString;
-import com.aworx.lox.core.Logger;
-import com.aworx.lox.core.textlogger.TextLogger;
+import com.aworx.lox.detail.Logger;
+import com.aworx.lox.detail.textlogger.TextLogger;
 
 /** ************************************************************************************************
  * This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates

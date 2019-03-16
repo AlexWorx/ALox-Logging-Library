@@ -2,7 +2,7 @@
 //  cs.aworx.lox.unittests - ALox Logging Library
 //  (Unit Tests to create tutorial sample code and output)
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using System;
@@ -24,7 +24,7 @@ using cs.aworx.lib;
 using cs.aworx.lib.lang;
 using cs.aworx.lib.strings;
 using cs.aworx.lox;
-using cs.aworx.lox.core.textlogger;
+using cs.aworx.lox.detail.textlogger;
 using cs.aworx.lox.loggers;
 using cs.aworx.lox.tools;
 //! [Tut_using_statement]

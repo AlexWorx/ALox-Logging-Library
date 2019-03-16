@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -12,7 +12,7 @@
 
 \ref alox_man_intro                            <br>
 \ref alox_man_features_and_limitations         <br>
-\ref alox_man_terminology                 <br>
+\ref alox_man_terminology                      <br>
 \ref alox_man_logdomains                       <br>
 \ref alox_man_scopes                           <br>
 \ref alox_man_log_once                         <br>
@@ -28,7 +28,7 @@
 \ref alox_man_colorful_loggers                 <br>
 
 ## Reference Appendix ##
-\ref GrpALoxConfigVars                    <br>
+\ref GrpALoxConfigVars                         <br>
 \ref alox_man_apdx_auto_config                 <br>
 
 ## Extending ALox ##
@@ -110,38 +110,29 @@ reference documentation of \alib and \alox.
 For \b C# and \b Java, underlying class library <b>%ALib</b> does not provide an own project
 site and user manual. It is exclusively published as a part of the \alox project.
 
-Important information about the relationship of classes and their general use is found in
-the reference documentation of the different namespaces (in Java: "packages"). Those are:
+While for the \b C++ version, various \ref alib_manual_modules_overview "Programmer's Manuals for ALib Modules" exist,
+for \b C# and \b Java, only reference manuals are given. Those are:
 
 - <b>[com::|cs::]%aworx::lib</b>
- ([C++] (@ref      #aworx::lib),
-  [C#]  (@ref  #cs::aworx::lib),
+ ([C#]  (@ref  #cs::aworx::lib),
   [Java](@ref #com::aworx::lib))
 - <b>[com::|cs::]%aworx::lib::config</b>
- ([C++] (@ref      #aworx::lib::config),
-  [C#]  (@ref  #cs::aworx::lib::config),
+ ([C#]  (@ref  #cs::aworx::lib::config),
   [Java](@ref #com::aworx::lib::config))
 - <b>[com::|cs::]%aworx::lib::util</b>
- ([C++] (@ref      #aworx::lib::util),
-  [C#]  (@ref  #cs::aworx::lib::util),
+ ([C#]  (@ref  #cs::aworx::lib::util),
   [Java](@ref #com::aworx::lib::util))
 - <b>[com::|cs::]%aworx::lib::lang</b>
- ([C++] (@ref      #aworx::lib::lang),
-  [C#]  (@ref  #cs::aworx::lib::lang),
+ ([C#]  (@ref  #cs::aworx::lib::lang),
   [Java](@ref #com::aworx::lib::lang))
 - <b>[com::|cs::]%aworx::lib::strings</b>
- ([C++] (@ref      #aworx::lib::strings),
-  [C#]  (@ref  #cs::aworx::lib::strings),
+ ([C#]  (@ref  #cs::aworx::lib::strings),
   [Java](@ref #com::aworx::lib::strings))
-- <b>[com::|cs::]%aworx::lib::system</b>
- ([C++] (@ref      #aworx::lib::system))
 - <b>[com::|cs::]%aworx::lib::threads</b>
- ([C++] (@ref      #aworx::lib::threads),
-  [C#]  (@ref  #cs::aworx::lib::threads),
+ ([C#]  (@ref  #cs::aworx::lib::threads),
   [Java](@ref #com::aworx::lib::threads))
 - <b>[com::|cs::]%aworx::lib::time</b>
- ([C++] (@ref      #aworx::lib::time),
-  [C#]  (@ref  #cs::aworx::lib::time),
+ ([C#]  (@ref  #cs::aworx::lib::time),
   [Java](@ref #com::aworx::lib::time))
 
 

@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -375,7 +375,7 @@ the <em>Log Domain</em> has to be explicitly set.
 
 For release logging in combination with obfuscation, you might want to suppress the
 output of scope information in the log line (see
-[TextLogger.metaInfo](@ref com::aworx::lox::core::textlogger::TextLogger::metaInfo) for
+[TextLogger.metaInfo](@ref com::aworx::lox::detail::textlogger::TextLogger::metaInfo) for
 information on how to do that).
 
 On the same token, the methods

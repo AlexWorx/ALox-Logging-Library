@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Unit Tests - AWorx Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package ut_alox;
@@ -18,7 +18,7 @@ import com.aworx.lox.Log;
 import com.aworx.lox.Lox;
 import com.aworx.lox.Scope;
 import com.aworx.lox.Verbosity;
-import com.aworx.lox.core.textlogger.MetaInfo;
+import com.aworx.lox.detail.textlogger.MetaInfo;
 import com.aworx.lox.loggers.AnsiLogger;
 import com.aworx.lox.loggers.AnsiConsoleLogger;
 import com.aworx.lox.loggers.MemoryLogger;
@@ -477,44 +477,44 @@ public class UT_alox_logger extends AWorxUnitTesting
         UT_INIT();
 
         Log.addDebugLogger();
-        Log.setDomain( "MLine", Scope.METHOD );
+        Log.setDomain( "MLINE", Scope.METHOD );
 
         Log.debugLogger.multiLineMsgMode= 0;
         Log.info( "" );
         Log.info( "-------- ML Mode = 0 (single line) --------" );
-        Log.state( "MLine", Verbosity.INFO, "Our Log configuration is:" );
+        Log.state( "MLINE", Verbosity.INFO, "Our Log configuration is:" );
 
         Log.debugLogger.multiLineMsgMode= 0;
         Log.debugLogger.multiLineDelimiterRepl= "~|~";
         Log.info( "" );
         Log.info( "-------- ML Mode = 0 (single line) with delimiter replacement set to ~|~ --------" );
-        Log.state( "MLine", Verbosity.INFO, "Our Log configuration is:" );
+        Log.state( "MLINE", Verbosity.INFO, "Our Log configuration is:" );
 
         Log.debugLogger.multiLineMsgMode= 0;
         Log.debugLogger.multiLineDelimiter= "";
         Log.info( "" );
         Log.info( "-------- ML Mode = 0 (single line) with delimiter set to \"\" (stops multi line processing) --------" );
-        Log.state( "MLine", Verbosity.INFO, "Our Log configuration is:" );
+        Log.state( "MLINE", Verbosity.INFO, "Our Log configuration is:" );
 
         Log.debugLogger.multiLineMsgMode= 1;
         Log.info( "" );
         Log.info( "-------- ML Mode = 1 (multi line, all meta info per line) --------" );
-        Log.state( "MLine", Verbosity.INFO, "Our Log configuration is:" );
+        Log.state( "MLINE", Verbosity.INFO, "Our Log configuration is:" );
 
         Log.debugLogger.multiLineMsgMode= 2;
         Log.info( "" );
         Log.info( "-------- ML Mode = 2 (multi line, meta info blanked) --------" );
-        Log.state( "MLine", Verbosity.INFO, "Our Log configuration is:" );
+        Log.state( "MLINE", Verbosity.INFO, "Our Log configuration is:" );
 
         Log.debugLogger.multiLineMsgMode= 3;
         Log.info( "" );
         Log.info( "-------- ML Mode = 3 (multi line, print headline with info, text starts at pos 0) --------" );
-        Log.state( "MLine", Verbosity.INFO, "Our Log configuration is:" );
+        Log.state( "MLINE", Verbosity.INFO, "Our Log configuration is:" );
 
         Log.debugLogger.multiLineMsgMode= 4;
         Log.info( "" );
         Log.info( "-------- ML Mode = 4 (pure multi line, no meta info, no headline, starts at pos 0)) --------" );
-        Log.state( "MLine", Verbosity.INFO, "Our Log configuration is:" );
+        Log.state( "MLINE", Verbosity.INFO, "Our Log configuration is:" );
     }
 
 

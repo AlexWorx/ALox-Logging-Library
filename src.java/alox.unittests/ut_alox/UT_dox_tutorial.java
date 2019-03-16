@@ -2,7 +2,7 @@
 //  Unit Tests - AWorx Library
 //  (Tests to create tutorial sample code and output)
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package ut_alox;
@@ -21,7 +21,7 @@ import com.aworx.lox.Scope;
 import com.aworx.lox.Log;
 import com.aworx.lox.ESC;
 import com.aworx.lox.ALox;
-import com.aworx.lox.core.textlogger.*;
+import com.aworx.lox.detail.textlogger.*;
 import com.aworx.lox.loggers.*;
 import com.aworx.lox.tools.*;
 //! [Tut_using_statement]

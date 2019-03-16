@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -61,7 +61,7 @@ are reading yourself through this tutorial. Some first general notes:
 
 - The most important interface into ALox is class
 [Lox](@ref #com::aworx::lox::Lox) which is is a container to hold one or more instances of abstract class
-[Logger](@ref #com::aworx::lox::core::Logger). Through the interface of class *Lox*, the <em>Log Statements</em> are invoked.
+[Logger](@ref #com::aworx::lox::detail::Logger). Through the interface of class *Lox*, the <em>Log Statements</em> are invoked.
 Log statements are forwarded to the \e Loggers attached.
 
 - The most simple case is that you have just one \b Lox instance, holding exactly one \e %Logger which logs its output to the
@@ -104,7 +104,7 @@ your source file:
 # 4. Class Logger #  {#alox_java_tut_logger}
 
 While class \b %Lox is the main interface to ALox logging, abstract class
-\ref com::aworx::lox::core::Logger  "Logger" is performing the log. 'Performing' here means that
+\ref com::aworx::lox::detail::Logger  "Logger" is performing the log. 'Performing' here means that
 derived instances of this abstract class are responsible for writing the \e 'Logables' (the message
 or data that is logged) to a 'drain', for example the console or a text file.
 
@@ -731,7 +731,7 @@ The following log output will be generated:
 
 In multi-threaded applications, ALox by default logs information about the thread id or name
 that executed the code containing your log statements.
-(This can be configured for ALox textual \e Loggers with class \ref com::aworx::lox::core::textlogger::MetaInfo "MetaInfo".)
+(This can be configured for ALox textual \e Loggers with class \ref com::aworx::lox::detail::textlogger::MetaInfo "MetaInfo".)
 
 Often threads do not have a name, but just an ID. It would be much nicer to see a
 name instead. ALox provides a simple mechanism to overwrite thread names with method

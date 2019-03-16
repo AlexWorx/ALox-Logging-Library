@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  cs.aworx.lox.loggers - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -134,7 +134,7 @@ public enum Scope
 /** ************************************************************************************************
  * This class defines "escape sequences" that influence the formatting of log output.
  * Specific implementations of class
- * \ref cs.aworx.lox.core.Logger "Logger"
+ * \ref cs.aworx.lox.detail.Logger "Logger"
  * have to convert or interpret this classes definitions of escape sequences
  * when processing log data. If no formatting of the output is supported by a specific Logger
  * implementation, such logger should filter and discard escape sequences defined here.

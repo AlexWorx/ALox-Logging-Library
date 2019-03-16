@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -43,11 +43,11 @@ of \alox is consequently located in two different places:
 
 <b>Documentation located at the [ALib Class Library Website](http://alexworx.github.io/ALib-Class-Library):</b>
 
-- \ref alib_man_setup
+- \ref alib_manual
 - \ref alib_changelog
 - [C++ Reference Documentation](https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1lox.html) of \alox classes
   created with marvelous [Doxygen](http://www.stack.nl/~dimitri/doxygen/)!
-- \ref alib_man_modules "Documentation of other ALib modules"
+- \ref alib_manual_modules_overview "Documentation of other ALib Modules"
 
 */
 

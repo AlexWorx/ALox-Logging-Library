@@ -126,32 +126,32 @@
     <Compile Include="..\..\..\src.cs\alox\ALoxTypesAndEnums.cs">
       <Link>ALox\ALoxTypesAndEnums.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alox\core\Domain.cs">
-      <Link>ALox\core\Domain.cs</Link>
+    <Compile Include="..\..\..\src.cs\alox\detail\Domain.cs">
+      <Link>ALox\detail\Domain.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alox\core\Logger.cs">
-      <Link>ALox\core\Logger.cs</Link>
+    <Compile Include="..\..\..\src.cs\alox\detail\Logger.cs">
+      <Link>ALox\detail\Logger.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alox\core\ScopeDump.cs">
-      <Link>ALox\core\ScopeDump.cs</Link>
+    <Compile Include="..\..\..\src.cs\alox\detail\ScopeDump.cs">
+      <Link>ALox\detail\ScopeDump.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alox\core\ScopeInfo.cs">
-      <Link>ALox\core\ScopeInfo.cs</Link>
+    <Compile Include="..\..\..\src.cs\alox\detail\ScopeInfo.cs">
+      <Link>ALox\detail\ScopeInfo.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alox\core\ScopeStore.cs">
-      <Link>ALox\core\ScopeStore.cs</Link>
+    <Compile Include="..\..\..\src.cs\alox\detail\ScopeStore.cs">
+      <Link>ALox\detail\ScopeStore.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alox\core\textlogger\MetaInfo.cs">
-      <Link>ALox\core\textlogger\MetaInfo.cs</Link>
+    <Compile Include="..\..\..\src.cs\alox\detail\textlogger\MetaInfo.cs">
+      <Link>ALox\detail\textlogger\MetaInfo.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alox\core\textlogger\ObjectConverter.cs">
-      <Link>ALox\core\textlogger\ObjectConverter.cs</Link>
+    <Compile Include="..\..\..\src.cs\alox\detail\textlogger\ObjectConverter.cs">
+      <Link>ALox\detail\textlogger\ObjectConverter.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alox\core\textlogger\PlainTextLogger.cs">
-      <Link>ALox\core\textlogger\PlainTextLogger.cs</Link>
+    <Compile Include="..\..\..\src.cs\alox\detail\textlogger\PlainTextLogger.cs">
+      <Link>ALox\detail\textlogger\PlainTextLogger.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alox\core\textlogger\TextLogger.cs">
-      <Link>ALox\core\textlogger\TextLogger.cs</Link>
+    <Compile Include="..\..\..\src.cs\alox\detail\textlogger\TextLogger.cs">
+      <Link>ALox\detail\textlogger\TextLogger.cs</Link>
     </Compile>
     <Compile Include="..\..\..\src.cs\alox\Log.cs">
       <Link>ALox\Log.cs</Link>

@@ -1,7 +1,7 @@
 // #################################################################################################
 //  com.aworx.lox - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 package com.aworx.lox;
@@ -108,7 +108,7 @@ public abstract class ALox
          * Besides this version number, field #revision indicates if this is a revised version
          * of a former release.
          */
-        public static final int         version                                               =1805;
+        public static final int         version                                               =1903;
 
         /**
          * The revision number of this release. Each \b %ALox #version is initially released as
@@ -156,7 +156,7 @@ public abstract class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref com.aworx.lox.core.textlogger.TextLogger "TextLogger".
+         * used by \ref com.aworx.lox.detail.textlogger.TextLogger "TextLogger".
          */
         public static          VariableDecl           AUTO_SIZES = new VariableDecl(
             configCategoryName,   null,     "%1_AUTO_SIZES",
@@ -167,7 +167,7 @@ public abstract class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref com.aworx.lox.core.textlogger.TextLogger "TextLogger".
+         * used by \ref com.aworx.lox.detail.textlogger.TextLogger "TextLogger".
          */
         public static          VariableDecl           MAX_ELAPSED_TIME = new VariableDecl(
             configCategoryName,   null,     "%1_MAX_ELAPSED_TIME",
@@ -235,7 +235,7 @@ public abstract class ALox
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
          * used by colorful specializations of class
-         * \ref com.aworx.lox.core.textlogger.TextLogger "TextLogger".
+         * \ref com.aworx.lox.detail.textlogger.TextLogger "TextLogger".
          */
         public static          VariableDecl           CONSOLE_LIGHT_COLORS = new VariableDecl(
             configCategoryName,   null,     "CONSOLE_LIGHT_COLORS",
@@ -264,7 +264,7 @@ public abstract class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref com.aworx.lox.core.textlogger.TextLogger "TextLogger".
+         * used by \ref com.aworx.lox.detail.textlogger.TextLogger "TextLogger".
          */
         public static          VariableDecl           FORMAT = new VariableDecl(
             configCategoryName,   null,     "%1_FORMAT",
@@ -279,7 +279,7 @@ public abstract class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref com.aworx.lox.core.textlogger.TextLogger "TextLogger".
+         * used by \ref com.aworx.lox.detail.textlogger.TextLogger "TextLogger".
          */
         public static          VariableDecl           FORMAT_DATE_TIME = new VariableDecl(
             configCategoryName,   null,     "%1_FORMAT_DATE_TIME",
@@ -293,7 +293,7 @@ public abstract class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref com.aworx.lox.core.textlogger.TextLogger "TextLogger".
+         * used by \ref com.aworx.lox.detail.textlogger.TextLogger "TextLogger".
          */
         public static          VariableDecl           FORMAT_TIME_DIFF = new VariableDecl(
             configCategoryName,   null,     "%1_FORMAT_TIME_DIFF",
@@ -308,7 +308,7 @@ public abstract class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref com.aworx.lox.core.textlogger.TextLogger "TextLogger".
+         * used by \ref com.aworx.lox.detail.textlogger.TextLogger "TextLogger".
          */
         public static          VariableDecl           FORMAT_MULTILINE = new VariableDecl(
             configCategoryName,   null,     "%1_FORMAT_MULTILINE",
@@ -324,7 +324,7 @@ public abstract class ALox
 
         /**
          * Attributes of corresponding [configuration variable](../group__GrpALoxConfigVars.html)
-         * used by \ref com.aworx.lox.core.textlogger.TextLogger "TextLogger".
+         * used by \ref com.aworx.lox.detail.textlogger.TextLogger "TextLogger".
          */
         public static          VariableDecl           REPLACEMENTS     = new VariableDecl(
             configCategoryName,   null,     "%1_REPLACEMENTS",

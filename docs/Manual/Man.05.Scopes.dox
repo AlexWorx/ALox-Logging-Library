@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -211,7 +211,7 @@ an integer value specifying the number of directories to cut, to the enumeration
 \note
   This differences in the interface is caused by the fact that Java does not allow to do arithmetics
   with elements of enumerations. C# allows this and in C++ we use the concept of
-  \ref aworx::lang::T_EnumIsArithmetical "ALib arithmetical enums".).
+  \ref aworx::lib::enums::T_EnumIsArithmetical "ALib arithmetical enums".).
 
 If this is used, for values greater than \c 0, the corresponding amount of directories are cut
 from the end of the source files' path to determine the parent directory that a <em>Scope Domain</em> should
@@ -559,9 +559,8 @@ hence the current thread, is used.
   As long as such library is creating 'native' threads of the underlying
   operating system, this is no issue. To refer to a thread created with a different library, the
   approach is as follows:
-  - from within the thread that is created, ALib method
-    \cpp_alib{threads,Threads::CurrentThread} has to be invoked on library singleton
-    #aworx::lib::THREADS.
+  - from within the thread that is created, static method \cpp_alib{threads,Thread::GetCurrent}
+    has to be invoked.
   - The pointer to the \ref aworx::lib::threads::Thread "aworx::Thread" object received has to
     be passed to the scope of the method that is supposed to set a thread-related \e Scope value
     for referencing the thread in question.
@@ -570,7 +569,7 @@ hence the current thread, is used.
 When things get more complicated, same as with language related scopes, a snapshot of all current
 settings can be logged using <b>%Lox.State</b>
 ([C++] (@ref aworx::lib::lox::Lox::State),
- [C#]  (@ref  #cs::aworx::lox::Lox::State),
+ [C#]  (@ref #cs::aworx::lox::Lox::State),
  [Java](@ref #com::aworx::lox::Lox::state)) to investigate which settings have been performed.
 
 Alternatively, if the snapshot is not enough to understand what is set, removed and used where,

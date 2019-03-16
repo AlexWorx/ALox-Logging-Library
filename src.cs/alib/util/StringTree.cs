@@ -1,7 +1,7 @@
 ﻿// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using cs.aworx.lib;
@@ -858,7 +858,7 @@ public class StringTree<T>
 
 
                     int insertionPos= target.Length();
-#if !DOX_PARSER
+#if !ALIB_DOCUMENTATION_PARSER
 //! [DOX_ALIB_STRING_TREE_MOVETOPARENT]
 Cursor iter= new Cursor( stringTree, node );
 while( !iter.IsRoot() )          // <- not root?

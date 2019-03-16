@@ -1,7 +1,7 @@
 // #################################################################################################
-//  com.aworx.lox.core - ALox Logging Library
+//  com.aworx.lox.detail - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -13,7 +13,7 @@
  *  found here provide an important foundation.<p>
  *  Developed by A-Worx GmbH and published under Boost Software License.
  **************************************************************************************************/
-package com.aworx.lox.core;
+package com.aworx.lox.detail;
 
 import java.util.ArrayList;
 import java.util.Locale;

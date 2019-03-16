@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -17,13 +17,13 @@ While \alox in principle is designed to process \e Logables of arbitrary type, t
 widely spread use case is logging textual information. For this reason,
 abstract class
 <b>%Logger</b>
-([C++] (@ref aworx::lib::lox::core::Logger),
- [C#]  (@ref  #cs::aworx::lox::core::Logger),
- [Java](@ref #com::aworx::lox::core::Logger)) is specialized by class
+([C++] (@ref aworx::lib::lox::detail::Logger),
+ [C#]  (@ref  #cs::aworx::lox::detail::Logger),
+ [Java](@ref #com::aworx::lox::detail::Logger)) is specialized by class
 <b>%TextLogger</b>
-([C++] (@ref aworx::lib::lox::core::textlogger::TextLogger),
- [C#]  (@ref  #cs::aworx::lox::core::textlogger::TextLogger),
- [Java](@ref #com::aworx::lox::core::textlogger::TextLogger)) (still abstract).
+([C++] (@ref aworx::lib::lox::detail::textlogger::TextLogger),
+ [C#]  (@ref  #cs::aworx::lox::detail::textlogger::TextLogger),
+ [Java](@ref #com::aworx::lox::detail::textlogger::TextLogger)) (still abstract).
 Besides providing basic features useful for textual log output, for example generating
 human readable meta information of <em>Log Statements</em>, class \b %TextLogger introduces a set of 'escape sequences'.
 These sequences are gathered in class
@@ -37,9 +37,9 @@ These sequences are gathered in class
 ANSI terminals. They provide settings of foreground and background colors and font styles.
 The ESC-sequences may occur in the (string type) \e Logables and as well in field
 <b>%MetaInfo.Format</b>
-([C++] (@ref aworx::lib::lox::core::textlogger::MetaInfo.Format),
- [C#]  (@ref  #cs::aworx::lox::core::textlogger::MetaInfo.Format),
- [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.format)).
+([C++] (@ref aworx::lib::lox::detail::textlogger::MetaInfo.Format),
+ [C#]  (@ref  #cs::aworx::lox::detail::textlogger::MetaInfo.Format),
+ [Java](@ref #com::aworx::lox::detail::textlogger::MetaInfo.format)).
 
 This is a sample taken from the documentation of class \b %ESC (C# version):
 
@@ -49,9 +49,9 @@ Now, if a output 'drain' does not support the modification of colors (e.g. when 
 a text file), these codes need to be removed before the textual log message is written.
 This task is done by class
 <b>%PlainTextLogger</b>
-([C++] (@ref aworx::lib::lox::core::textlogger::PlainTextLogger),
- [C#]  (@ref  #cs::aworx::lox::core::textlogger::PlainTextLogger),
- [Java](@ref #com::aworx::lox::core::textlogger::PlainTextLogger)) which in turn specializes \b %TextLogger
+([C++] (@ref aworx::lib::lox::detail::textlogger::PlainTextLogger),
+ [C#]  (@ref  #cs::aworx::lox::detail::textlogger::PlainTextLogger),
+ [Java](@ref #com::aworx::lox::detail::textlogger::PlainTextLogger)) which in turn specializes \b %TextLogger
 and which also is still abstract. The following diagram visualizes what was said so far:
 
 \dot

@@ -1,7 +1,7 @@
 // #################################################################################################
-//  cs.aworx.lox.core - ALox Logging Library
+//  cs.aworx.lox.detail - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 using cs.aworx.lib.strings;
@@ -19,9 +19,9 @@ using System.Text;
 
 using cs.aworx.lib;
 using cs.aworx.lox;
-using cs.aworx.lox.core;
+using cs.aworx.lox.detail;
 
-namespace cs.aworx.lox.core.textlogger
+namespace cs.aworx.lox.detail.textlogger
 {
 
 /** ************************************************************************************************
@@ -183,26 +183,24 @@ public class MetaInfo
         protected        bool              warnedOnce                                       = false;
 
     /** ********************************************************************************************
-     *  Parses the #Format string and logs meta information into the log buffer. For each
-     *  variable found, method #processVariable is invoked. Hence, to add new variables,
-     *  the latter method can be overwritten by descendants. Overwriting this method is
-     *  recommended for formatter classes that do not rely on format strings.
+     * Parses the #Format string and logs meta information into the log buffer. For each
+     * variable found, method #processVariable is invoked. Hence, to add new variables,
+     * the latter method can be overwritten by descendants. Overwriting this method is
+     * recommended for formatter classes that do not rely on format strings.
+     *
      * @param logger    The logger that we are embedded in.
      * @param buffer    The buffer to write meta information into.
      * @param domain    The <em>Log Domain</em>.
      * @param verbosity The verbosity. This has been checked to be active already on this
      *                  stage and is provided to be able to be logged out only.
      * @param scope     Information about the scope of the <em>Log Statement</em>..
-     *
-     * @return The number of tab sequences that were written (by adding ESC.TAB to the buffer).
      **********************************************************************************************/
-    public virtual int Write( TextLogger logger, AString buffer, Domain domain, Verbosity verbosity, ScopeInfo scope )
+    public virtual void Write( TextLogger logger, AString   buffer,
+                               Domain     domain, Verbosity verbosity, ScopeInfo scope )
     {
-        int qtyTabStops= 0;
-
         // check
         if ( Format == null || Format.IsEmpty() )
-            return 0;
+            return;
 
         // clear DateTime singleton
         callerDateTime= null ;
@@ -221,10 +219,8 @@ public class MetaInfo
                 break;
 
             // process the found variable
-            qtyTabStops+= processVariable( logger, domain, verbosity, scope, buffer, tTok.Rest );
+            processVariable( logger, domain, verbosity, scope, buffer, tTok.Rest );
         }
-
-        return qtyTabStops;
     }
 
     /** ********************************************************************************************
@@ -240,11 +236,9 @@ public class MetaInfo
      * @param scope     Information about the scope of the <em>Log Statement</em>..
      * @param dest      The buffer to write meta information into.
      * @param variable  The variable to read (may have more characters appended)
-     *
-     * @return The number of tab sequences that were written (by adding ESC.TAB to the buffer).
      **********************************************************************************************/
-    protected virtual int processVariable( TextLogger logger, Domain  domain, Verbosity verbosity,
-                                           ScopeInfo  scope,  AString dest,   Substring variable )
+    protected virtual void processVariable( TextLogger logger, Domain  domain, Verbosity verbosity,
+                                            ScopeInfo  scope,  AString dest,   Substring variable  )
     {
         // process commands
         char c2;
@@ -264,7 +258,7 @@ public class MetaInfo
                         if ( length > 0 )
                         {
                             dest._( path, 0, length );
-                            return 0;
+                            return;
                         }
                         val= NoSourceFileInfo;
 
@@ -299,13 +293,13 @@ public class MetaInfo
                             dest._( NoMethodInfo );
                         else
                             dest._( method );
-                        return 0;
+                        return;
                     }
 
                     case 'L':  // line number
                     {
                         dest._( scope.GetLineNumber() );
-                        return 0;
+                        return;
                     }
 
                     default:
@@ -316,11 +310,11 @@ public class MetaInfo
                             ALIB_DBG.WARNING( "Unknown format variable '%S" + c2 + "\' (only one warning)" );
                         }
                         dest._( "%ERROR" );
-                        return 0;
+                        return;
                     }
                 }
                 dest._( val );
-                return 0;
+                return;
             }
 
             // %Tx: Time
@@ -427,7 +421,7 @@ public class MetaInfo
                     }
                     dest._( "%ERROR" );
                 }
-                return 0;
+                return;
             }
 
 
@@ -440,14 +434,14 @@ public class MetaInfo
                 {
                     dest.Field()
                         ._( scope.GetThreadName() )
-                        .Field( logger.AutoSizes.Next( scope.GetThreadName().Length(), 0 ), Alignment.Center );
+                        .Field( logger.AutoSizes.Next( AutoSizes.Types.Field, scope.GetThreadName().Length(), 0 ), Alignment.Center );
                 }
                 else if ( c2 == 'I' )
                 {
                     tmpAString._()._( scope.GetThreadID() );
                     dest.Field()
                         ._( tmpAString )
-                        .Field( logger.AutoSizes.Next( tmpAString           .Length(), 0 ), Alignment.Center );
+                        .Field( logger.AutoSizes.Next( AutoSizes.Types.Field, tmpAString           .Length(), 0 ), Alignment.Center );
                 }
                 else
                 {
@@ -458,7 +452,7 @@ public class MetaInfo
                     }
                     dest._( "%ERROR" );
                 }
-                return 0;
+                return;
             }
 
             case 'L':
@@ -474,48 +468,44 @@ public class MetaInfo
                         ALIB_DBG.WARNING( "Unknown format variable '%L" + c2 + "\' (only one warning)" );
                     }
                     dest._( "%ERROR" );
-                    return 0;
+                    return;
                 }
-                return 0;
+                return;
             }
 
             case 'P':
             {
                 dest._NC( ProcessInfo.GetCurrentProcessName() );
-                return 0;
+                return;
             }
 
             case 'V':   dest._ (    verbosity == Verbosity.Error    ? VerbosityError
                                   : verbosity == Verbosity.Warning  ? VerbosityWarning
                                   : verbosity == Verbosity.Info     ? VerbosityInfo
                                   :                                   VerbosityVerbose    );
-                        return 0;
+                        return;
 
             case 'D':
             {
-                dest.Field()._( domain.FullPath ).Field( logger.AutoSizes.Next( domain.FullPath.Length(), 0 ), Alignment.Left );
-                return 0;
+                dest.Field()._( domain.FullPath ).Field( logger.AutoSizes.Next( AutoSizes.Types.Field, domain.FullPath.Length(), 0 ), Alignment.Left );
+                return;
             }
 
             case '#':    dest._( logger.CntLogs, LogNumberMinDigits );
-                         return 0;
+                         return;
 
             // A: Auto tab
             case 'A':
             {
                 // read extra space from format string
-                int     oldStart=    variable.Start;
-                int     extraSpace;  variable.ConsumeDecDigits( out extraSpace );
-                if ( oldStart == variable.Start )
-                    extraSpace=         1;
+                int extraSpace;
+                if( !variable.ConsumeDecDigits( out extraSpace ) )
+                    extraSpace= 1;
+                int currentLength= dest.Length();
+                int tabPos= logger.AutoSizes.Next( AutoSizes.Types.Tabstop, currentLength, extraSpace );
+                dest.InsertChars(' ', tabPos - currentLength );
 
-                // insert ESC code to jump to next tab level
-                extraSpace= Math.Min( extraSpace, 10 + ('Z'-'A') );
-                char escNo= extraSpace < 10 ?   (char) ( '0' + extraSpace )
-                                            :   (char) ( 'A' + extraSpace );
-
-                dest._( "\x1Bt" )._( escNo );
-                return 1;
+                return;
             }
 
             default:
@@ -527,9 +517,8 @@ public class MetaInfo
                 }
                 dest._( "%ERROR" );
             }
-            return 0;
+            return;
         }
-
     }
 
 

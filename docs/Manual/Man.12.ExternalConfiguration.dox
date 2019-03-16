@@ -1,7 +1,7 @@
 // #################################################################################################
 //  Documentation - ALox Logging Library
 //
-//  Copyright 2013-2018 A-Worx GmbH, Germany
+//  Copyright 2013-2019 A-Worx GmbH, Germany
 //  Published under 'Boost Software License' (a free software license, see LICENSE.txt)
 // #################################################################################################
 
@@ -36,7 +36,7 @@ library \alib. Configuration mechanics of \alib are gathered in namespace
     [C#]  (@ref  #cs::aworx::lib::config::Configuration),
     [Java](@ref #com::aworx::lib::config::Configuration)) is found in field
   <b>%ALIB.Config</b>
-   ([C++] (@ref      #aworx::lib::ALib::Config),
+   ([C++] (@ref      #aworx::lib::Module::Config),
     [C#]  (@ref  #cs::aworx::lib::ALIB::Config),
     [Java](@ref #com::aworx::lib::ALIB::config)).
 
@@ -80,7 +80,7 @@ Then, other use cases and variants are:
     <b>%ALox::Init</b>
     ([C#]   (@ref  #cs::aworx::lox::ALox::Init(String[] args)),
      [Java] (@ref #com::aworx::lox::ALox::init(String[] args))).) respectively class
-    \cpp_alib{lang,Library}
+    \cpp_alib{Module}
 - Have \b no configuration system for %ALox: The most obvious reason why this might be wanted is that a
   developer of an %ALox enabled software might not want to allow the end user to reconfigure \alox (i.e. switching
   a \e Logger off that collects telemetric data).
@@ -123,7 +123,7 @@ while exposing an own, similar field
      [Java](@ref #com::aworx::lox::ALox::configCategoryName)) defaulting to "ALOX".
 This allows a user of the library to change the category names
 In the C++ version such change is supported due to the declaration of all variables using
-\cpp_alib{lang,T_EnumMetaDataDecl,enum meta data} defined with macro \ref ALIB_CONFIG_VARIABLES.
+\cpp_alib{resources,T_EnumMetaDataDecl,enum meta data} defined with macro \ref ALIB_CONFIG_VARIABLES.
 
 All configuration variables are declared in one place.
 (In Java and C# versions with static initializations of object of type class (struct)
@@ -143,7 +143,7 @@ set up at or below priority
  ([C++] (@ref      #aworx::lib::config::Priorities::DefaultValues),
   [C#]  (@ref  #cs::aworx::lib::config::Configuration::PrioDefaultValues),
   [Java](@ref #com::aworx::lib::config::Configuration::PRIO_DEFAULT_VALUES)). By default, this
-is of type \ccj_aworx{config,InMemoryPlugin}.
+is of type \ccj_aworx{lib::config,InMemoryPlugin}.
 
 Finally, \alox leverages the flexibility that the priorities of the \alib configuration
 system brings by exposing parameter \p{priority} in methods
@@ -190,9 +190,9 @@ higher prioritized external sources to overwrite, or just disallow it.
   explicitly demanded:
   - An application may also choose to expose only selected variables to the outside.
   - An application may store \alib and \alox configuration data in a separated configuration
-    file. (See method
+    file. (See
     <b>%ALox::Init</b>
-    ([C++] (@ref      #aworx::lib::lang::Library::Init)),
+    ([C++] (@ref alib_manual_bootstrapping_different_resconf)),
     [C#]   (@ref  #cs::aworx::lox::ALox::Init(Configuration)),
     [Java] (@ref #com::aworx::lox::ALox::init(Configuration))).)
 - A custom configuration plug-in will not only work in respect to prioritizing values of external
@@ -310,10 +310,10 @@ What was said above is generally true for the C++ version of \alib/\alox. Howeve
 some differences:
 - The library initialization process is a little more complex. It is done in different phases.
   To add a user-defined configuration plug-in, a first phase of initialization has to be performed.
-  The details are documented with class \cpp_alib{lang,Library}.
+  The details are documented with class \cpp_alib{Module}.
 - Variable names, their defaults and  help texts may be changed using external resources.
   For changing the resources, the library initialization has to be invoked in different phases.
-  Details are documented with class \cpp_alib{lang,Resources}.
+  Details are documented with class \cpp_alib{resources,Resources}.
 
 
 --------------------------------------------------------------------
